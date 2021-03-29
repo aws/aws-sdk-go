@@ -1,3 +1,16 @@
+Release v1.38.8 (2021-03-29)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service API, documentation, and paginators
+  * This release adds support for Event Subscriptions to DocumentDB.
+* `service/glue`: Updates service API and documentation
+  * Allow Dots in Registry and Schema Names for CreateRegistry, CreateSchema; Fixed issue when duplicate keys are present and not returned as part of QuerySchemaVersionMetadata.
+* `service/iam`: Updates service API
+  * AWS Identity and Access Management GetAccessKeyLastUsed API will throw a custom error if customer public key is not found for access keys.
+* `service/location`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.38.7 (2021-03-26)
 ===
 

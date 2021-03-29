@@ -86,7 +86,7 @@
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
     "GetPlan": "<p>Gets code to perform a specified mapping.</p>",
     "GetRegistry": "<p>Describes the specified registry in detail.</p>",
-    "GetResourcePolicies": "<p>Retrieves the security configurations for the resource policies set on individual resources, and also the account-level policy.</p> <p>This operation also returns the Data Catalog resource policy. However, if you enabled metadata encryption in Data Catalog settings, and you do not have permission on the AWS KMS key, the operation can't return the Data Catalog resource policy.</p>",
+    "GetResourcePolicies": "<p>Retrieves the resource policies set on individual resources by AWS Resource Access Manager during cross-account permission grants. Also retrieves the Data Catalog resource policy.</p> <p>If you enabled metadata encryption in Data Catalog settings, and you do not have permission on the AWS KMS key, the operation can't return the Data Catalog resource policy.</p>",
     "GetResourcePolicy": "<p>Retrieves a specified resource policy.</p>",
     "GetSchema": "<p>Describes the specified schema in detail.</p>",
     "GetSchemaByDefinition": "<p>Retrieves a schema by the <code>SchemaDefinition</code>. The schema definition is sent to the Schema Registry, canonicalized, and hashed. If the hash is matched within the scope of the <code>SchemaName</code> or ARN (or the default registry, if none is supplied), that schema’s metadata is returned. Otherwise, a 404 or NotFound error is returned. Schema versions in <code>Deleted</code> statuses will not be included in the results.</p>",
@@ -1260,6 +1260,7 @@
         "GetSchemaResponse$CreatedTime": "<p>The date and time the schema was created.</p>",
         "GetSchemaVersionResponse$CreatedTime": "<p>The date and time the schema version was created.</p>",
         "MetadataInfo$CreatedTime": "<p>The time at which the entry was created.</p>",
+        "OtherMetadataValueListItem$CreatedTime": "<p>The time at which the entry was created.</p>",
         "RegistryListItem$CreatedTime": "<p>The data the registry was created.</p>",
         "SchemaListItem$CreatedTime": "<p>The date and time that a schema was created.</p>",
         "SchemaVersionListItem$CreatedTime": "<p>The date and time the schema version was created.</p>"
@@ -1755,7 +1756,7 @@
     "EnableHybridValues": {
       "base": null,
       "refs": {
-        "PutResourcePolicyRequest$EnableHybrid": "<p>Allows you to specify if you want to use both resource-level and account/catalog-level resource policies. A resource-level policy is a policy attached to an individual resource such as a database or a table.</p> <p>The default value of <code>NO</code> indicates that resource-level policies cannot co-exist with an account-level policy. A value of <code>YES</code> means the use of both resource-level and account/catalog-level resource policies is allowed.</p>"
+        "PutResourcePolicyRequest$EnableHybrid": "<p>If <code>'TRUE'</code>, indicates that you are using both methods to grant cross-account access to Data Catalog resources:</p> <ul> <li> <p>By directly updating the resource policy with <code>PutResourePolicy</code> </p> </li> <li> <p>By using the <b>Grant permissions</b> command on the AWS Management Console.</p> </li> </ul> <p>Must be set to <code>'TRUE'</code> if you have already used the Management Console to grant cross-account access, otherwise the call fails. Default is 'FALSE'.</p>"
       }
     },
     "EncryptionAtRest": {
@@ -1846,7 +1847,7 @@
     "ExistCondition": {
       "base": null,
       "refs": {
-        "PutResourcePolicyRequest$PolicyExistsCondition": "<p>A value of <code>MUST_EXIST</code> is used to update a policy. A value of <code>NOT_EXIST</code> is used to create a new policy. If a value of <code>NONE</code> or a null value is used, the call will not depend on the existence of a policy.</p>"
+        "PutResourcePolicyRequest$PolicyExistsCondition": "<p>A value of <code>MUST_EXIST</code> is used to update a policy. A value of <code>NOT_EXIST</code> is used to create a new policy. If a value of <code>NONE</code> or a null value is used, the call does not depend on the existence of a policy.</p>"
       }
     },
     "ExportLabelsTaskRunProperties": {
@@ -2566,13 +2567,13 @@
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be deleted.</p>",
         "DeleteSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema being deleted.</p>",
         "GetRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
-        "GetResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be retrieved. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
+        "GetResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for which to retrieve the resource policy. If not supplied, the Data Catalog resource policy is returned. Use <code>GetResourcePolicies</code> to view all existing resource policies. For more information see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html\">Specifying AWS Glue Resource ARNs</a>. </p>",
         "GetSchemaByDefinitionResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "GetSchemaResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
         "GetSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "GetSchemaVersionResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "GetTagsRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to retrieve tags.</p>",
-        "PutResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be set. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
+        "PutResourcePolicyRequest$ResourceArn": "<p>Do not use. For internal use only.</p>",
         "PutSchemaVersionMetadataResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) for the schema.</p>",
         "RegistryId$RegistryArn": "<p>Arn of the registry to be updated. One of <code>RegistryArn</code> or <code>RegistryName</code> has to be provided.</p>",
         "RegistryListItem$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
@@ -3276,6 +3277,7 @@
       "refs": {
         "MetadataInfo$MetadataValue": "<p>The metadata key’s corresponding value.</p>",
         "MetadataKeyValuePair$MetadataValue": "<p>A metadata key’s corresponding value.</p>",
+        "OtherMetadataValueListItem$MetadataValue": "<p>The metadata key’s corresponding value for the other metadata belonging to the same metadata key.</p>",
         "PutSchemaVersionMetadataResponse$MetadataValue": "<p>The value of the metadata key.</p>",
         "RemoveSchemaVersionMetadataResponse$MetadataValue": "<p>The value of the metadata key.</p>"
       }
@@ -3717,6 +3719,18 @@
       "base": null,
       "refs": {
         "StorageDescriptor$SortColumns": "<p>A list specifying the sort order of each bucket in the table.</p>"
+      }
+    },
+    "OtherMetadataValueList": {
+      "base": null,
+      "refs": {
+        "MetadataInfo$OtherMetadataValueList": "<p>Other metadata belonging to the same metadata key.</p>"
+      }
+    },
+    "OtherMetadataValueListItem": {
+      "base": "<p>A structure containing other metadata for a schema version belonging to the same metadata key.</p>",
+      "refs": {
+        "OtherMetadataValueList$member": null
       }
     },
     "PageSize": {

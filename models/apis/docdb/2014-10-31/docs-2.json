@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon DocumentDB API documentation</p>",
   "operations": {
+    "AddSourceIdentifierToSubscription": "<p>Adds a source identifier to an existing event notification subscription.</p>",
     "AddTagsToResource": "<p>Adds metadata tags to an Amazon DocumentDB resource. You can use these tags with cost allocation reporting to track costs that are associated with Amazon DocumentDB resources. or in a <code>Condition</code> statement in an AWS Identity and Access Management (IAM) policy for Amazon DocumentDB.</p>",
     "ApplyPendingMaintenanceAction": "<p>Applies a pending maintenance action to a resource (for example, to an Amazon DocumentDB instance).</p>",
     "CopyDBClusterParameterGroup": "<p>Copies the specified cluster parameter group.</p>",
@@ -11,11 +12,13 @@
     "CreateDBClusterSnapshot": "<p>Creates a snapshot of a cluster. </p>",
     "CreateDBInstance": "<p>Creates a new instance.</p>",
     "CreateDBSubnetGroup": "<p>Creates a new subnet group. subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region.</p>",
+    "CreateEventSubscription": "<p>Creates an Amazon DocumentDB event notification subscription. This action requires a topic Amazon Resource Name (ARN) created by using the Amazon DocumentDB console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the Amazon SNS console.</p> <p>You can specify the type of source (<code>SourceType</code>) that you want to be notified of. You can also provide a list of Amazon DocumentDB sources (<code>SourceIds</code>) that trigger the events, and you can provide a list of event categories (<code>EventCategories</code>) for events that you want to be notified of. For example, you can specify <code>SourceType = db-instance</code>, <code>SourceIds = mydbinstance1, mydbinstance2</code> and <code>EventCategories = Availability, Backup</code>.</p> <p>If you specify both the <code>SourceType</code> and <code>SourceIds</code> (such as <code>SourceType = db-instance</code> and <code>SourceIdentifier = myDBInstance1</code>), you are notified of all the <code>db-instance</code> events for the specified source. If you specify a <code>SourceType</code> but do not specify a <code>SourceIdentifier</code>, you receive notice of the events for that source type for all your Amazon DocumentDB sources. If you do not specify either the <code>SourceType</code> or the <code>SourceIdentifier</code>, you are notified of events generated from all Amazon DocumentDB sources belonging to your customer account.</p>",
     "DeleteDBCluster": "<p>Deletes a previously provisioned cluster. When you delete a cluster, all automated backups for that cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified cluster are not deleted.</p> <p/>",
     "DeleteDBClusterParameterGroup": "<p>Deletes a specified cluster parameter group. The cluster parameter group to be deleted can't be associated with any clusters.</p>",
     "DeleteDBClusterSnapshot": "<p>Deletes a cluster snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The cluster snapshot must be in the <code>available</code> state to be deleted.</p> </note>",
     "DeleteDBInstance": "<p>Deletes a previously provisioned instance. </p>",
     "DeleteDBSubnetGroup": "<p>Deletes a subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
+    "DeleteEventSubscription": "<p>Deletes an Amazon DocumentDB event notification subscription.</p>",
     "DescribeCertificates": "<p>Returns a list of certificate authority (CA) certificates provided by Amazon DocumentDB for this AWS account.</p>",
     "DescribeDBClusterParameterGroups": "<p>Returns a list of <code>DBClusterParameterGroup</code> descriptions. If a <code>DBClusterParameterGroupName</code> parameter is specified, the list contains only the description of the specified cluster parameter group. </p>",
     "DescribeDBClusterParameters": "<p>Returns the detailed parameter list for a particular cluster parameter group.</p>",
@@ -27,6 +30,7 @@
     "DescribeDBSubnetGroups": "<p>Returns a list of <code>DBSubnetGroup</code> descriptions. If a <code>DBSubnetGroupName</code> is specified, the list will contain only the descriptions of the specified <code>DBSubnetGroup</code>.</p>",
     "DescribeEngineDefaultClusterParameters": "<p>Returns the default engine and system parameter information for the cluster database engine.</p>",
     "DescribeEventCategories": "<p>Displays a list of categories for all event source types, or, if specified, for a specified source type. </p>",
+    "DescribeEventSubscriptions": "<p>Lists all the subscription descriptions for a customer account. The description for a subscription includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>, <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>.</p> <p>If you specify a <code>SubscriptionName</code>, lists the description for that subscription.</p>",
     "DescribeEvents": "<p>Returns events related to instances, security groups, snapshots, and DB parameter groups for the past 14 days. You can obtain events specific to a particular DB instance, security group, snapshot, or parameter group by providing the name as a parameter. By default, the events of the past hour are returned.</p>",
     "DescribeOrderableDBInstanceOptions": "<p>Returns a list of orderable instance options for the specified engine.</p>",
     "DescribePendingMaintenanceActions": "<p>Returns a list of resources (for example, instances) that have at least one pending maintenance action.</p>",
@@ -37,7 +41,9 @@
     "ModifyDBClusterSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot.</p> <p>To share a manual cluster snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code>, and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual cluster snapshot. Use the value <code>all</code> to make the manual cluster snapshot public, which means that it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts. If a manual cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p>",
     "ModifyDBInstance": "<p>Modifies settings for an instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing subnet group. subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region.</p>",
+    "ModifyEventSubscription": "<p>Modifies an existing Amazon DocumentDB event notification subscription.</p>",
     "RebootDBInstance": "<p>You might need to reboot your instance, usually for maintenance reasons. For example, if you make certain changes, or if you change the cluster parameter group that is associated with the instance, you must reboot the instance for the changes to take effect. </p> <p>Rebooting an instance restarts the database engine service. Rebooting an instance results in a momentary outage, during which the instance status is set to <i>rebooting</i>. </p>",
+    "RemoveSourceIdentifierFromSubscription": "<p>Removes a source identifier from an existing Amazon DocumentDB event notification subscription.</p>",
     "RemoveTagsFromResource": "<p>Removes metadata tags from an Amazon DocumentDB resource.</p>",
     "ResetDBClusterParameterGroup": "<p> Modifies the parameters of a cluster parameter group to the default value. To reset specific parameters, submit a list of the following: <code>ParameterName</code> and <code>ApplyMethod</code>. To reset the entire cluster parameter group, specify the <code>DBClusterParameterGroupName</code> and <code>ResetAllParameters</code> parameters. </p> <p> When you reset the entire group, dynamic parameters are updated immediately and static parameters are set to <code>pending-reboot</code> to take effect on the next DB instance reboot.</p>",
     "RestoreDBClusterFromSnapshot": "<p>Creates a new cluster from a snapshot or cluster snapshot.</p> <p>If a snapshot is specified, the target cluster is created from the source DB snapshot with a default configuration and default security group.</p> <p>If a cluster snapshot is specified, the target cluster is created from the source cluster restore point with the same configuration as the original source DB cluster, except that the new cluster is created with the default security group.</p>",
@@ -46,6 +52,16 @@
     "StopDBCluster": "<p>Stops the running cluster that is specified by <code>DBClusterIdentifier</code>. The cluster must be in the <i>available</i> state. For more information, see <a href=\"https://docs.aws.amazon.com/documentdb/latest/developerguide/db-cluster-stop-start.html\">Stopping and Starting an Amazon DocumentDB Cluster</a>.</p>"
   },
   "shapes": {
+    "AddSourceIdentifierToSubscriptionMessage": {
+      "base": "<p>Represents the input to <a>AddSourceIdentifierToSubscription</a>. </p>",
+      "refs": {
+      }
+    },
+    "AddSourceIdentifierToSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AddTagsToResourceMessage": {
       "base": "<p>Represents the input to <a>AddTagsToResource</a>. </p>",
       "refs": {
@@ -119,6 +135,7 @@
         "DescribeDBClusterSnapshotsMessage$IncludeShared": "<p>Set to <code>true</code> to include shared manual cluster snapshots from other AWS accounts that this AWS account has been given permission to copy or restore, and otherwise <code>false</code>. The default is <code>false</code>.</p>",
         "DescribeDBClusterSnapshotsMessage$IncludePublic": "<p>Set to <code>true</code> to include manual cluster snapshots that are public and can be copied or restored by any AWS account, and otherwise <code>false</code>. The default is <code>false</code>.</p>",
         "DescribeDBEngineVersionsMessage$DefaultOnly": "<p>Indicates that only the default version of the specified engine or engine and major version combination is returned.</p>",
+        "EventSubscription$Enabled": "<p>A Boolean value indicating whether the subscription is enabled. A value of <code>true</code> indicates that the subscription is enabled.</p>",
         "ModifyDBClusterMessage$ApplyImmediately": "<p>A value that specifies whether the changes in this request and any pending changes are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the cluster. If this parameter is set to <code>false</code>, changes to the cluster are applied during the next maintenance window.</p> <p>The <code>ApplyImmediately</code> parameter affects only the <code>NewDBClusterIdentifier</code> and <code>MasterUserPassword</code> values. If you set this parameter value to <code>false</code>, the changes to the <code>NewDBClusterIdentifier</code> and <code>MasterUserPassword</code> values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the <code>ApplyImmediately</code> parameter.</p> <p>Default: <code>false</code> </p>",
         "ModifyDBInstanceMessage$ApplyImmediately": "<p>Specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the instance. </p> <p> If this parameter is set to <code>false</code>, changes to the instance are applied during the next maintenance window. Some parameter changes can cause an outage and are applied on the next reboot.</p> <p>Default: <code>false</code> </p>",
         "OrderableDBInstanceOption$Vpc": "<p>Indicates whether an instance is in a virtual private cloud (VPC).</p>",
@@ -136,11 +153,13 @@
         "CreateDBClusterMessage$StorageEncrypted": "<p>Specifies whether the cluster is encrypted.</p>",
         "CreateDBClusterMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
         "CreateDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades are applied automatically to the instance during the maintenance window.</p> <p>Default: <code>true</code> </p>",
+        "CreateEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription, set to <code>false</code> to create the subscription but not active it. </p>",
         "DescribeDBEngineVersionsMessage$ListSupportedCharacterSets": "<p>If this parameter is specified and the requested engine supports the <code>CharacterSetName</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported character sets for each engine version. </p>",
         "DescribeDBEngineVersionsMessage$ListSupportedTimezones": "<p>If this parameter is specified and the requested engine supports the <code>TimeZone</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported time zones for each engine version. </p>",
         "DescribeOrderableDBInstanceOptionsMessage$Vpc": "<p>The virtual private cloud (VPC) filter value. Specify this parameter to show only the available VPC or non-VPC offerings.</p>",
         "ModifyDBClusterMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
         "ModifyDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor version upgrades are applied automatically to the instance during the maintenance window. Changing this parameter doesn't result in an outage except in the following case, and the change is asynchronously applied as soon as possible. An outage results if this parameter is set to <code>true</code> during the maintenance window, and a newer minor version is available, and Amazon DocumentDB has enabled automatic patching for that engine version. </p>",
+        "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription. </p>",
         "PendingModifiedValues$MultiAZ": "<p>Indicates that the Single-AZ instance is to change to a Multi-AZ deployment.</p>",
         "RebootDBInstanceMessage$ForceFailover": "<p> When <code>true</code>, the reboot is conducted through a Multi-AZ failover. </p> <p>Constraint: You can't specify <code>true</code> if the instance is not configured for Multi-AZ.</p>",
         "RestoreDBClusterFromSnapshotMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
@@ -241,6 +260,16 @@
       }
     },
     "CreateDBSubnetGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateEventSubscriptionMessage": {
+      "base": "<p>Represents the input to <a>CreateEventSubscription</a>.</p>",
+      "refs": {
+      }
+    },
+    "CreateEventSubscriptionResult": {
       "base": null,
       "refs": {
       }
@@ -572,6 +601,16 @@
       "refs": {
       }
     },
+    "DeleteEventSubscriptionMessage": {
+      "base": "<p>Represents the input to <a>DeleteEventSubscription</a>.</p>",
+      "refs": {
+      }
+    },
+    "DeleteEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeCertificatesMessage": {
       "base": null,
       "refs": {
@@ -637,6 +676,11 @@
       "refs": {
       }
     },
+    "DescribeEventSubscriptionsMessage": {
+      "base": "<p>Represents the input to <a>DescribeEventSubscriptions</a>.</p>",
+      "refs": {
+      }
+    },
     "DescribeEventsMessage": {
       "base": "<p>Represents the input to <a>DescribeEvents</a>.</p>",
       "refs": {
@@ -673,9 +717,12 @@
     "EventCategoriesList": {
       "base": null,
       "refs": {
+        "CreateEventSubscriptionMessage$EventCategories": "<p> A list of event categories for a <code>SourceType</code> that you want to subscribe to. </p>",
         "DescribeEventsMessage$EventCategories": "<p>A list of event categories that trigger notifications for an event notification subscription.</p>",
         "Event$EventCategories": "<p>Specifies the category for the event.</p>",
-        "EventCategoriesMap$EventCategories": "<p>The event categories for the specified source type.</p>"
+        "EventCategoriesMap$EventCategories": "<p>The event categories for the specified source type.</p>",
+        "EventSubscription$EventCategoriesList": "<p>A list of event categories for the Amazon DocumentDB event notification subscription.</p>",
+        "ModifyEventSubscriptionMessage$EventCategories": "<p> A list of event categories for a <code>SourceType</code> that you want to subscribe to.</p>"
       }
     },
     "EventCategoriesMap": {
@@ -699,6 +746,33 @@
       "base": null,
       "refs": {
         "EventsMessage$Events": "<p>Detailed information about one or more events. </p>"
+      }
+    },
+    "EventSubscription": {
+      "base": "<p>Detailed information about an event to which you have subscribed.</p>",
+      "refs": {
+        "AddSourceIdentifierToSubscriptionResult$EventSubscription": null,
+        "CreateEventSubscriptionResult$EventSubscription": null,
+        "DeleteEventSubscriptionResult$EventSubscription": null,
+        "EventSubscriptionsList$member": null,
+        "ModifyEventSubscriptionResult$EventSubscription": null,
+        "RemoveSourceIdentifierFromSubscriptionResult$EventSubscription": null
+      }
+    },
+    "EventSubscriptionQuotaExceededFault": {
+      "base": "<p>You have reached the maximum number of event subscriptions. </p>",
+      "refs": {
+      }
+    },
+    "EventSubscriptionsList": {
+      "base": null,
+      "refs": {
+        "EventSubscriptionsMessage$EventSubscriptionsList": "<p>A list of event subscriptions.</p>"
+      }
+    },
+    "EventSubscriptionsMessage": {
+      "base": "<p>Represents the output of <a>DescribeEventSubscriptions</a>.</p>",
+      "refs": {
       }
     },
     "EventsMessage": {
@@ -735,6 +809,7 @@
         "DescribeDBSubnetGroupsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEngineDefaultClusterParametersMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventCategoriesMessage$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeEventSubscriptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribePendingMaintenanceActionsMessage$Filters": "<p>A filter that specifies one or more resources to return pending maintenance actions for.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-cluster-id</code> - Accepts cluster identifiers and cluster Amazon Resource Names (ARNs). The results list includes only pending maintenance actions for the clusters identified by these ARNs.</p> </li> <li> <p> <code>db-instance-id</code> - Accepts instance identifiers and instance ARNs. The results list includes only pending maintenance actions for the DB instances identified by these ARNs.</p> </li> </ul>",
@@ -795,6 +870,7 @@
         "DescribeDBInstancesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBSubnetGroupsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEngineDefaultClusterParametersMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventsMessage$Duration": "<p>The number of minutes to retrieve events for.</p> <p>Default: 60</p>",
         "DescribeEventsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -847,6 +923,11 @@
     },
     "InvalidDBSubnetStateFault": {
       "base": "<p> The subnet isn't in the <i>available</i> state. </p>",
+      "refs": {
+      }
+    },
+    "InvalidEventSubscriptionStateFault": {
+      "base": "<p>Someone else might be modifying a subscription. Wait a few seconds, and try again.</p>",
       "refs": {
       }
     },
@@ -941,6 +1022,16 @@
       "refs": {
       }
     },
+    "ModifyEventSubscriptionMessage": {
+      "base": "<p>Represents the input to <a>ModifyEventSubscription</a>.</p>",
+      "refs": {
+      }
+    },
+    "ModifyEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "OrderableDBInstanceOption": {
       "base": "<p>The options that are available for an instance.</p>",
       "refs": {
@@ -1018,6 +1109,16 @@
       "refs": {
       }
     },
+    "RemoveSourceIdentifierFromSubscriptionMessage": {
+      "base": "<p>Represents the input to <a>RemoveSourceIdentifierFromSubscription</a>.</p>",
+      "refs": {
+      }
+    },
+    "RemoveSourceIdentifierFromSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemoveTagsFromResourceMessage": {
       "base": "<p>Represents the input to <a>RemoveTagsFromResource</a>.</p>",
       "refs": {
@@ -1060,6 +1161,21 @@
       "refs": {
       }
     },
+    "SNSInvalidTopicFault": {
+      "base": "<p>Amazon SNS has responded that there is a problem with the specified topic. </p>",
+      "refs": {
+      }
+    },
+    "SNSNoAuthorizationFault": {
+      "base": "<p>You do not have permission to publish to the SNS topic Amazon Resource Name (ARN). </p>",
+      "refs": {
+      }
+    },
+    "SNSTopicArnNotFoundFault": {
+      "base": "<p>The SNS topic Amazon Resource Name (ARN) does not exist. </p>",
+      "refs": {
+      }
+    },
     "SharedSnapshotQuotaExceededFault": {
       "base": "<p>You have exceeded the maximum number of accounts that you can share a manual DB snapshot with. </p>",
       "refs": {
@@ -1067,6 +1183,18 @@
     },
     "SnapshotQuotaExceededFault": {
       "base": "<p>The request would cause you to exceed the allowed number of snapshots.</p>",
+      "refs": {
+      }
+    },
+    "SourceIdsList": {
+      "base": null,
+      "refs": {
+        "CreateEventSubscriptionMessage$SourceIds": "<p>The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.</p> <p>Constraints:</p> <ul> <li> <p>If <code>SourceIds</code> are provided, <code>SourceType</code> must also be provided.</p> </li> <li> <p>If the source type is an instance, a <code>DBInstanceIdentifier</code> must be provided.</p> </li> <li> <p>If the source type is a security group, a <code>DBSecurityGroupName</code> must be provided.</p> </li> <li> <p>If the source type is a parameter group, a <code>DBParameterGroupName</code> must be provided.</p> </li> <li> <p>If the source type is a snapshot, a <code>DBSnapshotIdentifier</code> must be provided.</p> </li> </ul>",
+        "EventSubscription$SourceIdsList": "<p>A list of source IDs for the Amazon DocumentDB event notification subscription.</p>"
+      }
+    },
+    "SourceNotFoundFault": {
+      "base": "<p>The requested source could not be found. </p>",
       "refs": {
       }
     },
@@ -1110,6 +1238,8 @@
     "String": {
       "base": null,
       "refs": {
+        "AddSourceIdentifierToSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription that you want to add a source identifier to.</p>",
+        "AddSourceIdentifierToSubscriptionMessage$SourceIdentifier": "<p>The identifier of the event source to be added:</p> <ul> <li> <p>If the source type is an instance, a <code>DBInstanceIdentifier</code> must be provided.</p> </li> <li> <p>If the source type is a security group, a <code>DBSecurityGroupName</code> must be provided.</p> </li> <li> <p>If the source type is a parameter group, a <code>DBParameterGroupName</code> must be provided.</p> </li> <li> <p>If the source type is a snapshot, a <code>DBSnapshotIdentifier</code> must be provided.</p> </li> </ul>",
         "AddTagsToResourceMessage$ResourceName": "<p>The Amazon DocumentDB resource that the tags are added to. This value is an Amazon Resource Name .</p>",
         "ApplyPendingMaintenanceActionMessage$ResourceIdentifier": "<p>The Amazon Resource Name (ARN) of the resource that the pending maintenance action applies to.</p>",
         "ApplyPendingMaintenanceActionMessage$ApplyAction": "<p>The pending maintenance action to apply to this resource.</p> <p>Valid values: <code>system-update</code>, <code>db-upgrade</code> </p>",
@@ -1153,6 +1283,9 @@
         "CreateDBInstanceMessage$DBClusterIdentifier": "<p>The identifier of the cluster that the instance will belong to.</p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "CreateDBSubnetGroupMessage$DBSubnetGroupDescription": "<p>The description for the subnet group.</p>",
+        "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be fewer than 255 characters.</p>",
+        "CreateEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. Amazon SNS creates the ARN when you create a topic and subscribe to it.</p>",
+        "CreateEventSubscriptionMessage$SourceType": "<p>The type of source that is generating the events. For example, if you want to be notified of events generated by an instance, you would set this parameter to <code>db-instance</code>. If this value is not specified, all events are returned.</p> <p>Valid values: <code>db-instance</code>, <code>db-cluster</code>, <code>db-parameter-group</code>, <code>db-security-group</code>, <code>db-snapshot</code>, <code>db-cluster-snapshot</code> </p>",
         "DBCluster$DBClusterIdentifier": "<p>Contains a user-supplied cluster identifier. This identifier is the unique key that identifies a cluster.</p>",
         "DBCluster$DBClusterParameterGroup": "<p>Specifies the name of the cluster parameter group for the cluster.</p>",
         "DBCluster$DBSubnetGroup": "<p>Specifies information on the subnet group that is associated with the cluster, including the name, description, and subnets in the subnet group.</p>",
@@ -1230,6 +1363,7 @@
         "DeleteDBClusterSnapshotMessage$DBClusterSnapshotIdentifier": "<p>The identifier of the cluster snapshot to delete.</p> <p>Constraints: Must be the name of an existing cluster snapshot in the <code>available</code> state.</p>",
         "DeleteDBInstanceMessage$DBInstanceIdentifier": "<p>The instance identifier for the instance to be deleted. This parameter isn't case sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the name of an existing instance.</p> </li> </ul>",
         "DeleteDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name of the database subnet group to delete.</p> <note> <p>You can't delete the default subnet group.</p> </note> <p>Constraints:</p> <p>Must match the name of an existing <code>DBSubnetGroup</code>. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
+        "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription that you want to delete.</p>",
         "DescribeCertificatesMessage$CertificateIdentifier": "<p>The user-supplied certificate identifier. If this parameter is specified, information for only the specified certificate is returned. If this parameter is omitted, a list of up to <code>MaxRecords</code> certificates is returned. This parameter is not case sensitive.</p> <p>Constraints</p> <ul> <li> <p>Must match an existing <code>CertificateIdentifier</code>.</p> </li> </ul>",
         "DescribeCertificatesMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeCertificates</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBClusterParameterGroupsMessage$DBClusterParameterGroupName": "<p>The name of a specific cluster parameter group to return details for.</p> <p>Constraints:</p> <ul> <li> <p>If provided, must match the name of an existing <code>DBClusterParameterGroup</code>.</p> </li> </ul>",
@@ -1255,6 +1389,8 @@
         "DescribeEngineDefaultClusterParametersMessage$DBParameterGroupFamily": "<p>The name of the cluster parameter group family to return the engine parameter information for.</p>",
         "DescribeEngineDefaultClusterParametersMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeEventCategoriesMessage$SourceType": "<p>The type of source that is generating the events.</p> <p>Valid values: <code>db-instance</code>, <code>db-parameter-group</code>, <code>db-security-group</code>, <code>db-snapshot</code> </p>",
+        "DescribeEventSubscriptionsMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription that you want to describe.</p>",
+        "DescribeEventSubscriptionsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeEventsMessage$SourceIdentifier": "<p>The identifier of the event source for which events are returned. If not specified, then all sources are included in the response.</p> <p>Constraints:</p> <ul> <li> <p>If <code>SourceIdentifier</code> is provided, <code>SourceType</code> must also be provided.</p> </li> <li> <p>If the source type is <code>DBInstance</code>, a <code>DBInstanceIdentifier</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBSecurityGroup</code>, a <code>DBSecurityGroupName</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBParameterGroup</code>, a <code>DBParameterGroupName</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBSnapshot</code>, a <code>DBSnapshotIdentifier</code> must be provided.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "DescribeEventsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Engine": "<p>The name of the engine to retrieve instance options for.</p>",
@@ -1273,6 +1409,14 @@
         "Event$SourceArn": "<p>The Amazon Resource Name (ARN) for the event.</p>",
         "EventCategoriesList$member": null,
         "EventCategoriesMap$SourceType": "<p>The source type that the returned categories belong to.</p>",
+        "EventSubscription$CustomerAwsId": "<p>The AWS customer account that is associated with the Amazon DocumentDB event notification subscription.</p>",
+        "EventSubscription$CustSubscriptionId": "<p>The Amazon DocumentDB event notification subscription ID.</p>",
+        "EventSubscription$SnsTopicArn": "<p>The topic ARN of the Amazon DocumentDB event notification subscription.</p>",
+        "EventSubscription$Status": "<p>The status of the Amazon DocumentDB event notification subscription.</p> <p>Constraints:</p> <p>Can be one of the following: <code>creating</code>, <code>modifying</code>, <code>deleting</code>, <code>active</code>, <code>no-permission</code>, <code>topic-not-exist</code> </p> <p>The <code>no-permission</code> status indicates that Amazon DocumentDB no longer has permission to post to the SNS topic. The <code>topic-not-exist</code> status indicates that the topic was deleted after the subscription was created.</p>",
+        "EventSubscription$SubscriptionCreationTime": "<p>The time at which the Amazon DocumentDB event notification subscription was created.</p>",
+        "EventSubscription$SourceType": "<p>The source type for the Amazon DocumentDB event notification subscription.</p>",
+        "EventSubscription$EventSubscriptionArn": "<p>The Amazon Resource Name (ARN) for the event subscription.</p>",
+        "EventSubscriptionsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "EventsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "FailoverDBClusterMessage$DBClusterIdentifier": "<p>A cluster identifier to force a failover for. This parameter is not case sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing <code>DBCluster</code>.</p> </li> </ul>",
         "FailoverDBClusterMessage$TargetDBInstanceIdentifier": "<p>The name of the instance to promote to the primary instance.</p> <p>You must specify the instance identifier for an Amazon DocumentDB replica in the cluster. For example, <code>mydbcluster-replica1</code>.</p>",
@@ -1298,6 +1442,9 @@
         "ModifyDBInstanceMessage$CACertificateIdentifier": "<p>Indicates the certificate that needs to be associated with the instance.</p>",
         "ModifyDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name for the subnet group. This value is stored as a lowercase string. You can't modify the default subnet group. </p> <p>Constraints: Must match the name of an existing <code>DBSubnetGroup</code>. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "ModifyDBSubnetGroupMessage$DBSubnetGroupDescription": "<p>The description for the subnet group.</p>",
+        "ModifyEventSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription.</p>",
+        "ModifyEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.</p>",
+        "ModifyEventSubscriptionMessage$SourceType": "<p>The type of source that is generating the events. For example, if you want to be notified of events generated by an instance, set this parameter to <code>db-instance</code>. If this value is not specified, all events are returned.</p> <p>Valid values: <code>db-instance</code>, <code>db-parameter-group</code>, <code>db-security-group</code>, <code>db-snapshot</code> </p>",
         "OrderableDBInstanceOption$Engine": "<p>The engine type of an instance.</p>",
         "OrderableDBInstanceOption$EngineVersion": "<p>The engine version of an instance.</p>",
         "OrderableDBInstanceOption$DBInstanceClass": "<p>The instance class for an instance.</p>",
@@ -1324,6 +1471,8 @@
         "PendingModifiedValues$CACertificateIdentifier": "<p>Specifies the identifier of the certificate authority (CA) certificate for the DB instance.</p>",
         "PendingModifiedValues$DBSubnetGroupName": "<p>The new subnet group for the instance. </p>",
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing <code>DBInstance</code>.</p> </li> </ul>",
+        "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription that you want to remove a source identifier from.</p>",
+        "RemoveSourceIdentifierFromSubscriptionMessage$SourceIdentifier": "<p> The source identifier to be removed from the subscription, such as the instance identifier for an instance, or the name of a security group. </p>",
         "RemoveTagsFromResourceMessage$ResourceName": "<p>The Amazon DocumentDB resource that the tags are removed from. This value is an Amazon Resource Name (ARN).</p>",
         "ResetDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the cluster parameter group to reset.</p>",
         "ResourcePendingMaintenanceActions$ResourceIdentifier": "<p>The Amazon Resource Name (ARN) of the resource that has pending maintenance actions.</p>",
@@ -1337,6 +1486,7 @@
         "RestoreDBClusterToPointInTimeMessage$SourceDBClusterIdentifier": "<p>The identifier of the source cluster from which to restore.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing <code>DBCluster</code>.</p> </li> </ul>",
         "RestoreDBClusterToPointInTimeMessage$DBSubnetGroupName": "<p>The subnet group name to use for the new cluster.</p> <p>Constraints: If provided, must match the name of an existing <code>DBSubnetGroup</code>.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "RestoreDBClusterToPointInTimeMessage$KmsKeyId": "<p>The AWS KMS key identifier to use when restoring an encrypted cluster from an encrypted cluster.</p> <p>The AWS KMS key identifier is the Amazon Resource Name (ARN) for the AWS KMS encryption key. If you are restoring a cluster with the same AWS account that owns the AWS KMS encryption key used to encrypt the new cluster, then you can use the AWS KMS key alias instead of the ARN for the AWS KMS encryption key.</p> <p>You can restore to a new cluster and encrypt the new cluster with an AWS KMS key that is different from the AWS KMS key used to encrypt the source cluster. The new DB cluster is encrypted with the AWS KMS key identified by the <code>KmsKeyId</code> parameter.</p> <p>If you do not specify a value for the <code>KmsKeyId</code> parameter, then the following occurs:</p> <ul> <li> <p>If the cluster is encrypted, then the restored cluster is encrypted using the AWS KMS key that was used to encrypt the source cluster.</p> </li> <li> <p>If the cluster is not encrypted, then the restored cluster is not encrypted.</p> </li> </ul> <p>If <code>DBClusterIdentifier</code> refers to a cluster that is not encrypted, then the restore request is rejected.</p>",
+        "SourceIdsList$member": null,
         "StartDBClusterMessage$DBClusterIdentifier": "<p>The identifier of the cluster to restart. Example: <code>docdb-2019-05-28-15-24-52</code> </p>",
         "StopDBClusterMessage$DBClusterIdentifier": "<p>The identifier of the cluster to stop. Example: <code>docdb-2019-05-28-15-24-52</code> </p>",
         "Subnet$SubnetIdentifier": "<p>Specifies the identifier of the subnet.</p>",
@@ -1374,6 +1524,21 @@
       "base": null,
       "refs": {
         "DBSubnetGroup$Subnets": "<p>Detailed information about one or more subnets within a subnet group.</p>"
+      }
+    },
+    "SubscriptionAlreadyExistFault": {
+      "base": "<p>The provided subscription name already exists. </p>",
+      "refs": {
+      }
+    },
+    "SubscriptionCategoryNotFoundFault": {
+      "base": "<p>The provided category does not exist. </p>",
+      "refs": {
+      }
+    },
+    "SubscriptionNotFoundFault": {
+      "base": "<p>The subscription name does not exist. </p>",
+      "refs": {
       }
     },
     "TStamp": {
@@ -1414,6 +1579,7 @@
         "CreateDBClusterSnapshotMessage$Tags": "<p>The tags to be assigned to the cluster snapshot.</p>",
         "CreateDBInstanceMessage$Tags": "<p>The tags to be assigned to the instance. You can assign up to 10 tags to an instance.</p>",
         "CreateDBSubnetGroupMessage$Tags": "<p>The tags to be assigned to the subnet group.</p>",
+        "CreateEventSubscriptionMessage$Tags": "<p>The tags to be assigned to the event subscription.</p>",
         "RestoreDBClusterFromSnapshotMessage$Tags": "<p>The tags to be assigned to the restored cluster.</p>",
         "RestoreDBClusterToPointInTimeMessage$Tags": "<p>The tags to be assigned to the restored cluster.</p>",
         "TagListMessage$TagList": "<p>A list of one or more tags.</p>"

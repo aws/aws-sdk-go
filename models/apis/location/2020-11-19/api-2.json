@@ -1015,7 +1015,8 @@
       "members":{
         "CollectionName":{"shape":"ResourceName"},
         "Description":{"shape":"ResourceDescription"},
-        "PricingPlan":{"shape":"PricingPlan"}
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"}
       }
     },
     "CreateGeofenceCollectionResponse":{
@@ -1095,6 +1096,7 @@
       "members":{
         "Description":{"shape":"ResourceDescription"},
         "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
         "TrackerName":{"shape":"ResourceName"}
       }
     },
@@ -1199,6 +1201,7 @@
         "CollectionName",
         "CreateTime",
         "Description",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
@@ -1206,6 +1209,8 @@
         "CollectionName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1229,6 +1234,7 @@
         "Description",
         "MapArn",
         "MapName",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
@@ -1238,6 +1244,7 @@
         "Description":{"shape":"ResourceDescription"},
         "MapArn":{"shape":"Arn"},
         "MapName":{"shape":"ResourceName"},
+        "PricingPlan":{"shape":"PricingPlan"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1261,6 +1268,7 @@
         "Description",
         "IndexArn",
         "IndexName",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
@@ -1270,6 +1278,7 @@
         "Description":{"shape":"ResourceDescription"},
         "IndexArn":{"shape":"Arn"},
         "IndexName":{"shape":"ResourceName"},
+        "PricingPlan":{"shape":"PricingPlan"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1289,6 +1298,7 @@
       "required":[
         "CreateTime",
         "Description",
+        "PricingPlan",
         "TrackerArn",
         "TrackerName",
         "UpdateTime"
@@ -1296,6 +1306,8 @@
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
         "TrackerArn":{"shape":"Arn"},
         "TrackerName":{"shape":"ResourceName"},
         "UpdateTime":{"shape":"Timestamp"}
@@ -1683,12 +1695,15 @@
         "CollectionName",
         "CreateTime",
         "Description",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
         "CollectionName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1765,6 +1780,7 @@
         "DataSource",
         "Description",
         "MapName",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
@@ -1772,6 +1788,7 @@
         "DataSource":{"shape":"String"},
         "Description":{"shape":"ResourceDescription"},
         "MapName":{"shape":"ResourceName"},
+        "PricingPlan":{"shape":"PricingPlan"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1807,6 +1824,7 @@
         "DataSource",
         "Description",
         "IndexName",
+        "PricingPlan",
         "UpdateTime"
       ],
       "members":{
@@ -1814,6 +1832,7 @@
         "DataSource":{"shape":"String"},
         "Description":{"shape":"ResourceDescription"},
         "IndexName":{"shape":"ResourceName"},
+        "PricingPlan":{"shape":"PricingPlan"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1874,12 +1893,15 @@
       "required":[
         "CreateTime",
         "Description",
+        "PricingPlan",
         "TrackerName",
         "UpdateTime"
       ],
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
         "TrackerName":{"shape":"ResourceName"},
         "UpdateTime":{"shape":"Timestamp"}
       }

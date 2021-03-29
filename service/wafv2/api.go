@@ -4103,12 +4103,6 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //
 // Updates the specified IPSet.
 //
-// This operation completely replaces any IP address specifications that you
-// already have in the IP set with the ones that you provide to this call. If
-// you want to add to or modify the addresses that are already in the IP set,
-// retrieve those by calling GetIPSet, update them, and provide the complete
-// updated array of IP addresses to this call.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4603,12 +4597,20 @@ func (s AllQueryArguments) GoString() string {
 	return s.String()
 }
 
-// Specifies that AWS WAF should allow requests.
+// Specifies that AWS WAF should allow the request and optionally defines additional
+// custom handling for the request.
 //
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type AllowAction struct {
 	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
 }
 
 // String returns the string representation
@@ -4619,6 +4621,27 @@ func (s AllowAction) String() string {
 // GoString returns the string representation
 func (s AllowAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AllowAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AllowAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *AllowAction) SetCustomRequestHandling(v *CustomRequestHandling) *AllowAction {
+	s.CustomRequestHandling = v
+	return s
 }
 
 // A logical rule statement used to combine other rule statements with AND logic.
@@ -4744,12 +4767,20 @@ func (s AssociateWebACLOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies that AWS WAF should block requests.
+// Specifies that AWS WAF should block the request and optionally defines additional
+// custom handling for the response to the web request.
 //
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type BlockAction struct {
 	_ struct{} `type:"structure"`
+
+	// Defines a custom response for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponse *CustomResponse `type:"structure"`
 }
 
 // String returns the string representation
@@ -4760,6 +4791,27 @@ func (s BlockAction) String() string {
 // GoString returns the string representation
 func (s BlockAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BlockAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BlockAction"}
+	if s.CustomResponse != nil {
+		if err := s.CustomResponse.Validate(); err != nil {
+			invalidParams.AddNested("CustomResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomResponse sets the CustomResponse field's value.
+func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
+	s.CustomResponse = v
+	return s
 }
 
 // The body of a web request. This immediately follows the request headers.
@@ -5050,12 +5102,20 @@ func (s *CheckCapacityOutput) SetCapacity(v int64) *CheckCapacityOutput {
 	return s
 }
 
-// Specifies that AWS WAF should count requests.
+// Specifies that AWS WAF should count the request. Optionally defines additional
+// custom handling for the request.
 //
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type CountAction struct {
 	_ struct{} `type:"structure"`
+
+	// Defines custom handling for the web request.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomRequestHandling *CustomRequestHandling `type:"structure"`
 }
 
 // String returns the string representation
@@ -5066,6 +5126,27 @@ func (s CountAction) String() string {
 // GoString returns the string representation
 func (s CountAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CountAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CountAction"}
+	if s.CustomRequestHandling != nil {
+		if err := s.CustomRequestHandling.Validate(); err != nil {
+			invalidParams.AddNested("CustomRequestHandling", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomRequestHandling sets the CustomRequestHandling field's value.
+func (s *CountAction) SetCustomRequestHandling(v *CustomRequestHandling) *CountAction {
+	s.CustomRequestHandling = v
+	return s
 }
 
 type CreateIPSetInput struct {
@@ -5412,6 +5493,20 @@ type CreateRuleGroupInput struct {
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
@@ -5470,6 +5565,9 @@ func (s *CreateRuleGroupInput) Validate() error {
 	if s.Capacity != nil && *s.Capacity < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Capacity", 1))
 	}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -5487,6 +5585,16 @@ func (s *CreateRuleGroupInput) Validate() error {
 	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
@@ -5523,6 +5631,12 @@ func (s *CreateRuleGroupInput) Validate() error {
 // SetCapacity sets the Capacity field's value.
 func (s *CreateRuleGroupInput) SetCapacity(v int64) *CreateRuleGroupInput {
 	s.Capacity = &v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *CreateRuleGroupInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *CreateRuleGroupInput {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -5591,6 +5705,20 @@ func (s *CreateRuleGroupOutput) SetSummary(v *RuleGroupSummary) *CreateRuleGroup
 type CreateWebACLInput struct {
 	_ struct{} `type:"structure"`
 
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
 	// DefaultAction is a required field
@@ -5648,6 +5776,9 @@ func (s CreateWebACLInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateWebACLInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateWebACLInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.DefaultAction == nil {
 		invalidParams.Add(request.NewErrParamRequired("DefaultAction"))
 	}
@@ -5668,6 +5799,21 @@ func (s *CreateWebACLInput) Validate() error {
 	}
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
+	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
@@ -5699,6 +5845,12 @@ func (s *CreateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *CreateWebACLInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *CreateWebACLInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDefaultAction sets the DefaultAction field's value.
@@ -5768,9 +5920,294 @@ func (s *CreateWebACLOutput) SetSummary(v *WebACLSummary) *CreateWebACLOutput {
 	return s
 }
 
+// A custom header for custom request and response handling. This is used in
+// CustomResponse and CustomRequestHandling.
+type CustomHTTPHeader struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the custom header.
+	//
+	// For custom request header insertion, when AWS WAF inserts the header into
+	// the request, it prefixes this name x-amzn-waf-, to avoid confusion with the
+	// headers that are already in the request. For example, for the header name
+	// sample, AWS WAF inserts the header x-amzn-waf-sample.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The value of the custom header.
+	//
+	// Value is a required field
+	Value *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomHTTPHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomHTTPHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomHTTPHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomHTTPHeader"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CustomHTTPHeader) SetName(v string) *CustomHTTPHeader {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CustomHTTPHeader) SetValue(v string) *CustomHTTPHeader {
+	s.Value = &v
+	return s
+}
+
+// Custom request handling behavior that inserts custom headers into a web request.
+// You can add custom request handling for the rule actions allow and count.
+//
+// For information about customizing web requests and responses, see Customizing
+// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+type CustomRequestHandling struct {
+	_ struct{} `type:"structure"`
+
+	// The HTTP headers to insert into the request. Duplicate header names are not
+	// allowed.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// InsertHeaders is a required field
+	InsertHeaders []*CustomHTTPHeader `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomRequestHandling) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomRequestHandling) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomRequestHandling) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomRequestHandling"}
+	if s.InsertHeaders == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsertHeaders"))
+	}
+	if s.InsertHeaders != nil && len(s.InsertHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InsertHeaders", 1))
+	}
+	if s.InsertHeaders != nil {
+		for i, v := range s.InsertHeaders {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InsertHeaders", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsertHeaders sets the InsertHeaders field's value.
+func (s *CustomRequestHandling) SetInsertHeaders(v []*CustomHTTPHeader) *CustomRequestHandling {
+	s.InsertHeaders = v
+	return s
+}
+
+// A custom response to send to the client. You can define a custom response
+// for rule actions and default web ACL actions that are set to BlockAction.
+//
+// For information about customizing web requests and responses, see Customizing
+// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+type CustomResponse struct {
+	_ struct{} `type:"structure"`
+
+	// References the response body that you want AWS WAF to return to the web request
+	// client. You can define a custom response for a rule action or a default web
+	// ACL action that is set to block. To do this, you first define the response
+	// body key and value in the CustomResponseBodies setting for the WebACL or
+	// RuleGroup where you want to use it. Then, in the rule action or web ACL default
+	// action BlockAction setting, you reference the response body using this key.
+	CustomResponseBodyKey *string `min:"1" type:"string"`
+
+	// The HTTP status code to return to the client.
+	//
+	// For a list of status codes that you can use in your custom reqponses, see
+	// Supported status codes for custom response (https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// ResponseCode is a required field
+	ResponseCode *int64 `min:"200" type:"integer" required:"true"`
+
+	// The HTTP headers to use in the response. Duplicate header names are not allowed.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	ResponseHeaders []*CustomHTTPHeader `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CustomResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomResponse) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomResponse) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomResponse"}
+	if s.CustomResponseBodyKey != nil && len(*s.CustomResponseBodyKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodyKey", 1))
+	}
+	if s.ResponseCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResponseCode"))
+	}
+	if s.ResponseCode != nil && *s.ResponseCode < 200 {
+		invalidParams.Add(request.NewErrParamMinValue("ResponseCode", 200))
+	}
+	if s.ResponseHeaders != nil && len(s.ResponseHeaders) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResponseHeaders", 1))
+	}
+	if s.ResponseHeaders != nil {
+		for i, v := range s.ResponseHeaders {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ResponseHeaders", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomResponseBodyKey sets the CustomResponseBodyKey field's value.
+func (s *CustomResponse) SetCustomResponseBodyKey(v string) *CustomResponse {
+	s.CustomResponseBodyKey = &v
+	return s
+}
+
+// SetResponseCode sets the ResponseCode field's value.
+func (s *CustomResponse) SetResponseCode(v int64) *CustomResponse {
+	s.ResponseCode = &v
+	return s
+}
+
+// SetResponseHeaders sets the ResponseHeaders field's value.
+func (s *CustomResponse) SetResponseHeaders(v []*CustomHTTPHeader) *CustomResponse {
+	s.ResponseHeaders = v
+	return s
+}
+
+// The response body to use in a custom response to a web request. This is referenced
+// by key from CustomResponse CustomResponseBodyKey.
+type CustomResponseBody struct {
+	_ struct{} `type:"structure"`
+
+	// The payload of the custom response.
+	//
+	// You can use JSON escape strings in JSON content. To do this, you must specify
+	// JSON content in the ContentType setting.
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// Content is a required field
+	Content *string `min:"1" type:"string" required:"true"`
+
+	// The type of content in the payload that you are defining in the Content string.
+	//
+	// ContentType is a required field
+	ContentType *string `type:"string" required:"true" enum:"ResponseContentType"`
+}
+
+// String returns the string representation
+func (s CustomResponseBody) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomResponseBody) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomResponseBody) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomResponseBody"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Content != nil && len(*s.Content) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *CustomResponseBody) SetContent(v string) *CustomResponseBody {
+	s.Content = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *CustomResponseBody) SetContentType(v string) *CustomResponseBody {
+	s.ContentType = &v
+	return s
+}
+
 // In a WebACL, this is the action that you want AWS WAF to perform when a web
 // request doesn't match any of the rules in the WebACL. The default action
-// must be a terminating action, so count is not allowed.
+// must be a terminating action, so you can't use count.
 type DefaultAction struct {
 	_ struct{} `type:"structure"`
 
@@ -5789,6 +6226,26 @@ func (s DefaultAction) String() string {
 // GoString returns the string representation
 func (s DefaultAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultAction"}
+	if s.Allow != nil {
+		if err := s.Allow.Validate(); err != nil {
+			invalidParams.AddNested("Allow", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Block != nil {
+		if err := s.Block.Validate(); err != nil {
+			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAllow sets the Allow field's value.
@@ -8655,33 +9112,25 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 type JsonBody struct {
 	_ struct{} `type:"structure"`
 
-	// What AWS WAF should do if it fails to completely parse the JSON body. The
-	// options are the following:
+	// The inspection behavior to fall back to if the JSON in the request body is
+	// invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical
+	// JSON, content whose root node isn't an object or an array, and duplicate
+	// keys in the content.
 	//
-	//    * EVALUATE_AS_STRING - Inspect the body as plain text. AWS WAF applies
-	//    the text transformations and inspection criteria that you defined for
-	//    the JSON inspection to the body text string.
+	// You can specify the following fallback behaviors:
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. AWS WAF
 	//    applies the rule action to the request.
 	//
 	//    * NO_MATCH - Treat the web request as not matching the rule statement.
 	//
-	// If you don't provide this setting, AWS WAF parses and evaluates the content
-	// only up to the first parsing failure that it encounters.
+	//    * EVALUATE_AS_STRING - Inspect the body as plain text. This option applies
+	//    the text transformations and inspection criteria that you defined for
+	//    the JSON inspection to the body text string.
 	//
-	// AWS WAF does its best to parse the entire JSON body, but might be forced
-	// to stop for reasons such as invalid characters, duplicate keys, truncation,
-	// and any content whose root node isn't an object or an array.
-	//
-	// AWS WAF parses the JSON in the following examples as two valid key, value
-	// pairs:
-	//
-	//    * Missing comma: {"key1":"value1""key2":"value2"}
-	//
-	//    * Missing colon: {"key1":"value1","key2""value2"}
-	//
-	//    * Extra colons: {"key1"::"value1","key2""value2"}
+	// If you don't provide this setting, when AWS WAF encounters invalid JSON,
+	// it parses and inspects what it can, up to the first invalid JSON that it
+	// encounters.
 	InvalidFallbackBehavior *string `type:"string" enum:"BodyParsingFallbackBehavior"`
 
 	// The patterns to look for in the JSON body. AWS WAF inspects the results of
@@ -9907,8 +10356,8 @@ func (s Method) GoString() string {
 // a rule without performing any actions. You set the OverrideAction on the
 // Rule.
 //
-// This is used only in the context of other settings, for example to specify
-// values for RuleAction and web ACL DefaultAction.
+// This is used in the context of other settings, for example to specify values
+// for RuleAction and web ACL DefaultAction.
 type NoneAction struct {
 	_ struct{} `type:"structure"`
 }
@@ -10052,6 +10501,21 @@ func (s OverrideAction) String() string {
 // GoString returns the string representation
 func (s OverrideAction) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OverrideAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OverrideAction"}
+	if s.Count != nil {
+		if err := s.Count.Validate(); err != nil {
+			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetCount sets the Count field's value.
@@ -10781,6 +11245,16 @@ func (s *Rule) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OverrideAction != nil {
+		if err := s.OverrideAction.Validate(); err != nil {
+			invalidParams.AddNested("OverrideAction", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Statement != nil {
 		if err := s.Statement.Validate(); err != nil {
 			invalidParams.AddNested("Statement", err.(request.ErrInvalidParams))
@@ -10859,6 +11333,31 @@ func (s RuleAction) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RuleAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RuleAction"}
+	if s.Allow != nil {
+		if err := s.Allow.Validate(); err != nil {
+			invalidParams.AddNested("Allow", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Block != nil {
+		if err := s.Block.Validate(); err != nil {
+			invalidParams.AddNested("Block", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Count != nil {
+		if err := s.Count.Validate(); err != nil {
+			invalidParams.AddNested("Count", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAllow sets the Allow field's value.
 func (s *RuleAction) SetAllow(v *AllowAction) *RuleAction {
 	s.Allow = v
@@ -10908,6 +11407,20 @@ type RuleGroup struct {
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
 
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
@@ -10955,6 +11468,12 @@ func (s *RuleGroup) SetARN(v string) *RuleGroup {
 // SetCapacity sets the Capacity field's value.
 func (s *RuleGroup) SetCapacity(v int64) *RuleGroup {
 	s.Capacity = &v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *RuleGroup) SetCustomResponseBodies(v map[string]*CustomResponseBody) *RuleGroup {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -11181,6 +11700,13 @@ type SampledHTTPRequest struct {
 	// Request is a required field
 	Request *HTTPRequest `type:"structure" required:"true"`
 
+	// Custom request headers inserted by AWS WAF into the request, according to
+	// the custom request configuration for the matching rule action.
+	RequestHeadersInserted []*HTTPHeader `type:"list"`
+
+	// The response code that was sent for the request.
+	ResponseCodeSent *int64 `min:"200" type:"integer"`
+
 	// The name of the Rule that the request matched. For managed rule groups, the
 	// format for this name is <vendor name>#<managed rule group name>#<rule name>.
 	// For your own rule groups, the format for this name is <rule group name>#<rule
@@ -11219,6 +11745,18 @@ func (s *SampledHTTPRequest) SetAction(v string) *SampledHTTPRequest {
 // SetRequest sets the Request field's value.
 func (s *SampledHTTPRequest) SetRequest(v *HTTPRequest) *SampledHTTPRequest {
 	s.Request = v
+	return s
+}
+
+// SetRequestHeadersInserted sets the RequestHeadersInserted field's value.
+func (s *SampledHTTPRequest) SetRequestHeadersInserted(v []*HTTPHeader) *SampledHTTPRequest {
+	s.RequestHeadersInserted = v
+	return s
+}
+
+// SetResponseCodeSent sets the ResponseCodeSent field's value.
+func (s *SampledHTTPRequest) SetResponseCodeSent(v int64) *SampledHTTPRequest {
+	s.ResponseCodeSent = &v
 	return s
 }
 
@@ -12636,6 +13174,20 @@ func (s *UpdateRegexPatternSetOutput) SetNextLockToken(v string) *UpdateRegexPat
 type UpdateRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the rule group, and then use them in the rules that you
+	// define in the rule group.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// A description of the rule group that helps with identification.
 	Description *string `min:"1" type:"string"`
 
@@ -12704,6 +13256,9 @@ func (s UpdateRuleGroupInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateRuleGroupInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateRuleGroupInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
@@ -12731,6 +13286,16 @@ func (s *UpdateRuleGroupInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -12751,6 +13316,12 @@ func (s *UpdateRuleGroupInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *UpdateRuleGroupInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *UpdateRuleGroupInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -12821,6 +13392,20 @@ func (s *UpdateRuleGroupOutput) SetNextLockToken(v string) *UpdateRuleGroupOutpu
 
 type UpdateWebACLInput struct {
 	_ struct{} `type:"structure"`
+
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
 
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
@@ -12895,6 +13480,9 @@ func (s UpdateWebACLInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateWebACLInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateWebACLInput"}
+	if s.CustomResponseBodies != nil && len(s.CustomResponseBodies) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomResponseBodies", 1))
+	}
 	if s.DefaultAction == nil {
 		invalidParams.Add(request.NewErrParamRequired("DefaultAction"))
 	}
@@ -12925,6 +13513,21 @@ func (s *UpdateWebACLInput) Validate() error {
 	if s.VisibilityConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("VisibilityConfig"))
 	}
+	if s.CustomResponseBodies != nil {
+		for i, v := range s.CustomResponseBodies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomResponseBodies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DefaultAction != nil {
+		if err := s.DefaultAction.Validate(); err != nil {
+			invalidParams.AddNested("DefaultAction", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -12945,6 +13548,12 @@ func (s *UpdateWebACLInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *UpdateWebACLInput) SetCustomResponseBodies(v map[string]*CustomResponseBody) *UpdateWebACLInput {
+	s.CustomResponseBodies = v
+	return s
 }
 
 // SetDefaultAction sets the DefaultAction field's value.
@@ -14035,6 +14644,20 @@ type WebACL struct {
 	// The WCU limit for web ACLs is 1,500.
 	Capacity *int64 `type:"long"`
 
+	// A map of custom response keys and content bodies. When you create a rule
+	// with a block action, you can send a custom response to the web request. You
+	// define these for the web ACL, and then use them in the rules and default
+	// actions that you define in the web ACL.
+	//
+	// For information about customizing web requests and responses, see Customizing
+	// web requests and responses in AWS WAF (https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	//
+	// For information about the limits on count and size for custom request and
+	// response settings, see AWS WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// in the AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html).
+	CustomResponseBodies map[string]*CustomResponseBody `min:"1" type:"map"`
+
 	// The action to perform if none of the Rules contained in the WebACL match.
 	//
 	// DefaultAction is a required field
@@ -14114,6 +14737,12 @@ func (s *WebACL) SetARN(v string) *WebACL {
 // SetCapacity sets the Capacity field's value.
 func (s *WebACL) SetCapacity(v int64) *WebACL {
 	s.Capacity = &v
+	return s
+}
+
+// SetCustomResponseBodies sets the CustomResponseBodies field's value.
+func (s *WebACL) SetCustomResponseBodies(v map[string]*CustomResponseBody) *WebACL {
+	s.CustomResponseBodies = v
 	return s
 }
 
@@ -15583,6 +16212,18 @@ const (
 	// ParameterExceptionFieldHeaderName is a ParameterExceptionField enum value
 	ParameterExceptionFieldHeaderName = "HEADER_NAME"
 
+	// ParameterExceptionFieldCustomRequestHandling is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomRequestHandling = "CUSTOM_REQUEST_HANDLING"
+
+	// ParameterExceptionFieldResponseContentType is a ParameterExceptionField enum value
+	ParameterExceptionFieldResponseContentType = "RESPONSE_CONTENT_TYPE"
+
+	// ParameterExceptionFieldCustomResponse is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomResponse = "CUSTOM_RESPONSE"
+
+	// ParameterExceptionFieldCustomResponseBody is a ParameterExceptionField enum value
+	ParameterExceptionFieldCustomResponseBody = "CUSTOM_RESPONSE_BODY"
+
 	// ParameterExceptionFieldJsonMatchPattern is a ParameterExceptionField enum value
 	ParameterExceptionFieldJsonMatchPattern = "JSON_MATCH_PATTERN"
 
@@ -15639,6 +16280,10 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldForwardedIpConfig,
 		ParameterExceptionFieldIpSetForwardedIpConfig,
 		ParameterExceptionFieldHeaderName,
+		ParameterExceptionFieldCustomRequestHandling,
+		ParameterExceptionFieldResponseContentType,
+		ParameterExceptionFieldCustomResponse,
+		ParameterExceptionFieldCustomResponseBody,
 		ParameterExceptionFieldJsonMatchPattern,
 		ParameterExceptionFieldJsonMatchScope,
 		ParameterExceptionFieldBodyParsingFallbackBehavior,
@@ -15706,6 +16351,26 @@ func ResourceType_Values() []string {
 		ResourceTypeApplicationLoadBalancer,
 		ResourceTypeApiGateway,
 		ResourceTypeAppsync,
+	}
+}
+
+const (
+	// ResponseContentTypeTextPlain is a ResponseContentType enum value
+	ResponseContentTypeTextPlain = "TEXT_PLAIN"
+
+	// ResponseContentTypeTextHtml is a ResponseContentType enum value
+	ResponseContentTypeTextHtml = "TEXT_HTML"
+
+	// ResponseContentTypeApplicationJson is a ResponseContentType enum value
+	ResponseContentTypeApplicationJson = "APPLICATION_JSON"
+)
+
+// ResponseContentType_Values returns all elements of the ResponseContentType enum
+func ResponseContentType_Values() []string {
+	return []string{
+		ResponseContentTypeTextPlain,
+		ResponseContentTypeTextHtml,
+		ResponseContentTypeApplicationJson,
 	}
 }
 

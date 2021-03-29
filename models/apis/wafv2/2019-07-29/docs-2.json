@@ -38,7 +38,7 @@
     "PutPermissionPolicy": "<p>Attaches an IAM policy to the specified resource. Use this to share a rule group across accounts.</p> <p>You must be the owner of the rule group to perform this operation.</p> <p>This action is subject to the following restrictions:</p> <ul> <li> <p>You can attach only one policy with each <code>PutPermissionPolicy</code> request.</p> </li> <li> <p>The ARN in the request must be a valid WAF <a>RuleGroup</a> ARN and the rule group must exist in the same region.</p> </li> <li> <p>The user making the request must be the owner of the rule group.</p> </li> </ul>",
     "TagResource": "<p>Associates tags with the specified AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.</p> <p>You can tag the AWS resources that you manage through AWS WAF: web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage or view tags through the AWS WAF console. </p>",
     "UntagResource": "<p>Disassociates tags from an AWS resource. Tags are key:value pairs that you can associate with AWS resources. For example, the tag key might be \"customer\" and the tag value might be \"companyA.\" You can specify one or more tags to add to each container. You can add up to 50 tags to each AWS resource.</p>",
-    "UpdateIPSet": "<p>Updates the specified <a>IPSet</a>. </p> <note> <p>This operation completely replaces any IP address specifications that you already have in the IP set with the ones that you provide to this call. If you want to add to or modify the addresses that are already in the IP set, retrieve those by calling <a>GetIPSet</a>, update them, and provide the complete updated array of IP addresses to this call.</p> </note>",
+    "UpdateIPSet": "<p>Updates the specified <a>IPSet</a>.</p>",
     "UpdateRegexPatternSet": "<p>Updates the specified <a>RegexPatternSet</a>.</p>",
     "UpdateRuleGroup": "<p>Updates the specified <a>RuleGroup</a>.</p> <p> A rule group defines a collection of rules to inspect and control web requests that you can use in a <a>WebACL</a>. When you create a rule group, you define an immutable capacity limit. If you update a rule group, you must stay within the capacity. This allows others to reuse the rule group with confidence in its capacity requirements. </p>",
     "UpdateWebACL": "<p>Updates the specified <a>WebACL</a>.</p> <p> A Web ACL defines a collection of rules to use to inspect and control web requests. Each rule has an action defined (allow, block, or count) for requests that match the statement of the rule. In the Web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a Web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a Web ACL with one or more AWS resources to protect. The resources can be Amazon CloudFront, an Amazon API Gateway REST API, an Application Load Balancer, or an AWS AppSync GraphQL API. </p>"
@@ -63,7 +63,7 @@
       }
     },
     "AllowAction": {
-      "base": "<p>Specifies that AWS WAF should allow requests.</p> <p>This is used only in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
+      "base": "<p>Specifies that AWS WAF should allow the request and optionally defines additional custom handling for the request.</p> <p>This is used in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
       "refs": {
         "DefaultAction$Allow": "<p>Specifies that AWS WAF should allow requests by default.</p>",
         "RuleAction$Allow": "<p>Instructs AWS WAF to allow the web request.</p>"
@@ -86,7 +86,7 @@
       }
     },
     "BlockAction": {
-      "base": "<p>Specifies that AWS WAF should block requests.</p> <p>This is used only in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
+      "base": "<p>Specifies that AWS WAF should block the request and optionally defines additional custom handling for the response to the web request.</p> <p>This is used in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
       "refs": {
         "DefaultAction$Block": "<p>Specifies that AWS WAF should block requests by default. </p>",
         "RuleAction$Block": "<p>Instructs AWS WAF to block the web request.</p>"
@@ -101,7 +101,7 @@
     "BodyParsingFallbackBehavior": {
       "base": null,
       "refs": {
-        "JsonBody$InvalidFallbackBehavior": "<p>What AWS WAF should do if it fails to completely parse the JSON body. The options are the following:</p> <ul> <li> <p> <code>EVALUATE_AS_STRING</code> - Inspect the body as plain text. AWS WAF applies the text transformations and inspection criteria that you defined for the JSON inspection to the body text string.</p> </li> <li> <p> <code>MATCH</code> - Treat the web request as matching the rule statement. AWS WAF applies the rule action to the request.</p> </li> <li> <p> <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.</p> </li> </ul> <p>If you don't provide this setting, AWS WAF parses and evaluates the content only up to the first parsing failure that it encounters. </p> <p>AWS WAF does its best to parse the entire JSON body, but might be forced to stop for reasons such as invalid characters, duplicate keys, truncation, and any content whose root node isn't an object or an array. </p> <p>AWS WAF parses the JSON in the following examples as two valid key, value pairs: </p> <ul> <li> <p>Missing comma: <code>{\"key1\":\"value1\"\"key2\":\"value2\"}</code> </p> </li> <li> <p>Missing colon: <code>{\"key1\":\"value1\",\"key2\"\"value2\"}</code> </p> </li> <li> <p>Extra colons: <code>{\"key1\"::\"value1\",\"key2\"\"value2\"}</code> </p> </li> </ul>"
+        "JsonBody$InvalidFallbackBehavior": "<p>The inspection behavior to fall back to if the JSON in the request body is invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical JSON, content whose root node isn't an object or an array, and duplicate keys in the content. </p> <p>You can specify the following fallback behaviors:</p> <ul> <li> <p> <code>MATCH</code> - Treat the web request as matching the rule statement. AWS WAF applies the rule action to the request.</p> </li> <li> <p> <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.</p> </li> <li> <p> <code>EVALUATE_AS_STRING</code> - Inspect the body as plain text. This option applies the text transformations and inspection criteria that you defined for the JSON inspection to the body text string. </p> </li> </ul> <p>If you don't provide this setting, when AWS WAF encounters invalid JSON, it parses and inspects what it can, up to the first invalid JSON that it encounters. </p>"
       }
     },
     "Boolean": {
@@ -151,7 +151,7 @@
       }
     },
     "CountAction": {
-      "base": "<p>Specifies that AWS WAF should count requests.</p> <p>This is used only in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
+      "base": "<p>Specifies that AWS WAF should count the request. Optionally defines additional custom handling for the request.</p> <p>This is used in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
       "refs": {
         "OverrideAction$Count": "<p>Override the rule action setting to count.</p>",
         "RuleAction$Count": "<p>Instructs AWS WAF to count the web request and allow it.</p>"
@@ -215,8 +215,63 @@
       "refs": {
       }
     },
+    "CustomHTTPHeader": {
+      "base": "<p>A custom header for custom request and response handling. This is used in <a>CustomResponse</a> and <a>CustomRequestHandling</a>.</p>",
+      "refs": {
+        "CustomHTTPHeaders$member": null
+      }
+    },
+    "CustomHTTPHeaderName": {
+      "base": null,
+      "refs": {
+        "CustomHTTPHeader$Name": "<p>The name of the custom header. </p> <p>For custom request header insertion, when AWS WAF inserts the header into the request, it prefixes this name <code>x-amzn-waf-</code>, to avoid confusion with the headers that are already in the request. For example, for the header name <code>sample</code>, AWS WAF inserts the header <code>x-amzn-waf-sample</code>.</p>"
+      }
+    },
+    "CustomHTTPHeaderValue": {
+      "base": null,
+      "refs": {
+        "CustomHTTPHeader$Value": "<p>The value of the custom header.</p>"
+      }
+    },
+    "CustomHTTPHeaders": {
+      "base": null,
+      "refs": {
+        "CustomRequestHandling$InsertHeaders": "<p>The HTTP headers to insert into the request. Duplicate header names are not allowed. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "CustomResponse$ResponseHeaders": "<p>The HTTP headers to use in the response. Duplicate header names are not allowed. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>"
+      }
+    },
+    "CustomRequestHandling": {
+      "base": "<p>Custom request handling behavior that inserts custom headers into a web request. You can add custom request handling for the rule actions allow and count. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+      "refs": {
+        "AllowAction$CustomRequestHandling": "<p>Defines custom handling for the web request.</p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "CountAction$CustomRequestHandling": "<p>Defines custom handling for the web request.</p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>"
+      }
+    },
+    "CustomResponse": {
+      "base": "<p>A custom response to send to the client. You can define a custom response for rule actions and default web ACL actions that are set to <a>BlockAction</a>. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+      "refs": {
+        "BlockAction$CustomResponse": "<p>Defines a custom response for the web request.</p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>"
+      }
+    },
+    "CustomResponseBodies": {
+      "base": null,
+      "refs": {
+        "CreateRuleGroupRequest$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "CreateWebACLRequest$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the web ACL, and then use them in the rules and default actions that you define in the web ACL. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "RuleGroup$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "UpdateRuleGroupRequest$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "UpdateWebACLRequest$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the web ACL, and then use them in the rules and default actions that you define in the web ACL. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "WebACL$CustomResponseBodies": "<p>A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the web ACL, and then use them in the rules and default actions that you define in the web ACL. </p> <p>For information about customizing web requests and responses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-custom-request-response.html\">Customizing web requests and responses in AWS WAF</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>"
+      }
+    },
+    "CustomResponseBody": {
+      "base": "<p>The response body to use in a custom response to a web request. This is referenced by key from <a>CustomResponse</a> <code>CustomResponseBodyKey</code>.</p>",
+      "refs": {
+        "CustomResponseBodies$value": null
+      }
+    },
     "DefaultAction": {
-      "base": "<p>In a <a>WebACL</a>, this is the action that you want AWS WAF to perform when a web request doesn't match any of the rules in the <code>WebACL</code>. The default action must be a terminating action, so count is not allowed.</p>",
+      "base": "<p>In a <a>WebACL</a>, this is the action that you want AWS WAF to perform when a web request doesn't match any of the rules in the <code>WebACL</code>. The default action must be a terminating action, so you can't use count.</p>",
       "refs": {
         "CreateWebACLRequest$DefaultAction": "<p>The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code> match. </p>",
         "UpdateWebACLRequest$DefaultAction": "<p>The action to perform if none of the <code>Rules</code> contained in the <code>WebACL</code> match. </p>",
@@ -368,6 +423,8 @@
         "CreateRegexPatternSetRequest$Name": "<p>The name of the set. You cannot change the name after you create the set.</p>",
         "CreateRuleGroupRequest$Name": "<p>The name of the rule group. You cannot change the name of a rule group after you create it.</p>",
         "CreateWebACLRequest$Name": "<p>The name of the Web ACL. You cannot change the name of a Web ACL after you create it.</p>",
+        "CustomResponse$CustomResponseBodyKey": "<p>References the response body that you want AWS WAF to return to the web request client. You can define a custom response for a rule action or a default web ACL action that is set to block. To do this, you first define the response body key and value in the <code>CustomResponseBodies</code> setting for the <a>WebACL</a> or <a>RuleGroup</a> where you want to use it. Then, in the rule action or web ACL default action <code>BlockAction</code> setting, you reference the response body using this key. </p>",
+        "CustomResponseBodies$key": null,
         "DeleteIPSetRequest$Name": "<p>The name of the IP set. You cannot change the name of an <code>IPSet</code> after you create it.</p>",
         "DeleteRegexPatternSetRequest$Name": "<p>The name of the set. You cannot change the name after you create the set.</p>",
         "DeleteRuleGroupRequest$Name": "<p>The name of the rule group. You cannot change the name of a rule group after you create it.</p>",
@@ -608,7 +665,8 @@
     "HTTPHeaders": {
       "base": null,
       "refs": {
-        "HTTPRequest$Headers": "<p>A complex type that contains the name and value for each header in the sampled web request.</p>"
+        "HTTPRequest$Headers": "<p>A complex type that contains the name and value for each header in the sampled web request.</p>",
+        "SampledHTTPRequest$RequestHeadersInserted": "<p>Custom request headers inserted by AWS WAF into the request, according to the custom request configuration for the matching rule action.</p>"
       }
     },
     "HTTPMethod": {
@@ -917,7 +975,7 @@
       }
     },
     "NoneAction": {
-      "base": "<p>Specifies that AWS WAF should do nothing. This is generally used to try out a rule without performing any actions. You set the <code>OverrideAction</code> on the <a>Rule</a>. </p> <p>This is used only in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
+      "base": "<p>Specifies that AWS WAF should do nothing. This is generally used to try out a rule without performing any actions. You set the <code>OverrideAction</code> on the <a>Rule</a>. </p> <p>This is used in the context of other settings, for example to specify values for <a>RuleAction</a> and web ACL <a>DefaultAction</a>. </p>",
       "refs": {
         "OverrideAction$None": "<p>Don't override the rule action setting.</p>"
       }
@@ -1131,6 +1189,25 @@
       "base": null,
       "refs": {
         "ListResourcesForWebACLRequest$ResourceType": "<p>Used for web ACLs that are scoped for regional applications. A regional application can be an Application Load Balancer (ALB), an API Gateway REST API, or an AppSync GraphQL API. </p>"
+      }
+    },
+    "ResponseContent": {
+      "base": null,
+      "refs": {
+        "CustomResponseBody$Content": "<p>The payload of the custom response. </p> <p>You can use JSON escape strings in JSON content. To do this, you must specify JSON content in the <code>ContentType</code> setting. </p> <p>For information about the limits on count and size for custom request and response settings, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/limits.html\">AWS WAF quotas</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>"
+      }
+    },
+    "ResponseContentType": {
+      "base": null,
+      "refs": {
+        "CustomResponseBody$ContentType": "<p>The type of content in the payload that you are defining in the <code>Content</code> string.</p>"
+      }
+    },
+    "ResponseStatusCode": {
+      "base": null,
+      "refs": {
+        "CustomResponse$ResponseCode": "<p>The HTTP status code to return to the client. </p> <p>For a list of status codes that you can use in your custom reqponses, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/customizing-the-response-status-codes.html\">Supported status codes for custom response</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/waf-chapter.html\">AWS WAF Developer Guide</a>. </p>",
+        "SampledHTTPRequest$ResponseCodeSent": "<p>The response code that was sent for the request.</p>"
       }
     },
     "Rule": {

@@ -13,6 +13,88 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/query"
 )
 
+const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
+
+// AddSourceIdentifierToSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the AddSourceIdentifierToSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddSourceIdentifierToSubscription for more information on using the AddSourceIdentifierToSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddSourceIdentifierToSubscriptionRequest method.
+//    req, resp := client.AddSourceIdentifierToSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/AddSourceIdentifierToSubscription
+func (c *DocDB) AddSourceIdentifierToSubscriptionRequest(input *AddSourceIdentifierToSubscriptionInput) (req *request.Request, output *AddSourceIdentifierToSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opAddSourceIdentifierToSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddSourceIdentifierToSubscriptionInput{}
+	}
+
+	output = &AddSourceIdentifierToSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddSourceIdentifierToSubscription API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Adds a source identifier to an existing event notification subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation AddSourceIdentifierToSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeSubscriptionNotFoundFault "SubscriptionNotFound"
+//   The subscription name does not exist.
+//
+//   * ErrCodeSourceNotFoundFault "SourceNotFound"
+//   The requested source could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/AddSourceIdentifierToSubscription
+func (c *DocDB) AddSourceIdentifierToSubscription(input *AddSourceIdentifierToSubscriptionInput) (*AddSourceIdentifierToSubscriptionOutput, error) {
+	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// AddSourceIdentifierToSubscriptionWithContext is the same as AddSourceIdentifierToSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddSourceIdentifierToSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) AddSourceIdentifierToSubscriptionWithContext(ctx aws.Context, input *AddSourceIdentifierToSubscriptionInput, opts ...request.Option) (*AddSourceIdentifierToSubscriptionOutput, error) {
+	req, out := c.AddSourceIdentifierToSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a "aws/request.Request" representing the
@@ -918,6 +1000,123 @@ func (c *DocDB) CreateDBSubnetGroupWithContext(ctx aws.Context, input *CreateDBS
 	return out, req.Send()
 }
 
+const opCreateEventSubscription = "CreateEventSubscription"
+
+// CreateEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventSubscription for more information on using the CreateEventSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEventSubscriptionRequest method.
+//    req, resp := client.CreateEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateEventSubscription
+func (c *DocDB) CreateEventSubscriptionRequest(input *CreateEventSubscriptionInput) (req *request.Request, output *CreateEventSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEventSubscriptionInput{}
+	}
+
+	output = &CreateEventSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventSubscription API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Creates an Amazon DocumentDB event notification subscription. This action
+// requires a topic Amazon Resource Name (ARN) created by using the Amazon DocumentDB
+// console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN
+// with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the
+// topic. The ARN is displayed in the Amazon SNS console.
+//
+// You can specify the type of source (SourceType) that you want to be notified
+// of. You can also provide a list of Amazon DocumentDB sources (SourceIds)
+// that trigger the events, and you can provide a list of event categories (EventCategories)
+// for events that you want to be notified of. For example, you can specify
+// SourceType = db-instance, SourceIds = mydbinstance1, mydbinstance2 and EventCategories
+// = Availability, Backup.
+//
+// If you specify both the SourceType and SourceIds (such as SourceType = db-instance
+// and SourceIdentifier = myDBInstance1), you are notified of all the db-instance
+// events for the specified source. If you specify a SourceType but do not specify
+// a SourceIdentifier, you receive notice of the events for that source type
+// for all your Amazon DocumentDB sources. If you do not specify either the
+// SourceType or the SourceIdentifier, you are notified of events generated
+// from all Amazon DocumentDB sources belonging to your customer account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation CreateEventSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeEventSubscriptionQuotaExceededFault "EventSubscriptionQuotaExceeded"
+//   You have reached the maximum number of event subscriptions.
+//
+//   * ErrCodeSubscriptionAlreadyExistFault "SubscriptionAlreadyExist"
+//   The provided subscription name already exists.
+//
+//   * ErrCodeSNSInvalidTopicFault "SNSInvalidTopic"
+//   Amazon SNS has responded that there is a problem with the specified topic.
+//
+//   * ErrCodeSNSNoAuthorizationFault "SNSNoAuthorization"
+//   You do not have permission to publish to the SNS topic Amazon Resource Name
+//   (ARN).
+//
+//   * ErrCodeSNSTopicArnNotFoundFault "SNSTopicArnNotFound"
+//   The SNS topic Amazon Resource Name (ARN) does not exist.
+//
+//   * ErrCodeSubscriptionCategoryNotFoundFault "SubscriptionCategoryNotFound"
+//   The provided category does not exist.
+//
+//   * ErrCodeSourceNotFoundFault "SourceNotFound"
+//   The requested source could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateEventSubscription
+func (c *DocDB) CreateEventSubscription(input *CreateEventSubscriptionInput) (*CreateEventSubscriptionOutput, error) {
+	req, out := c.CreateEventSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventSubscriptionWithContext is the same as CreateEventSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) CreateEventSubscriptionWithContext(ctx aws.Context, input *CreateEventSubscriptionInput, opts ...request.Option) (*CreateEventSubscriptionOutput, error) {
+	req, out := c.CreateEventSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDBCluster = "DeleteDBCluster"
 
 // DeleteDBClusterRequest generates a "aws/request.Request" representing the
@@ -1356,6 +1555,89 @@ func (c *DocDB) DeleteDBSubnetGroup(input *DeleteDBSubnetGroupInput) (*DeleteDBS
 // for more information on using Contexts.
 func (c *DocDB) DeleteDBSubnetGroupWithContext(ctx aws.Context, input *DeleteDBSubnetGroupInput, opts ...request.Option) (*DeleteDBSubnetGroupOutput, error) {
 	req, out := c.DeleteDBSubnetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventSubscription = "DeleteEventSubscription"
+
+// DeleteEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventSubscription for more information on using the DeleteEventSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEventSubscriptionRequest method.
+//    req, resp := client.DeleteEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DeleteEventSubscription
+func (c *DocDB) DeleteEventSubscriptionRequest(input *DeleteEventSubscriptionInput) (req *request.Request, output *DeleteEventSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEventSubscriptionInput{}
+	}
+
+	output = &DeleteEventSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEventSubscription API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Deletes an Amazon DocumentDB event notification subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation DeleteEventSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeSubscriptionNotFoundFault "SubscriptionNotFound"
+//   The subscription name does not exist.
+//
+//   * ErrCodeInvalidEventSubscriptionStateFault "InvalidEventSubscriptionState"
+//   Someone else might be modifying a subscription. Wait a few seconds, and try
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DeleteEventSubscription
+func (c *DocDB) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*DeleteEventSubscriptionOutput, error) {
+	req, out := c.DeleteEventSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventSubscriptionWithContext is the same as DeleteEventSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DeleteEventSubscriptionWithContext(ctx aws.Context, input *DeleteEventSubscriptionInput, opts ...request.Option) (*DeleteEventSubscriptionOutput, error) {
+	req, out := c.DeleteEventSubscriptionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2698,6 +2980,147 @@ func (c *DocDB) DescribeEventCategoriesWithContext(ctx aws.Context, input *Descr
 	return out, req.Send()
 }
 
+const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
+
+// DescribeEventSubscriptionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEventSubscriptions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEventSubscriptions for more information on using the DescribeEventSubscriptions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEventSubscriptionsRequest method.
+//    req, resp := client.DescribeEventSubscriptionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DescribeEventSubscriptions
+func (c *DocDB) DescribeEventSubscriptionsRequest(input *DescribeEventSubscriptionsInput) (req *request.Request, output *DescribeEventSubscriptionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEventSubscriptions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeEventSubscriptionsInput{}
+	}
+
+	output = &DescribeEventSubscriptionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEventSubscriptions API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Lists all the subscription descriptions for a customer account. The description
+// for a subscription includes SubscriptionName, SNSTopicARN, CustomerID, SourceType,
+// SourceID, CreationTime, and Status.
+//
+// If you specify a SubscriptionName, lists the description for that subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation DescribeEventSubscriptions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeSubscriptionNotFoundFault "SubscriptionNotFound"
+//   The subscription name does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DescribeEventSubscriptions
+func (c *DocDB) DescribeEventSubscriptions(input *DescribeEventSubscriptionsInput) (*DescribeEventSubscriptionsOutput, error) {
+	req, out := c.DescribeEventSubscriptionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEventSubscriptionsWithContext is the same as DescribeEventSubscriptions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEventSubscriptions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DescribeEventSubscriptionsWithContext(ctx aws.Context, input *DescribeEventSubscriptionsInput, opts ...request.Option) (*DescribeEventSubscriptionsOutput, error) {
+	req, out := c.DescribeEventSubscriptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeEventSubscriptionsPages iterates over the pages of a DescribeEventSubscriptions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEventSubscriptions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEventSubscriptions operation.
+//    pageNum := 0
+//    err := client.DescribeEventSubscriptionsPages(params,
+//        func(page *docdb.DescribeEventSubscriptionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DocDB) DescribeEventSubscriptionsPages(input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool) error {
+	return c.DescribeEventSubscriptionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEventSubscriptionsPagesWithContext same as DescribeEventSubscriptionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DescribeEventSubscriptionsPagesWithContext(ctx aws.Context, input *DescribeEventSubscriptionsInput, fn func(*DescribeEventSubscriptionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEventSubscriptionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEventSubscriptionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEventSubscriptionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEvents = "DescribeEvents"
 
 // DescribeEventsRequest generates a "aws/request.Request" representing the
@@ -3809,6 +4232,101 @@ func (c *DocDB) ModifyDBSubnetGroupWithContext(ctx aws.Context, input *ModifyDBS
 	return out, req.Send()
 }
 
+const opModifyEventSubscription = "ModifyEventSubscription"
+
+// ModifyEventSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyEventSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyEventSubscription for more information on using the ModifyEventSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyEventSubscriptionRequest method.
+//    req, resp := client.ModifyEventSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/ModifyEventSubscription
+func (c *DocDB) ModifyEventSubscriptionRequest(input *ModifyEventSubscriptionInput) (req *request.Request, output *ModifyEventSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opModifyEventSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyEventSubscriptionInput{}
+	}
+
+	output = &ModifyEventSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyEventSubscription API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Modifies an existing Amazon DocumentDB event notification subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation ModifyEventSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeEventSubscriptionQuotaExceededFault "EventSubscriptionQuotaExceeded"
+//   You have reached the maximum number of event subscriptions.
+//
+//   * ErrCodeSubscriptionNotFoundFault "SubscriptionNotFound"
+//   The subscription name does not exist.
+//
+//   * ErrCodeSNSInvalidTopicFault "SNSInvalidTopic"
+//   Amazon SNS has responded that there is a problem with the specified topic.
+//
+//   * ErrCodeSNSNoAuthorizationFault "SNSNoAuthorization"
+//   You do not have permission to publish to the SNS topic Amazon Resource Name
+//   (ARN).
+//
+//   * ErrCodeSNSTopicArnNotFoundFault "SNSTopicArnNotFound"
+//   The SNS topic Amazon Resource Name (ARN) does not exist.
+//
+//   * ErrCodeSubscriptionCategoryNotFoundFault "SubscriptionCategoryNotFound"
+//   The provided category does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/ModifyEventSubscription
+func (c *DocDB) ModifyEventSubscription(input *ModifyEventSubscriptionInput) (*ModifyEventSubscriptionOutput, error) {
+	req, out := c.ModifyEventSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// ModifyEventSubscriptionWithContext is the same as ModifyEventSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyEventSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) ModifyEventSubscriptionWithContext(ctx aws.Context, input *ModifyEventSubscriptionInput, opts ...request.Option) (*ModifyEventSubscriptionOutput, error) {
+	req, out := c.ModifyEventSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRebootDBInstance = "RebootDBInstance"
 
 // RebootDBInstanceRequest generates a "aws/request.Request" representing the
@@ -3893,6 +4411,89 @@ func (c *DocDB) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanc
 // for more information on using Contexts.
 func (c *DocDB) RebootDBInstanceWithContext(ctx aws.Context, input *RebootDBInstanceInput, opts ...request.Option) (*RebootDBInstanceOutput, error) {
 	req, out := c.RebootDBInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubscription"
+
+// RemoveSourceIdentifierFromSubscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveSourceIdentifierFromSubscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveSourceIdentifierFromSubscription for more information on using the RemoveSourceIdentifierFromSubscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveSourceIdentifierFromSubscriptionRequest method.
+//    req, resp := client.RemoveSourceIdentifierFromSubscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/RemoveSourceIdentifierFromSubscription
+func (c *DocDB) RemoveSourceIdentifierFromSubscriptionRequest(input *RemoveSourceIdentifierFromSubscriptionInput) (req *request.Request, output *RemoveSourceIdentifierFromSubscriptionOutput) {
+	op := &request.Operation{
+		Name:       opRemoveSourceIdentifierFromSubscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveSourceIdentifierFromSubscriptionInput{}
+	}
+
+	output = &RemoveSourceIdentifierFromSubscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveSourceIdentifierFromSubscription API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Removes a source identifier from an existing Amazon DocumentDB event notification
+// subscription.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation RemoveSourceIdentifierFromSubscription for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeSubscriptionNotFoundFault "SubscriptionNotFound"
+//   The subscription name does not exist.
+//
+//   * ErrCodeSourceNotFoundFault "SourceNotFound"
+//   The requested source could not be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/RemoveSourceIdentifierFromSubscription
+func (c *DocDB) RemoveSourceIdentifierFromSubscription(input *RemoveSourceIdentifierFromSubscriptionInput) (*RemoveSourceIdentifierFromSubscriptionOutput, error) {
+	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
+	return out, req.Send()
+}
+
+// RemoveSourceIdentifierFromSubscriptionWithContext is the same as RemoveSourceIdentifierFromSubscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveSourceIdentifierFromSubscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) RemoveSourceIdentifierFromSubscriptionWithContext(ctx aws.Context, input *RemoveSourceIdentifierFromSubscriptionInput, opts ...request.Option) (*RemoveSourceIdentifierFromSubscriptionOutput, error) {
+	req, out := c.RemoveSourceIdentifierFromSubscriptionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4519,6 +5120,93 @@ func (c *DocDB) StopDBClusterWithContext(ctx aws.Context, input *StopDBClusterIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Represents the input to AddSourceIdentifierToSubscription.
+type AddSourceIdentifierToSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the event source to be added:
+	//
+	//    * If the source type is an instance, a DBInstanceIdentifier must be provided.
+	//
+	//    * If the source type is a security group, a DBSecurityGroupName must be
+	//    provided.
+	//
+	//    * If the source type is a parameter group, a DBParameterGroupName must
+	//    be provided.
+	//
+	//    * If the source type is a snapshot, a DBSnapshotIdentifier must be provided.
+	//
+	// SourceIdentifier is a required field
+	SourceIdentifier *string `type:"string" required:"true"`
+
+	// The name of the Amazon DocumentDB event notification subscription that you
+	// want to add a source identifier to.
+	//
+	// SubscriptionName is a required field
+	SubscriptionName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddSourceIdentifierToSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddSourceIdentifierToSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddSourceIdentifierToSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddSourceIdentifierToSubscriptionInput"}
+	if s.SourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceIdentifier"))
+	}
+	if s.SubscriptionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *AddSourceIdentifierToSubscriptionInput) SetSourceIdentifier(v string) *AddSourceIdentifierToSubscriptionInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *AddSourceIdentifierToSubscriptionInput) SetSubscriptionName(v string) *AddSourceIdentifierToSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+type AddSourceIdentifierToSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about an event to which you have subscribed.
+	EventSubscription *EventSubscription `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddSourceIdentifierToSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddSourceIdentifierToSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *AddSourceIdentifierToSubscriptionOutput) SetEventSubscription(v *EventSubscription) *AddSourceIdentifierToSubscriptionOutput {
+	s.EventSubscription = v
+	return s
 }
 
 // Represents the input to AddTagsToResource.
@@ -5996,6 +6684,153 @@ func (s CreateDBSubnetGroupOutput) GoString() string {
 // SetDBSubnetGroup sets the DBSubnetGroup field's value.
 func (s *CreateDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *CreateDBSubnetGroupOutput {
 	s.DBSubnetGroup = v
+	return s
+}
+
+// Represents the input to CreateEventSubscription.
+type CreateEventSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value; set to true to activate the subscription, set to false to
+	// create the subscription but not active it.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for a SourceType that you want to subscribe to.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
+	// Amazon SNS creates the ARN when you create a topic and subscribe to it.
+	//
+	// SnsTopicArn is a required field
+	SnsTopicArn *string `type:"string" required:"true"`
+
+	// The list of identifiers of the event sources for which events are returned.
+	// If not specified, then all sources are included in the response. An identifier
+	// must begin with a letter and must contain only ASCII letters, digits, and
+	// hyphens; it can't end with a hyphen or contain two consecutive hyphens.
+	//
+	// Constraints:
+	//
+	//    * If SourceIds are provided, SourceType must also be provided.
+	//
+	//    * If the source type is an instance, a DBInstanceIdentifier must be provided.
+	//
+	//    * If the source type is a security group, a DBSecurityGroupName must be
+	//    provided.
+	//
+	//    * If the source type is a parameter group, a DBParameterGroupName must
+	//    be provided.
+	//
+	//    * If the source type is a snapshot, a DBSnapshotIdentifier must be provided.
+	SourceIds []*string `locationNameList:"SourceId" type:"list"`
+
+	// The type of source that is generating the events. For example, if you want
+	// to be notified of events generated by an instance, you would set this parameter
+	// to db-instance. If this value is not specified, all events are returned.
+	//
+	// Valid values: db-instance, db-cluster, db-parameter-group, db-security-group,
+	// db-snapshot, db-cluster-snapshot
+	SourceType *string `type:"string"`
+
+	// The name of the subscription.
+	//
+	// Constraints: The name must be fewer than 255 characters.
+	//
+	// SubscriptionName is a required field
+	SubscriptionName *string `type:"string" required:"true"`
+
+	// The tags to be assigned to the event subscription.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateEventSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventSubscriptionInput"}
+	if s.SnsTopicArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnsTopicArn"))
+	}
+	if s.SubscriptionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *CreateEventSubscriptionInput) SetEnabled(v bool) *CreateEventSubscriptionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *CreateEventSubscriptionInput) SetEventCategories(v []*string) *CreateEventSubscriptionInput {
+	s.EventCategories = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *CreateEventSubscriptionInput) SetSnsTopicArn(v string) *CreateEventSubscriptionInput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceIds sets the SourceIds field's value.
+func (s *CreateEventSubscriptionInput) SetSourceIds(v []*string) *CreateEventSubscriptionInput {
+	s.SourceIds = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CreateEventSubscriptionInput) SetSourceType(v string) *CreateEventSubscriptionInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *CreateEventSubscriptionInput) SetSubscriptionName(v string) *CreateEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateEventSubscriptionInput) SetTags(v []*Tag) *CreateEventSubscriptionInput {
+	s.Tags = v
+	return s
+}
+
+type CreateEventSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about an event to which you have subscribed.
+	EventSubscription *EventSubscription `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateEventSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEventSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *CreateEventSubscriptionOutput {
+	s.EventSubscription = v
 	return s
 }
 
@@ -7543,6 +8378,69 @@ func (s DeleteDBSubnetGroupOutput) GoString() string {
 	return s.String()
 }
 
+// Represents the input to DeleteEventSubscription.
+type DeleteEventSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Amazon DocumentDB event notification subscription that you
+	// want to delete.
+	//
+	// SubscriptionName is a required field
+	SubscriptionName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEventSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventSubscriptionInput"}
+	if s.SubscriptionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *DeleteEventSubscriptionInput) SetSubscriptionName(v string) *DeleteEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+type DeleteEventSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about an event to which you have subscribed.
+	EventSubscription *EventSubscription `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEventSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *DeleteEventSubscriptionOutput {
+	s.EventSubscription = v
+	return s
+}
+
 type DescribeCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8901,6 +9799,121 @@ func (s *DescribeEventCategoriesOutput) SetEventCategoriesMapList(v []*EventCate
 	return s
 }
 
+// Represents the input to DescribeEventSubscriptions.
+type DescribeEventSubscriptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter is not currently supported.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token (marker) is
+	// included in the response so that the remaining results can be retrieved.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+
+	// The name of the Amazon DocumentDB event notification subscription that you
+	// want to describe.
+	SubscriptionName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEventSubscriptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventSubscriptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEventSubscriptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEventSubscriptionsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeEventSubscriptionsInput) SetFilters(v []*Filter) *DescribeEventSubscriptionsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventSubscriptionsInput) SetMarker(v string) *DescribeEventSubscriptionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEventSubscriptionsInput) SetMaxRecords(v int64) *DescribeEventSubscriptionsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *DescribeEventSubscriptionsInput) SetSubscriptionName(v string) *DescribeEventSubscriptionsInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+// Represents the output of DescribeEventSubscriptions.
+type DescribeEventSubscriptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of event subscriptions.
+	EventSubscriptionsList []*EventSubscription `locationNameList:"EventSubscription" type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEventSubscriptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEventSubscriptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscriptionsList sets the EventSubscriptionsList field's value.
+func (s *DescribeEventSubscriptionsOutput) SetEventSubscriptionsList(v []*EventSubscription) *DescribeEventSubscriptionsOutput {
+	s.EventSubscriptionsList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEventSubscriptionsOutput) SetMarker(v string) *DescribeEventSubscriptionsOutput {
+	s.Marker = &v
+	return s
+}
+
 // Represents the input to DescribeEvents.
 type DescribeEventsInput struct {
 	_ struct{} `type:"structure"`
@@ -9559,6 +10572,123 @@ func (s *EventCategoriesMap) SetEventCategories(v []*string) *EventCategoriesMap
 // SetSourceType sets the SourceType field's value.
 func (s *EventCategoriesMap) SetSourceType(v string) *EventCategoriesMap {
 	s.SourceType = &v
+	return s
+}
+
+// Detailed information about an event to which you have subscribed.
+type EventSubscription struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon DocumentDB event notification subscription ID.
+	CustSubscriptionId *string `type:"string"`
+
+	// The AWS customer account that is associated with the Amazon DocumentDB event
+	// notification subscription.
+	CustomerAwsId *string `type:"string"`
+
+	// A Boolean value indicating whether the subscription is enabled. A value of
+	// true indicates that the subscription is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for the Amazon DocumentDB event notification subscription.
+	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The Amazon Resource Name (ARN) for the event subscription.
+	EventSubscriptionArn *string `type:"string"`
+
+	// The topic ARN of the Amazon DocumentDB event notification subscription.
+	SnsTopicArn *string `type:"string"`
+
+	// A list of source IDs for the Amazon DocumentDB event notification subscription.
+	SourceIdsList []*string `locationNameList:"SourceId" type:"list"`
+
+	// The source type for the Amazon DocumentDB event notification subscription.
+	SourceType *string `type:"string"`
+
+	// The status of the Amazon DocumentDB event notification subscription.
+	//
+	// Constraints:
+	//
+	// Can be one of the following: creating, modifying, deleting, active, no-permission,
+	// topic-not-exist
+	//
+	// The no-permission status indicates that Amazon DocumentDB no longer has permission
+	// to post to the SNS topic. The topic-not-exist status indicates that the topic
+	// was deleted after the subscription was created.
+	Status *string `type:"string"`
+
+	// The time at which the Amazon DocumentDB event notification subscription was
+	// created.
+	SubscriptionCreationTime *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EventSubscription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventSubscription) GoString() string {
+	return s.String()
+}
+
+// SetCustSubscriptionId sets the CustSubscriptionId field's value.
+func (s *EventSubscription) SetCustSubscriptionId(v string) *EventSubscription {
+	s.CustSubscriptionId = &v
+	return s
+}
+
+// SetCustomerAwsId sets the CustomerAwsId field's value.
+func (s *EventSubscription) SetCustomerAwsId(v string) *EventSubscription {
+	s.CustomerAwsId = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *EventSubscription) SetEnabled(v bool) *EventSubscription {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategoriesList sets the EventCategoriesList field's value.
+func (s *EventSubscription) SetEventCategoriesList(v []*string) *EventSubscription {
+	s.EventCategoriesList = v
+	return s
+}
+
+// SetEventSubscriptionArn sets the EventSubscriptionArn field's value.
+func (s *EventSubscription) SetEventSubscriptionArn(v string) *EventSubscription {
+	s.EventSubscriptionArn = &v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *EventSubscription) SetSnsTopicArn(v string) *EventSubscription {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceIdsList sets the SourceIdsList field's value.
+func (s *EventSubscription) SetSourceIdsList(v []*string) *EventSubscription {
+	s.SourceIdsList = v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *EventSubscription) SetSourceType(v string) *EventSubscription {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EventSubscription) SetStatus(v string) *EventSubscription {
+	s.Status = &v
+	return s
+}
+
+// SetSubscriptionCreationTime sets the SubscriptionCreationTime field's value.
+func (s *EventSubscription) SetSubscriptionCreationTime(v string) *EventSubscription {
+	s.SubscriptionCreationTime = &v
 	return s
 }
 
@@ -10487,6 +11617,110 @@ func (s *ModifyDBSubnetGroupOutput) SetDBSubnetGroup(v *DBSubnetGroup) *ModifyDB
 	return s
 }
 
+// Represents the input to ModifyEventSubscription.
+type ModifyEventSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value; set to true to activate the subscription.
+	Enabled *bool `type:"boolean"`
+
+	// A list of event categories for a SourceType that you want to subscribe to.
+	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the SNS topic created for event notification.
+	// The ARN is created by Amazon SNS when you create a topic and subscribe to
+	// it.
+	SnsTopicArn *string `type:"string"`
+
+	// The type of source that is generating the events. For example, if you want
+	// to be notified of events generated by an instance, set this parameter to
+	// db-instance. If this value is not specified, all events are returned.
+	//
+	// Valid values: db-instance, db-parameter-group, db-security-group, db-snapshot
+	SourceType *string `type:"string"`
+
+	// The name of the Amazon DocumentDB event notification subscription.
+	//
+	// SubscriptionName is a required field
+	SubscriptionName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModifyEventSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEventSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyEventSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyEventSubscriptionInput"}
+	if s.SubscriptionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ModifyEventSubscriptionInput) SetEnabled(v bool) *ModifyEventSubscriptionInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetEventCategories sets the EventCategories field's value.
+func (s *ModifyEventSubscriptionInput) SetEventCategories(v []*string) *ModifyEventSubscriptionInput {
+	s.EventCategories = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *ModifyEventSubscriptionInput) SetSnsTopicArn(v string) *ModifyEventSubscriptionInput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *ModifyEventSubscriptionInput) SetSourceType(v string) *ModifyEventSubscriptionInput {
+	s.SourceType = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *ModifyEventSubscriptionInput) SetSubscriptionName(v string) *ModifyEventSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+type ModifyEventSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about an event to which you have subscribed.
+	EventSubscription *EventSubscription `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyEventSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEventSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *ModifyEventSubscriptionOutput {
+	s.EventSubscription = v
+	return s
+}
+
 // The options that are available for an instance.
 type OrderableDBInstanceOption struct {
 	_ struct{} `type:"structure"`
@@ -11001,6 +12235,84 @@ func (s RebootDBInstanceOutput) GoString() string {
 // SetDBInstance sets the DBInstance field's value.
 func (s *RebootDBInstanceOutput) SetDBInstance(v *DBInstance) *RebootDBInstanceOutput {
 	s.DBInstance = v
+	return s
+}
+
+// Represents the input to RemoveSourceIdentifierFromSubscription.
+type RemoveSourceIdentifierFromSubscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The source identifier to be removed from the subscription, such as the instance
+	// identifier for an instance, or the name of a security group.
+	//
+	// SourceIdentifier is a required field
+	SourceIdentifier *string `type:"string" required:"true"`
+
+	// The name of the Amazon DocumentDB event notification subscription that you
+	// want to remove a source identifier from.
+	//
+	// SubscriptionName is a required field
+	SubscriptionName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveSourceIdentifierFromSubscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveSourceIdentifierFromSubscriptionInput"}
+	if s.SourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceIdentifier"))
+	}
+	if s.SubscriptionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceIdentifier sets the SourceIdentifier field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionInput) SetSourceIdentifier(v string) *RemoveSourceIdentifierFromSubscriptionInput {
+	s.SourceIdentifier = &v
+	return s
+}
+
+// SetSubscriptionName sets the SubscriptionName field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionInput) SetSubscriptionName(v string) *RemoveSourceIdentifierFromSubscriptionInput {
+	s.SubscriptionName = &v
+	return s
+}
+
+type RemoveSourceIdentifierFromSubscriptionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Detailed information about an event to which you have subscribed.
+	EventSubscription *EventSubscription `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveSourceIdentifierFromSubscriptionOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventSubscription sets the EventSubscription field's value.
+func (s *RemoveSourceIdentifierFromSubscriptionOutput) SetEventSubscription(v *EventSubscription) *RemoveSourceIdentifierFromSubscriptionOutput {
+	s.EventSubscription = v
 	return s
 }
 

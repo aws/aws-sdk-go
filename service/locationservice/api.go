@@ -64,6 +64,10 @@ func (c *LocationService) AssociateTrackerConsumerRequest(input *AssociateTracke
 // This allows the tracker resource to communicate location data to the linked
 // geofence collection.
 //
+// Currently not supported — Cross-account configurations, such as creating
+// associations between a tracker resource in one account and a geofence collection
+// in another account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -257,8 +261,13 @@ func (c *LocationService) BatchEvaluateGeofencesRequest(input *BatchEvaluateGeof
 
 // BatchEvaluateGeofences API operation for Amazon Location Service.
 //
-// Used in geofence monitoring. Evaluates device positions against the position
-// of geofences in a given geofence collection.
+// Evaluates device positions against the geofence geometries from a given geofence
+// collection. The evaluation determines if the device has entered or exited
+// a geofenced area, which publishes ENTER or EXIT geofence events to Amazon
+// EventBridge.
+//
+// The last geofence that a device was observed within, if any, is tracked for
+// 30 days after the most recent device position update
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -353,9 +362,7 @@ func (c *LocationService) BatchGetDevicePositionRequest(input *BatchGetDevicePos
 
 // BatchGetDevicePosition API operation for Amazon Location Service.
 //
-// A batch request to retrieve device positions.
-//
-// The response will return the device positions from the last 24 hours.
+// A batch request to retrieve all device positions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -450,7 +457,7 @@ func (c *LocationService) BatchPutGeofenceRequest(input *BatchPutGeofenceInput) 
 
 // BatchPutGeofence API operation for Amazon Location Service.
 //
-// A batch request for storing geofences into a given geofence collection.
+// A batch request for storing geofence geometries into a given geofence collection.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -545,12 +552,13 @@ func (c *LocationService) BatchUpdateDevicePositionRequest(input *BatchUpdateDev
 
 // BatchUpdateDevicePosition API operation for Amazon Location Service.
 //
-// Uploads a position update for one or more devices to a tracker resource.
-// The data is used for API queries requesting the device position and position
-// history.
+// Uploads position update data for one or more devices to a tracker resource.
+// Amazon Location uses the data when reporting the last known device position
+// and position history.
 //
-// Limitation — Location data is sampled at a fixed rate of 1 position per
-// 30 second interval, and retained for 1 year before it is deleted.
+// Only one position update is stored per sample time. Location data is sampled
+// at a fixed rate of one position per 30-second interval, and retained for
+// one year before it is deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1819,7 +1827,7 @@ func (c *LocationService) DisassociateTrackerConsumerRequest(input *Disassociate
 
 // DisassociateTrackerConsumer API operation for Amazon Location Service.
 //
-// Removes the association bewteen a tracker resource and a geofence collection.
+// Removes the association between a tracker resource and a geofence collection.
 //
 // Once you unlink a tracker resource from a geofence collection, the tracker
 // positions will no longer be automatically evaluated against geofences.
@@ -1917,9 +1925,9 @@ func (c *LocationService) GetDevicePositionRequest(input *GetDevicePositionInput
 
 // GetDevicePosition API operation for Amazon Location Service.
 //
-// Retrieves the latest device position.
+// Retrieves a device's most recent position according to its sample time.
 //
-// Limitation — Device positions are deleted after one year.
+// Device positions are deleted after one year.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2023,7 +2031,7 @@ func (c *LocationService) GetDevicePositionHistoryRequest(input *GetDevicePositi
 // Retrieves the device position history from a tracker resource within a specified
 // range of time.
 //
-// Limitation — Device positions are deleted after one year.
+// Device positions are deleted after 1 year.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3564,8 +3572,8 @@ func (c *LocationService) PutGeofenceRequest(input *PutGeofenceInput) (req *requ
 
 // PutGeofence API operation for Amazon Location Service.
 //
-// Stores a geofence to a given geofence collection, or updates the geometry
-// of an existing geofence if a geofence ID is included in the request.
+// Stores a geofence geometry in a given geofence collection, or updates the
+// geometry of an existing geofence if a geofence ID is included in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4542,7 +4550,7 @@ func (s *BatchPutGeofenceOutput) SetSuccesses(v []*BatchPutGeofenceSuccess) *Bat
 	return s
 }
 
-// Contains geofence details.
+// Contains geofence geometry details.
 type BatchPutGeofenceRequestEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -4551,7 +4559,10 @@ type BatchPutGeofenceRequestEntry struct {
 	// GeofenceId is a required field
 	GeofenceId *string `min:"1" type:"string" required:"true"`
 
-	// The geometry details for the geofence.
+	// Contains the polygon details to specify the position of the geofence.
+	//
+	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// can have a maximum of 1,000 vertices.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -4670,8 +4681,8 @@ type BatchUpdateDevicePositionError struct {
 	// Error is a required field
 	Error *BatchItemError `type:"structure" required:"true"`
 
-	// The timestamp for when a position sample was attempted in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format: YYYY-MM-DDThh:mm:ss.sssZ.
+	// The timestamp at which the device position was determined. Uses ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// SampleTime is a required field
 	SampleTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -4862,7 +4873,7 @@ type CreateGeofenceCollectionInput struct {
 	// Requirements:
 	//
 	//    * Contain only alphanumeric characters (A–Z, a–z, 0-9), hyphens (-),
-	//    and underscores (_).
+	//    periods (.), and underscores (_).
 	//
 	//    * Must be a unique geofence collection name.
 	//
@@ -4874,22 +4885,24 @@ type CreateGeofenceCollectionInput struct {
 	// An optional description for the geofence collection.
 	Description *string `type:"string"`
 
-	// Specifies the pricing plan for your geofence collection. There's three pricing
-	// plan options:
-	//
-	//    * RequestBasedUsage — Selects the "Request-Based Usage" pricing plan.
-	//
-	//    * MobileAssetTracking — Selects the "Mobile Asset Tracking" pricing
-	//    plan.
-	//
-	//    * MobileAssetManagement — Selects the "Mobile Asset Management" pricing
-	//    plan.
+	// Specifies the pricing plan for your geofence collection.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Specifies the plan data source. Required if the Mobile Asset Tracking (MAT)
+	// or the Mobile Asset Management (MAM) pricing plan is selected.
+	//
+	// Billing is determined by the resource usage, the associated pricing plan,
+	// and the data source that was specified. For more information about each pricing
+	// plan option and restrictions, see the Amazon Location Service pricing page
+	// (https://aws.amazon.com/location/pricing/).
+	//
+	// Valid Values: Esri | Here
+	PricingPlanDataSource *string `type:"string"`
 }
 
 // String returns the string representation
@@ -4936,6 +4949,12 @@ func (s *CreateGeofenceCollectionInput) SetDescription(v string) *CreateGeofence
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *CreateGeofenceCollectionInput) SetPricingPlan(v string) *CreateGeofenceCollectionInput {
 	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *CreateGeofenceCollectionInput) SetPricingPlanDataSource(v string) *CreateGeofenceCollectionInput {
+	s.PricingPlanDataSource = &v
 	return s
 }
 
@@ -5004,7 +5023,7 @@ type CreateMapInput struct {
 	// Requirements:
 	//
 	//    * Must contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
-	//    (-), and underscores (_).
+	//    (-), periods (.), and underscores (_).
 	//
 	//    * Must be a unique map resource name.
 	//
@@ -5013,16 +5032,7 @@ type CreateMapInput struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the pricing plan for your map resource. There's three pricing plan
-	// options:
-	//
-	//    * RequestBasedUsage — Selects the "Request-Based Usage" pricing plan.
-	//
-	//    * MobileAssetTracking — Selects the "Mobile Asset Tracking" pricing
-	//    plan.
-	//
-	//    * MobileAssetManagement — Selects the "Mobile Asset Management" pricing
-	//    plan.
+	// Specifies the pricing plan for your map resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -5148,6 +5158,18 @@ type CreatePlaceIndexInput struct {
 
 	// Specifies the data provider of geospatial data.
 	//
+	// This field is case-sensitive. Enter the valid values as shown. For example,
+	// entering HERE will return an error.
+	//
+	// Valid values include:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For additional details on data providers, see the Amazon Location Service
+	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
 
@@ -5161,8 +5183,8 @@ type CreatePlaceIndexInput struct {
 	//
 	// Requirements:
 	//
-	//    * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-	//    underscores (_) ).
+	//    * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+	//    periods (.), and underscores (_).
 	//
 	//    * Must be a unique Place index resource name.
 	//
@@ -5171,16 +5193,7 @@ type CreatePlaceIndexInput struct {
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the pricing plan for your Place index resource. There's three pricing
-	// plan options:
-	//
-	//    * RequestBasedUsage — Selects the "Request-Based Usage" pricing plan.
-	//
-	//    * MobileAssetTracking — Selects the "Mobile Asset Tracking" pricing
-	//    plan.
-	//
-	//    * MobileAssetManagement — Selects the "Mobile Asset Management" pricing
-	//    plan.
+	// Specifies the pricing plan for your Place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -5306,16 +5319,7 @@ type CreateTrackerInput struct {
 	// An optional description for the tracker resource.
 	Description *string `type:"string"`
 
-	// Specifies the pricing plan for your tracker resource. There's three pricing
-	// plan options:
-	//
-	//    * RequestBasedUsage — Selects the "Request-Based Usage" pricing plan.
-	//
-	//    * MobileAssetTracking — Selects the "Mobile Asset Tracking" pricing
-	//    plan.
-	//
-	//    * MobileAssetManagement — Selects the "Mobile Asset Management" pricing
-	//    plan.
+	// Specifies the pricing plan for your tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -5323,12 +5327,23 @@ type CreateTrackerInput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
+	// Specifies the plan data source. Required if the Mobile Asset Tracking (MAT)
+	// or the Mobile Asset Management (MAM) pricing plan is selected.
+	//
+	// Billing is determined by the resource usage, the associated pricing plan,
+	// and data source that was specified. For more information about each pricing
+	// plan option and restrictions, see the Amazon Location Service pricing page
+	// (https://aws.amazon.com/location/pricing/).
+	//
+	// Valid Values: Esri | Here
+	PricingPlanDataSource *string `type:"string"`
+
 	// The name for the tracker resource.
 	//
 	// Requirements:
 	//
-	//    * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-) and
-	//    underscores (_).
+	//    * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
+	//    periods (.), and underscores (_).
 	//
 	//    * Must be a unique tracker resource name.
 	//
@@ -5376,6 +5391,12 @@ func (s *CreateTrackerInput) SetDescription(v string) *CreateTrackerInput {
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *CreateTrackerInput) SetPricingPlan(v string) *CreateTrackerInput {
 	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *CreateTrackerInput) SetPricingPlanDataSource(v string) *CreateTrackerInput {
+	s.PricingPlanDataSource = &v
 	return s
 }
 
@@ -5762,6 +5783,18 @@ type DescribeGeofenceCollectionOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// The pricing plan selected for the specified geofence collection.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// The data source selected for the geofence collection and associated pricing
+	// plan.
+	PricingPlanDataSource *string `type:"string"`
+
 	// The timestamp for when the geofence collection was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
 	//
@@ -5800,6 +5833,18 @@ func (s *DescribeGeofenceCollectionOutput) SetCreateTime(v time.Time) *DescribeG
 // SetDescription sets the Description field's value.
 func (s *DescribeGeofenceCollectionOutput) SetDescription(v string) *DescribeGeofenceCollectionOutput {
 	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *DescribeGeofenceCollectionOutput) SetPricingPlan(v string) *DescribeGeofenceCollectionOutput {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *DescribeGeofenceCollectionOutput) SetPricingPlanDataSource(v string) *DescribeGeofenceCollectionOutput {
+	s.PricingPlanDataSource = &v
 	return s
 }
 
@@ -5885,6 +5930,15 @@ type DescribeMapOutput struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
+	// The pricing plan selected for the specified map resource.
+	//
+	//    <p>For additional details and restrictions on each pricing plan option,
+	//    see the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+	//    Service pricing page</a>.</p>
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
 	// The timestamp for when the map resource was last update in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
@@ -5935,6 +5989,12 @@ func (s *DescribeMapOutput) SetMapArn(v string) *DescribeMapOutput {
 // SetMapName sets the MapName field's value.
 func (s *DescribeMapOutput) SetMapName(v string) *DescribeMapOutput {
 	s.MapName = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *DescribeMapOutput) SetPricingPlan(v string) *DescribeMapOutput {
+	s.PricingPlan = &v
 	return s
 }
 
@@ -5994,7 +6054,14 @@ type DescribePlaceIndexOutput struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The data provider of geospatial data.
+	// The data provider of geospatial data. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For additional details on data providers, see the Amazon Location Service
+	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -6019,6 +6086,14 @@ type DescribePlaceIndexOutput struct {
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
+
+	// The pricing plan selected for the specified Place index resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
 	// The timestamp for when the Place index resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -6070,6 +6145,12 @@ func (s *DescribePlaceIndexOutput) SetIndexArn(v string) *DescribePlaceIndexOutp
 // SetIndexName sets the IndexName field's value.
 func (s *DescribePlaceIndexOutput) SetIndexName(v string) *DescribePlaceIndexOutput {
 	s.IndexName = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *DescribePlaceIndexOutput) SetPricingPlan(v string) *DescribePlaceIndexOutput {
+	s.PricingPlan = &v
 	return s
 }
 
@@ -6134,6 +6215,18 @@ type DescribeTrackerOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// The pricing plan selected for the specified tracker resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// The data source selected for the tracker resource and associated pricing
+	// plan.
+	PricingPlanDataSource *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) for the tracker resource. Used when you need
 	// to specify a resource across all AWS.
 	//
@@ -6174,6 +6267,18 @@ func (s *DescribeTrackerOutput) SetDescription(v string) *DescribeTrackerOutput 
 	return s
 }
 
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *DescribeTrackerOutput) SetPricingPlan(v string) *DescribeTrackerOutput {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *DescribeTrackerOutput) SetPricingPlanDataSource(v string) *DescribeTrackerOutput {
+	s.PricingPlanDataSource = &v
+	return s
+}
+
 // SetTrackerArn sets the TrackerArn field's value.
 func (s *DescribeTrackerOutput) SetTrackerArn(v string) *DescribeTrackerOutput {
 	s.TrackerArn = &v
@@ -6204,13 +6309,14 @@ type DevicePosition struct {
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
 
-	// The timestamp for when the tracker resource recieved the position in ISO
-	// 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	// The timestamp for when the tracker resource received the device position
+	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
+	// YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// ReceivedTime is a required field
 	ReceivedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The timestamp for when the position was detected and sampled in ISO 8601
+	// The timestamp at which the device's position was determined. Uses ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// SampleTime is a required field
@@ -6261,13 +6367,13 @@ type DevicePositionUpdate struct {
 	DeviceId *string `min:"1" type:"string" required:"true"`
 
 	// The latest device position defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
-	// format: [Xlongitude, Ylatitude].
+	// format: [X or longitude, Y or latitude].
 	//
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
 
-	// The timestamp for when the position update was received in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format: YYYY-MM-DDThh:mm:ss.sssZ
+	// The timestamp at which the device's position was determined. Uses ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
 	//
 	// SampleTime is a required field
 	SampleTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
@@ -6404,8 +6510,8 @@ func (s DisassociateTrackerConsumerOutput) GoString() string {
 
 // Contains the geofence geometry details.
 //
-// Limitation — Amazon Location does not currently support polygons with holes,
-// multipolygons, polygons that are wound clockwise, or that cross the antimeridian.
+// Amazon Location does not currently support polygons with holes, multipolygons,
+// polygons that are wound clockwise, or that cross the antimeridian.
 type GeofenceGeometry struct {
 	_ struct{} `type:"structure"`
 
@@ -6460,9 +6566,12 @@ type GetDevicePositionHistoryInput struct {
 	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
 
 	// Specify the end time for the position history in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format: YYYY-MM-DDThh:mm:ss.sssZ.
+	// format: YYYY-MM-DDThh:mm:ss.sssZ. By default, the value will be the time
+	// that the request is made.
 	//
-	//    * The given time for EndTimeExclusive must be after the time for StartTimeInclusive.
+	// Requirement:
+	//
+	//    * The time specified for EndTimeExclusive must be after the time for StartTimeInclusive.
 	EndTimeExclusive *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The pagination token specifying which page of results to return in the response.
@@ -6472,9 +6581,12 @@ type GetDevicePositionHistoryInput struct {
 	NextToken *string `min:"1" type:"string"`
 
 	// Specify the start time for the position history in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
-	// format: YYYY-MM-DDThh:mm:ss.sssZ.
+	// format: YYYY-MM-DDThh:mm:ss.sssZ. By default, the value will be 24 hours
+	// prior to the time that the request is made.
 	//
-	//    * The given time for EndTimeExclusive must be after the time for StartTimeInclusive.
+	// Requirement:
+	//
+	//    * The time specified for StartTimeInclusive must be before EndTimeExclusive.
 	StartTimeInclusive *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
 	// The tracker resource receiving the request for the device position history.
@@ -6586,7 +6698,7 @@ func (s *GetDevicePositionHistoryOutput) SetNextToken(v string) *GetDevicePositi
 type GetDevicePositionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The device whose position you want to retreieve.
+	// The device whose position you want to retrieve.
 	//
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"DeviceId" min:"1" type:"string" required:"true"`
@@ -6652,13 +6764,14 @@ type GetDevicePositionOutput struct {
 	// Position is a required field
 	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
 
-	// The timestamp for when the tracker resource recieved the position in ISO
-	// 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	// The timestamp for when the tracker resource received the device position
+	// in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format:
+	// YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// ReceivedTime is a required field
 	ReceivedTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The timestamp for when the position was detected and sampled in ISO 8601
+	// The timestamp at which the device's position was determined. Uses ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// SampleTime is a required field
@@ -7413,6 +7526,18 @@ type ListGeofenceCollectionsResponseEntry struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// The pricing plan for the specified geofence collection.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// The data source selected for the geofence collection and associated pricing
+	// plan.
+	PricingPlanDataSource *string `type:"string"`
+
 	// Specifies a timestamp for when the resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
 	//
@@ -7445,6 +7570,18 @@ func (s *ListGeofenceCollectionsResponseEntry) SetCreateTime(v time.Time) *ListG
 // SetDescription sets the Description field's value.
 func (s *ListGeofenceCollectionsResponseEntry) SetDescription(v string) *ListGeofenceCollectionsResponseEntry {
 	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *ListGeofenceCollectionsResponseEntry) SetPricingPlan(v string) *ListGeofenceCollectionsResponseEntry {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *ListGeofenceCollectionsResponseEntry) SetPricingPlanDataSource(v string) *ListGeofenceCollectionsResponseEntry {
+	s.PricingPlanDataSource = &v
 	return s
 }
 
@@ -7742,6 +7879,14 @@ type ListMapsResponseEntry struct {
 	// MapName is a required field
 	MapName *string `min:"1" type:"string" required:"true"`
 
+	// The pricing plan for the specified map resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
 	// The timestamp for when the map resource was last updated in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
@@ -7780,6 +7925,12 @@ func (s *ListMapsResponseEntry) SetDescription(v string) *ListMapsResponseEntry 
 // SetMapName sets the MapName field's value.
 func (s *ListMapsResponseEntry) SetMapName(v string) *ListMapsResponseEntry {
 	s.MapName = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *ListMapsResponseEntry) SetPricingPlan(v string) *ListMapsResponseEntry {
+	s.PricingPlan = &v
 	return s
 }
 
@@ -7888,7 +8039,14 @@ type ListPlaceIndexesResponseEntry struct {
 	// CreateTime is a required field
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The data provider of geospatial data.
+	// The data provider of geospatial data. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * HERE
+	//
+	// For additional details on data providers, see the Amazon Location Service
+	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -7902,6 +8060,14 @@ type ListPlaceIndexesResponseEntry struct {
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
+
+	// The pricing plan for the specified Place index resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
 	// The timestamp for when the Place index resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -7941,6 +8107,12 @@ func (s *ListPlaceIndexesResponseEntry) SetDescription(v string) *ListPlaceIndex
 // SetIndexName sets the IndexName field's value.
 func (s *ListPlaceIndexesResponseEntry) SetIndexName(v string) *ListPlaceIndexesResponseEntry {
 	s.IndexName = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *ListPlaceIndexesResponseEntry) SetPricingPlan(v string) *ListPlaceIndexesResponseEntry {
+	s.PricingPlan = &v
 	return s
 }
 
@@ -8159,12 +8331,24 @@ type ListTrackersResponseEntry struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// The pricing plan for the specified tracker resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// The data source selected for the tracker resource and associated pricing
+	// plan.
+	PricingPlanDataSource *string `type:"string"`
+
 	// The name of the tracker resource.
 	//
 	// TrackerName is a required field
 	TrackerName *string `min:"1" type:"string" required:"true"`
 
-	// The timestamp for when the position was detected and sampled in ISO 8601
+	// The timestamp at which the device's position was determined. Uses ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// UpdateTime is a required field
@@ -8190,6 +8374,18 @@ func (s *ListTrackersResponseEntry) SetCreateTime(v time.Time) *ListTrackersResp
 // SetDescription sets the Description field's value.
 func (s *ListTrackersResponseEntry) SetDescription(v string) *ListTrackersResponseEntry {
 	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *ListTrackersResponseEntry) SetPricingPlan(v string) *ListTrackersResponseEntry {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
+func (s *ListTrackersResponseEntry) SetPricingPlanDataSource(v string) *ListTrackersResponseEntry {
+	s.PricingPlanDataSource = &v
 	return s
 }
 
@@ -8411,6 +8607,9 @@ type PutGeofenceInput struct {
 	GeofenceId *string `location:"uri" locationName:"GeofenceId" min:"1" type:"string" required:"true"`
 
 	// Contains the polygon details to specify the position of the geofence.
+	//
+	// Each geofence polygon (https://docs.aws.amazon.com/location-geofences/latest/APIReference/API_GeofenceGeometry.html)
+	// can have a maximum of 1,000 vertices.
 	//
 	// Geometry is a required field
 	Geometry *GeofenceGeometry `type:"structure" required:"true"`
@@ -8751,7 +8950,14 @@ func (s *SearchPlaceIndexForPositionOutput) SetSummary(v *SearchPlaceIndexForPos
 type SearchPlaceIndexForPositionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The data provider of geospatial data for the Place index resource.
+	// The data provider of geospatial data. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * HERE
+	//
+	// For additional details on data providers, see the Amazon Location Service
+	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -8981,7 +9187,14 @@ type SearchPlaceIndexForTextSummary struct {
 	// Contains the coordinates for the bias position entered in the geocoding request.
 	BiasPosition []*float64 `min:"2" type:"list" sensitive:"true"`
 
-	// The data provider of geospatial data for the Place index resource.
+	// The data provider of geospatial data. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * HERE
+	//
+	// For additional details on data providers, see the Amazon Location Service
+	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
