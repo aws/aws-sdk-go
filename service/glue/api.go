@@ -8380,11 +8380,11 @@ func (c *Glue) GetResourcePoliciesRequest(input *GetResourcePoliciesInput) (req 
 
 // GetResourcePolicies API operation for AWS Glue.
 //
-// Retrieves the security configurations for the resource policies set on individual
-// resources, and also the account-level policy.
+// Retrieves the resource policies set on individual resources by AWS Resource
+// Access Manager during cross-account permission grants. Also retrieves the
+// Data Catalog resource policy.
 //
-// This operation also returns the Data Catalog resource policy. However, if
-// you enabled metadata encryption in Data Catalog settings, and you do not
+// If you enabled metadata encryption in Data Catalog settings, and you do not
 // have permission on the AWS KMS key, the operation can't return the Data Catalog
 // resource policy.
 //
@@ -30031,9 +30031,10 @@ func (s *GetResourcePoliciesOutput) SetNextToken(v string) *GetResourcePoliciesO
 type GetResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the AWS Glue resource for the resource policy to be retrieved.
-	// For more information about AWS Glue resource ARNs, see the AWS Glue ARN string
-	// pattern (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id)
+	// The ARN of the AWS Glue resource for which to retrieve the resource policy.
+	// If not supplied, the Data Catalog resource policy is returned. Use GetResourcePolicies
+	// to view all existing resource policies. For more information see Specifying
+	// AWS Glue Resource ARNs (https://docs.aws.amazon.com/glue/latest/dg/glue-specifying-resource-arns.html).
 	ResourceArn *string `min:"1" type:"string"`
 }
 
@@ -35206,6 +35207,9 @@ type MetadataInfo struct {
 
 	// The metadata key’s corresponding value.
 	MetadataValue *string `min:"1" type:"string"`
+
+	// Other metadata belonging to the same metadata key.
+	OtherMetadataValueList []*OtherMetadataValueListItem `type:"list"`
 }
 
 // String returns the string representation
@@ -35227,6 +35231,12 @@ func (s *MetadataInfo) SetCreatedTime(v string) *MetadataInfo {
 // SetMetadataValue sets the MetadataValue field's value.
 func (s *MetadataInfo) SetMetadataValue(v string) *MetadataInfo {
 	s.MetadataValue = &v
+	return s
+}
+
+// SetOtherMetadataValueList sets the OtherMetadataValueList field's value.
+func (s *MetadataInfo) SetOtherMetadataValueList(v []*OtherMetadataValueListItem) *MetadataInfo {
+	s.OtherMetadataValueList = v
 	return s
 }
 
@@ -35603,6 +35613,41 @@ func (s *Order) SetColumn(v string) *Order {
 // SetSortOrder sets the SortOrder field's value.
 func (s *Order) SetSortOrder(v int64) *Order {
 	s.SortOrder = &v
+	return s
+}
+
+// A structure containing other metadata for a schema version belonging to the
+// same metadata key.
+type OtherMetadataValueListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the entry was created.
+	CreatedTime *string `type:"string"`
+
+	// The metadata key’s corresponding value for the other metadata belonging
+	// to the same metadata key.
+	MetadataValue *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s OtherMetadataValueListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OtherMetadataValueListItem) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *OtherMetadataValueListItem) SetCreatedTime(v string) *OtherMetadataValueListItem {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetMetadataValue sets the MetadataValue field's value.
+func (s *OtherMetadataValueListItem) SetMetadataValue(v string) *OtherMetadataValueListItem {
+	s.MetadataValue = &v
 	return s
 }
 
@@ -36295,18 +36340,20 @@ func (s PutDataCatalogEncryptionSettingsOutput) GoString() string {
 type PutResourcePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// Allows you to specify if you want to use both resource-level and account/catalog-level
-	// resource policies. A resource-level policy is a policy attached to an individual
-	// resource such as a database or a table.
+	// If 'TRUE', indicates that you are using both methods to grant cross-account
+	// access to Data Catalog resources:
 	//
-	// The default value of NO indicates that resource-level policies cannot co-exist
-	// with an account-level policy. A value of YES means the use of both resource-level
-	// and account/catalog-level resource policies is allowed.
+	//    * By directly updating the resource policy with PutResourePolicy
+	//
+	//    * By using the Grant permissions command on the AWS Management Console.
+	//
+	// Must be set to 'TRUE' if you have already used the Management Console to
+	// grant cross-account access, otherwise the call fails. Default is 'FALSE'.
 	EnableHybrid *string `type:"string" enum:"EnableHybridValues"`
 
 	// A value of MUST_EXIST is used to update a policy. A value of NOT_EXIST is
 	// used to create a new policy. If a value of NONE or a null value is used,
-	// the call will not depend on the existence of a policy.
+	// the call does not depend on the existence of a policy.
 	PolicyExistsCondition *string `type:"string" enum:"ExistCondition"`
 
 	// The hash value returned when the previous policy was set using PutResourcePolicy.
@@ -36319,9 +36366,7 @@ type PutResourcePolicyInput struct {
 	// PolicyInJson is a required field
 	PolicyInJson *string `min:"2" type:"string" required:"true"`
 
-	// The ARN of the AWS Glue resource for the resource policy to be set. For more
-	// information about AWS Glue resource ARNs, see the AWS Glue ARN string pattern
-	// (https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id)
+	// Do not use. For internal use only.
 	ResourceArn *string `min:"1" type:"string"`
 }
 

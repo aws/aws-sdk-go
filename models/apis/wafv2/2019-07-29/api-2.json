@@ -694,6 +694,7 @@
     "AllowAction":{
       "type":"structure",
       "members":{
+        "CustomRequestHandling":{"shape":"CustomRequestHandling"}
       }
     },
     "AndStatement":{
@@ -722,6 +723,7 @@
     "BlockAction":{
       "type":"structure",
       "members":{
+        "CustomResponse":{"shape":"CustomResponse"}
       }
     },
     "Body":{
@@ -792,6 +794,7 @@
     "CountAction":{
       "type":"structure",
       "members":{
+        "CustomRequestHandling":{"shape":"CustomRequestHandling"}
       }
     },
     "Country":{"type":"string"},
@@ -1113,7 +1116,8 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "CreateRuleGroupResponse":{
@@ -1137,13 +1141,75 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "CreateWebACLResponse":{
       "type":"structure",
       "members":{
         "Summary":{"shape":"WebACLSummary"}
+      }
+    },
+    "CustomHTTPHeader":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"CustomHTTPHeaderName"},
+        "Value":{"shape":"CustomHTTPHeaderValue"}
+      }
+    },
+    "CustomHTTPHeaderName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9._$-]+$"
+    },
+    "CustomHTTPHeaderValue":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
+    },
+    "CustomHTTPHeaders":{
+      "type":"list",
+      "member":{"shape":"CustomHTTPHeader"},
+      "min":1
+    },
+    "CustomRequestHandling":{
+      "type":"structure",
+      "required":["InsertHeaders"],
+      "members":{
+        "InsertHeaders":{"shape":"CustomHTTPHeaders"}
+      }
+    },
+    "CustomResponse":{
+      "type":"structure",
+      "required":["ResponseCode"],
+      "members":{
+        "ResponseCode":{"shape":"ResponseStatusCode"},
+        "CustomResponseBodyKey":{"shape":"EntityName"},
+        "ResponseHeaders":{"shape":"CustomHTTPHeaders"}
+      }
+    },
+    "CustomResponseBodies":{
+      "type":"map",
+      "key":{"shape":"EntityName"},
+      "value":{"shape":"CustomResponseBody"},
+      "min":1
+    },
+    "CustomResponseBody":{
+      "type":"structure",
+      "required":[
+        "ContentType",
+        "Content"
+      ],
+      "members":{
+        "ContentType":{"shape":"ResponseContentType"},
+        "Content":{"shape":"ResponseContent"}
       }
     },
     "DefaultAction":{
@@ -2001,6 +2067,10 @@
         "FORWARDED_IP_CONFIG",
         "IP_SET_FORWARDED_IP_CONFIG",
         "HEADER_NAME",
+        "CUSTOM_REQUEST_HANDLING",
+        "RESPONSE_CONTENT_TYPE",
+        "CUSTOM_RESPONSE",
+        "CUSTOM_RESPONSE_BODY",
         "JSON_MATCH_PATTERN",
         "JSON_MATCH_SCOPE",
         "BODY_PARSING_FALLBACK_BEHAVIOR"
@@ -2169,6 +2239,25 @@
         "APPSYNC"
       ]
     },
+    "ResponseContent":{
+      "type":"string",
+      "max":10240,
+      "min":1,
+      "pattern":".*"
+    },
+    "ResponseContentType":{
+      "type":"string",
+      "enum":[
+        "TEXT_PLAIN",
+        "TEXT_HTML",
+        "APPLICATION_JSON"
+      ]
+    },
+    "ResponseStatusCode":{
+      "type":"integer",
+      "max":600,
+      "min":200
+    },
     "Rule":{
       "type":"structure",
       "required":[
@@ -2210,7 +2299,8 @@
         "ARN":{"shape":"ResourceArn"},
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
-        "VisibilityConfig":{"shape":"VisibilityConfig"}
+        "VisibilityConfig":{"shape":"VisibilityConfig"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "RuleGroupReferenceStatement":{
@@ -2269,7 +2359,9 @@
         "Weight":{"shape":"SampleWeight"},
         "Timestamp":{"shape":"Timestamp"},
         "Action":{"shape":"Action"},
-        "RuleNameWithinRuleGroup":{"shape":"EntityName"}
+        "RuleNameWithinRuleGroup":{"shape":"EntityName"},
+        "RequestHeadersInserted":{"shape":"HTTPHeaders"},
+        "ResponseCodeSent":{"shape":"ResponseStatusCode"}
       }
     },
     "SampledHTTPRequests":{
@@ -2531,7 +2623,8 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "LockToken":{"shape":"LockToken"}
+        "LockToken":{"shape":"LockToken"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "UpdateRuleGroupResponse":{
@@ -2558,7 +2651,8 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "LockToken":{"shape":"LockToken"}
+        "LockToken":{"shape":"LockToken"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "UpdateWebACLResponse":{
@@ -2721,7 +2815,8 @@
         "Capacity":{"shape":"ConsumedCapacity"},
         "PreProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
         "PostProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
-        "ManagedByFirewallManager":{"shape":"Boolean"}
+        "ManagedByFirewallManager":{"shape":"Boolean"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },
     "WebACLSummaries":{

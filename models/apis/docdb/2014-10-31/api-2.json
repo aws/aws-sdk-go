@@ -13,6 +13,22 @@
     "xmlNamespace":"http://rds.amazonaws.com/doc/2014-10-31/"
   },
   "operations":{
+    "AddSourceIdentifierToSubscription":{
+      "name":"AddSourceIdentifierToSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddSourceIdentifierToSubscriptionMessage"},
+      "output":{
+        "shape":"AddSourceIdentifierToSubscriptionResult",
+        "resultWrapper":"AddSourceIdentifierToSubscriptionResult"
+      },
+      "errors":[
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"SourceNotFoundFault"}
+      ]
+    },
     "AddTagsToResource":{
       "name":"AddTagsToResource",
       "http":{
@@ -192,6 +208,27 @@
         {"shape":"InvalidSubnet"}
       ]
     },
+    "CreateEventSubscription":{
+      "name":"CreateEventSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateEventSubscriptionMessage"},
+      "output":{
+        "shape":"CreateEventSubscriptionResult",
+        "resultWrapper":"CreateEventSubscriptionResult"
+      },
+      "errors":[
+        {"shape":"EventSubscriptionQuotaExceededFault"},
+        {"shape":"SubscriptionAlreadyExistFault"},
+        {"shape":"SNSInvalidTopicFault"},
+        {"shape":"SNSNoAuthorizationFault"},
+        {"shape":"SNSTopicArnNotFoundFault"},
+        {"shape":"SubscriptionCategoryNotFoundFault"},
+        {"shape":"SourceNotFoundFault"}
+      ]
+    },
     "DeleteDBCluster":{
       "name":"DeleteDBCluster",
       "http":{
@@ -269,6 +306,22 @@
         {"shape":"InvalidDBSubnetGroupStateFault"},
         {"shape":"InvalidDBSubnetStateFault"},
         {"shape":"DBSubnetGroupNotFoundFault"}
+      ]
+    },
+    "DeleteEventSubscription":{
+      "name":"DeleteEventSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEventSubscriptionMessage"},
+      "output":{
+        "shape":"DeleteEventSubscriptionResult",
+        "resultWrapper":"DeleteEventSubscriptionResult"
+      },
+      "errors":[
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"InvalidEventSubscriptionStateFault"}
       ]
     },
     "DescribeCertificates":{
@@ -426,6 +479,21 @@
         "shape":"EventCategoriesMessage",
         "resultWrapper":"DescribeEventCategoriesResult"
       }
+    },
+    "DescribeEventSubscriptions":{
+      "name":"DescribeEventSubscriptions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEventSubscriptionsMessage"},
+      "output":{
+        "shape":"EventSubscriptionsMessage",
+        "resultWrapper":"DescribeEventSubscriptionsResult"
+      },
+      "errors":[
+        {"shape":"SubscriptionNotFoundFault"}
+      ]
     },
     "DescribeEvents":{
       "name":"DescribeEvents",
@@ -604,6 +672,26 @@
         {"shape":"InvalidSubnet"}
       ]
     },
+    "ModifyEventSubscription":{
+      "name":"ModifyEventSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyEventSubscriptionMessage"},
+      "output":{
+        "shape":"ModifyEventSubscriptionResult",
+        "resultWrapper":"ModifyEventSubscriptionResult"
+      },
+      "errors":[
+        {"shape":"EventSubscriptionQuotaExceededFault"},
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"SNSInvalidTopicFault"},
+        {"shape":"SNSNoAuthorizationFault"},
+        {"shape":"SNSTopicArnNotFoundFault"},
+        {"shape":"SubscriptionCategoryNotFoundFault"}
+      ]
+    },
     "RebootDBInstance":{
       "name":"RebootDBInstance",
       "http":{
@@ -618,6 +706,22 @@
       "errors":[
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBInstanceNotFoundFault"}
+      ]
+    },
+    "RemoveSourceIdentifierFromSubscription":{
+      "name":"RemoveSourceIdentifierFromSubscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveSourceIdentifierFromSubscriptionMessage"},
+      "output":{
+        "shape":"RemoveSourceIdentifierFromSubscriptionResult",
+        "resultWrapper":"RemoveSourceIdentifierFromSubscriptionResult"
+      },
+      "errors":[
+        {"shape":"SubscriptionNotFoundFault"},
+        {"shape":"SourceNotFoundFault"}
       ]
     },
     "RemoveTagsFromResource":{
@@ -744,6 +848,23 @@
     }
   },
   "shapes":{
+    "AddSourceIdentifierToSubscriptionMessage":{
+      "type":"structure",
+      "required":[
+        "SubscriptionName",
+        "SourceIdentifier"
+      ],
+      "members":{
+        "SubscriptionName":{"shape":"String"},
+        "SourceIdentifier":{"shape":"String"}
+      }
+    },
+    "AddSourceIdentifierToSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "AddTagsToResourceMessage":{
       "type":"structure",
       "required":[
@@ -1025,6 +1146,28 @@
       "type":"structure",
       "members":{
         "DBSubnetGroup":{"shape":"DBSubnetGroup"}
+      }
+    },
+    "CreateEventSubscriptionMessage":{
+      "type":"structure",
+      "required":[
+        "SubscriptionName",
+        "SnsTopicArn"
+      ],
+      "members":{
+        "SubscriptionName":{"shape":"String"},
+        "SnsTopicArn":{"shape":"String"},
+        "SourceType":{"shape":"String"},
+        "EventCategories":{"shape":"EventCategoriesList"},
+        "SourceIds":{"shape":"SourceIdsList"},
+        "Enabled":{"shape":"BooleanOptional"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateEventSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
       }
     },
     "DBCluster":{
@@ -1593,6 +1736,19 @@
         "DBSubnetGroupName":{"shape":"String"}
       }
     },
+    "DeleteEventSubscriptionMessage":{
+      "type":"structure",
+      "required":["SubscriptionName"],
+      "members":{
+        "SubscriptionName":{"shape":"String"}
+      }
+    },
+    "DeleteEventSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "DescribeCertificatesMessage":{
       "type":"structure",
       "members":{
@@ -1712,6 +1868,15 @@
         "Filters":{"shape":"FilterList"}
       }
     },
+    "DescribeEventSubscriptionsMessage":{
+      "type":"structure",
+      "members":{
+        "SubscriptionName":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
     "DescribeEventsMessage":{
       "type":"structure",
       "members":{
@@ -1810,6 +1975,47 @@
       "member":{
         "shape":"Event",
         "locationName":"Event"
+      }
+    },
+    "EventSubscription":{
+      "type":"structure",
+      "members":{
+        "CustomerAwsId":{"shape":"String"},
+        "CustSubscriptionId":{"shape":"String"},
+        "SnsTopicArn":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "SubscriptionCreationTime":{"shape":"String"},
+        "SourceType":{"shape":"String"},
+        "SourceIdsList":{"shape":"SourceIdsList"},
+        "EventCategoriesList":{"shape":"EventCategoriesList"},
+        "Enabled":{"shape":"Boolean"},
+        "EventSubscriptionArn":{"shape":"String"}
+      },
+      "wrapper":true
+    },
+    "EventSubscriptionQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"EventSubscriptionQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "EventSubscriptionsList":{
+      "type":"list",
+      "member":{
+        "shape":"EventSubscription",
+        "locationName":"EventSubscription"
+      }
+    },
+    "EventSubscriptionsMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "EventSubscriptionsList":{"shape":"EventSubscriptionsList"}
       }
     },
     "EventsMessage":{
@@ -1991,6 +2197,17 @@
       },
       "exception":true
     },
+    "InvalidEventSubscriptionStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidEventSubscriptionState",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidRestoreFault":{
       "type":"structure",
       "members":{
@@ -2144,6 +2361,23 @@
         "DBSubnetGroup":{"shape":"DBSubnetGroup"}
       }
     },
+    "ModifyEventSubscriptionMessage":{
+      "type":"structure",
+      "required":["SubscriptionName"],
+      "members":{
+        "SubscriptionName":{"shape":"String"},
+        "SnsTopicArn":{"shape":"String"},
+        "SourceType":{"shape":"String"},
+        "EventCategories":{"shape":"EventCategoriesList"},
+        "Enabled":{"shape":"BooleanOptional"}
+      }
+    },
+    "ModifyEventSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "OrderableDBInstanceOption":{
       "type":"structure",
       "members":{
@@ -2264,6 +2498,23 @@
         "DBInstance":{"shape":"DBInstance"}
       }
     },
+    "RemoveSourceIdentifierFromSubscriptionMessage":{
+      "type":"structure",
+      "required":[
+        "SubscriptionName",
+        "SourceIdentifier"
+      ],
+      "members":{
+        "SubscriptionName":{"shape":"String"},
+        "SourceIdentifier":{"shape":"String"}
+      }
+    },
+    "RemoveSourceIdentifierFromSubscriptionResult":{
+      "type":"structure",
+      "members":{
+        "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
     "RemoveTagsFromResourceMessage":{
       "type":"structure",
       "required":[
@@ -2357,6 +2608,39 @@
         "DBCluster":{"shape":"DBCluster"}
       }
     },
+    "SNSInvalidTopicFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SNSInvalidTopic",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SNSNoAuthorizationFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SNSNoAuthorization",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SNSTopicArnNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SNSTopicArnNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "SharedSnapshotQuotaExceededFault":{
       "type":"structure",
       "members":{
@@ -2375,6 +2659,24 @@
       "error":{
         "code":"SnapshotQuotaExceeded",
         "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SourceIdsList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"SourceId"
+      }
+    },
+    "SourceNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SourceNotFound",
+        "httpStatusCode":404,
         "senderFault":true
       },
       "exception":true
@@ -2471,6 +2773,39 @@
         "shape":"Subnet",
         "locationName":"Subnet"
       }
+    },
+    "SubscriptionAlreadyExistFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SubscriptionAlreadyExist",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SubscriptionCategoryNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SubscriptionCategoryNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "SubscriptionNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"SubscriptionNotFound",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
     },
     "TStamp":{"type":"timestamp"},
     "Tag":{

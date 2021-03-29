@@ -816,7 +816,10 @@
       "output":{
         "shape":"GetAccessKeyLastUsedResponse",
         "resultWrapper":"GetAccessKeyLastUsedResult"
-      }
+      },
+      "errors":[
+        {"shape":"NoSuchEntityException"}
+      ]
     },
     "GetAccountAuthorizationDetails":{
       "name":"GetAccountAuthorizationDetails",

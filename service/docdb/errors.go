@@ -144,6 +144,12 @@ const (
 	// The upgrade failed because a resource that the depends on can't be modified.
 	ErrCodeDBUpgradeDependencyFailureFault = "DBUpgradeDependencyFailure"
 
+	// ErrCodeEventSubscriptionQuotaExceededFault for service response error code
+	// "EventSubscriptionQuotaExceeded".
+	//
+	// You have reached the maximum number of event subscriptions.
+	ErrCodeEventSubscriptionQuotaExceededFault = "EventSubscriptionQuotaExceeded"
+
 	// ErrCodeInstanceQuotaExceededFault for service response error code
 	// "InstanceQuotaExceeded".
 	//
@@ -221,6 +227,13 @@ const (
 	// The subnet isn't in the available state.
 	ErrCodeInvalidDBSubnetStateFault = "InvalidDBSubnetStateFault"
 
+	// ErrCodeInvalidEventSubscriptionStateFault for service response error code
+	// "InvalidEventSubscriptionState".
+	//
+	// Someone else might be modifying a subscription. Wait a few seconds, and try
+	// again.
+	ErrCodeInvalidEventSubscriptionStateFault = "InvalidEventSubscriptionState"
+
 	// ErrCodeInvalidRestoreFault for service response error code
 	// "InvalidRestoreFault".
 	//
@@ -254,6 +267,25 @@ const (
 	// The specified resource ID was not found.
 	ErrCodeResourceNotFoundFault = "ResourceNotFoundFault"
 
+	// ErrCodeSNSInvalidTopicFault for service response error code
+	// "SNSInvalidTopic".
+	//
+	// Amazon SNS has responded that there is a problem with the specified topic.
+	ErrCodeSNSInvalidTopicFault = "SNSInvalidTopic"
+
+	// ErrCodeSNSNoAuthorizationFault for service response error code
+	// "SNSNoAuthorization".
+	//
+	// You do not have permission to publish to the SNS topic Amazon Resource Name
+	// (ARN).
+	ErrCodeSNSNoAuthorizationFault = "SNSNoAuthorization"
+
+	// ErrCodeSNSTopicArnNotFoundFault for service response error code
+	// "SNSTopicArnNotFound".
+	//
+	// The SNS topic Amazon Resource Name (ARN) does not exist.
+	ErrCodeSNSTopicArnNotFoundFault = "SNSTopicArnNotFound"
+
 	// ErrCodeSharedSnapshotQuotaExceededFault for service response error code
 	// "SharedSnapshotQuotaExceeded".
 	//
@@ -266,6 +298,12 @@ const (
 	//
 	// The request would cause you to exceed the allowed number of snapshots.
 	ErrCodeSnapshotQuotaExceededFault = "SnapshotQuotaExceeded"
+
+	// ErrCodeSourceNotFoundFault for service response error code
+	// "SourceNotFound".
+	//
+	// The requested source could not be found.
+	ErrCodeSourceNotFoundFault = "SourceNotFound"
 
 	// ErrCodeStorageQuotaExceededFault for service response error code
 	// "StorageQuotaExceeded".
@@ -285,4 +323,22 @@ const (
 	//
 	// The subnet is already in use in the Availability Zone.
 	ErrCodeSubnetAlreadyInUse = "SubnetAlreadyInUse"
+
+	// ErrCodeSubscriptionAlreadyExistFault for service response error code
+	// "SubscriptionAlreadyExist".
+	//
+	// The provided subscription name already exists.
+	ErrCodeSubscriptionAlreadyExistFault = "SubscriptionAlreadyExist"
+
+	// ErrCodeSubscriptionCategoryNotFoundFault for service response error code
+	// "SubscriptionCategoryNotFound".
+	//
+	// The provided category does not exist.
+	ErrCodeSubscriptionCategoryNotFoundFault = "SubscriptionCategoryNotFound"
+
+	// ErrCodeSubscriptionNotFoundFault for service response error code
+	// "SubscriptionNotFound".
+	//
+	// The subscription name does not exist.
+	ErrCodeSubscriptionNotFoundFault = "SubscriptionNotFound"
 )
