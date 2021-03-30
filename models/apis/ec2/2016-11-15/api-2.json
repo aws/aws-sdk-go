@@ -644,6 +644,15 @@
       "input":{"shape":"CreatePlacementGroupRequest"},
       "output":{"shape":"CreatePlacementGroupResult"}
     },
+    "CreateReplaceRootVolumeTask":{
+      "name":"CreateReplaceRootVolumeTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateReplaceRootVolumeTaskRequest"},
+      "output":{"shape":"CreateReplaceRootVolumeTaskResult"}
+    },
     "CreateReservedInstancesListing":{
       "name":"CreateReservedInstancesListing",
       "http":{
@@ -2079,6 +2088,15 @@
       "input":{"shape":"DescribeRegionsRequest"},
       "output":{"shape":"DescribeRegionsResult"}
     },
+    "DescribeReplaceRootVolumeTasks":{
+      "name":"DescribeReplaceRootVolumeTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReplaceRootVolumeTasksRequest"},
+      "output":{"shape":"DescribeReplaceRootVolumeTasksResult"}
+    },
     "DescribeReservedInstances":{
       "name":"DescribeReservedInstances",
       "http":{
@@ -2571,6 +2589,15 @@
       "input":{"shape":"DisableFastSnapshotRestoresRequest"},
       "output":{"shape":"DisableFastSnapshotRestoresResult"}
     },
+    "DisableSerialConsoleAccess":{
+      "name":"DisableSerialConsoleAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableSerialConsoleAccessRequest"},
+      "output":{"shape":"DisableSerialConsoleAccessResult"}
+    },
     "DisableTransitGatewayRouteTablePropagation":{
       "name":"DisableTransitGatewayRouteTablePropagation",
       "http":{
@@ -2702,6 +2729,15 @@
       },
       "input":{"shape":"EnableFastSnapshotRestoresRequest"},
       "output":{"shape":"EnableFastSnapshotRestoresResult"}
+    },
+    "EnableSerialConsoleAccess":{
+      "name":"EnableSerialConsoleAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableSerialConsoleAccessRequest"},
+      "output":{"shape":"EnableSerialConsoleAccessResult"}
     },
     "EnableTransitGatewayRouteTablePropagation":{
       "name":"EnableTransitGatewayRouteTablePropagation",
@@ -2925,6 +2961,15 @@
       },
       "input":{"shape":"GetReservedInstancesExchangeQuoteRequest"},
       "output":{"shape":"GetReservedInstancesExchangeQuoteResult"}
+    },
+    "GetSerialConsoleAccessStatus":{
+      "name":"GetSerialConsoleAccessStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSerialConsoleAccessStatusRequest"},
+      "output":{"shape":"GetSerialConsoleAccessStatusResult"}
     },
     "GetTransitGatewayAttachmentPropagations":{
       "name":"GetTransitGatewayAttachmentPropagations",
@@ -8185,6 +8230,32 @@
         }
       }
     },
+    "CreateReplaceRootVolumeTaskRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "SnapshotId":{"shape":"SnapshotId"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "DryRun":{"shape":"Boolean"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "CreateReplaceRootVolumeTaskResult":{
+      "type":"structure",
+      "members":{
+        "ReplaceRootVolumeTask":{
+          "shape":"ReplaceRootVolumeTask",
+          "locationName":"replaceRootVolumeTask"
+        }
+      }
+    },
     "CreateReservedInstancesListingRequest":{
       "type":"structure",
       "required":[
@@ -12691,6 +12762,40 @@
         }
       }
     },
+    "DescribeReplaceRootVolumeTasksMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "DescribeReplaceRootVolumeTasksRequest":{
+      "type":"structure",
+      "members":{
+        "ReplaceRootVolumeTaskIds":{
+          "shape":"ReplaceRootVolumeTaskIds",
+          "locationName":"ReplaceRootVolumeTaskId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"DescribeReplaceRootVolumeTasksMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeReplaceRootVolumeTasksResult":{
+      "type":"structure",
+      "members":{
+        "ReplaceRootVolumeTasks":{
+          "shape":"ReplaceRootVolumeTasks",
+          "locationName":"replaceRootVolumeTaskSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeReservedInstancesListingsRequest":{
       "type":"structure",
       "members":{
@@ -14570,6 +14675,21 @@
         }
       }
     },
+    "DisableSerialConsoleAccessRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableSerialConsoleAccessResult":{
+      "type":"structure",
+      "members":{
+        "SerialConsoleAccessEnabled":{
+          "shape":"Boolean",
+          "locationName":"serialConsoleAccessEnabled"
+        }
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest":{
       "type":"structure",
       "required":[
@@ -15500,6 +15620,21 @@
         "Unsuccessful":{
           "shape":"EnableFastSnapshotRestoreErrorSet",
           "locationName":"unsuccessful"
+        }
+      }
+    },
+    "EnableSerialConsoleAccessRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableSerialConsoleAccessResult":{
+      "type":"structure",
+      "members":{
+        "SerialConsoleAccessEnabled":{
+          "shape":"Boolean",
+          "locationName":"serialConsoleAccessEnabled"
         }
       }
     },
@@ -17275,6 +17410,21 @@
         "ValidationFailureReason":{
           "shape":"String",
           "locationName":"validationFailureReason"
+        }
+      }
+    },
+    "GetSerialConsoleAccessStatusRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetSerialConsoleAccessStatusResult":{
+      "type":"structure",
+      "members":{
+        "SerialConsoleAccessEnabled":{
+          "shape":"Boolean",
+          "locationName":"serialConsoleAccessEnabled"
         }
       }
     },
@@ -25912,6 +26062,61 @@
           "shape":"Integer",
           "locationName":"ruleNumber"
         }
+      }
+    },
+    "ReplaceRootVolumeTask":{
+      "type":"structure",
+      "members":{
+        "ReplaceRootVolumeTaskId":{
+          "shape":"ReplaceRootVolumeTaskId",
+          "locationName":"replaceRootVolumeTaskId"
+        },
+        "InstanceId":{
+          "shape":"String",
+          "locationName":"instanceId"
+        },
+        "TaskState":{
+          "shape":"ReplaceRootVolumeTaskState",
+          "locationName":"taskState"
+        },
+        "StartTime":{
+          "shape":"String",
+          "locationName":"startTime"
+        },
+        "CompleteTime":{
+          "shape":"String",
+          "locationName":"completeTime"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "ReplaceRootVolumeTaskId":{"type":"string"},
+    "ReplaceRootVolumeTaskIds":{
+      "type":"list",
+      "member":{
+        "shape":"ReplaceRootVolumeTaskId",
+        "locationName":"ReplaceRootVolumeTaskId"
+      }
+    },
+    "ReplaceRootVolumeTaskState":{
+      "type":"string",
+      "enum":[
+        "pending",
+        "in-progress",
+        "failing",
+        "succeeded",
+        "failed",
+        "failed-detached"
+      ]
+    },
+    "ReplaceRootVolumeTasks":{
+      "type":"list",
+      "member":{
+        "shape":"ReplaceRootVolumeTask",
+        "locationName":"item"
       }
     },
     "ReplaceRouteRequest":{

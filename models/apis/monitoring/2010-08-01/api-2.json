@@ -74,6 +74,23 @@
         {"shape":"MissingRequiredParameterException"}
       ]
     },
+    "DeleteMetricStream":{
+      "name":"DeleteMetricStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMetricStreamInput"},
+      "output":{
+        "shape":"DeleteMetricStreamOutput",
+        "resultWrapper":"DeleteMetricStreamResult"
+      },
+      "errors":[
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"}
+      ]
+    },
     "DescribeAlarmHistory":{
       "name":"DescribeAlarmHistory",
       "http":{
@@ -264,6 +281,25 @@
         {"shape":"InternalServiceFault"}
       ]
     },
+    "GetMetricStream":{
+      "name":"GetMetricStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMetricStreamInput"},
+      "output":{
+        "shape":"GetMetricStreamOutput",
+        "resultWrapper":"GetMetricStreamResult"
+      },
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
     "GetMetricWidgetImage":{
       "name":"GetMetricWidgetImage",
       "http":{
@@ -290,6 +326,24 @@
       "errors":[
         {"shape":"InvalidParameterValueException"},
         {"shape":"InternalServiceFault"}
+      ]
+    },
+    "ListMetricStreams":{
+      "name":"ListMetricStreams",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMetricStreamsInput"},
+      "output":{
+        "shape":"ListMetricStreamsOutput",
+        "resultWrapper":"ListMetricStreamsResult"
+      },
+      "errors":[
+        {"shape":"InvalidNextToken"},
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"}
       ]
     },
     "ListMetrics":{
@@ -412,6 +466,25 @@
         {"shape":"InternalServiceFault"}
       ]
     },
+    "PutMetricStream":{
+      "name":"PutMetricStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutMetricStreamInput"},
+      "output":{
+        "shape":"PutMetricStreamOutput",
+        "resultWrapper":"PutMetricStreamResult"
+      },
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"},
+        {"shape":"InvalidParameterCombinationException"}
+      ]
+    },
     "SetAlarmState":{
       "name":"SetAlarmState",
       "http":{
@@ -422,6 +495,40 @@
       "errors":[
         {"shape":"ResourceNotFound"},
         {"shape":"InvalidFormatFault"}
+      ]
+    },
+    "StartMetricStreams":{
+      "name":"StartMetricStreams",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMetricStreamsInput"},
+      "output":{
+        "shape":"StartMetricStreamsOutput",
+        "resultWrapper":"StartMetricStreamsResult"
+      },
+      "errors":[
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"}
+      ]
+    },
+    "StopMetricStreams":{
+      "name":"StopMetricStreams",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopMetricStreamsInput"},
+      "output":{
+        "shape":"StopMetricStreamsOutput",
+        "resultWrapper":"StopMetricStreamsResult"
+      },
+      "errors":[
+        {"shape":"InternalServiceFault"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingRequiredParameterException"}
       ]
     },
     "TagResource":{
@@ -792,6 +899,18 @@
         "Failures":{"shape":"BatchFailures"}
       }
     },
+    "DeleteMetricStreamInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"MetricStreamName"}
+      }
+    },
+    "DeleteMetricStreamOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeAlarmHistoryInput":{
       "type":"structure",
       "members":{
@@ -1098,6 +1217,28 @@
         "Datapoints":{"shape":"Datapoints"}
       }
     },
+    "GetMetricStreamInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"MetricStreamName"}
+      }
+    },
+    "GetMetricStreamOutput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"AmazonResourceName"},
+        "Name":{"shape":"MetricStreamName"},
+        "IncludeFilters":{"shape":"MetricStreamFilters"},
+        "ExcludeFilters":{"shape":"MetricStreamFilters"},
+        "FirehoseArn":{"shape":"AmazonResourceName"},
+        "RoleArn":{"shape":"AmazonResourceName"},
+        "State":{"shape":"MetricStreamState"},
+        "CreationDate":{"shape":"Timestamp"},
+        "LastUpdateDate":{"shape":"Timestamp"},
+        "OutputFormat":{"shape":"MetricStreamOutputFormat"}
+      }
+    },
     "GetMetricWidgetImageInput":{
       "type":"structure",
       "required":["MetricWidget"],
@@ -1363,6 +1504,25 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListMetricStreamsInput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"ListMetricStreamsMaxResults"}
+      }
+    },
+    "ListMetricStreamsMaxResults":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "ListMetricStreamsOutput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "Entries":{"shape":"MetricStreamEntries"}
+      }
+    },
     "ListMetricsInput":{
       "type":"structure",
       "members":{
@@ -1578,6 +1738,51 @@
         "Unit":{"shape":"StandardUnit"}
       }
     },
+    "MetricStreamEntries":{
+      "type":"list",
+      "member":{"shape":"MetricStreamEntry"}
+    },
+    "MetricStreamEntry":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"AmazonResourceName"},
+        "CreationDate":{"shape":"Timestamp"},
+        "LastUpdateDate":{"shape":"Timestamp"},
+        "Name":{"shape":"MetricStreamName"},
+        "FirehoseArn":{"shape":"AmazonResourceName"},
+        "State":{"shape":"MetricStreamState"},
+        "OutputFormat":{"shape":"MetricStreamOutputFormat"}
+      }
+    },
+    "MetricStreamFilter":{
+      "type":"structure",
+      "members":{
+        "Namespace":{"shape":"Namespace"}
+      }
+    },
+    "MetricStreamFilters":{
+      "type":"list",
+      "member":{"shape":"MetricStreamFilter"}
+    },
+    "MetricStreamName":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "MetricStreamNames":{
+      "type":"list",
+      "member":{"shape":"MetricStreamName"}
+    },
+    "MetricStreamOutputFormat":{
+      "type":"string",
+      "enum":[
+        "json",
+        "opentelemetry0.7"
+      ],
+      "max":255,
+      "min":1
+    },
+    "MetricStreamState":{"type":"string"},
     "MetricWidget":{"type":"string"},
     "MetricWidgetImage":{"type":"blob"},
     "Metrics":{
@@ -1733,6 +1938,30 @@
         "MetricData":{"shape":"MetricData"}
       }
     },
+    "PutMetricStreamInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FirehoseArn",
+        "RoleArn",
+        "OutputFormat"
+      ],
+      "members":{
+        "Name":{"shape":"MetricStreamName"},
+        "IncludeFilters":{"shape":"MetricStreamFilters"},
+        "ExcludeFilters":{"shape":"MetricStreamFilters"},
+        "FirehoseArn":{"shape":"AmazonResourceName"},
+        "RoleArn":{"shape":"AmazonResourceName"},
+        "OutputFormat":{"shape":"MetricStreamOutputFormat"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "PutMetricStreamOutput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"AmazonResourceName"}
+      }
+    },
     "Range":{
       "type":"structure",
       "required":[
@@ -1844,6 +2073,18 @@
         "None"
       ]
     },
+    "StartMetricStreamsInput":{
+      "type":"structure",
+      "required":["Names"],
+      "members":{
+        "Names":{"shape":"MetricStreamNames"}
+      }
+    },
+    "StartMetricStreamsOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "Stat":{"type":"string"},
     "StateReason":{
       "type":"string",
@@ -1901,6 +2142,18 @@
         "InternalError",
         "PartialData"
       ]
+    },
+    "StopMetricStreamsInput":{
+      "type":"structure",
+      "required":["Names"],
+      "members":{
+        "Names":{"shape":"MetricStreamNames"}
+      }
+    },
+    "StopMetricStreamsOutput":{
+      "type":"structure",
+      "members":{
+      }
     },
     "StorageResolution":{
       "type":"integer",

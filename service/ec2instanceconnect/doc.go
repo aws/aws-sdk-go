@@ -3,9 +3,9 @@
 // Package ec2instanceconnect provides the client and types for making API
 // requests to AWS EC2 Instance Connect.
 //
-// AWS EC2 Connect Service is a service that enables system administrators to
-// publish temporary SSH keys to their EC2 instances in order to establish connections
-// to their instances without leaving a permanent authentication option.
+// Amazon EC2 Instance Connect enables system administrators to publish one-time
+// use SSH public keys to EC2, providing users a simple and secure way to connect
+// to their instances.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ec2-instance-connect-2018-04-02 for more information on this service.
 //

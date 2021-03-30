@@ -391,7 +391,7 @@
           "argument": "length(SecurityGroups[].GroupId) > `0`"
         },
         {
-          "expected": "InvalidGroupNotFound",
+          "expected": "InvalidGroup.NotFound",
           "matcher": "error",
           "state": "retry"
         }

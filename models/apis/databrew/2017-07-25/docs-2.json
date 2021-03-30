@@ -78,7 +78,7 @@
         "DescribeRecipeResponse$ResourceArn": "<p>The ARN of the recipe.</p>",
         "DescribeScheduleResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the schedule.</p>",
         "Job$ResourceArn": "<p>The unique Amazon Resource Name (ARN) for the job.</p>",
-        "Job$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that will be assumed for this job.</p>",
+        "Job$RoleArn": "<p>The Amazon Resource Name (ARN) of the role to be assumed for this job.</p>",
         "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the DataBrew resource. </p>",
         "Project$ResourceArn": "<p>The Amazon Resource Name (ARN) for the project.</p>",
         "Project$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that will be assumed for this project.</p>",
@@ -165,7 +165,7 @@
       }
     },
     "ConditionExpression": {
-      "base": "<p>Represents an individual condition that evaluates to true or false.</p> <p>Conditions are used with recipe actions: The action is only performed for column values where the condition evaluates to true.</p> <p>If a recipe requires more than one condition, then the recipe must specify multiple <code>ConditionExpression</code> elements. Each condition is applied to the rows in a dataset first, before the recipe action is performed.</p>",
+      "base": "<p>Represents an individual condition that evaluates to true or false.</p> <p>Conditions are used with recipe actions. The action is only performed for column values where the condition evaluates to true.</p> <p>If a recipe requires more than one condition, then the recipe must specify multiple <code>ConditionExpression</code> elements. Each condition is applied to the rows in a dataset first, before the recipe action is performed.</p>",
       "refs": {
         "ConditionExpressionList$member": null
       }
@@ -173,18 +173,25 @@
     "ConditionExpressionList": {
       "base": null,
       "refs": {
-        "RecipeStep$ConditionExpressions": "<p>One or more conditions that must be met, in order for the recipe step to succeed.</p> <note> <p>All of the conditions in the array must be met. In other words, all of the conditions must be combined using a logical AND operation.</p> </note>"
+        "RecipeStep$ConditionExpressions": "<p>One or more conditions that must be met for the recipe step to succeed.</p> <note> <p>All of the conditions in the array must be met. In other words, all of the conditions must be combined using a logical AND operation.</p> </note>"
       }
     },
     "ConditionValue": {
       "base": null,
       "refs": {
-        "ConditionExpression$Value": "<p>A value that the condition must evaluate to for the condition to succeed.</p>"
+        "ConditionExpression$Value": "<p>A value that the condition must evaluate to for the condition to succeed.</p>",
+        "ValuesMap$value": null
       }
     },
     "ConflictException": {
       "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
       "refs": {
+      }
+    },
+    "CreateColumn": {
+      "base": null,
+      "refs": {
+        "DatasetParameter$CreateColumn": "<p>Optional boolean value that defines whether the captured value of this parameter should be loaded as an additional column in the dataset.</p>"
       }
     },
     "CreateDatasetRequest": {
@@ -267,20 +274,20 @@
       "refs": {
         "CreateScheduleRequest$CronExpression": "<p>The date or dates and time or times when the jobs are to be run. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html\">Cron expressions</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>",
         "DescribeScheduleResponse$CronExpression": "<p>The date or dates and time or times when the jobs are to be run for the schedule. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html\">Cron expressions</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>",
-        "Schedule$CronExpression": "<p>The date(s) and time(s) when the job will run. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html\">Cron expressions</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>",
+        "Schedule$CronExpression": "<p>The dates and times when the job is to run. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html\">Cron expressions</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>",
         "UpdateScheduleRequest$CronExpression": "<p>The date or dates and time or times when the jobs are to be run. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html\">Cron expressions</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>"
       }
     },
     "CsvOptions": {
-      "base": "<p>Options that define how DataBrew will read a Csv file when creating a dataset from that file.</p>",
+      "base": "<p>Represents a set of options that define how DataBrew will read a comma-separated value (CSV) file when creating a dataset from that file.</p>",
       "refs": {
-        "FormatOptions$Csv": "<p>Options that define how Csv input is to be interpreted by DataBrew.</p>"
+        "FormatOptions$Csv": "<p>Options that define how CSV input is to be interpreted by DataBrew.</p>"
       }
     },
     "CsvOutputOptions": {
-      "base": "<p>Options that define how DataBrew will write a Csv file.</p>",
+      "base": "<p>Represents a set of options that define how DataBrew will write a comma-separated value (CSV) file.</p>",
       "refs": {
-        "OutputFormatOptions$Csv": "<p>Options that define how DataBrew writes Csv output.</p>"
+        "OutputFormatOptions$Csv": "<p>Represents a set of options that define the structure of comma-separated value (CSV) job output.</p>"
       }
     },
     "DataCatalogInputDefinition": {
@@ -289,10 +296,22 @@
         "Input$DataCatalogInputDefinition": "<p>The AWS Glue Data Catalog parameters for the data.</p>"
       }
     },
+    "DatabaseInputDefinition": {
+      "base": "<p>Connection information for dataset input files stored in a database.</p>",
+      "refs": {
+        "Input$DatabaseInputDefinition": "<p>Connection information for dataset input files stored in a database.</p>"
+      }
+    },
     "DatabaseName": {
       "base": null,
       "refs": {
         "DataCatalogInputDefinition$DatabaseName": "<p>The name of a database in the Data Catalog.</p>"
+      }
+    },
+    "DatabaseTableName": {
+      "base": null,
+      "refs": {
+        "DatabaseInputDefinition$DatabaseTableName": "<p>The table within the target database.</p>"
       }
     },
     "Dataset": {
@@ -331,6 +350,12 @@
         "UpdateDatasetResponse$Name": "<p>The name of the dataset that you updated.</p>"
       }
     },
+    "DatasetParameter": {
+      "base": "<p>Represents a dataset paramater that defines type and conditions for a parameter in the S3 path of the dataset.</p>",
+      "refs": {
+        "PathParametersMap$value": null
+      }
+    },
     "Date": {
       "base": null,
       "refs": {
@@ -363,6 +388,18 @@
         "Schedule$CreateDate": "<p>The date and time that the schedule was created.</p>",
         "Schedule$LastModifiedDate": "<p>The date and time when the schedule was last modified.</p>",
         "UpdateProjectResponse$LastModifiedDate": "<p>The date and time that the project was last modified.</p>"
+      }
+    },
+    "DatetimeFormat": {
+      "base": null,
+      "refs": {
+        "DatetimeOptions$Format": "<p>Required option, that defines the datetime format used for a date parameter in the S3 path. Should use only supported datetime specifiers and separation characters, all litera a-z or A-Z character should be escaped with single quotes. E.g. \"MM.dd.yyyy-'at'-HH:mm\".</p>"
+      }
+    },
+    "DatetimeOptions": {
+      "base": "<p>Represents additional options for correct interpretation of datetime parameters used in the S3 path of a dataset.</p>",
+      "refs": {
+        "DatasetParameter$DatetimeOptions": "<p>Additional parameter options such as a format and a timezone. Required for datetime parameters.</p>"
       }
     },
     "DeleteDatasetRequest": {
@@ -418,8 +455,8 @@
     "Delimiter": {
       "base": null,
       "refs": {
-        "CsvOptions$Delimiter": "<p>A single character that specifies the delimiter being used in the Csv file.</p>",
-        "CsvOutputOptions$Delimiter": "<p>A single character that specifies the delimiter used to create Csv job output.</p>"
+        "CsvOptions$Delimiter": "<p>A single character that specifies the delimiter being used in the CSV file.</p>",
+        "CsvOutputOptions$Delimiter": "<p>A single character that specifies the delimiter used to create CSV job output.</p>"
       }
     },
     "DescribeDatasetRequest": {
@@ -499,7 +536,7 @@
         "CreateProfileJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
         "CreateRecipeJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by AWS KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
         "DescribeJobResponse$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by AWS KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
-        "Job$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "Job$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by AWS KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
         "UpdateProfileJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by AWS KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
         "UpdateRecipeJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with keys managed by AWS KMS.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>"
       }
@@ -511,7 +548,7 @@
       }
     },
     "ExcelOptions": {
-      "base": "<p>Options that define how DataBrew will interpret a Microsoft Excel file, when creating a dataset from that file.</p>",
+      "base": "<p>Represents a set of options that define how DataBrew will interpret a Microsoft Excel file when creating a dataset from that file.</p>",
       "refs": {
         "FormatOptions$Excel": "<p>Options that define how Excel input is to be interpreted by DataBrew.</p>"
       }
@@ -523,20 +560,45 @@
         "JobRun$ExecutionTime": "<p>The amount of time, in seconds, during which a job run consumed resources.</p>"
       }
     },
+    "Expression": {
+      "base": null,
+      "refs": {
+        "FilterExpression$Expression": "<p>The expression which includes condition names followed by substitution variables, possibly grouped and combined with other conditions. For example, \"(starts_with :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or ends_with :suffix2)\". Substitution variables should start with ':' symbol.</p>"
+      }
+    },
+    "FilesLimit": {
+      "base": "<p>Represents a limit imposed on number of S3 files that should be selected for a dataset from a connected S3 path.</p>",
+      "refs": {
+        "PathOptions$FilesLimit": "<p>If provided, this structure imposes a limit on a number of files that should be selected.</p>"
+      }
+    },
+    "FilterExpression": {
+      "base": "<p>Represents a structure for defining parameter conditions.</p>",
+      "refs": {
+        "DatasetParameter$Filter": "<p>The optional filter expression structure to apply additional matching criteria to the parameter.</p>",
+        "PathOptions$LastModifiedDateCondition": "<p>If provided, this structure defines a date range for matching S3 objects based on their LastModifiedDate attribute in S3.</p>"
+      }
+    },
     "FormatOptions": {
-      "base": "<p>Options that define the structure of either Csv, Excel, or JSON input.</p>",
+      "base": "<p>Represents a set of options that define the structure of either comma-separated value (CSV), Excel, or JSON input.</p>",
       "refs": {
         "CreateDatasetRequest$FormatOptions": null,
-        "Dataset$FormatOptions": "<p>Options that define how DataBrew interprets the data in the dataset.</p>",
+        "Dataset$FormatOptions": "<p>A set of options that define how DataBrew interprets the data in the dataset.</p>",
         "DescribeDatasetResponse$FormatOptions": null,
         "UpdateDatasetRequest$FormatOptions": null
+      }
+    },
+    "GlueConnectionName": {
+      "base": null,
+      "refs": {
+        "DatabaseInputDefinition$GlueConnectionName": "<p>The AWS Glue Connection that stores the connection information for the target database.</p>"
       }
     },
     "HeaderRow": {
       "base": null,
       "refs": {
-        "CsvOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file will be parsed as the header. If false, column names will be auto-generated.</p>",
-        "ExcelOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file will be parsed as the header. If false, column names will be auto-generated.</p>"
+        "CsvOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file is parsed as the header. If this value is false, column names are auto-generated.</p>",
+        "ExcelOptions$HeaderRow": "<p>A variable that specifies whether the first row in the file is parsed as the header. If this value is false, column names are auto-generated.</p>"
       }
     },
     "HiddenColumnList": {
@@ -546,7 +608,7 @@
       }
     },
     "Input": {
-      "base": "<p>Information on how DataBrew can find data, in either the AWS Glue Data Catalog or Amazon S3.</p>",
+      "base": "<p>Represents information on how DataBrew can find data, in either the AWS Glue Data Catalog or Amazon S3.</p>",
       "refs": {
         "CreateDatasetRequest$Input": null,
         "Dataset$Input": "<p>Information on how DataBrew can find the dataset, in either the AWS Glue Data Catalog or Amazon S3.</p>",
@@ -557,10 +619,10 @@
     "InputFormat": {
       "base": null,
       "refs": {
-        "CreateDatasetRequest$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
-        "Dataset$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
-        "DescribeDatasetResponse$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>",
-        "UpdateDatasetRequest$Format": "<p>Specifies the file format of a dataset created from an S3 file or folder.</p>"
+        "CreateDatasetRequest$Format": "<p>The file format of a dataset that is created from an S3 file or folder.</p>",
+        "Dataset$Format": "<p>The file format of a dataset that is created from an S3 file or folder.</p>",
+        "DescribeDatasetResponse$Format": "<p>The file format of a dataset that is created from an S3 file or folder.</p>",
+        "UpdateDatasetRequest$Format": "<p>The file format of a dataset that is created from an S3 file or folder.</p>"
       }
     },
     "InternalServerException": {
@@ -653,20 +715,20 @@
       }
     },
     "JobSample": {
-      "base": "<p>Sample configuration for Profile Jobs only. Determines the number of rows on which the Profile job will be executed. If a JobSample value is not provided for profile jobs, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>",
+      "base": "<p>A sample configuration for profile jobs only, which determines the number of rows on which the profile job is run. If a <code>JobSample</code> value isn't provided, the default is used. The default value is CUSTOM_ROWS for the mode parameter and 20,000 for the size parameter.</p>",
       "refs": {
         "CreateProfileJobRequest$JobSample": "<p>Sample configuration for profile jobs only. Determines the number of rows on which the profile job will be executed. If a JobSample value is not provided, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>",
         "DescribeJobResponse$JobSample": "<p>Sample configuration for profile jobs only. Determines the number of rows on which the profile job will be executed.</p>",
         "DescribeJobRunResponse$JobSample": "<p>Sample configuration for profile jobs only. Determines the number of rows on which the profile job will be executed. If a JobSample value is not provided, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>",
-        "Job$JobSample": "<p>Sample configuration for profile jobs only. Determines the number of rows on which the profile job will be executed. If a JobSample value is not provided, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>",
-        "JobRun$JobSample": "<p>Sample configuration for profile jobs only. Determines the number of rows on which the profile job will be executed. If a JobSample value is not provided, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>",
+        "Job$JobSample": "<p>A sample configuration for profile jobs only, which determines the number of rows on which the profile job is run. If a <code>JobSample</code> value isn't provided, the default value is used. The default value is CUSTOM_ROWS for the mode parameter and 20,000 for the size parameter.</p>",
+        "JobRun$JobSample": "<p>A sample configuration for profile jobs only, which determines the number of rows on which the profile job is run. If a <code>JobSample</code> value isn't provided, the default is used. The default value is CUSTOM_ROWS for the mode parameter and 20,000 for the size parameter.</p>",
         "UpdateProfileJobRequest$JobSample": "<p>Sample configuration for Profile Jobs only. Determines the number of rows on which the Profile job will be executed. If a JobSample value is not provided for profile jobs, the default value will be used. The default value is CUSTOM_ROWS for the mode parameter and 20000 for the size parameter.</p>"
       }
     },
     "JobSize": {
       "base": null,
       "refs": {
-        "JobSample$Size": "<p>Size parameter is only required when the mode is CUSTOM_ROWS. Profile job will be executed on the the specified number of rows. The maximum value for size is Long.MAX_VALUE.</p> <p>Long.MAX_VALUE = 9223372036854775807</p>"
+        "JobSample$Size": "<p>The <code>Size</code> parameter is only required when the mode is CUSTOM_ROWS. The profile job is run on the specified number of rows. The maximum value for size is Long.MAX_VALUE.</p> <p>Long.MAX_VALUE = 9223372036854775807</p>"
       }
     },
     "JobType": {
@@ -783,6 +845,12 @@
       "refs": {
       }
     },
+    "LocaleCode": {
+      "base": null,
+      "refs": {
+        "DatetimeOptions$LocaleCode": "<p>Optional value for a non-US locale code, needed for correct interpretation of some date formats.</p>"
+      }
+    },
     "LogGroupName": {
       "base": null,
       "refs": {
@@ -812,6 +880,12 @@
         "Job$MaxCapacity": "<p>The maximum number of nodes that can be consumed when the job processes data.</p>",
         "UpdateProfileJobRequest$MaxCapacity": "<p>The maximum number of compute nodes that DataBrew can use when the job processes data.</p>",
         "UpdateRecipeJobRequest$MaxCapacity": "<p>The maximum number of nodes that DataBrew can consume when the job processes data.</p>"
+      }
+    },
+    "MaxFiles": {
+      "base": null,
+      "refs": {
+        "FilesLimit$MaxFiles": "<p>The number of S3 files to select.</p>"
       }
     },
     "MaxResults100": {
@@ -886,8 +960,20 @@
         "RecipeAction$Operation": "<p>The name of a valid DataBrew transformation to be performed on the data.</p>"
       }
     },
+    "Order": {
+      "base": null,
+      "refs": {
+        "FilesLimit$Order": "<p>A criteria to use for S3 files sorting before their selection. By default uses DESCENDING order, i.e. most recent files are selected first. Anotherpossible value is ASCENDING.</p>"
+      }
+    },
+    "OrderedBy": {
+      "base": null,
+      "refs": {
+        "FilesLimit$OrderedBy": "<p>A criteria to use for S3 files sorting before their selection. By default uses LAST_MODIFIED_DATE as a sorting criteria. Currently it's the only allowed value.</p>"
+      }
+    },
     "Output": {
-      "base": "<p>Parameters that specify how and where DataBrew will write the output generated by recipe jobs or profile jobs.</p>",
+      "base": "<p>Represents options that specify how and where DataBrew writes the output generated by recipe jobs or profile jobs.</p>",
       "refs": {
         "OutputList$member": null
       }
@@ -899,9 +985,9 @@
       }
     },
     "OutputFormatOptions": {
-      "base": "<p>Options that define the structure of Csv job output.</p>",
+      "base": "<p>Represents a set of options that define the structure of comma-separated (CSV) job output.</p>",
       "refs": {
-        "Output$FormatOptions": "<p>Options that define how DataBrew formats job output files.</p>"
+        "Output$FormatOptions": "<p>Represents options that define how DataBrew formats job output files.</p>"
       }
     },
     "OutputList": {
@@ -933,10 +1019,38 @@
         "ParameterMap$key": null
       }
     },
+    "ParameterType": {
+      "base": null,
+      "refs": {
+        "DatasetParameter$Type": "<p>The type of the dataset parameter, can be one of a 'String', 'Number' or 'Datetime'.</p>"
+      }
+    },
     "ParameterValue": {
       "base": null,
       "refs": {
         "ParameterMap$value": null
+      }
+    },
+    "PathOptions": {
+      "base": "<p>Represents a set of options that define how DataBrew selects files for a given S3 path in a dataset.</p>",
+      "refs": {
+        "CreateDatasetRequest$PathOptions": "<p>A set of options that defines how DataBrew interprets an S3 path of the dataset.</p>",
+        "Dataset$PathOptions": "<p>A set of options that defines how DataBrew interprets an S3 path of the dataset.</p>",
+        "DescribeDatasetResponse$PathOptions": "<p>A set of options that defines how DataBrew interprets an S3 path of the dataset.</p>",
+        "UpdateDatasetRequest$PathOptions": "<p>A set of options that defines how DataBrew interprets an S3 path of the dataset.</p>"
+      }
+    },
+    "PathParameterName": {
+      "base": null,
+      "refs": {
+        "DatasetParameter$Name": "<p>The name of the parameter that is used in the dataset's S3 path.</p>",
+        "PathParametersMap$key": null
+      }
+    },
+    "PathParametersMap": {
+      "base": "<p>A structure that map names of parameters used in the S3 path of a dataset to their definitions. A definition includes parameter type and conditions.</p>",
+      "refs": {
+        "PathOptions$Parameters": "<p>A structure that maps names of parameters used in the S3 path of a dataset to their definitions.</p>"
       }
     },
     "Preview": {
@@ -1096,7 +1210,7 @@
         "DescribeRecipeRequest$RecipeVersion": "<p>The recipe version identifier. If this parameter isn't specified, then the latest published version is returned.</p>",
         "DescribeRecipeResponse$RecipeVersion": "<p>The recipe version identifier.</p>",
         "ListRecipesRequest$RecipeVersion": "<p>Return only those recipes with a version identifier of <code>LATEST_WORKING</code> or <code>LATEST_PUBLISHED</code>. If <code>RecipeVersion</code> is omitted, <code>ListRecipes</code> returns all of the <code>LATEST_PUBLISHED</code> recipe versions.</p> <p>Valid values: <code>LATEST_WORKING</code> | <code>LATEST_PUBLISHED</code> </p>",
-        "Recipe$RecipeVersion": "<p>The identifier for the version for the recipe. Must be one of the following:</p> <ul> <li> <p>Numeric version (<code>X.Y</code>) - <code>X</code> and <code>Y</code> stand for major and minor version numbers. The maximum length of each is 6 digits, and neither can be negative values. Both <code>X</code> and <code>Y</code> are required, and \"0.0\" is not a valid version.</p> </li> <li> <p> <code>LATEST_WORKING</code> - the most recent valid version being developed in a DataBrew project.</p> </li> <li> <p> <code>LATEST_PUBLISHED</code> - the most recent published version.</p> </li> </ul>",
+        "Recipe$RecipeVersion": "<p>The identifier for the version for the recipe. Must be one of the following:</p> <ul> <li> <p>Numeric version (<code>X.Y</code>) - <code>X</code> and <code>Y</code> stand for major and minor version numbers. The maximum length of each is 6 digits, and neither can be negative values. Both <code>X</code> and <code>Y</code> are required, and \"0.0\" isn't a valid version.</p> </li> <li> <p> <code>LATEST_WORKING</code> - the most recent valid version being developed in a DataBrew project.</p> </li> <li> <p> <code>LATEST_PUBLISHED</code> - the most recent published version.</p> </li> </ul>",
         "RecipeReference$RecipeVersion": "<p>The identifier for the version for the recipe. </p>",
         "RecipeVersionErrorDetail$RecipeVersion": "<p>The identifier for the recipe version associated with this error.</p>",
         "RecipeVersionList$member": null
@@ -1126,10 +1240,11 @@
       }
     },
     "S3Location": {
-      "base": "<p>An Amazon S3 location (bucket name an object key) where DataBrew can read input data, or write output from a job.</p>",
+      "base": "<p>Represents an Amazon S3 location (bucket name and object key) where DataBrew can read input data, or write output from a job.</p>",
       "refs": {
         "CreateProfileJobRequest$OutputLocation": null,
         "DataCatalogInputDefinition$TempDirectory": "<p>An Amazon location that AWS Glue Data Catalog can use as a temporary directory.</p>",
+        "DatabaseInputDefinition$TempDirectory": null,
         "Input$S3InputDefinition": "<p>The Amazon S3 location where the data is stored.</p>",
         "Output$Location": "<p>The location in Amazon S3 where the job writes its output.</p>",
         "UpdateProfileJobRequest$OutputLocation": null
@@ -1140,14 +1255,14 @@
       "refs": {
         "CreateProjectRequest$Sample": null,
         "DescribeProjectResponse$Sample": null,
-        "Project$Sample": "<p>The sample size and sampling type to apply to the data. If this parameter isn't specified, then the sample will consiste of the first 500 rows from the dataset.</p>",
+        "Project$Sample": "<p>The sample size and sampling type to apply to the data. If this parameter isn't specified, then the sample consists of the first 500 rows from the dataset.</p>",
         "UpdateProjectRequest$Sample": null
       }
     },
     "SampleMode": {
       "base": null,
       "refs": {
-        "JobSample$Mode": "<p>Determines whether the profile job will be executed on the entire dataset or on a specified number of rows. Must be one of the following:</p> <ul> <li> <p>FULL_DATASET: Profile job will be executed on the entire dataset.</p> </li> <li> <p>CUSTOM_ROWS: Profile job will be executed on the number of rows specified in the Size parameter.</p> </li> </ul>"
+        "JobSample$Mode": "<p>A value that determines whether the profile job is run on the entire dataset or a specified number of rows. This value must be one of the following:</p> <ul> <li> <p>FULL_DATASET - The profile job is run on the entire dataset.</p> </li> <li> <p>CUSTOM_ROWS - The profile job is run on the number of rows specified in the <code>Size</code> parameter.</p> </li> </ul>"
       }
     },
     "SampleSize": {
@@ -1218,7 +1333,7 @@
     "SheetIndexList": {
       "base": null,
       "refs": {
-        "ExcelOptions$SheetIndexes": "<p>Specifies one or more sheet numbers in the Excel file, which will be included in the dataset.</p>"
+        "ExcelOptions$SheetIndexes": "<p>One or more sheet numbers in the Excel file that will be included in the dataset.</p>"
       }
     },
     "SheetName": {
@@ -1230,7 +1345,7 @@
     "SheetNameList": {
       "base": null,
       "refs": {
-        "ExcelOptions$SheetNames": "<p>Specifies one or more named sheets in the Excel file, which will be included in the dataset.</p>"
+        "ExcelOptions$SheetNames": "<p>One or more named sheets in the Excel file that will be included in the dataset.</p>"
       }
     },
     "Source": {
@@ -1364,6 +1479,12 @@
         "UpdateRecipeJobRequest$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>"
       }
     },
+    "TimezoneOffset": {
+      "base": null,
+      "refs": {
+        "DatetimeOptions$TimezoneOffset": "<p>Optional value for a timezone offset of the datetime parameter value in the S3 path. Shouldn't be used if Format for this parameter includes timezone fields. If no offset specified, UTC is assumed.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1439,8 +1560,20 @@
       "refs": {
       }
     },
+    "ValueReference": {
+      "base": null,
+      "refs": {
+        "ValuesMap$key": null
+      }
+    },
+    "ValuesMap": {
+      "base": null,
+      "refs": {
+        "FilterExpression$ValuesMap": "<p>The map of substitution variable names to their values used in this filter expression.</p>"
+      }
+    },
     "ViewFrame": {
-      "base": "<p>Represents the data being being transformed during an action.</p>",
+      "base": "<p>Represents the data being transformed during an action.</p>",
       "refs": {
         "SendProjectSessionActionRequest$ViewFrame": null
       }

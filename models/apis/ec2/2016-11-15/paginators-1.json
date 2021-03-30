@@ -333,6 +333,12 @@
     "DescribeRegions": {
       "result_key": "Regions"
     },
+    "DescribeReplaceRootVolumeTasks": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "ReplaceRootVolumeTasks"
+    },
     "DescribeReservedInstances": {
       "result_key": "ReservedInstances"
     },

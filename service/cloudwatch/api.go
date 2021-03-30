@@ -373,6 +373,92 @@ func (c *CloudWatch) DeleteInsightRulesWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
+const opDeleteMetricStream = "DeleteMetricStream"
+
+// DeleteMetricStreamRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMetricStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMetricStream for more information on using the DeleteMetricStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMetricStreamRequest method.
+//    req, resp := client.DeleteMetricStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/DeleteMetricStream
+func (c *CloudWatch) DeleteMetricStreamRequest(input *DeleteMetricStreamInput) (req *request.Request, output *DeleteMetricStreamOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMetricStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMetricStreamInput{}
+	}
+
+	output = &DeleteMetricStreamOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMetricStream API operation for Amazon CloudWatch.
+//
+// Permanently deletes the metric stream that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation DeleteMetricStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/DeleteMetricStream
+func (c *CloudWatch) DeleteMetricStream(input *DeleteMetricStreamInput) (*DeleteMetricStreamOutput, error) {
+	req, out := c.DeleteMetricStreamRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMetricStreamWithContext is the same as DeleteMetricStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMetricStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) DeleteMetricStreamWithContext(ctx aws.Context, input *DeleteMetricStreamInput, opts ...request.Option) (*DeleteMetricStreamOutput, error) {
+	req, out := c.DeleteMetricStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAlarmHistory = "DescribeAlarmHistory"
 
 // DescribeAlarmHistoryRequest generates a "aws/request.Request" representing the
@@ -1801,6 +1887,97 @@ func (c *CloudWatch) GetMetricStatisticsWithContext(ctx aws.Context, input *GetM
 	return out, req.Send()
 }
 
+const opGetMetricStream = "GetMetricStream"
+
+// GetMetricStreamRequest generates a "aws/request.Request" representing the
+// client's request for the GetMetricStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMetricStream for more information on using the GetMetricStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMetricStreamRequest method.
+//    req, resp := client.GetMetricStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/GetMetricStream
+func (c *CloudWatch) GetMetricStreamRequest(input *GetMetricStreamInput) (req *request.Request, output *GetMetricStreamOutput) {
+	op := &request.Operation{
+		Name:       opGetMetricStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMetricStreamInput{}
+	}
+
+	output = &GetMetricStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMetricStream API operation for Amazon CloudWatch.
+//
+// Returns information about the metric stream that you specify.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation GetMetricStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeResourceNotFoundException "ResourceNotFoundException"
+//   The named resource does not exist.
+//
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Parameters were used together that cannot be used together.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/GetMetricStream
+func (c *CloudWatch) GetMetricStream(input *GetMetricStreamInput) (*GetMetricStreamOutput, error) {
+	req, out := c.GetMetricStreamRequest(input)
+	return out, req.Send()
+}
+
+// GetMetricStreamWithContext is the same as GetMetricStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMetricStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) GetMetricStreamWithContext(ctx aws.Context, input *GetMetricStreamInput, opts ...request.Option) (*GetMetricStreamOutput, error) {
+	req, out := c.GetMetricStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMetricWidgetImage = "GetMetricWidgetImage"
 
 // GetMetricWidgetImageRequest generates a "aws/request.Request" representing the
@@ -2028,6 +2205,152 @@ func (c *CloudWatch) ListDashboardsPagesWithContext(ctx aws.Context, input *List
 
 	for p.Next() {
 		if !fn(p.Page().(*ListDashboardsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMetricStreams = "ListMetricStreams"
+
+// ListMetricStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMetricStreams operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMetricStreams for more information on using the ListMetricStreams
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMetricStreamsRequest method.
+//    req, resp := client.ListMetricStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/ListMetricStreams
+func (c *CloudWatch) ListMetricStreamsRequest(input *ListMetricStreamsInput) (req *request.Request, output *ListMetricStreamsOutput) {
+	op := &request.Operation{
+		Name:       opListMetricStreams,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMetricStreamsInput{}
+	}
+
+	output = &ListMetricStreamsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMetricStreams API operation for Amazon CloudWatch.
+//
+// Returns a list of metric streams in this account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation ListMetricStreams for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidNextToken "InvalidNextToken"
+//   The next token specified is invalid.
+//
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/ListMetricStreams
+func (c *CloudWatch) ListMetricStreams(input *ListMetricStreamsInput) (*ListMetricStreamsOutput, error) {
+	req, out := c.ListMetricStreamsRequest(input)
+	return out, req.Send()
+}
+
+// ListMetricStreamsWithContext is the same as ListMetricStreams with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMetricStreams for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) ListMetricStreamsWithContext(ctx aws.Context, input *ListMetricStreamsInput, opts ...request.Option) (*ListMetricStreamsOutput, error) {
+	req, out := c.ListMetricStreamsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMetricStreamsPages iterates over the pages of a ListMetricStreams operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMetricStreams method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMetricStreams operation.
+//    pageNum := 0
+//    err := client.ListMetricStreamsPages(params,
+//        func(page *cloudwatch.ListMetricStreamsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *CloudWatch) ListMetricStreamsPages(input *ListMetricStreamsInput, fn func(*ListMetricStreamsOutput, bool) bool) error {
+	return c.ListMetricStreamsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMetricStreamsPagesWithContext same as ListMetricStreamsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) ListMetricStreamsPagesWithContext(ctx aws.Context, input *ListMetricStreamsInput, fn func(*ListMetricStreamsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMetricStreamsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMetricStreamsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMetricStreamsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2747,7 +3070,7 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 //
 // The first time you create an alarm in the AWS Management Console, the CLI,
 // or by using the PutMetricAlarm API, CloudWatch creates the necessary service-linked
-// rolea for you. The service-linked roles are called AWSServiceRoleForCloudWatchEvents
+// role for you. The service-linked roles are called AWSServiceRoleForCloudWatchEvents
 // and AWSServiceRoleForCloudWatchAlarms_ActionSSM. For more information, see
 // AWS service-linked role (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role).
 //
@@ -2919,6 +3242,118 @@ func (c *CloudWatch) PutMetricDataWithContext(ctx aws.Context, input *PutMetricD
 	return out, req.Send()
 }
 
+const opPutMetricStream = "PutMetricStream"
+
+// PutMetricStreamRequest generates a "aws/request.Request" representing the
+// client's request for the PutMetricStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutMetricStream for more information on using the PutMetricStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutMetricStreamRequest method.
+//    req, resp := client.PutMetricStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/PutMetricStream
+func (c *CloudWatch) PutMetricStreamRequest(input *PutMetricStreamInput) (req *request.Request, output *PutMetricStreamOutput) {
+	op := &request.Operation{
+		Name:       opPutMetricStream,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutMetricStreamInput{}
+	}
+
+	output = &PutMetricStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutMetricStream API operation for Amazon CloudWatch.
+//
+// Creates or updates a metric stream. Metric streams can automatically stream
+// CloudWatch metrics to AWS destinations including Amazon S3 and to many third-party
+// solutions.
+//
+// For more information, see Using Metric Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Metric-Streams.html).
+//
+// To create a metric stream, you must be logged on to an account that has the
+// iam:PassRole permission and either the CloudWatchFullAccess policy or the
+// cloudwatch:PutMetricStream permission.
+//
+// When you create or update a metric stream, you choose one of the following:
+//
+//    * Stream metrics from all metric namespaces in the account.
+//
+//    * Stream metrics from all metric namespaces in the account, except for
+//    the namespaces that you list in ExcludeFilters.
+//
+//    * Stream metrics from only the metric namespaces that you list in IncludeFilters.
+//
+// When you use PutMetricStream to create a new metric stream, the stream is
+// created in the running state. If you use it to update an existing stream,
+// the state of the stream is not changed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation PutMetricStream for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeConcurrentModificationException "ConcurrentModificationException"
+//   More than one process tried to modify a resource at the same time.
+//
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Parameters were used together that cannot be used together.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/PutMetricStream
+func (c *CloudWatch) PutMetricStream(input *PutMetricStreamInput) (*PutMetricStreamOutput, error) {
+	req, out := c.PutMetricStreamRequest(input)
+	return out, req.Send()
+}
+
+// PutMetricStreamWithContext is the same as PutMetricStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutMetricStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) PutMetricStreamWithContext(ctx aws.Context, input *PutMetricStreamInput, opts ...request.Option) (*PutMetricStreamOutput, error) {
+	req, out := c.PutMetricStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSetAlarmState = "SetAlarmState"
 
 // SetAlarmStateRequest generates a "aws/request.Request" representing the
@@ -3015,6 +3450,178 @@ func (c *CloudWatch) SetAlarmState(input *SetAlarmStateInput) (*SetAlarmStateOut
 // for more information on using Contexts.
 func (c *CloudWatch) SetAlarmStateWithContext(ctx aws.Context, input *SetAlarmStateInput, opts ...request.Option) (*SetAlarmStateOutput, error) {
 	req, out := c.SetAlarmStateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartMetricStreams = "StartMetricStreams"
+
+// StartMetricStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the StartMetricStreams operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMetricStreams for more information on using the StartMetricStreams
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMetricStreamsRequest method.
+//    req, resp := client.StartMetricStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/StartMetricStreams
+func (c *CloudWatch) StartMetricStreamsRequest(input *StartMetricStreamsInput) (req *request.Request, output *StartMetricStreamsOutput) {
+	op := &request.Operation{
+		Name:       opStartMetricStreams,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartMetricStreamsInput{}
+	}
+
+	output = &StartMetricStreamsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartMetricStreams API operation for Amazon CloudWatch.
+//
+// Starts the streaming of metrics for one or more of your metric streams.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation StartMetricStreams for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/StartMetricStreams
+func (c *CloudWatch) StartMetricStreams(input *StartMetricStreamsInput) (*StartMetricStreamsOutput, error) {
+	req, out := c.StartMetricStreamsRequest(input)
+	return out, req.Send()
+}
+
+// StartMetricStreamsWithContext is the same as StartMetricStreams with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMetricStreams for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) StartMetricStreamsWithContext(ctx aws.Context, input *StartMetricStreamsInput, opts ...request.Option) (*StartMetricStreamsOutput, error) {
+	req, out := c.StartMetricStreamsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopMetricStreams = "StopMetricStreams"
+
+// StopMetricStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the StopMetricStreams operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopMetricStreams for more information on using the StopMetricStreams
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopMetricStreamsRequest method.
+//    req, resp := client.StopMetricStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/StopMetricStreams
+func (c *CloudWatch) StopMetricStreamsRequest(input *StopMetricStreamsInput) (req *request.Request, output *StopMetricStreamsOutput) {
+	op := &request.Operation{
+		Name:       opStopMetricStreams,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopMetricStreamsInput{}
+	}
+
+	output = &StopMetricStreamsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopMetricStreams API operation for Amazon CloudWatch.
+//
+// Stops the streaming of metrics for one or more of your metric streams.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch's
+// API operation StopMetricStreams for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalServiceFault "InternalServiceError"
+//   Request processing has failed due to some unknown error, exception, or failure.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value of an input parameter is bad or out-of-range.
+//
+//   * ErrCodeMissingRequiredParameterException "MissingParameter"
+//   An input parameter that is required is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/monitoring-2010-08-01/StopMetricStreams
+func (c *CloudWatch) StopMetricStreams(input *StopMetricStreamsInput) (*StopMetricStreamsOutput, error) {
+	req, out := c.StopMetricStreamsRequest(input)
+	return out, req.Send()
+}
+
+// StopMetricStreamsWithContext is the same as StopMetricStreams with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopMetricStreams for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatch) StopMetricStreamsWithContext(ctx aws.Context, input *StopMetricStreamsInput, opts ...request.Option) (*StopMetricStreamsOutput, error) {
+	req, out := c.StopMetricStreamsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4002,6 +4609,61 @@ func (s DeleteInsightRulesOutput) GoString() string {
 func (s *DeleteInsightRulesOutput) SetFailures(v []*PartialFailure) *DeleteInsightRulesOutput {
 	s.Failures = v
 	return s
+}
+
+type DeleteMetricStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric stream to delete.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMetricStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMetricStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMetricStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMetricStreamInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteMetricStreamInput) SetName(v string) *DeleteMetricStreamInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteMetricStreamOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMetricStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMetricStreamOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeAlarmHistoryInput struct {
@@ -5804,6 +6466,155 @@ func (s *GetMetricStatisticsOutput) SetLabel(v string) *GetMetricStatisticsOutpu
 	return s
 }
 
+type GetMetricStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric stream to retrieve information about.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMetricStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMetricStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMetricStreamInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetMetricStreamInput) SetName(v string) *GetMetricStreamInput {
+	s.Name = &v
+	return s
+}
+
+type GetMetricStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the metric stream.
+	Arn *string `min:"1" type:"string"`
+
+	// The date that the metric stream was created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// If this array of metric namespaces is present, then these namespaces are
+	// the only metric namespaces that are not streamed by this metric stream. In
+	// this case, all other metric namespaces in the account are streamed by this
+	// metric stream.
+	ExcludeFilters []*MetricStreamFilter `type:"list"`
+
+	// The ARN of the Amazon Kinesis Firehose delivery stream that is used by this
+	// metric stream.
+	FirehoseArn *string `min:"1" type:"string"`
+
+	// If this array of metric namespaces is present, then these namespaces are
+	// the only metric namespaces that are streamed by this metric stream.
+	IncludeFilters []*MetricStreamFilter `type:"list"`
+
+	// The date of the most recent update to the metric stream's configuration.
+	LastUpdateDate *time.Time `type:"timestamp"`
+
+	// The name of the metric stream.
+	Name *string `min:"1" type:"string"`
+
+	OutputFormat *string `min:"1" type:"string" enum:"MetricStreamOutputFormat"`
+
+	// The ARN of the IAM role that is used by this metric stream.
+	RoleArn *string `min:"1" type:"string"`
+
+	// The state of the metric stream. The possible values are running and stopped.
+	State *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetMetricStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMetricStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetMetricStreamOutput) SetArn(v string) *GetMetricStreamOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetMetricStreamOutput) SetCreationDate(v time.Time) *GetMetricStreamOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetExcludeFilters sets the ExcludeFilters field's value.
+func (s *GetMetricStreamOutput) SetExcludeFilters(v []*MetricStreamFilter) *GetMetricStreamOutput {
+	s.ExcludeFilters = v
+	return s
+}
+
+// SetFirehoseArn sets the FirehoseArn field's value.
+func (s *GetMetricStreamOutput) SetFirehoseArn(v string) *GetMetricStreamOutput {
+	s.FirehoseArn = &v
+	return s
+}
+
+// SetIncludeFilters sets the IncludeFilters field's value.
+func (s *GetMetricStreamOutput) SetIncludeFilters(v []*MetricStreamFilter) *GetMetricStreamOutput {
+	s.IncludeFilters = v
+	return s
+}
+
+// SetLastUpdateDate sets the LastUpdateDate field's value.
+func (s *GetMetricStreamOutput) SetLastUpdateDate(v time.Time) *GetMetricStreamOutput {
+	s.LastUpdateDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMetricStreamOutput) SetName(v string) *GetMetricStreamOutput {
+	s.Name = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *GetMetricStreamOutput) SetOutputFormat(v string) *GetMetricStreamOutput {
+	s.OutputFormat = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *GetMetricStreamOutput) SetRoleArn(v string) *GetMetricStreamOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *GetMetricStreamOutput) SetState(v string) *GetMetricStreamOutput {
+	s.State = &v
+	return s
+}
+
 type GetMetricWidgetImageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6290,6 +7101,85 @@ func (s *ListDashboardsOutput) SetDashboardEntries(v []*DashboardEntry) *ListDas
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListDashboardsOutput) SetNextToken(v string) *ListDashboardsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricStreamsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in one operation.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Include this value, if it was returned by the previous call, to get the next
+	// set of metric streams.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListMetricStreamsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMetricStreamsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMetricStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMetricStreamsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMetricStreamsInput) SetMaxResults(v int64) *ListMetricStreamsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricStreamsInput) SetNextToken(v string) *ListMetricStreamsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMetricStreamsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The array of metric stream information.
+	Entries []*MetricStreamEntry `type:"list"`
+
+	// The token that marks the start of the next batch of returned results. You
+	// can use this token in a subsequent operation to get the next batch of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListMetricStreamsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMetricStreamsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntries sets the Entries field's value.
+func (s *ListMetricStreamsOutput) SetEntries(v []*MetricStreamEntry) *ListMetricStreamsOutput {
+	s.Entries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMetricStreamsOutput) SetNextToken(v string) *ListMetricStreamsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -7385,6 +8275,123 @@ func (s *MetricStat) SetUnit(v string) *MetricStat {
 	return s
 }
 
+// This structure contains the configuration information about one metric stream.
+type MetricStreamEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the metric stream.
+	Arn *string `min:"1" type:"string"`
+
+	// The date that the metric stream was originally created.
+	CreationDate *time.Time `type:"timestamp"`
+
+	// The ARN of the Kinesis Firehose devlivery stream that is used for this metric
+	// stream.
+	FirehoseArn *string `min:"1" type:"string"`
+
+	// The date that the configuration of this metric stream was most recently updated.
+	LastUpdateDate *time.Time `type:"timestamp"`
+
+	// The name of the metric stream.
+	Name *string `min:"1" type:"string"`
+
+	// The output format of this metric stream. Valid values are json and opentelemetry0.7.
+	OutputFormat *string `min:"1" type:"string" enum:"MetricStreamOutputFormat"`
+
+	// The current state of this stream. Valid values are running and stopped.
+	State *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MetricStreamEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricStreamEntry) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *MetricStreamEntry) SetArn(v string) *MetricStreamEntry {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *MetricStreamEntry) SetCreationDate(v time.Time) *MetricStreamEntry {
+	s.CreationDate = &v
+	return s
+}
+
+// SetFirehoseArn sets the FirehoseArn field's value.
+func (s *MetricStreamEntry) SetFirehoseArn(v string) *MetricStreamEntry {
+	s.FirehoseArn = &v
+	return s
+}
+
+// SetLastUpdateDate sets the LastUpdateDate field's value.
+func (s *MetricStreamEntry) SetLastUpdateDate(v time.Time) *MetricStreamEntry {
+	s.LastUpdateDate = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MetricStreamEntry) SetName(v string) *MetricStreamEntry {
+	s.Name = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *MetricStreamEntry) SetOutputFormat(v string) *MetricStreamEntry {
+	s.OutputFormat = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *MetricStreamEntry) SetState(v string) *MetricStreamEntry {
+	s.State = &v
+	return s
+}
+
+// This structure contains the name of one of the metric namespaces that is
+// listed in a filter of a metric stream.
+type MetricStreamFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric namespace in the filter.
+	Namespace *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MetricStreamFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricStreamFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricStreamFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricStreamFilter"}
+	if s.Namespace != nil && len(*s.Namespace) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Namespace", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *MetricStreamFilter) SetNamespace(v string) *MetricStreamFilter {
+	s.Namespace = &v
+	return s
+}
+
 // This array is empty if the API operation was successful for all the rules
 // specified in the request. If the operation could not process one of the rules,
 // the following data is returned for each of those rules.
@@ -8096,6 +9103,7 @@ type PutMetricAlarmInput struct {
 	// Valid Values (for use with IAM roles): arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Stop/1.0
 	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Reboot/1.0
+	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Recover/1.0
 	OKActions []*string `type:"list"`
 
 	// The length, in seconds, used each time the metric specified in MetricName
@@ -8496,6 +9504,206 @@ func (s PutMetricDataOutput) GoString() string {
 	return s.String()
 }
 
+type PutMetricStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// If you specify this parameter, the stream sends metrics from all metric namespaces
+	// except for the namespaces that you specify here.
+	//
+	// You cannot include ExcludeFilters and IncludeFilters in the same operation.
+	ExcludeFilters []*MetricStreamFilter `type:"list"`
+
+	// The ARN of the Amazon Kinesis Firehose delivery stream to use for this metric
+	// stream. This Amazon Kinesis Firehose delivery stream must already exist and
+	// must be in the same account as the metric stream.
+	//
+	// FirehoseArn is a required field
+	FirehoseArn *string `min:"1" type:"string" required:"true"`
+
+	// If you specify this parameter, the stream sends only the metrics from the
+	// metric namespaces that you specify here.
+	//
+	// You cannot include IncludeFilters and ExcludeFilters in the same operation.
+	IncludeFilters []*MetricStreamFilter `type:"list"`
+
+	// If you are creating a new metric stream, this is the name for the new stream.
+	// The name must be different than the names of other metric streams in this
+	// account and Region.
+	//
+	// If you are updating a metric stream, specify the name of that stream here.
+	//
+	// Valid characters are A-Z, a-z, 0-9, "-" and "_".
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The output format for the stream. Valid values are json and opentelemetry0.7.
+	// For more information about metric stream output formats, see Metric streams
+	// output formats (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch-metric-streams-formats.html).
+	//
+	// OutputFormat is a required field
+	OutputFormat *string `min:"1" type:"string" required:"true" enum:"MetricStreamOutputFormat"`
+
+	// The ARN of an IAM role that this metric stream will use to access Amazon
+	// Kinesis Firehose resources. This IAM role must already exist and must be
+	// in the same account as the metric stream. This IAM role must include the
+	// following permissions:
+	//
+	//    * firehose:PutRecord
+	//
+	//    * firehose:PutRecordBatch
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"1" type:"string" required:"true"`
+
+	// A list of key-value pairs to associate with the metric stream. You can associate
+	// as many as 50 tags with a metric stream.
+	//
+	// Tags can help you organize and categorize your resources. You can also use
+	// them to scope user permissions by granting a user permission to access or
+	// change only resources with certain tag values.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s PutMetricStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMetricStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMetricStreamInput"}
+	if s.FirehoseArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirehoseArn"))
+	}
+	if s.FirehoseArn != nil && len(*s.FirehoseArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirehoseArn", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.OutputFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputFormat"))
+	}
+	if s.OutputFormat != nil && len(*s.OutputFormat) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputFormat", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.ExcludeFilters != nil {
+		for i, v := range s.ExcludeFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ExcludeFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.IncludeFilters != nil {
+		for i, v := range s.IncludeFilters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "IncludeFilters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExcludeFilters sets the ExcludeFilters field's value.
+func (s *PutMetricStreamInput) SetExcludeFilters(v []*MetricStreamFilter) *PutMetricStreamInput {
+	s.ExcludeFilters = v
+	return s
+}
+
+// SetFirehoseArn sets the FirehoseArn field's value.
+func (s *PutMetricStreamInput) SetFirehoseArn(v string) *PutMetricStreamInput {
+	s.FirehoseArn = &v
+	return s
+}
+
+// SetIncludeFilters sets the IncludeFilters field's value.
+func (s *PutMetricStreamInput) SetIncludeFilters(v []*MetricStreamFilter) *PutMetricStreamInput {
+	s.IncludeFilters = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutMetricStreamInput) SetName(v string) *PutMetricStreamInput {
+	s.Name = &v
+	return s
+}
+
+// SetOutputFormat sets the OutputFormat field's value.
+func (s *PutMetricStreamInput) SetOutputFormat(v string) *PutMetricStreamInput {
+	s.OutputFormat = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PutMetricStreamInput) SetRoleArn(v string) *PutMetricStreamInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutMetricStreamInput) SetTags(v []*Tag) *PutMetricStreamInput {
+	s.Tags = v
+	return s
+}
+
+type PutMetricStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the metric stream.
+	Arn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutMetricStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutMetricStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PutMetricStreamOutput) SetArn(v string) *PutMetricStreamOutput {
+	s.Arn = &v
+	return s
+}
+
 // Specifies one range of days or times to exclude from use for training an
 // anomaly detection model.
 type Range struct {
@@ -8648,6 +9856,62 @@ func (s SetAlarmStateOutput) GoString() string {
 	return s.String()
 }
 
+type StartMetricStreamsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The array of the names of metric streams to start streaming.
+	//
+	// This is an "all or nothing" operation. If you do not have permission to access
+	// all of the metric streams that you list here, then none of the streams that
+	// you list in the operation will start streaming.
+	//
+	// Names is a required field
+	Names []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StartMetricStreamsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMetricStreamsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMetricStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMetricStreamsInput"}
+	if s.Names == nil {
+		invalidParams.Add(request.NewErrParamRequired("Names"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNames sets the Names field's value.
+func (s *StartMetricStreamsInput) SetNames(v []*string) *StartMetricStreamsInput {
+	s.Names = v
+	return s
+}
+
+type StartMetricStreamsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartMetricStreamsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMetricStreamsOutput) GoString() string {
+	return s.String()
+}
+
 // Represents a set of statistics that describes a specific metric.
 type StatisticSet struct {
 	_ struct{} `type:"structure"`
@@ -8727,6 +9991,62 @@ func (s *StatisticSet) SetSampleCount(v float64) *StatisticSet {
 func (s *StatisticSet) SetSum(v float64) *StatisticSet {
 	s.Sum = &v
 	return s
+}
+
+type StopMetricStreamsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The array of the names of metric streams to stop streaming.
+	//
+	// This is an "all or nothing" operation. If you do not have permission to access
+	// all of the metric streams that you list here, then none of the streams that
+	// you list in the operation will stop streaming.
+	//
+	// Names is a required field
+	Names []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s StopMetricStreamsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopMetricStreamsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopMetricStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopMetricStreamsInput"}
+	if s.Names == nil {
+		invalidParams.Add(request.NewErrParamRequired("Names"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNames sets the Names field's value.
+func (s *StopMetricStreamsInput) SetNames(v []*string) *StopMetricStreamsInput {
+	s.Names = v
+	return s
+}
+
+type StopMetricStreamsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopMetricStreamsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopMetricStreamsOutput) GoString() string {
+	return s.String()
 }
 
 // A key-value pair associated with a CloudWatch resource.
@@ -9039,6 +10359,22 @@ func HistoryItemType_Values() []string {
 		HistoryItemTypeConfigurationUpdate,
 		HistoryItemTypeStateUpdate,
 		HistoryItemTypeAction,
+	}
+}
+
+const (
+	// MetricStreamOutputFormatJson is a MetricStreamOutputFormat enum value
+	MetricStreamOutputFormatJson = "json"
+
+	// MetricStreamOutputFormatOpentelemetry07 is a MetricStreamOutputFormat enum value
+	MetricStreamOutputFormatOpentelemetry07 = "opentelemetry0.7"
+)
+
+// MetricStreamOutputFormat_Values returns all elements of the MetricStreamOutputFormat enum
+func MetricStreamOutputFormat_Values() []string {
+	return []string{
+		MetricStreamOutputFormatJson,
+		MetricStreamOutputFormatOpentelemetry07,
 	}
 }
 

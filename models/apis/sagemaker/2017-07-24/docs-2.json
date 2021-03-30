@@ -7,10 +7,10 @@
     "AssociateTrialComponent": "<p>Associates a trial component with a trial. A trial component can be associated with multiple trials. To disassociate a trial component from a trial, call the <a>DisassociateTrialComponent</a> API.</p>",
     "CreateAction": "<p>Creates an <i>action</i>. An action is a lineage tracking entity that represents an action or activity. For example, a model deployment or an HPO job. Generally, an action involves at least one input or output artifact. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
     "CreateAlgorithm": "<p>Create a machine learning algorithm that you can use in Amazon SageMaker and list in the AWS Marketplace.</p>",
-    "CreateApp": "<p>Creates a running App for the specified UserProfile. Supported Apps are JupyterServer and KernelGateway. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
+    "CreateApp": "<p>Creates a running app for the specified UserProfile. Supported apps are <code>JupyterServer</code> and <code>KernelGateway</code>. This operation is automatically invoked by Amazon SageMaker Studio upon access to the associated Domain, and when new kernel configurations are selected by the user. A user may have multiple Apps active simultaneously.</p>",
     "CreateAppImageConfig": "<p>Creates a configuration for running a SageMaker image as a KernelGateway app. The configuration specifies the Amazon Elastic File System (EFS) storage volume on the image, and a list of the kernels in the image.</p>",
     "CreateArtifact": "<p>Creates an <i>artifact</i>. An artifact is a lineage tracking entity that represents a URI addressable object or data. Some examples are the S3 URI of a dataset and the ECR registry path of an image. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
-    "CreateAutoMLJob": "<p>Creates an Autopilot job.</p> <p>Find the best performing model after you run an Autopilot job by calling . Deploy that model by following the steps described in <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html\">Step 6.1: Deploy the Model to Amazon SageMaker Hosting Services</a>.</p> <p>For information about how to use Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html\"> Automate Model Development with Amazon SageMaker Autopilot</a>.</p>",
+    "CreateAutoMLJob": "<p>Creates an Autopilot job.</p> <p>Find the best performing model after you run an Autopilot job by calling .</p> <p>For information about how to use Autopilot, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html\">Automate Model Development with Amazon SageMaker Autopilot</a>.</p>",
     "CreateCodeRepository": "<p>Creates a Git repository as a resource in your Amazon SageMaker account. You can associate the repository with notebook instances so that you can use Git source control for the notebooks you create. The Git repository is a resource in your Amazon SageMaker account, so it can be associated with more than one notebook instance, and it persists independently from the lifecycle of any notebook instances it is associated with.</p> <p>The repository can be hosted either in <a href=\"https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html\">AWS CodeCommit</a> or in any other Git repository.</p>",
     "CreateCompilationJob": "<p>Starts a model compilation job. After the model has been compiled, Amazon SageMaker saves the resulting model artifacts to an Amazon Simple Storage Service (Amazon S3) bucket that you specify. </p> <p>If you choose to host your model using Amazon SageMaker hosting services, you can use the resulting model artifacts as part of the model. You can also use the artifacts with AWS IoT Greengrass. In that case, deploy them as an ML resource.</p> <p>In the request body, you provide the following:</p> <ul> <li> <p>A name for the compilation job</p> </li> <li> <p> Information about the input model artifacts </p> </li> <li> <p>The output location for the compiled model and the device (target) that the model runs on </p> </li> <li> <p>The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the model compilation job. </p> </li> </ul> <p>You can also provide a <code>Tag</code> to track the model compilation job's resource use and costs. The response body contains the <code>CompilationJobArn</code> for the compiled job.</p> <p>To stop a model compilation job, use <a>StopCompilationJob</a>. To get information about a particular model compilation job, use <a>DescribeCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "CreateContext": "<p>Creates a <i>context</i>. A context is a lineage tracking entity that represents a logical grouping of other tracking or experiment entities. Some examples are an endpoint and a model package. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html\">Amazon SageMaker ML Lineage Tracking</a>.</p>",
@@ -92,7 +92,7 @@
     "DescribeApp": "<p>Describes the app.</p>",
     "DescribeAppImageConfig": "<p>Describes an AppImageConfig.</p>",
     "DescribeArtifact": "<p>Describes an artifact.</p>",
-    "DescribeAutoMLJob": "<p>Returns information about an Amazon SageMaker job.</p>",
+    "DescribeAutoMLJob": "<p>Returns information about an Amazon SageMaker AutoML job.</p>",
     "DescribeCodeRepository": "<p>Gets details about the specified Git repository.</p>",
     "DescribeCompilationJob": "<p>Returns information about a model compilation job.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about multiple model compilation jobs, use <a>ListCompilationJobs</a>.</p>",
     "DescribeContext": "<p>Describes a context.</p>",
@@ -147,7 +147,7 @@
     "ListArtifacts": "<p>Lists the artifacts in your account and their properties.</p>",
     "ListAssociations": "<p>Lists the associations in your account and their properties.</p>",
     "ListAutoMLJobs": "<p>Request a list of jobs.</p>",
-    "ListCandidatesForAutoMLJob": "<p>List the Candidates created for the job.</p>",
+    "ListCandidatesForAutoMLJob": "<p>List the candidates created for the job.</p>",
     "ListCodeRepositories": "<p>Gets a list of the Git repositories in your account.</p>",
     "ListCompilationJobs": "<p>Lists model compilation jobs that satisfy various filters.</p> <p>To create a model compilation job, use <a>CreateCompilationJob</a>. To get information about a particular model compilation job you have created, use <a>DescribeCompilationJob</a>.</p>",
     "ListContexts": "<p>Lists the contexts in your account and their properties.</p>",
@@ -555,7 +555,7 @@
       "base": null,
       "refs": {
         "AppDetails$AppType": "<p>The type of app.</p>",
-        "CreateAppRequest$AppType": "<p>The type of app.</p>",
+        "CreateAppRequest$AppType": "<p>The type of app. Supported apps are <code>JupyterServer</code> and <code>KernelGateway</code>. <code>TensorBoard</code> is not supported.</p>",
         "DeleteAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppRequest$AppType": "<p>The type of app.</p>",
         "DescribeAppResponse$AppType": "<p>The type of app.</p>"
@@ -773,13 +773,13 @@
       }
     },
     "AutoMLChannel": {
-      "base": "<p>Similar to Channel. A channel is a named input source that training algorithms can consume. Refer to Channel for detailed descriptions.</p>",
+      "base": "<p>A channel is a named input source that training algorithms can consume. For more information, see .</p>",
       "refs": {
         "AutoMLInputDataConfig$member": null
       }
     },
     "AutoMLContainerDefinition": {
-      "base": "<p>A list of container definitions that describe the different containers that make up one AutoML candidate. Refer to ContainerDefinition for more details.</p>",
+      "base": "<p>A list of container definitions that describe the different containers that make up an AutoML candidate. For more information, see .</p>",
       "refs": {
         "AutoMLContainerDefinitions$member": null
       }
@@ -793,30 +793,31 @@
     "AutoMLDataSource": {
       "base": "<p>The data source for the Autopilot job.</p>",
       "refs": {
-        "AutoMLChannel$DataSource": "<p>The data source.</p>"
+        "AutoMLChannel$DataSource": "<p>The data source for an AutoML channel.</p>"
       }
     },
     "AutoMLFailureReason": {
       "base": null,
       "refs": {
         "AutoMLCandidate$FailureReason": "<p>The failure reason.</p>",
-        "AutoMLJobSummary$FailureReason": "<p>The failure reason of a job.</p>",
+        "AutoMLJobSummary$FailureReason": "<p>The failure reason of an AutoML job.</p>",
+        "AutoMLPartialFailureReason$PartialFailureMessage": "<p>The message containing the reason for a partial failure of an AutoML job.</p>",
         "DescribeAutoMLJobResponse$FailureReason": "<p>Returns the job's FailureReason.</p>"
       }
     },
     "AutoMLInputDataConfig": {
       "base": null,
       "refs": {
-        "CreateAutoMLJobRequest$InputDataConfig": "<p>Similar to InputDataConfig supported by Tuning. Format(s) supported: CSV. Minimum of 500 rows.</p>",
-        "DescribeAutoMLJobResponse$InputDataConfig": "<p>Returns the job's input data config.</p>"
+        "CreateAutoMLJobRequest$InputDataConfig": "<p>An array of channel objects that describes the input data and its location. Each channel is a named input source. Similar to <code>InputDataConfig</code> supported by . Format(s) supported: CSV. Minimum of 500 rows.</p>",
+        "DescribeAutoMLJobResponse$InputDataConfig": "<p>Returns the input data configuration for the AutoML job..</p>"
       }
     },
     "AutoMLJobArn": {
       "base": null,
       "refs": {
-        "AutoMLJobSummary$AutoMLJobArn": "<p>The ARN of the job.</p>",
-        "CreateAutoMLJobResponse$AutoMLJobArn": "<p>When a job is created, it is assigned a unique ARN.</p>",
-        "DescribeAutoMLJobResponse$AutoMLJobArn": "<p>Returns the job's ARN.</p>",
+        "AutoMLJobSummary$AutoMLJobArn": "<p>The ARN of the AutoML job.</p>",
+        "CreateAutoMLJobResponse$AutoMLJobArn": "<p>The unique ARN that is assigned to the AutoML job when it is created.</p>",
+        "DescribeAutoMLJobResponse$AutoMLJobArn": "<p>Returns the ARN of the AutoML job.</p>",
         "DescribeProcessingJobResponse$AutoMLJobArn": "<p>The ARN of an AutoML job associated with this processing job.</p>",
         "DescribeTrainingJobResponse$AutoMLJobArn": "<p>The Amazon Resource Name (ARN) of an AutoML job.</p>",
         "DescribeTransformJobResponse$AutoMLJobArn": "<p>The Amazon Resource Name (ARN) of the AutoML transform job.</p>",
@@ -834,32 +835,32 @@
     "AutoMLJobCompletionCriteria": {
       "base": "<p>How long a job is allowed to run, or how many candidates a job is allowed to generate.</p>",
       "refs": {
-        "AutoMLJobConfig$CompletionCriteria": "<p>How long a job is allowed to run, or how many candidates a job is allowed to generate.</p>",
+        "AutoMLJobConfig$CompletionCriteria": "<p>How long an AutoML job is allowed to run, or how many candidates a job is allowed to generate.</p>",
         "ResolvedAttributes$CompletionCriteria": null
       }
     },
     "AutoMLJobConfig": {
-      "base": "<p>A collection of settings used for a job.</p>",
+      "base": "<p>A collection of settings used for an AutoML job.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$AutoMLJobConfig": "<p>Contains CompletionCriteria and SecurityConfig.</p>",
-        "DescribeAutoMLJobResponse$AutoMLJobConfig": "<p>Returns the job's config.</p>"
+        "CreateAutoMLJobRequest$AutoMLJobConfig": "<p>Contains CompletionCriteria and SecurityConfig settings for the AutoML job.</p>",
+        "DescribeAutoMLJobResponse$AutoMLJobConfig": "<p>Returns the configuration for the AutoML job.</p>"
       }
     },
     "AutoMLJobName": {
       "base": null,
       "refs": {
-        "AutoMLJobSummary$AutoMLJobName": "<p>The name of the object you are requesting.</p>",
-        "CreateAutoMLJobRequest$AutoMLJobName": "<p>Identifies an Autopilot job. Must be unique to your account and is case-insensitive.</p>",
-        "DescribeAutoMLJobRequest$AutoMLJobName": "<p>Request information about a job using that job's unique name.</p>",
-        "DescribeAutoMLJobResponse$AutoMLJobName": "<p>Returns the name of a job.</p>",
-        "ListCandidatesForAutoMLJobRequest$AutoMLJobName": "<p>List the Candidates created for the job by providing the job's name.</p>",
+        "AutoMLJobSummary$AutoMLJobName": "<p>The name of the AutoML you are requesting.</p>",
+        "CreateAutoMLJobRequest$AutoMLJobName": "<p>Identifies an Autopilot job. The name must be unique to your account and is case-insensitive.</p>",
+        "DescribeAutoMLJobRequest$AutoMLJobName": "<p>Requests information about an AutoML job using its unique name.</p>",
+        "DescribeAutoMLJobResponse$AutoMLJobName": "<p>Returns the name of the AutoML job.</p>",
+        "ListCandidatesForAutoMLJobRequest$AutoMLJobName": "<p>List the candidates created for the job by providing the job's name.</p>",
         "StopAutoMLJobRequest$AutoMLJobName": "<p>The name of the object you are requesting.</p>"
       }
     },
     "AutoMLJobObjective": {
       "base": "<p>Specifies a metric to minimize or maximize as the objective of a job.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$AutoMLJobObjective": "<p>Defines the objective of a an AutoML job. You provide a <a>AutoMLJobObjective$MetricName</a> and Autopilot infers whether to minimize or maximize it. If a metric is not specified, the most commonly used ObjectiveMetric for problem type is automaically selected.</p>",
+        "CreateAutoMLJobRequest$AutoMLJobObjective": "<p>Defines the objective metric used to measure the predictive quality of an AutoML job. You provide a <a>AutoMLJobObjective$MetricName</a> and Autopilot infers whether to minimize or maximize it.</p>",
         "DescribeAutoMLJobResponse$AutoMLJobObjective": "<p>Returns the job's objective.</p>",
         "ResolvedAttributes$AutoMLJobObjective": null
       }
@@ -873,15 +874,15 @@
     "AutoMLJobSecondaryStatus": {
       "base": null,
       "refs": {
-        "AutoMLJobSummary$AutoMLJobSecondaryStatus": "<p>The job's secondary status.</p>",
-        "DescribeAutoMLJobResponse$AutoMLJobSecondaryStatus": "<p>Returns the job's AutoMLJobSecondaryStatus.</p>"
+        "AutoMLJobSummary$AutoMLJobSecondaryStatus": "<p>The secondary status of the AutoML job.</p>",
+        "DescribeAutoMLJobResponse$AutoMLJobSecondaryStatus": "<p>Returns the secondary status of the AutoML job.</p>"
       }
     },
     "AutoMLJobStatus": {
       "base": null,
       "refs": {
-        "AutoMLJobSummary$AutoMLJobStatus": "<p>The job's status.</p>",
-        "DescribeAutoMLJobResponse$AutoMLJobStatus": "<p>Returns the job's AutoMLJobStatus.</p>",
+        "AutoMLJobSummary$AutoMLJobStatus": "<p>The status of the AutoML job.</p>",
+        "DescribeAutoMLJobResponse$AutoMLJobStatus": "<p>Returns the status of the AutoML job's AutoMLJobStatus.</p>",
         "ListAutoMLJobsRequest$StatusEquals": "<p>Request a list of jobs, using a filter for status.</p>"
       }
     },
@@ -892,7 +893,7 @@
       }
     },
     "AutoMLJobSummary": {
-      "base": "<p>Provides a summary about a job.</p>",
+      "base": "<p>Provides a summary about an AutoML job.</p>",
       "refs": {
         "AutoMLJobSummaries$member": null
       }
@@ -901,7 +902,7 @@
       "base": null,
       "refs": {
         "ListAutoMLJobsRequest$MaxResults": "<p>Request a list of jobs up to a specified limit.</p>",
-        "ListCandidatesForAutoMLJobRequest$MaxResults": "<p>List the job's Candidates up to a specified limit.</p>"
+        "ListCandidatesForAutoMLJobRequest$MaxResults": "<p>List the job's candidates up to a specified limit.</p>"
       }
     },
     "AutoMLMetricEnum": {
@@ -920,8 +921,21 @@
     "AutoMLOutputDataConfig": {
       "base": "<p>The output data configuration.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Similar to OutputDataConfig supported by Tuning. Format(s) supported: CSV.</p>",
+        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job. Format(s) supported: CSV.</p>",
         "DescribeAutoMLJobResponse$OutputDataConfig": "<p>Returns the job's output data config.</p>"
+      }
+    },
+    "AutoMLPartialFailureReason": {
+      "base": "<p>The reason for a partial failure of an AutoML job.</p>",
+      "refs": {
+        "AutoMLPartialFailureReasons$member": null
+      }
+    },
+    "AutoMLPartialFailureReasons": {
+      "base": null,
+      "refs": {
+        "AutoMLJobSummary$PartialFailureReasons": "<p>The list of reasons for partial failures within an AutoML job.</p>",
+        "DescribeAutoMLJobResponse$PartialFailureReasons": "<p>Returns a list of reasons for partial failures within an AutoML job. </p>"
       }
     },
     "AutoMLS3DataSource": {
@@ -952,7 +966,7 @@
       "base": null,
       "refs": {
         "ListAutoMLJobsRequest$SortOrder": "<p>The sort order for the results. The default is Descending.</p>",
-        "ListCandidatesForAutoMLJobRequest$SortOrder": "<p>The sort order for the results. The default is Ascending.</p>"
+        "ListCandidatesForAutoMLJobRequest$SortOrder": "<p>The sort order for the results. The default is <code>Ascending</code>.</p>"
       }
     },
     "AutoRollbackConfig": {
@@ -1051,6 +1065,12 @@
         "PipelineExecutionStep$CacheHitResult": "<p>If this pipeline execution step was cached, details on the cache hit.</p>"
       }
     },
+    "CandidateArtifactLocations": {
+      "base": "<p>Location of artifacts for an AutoML candidate job.</p>",
+      "refs": {
+        "CandidateProperties$CandidateArtifactLocations": "<p>The S3 prefix to the artifacts generated for an AutoML candidate.</p>"
+      }
+    },
     "CandidateDefinitionNotebookLocation": {
       "base": null,
       "refs": {
@@ -1061,20 +1081,26 @@
       "base": null,
       "refs": {
         "AutoMLCandidate$CandidateName": "<p>The candidate name.</p>",
-        "ListCandidatesForAutoMLJobRequest$CandidateNameEquals": "<p>List the Candidates for the job and filter by candidate name.</p>"
+        "ListCandidatesForAutoMLJobRequest$CandidateNameEquals": "<p>List the candidates for the job and filter by candidate name.</p>"
+      }
+    },
+    "CandidateProperties": {
+      "base": "<p>The properties of an AutoML candidate job.</p>",
+      "refs": {
+        "AutoMLCandidate$CandidateProperties": "<p>The AutoML candidate's properties.</p>"
       }
     },
     "CandidateSortBy": {
       "base": null,
       "refs": {
-        "ListCandidatesForAutoMLJobRequest$SortBy": "<p>The parameter by which to sort the results. The default is Descending.</p>"
+        "ListCandidatesForAutoMLJobRequest$SortBy": "<p>The parameter by which to sort the results. The default is <code>Descending</code>.</p>"
       }
     },
     "CandidateStatus": {
       "base": null,
       "refs": {
         "AutoMLCandidate$CandidateStatus": "<p>The candidate's status.</p>",
-        "ListCandidatesForAutoMLJobRequest$StatusEquals": "<p>List the Candidates for the job and filter by status.</p>"
+        "ListCandidatesForAutoMLJobRequest$StatusEquals": "<p>List the candidates for the job and filter by status.</p>"
       }
     },
     "CandidateStepArn": {
@@ -1400,7 +1426,7 @@
     "CompressionType": {
       "base": null,
       "refs": {
-        "AutoMLChannel$CompressionType": "<p>You can use Gzip or None. The default value is None.</p>",
+        "AutoMLChannel$CompressionType": "<p>You can use <code>Gzip</code> or <code>None</code>. The default value is <code>None</code>.</p>",
         "Channel$CompressionType": "<p>If training data is compressed, the compression type. The default value is <code>None</code>. <code>CompressionType</code> is used only in Pipe input mode. In File mode, leave this field unset or set it to None.</p>",
         "CompressionTypes$member": null,
         "TransformInput$CompressionType": "<p>If your transform data is compressed, specify the compression type. Amazon SageMaker automatically decompresses the data for the transform job accordingly. The default value is <code>None</code>.</p>"
@@ -1500,7 +1526,7 @@
     "ContainerImage": {
       "base": null,
       "refs": {
-        "AutoMLContainerDefinition$Image": "<p>The ECR path of the container. Refer to ContainerDefinition for more details.</p>",
+        "AutoMLContainerDefinition$Image": "<p>The ECR path of the container. For more information, see .</p>",
         "ContainerDefinition$Image": "<p>The path where inference code is stored. This can be either in Amazon EC2 Container Registry or in a Docker registry that is accessible from the same VPC that you configure for your endpoint. If you are using your own custom algorithm instead of an algorithm provided by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a> </p>",
         "DeployedImage$SpecifiedImage": "<p>The image path you specified when you created the model.</p>",
         "DeployedImage$ResolvedImage": "<p>The specific digest path of the image hosted in this <code>ProductionVariant</code>.</p>",
@@ -3581,7 +3607,7 @@
     "EnvironmentMap": {
       "base": null,
       "refs": {
-        "AutoMLContainerDefinition$Environment": "<p>Environment variables to set in the container. Refer to ContainerDefinition for more details.</p>",
+        "AutoMLContainerDefinition$Environment": "<p>Environment variables to set in the container. For more information, see .</p>",
         "ContainerDefinition$Environment": "<p>The environment variables to set in the Docker container. Each key and value in the <code>Environment</code> string to string map can have length of up to 1024. We support up to 16 entries in the map. </p>"
       }
     },
@@ -3764,6 +3790,12 @@
       "base": "<p>Contains explainability metrics for a model.</p>",
       "refs": {
         "ModelMetrics$Explainability": "<p>Metrics that help explain a model.</p>"
+      }
+    },
+    "ExplainabilityLocation": {
+      "base": null,
+      "refs": {
+        "CandidateArtifactLocations$Explainability": "<p>The S3 prefix to the explainability artifacts generated for the AutoML candidate.</p>"
       }
     },
     "FailureReason": {
@@ -4085,7 +4117,7 @@
     "GenerateCandidateDefinitionsOnly": {
       "base": null,
       "refs": {
-        "CreateAutoMLJobRequest$GenerateCandidateDefinitionsOnly": "<p>Generates possible candidates without training a model. A candidate is a combination of data preprocessors, algorithms, and algorithm parameter settings.</p>",
+        "CreateAutoMLJobRequest$GenerateCandidateDefinitionsOnly": "<p>Generates possible candidates without training the models. A candidate is a combination of data preprocessors, algorithms, and algorithm parameter settings.</p>",
         "DescribeAutoMLJobResponse$GenerateCandidateDefinitionsOnly": "<p>Returns the job's output from GenerateCandidateDefinitionsOnly.</p>"
       }
     },
@@ -5660,7 +5692,7 @@
     "MaxAutoMLJobRuntimeInSeconds": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum time, in seconds, an AutoML job is allowed to wait for a trial to complete. It must be equal to or greater than MaxRuntimePerTrainingJobInSeconds.</p>"
+        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum time, in seconds, an AutoML job is allowed to wait for a trial to complete. It must be equal to or greater than <code>MaxRuntimePerTrainingJobInSeconds</code>.</p>"
       }
     },
     "MaxCandidates": {
@@ -7366,7 +7398,7 @@
     "ProblemType": {
       "base": null,
       "refs": {
-        "CreateAutoMLJobRequest$ProblemType": "<p>Defines the kind of preprocessing and algorithms intended for the candidates. Options include: BinaryClassification, MulticlassClassification, and Regression.</p>",
+        "CreateAutoMLJobRequest$ProblemType": "<p>Defines the type of supervised learning available for the candidates. Options include: BinaryClassification, MulticlassClassification, and Regression. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-problem-types.html\"> Amazon SageMaker Autopilot problem types and algorithm support</a>.</p>",
         "DescribeAutoMLJobResponse$ProblemType": "<p>Returns the job's problem type.</p>",
         "ResolvedAttributes$ProblemType": "<p>The problem type.</p>"
       }
@@ -7961,7 +7993,7 @@
     "ResolvedAttributes": {
       "base": "<p>The resolved attributes.</p>",
       "refs": {
-        "DescribeAutoMLJobResponse$ResolvedAttributes": "<p>This contains ProblemType, AutoMLJobObjective and CompletionCriteria. They're auto-inferred values, if not provided by you. If you do provide them, then they'll be the same as provided.</p>"
+        "DescribeAutoMLJobResponse$ResolvedAttributes": "<p>This contains ProblemType, AutoMLJobObjective and CompletionCriteria. If you do not provide these values, they are auto-inferred. If you do provide them, they are the values you provide.</p>"
       }
     },
     "ResourceArn": {
@@ -8373,7 +8405,7 @@
       }
     },
     "SharingSettings": {
-      "base": "<p>Specifies options for sharing SageMaker Studio notebooks. These settings are specified as part of <code>DefaultUserSettings</code> when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> API is called, and as part of <code>UserSettings</code> when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html\">CreateUserProfile</a> API is called. When <code>SharingSettings</code> is not specified, notebook sharing isn't allowed.</p>",
+      "base": "<p>Specifies options for sharing SageMaker Studio notebooks. These settings are specified as part of <code>DefaultUserSettings</code> when the <code>CreateDomain</code> API is called, and as part of <code>UserSettings</code> when the <code>CreateUserProfile</code> API is called. When <code>SharingSettings</code> is not specified, notebook sharing isn't allowed.</p>",
       "refs": {
         "UserSettings$SharingSettings": "<p>Specifies options for sharing SageMaker Studio notebooks.</p>"
       }
@@ -8850,7 +8882,7 @@
         "CreateContextRequest$Tags": "<p>A list of tags to apply to the context.</p>",
         "CreateDataQualityJobDefinitionRequest$Tags": "<p>(Optional) An array of key-value pairs. For more information, see <a href=\"https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL\">Using Cost Allocation Tags</a> in the <i>AWS Billing and Cost Management User Guide</i>.</p>",
         "CreateDeviceFleetRequest$Tags": "<p>Creates tags for the specified fleet.</p>",
-        "CreateDomainRequest$Tags": "<p>Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html\">Search</a> API.</p>",
+        "CreateDomainRequest$Tags": "<p>Tags to associated with the Domain. Each tag consists of a key and an optional value. Tag keys must be unique per resource. Tags are searchable using the <code>Search</code> API.</p>",
         "CreateEdgePackagingJobRequest$Tags": "<p>Creates tags for the packaging job.</p>",
         "CreateEndpointConfigInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
         "CreateEndpointInput$Tags": "<p>An array of key-value pairs. You can use tags to categorize your AWS resources in different ways, for example, by purpose, owner, or environment. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a>.</p>",
@@ -8905,7 +8937,7 @@
     "TargetAttributeName": {
       "base": null,
       "refs": {
-        "AutoMLChannel$TargetAttributeName": "<p>The name of the target variable in supervised learning, a.k.a. 'y'.</p>"
+        "AutoMLChannel$TargetAttributeName": "<p>The name of the target variable in supervised learning, usually represented by 'y'.</p>"
       }
     },
     "TargetDevice": {
@@ -9064,9 +9096,9 @@
         "AutoMLCandidate$CreationTime": "<p>The creation time.</p>",
         "AutoMLCandidate$EndTime": "<p>The end time.</p>",
         "AutoMLCandidate$LastModifiedTime": "<p>The last modified time.</p>",
-        "AutoMLJobSummary$CreationTime": "<p>When the job was created.</p>",
+        "AutoMLJobSummary$CreationTime": "<p>When the AutoML job was created.</p>",
         "AutoMLJobSummary$EndTime": "<p>The end time of an AutoML job.</p>",
-        "AutoMLJobSummary$LastModifiedTime": "<p>When the job was last modified.</p>",
+        "AutoMLJobSummary$LastModifiedTime": "<p>When the AutoML job was last modified.</p>",
         "CompilationJobSummary$CompilationStartTime": "<p>The time when the model compilation job started.</p>",
         "CompilationJobSummary$CompilationEndTime": "<p>The time when the model compilation job completed.</p>",
         "ContextSummary$CreationTime": "<p>When the context was created.</p>",
@@ -9083,8 +9115,8 @@
         "DescribeAppResponse$LastUserActivityTimestamp": "<p>The timestamp of the last user's activity.</p>",
         "DescribeArtifactResponse$CreationTime": "<p>When the artifact was created.</p>",
         "DescribeArtifactResponse$LastModifiedTime": "<p>When the artifact was last modified.</p>",
-        "DescribeAutoMLJobResponse$CreationTime": "<p>Returns the job's creation time.</p>",
-        "DescribeAutoMLJobResponse$EndTime": "<p>Returns the job's end time.</p>",
+        "DescribeAutoMLJobResponse$CreationTime": "<p>Returns the creation time of the AutoML job.</p>",
+        "DescribeAutoMLJobResponse$EndTime": "<p>Returns the end time of the AutoML job.</p>",
         "DescribeAutoMLJobResponse$LastModifiedTime": "<p>Returns the job's last modified time.</p>",
         "DescribeCompilationJobResponse$CompilationStartTime": "<p>The time when the model compilation job started the <code>CompilationJob</code> instances. </p> <p>You are billed for the time between this timestamp and the timestamp in the <a>DescribeCompilationJobResponse$CompilationEndTime</a> field. In Amazon CloudWatch Logs, the start time might be later than this time. That's because it takes time to download the compilation job, which depends on the size of the compilation job container. </p>",
         "DescribeCompilationJobResponse$CompilationEndTime": "<p>The time when the model compilation job on a compilation job instance ended. For a successful or stopped job, this is when the job's model artifacts have finished uploading. For a failed job, this is when Amazon SageMaker detected that the job failed. </p>",
@@ -10122,7 +10154,7 @@
     "Url": {
       "base": null,
       "refs": {
-        "AutoMLContainerDefinition$ModelDataUrl": "<p>The location of the model artifacts. Refer to ContainerDefinition for more details.</p>",
+        "AutoMLContainerDefinition$ModelDataUrl": "<p>The location of the model artifacts. For more information, see .</p>",
         "ContainerDefinition$ModelDataUrl": "<p>The S3 path where the model artifacts, which result from model training, are stored. This path must point to a single gzip compressed tar archive (.tar.gz suffix). The S3 path is required for Amazon SageMaker built-in algorithms, but not if you use your own algorithms. For more information on built-in algorithms, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html\">Common Parameters</a>. </p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model or endpoint you are creating.</p> </note> <p>If you provide a value for this parameter, Amazon SageMaker uses AWS Security Token Service to download model artifacts from the S3 path you provide. AWS STS is activated in your IAM user account by default. If you previously deactivated AWS STS for a region, you need to reactivate AWS STS for that region. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and Deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <important> <p>If you use a built-in algorithm to create a model, Amazon SageMaker requires that you provide a S3 path to the model artifacts in <code>ModelDataUrl</code>.</p> </important>",
         "ModelPackageContainerDefinition$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the model package.</p> </note>",
         "SourceAlgorithm$ModelDataUrl": "<p>The Amazon S3 path where the model artifacts, which result from model training, are stored. This path must point to a single <code>gzip</code> compressed tar archive (<code>.tar.gz</code> suffix).</p> <note> <p>The model artifacts must be in an S3 bucket that is in the same region as the algorithm.</p> </note>"
@@ -10223,9 +10255,9 @@
       }
     },
     "UserSettings": {
-      "base": "<p>A collection of settings that apply to users of Amazon SageMaker Studio. These settings are specified when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html\">CreateUserProfile</a> API is called, and as <code>DefaultUserSettings</code> when the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> API is called.</p> <p> <code>SecurityGroups</code> is aggregated when specified in both calls. For all other settings in <code>UserSettings</code>, the values specified in <code>CreateUserProfile</code> take precedence over those specified in <code>CreateDomain</code>.</p>",
+      "base": "<p>A collection of settings that apply to users of Amazon SageMaker Studio. These settings are specified when the <code>CreateUserProfile</code> API is called, and as <code>DefaultUserSettings</code> when the <code>CreateDomain</code> API is called.</p> <p> <code>SecurityGroups</code> is aggregated when specified in both calls. For all other settings in <code>UserSettings</code>, the values specified in <code>CreateUserProfile</code> take precedence over those specified in <code>CreateDomain</code>.</p>",
       "refs": {
-        "CreateDomainRequest$DefaultUserSettings": "<p>The default settings to use to create a user profile when <code>UserSettings</code> isn't specified in the call to the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html\">CreateUserProfile</a> API.</p> <p> <code>SecurityGroups</code> is aggregated when specified in both calls. For all other settings in <code>UserSettings</code>, the values specified in <code>CreateUserProfile</code> take precedence over those specified in <code>CreateDomain</code>.</p>",
+        "CreateDomainRequest$DefaultUserSettings": "<p>The default settings to use to create a user profile when <code>UserSettings</code> isn't specified in the call to the <code>CreateUserProfile</code> API.</p> <p> <code>SecurityGroups</code> is aggregated when specified in both calls. For all other settings in <code>UserSettings</code>, the values specified in <code>CreateUserProfile</code> take precedence over those specified in <code>CreateDomain</code>.</p>",
         "CreateUserProfileRequest$UserSettings": "<p>A collection of settings.</p>",
         "DescribeDomainResponse$DefaultUserSettings": "<p>Settings which are applied to UserProfiles in this domain if settings are not explicitly specified in a given UserProfile. </p>",
         "DescribeUserProfileResponse$UserSettings": "<p>A collection of settings.</p>",

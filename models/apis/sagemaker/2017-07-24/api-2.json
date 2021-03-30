@@ -3166,7 +3166,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "FailureReason":{"shape":"AutoMLFailureReason"}
+        "FailureReason":{"shape":"AutoMLFailureReason"},
+        "CandidateProperties":{"shape":"CandidateProperties"}
       }
     },
     "AutoMLCandidateStep":{
@@ -3330,7 +3331,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "EndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "FailureReason":{"shape":"AutoMLFailureReason"}
+        "FailureReason":{"shape":"AutoMLFailureReason"},
+        "PartialFailureReasons":{"shape":"AutoMLPartialFailureReasons"}
       }
     },
     "AutoMLMaxResults":{
@@ -3360,6 +3362,18 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "S3OutputPath":{"shape":"S3Uri"}
       }
+    },
+    "AutoMLPartialFailureReason":{
+      "type":"structure",
+      "members":{
+        "PartialFailureMessage":{"shape":"AutoMLFailureReason"}
+      }
+    },
+    "AutoMLPartialFailureReasons":{
+      "type":"list",
+      "member":{"shape":"AutoMLPartialFailureReason"},
+      "max":5,
+      "min":1
     },
     "AutoMLS3DataSource":{
       "type":"structure",
@@ -3465,6 +3479,13 @@
         "SourcePipelineExecutionArn":{"shape":"PipelineExecutionArn"}
       }
     },
+    "CandidateArtifactLocations":{
+      "type":"structure",
+      "required":["Explainability"],
+      "members":{
+        "Explainability":{"shape":"ExplainabilityLocation"}
+      }
+    },
     "CandidateDefinitionNotebookLocation":{
       "type":"string",
       "min":1
@@ -3473,6 +3494,12 @@
       "type":"string",
       "max":64,
       "min":1
+    },
+    "CandidateProperties":{
+      "type":"structure",
+      "members":{
+        "CandidateArtifactLocations":{"shape":"CandidateArtifactLocations"}
+      }
     },
     "CandidateSortBy":{
       "type":"string",
@@ -5845,6 +5872,7 @@
         "EndTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "FailureReason":{"shape":"AutoMLFailureReason"},
+        "PartialFailureReasons":{"shape":"AutoMLPartialFailureReasons"},
         "BestCandidate":{"shape":"AutoMLCandidate"},
         "AutoMLJobStatus":{"shape":"AutoMLJobStatus"},
         "AutoMLJobSecondaryStatus":{"shape":"AutoMLJobSecondaryStatus"},
@@ -7614,6 +7642,10 @@
       "members":{
         "Report":{"shape":"MetricsSource"}
       }
+    },
+    "ExplainabilityLocation":{
+      "type":"string",
+      "min":1
     },
     "FailureReason":{
       "type":"string",

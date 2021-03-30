@@ -3876,7 +3876,7 @@ func (s *BatchDeleteRecipeVersionOutput) SetName(v string) *BatchDeleteRecipeVer
 
 // Represents an individual condition that evaluates to true or false.
 //
-// Conditions are used with recipe actions: The action is only performed for
+// Conditions are used with recipe actions. The action is only performed for
 // column values where the condition evaluates to true.
 //
 // If a recipe requires more than one condition, then the recipe must specify
@@ -4010,14 +4010,15 @@ func (s *ConflictException) RequestID() string {
 type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the file format of a dataset created from an S3 file or folder.
+	// The file format of a dataset that is created from an S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
-	// Options that define the structure of either Csv, Excel, or JSON input.
+	// Represents a set of options that define the structure of either comma-separated
+	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
-	// or Amazon S3.
+	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -4027,6 +4028,9 @@ type CreateDatasetInput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	PathOptions *PathOptions `type:"structure"`
 
 	// Metadata tags to apply to this dataset.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -4067,6 +4071,11 @@ func (s *CreateDatasetInput) Validate() error {
 			invalidParams.AddNested("Input", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PathOptions != nil {
+		if err := s.PathOptions.Validate(); err != nil {
+			invalidParams.AddNested("PathOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4095,6 +4104,12 @@ func (s *CreateDatasetInput) SetInput(v *Input) *CreateDatasetInput {
 // SetName sets the Name field's value.
 func (s *CreateDatasetInput) SetName(v string) *CreateDatasetInput {
 	s.Name = &v
+	return s
+}
+
+// SetPathOptions sets the PathOptions field's value.
+func (s *CreateDatasetInput) SetPathOptions(v *PathOptions) *CreateDatasetInput {
+	s.PathOptions = v
 	return s
 }
 
@@ -4171,8 +4186,8 @@ type CreateProfileJobInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// An Amazon S3 location (bucket name an object key) where DataBrew can read
-	// input data, or write output from a job.
+	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+	// can read input data, or write output from a job.
 	//
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`
@@ -4935,16 +4950,16 @@ func (s *CreateScheduleOutput) SetName(v string) *CreateScheduleOutput {
 	return s
 }
 
-// Options that define how DataBrew will read a Csv file when creating a dataset
-// from that file.
+// Represents a set of options that define how DataBrew will read a comma-separated
+// value (CSV) file when creating a dataset from that file.
 type CsvOptions struct {
 	_ struct{} `type:"structure"`
 
-	// A single character that specifies the delimiter being used in the Csv file.
+	// A single character that specifies the delimiter being used in the CSV file.
 	Delimiter *string `min:"1" type:"string"`
 
-	// A variable that specifies whether the first row in the file will be parsed
-	// as the header. If false, column names will be auto-generated.
+	// A variable that specifies whether the first row in the file is parsed as
+	// the header. If this value is false, column names are auto-generated.
 	HeaderRow *bool `type:"boolean"`
 }
 
@@ -4983,11 +4998,12 @@ func (s *CsvOptions) SetHeaderRow(v bool) *CsvOptions {
 	return s
 }
 
-// Options that define how DataBrew will write a Csv file.
+// Represents a set of options that define how DataBrew will write a comma-separated
+// value (CSV) file.
 type CsvOutputOptions struct {
 	_ struct{} `type:"structure"`
 
-	// A single character that specifies the delimiter used to create Csv job output.
+	// A single character that specifies the delimiter used to create CSV job output.
 	Delimiter *string `min:"1" type:"string"`
 }
 
@@ -5108,6 +5124,81 @@ func (s *DataCatalogInputDefinition) SetTempDirectory(v *S3Location) *DataCatalo
 	return s
 }
 
+// Connection information for dataset input files stored in a database.
+type DatabaseInputDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// The table within the target database.
+	//
+	// DatabaseTableName is a required field
+	DatabaseTableName *string `min:"1" type:"string" required:"true"`
+
+	// The AWS Glue Connection that stores the connection information for the target
+	// database.
+	//
+	// GlueConnectionName is a required field
+	GlueConnectionName *string `min:"1" type:"string" required:"true"`
+
+	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+	// can read input data, or write output from a job.
+	TempDirectory *S3Location `type:"structure"`
+}
+
+// String returns the string representation
+func (s DatabaseInputDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatabaseInputDefinition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseInputDefinition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseInputDefinition"}
+	if s.DatabaseTableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseTableName"))
+	}
+	if s.DatabaseTableName != nil && len(*s.DatabaseTableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseTableName", 1))
+	}
+	if s.GlueConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlueConnectionName"))
+	}
+	if s.GlueConnectionName != nil && len(*s.GlueConnectionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlueConnectionName", 1))
+	}
+	if s.TempDirectory != nil {
+		if err := s.TempDirectory.Validate(); err != nil {
+			invalidParams.AddNested("TempDirectory", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseTableName sets the DatabaseTableName field's value.
+func (s *DatabaseInputDefinition) SetDatabaseTableName(v string) *DatabaseInputDefinition {
+	s.DatabaseTableName = &v
+	return s
+}
+
+// SetGlueConnectionName sets the GlueConnectionName field's value.
+func (s *DatabaseInputDefinition) SetGlueConnectionName(v string) *DatabaseInputDefinition {
+	s.GlueConnectionName = &v
+	return s
+}
+
+// SetTempDirectory sets the TempDirectory field's value.
+func (s *DatabaseInputDefinition) SetTempDirectory(v *S3Location) *DatabaseInputDefinition {
+	s.TempDirectory = v
+	return s
+}
+
 // Represents a dataset that can be processed by DataBrew.
 type Dataset struct {
 	_ struct{} `type:"structure"`
@@ -5121,10 +5212,10 @@ type Dataset struct {
 	// The Amazon Resource Name (ARN) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
-	// Specifies the file format of a dataset created from an S3 file or folder.
+	// The file format of a dataset that is created from an S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
-	// Options that define how DataBrew interprets the data in the dataset.
+	// A set of options that define how DataBrew interprets the data in the dataset.
 	FormatOptions *FormatOptions `type:"structure"`
 
 	// Information on how DataBrew can find the dataset, in either the AWS Glue
@@ -5143,6 +5234,9 @@ type Dataset struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	PathOptions *PathOptions `type:"structure"`
 
 	// The unique Amazon Resource Name (ARN) for the dataset.
 	ResourceArn *string `min:"20" type:"string"`
@@ -5219,6 +5313,12 @@ func (s *Dataset) SetName(v string) *Dataset {
 	return s
 }
 
+// SetPathOptions sets the PathOptions field's value.
+func (s *Dataset) SetPathOptions(v *PathOptions) *Dataset {
+	s.PathOptions = v
+	return s
+}
+
 // SetResourceArn sets the ResourceArn field's value.
 func (s *Dataset) SetResourceArn(v string) *Dataset {
 	s.ResourceArn = &v
@@ -5234,6 +5334,177 @@ func (s *Dataset) SetSource(v string) *Dataset {
 // SetTags sets the Tags field's value.
 func (s *Dataset) SetTags(v map[string]*string) *Dataset {
 	s.Tags = v
+	return s
+}
+
+// Represents a dataset paramater that defines type and conditions for a parameter
+// in the S3 path of the dataset.
+type DatasetParameter struct {
+	_ struct{} `type:"structure"`
+
+	// Optional boolean value that defines whether the captured value of this parameter
+	// should be loaded as an additional column in the dataset.
+	CreateColumn *bool `type:"boolean"`
+
+	// Additional parameter options such as a format and a timezone. Required for
+	// datetime parameters.
+	DatetimeOptions *DatetimeOptions `type:"structure"`
+
+	// The optional filter expression structure to apply additional matching criteria
+	// to the parameter.
+	Filter *FilterExpression `type:"structure"`
+
+	// The name of the parameter that is used in the dataset's S3 path.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The type of the dataset parameter, can be one of a 'String', 'Number' or
+	// 'Datetime'.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ParameterType"`
+}
+
+// String returns the string representation
+func (s DatasetParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatasetParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.DatetimeOptions != nil {
+		if err := s.DatetimeOptions.Validate(); err != nil {
+			invalidParams.AddNested("DatetimeOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreateColumn sets the CreateColumn field's value.
+func (s *DatasetParameter) SetCreateColumn(v bool) *DatasetParameter {
+	s.CreateColumn = &v
+	return s
+}
+
+// SetDatetimeOptions sets the DatetimeOptions field's value.
+func (s *DatasetParameter) SetDatetimeOptions(v *DatetimeOptions) *DatasetParameter {
+	s.DatetimeOptions = v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *DatasetParameter) SetFilter(v *FilterExpression) *DatasetParameter {
+	s.Filter = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DatasetParameter) SetName(v string) *DatasetParameter {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DatasetParameter) SetType(v string) *DatasetParameter {
+	s.Type = &v
+	return s
+}
+
+// Represents additional options for correct interpretation of datetime parameters
+// used in the S3 path of a dataset.
+type DatetimeOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Required option, that defines the datetime format used for a date parameter
+	// in the S3 path. Should use only supported datetime specifiers and separation
+	// characters, all litera a-z or A-Z character should be escaped with single
+	// quotes. E.g. "MM.dd.yyyy-'at'-HH:mm".
+	//
+	// Format is a required field
+	Format *string `min:"2" type:"string" required:"true"`
+
+	// Optional value for a non-US locale code, needed for correct interpretation
+	// of some date formats.
+	LocaleCode *string `min:"2" type:"string"`
+
+	// Optional value for a timezone offset of the datetime parameter value in the
+	// S3 path. Shouldn't be used if Format for this parameter includes timezone
+	// fields. If no offset specified, UTC is assumed.
+	TimezoneOffset *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DatetimeOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatetimeOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatetimeOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatetimeOptions"}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.Format != nil && len(*s.Format) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Format", 2))
+	}
+	if s.LocaleCode != nil && len(*s.LocaleCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LocaleCode", 2))
+	}
+	if s.TimezoneOffset != nil && len(*s.TimezoneOffset) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimezoneOffset", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormat sets the Format field's value.
+func (s *DatetimeOptions) SetFormat(v string) *DatetimeOptions {
+	s.Format = &v
+	return s
+}
+
+// SetLocaleCode sets the LocaleCode field's value.
+func (s *DatetimeOptions) SetLocaleCode(v string) *DatetimeOptions {
+	s.LocaleCode = &v
+	return s
+}
+
+// SetTimezoneOffset sets the TimezoneOffset field's value.
+func (s *DatetimeOptions) SetTimezoneOffset(v string) *DatetimeOptions {
+	s.TimezoneOffset = &v
 	return s
 }
 
@@ -5646,14 +5917,15 @@ type DescribeDatasetOutput struct {
 	// The identifier (user name) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
-	// Specifies the file format of a dataset created from an S3 file or folder.
+	// The file format of a dataset that is created from an S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
-	// Options that define the structure of either Csv, Excel, or JSON input.
+	// Represents a set of options that define the structure of either comma-separated
+	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
-	// or Amazon S3.
+	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -5668,6 +5940,9 @@ type DescribeDatasetOutput struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	PathOptions *PathOptions `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the dataset.
 	ResourceArn *string `min:"20" type:"string"`
@@ -5735,6 +6010,12 @@ func (s *DescribeDatasetOutput) SetLastModifiedDate(v time.Time) *DescribeDatase
 // SetName sets the Name field's value.
 func (s *DescribeDatasetOutput) SetName(v string) *DescribeDatasetOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPathOptions sets the PathOptions field's value.
+func (s *DescribeDatasetOutput) SetPathOptions(v *PathOptions) *DescribeDatasetOutput {
+	s.PathOptions = v
 	return s
 }
 
@@ -6741,21 +7022,20 @@ func (s *DescribeScheduleOutput) SetTags(v map[string]*string) *DescribeSchedule
 	return s
 }
 
-// Options that define how DataBrew will interpret a Microsoft Excel file, when
-// creating a dataset from that file.
+// Represents a set of options that define how DataBrew will interpret a Microsoft
+// Excel file when creating a dataset from that file.
 type ExcelOptions struct {
 	_ struct{} `type:"structure"`
 
-	// A variable that specifies whether the first row in the file will be parsed
-	// as the header. If false, column names will be auto-generated.
+	// A variable that specifies whether the first row in the file is parsed as
+	// the header. If this value is false, column names are auto-generated.
 	HeaderRow *bool `type:"boolean"`
 
-	// Specifies one or more sheet numbers in the Excel file, which will be included
-	// in the dataset.
+	// One or more sheet numbers in the Excel file that will be included in the
+	// dataset.
 	SheetIndexes []*int64 `min:"1" type:"list"`
 
-	// Specifies one or more named sheets in the Excel file, which will be included
-	// in the dataset.
+	// One or more named sheets in the Excel file that will be included in the dataset.
 	SheetNames []*string `min:"1" type:"list"`
 }
 
@@ -6803,11 +7083,137 @@ func (s *ExcelOptions) SetSheetNames(v []*string) *ExcelOptions {
 	return s
 }
 
-// Options that define the structure of either Csv, Excel, or JSON input.
+// Represents a limit imposed on number of S3 files that should be selected
+// for a dataset from a connected S3 path.
+type FilesLimit struct {
+	_ struct{} `type:"structure"`
+
+	// The number of S3 files to select.
+	//
+	// MaxFiles is a required field
+	MaxFiles *int64 `min:"1" type:"integer" required:"true"`
+
+	// A criteria to use for S3 files sorting before their selection. By default
+	// uses DESCENDING order, i.e. most recent files are selected first. Anotherpossible
+	// value is ASCENDING.
+	Order *string `type:"string" enum:"Order"`
+
+	// A criteria to use for S3 files sorting before their selection. By default
+	// uses LAST_MODIFIED_DATE as a sorting criteria. Currently it's the only allowed
+	// value.
+	OrderedBy *string `type:"string" enum:"OrderedBy"`
+}
+
+// String returns the string representation
+func (s FilesLimit) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FilesLimit) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilesLimit) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilesLimit"}
+	if s.MaxFiles == nil {
+		invalidParams.Add(request.NewErrParamRequired("MaxFiles"))
+	}
+	if s.MaxFiles != nil && *s.MaxFiles < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxFiles", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxFiles sets the MaxFiles field's value.
+func (s *FilesLimit) SetMaxFiles(v int64) *FilesLimit {
+	s.MaxFiles = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *FilesLimit) SetOrder(v string) *FilesLimit {
+	s.Order = &v
+	return s
+}
+
+// SetOrderedBy sets the OrderedBy field's value.
+func (s *FilesLimit) SetOrderedBy(v string) *FilesLimit {
+	s.OrderedBy = &v
+	return s
+}
+
+// Represents a structure for defining parameter conditions.
+type FilterExpression struct {
+	_ struct{} `type:"structure"`
+
+	// The expression which includes condition names followed by substitution variables,
+	// possibly grouped and combined with other conditions. For example, "(starts_with
+	// :prefix1 or starts_with :prefix2) and (ends_with :suffix1 or ends_with :suffix2)".
+	// Substitution variables should start with ':' symbol.
+	//
+	// Expression is a required field
+	Expression *string `min:"4" type:"string" required:"true"`
+
+	// The map of substitution variable names to their values used in this filter
+	// expression.
+	//
+	// ValuesMap is a required field
+	ValuesMap map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s FilterExpression) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FilterExpression) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FilterExpression) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FilterExpression"}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(*s.Expression) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 4))
+	}
+	if s.ValuesMap == nil {
+		invalidParams.Add(request.NewErrParamRequired("ValuesMap"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpression sets the Expression field's value.
+func (s *FilterExpression) SetExpression(v string) *FilterExpression {
+	s.Expression = &v
+	return s
+}
+
+// SetValuesMap sets the ValuesMap field's value.
+func (s *FilterExpression) SetValuesMap(v map[string]*string) *FilterExpression {
+	s.ValuesMap = v
+	return s
+}
+
+// Represents a set of options that define the structure of either comma-separated
+// value (CSV), Excel, or JSON input.
 type FormatOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Options that define how Csv input is to be interpreted by DataBrew.
+	// Options that define how CSV input is to be interpreted by DataBrew.
 	Csv *CsvOptions `type:"structure"`
 
 	// Options that define how Excel input is to be interpreted by DataBrew.
@@ -6865,13 +7271,16 @@ func (s *FormatOptions) SetJson(v *JsonOptions) *FormatOptions {
 	return s
 }
 
-// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
-// or Amazon S3.
+// Represents information on how DataBrew can find data, in either the AWS Glue
+// Data Catalog or Amazon S3.
 type Input struct {
 	_ struct{} `type:"structure"`
 
 	// The AWS Glue Data Catalog parameters for the data.
 	DataCatalogInputDefinition *DataCatalogInputDefinition `type:"structure"`
+
+	// Connection information for dataset input files stored in a database.
+	DatabaseInputDefinition *DatabaseInputDefinition `type:"structure"`
 
 	// The Amazon S3 location where the data is stored.
 	S3InputDefinition *S3Location `type:"structure"`
@@ -6895,6 +7304,11 @@ func (s *Input) Validate() error {
 			invalidParams.AddNested("DataCatalogInputDefinition", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DatabaseInputDefinition != nil {
+		if err := s.DatabaseInputDefinition.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseInputDefinition", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.S3InputDefinition != nil {
 		if err := s.S3InputDefinition.Validate(); err != nil {
 			invalidParams.AddNested("S3InputDefinition", err.(request.ErrInvalidParams))
@@ -6910,6 +7324,12 @@ func (s *Input) Validate() error {
 // SetDataCatalogInputDefinition sets the DataCatalogInputDefinition field's value.
 func (s *Input) SetDataCatalogInputDefinition(v *DataCatalogInputDefinition) *Input {
 	s.DataCatalogInputDefinition = v
+	return s
+}
+
+// SetDatabaseInputDefinition sets the DatabaseInputDefinition field's value.
+func (s *Input) SetDatabaseInputDefinition(v *DatabaseInputDefinition) *Input {
+	s.DatabaseInputDefinition = v
 	return s
 }
 
@@ -6998,15 +7418,15 @@ type Job struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
 
-	// Sample configuration for profile jobs only. Determines the number of rows
-	// on which the profile job will be executed. If a JobSample value is not provided,
-	// the default value will be used. The default value is CUSTOM_ROWS for the
-	// mode parameter and 20000 for the size parameter.
+	// A sample configuration for profile jobs only, which determines the number
+	// of rows on which the profile job is run. If a JobSample value isn't provided,
+	// the default value is used. The default value is CUSTOM_ROWS for the mode
+	// parameter and 20,000 for the size parameter.
 	JobSample *JobSample `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the user who last modified the job.
@@ -7041,8 +7461,7 @@ type Job struct {
 	// The unique Amazon Resource Name (ARN) for the job.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the role that will be assumed for this
-	// job.
+	// The Amazon Resource Name (ARN) of the role to be assumed for this job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Metadata tags that have been applied to the job.
@@ -7220,10 +7639,10 @@ type JobRun struct {
 	// The name of the job being processed during this run.
 	JobName *string `min:"1" type:"string"`
 
-	// Sample configuration for profile jobs only. Determines the number of rows
-	// on which the profile job will be executed. If a JobSample value is not provided,
-	// the default value will be used. The default value is CUSTOM_ROWS for the
-	// mode parameter and 20000 for the size parameter.
+	// A sample configuration for profile jobs only, which determines the number
+	// of rows on which the profile job is run. If a JobSample value isn't provided,
+	// the default is used. The default value is CUSTOM_ROWS for the mode parameter
+	// and 20,000 for the size parameter.
 	JobSample *JobSample `type:"structure"`
 
 	// The name of an Amazon CloudWatch log group, where the job writes diagnostic
@@ -7352,25 +7771,25 @@ func (s *JobRun) SetState(v string) *JobRun {
 	return s
 }
 
-// Sample configuration for Profile Jobs only. Determines the number of rows
-// on which the Profile job will be executed. If a JobSample value is not provided
-// for profile jobs, the default value will be used. The default value is CUSTOM_ROWS
-// for the mode parameter and 20000 for the size parameter.
+// A sample configuration for profile jobs only, which determines the number
+// of rows on which the profile job is run. If a JobSample value isn't provided,
+// the default is used. The default value is CUSTOM_ROWS for the mode parameter
+// and 20,000 for the size parameter.
 type JobSample struct {
 	_ struct{} `type:"structure"`
 
-	// Determines whether the profile job will be executed on the entire dataset
-	// or on a specified number of rows. Must be one of the following:
+	// A value that determines whether the profile job is run on the entire dataset
+	// or a specified number of rows. This value must be one of the following:
 	//
-	//    * FULL_DATASET: Profile job will be executed on the entire dataset.
+	//    * FULL_DATASET - The profile job is run on the entire dataset.
 	//
-	//    * CUSTOM_ROWS: Profile job will be executed on the number of rows specified
+	//    * CUSTOM_ROWS - The profile job is run on the number of rows specified
 	//    in the Size parameter.
 	Mode *string `type:"string" enum:"SampleMode"`
 
-	// Size parameter is only required when the mode is CUSTOM_ROWS. Profile job
-	// will be executed on the the specified number of rows. The maximum value for
-	// size is Long.MAX_VALUE.
+	// The Size parameter is only required when the mode is CUSTOM_ROWS. The profile
+	// job is run on the specified number of rows. The maximum value for size is
+	// Long.MAX_VALUE.
 	//
 	// Long.MAX_VALUE = 9223372036854775807
 	Size *int64 `type:"long"`
@@ -8159,8 +8578,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Parameters that specify how and where DataBrew will write the output generated
-// by recipe jobs or profile jobs.
+// Represents options that specify how and where DataBrew writes the output
+// generated by recipe jobs or profile jobs.
 type Output struct {
 	_ struct{} `type:"structure"`
 
@@ -8170,7 +8589,7 @@ type Output struct {
 	// The data format of the output of the job.
 	Format *string `type:"string" enum:"OutputFormat"`
 
-	// Options that define how DataBrew formats job output files.
+	// Represents options that define how DataBrew formats job output files.
 	FormatOptions *OutputFormatOptions `type:"structure"`
 
 	// The location in Amazon S3 where the job writes its output.
@@ -8255,11 +8674,13 @@ func (s *Output) SetPartitionColumns(v []*string) *Output {
 	return s
 }
 
-// Options that define the structure of Csv job output.
+// Represents a set of options that define the structure of comma-separated
+// (CSV) job output.
 type OutputFormatOptions struct {
 	_ struct{} `type:"structure"`
 
-	// Options that define how DataBrew writes Csv output.
+	// Represents a set of options that define the structure of comma-separated
+	// value (CSV) job output.
 	Csv *CsvOutputOptions `type:"structure"`
 }
 
@@ -8291,6 +8712,85 @@ func (s *OutputFormatOptions) Validate() error {
 // SetCsv sets the Csv field's value.
 func (s *OutputFormatOptions) SetCsv(v *CsvOutputOptions) *OutputFormatOptions {
 	s.Csv = v
+	return s
+}
+
+// Represents a set of options that define how DataBrew selects files for a
+// given S3 path in a dataset.
+type PathOptions struct {
+	_ struct{} `type:"structure"`
+
+	// If provided, this structure imposes a limit on a number of files that should
+	// be selected.
+	FilesLimit *FilesLimit `type:"structure"`
+
+	// If provided, this structure defines a date range for matching S3 objects
+	// based on their LastModifiedDate attribute in S3.
+	LastModifiedDateCondition *FilterExpression `type:"structure"`
+
+	// A structure that maps names of parameters used in the S3 path of a dataset
+	// to their definitions.
+	Parameters map[string]*DatasetParameter `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s PathOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PathOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PathOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PathOptions"}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+	if s.FilesLimit != nil {
+		if err := s.FilesLimit.Validate(); err != nil {
+			invalidParams.AddNested("FilesLimit", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LastModifiedDateCondition != nil {
+		if err := s.LastModifiedDateCondition.Validate(); err != nil {
+			invalidParams.AddNested("LastModifiedDateCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilesLimit sets the FilesLimit field's value.
+func (s *PathOptions) SetFilesLimit(v *FilesLimit) *PathOptions {
+	s.FilesLimit = v
+	return s
+}
+
+// SetLastModifiedDateCondition sets the LastModifiedDateCondition field's value.
+func (s *PathOptions) SetLastModifiedDateCondition(v *FilterExpression) *PathOptions {
+	s.LastModifiedDateCondition = v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *PathOptions) SetParameters(v map[string]*DatasetParameter) *PathOptions {
+	s.Parameters = v
 	return s
 }
 
@@ -8340,8 +8840,8 @@ type Project struct {
 	RoleArn *string `min:"20" type:"string"`
 
 	// The sample size and sampling type to apply to the data. If this parameter
-	// isn't specified, then the sample will consiste of the first 500 rows from
-	// the dataset.
+	// isn't specified, then the sample consists of the first 500 rows from the
+	// dataset.
 	Sample *Sample `type:"structure"`
 
 	// Metadata tags that have been applied to the project.
@@ -8554,7 +9054,7 @@ type Recipe struct {
 	//
 	//    * Numeric version (X.Y) - X and Y stand for major and minor version numbers.
 	//    The maximum length of each is 6 digits, and neither can be negative values.
-	//    Both X and Y are required, and "0.0" is not a valid version.
+	//    Both X and Y are required, and "0.0" isn't a valid version.
 	//
 	//    * LATEST_WORKING - the most recent valid version being developed in a
 	//    DataBrew project.
@@ -8777,8 +9277,7 @@ type RecipeStep struct {
 	// Action is a required field
 	Action *RecipeAction `type:"structure" required:"true"`
 
-	// One or more conditions that must be met, in order for the recipe step to
-	// succeed.
+	// One or more conditions that must be met for the recipe step to succeed.
 	//
 	// All of the conditions in the array must be met. In other words, all of the
 	// conditions must be combined using a logical AND operation.
@@ -8934,8 +9433,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An Amazon S3 location (bucket name an object key) where DataBrew can read
-// input data, or write output from a job.
+// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+// can read input data, or write output from a job.
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
@@ -9054,8 +9553,8 @@ type Schedule struct {
 	// The Amazon Resource Name (ARN) of the user who created the schedule.
 	CreatedBy *string `type:"string"`
 
-	// The date(s) and time(s) when the job will run. For more information, see
-	// Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
+	// The dates and times when the job is to run. For more information, see Cron
+	// expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
 	// in the AWS Glue DataBrew Developer Guide.
 	CronExpression *string `min:"1" type:"string"`
 
@@ -9173,7 +9672,7 @@ type SendProjectSessionActionInput struct {
 	// frame is from earlier in the view frame stack.
 	StepIndex *int64 `type:"integer"`
 
-	// Represents the data being being transformed during an action.
+	// Represents the data being transformed during an action.
 	ViewFrame *ViewFrame `type:"structure"`
 }
 
@@ -9735,14 +10234,15 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the file format of a dataset created from an S3 file or folder.
+	// The file format of a dataset that is created from an S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
-	// Options that define the structure of either Csv, Excel, or JSON input.
+	// Represents a set of options that define the structure of either comma-separated
+	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how DataBrew can find data, in either the AWS Glue Data Catalog
-	// or Amazon S3.
+	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -9751,6 +10251,9 @@ type UpdateDatasetInput struct {
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	PathOptions *PathOptions `type:"structure"`
 }
 
 // String returns the string representation
@@ -9785,6 +10288,11 @@ func (s *UpdateDatasetInput) Validate() error {
 			invalidParams.AddNested("Input", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PathOptions != nil {
+		if err := s.PathOptions.Validate(); err != nil {
+			invalidParams.AddNested("PathOptions", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9813,6 +10321,12 @@ func (s *UpdateDatasetInput) SetInput(v *Input) *UpdateDatasetInput {
 // SetName sets the Name field's value.
 func (s *UpdateDatasetInput) SetName(v string) *UpdateDatasetInput {
 	s.Name = &v
+	return s
+}
+
+// SetPathOptions sets the PathOptions field's value.
+func (s *UpdateDatasetInput) SetPathOptions(v *PathOptions) *UpdateDatasetInput {
+	s.PathOptions = v
 	return s
 }
 
@@ -9877,8 +10391,8 @@ type UpdateProfileJobInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// An Amazon S3 location (bucket name an object key) where DataBrew can read
-	// input data, or write output from a job.
+	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+	// can read input data, or write output from a job.
 	//
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`
@@ -10550,7 +11064,7 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Represents the data being being transformed during an action.
+// Represents the data being transformed during an action.
 type ViewFrame struct {
 	_ struct{} `type:"structure"`
 
@@ -10761,6 +11275,34 @@ func LogSubscription_Values() []string {
 }
 
 const (
+	// OrderDescending is a Order enum value
+	OrderDescending = "DESCENDING"
+
+	// OrderAscending is a Order enum value
+	OrderAscending = "ASCENDING"
+)
+
+// Order_Values returns all elements of the Order enum
+func Order_Values() []string {
+	return []string{
+		OrderDescending,
+		OrderAscending,
+	}
+}
+
+const (
+	// OrderedByLastModifiedDate is a OrderedBy enum value
+	OrderedByLastModifiedDate = "LAST_MODIFIED_DATE"
+)
+
+// OrderedBy_Values returns all elements of the OrderedBy enum
+func OrderedBy_Values() []string {
+	return []string{
+		OrderedByLastModifiedDate,
+	}
+}
+
+const (
 	// OutputFormatCsv is a OutputFormat enum value
 	OutputFormatCsv = "CSV"
 
@@ -10793,6 +11335,26 @@ func OutputFormat_Values() []string {
 		OutputFormatAvro,
 		OutputFormatOrc,
 		OutputFormatXml,
+	}
+}
+
+const (
+	// ParameterTypeDatetime is a ParameterType enum value
+	ParameterTypeDatetime = "Datetime"
+
+	// ParameterTypeNumber is a ParameterType enum value
+	ParameterTypeNumber = "Number"
+
+	// ParameterTypeString is a ParameterType enum value
+	ParameterTypeString = "String"
+)
+
+// ParameterType_Values returns all elements of the ParameterType enum
+func ParameterType_Values() []string {
+	return []string{
+		ParameterTypeDatetime,
+		ParameterTypeNumber,
+		ParameterTypeString,
 	}
 }
 
@@ -10886,6 +11448,9 @@ const (
 
 	// SourceDataCatalog is a Source enum value
 	SourceDataCatalog = "DATA-CATALOG"
+
+	// SourceDatabase is a Source enum value
+	SourceDatabase = "DATABASE"
 )
 
 // Source_Values returns all elements of the Source enum
@@ -10893,5 +11458,6 @@ func Source_Values() []string {
 	return []string{
 		SourceS3,
 		SourceDataCatalog,
+		SourceDatabase,
 	}
 }

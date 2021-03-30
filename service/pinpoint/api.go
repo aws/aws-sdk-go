@@ -10035,7 +10035,7 @@ func (c *Pinpoint) UpdateJourneyStateRequest(input *UpdateJourneyStateInput) (re
 
 // UpdateJourneyState API operation for Amazon Pinpoint.
 //
-// Cancels (stops) an active journey.
+// Pause, resume or cancels (stops) a journey.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25679,6 +25679,8 @@ type JourneyLimits struct {
 	// number of times, set this value to 0.
 	EndpointReentryCap *int64 `type:"integer"`
 
+	EndpointReentryInterval *string `type:"string"`
+
 	// The maximum number of messages that the journey can send each second.
 	MessagesPerSecond *int64 `type:"integer"`
 }
@@ -25702,6 +25704,12 @@ func (s *JourneyLimits) SetDailyCap(v int64) *JourneyLimits {
 // SetEndpointReentryCap sets the EndpointReentryCap field's value.
 func (s *JourneyLimits) SetEndpointReentryCap(v int64) *JourneyLimits {
 	s.EndpointReentryCap = &v
+	return s
+}
+
+// SetEndpointReentryInterval sets the EndpointReentryInterval field's value.
+func (s *JourneyLimits) SetEndpointReentryInterval(v string) *JourneyLimits {
+	s.EndpointReentryInterval = &v
 	return s
 }
 
@@ -25821,6 +25829,10 @@ type JourneyResponse struct {
 	//    the journey's schedule, the journey may currently be running or scheduled
 	//    to start running at a later time. If a journey's status is ACTIVE, you
 	//    can't add, change, or remove activities from it.
+	//
+	//    * PAUSED - The journey has been paused. Amazon Pinpoint continues to perform
+	//    activities that are currently in progress, until those activities are
+	//    complete.
 	//
 	//    * COMPLETED - The journey has been published and has finished running.
 	//    All participants have entered the journey and no participants are waiting
@@ -26063,7 +26075,8 @@ func (s *JourneySchedule) SetTimezone(v string) *JourneySchedule {
 type JourneyStateRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the journey. Currently, the only supported value is CANCELLED.
+	// The status of the journey. Currently, Supported values are ACTIVE, PAUSED,
+	// and CANCELLED
 	//
 	// If you cancel a journey, Amazon Pinpoint continues to perform activities
 	// that are currently in progress, until those activities are complete. Amazon
@@ -26074,6 +26087,13 @@ type JourneyStateRequest struct {
 	// After you cancel a journey, you can't add, change, or remove any activities
 	// from the journey. In addition, Amazon Pinpoint stops evaluating the journey
 	// and doesn't perform any activities that haven't started.
+	//
+	// When the journey is paused, Amazon Pinpoint continues to perform activities
+	// that are currently in progress, until those activities are complete. Endpoints
+	// will stop entering journeys when the journey is paused and will resume entering
+	// the journey after the journey is resumed. For wait activities, wait time
+	// is paused when the journey is paused. Currently, PAUSED only supports journeys
+	// with a segment refresh interval.
 	State *string `type:"string" enum:"State"`
 }
 
@@ -34906,6 +34926,8 @@ type WriteJourneyRequest struct {
 	// for the journey, as a duration in ISO 8601 format.
 	RefreshFrequency *string `type:"string"`
 
+	RefreshOnSegmentUpdate *bool `type:"boolean"`
+
 	// The schedule settings for the journey.
 	Schedule *JourneySchedule `type:"structure"`
 
@@ -34926,10 +34948,12 @@ type WriteJourneyRequest struct {
 	//    time. If a journey's status is ACTIVE, you can't add, change, or remove
 	//    activities from it.
 	//
-	// The CANCELLED, COMPLETED, and CLOSED values are not supported in requests
-	// to create or update a journey. To cancel a journey, use the Journey State
-	// resource.
+	// PAUSED, CANCELLED, COMPLETED, and CLOSED states are not supported in requests
+	// to create or update a journey. To cancel, pause, or resume a journey, use
+	// the Journey State resource.
 	State *string `type:"string" enum:"State"`
+
+	WaitForQuietTime *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -35018,6 +35042,12 @@ func (s *WriteJourneyRequest) SetRefreshFrequency(v string) *WriteJourneyRequest
 	return s
 }
 
+// SetRefreshOnSegmentUpdate sets the RefreshOnSegmentUpdate field's value.
+func (s *WriteJourneyRequest) SetRefreshOnSegmentUpdate(v bool) *WriteJourneyRequest {
+	s.RefreshOnSegmentUpdate = &v
+	return s
+}
+
 // SetSchedule sets the Schedule field's value.
 func (s *WriteJourneyRequest) SetSchedule(v *JourneySchedule) *WriteJourneyRequest {
 	s.Schedule = v
@@ -35039,6 +35069,12 @@ func (s *WriteJourneyRequest) SetStartCondition(v *StartCondition) *WriteJourney
 // SetState sets the State field's value.
 func (s *WriteJourneyRequest) SetState(v string) *WriteJourneyRequest {
 	s.State = &v
+	return s
+}
+
+// SetWaitForQuietTime sets the WaitForQuietTime field's value.
+func (s *WriteJourneyRequest) SetWaitForQuietTime(v bool) *WriteJourneyRequest {
+	s.WaitForQuietTime = &v
 	return s
 }
 
@@ -35749,6 +35785,9 @@ const (
 
 	// StateClosed is a State enum value
 	StateClosed = "CLOSED"
+
+	// StatePaused is a State enum value
+	StatePaused = "PAUSED"
 )
 
 // State_Values returns all elements of the State enum
@@ -35759,6 +35798,7 @@ func State_Values() []string {
 		StateCompleted,
 		StateCancelled,
 		StateClosed,
+		StatePaused,
 	}
 }
 
