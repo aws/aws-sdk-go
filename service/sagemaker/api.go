@@ -475,7 +475,7 @@ func (c *SageMaker) CreateAppRequest(input *CreateAppInput) (req *request.Reques
 
 // CreateApp API operation for Amazon SageMaker Service.
 //
-// Creates a running App for the specified UserProfile. Supported Apps are JupyterServer
+// Creates a running app for the specified UserProfile. Supported apps are JupyterServer
 // and KernelGateway. This operation is automatically invoked by Amazon SageMaker
 // Studio upon access to the associated Domain, and when new kernel configurations
 // are selected by the user. A user may have multiple Apps active simultaneously.
@@ -727,9 +727,7 @@ func (c *SageMaker) CreateAutoMLJobRequest(input *CreateAutoMLJobInput) (req *re
 //
 // Creates an Autopilot job.
 //
-// Find the best performing model after you run an Autopilot job by calling
-// . Deploy that model by following the steps described in Step 6.1: Deploy
-// the Model to Amazon SageMaker Hosting Services (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html).
+// Find the best performing model after you run an Autopilot job by calling .
 //
 // For information about how to use Autopilot, see Automate Model Development
 // with Amazon SageMaker Autopilot (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html).
@@ -7869,7 +7867,7 @@ func (c *SageMaker) DescribeAutoMLJobRequest(input *DescribeAutoMLJobInput) (req
 
 // DescribeAutoMLJob API operation for Amazon SageMaker Service.
 //
-// Returns information about an Amazon SageMaker job.
+// Returns information about an Amazon SageMaker AutoML job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12564,7 +12562,7 @@ func (c *SageMaker) ListCandidatesForAutoMLJobRequest(input *ListCandidatesForAu
 
 // ListCandidatesForAutoMLJob API operation for Amazon SageMaker Service.
 //
-// List the Candidates created for the job.
+// List the candidates created for the job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -24405,6 +24403,9 @@ type AutoMLCandidate struct {
 	// CandidateName is a required field
 	CandidateName *string `min:"1" type:"string" required:"true"`
 
+	// The AutoML candidate's properties.
+	CandidateProperties *CandidateProperties `type:"structure"`
+
 	// The candidate's status.
 	//
 	// CandidateStatus is a required field
@@ -24456,6 +24457,12 @@ func (s AutoMLCandidate) GoString() string {
 // SetCandidateName sets the CandidateName field's value.
 func (s *AutoMLCandidate) SetCandidateName(v string) *AutoMLCandidate {
 	s.CandidateName = &v
+	return s
+}
+
+// SetCandidateProperties sets the CandidateProperties field's value.
+func (s *AutoMLCandidate) SetCandidateProperties(v *CandidateProperties) *AutoMLCandidate {
+	s.CandidateProperties = v
 	return s
 }
 
@@ -24562,20 +24569,21 @@ func (s *AutoMLCandidateStep) SetCandidateStepType(v string) *AutoMLCandidateSte
 	return s
 }
 
-// Similar to Channel. A channel is a named input source that training algorithms
-// can consume. Refer to Channel for detailed descriptions.
+// A channel is a named input source that training algorithms can consume. For
+// more information, see .
 type AutoMLChannel struct {
 	_ struct{} `type:"structure"`
 
 	// You can use Gzip or None. The default value is None.
 	CompressionType *string `type:"string" enum:"CompressionType"`
 
-	// The data source.
+	// The data source for an AutoML channel.
 	//
 	// DataSource is a required field
 	DataSource *AutoMLDataSource `type:"structure" required:"true"`
 
-	// The name of the target variable in supervised learning, a.k.a. 'y'.
+	// The name of the target variable in supervised learning, usually represented
+	// by 'y'.
 	//
 	// TargetAttributeName is a required field
 	TargetAttributeName *string `min:"1" type:"string" required:"true"`
@@ -24634,21 +24642,19 @@ func (s *AutoMLChannel) SetTargetAttributeName(v string) *AutoMLChannel {
 }
 
 // A list of container definitions that describe the different containers that
-// make up one AutoML candidate. Refer to ContainerDefinition for more details.
+// make up an AutoML candidate. For more information, see .
 type AutoMLContainerDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// Environment variables to set in the container. Refer to ContainerDefinition
-	// for more details.
+	// Environment variables to set in the container. For more information, see .
 	Environment map[string]*string `type:"map"`
 
-	// The ECR path of the container. Refer to ContainerDefinition for more details.
+	// The ECR path of the container. For more information, see .
 	//
 	// Image is a required field
 	Image *string `type:"string" required:"true"`
 
-	// The location of the model artifacts. Refer to ContainerDefinition for more
-	// details.
+	// The location of the model artifacts. For more information, see .
 	//
 	// ModelDataUrl is a required field
 	ModelDataUrl *string `type:"string" required:"true"`
@@ -24824,12 +24830,12 @@ func (s *AutoMLJobCompletionCriteria) SetMaxRuntimePerTrainingJobInSeconds(v int
 	return s
 }
 
-// A collection of settings used for a job.
+// A collection of settings used for an AutoML job.
 type AutoMLJobConfig struct {
 	_ struct{} `type:"structure"`
 
-	// How long a job is allowed to run, or how many candidates a job is allowed
-	// to generate.
+	// How long an AutoML job is allowed to run, or how many candidates a job is
+	// allowed to generate.
 	CompletionCriteria *AutoMLJobCompletionCriteria `type:"structure"`
 
 	// Security configuration for traffic encryption or Amazon VPC settings.
@@ -24982,31 +24988,31 @@ func (s *AutoMLJobObjective) SetMetricName(v string) *AutoMLJobObjective {
 	return s
 }
 
-// Provides a summary about a job.
+// Provides a summary about an AutoML job.
 type AutoMLJobSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the job.
+	// The ARN of the AutoML job.
 	//
 	// AutoMLJobArn is a required field
 	AutoMLJobArn *string `min:"1" type:"string" required:"true"`
 
-	// The name of the object you are requesting.
+	// The name of the AutoML you are requesting.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
 
-	// The job's secondary status.
+	// The secondary status of the AutoML job.
 	//
 	// AutoMLJobSecondaryStatus is a required field
 	AutoMLJobSecondaryStatus *string `type:"string" required:"true" enum:"AutoMLJobSecondaryStatus"`
 
-	// The job's status.
+	// The status of the AutoML job.
 	//
 	// AutoMLJobStatus is a required field
 	AutoMLJobStatus *string `type:"string" required:"true" enum:"AutoMLJobStatus"`
 
-	// When the job was created.
+	// When the AutoML job was created.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
@@ -25014,13 +25020,16 @@ type AutoMLJobSummary struct {
 	// The end time of an AutoML job.
 	EndTime *time.Time `type:"timestamp"`
 
-	// The failure reason of a job.
+	// The failure reason of an AutoML job.
 	FailureReason *string `type:"string"`
 
-	// When the job was last modified.
+	// When the AutoML job was last modified.
 	//
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The list of reasons for partial failures within an AutoML job.
+	PartialFailureReasons []*AutoMLPartialFailureReason `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -25081,6 +25090,12 @@ func (s *AutoMLJobSummary) SetLastModifiedTime(v time.Time) *AutoMLJobSummary {
 	return s
 }
 
+// SetPartialFailureReasons sets the PartialFailureReasons field's value.
+func (s *AutoMLJobSummary) SetPartialFailureReasons(v []*AutoMLPartialFailureReason) *AutoMLJobSummary {
+	s.PartialFailureReasons = v
+	return s
+}
+
 // The output data configuration.
 type AutoMLOutputDataConfig struct {
 	_ struct{} `type:"structure"`
@@ -25126,6 +25141,30 @@ func (s *AutoMLOutputDataConfig) SetKmsKeyId(v string) *AutoMLOutputDataConfig {
 // SetS3OutputPath sets the S3OutputPath field's value.
 func (s *AutoMLOutputDataConfig) SetS3OutputPath(v string) *AutoMLOutputDataConfig {
 	s.S3OutputPath = &v
+	return s
+}
+
+// The reason for a partial failure of an AutoML job.
+type AutoMLPartialFailureReason struct {
+	_ struct{} `type:"structure"`
+
+	// The message containing the reason for a partial failure of an AutoML job.
+	PartialFailureMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AutoMLPartialFailureReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoMLPartialFailureReason) GoString() string {
+	return s.String()
+}
+
+// SetPartialFailureMessage sets the PartialFailureMessage field's value.
+func (s *AutoMLPartialFailureReason) SetPartialFailureMessage(v string) *AutoMLPartialFailureReason {
+	s.PartialFailureMessage = &v
 	return s
 }
 
@@ -25408,6 +25447,56 @@ func (s CacheHitResult) GoString() string {
 // SetSourcePipelineExecutionArn sets the SourcePipelineExecutionArn field's value.
 func (s *CacheHitResult) SetSourcePipelineExecutionArn(v string) *CacheHitResult {
 	s.SourcePipelineExecutionArn = &v
+	return s
+}
+
+// Location of artifacts for an AutoML candidate job.
+type CandidateArtifactLocations struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 prefix to the explainability artifacts generated for the AutoML candidate.
+	//
+	// Explainability is a required field
+	Explainability *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CandidateArtifactLocations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CandidateArtifactLocations) GoString() string {
+	return s.String()
+}
+
+// SetExplainability sets the Explainability field's value.
+func (s *CandidateArtifactLocations) SetExplainability(v string) *CandidateArtifactLocations {
+	s.Explainability = &v
+	return s
+}
+
+// The properties of an AutoML candidate job.
+type CandidateProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 prefix to the artifacts generated for an AutoML candidate.
+	CandidateArtifactLocations *CandidateArtifactLocations `type:"structure"`
+}
+
+// String returns the string representation
+func (s CandidateProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CandidateProperties) GoString() string {
+	return s.String()
+}
+
+// SetCandidateArtifactLocations sets the CandidateArtifactLocations field's value.
+func (s *CandidateProperties) SetCandidateArtifactLocations(v *CandidateArtifactLocations) *CandidateProperties {
+	s.CandidateArtifactLocations = v
 	return s
 }
 
@@ -27282,7 +27371,8 @@ type CreateAppInput struct {
 	// AppName is a required field
 	AppName *string `type:"string" required:"true"`
 
-	// The type of app.
+	// The type of app. Supported apps are JupyterServer and KernelGateway. TensorBoard
+	// is not supported.
 	//
 	// AppType is a required field
 	AppType *string `type:"string" required:"true" enum:"AppType"`
@@ -27539,37 +27629,42 @@ func (s *CreateArtifactOutput) SetArtifactArn(v string) *CreateArtifactOutput {
 type CreateAutoMLJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains CompletionCriteria and SecurityConfig.
+	// Contains CompletionCriteria and SecurityConfig settings for the AutoML job.
 	AutoMLJobConfig *AutoMLJobConfig `type:"structure"`
 
-	// Identifies an Autopilot job. Must be unique to your account and is case-insensitive.
+	// Identifies an Autopilot job. The name must be unique to your account and
+	// is case-insensitive.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
 
-	// Defines the objective of a an AutoML job. You provide a AutoMLJobObjective$MetricName
-	// and Autopilot infers whether to minimize or maximize it. If a metric is not
-	// specified, the most commonly used ObjectiveMetric for problem type is automaically
-	// selected.
+	// Defines the objective metric used to measure the predictive quality of an
+	// AutoML job. You provide a AutoMLJobObjective$MetricName and Autopilot infers
+	// whether to minimize or maximize it.
 	AutoMLJobObjective *AutoMLJobObjective `type:"structure"`
 
-	// Generates possible candidates without training a model. A candidate is a
-	// combination of data preprocessors, algorithms, and algorithm parameter settings.
+	// Generates possible candidates without training the models. A candidate is
+	// a combination of data preprocessors, algorithms, and algorithm parameter
+	// settings.
 	GenerateCandidateDefinitionsOnly *bool `type:"boolean"`
 
-	// Similar to InputDataConfig supported by Tuning. Format(s) supported: CSV.
-	// Minimum of 500 rows.
+	// An array of channel objects that describes the input data and its location.
+	// Each channel is a named input source. Similar to InputDataConfig supported
+	// by . Format(s) supported: CSV. Minimum of 500 rows.
 	//
 	// InputDataConfig is a required field
 	InputDataConfig []*AutoMLChannel `min:"1" type:"list" required:"true"`
 
-	// Similar to OutputDataConfig supported by Tuning. Format(s) supported: CSV.
+	// Provides information about encryption and the Amazon S3 output path needed
+	// to store artifacts from an AutoML job. Format(s) supported: CSV.
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *AutoMLOutputDataConfig `type:"structure" required:"true"`
 
-	// Defines the kind of preprocessing and algorithms intended for the candidates.
-	// Options include: BinaryClassification, MulticlassClassification, and Regression.
+	// Defines the type of supervised learning available for the candidates. Options
+	// include: BinaryClassification, MulticlassClassification, and Regression.
+	// For more information, see Amazon SageMaker Autopilot problem types and algorithm
+	// support (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development-problem-types.html).
 	ProblemType *string `type:"string" enum:"ProblemType"`
 
 	// The ARN of the role that is used to access the data.
@@ -27715,7 +27810,7 @@ func (s *CreateAutoMLJobInput) SetTags(v []*Tag) *CreateAutoMLJobInput {
 type CreateAutoMLJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// When a job is created, it is assigned a unique ARN.
+	// The unique ARN that is assigned to the AutoML job when it is created.
 	//
 	// AutoMLJobArn is a required field
 	AutoMLJobArn *string `min:"1" type:"string" required:"true"`
@@ -28523,8 +28618,7 @@ type CreateDomainInput struct {
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
 
 	// The default settings to use to create a user profile when UserSettings isn't
-	// specified in the call to the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
-	// API.
+	// specified in the call to the CreateUserProfile API.
 	//
 	// SecurityGroups is aggregated when specified in both calls. For all other
 	// settings in UserSettings, the values specified in CreateUserProfile take
@@ -28555,8 +28649,7 @@ type CreateDomainInput struct {
 
 	// Tags to associated with the Domain. Each tag consists of a key and an optional
 	// value. Tag keys must be unique per resource. Tags are searchable using the
-	// Search (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_Search.html)
-	// API.
+	// Search API.
 	Tags []*Tag `type:"list"`
 
 	// The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
@@ -38451,7 +38544,7 @@ func (s *DescribeArtifactOutput) SetSource(v *ArtifactSource) *DescribeArtifactO
 type DescribeAutoMLJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Request information about a job using that job's unique name.
+	// Requests information about an AutoML job using its unique name.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
@@ -38492,7 +38585,7 @@ func (s *DescribeAutoMLJobInput) SetAutoMLJobName(v string) *DescribeAutoMLJobIn
 type DescribeAutoMLJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the job's ARN.
+	// Returns the ARN of the AutoML job.
 	//
 	// AutoMLJobArn is a required field
 	AutoMLJobArn *string `min:"1" type:"string" required:"true"`
@@ -38500,10 +38593,10 @@ type DescribeAutoMLJobOutput struct {
 	// Returns information on the job's artifacts found in AutoMLJobArtifacts.
 	AutoMLJobArtifacts *AutoMLJobArtifacts `type:"structure"`
 
-	// Returns the job's config.
+	// Returns the configuration for the AutoML job.
 	AutoMLJobConfig *AutoMLJobConfig `type:"structure"`
 
-	// Returns the name of a job.
+	// Returns the name of the AutoML job.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
@@ -38511,12 +38604,12 @@ type DescribeAutoMLJobOutput struct {
 	// Returns the job's objective.
 	AutoMLJobObjective *AutoMLJobObjective `type:"structure"`
 
-	// Returns the job's AutoMLJobSecondaryStatus.
+	// Returns the secondary status of the AutoML job.
 	//
 	// AutoMLJobSecondaryStatus is a required field
 	AutoMLJobSecondaryStatus *string `type:"string" required:"true" enum:"AutoMLJobSecondaryStatus"`
 
-	// Returns the job's AutoMLJobStatus.
+	// Returns the status of the AutoML job's AutoMLJobStatus.
 	//
 	// AutoMLJobStatus is a required field
 	AutoMLJobStatus *string `type:"string" required:"true" enum:"AutoMLJobStatus"`
@@ -38524,12 +38617,12 @@ type DescribeAutoMLJobOutput struct {
 	// Returns the job's BestCandidate.
 	BestCandidate *AutoMLCandidate `type:"structure"`
 
-	// Returns the job's creation time.
+	// Returns the creation time of the AutoML job.
 	//
 	// CreationTime is a required field
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// Returns the job's end time.
+	// Returns the end time of the AutoML job.
 	EndTime *time.Time `type:"timestamp"`
 
 	// Returns the job's FailureReason.
@@ -38538,7 +38631,7 @@ type DescribeAutoMLJobOutput struct {
 	// Returns the job's output from GenerateCandidateDefinitionsOnly.
 	GenerateCandidateDefinitionsOnly *bool `type:"boolean"`
 
-	// Returns the job's input data config.
+	// Returns the input data configuration for the AutoML job..
 	//
 	// InputDataConfig is a required field
 	InputDataConfig []*AutoMLChannel `min:"1" type:"list" required:"true"`
@@ -38553,12 +38646,15 @@ type DescribeAutoMLJobOutput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *AutoMLOutputDataConfig `type:"structure" required:"true"`
 
+	// Returns a list of reasons for partial failures within an AutoML job.
+	PartialFailureReasons []*AutoMLPartialFailureReason `min:"1" type:"list"`
+
 	// Returns the job's problem type.
 	ProblemType *string `type:"string" enum:"ProblemType"`
 
-	// This contains ProblemType, AutoMLJobObjective and CompletionCriteria. They're
-	// auto-inferred values, if not provided by you. If you do provide them, then
-	// they'll be the same as provided.
+	// This contains ProblemType, AutoMLJobObjective and CompletionCriteria. If
+	// you do not provide these values, they are auto-inferred. If you do provide
+	// them, they are the values you provide.
 	ResolvedAttributes *ResolvedAttributes `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
@@ -38666,6 +38762,12 @@ func (s *DescribeAutoMLJobOutput) SetLastModifiedTime(v time.Time) *DescribeAuto
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *DescribeAutoMLJobOutput) SetOutputDataConfig(v *AutoMLOutputDataConfig) *DescribeAutoMLJobOutput {
 	s.OutputDataConfig = v
+	return s
+}
+
+// SetPartialFailureReasons sets the PartialFailureReasons field's value.
+func (s *DescribeAutoMLJobOutput) SetPartialFailureReasons(v []*AutoMLPartialFailureReason) *DescribeAutoMLJobOutput {
+	s.PartialFailureReasons = v
 	return s
 }
 
@@ -53719,15 +53821,15 @@ func (s *ListAutoMLJobsOutput) SetNextToken(v string) *ListAutoMLJobsOutput {
 type ListCandidatesForAutoMLJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// List the Candidates created for the job by providing the job's name.
+	// List the candidates created for the job by providing the job's name.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
 
-	// List the Candidates for the job and filter by candidate name.
+	// List the candidates for the job and filter by candidate name.
 	CandidateNameEquals *string `min:"1" type:"string"`
 
-	// List the job's Candidates up to a specified limit.
+	// List the job's candidates up to a specified limit.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the previous response was truncated, you receive this token. Use it in
@@ -53740,7 +53842,7 @@ type ListCandidatesForAutoMLJobInput struct {
 	// The sort order for the results. The default is Ascending.
 	SortOrder *string `type:"string" enum:"AutoMLSortOrder"`
 
-	// List the Candidates for the job and filter by status.
+	// List the candidates for the job and filter by status.
 	StatusEquals *string `type:"string" enum:"CandidateStatus"`
 }
 
@@ -69344,10 +69446,9 @@ func (s *ServiceCatalogProvisioningDetails) SetProvisioningParameters(v []*Provi
 }
 
 // Specifies options for sharing SageMaker Studio notebooks. These settings
-// are specified as part of DefaultUserSettings when the CreateDomain (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html)
-// API is called, and as part of UserSettings when the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
-// API is called. When SharingSettings is not specified, notebook sharing isn't
-// allowed.
+// are specified as part of DefaultUserSettings when the CreateDomain API is
+// called, and as part of UserSettings when the CreateUserProfile API is called.
+// When SharingSettings is not specified, notebook sharing isn't allowed.
 type SharingSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -76444,9 +76545,8 @@ func (s *UserProfileDetails) SetUserProfileName(v string) *UserProfileDetails {
 }
 
 // A collection of settings that apply to users of Amazon SageMaker Studio.
-// These settings are specified when the CreateUserProfile (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateUserProfile.html)
-// API is called, and as DefaultUserSettings when the CreateDomain (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateDomain.html)
-// API is called.
+// These settings are specified when the CreateUserProfile API is called, and
+// as DefaultUserSettings when the CreateDomain API is called.
 //
 // SecurityGroups is aggregated when specified in both calls. For all other
 // settings in UserSettings, the values specified in CreateUserProfile take

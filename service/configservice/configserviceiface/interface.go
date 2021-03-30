@@ -136,6 +136,10 @@ type ConfigServiceAPI interface {
 	DescribeAggregateComplianceByConfigRulesWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConfigRulesInput, ...request.Option) (*configservice.DescribeAggregateComplianceByConfigRulesOutput, error)
 	DescribeAggregateComplianceByConfigRulesRequest(*configservice.DescribeAggregateComplianceByConfigRulesInput) (*request.Request, *configservice.DescribeAggregateComplianceByConfigRulesOutput)
 
+	DescribeAggregateComplianceByConformancePacks(*configservice.DescribeAggregateComplianceByConformancePacksInput) (*configservice.DescribeAggregateComplianceByConformancePacksOutput, error)
+	DescribeAggregateComplianceByConformancePacksWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConformancePacksInput, ...request.Option) (*configservice.DescribeAggregateComplianceByConformancePacksOutput, error)
+	DescribeAggregateComplianceByConformancePacksRequest(*configservice.DescribeAggregateComplianceByConformancePacksInput) (*request.Request, *configservice.DescribeAggregateComplianceByConformancePacksOutput)
+
 	DescribeAggregationAuthorizations(*configservice.DescribeAggregationAuthorizationsInput) (*configservice.DescribeAggregationAuthorizationsOutput, error)
 	DescribeAggregationAuthorizationsWithContext(aws.Context, *configservice.DescribeAggregationAuthorizationsInput, ...request.Option) (*configservice.DescribeAggregationAuthorizationsOutput, error)
 	DescribeAggregationAuthorizationsRequest(*configservice.DescribeAggregationAuthorizationsInput) (*request.Request, *configservice.DescribeAggregationAuthorizationsOutput)
@@ -241,6 +245,10 @@ type ConfigServiceAPI interface {
 	GetAggregateConfigRuleComplianceSummary(*configservice.GetAggregateConfigRuleComplianceSummaryInput) (*configservice.GetAggregateConfigRuleComplianceSummaryOutput, error)
 	GetAggregateConfigRuleComplianceSummaryWithContext(aws.Context, *configservice.GetAggregateConfigRuleComplianceSummaryInput, ...request.Option) (*configservice.GetAggregateConfigRuleComplianceSummaryOutput, error)
 	GetAggregateConfigRuleComplianceSummaryRequest(*configservice.GetAggregateConfigRuleComplianceSummaryInput) (*request.Request, *configservice.GetAggregateConfigRuleComplianceSummaryOutput)
+
+	GetAggregateConformancePackComplianceSummary(*configservice.GetAggregateConformancePackComplianceSummaryInput) (*configservice.GetAggregateConformancePackComplianceSummaryOutput, error)
+	GetAggregateConformancePackComplianceSummaryWithContext(aws.Context, *configservice.GetAggregateConformancePackComplianceSummaryInput, ...request.Option) (*configservice.GetAggregateConformancePackComplianceSummaryOutput, error)
+	GetAggregateConformancePackComplianceSummaryRequest(*configservice.GetAggregateConformancePackComplianceSummaryInput) (*request.Request, *configservice.GetAggregateConformancePackComplianceSummaryOutput)
 
 	GetAggregateDiscoveredResourceCounts(*configservice.GetAggregateDiscoveredResourceCountsInput) (*configservice.GetAggregateDiscoveredResourceCountsOutput, error)
 	GetAggregateDiscoveredResourceCountsWithContext(aws.Context, *configservice.GetAggregateDiscoveredResourceCountsInput, ...request.Option) (*configservice.GetAggregateDiscoveredResourceCountsOutput, error)

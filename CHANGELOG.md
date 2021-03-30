@@ -1,3 +1,20 @@
+Release v1.38.9 (2021-03-30)
+===
+
+### Service Client Updates
+* `service/config`: Updates service API and documentation
+* `service/databrew`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, waiters, and paginators
+  * ReplaceRootVolume feature enables customers to replace the EBS root volume of a running instance to a previously known state. Add support to grant account-level access to the EC2 serial console
+* `service/ec2-instance-connect`: Updates service API and documentation
+* `service/frauddetector`: Updates service API, documentation, and paginators
+* `service/monitoring`: Updates service API, documentation, and paginators
+  * SDK update for new Metric Streams feature
+* `service/pinpoint`: Updates service API and documentation
+  * Added support for journey pause/resume, journey updatable import segment and journey quiet time wait.
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot now supports 1) feature importance reports for AutoML jobs and 2) PartialFailures for AutoML jobs
+
 Release v1.38.8 (2021-03-29)
 ===
 

@@ -1900,6 +1900,108 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesWithContext(ctx 
 	return out, req.Send()
 }
 
+const opDescribeAggregateComplianceByConformancePacks = "DescribeAggregateComplianceByConformancePacks"
+
+// DescribeAggregateComplianceByConformancePacksRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAggregateComplianceByConformancePacks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAggregateComplianceByConformancePacks for more information on using the DescribeAggregateComplianceByConformancePacks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAggregateComplianceByConformancePacksRequest method.
+//    req, resp := client.DescribeAggregateComplianceByConformancePacksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeAggregateComplianceByConformancePacks
+func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(input *DescribeAggregateComplianceByConformancePacksInput) (req *request.Request, output *DescribeAggregateComplianceByConformancePacksOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAggregateComplianceByConformancePacks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAggregateComplianceByConformancePacksInput{}
+	}
+
+	output = &DescribeAggregateComplianceByConformancePacksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAggregateComplianceByConformancePacks API operation for AWS Config.
+//
+// Returns a list of the conformance packs and their associated compliance status
+// with the count of compliant and noncompliant AWS Config rules within each
+// conformance pack.
+//
+// The results can return an empty result page, but if you have a nextToken,
+// the results are displayed on the next page.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation DescribeAggregateComplianceByConformancePacks for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   For PutStoredQuery, you will see this exception if there are missing required
+//   fields or if the input value fails the validation, or if you are trying to
+//   create more than 300 queries.
+//
+//   For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this
+//   exception if there are missing required fields or if the input value fails
+//   the validation.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+//   * NoSuchConfigurationAggregatorException
+//   You have specified a configuration aggregator that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeAggregateComplianceByConformancePacks
+func (c *ConfigService) DescribeAggregateComplianceByConformancePacks(input *DescribeAggregateComplianceByConformancePacksInput) (*DescribeAggregateComplianceByConformancePacksOutput, error) {
+	req, out := c.DescribeAggregateComplianceByConformancePacksRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAggregateComplianceByConformancePacksWithContext is the same as DescribeAggregateComplianceByConformancePacks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAggregateComplianceByConformancePacks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeAggregateComplianceByConformancePacksWithContext(ctx aws.Context, input *DescribeAggregateComplianceByConformancePacksInput, opts ...request.Option) (*DescribeAggregateComplianceByConformancePacksOutput, error) {
+	req, out := c.DescribeAggregateComplianceByConformancePacksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAggregationAuthorizations = "DescribeAggregationAuthorizations"
 
 // DescribeAggregationAuthorizationsRequest generates a "aws/request.Request" representing the
@@ -4397,6 +4499,108 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummary(input *GetAggreg
 // for more information on using Contexts.
 func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryWithContext(ctx aws.Context, input *GetAggregateConfigRuleComplianceSummaryInput, opts ...request.Option) (*GetAggregateConfigRuleComplianceSummaryOutput, error) {
 	req, out := c.GetAggregateConfigRuleComplianceSummaryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAggregateConformancePackComplianceSummary = "GetAggregateConformancePackComplianceSummary"
+
+// GetAggregateConformancePackComplianceSummaryRequest generates a "aws/request.Request" representing the
+// client's request for the GetAggregateConformancePackComplianceSummary operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAggregateConformancePackComplianceSummary for more information on using the GetAggregateConformancePackComplianceSummary
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAggregateConformancePackComplianceSummaryRequest method.
+//    req, resp := client.GetAggregateConformancePackComplianceSummaryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateConformancePackComplianceSummary
+func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(input *GetAggregateConformancePackComplianceSummaryInput) (req *request.Request, output *GetAggregateConformancePackComplianceSummaryOutput) {
+	op := &request.Operation{
+		Name:       opGetAggregateConformancePackComplianceSummary,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAggregateConformancePackComplianceSummaryInput{}
+	}
+
+	output = &GetAggregateConformancePackComplianceSummaryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAggregateConformancePackComplianceSummary API operation for AWS Config.
+//
+// Returns the count of compliant and noncompliant conformance packs across
+// all AWS Accounts and AWS Regions. You can filter based on AWS Account ID
+// or AWS Region.
+//
+// The results can return an empty result page, but if you have a nextToken,
+// the results are displayed on the next page.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Config's
+// API operation GetAggregateConformancePackComplianceSummary for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The requested action is not valid.
+//
+//   For PutStoredQuery, you will see this exception if there are missing required
+//   fields or if the input value fails the validation, or if you are trying to
+//   create more than 300 queries.
+//
+//   For GetStoredQuery, ListStoredQuery, and DeleteStoredQuery you will see this
+//   exception if there are missing required fields or if the input value fails
+//   the validation.
+//
+//   * InvalidLimitException
+//   The specified limit is outside the allowable range.
+//
+//   * InvalidNextTokenException
+//   The specified next token is invalid. Specify the nextToken string that was
+//   returned in the previous response to get the next page of results.
+//
+//   * NoSuchConfigurationAggregatorException
+//   You have specified a configuration aggregator that does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/GetAggregateConformancePackComplianceSummary
+func (c *ConfigService) GetAggregateConformancePackComplianceSummary(input *GetAggregateConformancePackComplianceSummaryInput) (*GetAggregateConformancePackComplianceSummaryOutput, error) {
+	req, out := c.GetAggregateConformancePackComplianceSummaryRequest(input)
+	return out, req.Send()
+}
+
+// GetAggregateConformancePackComplianceSummaryWithContext is the same as GetAggregateConformancePackComplianceSummary with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAggregateConformancePackComplianceSummary for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetAggregateConformancePackComplianceSummaryWithContext(ctx aws.Context, input *GetAggregateConformancePackComplianceSummaryInput, opts ...request.Option) (*GetAggregateConformancePackComplianceSummaryOutput, error) {
+	req, out := c.GetAggregateConformancePackComplianceSummaryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7387,7 +7591,7 @@ func (c *ConfigService) PutOrganizationConformancePackRequest(input *PutOrganiza
 // UPDATE_IN_PROGRESS until the conformance pack is created or updated. You
 // cannot update a conformance pack while it is in this state.
 //
-// You can create 6 conformance packs with 25 AWS Config rules in each pack
+// You can create 50 conformance packs with 25 AWS Config rules in each pack
 // and 3 delegated administrator per organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9012,6 +9216,68 @@ func (s *AggregateComplianceByConfigRule) SetConfigRuleName(v string) *Aggregate
 	return s
 }
 
+// Provides aggregate compliance of the conformance pack. Indicates whether
+// a conformance pack is compliant based on the name of the conformance pack,
+// account ID, and region.
+//
+// A conformance pack is compliant if all of the rules in that conformance packs
+// are compliant. It is noncompliant if any of the rules are not compliant.
+//
+// If a conformance pack has rules that return INSUFFICIENT_DATA, the conformance
+// pack returns INSUFFICIENT_DATA only if all the rules within that conformance
+// pack return INSUFFICIENT_DATA. If some of the rules in a conformance pack
+// are compliant and others return INSUFFICIENT_DATA, the conformance pack shows
+// compliant.
+type AggregateComplianceByConformancePack struct {
+	_ struct{} `type:"structure"`
+
+	// The 12-digit AWS account ID of the source account.
+	AccountId *string `type:"string"`
+
+	// The source AWS Region from where the data is aggregated.
+	AwsRegion *string `min:"1" type:"string"`
+
+	// The compliance status of the conformance pack.
+	Compliance *AggregateConformancePackCompliance `type:"structure"`
+
+	// The name of the conformance pack.
+	ConformancePackName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AggregateComplianceByConformancePack) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateComplianceByConformancePack) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AggregateComplianceByConformancePack) SetAccountId(v string) *AggregateComplianceByConformancePack {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *AggregateComplianceByConformancePack) SetAwsRegion(v string) *AggregateComplianceByConformancePack {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetCompliance sets the Compliance field's value.
+func (s *AggregateComplianceByConformancePack) SetCompliance(v *AggregateConformancePackCompliance) *AggregateComplianceByConformancePack {
+	s.Compliance = v
+	return s
+}
+
+// SetConformancePackName sets the ConformancePackName field's value.
+func (s *AggregateComplianceByConformancePack) SetConformancePackName(v string) *AggregateComplianceByConformancePack {
+	s.ConformancePackName = &v
+	return s
+}
+
 // Returns the number of compliant and noncompliant rules for one or more accounts
 // and regions in an aggregator.
 type AggregateComplianceCount struct {
@@ -9043,6 +9309,242 @@ func (s *AggregateComplianceCount) SetComplianceSummary(v *ComplianceSummary) *A
 // SetGroupName sets the GroupName field's value.
 func (s *AggregateComplianceCount) SetGroupName(v string) *AggregateComplianceCount {
 	s.GroupName = &v
+	return s
+}
+
+// Provides the number of compliant and noncompliant rules within a conformance
+// pack. Also provides the total count of compliant rules, noncompliant rules,
+// and the rules that do not have any applicable resources to evaluate upon
+// resulting in insufficient data.
+type AggregateConformancePackCompliance struct {
+	_ struct{} `type:"structure"`
+
+	// The compliance status of the conformance pack.
+	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
+
+	// The number of compliant AWS Config Rules.
+	CompliantRuleCount *int64 `type:"integer"`
+
+	// The number of noncompliant AWS Config Rules.
+	NonCompliantRuleCount *int64 `type:"integer"`
+
+	// Total number of compliant rules, noncompliant rules, and the rules that do
+	// not have any applicable resources to evaluate upon resulting in insufficient
+	// data.
+	TotalRuleCount *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AggregateConformancePackCompliance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateConformancePackCompliance) GoString() string {
+	return s.String()
+}
+
+// SetComplianceType sets the ComplianceType field's value.
+func (s *AggregateConformancePackCompliance) SetComplianceType(v string) *AggregateConformancePackCompliance {
+	s.ComplianceType = &v
+	return s
+}
+
+// SetCompliantRuleCount sets the CompliantRuleCount field's value.
+func (s *AggregateConformancePackCompliance) SetCompliantRuleCount(v int64) *AggregateConformancePackCompliance {
+	s.CompliantRuleCount = &v
+	return s
+}
+
+// SetNonCompliantRuleCount sets the NonCompliantRuleCount field's value.
+func (s *AggregateConformancePackCompliance) SetNonCompliantRuleCount(v int64) *AggregateConformancePackCompliance {
+	s.NonCompliantRuleCount = &v
+	return s
+}
+
+// SetTotalRuleCount sets the TotalRuleCount field's value.
+func (s *AggregateConformancePackCompliance) SetTotalRuleCount(v int64) *AggregateConformancePackCompliance {
+	s.TotalRuleCount = &v
+	return s
+}
+
+// The number of conformance packs that are compliant and noncompliant.
+type AggregateConformancePackComplianceCount struct {
+	_ struct{} `type:"structure"`
+
+	// Number of compliant conformance packs.
+	CompliantConformancePackCount *int64 `type:"integer"`
+
+	// Number of noncompliant conformance packs.
+	NonCompliantConformancePackCount *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AggregateConformancePackComplianceCount) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateConformancePackComplianceCount) GoString() string {
+	return s.String()
+}
+
+// SetCompliantConformancePackCount sets the CompliantConformancePackCount field's value.
+func (s *AggregateConformancePackComplianceCount) SetCompliantConformancePackCount(v int64) *AggregateConformancePackComplianceCount {
+	s.CompliantConformancePackCount = &v
+	return s
+}
+
+// SetNonCompliantConformancePackCount sets the NonCompliantConformancePackCount field's value.
+func (s *AggregateConformancePackComplianceCount) SetNonCompliantConformancePackCount(v int64) *AggregateConformancePackComplianceCount {
+	s.NonCompliantConformancePackCount = &v
+	return s
+}
+
+// Filters the conformance packs based on an account ID, region, compliance
+// type, and the name of the conformance pack.
+type AggregateConformancePackComplianceFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The 12-digit AWS account ID of the source account.
+	AccountId *string `type:"string"`
+
+	// The source AWS Region from where the data is aggregated.
+	AwsRegion *string `min:"1" type:"string"`
+
+	// The compliance status of the conformance pack.
+	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
+
+	// The name of the conformance pack.
+	ConformancePackName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AggregateConformancePackComplianceFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateConformancePackComplianceFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AggregateConformancePackComplianceFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AggregateConformancePackComplianceFilters"}
+	if s.AwsRegion != nil && len(*s.AwsRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsRegion", 1))
+	}
+	if s.ConformancePackName != nil && len(*s.ConformancePackName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConformancePackName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AggregateConformancePackComplianceFilters) SetAccountId(v string) *AggregateConformancePackComplianceFilters {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *AggregateConformancePackComplianceFilters) SetAwsRegion(v string) *AggregateConformancePackComplianceFilters {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetComplianceType sets the ComplianceType field's value.
+func (s *AggregateConformancePackComplianceFilters) SetComplianceType(v string) *AggregateConformancePackComplianceFilters {
+	s.ComplianceType = &v
+	return s
+}
+
+// SetConformancePackName sets the ConformancePackName field's value.
+func (s *AggregateConformancePackComplianceFilters) SetConformancePackName(v string) *AggregateConformancePackComplianceFilters {
+	s.ConformancePackName = &v
+	return s
+}
+
+// Provides a summary of compliance based on either account ID or region.
+type AggregateConformancePackComplianceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Returns an AggregateConformancePackComplianceCount object.
+	ComplianceSummary *AggregateConformancePackComplianceCount `type:"structure"`
+
+	// Groups the result based on AWS Account ID or AWS Region.
+	GroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AggregateConformancePackComplianceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateConformancePackComplianceSummary) GoString() string {
+	return s.String()
+}
+
+// SetComplianceSummary sets the ComplianceSummary field's value.
+func (s *AggregateConformancePackComplianceSummary) SetComplianceSummary(v *AggregateConformancePackComplianceCount) *AggregateConformancePackComplianceSummary {
+	s.ComplianceSummary = v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AggregateConformancePackComplianceSummary) SetGroupName(v string) *AggregateConformancePackComplianceSummary {
+	s.GroupName = &v
+	return s
+}
+
+// Filters the results based on account ID and region.
+type AggregateConformancePackComplianceSummaryFilters struct {
+	_ struct{} `type:"structure"`
+
+	// The 12-digit AWS account ID of the source account.
+	AccountId *string `type:"string"`
+
+	// The source AWS Region from where the data is aggregated.
+	AwsRegion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AggregateConformancePackComplianceSummaryFilters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregateConformancePackComplianceSummaryFilters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AggregateConformancePackComplianceSummaryFilters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AggregateConformancePackComplianceSummaryFilters"}
+	if s.AwsRegion != nil && len(*s.AwsRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsRegion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AggregateConformancePackComplianceSummaryFilters) SetAccountId(v string) *AggregateConformancePackComplianceSummaryFilters {
+	s.AccountId = &v
+	return s
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *AggregateConformancePackComplianceSummaryFilters) SetAwsRegion(v string) *AggregateConformancePackComplianceSummaryFilters {
+	s.AwsRegion = &v
 	return s
 }
 
@@ -11035,7 +11537,8 @@ type ConformancePackComplianceFilters struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT and NON_COMPLIANT.
+	// The allowed values are COMPLIANT and NON_COMPLIANT. INSUFFICIENT_DATA is
+	// not supported.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
 	// Filters the results by AWS Config rule names.
@@ -11068,8 +11571,8 @@ func (s *ConformancePackComplianceFilters) SetConfigRuleNames(v []*string) *Conf
 type ConformancePackComplianceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the conformance pack. The allowed values are COMPLIANT and
-	// NON_COMPLIANT.
+	// The status of the conformance pack. The allowed values are COMPLIANT, NON_COMPLIANT
+	// and INSUFFICIENT_DATA.
 	//
 	// ConformancePackComplianceStatus is a required field
 	ConformancePackComplianceStatus *string `type:"string" required:"true" enum:"ConformancePackComplianceType"`
@@ -11208,7 +11711,8 @@ type ConformancePackEvaluationFilters struct {
 
 	// Filters the results by compliance.
 	//
-	// The allowed values are COMPLIANT and NON_COMPLIANT.
+	// The allowed values are COMPLIANT and NON_COMPLIANT. INSUFFICIENT_DATA is
+	// not supported.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
 	// Filters the results by AWS Config rule names.
@@ -11281,6 +11785,7 @@ type ConformancePackEvaluationResult struct {
 	Annotation *string `type:"string"`
 
 	// The compliance type. The allowed values are COMPLIANT and NON_COMPLIANT.
+	// INSUFFICIENT_DATA is not supported.
 	//
 	// ComplianceType is a required field
 	ComplianceType *string `type:"string" required:"true" enum:"ConformancePackComplianceType"`
@@ -11401,13 +11906,18 @@ func (s *ConformancePackInputParameter) SetParameterValue(v string) *Conformance
 type ConformancePackRuleCompliance struct {
 	_ struct{} `type:"structure"`
 
-	// Compliance of the AWS Config rule
+	// Compliance of the AWS Config rule.
 	//
-	// The allowed values are COMPLIANT and NON_COMPLIANT.
+	// The allowed values are COMPLIANT, NON_COMPLIANT, and INSUFFICIENT_DATA.
 	ComplianceType *string `type:"string" enum:"ConformancePackComplianceType"`
 
 	// Name of the config rule.
 	ConfigRuleName *string `min:"1" type:"string"`
+
+	// Controls for the conformance pack. A control is a process to prevent or detect
+	// problems while meeting objectives. A control can align with a specific compliance
+	// regime or map to internal controls defined by an organization.
+	Controls []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -11429,6 +11939,12 @@ func (s *ConformancePackRuleCompliance) SetComplianceType(v string) *Conformance
 // SetConfigRuleName sets the ConfigRuleName field's value.
 func (s *ConformancePackRuleCompliance) SetConfigRuleName(v string) *ConformancePackRuleCompliance {
 	s.ConfigRuleName = &v
+	return s
+}
+
+// SetControls sets the Controls field's value.
+func (s *ConformancePackRuleCompliance) SetControls(v []*string) *ConformancePackRuleCompliance {
+	s.Controls = v
 	return s
 }
 
@@ -12857,6 +13373,114 @@ func (s *DescribeAggregateComplianceByConfigRulesOutput) SetAggregateComplianceB
 
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeAggregateComplianceByConfigRulesOutput) SetNextToken(v string) *DescribeAggregateComplianceByConfigRulesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeAggregateComplianceByConformancePacksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration aggregator.
+	//
+	// ConfigurationAggregatorName is a required field
+	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
+
+	// Filters the result by AggregateConformancePackComplianceFilters object.
+	Filters *AggregateConformancePackComplianceFilters `type:"structure"`
+
+	// The maximum number of conformance packs details returned on each page. The
+	// default is maximum. If you specify 0, AWS Config uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAggregateComplianceByConformancePacksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAggregateComplianceByConformancePacksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAggregateComplianceByConformancePacksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAggregateComplianceByConformancePacksInput"}
+	if s.ConfigurationAggregatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationAggregatorName"))
+	}
+	if s.ConfigurationAggregatorName != nil && len(*s.ConfigurationAggregatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationAggregatorName", 1))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationAggregatorName sets the ConfigurationAggregatorName field's value.
+func (s *DescribeAggregateComplianceByConformancePacksInput) SetConfigurationAggregatorName(v string) *DescribeAggregateComplianceByConformancePacksInput {
+	s.ConfigurationAggregatorName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeAggregateComplianceByConformancePacksInput) SetFilters(v *AggregateConformancePackComplianceFilters) *DescribeAggregateComplianceByConformancePacksInput {
+	s.Filters = v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeAggregateComplianceByConformancePacksInput) SetLimit(v int64) *DescribeAggregateComplianceByConformancePacksInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAggregateComplianceByConformancePacksInput) SetNextToken(v string) *DescribeAggregateComplianceByConformancePacksInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeAggregateComplianceByConformancePacksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the AggregateComplianceByConformancePack object.
+	AggregateComplianceByConformancePacks []*AggregateComplianceByConformancePack `type:"list"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAggregateComplianceByConformancePacksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAggregateComplianceByConformancePacksOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregateComplianceByConformancePacks sets the AggregateComplianceByConformancePacks field's value.
+func (s *DescribeAggregateComplianceByConformancePacksOutput) SetAggregateComplianceByConformancePacks(v []*AggregateComplianceByConformancePack) *DescribeAggregateComplianceByConformancePacksOutput {
+	s.AggregateComplianceByConformancePacks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAggregateComplianceByConformancePacksOutput) SetNextToken(v string) *DescribeAggregateComplianceByConformancePacksOutput {
 	s.NextToken = &v
 	return s
 }
@@ -15490,6 +16114,133 @@ func (s *GetAggregateConfigRuleComplianceSummaryOutput) SetGroupByKey(v string) 
 
 // SetNextToken sets the NextToken field's value.
 func (s *GetAggregateConfigRuleComplianceSummaryOutput) SetNextToken(v string) *GetAggregateConfigRuleComplianceSummaryOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetAggregateConformancePackComplianceSummaryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the configuration aggregator.
+	//
+	// ConfigurationAggregatorName is a required field
+	ConfigurationAggregatorName *string `min:"1" type:"string" required:"true"`
+
+	// Filters the results based on the AggregateConformancePackComplianceSummaryFilters
+	// object.
+	Filters *AggregateConformancePackComplianceSummaryFilters `type:"structure"`
+
+	// Groups the result based on AWS Account ID or AWS Region.
+	GroupByKey *string `type:"string" enum:"AggregateConformancePackComplianceSummaryGroupKey"`
+
+	// The maximum number of results returned on each page. The default is maximum.
+	// If you specify 0, AWS Config uses the default.
+	Limit *int64 `type:"integer"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetAggregateConformancePackComplianceSummaryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAggregateConformancePackComplianceSummaryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAggregateConformancePackComplianceSummaryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAggregateConformancePackComplianceSummaryInput"}
+	if s.ConfigurationAggregatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigurationAggregatorName"))
+	}
+	if s.ConfigurationAggregatorName != nil && len(*s.ConfigurationAggregatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigurationAggregatorName", 1))
+	}
+	if s.Filters != nil {
+		if err := s.Filters.Validate(); err != nil {
+			invalidParams.AddNested("Filters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfigurationAggregatorName sets the ConfigurationAggregatorName field's value.
+func (s *GetAggregateConformancePackComplianceSummaryInput) SetConfigurationAggregatorName(v string) *GetAggregateConformancePackComplianceSummaryInput {
+	s.ConfigurationAggregatorName = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetAggregateConformancePackComplianceSummaryInput) SetFilters(v *AggregateConformancePackComplianceSummaryFilters) *GetAggregateConformancePackComplianceSummaryInput {
+	s.Filters = v
+	return s
+}
+
+// SetGroupByKey sets the GroupByKey field's value.
+func (s *GetAggregateConformancePackComplianceSummaryInput) SetGroupByKey(v string) *GetAggregateConformancePackComplianceSummaryInput {
+	s.GroupByKey = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *GetAggregateConformancePackComplianceSummaryInput) SetLimit(v int64) *GetAggregateConformancePackComplianceSummaryInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetAggregateConformancePackComplianceSummaryInput) SetNextToken(v string) *GetAggregateConformancePackComplianceSummaryInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetAggregateConformancePackComplianceSummaryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a list of AggregateConformancePackComplianceSummary object.
+	AggregateConformancePackComplianceSummaries []*AggregateConformancePackComplianceSummary `type:"list"`
+
+	// Groups the result based on AWS Account ID or AWS Region.
+	GroupByKey *string `min:"1" type:"string"`
+
+	// The nextToken string returned on a previous page that you use to get the
+	// next page of results in a paginated response.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetAggregateConformancePackComplianceSummaryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAggregateConformancePackComplianceSummaryOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregateConformancePackComplianceSummaries sets the AggregateConformancePackComplianceSummaries field's value.
+func (s *GetAggregateConformancePackComplianceSummaryOutput) SetAggregateConformancePackComplianceSummaries(v []*AggregateConformancePackComplianceSummary) *GetAggregateConformancePackComplianceSummaryOutput {
+	s.AggregateConformancePackComplianceSummaries = v
+	return s
+}
+
+// SetGroupByKey sets the GroupByKey field's value.
+func (s *GetAggregateConformancePackComplianceSummaryOutput) SetGroupByKey(v string) *GetAggregateConformancePackComplianceSummaryOutput {
+	s.GroupByKey = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetAggregateConformancePackComplianceSummaryOutput) SetNextToken(v string) *GetAggregateConformancePackComplianceSummaryOutput {
 	s.NextToken = &v
 	return s
 }
@@ -21655,7 +22406,7 @@ type PutOrganizationConformancePackInput struct {
 
 	// Amazon S3 bucket where AWS Config stores conformance pack templates.
 	//
-	// This field is optional.
+	// This field is optional. If used, it must be prefixed with awsconfigconforms.
 	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
@@ -22347,9 +23098,9 @@ type RecordingGroup struct {
 	// or AWS::CloudTrail::Trail).
 	//
 	// To record all configuration changes, you must set the allSupported option
-	// to false.
+	// to true.
 	//
-	// If you set this option to true, when AWS Config adds support for a new type
+	// If you set this option to false, when AWS Config adds support for a new type
 	// of resource, it will not record resources of that type unless you manually
 	// add that type to your recording group.
 	//
@@ -24940,6 +25691,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AggregateConformancePackComplianceSummaryGroupKeyAccountId is a AggregateConformancePackComplianceSummaryGroupKey enum value
+	AggregateConformancePackComplianceSummaryGroupKeyAccountId = "ACCOUNT_ID"
+
+	// AggregateConformancePackComplianceSummaryGroupKeyAwsRegion is a AggregateConformancePackComplianceSummaryGroupKey enum value
+	AggregateConformancePackComplianceSummaryGroupKeyAwsRegion = "AWS_REGION"
+)
+
+// AggregateConformancePackComplianceSummaryGroupKey_Values returns all elements of the AggregateConformancePackComplianceSummaryGroupKey enum
+func AggregateConformancePackComplianceSummaryGroupKey_Values() []string {
+	return []string{
+		AggregateConformancePackComplianceSummaryGroupKeyAccountId,
+		AggregateConformancePackComplianceSummaryGroupKeyAwsRegion,
+	}
+}
+
+const (
 	// AggregatedSourceStatusTypeFailed is a AggregatedSourceStatusType enum value
 	AggregatedSourceStatusTypeFailed = "FAILED"
 
@@ -25767,6 +26534,9 @@ const (
 	// ResourceTypeAwsShieldRegionalProtection is a ResourceType enum value
 	ResourceTypeAwsShieldRegionalProtection = "AWS::ShieldRegional::Protection"
 
+	// ResourceTypeAwsConfigConformancePackCompliance is a ResourceType enum value
+	ResourceTypeAwsConfigConformancePackCompliance = "AWS::Config::ConformancePackCompliance"
+
 	// ResourceTypeAwsConfigResourceCompliance is a ResourceType enum value
 	ResourceTypeAwsConfigResourceCompliance = "AWS::Config::ResourceCompliance"
 
@@ -25897,6 +26667,7 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsSsmPatchCompliance,
 		ResourceTypeAwsShieldProtection,
 		ResourceTypeAwsShieldRegionalProtection,
+		ResourceTypeAwsConfigConformancePackCompliance,
 		ResourceTypeAwsConfigResourceCompliance,
 		ResourceTypeAwsApiGatewayStage,
 		ResourceTypeAwsApiGatewayRestApi,

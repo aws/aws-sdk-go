@@ -76,6 +76,10 @@ type CloudWatchAPI interface {
 	DeleteInsightRulesWithContext(aws.Context, *cloudwatch.DeleteInsightRulesInput, ...request.Option) (*cloudwatch.DeleteInsightRulesOutput, error)
 	DeleteInsightRulesRequest(*cloudwatch.DeleteInsightRulesInput) (*request.Request, *cloudwatch.DeleteInsightRulesOutput)
 
+	DeleteMetricStream(*cloudwatch.DeleteMetricStreamInput) (*cloudwatch.DeleteMetricStreamOutput, error)
+	DeleteMetricStreamWithContext(aws.Context, *cloudwatch.DeleteMetricStreamInput, ...request.Option) (*cloudwatch.DeleteMetricStreamOutput, error)
+	DeleteMetricStreamRequest(*cloudwatch.DeleteMetricStreamInput) (*request.Request, *cloudwatch.DeleteMetricStreamOutput)
+
 	DescribeAlarmHistory(*cloudwatch.DescribeAlarmHistoryInput) (*cloudwatch.DescribeAlarmHistoryOutput, error)
 	DescribeAlarmHistoryWithContext(aws.Context, *cloudwatch.DescribeAlarmHistoryInput, ...request.Option) (*cloudwatch.DescribeAlarmHistoryOutput, error)
 	DescribeAlarmHistoryRequest(*cloudwatch.DescribeAlarmHistoryInput) (*request.Request, *cloudwatch.DescribeAlarmHistoryOutput)
@@ -140,6 +144,10 @@ type CloudWatchAPI interface {
 	GetMetricStatisticsWithContext(aws.Context, *cloudwatch.GetMetricStatisticsInput, ...request.Option) (*cloudwatch.GetMetricStatisticsOutput, error)
 	GetMetricStatisticsRequest(*cloudwatch.GetMetricStatisticsInput) (*request.Request, *cloudwatch.GetMetricStatisticsOutput)
 
+	GetMetricStream(*cloudwatch.GetMetricStreamInput) (*cloudwatch.GetMetricStreamOutput, error)
+	GetMetricStreamWithContext(aws.Context, *cloudwatch.GetMetricStreamInput, ...request.Option) (*cloudwatch.GetMetricStreamOutput, error)
+	GetMetricStreamRequest(*cloudwatch.GetMetricStreamInput) (*request.Request, *cloudwatch.GetMetricStreamOutput)
+
 	GetMetricWidgetImage(*cloudwatch.GetMetricWidgetImageInput) (*cloudwatch.GetMetricWidgetImageOutput, error)
 	GetMetricWidgetImageWithContext(aws.Context, *cloudwatch.GetMetricWidgetImageInput, ...request.Option) (*cloudwatch.GetMetricWidgetImageOutput, error)
 	GetMetricWidgetImageRequest(*cloudwatch.GetMetricWidgetImageInput) (*request.Request, *cloudwatch.GetMetricWidgetImageOutput)
@@ -150,6 +158,13 @@ type CloudWatchAPI interface {
 
 	ListDashboardsPages(*cloudwatch.ListDashboardsInput, func(*cloudwatch.ListDashboardsOutput, bool) bool) error
 	ListDashboardsPagesWithContext(aws.Context, *cloudwatch.ListDashboardsInput, func(*cloudwatch.ListDashboardsOutput, bool) bool, ...request.Option) error
+
+	ListMetricStreams(*cloudwatch.ListMetricStreamsInput) (*cloudwatch.ListMetricStreamsOutput, error)
+	ListMetricStreamsWithContext(aws.Context, *cloudwatch.ListMetricStreamsInput, ...request.Option) (*cloudwatch.ListMetricStreamsOutput, error)
+	ListMetricStreamsRequest(*cloudwatch.ListMetricStreamsInput) (*request.Request, *cloudwatch.ListMetricStreamsOutput)
+
+	ListMetricStreamsPages(*cloudwatch.ListMetricStreamsInput, func(*cloudwatch.ListMetricStreamsOutput, bool) bool) error
+	ListMetricStreamsPagesWithContext(aws.Context, *cloudwatch.ListMetricStreamsInput, func(*cloudwatch.ListMetricStreamsOutput, bool) bool, ...request.Option) error
 
 	ListMetrics(*cloudwatch.ListMetricsInput) (*cloudwatch.ListMetricsOutput, error)
 	ListMetricsWithContext(aws.Context, *cloudwatch.ListMetricsInput, ...request.Option) (*cloudwatch.ListMetricsOutput, error)
@@ -186,9 +201,21 @@ type CloudWatchAPI interface {
 	PutMetricDataWithContext(aws.Context, *cloudwatch.PutMetricDataInput, ...request.Option) (*cloudwatch.PutMetricDataOutput, error)
 	PutMetricDataRequest(*cloudwatch.PutMetricDataInput) (*request.Request, *cloudwatch.PutMetricDataOutput)
 
+	PutMetricStream(*cloudwatch.PutMetricStreamInput) (*cloudwatch.PutMetricStreamOutput, error)
+	PutMetricStreamWithContext(aws.Context, *cloudwatch.PutMetricStreamInput, ...request.Option) (*cloudwatch.PutMetricStreamOutput, error)
+	PutMetricStreamRequest(*cloudwatch.PutMetricStreamInput) (*request.Request, *cloudwatch.PutMetricStreamOutput)
+
 	SetAlarmState(*cloudwatch.SetAlarmStateInput) (*cloudwatch.SetAlarmStateOutput, error)
 	SetAlarmStateWithContext(aws.Context, *cloudwatch.SetAlarmStateInput, ...request.Option) (*cloudwatch.SetAlarmStateOutput, error)
 	SetAlarmStateRequest(*cloudwatch.SetAlarmStateInput) (*request.Request, *cloudwatch.SetAlarmStateOutput)
+
+	StartMetricStreams(*cloudwatch.StartMetricStreamsInput) (*cloudwatch.StartMetricStreamsOutput, error)
+	StartMetricStreamsWithContext(aws.Context, *cloudwatch.StartMetricStreamsInput, ...request.Option) (*cloudwatch.StartMetricStreamsOutput, error)
+	StartMetricStreamsRequest(*cloudwatch.StartMetricStreamsInput) (*request.Request, *cloudwatch.StartMetricStreamsOutput)
+
+	StopMetricStreams(*cloudwatch.StopMetricStreamsInput) (*cloudwatch.StopMetricStreamsOutput, error)
+	StopMetricStreamsWithContext(aws.Context, *cloudwatch.StopMetricStreamsInput, ...request.Option) (*cloudwatch.StopMetricStreamsOutput, error)
+	StopMetricStreamsRequest(*cloudwatch.StopMetricStreamsInput) (*request.Request, *cloudwatch.StopMetricStreamsOutput)
 
 	TagResource(*cloudwatch.TagResourceInput) (*cloudwatch.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *cloudwatch.TagResourceInput, ...request.Option) (*cloudwatch.TagResourceOutput, error)

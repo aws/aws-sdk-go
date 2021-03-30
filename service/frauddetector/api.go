@@ -192,6 +192,185 @@ func (c *FraudDetector) BatchGetVariableWithContext(ctx aws.Context, input *Batc
 	return out, req.Send()
 }
 
+const opCancelBatchPredictionJob = "CancelBatchPredictionJob"
+
+// CancelBatchPredictionJobRequest generates a "aws/request.Request" representing the
+// client's request for the CancelBatchPredictionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelBatchPredictionJob for more information on using the CancelBatchPredictionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelBatchPredictionJobRequest method.
+//    req, resp := client.CancelBatchPredictionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchPredictionJob
+func (c *FraudDetector) CancelBatchPredictionJobRequest(input *CancelBatchPredictionJobInput) (req *request.Request, output *CancelBatchPredictionJobOutput) {
+	op := &request.Operation{
+		Name:       opCancelBatchPredictionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelBatchPredictionJobInput{}
+	}
+
+	output = &CancelBatchPredictionJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelBatchPredictionJob API operation for Amazon Fraud Detector.
+//
+// Cancels the specified batch prediction job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation CancelBatchPredictionJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CancelBatchPredictionJob
+func (c *FraudDetector) CancelBatchPredictionJob(input *CancelBatchPredictionJobInput) (*CancelBatchPredictionJobOutput, error) {
+	req, out := c.CancelBatchPredictionJobRequest(input)
+	return out, req.Send()
+}
+
+// CancelBatchPredictionJobWithContext is the same as CancelBatchPredictionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelBatchPredictionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) CancelBatchPredictionJobWithContext(ctx aws.Context, input *CancelBatchPredictionJobInput, opts ...request.Option) (*CancelBatchPredictionJobOutput, error) {
+	req, out := c.CancelBatchPredictionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateBatchPredictionJob = "CreateBatchPredictionJob"
+
+// CreateBatchPredictionJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBatchPredictionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBatchPredictionJob for more information on using the CreateBatchPredictionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBatchPredictionJobRequest method.
+//    req, resp := client.CreateBatchPredictionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
+func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredictionJobInput) (req *request.Request, output *CreateBatchPredictionJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateBatchPredictionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBatchPredictionJobInput{}
+	}
+
+	output = &CreateBatchPredictionJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateBatchPredictionJob API operation for Amazon Fraud Detector.
+//
+// Creates a batch prediction job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation CreateBatchPredictionJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
+func (c *FraudDetector) CreateBatchPredictionJob(input *CreateBatchPredictionJobInput) (*CreateBatchPredictionJobOutput, error) {
+	req, out := c.CreateBatchPredictionJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateBatchPredictionJobWithContext is the same as CreateBatchPredictionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBatchPredictionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) CreateBatchPredictionJobWithContext(ctx aws.Context, input *CreateBatchPredictionJobInput, opts ...request.Option) (*CreateBatchPredictionJobOutput, error) {
+	req, out := c.CreateBatchPredictionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDetectorVersion = "CreateDetectorVersion"
 
 // CreateDetectorVersionRequest generates a "aws/request.Request" representing the
@@ -639,6 +818,97 @@ func (c *FraudDetector) CreateVariable(input *CreateVariableInput) (*CreateVaria
 // for more information on using Contexts.
 func (c *FraudDetector) CreateVariableWithContext(ctx aws.Context, input *CreateVariableInput, opts ...request.Option) (*CreateVariableOutput, error) {
 	req, out := c.CreateVariableRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBatchPredictionJob = "DeleteBatchPredictionJob"
+
+// DeleteBatchPredictionJobRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBatchPredictionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBatchPredictionJob for more information on using the DeleteBatchPredictionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBatchPredictionJobRequest method.
+//    req, resp := client.DeleteBatchPredictionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchPredictionJob
+func (c *FraudDetector) DeleteBatchPredictionJobRequest(input *DeleteBatchPredictionJobInput) (req *request.Request, output *DeleteBatchPredictionJobOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBatchPredictionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteBatchPredictionJobInput{}
+	}
+
+	output = &DeleteBatchPredictionJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteBatchPredictionJob API operation for Amazon Fraud Detector.
+//
+// Deletes a batch prediction job.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteBatchPredictionJob for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteBatchPredictionJob
+func (c *FraudDetector) DeleteBatchPredictionJob(input *DeleteBatchPredictionJobInput) (*DeleteBatchPredictionJobOutput, error) {
+	req, out := c.DeleteBatchPredictionJobRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBatchPredictionJobWithContext is the same as DeleteBatchPredictionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBatchPredictionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteBatchPredictionJobWithContext(ctx aws.Context, input *DeleteBatchPredictionJobInput, opts ...request.Option) (*DeleteBatchPredictionJobOutput, error) {
+	req, out := c.DeleteBatchPredictionJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2174,6 +2444,159 @@ func (c *FraudDetector) DescribeModelVersionsPagesWithContext(ctx aws.Context, i
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeModelVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetBatchPredictionJobs = "GetBatchPredictionJobs"
+
+// GetBatchPredictionJobsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBatchPredictionJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBatchPredictionJobs for more information on using the GetBatchPredictionJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBatchPredictionJobsRequest method.
+//    req, resp := client.GetBatchPredictionJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchPredictionJobs
+func (c *FraudDetector) GetBatchPredictionJobsRequest(input *GetBatchPredictionJobsInput) (req *request.Request, output *GetBatchPredictionJobsOutput) {
+	op := &request.Operation{
+		Name:       opGetBatchPredictionJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetBatchPredictionJobsInput{}
+	}
+
+	output = &GetBatchPredictionJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBatchPredictionJobs API operation for Amazon Fraud Detector.
+//
+// Gets all batch prediction jobs or a specific job if you specify a job ID.
+// This is a paginated API. If you provide a null maxResults, this action retrieves
+// a maximum of 50 records per page. If you provide a maxResults, the value
+// must be between 1 and 50. To get the next page results, provide the pagination
+// token from the GetBatchPredictionJobsResponse as part of your request. A
+// null pagination token fetches the records from the beginning.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation GetBatchPredictionJobs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetBatchPredictionJobs
+func (c *FraudDetector) GetBatchPredictionJobs(input *GetBatchPredictionJobsInput) (*GetBatchPredictionJobsOutput, error) {
+	req, out := c.GetBatchPredictionJobsRequest(input)
+	return out, req.Send()
+}
+
+// GetBatchPredictionJobsWithContext is the same as GetBatchPredictionJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBatchPredictionJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetBatchPredictionJobsWithContext(ctx aws.Context, input *GetBatchPredictionJobsInput, opts ...request.Option) (*GetBatchPredictionJobsOutput, error) {
+	req, out := c.GetBatchPredictionJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetBatchPredictionJobsPages iterates over the pages of a GetBatchPredictionJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetBatchPredictionJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetBatchPredictionJobs operation.
+//    pageNum := 0
+//    err := client.GetBatchPredictionJobsPages(params,
+//        func(page *frauddetector.GetBatchPredictionJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FraudDetector) GetBatchPredictionJobsPages(input *GetBatchPredictionJobsInput, fn func(*GetBatchPredictionJobsOutput, bool) bool) error {
+	return c.GetBatchPredictionJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetBatchPredictionJobsPagesWithContext same as GetBatchPredictionJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) GetBatchPredictionJobsPagesWithContext(ctx aws.Context, input *GetBatchPredictionJobsInput, fn func(*GetBatchPredictionJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetBatchPredictionJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetBatchPredictionJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetBatchPredictionJobsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6072,6 +6495,212 @@ func (s *BatchGetVariableOutput) SetVariables(v []*Variable) *BatchGetVariableOu
 	return s
 }
 
+// The batch prediction details.
+type BatchPrediction struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of batch prediction job.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// Timestamp of when the batch prediction job comleted.
+	CompletionTime *string `locationName:"completionTime" min:"11" type:"string"`
+
+	// The name of the detector.
+	DetectorName *string `locationName:"detectorName" min:"1" type:"string"`
+
+	// The detector version.
+	DetectorVersion *string `locationName:"detectorVersion" min:"3" type:"string"`
+
+	// The name of the event type.
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
+
+	// The reason a batch prediction job failed.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The ARN of the IAM role to use for this job request.
+	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string"`
+
+	// The Amazon S3 location of your training file.
+	InputPath *string `locationName:"inputPath" min:"1" type:"string"`
+
+	// The job ID for the batch prediction.
+	JobId *string `locationName:"jobId" min:"1" type:"string"`
+
+	// Timestamp of most recent heartbeat indicating the batch prediction job was
+	// making progress.
+	LastHeartbeatTime *string `locationName:"lastHeartbeatTime" min:"11" type:"string"`
+
+	// The Amazon S3 location of your output file.
+	OutputPath *string `locationName:"outputPath" min:"1" type:"string"`
+
+	// The number of records processed by the batch prediction job.
+	ProcessedRecordsCount *int64 `locationName:"processedRecordsCount" type:"integer"`
+
+	// Timestamp of when the batch prediction job started.
+	StartTime *string `locationName:"startTime" min:"11" type:"string"`
+
+	// The batch prediction status.
+	Status *string `locationName:"status" type:"string" enum:"AsyncJobStatus"`
+
+	// The total number of records in the batch prediction job.
+	TotalRecordsCount *int64 `locationName:"totalRecordsCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s BatchPrediction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchPrediction) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *BatchPrediction) SetArn(v string) *BatchPrediction {
+	s.Arn = &v
+	return s
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *BatchPrediction) SetCompletionTime(v string) *BatchPrediction {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetDetectorName sets the DetectorName field's value.
+func (s *BatchPrediction) SetDetectorName(v string) *BatchPrediction {
+	s.DetectorName = &v
+	return s
+}
+
+// SetDetectorVersion sets the DetectorVersion field's value.
+func (s *BatchPrediction) SetDetectorVersion(v string) *BatchPrediction {
+	s.DetectorVersion = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *BatchPrediction) SetEventTypeName(v string) *BatchPrediction {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *BatchPrediction) SetFailureReason(v string) *BatchPrediction {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *BatchPrediction) SetIamRoleArn(v string) *BatchPrediction {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetInputPath sets the InputPath field's value.
+func (s *BatchPrediction) SetInputPath(v string) *BatchPrediction {
+	s.InputPath = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *BatchPrediction) SetJobId(v string) *BatchPrediction {
+	s.JobId = &v
+	return s
+}
+
+// SetLastHeartbeatTime sets the LastHeartbeatTime field's value.
+func (s *BatchPrediction) SetLastHeartbeatTime(v string) *BatchPrediction {
+	s.LastHeartbeatTime = &v
+	return s
+}
+
+// SetOutputPath sets the OutputPath field's value.
+func (s *BatchPrediction) SetOutputPath(v string) *BatchPrediction {
+	s.OutputPath = &v
+	return s
+}
+
+// SetProcessedRecordsCount sets the ProcessedRecordsCount field's value.
+func (s *BatchPrediction) SetProcessedRecordsCount(v int64) *BatchPrediction {
+	s.ProcessedRecordsCount = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *BatchPrediction) SetStartTime(v string) *BatchPrediction {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *BatchPrediction) SetStatus(v string) *BatchPrediction {
+	s.Status = &v
+	return s
+}
+
+// SetTotalRecordsCount sets the TotalRecordsCount field's value.
+func (s *BatchPrediction) SetTotalRecordsCount(v int64) *BatchPrediction {
+	s.TotalRecordsCount = &v
+	return s
+}
+
+type CancelBatchPredictionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch prediction job to cancel.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelBatchPredictionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelBatchPredictionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelBatchPredictionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelBatchPredictionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CancelBatchPredictionJobInput) SetJobId(v string) *CancelBatchPredictionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type CancelBatchPredictionJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelBatchPredictionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelBatchPredictionJobOutput) GoString() string {
+	return s.String()
+}
+
 // An exception indicating there was a conflict during a delete operation. The
 // following delete operations can cause a conflict exception:
 //
@@ -6137,6 +6766,177 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateBatchPredictionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the detector.
+	//
+	// DetectorName is a required field
+	DetectorName *string `locationName:"detectorName" min:"1" type:"string" required:"true"`
+
+	// The detector version.
+	DetectorVersion *string `locationName:"detectorVersion" min:"1" type:"string"`
+
+	// The name of the event type.
+	//
+	// EventTypeName is a required field
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
+
+	// The ARN of the IAM role to use for this job request.
+	//
+	// IamRoleArn is a required field
+	IamRoleArn *string `locationName:"iamRoleArn" min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 location of your training file.
+	//
+	// InputPath is a required field
+	InputPath *string `locationName:"inputPath" min:"1" type:"string" required:"true"`
+
+	// The ID of the batch prediction job.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+
+	// The Amazon S3 location of your output file.
+	//
+	// OutputPath is a required field
+	OutputPath *string `locationName:"outputPath" min:"1" type:"string" required:"true"`
+
+	// A collection of key and value pairs.
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateBatchPredictionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBatchPredictionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBatchPredictionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBatchPredictionJobInput"}
+	if s.DetectorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DetectorName"))
+	}
+	if s.DetectorName != nil && len(*s.DetectorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorName", 1))
+	}
+	if s.DetectorVersion != nil && len(*s.DetectorVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DetectorVersion", 1))
+	}
+	if s.EventTypeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
+	}
+	if s.IamRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("IamRoleArn"))
+	}
+	if s.IamRoleArn != nil && len(*s.IamRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IamRoleArn", 1))
+	}
+	if s.InputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputPath"))
+	}
+	if s.InputPath != nil && len(*s.InputPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputPath", 1))
+	}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.OutputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputPath"))
+	}
+	if s.OutputPath != nil && len(*s.OutputPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputPath", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetectorName sets the DetectorName field's value.
+func (s *CreateBatchPredictionJobInput) SetDetectorName(v string) *CreateBatchPredictionJobInput {
+	s.DetectorName = &v
+	return s
+}
+
+// SetDetectorVersion sets the DetectorVersion field's value.
+func (s *CreateBatchPredictionJobInput) SetDetectorVersion(v string) *CreateBatchPredictionJobInput {
+	s.DetectorVersion = &v
+	return s
+}
+
+// SetEventTypeName sets the EventTypeName field's value.
+func (s *CreateBatchPredictionJobInput) SetEventTypeName(v string) *CreateBatchPredictionJobInput {
+	s.EventTypeName = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *CreateBatchPredictionJobInput) SetIamRoleArn(v string) *CreateBatchPredictionJobInput {
+	s.IamRoleArn = &v
+	return s
+}
+
+// SetInputPath sets the InputPath field's value.
+func (s *CreateBatchPredictionJobInput) SetInputPath(v string) *CreateBatchPredictionJobInput {
+	s.InputPath = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CreateBatchPredictionJobInput) SetJobId(v string) *CreateBatchPredictionJobInput {
+	s.JobId = &v
+	return s
+}
+
+// SetOutputPath sets the OutputPath field's value.
+func (s *CreateBatchPredictionJobInput) SetOutputPath(v string) *CreateBatchPredictionJobInput {
+	s.OutputPath = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBatchPredictionJobInput) SetTags(v []*Tag) *CreateBatchPredictionJobInput {
+	s.Tags = v
+	return s
+}
+
+type CreateBatchPredictionJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateBatchPredictionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBatchPredictionJobOutput) GoString() string {
+	return s.String()
 }
 
 type CreateDetectorVersionInput struct {
@@ -6941,6 +7741,61 @@ func (s *DataValidationMetrics) SetFieldLevelMessages(v []*FieldValidationMessag
 func (s *DataValidationMetrics) SetFileLevelMessages(v []*FileValidationMessage) *DataValidationMetrics {
 	s.FileLevelMessages = v
 	return s
+}
+
+type DeleteBatchPredictionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the batch prediction job to delete.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBatchPredictionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBatchPredictionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBatchPredictionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBatchPredictionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DeleteBatchPredictionJobInput) SetJobId(v string) *DeleteBatchPredictionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DeleteBatchPredictionJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBatchPredictionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBatchPredictionJobOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteDetectorInput struct {
@@ -7911,7 +8766,7 @@ type Detector struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the detector was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The detector description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -7923,7 +8778,7 @@ type Detector struct {
 	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string"`
 
 	// Timestamp of when the detector was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 }
 
 // String returns the string representation
@@ -7983,7 +8838,7 @@ type DetectorVersionSummary struct {
 	DetectorVersionId *string `locationName:"detectorVersionId" min:"1" type:"string"`
 
 	// Timestamp of when the detector version was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The detector version status.
 	Status *string `locationName:"status" type:"string" enum:"DetectorVersionStatus"`
@@ -8088,13 +8943,13 @@ type EntityType struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the entity type was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The entity type description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// Timestamp of when the entity type was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The entity type name.
 	Name *string `locationName:"name" type:"string"`
@@ -8148,7 +9003,7 @@ type EventType struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the event type was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The event type description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -8163,7 +9018,7 @@ type EventType struct {
 	Labels []*string `locationName:"labels" type:"list"`
 
 	// Timestamp of when the event type was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The event type name.
 	Name *string `locationName:"name" type:"string"`
@@ -8295,7 +9150,7 @@ type ExternalModel struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the model was last created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The input configuration.
 	InputConfiguration *ModelInputConfiguration `locationName:"inputConfiguration" type:"structure"`
@@ -8304,7 +9159,7 @@ type ExternalModel struct {
 	InvokeModelEndpointRoleArn *string `locationName:"invokeModelEndpointRoleArn" type:"string"`
 
 	// Timestamp of when the model was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The Amazon SageMaker model endpoints.
 	ModelEndpoint *string `locationName:"modelEndpoint" type:"string"`
@@ -8485,6 +9340,95 @@ func (s *FileValidationMessage) SetType(v string) *FileValidationMessage {
 	return s
 }
 
+type GetBatchPredictionJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The batch prediction job for which to get the details.
+	JobId *string `locationName:"jobId" min:"1" type:"string"`
+
+	// The maximum number of objects to return for the request.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The next token from the previous request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetBatchPredictionJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBatchPredictionJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBatchPredictionJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBatchPredictionJobsInput"}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetBatchPredictionJobsInput) SetJobId(v string) *GetBatchPredictionJobsInput {
+	s.JobId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetBatchPredictionJobsInput) SetMaxResults(v int64) *GetBatchPredictionJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBatchPredictionJobsInput) SetNextToken(v string) *GetBatchPredictionJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetBatchPredictionJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing the details of each batch prediction job.
+	BatchPredictions []*BatchPrediction `locationName:"batchPredictions" type:"list"`
+
+	// The next token for the subsequent request.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetBatchPredictionJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBatchPredictionJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchPredictions sets the BatchPredictions field's value.
+func (s *GetBatchPredictionJobsOutput) SetBatchPredictions(v []*BatchPrediction) *GetBatchPredictionJobsOutput {
+	s.BatchPredictions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBatchPredictionJobsOutput) SetNextToken(v string) *GetBatchPredictionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetDetectorVersionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8550,7 +9494,7 @@ type GetDetectorVersionOutput struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp when the detector version was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The detector version description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -8565,7 +9509,7 @@ type GetDetectorVersionOutput struct {
 	ExternalModelEndpoints []*string `locationName:"externalModelEndpoints" type:"list"`
 
 	// The timestamp when the detector version was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The model versions included in the detector version.
 	ModelVersions []*ModelVersion `locationName:"modelVersions" type:"list"`
@@ -9992,13 +10936,13 @@ type Label struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the event type was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The label description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// Timestamp of when the label was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The label name.
 	Name *string `locationName:"name" type:"string"`
@@ -10247,7 +11191,7 @@ type Model struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// Timestamp of when the model was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The model description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -10256,7 +11200,7 @@ type Model struct {
 	EventTypeName *string `locationName:"eventTypeName" type:"string"`
 
 	// Timestamp of last time the model was updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The model ID.
 	ModelId *string `locationName:"modelId" min:"1" type:"string"`
@@ -10635,13 +11579,13 @@ type ModelVersionDetail struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp when the model was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The event details.
 	ExternalEventsDetail *ExternalEventsDetail `locationName:"externalEventsDetail" type:"structure"`
 
 	// The timestamp when the model was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The model ID.
 	ModelId *string `locationName:"modelId" min:"1" type:"string"`
@@ -10749,13 +11693,13 @@ type Outcome struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp when the outcome was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The outcome description.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The timestamp when the outcome was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The outcome name.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -11640,7 +12584,7 @@ type RuleDetail struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The timestamp of when the rule was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The rule description.
 	Description *string `locationName:"description" min:"1" type:"string"`
@@ -11655,7 +12599,7 @@ type RuleDetail struct {
 	Language *string `locationName:"language" type:"string" enum:"Language"`
 
 	// Timestamp of the last time the rule was updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The rule outcomes.
 	Outcomes []*string `locationName:"outcomes" min:"1" type:"list"`
@@ -13190,7 +14134,7 @@ type Variable struct {
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
 	// The time when the variable was created.
-	CreatedTime *string `locationName:"createdTime" type:"string"`
+	CreatedTime *string `locationName:"createdTime" min:"11" type:"string"`
 
 	// The data source of the variable.
 	DataSource *string `locationName:"dataSource" type:"string" enum:"DataSource"`
@@ -13205,7 +14149,7 @@ type Variable struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The time when variable was last updated.
-	LastUpdatedTime *string `locationName:"lastUpdatedTime" type:"string"`
+	LastUpdatedTime *string `locationName:"lastUpdatedTime" min:"11" type:"string"`
 
 	// The name of the variable.
 	Name *string `locationName:"name" type:"string"`
@@ -13361,6 +14305,38 @@ func (s *VariableEntry) SetName(v string) *VariableEntry {
 func (s *VariableEntry) SetVariableType(v string) *VariableEntry {
 	s.VariableType = &v
 	return s
+}
+
+const (
+	// AsyncJobStatusInProgressInitializing is a AsyncJobStatus enum value
+	AsyncJobStatusInProgressInitializing = "IN_PROGRESS_INITIALIZING"
+
+	// AsyncJobStatusInProgress is a AsyncJobStatus enum value
+	AsyncJobStatusInProgress = "IN_PROGRESS"
+
+	// AsyncJobStatusCancelInProgress is a AsyncJobStatus enum value
+	AsyncJobStatusCancelInProgress = "CANCEL_IN_PROGRESS"
+
+	// AsyncJobStatusCanceled is a AsyncJobStatus enum value
+	AsyncJobStatusCanceled = "CANCELED"
+
+	// AsyncJobStatusComplete is a AsyncJobStatus enum value
+	AsyncJobStatusComplete = "COMPLETE"
+
+	// AsyncJobStatusFailed is a AsyncJobStatus enum value
+	AsyncJobStatusFailed = "FAILED"
+)
+
+// AsyncJobStatus_Values returns all elements of the AsyncJobStatus enum
+func AsyncJobStatus_Values() []string {
+	return []string{
+		AsyncJobStatusInProgressInitializing,
+		AsyncJobStatusInProgress,
+		AsyncJobStatusCancelInProgress,
+		AsyncJobStatusCanceled,
+		AsyncJobStatusComplete,
+		AsyncJobStatusFailed,
+	}
 }
 
 const (

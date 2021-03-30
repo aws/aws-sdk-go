@@ -11,44 +11,75 @@ const (
 	// ErrCodeAuthException for service response error code
 	// "AuthException".
 	//
-	// Indicates that either your AWS credentials are invalid or you do not have
-	// access to the EC2 instance.
+	// Either your AWS credentials are not valid or you do not have access to the
+	// EC2 instance.
 	ErrCodeAuthException = "AuthException"
 
 	// ErrCodeEC2InstanceNotFoundException for service response error code
 	// "EC2InstanceNotFoundException".
 	//
-	// Indicates that the instance requested was not found in the given zone. Check
-	// that you have provided a valid instance ID and the correct zone.
+	// The specified instance was not found.
 	ErrCodeEC2InstanceNotFoundException = "EC2InstanceNotFoundException"
+
+	// ErrCodeEC2InstanceTypeInvalidException for service response error code
+	// "EC2InstanceTypeInvalidException".
+	//
+	// The instance type is not supported for connecting via the serial console.
+	// Only Nitro instance types are currently supported.
+	ErrCodeEC2InstanceTypeInvalidException = "EC2InstanceTypeInvalidException"
 
 	// ErrCodeInvalidArgsException for service response error code
 	// "InvalidArgsException".
 	//
-	// Indicates that you provided bad input. Ensure you have a valid instance ID,
-	// the correct zone, and a valid SSH public key.
+	// One of the parameters is not valid.
 	ErrCodeInvalidArgsException = "InvalidArgsException"
+
+	// ErrCodeSerialConsoleAccessDisabledException for service response error code
+	// "SerialConsoleAccessDisabledException".
+	//
+	// Your account is not authorized to use the EC2 Serial Console. To authorize
+	// your account, run the EnableSerialConsoleAccess API. For more information,
+	// see EnableSerialConsoleAccess (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_EnableSerialConsoleAccess.html)
+	// in the Amazon EC2 API Reference.
+	ErrCodeSerialConsoleAccessDisabledException = "SerialConsoleAccessDisabledException"
+
+	// ErrCodeSerialConsoleSessionLimitExceededException for service response error code
+	// "SerialConsoleSessionLimitExceededException".
+	//
+	// The instance currently has 1 active serial console session. Only 1 session
+	// is supported at a time.
+	ErrCodeSerialConsoleSessionLimitExceededException = "SerialConsoleSessionLimitExceededException"
+
+	// ErrCodeSerialConsoleSessionUnavailableException for service response error code
+	// "SerialConsoleSessionUnavailableException".
+	//
+	// Unable to start a serial console session. Please try again.
+	ErrCodeSerialConsoleSessionUnavailableException = "SerialConsoleSessionUnavailableException"
 
 	// ErrCodeServiceException for service response error code
 	// "ServiceException".
 	//
-	// Indicates that the service encountered an error. Follow the message's instructions
+	// The service encountered an error. Follow the instructions in the error message
 	// and try again.
 	ErrCodeServiceException = "ServiceException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// Indicates you have been making requests too frequently and have been throttled.
-	// Wait for a while and try again. If higher call volume is warranted contact
-	// AWS Support.
+	// The requests were made too frequently and have been throttled. Wait a while
+	// and try again. To increase the limit on your request frequency, contact AWS
+	// Support.
 	ErrCodeThrottlingException = "ThrottlingException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AuthException":                newErrorAuthException,
-	"EC2InstanceNotFoundException": newErrorEC2InstanceNotFoundException,
-	"InvalidArgsException":         newErrorInvalidArgsException,
-	"ServiceException":             newErrorServiceException,
-	"ThrottlingException":          newErrorThrottlingException,
+	"AuthException":                              newErrorAuthException,
+	"EC2InstanceNotFoundException":               newErrorEC2InstanceNotFoundException,
+	"EC2InstanceTypeInvalidException":            newErrorEC2InstanceTypeInvalidException,
+	"InvalidArgsException":                       newErrorInvalidArgsException,
+	"SerialConsoleAccessDisabledException":       newErrorSerialConsoleAccessDisabledException,
+	"SerialConsoleSessionLimitExceededException": newErrorSerialConsoleSessionLimitExceededException,
+	"SerialConsoleSessionUnavailableException":   newErrorSerialConsoleSessionUnavailableException,
+	"ServiceException":                           newErrorServiceException,
+	"ThrottlingException":                        newErrorThrottlingException,
 }

@@ -63,6 +63,10 @@ type EC2InstanceConnectAPI interface {
 	SendSSHPublicKey(*ec2instanceconnect.SendSSHPublicKeyInput) (*ec2instanceconnect.SendSSHPublicKeyOutput, error)
 	SendSSHPublicKeyWithContext(aws.Context, *ec2instanceconnect.SendSSHPublicKeyInput, ...request.Option) (*ec2instanceconnect.SendSSHPublicKeyOutput, error)
 	SendSSHPublicKeyRequest(*ec2instanceconnect.SendSSHPublicKeyInput) (*request.Request, *ec2instanceconnect.SendSSHPublicKeyOutput)
+
+	SendSerialConsoleSSHPublicKey(*ec2instanceconnect.SendSerialConsoleSSHPublicKeyInput) (*ec2instanceconnect.SendSerialConsoleSSHPublicKeyOutput, error)
+	SendSerialConsoleSSHPublicKeyWithContext(aws.Context, *ec2instanceconnect.SendSerialConsoleSSHPublicKeyInput, ...request.Option) (*ec2instanceconnect.SendSerialConsoleSSHPublicKeyOutput, error)
+	SendSerialConsoleSSHPublicKeyRequest(*ec2instanceconnect.SendSerialConsoleSSHPublicKeyInput) (*request.Request, *ec2instanceconnect.SendSerialConsoleSSHPublicKeyOutput)
 }
 
 var _ EC2InstanceConnectAPI = (*ec2instanceconnect.EC2InstanceConnect)(nil)

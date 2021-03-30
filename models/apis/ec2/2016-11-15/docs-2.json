@@ -17,7 +17,7 @@
     "AssociateAddress": "<p>Associates an Elastic IP address, or carrier IP address (for instances that are in subnets in Wavelength Zones) with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <p>[Subnets in Wavelength Zones] You can associate an IP address from the telecommunication carrier to the instance or network interface. </p> <p>You cannot associate an Elastic IP address with an interface in a different network border group.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
     "AssociateClientVpnTargetNetwork": "<p>Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.</p> <p>If you specified a VPC when you created the Client VPN endpoint or if you have previous subnet associations, the specified subnet must be in the same VPC. To specify a subnet that's in a different VPC, you must first modify the Client VPN endpoint (<a>ModifyClientVpnEndpoint</a>) and change the VPC that's associated with it.</p>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
-    "AssociateEnclaveCertificateIamRole": "<p>Associates an AWS Identity and Access Management (IAM) role with an AWS Certificate Manager (ACM) certificate. This enables the certificate to be used by the ACM for Nitro Enclaves application inside an enclave. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html\">AWS Certificate Manager for Nitro Enclaves</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p> <p>When the IAM role is associated with the ACM certificate, places the certificate, certificate chain, and encrypted private key in an Amazon S3 bucket that only the associated IAM role can access. The private key of the certificate is encrypted with an AWS-managed KMS customer master (CMK) that has an attached attestation-based CMK policy.</p> <p>To enable the IAM role to access the Amazon S3 object, you must grant it permission to call <code>s3:GetObject</code> on the Amazon S3 bucket returned by the command. To enable the IAM role to access the AWS KMS CMK, you must grant it permission to call <code>kms:Decrypt</code> on AWS KMS CMK returned by the command. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html#add-policy\"> Grant the role permission to access the certificate and encryption key</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p>",
+    "AssociateEnclaveCertificateIamRole": "<p>Associates an AWS Identity and Access Management (IAM) role with an AWS Certificate Manager (ACM) certificate. This enables the certificate to be used by the ACM for Nitro Enclaves application inside an enclave. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html\">AWS Certificate Manager for Nitro Enclaves</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p> <p>When the IAM role is associated with the ACM certificate, the certificate, certificate chain, and encrypted private key are placed in an Amazon S3 bucket that only the associated IAM role can access. The private key of the certificate is encrypted with an AWS-managed KMS customer master (CMK) that has an attached attestation-based CMK policy.</p> <p>To enable the IAM role to access the Amazon S3 object, you must grant it permission to call <code>s3:GetObject</code> on the Amazon S3 bucket returned by the command. To enable the IAM role to access the AWS KMS CMK, you must grant it permission to call <code>kms:Decrypt</code> on the AWS KMS CMK returned by the command. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html#add-policy\"> Grant the role permission to access the certificate and encryption key</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
     "AssociateRouteTable": "<p>Associates a subnet in your VPC or an internet gateway or virtual private gateway attached to your VPC with a route table in your VPC. This association causes traffic from the subnet or gateway to be routed according to the routes in the route table. The action returns an association ID, which you need in order to disassociate the route table later. A route table can be associated with multiple subnets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateSubnetCidrBlock": "<p>Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR block with your subnet. An IPv6 CIDR block must have a prefix length of /64.</p>",
@@ -73,6 +73,7 @@
     "CreateNetworkInterface": "<p>Creates a network interface in the specified subnet.</p> <p>For more information about network interfaces, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-eni.html\">Elastic Network Interfaces</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkInterfacePermission": "<p>Grants an AWS-authorized account permission to attach the specified network interface to an instance in their account.</p> <p>You can grant permission to a single AWS account only, and only one account at a time.</p>",
     "CreatePlacementGroup": "<p>Creates a placement group in which to launch instances. The strategy of the placement group determines how the instances are organized within the group. </p> <p>A <code>cluster</code> placement group is a logical grouping of instances within a single Availability Zone that benefit from low network latency, high network throughput. A <code>spread</code> placement group places instances on distinct hardware. A <code>partition</code> placement group places groups of instances in different partitions, where instances in one partition do not share the same hardware with instances in another partition.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">Placement groups</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "CreateReplaceRootVolumeTask": "<p>Creates a root volume replacement task for an Amazon EC2 instance. The root volume can either be restored to its initial launch state, or it can be restored using a specific snapshot.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateReservedInstancesListing": "<p>Creates a listing for Amazon EC2 Standard Reserved Instances to be sold in the Reserved Instance Marketplace. You can submit one Standard Reserved Instance listing at a time. To get a list of your Standard Reserved Instances, you can use the <a>DescribeReservedInstances</a> operation.</p> <note> <p>Only Standard Reserved Instances can be sold in the Reserved Instance Marketplace. Convertible Reserved Instances cannot be sold.</p> </note> <p>The Reserved Instance Marketplace matches sellers who want to resell Standard Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances.</p> <p>To sell your Standard Reserved Instances, you must first register as a seller in the Reserved Instance Marketplace. After completing the registration process, you can create a Reserved Instance Marketplace listing of some or all of your Standard Reserved Instances, and specify the upfront price to receive for them. Your Standard Reserved Instance listings then become available for purchase. To view the details of your Standard Reserved Instance listing, you can use the <a>DescribeReservedInstancesListings</a> operation.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "CreateRoute": "<p>Creates a route in a route table within a VPC.</p> <p>You must specify one of the following targets: internet gateway or virtual private gateway, NAT instance, NAT gateway, VPC peering connection, network interface, egress-only internet gateway, or transit gateway.</p> <p>When determining how to route traffic, we use the route with the most specific match. For example, traffic is destined for the IPv4 address <code>192.0.2.3</code>, and the route table includes the following two IPv4 routes:</p> <ul> <li> <p> <code>192.0.2.0/24</code> (goes to some target A)</p> </li> <li> <p> <code>192.0.2.0/28</code> (goes to some target B)</p> </li> </ul> <p>Both routes apply to the traffic destined for <code>192.0.2.3</code>. However, the second route in the list covers a smaller number of IP addresses and is therefore more specific, so we use that route to determine where to target the traffic.</p> <p>For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateRouteTable": "<p>Creates a route table for the specified VPC. After you create a route table, you can add routes and associate the table with a subnet.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
@@ -235,6 +236,7 @@
     "DescribePrincipalIdFormat": "<p>Describes the ID format settings for the root user and all IAM roles and IAM users that have explicitly specified a longer ID (17-character ID) preference. </p> <p>By default, all IAM roles and IAM users default to the same ID settings as the root user, unless they explicitly override the settings. This request is useful for identifying those IAM users and IAM roles that have overridden the default ID settings.</p> <p>The following resource types support longer IDs: <code>bundle</code> | <code>conversion-task</code> | <code>customer-gateway</code> | <code>dhcp-options</code> | <code>elastic-ip-allocation</code> | <code>elastic-ip-association</code> | <code>export-task</code> | <code>flow-log</code> | <code>image</code> | <code>import-task</code> | <code>instance</code> | <code>internet-gateway</code> | <code>network-acl</code> | <code>network-acl-association</code> | <code>network-interface</code> | <code>network-interface-attachment</code> | <code>prefix-list</code> | <code>reservation</code> | <code>route-table</code> | <code>route-table-association</code> | <code>security-group</code> | <code>snapshot</code> | <code>subnet</code> | <code>subnet-cidr-block-association</code> | <code>volume</code> | <code>vpc</code> | <code>vpc-cidr-block-association</code> | <code>vpc-endpoint</code> | <code>vpc-peering-connection</code> | <code>vpn-connection</code> | <code>vpn-gateway</code>. </p>",
     "DescribePublicIpv4Pools": "<p>Describes the specified IPv4 address pools.</p>",
     "DescribeRegions": "<p>Describes the Regions that are enabled for your account, or all Regions.</p> <p>For a list of the Regions supported by Amazon EC2, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#ec2_region\"> Regions and Endpoints</a>.</p> <p>For information about enabling and disabling Regions for your account, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande-manage.html\">Managing AWS Regions</a> in the <i>AWS General Reference</i>.</p>",
+    "DescribeReplaceRootVolumeTasks": "<p>Describes a root volume replacement task. For more information, see <a href=\"https://docs.aws.amazon.com/\">Replace a root volume</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeReservedInstances": "<p>Describes one or more of the Reserved Instances that you purchased.</p> <p>For more information about Reserved Instances, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts-on-demand-reserved-instances.html\">Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeReservedInstancesListings": "<p>Describes your account's Reserved Instance listings in the Reserved Instance Marketplace.</p> <p>The Reserved Instance Marketplace matches sellers who want to resell Reserved Instance capacity that they no longer need with buyers who want to purchase additional capacity. Reserved Instances bought and sold through the Reserved Instance Marketplace work like any other Reserved Instances.</p> <p>As a seller, you choose to list some or all of your Reserved Instances, and you specify the upfront price to receive for them. Your Reserved Instances are then listed in the Reserved Instance Marketplace and are available for purchase.</p> <p>As a buyer, you specify the configuration of the Reserved Instance to purchase, and the Marketplace matches what you're searching for with what's available. The Marketplace first sells the lowest priced Reserved Instances to you, and continues to sell available Reserved Instance listings to you until your demand is met. You are charged based on the total price of all of the listings that you purchase.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-market-general.html\">Reserved Instance Marketplace</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DescribeReservedInstancesModifications": "<p>Describes the modifications made to your Reserved Instances. If no parameter is specified, information about all your Reserved Instances modification requests is returned. If a modification ID is specified, only information about the specific modification is returned.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html\">Modifying Reserved Instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
@@ -290,6 +292,7 @@
     "DetachVpnGateway": "<p>Detaches a virtual private gateway from a VPC. You do this if you're planning to turn off the VPC and not use it anymore. You can confirm a virtual private gateway has been completely detached from a VPC by describing the virtual private gateway (any attachments to the virtual private gateway are also described).</p> <p>You must wait for the attachment's state to switch to <code>detached</code> before you can delete the VPC or attach a different VPC to the virtual private gateway.</p>",
     "DisableEbsEncryptionByDefault": "<p>Disables EBS encryption by default for your account in the current Region.</p> <p>After you disable encryption by default, you can still create encrypted volumes by enabling encryption when you create each volume.</p> <p>Disabling encryption by default does not change the encryption status of your existing volumes.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DisableFastSnapshotRestores": "<p>Disables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p>",
+    "DisableSerialConsoleAccess": "<p>Disables access to the EC2 serial console of all instances for your account. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "DisableTransitGatewayRouteTablePropagation": "<p>Disables the specified resource attachment from propagating routes to the specified propagation route table.</p>",
     "DisableVgwRoutePropagation": "<p>Disables a virtual private gateway (VGW) from propagating routes to a specified route table of a VPC.</p>",
     "DisableVpcClassicLink": "<p>Disables ClassicLink for a VPC. You cannot disable ClassicLink for a VPC that has EC2-Classic instances linked to it.</p>",
@@ -303,8 +306,9 @@
     "DisassociateTransitGatewayMulticastDomain": "<p>Disassociates the specified subnets from the transit gateway multicast domain. </p>",
     "DisassociateTransitGatewayRouteTable": "<p>Disassociates a resource attachment from a transit gateway route table.</p>",
     "DisassociateVpcCidrBlock": "<p>Disassociates a CIDR block from a VPC. To disassociate the CIDR block, you must specify its association ID. You can get the association ID by using <a>DescribeVpcs</a>. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p> <p>You cannot disassociate the CIDR block with which you originally created the VPC (the primary CIDR block).</p>",
-    "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are are always encrypted, either using the default CMK or the CMK that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default CMK for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
+    "EnableEbsEncryptionByDefault": "<p>Enables EBS encryption by default for your account in the current Region.</p> <p>After you enable encryption by default, the EBS volumes that you create are always encrypted, either using the default CMK or the CMK that you specified when you created each volume. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can specify the default CMK for encryption by default using <a>ModifyEbsDefaultKmsKeyId</a> or <a>ResetEbsDefaultKmsKeyId</a>.</p> <p>Enabling encryption by default has no effect on the encryption status of your existing volumes.</p> <p>After you enable encryption by default, you can no longer launch instances using instance types that do not support encryption. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\">Supported instance types</a>.</p>",
     "EnableFastSnapshotRestores": "<p>Enables fast snapshot restores for the specified snapshots in the specified Availability Zones.</p> <p>You get the full benefit of fast snapshot restores after they enter the <code>enabled</code> state. To get the current state of fast snapshot restores, use <a>DescribeFastSnapshotRestores</a>. To disable fast snapshot restores, use <a>DisableFastSnapshotRestores</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-fast-snapshot-restore.html\">Amazon EBS fast snapshot restore</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+    "EnableSerialConsoleAccess": "<p>Enables access to the EC2 serial console of all instances for your account. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "EnableTransitGatewayRouteTablePropagation": "<p>Enables the specified attachment to propagate routes to the specified propagation route table.</p>",
     "EnableVgwRoutePropagation": "<p>Enables a virtual private gateway (VGW) to propagate routes to the specified route table of a VPC.</p>",
     "EnableVolumeIO": "<p>Enables I/O operations for a volume that had I/O operations disabled because the data on the volume was potentially inconsistent.</p>",
@@ -330,6 +334,7 @@
     "GetManagedPrefixListEntries": "<p>Gets information about the entries for a specified managed prefix list.</p>",
     "GetPasswordData": "<p>Retrieves the encrypted administrator password for a running Windows instance.</p> <p>The Windows password is generated at boot by the <code>EC2Config</code> service or <code>EC2Launch</code> scripts (Windows Server 2016 and later). This usually only happens the first time an instance is launched. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/UsingConfig_WinAMI.html\">EC2Config</a> and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2launch.html\">EC2Launch</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For the <code>EC2Config</code> service, the password is not generated for rebundled AMIs unless <code>Ec2SetPassword</code> is enabled before bundling.</p> <p>The password is encrypted using the key pair that you specified when you launched the instance. You must provide the corresponding key pair file.</p> <p>When you launch an instance, password generation and encryption may take a few minutes. If you try to retrieve the password before it's available, the output returns an empty string. We recommend that you wait up to 15 minutes after launching an instance before trying to retrieve the generated password.</p>",
     "GetReservedInstancesExchangeQuote": "<p>Returns a quote and exchange information for exchanging one or more specified Convertible Reserved Instances for a new Convertible Reserved Instance. If the exchange cannot be performed, the reason is returned in the response. Use <a>AcceptReservedInstancesExchangeQuote</a> to perform the exchange.</p>",
+    "GetSerialConsoleAccessStatus": "<p>Retrieves the access status of your account to the EC2 serial console of all instances. By default, access to the EC2 serial console is disabled for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configure-access-to-serial-console.html#serial-console-account-access\">Manage account access to the EC2 serial console</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "GetTransitGatewayAttachmentPropagations": "<p>Lists the route tables to which the specified resource attachment propagates routes.</p>",
     "GetTransitGatewayMulticastDomainAssociations": "<p>Gets information about the associations for the transit gateway multicast domain.</p>",
     "GetTransitGatewayPrefixListReferences": "<p>Gets information about the prefix list references in a specified transit gateway route table.</p>",
@@ -1417,6 +1422,7 @@
         "CreateNetworkInterfacePermissionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateNetworkInterfaceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreatePlacementGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateReplaceRootVolumeTaskRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateRouteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateRouteResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "CreateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1587,6 +1593,7 @@
         "DescribePrincipalIdFormatRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeRegionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeRegionsRequest$AllRegions": "<p>Indicates whether to display all Regions, including Regions that are disabled for your account.</p>",
+        "DescribeReplaceRootVolumeTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeReservedInstancesOfferingsRequest$IncludeMarketplace": "<p>Include Reserved Instance Marketplace offerings in the response.</p>",
         "DescribeReservedInstancesOfferingsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeReservedInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1644,6 +1651,8 @@
         "DisableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
         "DisableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisableSerialConsoleAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisableSerialConsoleAccessResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
         "DisableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVgwRoutePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -1664,6 +1673,8 @@
         "EnableEbsEncryptionByDefaultRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableEbsEncryptionByDefaultResult$EbsEncryptionByDefault": "<p>The updated status of encryption by default.</p>",
         "EnableFastSnapshotRestoresRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "EnableSerialConsoleAccessRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "EnableSerialConsoleAccessResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
         "EnableTransitGatewayRouteTablePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVgwRoutePropagationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVolumeIORequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1699,6 +1710,8 @@
         "GetPasswordDataRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetReservedInstancesExchangeQuoteRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetReservedInstancesExchangeQuoteResult$IsValidExchange": "<p>If <code>true</code>, the exchange is valid. If <code>false</code>, the exchange cannot be completed.</p>",
+        "GetSerialConsoleAccessStatusRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "GetSerialConsoleAccessStatusResult$SerialConsoleAccessEnabled": "<p>If <code>true</code>, access to the EC2 serial console of all instances is enabled for your account. If <code>false</code>, access to the EC2 serial console of all instances is disabled for your account.</p>",
         "GetTransitGatewayAttachmentPropagationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayMulticastDomainAssociationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetTransitGatewayPrefixListReferencesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -3108,6 +3121,16 @@
       }
     },
     "CreatePlacementGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateReplaceRootVolumeTaskRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateReplaceRootVolumeTaskResult": {
       "base": null,
       "refs": {
       }
@@ -5144,6 +5167,22 @@
       "refs": {
       }
     },
+    "DescribeReplaceRootVolumeTasksMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeReplaceRootVolumeTasksRequest$MaxResults": "<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>"
+      }
+    },
+    "DescribeReplaceRootVolumeTasksRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReplaceRootVolumeTasksResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeReservedInstancesListingsRequest": {
       "base": "<p>Contains the parameters for DescribeReservedInstancesListings.</p>",
       "refs": {
@@ -5852,6 +5891,16 @@
       "refs": {
       }
     },
+    "DisableSerialConsoleAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisableSerialConsoleAccessResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -6389,6 +6438,16 @@
       "refs": {
       }
     },
+    "EnableSerialConsoleAccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EnableSerialConsoleAccessResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "EnableTransitGatewayRouteTablePropagationRequest": {
       "base": null,
       "refs": {
@@ -6745,6 +6804,7 @@
         "DescribePrefixListsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>prefix-list-id</code>: The ID of a prefix list.</p> </li> <li> <p> <code>prefix-list-name</code>: The name of a prefix list.</p> </li> </ul>",
         "DescribePublicIpv4PoolsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeRegionsRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>endpoint</code> - The endpoint of the Region (for example, <code>ec2.us-east-1.amazonaws.com</code>).</p> </li> <li> <p> <code>opt-in-status</code> - The opt-in status of the Region (<code>opt-in-not-required</code> | <code>opted-in</code> | <code>not-opted-in</code>).</p> </li> <li> <p> <code>region-name</code> - The name of the Region (for example, <code>us-east-1</code>).</p> </li> </ul>",
+        "DescribeReplaceRootVolumeTasksRequest$Filters": "<p>Filter to use:</p> <ul> <li> <p> <code>instance-id</code> - The ID of the instance for which the root volume replacement task was created.</p> </li> </ul>",
         "DescribeReservedInstancesListingsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>reserved-instances-id</code> - The ID of the Reserved Instances.</p> </li> <li> <p> <code>reserved-instances-listing-id</code> - The ID of the Reserved Instances listing.</p> </li> <li> <p> <code>status</code> - The status of the Reserved Instance listing (<code>pending</code> | <code>active</code> | <code>cancelled</code> | <code>closed</code>).</p> </li> <li> <p> <code>status-message</code> - The reason for the status.</p> </li> </ul>",
         "DescribeReservedInstancesModificationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>client-token</code> - The idempotency token for the modification request.</p> </li> <li> <p> <code>create-date</code> - The time when the modification request was created.</p> </li> <li> <p> <code>effective-date</code> - The time when the modification becomes effective.</p> </li> <li> <p> <code>modification-result.reserved-instances-id</code> - The ID for the Reserved Instances created as part of the modification request. This ID is only available when the status of the modification is <code>fulfilled</code>.</p> </li> <li> <p> <code>modification-result.target-configuration.availability-zone</code> - The Availability Zone for the new Reserved Instances.</p> </li> <li> <p> <code>modification-result.target-configuration.instance-count </code> - The number of new Reserved Instances.</p> </li> <li> <p> <code>modification-result.target-configuration.instance-type</code> - The instance type of the new Reserved Instances.</p> </li> <li> <p> <code>modification-result.target-configuration.platform</code> - The network platform of the new Reserved Instances (<code>EC2-Classic</code> | <code>EC2-VPC</code>).</p> </li> <li> <p> <code>reserved-instances-id</code> - The ID of the Reserved Instances modified.</p> </li> <li> <p> <code>reserved-instances-modification-id</code> - The ID of the modification request.</p> </li> <li> <p> <code>status</code> - The status of the Reserved Instances modification request (<code>processing</code> | <code>fulfilled</code> | <code>failed</code>).</p> </li> <li> <p> <code>status-message</code> - The reason for the status.</p> </li> <li> <p> <code>update-date</code> - The time when the modification request was last updated.</p> </li> </ul>",
         "DescribeReservedInstancesOfferingsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>availability-zone</code> - The Availability Zone where the Reserved Instance can be used.</p> </li> <li> <p> <code>duration</code> - The duration of the Reserved Instance (for example, one year or three years), in seconds (<code>31536000</code> | <code>94608000</code>).</p> </li> <li> <p> <code>fixed-price</code> - The purchase price of the Reserved Instance (for example, 9800.0).</p> </li> <li> <p> <code>instance-type</code> - The instance type that is covered by the reservation.</p> </li> <li> <p> <code>marketplace</code> - Set to <code>true</code> to show only Reserved Instance Marketplace offerings. When this filter is not used, which is the default behavior, all offerings from both AWS and the Reserved Instance Marketplace are listed.</p> </li> <li> <p> <code>product-description</code> - The Reserved Instance product platform description. Instances that include <code>(Amazon VPC)</code> in the product platform description will only be displayed to EC2-Classic account holders and are for use with Amazon VPC. (<code>Linux/UNIX</code> | <code>Linux/UNIX (Amazon VPC)</code> | <code>SUSE Linux</code> | <code>SUSE Linux (Amazon VPC)</code> | <code>Red Hat Enterprise Linux</code> | <code>Red Hat Enterprise Linux (Amazon VPC)</code> | <code>Windows</code> | <code>Windows (Amazon VPC)</code> | <code>Windows with SQL Server Standard</code> | <code>Windows with SQL Server Standard (Amazon VPC)</code> | <code>Windows with SQL Server Web</code> | <code> Windows with SQL Server Web (Amazon VPC)</code> | <code>Windows with SQL Server Enterprise</code> | <code>Windows with SQL Server Enterprise (Amazon VPC)</code>) </p> </li> <li> <p> <code>reserved-instances-offering-id</code> - The Reserved Instances offering ID.</p> </li> <li> <p> <code>scope</code> - The scope of the Reserved Instance (<code>Availability Zone</code> or <code>Region</code>).</p> </li> <li> <p> <code>usage-price</code> - The usage price of the Reserved Instance, per hour (for example, 0.84).</p> </li> </ul>",
@@ -7313,6 +7373,16 @@
     },
     "GetReservedInstancesExchangeQuoteResult": {
       "base": "<p>Contains the output of GetReservedInstancesExchangeQuote.</p>",
+      "refs": {
+      }
+    },
+    "GetSerialConsoleAccessStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSerialConsoleAccessStatusResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -8105,6 +8175,7 @@
         "ConfirmProductInstanceRequest$InstanceId": "<p>The ID of the instance.</p>",
         "CreateImageRequest$InstanceId": "<p>The ID of the instance.</p>",
         "CreateInstanceExportTaskRequest$InstanceId": "<p>The ID of the instance.</p>",
+        "CreateReplaceRootVolumeTaskRequest$InstanceId": "<p>The ID of the instance for which to replace the root volume.</p>",
         "CreateRouteRequest$InstanceId": "<p>The ID of a NAT instance in your VPC. The operation fails if you specify an instance ID unless exactly one network interface is attached.</p>",
         "DescribeInstanceAttributeRequest$InstanceId": "<p>The ID of the instance.</p>",
         "DetachClassicLinkVpcRequest$InstanceId": "<p>The ID of the instance to unlink from the VPC.</p>",
@@ -8651,7 +8722,7 @@
         "ModifyTrafficMirrorSessionRequest$SessionNumber": "<p>The session number determines the order in which sessions are evaluated when an interface is used by multiple sessions. The first session with a matching filter is the one that mirrors the packets.</p> <p>Valid values are 1-32766.</p>",
         "ModifyTrafficMirrorSessionRequest$VirtualNetworkId": "<p>The virtual network ID of the Traffic Mirror session.</p>",
         "ModifyVolumeRequest$Size": "<p>The target size of the volume, in GiB. The target volume size must be greater than or equal to the existing size of the volume.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>: 1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul> <p>Default: If no size is specified, the existing size is retained.</p>",
-        "ModifyVolumeRequest$Iops": "<p>The target IOPS rate of the volume. This parameter is valid only for <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>Default: If no IOPS value is specified, the existing value is retained.</p>",
+        "ModifyVolumeRequest$Iops": "<p>The target IOPS rate of the volume. This parameter is valid only for <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>Default: If no IOPS value is specified, the existing value is retained, unless a volume type is modified that supports different values.</p>",
         "ModifyVolumeRequest$Throughput": "<p>The target throughput of the volume, in MiB/s. This parameter is valid only for <code>gp3</code> volumes. The maximum value is 1,000.</p> <p>Default: If no throughput value is specified, the existing value is retained.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
         "ModifyVpnTunnelOptionsSpecification$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 28,800.</p> <p>Default: <code>28800</code> </p>",
         "ModifyVpnTunnelOptionsSpecification$Phase2LifetimeSeconds": "<p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p> <p>Constraints: A value between 900 and 3,600. The value must be less than the value for <code>Phase1LifetimeSeconds</code>.</p> <p>Default: <code>3600</code> </p>",
@@ -10828,6 +10899,7 @@
         "DescribeNetworkInsightsAnalysesRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeNetworkInsightsPathsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribePublicIpv4PoolsRequest$NextToken": "<p>The token for the next page of results.</p>",
+        "DescribeReplaceRootVolumeTasksRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorFiltersRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorSessionsRequest$NextToken": "<p>The token for the next page of results.</p>",
         "DescribeTrafficMirrorTargetsRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -11881,6 +11953,38 @@
       "refs": {
       }
     },
+    "ReplaceRootVolumeTask": {
+      "base": "<p>Information about a root volume replacement task.</p>",
+      "refs": {
+        "CreateReplaceRootVolumeTaskResult$ReplaceRootVolumeTask": "<p>Information about the root volume replacement task.</p>",
+        "ReplaceRootVolumeTasks$member": null
+      }
+    },
+    "ReplaceRootVolumeTaskId": {
+      "base": null,
+      "refs": {
+        "ReplaceRootVolumeTask$ReplaceRootVolumeTaskId": "<p>The ID of the root volume replacement task.</p>",
+        "ReplaceRootVolumeTaskIds$member": null
+      }
+    },
+    "ReplaceRootVolumeTaskIds": {
+      "base": null,
+      "refs": {
+        "DescribeReplaceRootVolumeTasksRequest$ReplaceRootVolumeTaskIds": "<p>The ID of the root volume replacement task to view.</p>"
+      }
+    },
+    "ReplaceRootVolumeTaskState": {
+      "base": null,
+      "refs": {
+        "ReplaceRootVolumeTask$TaskState": "<p>The state of the task. The task can be in one of the following states:</p> <ul> <li> <p> <code>pending</code> - the replacement volume is being created.</p> </li> <li> <p> <code>in-progress</code> - the original volume is being detached and the replacement volume is being attached.</p> </li> <li> <p> <code>succeeded</code> - the replacement volume has been successfully attached to the instance and the instance is available.</p> </li> <li> <p> <code>failing</code> - the replacement task is in the process of failing.</p> </li> <li> <p> <code>failed</code> - the replacement task has failed but the original root volume is still attached.</p> </li> <li> <p> <code>failing-detached</code> - the replacement task is in the process of failing. The instance might have no root volume attached.</p> </li> <li> <p> <code>failed-detached</code> - the replacement task has failed and the instance has no root volume attached.</p> </li> </ul>"
+      }
+    },
+    "ReplaceRootVolumeTasks": {
+      "base": null,
+      "refs": {
+        "DescribeReplaceRootVolumeTasksResult$ReplaceRootVolumeTasks": "<p>Information about the root volume replacement task.</p>"
+      }
+    },
     "ReplaceRouteRequest": {
       "base": null,
       "refs": {
@@ -12894,6 +12998,7 @@
     "SnapshotId": {
       "base": null,
       "refs": {
+        "CreateReplaceRootVolumeTaskRequest$SnapshotId": "<p>The ID of the snapshot from which to restore the replacement root volume. If you want to restore the volume to the initial launch state, omit this parameter.</p>",
         "CreateVolumeRequest$SnapshotId": "<p>The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.</p>",
         "DeleteSnapshotRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
         "DescribeSnapshotAttributeRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
@@ -13538,6 +13643,7 @@
         "CreateNetworkInterfaceRequest$Description": "<p>A description for the network interface.</p>",
         "CreateNetworkInterfaceRequest$PrivateIpAddress": "<p>The primary private IPv4 address of the network interface. If you don't specify an IPv4 address, Amazon EC2 selects one for you from the subnet's IPv4 CIDR range. If you specify an IP address, you cannot indicate any IP addresses specified in <code>privateIpAddresses</code> as primary (only one IP address can be designated as primary).</p>",
         "CreatePlacementGroupRequest$GroupName": "<p>A name for the placement group. Must be unique within the scope of your account for the Region.</p> <p>Constraints: Up to 255 ASCII characters</p>",
+        "CreateReplaceRootVolumeTaskRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you do not specify a client token, a randomly generated token is used for the request to ensure idempotency. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateReservedInstancesListingRequest$ClientToken": "<p>Unique, case-sensitive identifier you provide to ensure idempotency of your listings. This helps avoid duplicate listings. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
         "CreateRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. Routing decisions are based on the most specific match. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>",
         "CreateRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR block used for the destination match. Routing decisions are based on the most specific match.</p>",
@@ -13714,6 +13820,7 @@
         "DescribePrincipalIdFormatRequest$NextToken": "<p>The token to request the next page of results.</p>",
         "DescribePrincipalIdFormatResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is null when there are no more results to return.</p>",
         "DescribePublicIpv4PoolsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeReplaceRootVolumeTasksResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeReservedInstancesModificationsRequest$NextToken": "<p>The token to retrieve the next page of results.</p>",
         "DescribeReservedInstancesModificationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeReservedInstancesOfferingsRequest$AvailabilityZone": "<p>The Availability Zone in which the Reserved Instance can be used.</p>",
@@ -14414,6 +14521,9 @@
         "ReplaceNetworkAclEntryRequest$CidrBlock": "<p>The IPv4 network range to allow or deny, in CIDR notation (for example <code>172.16.0.0/24</code>).</p>",
         "ReplaceNetworkAclEntryRequest$Ipv6CidrBlock": "<p>The IPv6 network range to allow or deny, in CIDR notation (for example <code>2001:bd8:1234:1a00::/64</code>).</p>",
         "ReplaceNetworkAclEntryRequest$Protocol": "<p>The protocol number. A value of \"-1\" means all protocols. If you specify \"-1\" or a protocol number other than \"6\" (TCP), \"17\" (UDP), or \"1\" (ICMP), traffic on all ports is allowed, regardless of any ports or ICMP types or codes that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv4 CIDR block, traffic for all ICMP types and codes allowed, regardless of any that you specify. If you specify protocol \"58\" (ICMPv6) and specify an IPv6 CIDR block, you must specify an ICMP type and code.</p>",
+        "ReplaceRootVolumeTask$InstanceId": "<p>The ID of the instance for which the root volume replacement task was created.</p>",
+        "ReplaceRootVolumeTask$StartTime": "<p>The time the task was started.</p>",
+        "ReplaceRootVolumeTask$CompleteTime": "<p>The time the task completed.</p>",
         "ReplaceRouteRequest$DestinationCidrBlock": "<p>The IPv4 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteRequest$DestinationIpv6CidrBlock": "<p>The IPv6 CIDR address block used for the destination match. The value that you provide must match the CIDR of an existing route in the table.</p>",
         "ReplaceRouteTableAssociationResult$NewAssociationId": "<p>The ID of the new association.</p>",
@@ -15057,6 +15167,7 @@
         "NetworkInterface$TagSet": "<p>Any tags assigned to the network interface.</p>",
         "PlacementGroup$Tags": "<p>Any tags applied to the placement group.</p>",
         "PublicIpv4Pool$Tags": "<p>Any tags for the address pool.</p>",
+        "ReplaceRootVolumeTask$Tags": "<p>The tags assigned to the task.</p>",
         "ReservedInstances$Tags": "<p>Any tags assigned to the resource.</p>",
         "ReservedInstancesListing$Tags": "<p>Any tags assigned to the resource.</p>",
         "RouteTable$Tags": "<p>Any tags assigned to the route table.</p>",
@@ -15123,6 +15234,7 @@
         "CreateNetworkInsightsPathRequest$TagSpecifications": "<p>The tags to add to the path.</p>",
         "CreateNetworkInterfaceRequest$TagSpecifications": "<p>The tags to apply to the new network interface.</p>",
         "CreatePlacementGroupRequest$TagSpecifications": "<p>The tags to apply to the new placement group.</p>",
+        "CreateReplaceRootVolumeTaskRequest$TagSpecifications": "<p>The tags to apply to the root volume replacement task.</p>",
         "CreateRouteTableRequest$TagSpecifications": "<p>The tags to assign to the route table.</p>",
         "CreateSecurityGroupRequest$TagSpecifications": "<p>The tags to assign to the security group.</p>",
         "CreateSnapshotRequest$TagSpecifications": "<p>The tags to apply to the snapshot during creation.</p>",

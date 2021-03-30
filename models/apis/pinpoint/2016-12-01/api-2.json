@@ -9129,6 +9129,9 @@
         },
         "MessagesPerSecond": {
           "shape": "__integer"
+        },
+        "EndpointReentryInterval": {
+            "shape": "__string"
         }
       }
     },
@@ -10760,7 +10763,8 @@
         "ACTIVE",
         "COMPLETED",
         "CANCELLED",
-        "CLOSED"
+        "CLOSED",
+        "PAUSED"
       ]
     },
     "TagResourceRequest": {
@@ -12115,6 +12119,12 @@
         },
         "State": {
           "shape": "State"
+        },
+        "WaitForQuietTime": {
+            "shape": "__boolean"
+        },
+        "RefreshOnSegmentUpdate": {
+            "shape": "__boolean"
         }
       },
       "required": [

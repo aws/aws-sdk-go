@@ -4,11 +4,14 @@
   "operations": {
     "BatchCreateVariable": "<p>Creates a batch of variables.</p>",
     "BatchGetVariable": "<p>Gets a batch of variables.</p>",
+    "CancelBatchPredictionJob": "<p>Cancels the specified batch prediction job.</p>",
+    "CreateBatchPredictionJob": "<p>Creates a batch prediction job.</p>",
     "CreateDetectorVersion": "<p>Creates a detector version. The detector version starts in a <code>DRAFT</code> status.</p>",
     "CreateModel": "<p>Creates a model using the specified model type.</p>",
     "CreateModelVersion": "<p>Creates a version of the model using the specified model type and model id. </p>",
     "CreateRule": "<p>Creates a rule for use with the specified detector. </p>",
     "CreateVariable": "<p>Creates a variable.</p>",
+    "DeleteBatchPredictionJob": "<p>Deletes a batch prediction job.</p>",
     "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p> <p>When you delete a detector, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p> <p>When you delete a detector version, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DeleteEntityType": "<p>Deletes an entity type.</p> <p>You cannot delete an entity type that is included in an event type.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type and the data is no longer stored in Amazon Fraud Detector.</p>",
@@ -23,6 +26,7 @@
     "DeleteVariable": "<p>Deletes a variable.</p> <p>You can't delete variables that are included in an event type in Amazon Fraud Detector.</p> <p>Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.</p> <p>When you delete a variable, Amazon Fraud Detector permanently deletes that variable and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DescribeDetector": "<p>Gets all versions for a specified detector.</p>",
     "DescribeModelVersions": "<p>Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version. </p>",
+    "GetBatchPredictionJobs": "<p>Gets all batch prediction jobs or a specific job if you specify a job ID. This is a paginated API. If you provide a null maxResults, this action retrieves a maximum of 50 records per page. If you provide a maxResults, the value must be between 1 and 50. To get the next page results, provide the pagination token from the GetBatchPredictionJobsResponse as part of your request. A null pagination token fetches the records from the beginning.</p>",
     "GetDetectorVersion": "<p>Gets a particular detector version. </p>",
     "GetDetectors": "<p>Gets all detectors or a single detector if a <code>detectorId</code> is specified. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetDetectorsResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
     "GetEntityTypes": "<p>Gets all entity types or a specific entity type if a name is specified. This is a paginated API. If you provide a null <code>maxResults</code>, this action retrieves a maximum of 10 records per page. If you provide a <code>maxResults</code>, the value must be between 5 and 10. To get the next page results, provide the pagination token from the <code>GetEntityTypesResponse</code> as part of your request. A null pagination token fetches the records from the beginning. </p>",
@@ -60,6 +64,12 @@
     "AccessDeniedException": {
       "base": "<p>An exception indicating Amazon Fraud Detector does not have the needed permissions. This can occur if you submit a request, such as <code>PutExternalModel</code>, that specifies a role that is not in your account.</p>",
       "refs": {
+      }
+    },
+    "AsyncJobStatus": {
+      "base": null,
+      "refs": {
+        "BatchPrediction$status": "<p>The batch prediction status.</p>"
       }
     },
     "BatchCreateVariableError": {
@@ -106,8 +116,40 @@
       "refs": {
       }
     },
+    "BatchPrediction": {
+      "base": "<p>The batch prediction details.</p>",
+      "refs": {
+        "BatchPredictionList$member": null
+      }
+    },
+    "BatchPredictionList": {
+      "base": null,
+      "refs": {
+        "GetBatchPredictionJobsResult$batchPredictions": "<p>An array containing the details of each batch prediction job.</p>"
+      }
+    },
+    "CancelBatchPredictionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelBatchPredictionJobResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ConflictException": {
       "base": "<p>An exception indicating there was a conflict during a delete operation. The following delete operations can cause a conflict exception:</p> <ul> <li> <p>DeleteDetector: A conflict exception will occur if the detector has associated <code>Rules</code> or <code>DetectorVersions</code>. You can only delete a detector if it has no <code>Rules</code> or <code>DetectorVersions</code>.</p> </li> <li> <p>DeleteDetectorVersion: A conflict exception will occur if the <code>DetectorVersion</code> status is <code>ACTIVE</code>.</p> </li> <li> <p>DeleteRule: A conflict exception will occur if the <code>RuleVersion</code> is in use by an associated <code>ACTIVE</code> or <code>INACTIVE DetectorVersion</code>.</p> </li> </ul>",
+      "refs": {
+      }
+    },
+    "CreateBatchPredictionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBatchPredictionJobResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -185,6 +227,16 @@
       "base": "<p>The model training validation messages.</p>",
       "refs": {
         "TrainingResult$dataValidationMetrics": "<p>The validation metrics.</p>"
+      }
+    },
+    "DeleteBatchPredictionJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBatchPredictionJobResult": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteDetectorRequest": {
@@ -441,6 +493,16 @@
         "fileValidationMessageList$member": null
       }
     },
+    "GetBatchPredictionJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBatchPredictionJobsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetDetectorVersionRequest": {
       "base": null,
       "refs": {
@@ -564,6 +626,13 @@
     "GetVariablesResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Integer": {
+      "base": null,
+      "refs": {
+        "BatchPrediction$processedRecordsCount": "<p>The number of records processed by the batch prediction job.</p>",
+        "BatchPrediction$totalRecordsCount": "<p>The total number of records in the batch prediction job.</p>"
       }
     },
     "InternalServerException": {
@@ -1122,6 +1191,12 @@
         "GetVariablesRequest$maxResults": "<p>The max size per page determined for the get variable request. </p>"
       }
     },
+    "batchPredictionsMaxPageSize": {
+      "base": null,
+      "refs": {
+        "GetBatchPredictionJobsRequest$maxResults": "<p>The maximum number of objects to return for the request.</p>"
+      }
+    },
     "blob": {
       "base": null,
       "refs": {
@@ -1211,6 +1286,7 @@
     "floatVersionString": {
       "base": null,
       "refs": {
+        "BatchPrediction$detectorVersion": "<p>The detector version. </p>",
         "DeleteModelVersionRequest$modelVersionNumber": "<p>The model version number of the model version to delete.</p>",
         "DescribeModelVersionsRequest$modelVersionNumber": "<p>The model version number.</p>",
         "GetModelVersionRequest$modelVersionNumber": "<p>The model version number.</p>",
@@ -1223,6 +1299,7 @@
     "fraudDetectorArn": {
       "base": null,
       "refs": {
+        "BatchPrediction$arn": "<p>The ARN of batch prediction job.</p>",
         "DescribeDetectorResult$arn": "<p>The detector ARN.</p>",
         "Detector$arn": "<p>The detector ARN.</p>",
         "EntityType$arn": "<p>The entity type ARN.</p>",
@@ -1245,16 +1322,26 @@
     "iamRoleArn": {
       "base": null,
       "refs": {
+        "BatchPrediction$iamRoleArn": "<p>The ARN of the IAM role to use for this job request.</p>",
+        "CreateBatchPredictionJobRequest$iamRoleArn": "<p>The ARN of the IAM role to use for this job request.</p>",
         "ExternalEventsDetail$dataAccessRoleArn": "<p>The ARN of the role that provides Amazon Fraud Detector access to the data location.</p>"
       }
     },
     "identifier": {
       "base": null,
       "refs": {
+        "BatchPrediction$jobId": "<p>The job ID for the batch prediction.</p>",
+        "BatchPrediction$eventTypeName": "<p>The name of the event type.</p>",
+        "BatchPrediction$detectorName": "<p>The name of the detector.</p>",
+        "CancelBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job to cancel.</p>",
+        "CreateBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job.</p>",
+        "CreateBatchPredictionJobRequest$eventTypeName": "<p>The name of the event type.</p>",
+        "CreateBatchPredictionJobRequest$detectorName": "<p>The name of the detector.</p>",
         "CreateDetectorVersionRequest$detectorId": "<p>The ID of the detector under which you want to create a new version.</p>",
         "CreateDetectorVersionResult$detectorId": "<p>The ID for the created version's parent detector.</p>",
         "CreateRuleRequest$ruleId": "<p>The rule ID.</p>",
         "CreateRuleRequest$detectorId": "<p>The detector ID for the rule's parent detector.</p>",
+        "DeleteBatchPredictionJobRequest$jobId": "<p>The ID of the batch prediction job to delete.</p>",
         "DeleteDetectorRequest$detectorId": "<p>The ID of the detector to delete.</p>",
         "DeleteDetectorVersionRequest$detectorId": "<p>The ID of the parent detector for the detector version to delete.</p>",
         "DeleteEntityTypeRequest$name": "<p>The name of the entity type to delete.</p>",
@@ -1268,6 +1355,7 @@
         "Detector$detectorId": "<p>The detector ID.</p>",
         "Detector$eventTypeName": "<p>The name of the event type.</p>",
         "Entity$entityId": "<p>The entity ID. If you do not know the <code>entityId</code>, you can pass <code>unknown</code>, which is areserved string literal.</p>",
+        "GetBatchPredictionJobsRequest$jobId": "<p>The batch prediction job for which to get the details.</p>",
         "GetDetectorVersionRequest$detectorId": "<p>The detector ID.</p>",
         "GetDetectorVersionResult$detectorId": "<p>The detector ID.</p>",
         "GetDetectorsRequest$detectorId": "<p>The detector ID.</p>",
@@ -1391,6 +1479,10 @@
     "s3BucketLocation": {
       "base": null,
       "refs": {
+        "BatchPrediction$inputPath": "<p>The Amazon S3 location of your training file.</p>",
+        "BatchPrediction$outputPath": "<p>The Amazon S3 location of your output file.</p>",
+        "CreateBatchPredictionJobRequest$inputPath": "<p>The Amazon S3 location of your training file.</p>",
+        "CreateBatchPredictionJobRequest$outputPath": "<p>The Amazon S3 location of your output file.</p>",
         "ExternalEventsDetail$dataLocation": "<p>The Amazon S3 bucket location for the data.</p>"
       }
     },
@@ -1409,6 +1501,7 @@
         "BatchCreateVariableError$message": "<p>The error message.</p>",
         "BatchGetVariableError$name": "<p>The error name. </p>",
         "BatchGetVariableError$message": "<p>The error message.</p>",
+        "BatchPrediction$failureReason": "<p>The reason a batch prediction job failed.</p>",
         "ConflictException$message": null,
         "CreateModelRequest$eventTypeName": "<p>The name of the event type.</p>",
         "CreateModelVersionResult$status": "<p>The model version status. </p>",
@@ -1437,6 +1530,8 @@
         "FileValidationMessage$title": "<p>The message title.</p>",
         "FileValidationMessage$content": "<p>The message content.</p>",
         "FileValidationMessage$type": "<p>The message type.</p>",
+        "GetBatchPredictionJobsRequest$nextToken": "<p>The next token from the previous request.</p>",
+        "GetBatchPredictionJobsResult$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetDetectorsRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetDetectorsResult$nextToken": "<p>The next page token.</p>",
         "GetEntityTypesRequest$nextToken": "<p>The next token for the subsequent request.</p>",
@@ -1516,6 +1611,7 @@
       "base": null,
       "refs": {
         "BatchCreateVariableRequest$tags": "<p>A collection of key and value pairs.</p>",
+        "CreateBatchPredictionJobRequest$tags": "<p>A collection of key and value pairs.</p>",
         "CreateDetectorVersionRequest$tags": "<p>A collection of key and value pairs.</p>",
         "CreateModelRequest$tags": "<p>A collection of key and value pairs.</p>",
         "CreateModelVersionRequest$tags": "<p>A collection of key and value pairs.</p>",
@@ -1542,6 +1638,9 @@
     "time": {
       "base": null,
       "refs": {
+        "BatchPrediction$startTime": "<p>Timestamp of when the batch prediction job started.</p>",
+        "BatchPrediction$completionTime": "<p>Timestamp of when the batch prediction job comleted.</p>",
+        "BatchPrediction$lastHeartbeatTime": "<p>Timestamp of most recent heartbeat indicating the batch prediction job was making progress.</p>",
         "Detector$lastUpdatedTime": "<p>Timestamp of when the detector was last updated.</p>",
         "Detector$createdTime": "<p>Timestamp of when the detector was created.</p>",
         "DetectorVersionSummary$lastUpdatedTime": "<p>Timestamp of when the detector version was last updated.</p>",
@@ -1582,6 +1681,7 @@
     "wholeNumberVersionString": {
       "base": null,
       "refs": {
+        "CreateBatchPredictionJobRequest$detectorVersion": "<p>The detector version.</p>",
         "DeleteDetectorVersionRequest$detectorVersionId": "<p>The ID of the detector version to delete.</p>",
         "GetDetectorVersionRequest$detectorVersionId": "<p>The detector version ID.</p>",
         "GetDetectorVersionResult$detectorVersionId": "<p>The detector version ID.</p>",

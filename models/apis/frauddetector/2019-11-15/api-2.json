@@ -42,6 +42,35 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CancelBatchPredictionJob":{
+      "name":"CancelBatchPredictionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelBatchPredictionJobRequest"},
+      "output":{"shape":"CancelBatchPredictionJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "CreateBatchPredictionJob":{
+      "name":"CreateBatchPredictionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBatchPredictionJobRequest"},
+      "output":{"shape":"CreateBatchPredictionJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateDetectorVersion":{
       "name":"CreateDetectorVersion",
       "http":{
@@ -114,6 +143,21 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteBatchPredictionJob":{
+      "name":"DeleteBatchPredictionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBatchPredictionJobRequest"},
+      "output":{"shape":"DeleteBatchPredictionJobResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -327,6 +371,21 @@
       },
       "input":{"shape":"DescribeModelVersionsRequest"},
       "output":{"shape":"DescribeModelVersionsResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetBatchPredictionJobs":{
+      "name":"GetBatchPredictionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBatchPredictionJobsRequest"},
+      "output":{"shape":"GetBatchPredictionJobsResult"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -829,6 +888,17 @@
       },
       "exception":true
     },
+    "AsyncJobStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS_INITIALIZING",
+        "IN_PROGRESS",
+        "CANCEL_IN_PROGRESS",
+        "CANCELED",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
     "BatchCreateVariableError":{
       "type":"structure",
       "members":{
@@ -881,6 +951,42 @@
         "errors":{"shape":"BatchGetVariableErrorList"}
       }
     },
+    "BatchPrediction":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "status":{"shape":"AsyncJobStatus"},
+        "failureReason":{"shape":"string"},
+        "startTime":{"shape":"time"},
+        "completionTime":{"shape":"time"},
+        "lastHeartbeatTime":{"shape":"time"},
+        "inputPath":{"shape":"s3BucketLocation"},
+        "outputPath":{"shape":"s3BucketLocation"},
+        "eventTypeName":{"shape":"identifier"},
+        "detectorName":{"shape":"identifier"},
+        "detectorVersion":{"shape":"floatVersionString"},
+        "iamRoleArn":{"shape":"iamRoleArn"},
+        "arn":{"shape":"fraudDetectorArn"},
+        "processedRecordsCount":{"shape":"Integer"},
+        "totalRecordsCount":{"shape":"Integer"}
+      }
+    },
+    "BatchPredictionList":{
+      "type":"list",
+      "member":{"shape":"BatchPrediction"}
+    },
+    "CancelBatchPredictionJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{"shape":"identifier"}
+      }
+    },
+    "CancelBatchPredictionJobResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ConflictException":{
       "type":"structure",
       "required":["message"],
@@ -888,6 +994,32 @@
         "message":{"shape":"string"}
       },
       "exception":true
+    },
+    "CreateBatchPredictionJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobId",
+        "inputPath",
+        "outputPath",
+        "eventTypeName",
+        "detectorName",
+        "iamRoleArn"
+      ],
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "inputPath":{"shape":"s3BucketLocation"},
+        "outputPath":{"shape":"s3BucketLocation"},
+        "eventTypeName":{"shape":"identifier"},
+        "detectorName":{"shape":"identifier"},
+        "detectorVersion":{"shape":"wholeNumberVersionString"},
+        "iamRoleArn":{"shape":"iamRoleArn"},
+        "tags":{"shape":"tagList"}
+      }
+    },
+    "CreateBatchPredictionJobResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "CreateDetectorVersionRequest":{
       "type":"structure",
@@ -1034,6 +1166,18 @@
       "members":{
         "fileLevelMessages":{"shape":"fileValidationMessageList"},
         "fieldLevelMessages":{"shape":"fieldValidationMessageList"}
+      }
+    },
+    "DeleteBatchPredictionJobRequest":{
+      "type":"structure",
+      "required":["jobId"],
+      "members":{
+        "jobId":{"shape":"identifier"}
+      }
+    },
+    "DeleteBatchPredictionJobResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteDetectorRequest":{
@@ -1380,6 +1524,21 @@
         "type":{"shape":"string"}
       }
     },
+    "GetBatchPredictionJobsRequest":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"identifier"},
+        "maxResults":{"shape":"batchPredictionsMaxPageSize"},
+        "nextToken":{"shape":"string"}
+      }
+    },
+    "GetBatchPredictionJobsResult":{
+      "type":"structure",
+      "members":{
+        "batchPredictions":{"shape":"BatchPredictionList"},
+        "nextToken":{"shape":"string"}
+      }
+    },
     "GetDetectorVersionRequest":{
       "type":"structure",
       "required":[
@@ -1606,6 +1765,7 @@
         "nextToken":{"shape":"string"}
       }
     },
+    "Integer":{"type":"integer"},
     "InternalServerException":{
       "type":"structure",
       "required":["message"],
@@ -2335,6 +2495,12 @@
       "max":100,
       "min":50
     },
+    "batchPredictionsMaxPageSize":{
+      "type":"integer",
+      "box":true,
+      "max":50,
+      "min":1
+    },
     "blob":{"type":"blob"},
     "contentType":{
       "type":"string",
@@ -2489,7 +2655,11 @@
       "max":256,
       "min":0
     },
-    "time":{"type":"string"},
+    "time":{
+      "type":"string",
+      "max":30,
+      "min":11
+    },
     "variableName":{
       "type":"string",
       "max":64,

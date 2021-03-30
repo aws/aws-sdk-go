@@ -68,6 +68,14 @@ type FraudDetectorAPI interface {
 	BatchGetVariableWithContext(aws.Context, *frauddetector.BatchGetVariableInput, ...request.Option) (*frauddetector.BatchGetVariableOutput, error)
 	BatchGetVariableRequest(*frauddetector.BatchGetVariableInput) (*request.Request, *frauddetector.BatchGetVariableOutput)
 
+	CancelBatchPredictionJob(*frauddetector.CancelBatchPredictionJobInput) (*frauddetector.CancelBatchPredictionJobOutput, error)
+	CancelBatchPredictionJobWithContext(aws.Context, *frauddetector.CancelBatchPredictionJobInput, ...request.Option) (*frauddetector.CancelBatchPredictionJobOutput, error)
+	CancelBatchPredictionJobRequest(*frauddetector.CancelBatchPredictionJobInput) (*request.Request, *frauddetector.CancelBatchPredictionJobOutput)
+
+	CreateBatchPredictionJob(*frauddetector.CreateBatchPredictionJobInput) (*frauddetector.CreateBatchPredictionJobOutput, error)
+	CreateBatchPredictionJobWithContext(aws.Context, *frauddetector.CreateBatchPredictionJobInput, ...request.Option) (*frauddetector.CreateBatchPredictionJobOutput, error)
+	CreateBatchPredictionJobRequest(*frauddetector.CreateBatchPredictionJobInput) (*request.Request, *frauddetector.CreateBatchPredictionJobOutput)
+
 	CreateDetectorVersion(*frauddetector.CreateDetectorVersionInput) (*frauddetector.CreateDetectorVersionOutput, error)
 	CreateDetectorVersionWithContext(aws.Context, *frauddetector.CreateDetectorVersionInput, ...request.Option) (*frauddetector.CreateDetectorVersionOutput, error)
 	CreateDetectorVersionRequest(*frauddetector.CreateDetectorVersionInput) (*request.Request, *frauddetector.CreateDetectorVersionOutput)
@@ -87,6 +95,10 @@ type FraudDetectorAPI interface {
 	CreateVariable(*frauddetector.CreateVariableInput) (*frauddetector.CreateVariableOutput, error)
 	CreateVariableWithContext(aws.Context, *frauddetector.CreateVariableInput, ...request.Option) (*frauddetector.CreateVariableOutput, error)
 	CreateVariableRequest(*frauddetector.CreateVariableInput) (*request.Request, *frauddetector.CreateVariableOutput)
+
+	DeleteBatchPredictionJob(*frauddetector.DeleteBatchPredictionJobInput) (*frauddetector.DeleteBatchPredictionJobOutput, error)
+	DeleteBatchPredictionJobWithContext(aws.Context, *frauddetector.DeleteBatchPredictionJobInput, ...request.Option) (*frauddetector.DeleteBatchPredictionJobOutput, error)
+	DeleteBatchPredictionJobRequest(*frauddetector.DeleteBatchPredictionJobInput) (*request.Request, *frauddetector.DeleteBatchPredictionJobOutput)
 
 	DeleteDetector(*frauddetector.DeleteDetectorInput) (*frauddetector.DeleteDetectorOutput, error)
 	DeleteDetectorWithContext(aws.Context, *frauddetector.DeleteDetectorInput, ...request.Option) (*frauddetector.DeleteDetectorOutput, error)
@@ -146,6 +158,13 @@ type FraudDetectorAPI interface {
 
 	DescribeModelVersionsPages(*frauddetector.DescribeModelVersionsInput, func(*frauddetector.DescribeModelVersionsOutput, bool) bool) error
 	DescribeModelVersionsPagesWithContext(aws.Context, *frauddetector.DescribeModelVersionsInput, func(*frauddetector.DescribeModelVersionsOutput, bool) bool, ...request.Option) error
+
+	GetBatchPredictionJobs(*frauddetector.GetBatchPredictionJobsInput) (*frauddetector.GetBatchPredictionJobsOutput, error)
+	GetBatchPredictionJobsWithContext(aws.Context, *frauddetector.GetBatchPredictionJobsInput, ...request.Option) (*frauddetector.GetBatchPredictionJobsOutput, error)
+	GetBatchPredictionJobsRequest(*frauddetector.GetBatchPredictionJobsInput) (*request.Request, *frauddetector.GetBatchPredictionJobsOutput)
+
+	GetBatchPredictionJobsPages(*frauddetector.GetBatchPredictionJobsInput, func(*frauddetector.GetBatchPredictionJobsOutput, bool) bool) error
+	GetBatchPredictionJobsPagesWithContext(aws.Context, *frauddetector.GetBatchPredictionJobsInput, func(*frauddetector.GetBatchPredictionJobsOutput, bool) bool, ...request.Option) error
 
 	GetDetectorVersion(*frauddetector.GetDetectorVersionInput) (*frauddetector.GetDetectorVersionOutput, error)
 	GetDetectorVersionWithContext(aws.Context, *frauddetector.GetDetectorVersionInput, ...request.Option) (*frauddetector.GetDetectorVersionOutput, error)
