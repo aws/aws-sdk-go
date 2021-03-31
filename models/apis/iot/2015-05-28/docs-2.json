@@ -7998,6 +7998,12 @@
       "refs": {
         "StringList$member": null
       }
+    },
+    "usePrefixAttributeValue": {
+      "base": null,
+      "refs": {
+        "ListThingsRequest$usePrefixAttributeValue": "<p>When <code>true</code>, the action returns the thing resources with attribute values that start with the <code>attributeValue</code> provided.</p> <p>When <code>false</code>, or not present, the action returns only the thing resources with attribute values that match the entire <code>attributeValue</code> provided. </p>"
+      }
     }
   }
 }

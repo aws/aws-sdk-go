@@ -222,6 +222,100 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opAuthorizeEndpointAccess = "AuthorizeEndpointAccess"
+
+// AuthorizeEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the AuthorizeEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AuthorizeEndpointAccess for more information on using the AuthorizeEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AuthorizeEndpointAccessRequest method.
+//    req, resp := client.AuthorizeEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeEndpointAccess
+func (c *Redshift) AuthorizeEndpointAccessRequest(input *AuthorizeEndpointAccessInput) (req *request.Request, output *AuthorizeEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opAuthorizeEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AuthorizeEndpointAccessInput{}
+	}
+
+	output = &AuthorizeEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AuthorizeEndpointAccess API operation for Amazon Redshift.
+//
+// Grants access to a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation AuthorizeEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeEndpointAuthorizationsPerClusterLimitExceededFault "EndpointAuthorizationsPerClusterLimitExceeded"
+//   The number of endpoint authorizations per cluster has exceeded its limit.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+//   * ErrCodeEndpointAuthorizationAlreadyExistsFault "EndpointAuthorizationAlreadyExists"
+//   The authorization already exists for this endpoint.
+//
+//   * ErrCodeInvalidAuthorizationStateFault "InvalidAuthorizationState"
+//   The status of the authorization is not valid.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeEndpointAccess
+func (c *Redshift) AuthorizeEndpointAccess(input *AuthorizeEndpointAccessInput) (*AuthorizeEndpointAccessOutput, error) {
+	req, out := c.AuthorizeEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// AuthorizeEndpointAccessWithContext is the same as AuthorizeEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AuthorizeEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) AuthorizeEndpointAccessWithContext(ctx aws.Context, input *AuthorizeEndpointAccessInput, opts ...request.Option) (*AuthorizeEndpointAccessOutput, error) {
+	req, out := c.AuthorizeEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAuthorizeSnapshotAccess = "AuthorizeSnapshotAccess"
 
 // AuthorizeSnapshotAccessRequest generates a "aws/request.Request" representing the
@@ -1256,6 +1350,115 @@ func (c *Redshift) CreateClusterSubnetGroup(input *CreateClusterSubnetGroupInput
 // for more information on using Contexts.
 func (c *Redshift) CreateClusterSubnetGroupWithContext(ctx aws.Context, input *CreateClusterSubnetGroupInput, opts ...request.Option) (*CreateClusterSubnetGroupOutput, error) {
 	req, out := c.CreateClusterSubnetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateEndpointAccess = "CreateEndpointAccess"
+
+// CreateEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEndpointAccess for more information on using the CreateEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEndpointAccessRequest method.
+//    req, resp := client.CreateEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateEndpointAccess
+func (c *Redshift) CreateEndpointAccessRequest(input *CreateEndpointAccessInput) (req *request.Request, output *CreateEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opCreateEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateEndpointAccessInput{}
+	}
+
+	output = &CreateEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEndpointAccess API operation for Amazon Redshift.
+//
+// Creates a Redshift-managed VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation CreateEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeAccessToClusterDeniedFault "AccessToClusterDenied"
+//   You are not authorized to access the cluster.
+//
+//   * ErrCodeEndpointsPerClusterLimitExceededFault "EndpointsPerClusterLimitExceeded"
+//   The number of Redshift-managed VPC endpoints per cluster has exceeded its
+//   limit.
+//
+//   * ErrCodeEndpointsPerAuthorizationLimitExceededFault "EndpointsPerAuthorizationLimitExceeded"
+//   The number of Redshift-managed VPC endpoints per authorization has exceeded
+//   its limit.
+//
+//   * ErrCodeInvalidClusterSecurityGroupStateFault "InvalidClusterSecurityGroupState"
+//   The state of the cluster security group is not available.
+//
+//   * ErrCodeClusterSubnetGroupNotFoundFault "ClusterSubnetGroupNotFoundFault"
+//   The cluster subnet group name does not refer to an existing cluster subnet
+//   group.
+//
+//   * ErrCodeEndpointAlreadyExistsFault "EndpointAlreadyExists"
+//   The account already has a Redshift-managed VPC endpoint with the given identifier.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+//   * ErrCodeUnauthorizedOperation "UnauthorizedOperation"
+//   Your account is not authorized to perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateEndpointAccess
+func (c *Redshift) CreateEndpointAccess(input *CreateEndpointAccessInput) (*CreateEndpointAccessOutput, error) {
+	req, out := c.CreateEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// CreateEndpointAccessWithContext is the same as CreateEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) CreateEndpointAccessWithContext(ctx aws.Context, input *CreateEndpointAccessInput, opts ...request.Option) (*CreateEndpointAccessOutput, error) {
+	req, out := c.CreateEndpointAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2549,6 +2752,97 @@ func (c *Redshift) DeleteClusterSubnetGroup(input *DeleteClusterSubnetGroupInput
 // for more information on using Contexts.
 func (c *Redshift) DeleteClusterSubnetGroupWithContext(ctx aws.Context, input *DeleteClusterSubnetGroupInput, opts ...request.Option) (*DeleteClusterSubnetGroupOutput, error) {
 	req, out := c.DeleteClusterSubnetGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEndpointAccess = "DeleteEndpointAccess"
+
+// DeleteEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEndpointAccess for more information on using the DeleteEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEndpointAccessRequest method.
+//    req, resp := client.DeleteEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteEndpointAccess
+func (c *Redshift) DeleteEndpointAccessRequest(input *DeleteEndpointAccessInput) (req *request.Request, output *DeleteEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEndpointAccessInput{}
+	}
+
+	output = &DeleteEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteEndpointAccess API operation for Amazon Redshift.
+//
+// Deletes a Redshift-managed VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DeleteEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeInvalidEndpointStateFault "InvalidEndpointState"
+//   The status of the endpoint is not valid.
+//
+//   * ErrCodeInvalidClusterSecurityGroupStateFault "InvalidClusterSecurityGroupState"
+//   The state of the cluster security group is not available.
+//
+//   * ErrCodeEndpointNotFoundFault "EndpointNotFound"
+//   The endpoint name doesn't refer to an existing endpoint.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteEndpointAccess
+func (c *Redshift) DeleteEndpointAccess(input *DeleteEndpointAccessInput) (*DeleteEndpointAccessOutput, error) {
+	req, out := c.DeleteEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEndpointAccessWithContext is the same as DeleteEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DeleteEndpointAccessWithContext(ctx aws.Context, input *DeleteEndpointAccessInput, opts ...request.Option) (*DeleteEndpointAccessOutput, error) {
+	req, out := c.DeleteEndpointAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4775,6 +5069,173 @@ func (c *Redshift) DescribeDefaultClusterParametersPagesWithContext(ctx aws.Cont
 	}
 
 	return p.Err()
+}
+
+const opDescribeEndpointAccess = "DescribeEndpointAccess"
+
+// DescribeEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEndpointAccess for more information on using the DescribeEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEndpointAccessRequest method.
+//    req, resp := client.DescribeEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEndpointAccess
+func (c *Redshift) DescribeEndpointAccessRequest(input *DescribeEndpointAccessInput) (req *request.Request, output *DescribeEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEndpointAccessInput{}
+	}
+
+	output = &DescribeEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEndpointAccess API operation for Amazon Redshift.
+//
+// Describes a Redshift-managed VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+//   * ErrCodeEndpointNotFoundFault "EndpointNotFound"
+//   The endpoint name doesn't refer to an existing endpoint.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEndpointAccess
+func (c *Redshift) DescribeEndpointAccess(input *DescribeEndpointAccessInput) (*DescribeEndpointAccessOutput, error) {
+	req, out := c.DescribeEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEndpointAccessWithContext is the same as DescribeEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeEndpointAccessWithContext(ctx aws.Context, input *DescribeEndpointAccessInput, opts ...request.Option) (*DescribeEndpointAccessOutput, error) {
+	req, out := c.DescribeEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeEndpointAuthorization = "DescribeEndpointAuthorization"
+
+// DescribeEndpointAuthorizationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpointAuthorization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEndpointAuthorization for more information on using the DescribeEndpointAuthorization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEndpointAuthorizationRequest method.
+//    req, resp := client.DescribeEndpointAuthorizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEndpointAuthorization
+func (c *Redshift) DescribeEndpointAuthorizationRequest(input *DescribeEndpointAuthorizationInput) (req *request.Request, output *DescribeEndpointAuthorizationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEndpointAuthorization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeEndpointAuthorizationInput{}
+	}
+
+	output = &DescribeEndpointAuthorizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEndpointAuthorization API operation for Amazon Redshift.
+//
+// Describes an endpoint authorization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeEndpointAuthorization for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeEndpointAuthorization
+func (c *Redshift) DescribeEndpointAuthorization(input *DescribeEndpointAuthorizationInput) (*DescribeEndpointAuthorizationOutput, error) {
+	req, out := c.DescribeEndpointAuthorizationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEndpointAuthorizationWithContext is the same as DescribeEndpointAuthorization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEndpointAuthorization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeEndpointAuthorizationWithContext(ctx aws.Context, input *DescribeEndpointAuthorizationInput, opts ...request.Option) (*DescribeEndpointAuthorizationOutput, error) {
+	req, out := c.DescribeEndpointAuthorizationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeEventCategories = "DescribeEventCategories"
@@ -8565,6 +9026,100 @@ func (c *Redshift) ModifyClusterSubnetGroupWithContext(ctx aws.Context, input *M
 	return out, req.Send()
 }
 
+const opModifyEndpointAccess = "ModifyEndpointAccess"
+
+// ModifyEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyEndpointAccess for more information on using the ModifyEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyEndpointAccessRequest method.
+//    req, resp := client.ModifyEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyEndpointAccess
+func (c *Redshift) ModifyEndpointAccessRequest(input *ModifyEndpointAccessInput) (req *request.Request, output *ModifyEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opModifyEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyEndpointAccessInput{}
+	}
+
+	output = &ModifyEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyEndpointAccess API operation for Amazon Redshift.
+//
+// Modifies a Redshift-managed VPC endpoint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation ModifyEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidClusterSecurityGroupStateFault "InvalidClusterSecurityGroupState"
+//   The state of the cluster security group is not available.
+//
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeInvalidEndpointStateFault "InvalidEndpointState"
+//   The status of the endpoint is not valid.
+//
+//   * ErrCodeEndpointNotFoundFault "EndpointNotFound"
+//   The endpoint name doesn't refer to an existing endpoint.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+//   * ErrCodeUnauthorizedOperation "UnauthorizedOperation"
+//   Your account is not authorized to perform the requested operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyEndpointAccess
+func (c *Redshift) ModifyEndpointAccess(input *ModifyEndpointAccessInput) (*ModifyEndpointAccessOutput, error) {
+	req, out := c.ModifyEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// ModifyEndpointAccessWithContext is the same as ModifyEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) ModifyEndpointAccessWithContext(ctx aws.Context, input *ModifyEndpointAccessInput, opts ...request.Option) (*ModifyEndpointAccessOutput, error) {
+	req, out := c.ModifyEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyEventSubscription = "ModifyEventSubscription"
 
 // ModifyEventSubscriptionRequest generates a "aws/request.Request" representing the
@@ -9975,6 +10530,103 @@ func (c *Redshift) RevokeClusterSecurityGroupIngressWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opRevokeEndpointAccess = "RevokeEndpointAccess"
+
+// RevokeEndpointAccessRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeEndpointAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeEndpointAccess for more information on using the RevokeEndpointAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RevokeEndpointAccessRequest method.
+//    req, resp := client.RevokeEndpointAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeEndpointAccess
+func (c *Redshift) RevokeEndpointAccessRequest(input *RevokeEndpointAccessInput) (req *request.Request, output *RevokeEndpointAccessOutput) {
+	op := &request.Operation{
+		Name:       opRevokeEndpointAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RevokeEndpointAccessInput{}
+	}
+
+	output = &RevokeEndpointAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RevokeEndpointAccess API operation for Amazon Redshift.
+//
+// Revokes access to a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation RevokeEndpointAccess for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeInvalidEndpointStateFault "InvalidEndpointState"
+//   The status of the endpoint is not valid.
+//
+//   * ErrCodeInvalidClusterSecurityGroupStateFault "InvalidClusterSecurityGroupState"
+//   The state of the cluster security group is not available.
+//
+//   * ErrCodeEndpointNotFoundFault "EndpointNotFound"
+//   The endpoint name doesn't refer to an existing endpoint.
+//
+//   * ErrCodeEndpointAuthorizationNotFoundFault "EndpointAuthorizationNotFound"
+//   The authorization for this endpoint can't be found.
+//
+//   * ErrCodeInvalidAuthorizationStateFault "InvalidAuthorizationState"
+//   The status of the authorization is not valid.
+//
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RevokeEndpointAccess
+func (c *Redshift) RevokeEndpointAccess(input *RevokeEndpointAccessInput) (*RevokeEndpointAccessOutput, error) {
+	req, out := c.RevokeEndpointAccessRequest(input)
+	return out, req.Send()
+}
+
+// RevokeEndpointAccessWithContext is the same as RevokeEndpointAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeEndpointAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) RevokeEndpointAccessWithContext(ctx aws.Context, input *RevokeEndpointAccessInput, opts ...request.Option) (*RevokeEndpointAccessOutput, error) {
+	req, out := c.RevokeEndpointAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRevokeSnapshotAccess = "RevokeSnapshotAccess"
 
 // RevokeSnapshotAccessRequest generates a "aws/request.Request" representing the
@@ -10412,6 +11064,160 @@ func (s AuthorizeClusterSecurityGroupIngressOutput) GoString() string {
 // SetClusterSecurityGroup sets the ClusterSecurityGroup field's value.
 func (s *AuthorizeClusterSecurityGroupIngressOutput) SetClusterSecurityGroup(v *ClusterSecurityGroup) *AuthorizeClusterSecurityGroupIngressOutput {
 	s.ClusterSecurityGroup = v
+	return s
+}
+
+type AuthorizeEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID to grant access to.
+	//
+	// Account is a required field
+	Account *string `type:"string" required:"true"`
+
+	// The cluster identifier of the cluster to grant access to.
+	ClusterIdentifier *string `type:"string"`
+
+	// The virtual private cloud (VPC) identifiers to grant access to.
+	VpcIds []*string `locationNameList:"VpcIdentifier" type:"list"`
+}
+
+// String returns the string representation
+func (s AuthorizeEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthorizeEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthorizeEndpointAccessInput"}
+	if s.Account == nil {
+		invalidParams.Add(request.NewErrParamRequired("Account"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccount sets the Account field's value.
+func (s *AuthorizeEndpointAccessInput) SetAccount(v string) *AuthorizeEndpointAccessInput {
+	s.Account = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *AuthorizeEndpointAccessInput) SetClusterIdentifier(v string) *AuthorizeEndpointAccessInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *AuthorizeEndpointAccessInput) SetVpcIds(v []*string) *AuthorizeEndpointAccessInput {
+	s.VpcIds = v
+	return s
+}
+
+// Describes an endpoint authorization for authorizing Redshift-managed VPC
+// endpoint access to a cluster across AWS accounts.
+type AuthorizeEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether all VPCs in the grantee account are allowed access to the
+	// cluster.
+	AllowedAllVPCs *bool `type:"boolean"`
+
+	// The VPCs allowed access to the cluster.
+	AllowedVPCs []*string `locationNameList:"VpcIdentifier" type:"list"`
+
+	// The time (UTC) when the authorization was created.
+	AuthorizeTime *time.Time `type:"timestamp"`
+
+	// The cluster identifier.
+	ClusterIdentifier *string `type:"string"`
+
+	// The status of the cluster.
+	ClusterStatus *string `type:"string"`
+
+	// The number of Redshift-managed VPC endpoints created for the authorization.
+	EndpointCount *int64 `type:"integer"`
+
+	// The AWS account ID of the grantee of the cluster.
+	Grantee *string `type:"string"`
+
+	// The AWS account ID of the cluster owner.
+	Grantor *string `type:"string"`
+
+	// The status of the authorization action.
+	Status *string `type:"string" enum:"AuthorizationStatus"`
+}
+
+// String returns the string representation
+func (s AuthorizeEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAllVPCs sets the AllowedAllVPCs field's value.
+func (s *AuthorizeEndpointAccessOutput) SetAllowedAllVPCs(v bool) *AuthorizeEndpointAccessOutput {
+	s.AllowedAllVPCs = &v
+	return s
+}
+
+// SetAllowedVPCs sets the AllowedVPCs field's value.
+func (s *AuthorizeEndpointAccessOutput) SetAllowedVPCs(v []*string) *AuthorizeEndpointAccessOutput {
+	s.AllowedVPCs = v
+	return s
+}
+
+// SetAuthorizeTime sets the AuthorizeTime field's value.
+func (s *AuthorizeEndpointAccessOutput) SetAuthorizeTime(v time.Time) *AuthorizeEndpointAccessOutput {
+	s.AuthorizeTime = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *AuthorizeEndpointAccessOutput) SetClusterIdentifier(v string) *AuthorizeEndpointAccessOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *AuthorizeEndpointAccessOutput) SetClusterStatus(v string) *AuthorizeEndpointAccessOutput {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetEndpointCount sets the EndpointCount field's value.
+func (s *AuthorizeEndpointAccessOutput) SetEndpointCount(v int64) *AuthorizeEndpointAccessOutput {
+	s.EndpointCount = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *AuthorizeEndpointAccessOutput) SetGrantee(v string) *AuthorizeEndpointAccessOutput {
+	s.Grantee = &v
+	return s
+}
+
+// SetGrantor sets the Grantor field's value.
+func (s *AuthorizeEndpointAccessOutput) SetGrantor(v string) *AuthorizeEndpointAccessOutput {
+	s.Grantor = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AuthorizeEndpointAccessOutput) SetStatus(v string) *AuthorizeEndpointAccessOutput {
+	s.Status = &v
 	return s
 }
 
@@ -13218,6 +14024,198 @@ func (s *CreateClusterSubnetGroupOutput) SetClusterSubnetGroup(v *ClusterSubnetG
 	return s
 }
 
+type CreateEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier of the cluster to access.
+	ClusterIdentifier *string `type:"string"`
+
+	// The Redshift-managed VPC endpoint name.
+	//
+	// An endpoint name must contain 1-30 characters. Valid characters are A-Z,
+	// a-z, 0-9, and hyphen(-). The first character must be a letter. The name can't
+	// contain two consecutive hyphens or end with a hyphen.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+
+	// The AWS account ID of the owner of the cluster. This is only required if
+	// the cluster is in another AWS account.
+	ResourceOwner *string `type:"string"`
+
+	// The subnet group from which Amazon Redshift chooses the subnet to deploy
+	// the endpoint.
+	//
+	// SubnetGroupName is a required field
+	SubnetGroupName *string `type:"string" required:"true"`
+
+	// The security group that defines the ports, protocols, and sources for inbound
+	// traffic that you are authorizing into your endpoint.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEndpointAccessInput"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+	if s.SubnetGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetGroupName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *CreateEndpointAccessInput) SetClusterIdentifier(v string) *CreateEndpointAccessInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *CreateEndpointAccessInput) SetEndpointName(v string) *CreateEndpointAccessInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *CreateEndpointAccessInput) SetResourceOwner(v string) *CreateEndpointAccessInput {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetSubnetGroupName sets the SubnetGroupName field's value.
+func (s *CreateEndpointAccessInput) SetSubnetGroupName(v string) *CreateEndpointAccessInput {
+	s.SubnetGroupName = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *CreateEndpointAccessInput) SetVpcSecurityGroupIds(v []*string) *CreateEndpointAccessInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
+// Describes a Redshift-managed VPC endpoint.
+type CreateEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS address of the endpoint.
+	Address *string `type:"string"`
+
+	// The cluster identifier of the cluster associated with the endpoint.
+	ClusterIdentifier *string `type:"string"`
+
+	// The time (UTC) that the endpoint was created.
+	EndpointCreateTime *time.Time `type:"timestamp"`
+
+	// The name of the endpoint.
+	EndpointName *string `type:"string"`
+
+	// The status of the endpoint.
+	EndpointStatus *string `type:"string"`
+
+	// The port number on which the cluster accepts incoming connections.
+	Port *int64 `type:"integer"`
+
+	// The AWS account ID of the owner of the cluster.
+	ResourceOwner *string `type:"string"`
+
+	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+	SubnetGroupName *string `type:"string"`
+
+	// The connection endpoint for connecting to an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpoint *VpcEndpoint `type:"structure"`
+
+	// The security groups associated with the endpoint.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroup" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *CreateEndpointAccessOutput) SetAddress(v string) *CreateEndpointAccessOutput {
+	s.Address = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *CreateEndpointAccessOutput) SetClusterIdentifier(v string) *CreateEndpointAccessOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointCreateTime sets the EndpointCreateTime field's value.
+func (s *CreateEndpointAccessOutput) SetEndpointCreateTime(v time.Time) *CreateEndpointAccessOutput {
+	s.EndpointCreateTime = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *CreateEndpointAccessOutput) SetEndpointName(v string) *CreateEndpointAccessOutput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetEndpointStatus sets the EndpointStatus field's value.
+func (s *CreateEndpointAccessOutput) SetEndpointStatus(v string) *CreateEndpointAccessOutput {
+	s.EndpointStatus = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *CreateEndpointAccessOutput) SetPort(v int64) *CreateEndpointAccessOutput {
+	s.Port = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *CreateEndpointAccessOutput) SetResourceOwner(v string) *CreateEndpointAccessOutput {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetSubnetGroupName sets the SubnetGroupName field's value.
+func (s *CreateEndpointAccessOutput) SetSubnetGroupName(v string) *CreateEndpointAccessOutput {
+	s.SubnetGroupName = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *CreateEndpointAccessOutput) SetVpcEndpoint(v *VpcEndpoint) *CreateEndpointAccessOutput {
+	s.VpcEndpoint = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *CreateEndpointAccessOutput) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *CreateEndpointAccessOutput {
+	s.VpcSecurityGroups = v
+	return s
+}
+
 type CreateEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14944,6 +15942,150 @@ func (s DeleteClusterSubnetGroupOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Redshift-managed VPC endpoint to delete.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEndpointAccessInput"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *DeleteEndpointAccessInput) SetEndpointName(v string) *DeleteEndpointAccessInput {
+	s.EndpointName = &v
+	return s
+}
+
+// Describes a Redshift-managed VPC endpoint.
+type DeleteEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS address of the endpoint.
+	Address *string `type:"string"`
+
+	// The cluster identifier of the cluster associated with the endpoint.
+	ClusterIdentifier *string `type:"string"`
+
+	// The time (UTC) that the endpoint was created.
+	EndpointCreateTime *time.Time `type:"timestamp"`
+
+	// The name of the endpoint.
+	EndpointName *string `type:"string"`
+
+	// The status of the endpoint.
+	EndpointStatus *string `type:"string"`
+
+	// The port number on which the cluster accepts incoming connections.
+	Port *int64 `type:"integer"`
+
+	// The AWS account ID of the owner of the cluster.
+	ResourceOwner *string `type:"string"`
+
+	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+	SubnetGroupName *string `type:"string"`
+
+	// The connection endpoint for connecting to an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpoint *VpcEndpoint `type:"structure"`
+
+	// The security groups associated with the endpoint.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroup" type:"list"`
+}
+
+// String returns the string representation
+func (s DeleteEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *DeleteEndpointAccessOutput) SetAddress(v string) *DeleteEndpointAccessOutput {
+	s.Address = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DeleteEndpointAccessOutput) SetClusterIdentifier(v string) *DeleteEndpointAccessOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointCreateTime sets the EndpointCreateTime field's value.
+func (s *DeleteEndpointAccessOutput) SetEndpointCreateTime(v time.Time) *DeleteEndpointAccessOutput {
+	s.EndpointCreateTime = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *DeleteEndpointAccessOutput) SetEndpointName(v string) *DeleteEndpointAccessOutput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetEndpointStatus sets the EndpointStatus field's value.
+func (s *DeleteEndpointAccessOutput) SetEndpointStatus(v string) *DeleteEndpointAccessOutput {
+	s.EndpointStatus = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DeleteEndpointAccessOutput) SetPort(v int64) *DeleteEndpointAccessOutput {
+	s.Port = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *DeleteEndpointAccessOutput) SetResourceOwner(v string) *DeleteEndpointAccessOutput {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetSubnetGroupName sets the SubnetGroupName field's value.
+func (s *DeleteEndpointAccessOutput) SetSubnetGroupName(v string) *DeleteEndpointAccessOutput {
+	s.SubnetGroupName = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *DeleteEndpointAccessOutput) SetVpcEndpoint(v *VpcEndpoint) *DeleteEndpointAccessOutput {
+	s.VpcEndpoint = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *DeleteEndpointAccessOutput) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DeleteEndpointAccessOutput {
+	s.VpcSecurityGroups = v
+	return s
+}
+
 type DeleteEventSubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16628,6 +17770,201 @@ func (s DescribeDefaultClusterParametersOutput) GoString() string {
 // SetDefaultClusterParameters sets the DefaultClusterParameters field's value.
 func (s *DescribeDefaultClusterParametersOutput) SetDefaultClusterParameters(v *DefaultClusterParameters) *DescribeDefaultClusterParametersOutput {
 	s.DefaultClusterParameters = v
+	return s
+}
+
+type DescribeEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier associated with the described endpoint.
+	ClusterIdentifier *string `type:"string"`
+
+	// The name of the endpoint to be described.
+	EndpointName *string `type:"string"`
+
+	// Reserved for Amazon Redshift internal use.
+	Marker *string `type:"string"`
+
+	// Reserved for Amazon Redshift internal use.
+	MaxRecords *int64 `type:"integer"`
+
+	// The AWS account ID of the owner of the cluster.
+	ResourceOwner *string `type:"string"`
+
+	// The virtual private cloud (VPC) identifier with access to the cluster.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DescribeEndpointAccessInput) SetClusterIdentifier(v string) *DescribeEndpointAccessInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *DescribeEndpointAccessInput) SetEndpointName(v string) *DescribeEndpointAccessInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointAccessInput) SetMarker(v string) *DescribeEndpointAccessInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointAccessInput) SetMaxRecords(v int64) *DescribeEndpointAccessInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *DescribeEndpointAccessInput) SetResourceOwner(v string) *DescribeEndpointAccessInput {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *DescribeEndpointAccessInput) SetVpcId(v string) *DescribeEndpointAccessInput {
+	s.VpcId = &v
+	return s
+}
+
+type DescribeEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of endpoints with access to the cluster.
+	EndpointAccessList []*EndpointAccess `type:"list"`
+
+	// Reserved for Amazon Redshift internal use.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointAccessList sets the EndpointAccessList field's value.
+func (s *DescribeEndpointAccessOutput) SetEndpointAccessList(v []*EndpointAccess) *DescribeEndpointAccessOutput {
+	s.EndpointAccessList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointAccessOutput) SetMarker(v string) *DescribeEndpointAccessOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeEndpointAuthorizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID of either the cluster owner (grantor) or grantee. If Grantee
+	// parameter is true, then the Account value is of the grantor.
+	Account *string `type:"string"`
+
+	// The cluster identifier of the cluster to access.
+	ClusterIdentifier *string `type:"string"`
+
+	// Indicates whether to check authorization from a grantor or grantee point
+	// of view. If true, Amazon Redshift returns endpoint authorizations that you've
+	// been granted. If false (default), checks authorization from a grantor point
+	// of view.
+	Grantee *bool `type:"boolean"`
+
+	// Reserved for Amazon Redshift internal use.
+	Marker *string `type:"string"`
+
+	// Reserved for Amazon Redshift internal use.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointAuthorizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointAuthorizationInput) GoString() string {
+	return s.String()
+}
+
+// SetAccount sets the Account field's value.
+func (s *DescribeEndpointAuthorizationInput) SetAccount(v string) *DescribeEndpointAuthorizationInput {
+	s.Account = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DescribeEndpointAuthorizationInput) SetClusterIdentifier(v string) *DescribeEndpointAuthorizationInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *DescribeEndpointAuthorizationInput) SetGrantee(v bool) *DescribeEndpointAuthorizationInput {
+	s.Grantee = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointAuthorizationInput) SetMarker(v string) *DescribeEndpointAuthorizationInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointAuthorizationInput) SetMaxRecords(v int64) *DescribeEndpointAuthorizationInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeEndpointAuthorizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The authorizations to an endpoint.
+	EndpointAuthorizationList []*EndpointAuthorization `type:"list"`
+
+	// Reserved for Amazon Redshift internal use.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointAuthorizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointAuthorizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointAuthorizationList sets the EndpointAuthorizationList field's value.
+func (s *DescribeEndpointAuthorizationOutput) SetEndpointAuthorizationList(v []*EndpointAuthorization) *DescribeEndpointAuthorizationOutput {
+	s.EndpointAuthorizationList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointAuthorizationOutput) SetMarker(v string) *DescribeEndpointAuthorizationOutput {
+	s.Marker = &v
 	return s
 }
 
@@ -19138,6 +20475,210 @@ func (s *Endpoint) SetVpcEndpoints(v []*VpcEndpoint) *Endpoint {
 	return s
 }
 
+// Describes a Redshift-managed VPC endpoint.
+type EndpointAccess struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS address of the endpoint.
+	Address *string `type:"string"`
+
+	// The cluster identifier of the cluster associated with the endpoint.
+	ClusterIdentifier *string `type:"string"`
+
+	// The time (UTC) that the endpoint was created.
+	EndpointCreateTime *time.Time `type:"timestamp"`
+
+	// The name of the endpoint.
+	EndpointName *string `type:"string"`
+
+	// The status of the endpoint.
+	EndpointStatus *string `type:"string"`
+
+	// The port number on which the cluster accepts incoming connections.
+	Port *int64 `type:"integer"`
+
+	// The AWS account ID of the owner of the cluster.
+	ResourceOwner *string `type:"string"`
+
+	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+	SubnetGroupName *string `type:"string"`
+
+	// The connection endpoint for connecting to an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpoint *VpcEndpoint `type:"structure"`
+
+	// The security groups associated with the endpoint.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroup" type:"list"`
+}
+
+// String returns the string representation
+func (s EndpointAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointAccess) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *EndpointAccess) SetAddress(v string) *EndpointAccess {
+	s.Address = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *EndpointAccess) SetClusterIdentifier(v string) *EndpointAccess {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointCreateTime sets the EndpointCreateTime field's value.
+func (s *EndpointAccess) SetEndpointCreateTime(v time.Time) *EndpointAccess {
+	s.EndpointCreateTime = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *EndpointAccess) SetEndpointName(v string) *EndpointAccess {
+	s.EndpointName = &v
+	return s
+}
+
+// SetEndpointStatus sets the EndpointStatus field's value.
+func (s *EndpointAccess) SetEndpointStatus(v string) *EndpointAccess {
+	s.EndpointStatus = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *EndpointAccess) SetPort(v int64) *EndpointAccess {
+	s.Port = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *EndpointAccess) SetResourceOwner(v string) *EndpointAccess {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetSubnetGroupName sets the SubnetGroupName field's value.
+func (s *EndpointAccess) SetSubnetGroupName(v string) *EndpointAccess {
+	s.SubnetGroupName = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *EndpointAccess) SetVpcEndpoint(v *VpcEndpoint) *EndpointAccess {
+	s.VpcEndpoint = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *EndpointAccess) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *EndpointAccess {
+	s.VpcSecurityGroups = v
+	return s
+}
+
+// Describes an endpoint authorization for authorizing Redshift-managed VPC
+// endpoint access to a cluster across AWS accounts.
+type EndpointAuthorization struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether all VPCs in the grantee account are allowed access to the
+	// cluster.
+	AllowedAllVPCs *bool `type:"boolean"`
+
+	// The VPCs allowed access to the cluster.
+	AllowedVPCs []*string `locationNameList:"VpcIdentifier" type:"list"`
+
+	// The time (UTC) when the authorization was created.
+	AuthorizeTime *time.Time `type:"timestamp"`
+
+	// The cluster identifier.
+	ClusterIdentifier *string `type:"string"`
+
+	// The status of the cluster.
+	ClusterStatus *string `type:"string"`
+
+	// The number of Redshift-managed VPC endpoints created for the authorization.
+	EndpointCount *int64 `type:"integer"`
+
+	// The AWS account ID of the grantee of the cluster.
+	Grantee *string `type:"string"`
+
+	// The AWS account ID of the cluster owner.
+	Grantor *string `type:"string"`
+
+	// The status of the authorization action.
+	Status *string `type:"string" enum:"AuthorizationStatus"`
+}
+
+// String returns the string representation
+func (s EndpointAuthorization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointAuthorization) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAllVPCs sets the AllowedAllVPCs field's value.
+func (s *EndpointAuthorization) SetAllowedAllVPCs(v bool) *EndpointAuthorization {
+	s.AllowedAllVPCs = &v
+	return s
+}
+
+// SetAllowedVPCs sets the AllowedVPCs field's value.
+func (s *EndpointAuthorization) SetAllowedVPCs(v []*string) *EndpointAuthorization {
+	s.AllowedVPCs = v
+	return s
+}
+
+// SetAuthorizeTime sets the AuthorizeTime field's value.
+func (s *EndpointAuthorization) SetAuthorizeTime(v time.Time) *EndpointAuthorization {
+	s.AuthorizeTime = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *EndpointAuthorization) SetClusterIdentifier(v string) *EndpointAuthorization {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *EndpointAuthorization) SetClusterStatus(v string) *EndpointAuthorization {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetEndpointCount sets the EndpointCount field's value.
+func (s *EndpointAuthorization) SetEndpointCount(v int64) *EndpointAuthorization {
+	s.EndpointCount = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *EndpointAuthorization) SetGrantee(v string) *EndpointAuthorization {
+	s.Grantee = &v
+	return s
+}
+
+// SetGrantor sets the Grantor field's value.
+func (s *EndpointAuthorization) SetGrantor(v string) *EndpointAuthorization {
+	s.Grantor = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EndpointAuthorization) SetStatus(v string) *EndpointAuthorization {
+	s.Status = &v
+	return s
+}
+
 // Describes an event.
 type Event struct {
 	_ struct{} `type:"structure"`
@@ -21051,6 +22592,160 @@ func (s ModifyClusterSubnetGroupOutput) GoString() string {
 // SetClusterSubnetGroup sets the ClusterSubnetGroup field's value.
 func (s *ModifyClusterSubnetGroupOutput) SetClusterSubnetGroup(v *ClusterSubnetGroup) *ModifyClusterSubnetGroupOutput {
 	s.ClusterSubnetGroup = v
+	return s
+}
+
+type ModifyEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint to be modified.
+	//
+	// EndpointName is a required field
+	EndpointName *string `type:"string" required:"true"`
+
+	// The complete list of VPC security groups associated with the endpoint after
+	// the endpoint is modified.
+	VpcSecurityGroupIds []*string `locationNameList:"VpcSecurityGroupId" type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyEndpointAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyEndpointAccessInput"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ModifyEndpointAccessInput) SetEndpointName(v string) *ModifyEndpointAccessInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetVpcSecurityGroupIds sets the VpcSecurityGroupIds field's value.
+func (s *ModifyEndpointAccessInput) SetVpcSecurityGroupIds(v []*string) *ModifyEndpointAccessInput {
+	s.VpcSecurityGroupIds = v
+	return s
+}
+
+// Describes a Redshift-managed VPC endpoint.
+type ModifyEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS address of the endpoint.
+	Address *string `type:"string"`
+
+	// The cluster identifier of the cluster associated with the endpoint.
+	ClusterIdentifier *string `type:"string"`
+
+	// The time (UTC) that the endpoint was created.
+	EndpointCreateTime *time.Time `type:"timestamp"`
+
+	// The name of the endpoint.
+	EndpointName *string `type:"string"`
+
+	// The status of the endpoint.
+	EndpointStatus *string `type:"string"`
+
+	// The port number on which the cluster accepts incoming connections.
+	Port *int64 `type:"integer"`
+
+	// The AWS account ID of the owner of the cluster.
+	ResourceOwner *string `type:"string"`
+
+	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
+	SubnetGroupName *string `type:"string"`
+
+	// The connection endpoint for connecting to an Amazon Redshift cluster through
+	// the proxy.
+	VpcEndpoint *VpcEndpoint `type:"structure"`
+
+	// The security groups associated with the endpoint.
+	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroup" type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *ModifyEndpointAccessOutput) SetAddress(v string) *ModifyEndpointAccessOutput {
+	s.Address = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *ModifyEndpointAccessOutput) SetClusterIdentifier(v string) *ModifyEndpointAccessOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointCreateTime sets the EndpointCreateTime field's value.
+func (s *ModifyEndpointAccessOutput) SetEndpointCreateTime(v time.Time) *ModifyEndpointAccessOutput {
+	s.EndpointCreateTime = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *ModifyEndpointAccessOutput) SetEndpointName(v string) *ModifyEndpointAccessOutput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetEndpointStatus sets the EndpointStatus field's value.
+func (s *ModifyEndpointAccessOutput) SetEndpointStatus(v string) *ModifyEndpointAccessOutput {
+	s.EndpointStatus = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ModifyEndpointAccessOutput) SetPort(v int64) *ModifyEndpointAccessOutput {
+	s.Port = &v
+	return s
+}
+
+// SetResourceOwner sets the ResourceOwner field's value.
+func (s *ModifyEndpointAccessOutput) SetResourceOwner(v string) *ModifyEndpointAccessOutput {
+	s.ResourceOwner = &v
+	return s
+}
+
+// SetSubnetGroupName sets the SubnetGroupName field's value.
+func (s *ModifyEndpointAccessOutput) SetSubnetGroupName(v string) *ModifyEndpointAccessOutput {
+	s.SubnetGroupName = &v
+	return s
+}
+
+// SetVpcEndpoint sets the VpcEndpoint field's value.
+func (s *ModifyEndpointAccessOutput) SetVpcEndpoint(v *VpcEndpoint) *ModifyEndpointAccessOutput {
+	s.VpcEndpoint = v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *ModifyEndpointAccessOutput) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *ModifyEndpointAccessOutput {
+	s.VpcSecurityGroups = v
 	return s
 }
 
@@ -23926,6 +25621,155 @@ func (s *RevokeClusterSecurityGroupIngressOutput) SetClusterSecurityGroup(v *Clu
 	return s
 }
 
+type RevokeEndpointAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID whose access is to be revoked.
+	Account *string `type:"string"`
+
+	// The cluster to revoke access from.
+	ClusterIdentifier *string `type:"string"`
+
+	// Indicates whether to force the revoke action. If true, the Redshift-managed
+	// VPC endpoints associated with the endpoint authorization are also deleted.
+	Force *bool `type:"boolean"`
+
+	// The virtual private cloud (VPC) identifiers for which access is to be revoked.
+	VpcIds []*string `locationNameList:"VpcIdentifier" type:"list"`
+}
+
+// String returns the string representation
+func (s RevokeEndpointAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeEndpointAccessInput) GoString() string {
+	return s.String()
+}
+
+// SetAccount sets the Account field's value.
+func (s *RevokeEndpointAccessInput) SetAccount(v string) *RevokeEndpointAccessInput {
+	s.Account = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *RevokeEndpointAccessInput) SetClusterIdentifier(v string) *RevokeEndpointAccessInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetForce sets the Force field's value.
+func (s *RevokeEndpointAccessInput) SetForce(v bool) *RevokeEndpointAccessInput {
+	s.Force = &v
+	return s
+}
+
+// SetVpcIds sets the VpcIds field's value.
+func (s *RevokeEndpointAccessInput) SetVpcIds(v []*string) *RevokeEndpointAccessInput {
+	s.VpcIds = v
+	return s
+}
+
+// Describes an endpoint authorization for authorizing Redshift-managed VPC
+// endpoint access to a cluster across AWS accounts.
+type RevokeEndpointAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether all VPCs in the grantee account are allowed access to the
+	// cluster.
+	AllowedAllVPCs *bool `type:"boolean"`
+
+	// The VPCs allowed access to the cluster.
+	AllowedVPCs []*string `locationNameList:"VpcIdentifier" type:"list"`
+
+	// The time (UTC) when the authorization was created.
+	AuthorizeTime *time.Time `type:"timestamp"`
+
+	// The cluster identifier.
+	ClusterIdentifier *string `type:"string"`
+
+	// The status of the cluster.
+	ClusterStatus *string `type:"string"`
+
+	// The number of Redshift-managed VPC endpoints created for the authorization.
+	EndpointCount *int64 `type:"integer"`
+
+	// The AWS account ID of the grantee of the cluster.
+	Grantee *string `type:"string"`
+
+	// The AWS account ID of the cluster owner.
+	Grantor *string `type:"string"`
+
+	// The status of the authorization action.
+	Status *string `type:"string" enum:"AuthorizationStatus"`
+}
+
+// String returns the string representation
+func (s RevokeEndpointAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeEndpointAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowedAllVPCs sets the AllowedAllVPCs field's value.
+func (s *RevokeEndpointAccessOutput) SetAllowedAllVPCs(v bool) *RevokeEndpointAccessOutput {
+	s.AllowedAllVPCs = &v
+	return s
+}
+
+// SetAllowedVPCs sets the AllowedVPCs field's value.
+func (s *RevokeEndpointAccessOutput) SetAllowedVPCs(v []*string) *RevokeEndpointAccessOutput {
+	s.AllowedVPCs = v
+	return s
+}
+
+// SetAuthorizeTime sets the AuthorizeTime field's value.
+func (s *RevokeEndpointAccessOutput) SetAuthorizeTime(v time.Time) *RevokeEndpointAccessOutput {
+	s.AuthorizeTime = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *RevokeEndpointAccessOutput) SetClusterIdentifier(v string) *RevokeEndpointAccessOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *RevokeEndpointAccessOutput) SetClusterStatus(v string) *RevokeEndpointAccessOutput {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetEndpointCount sets the EndpointCount field's value.
+func (s *RevokeEndpointAccessOutput) SetEndpointCount(v int64) *RevokeEndpointAccessOutput {
+	s.EndpointCount = &v
+	return s
+}
+
+// SetGrantee sets the Grantee field's value.
+func (s *RevokeEndpointAccessOutput) SetGrantee(v string) *RevokeEndpointAccessOutput {
+	s.Grantee = &v
+	return s
+}
+
+// SetGrantor sets the Grantor field's value.
+func (s *RevokeEndpointAccessOutput) SetGrantor(v string) *RevokeEndpointAccessOutput {
+	s.Grantor = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RevokeEndpointAccessOutput) SetStatus(v string) *RevokeEndpointAccessOutput {
+	s.Status = &v
+	return s
+}
+
 type RevokeSnapshotAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25369,7 +27213,7 @@ func (s *UsageLimit) SetUsageLimitId(v string) *UsageLimit {
 	return s
 }
 
-// The connection endpoint for connecting an Amazon Redshift cluster through
+// The connection endpoint for connecting to an Amazon Redshift cluster through
 // the proxy.
 type VpcEndpoint struct {
 	_ struct{} `type:"structure"`
@@ -25464,6 +27308,22 @@ func ActionType_Values() []string {
 		ActionTypeRestoreCluster,
 		ActionTypeRecommendNodeConfig,
 		ActionTypeResizeCluster,
+	}
+}
+
+const (
+	// AuthorizationStatusAuthorized is a AuthorizationStatus enum value
+	AuthorizationStatusAuthorized = "Authorized"
+
+	// AuthorizationStatusRevoking is a AuthorizationStatus enum value
+	AuthorizationStatusRevoking = "Revoking"
+)
+
+// AuthorizationStatus_Values returns all elements of the AuthorizationStatus enum
+func AuthorizationStatus_Values() []string {
+	return []string{
+		AuthorizationStatusAuthorized,
+		AuthorizationStatusRevoking,
 	}
 }
 

@@ -424,7 +424,13 @@
     "Boolean":{"type":"boolean"},
     "CLMLanguageCode":{
       "type":"string",
-      "enum":["en-US"]
+      "enum":[
+        "en-US",
+        "hi-IN",
+        "es-US",
+        "en-GB",
+        "en-AU"
+      ]
     },
     "ConflictException":{
       "type":"structure",

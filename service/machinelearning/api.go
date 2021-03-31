@@ -1034,8 +1034,8 @@ func (c *MachineLearning) DeleteEvaluationRequest(input *DeleteEvaluationInput) 
 //
 // After invoking the DeleteEvaluation operation, you can use the GetEvaluation
 // operation to verify that the status of the Evaluation changed to DELETED.
-//  Caution
-// The results of the DeleteEvaluation operation are irreversible.
+//
+// Caution: The results of the DeleteEvaluation operation are irreversible.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2357,8 +2357,8 @@ func (c *MachineLearning) PredictRequest(input *PredictInput) (req *request.Requ
 // Predict API operation for Amazon Machine Learning.
 //
 // Generates a prediction for the observation using the specified ML Model.
-//  Note
-// Not all response parameters will be populated. Whether a response parameter
+//
+// Note: Not all response parameters will be populated. Whether a response parameter
 // is populated depends on the type of model requested.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3077,7 +3077,7 @@ type CreateBatchPredictionInput struct {
 	//
 	// Amazon ML needs permissions to store and retrieve the logs on your behalf.
 	// For information about how to set permissions, see the Amazon Machine Learning
-	// Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	// Developer Guide (https://docs.aws.amazon.com/machine-learning/latest/dg).
 	//
 	// OutputUri is a required field
 	OutputUri *string `type:"string" required:"true"`
@@ -3204,11 +3204,8 @@ type CreateDataSourceFromRDSInput struct {
 
 	// The data specification of an Amazon RDS DataSource:
 	//
-	//    * DatabaseInformation -
-	//    * DatabaseName - The name of the Amazon RDS database.
-	//
-	//    * InstanceIdentifier - A unique identifier for the Amazon RDS database
-	//    instance.
+	//    * DatabaseInformation - DatabaseName - The name of the Amazon RDS database.
+	//    InstanceIdentifier - A unique identifier for the Amazon RDS database instance.
 	//
 	//    * DatabaseCredentials - AWS Identity and Access Management (IAM) credentials
 	//    that are used to connect to the Amazon RDS database.
@@ -3216,12 +3213,12 @@ type CreateDataSourceFromRDSInput struct {
 	//    * ResourceRole - A role (DataPipelineDefaultResourceRole) assumed by an
 	//    EC2 instance to carry out the copy task from Amazon RDS to Amazon Simple
 	//    Storage Service (Amazon S3). For more information, see Role templates
-	//    (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	//    (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	//    for data pipelines.
 	//
 	//    * ServiceRole - A role (DataPipelineDefaultRole) assumed by the AWS Data
 	//    Pipeline service to monitor the progress of the copy task from Amazon
-	//    RDS to Amazon S3. For more information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	//    RDS to Amazon S3. For more information, see Role templates (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	//    for data pipelines.
 	//
 	//    * SecurityInfo - The security information to use to access an RDS DB instance.
@@ -3377,10 +3374,8 @@ type CreateDataSourceFromRedshiftInput struct {
 
 	// The data specification of an Amazon Redshift DataSource:
 	//
-	//    * DatabaseInformation -
-	//    * DatabaseName - The name of the Amazon Redshift database.
-	//
-	//    * ClusterIdentifier - The unique ID for the Amazon Redshift cluster.
+	//    * DatabaseInformation - DatabaseName - The name of the Amazon Redshift
+	//    database. ClusterIdentifier - The unique ID for the Amazon Redshift cluster.
 	//
 	//    * DatabaseCredentials - The AWS Identity and Access Management (IAM) credentials
 	//    that are used to connect to the Amazon Redshift database.
@@ -3773,7 +3768,7 @@ type CreateMLModelInput struct {
 	//
 	//    * Choose MULTICLASS if the MLModel result has a limited number of values.
 	//
-	// For more information, see the Amazon Machine Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	// For more information, see the Amazon Machine Learning Developer Guide (https://docs.aws.amazon.com/machine-learning/latest/dg).
 	//
 	// MLModelType is a required field
 	MLModelType *string `type:"string" required:"true" enum:"MLModelType"`
@@ -3981,8 +3976,8 @@ func (s *CreateRealtimeEndpointInput) SetMLModelId(v string) *CreateRealtimeEndp
 //
 // The result contains the MLModelId and the endpoint information for the MLModel.
 //
-// The endpoint information includes the URI of the MLModel; that is, the location
-// to send online prediction requests for the specified MLModel.
+// Note: The endpoint information includes the URI of the MLModel; that is,
+// the location to send online prediction requests for the specified MLModel.
 type CreateRealtimeEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -4076,7 +4071,7 @@ type DataSource struct {
 	// Describes the DataSource details specific to Amazon Redshift.
 	RedshiftMetadata *RedshiftMetadata `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS IAM Role (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
+	// The Amazon Resource Name (ARN) of an AWS IAM Role (https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
 	// such as the following: arn:aws:iam::account:role/rolename.
 	RoleARN *string `min:"1" type:"string"`
 
@@ -5643,7 +5638,7 @@ type Evaluation struct {
 	//    to measure performance.
 	//
 	// For more information about performance metrics, please see the Amazon Machine
-	// Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	// Learning Developer Guide (https://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
 
 	// A timestamp represented in epoch time.
@@ -6092,8 +6087,8 @@ type GetDataSourceOutput struct {
 	DataSourceId *string `min:"1" type:"string"`
 
 	// The schema used by all of the data files of this DataSource.
-	//  Note
-	// This parameter is provided as part of the verbose format.
+	//
+	// Note: This parameter is provided as part of the verbose format.
 	DataSourceSchema *string `type:"string"`
 
 	// The epoch time when Amazon Machine Learning marked the DataSource as COMPLETED
@@ -6124,7 +6119,7 @@ type GetDataSourceOutput struct {
 	// Describes the DataSource details specific to Amazon Redshift.
 	RedshiftMetadata *RedshiftMetadata `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS IAM Role (http://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
+	// The Amazon Resource Name (ARN) of an AWS IAM Role (https://docs.aws.amazon.com/IAM/latest/UserGuide/roles-toplevel.html#roles-about-termsandconcepts),
 	// such as the following: arn:aws:iam::account:role/rolename.
 	RoleARN *string `min:"1" type:"string"`
 
@@ -6384,7 +6379,7 @@ type GetEvaluationOutput struct {
 	//    to measure performance.
 	//
 	// For more information about performance metrics, please see the Amazon Machine
-	// Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+	// Learning Developer Guide (https://docs.aws.amazon.com/machine-learning/latest/dg).
 	PerformanceMetrics *PerformanceMetrics `type:"structure"`
 
 	// The epoch time when Amazon Machine Learning marked the Evaluation as INPROGRESS.
@@ -6623,13 +6618,13 @@ type GetMLModelOutput struct {
 	// The recipe to use when training the MLModel. The Recipe provides detailed
 	// information about the observation data to use during training, and manipulations
 	// to perform on the observation data during training.
-	//  Note
-	// This parameter is provided as part of the verbose format.
+	//
+	// Note: This parameter is provided as part of the verbose format.
 	Recipe *string `type:"string"`
 
 	// The schema used by all of the data files referenced by the DataSource.
-	//  Note
-	// This parameter is provided as part of the verbose format.
+	//
+	// Note: This parameter is provided as part of the verbose format.
 	Schema *string `type:"string"`
 
 	// The scoring threshold is used in binary classification MLModel models. It
@@ -7398,7 +7393,7 @@ func (s *MLModel) SetTrainingParameters(v map[string]*string) *MLModel {
 //    to measure performance.
 //
 // For more information about performance metrics, please see the Amazon Machine
-// Learning Developer Guide (http://docs.aws.amazon.com/machine-learning/latest/dg).
+// Learning Developer Guide (https://docs.aws.amazon.com/machine-learning/latest/dg).
 type PerformanceMetrics struct {
 	_ struct{} `type:"structure"`
 
@@ -7544,11 +7539,7 @@ type Prediction struct {
 	// Provides the raw classification score corresponding to each label.
 	PredictedScores map[string]*float64 `locationName:"predictedScores" type:"map"`
 
-	// The prediction value for
-	//    REGRESSION
-	//
-	//    MLModel
-	// .
+	// The prediction value for REGRESSION MLModel.
 	PredictedValue *float64 `locationName:"predictedValue" type:"float"`
 }
 
@@ -7754,7 +7745,7 @@ type RDSDataSpec struct {
 
 	// The role (DataPipelineDefaultResourceRole) assumed by an Amazon Elastic Compute
 	// Cloud (Amazon EC2) instance to carry out the copy operation from Amazon RDS
-	// to an Amazon S3 task. For more information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	// to an Amazon S3 task. For more information, see Role templates (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
 	//
 	// ResourceRole is a required field
@@ -7781,7 +7772,7 @@ type RDSDataSpec struct {
 
 	// The role (DataPipelineDefaultRole) assumed by AWS Data Pipeline service to
 	// monitor the progress of the copy task from Amazon RDS to Amazon S3. For more
-	// information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	// information, see Role templates (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
 	//
 	// ServiceRole is a required field
@@ -8068,7 +8059,7 @@ type RDSMetadata struct {
 
 	// The role (DataPipelineDefaultResourceRole) assumed by an Amazon EC2 instance
 	// to carry out the copy task from Amazon RDS to Amazon S3. For more information,
-	// see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	// see Role templates (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
 	ResourceRole *string `min:"1" type:"string"`
 
@@ -8078,7 +8069,7 @@ type RDSMetadata struct {
 
 	// The role (DataPipelineDefaultRole) assumed by the Data Pipeline service to
 	// monitor the progress of the copy task from Amazon RDS to Amazon S3. For more
-	// information, see Role templates (http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
+	// information, see Role templates (https://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-iam-roles.html)
 	// for data pipelines.
 	ServiceRole *string `min:"1" type:"string"`
 }
@@ -8149,9 +8140,9 @@ type RealtimeEndpointInfo struct {
 
 	// The URI that specifies where to send real-time prediction requests for the
 	// MLModel.
-	//  Note
-	// The application must wait until the real-time endpoint is ready before using
-	// this URI.
+	//
+	// Note: The application must wait until the real-time endpoint is ready before
+	// using this URI.
 	EndpointUrl *string `type:"string"`
 
 	// The maximum processing rate for the real-time endpoint for MLModel, measured
@@ -8470,7 +8461,7 @@ type RedshiftDatabaseCredentials struct {
 	// A password to be used by Amazon ML to connect to a database on an Amazon
 	// Redshift cluster. The password should have sufficient permissions to execute
 	// a RedshiftSelectSqlQuery query. The password should be valid for an Amazon
-	// Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
+	// Redshift USER (https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
 	//
 	// Password is a required field
 	Password *string `min:"8" type:"string" required:"true"`
@@ -8478,7 +8469,7 @@ type RedshiftDatabaseCredentials struct {
 	// A username to be used by Amazon Machine Learning (Amazon ML)to connect to
 	// a database on an Amazon Redshift cluster. The username should have sufficient
 	// permissions to execute the RedshiftSelectSqlQuery query. The username should
-	// be valid for an Amazon Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
+	// be valid for an Amazon Redshift USER (https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
 	//
 	// Username is a required field
 	Username *string `min:"1" type:"string" required:"true"`
@@ -8535,7 +8526,7 @@ type RedshiftMetadata struct {
 	// A username to be used by Amazon Machine Learning (Amazon ML)to connect to
 	// a database on an Amazon Redshift cluster. The username should have sufficient
 	// permissions to execute the RedshiftSelectSqlQuery query. The username should
-	// be valid for an Amazon Redshift USER (http://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
+	// be valid for an Amazon Redshift USER (https://docs.aws.amazon.com/redshift/latest/dg/r_CREATE_USER.html).
 	DatabaseUserName *string `min:"1" type:"string"`
 
 	// Describes the database details required to connect to an Amazon Redshift
@@ -9320,8 +9311,8 @@ func BatchPredictionFilterVariable_Values() []string {
 //
 //    * IAMUser - Sets the search criteria to the user account that invoked
 //    the DataSource creation.
-//  Note
-// The variable names should match the variable names in the DataSource.
+//
+// Note: The variable names should match the variable names in the DataSource.
 const (
 	// DataSourceFilterVariableCreatedAt is a DataSourceFilterVariable enum value
 	DataSourceFilterVariableCreatedAt = "CreatedAt"
@@ -9354,17 +9345,11 @@ func DataSourceFilterVariable_Values() []string {
 	}
 }
 
-// Contains the key values of
-//    DetailsMap
-// :
-//    PredictiveModelType
-//  - Indicates the type of the
-//    MLModel
-// .
-//    Algorithm
-//  - Indicates the algorithm that was used for the
-//    MLModel
-// .
+// Contains the key values of DetailsMap:
+//
+//    * PredictiveModelType - Indicates the type of the MLModel.
+//
+//    * Algorithm - Indicates the algorithm that was used for the MLModel.
 const (
 	// DetailsAttributesPredictiveModelType is a DetailsAttributes enum value
 	DetailsAttributesPredictiveModelType = "PredictiveModelType"

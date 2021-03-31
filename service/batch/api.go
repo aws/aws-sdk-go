@@ -3677,6 +3677,16 @@ func (s *ContainerProperties) Validate() error {
 			}
 		}
 	}
+	if s.Volumes != nil {
+		for i, v := range s.Volumes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Volumes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4746,9 +4756,150 @@ func (s *Device) SetPermissions(v []*string) *Device {
 	return s
 }
 
+// The authorization configuration details for the Amazon EFS file system.
+type EFSAuthorizationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EFS access point ID to use. If an access point is specified, the
+	// root directory value specified in the EFSVolumeConfiguration must either
+	// be omitted or set to / which will enforce the path set on the EFS access
+	// point. If an access point is used, transit encryption must be enabled in
+	// the EFSVolumeConfiguration. For more information, see Working with Amazon
+	// EFS Access Points (https://docs.aws.amazon.com/efs/latest/ug/efs-access-points.html)
+	// in the Amazon Elastic File System User Guide.
+	AccessPointId *string `locationName:"accessPointId" type:"string"`
+
+	// Whether or not to use the AWS Batch execution IAM role defined in a job definition
+	// when mounting the Amazon EFS file system. If enabled, transit encryption
+	// must be enabled in the EFSVolumeConfiguration. If this parameter is omitted,
+	// the default value of DISABLED is used. For more information, see Using Amazon
+	// EFS Access Points (https://docs.aws.amazon.com/batch/latest/ug/efs-volumes.html#efs-volume-accesspoints)
+	// in the AWS Batch User Guide. EFS IAM authorization requires that TransitEncryption
+	// be ENABLED and that a JobRoleArn is specified.
+	Iam *string `locationName:"iam" type:"string" enum:"EFSAuthorizationConfigIAM"`
+}
+
+// String returns the string representation
+func (s EFSAuthorizationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EFSAuthorizationConfig) GoString() string {
+	return s.String()
+}
+
+// SetAccessPointId sets the AccessPointId field's value.
+func (s *EFSAuthorizationConfig) SetAccessPointId(v string) *EFSAuthorizationConfig {
+	s.AccessPointId = &v
+	return s
+}
+
+// SetIam sets the Iam field's value.
+func (s *EFSAuthorizationConfig) SetIam(v string) *EFSAuthorizationConfig {
+	s.Iam = &v
+	return s
+}
+
+// This parameter is specified when you are using an Amazon Elastic File System
+// file system for task storage. For more information, see Amazon EFS Volumes
+// (https://docs.aws.amazon.com/batch/latest/ug/efs-volumes.html) in the AWS
+// Batch User Guide.
+type EFSVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The authorization configuration details for the Amazon EFS file system.
+	AuthorizationConfig *EFSAuthorizationConfig `locationName:"authorizationConfig" type:"structure"`
+
+	// The Amazon EFS file system ID to use.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `locationName:"fileSystemId" type:"string" required:"true"`
+
+	// The directory within the Amazon EFS file system to mount as the root directory
+	// inside the host. If this parameter is omitted, the root of the Amazon EFS
+	// volume will be used. Specifying / will have the same effect as omitting this
+	// parameter.
+	//
+	// If an EFS access point is specified in the authorizationConfig, the root
+	// directory parameter must either be omitted or set to / which will enforce
+	// the path set on the Amazon EFS access point.
+	RootDirectory *string `locationName:"rootDirectory" type:"string"`
+
+	// Whether or not to enable encryption for Amazon EFS data in transit between
+	// the Amazon ECS host and the Amazon EFS server. Transit encryption must be
+	// enabled if Amazon EFS IAM authorization is used. If this parameter is omitted,
+	// the default value of DISABLED is used. For more information, see Encrypting
+	// data in transit (https://docs.aws.amazon.com/efs/latest/ug/encryption-in-transit.html)
+	// in the Amazon Elastic File System User Guide.
+	TransitEncryption *string `locationName:"transitEncryption" type:"string" enum:"EFSTransitEncryption"`
+
+	// The port to use when sending encrypted data between the Amazon ECS host and
+	// the Amazon EFS server. If you do not specify a transit encryption port, it
+	// will use the port selection strategy that the Amazon EFS mount helper uses.
+	// For more information, see EFS Mount Helper (https://docs.aws.amazon.com/efs/latest/ug/efs-mount-helper.html)
+	// in the Amazon Elastic File System User Guide.
+	TransitEncryptionPort *int64 `locationName:"transitEncryptionPort" type:"integer"`
+}
+
+// String returns the string representation
+func (s EFSVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EFSVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EFSVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EFSVolumeConfiguration"}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizationConfig sets the AuthorizationConfig field's value.
+func (s *EFSVolumeConfiguration) SetAuthorizationConfig(v *EFSAuthorizationConfig) *EFSVolumeConfiguration {
+	s.AuthorizationConfig = v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *EFSVolumeConfiguration) SetFileSystemId(v string) *EFSVolumeConfiguration {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetRootDirectory sets the RootDirectory field's value.
+func (s *EFSVolumeConfiguration) SetRootDirectory(v string) *EFSVolumeConfiguration {
+	s.RootDirectory = &v
+	return s
+}
+
+// SetTransitEncryption sets the TransitEncryption field's value.
+func (s *EFSVolumeConfiguration) SetTransitEncryption(v string) *EFSVolumeConfiguration {
+	s.TransitEncryption = &v
+	return s
+}
+
+// SetTransitEncryptionPort sets the TransitEncryptionPort field's value.
+func (s *EFSVolumeConfiguration) SetTransitEncryptionPort(v int64) *EFSVolumeConfiguration {
+	s.TransitEncryptionPort = &v
+	return s
+}
+
 // Provides information used to select Amazon Machine Images (AMIs) for instances
-// in the compute environment. If the Ec2Configuration isn't specified, the
-// default is ECS_AL1.
+// in the compute environment. If Ec2Configuration isn't specified, the default
+// is currently ECS_AL1 (Amazon Linux (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#alami))
+// for non-GPU, non-Graviton instances. Starting on March 31, 2021, this default
+// will be changing to ECS_AL2 (Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)).
 //
 // This object isn't applicable to jobs running on Fargate resources.
 type Ec2Configuration struct {
@@ -4761,7 +4912,8 @@ type Ec2Configuration struct {
 
 	// The image type to match with the instance type to select an AMI. If the imageIdOverride
 	// parameter isn't specified, then a recent Amazon ECS-optimized AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
-	// is used.
+	// (ECS_AL1) is used. Starting on March 31, 2021, this default will be changing
+	// to ECS_AL2 (Amazon Linux 2 (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html#al2ami)).
 	//
 	// ECS_AL2
 	//
@@ -5735,6 +5887,13 @@ type LaunchTemplateSpecification struct {
 	//
 	// If the value is $Latest, the latest version of the launch template is used.
 	// If the value is $Default, the default version of the launch template is used.
+	//
+	// After the compute environment is created, the launch template version used
+	// will not be changed, even if the $Default or $Latest version for the launch
+	// template is updated. To use a new launch template version, create a new compute
+	// environment, add the new compute environment to the existing job queue, remove
+	// the old compute environment from the job queue, and delete the old compute
+	// environment.
 	//
 	// Default: $Default.
 	Version *string `locationName:"version" type:"string"`
@@ -7932,6 +8091,10 @@ type UpdateComputeEnvironmentInput struct {
 	// see AWS Batch service IAM role (https://docs.aws.amazon.com/batch/latest/userguide/service_IAM_role.html)
 	// in the AWS Batch User Guide.
 	//
+	// If the compute environment has a service-linked role, it cannot be changed
+	// to use a regular IAM role. If the compute environment has a regular IAM role,
+	// it cannot be changed to use a service-linked role.
+	//
 	// If your specified role has a path other than /, then you must either specify
 	// the full role ARN (this is recommended) or prefix the role name with the
 	// path.
@@ -8170,6 +8333,11 @@ func (s *UpdateJobQueueOutput) SetJobQueueName(v string) *UpdateJobQueueOutput {
 type Volume struct {
 	_ struct{} `type:"structure"`
 
+	// This parameter is specified when you are using an Amazon Elastic File System
+	// file system for job storage. Jobs running on Fargate resources must specify
+	// a platformVersion of at least 1.4.0.
+	EfsVolumeConfiguration *EFSVolumeConfiguration `locationName:"efsVolumeConfiguration" type:"structure"`
+
 	// The contents of the host parameter determine whether your data volume persists
 	// on the host container instance and where it is stored. If the host parameter
 	// is empty, then the Docker daemon assigns a host path for your data volume.
@@ -8194,6 +8362,27 @@ func (s Volume) String() string {
 // GoString returns the string representation
 func (s Volume) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Volume) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Volume"}
+	if s.EfsVolumeConfiguration != nil {
+		if err := s.EfsVolumeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EfsVolumeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEfsVolumeConfiguration sets the EfsVolumeConfiguration field's value.
+func (s *Volume) SetEfsVolumeConfiguration(v *EFSVolumeConfiguration) *Volume {
+	s.EfsVolumeConfiguration = v
+	return s
 }
 
 // SetHost sets the Host field's value.
@@ -8365,6 +8554,38 @@ func DeviceCgroupPermission_Values() []string {
 		DeviceCgroupPermissionRead,
 		DeviceCgroupPermissionWrite,
 		DeviceCgroupPermissionMknod,
+	}
+}
+
+const (
+	// EFSAuthorizationConfigIAMEnabled is a EFSAuthorizationConfigIAM enum value
+	EFSAuthorizationConfigIAMEnabled = "ENABLED"
+
+	// EFSAuthorizationConfigIAMDisabled is a EFSAuthorizationConfigIAM enum value
+	EFSAuthorizationConfigIAMDisabled = "DISABLED"
+)
+
+// EFSAuthorizationConfigIAM_Values returns all elements of the EFSAuthorizationConfigIAM enum
+func EFSAuthorizationConfigIAM_Values() []string {
+	return []string{
+		EFSAuthorizationConfigIAMEnabled,
+		EFSAuthorizationConfigIAMDisabled,
+	}
+}
+
+const (
+	// EFSTransitEncryptionEnabled is a EFSTransitEncryption enum value
+	EFSTransitEncryptionEnabled = "ENABLED"
+
+	// EFSTransitEncryptionDisabled is a EFSTransitEncryption enum value
+	EFSTransitEncryptionDisabled = "DISABLED"
+)
+
+// EFSTransitEncryption_Values returns all elements of the EFSTransitEncryption enum
+func EFSTransitEncryption_Values() []string {
+	return []string{
+		EFSTransitEncryptionEnabled,
+		EFSTransitEncryptionDisabled,
 	}
 }
 

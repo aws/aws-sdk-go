@@ -7440,6 +7440,15 @@ type CreateDocumentClassifierInput struct {
 	// is a pipe (|).
 	Mode *string `type:"string" enum:"DocumentClassifierMode"`
 
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
 	// Enables the addition of output results configuration parameters for custom
 	// classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
@@ -7560,6 +7569,12 @@ func (s *CreateDocumentClassifierInput) SetMode(v string) *CreateDocumentClassif
 	return s
 }
 
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *CreateDocumentClassifierInput) SetModelKmsKeyId(v string) *CreateDocumentClassifierInput {
+	s.ModelKmsKeyId = &v
+	return s
+}
+
 // SetOutputDataConfig sets the OutputDataConfig field's value.
 func (s *CreateDocumentClassifierInput) SetOutputDataConfig(v *DocumentClassifierOutputDataConfig) *CreateDocumentClassifierInput {
 	s.OutputDataConfig = v
@@ -7614,6 +7629,11 @@ type CreateEndpointInput struct {
 	// endpoint creation request, Amazon Comprehend will not return a ResourceInUseException.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// The Amazon Resource Name (ARN) of the AWS identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to trained custom models
+	// encrypted with a customer managed key (ModelKmsKeyId).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The desired number of inference units to be used by the model using this
 	// endpoint. Each inference unit represents of a throughput of 100 characters
 	// per second.
@@ -7655,6 +7675,9 @@ func (s *CreateEndpointInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
 	if s.DesiredInferenceUnits == nil {
 		invalidParams.Add(request.NewErrParamRequired("DesiredInferenceUnits"))
 	}
@@ -7687,6 +7710,12 @@ func (s *CreateEndpointInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateEndpointInput) SetClientRequestToken(v string) *CreateEndpointInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CreateEndpointInput) SetDataAccessRoleArn(v string) *CreateEndpointInput {
+	s.DataAccessRoleArn = &v
 	return s
 }
 
@@ -7763,6 +7792,15 @@ type CreateEntityRecognizerInput struct {
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
 
 	// The name given to the newly created recognizer. Recognizer names can be a
 	// maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores
@@ -7872,6 +7910,12 @@ func (s *CreateEntityRecognizerInput) SetInputDataConfig(v *EntityRecognizerInpu
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *CreateEntityRecognizerInput) SetLanguageCode(v string) *CreateEntityRecognizerInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *CreateEntityRecognizerInput) SetModelKmsKeyId(v string) *CreateEntityRecognizerInput {
+	s.ModelKmsKeyId = &v
 	return s
 }
 
@@ -9776,6 +9820,15 @@ type DocumentClassifierProperties struct {
 	// once the classifier is trained.
 	Mode *string `type:"string" enum:"DocumentClassifierMode"`
 
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
 	// Provides output results configuration parameters for custom classifier jobs.
 	OutputDataConfig *DocumentClassifierOutputDataConfig `type:"structure"`
 
@@ -9867,6 +9920,12 @@ func (s *DocumentClassifierProperties) SetMessage(v string) *DocumentClassifierP
 // SetMode sets the Mode field's value.
 func (s *DocumentClassifierProperties) SetMode(v string) *DocumentClassifierProperties {
 	s.Mode = &v
+	return s
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *DocumentClassifierProperties) SetModelKmsKeyId(v string) *DocumentClassifierProperties {
+	s.ModelKmsKeyId = &v
 	return s
 }
 
@@ -10243,6 +10302,11 @@ type EndpointProperties struct {
 	// The number of inference units currently used by the model using this endpoint.
 	CurrentInferenceUnits *int64 `min:"1" type:"integer"`
 
+	// The Amazon Resource Name (ARN) of the AWS identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to trained custom models
+	// encrypted with a customer managed key (ModelKmsKeyId).
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The desired number of inference units to be used by the model using this
 	// endpoint. Each inference unit represents of a throughput of 100 characters
 	// per second.
@@ -10285,6 +10349,12 @@ func (s *EndpointProperties) SetCreationTime(v time.Time) *EndpointProperties {
 // SetCurrentInferenceUnits sets the CurrentInferenceUnits field's value.
 func (s *EndpointProperties) SetCurrentInferenceUnits(v int64) *EndpointProperties {
 	s.CurrentInferenceUnits = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *EndpointProperties) SetDataAccessRoleArn(v string) *EndpointProperties {
+	s.DataAccessRoleArn = &v
 	return s
 }
 
@@ -11134,6 +11204,15 @@ type EntityRecognizerProperties struct {
 	// A description of the status of the recognizer.
 	Message *string `type:"string"`
 
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt trained custom models. The ModelKmsKeyId can be either of the
+	// following formats:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * Amazon Resource Name (ARN) of a KMS Key: "arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab"
+	ModelKmsKeyId *string `type:"string"`
+
 	// Provides information about an entity recognizer.
 	RecognizerMetadata *EntityRecognizerMetadata `type:"structure" sensitive:"true"`
 
@@ -11208,6 +11287,12 @@ func (s *EntityRecognizerProperties) SetLanguageCode(v string) *EntityRecognizer
 // SetMessage sets the Message field's value.
 func (s *EntityRecognizerProperties) SetMessage(v string) *EntityRecognizerProperties {
 	s.Message = &v
+	return s
+}
+
+// SetModelKmsKeyId sets the ModelKmsKeyId field's value.
+func (s *EntityRecognizerProperties) SetModelKmsKeyId(v string) *EntityRecognizerProperties {
+	s.ModelKmsKeyId = &v
 	return s
 }
 

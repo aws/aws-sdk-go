@@ -9,7 +9,7 @@
           "description": "This is my demonstration environment.",
           "instanceType": "t2.micro",
           "ownerArn": "arn:aws:iam::123456789012:user/MyDemoUser",
-          "subnetId": "subnet-1fab8aEX"
+          "subnetId": "subnet-6300cd1b"
         },
         "output": {
           "environmentId": "8d9967e2f0624182b74e7690ad69ebEX"

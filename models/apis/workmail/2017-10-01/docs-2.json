@@ -7,6 +7,7 @@
     "CancelMailboxExportJob": "<p>Cancels a mailbox export job.</p> <note> <p>If the mailbox export job is near completion, it might not be possible to cancel it.</p> </note>",
     "CreateAlias": "<p>Adds an alias to the set of a given member (user or group) of Amazon WorkMail.</p>",
     "CreateGroup": "<p>Creates a group that can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
+    "CreateMobileDeviceAccessRule": "<p>Creates a new mobile device access rule for the specified Amazon WorkMail organization.</p>",
     "CreateOrganization": "<p>Creates a new Amazon WorkMail organization. Optionally, you can choose to associate an existing AWS Directory Service directory with your organization. If an AWS Directory Service directory ID is specified, the organization alias must match the directory alias. If you choose not to associate an existing directory with your organization, then we create a new Amazon WorkMail directory for you. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_new_organization.html\">Adding an organization</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>You can associate multiple email domains with an organization, then set your default email domain from the Amazon WorkMail console. You can also associate a domain that is managed in an Amazon Route 53 public hosted zone. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html\">Adding a domain</a> and <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/default_domain.html\">Choosing the default domain</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>Optionally, you can use a customer managed master key from AWS Key Management Service (AWS KMS) to encrypt email for your organization. If you don't associate an AWS KMS key, Amazon WorkMail creates a default AWS managed master key for you.</p>",
     "CreateResource": "<p>Creates a new Amazon WorkMail resource. </p>",
     "CreateUser": "<p>Creates a user who can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
@@ -14,6 +15,7 @@
     "DeleteAlias": "<p>Remove one or more specified aliases from a set of aliases for a given user.</p>",
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
+    "DeleteMobileDeviceAccessRule": "<p>Deletes a mobile device access rule for the specified Amazon WorkMail organization.</p>",
     "DeleteOrganization": "<p>Deletes an Amazon WorkMail organization and all underlying AWS resources managed by Amazon WorkMail as part of the organization. You can choose whether to delete the associated directory. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/remove_organization.html\">Removing an organization</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p>",
     "DeleteResource": "<p>Deletes the specified resource. </p>",
     "DeleteRetentionPolicy": "<p>Deletes the specified retention policy from the specified organization.</p>",
@@ -29,12 +31,14 @@
     "GetAccessControlEffect": "<p>Gets the effects of an organization's access control rules as they apply to a specified IPv4 address, access protocol action, or user ID. </p>",
     "GetDefaultRetentionPolicy": "<p>Gets the default retention policy details for the specified organization.</p>",
     "GetMailboxDetails": "<p>Requests a user's mailbox details for a specified organization and user.</p>",
+    "GetMobileDeviceAccessEffect": "<p>Simulates the effect of the mobile device access rules for the given attributes of a sample access event. Use this method to test the effects of the current set of mobile device access rules for the Amazon WorkMail organization for a particular user's attributes.</p>",
     "ListAccessControlRules": "<p>Lists the access control rules for the specified organization.</p>",
     "ListAliases": "<p>Creates a paginated call to list the aliases associated with a given entity.</p>",
     "ListGroupMembers": "<p>Returns an overview of the members of a group. Users and groups can be members of a group.</p>",
     "ListGroups": "<p>Returns summaries of the organization's groups.</p>",
     "ListMailboxExportJobs": "<p>Lists the mailbox export jobs started for the specified organization within the last seven days.</p>",
     "ListMailboxPermissions": "<p>Lists the mailbox permissions associated with a user, group, or resource mailbox.</p>",
+    "ListMobileDeviceAccessRules": "<p>Lists the mobile device access rules for the specified Amazon WorkMail organization.</p>",
     "ListOrganizations": "<p>Returns summaries of the customer's organizations.</p>",
     "ListResourceDelegates": "<p>Lists the delegates associated with a resource. Users and groups can be resource delegates and answer requests on behalf of the resource.</p>",
     "ListResources": "<p>Returns summaries of the organization's resources.</p>",
@@ -49,6 +53,7 @@
     "TagResource": "<p>Applies the specified tags to the specified Amazon WorkMail organization resource.</p>",
     "UntagResource": "<p>Untags the specified tags from the specified Amazon WorkMail organization resource.</p>",
     "UpdateMailboxQuota": "<p>Updates a user's current mailbox quota for a specified organization and user.</p>",
+    "UpdateMobileDeviceAccessRule": "<p>Updates a mobile device access rule for the specified Amazon WorkMail organization.</p>",
     "UpdatePrimaryEmailAddress": "<p>Updates the primary email for a user, group, or resource. The current email is moved into the list of aliases (or swapped between an existing alias and the current primary email), and the email provided in the input is promoted as the primary.</p>",
     "UpdateResource": "<p>Updates data for the resource. To have the latest information, it must be preceded by a <a>DescribeResource</a> call. The dataset in the request should be the one expected when performing another <code>DescribeResource</code> call.</p>"
   },
@@ -193,6 +198,16 @@
       "refs": {
       }
     },
+    "CreateMobileDeviceAccessRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMobileDeviceAccessRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateOrganizationRequest": {
       "base": null,
       "refs": {
@@ -265,6 +280,16 @@
       }
     },
     "DeleteMailboxPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMobileDeviceAccessRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMobileDeviceAccessRuleResponse": {
       "base": null,
       "refs": {
       }
@@ -375,6 +400,78 @@
         "DescribeMailboxExportJobResponse$Description": "<p>The mailbox export job description.</p>",
         "MailboxExportJob$Description": "<p>The mailbox export job description.</p>",
         "StartMailboxExportJobRequest$Description": "<p>The mailbox export job description.</p>"
+      }
+    },
+    "DeviceModel": {
+      "base": null,
+      "refs": {
+        "DeviceModelList$member": null,
+        "GetMobileDeviceAccessEffectRequest$DeviceModel": "<p>Device model the simulated user will report.</p>"
+      }
+    },
+    "DeviceModelList": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$DeviceModels": "<p>Device models that the rule will match.</p>",
+        "CreateMobileDeviceAccessRuleRequest$NotDeviceModels": "<p>Device models that the rule <b>will not</b> match. All other device models will match.</p>",
+        "MobileDeviceAccessRule$DeviceModels": "<p>Device models that a rule will match.</p>",
+        "MobileDeviceAccessRule$NotDeviceModels": "<p>Device models that a rule <b>will not</b> match. All other device models will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$DeviceModels": "<p>Device models that the updated rule will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$NotDeviceModels": "<p>Device models that the updated rule <b>will not</b> match. All other device models will match.</p>"
+      }
+    },
+    "DeviceOperatingSystem": {
+      "base": null,
+      "refs": {
+        "DeviceOperatingSystemList$member": null,
+        "GetMobileDeviceAccessEffectRequest$DeviceOperatingSystem": "<p>Device operating system the simulated user will report.</p>"
+      }
+    },
+    "DeviceOperatingSystemList": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$DeviceOperatingSystems": "<p>Device operating systems that the rule will match.</p>",
+        "CreateMobileDeviceAccessRuleRequest$NotDeviceOperatingSystems": "<p>Device operating systems that the rule <b>will not</b> match. All other device operating systems will match.</p>",
+        "MobileDeviceAccessRule$DeviceOperatingSystems": "<p>Device operating systems that a rule will match.</p>",
+        "MobileDeviceAccessRule$NotDeviceOperatingSystems": "<p>Device operating systems that a rule <b>will not</b> match. All other device types will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$DeviceOperatingSystems": "<p>Device operating systems that the updated rule will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$NotDeviceOperatingSystems": "<p>Device operating systems that the updated rule <b>will not</b> match. All other device operating systems will match.</p>"
+      }
+    },
+    "DeviceType": {
+      "base": null,
+      "refs": {
+        "DeviceTypeList$member": null,
+        "GetMobileDeviceAccessEffectRequest$DeviceType": "<p>Device type the simulated user will report.</p>"
+      }
+    },
+    "DeviceTypeList": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$DeviceTypes": "<p>Device types that the rule will match.</p>",
+        "CreateMobileDeviceAccessRuleRequest$NotDeviceTypes": "<p>Device types that the rule <b>will not</b> match. All other device types will match.</p>",
+        "MobileDeviceAccessRule$DeviceTypes": "<p>Device types that a rule will match. </p>",
+        "MobileDeviceAccessRule$NotDeviceTypes": "<p>Device types that a rule <b>will not</b> match. All other device types will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$DeviceTypes": "<p>Device types that the updated rule will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$NotDeviceTypes": "<p>Device types that the updated rule <b>will not</b> match. All other device types will match.</p>"
+      }
+    },
+    "DeviceUserAgent": {
+      "base": null,
+      "refs": {
+        "DeviceUserAgentList$member": null,
+        "GetMobileDeviceAccessEffectRequest$DeviceUserAgent": "<p>Device user agent the simulated user will report.</p>"
+      }
+    },
+    "DeviceUserAgentList": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$DeviceUserAgents": "<p>Device user agents that the rule will match.</p>",
+        "CreateMobileDeviceAccessRuleRequest$NotDeviceUserAgents": "<p>Device user agents that the rule <b>will not</b> match. All other device user agents will match.</p>",
+        "MobileDeviceAccessRule$DeviceUserAgents": "<p>Device user agents that a rule will match.</p>",
+        "MobileDeviceAccessRule$NotDeviceUserAgents": "<p>Device user agents that a rule <b>will not</b> match. All other device user agents will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$DeviceUserAgents": "<p>User agents that the updated rule will match.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$NotDeviceUserAgents": "<p>User agents that the updated rule <b>will not</b> match. All other user agents will match.</p>"
       }
     },
     "DirectoryId": {
@@ -534,6 +631,16 @@
       "refs": {
       }
     },
+    "GetMobileDeviceAccessEffectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMobileDeviceAccessEffectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Group": {
       "base": "<p>The representation of an Amazon WorkMail group.</p>",
       "refs": {
@@ -564,6 +671,7 @@
       "base": null,
       "refs": {
         "CancelMailboxExportJobRequest$ClientToken": "<p>The idempotency token for the client request.</p>",
+        "CreateMobileDeviceAccessRuleRequest$ClientToken": "<p>The idempotency token for the client request.</p>",
         "CreateOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
         "DeleteOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
         "StartMailboxExportJobRequest$ClientToken": "<p>The idempotency token for the client request.</p>"
@@ -680,6 +788,16 @@
       }
     },
     "ListMailboxPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMobileDeviceAccessRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMobileDeviceAccessRulesResponse": {
       "base": null,
       "refs": {
       }
@@ -819,6 +937,66 @@
         "ListGroupMembersResponse$Members": "<p>The members associated to the group.</p>"
       }
     },
+    "MobileDeviceAccessMatchedRule": {
+      "base": "<p>The rule that a simulated user matches.</p>",
+      "refs": {
+        "MobileDeviceAccessMatchedRuleList$member": null
+      }
+    },
+    "MobileDeviceAccessMatchedRuleList": {
+      "base": null,
+      "refs": {
+        "GetMobileDeviceAccessEffectResponse$MatchedRules": "<p>A list of the rules which matched the simulated user input and produced the effect.</p>"
+      }
+    },
+    "MobileDeviceAccessRule": {
+      "base": "<p>A rule that controls access to mobile devices for an Amazon WorkMail group.</p>",
+      "refs": {
+        "MobileDeviceAccessRulesList$member": null
+      }
+    },
+    "MobileDeviceAccessRuleDescription": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$Description": "<p>The rule description.</p>",
+        "MobileDeviceAccessRule$Description": "<p>The description of a mobile access rule.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$Description": "<p>The updated rule description.</p>"
+      }
+    },
+    "MobileDeviceAccessRuleEffect": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$Effect": "<p>The effect of the rule when it matches. Allowed values are <code>ALLOW</code> or <code>DENY</code>.</p>",
+        "GetMobileDeviceAccessEffectResponse$Effect": "<p>The effect of the simulated access, <code>ALLOW</code> or <code>DENY</code>, after evaluating mobile device access rules in the Amazon WorkMail organization for the simulated user parameters.</p>",
+        "MobileDeviceAccessRule$Effect": "<p>The effect of the rule when it matches. Allowed values are <code>ALLOW</code> or <code>DENY</code>.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$Effect": "<p>The effect of the rule when it matches. Allowed values are <code>ALLOW</code> or <code>DENY</code>.</p>"
+      }
+    },
+    "MobileDeviceAccessRuleId": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleResponse$MobileDeviceAccessRuleId": "<p>The identifier for the newly created mobile device access rule.</p>",
+        "DeleteMobileDeviceAccessRuleRequest$MobileDeviceAccessRuleId": "<p>The identifier of the rule to be deleted.</p>",
+        "MobileDeviceAccessMatchedRule$MobileDeviceAccessRuleId": "<p>Identifier of the rule that a simulated user matches.</p>",
+        "MobileDeviceAccessRule$MobileDeviceAccessRuleId": "<p>The ID assigned to a mobile access rule. </p>",
+        "UpdateMobileDeviceAccessRuleRequest$MobileDeviceAccessRuleId": "<p>The identifier of the rule to be updated.</p>"
+      }
+    },
+    "MobileDeviceAccessRuleName": {
+      "base": null,
+      "refs": {
+        "CreateMobileDeviceAccessRuleRequest$Name": "<p>The rule name.</p>",
+        "MobileDeviceAccessMatchedRule$Name": "<p>Name of a rule that a simulated user matches.</p>",
+        "MobileDeviceAccessRule$Name": "<p>The name of a mobile access rule.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$Name": "<p>The updated rule name.</p>"
+      }
+    },
+    "MobileDeviceAccessRulesList": {
+      "base": null,
+      "refs": {
+        "ListMobileDeviceAccessRulesResponse$Rules": "<p>The list of mobile device access rules that exist under the specified Amazon WorkMail organization.</p>"
+      }
+    },
     "NameAvailabilityException": {
       "base": "<p>The user, group, or resource name isn't unique in Amazon WorkMail.</p>",
       "refs": {
@@ -855,6 +1033,7 @@
         "CancelMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
         "CreateAliasRequest$OrganizationId": "<p>The organization under which the member (user or group) exists.</p>",
         "CreateGroupRequest$OrganizationId": "<p>The organization under which the group is to be created.</p>",
+        "CreateMobileDeviceAccessRuleRequest$OrganizationId": "<p>The Amazon WorkMail organization under which the rule will be created.</p>",
         "CreateOrganizationResponse$OrganizationId": "<p>The organization ID.</p>",
         "CreateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is created.</p>",
         "CreateUserRequest$OrganizationId": "<p>The identifier of the organization for which the user is created.</p>",
@@ -862,6 +1041,7 @@
         "DeleteAliasRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
+        "DeleteMobileDeviceAccessRuleRequest$OrganizationId": "<p>The Amazon WorkMail organization under which the rule will be deleted.</p>",
         "DeleteOrganizationRequest$OrganizationId": "<p>The organization ID.</p>",
         "DeleteOrganizationResponse$OrganizationId": "<p>The organization ID.</p>",
         "DeleteResourceRequest$OrganizationId": "<p>The identifier associated with the organization from which the resource is deleted.</p>",
@@ -879,12 +1059,14 @@
         "GetAccessControlEffectRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "GetDefaultRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
         "GetMailboxDetailsRequest$OrganizationId": "<p>The identifier for the organization that contains the user whose mailbox details are being requested.</p>",
+        "GetMobileDeviceAccessEffectRequest$OrganizationId": "<p>The Amazon WorkMail organization to simulate the access effect for.</p>",
         "ListAccessControlRulesRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "ListAliasesRequest$OrganizationId": "<p>The identifier for the organization under which the entity exists.</p>",
         "ListGroupMembersRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
         "ListGroupsRequest$OrganizationId": "<p>The identifier for the organization under which the groups exist.</p>",
         "ListMailboxExportJobsRequest$OrganizationId": "<p>The organization ID.</p>",
         "ListMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the user, group, or resource exists.</p>",
+        "ListMobileDeviceAccessRulesRequest$OrganizationId": "<p>The Amazon WorkMail organization for which to list the rules.</p>",
         "ListResourceDelegatesRequest$OrganizationId": "<p>The identifier for the organization that contains the resource for which delegates are listed.</p>",
         "ListResourcesRequest$OrganizationId": "<p>The identifier for the organization under which the resources exist.</p>",
         "ListUsersRequest$OrganizationId": "<p>The identifier for the organization under which the users exist.</p>",
@@ -896,6 +1078,7 @@
         "ResetPasswordRequest$OrganizationId": "<p>The identifier of the organization that contains the user for which the password is reset.</p>",
         "StartMailboxExportJobRequest$OrganizationId": "<p>The identifier associated with the organization.</p>",
         "UpdateMailboxQuotaRequest$OrganizationId": "<p>The identifier for the organization that contains the user for whom to update the mailbox quota.</p>",
+        "UpdateMobileDeviceAccessRuleRequest$OrganizationId": "<p>The Amazon WorkMail organization under which the rule will be updated.</p>",
         "UpdatePrimaryEmailAddressRequest$OrganizationId": "<p>The organization that contains the user, group, or resource to update.</p>",
         "UpdateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is updated.</p>"
       }
@@ -1240,6 +1423,8 @@
         "MailboxExportJob$EndTime": "<p>The mailbox export job end timestamp.</p>",
         "Member$EnabledDate": "<p>The date indicating when the member was enabled for Amazon WorkMail use.</p>",
         "Member$DisabledDate": "<p>The date indicating when the member was disabled from Amazon WorkMail use.</p>",
+        "MobileDeviceAccessRule$DateCreated": "<p>The date and time at which an access rule was created.</p>",
+        "MobileDeviceAccessRule$DateModified": "<p>The date and time at which an access rule was modified.</p>",
         "Resource$EnabledDate": "<p>The date indicating when the resource was enabled for Amazon WorkMail use.</p>",
         "Resource$DisabledDate": "<p>The date indicating when the resource was disabled from Amazon WorkMail use.</p>",
         "User$EnabledDate": "<p>The date indicating when the user was enabled for Amazon WorkMail use.</p>",
@@ -1272,6 +1457,16 @@
       }
     },
     "UpdateMailboxQuotaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMobileDeviceAccessRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMobileDeviceAccessRuleResponse": {
       "base": null,
       "refs": {
       }

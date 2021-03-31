@@ -523,6 +523,97 @@ func (c *WorkMail) CreateGroupWithContext(ctx aws.Context, input *CreateGroupInp
 	return out, req.Send()
 }
 
+const opCreateMobileDeviceAccessRule = "CreateMobileDeviceAccessRule"
+
+// CreateMobileDeviceAccessRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMobileDeviceAccessRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMobileDeviceAccessRule for more information on using the CreateMobileDeviceAccessRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMobileDeviceAccessRuleRequest method.
+//    req, resp := client.CreateMobileDeviceAccessRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateMobileDeviceAccessRule
+func (c *WorkMail) CreateMobileDeviceAccessRuleRequest(input *CreateMobileDeviceAccessRuleInput) (req *request.Request, output *CreateMobileDeviceAccessRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateMobileDeviceAccessRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateMobileDeviceAccessRuleInput{}
+	}
+
+	output = &CreateMobileDeviceAccessRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMobileDeviceAccessRule API operation for Amazon WorkMail.
+//
+// Creates a new mobile device access rule for the specified Amazon WorkMail
+// organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation CreateMobileDeviceAccessRule for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * LimitExceededException
+//   The request exceeds the limit of the resource.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/CreateMobileDeviceAccessRule
+func (c *WorkMail) CreateMobileDeviceAccessRule(input *CreateMobileDeviceAccessRuleInput) (*CreateMobileDeviceAccessRuleOutput, error) {
+	req, out := c.CreateMobileDeviceAccessRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateMobileDeviceAccessRuleWithContext is the same as CreateMobileDeviceAccessRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMobileDeviceAccessRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) CreateMobileDeviceAccessRuleWithContext(ctx aws.Context, input *CreateMobileDeviceAccessRuleInput, opts ...request.Option) (*CreateMobileDeviceAccessRuleOutput, error) {
+	req, out := c.CreateMobileDeviceAccessRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateOrganization = "CreateOrganization"
 
 // CreateOrganizationRequest generates a "aws/request.Request" representing the
@@ -1212,6 +1303,94 @@ func (c *WorkMail) DeleteMailboxPermissions(input *DeleteMailboxPermissionsInput
 // for more information on using Contexts.
 func (c *WorkMail) DeleteMailboxPermissionsWithContext(ctx aws.Context, input *DeleteMailboxPermissionsInput, opts ...request.Option) (*DeleteMailboxPermissionsOutput, error) {
 	req, out := c.DeleteMailboxPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMobileDeviceAccessRule = "DeleteMobileDeviceAccessRule"
+
+// DeleteMobileDeviceAccessRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMobileDeviceAccessRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMobileDeviceAccessRule for more information on using the DeleteMobileDeviceAccessRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMobileDeviceAccessRuleRequest method.
+//    req, resp := client.DeleteMobileDeviceAccessRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteMobileDeviceAccessRule
+func (c *WorkMail) DeleteMobileDeviceAccessRuleRequest(input *DeleteMobileDeviceAccessRuleInput) (req *request.Request, output *DeleteMobileDeviceAccessRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMobileDeviceAccessRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMobileDeviceAccessRuleInput{}
+	}
+
+	output = &DeleteMobileDeviceAccessRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMobileDeviceAccessRule API operation for Amazon WorkMail.
+//
+// Deletes a mobile device access rule for the specified Amazon WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeleteMobileDeviceAccessRule for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteMobileDeviceAccessRule
+func (c *WorkMail) DeleteMobileDeviceAccessRule(input *DeleteMobileDeviceAccessRuleInput) (*DeleteMobileDeviceAccessRuleOutput, error) {
+	req, out := c.DeleteMobileDeviceAccessRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMobileDeviceAccessRuleWithContext is the same as DeleteMobileDeviceAccessRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMobileDeviceAccessRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeleteMobileDeviceAccessRuleWithContext(ctx aws.Context, input *DeleteMobileDeviceAccessRuleInput, opts ...request.Option) (*DeleteMobileDeviceAccessRuleOutput, error) {
+	req, out := c.DeleteMobileDeviceAccessRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2612,6 +2791,96 @@ func (c *WorkMail) GetMailboxDetailsWithContext(ctx aws.Context, input *GetMailb
 	return out, req.Send()
 }
 
+const opGetMobileDeviceAccessEffect = "GetMobileDeviceAccessEffect"
+
+// GetMobileDeviceAccessEffectRequest generates a "aws/request.Request" representing the
+// client's request for the GetMobileDeviceAccessEffect operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMobileDeviceAccessEffect for more information on using the GetMobileDeviceAccessEffect
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMobileDeviceAccessEffectRequest method.
+//    req, resp := client.GetMobileDeviceAccessEffectRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMobileDeviceAccessEffect
+func (c *WorkMail) GetMobileDeviceAccessEffectRequest(input *GetMobileDeviceAccessEffectInput) (req *request.Request, output *GetMobileDeviceAccessEffectOutput) {
+	op := &request.Operation{
+		Name:       opGetMobileDeviceAccessEffect,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMobileDeviceAccessEffectInput{}
+	}
+
+	output = &GetMobileDeviceAccessEffectOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMobileDeviceAccessEffect API operation for Amazon WorkMail.
+//
+// Simulates the effect of the mobile device access rules for the given attributes
+// of a sample access event. Use this method to test the effects of the current
+// set of mobile device access rules for the Amazon WorkMail organization for
+// a particular user's attributes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation GetMobileDeviceAccessEffect for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMobileDeviceAccessEffect
+func (c *WorkMail) GetMobileDeviceAccessEffect(input *GetMobileDeviceAccessEffectInput) (*GetMobileDeviceAccessEffectOutput, error) {
+	req, out := c.GetMobileDeviceAccessEffectRequest(input)
+	return out, req.Send()
+}
+
+// GetMobileDeviceAccessEffectWithContext is the same as GetMobileDeviceAccessEffect with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMobileDeviceAccessEffect for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) GetMobileDeviceAccessEffectWithContext(ctx aws.Context, input *GetMobileDeviceAccessEffectInput, opts ...request.Option) (*GetMobileDeviceAccessEffectOutput, error) {
+	req, out := c.GetMobileDeviceAccessEffectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccessControlRules = "ListAccessControlRules"
 
 // ListAccessControlRulesRequest generates a "aws/request.Request" representing the
@@ -3446,6 +3715,93 @@ func (c *WorkMail) ListMailboxPermissionsPagesWithContext(ctx aws.Context, input
 	}
 
 	return p.Err()
+}
+
+const opListMobileDeviceAccessRules = "ListMobileDeviceAccessRules"
+
+// ListMobileDeviceAccessRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMobileDeviceAccessRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMobileDeviceAccessRules for more information on using the ListMobileDeviceAccessRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMobileDeviceAccessRulesRequest method.
+//    req, resp := client.ListMobileDeviceAccessRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMobileDeviceAccessRules
+func (c *WorkMail) ListMobileDeviceAccessRulesRequest(input *ListMobileDeviceAccessRulesInput) (req *request.Request, output *ListMobileDeviceAccessRulesOutput) {
+	op := &request.Operation{
+		Name:       opListMobileDeviceAccessRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListMobileDeviceAccessRulesInput{}
+	}
+
+	output = &ListMobileDeviceAccessRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMobileDeviceAccessRules API operation for Amazon WorkMail.
+//
+// Lists the mobile device access rules for the specified Amazon WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListMobileDeviceAccessRules for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMobileDeviceAccessRules
+func (c *WorkMail) ListMobileDeviceAccessRules(input *ListMobileDeviceAccessRulesInput) (*ListMobileDeviceAccessRulesOutput, error) {
+	req, out := c.ListMobileDeviceAccessRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListMobileDeviceAccessRulesWithContext is the same as ListMobileDeviceAccessRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMobileDeviceAccessRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListMobileDeviceAccessRulesWithContext(ctx aws.Context, input *ListMobileDeviceAccessRulesInput, opts ...request.Option) (*ListMobileDeviceAccessRulesOutput, error) {
+	req, out := c.ListMobileDeviceAccessRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListOrganizations = "ListOrganizations"
@@ -4990,6 +5346,98 @@ func (c *WorkMail) UpdateMailboxQuotaWithContext(ctx aws.Context, input *UpdateM
 	return out, req.Send()
 }
 
+const opUpdateMobileDeviceAccessRule = "UpdateMobileDeviceAccessRule"
+
+// UpdateMobileDeviceAccessRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateMobileDeviceAccessRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateMobileDeviceAccessRule for more information on using the UpdateMobileDeviceAccessRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateMobileDeviceAccessRuleRequest method.
+//    req, resp := client.UpdateMobileDeviceAccessRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateMobileDeviceAccessRule
+func (c *WorkMail) UpdateMobileDeviceAccessRuleRequest(input *UpdateMobileDeviceAccessRuleInput) (req *request.Request, output *UpdateMobileDeviceAccessRuleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateMobileDeviceAccessRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateMobileDeviceAccessRuleInput{}
+	}
+
+	output = &UpdateMobileDeviceAccessRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateMobileDeviceAccessRule API operation for Amazon WorkMail.
+//
+// Updates a mobile device access rule for the specified Amazon WorkMail organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation UpdateMobileDeviceAccessRule for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/UpdateMobileDeviceAccessRule
+func (c *WorkMail) UpdateMobileDeviceAccessRule(input *UpdateMobileDeviceAccessRuleInput) (*UpdateMobileDeviceAccessRuleOutput, error) {
+	req, out := c.UpdateMobileDeviceAccessRuleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateMobileDeviceAccessRuleWithContext is the same as UpdateMobileDeviceAccessRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateMobileDeviceAccessRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) UpdateMobileDeviceAccessRuleWithContext(ctx aws.Context, input *UpdateMobileDeviceAccessRuleInput, opts ...request.Option) (*UpdateMobileDeviceAccessRuleOutput, error) {
+	req, out := c.UpdateMobileDeviceAccessRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdatePrimaryEmailAddress = "UpdatePrimaryEmailAddress"
 
 // UpdatePrimaryEmailAddressRequest generates a "aws/request.Request" representing the
@@ -5823,6 +6271,224 @@ func (s *CreateGroupOutput) SetGroupId(v string) *CreateGroupOutput {
 	return s
 }
 
+type CreateMobileDeviceAccessRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotency token for the client request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The rule description.
+	Description *string `min:"1" type:"string"`
+
+	// Device models that the rule will match.
+	DeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that the rule will match.
+	DeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that the rule will match.
+	DeviceTypes []*string `min:"1" type:"list"`
+
+	// Device user agents that the rule will match.
+	DeviceUserAgents []*string `min:"1" type:"list"`
+
+	// The effect of the rule when it matches. Allowed values are ALLOW or DENY.
+	//
+	// Effect is a required field
+	Effect *string `type:"string" required:"true" enum:"MobileDeviceAccessRuleEffect"`
+
+	// The rule name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Device models that the rule will not match. All other device models will
+	// match.
+	NotDeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that the rule will not match. All other device operating
+	// systems will match.
+	NotDeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that the rule will not match. All other device types will match.
+	NotDeviceTypes []*string `min:"1" type:"list"`
+
+	// Device user agents that the rule will not match. All other device user agents
+	// will match.
+	NotDeviceUserAgents []*string `min:"1" type:"list"`
+
+	// The Amazon WorkMail organization under which the rule will be created.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateMobileDeviceAccessRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMobileDeviceAccessRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMobileDeviceAccessRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMobileDeviceAccessRuleInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceModels != nil && len(s.DeviceModels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceModels", 1))
+	}
+	if s.DeviceOperatingSystems != nil && len(s.DeviceOperatingSystems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceOperatingSystems", 1))
+	}
+	if s.DeviceTypes != nil && len(s.DeviceTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceTypes", 1))
+	}
+	if s.DeviceUserAgents != nil && len(s.DeviceUserAgents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceUserAgents", 1))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NotDeviceModels != nil && len(s.NotDeviceModels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceModels", 1))
+	}
+	if s.NotDeviceOperatingSystems != nil && len(s.NotDeviceOperatingSystems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceOperatingSystems", 1))
+	}
+	if s.NotDeviceTypes != nil && len(s.NotDeviceTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceTypes", 1))
+	}
+	if s.NotDeviceUserAgents != nil && len(s.NotDeviceUserAgents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceUserAgents", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetClientToken(v string) *CreateMobileDeviceAccessRuleInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetDescription(v string) *CreateMobileDeviceAccessRuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceModels sets the DeviceModels field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetDeviceModels(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.DeviceModels = v
+	return s
+}
+
+// SetDeviceOperatingSystems sets the DeviceOperatingSystems field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetDeviceOperatingSystems(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.DeviceOperatingSystems = v
+	return s
+}
+
+// SetDeviceTypes sets the DeviceTypes field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetDeviceTypes(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.DeviceTypes = v
+	return s
+}
+
+// SetDeviceUserAgents sets the DeviceUserAgents field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetDeviceUserAgents(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.DeviceUserAgents = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetEffect(v string) *CreateMobileDeviceAccessRuleInput {
+	s.Effect = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetName(v string) *CreateMobileDeviceAccessRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotDeviceModels sets the NotDeviceModels field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetNotDeviceModels(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.NotDeviceModels = v
+	return s
+}
+
+// SetNotDeviceOperatingSystems sets the NotDeviceOperatingSystems field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetNotDeviceOperatingSystems(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.NotDeviceOperatingSystems = v
+	return s
+}
+
+// SetNotDeviceTypes sets the NotDeviceTypes field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetNotDeviceTypes(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.NotDeviceTypes = v
+	return s
+}
+
+// SetNotDeviceUserAgents sets the NotDeviceUserAgents field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetNotDeviceUserAgents(v []*string) *CreateMobileDeviceAccessRuleInput {
+	s.NotDeviceUserAgents = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *CreateMobileDeviceAccessRuleInput) SetOrganizationId(v string) *CreateMobileDeviceAccessRuleInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type CreateMobileDeviceAccessRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the newly created mobile device access rule.
+	MobileDeviceAccessRuleId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateMobileDeviceAccessRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMobileDeviceAccessRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetMobileDeviceAccessRuleId sets the MobileDeviceAccessRuleId field's value.
+func (s *CreateMobileDeviceAccessRuleOutput) SetMobileDeviceAccessRuleId(v string) *CreateMobileDeviceAccessRuleOutput {
+	s.MobileDeviceAccessRuleId = &v
+	return s
+}
+
 type CreateOrganizationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6522,6 +7188,78 @@ func (s DeleteMailboxPermissionsOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteMailboxPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMobileDeviceAccessRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the rule to be deleted.
+	//
+	// MobileDeviceAccessRuleId is a required field
+	MobileDeviceAccessRuleId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization under which the rule will be deleted.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMobileDeviceAccessRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMobileDeviceAccessRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMobileDeviceAccessRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMobileDeviceAccessRuleInput"}
+	if s.MobileDeviceAccessRuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MobileDeviceAccessRuleId"))
+	}
+	if s.MobileDeviceAccessRuleId != nil && len(*s.MobileDeviceAccessRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MobileDeviceAccessRuleId", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMobileDeviceAccessRuleId sets the MobileDeviceAccessRuleId field's value.
+func (s *DeleteMobileDeviceAccessRuleInput) SetMobileDeviceAccessRuleId(v string) *DeleteMobileDeviceAccessRuleInput {
+	s.MobileDeviceAccessRuleId = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeleteMobileDeviceAccessRuleInput) SetOrganizationId(v string) *DeleteMobileDeviceAccessRuleInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DeleteMobileDeviceAccessRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMobileDeviceAccessRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMobileDeviceAccessRuleOutput) GoString() string {
 	return s.String()
 }
 
@@ -8668,6 +9406,130 @@ func (s *GetMailboxDetailsOutput) SetMailboxSize(v float64) *GetMailboxDetailsOu
 	return s
 }
 
+type GetMobileDeviceAccessEffectInput struct {
+	_ struct{} `type:"structure"`
+
+	// Device model the simulated user will report.
+	DeviceModel *string `min:"1" type:"string"`
+
+	// Device operating system the simulated user will report.
+	DeviceOperatingSystem *string `min:"1" type:"string"`
+
+	// Device type the simulated user will report.
+	DeviceType *string `min:"1" type:"string"`
+
+	// Device user agent the simulated user will report.
+	DeviceUserAgent *string `min:"1" type:"string"`
+
+	// The Amazon WorkMail organization to simulate the access effect for.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMobileDeviceAccessEffectInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMobileDeviceAccessEffectInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMobileDeviceAccessEffectInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMobileDeviceAccessEffectInput"}
+	if s.DeviceModel != nil && len(*s.DeviceModel) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceModel", 1))
+	}
+	if s.DeviceOperatingSystem != nil && len(*s.DeviceOperatingSystem) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceOperatingSystem", 1))
+	}
+	if s.DeviceType != nil && len(*s.DeviceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceType", 1))
+	}
+	if s.DeviceUserAgent != nil && len(*s.DeviceUserAgent) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceUserAgent", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceModel sets the DeviceModel field's value.
+func (s *GetMobileDeviceAccessEffectInput) SetDeviceModel(v string) *GetMobileDeviceAccessEffectInput {
+	s.DeviceModel = &v
+	return s
+}
+
+// SetDeviceOperatingSystem sets the DeviceOperatingSystem field's value.
+func (s *GetMobileDeviceAccessEffectInput) SetDeviceOperatingSystem(v string) *GetMobileDeviceAccessEffectInput {
+	s.DeviceOperatingSystem = &v
+	return s
+}
+
+// SetDeviceType sets the DeviceType field's value.
+func (s *GetMobileDeviceAccessEffectInput) SetDeviceType(v string) *GetMobileDeviceAccessEffectInput {
+	s.DeviceType = &v
+	return s
+}
+
+// SetDeviceUserAgent sets the DeviceUserAgent field's value.
+func (s *GetMobileDeviceAccessEffectInput) SetDeviceUserAgent(v string) *GetMobileDeviceAccessEffectInput {
+	s.DeviceUserAgent = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *GetMobileDeviceAccessEffectInput) SetOrganizationId(v string) *GetMobileDeviceAccessEffectInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type GetMobileDeviceAccessEffectOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The effect of the simulated access, ALLOW or DENY, after evaluating mobile
+	// device access rules in the Amazon WorkMail organization for the simulated
+	// user parameters.
+	Effect *string `type:"string" enum:"MobileDeviceAccessRuleEffect"`
+
+	// A list of the rules which matched the simulated user input and produced the
+	// effect.
+	MatchedRules []*MobileDeviceAccessMatchedRule `type:"list"`
+}
+
+// String returns the string representation
+func (s GetMobileDeviceAccessEffectOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMobileDeviceAccessEffectOutput) GoString() string {
+	return s.String()
+}
+
+// SetEffect sets the Effect field's value.
+func (s *GetMobileDeviceAccessEffectOutput) SetEffect(v string) *GetMobileDeviceAccessEffectOutput {
+	s.Effect = &v
+	return s
+}
+
+// SetMatchedRules sets the MatchedRules field's value.
+func (s *GetMobileDeviceAccessEffectOutput) SetMatchedRules(v []*MobileDeviceAccessMatchedRule) *GetMobileDeviceAccessEffectOutput {
+	s.MatchedRules = v
+	return s
+}
+
 // The representation of an Amazon WorkMail group.
 type Group struct {
 	_ struct{} `type:"structure"`
@@ -9574,6 +10436,71 @@ func (s *ListMailboxPermissionsOutput) SetPermissions(v []*Permission) *ListMail
 	return s
 }
 
+type ListMobileDeviceAccessRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon WorkMail organization for which to list the rules.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListMobileDeviceAccessRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMobileDeviceAccessRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMobileDeviceAccessRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMobileDeviceAccessRulesInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListMobileDeviceAccessRulesInput) SetOrganizationId(v string) *ListMobileDeviceAccessRulesInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type ListMobileDeviceAccessRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of mobile device access rules that exist under the specified Amazon
+	// WorkMail organization.
+	Rules []*MobileDeviceAccessRule `type:"list"`
+}
+
+// String returns the string representation
+func (s ListMobileDeviceAccessRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMobileDeviceAccessRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *ListMobileDeviceAccessRulesOutput) SetRules(v []*MobileDeviceAccessRule) *ListMobileDeviceAccessRulesOutput {
+	s.Rules = v
+	return s
+}
+
 type ListOrganizationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10314,6 +11241,182 @@ func (s *Member) SetState(v string) *Member {
 // SetType sets the Type field's value.
 func (s *Member) SetType(v string) *Member {
 	s.Type = &v
+	return s
+}
+
+// The rule that a simulated user matches.
+type MobileDeviceAccessMatchedRule struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the rule that a simulated user matches.
+	MobileDeviceAccessRuleId *string `min:"1" type:"string"`
+
+	// Name of a rule that a simulated user matches.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MobileDeviceAccessMatchedRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MobileDeviceAccessMatchedRule) GoString() string {
+	return s.String()
+}
+
+// SetMobileDeviceAccessRuleId sets the MobileDeviceAccessRuleId field's value.
+func (s *MobileDeviceAccessMatchedRule) SetMobileDeviceAccessRuleId(v string) *MobileDeviceAccessMatchedRule {
+	s.MobileDeviceAccessRuleId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MobileDeviceAccessMatchedRule) SetName(v string) *MobileDeviceAccessMatchedRule {
+	s.Name = &v
+	return s
+}
+
+// A rule that controls access to mobile devices for an Amazon WorkMail group.
+type MobileDeviceAccessRule struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time at which an access rule was created.
+	DateCreated *time.Time `type:"timestamp"`
+
+	// The date and time at which an access rule was modified.
+	DateModified *time.Time `type:"timestamp"`
+
+	// The description of a mobile access rule.
+	Description *string `min:"1" type:"string"`
+
+	// Device models that a rule will match.
+	DeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that a rule will match.
+	DeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that a rule will match.
+	DeviceTypes []*string `min:"1" type:"list"`
+
+	// Device user agents that a rule will match.
+	DeviceUserAgents []*string `min:"1" type:"list"`
+
+	// The effect of the rule when it matches. Allowed values are ALLOW or DENY.
+	Effect *string `type:"string" enum:"MobileDeviceAccessRuleEffect"`
+
+	// The ID assigned to a mobile access rule.
+	MobileDeviceAccessRuleId *string `min:"1" type:"string"`
+
+	// The name of a mobile access rule.
+	Name *string `min:"1" type:"string"`
+
+	// Device models that a rule will not match. All other device models will match.
+	NotDeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that a rule will not match. All other device types
+	// will match.
+	NotDeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that a rule will not match. All other device types will match.
+	NotDeviceTypes []*string `min:"1" type:"list"`
+
+	// Device user agents that a rule will not match. All other device user agents
+	// will match.
+	NotDeviceUserAgents []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s MobileDeviceAccessRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MobileDeviceAccessRule) GoString() string {
+	return s.String()
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *MobileDeviceAccessRule) SetDateCreated(v time.Time) *MobileDeviceAccessRule {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateModified sets the DateModified field's value.
+func (s *MobileDeviceAccessRule) SetDateModified(v time.Time) *MobileDeviceAccessRule {
+	s.DateModified = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *MobileDeviceAccessRule) SetDescription(v string) *MobileDeviceAccessRule {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceModels sets the DeviceModels field's value.
+func (s *MobileDeviceAccessRule) SetDeviceModels(v []*string) *MobileDeviceAccessRule {
+	s.DeviceModels = v
+	return s
+}
+
+// SetDeviceOperatingSystems sets the DeviceOperatingSystems field's value.
+func (s *MobileDeviceAccessRule) SetDeviceOperatingSystems(v []*string) *MobileDeviceAccessRule {
+	s.DeviceOperatingSystems = v
+	return s
+}
+
+// SetDeviceTypes sets the DeviceTypes field's value.
+func (s *MobileDeviceAccessRule) SetDeviceTypes(v []*string) *MobileDeviceAccessRule {
+	s.DeviceTypes = v
+	return s
+}
+
+// SetDeviceUserAgents sets the DeviceUserAgents field's value.
+func (s *MobileDeviceAccessRule) SetDeviceUserAgents(v []*string) *MobileDeviceAccessRule {
+	s.DeviceUserAgents = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *MobileDeviceAccessRule) SetEffect(v string) *MobileDeviceAccessRule {
+	s.Effect = &v
+	return s
+}
+
+// SetMobileDeviceAccessRuleId sets the MobileDeviceAccessRuleId field's value.
+func (s *MobileDeviceAccessRule) SetMobileDeviceAccessRuleId(v string) *MobileDeviceAccessRule {
+	s.MobileDeviceAccessRuleId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MobileDeviceAccessRule) SetName(v string) *MobileDeviceAccessRule {
+	s.Name = &v
+	return s
+}
+
+// SetNotDeviceModels sets the NotDeviceModels field's value.
+func (s *MobileDeviceAccessRule) SetNotDeviceModels(v []*string) *MobileDeviceAccessRule {
+	s.NotDeviceModels = v
+	return s
+}
+
+// SetNotDeviceOperatingSystems sets the NotDeviceOperatingSystems field's value.
+func (s *MobileDeviceAccessRule) SetNotDeviceOperatingSystems(v []*string) *MobileDeviceAccessRule {
+	s.NotDeviceOperatingSystems = v
+	return s
+}
+
+// SetNotDeviceTypes sets the NotDeviceTypes field's value.
+func (s *MobileDeviceAccessRule) SetNotDeviceTypes(v []*string) *MobileDeviceAccessRule {
+	s.NotDeviceTypes = v
+	return s
+}
+
+// SetNotDeviceUserAgents sets the NotDeviceUserAgents field's value.
+func (s *MobileDeviceAccessRule) SetNotDeviceUserAgents(v []*string) *MobileDeviceAccessRule {
+	s.NotDeviceUserAgents = v
 	return s
 }
 
@@ -11932,6 +13035,221 @@ func (s UpdateMailboxQuotaOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateMobileDeviceAccessRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated rule description.
+	Description *string `min:"1" type:"string"`
+
+	// Device models that the updated rule will match.
+	DeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that the updated rule will match.
+	DeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that the updated rule will match.
+	DeviceTypes []*string `min:"1" type:"list"`
+
+	// User agents that the updated rule will match.
+	DeviceUserAgents []*string `min:"1" type:"list"`
+
+	// The effect of the rule when it matches. Allowed values are ALLOW or DENY.
+	//
+	// Effect is a required field
+	Effect *string `type:"string" required:"true" enum:"MobileDeviceAccessRuleEffect"`
+
+	// The identifier of the rule to be updated.
+	//
+	// MobileDeviceAccessRuleId is a required field
+	MobileDeviceAccessRuleId *string `min:"1" type:"string" required:"true"`
+
+	// The updated rule name.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Device models that the updated rule will not match. All other device models
+	// will match.
+	NotDeviceModels []*string `min:"1" type:"list"`
+
+	// Device operating systems that the updated rule will not match. All other
+	// device operating systems will match.
+	NotDeviceOperatingSystems []*string `min:"1" type:"list"`
+
+	// Device types that the updated rule will not match. All other device types
+	// will match.
+	NotDeviceTypes []*string `min:"1" type:"list"`
+
+	// User agents that the updated rule will not match. All other user agents will
+	// match.
+	NotDeviceUserAgents []*string `min:"1" type:"list"`
+
+	// The Amazon WorkMail organization under which the rule will be updated.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateMobileDeviceAccessRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMobileDeviceAccessRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateMobileDeviceAccessRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateMobileDeviceAccessRuleInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceModels != nil && len(s.DeviceModels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceModels", 1))
+	}
+	if s.DeviceOperatingSystems != nil && len(s.DeviceOperatingSystems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceOperatingSystems", 1))
+	}
+	if s.DeviceTypes != nil && len(s.DeviceTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceTypes", 1))
+	}
+	if s.DeviceUserAgents != nil && len(s.DeviceUserAgents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceUserAgents", 1))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.MobileDeviceAccessRuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MobileDeviceAccessRuleId"))
+	}
+	if s.MobileDeviceAccessRuleId != nil && len(*s.MobileDeviceAccessRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MobileDeviceAccessRuleId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NotDeviceModels != nil && len(s.NotDeviceModels) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceModels", 1))
+	}
+	if s.NotDeviceOperatingSystems != nil && len(s.NotDeviceOperatingSystems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceOperatingSystems", 1))
+	}
+	if s.NotDeviceTypes != nil && len(s.NotDeviceTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceTypes", 1))
+	}
+	if s.NotDeviceUserAgents != nil && len(s.NotDeviceUserAgents) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotDeviceUserAgents", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetDescription(v string) *UpdateMobileDeviceAccessRuleInput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceModels sets the DeviceModels field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetDeviceModels(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.DeviceModels = v
+	return s
+}
+
+// SetDeviceOperatingSystems sets the DeviceOperatingSystems field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetDeviceOperatingSystems(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.DeviceOperatingSystems = v
+	return s
+}
+
+// SetDeviceTypes sets the DeviceTypes field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetDeviceTypes(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.DeviceTypes = v
+	return s
+}
+
+// SetDeviceUserAgents sets the DeviceUserAgents field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetDeviceUserAgents(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.DeviceUserAgents = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetEffect(v string) *UpdateMobileDeviceAccessRuleInput {
+	s.Effect = &v
+	return s
+}
+
+// SetMobileDeviceAccessRuleId sets the MobileDeviceAccessRuleId field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetMobileDeviceAccessRuleId(v string) *UpdateMobileDeviceAccessRuleInput {
+	s.MobileDeviceAccessRuleId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetName(v string) *UpdateMobileDeviceAccessRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetNotDeviceModels sets the NotDeviceModels field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetNotDeviceModels(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.NotDeviceModels = v
+	return s
+}
+
+// SetNotDeviceOperatingSystems sets the NotDeviceOperatingSystems field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetNotDeviceOperatingSystems(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.NotDeviceOperatingSystems = v
+	return s
+}
+
+// SetNotDeviceTypes sets the NotDeviceTypes field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetNotDeviceTypes(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.NotDeviceTypes = v
+	return s
+}
+
+// SetNotDeviceUserAgents sets the NotDeviceUserAgents field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetNotDeviceUserAgents(v []*string) *UpdateMobileDeviceAccessRuleInput {
+	s.NotDeviceUserAgents = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *UpdateMobileDeviceAccessRuleInput) SetOrganizationId(v string) *UpdateMobileDeviceAccessRuleInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type UpdateMobileDeviceAccessRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateMobileDeviceAccessRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateMobileDeviceAccessRuleOutput) GoString() string {
+	return s.String()
+}
+
 type UpdatePrimaryEmailAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12303,6 +13621,22 @@ func MemberType_Values() []string {
 	return []string{
 		MemberTypeGroup,
 		MemberTypeUser,
+	}
+}
+
+const (
+	// MobileDeviceAccessRuleEffectAllow is a MobileDeviceAccessRuleEffect enum value
+	MobileDeviceAccessRuleEffectAllow = "ALLOW"
+
+	// MobileDeviceAccessRuleEffectDeny is a MobileDeviceAccessRuleEffect enum value
+	MobileDeviceAccessRuleEffectDeny = "DENY"
+)
+
+// MobileDeviceAccessRuleEffect_Values returns all elements of the MobileDeviceAccessRuleEffect enum
+func MobileDeviceAccessRuleEffect_Values() []string {
+	return []string{
+		MobileDeviceAccessRuleEffectAllow,
+		MobileDeviceAccessRuleEffectDeny,
 	}
 }
 

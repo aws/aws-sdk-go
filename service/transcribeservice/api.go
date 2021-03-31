@@ -7724,12 +7724,28 @@ func BaseModelName_Values() []string {
 const (
 	// CLMLanguageCodeEnUs is a CLMLanguageCode enum value
 	CLMLanguageCodeEnUs = "en-US"
+
+	// CLMLanguageCodeHiIn is a CLMLanguageCode enum value
+	CLMLanguageCodeHiIn = "hi-IN"
+
+	// CLMLanguageCodeEsUs is a CLMLanguageCode enum value
+	CLMLanguageCodeEsUs = "es-US"
+
+	// CLMLanguageCodeEnGb is a CLMLanguageCode enum value
+	CLMLanguageCodeEnGb = "en-GB"
+
+	// CLMLanguageCodeEnAu is a CLMLanguageCode enum value
+	CLMLanguageCodeEnAu = "en-AU"
 )
 
 // CLMLanguageCode_Values returns all elements of the CLMLanguageCode enum
 func CLMLanguageCode_Values() []string {
 	return []string{
 		CLMLanguageCodeEnUs,
+		CLMLanguageCodeHiIn,
+		CLMLanguageCodeEsUs,
+		CLMLanguageCodeEnGb,
+		CLMLanguageCodeEnAu,
 	}
 }
 

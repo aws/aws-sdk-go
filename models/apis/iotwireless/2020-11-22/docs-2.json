@@ -176,10 +176,28 @@
         "GetWirelessGatewayTaskDefinitionResponse$AutoCreateTasks": "<p>Whether to automatically create tasks using this task definition for all gateways with the specified current version. If <code>false</code>, the task must me created by calling <code>CreateWirelessGatewayTask</code>.</p>"
       }
     },
+    "BatteryLevel": {
+      "base": "<p>Sidewalk device battery level.</p>",
+      "refs": {
+        "SidewalkDeviceMetadata$BatteryLevel": "<p>Sidewalk device battery level.</p>"
+      }
+    },
+    "CertificateList": {
+      "base": "<p>List of sidewalk certificates.</p>",
+      "refs": {
+        "DeviceCertificateList$member": null
+      }
+    },
     "CertificatePEM": {
       "base": null,
       "refs": {
         "GetServiceEndpointResponse$ServerTrust": "<p>The Root CA of the server trust certificate.</p>"
+      }
+    },
+    "CertificateValue": {
+      "base": "<p>Certificate value.</p>",
+      "refs": {
+        "CertificateList$Value": "<p>The value of the chosen sidewalk certificate.</p>"
       }
     },
     "ChannelMask": {
@@ -215,6 +233,12 @@
     "ConflictException": {
       "base": "<p>Adding, updating, or deleting the resource can cause an inconsistent state.</p>",
       "refs": {
+      }
+    },
+    "ConnectionStatus": {
+      "base": null,
+      "refs": {
+        "GetWirelessGatewayStatisticsResponse$ConnectionStatus": "<p>The connection status of the wireless gateway.</p>"
       }
     },
     "Crc": {
@@ -437,6 +461,13 @@
         "LoRaWANGetServiceProfileInfo$DevStatusReqFreq": "<p>The DevStatusReqFreq value.</p>"
       }
     },
+    "DeviceCertificateList": {
+      "base": "<p>List of device certificate chain.</p>",
+      "refs": {
+        "SidewalkDevice$DeviceCertificates": "<p>The sidewalk device certificates for Ed25519 and P256r1.</p>",
+        "SidewalkListDevice$DeviceCertificates": "<p>The sidewalk device certificates for Ed25519 and P256r1.</p>"
+      }
+    },
     "DeviceProfile": {
       "base": "<p>Describes a device profile.</p>",
       "refs": {
@@ -476,6 +507,12 @@
         "CreateDeviceProfileRequest$Name": "<p>The name of the new resource.</p>",
         "DeviceProfile$Name": "<p>The name of the resource.</p>",
         "GetDeviceProfileResponse$Name": "<p>The name of the resource.</p>"
+      }
+    },
+    "DeviceState": {
+      "base": "<p>Device state defines the device status of sidewalk device.</p>",
+      "refs": {
+        "SidewalkDeviceMetadata$DeviceState": "<p>Device state defines the device status of sidewalk device.</p>"
       }
     },
     "DisassociateAwsAccountFromPartnerAccountRequest": {
@@ -559,6 +596,12 @@
       "base": null,
       "refs": {
         "GetServiceEndpointResponse$ServiceEndpoint": "<p>The service endpoint value.</p>"
+      }
+    },
+    "Event": {
+      "base": "<p>Sidewalk device status notification.</p>",
+      "refs": {
+        "SidewalkDeviceMetadata$Event": "<p>Sidewalk device status notification.</p>"
       }
     },
     "Expression": {
@@ -770,7 +813,8 @@
       "refs": {
         "LoRaWANDeviceMetadata$FPort": "<p>The FPort value.</p>",
         "LoRaWANDeviceMetadata$DataRate": "<p>The DataRate value.</p>",
-        "LoRaWANDeviceMetadata$Frequency": "<p>The device's channel frequency in Hz.</p>"
+        "LoRaWANDeviceMetadata$Frequency": "<p>The device's channel frequency in Hz.</p>",
+        "SidewalkDeviceMetadata$Rssi": "<p>The RSSI value.</p>"
       }
     },
     "InternalServerException": {
@@ -1335,10 +1379,36 @@
         "ListPartnerAccountsResponse$Sidewalk": "<p>The Sidewalk account credentials.</p>"
       }
     },
+    "SidewalkDevice": {
+      "base": "<p>Sidewalk device object.</p>",
+      "refs": {
+        "GetWirelessDeviceResponse$Sidewalk": "<p>Sidewalk device object.</p>"
+      }
+    },
+    "SidewalkDeviceMetadata": {
+      "base": "<p>MetaData for Sidewalk device.</p>",
+      "refs": {
+        "GetWirelessDeviceStatisticsResponse$Sidewalk": "<p>MetaData for Sidewalk device.</p>"
+      }
+    },
+    "SidewalkId": {
+      "base": "<p>The sidewalk device identification.</p>",
+      "refs": {
+        "SidewalkDevice$SidewalkId": "<p>The sidewalk device identification.</p>",
+        "SidewalkListDevice$SidewalkId": "<p>The sidewalk device identification.</p>"
+      }
+    },
     "SidewalkListDevice": {
       "base": "<p>Sidewalk object used by list functions.</p>",
       "refs": {
         "WirelessDeviceStatistics$Sidewalk": "<p>The Sidewalk account credentials.</p>"
+      }
+    },
+    "SidewalkManufacturingSn": {
+      "base": null,
+      "refs": {
+        "SidewalkDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>",
+        "SidewalkListDevice$SidewalkManufacturingSn": "<p>The Sidewalk manufacturing series number.</p>"
       }
     },
     "SidewalkSendDataToDevice": {
@@ -1351,6 +1421,12 @@
       "base": "<p>Sidewalk update.</p>",
       "refs": {
         "UpdatePartnerAccountRequest$Sidewalk": "<p>The Sidewalk account credentials.</p>"
+      }
+    },
+    "SigningAlg": {
+      "base": "<p>The certificate chain algorithm provided by sidewalk.</p>",
+      "refs": {
+        "CertificateList$SigningAlg": "<p>The certificate chain algorithm provided by sidewalk.</p>"
       }
     },
     "Station": {

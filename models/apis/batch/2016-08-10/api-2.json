@@ -731,6 +731,38 @@
       "type":"list",
       "member":{"shape":"Device"}
     },
+    "EFSAuthorizationConfig":{
+      "type":"structure",
+      "members":{
+        "accessPointId":{"shape":"String"},
+        "iam":{"shape":"EFSAuthorizationConfigIAM"}
+      }
+    },
+    "EFSAuthorizationConfigIAM":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "EFSTransitEncryption":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "EFSVolumeConfiguration":{
+      "type":"structure",
+      "required":["fileSystemId"],
+      "members":{
+        "fileSystemId":{"shape":"String"},
+        "rootDirectory":{"shape":"String"},
+        "transitEncryption":{"shape":"EFSTransitEncryption"},
+        "transitEncryptionPort":{"shape":"Integer"},
+        "authorizationConfig":{"shape":"EFSAuthorizationConfig"}
+      }
+    },
     "Ec2Configuration":{
       "type":"structure",
       "required":["imageType"],
@@ -1437,7 +1469,8 @@
       "type":"structure",
       "members":{
         "host":{"shape":"Host"},
-        "name":{"shape":"String"}
+        "name":{"shape":"String"},
+        "efsVolumeConfiguration":{"shape":"EFSVolumeConfiguration"}
       }
     },
     "Volumes":{

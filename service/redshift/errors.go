@@ -4,6 +4,12 @@ package redshift
 
 const (
 
+	// ErrCodeAccessToClusterDeniedFault for service response error code
+	// "AccessToClusterDenied".
+	//
+	// You are not authorized to access the cluster.
+	ErrCodeAccessToClusterDeniedFault = "AccessToClusterDenied"
+
 	// ErrCodeAccessToSnapshotDeniedFault for service response error code
 	// "AccessToSnapshotDenied".
 	//
@@ -192,6 +198,50 @@ const (
 	// temporarily unavailable. Wait 30 to 60 seconds and try again.
 	ErrCodeDependentServiceUnavailableFault = "DependentServiceUnavailableFault"
 
+	// ErrCodeEndpointAlreadyExistsFault for service response error code
+	// "EndpointAlreadyExists".
+	//
+	// The account already has a Redshift-managed VPC endpoint with the given identifier.
+	ErrCodeEndpointAlreadyExistsFault = "EndpointAlreadyExists"
+
+	// ErrCodeEndpointAuthorizationAlreadyExistsFault for service response error code
+	// "EndpointAuthorizationAlreadyExists".
+	//
+	// The authorization already exists for this endpoint.
+	ErrCodeEndpointAuthorizationAlreadyExistsFault = "EndpointAuthorizationAlreadyExists"
+
+	// ErrCodeEndpointAuthorizationNotFoundFault for service response error code
+	// "EndpointAuthorizationNotFound".
+	//
+	// The authorization for this endpoint can't be found.
+	ErrCodeEndpointAuthorizationNotFoundFault = "EndpointAuthorizationNotFound"
+
+	// ErrCodeEndpointAuthorizationsPerClusterLimitExceededFault for service response error code
+	// "EndpointAuthorizationsPerClusterLimitExceeded".
+	//
+	// The number of endpoint authorizations per cluster has exceeded its limit.
+	ErrCodeEndpointAuthorizationsPerClusterLimitExceededFault = "EndpointAuthorizationsPerClusterLimitExceeded"
+
+	// ErrCodeEndpointNotFoundFault for service response error code
+	// "EndpointNotFound".
+	//
+	// The endpoint name doesn't refer to an existing endpoint.
+	ErrCodeEndpointNotFoundFault = "EndpointNotFound"
+
+	// ErrCodeEndpointsPerAuthorizationLimitExceededFault for service response error code
+	// "EndpointsPerAuthorizationLimitExceeded".
+	//
+	// The number of Redshift-managed VPC endpoints per authorization has exceeded
+	// its limit.
+	ErrCodeEndpointsPerAuthorizationLimitExceededFault = "EndpointsPerAuthorizationLimitExceeded"
+
+	// ErrCodeEndpointsPerClusterLimitExceededFault for service response error code
+	// "EndpointsPerClusterLimitExceeded".
+	//
+	// The number of Redshift-managed VPC endpoints per cluster has exceeded its
+	// limit.
+	ErrCodeEndpointsPerClusterLimitExceededFault = "EndpointsPerClusterLimitExceeded"
+
 	// ErrCodeEventSubscriptionQuotaExceededFault for service response error code
 	// "EventSubscriptionQuotaExceeded".
 	//
@@ -269,6 +319,12 @@ const (
 	// bucket specified when enabling logging.
 	ErrCodeInsufficientS3BucketPolicyFault = "InsufficientS3BucketPolicyFault"
 
+	// ErrCodeInvalidAuthorizationStateFault for service response error code
+	// "InvalidAuthorizationState".
+	//
+	// The status of the authorization is not valid.
+	ErrCodeInvalidAuthorizationStateFault = "InvalidAuthorizationState"
+
 	// ErrCodeInvalidClusterParameterGroupStateFault for service response error code
 	// "InvalidClusterParameterGroupState".
 	//
@@ -325,6 +381,12 @@ const (
 	//
 	// The Elastic IP (EIP) is invalid or cannot be found.
 	ErrCodeInvalidElasticIpFault = "InvalidElasticIpFault"
+
+	// ErrCodeInvalidEndpointStateFault for service response error code
+	// "InvalidEndpointState".
+	//
+	// The status of the endpoint is not valid.
+	ErrCodeInvalidEndpointStateFault = "InvalidEndpointState"
 
 	// ErrCodeInvalidHsmClientCertificateStateFault for service response error code
 	// "InvalidHsmClientCertificateStateFault".

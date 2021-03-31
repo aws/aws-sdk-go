@@ -398,40 +398,15 @@
         "SubscriptionType"
       ],
       "members":{
-        "SubnetId":{
-          "shape":"SubnetId",
-          "locationName":"SubnetId"
-        },
-        "SshKey":{
-          "shape":"SshKey",
-          "locationName":"SshKey"
-        },
-        "EniIp":{
-          "shape":"IpAddress",
-          "locationName":"EniIp"
-        },
-        "IamRoleArn":{
-          "shape":"IamRoleArn",
-          "locationName":"IamRoleArn"
-        },
-        "ExternalId":{
-          "shape":"ExternalId",
-          "locationName":"ExternalId"
-        },
-        "SubscriptionType":{
-          "shape":"SubscriptionType",
-          "locationName":"SubscriptionType"
-        },
-        "ClientToken":{
-          "shape":"ClientToken",
-          "locationName":"ClientToken"
-        },
-        "SyslogIp":{
-          "shape":"IpAddress",
-          "locationName":"SyslogIp"
-        }
-      },
-      "locationName":"CreateHsmRequest"
+        "SubnetId":{"shape":"SubnetId"},
+        "SshKey":{"shape":"SshKey"},
+        "EniIp":{"shape":"IpAddress"},
+        "IamRoleArn":{"shape":"IamRoleArn"},
+        "ExternalId":{"shape":"ExternalId"},
+        "SubscriptionType":{"shape":"SubscriptionType"},
+        "ClientToken":{"shape":"ClientToken"},
+        "SyslogIp":{"shape":"IpAddress"}
+      }
     },
     "CreateHsmResponse":{
       "type":"structure",
@@ -471,12 +446,8 @@
       "type":"structure",
       "required":["HsmArn"],
       "members":{
-        "HsmArn":{
-          "shape":"HsmArn",
-          "locationName":"HsmArn"
-        }
-      },
-      "locationName":"DeleteHsmRequest"
+        "HsmArn":{"shape":"HsmArn"}
+      }
     },
     "DeleteHsmResponse":{
       "type":"structure",
@@ -734,32 +705,13 @@
       "type":"structure",
       "required":["HsmArn"],
       "members":{
-        "HsmArn":{
-          "shape":"HsmArn",
-          "locationName":"HsmArn"
-        },
-        "SubnetId":{
-          "shape":"SubnetId",
-          "locationName":"SubnetId"
-        },
-        "EniIp":{
-          "shape":"IpAddress",
-          "locationName":"EniIp"
-        },
-        "IamRoleArn":{
-          "shape":"IamRoleArn",
-          "locationName":"IamRoleArn"
-        },
-        "ExternalId":{
-          "shape":"ExternalId",
-          "locationName":"ExternalId"
-        },
-        "SyslogIp":{
-          "shape":"IpAddress",
-          "locationName":"SyslogIp"
-        }
-      },
-      "locationName":"ModifyHsmRequest"
+        "HsmArn":{"shape":"HsmArn"},
+        "SubnetId":{"shape":"SubnetId"},
+        "EniIp":{"shape":"IpAddress"},
+        "IamRoleArn":{"shape":"IamRoleArn"},
+        "ExternalId":{"shape":"ExternalId"},
+        "SyslogIp":{"shape":"IpAddress"}
+      }
     },
     "ModifyHsmResponse":{
       "type":"structure",

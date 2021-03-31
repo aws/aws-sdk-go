@@ -5422,6 +5422,43 @@ func (s AssociateWirelessGatewayWithThingOutput) GoString() string {
 	return s.String()
 }
 
+// List of sidewalk certificates.
+type CertificateList struct {
+	_ struct{} `type:"structure"`
+
+	// The certificate chain algorithm provided by sidewalk.
+	//
+	// SigningAlg is a required field
+	SigningAlg *string `type:"string" required:"true" enum:"SigningAlg"`
+
+	// The value of the chosen sidewalk certificate.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CertificateList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CertificateList) GoString() string {
+	return s.String()
+}
+
+// SetSigningAlg sets the SigningAlg field's value.
+func (s *CertificateList) SetSigningAlg(v string) *CertificateList {
+	s.SigningAlg = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CertificateList) SetValue(v string) *CertificateList {
+	s.Value = &v
+	return s
+}
+
 // Adding, updating, or deleting the resource can cause an inconsistent state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -7603,6 +7640,9 @@ type GetWirelessDeviceOutput struct {
 	// The name of the resource.
 	Name *string `type:"string"`
 
+	// Sidewalk device object.
+	Sidewalk *SidewalkDevice `type:"structure"`
+
 	// The ARN of the thing associated with the wireless device.
 	ThingArn *string `type:"string"`
 
@@ -7657,6 +7697,12 @@ func (s *GetWirelessDeviceOutput) SetLoRaWAN(v *LoRaWANDevice) *GetWirelessDevic
 // SetName sets the Name field's value.
 func (s *GetWirelessDeviceOutput) SetName(v string) *GetWirelessDeviceOutput {
 	s.Name = &v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *GetWirelessDeviceOutput) SetSidewalk(v *SidewalkDevice) *GetWirelessDeviceOutput {
+	s.Sidewalk = v
 	return s
 }
 
@@ -7728,6 +7774,9 @@ type GetWirelessDeviceStatisticsOutput struct {
 	// Information about the wireless device's operations.
 	LoRaWAN *LoRaWANDeviceMetadata `type:"structure"`
 
+	// MetaData for Sidewalk device.
+	Sidewalk *SidewalkDeviceMetadata `type:"structure"`
+
 	// The ID of the wireless device.
 	WirelessDeviceId *string `type:"string"`
 }
@@ -7751,6 +7800,12 @@ func (s *GetWirelessDeviceStatisticsOutput) SetLastUplinkReceivedAt(v string) *G
 // SetLoRaWAN sets the LoRaWAN field's value.
 func (s *GetWirelessDeviceStatisticsOutput) SetLoRaWAN(v *LoRaWANDeviceMetadata) *GetWirelessDeviceStatisticsOutput {
 	s.LoRaWAN = v
+	return s
+}
+
+// SetSidewalk sets the Sidewalk field's value.
+func (s *GetWirelessDeviceStatisticsOutput) SetSidewalk(v *SidewalkDeviceMetadata) *GetWirelessDeviceStatisticsOutput {
+	s.Sidewalk = v
 	return s
 }
 
@@ -8075,6 +8130,9 @@ func (s *GetWirelessGatewayStatisticsInput) SetWirelessGatewayId(v string) *GetW
 type GetWirelessGatewayStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The connection status of the wireless gateway.
+	ConnectionStatus *string `type:"string" enum:"ConnectionStatus"`
+
 	// The date and time when the most recent uplink was received.
 	LastUplinkReceivedAt *string `type:"string"`
 
@@ -8090,6 +8148,12 @@ func (s GetWirelessGatewayStatisticsOutput) String() string {
 // GoString returns the string representation
 func (s GetWirelessGatewayStatisticsOutput) GoString() string {
 	return s.String()
+}
+
+// SetConnectionStatus sets the ConnectionStatus field's value.
+func (s *GetWirelessGatewayStatisticsOutput) SetConnectionStatus(v string) *GetWirelessGatewayStatisticsOutput {
+	s.ConnectionStatus = &v
+	return s
 }
 
 // SetLastUplinkReceivedAt sets the LastUplinkReceivedAt field's value.
@@ -10310,12 +10374,114 @@ func (s *SidewalkAccountInfoWithFingerprint) SetFingerprint(v string) *SidewalkA
 	return s
 }
 
+// Sidewalk device object.
+type SidewalkDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The sidewalk device certificates for Ed25519 and P256r1.
+	DeviceCertificates []*CertificateList `type:"list"`
+
+	// The sidewalk device identification.
+	SidewalkId *string `type:"string"`
+
+	// The Sidewalk manufacturing series number.
+	SidewalkManufacturingSn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SidewalkDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SidewalkDevice) GoString() string {
+	return s.String()
+}
+
+// SetDeviceCertificates sets the DeviceCertificates field's value.
+func (s *SidewalkDevice) SetDeviceCertificates(v []*CertificateList) *SidewalkDevice {
+	s.DeviceCertificates = v
+	return s
+}
+
+// SetSidewalkId sets the SidewalkId field's value.
+func (s *SidewalkDevice) SetSidewalkId(v string) *SidewalkDevice {
+	s.SidewalkId = &v
+	return s
+}
+
+// SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
+func (s *SidewalkDevice) SetSidewalkManufacturingSn(v string) *SidewalkDevice {
+	s.SidewalkManufacturingSn = &v
+	return s
+}
+
+// MetaData for Sidewalk device.
+type SidewalkDeviceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Sidewalk device battery level.
+	BatteryLevel *string `type:"string" enum:"BatteryLevel"`
+
+	// Device state defines the device status of sidewalk device.
+	DeviceState *string `type:"string" enum:"DeviceState"`
+
+	// Sidewalk device status notification.
+	Event *string `type:"string" enum:"Event"`
+
+	// The RSSI value.
+	Rssi *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s SidewalkDeviceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SidewalkDeviceMetadata) GoString() string {
+	return s.String()
+}
+
+// SetBatteryLevel sets the BatteryLevel field's value.
+func (s *SidewalkDeviceMetadata) SetBatteryLevel(v string) *SidewalkDeviceMetadata {
+	s.BatteryLevel = &v
+	return s
+}
+
+// SetDeviceState sets the DeviceState field's value.
+func (s *SidewalkDeviceMetadata) SetDeviceState(v string) *SidewalkDeviceMetadata {
+	s.DeviceState = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *SidewalkDeviceMetadata) SetEvent(v string) *SidewalkDeviceMetadata {
+	s.Event = &v
+	return s
+}
+
+// SetRssi sets the Rssi field's value.
+func (s *SidewalkDeviceMetadata) SetRssi(v int64) *SidewalkDeviceMetadata {
+	s.Rssi = &v
+	return s
+}
+
 // Sidewalk object used by list functions.
 type SidewalkListDevice struct {
 	_ struct{} `type:"structure"`
 
 	// The Sidewalk Amazon ID.
 	AmazonId *string `type:"string"`
+
+	// The sidewalk device certificates for Ed25519 and P256r1.
+	DeviceCertificates []*CertificateList `type:"list"`
+
+	// The sidewalk device identification.
+	SidewalkId *string `type:"string"`
+
+	// The Sidewalk manufacturing series number.
+	SidewalkManufacturingSn *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10331,6 +10497,24 @@ func (s SidewalkListDevice) GoString() string {
 // SetAmazonId sets the AmazonId field's value.
 func (s *SidewalkListDevice) SetAmazonId(v string) *SidewalkListDevice {
 	s.AmazonId = &v
+	return s
+}
+
+// SetDeviceCertificates sets the DeviceCertificates field's value.
+func (s *SidewalkListDevice) SetDeviceCertificates(v []*CertificateList) *SidewalkListDevice {
+	s.DeviceCertificates = v
+	return s
+}
+
+// SetSidewalkId sets the SidewalkId field's value.
+func (s *SidewalkListDevice) SetSidewalkId(v string) *SidewalkListDevice {
+	s.SidewalkId = &v
+	return s
+}
+
+// SetSidewalkManufacturingSn sets the SidewalkManufacturingSn field's value.
+func (s *SidewalkListDevice) SetSidewalkManufacturingSn(v string) *SidewalkListDevice {
+	s.SidewalkManufacturingSn = &v
 	return s
 }
 
@@ -11489,6 +11673,97 @@ func (s *WirelessMetadata) SetSidewalk(v *SidewalkSendDataToDevice) *WirelessMet
 	return s
 }
 
+// Sidewalk device battery level.
+const (
+	// BatteryLevelNormal is a BatteryLevel enum value
+	BatteryLevelNormal = "normal"
+
+	// BatteryLevelLow is a BatteryLevel enum value
+	BatteryLevelLow = "low"
+
+	// BatteryLevelCritical is a BatteryLevel enum value
+	BatteryLevelCritical = "critical"
+)
+
+// BatteryLevel_Values returns all elements of the BatteryLevel enum
+func BatteryLevel_Values() []string {
+	return []string{
+		BatteryLevelNormal,
+		BatteryLevelLow,
+		BatteryLevelCritical,
+	}
+}
+
+const (
+	// ConnectionStatusConnected is a ConnectionStatus enum value
+	ConnectionStatusConnected = "Connected"
+
+	// ConnectionStatusDisconnected is a ConnectionStatus enum value
+	ConnectionStatusDisconnected = "Disconnected"
+)
+
+// ConnectionStatus_Values returns all elements of the ConnectionStatus enum
+func ConnectionStatus_Values() []string {
+	return []string{
+		ConnectionStatusConnected,
+		ConnectionStatusDisconnected,
+	}
+}
+
+// Device state defines the device status of sidewalk device.
+const (
+	// DeviceStateProvisioned is a DeviceState enum value
+	DeviceStateProvisioned = "Provisioned"
+
+	// DeviceStateRegisteredNotSeen is a DeviceState enum value
+	DeviceStateRegisteredNotSeen = "RegisteredNotSeen"
+
+	// DeviceStateRegisteredReachable is a DeviceState enum value
+	DeviceStateRegisteredReachable = "RegisteredReachable"
+
+	// DeviceStateRegisteredUnreachable is a DeviceState enum value
+	DeviceStateRegisteredUnreachable = "RegisteredUnreachable"
+)
+
+// DeviceState_Values returns all elements of the DeviceState enum
+func DeviceState_Values() []string {
+	return []string{
+		DeviceStateProvisioned,
+		DeviceStateRegisteredNotSeen,
+		DeviceStateRegisteredReachable,
+		DeviceStateRegisteredUnreachable,
+	}
+}
+
+// Sidewalk device status notification.
+const (
+	// EventDiscovered is a Event enum value
+	EventDiscovered = "discovered"
+
+	// EventLost is a Event enum value
+	EventLost = "lost"
+
+	// EventAck is a Event enum value
+	EventAck = "ack"
+
+	// EventNack is a Event enum value
+	EventNack = "nack"
+
+	// EventPassthrough is a Event enum value
+	EventPassthrough = "passthrough"
+)
+
+// Event_Values returns all elements of the Event enum
+func Event_Values() []string {
+	return []string{
+		EventDiscovered,
+		EventLost,
+		EventAck,
+		EventNack,
+		EventPassthrough,
+	}
+}
+
 const (
 	// ExpressionTypeRuleName is a ExpressionType enum value
 	ExpressionTypeRuleName = "RuleName"
@@ -11514,6 +11789,23 @@ const (
 func PartnerType_Values() []string {
 	return []string{
 		PartnerTypeSidewalk,
+	}
+}
+
+// The certificate chain algorithm provided by sidewalk.
+const (
+	// SigningAlgEd25519 is a SigningAlg enum value
+	SigningAlgEd25519 = "Ed25519"
+
+	// SigningAlgP256r1 is a SigningAlg enum value
+	SigningAlgP256r1 = "P256r1"
+)
+
+// SigningAlg_Values returns all elements of the SigningAlg enum
+func SigningAlg_Values() []string {
+	return []string{
+		SigningAlgEd25519,
+		SigningAlgP256r1,
 	}
 }
 

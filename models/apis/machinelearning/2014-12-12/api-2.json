@@ -1,14 +1,15 @@
 {
   "version":"2.0",
   "metadata":{
-    "uid":"machinelearning-2014-12-12",
     "apiVersion":"2014-12-12",
     "endpointPrefix":"machinelearning",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"Amazon Machine Learning",
+    "serviceId":"Machine Learning",
     "signatureVersion":"v4",
     "targetPrefix":"AmazonML_20141212",
-    "protocol":"json"
+    "uid":"machinelearning-2014-12-12"
   },
   "operations":{
     "AddTags":{
@@ -20,30 +21,11 @@
       "input":{"shape":"AddTagsInput"},
       "output":{"shape":"AddTagsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagException",
-          "exception":true
-        },
-        {
-          "shape":"TagLimitExceededException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidTagException"},
+        {"shape":"TagLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "CreateBatchPrediction":{
@@ -55,22 +37,9 @@
       "input":{"shape":"CreateBatchPredictionInput"},
       "output":{"shape":"CreateBatchPredictionOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateDataSourceFromRDS":{
@@ -82,22 +51,9 @@
       "input":{"shape":"CreateDataSourceFromRDSInput"},
       "output":{"shape":"CreateDataSourceFromRDSOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateDataSourceFromRedshift":{
@@ -109,22 +65,9 @@
       "input":{"shape":"CreateDataSourceFromRedshiftInput"},
       "output":{"shape":"CreateDataSourceFromRedshiftOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateDataSourceFromS3":{
@@ -136,22 +79,9 @@
       "input":{"shape":"CreateDataSourceFromS3Input"},
       "output":{"shape":"CreateDataSourceFromS3Output"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateEvaluation":{
@@ -163,22 +93,9 @@
       "input":{"shape":"CreateEvaluationInput"},
       "output":{"shape":"CreateEvaluationOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateMLModel":{
@@ -190,22 +107,9 @@
       "input":{"shape":"CreateMLModelInput"},
       "output":{"shape":"CreateMLModelOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"IdempotentParameterMismatchException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"},
+        {"shape":"IdempotentParameterMismatchException"}
       ]
     },
     "CreateRealtimeEndpoint":{
@@ -217,22 +121,9 @@
       "input":{"shape":"CreateRealtimeEndpointInput"},
       "output":{"shape":"CreateRealtimeEndpointOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteBatchPrediction":{
@@ -244,22 +135,9 @@
       "input":{"shape":"DeleteBatchPredictionInput"},
       "output":{"shape":"DeleteBatchPredictionOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteDataSource":{
@@ -271,22 +149,9 @@
       "input":{"shape":"DeleteDataSourceInput"},
       "output":{"shape":"DeleteDataSourceOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteEvaluation":{
@@ -298,22 +163,9 @@
       "input":{"shape":"DeleteEvaluationInput"},
       "output":{"shape":"DeleteEvaluationOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteMLModel":{
@@ -325,22 +177,9 @@
       "input":{"shape":"DeleteMLModelInput"},
       "output":{"shape":"DeleteMLModelOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteRealtimeEndpoint":{
@@ -352,22 +191,9 @@
       "input":{"shape":"DeleteRealtimeEndpointInput"},
       "output":{"shape":"DeleteRealtimeEndpointOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DeleteTags":{
@@ -379,26 +205,10 @@
       "input":{"shape":"DeleteTagsInput"},
       "output":{"shape":"DeleteTagsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InvalidTagException",
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidTagException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DescribeBatchPredictions":{
@@ -410,17 +220,8 @@
       "input":{"shape":"DescribeBatchPredictionsInput"},
       "output":{"shape":"DescribeBatchPredictionsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DescribeDataSources":{
@@ -432,17 +233,8 @@
       "input":{"shape":"DescribeDataSourcesInput"},
       "output":{"shape":"DescribeDataSourcesOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DescribeEvaluations":{
@@ -454,17 +246,8 @@
       "input":{"shape":"DescribeEvaluationsInput"},
       "output":{"shape":"DescribeEvaluationsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DescribeMLModels":{
@@ -476,17 +259,8 @@
       "input":{"shape":"DescribeMLModelsInput"},
       "output":{"shape":"DescribeMLModelsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "DescribeTags":{
@@ -498,22 +272,9 @@
       "input":{"shape":"DescribeTagsInput"},
       "output":{"shape":"DescribeTagsOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetBatchPrediction":{
@@ -525,22 +286,9 @@
       "input":{"shape":"GetBatchPredictionInput"},
       "output":{"shape":"GetBatchPredictionOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetDataSource":{
@@ -552,22 +300,9 @@
       "input":{"shape":"GetDataSourceInput"},
       "output":{"shape":"GetDataSourceOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetEvaluation":{
@@ -579,22 +314,9 @@
       "input":{"shape":"GetEvaluationInput"},
       "output":{"shape":"GetEvaluationOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetMLModel":{
@@ -606,22 +328,9 @@
       "input":{"shape":"GetMLModelInput"},
       "output":{"shape":"GetMLModelOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "Predict":{
@@ -633,32 +342,11 @@
       "input":{"shape":"PredictInput"},
       "output":{"shape":"PredictOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{"httpStatusCode":417},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"PredictorNotMountedException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServerException"},
+        {"shape":"PredictorNotMountedException"}
       ]
     },
     "UpdateBatchPrediction":{
@@ -670,22 +358,9 @@
       "input":{"shape":"UpdateBatchPredictionInput"},
       "output":{"shape":"UpdateBatchPredictionOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateDataSource":{
@@ -697,22 +372,9 @@
       "input":{"shape":"UpdateDataSourceInput"},
       "output":{"shape":"UpdateDataSourceOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateEvaluation":{
@@ -724,22 +386,9 @@
       "input":{"shape":"UpdateEvaluationInput"},
       "output":{"shape":"UpdateEvaluationOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "UpdateMLModel":{
@@ -751,22 +400,9 @@
       "input":{"shape":"UpdateMLModelInput"},
       "output":{"shape":"UpdateMLModelOutput"},
       "errors":[
-        {
-          "shape":"InvalidInputException",
-          "error":{"httpStatusCode":400},
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{"httpStatusCode":404},
-          "exception":true
-        },
-        {
-          "shape":"InternalServerException",
-          "error":{"httpStatusCode":500},
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     }
   },
@@ -1241,18 +877,18 @@
     },
     "EDPPipelineId":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
     },
     "EDPResourceRole":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "EDPSecurityGroupId":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "EDPSecurityGroupIds":{
       "type":"list",
@@ -1260,18 +896,18 @@
     },
     "EDPServiceRole":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "EDPSubnetId":{
       "type":"string",
-      "min":1,
-      "max":255
+      "max":255,
+      "min":1
     },
     "EntityId":{
       "type":"string",
-      "min":1,
       "max":64,
+      "min":1,
       "pattern":"[a-zA-Z0-9_.-]+"
     },
     "EntityName":{
@@ -1460,7 +1096,6 @@
         "message":{"shape":"ErrorMessage"},
         "code":{"shape":"ErrorCode"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "IntegerType":{"type":"integer"},
@@ -1470,7 +1105,6 @@
         "message":{"shape":"ErrorMessage"},
         "code":{"shape":"ErrorCode"}
       },
-      "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
     },
@@ -1480,7 +1114,6 @@
         "message":{"shape":"ErrorMessage"},
         "code":{"shape":"ErrorCode"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "InvalidTagException":{
@@ -1500,7 +1133,6 @@
         "message":{"shape":"ErrorMessage"},
         "code":{"shape":"ErrorCode"}
       },
-      "error":{"httpStatusCode":417},
       "exception":true
     },
     "LongType":{"type":"long"},
@@ -1565,8 +1197,8 @@
     },
     "PageLimit":{
       "type":"integer",
-      "min":1,
-      "max":100
+      "max":100,
+      "min":1
     },
     "PerformanceMetrics":{
       "type":"structure",
@@ -1614,7 +1246,6 @@
       "members":{
         "message":{"shape":"ErrorMessage"}
       },
-      "error":{"httpStatusCode":400},
       "exception":true
     },
     "PresignedS3Url":{"type":"string"},
@@ -1668,23 +1299,23 @@
     },
     "RDSDatabaseName":{
       "type":"string",
-      "min":1,
-      "max":64
+      "max":64,
+      "min":1
     },
     "RDSDatabasePassword":{
       "type":"string",
-      "min":8,
-      "max":128
+      "max":128,
+      "min":8
     },
     "RDSDatabaseUsername":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "RDSInstanceIdentifier":{
       "type":"string",
-      "min":1,
       "max":63,
+      "min":1,
       "pattern":"[a-z0-9-]+"
     },
     "RDSMetadata":{
@@ -1700,8 +1331,8 @@
     },
     "RDSSelectSqlQuery":{
       "type":"string",
-      "min":1,
-      "max":16777216
+      "max":16777216,
+      "min":1
     },
     "RealtimeEndpointInfo":{
       "type":"structure",
@@ -1732,8 +1363,8 @@
     },
     "RedshiftClusterIdentifier":{
       "type":"string",
-      "min":1,
       "max":63,
+      "min":1,
       "pattern":"[a-z0-9-]+"
     },
     "RedshiftDataSpec":{
@@ -1778,19 +1409,19 @@
     },
     "RedshiftDatabaseName":{
       "type":"string",
-      "min":1,
       "max":64,
+      "min":1,
       "pattern":"[a-z0-9]+"
     },
     "RedshiftDatabasePassword":{
       "type":"string",
-      "min":8,
-      "max":64
+      "max":64,
+      "min":8
     },
     "RedshiftDatabaseUsername":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "RedshiftMetadata":{
       "type":"structure",
@@ -1802,8 +1433,8 @@
     },
     "RedshiftSelectSqlQuery":{
       "type":"string",
-      "min":1,
-      "max":16777216
+      "max":16777216,
+      "min":1
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1811,13 +1442,12 @@
         "message":{"shape":"ErrorMessage"},
         "code":{"shape":"ErrorCode"}
       },
-      "error":{"httpStatusCode":404},
       "exception":true
     },
     "RoleARN":{
       "type":"string",
-      "min":1,
-      "max":110
+      "max":110,
+      "min":1
     },
     "S3DataSpec":{
       "type":"structure",
@@ -1858,8 +1488,8 @@
     },
     "TagKey":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TagKeyList":{
@@ -1881,8 +1511,8 @@
     },
     "TagValue":{
       "type":"string",
-      "min":0,
       "max":256,
+      "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
     "TaggableResourceType":{

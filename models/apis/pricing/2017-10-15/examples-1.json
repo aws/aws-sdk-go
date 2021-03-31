@@ -30,6 +30,7 @@
           "output": {
           }
         },
+        "description": "Retrieves the service for the given Service Code.",
         "id": "to-retrieve-service-metadata",
         "title": "To retrieve a list of services and service codes"
       }

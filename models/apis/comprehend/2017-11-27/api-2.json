@@ -1258,7 +1258,8 @@
         "LanguageCode":{"shape":"LanguageCode"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
-        "Mode":{"shape":"DocumentClassifierMode"}
+        "Mode":{"shape":"DocumentClassifierMode"},
+        "ModelKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateDocumentClassifierResponse":{
@@ -1282,7 +1283,8 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
     "CreateEndpointResponse":{
@@ -1310,7 +1312,8 @@
         },
         "LanguageCode":{"shape":"LanguageCode"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "ModelKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateEntityRecognizerResponse":{
@@ -1716,7 +1719,8 @@
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
-        "Mode":{"shape":"DocumentClassifierMode"}
+        "Mode":{"shape":"DocumentClassifierMode"},
+        "ModelKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "DocumentClassifierPropertiesList":{
@@ -1786,7 +1790,8 @@
         "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"},
         "CurrentInferenceUnits":{"shape":"InferenceUnitsInteger"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModifiedTime":{"shape":"Timestamp"}
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
     "EndpointPropertiesList":{
@@ -1958,7 +1963,8 @@
         "RecognizerMetadata":{"shape":"EntityRecognizerMetadata"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "ModelKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "EntityRecognizerPropertiesList":{

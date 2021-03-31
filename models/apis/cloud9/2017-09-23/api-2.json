@@ -296,6 +296,7 @@
         "clientRequestToken":{"shape":"ClientRequestToken"},
         "instanceType":{"shape":"InstanceType"},
         "subnetId":{"shape":"SubnetId"},
+        "imageId":{"shape":"ImageId"},
         "automaticStopTimeMinutes":{"shape":"AutomaticStopTimeMinutes"},
         "ownerArn":{"shape":"UserArn"},
         "tags":{"shape":"TagList"},
@@ -323,6 +324,7 @@
     },
     "CreateEnvironmentMembershipResult":{
       "type":"structure",
+      "required":["membership"],
       "members":{
         "membership":{"shape":"EnvironmentMember"}
       }
@@ -381,6 +383,10 @@
     },
     "DescribeEnvironmentStatusResult":{
       "type":"structure",
+      "required":[
+        "status",
+        "message"
+      ],
       "members":{
         "status":{"shape":"EnvironmentStatus"},
         "message":{"shape":"String"}
@@ -401,6 +407,11 @@
     },
     "Environment":{
       "type":"structure",
+      "required":[
+        "type",
+        "arn",
+        "ownerArn"
+      ],
       "members":{
         "id":{"shape":"EnvironmentId"},
         "name":{"shape":"EnvironmentName"},
@@ -409,12 +420,13 @@
         "connectionType":{"shape":"ConnectionType"},
         "arn":{"shape":"String"},
         "ownerArn":{"shape":"String"},
-        "lifecycle":{"shape":"EnvironmentLifecycle"}
+        "lifecycle":{"shape":"EnvironmentLifecycle"},
+        "managedCredentialsStatus":{"shape":"ManagedCredentialsStatus"}
       }
     },
     "EnvironmentArn":{
       "type":"string",
-      "pattern":"arn:aws:cloud9:([a-z]{2}-[a-z]+-\\d{1}):[0-9]{12}:environment:[a-zA-Z0-9]{8,32}"
+      "pattern":"arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):cloud9:([a-z]{2}-[a-z]+-\\d{1}):[0-9]{12}:environment:[a-zA-Z0-9]{8,32}"
     },
     "EnvironmentDescription":{
       "type":"string",
@@ -453,6 +465,12 @@
     },
     "EnvironmentMember":{
       "type":"structure",
+      "required":[
+        "permissions",
+        "userId",
+        "userArn",
+        "environmentId"
+      ],
       "members":{
         "permissions":{"shape":"Permissions"},
         "userId":{"shape":"String"},
@@ -494,6 +512,10 @@
       "members":{
       },
       "exception":true
+    },
+    "ImageId":{
+      "type":"string",
+      "max":512
     },
     "InstanceType":{
       "type":"string",
@@ -541,6 +563,22 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ManagedCredentialsStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED_ON_CREATE",
+        "ENABLED_BY_OWNER",
+        "DISABLED_BY_DEFAULT",
+        "DISABLED_BY_OWNER",
+        "DISABLED_BY_COLLABORATOR",
+        "PENDING_REMOVAL_BY_COLLABORATOR",
+        "PENDING_START_REMOVAL_BY_COLLABORATOR",
+        "PENDING_REMOVAL_BY_OWNER",
+        "PENDING_START_REMOVAL_BY_OWNER",
+        "FAILED_REMOVAL_BY_COLLABORATOR",
+        "FAILED_REMOVAL_BY_OWNER"
+      ]
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -575,8 +613,9 @@
     "String":{"type":"string"},
     "SubnetId":{
       "type":"string",
-      "max":30,
-      "min":5
+      "max":24,
+      "min":15,
+      "pattern":"^(subnet-[0-9a-f]{8}|subnet-[0-9a-f]{17})$"
     },
     "Tag":{
       "type":"structure",
@@ -587,24 +626,28 @@
       "members":{
         "Key":{"shape":"TagKey"},
         "Value":{"shape":"TagValue"}
-      }
+      },
+      "sensitive":true
     },
     "TagKey":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
       "max":200,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"},
       "max":200,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "TagResourceRequest":{
       "type":"structure",
@@ -625,7 +668,8 @@
     "TagValue":{
       "type":"string",
       "max":256,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "Timestamp":{"type":"timestamp"},
     "TooManyRequestsException":{
@@ -685,7 +729,7 @@
     },
     "UserArn":{
       "type":"string",
-      "pattern":"^arn:aws:(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=:,.@-]{1,64}\\/[\\w+=,.@-]{1,64}))$"
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):(iam|sts)::\\d+:(root|(user\\/[\\w+=/:,.@-]{1,64}|federated-user\\/[\\w+=/:,.@-]{2,32}|assumed-role\\/[\\w+=:,.@-]{1,64}\\/[\\w+=,.@-]{1,64}))$"
     }
   }
 }

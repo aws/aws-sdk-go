@@ -845,6 +845,12 @@
       "type":"list",
       "member":{"shape":"Account"}
     },
+    "AccountsUrl":{
+      "type":"string",
+      "max":5120,
+      "min":1,
+      "pattern":"(s3://|http(s?)://).+"
+    },
     "AllowedValue":{"type":"string"},
     "AllowedValues":{
       "type":"list",
@@ -1249,6 +1255,7 @@
       "type":"structure",
       "members":{
         "Accounts":{"shape":"AccountList"},
+        "AccountsUrl":{"shape":"AccountsUrl"},
         "OrganizationalUnitIds":{"shape":"OrganizationalUnitIdList"}
       }
     },
@@ -2304,6 +2311,13 @@
       "type":"string",
       "pattern":"^[a-zA-Z0-9-]{1,128}$"
     },
+    "RegionConcurrencyType":{
+      "type":"string",
+      "enum":[
+        "SEQUENTIAL",
+        "PARALLEL"
+      ]
+    },
     "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
@@ -3073,6 +3087,7 @@
     "StackSetOperationPreferences":{
       "type":"structure",
       "members":{
+        "RegionConcurrencyType":{"shape":"RegionConcurrencyType"},
         "RegionOrder":{"shape":"RegionList"},
         "FailureToleranceCount":{"shape":"FailureToleranceCount"},
         "FailureTolerancePercentage":{"shape":"FailureTolerancePercentage"},

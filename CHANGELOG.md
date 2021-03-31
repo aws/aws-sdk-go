@@ -1,3 +1,34 @@
+Release v1.38.10 (2021-03-31)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * AWS Batch adds support for Amazon EFS File System
+* `service/cloud9`: Updates service API, documentation, and examples
+  * Add ImageId input parameter to CreateEnvironmentEC2 endpoint. New parameter enables creation of environments with different AMIs.
+* `service/cloudformation`: Updates service API and documentation
+  * 1. Added a new parameter "RegionConcurrencyType" in OperationPreferences. 2. Changed the name of "AccountUrl" to "AccountsUrl" in "DeploymentTargets" parameter.
+* `service/cloudhsm`: Updates service API and documentation
+  * Minor documentation and link updates.
+* `service/cognito-sync`: Updates service API, documentation, paginators, and examples
+* `service/comprehend`: Updates service API and documentation
+* `service/datapipeline`: Updates service API, documentation, paginators, and examples
+  * Minor documentation updates and link updates.
+* `service/detective`: Updates service API and documentation
+* `service/directconnect`: Updates service API and documentation
+  * This release adds MACsec support to AWS Direct Connect
+* `service/iot`: Updates service API and documentation
+  * Added ability to prefix search on attribute value for ListThings API.
+* `service/iotwireless`: Updates service API and documentation
+* `service/machinelearning`: Updates service API, documentation, paginators, and examples
+  * Minor documentation updates and link updates.
+* `service/pricing`: Updates service API, documentation, and examples
+* `service/redshift`: Updates service API and documentation
+  * Enable customers to share access to their Redshift clusters from other VPCs (including VPCs from other accounts).
+* `service/transcribe`: Updates service API
+* `service/workmail`: Updates service API and documentation
+  * This release adds support for mobile device access rules management in Amazon WorkMail.
+
 Release v1.38.9 (2021-03-30)
 ===
 

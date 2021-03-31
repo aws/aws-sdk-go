@@ -45926,6 +45926,13 @@ type ListThingsInput struct {
 
 	// The name of the thing type used to search for things.
 	ThingTypeName *string `location:"querystring" locationName:"thingTypeName" min:"1" type:"string"`
+
+	// When true, the action returns the thing resources with attribute values that
+	// start with the attributeValue provided.
+	//
+	// When false, or not present, the action returns only the thing resources with
+	// attribute values that match the entire attributeValue provided.
+	UsePrefixAttributeValue *bool `location:"querystring" locationName:"usePrefixAttributeValue" type:"boolean"`
 }
 
 // String returns the string representation
@@ -45981,6 +45988,12 @@ func (s *ListThingsInput) SetNextToken(v string) *ListThingsInput {
 // SetThingTypeName sets the ThingTypeName field's value.
 func (s *ListThingsInput) SetThingTypeName(v string) *ListThingsInput {
 	s.ThingTypeName = &v
+	return s
+}
+
+// SetUsePrefixAttributeValue sets the UsePrefixAttributeValue field's value.
+func (s *ListThingsInput) SetUsePrefixAttributeValue(v bool) *ListThingsInput {
+	s.UsePrefixAttributeValue = &v
 	return s
 }
 

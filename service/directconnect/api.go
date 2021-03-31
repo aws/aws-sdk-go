@@ -767,6 +767,96 @@ func (c *DirectConnect) AssociateHostedConnectionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opAssociateMacSecKey = "AssociateMacSecKey"
+
+// AssociateMacSecKeyRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateMacSecKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateMacSecKey for more information on using the AssociateMacSecKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateMacSecKeyRequest method.
+//    req, resp := client.AssociateMacSecKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AssociateMacSecKey
+func (c *DirectConnect) AssociateMacSecKeyRequest(input *AssociateMacSecKeyInput) (req *request.Request, output *AssociateMacSecKeyOutput) {
+	op := &request.Operation{
+		Name:       opAssociateMacSecKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateMacSecKeyInput{}
+	}
+
+	output = &AssociateMacSecKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateMacSecKey API operation for AWS Direct Connect.
+//
+// Associates a MAC Security (MACsec) Connection Key Name (CKN)/ Connectivity
+// Association Key (CAK) pair with an AWS Direct Connect dedicated connection.
+//
+// You must supply either the secretARN, or the CKN/CAK (ckn and cak) pair in
+// the request.
+//
+// For information about MAC Security (MACsec) key considerations, see MACsec
+// pre-shared CKN/CAK key considerations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-key-consideration)
+// in the AWS Direct Connect User Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation AssociateMacSecKey for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/AssociateMacSecKey
+func (c *DirectConnect) AssociateMacSecKey(input *AssociateMacSecKeyInput) (*AssociateMacSecKeyOutput, error) {
+	req, out := c.AssociateMacSecKeyRequest(input)
+	return out, req.Send()
+}
+
+// AssociateMacSecKeyWithContext is the same as AssociateMacSecKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateMacSecKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) AssociateMacSecKeyWithContext(ctx aws.Context, input *AssociateMacSecKeyInput, opts ...request.Option) (*AssociateMacSecKeyOutput, error) {
+	req, out := c.AssociateMacSecKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateVirtualInterface = "AssociateVirtualInterface"
 
 // AssociateVirtualInterfaceRequest generates a "aws/request.Request" representing the
@@ -4351,6 +4441,89 @@ func (c *DirectConnect) DisassociateConnectionFromLagWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opDisassociateMacSecKey = "DisassociateMacSecKey"
+
+// DisassociateMacSecKeyRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateMacSecKey operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateMacSecKey for more information on using the DisassociateMacSecKey
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateMacSecKeyRequest method.
+//    req, resp := client.DisassociateMacSecKeyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DisassociateMacSecKey
+func (c *DirectConnect) DisassociateMacSecKeyRequest(input *DisassociateMacSecKeyInput) (req *request.Request, output *DisassociateMacSecKeyOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateMacSecKey,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateMacSecKeyInput{}
+	}
+
+	output = &DisassociateMacSecKeyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateMacSecKey API operation for AWS Direct Connect.
+//
+// Removes the association between a MAC Security (MACsec) security key and
+// an AWS Direct Connect dedicated connection.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation DisassociateMacSecKey for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/DisassociateMacSecKey
+func (c *DirectConnect) DisassociateMacSecKey(input *DisassociateMacSecKeyInput) (*DisassociateMacSecKeyOutput, error) {
+	req, out := c.DisassociateMacSecKeyRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateMacSecKeyWithContext is the same as DisassociateMacSecKey with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateMacSecKey for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) DisassociateMacSecKeyWithContext(ctx aws.Context, input *DisassociateMacSecKeyInput, opts ...request.Option) (*DisassociateMacSecKeyOutput, error) {
+	req, out := c.DisassociateMacSecKeyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListVirtualInterfaceTestHistory = "ListVirtualInterfaceTestHistory"
 
 // ListVirtualInterfaceTestHistoryRequest generates a "aws/request.Request" representing the
@@ -4783,6 +4956,94 @@ func (c *DirectConnect) UntagResourceWithContext(ctx aws.Context, input *UntagRe
 	return out, req.Send()
 }
 
+const opUpdateConnection = "UpdateConnection"
+
+// UpdateConnectionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateConnection operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateConnection for more information on using the UpdateConnection
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateConnectionRequest method.
+//    req, resp := client.UpdateConnectionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/UpdateConnection
+func (c *DirectConnect) UpdateConnectionRequest(input *UpdateConnectionInput) (req *request.Request, output *UpdateConnectionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateConnection,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateConnectionInput{}
+	}
+
+	output = &UpdateConnectionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateConnection API operation for AWS Direct Connect.
+//
+// Updates the AWS Direct Connect dedicated connection configuration.
+//
+// You can update the following parameters for a connection:
+//
+//    * The connection name
+//
+//    * The connection's MAC Security (MACsec) encryption mode.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Direct Connect's
+// API operation UpdateConnection for usage and error information.
+//
+// Returned Error Types:
+//   * ServerException
+//   A server-side error occurred.
+//
+//   * ClientException
+//   One or more parameters are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/directconnect-2012-10-25/UpdateConnection
+func (c *DirectConnect) UpdateConnection(input *UpdateConnectionInput) (*UpdateConnectionOutput, error) {
+	req, out := c.UpdateConnectionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateConnectionWithContext is the same as UpdateConnection with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateConnection for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectConnect) UpdateConnectionWithContext(ctx aws.Context, input *UpdateConnectionInput, opts ...request.Option) (*UpdateConnectionOutput, error) {
+	req, out := c.UpdateConnectionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateDirectConnectGatewayAssociation = "UpdateDirectConnectGatewayAssociation"
 
 // UpdateDirectConnectGatewayAssociationRequest generates a "aws/request.Request" representing the
@@ -4913,19 +5174,21 @@ func (c *DirectConnect) UpdateLagRequest(input *UpdateLagInput) (req *request.Re
 //
 // Updates the attributes of the specified link aggregation group (LAG).
 //
-// You can update the following attributes:
+// You can update the following LAG attributes:
 //
 //    * The name of the LAG.
 //
 //    * The value for the minimum number of connections that must be operational
 //    for the LAG itself to be operational.
 //
-// When you create a LAG, the default value for the minimum number of operational
-// connections is zero (0). If you update this value and the number of operational
-// connections falls below the specified value, the LAG automatically goes down
-// to avoid over-utilization of the remaining connections. Adjust this value
-// with care, as it could force the LAG down if it is set higher than the current
-// number of operational connections.
+//    * The LAG's MACsec encryption mode. AWS assigns this value to each connection
+//    which is part of the LAG.
+//
+//    * The tags
+//
+// If you adjust the threshold value for the minimum number of operational connections,
+// ensure that the new value does not cause the LAG to fall below the threshold
+// and become non-operational.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5712,6 +5975,126 @@ func (s *AssociateHostedConnectionInput) SetParentConnectionId(v string) *Associ
 	return s
 }
 
+type AssociateMacSecKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The MAC Security (MACsec) CAK to associate with the dedicated connection.
+	//
+	// You can create the CKN/CAK pair using an industry standard tool.
+	//
+	// The valid values are 64 hexadecimal characters (0-9, A-E).
+	//
+	// If you use this request parameter, you must use the ckn request parameter
+	// and not use the secretARN request parameter.
+	Cak *string `locationName:"cak" type:"string"`
+
+	// The MAC Security (MACsec) CKN to associate with the dedicated connection.
+	//
+	// You can create the CKN/CAK pair using an industry standard tool.
+	//
+	// The valid values are 64 hexadecimal characters (0-9, A-E).
+	//
+	// If you use this request parameter, you must use the cak request parameter
+	// and not use the secretARN request parameter.
+	Ckn *string `locationName:"ckn" type:"string"`
+
+	// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).
+	//
+	// You can use DescribeConnections or DescribeLags to retrieve connection ID.
+	//
+	// ConnectionId is a required field
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key to
+	// associate with the dedicated connection.
+	//
+	// You can use DescribeConnections or DescribeLags to retrieve the MAC Security
+	// (MACsec) secret key.
+	//
+	// If you use this request parameter, you do not use the ckn and cak request
+	// parameters.
+	SecretARN *string `locationName:"secretARN" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateMacSecKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateMacSecKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateMacSecKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateMacSecKeyInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCak sets the Cak field's value.
+func (s *AssociateMacSecKeyInput) SetCak(v string) *AssociateMacSecKeyInput {
+	s.Cak = &v
+	return s
+}
+
+// SetCkn sets the Ckn field's value.
+func (s *AssociateMacSecKeyInput) SetCkn(v string) *AssociateMacSecKeyInput {
+	s.Ckn = &v
+	return s
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *AssociateMacSecKeyInput) SetConnectionId(v string) *AssociateMacSecKeyInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetSecretARN sets the SecretARN field's value.
+func (s *AssociateMacSecKeyInput) SetSecretARN(v string) *AssociateMacSecKeyInput {
+	s.SecretARN = &v
+	return s
+}
+
+type AssociateMacSecKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).
+	ConnectionId *string `locationName:"connectionId" type:"string"`
+
+	// The MAC Security (MACsec) security keys associated with the dedicated connection.
+	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
+}
+
+// String returns the string representation
+func (s AssociateMacSecKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateMacSecKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *AssociateMacSecKeyOutput) SetConnectionId(v string) *AssociateMacSecKeyOutput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetMacSecKeys sets the MacSecKeys field's value.
+func (s *AssociateMacSecKeyOutput) SetMacSecKeys(v []*MacSecKey) *AssociateMacSecKeyOutput {
+	s.MacSecKeys = v
+	return s
+}
+
 type AssociateVirtualInterfaceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6421,6 +6804,11 @@ type Connection struct {
 	//    * unknown: The state of the connection is not available.
 	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
 
+	// The MAC Security (MACsec) connection encryption mode.
+	//
+	// The valid values are no_encrypt, should_encrypt, and must_encrypt.
+	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
+
 	// Indicates whether the connection supports a secondary BGP peer in the same
 	// address family (IPv4/IPv6).
 	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
@@ -6437,11 +6825,23 @@ type Connection struct {
 	// The location of the connection.
 	Location *string `locationName:"location" type:"string"`
 
+	// Indicates whether the connection supports MAC Security (MACsec).
+	MacSecCapable *bool `locationName:"macSecCapable" type:"boolean"`
+
+	// The MAC Security (MACsec) security keys associated with the connection.
+	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
+
 	// The ID of the AWS account that owns the connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The name of the AWS Direct Connect service provider associated with the connection.
 	PartnerName *string `locationName:"partnerName" type:"string"`
+
+	// The MAC Security (MACsec) port link status of the connection.
+	//
+	// The valid values are Encryption Up, which means that there is an active Connection
+	// Key Name, or Encryption Down.
+	PortEncryptionStatus *string `locationName:"portEncryptionStatus" type:"string"`
 
 	// The name of the service provider associated with the connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
@@ -6502,6 +6902,12 @@ func (s *Connection) SetConnectionState(v string) *Connection {
 	return s
 }
 
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *Connection) SetEncryptionMode(v string) *Connection {
+	s.EncryptionMode = &v
+	return s
+}
+
 // SetHasLogicalRedundancy sets the HasLogicalRedundancy field's value.
 func (s *Connection) SetHasLogicalRedundancy(v string) *Connection {
 	s.HasLogicalRedundancy = &v
@@ -6532,6 +6938,18 @@ func (s *Connection) SetLocation(v string) *Connection {
 	return s
 }
 
+// SetMacSecCapable sets the MacSecCapable field's value.
+func (s *Connection) SetMacSecCapable(v bool) *Connection {
+	s.MacSecCapable = &v
+	return s
+}
+
+// SetMacSecKeys sets the MacSecKeys field's value.
+func (s *Connection) SetMacSecKeys(v []*MacSecKey) *Connection {
+	s.MacSecKeys = v
+	return s
+}
+
 // SetOwnerAccount sets the OwnerAccount field's value.
 func (s *Connection) SetOwnerAccount(v string) *Connection {
 	s.OwnerAccount = &v
@@ -6541,6 +6959,12 @@ func (s *Connection) SetOwnerAccount(v string) *Connection {
 // SetPartnerName sets the PartnerName field's value.
 func (s *Connection) SetPartnerName(v string) *Connection {
 	s.PartnerName = &v
+	return s
+}
+
+// SetPortEncryptionStatus sets the PortEncryptionStatus field's value.
+func (s *Connection) SetPortEncryptionStatus(v string) *Connection {
+	s.PortEncryptionStatus = &v
 	return s
 }
 
@@ -6670,6 +7094,13 @@ type CreateConnectionInput struct {
 	// The name of the service provider associated with the requested connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
+	// Indicates whether you want the connection to support MAC Security (MACsec).
+	//
+	// MAC Security (MACsec) is only available on dedicated connections. For information
+	// about MAC Security (MACsec) prerequisties, see MACsec prerequisties (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
+	// in the AWS Direct Connect User Guide.
+	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`
+
 	// The tags to associate with the lag.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
@@ -6743,6 +7174,12 @@ func (s *CreateConnectionInput) SetLocation(v string) *CreateConnectionInput {
 // SetProviderName sets the ProviderName field's value.
 func (s *CreateConnectionInput) SetProviderName(v string) *CreateConnectionInput {
 	s.ProviderName = &v
+	return s
+}
+
+// SetRequestMACSec sets the RequestMACSec field's value.
+func (s *CreateConnectionInput) SetRequestMACSec(v bool) *CreateConnectionInput {
+	s.RequestMACSec = &v
 	return s
 }
 
@@ -7165,6 +7602,14 @@ type CreateLagInput struct {
 	// The name of the service provider associated with the LAG.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
+	// Indicates whether the connection will support MAC Security (MACsec).
+	//
+	// All connections in the LAG must be capable of supporting MAC Security (MACsec).
+	// For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties
+	// (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
+	// in the AWS Direct Connect User Guide.
+	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`
+
 	// The tags to associate with the LAG.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
@@ -7266,6 +7711,12 @@ func (s *CreateLagInput) SetNumberOfConnections(v int64) *CreateLagInput {
 // SetProviderName sets the ProviderName field's value.
 func (s *CreateLagInput) SetProviderName(v string) *CreateLagInput {
 	s.ProviderName = &v
+	return s
+}
+
+// SetRequestMACSec sets the RequestMACSec field's value.
+func (s *CreateLagInput) SetRequestMACSec(v bool) *CreateLagInput {
+	s.RequestMACSec = &v
 	return s
 }
 
@@ -8987,6 +9438,96 @@ func (s *DisassociateConnectionFromLagInput) SetLagId(v string) *DisassociateCon
 	return s
 }
 
+type DisassociateMacSecKeyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).
+	//
+	// You can use DescribeConnections or DescribeLags to retrieve connection ID.
+	//
+	// ConnectionId is a required field
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.
+	//
+	// You can use DescribeConnections to retrieve the ARN of the MAC Security (MACsec)
+	// secret key.
+	//
+	// SecretARN is a required field
+	SecretARN *string `locationName:"secretARN" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateMacSecKeyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateMacSecKeyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateMacSecKeyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateMacSecKeyInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+	if s.SecretARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretARN"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DisassociateMacSecKeyInput) SetConnectionId(v string) *DisassociateMacSecKeyInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetSecretARN sets the SecretARN field's value.
+func (s *DisassociateMacSecKeyInput) SetSecretARN(v string) *DisassociateMacSecKeyInput {
+	s.SecretARN = &v
+	return s
+}
+
+type DisassociateMacSecKeyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).
+	ConnectionId *string `locationName:"connectionId" type:"string"`
+
+	// The MAC Security (MACsec) security keys no longer associated with the dedicated
+	// connection.
+	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
+}
+
+// String returns the string representation
+func (s DisassociateMacSecKeyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateMacSecKeyOutput) GoString() string {
+	return s.String()
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *DisassociateMacSecKeyOutput) SetConnectionId(v string) *DisassociateMacSecKeyOutput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetMacSecKeys sets the MacSecKeys field's value.
+func (s *DisassociateMacSecKeyOutput) SetMacSecKeys(v []*MacSecKey) *DisassociateMacSecKeyOutput {
+	s.MacSecKeys = v
+	return s
+}
+
 // A tag key was specified more than once.
 type DuplicateTagKeysException struct {
 	_            struct{}                  `type:"structure"`
@@ -9596,6 +10137,11 @@ type Lag struct {
 	// The possible values are 1Gbps and 10Gbps.
 	ConnectionsBandwidth *string `locationName:"connectionsBandwidth" type:"string"`
 
+	// The LAG MAC Security (MACsec) encryption mode.
+	//
+	// The valid values are no_encrypt, should_encrypt, and must_encrypt.
+	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
+
 	// Indicates whether the LAG supports a secondary BGP peer in the same address
 	// family (IPv4/IPv6).
 	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
@@ -9630,6 +10176,12 @@ type Lag struct {
 
 	// The location of the LAG.
 	Location *string `locationName:"location" type:"string"`
+
+	// Indicates whether the LAG supports MAC Security (MACsec).
+	MacSecCapable *bool `locationName:"macSecCapable" type:"boolean"`
+
+	// The MAC Security (MACsec) security keys associated with the LAG.
+	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 
 	// The minimum number of physical dedicated connections that must be operational
 	// for the LAG itself to be operational.
@@ -9692,6 +10244,12 @@ func (s *Lag) SetConnectionsBandwidth(v string) *Lag {
 	return s
 }
 
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *Lag) SetEncryptionMode(v string) *Lag {
+	s.EncryptionMode = &v
+	return s
+}
+
 // SetHasLogicalRedundancy sets the HasLogicalRedundancy field's value.
 func (s *Lag) SetHasLogicalRedundancy(v string) *Lag {
 	s.HasLogicalRedundancy = &v
@@ -9725,6 +10283,18 @@ func (s *Lag) SetLagState(v string) *Lag {
 // SetLocation sets the Location field's value.
 func (s *Lag) SetLocation(v string) *Lag {
 	s.Location = &v
+	return s
+}
+
+// SetMacSecCapable sets the MacSecCapable field's value.
+func (s *Lag) SetMacSecCapable(v bool) *Lag {
+	s.MacSecCapable = &v
+	return s
+}
+
+// SetMacSecKeys sets the MacSecKeys field's value.
+func (s *Lag) SetMacSecKeys(v []*MacSecKey) *Lag {
+	s.MacSecKeys = v
 	return s
 }
 
@@ -9910,6 +10480,9 @@ func (s *Loa) SetLoaContentType(v string) *Loa {
 type Location struct {
 	_ struct{} `type:"structure"`
 
+	// The available MAC Security (MACsec) port speeds for the location.
+	AvailableMacSecPortSpeeds []*string `locationName:"availableMacSecPortSpeeds" type:"list"`
+
 	// The available port speeds for the location.
 	AvailablePortSpeeds []*string `locationName:"availablePortSpeeds" type:"list"`
 
@@ -9935,6 +10508,12 @@ func (s Location) String() string {
 // GoString returns the string representation
 func (s Location) GoString() string {
 	return s.String()
+}
+
+// SetAvailableMacSecPortSpeeds sets the AvailableMacSecPortSpeeds field's value.
+func (s *Location) SetAvailableMacSecPortSpeeds(v []*string) *Location {
+	s.AvailableMacSecPortSpeeds = v
+	return s
 }
 
 // SetAvailablePortSpeeds sets the AvailablePortSpeeds field's value.
@@ -9964,6 +10543,72 @@ func (s *Location) SetLocationName(v string) *Location {
 // SetRegion sets the Region field's value.
 func (s *Location) SetRegion(v string) *Location {
 	s.Region = &v
+	return s
+}
+
+// Information about the MAC Security (MACsec) secret key.
+type MacSecKey struct {
+	_ struct{} `type:"structure"`
+
+	// The Connection Key Name (CKN) for the MAC Security secret key.
+	Ckn *string `locationName:"ckn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.
+	SecretARN *string `locationName:"secretARN" type:"string"`
+
+	// The date that the MAC Security (MACsec) secret key takes effect. The value
+	// is displayed in UTC format.
+	StartOn *string `locationName:"startOn" type:"string"`
+
+	// The state of the MAC Security (MACsec) secret key.
+	//
+	// The possible values are:
+	//
+	//    * associating: The MAC Security (MACsec) secret key is being validated
+	//    and not yet associated with the connection or LAG.
+	//
+	//    * associated: The MAC Security (MACsec) secret key is validated and associated
+	//    with the connection or LAG.
+	//
+	//    * disassociating: The MAC Security (MACsec) secret key is being disassociated
+	//    from the connection or LAG
+	//
+	//    * disassociated: The MAC Security (MACsec) secret key is no longer associated
+	//    with the connection or LAG.
+	State *string `locationName:"state" type:"string"`
+}
+
+// String returns the string representation
+func (s MacSecKey) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MacSecKey) GoString() string {
+	return s.String()
+}
+
+// SetCkn sets the Ckn field's value.
+func (s *MacSecKey) SetCkn(v string) *MacSecKey {
+	s.Ckn = &v
+	return s
+}
+
+// SetSecretARN sets the SecretARN field's value.
+func (s *MacSecKey) SetSecretARN(v string) *MacSecKey {
+	s.SecretARN = &v
+	return s
+}
+
+// SetStartOn sets the StartOn field's value.
+func (s *MacSecKey) SetStartOn(v string) *MacSecKey {
+	s.StartOn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *MacSecKey) SetState(v string) *MacSecKey {
+	s.State = &v
 	return s
 }
 
@@ -11376,6 +12021,299 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateConnectionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the dedicated connection.
+	//
+	// You can use DescribeConnections to retrieve the connection ID.
+	//
+	// ConnectionId is a required field
+	ConnectionId *string `locationName:"connectionId" type:"string" required:"true"`
+
+	// The name of the connection.
+	ConnectionName *string `locationName:"connectionName" type:"string"`
+
+	// The connection MAC Security (MACsec) encryption mode.
+	//
+	// The valid values are no_encrypt, should_encrypt, and must_encrypt.
+	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateConnectionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConnectionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateConnectionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateConnectionInput"}
+	if s.ConnectionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *UpdateConnectionInput) SetConnectionId(v string) *UpdateConnectionInput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *UpdateConnectionInput) SetConnectionName(v string) *UpdateConnectionInput {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *UpdateConnectionInput) SetEncryptionMode(v string) *UpdateConnectionInput {
+	s.EncryptionMode = &v
+	return s
+}
+
+// Information about an AWS Direct Connect connection.
+type UpdateConnectionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Direct Connect endpoint on which the physical connection terminates.
+	AwsDevice *string `locationName:"awsDevice" deprecated:"true" type:"string"`
+
+	// The Direct Connect endpoint on which the physical connection terminates.
+	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
+
+	// The bandwidth of the connection.
+	Bandwidth *string `locationName:"bandwidth" type:"string"`
+
+	// The ID of the connection.
+	ConnectionId *string `locationName:"connectionId" type:"string"`
+
+	// The name of the connection.
+	ConnectionName *string `locationName:"connectionName" type:"string"`
+
+	// The state of the connection. The following are the possible values:
+	//
+	//    * ordering: The initial state of a hosted connection provisioned on an
+	//    interconnect. The connection stays in the ordering state until the owner
+	//    of the hosted connection confirms or declines the connection order.
+	//
+	//    * requested: The initial state of a standard connection. The connection
+	//    stays in the requested state until the Letter of Authorization (LOA) is
+	//    sent to the customer.
+	//
+	//    * pending: The connection has been approved and is being initialized.
+	//
+	//    * available: The network link is up and the connection is ready for use.
+	//
+	//    * down: The network link is down.
+	//
+	//    * deleting: The connection is being deleted.
+	//
+	//    * deleted: The connection has been deleted.
+	//
+	//    * rejected: A hosted connection in the ordering state enters the rejected
+	//    state if it is deleted by the customer.
+	//
+	//    * unknown: The state of the connection is not available.
+	ConnectionState *string `locationName:"connectionState" type:"string" enum:"ConnectionState"`
+
+	// The MAC Security (MACsec) connection encryption mode.
+	//
+	// The valid values are no_encrypt, should_encrypt, and must_encrypt.
+	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
+
+	// Indicates whether the connection supports a secondary BGP peer in the same
+	// address family (IPv4/IPv6).
+	HasLogicalRedundancy *string `locationName:"hasLogicalRedundancy" type:"string" enum:"HasLogicalRedundancy"`
+
+	// Indicates whether jumbo frames (9001 MTU) are supported.
+	JumboFrameCapable *bool `locationName:"jumboFrameCapable" type:"boolean"`
+
+	// The ID of the LAG.
+	LagId *string `locationName:"lagId" type:"string"`
+
+	// The time of the most recent call to DescribeLoa for this connection.
+	LoaIssueTime *time.Time `locationName:"loaIssueTime" type:"timestamp"`
+
+	// The location of the connection.
+	Location *string `locationName:"location" type:"string"`
+
+	// Indicates whether the connection supports MAC Security (MACsec).
+	MacSecCapable *bool `locationName:"macSecCapable" type:"boolean"`
+
+	// The MAC Security (MACsec) security keys associated with the connection.
+	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
+
+	// The ID of the AWS account that owns the connection.
+	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
+
+	// The name of the AWS Direct Connect service provider associated with the connection.
+	PartnerName *string `locationName:"partnerName" type:"string"`
+
+	// The MAC Security (MACsec) port link status of the connection.
+	//
+	// The valid values are Encryption Up, which means that there is an active Connection
+	// Key Name, or Encryption Down.
+	PortEncryptionStatus *string `locationName:"portEncryptionStatus" type:"string"`
+
+	// The name of the service provider associated with the connection.
+	ProviderName *string `locationName:"providerName" type:"string"`
+
+	// The AWS Region where the connection is located.
+	Region *string `locationName:"region" type:"string"`
+
+	// The tags associated with the connection.
+	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
+
+	// The ID of the VLAN.
+	Vlan *int64 `locationName:"vlan" type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateConnectionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateConnectionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAwsDevice sets the AwsDevice field's value.
+func (s *UpdateConnectionOutput) SetAwsDevice(v string) *UpdateConnectionOutput {
+	s.AwsDevice = &v
+	return s
+}
+
+// SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
+func (s *UpdateConnectionOutput) SetAwsDeviceV2(v string) *UpdateConnectionOutput {
+	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetBandwidth sets the Bandwidth field's value.
+func (s *UpdateConnectionOutput) SetBandwidth(v string) *UpdateConnectionOutput {
+	s.Bandwidth = &v
+	return s
+}
+
+// SetConnectionId sets the ConnectionId field's value.
+func (s *UpdateConnectionOutput) SetConnectionId(v string) *UpdateConnectionOutput {
+	s.ConnectionId = &v
+	return s
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *UpdateConnectionOutput) SetConnectionName(v string) *UpdateConnectionOutput {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetConnectionState sets the ConnectionState field's value.
+func (s *UpdateConnectionOutput) SetConnectionState(v string) *UpdateConnectionOutput {
+	s.ConnectionState = &v
+	return s
+}
+
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *UpdateConnectionOutput) SetEncryptionMode(v string) *UpdateConnectionOutput {
+	s.EncryptionMode = &v
+	return s
+}
+
+// SetHasLogicalRedundancy sets the HasLogicalRedundancy field's value.
+func (s *UpdateConnectionOutput) SetHasLogicalRedundancy(v string) *UpdateConnectionOutput {
+	s.HasLogicalRedundancy = &v
+	return s
+}
+
+// SetJumboFrameCapable sets the JumboFrameCapable field's value.
+func (s *UpdateConnectionOutput) SetJumboFrameCapable(v bool) *UpdateConnectionOutput {
+	s.JumboFrameCapable = &v
+	return s
+}
+
+// SetLagId sets the LagId field's value.
+func (s *UpdateConnectionOutput) SetLagId(v string) *UpdateConnectionOutput {
+	s.LagId = &v
+	return s
+}
+
+// SetLoaIssueTime sets the LoaIssueTime field's value.
+func (s *UpdateConnectionOutput) SetLoaIssueTime(v time.Time) *UpdateConnectionOutput {
+	s.LoaIssueTime = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *UpdateConnectionOutput) SetLocation(v string) *UpdateConnectionOutput {
+	s.Location = &v
+	return s
+}
+
+// SetMacSecCapable sets the MacSecCapable field's value.
+func (s *UpdateConnectionOutput) SetMacSecCapable(v bool) *UpdateConnectionOutput {
+	s.MacSecCapable = &v
+	return s
+}
+
+// SetMacSecKeys sets the MacSecKeys field's value.
+func (s *UpdateConnectionOutput) SetMacSecKeys(v []*MacSecKey) *UpdateConnectionOutput {
+	s.MacSecKeys = v
+	return s
+}
+
+// SetOwnerAccount sets the OwnerAccount field's value.
+func (s *UpdateConnectionOutput) SetOwnerAccount(v string) *UpdateConnectionOutput {
+	s.OwnerAccount = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *UpdateConnectionOutput) SetPartnerName(v string) *UpdateConnectionOutput {
+	s.PartnerName = &v
+	return s
+}
+
+// SetPortEncryptionStatus sets the PortEncryptionStatus field's value.
+func (s *UpdateConnectionOutput) SetPortEncryptionStatus(v string) *UpdateConnectionOutput {
+	s.PortEncryptionStatus = &v
+	return s
+}
+
+// SetProviderName sets the ProviderName field's value.
+func (s *UpdateConnectionOutput) SetProviderName(v string) *UpdateConnectionOutput {
+	s.ProviderName = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *UpdateConnectionOutput) SetRegion(v string) *UpdateConnectionOutput {
+	s.Region = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *UpdateConnectionOutput) SetTags(v []*Tag) *UpdateConnectionOutput {
+	s.Tags = v
+	return s
+}
+
+// SetVlan sets the Vlan field's value.
+func (s *UpdateConnectionOutput) SetVlan(v int64) *UpdateConnectionOutput {
+	s.Vlan = &v
+	return s
+}
+
 type UpdateDirectConnectGatewayAssociationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11444,6 +12382,11 @@ func (s *UpdateDirectConnectGatewayAssociationOutput) SetDirectConnectGatewayAss
 type UpdateLagInput struct {
 	_ struct{} `type:"structure"`
 
+	// The LAG MAC Security (MACsec) encryption mode.
+	//
+	// AWS applies the value to all connections which are part of the LAG.
+	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
+
 	// The ID of the LAG.
 	//
 	// LagId is a required field
@@ -11478,6 +12421,12 @@ func (s *UpdateLagInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *UpdateLagInput) SetEncryptionMode(v string) *UpdateLagInput {
+	s.EncryptionMode = &v
+	return s
 }
 
 // SetLagId sets the LagId field's value.

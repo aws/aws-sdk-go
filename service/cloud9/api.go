@@ -1555,11 +1555,39 @@ type CreateEnvironmentEC2Input struct {
 	// in the Amazon EC2 API Reference.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string"`
 
-	// The connection type used for connecting to an Amazon EC2 environment.
+	// The connection type used for connecting to an Amazon EC2 environment. Valid
+	// values are CONNECT_SSH (default) and CONNECT_SSM (connected through AWS Systems
+	// Manager).
+	//
+	// For more information, see Accessing no-ingress EC2 instances with AWS Systems
+	// Manager (https://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html)
+	// in the AWS Cloud9 User Guide.
 	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description of the environment to create.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
+
+	// The identifier for the Amazon Machine Image (AMI) that's used to create the
+	// EC2 instance. You can specify the AMI for the instance using an AMI alias
+	// or an AWS Systems Manager (SSM) path. The default AMI is used if the parameter
+	// isn't explicitly assigned a value in the request.
+	//
+	// AMI aliases
+	//
+	//    * Amazon Linux 2: amazonlinux-2-x86_64
+	//
+	//    * Ubuntu 18.04: ubuntu-18.04-x86_64
+	//
+	//    * Amazon Linux (default): amazonlinux-1-x86_64
+	//
+	// SSM paths
+	//
+	//    * Amazon Linux 2: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
+	//
+	//    * Ubuntu 18.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
+	//
+	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
+	ImageId *string `locationName:"imageId" type:"string"`
 
 	// The type of instance to connect to the environment (for example, t2.micro).
 	//
@@ -1580,11 +1608,11 @@ type CreateEnvironmentEC2Input struct {
 
 	// The ID of the subnet in Amazon VPC that AWS Cloud9 will use to communicate
 	// with the Amazon EC2 instance.
-	SubnetId *string `locationName:"subnetId" min:"5" type:"string"`
+	SubnetId *string `locationName:"subnetId" min:"15" type:"string"`
 
 	// An array of key-value pairs that will be associated with the new AWS Cloud9
 	// development environment.
-	Tags []*Tag `locationName:"tags" type:"list"`
+	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -1612,8 +1640,8 @@ func (s *CreateEnvironmentEC2Input) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.SubnetId != nil && len(*s.SubnetId) < 5 {
-		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 5))
+	if s.SubnetId != nil && len(*s.SubnetId) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 15))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -1653,6 +1681,12 @@ func (s *CreateEnvironmentEC2Input) SetConnectionType(v string) *CreateEnvironme
 // SetDescription sets the Description field's value.
 func (s *CreateEnvironmentEC2Input) SetDescription(v string) *CreateEnvironmentEC2Input {
 	s.Description = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateEnvironmentEC2Input) SetImageId(v string) *CreateEnvironmentEC2Input {
+	s.ImageId = &v
 	return s
 }
 
@@ -1785,7 +1819,9 @@ type CreateEnvironmentMembershipOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the environment member that was added.
-	Membership *EnvironmentMember `locationName:"membership" type:"structure"`
+	//
+	// Membership is a required field
+	Membership *EnvironmentMember `locationName:"membership" type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -2075,7 +2111,9 @@ type DescribeEnvironmentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Any informational message about the status of the environment.
-	Message *string `locationName:"message" type:"string"`
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
 
 	// The status of the environment. Available values include:
 	//
@@ -2092,7 +2130,9 @@ type DescribeEnvironmentStatusOutput struct {
 	//    * stopped: The environment is stopped.
 	//
 	//    * stopping: The environment is stopping.
-	Status *string `locationName:"status" type:"string" enum:"EnvironmentStatus"`
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"EnvironmentStatus"`
 }
 
 // String returns the string representation
@@ -2186,9 +2226,12 @@ type Environment struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the environment.
-	Arn *string `locationName:"arn" type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The connection type used for connecting to an Amazon EC2 environment.
+	// The connection type used for connecting to an Amazon EC2 environment. CONNECT_SSH
+	// is selected by default.
 	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description for the environment.
@@ -2200,11 +2243,37 @@ type Environment struct {
 	// The state of the environment in its creation or deletion lifecycle.
 	Lifecycle *EnvironmentLifecycle `locationName:"lifecycle" type:"structure"`
 
+	// Describes the status of AWS managed temporary credentials for the AWS Cloud9
+	// environment. Available values are:
+	//
+	//    * ENABLED_ON_CREATE
+	//
+	//    * ENABLED_BY_OWNER
+	//
+	//    * DISABLED_BY_DEFAULT
+	//
+	//    * DISABLED_BY_OWNER
+	//
+	//    * DISABLED_BY_COLLABORATOR
+	//
+	//    * PENDING_REMOVAL_BY_COLLABORATOR
+	//
+	//    * PENDING_REMOVAL_BY_OWNER
+	//
+	//    * FAILED_REMOVAL_BY_COLLABORATOR
+	//
+	//    * ENABLED_BY_OWNER
+	//
+	//    * DISABLED_BY_DEFAULT
+	ManagedCredentialsStatus *string `locationName:"managedCredentialsStatus" type:"string" enum:"ManagedCredentialsStatus"`
+
 	// The name of the environment.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the environment owner.
-	OwnerArn *string `locationName:"ownerArn" type:"string"`
+	//
+	// OwnerArn is a required field
+	OwnerArn *string `locationName:"ownerArn" type:"string" required:"true"`
 
 	// The type of environment. Valid values include the following:
 	//
@@ -2212,7 +2281,9 @@ type Environment struct {
 	//    to the environment.
 	//
 	//    * ssh: Your own server connects to the environment.
-	Type *string `locationName:"type" type:"string" enum:"EnvironmentType"`
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true" enum:"EnvironmentType"`
 }
 
 // String returns the string representation
@@ -2252,6 +2323,12 @@ func (s *Environment) SetId(v string) *Environment {
 // SetLifecycle sets the Lifecycle field's value.
 func (s *Environment) SetLifecycle(v *EnvironmentLifecycle) *Environment {
 	s.Lifecycle = v
+	return s
+}
+
+// SetManagedCredentialsStatus sets the ManagedCredentialsStatus field's value.
+func (s *Environment) SetManagedCredentialsStatus(v string) *Environment {
+	s.ManagedCredentialsStatus = &v
 	return s
 }
 
@@ -2332,7 +2409,9 @@ type EnvironmentMember struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the environment for the environment member.
-	EnvironmentId *string `locationName:"environmentId" type:"string"`
+	//
+	// EnvironmentId is a required field
+	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 
 	// The time, expressed in epoch time format, when the environment member last
 	// opened the environment.
@@ -2346,14 +2425,20 @@ type EnvironmentMember struct {
 	//    * read-only: Has read-only access to the environment.
 	//
 	//    * read-write: Has read-write access to the environment.
-	Permissions *string `locationName:"permissions" type:"string" enum:"Permissions"`
+	//
+	// Permissions is a required field
+	Permissions *string `locationName:"permissions" type:"string" required:"true" enum:"Permissions"`
 
 	// The Amazon Resource Name (ARN) of the environment member.
-	UserArn *string `locationName:"userArn" type:"string"`
+	//
+	// UserArn is a required field
+	UserArn *string `locationName:"userArn" type:"string" required:"true"`
 
 	// The user ID in AWS Identity and Access Management (AWS IAM) of the environment
 	// member.
-	UserId *string `locationName:"userId" type:"string"`
+	//
+	// UserId is a required field
+	UserId *string `locationName:"userId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -2679,7 +2764,7 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of tags associated with the AWS Cloud9 development environment.
-	Tags []*Tag `type:"list"`
+	Tags []*Tag `type:"list" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -2760,17 +2845,17 @@ func (s *NotFoundException) RequestID() string {
 // the user. A system tag is automatically created by AWS services. A system
 // tag is prefixed with "aws:" and cannot be modified by the user.
 type Tag struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The name part of a tag.
 	//
 	// Key is a required field
-	Key *string `min:"1" type:"string" required:"true"`
+	Key *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
 	// The value part of a tag.
 	//
 	// Value is a required field
-	Value *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -2826,7 +2911,7 @@ type TagResourceInput struct {
 	// The list of tags to add to the given AWS Cloud9 development environment.
 	//
 	// Tags is a required field
-	Tags []*Tag `type:"list" required:"true"`
+	Tags []*Tag `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -2960,7 +3045,7 @@ type UntagResourceInput struct {
 	// environment.
 	//
 	// TagKeys is a required field
-	TagKeys []*string `type:"list" required:"true"`
+	TagKeys []*string `type:"list" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -3277,6 +3362,58 @@ func EnvironmentType_Values() []string {
 	return []string{
 		EnvironmentTypeSsh,
 		EnvironmentTypeEc2,
+	}
+}
+
+const (
+	// ManagedCredentialsStatusEnabledOnCreate is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusEnabledOnCreate = "ENABLED_ON_CREATE"
+
+	// ManagedCredentialsStatusEnabledByOwner is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusEnabledByOwner = "ENABLED_BY_OWNER"
+
+	// ManagedCredentialsStatusDisabledByDefault is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusDisabledByDefault = "DISABLED_BY_DEFAULT"
+
+	// ManagedCredentialsStatusDisabledByOwner is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusDisabledByOwner = "DISABLED_BY_OWNER"
+
+	// ManagedCredentialsStatusDisabledByCollaborator is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusDisabledByCollaborator = "DISABLED_BY_COLLABORATOR"
+
+	// ManagedCredentialsStatusPendingRemovalByCollaborator is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusPendingRemovalByCollaborator = "PENDING_REMOVAL_BY_COLLABORATOR"
+
+	// ManagedCredentialsStatusPendingStartRemovalByCollaborator is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusPendingStartRemovalByCollaborator = "PENDING_START_REMOVAL_BY_COLLABORATOR"
+
+	// ManagedCredentialsStatusPendingRemovalByOwner is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusPendingRemovalByOwner = "PENDING_REMOVAL_BY_OWNER"
+
+	// ManagedCredentialsStatusPendingStartRemovalByOwner is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusPendingStartRemovalByOwner = "PENDING_START_REMOVAL_BY_OWNER"
+
+	// ManagedCredentialsStatusFailedRemovalByCollaborator is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusFailedRemovalByCollaborator = "FAILED_REMOVAL_BY_COLLABORATOR"
+
+	// ManagedCredentialsStatusFailedRemovalByOwner is a ManagedCredentialsStatus enum value
+	ManagedCredentialsStatusFailedRemovalByOwner = "FAILED_REMOVAL_BY_OWNER"
+)
+
+// ManagedCredentialsStatus_Values returns all elements of the ManagedCredentialsStatus enum
+func ManagedCredentialsStatus_Values() []string {
+	return []string{
+		ManagedCredentialsStatusEnabledOnCreate,
+		ManagedCredentialsStatusEnabledByOwner,
+		ManagedCredentialsStatusDisabledByDefault,
+		ManagedCredentialsStatusDisabledByOwner,
+		ManagedCredentialsStatusDisabledByCollaborator,
+		ManagedCredentialsStatusPendingRemovalByCollaborator,
+		ManagedCredentialsStatusPendingStartRemovalByCollaborator,
+		ManagedCredentialsStatusPendingRemovalByOwner,
+		ManagedCredentialsStatusPendingStartRemovalByOwner,
+		ManagedCredentialsStatusFailedRemovalByCollaborator,
+		ManagedCredentialsStatusFailedRemovalByOwner,
 	}
 }
 

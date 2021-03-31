@@ -4,10 +4,11 @@
     "apiVersion":"2012-10-29",
     "endpointPrefix":"datapipeline",
     "jsonVersion":"1.1",
+    "protocol":"json",
     "serviceFullName":"AWS Data Pipeline",
+    "serviceId":"Data Pipeline",
     "signatureVersion":"v4",
     "targetPrefix":"DataPipeline",
-    "protocol":"json",
     "uid":"datapipeline-2012-10-29"
   },
   "operations":{
@@ -20,23 +21,10 @@
       "input":{"shape":"ActivatePipelineInput"},
       "output":{"shape":"ActivatePipelineOutput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "AddTags":{
@@ -48,23 +36,10 @@
       "input":{"shape":"AddTagsInput"},
       "output":{"shape":"AddTagsOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "CreatePipeline":{
@@ -76,15 +51,8 @@
       "input":{"shape":"CreatePipelineInput"},
       "output":{"shape":"CreatePipelineOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeactivatePipeline":{
@@ -96,23 +64,10 @@
       "input":{"shape":"DeactivatePipelineInput"},
       "output":{"shape":"DeactivatePipelineOutput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeletePipeline":{
@@ -123,19 +78,9 @@
       },
       "input":{"shape":"DeletePipelineInput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DescribeObjects":{
@@ -147,23 +92,10 @@
       "input":{"shape":"DescribeObjectsInput"},
       "output":{"shape":"DescribeObjectsOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "DescribePipelines":{
@@ -175,23 +107,10 @@
       "input":{"shape":"DescribePipelinesInput"},
       "output":{"shape":"DescribePipelinesOutput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "EvaluateExpression":{
@@ -203,27 +122,11 @@
       "input":{"shape":"EvaluateExpressionInput"},
       "output":{"shape":"EvaluateExpressionOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TaskNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"TaskNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "GetPipelineDefinition":{
@@ -235,23 +138,10 @@
       "input":{"shape":"GetPipelineDefinitionInput"},
       "output":{"shape":"GetPipelineDefinitionOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "ListPipelines":{
@@ -263,15 +153,8 @@
       "input":{"shape":"ListPipelinesInput"},
       "output":{"shape":"ListPipelinesOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "PollForTask":{
@@ -283,19 +166,9 @@
       "input":{"shape":"PollForTaskInput"},
       "output":{"shape":"PollForTaskOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"TaskNotFoundException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TaskNotFoundException"}
       ]
     },
     "PutPipelineDefinition":{
@@ -307,23 +180,10 @@
       "input":{"shape":"PutPipelineDefinitionInput"},
       "output":{"shape":"PutPipelineDefinitionOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "QueryObjects":{
@@ -335,23 +195,10 @@
       "input":{"shape":"QueryObjectsInput"},
       "output":{"shape":"QueryObjectsOutput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "RemoveTags":{
@@ -363,23 +210,10 @@
       "input":{"shape":"RemoveTagsInput"},
       "output":{"shape":"RemoveTagsOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "ReportTaskProgress":{
@@ -391,27 +225,11 @@
       "input":{"shape":"ReportTaskProgressInput"},
       "output":{"shape":"ReportTaskProgressOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"TaskNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"TaskNotFoundException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "ReportTaskRunnerHeartbeat":{
@@ -423,15 +241,8 @@
       "input":{"shape":"ReportTaskRunnerHeartbeatInput"},
       "output":{"shape":"ReportTaskRunnerHeartbeatOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "SetStatus":{
@@ -442,23 +253,10 @@
       },
       "input":{"shape":"SetStatusInput"},
       "errors":[
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        },
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        }
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "SetTaskStatus":{
@@ -470,27 +268,11 @@
       "input":{"shape":"SetTaskStatusInput"},
       "output":{"shape":"SetTaskStatusOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TaskNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"TaskNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     },
     "ValidatePipelineDefinition":{
@@ -502,23 +284,10 @@
       "input":{"shape":"ValidatePipelineDefinitionInput"},
       "output":{"shape":"ValidatePipelineDefinitionOutput"},
       "errors":[
-        {
-          "shape":"InternalServiceError",
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidRequestException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineNotFoundException",
-          "exception":true
-        },
-        {
-          "shape":"PipelineDeletedException",
-          "exception":true
-        }
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"PipelineNotFoundException"},
+        {"shape":"PipelineDeletedException"}
       ]
     }
   },
@@ -1071,14 +840,14 @@
     },
     "attributeNameString":{
       "type":"string",
-      "min":1,
       "max":256,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "attributeValueString":{
       "type":"string",
-      "min":0,
       "max":10240,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "boolean":{"type":"boolean"},
@@ -1090,20 +859,20 @@
     },
     "fieldNameString":{
       "type":"string",
-      "min":1,
       "max":256,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "fieldStringValue":{
       "type":"string",
-      "min":0,
       "max":10240,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "id":{
       "type":"string",
-      "min":1,
       "max":1024,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "idList":{
@@ -1113,8 +882,8 @@
     "int":{"type":"integer"},
     "longString":{
       "type":"string",
-      "min":0,
       "max":20971520,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "pipelineList":{
@@ -1123,8 +892,8 @@
     },
     "string":{
       "type":"string",
-      "min":0,
       "max":1024,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "stringList":{
@@ -1133,31 +902,31 @@
     },
     "tagKey":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "tagList":{
       "type":"list",
       "member":{"shape":"Tag"},
-      "min":0,
-      "max":10
+      "max":10,
+      "min":0
     },
     "tagValue":{
       "type":"string",
-      "min":0,
-      "max":256
+      "max":256,
+      "min":0
     },
     "taskId":{
       "type":"string",
-      "min":1,
       "max":2048,
+      "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "timestamp":{"type":"timestamp"},
     "validationMessage":{
       "type":"string",
-      "min":0,
       "max":10000,
+      "min":0,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\r\\n\\t]*"
     },
     "validationMessages":{
