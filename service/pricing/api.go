@@ -218,8 +218,8 @@ func (c *Pricing) GetAttributeValuesRequest(input *GetAttributeValuesInput) (req
 //
 // Returns a list of attribute values. Attibutes are similar to the details
 // in a Price List API offer file. For a list of available attributes, see Offer
-// File Definitions (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs)
-// in the AWS Billing and Cost Management User Guide (http://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html).
+// File Definitions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/reading-an-offer.html#pps-defs)
+// in the AWS Billing and Cost Management User Guide (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-what-is.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

@@ -110,6 +110,12 @@
         "UpdateStackSetInput$Accounts": "<p>[Self-managed permissions] The accounts in which to update associated stack instances. If you specify accounts, you must also specify the Regions in which to update stack set instances.</p> <p>To update <i>all</i> the stack instances associated with this stack set, do not specify the <code>Accounts</code> or <code>Regions</code> properties.</p> <p>If the stack set update includes changes to the template (that is, if the <code>TemplateBody</code> or <code>TemplateURL</code> properties are specified), or the <code>Parameters</code> property, AWS CloudFormation marks all stack instances with a status of <code>OUTDATED</code> prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, AWS CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status. </p>"
       }
     },
+    "AccountsUrl": {
+      "base": null,
+      "refs": {
+        "DeploymentTargets$AccountsUrl": null
+      }
+    },
     "AllowedValue": {
       "base": null,
       "refs": {
@@ -1455,6 +1461,12 @@
         "StackInstance$Region": "<p>The name of the AWS Region that the stack instance is associated with.</p>",
         "StackInstanceSummary$Region": "<p>The name of the AWS Region that the stack instance is associated with.</p>",
         "StackSetOperationResultSummary$Region": "<p>The name of the AWS Region for this operation result.</p>"
+      }
+    },
+    "RegionConcurrencyType": {
+      "base": null,
+      "refs": {
+        "StackSetOperationPreferences$RegionConcurrencyType": null
       }
     },
     "RegionList": {

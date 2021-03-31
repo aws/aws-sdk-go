@@ -36,7 +36,7 @@ func ExampleCloud9_CreateEnvironmentEC2_shared00() {
 		InstanceType:             aws.String("t2.micro"),
 		Name:                     aws.String("my-demo-environment"),
 		OwnerArn:                 aws.String("arn:aws:iam::123456789012:user/MyDemoUser"),
-		SubnetId:                 aws.String("subnet-1fab8aEX"),
+		SubnetId:                 aws.String("subnet-6300cd1b"),
 	}
 
 	result, err := svc.CreateEnvironmentEC2(input)

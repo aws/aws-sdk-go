@@ -9574,6 +9574,11 @@
           "shape":"ThingTypeName",
           "location":"querystring",
           "locationName":"thingTypeName"
+        },
+        "usePrefixAttributeValue":{
+          "shape":"usePrefixAttributeValue",
+          "location":"querystring",
+          "locationName":"usePrefixAttributeValue"
         }
       }
     },
@@ -12592,6 +12597,7 @@
     "errorMessage":{"type":"string"},
     "resourceArn":{"type":"string"},
     "resourceId":{"type":"string"},
-    "stringValue":{"type":"string"}
+    "stringValue":{"type":"string"},
+    "usePrefixAttributeValue":{"type":"boolean"}
   }
 }

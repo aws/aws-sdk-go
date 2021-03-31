@@ -993,11 +993,35 @@
       }
     },
     "AutoCreateTasks":{"type":"boolean"},
+    "BatteryLevel":{
+      "type":"string",
+      "enum":[
+        "normal",
+        "low",
+        "critical"
+      ]
+    },
+    "CertificateList":{
+      "type":"structure",
+      "required":[
+        "SigningAlg",
+        "Value"
+      ],
+      "members":{
+        "SigningAlg":{"shape":"SigningAlg"},
+        "Value":{"shape":"CertificateValue"}
+      }
+    },
     "CertificatePEM":{
       "type":"string",
       "max":4096,
       "min":1,
       "pattern":"[^-A-Za-z0-9+/=]|=[^=]|={3,}${1,4096}"
+    },
+    "CertificateValue":{
+      "type":"string",
+      "max":2048,
+      "min":0
     },
     "ChannelMask":{
       "type":"string",
@@ -1028,6 +1052,13 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "ConnectionStatus":{
+      "type":"string",
+      "enum":[
+        "Connected",
+        "Disconnected"
+      ]
     },
     "Crc":{
       "type":"long",
@@ -1340,6 +1371,10 @@
       "max":2147483647,
       "min":0
     },
+    "DeviceCertificateList":{
+      "type":"list",
+      "member":{"shape":"CertificateList"}
+    },
     "DeviceProfile":{
       "type":"structure",
       "members":{
@@ -1360,6 +1395,15 @@
     "DeviceProfileName":{
       "type":"string",
       "max":256
+    },
+    "DeviceState":{
+      "type":"string",
+      "enum":[
+        "Provisioned",
+        "RegisteredNotSeen",
+        "RegisteredReachable",
+        "RegisteredUnreachable"
+      ]
     },
     "DisassociateAwsAccountFromPartnerAccountRequest":{
       "type":"structure",
@@ -1462,6 +1506,16 @@
       "type":"string",
       "max":256,
       "min":1
+    },
+    "Event":{
+      "type":"string",
+      "enum":[
+        "discovered",
+        "lost",
+        "ack",
+        "nack",
+        "passthrough"
+      ]
     },
     "Expression":{
       "type":"string",
@@ -1636,7 +1690,8 @@
         "Arn":{"shape":"WirelessDeviceArn"},
         "ThingName":{"shape":"ThingName"},
         "ThingArn":{"shape":"ThingArn"},
-        "LoRaWAN":{"shape":"LoRaWANDevice"}
+        "LoRaWAN":{"shape":"LoRaWANDevice"},
+        "Sidewalk":{"shape":"SidewalkDevice"}
       }
     },
     "GetWirelessDeviceStatisticsRequest":{
@@ -1655,7 +1710,8 @@
       "members":{
         "WirelessDeviceId":{"shape":"WirelessDeviceId"},
         "LastUplinkReceivedAt":{"shape":"ISODateTimeString"},
-        "LoRaWAN":{"shape":"LoRaWANDeviceMetadata"}
+        "LoRaWAN":{"shape":"LoRaWANDeviceMetadata"},
+        "Sidewalk":{"shape":"SidewalkDeviceMetadata"}
       }
     },
     "GetWirelessGatewayCertificateRequest":{
@@ -1739,7 +1795,8 @@
       "type":"structure",
       "members":{
         "WirelessGatewayId":{"shape":"WirelessGatewayId"},
-        "LastUplinkReceivedAt":{"shape":"ISODateTimeString"}
+        "LastUplinkReceivedAt":{"shape":"ISODateTimeString"},
+        "ConnectionStatus":{"shape":"ConnectionStatus"}
       }
     },
     "GetWirelessGatewayTaskDefinitionRequest":{
@@ -2398,11 +2455,39 @@
       "type":"list",
       "member":{"shape":"SidewalkAccountInfoWithFingerprint"}
     },
+    "SidewalkDevice":{
+      "type":"structure",
+      "members":{
+        "SidewalkId":{"shape":"SidewalkId"},
+        "SidewalkManufacturingSn":{"shape":"SidewalkManufacturingSn"},
+        "DeviceCertificates":{"shape":"DeviceCertificateList"}
+      }
+    },
+    "SidewalkDeviceMetadata":{
+      "type":"structure",
+      "members":{
+        "Rssi":{"shape":"Integer"},
+        "BatteryLevel":{"shape":"BatteryLevel"},
+        "Event":{"shape":"Event"},
+        "DeviceState":{"shape":"DeviceState"}
+      }
+    },
+    "SidewalkId":{
+      "type":"string",
+      "max":256
+    },
     "SidewalkListDevice":{
       "type":"structure",
       "members":{
-        "AmazonId":{"shape":"AmazonId"}
+        "AmazonId":{"shape":"AmazonId"},
+        "SidewalkId":{"shape":"SidewalkId"},
+        "SidewalkManufacturingSn":{"shape":"SidewalkManufacturingSn"},
+        "DeviceCertificates":{"shape":"DeviceCertificateList"}
       }
+    },
+    "SidewalkManufacturingSn":{
+      "type":"string",
+      "max":64
     },
     "SidewalkSendDataToDevice":{
       "type":"structure",
@@ -2415,6 +2500,13 @@
       "members":{
         "AppServerPrivateKey":{"shape":"AppServerPrivateKey"}
       }
+    },
+    "SigningAlg":{
+      "type":"string",
+      "enum":[
+        "Ed25519",
+        "P256r1"
+      ]
     },
     "Station":{
       "type":"string",

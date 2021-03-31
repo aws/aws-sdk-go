@@ -4,9 +4,10 @@
     "apiVersion":"2014-06-30",
     "endpointPrefix":"cognito-sync",
     "jsonVersion":"1.1",
-    "serviceFullName":"Amazon Cognito Sync",
-    "signatureVersion":"v4",
     "protocol":"rest-json",
+    "serviceFullName":"Amazon Cognito Sync",
+    "serviceId":"Cognito Sync",
+    "signatureVersion":"v4",
     "uid":"cognito-sync-2014-06-30"
   },
   "operations":{
@@ -20,60 +21,12 @@
       "input":{"shape":"BulkPublishRequest"},
       "output":{"shape":"BulkPublishResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"DuplicateRequestException",
-          "error":{
-            "code":"DuplicateRequest",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"AlreadyStreamedException",
-          "error":{
-            "code":"AlreadyStreamed",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"DuplicateRequestException"},
+        {"shape":"AlreadyStreamedException"}
       ]
     },
     "DeleteDataset":{
@@ -86,60 +39,12 @@
       "input":{"shape":"DeleteDatasetRequest"},
       "output":{"shape":"DeleteDatasetResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{
-            "code":"ResourceConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ResourceConflictException"}
       ]
     },
     "DescribeDataset":{
@@ -152,51 +57,11 @@
       "input":{"shape":"DescribeDatasetRequest"},
       "output":{"shape":"DescribeDatasetResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DescribeIdentityPoolUsage":{
@@ -209,51 +74,11 @@
       "input":{"shape":"DescribeIdentityPoolUsageRequest"},
       "output":{"shape":"DescribeIdentityPoolUsageResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DescribeIdentityUsage":{
@@ -266,51 +91,11 @@
       "input":{"shape":"DescribeIdentityUsageRequest"},
       "output":{"shape":"DescribeIdentityUsageResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetBulkPublishDetails":{
@@ -323,42 +108,10 @@
       "input":{"shape":"GetBulkPublishDetailsRequest"},
       "output":{"shape":"GetBulkPublishDetailsResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "GetCognitoEvents":{
@@ -371,51 +124,11 @@
       "input":{"shape":"GetCognitoEventsRequest"},
       "output":{"shape":"GetCognitoEventsResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetIdentityPoolConfiguration":{
@@ -428,51 +141,11 @@
       "input":{"shape":"GetIdentityPoolConfigurationRequest"},
       "output":{"shape":"GetIdentityPoolConfigurationResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListDatasets":{
@@ -485,42 +158,10 @@
       "input":{"shape":"ListDatasetsRequest"},
       "output":{"shape":"ListDatasetsResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListIdentityPoolUsage":{
@@ -533,42 +174,10 @@
       "input":{"shape":"ListIdentityPoolUsageRequest"},
       "output":{"shape":"ListIdentityPoolUsageResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ListRecords":{
@@ -581,42 +190,10 @@
       "input":{"shape":"ListRecordsRequest"},
       "output":{"shape":"ListRecordsResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     },
     "RegisterDevice":{
@@ -629,60 +206,12 @@
       "input":{"shape":"RegisterDeviceRequest"},
       "output":{"shape":"RegisterDeviceResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidConfigurationException",
-          "error":{
-            "code":"InvalidConfiguration",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidConfigurationException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "SetCognitoEvents":{
@@ -694,51 +223,11 @@
       },
       "input":{"shape":"SetCognitoEventsRequest"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "SetIdentityPoolConfiguration":{
@@ -751,60 +240,12 @@
       "input":{"shape":"SetIdentityPoolConfigurationRequest"},
       "output":{"shape":"SetIdentityPoolConfigurationResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ConcurrentModificationException",
-          "error":{
-            "code":"ConcurrentModification",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "SubscribeToDataset":{
@@ -817,60 +258,12 @@
       "input":{"shape":"SubscribeToDatasetRequest"},
       "output":{"shape":"SubscribeToDatasetResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidConfigurationException",
-          "error":{
-            "code":"InvalidConfiguration",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidConfigurationException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UnsubscribeFromDataset":{
@@ -883,60 +276,12 @@
       "input":{"shape":"UnsubscribeFromDatasetRequest"},
       "output":{"shape":"UnsubscribeFromDatasetResponse"},
       "errors":[
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        },
-        {
-          "shape":"InvalidConfigurationException",
-          "error":{
-            "code":"InvalidConfiguration",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        }
+        {"shape":"NotAuthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidConfigurationException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateRecords":{
@@ -949,87 +294,15 @@
       "input":{"shape":"UpdateRecordsRequest"},
       "output":{"shape":"UpdateRecordsResponse"},
       "errors":[
-        {
-          "shape":"InvalidParameterException",
-          "error":{
-            "code":"InvalidParameter",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LimitExceededException",
-          "error":{
-            "code":"LimitExceeded",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"NotAuthorizedException",
-          "error":{
-            "code":"NotAuthorizedError",
-            "httpStatusCode":403,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceNotFoundException",
-          "error":{
-            "code":"ResourceNotFound",
-            "httpStatusCode":404,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"ResourceConflictException",
-          "error":{
-            "code":"ResourceConflict",
-            "httpStatusCode":409,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InvalidLambdaFunctionOutputException",
-          "error":{
-            "code":"InvalidLambdaFunctionOutput",
-            "httpStatusCode":400,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"LambdaThrottledException",
-          "error":{
-            "code":"LambdaThrottled",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"TooManyRequestsException",
-          "error":{
-            "code":"TooManyRequests",
-            "httpStatusCode":429,
-            "senderFault":true
-          },
-          "exception":true
-        },
-        {
-          "shape":"InternalErrorException",
-          "error":{
-            "code":"InternalError",
-            "httpStatusCode":500
-          },
-          "exception":true,
-          "fault":true
-        }
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotAuthorizedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"InvalidLambdaFunctionOutputException"},
+        {"shape":"LambdaThrottledException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"}
       ]
     }
   },
@@ -1040,11 +313,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"AlreadyStreamed",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "ApplicationArn":{
@@ -1057,8 +326,8 @@
     },
     "AssumeRoleArn":{
       "type":"string",
-      "min":20,
       "max":2048,
+      "min":20,
       "pattern":"arn:aws:iam::\\d+:role/.*"
     },
     "Boolean":{"type":"boolean"},
@@ -1104,11 +373,7 @@
       "members":{
         "message":{"shape":"String"}
       },
-      "error":{
-        "code":"ConcurrentModification",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "Dataset":{
@@ -1129,8 +394,8 @@
     },
     "DatasetName":{
       "type":"string",
-      "min":1,
       "max":128,
+      "min":1,
       "pattern":"[a-zA-Z0-9_.:-]+"
     },
     "Date":{"type":"timestamp"},
@@ -1240,8 +505,8 @@
     },
     "DeviceId":{
       "type":"string",
-      "min":1,
-      "max":256
+      "max":256,
+      "min":1
     },
     "DuplicateRequestException":{
       "type":"structure",
@@ -1249,11 +514,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"DuplicateRequest",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "Events":{
@@ -1322,14 +583,14 @@
     },
     "IdentityId":{
       "type":"string",
-      "min":1,
       "max":55,
+      "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
     },
     "IdentityPoolId":{
       "type":"string",
-      "min":1,
       "max":55,
+      "min":1,
       "pattern":"[\\w-]+:[0-9a-f-]+"
     },
     "IdentityPoolUsage":{
@@ -1363,10 +624,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"InternalError",
-        "httpStatusCode":500
-      },
+      "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
     },
@@ -1376,11 +634,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"InvalidConfiguration",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "InvalidLambdaFunctionOutputException":{
@@ -1389,11 +643,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"InvalidLambdaFunctionOutput",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "InvalidParameterException":{
@@ -1402,11 +652,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"InvalidParameter",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "LambdaFunctionArn":{"type":"string"},
@@ -1416,11 +662,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"LambdaThrottled",
-        "httpStatusCode":429,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":429},
       "exception":true
     },
     "LimitExceededException":{
@@ -1429,11 +671,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"LimitExceeded",
-        "httpStatusCode":400,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":400},
       "exception":true
     },
     "ListDatasetsRequest":{
@@ -1567,11 +805,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"NotAuthorizedError",
-        "httpStatusCode":403,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":403},
       "exception":true
     },
     "Operation":{
@@ -1611,8 +845,8 @@
     },
     "RecordKey":{
       "type":"string",
-      "min":1,
-      "max":1024
+      "max":1024,
+      "min":1
     },
     "RecordList":{
       "type":"list",
@@ -1676,11 +910,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"ResourceConflict",
-        "httpStatusCode":409,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":409},
       "exception":true
     },
     "ResourceNotFoundException":{
@@ -1689,11 +919,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"ResourceNotFound",
-        "httpStatusCode":404,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":404},
       "exception":true
     },
     "SetCognitoEventsRequest":{
@@ -1734,8 +960,8 @@
     },
     "StreamName":{
       "type":"string",
-      "min":1,
-      "max":128
+      "max":128,
+      "min":1
     },
     "StreamingStatus":{
       "type":"string",
@@ -1788,11 +1014,7 @@
       "members":{
         "message":{"shape":"ExceptionMessage"}
       },
-      "error":{
-        "code":"TooManyRequests",
-        "httpStatusCode":429,
-        "senderFault":true
-      },
+      "error":{"httpStatusCode":429},
       "exception":true
     },
     "UnsubscribeFromDatasetRequest":{

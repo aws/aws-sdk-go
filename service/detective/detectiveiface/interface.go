@@ -109,6 +109,10 @@ type DetectiveAPI interface {
 	ListMembersPages(*detective.ListMembersInput, func(*detective.ListMembersOutput, bool) bool) error
 	ListMembersPagesWithContext(aws.Context, *detective.ListMembersInput, func(*detective.ListMembersOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*detective.ListTagsForResourceInput) (*detective.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *detective.ListTagsForResourceInput, ...request.Option) (*detective.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*detective.ListTagsForResourceInput) (*request.Request, *detective.ListTagsForResourceOutput)
+
 	RejectInvitation(*detective.RejectInvitationInput) (*detective.RejectInvitationOutput, error)
 	RejectInvitationWithContext(aws.Context, *detective.RejectInvitationInput, ...request.Option) (*detective.RejectInvitationOutput, error)
 	RejectInvitationRequest(*detective.RejectInvitationInput) (*request.Request, *detective.RejectInvitationOutput)
@@ -116,6 +120,14 @@ type DetectiveAPI interface {
 	StartMonitoringMember(*detective.StartMonitoringMemberInput) (*detective.StartMonitoringMemberOutput, error)
 	StartMonitoringMemberWithContext(aws.Context, *detective.StartMonitoringMemberInput, ...request.Option) (*detective.StartMonitoringMemberOutput, error)
 	StartMonitoringMemberRequest(*detective.StartMonitoringMemberInput) (*request.Request, *detective.StartMonitoringMemberOutput)
+
+	TagResource(*detective.TagResourceInput) (*detective.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *detective.TagResourceInput, ...request.Option) (*detective.TagResourceOutput, error)
+	TagResourceRequest(*detective.TagResourceInput) (*request.Request, *detective.TagResourceOutput)
+
+	UntagResource(*detective.UntagResourceInput) (*detective.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *detective.UntagResourceInput, ...request.Option) (*detective.UntagResourceOutput, error)
+	UntagResourceRequest(*detective.UntagResourceInput) (*request.Request, *detective.UntagResourceOutput)
 }
 
 var _ DetectiveAPI = (*detective.Detective)(nil)

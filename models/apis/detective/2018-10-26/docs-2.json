@@ -12,8 +12,11 @@
     "ListGraphs": "<p>Returns the list of behavior graphs that the calling account is an administrator account of. This operation can only be called by an administrator account.</p> <p>Because an account can currently only be the administrator of one behavior graph within a Region, the results always contain a single behavior graph.</p>",
     "ListInvitations": "<p>Retrieves the list of open and accepted behavior graph invitations for the member account. This operation can only be called by a member account.</p> <p>Open invitations are invitations that the member account has not responded to.</p> <p>The results do not include behavior graphs for which the member account declined the invitation. The results also do not include behavior graphs that the member account resigned from or was removed from.</p>",
     "ListMembers": "<p>Retrieves the list of member accounts for a behavior graph. Does not return member accounts that were removed from the behavior graph.</p>",
+    "ListTagsForResource": "<p>Returns the tag values that are assigned to a behavior graph.</p>",
     "RejectInvitation": "<p>Rejects an invitation to contribute the account data to a behavior graph. This operation must be called by a member account that has the <code>INVITED</code> status.</p>",
-    "StartMonitoringMember": "<p>Sends a request to enable data ingest for a member account that has a status of <code>ACCEPTED_BUT_DISABLED</code>.</p> <p>For valid member accounts, the status is updated as follows.</p> <ul> <li> <p>If Detective enabled the member account, then the new status is <code>ENABLED</code>.</p> </li> <li> <p>If Detective cannot enable the member account, the status remains <code>ACCEPTED_BUT_DISABLED</code>. </p> </li> </ul>"
+    "StartMonitoringMember": "<p>Sends a request to enable data ingest for a member account that has a status of <code>ACCEPTED_BUT_DISABLED</code>.</p> <p>For valid member accounts, the status is updated as follows.</p> <ul> <li> <p>If Detective enabled the member account, then the new status is <code>ENABLED</code>.</p> </li> <li> <p>If Detective cannot enable the member account, the status remains <code>ACCEPTED_BUT_DISABLED</code>. </p> </li> </ul>",
+    "TagResource": "<p>Applies tag values to a behavior graph.</p>",
+    "UntagResource": "<p>Removes tags from a behavior graph.</p>"
   },
   "shapes": {
     "AcceptInvitationRequest": {
@@ -61,6 +64,11 @@
     },
     "ConflictException": {
       "base": "<p>The request attempted an invalid action.</p>",
+      "refs": {
+      }
+    },
+    "CreateGraphRequest": {
+      "base": null,
       "refs": {
       }
     },
@@ -150,9 +158,12 @@
         "GetMembersRequest$GraphArn": "<p>The ARN of the behavior graph for which to request the member details.</p>",
         "Graph$Arn": "<p>The ARN of the behavior graph.</p>",
         "ListMembersRequest$GraphArn": "<p>The ARN of the behavior graph for which to retrieve the list of member accounts.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the behavior graph for which to retrieve the tag values.</p>",
         "MemberDetail$GraphArn": "<p>The ARN of the behavior graph that the member account was invited to.</p>",
         "RejectInvitationRequest$GraphArn": "<p>The ARN of the behavior graph to reject the invitation to.</p> <p>The member account's current member status in the behavior graph must be <code>INVITED</code>.</p>",
-        "StartMonitoringMemberRequest$GraphArn": "<p>The ARN of the behavior graph.</p>"
+        "StartMonitoringMemberRequest$GraphArn": "<p>The ARN of the behavior graph.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The ARN of the behavior graph to assign the tags to.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The ARN of the behavior graph to remove the tags from.</p>"
       }
     },
     "GraphList": {
@@ -192,6 +203,16 @@
       }
     },
     "ListMembersResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
       "base": null,
       "refs": {
       }
@@ -268,6 +289,43 @@
       "refs": {
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys of the tags to remove from the behavior graph.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateGraphRequest$Tags": "<p>The tags to assign to the new behavior graph. For each tag, you provide the tag key and the tag value.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tag values that are assigned to the behavior graph.</p>",
+        "TagResourceRequest$Tags": "<p>The tag values to assign to the behavior graph.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
     "Timestamp": {
       "base": null,
       "refs": {
@@ -295,6 +353,16 @@
       "base": null,
       "refs": {
         "UnprocessedAccount$Reason": "<p>The reason that the member account request could not be processed.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ValidationException": {

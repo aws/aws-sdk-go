@@ -6157,9 +6157,7 @@
           },
           "me-south-1" : { },
           "sa-east-1" : { },
-          "us-east-1" : {
-            "sslCommonName" : "queue.{dnsSuffix}"
-          },
+          "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },
           "us-west-2" : { }
@@ -9236,6 +9234,15 @@
             },
             "hostname" : "servicecatalog-fips.us-gov-west-1.amazonaws.com"
           }
+        }
+      },
+      "servicequotas" : {
+        "defaults" : {
+          "protocols" : [ "https" ]
+        },
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
         }
       },
       "sms" : {

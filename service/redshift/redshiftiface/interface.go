@@ -68,6 +68,10 @@ type RedshiftAPI interface {
 	AuthorizeClusterSecurityGroupIngressWithContext(aws.Context, *redshift.AuthorizeClusterSecurityGroupIngressInput, ...request.Option) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, error)
 	AuthorizeClusterSecurityGroupIngressRequest(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*request.Request, *redshift.AuthorizeClusterSecurityGroupIngressOutput)
 
+	AuthorizeEndpointAccess(*redshift.AuthorizeEndpointAccessInput) (*redshift.AuthorizeEndpointAccessOutput, error)
+	AuthorizeEndpointAccessWithContext(aws.Context, *redshift.AuthorizeEndpointAccessInput, ...request.Option) (*redshift.AuthorizeEndpointAccessOutput, error)
+	AuthorizeEndpointAccessRequest(*redshift.AuthorizeEndpointAccessInput) (*request.Request, *redshift.AuthorizeEndpointAccessOutput)
+
 	AuthorizeSnapshotAccess(*redshift.AuthorizeSnapshotAccessInput) (*redshift.AuthorizeSnapshotAccessOutput, error)
 	AuthorizeSnapshotAccessWithContext(aws.Context, *redshift.AuthorizeSnapshotAccessInput, ...request.Option) (*redshift.AuthorizeSnapshotAccessOutput, error)
 	AuthorizeSnapshotAccessRequest(*redshift.AuthorizeSnapshotAccessInput) (*request.Request, *redshift.AuthorizeSnapshotAccessOutput)
@@ -107,6 +111,10 @@ type RedshiftAPI interface {
 	CreateClusterSubnetGroup(*redshift.CreateClusterSubnetGroupInput) (*redshift.CreateClusterSubnetGroupOutput, error)
 	CreateClusterSubnetGroupWithContext(aws.Context, *redshift.CreateClusterSubnetGroupInput, ...request.Option) (*redshift.CreateClusterSubnetGroupOutput, error)
 	CreateClusterSubnetGroupRequest(*redshift.CreateClusterSubnetGroupInput) (*request.Request, *redshift.CreateClusterSubnetGroupOutput)
+
+	CreateEndpointAccess(*redshift.CreateEndpointAccessInput) (*redshift.CreateEndpointAccessOutput, error)
+	CreateEndpointAccessWithContext(aws.Context, *redshift.CreateEndpointAccessInput, ...request.Option) (*redshift.CreateEndpointAccessOutput, error)
+	CreateEndpointAccessRequest(*redshift.CreateEndpointAccessInput) (*request.Request, *redshift.CreateEndpointAccessOutput)
 
 	CreateEventSubscription(*redshift.CreateEventSubscriptionInput) (*redshift.CreateEventSubscriptionOutput, error)
 	CreateEventSubscriptionWithContext(aws.Context, *redshift.CreateEventSubscriptionInput, ...request.Option) (*redshift.CreateEventSubscriptionOutput, error)
@@ -159,6 +167,10 @@ type RedshiftAPI interface {
 	DeleteClusterSubnetGroup(*redshift.DeleteClusterSubnetGroupInput) (*redshift.DeleteClusterSubnetGroupOutput, error)
 	DeleteClusterSubnetGroupWithContext(aws.Context, *redshift.DeleteClusterSubnetGroupInput, ...request.Option) (*redshift.DeleteClusterSubnetGroupOutput, error)
 	DeleteClusterSubnetGroupRequest(*redshift.DeleteClusterSubnetGroupInput) (*request.Request, *redshift.DeleteClusterSubnetGroupOutput)
+
+	DeleteEndpointAccess(*redshift.DeleteEndpointAccessInput) (*redshift.DeleteEndpointAccessOutput, error)
+	DeleteEndpointAccessWithContext(aws.Context, *redshift.DeleteEndpointAccessInput, ...request.Option) (*redshift.DeleteEndpointAccessOutput, error)
+	DeleteEndpointAccessRequest(*redshift.DeleteEndpointAccessInput) (*request.Request, *redshift.DeleteEndpointAccessOutput)
 
 	DeleteEventSubscription(*redshift.DeleteEventSubscriptionInput) (*redshift.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionWithContext(aws.Context, *redshift.DeleteEventSubscriptionInput, ...request.Option) (*redshift.DeleteEventSubscriptionOutput, error)
@@ -265,6 +277,14 @@ type RedshiftAPI interface {
 
 	DescribeDefaultClusterParametersPages(*redshift.DescribeDefaultClusterParametersInput, func(*redshift.DescribeDefaultClusterParametersOutput, bool) bool) error
 	DescribeDefaultClusterParametersPagesWithContext(aws.Context, *redshift.DescribeDefaultClusterParametersInput, func(*redshift.DescribeDefaultClusterParametersOutput, bool) bool, ...request.Option) error
+
+	DescribeEndpointAccess(*redshift.DescribeEndpointAccessInput) (*redshift.DescribeEndpointAccessOutput, error)
+	DescribeEndpointAccessWithContext(aws.Context, *redshift.DescribeEndpointAccessInput, ...request.Option) (*redshift.DescribeEndpointAccessOutput, error)
+	DescribeEndpointAccessRequest(*redshift.DescribeEndpointAccessInput) (*request.Request, *redshift.DescribeEndpointAccessOutput)
+
+	DescribeEndpointAuthorization(*redshift.DescribeEndpointAuthorizationInput) (*redshift.DescribeEndpointAuthorizationOutput, error)
+	DescribeEndpointAuthorizationWithContext(aws.Context, *redshift.DescribeEndpointAuthorizationInput, ...request.Option) (*redshift.DescribeEndpointAuthorizationOutput, error)
+	DescribeEndpointAuthorizationRequest(*redshift.DescribeEndpointAuthorizationInput) (*request.Request, *redshift.DescribeEndpointAuthorizationOutput)
 
 	DescribeEventCategories(*redshift.DescribeEventCategoriesInput) (*redshift.DescribeEventCategoriesOutput, error)
 	DescribeEventCategoriesWithContext(aws.Context, *redshift.DescribeEventCategoriesInput, ...request.Option) (*redshift.DescribeEventCategoriesOutput, error)
@@ -439,6 +459,10 @@ type RedshiftAPI interface {
 	ModifyClusterSubnetGroupWithContext(aws.Context, *redshift.ModifyClusterSubnetGroupInput, ...request.Option) (*redshift.ModifyClusterSubnetGroupOutput, error)
 	ModifyClusterSubnetGroupRequest(*redshift.ModifyClusterSubnetGroupInput) (*request.Request, *redshift.ModifyClusterSubnetGroupOutput)
 
+	ModifyEndpointAccess(*redshift.ModifyEndpointAccessInput) (*redshift.ModifyEndpointAccessOutput, error)
+	ModifyEndpointAccessWithContext(aws.Context, *redshift.ModifyEndpointAccessInput, ...request.Option) (*redshift.ModifyEndpointAccessOutput, error)
+	ModifyEndpointAccessRequest(*redshift.ModifyEndpointAccessInput) (*request.Request, *redshift.ModifyEndpointAccessOutput)
+
 	ModifyEventSubscription(*redshift.ModifyEventSubscriptionInput) (*redshift.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionWithContext(aws.Context, *redshift.ModifyEventSubscriptionInput, ...request.Option) (*redshift.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionRequest(*redshift.ModifyEventSubscriptionInput) (*request.Request, *redshift.ModifyEventSubscriptionOutput)
@@ -494,6 +518,10 @@ type RedshiftAPI interface {
 	RevokeClusterSecurityGroupIngress(*redshift.RevokeClusterSecurityGroupIngressInput) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 	RevokeClusterSecurityGroupIngressWithContext(aws.Context, *redshift.RevokeClusterSecurityGroupIngressInput, ...request.Option) (*redshift.RevokeClusterSecurityGroupIngressOutput, error)
 	RevokeClusterSecurityGroupIngressRequest(*redshift.RevokeClusterSecurityGroupIngressInput) (*request.Request, *redshift.RevokeClusterSecurityGroupIngressOutput)
+
+	RevokeEndpointAccess(*redshift.RevokeEndpointAccessInput) (*redshift.RevokeEndpointAccessOutput, error)
+	RevokeEndpointAccessWithContext(aws.Context, *redshift.RevokeEndpointAccessInput, ...request.Option) (*redshift.RevokeEndpointAccessOutput, error)
+	RevokeEndpointAccessRequest(*redshift.RevokeEndpointAccessInput) (*request.Request, *redshift.RevokeEndpointAccessOutput)
 
 	RevokeSnapshotAccess(*redshift.RevokeSnapshotAccessInput) (*redshift.RevokeSnapshotAccessOutput, error)
 	RevokeSnapshotAccessWithContext(aws.Context, *redshift.RevokeSnapshotAccessInput, ...request.Option) (*redshift.RevokeSnapshotAccessOutput, error)

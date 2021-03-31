@@ -106,6 +106,21 @@
       ],
       "idempotent":true
     },
+    "CreateMobileDeviceAccessRule":{
+      "name":"CreateMobileDeviceAccessRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateMobileDeviceAccessRuleRequest"},
+      "output":{"shape":"CreateMobileDeviceAccessRuleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "CreateOrganization":{
       "name":"CreateOrganization",
       "http":{
@@ -228,6 +243,20 @@
         {"shape":"OrganizationStateException"}
       ],
       "idempotent":true
+    },
+    "DeleteMobileDeviceAccessRule":{
+      "name":"DeleteMobileDeviceAccessRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteMobileDeviceAccessRuleRequest"},
+      "output":{"shape":"DeleteMobileDeviceAccessRuleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "DeleteOrganization":{
       "name":"DeleteOrganization",
@@ -472,6 +501,20 @@
       ],
       "idempotent":true
     },
+    "GetMobileDeviceAccessEffect":{
+      "name":"GetMobileDeviceAccessEffect",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetMobileDeviceAccessEffectRequest"},
+      "output":{"shape":"GetMobileDeviceAccessEffectResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "ListAccessControlRules":{
       "name":"ListAccessControlRules",
       "http":{
@@ -565,6 +608,20 @@
         {"shape":"OrganizationStateException"}
       ],
       "idempotent":true
+    },
+    "ListMobileDeviceAccessRules":{
+      "name":"ListMobileDeviceAccessRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMobileDeviceAccessRulesRequest"},
+      "output":{"shape":"ListMobileDeviceAccessRulesResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
     },
     "ListOrganizations":{
       "name":"ListOrganizations",
@@ -791,6 +848,21 @@
       ],
       "idempotent":true
     },
+    "UpdateMobileDeviceAccessRule":{
+      "name":"UpdateMobileDeviceAccessRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateMobileDeviceAccessRuleRequest"},
+      "output":{"shape":"UpdateMobileDeviceAccessRuleResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ]
+    },
     "UpdatePrimaryEmailAddress":{
       "name":"UpdatePrimaryEmailAddress",
       "http":{
@@ -1008,6 +1080,38 @@
         "GroupId":{"shape":"WorkMailIdentifier"}
       }
     },
+    "CreateMobileDeviceAccessRuleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Name",
+        "Effect"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "Name":{"shape":"MobileDeviceAccessRuleName"},
+        "Description":{"shape":"MobileDeviceAccessRuleDescription"},
+        "Effect":{"shape":"MobileDeviceAccessRuleEffect"},
+        "DeviceTypes":{"shape":"DeviceTypeList"},
+        "NotDeviceTypes":{"shape":"DeviceTypeList"},
+        "DeviceModels":{"shape":"DeviceModelList"},
+        "NotDeviceModels":{"shape":"DeviceModelList"},
+        "DeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "NotDeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "DeviceUserAgents":{"shape":"DeviceUserAgentList"},
+        "NotDeviceUserAgents":{"shape":"DeviceUserAgentList"}
+      }
+    },
+    "CreateMobileDeviceAccessRuleResponse":{
+      "type":"structure",
+      "members":{
+        "MobileDeviceAccessRuleId":{"shape":"MobileDeviceAccessRuleId"}
+      }
+    },
     "CreateOrganizationRequest":{
       "type":"structure",
       "required":["Alias"],
@@ -1144,6 +1248,22 @@
       }
     },
     "DeleteMailboxPermissionsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteMobileDeviceAccessRuleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "MobileDeviceAccessRuleId"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "MobileDeviceAccessRuleId":{"shape":"MobileDeviceAccessRuleId"}
+      }
+    },
+    "DeleteMobileDeviceAccessRuleResponse":{
       "type":"structure",
       "members":{
       }
@@ -1359,6 +1479,54 @@
       "min":0,
       "pattern":"[\\S\\s]*"
     },
+    "DeviceModel":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "DeviceModelList":{
+      "type":"list",
+      "member":{"shape":"DeviceModel"},
+      "max":10,
+      "min":1
+    },
+    "DeviceOperatingSystem":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "DeviceOperatingSystemList":{
+      "type":"list",
+      "member":{"shape":"DeviceOperatingSystem"},
+      "max":10,
+      "min":1
+    },
+    "DeviceType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "DeviceTypeList":{
+      "type":"list",
+      "member":{"shape":"DeviceType"},
+      "max":10,
+      "min":1
+    },
+    "DeviceUserAgent":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\u0020-\\u00FF]+"
+    },
+    "DeviceUserAgentList":{
+      "type":"list",
+      "member":{"shape":"DeviceUserAgent"},
+      "max":10,
+      "min":1
+    },
     "DirectoryId":{
       "type":"string",
       "max":12,
@@ -1565,6 +1733,24 @@
         "MailboxSize":{"shape":"MailboxSize"}
       }
     },
+    "GetMobileDeviceAccessEffectRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "DeviceType":{"shape":"DeviceType"},
+        "DeviceModel":{"shape":"DeviceModel"},
+        "DeviceOperatingSystem":{"shape":"DeviceOperatingSystem"},
+        "DeviceUserAgent":{"shape":"DeviceUserAgent"}
+      }
+    },
+    "GetMobileDeviceAccessEffectResponse":{
+      "type":"structure",
+      "members":{
+        "Effect":{"shape":"MobileDeviceAccessRuleEffect"},
+        "MatchedRules":{"shape":"MobileDeviceAccessMatchedRuleList"}
+      }
+    },
     "Group":{
       "type":"structure",
       "members":{
@@ -1759,6 +1945,19 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListMobileDeviceAccessRulesRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "ListMobileDeviceAccessRulesResponse":{
+      "type":"structure",
+      "members":{
+        "Rules":{"shape":"MobileDeviceAccessRulesList"}
+      }
+    },
     "ListOrganizationsRequest":{
       "type":"structure",
       "members":{
@@ -1923,6 +2122,69 @@
     "Members":{
       "type":"list",
       "member":{"shape":"Member"}
+    },
+    "MobileDeviceAccessMatchedRule":{
+      "type":"structure",
+      "members":{
+        "MobileDeviceAccessRuleId":{"shape":"MobileDeviceAccessRuleId"},
+        "Name":{"shape":"MobileDeviceAccessRuleName"}
+      }
+    },
+    "MobileDeviceAccessMatchedRuleList":{
+      "type":"list",
+      "member":{"shape":"MobileDeviceAccessMatchedRule"},
+      "max":10,
+      "min":0
+    },
+    "MobileDeviceAccessRule":{
+      "type":"structure",
+      "members":{
+        "MobileDeviceAccessRuleId":{"shape":"MobileDeviceAccessRuleId"},
+        "Name":{"shape":"MobileDeviceAccessRuleName"},
+        "Description":{"shape":"MobileDeviceAccessRuleDescription"},
+        "Effect":{"shape":"MobileDeviceAccessRuleEffect"},
+        "DeviceTypes":{"shape":"DeviceTypeList"},
+        "NotDeviceTypes":{"shape":"DeviceTypeList"},
+        "DeviceModels":{"shape":"DeviceModelList"},
+        "NotDeviceModels":{"shape":"DeviceModelList"},
+        "DeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "NotDeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "DeviceUserAgents":{"shape":"DeviceUserAgentList"},
+        "NotDeviceUserAgents":{"shape":"DeviceUserAgentList"},
+        "DateCreated":{"shape":"Timestamp"},
+        "DateModified":{"shape":"Timestamp"}
+      }
+    },
+    "MobileDeviceAccessRuleDescription":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\S\\s]+"
+    },
+    "MobileDeviceAccessRuleEffect":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "DENY"
+      ]
+    },
+    "MobileDeviceAccessRuleId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "MobileDeviceAccessRuleName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\S\\s]+"
+    },
+    "MobileDeviceAccessRulesList":{
+      "type":"list",
+      "member":{"shape":"MobileDeviceAccessRule"},
+      "max":10,
+      "min":0
     },
     "NameAvailabilityException":{
       "type":"structure",
@@ -2344,6 +2606,35 @@
       }
     },
     "UpdateMailboxQuotaResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateMobileDeviceAccessRuleRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "MobileDeviceAccessRuleId",
+        "Name",
+        "Effect"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "MobileDeviceAccessRuleId":{"shape":"MobileDeviceAccessRuleId"},
+        "Name":{"shape":"MobileDeviceAccessRuleName"},
+        "Description":{"shape":"MobileDeviceAccessRuleDescription"},
+        "Effect":{"shape":"MobileDeviceAccessRuleEffect"},
+        "DeviceTypes":{"shape":"DeviceTypeList"},
+        "NotDeviceTypes":{"shape":"DeviceTypeList"},
+        "DeviceModels":{"shape":"DeviceModelList"},
+        "NotDeviceModels":{"shape":"DeviceModelList"},
+        "DeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "NotDeviceOperatingSystems":{"shape":"DeviceOperatingSystemList"},
+        "DeviceUserAgents":{"shape":"DeviceUserAgentList"},
+        "NotDeviceUserAgents":{"shape":"DeviceUserAgentList"}
+      }
+    },
+    "UpdateMobileDeviceAccessRuleResponse":{
       "type":"structure",
       "members":{
       }
