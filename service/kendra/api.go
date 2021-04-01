@@ -61,7 +61,7 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 // added with the BatchPutDocument operation.
 //
 // The documents are deleted asynchronously. You can see the progress of the
-// deletion by using AWS CloudWatch. Any error messages releated to the processing
+// deletion by using AWS CloudWatch. Any error messages related to the processing
 // of the batch are sent to you CloudWatch log.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -441,11 +441,11 @@ func (c *Kendra) CreateIndexRequest(input *CreateIndexInput) (req *request.Reque
 //
 // Creates a new Amazon Kendra index. Index creation is an asynchronous operation.
 // To determine if index creation has completed, check the Status field returned
-// from a call to . The Status field is set to ACTIVE when the index is ready
-// to use.
+// from a call to DescribeIndex. The Status field is set to ACTIVE when the
+// index is ready to use.
 //
-// Once the index is active you can index your documents using the operation
-// or using one of the supported data sources.
+// Once the index is active you can index your documents using the BatchPutDocument
+// operation or using one of the supported data sources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -629,8 +629,8 @@ func (c *Kendra) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *req
 //
 // Deletes an Amazon Kendra data source. An exception is not thrown if the data
 // source is already being deleted. While the data source is being deleted,
-// the Status field returned by a call to the operation is set to DELETING.
-// For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
+// the Status field returned by a call to the DescribeDataSource operation is
+// set to DELETING. For more information, see Deleting Data Sources (https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3846,13 +3846,13 @@ func (s *ConfluenceAttachmentConfiguration) SetCrawlAttachments(v bool) *Conflue
 // Defines the mapping between a field in the Confluence data source to a Amazon
 // Kendra index field.
 //
-// You must first create the index field using the operation.
+// You must first create the index field using the UpdateIndex operation.
 type ConfluenceAttachmentToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the field in the data source.
 	//
-	// You must first create the index field using the operation.
+	// You must first create the index field using the UpdateIndex operation.
 	DataSourceFieldName *string `type:"string" enum:"ConfluenceAttachmentFieldName"`
 
 	// The format for date fields in the data source. If the field specified in
@@ -3911,7 +3911,7 @@ func (s *ConfluenceAttachmentToIndexFieldMapping) SetIndexFieldName(v string) *C
 
 // Specifies the blog settings for the Confluence data source. Blogs are always
 // indexed unless filtered from the index by the ExclusionPatterns or InclusionPatterns
-// fields in the data type.
+// fields in the ConfluenceConfiguration type.
 type ConfluenceBlogConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3966,7 +3966,7 @@ func (s *ConfluenceBlogConfiguration) SetBlogFieldMappings(v []*ConfluenceBlogTo
 // Defines the mapping between a blog field in the Confluence data source to
 // a Amazon Kendra index field.
 //
-// You must first create the index field using the operation.
+// You must first create the index field using the UpdateIndex operation.
 type ConfluenceBlogToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -4265,7 +4265,7 @@ func (s *ConfluencePageConfiguration) SetPageFieldMappings(v []*ConfluencePageTo
 // Defines the mapping between a field in the Confluence data source to a Amazon
 // Kendra index field.
 //
-// You must first create the index field using the operation.
+// You must first create the index field using the UpdateIndex operation.
 type ConfluencePageToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -4433,7 +4433,7 @@ func (s *ConfluenceSpaceConfiguration) SetSpaceFieldMappings(v []*ConfluenceSpac
 // Defines the mapping between a field in the Confluence data source to a Amazon
 // Kendra index field.
 //
-// You must first create the index field using the operation.
+// You must first create the index field using the UpdateIndex operation.
 type ConfluenceSpaceToIndexFieldMapping struct {
 	_ struct{} `type:"structure"`
 
@@ -5479,7 +5479,8 @@ func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfig
 	return s
 }
 
-// Summary information for a Amazon Kendra data source. Returned in a call to .
+// Summary information for a Amazon Kendra data source. Returned in a call to
+// the DescribeDataSource operation.
 type DataSourceSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5492,8 +5493,8 @@ type DataSourceSummary struct {
 	// The name of the data source.
 	Name *string `min:"1" type:"string"`
 
-	// The status of the data source. When the status is ATIVE the data source is
-	// ready to use.
+	// The status of the data source. When the status is ACTIVE the data source
+	// is ready to use.
 	Status *string `type:"string" enum:"DataSourceStatus"`
 
 	// The type of the data source.
@@ -6695,7 +6696,7 @@ func (s *DescribeIndexInput) SetId(v string) *DescribeIndexInput {
 type DescribeIndexOutput struct {
 	_ struct{} `type:"structure"`
 
-	// For enterprise edtion indexes, you can choose to use additional capacity
+	// For Enterprise edition indexes, you can choose to use additional capacity
 	// to meet the needs of your application. This contains the capacity units used
 	// for the index. A 0 for the query capacity or the storage capacity indicates
 	// that the index is using the default capacity for the index.
@@ -9046,7 +9047,7 @@ type QueryInput struct {
 	Facets []*Facet `type:"list"`
 
 	// The unique identifier of the index to search. The identifier is returned
-	// in the response from the operation.
+	// in the response from the CreateIndex operation.
 	//
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
@@ -10076,10 +10077,10 @@ type SalesforceConfiguration struct {
 	// The regex is applied to the name of the attached file.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 
-	// Specifies configuration information for the knowlege article types that Amazon
-	// Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
-	// standard fields of knowledge articles, or the custom fields of custom knowledge
-	// articles, but not both.
+	// Specifies configuration information for the knowledge article types that
+	// Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles
+	// and the standard fields of knowledge articles, or the custom fields of custom
+	// knowledge articles, but not both.
 	KnowledgeArticleConfiguration *SalesforceKnowledgeArticleConfiguration `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
@@ -10329,10 +10330,10 @@ func (s *SalesforceCustomKnowledgeArticleTypeConfiguration) SetName(v string) *S
 	return s
 }
 
-// Specifies configuration information for the knowlege article types that Amazon
-// Kendra indexes. Amazon Kendra indexes standard knowledge articles and the
-// standard fields of knowledge articles, or the custom fields of custom knowledge
-// articles, but not both
+// Specifies configuration information for the knowledge article types that
+// Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles
+// and the standard fields of knowledge articles, or the custom fields of custom
+// knowledge articles, but not both
 type SalesforceKnowledgeArticleConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10550,7 +10551,7 @@ func (s *SalesforceStandardObjectAttachmentConfiguration) SetFieldMappings(v []*
 	return s
 }
 
-// Specifies confguration information for indexing a single standard object.
+// Specifies configuration information for indexing a single standard object.
 type SalesforceStandardObjectConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10561,7 +10562,7 @@ type SalesforceStandardObjectConfiguration struct {
 	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the field in the standard object table that contains the document
-	// titleB.
+	// title.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
 	// One or more objects that map fields in the standard object to Amazon Kendra
@@ -10772,6 +10773,19 @@ func (s *ServerSideEncryptionConfiguration) SetKmsKeyId(v string) *ServerSideEnc
 type ServiceNowConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Determines the type of authentication used to connect to the ServiceNow instance.
+	// If you choose HTTP_BASIC, Amazon Kendra is authenticated using the user name
+	// and password provided in the AWS Secrets Manager secret in the SecretArn
+	// field. When you choose OAUTH2, Amazon Kendra is authenticated using the OAuth
+	// token and secret provided in the Secrets Manager secret, and the user name
+	// and password are used to determine which information Amazon Kendra has access
+	// to.
+	//
+	// When you use OAUTH2 authentication, you must generate a token and a client
+	// secret using the ServiceNow console. For more information, see Using a ServiceNow
+	// data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html).
+	AuthenticationType *string `type:"string" enum:"ServiceNowAuthenticationType"`
+
 	// The ServiceNow instance that the data source connects to. The host endpoint
 	// should look like the following: {instance}.service-now.com.
 	//
@@ -10844,6 +10858,12 @@ func (s *ServiceNowConfiguration) Validate() error {
 	return nil
 }
 
+// SetAuthenticationType sets the AuthenticationType field's value.
+func (s *ServiceNowConfiguration) SetAuthenticationType(v string) *ServiceNowConfiguration {
+	s.AuthenticationType = &v
+	return s
+}
+
 // SetHostUrl sets the HostUrl field's value.
 func (s *ServiceNowConfiguration) SetHostUrl(v string) *ServiceNowConfiguration {
 	s.HostUrl = &v
@@ -10901,6 +10921,14 @@ type ServiceNowKnowledgeArticleConfiguration struct {
 	// create the index field before you map the field.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
+	// A query that selects the knowledge articles to index. The query can return
+	// articles from multiple knowledge bases, and the knowledge bases can be public
+	// or private.
+	//
+	// The query string must be one generated by the ServiceNow console. For more
+	// information, see Specifying documents to index with a query (https://docs.aws.amazon.com/kendra/latest/dg/servicenow-query.html).
+	FilterQuery *string `min:"1" type:"string"`
+
 	// List of regular expressions applied to knowledge articles. Items that don't
 	// match the inclusion pattern are not indexed. The regex is applied to the
 	// field specified in the PatternTargetField.
@@ -10931,6 +10959,9 @@ func (s *ServiceNowKnowledgeArticleConfiguration) Validate() error {
 	}
 	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.FilterQuery != nil && len(*s.FilterQuery) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilterQuery", 1))
 	}
 	if s.FieldMappings != nil {
 		for i, v := range s.FieldMappings {
@@ -10979,6 +11010,12 @@ func (s *ServiceNowKnowledgeArticleConfiguration) SetFieldMappings(v []*DataSour
 	return s
 }
 
+// SetFilterQuery sets the FilterQuery field's value.
+func (s *ServiceNowKnowledgeArticleConfiguration) SetFilterQuery(v string) *ServiceNowKnowledgeArticleConfiguration {
+	s.FilterQuery = &v
+	return s
+}
+
 // SetIncludeAttachmentFilePatterns sets the IncludeAttachmentFilePatterns field's value.
 func (s *ServiceNowKnowledgeArticleConfiguration) SetIncludeAttachmentFilePatterns(v []*string) *ServiceNowKnowledgeArticleConfiguration {
 	s.IncludeAttachmentFilePatterns = v
@@ -11004,14 +11041,24 @@ type ServiceNowServiceCatalogConfiguration struct {
 	// field.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
-	// Determines the types of file attachments that are excluded from the index.
+	// A list of regular expression patterns. Documents that match the patterns
+	// are excluded from the index. Documents that don't match the patterns are
+	// included in the index. If a document matches both an exclusion pattern and
+	// an inclusion pattern, the document is not included in the index.
+	//
+	// The regex is applied to the file name of the attachment.
 	ExcludeAttachmentFilePatterns []*string `type:"list"`
 
 	// Mapping between ServiceNow fields and Amazon Kendra index fields. You must
 	// create the index field before you map the field.
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
-	// Determines the types of file attachments that are included in the index.
+	// A list of regular expression patterns. Documents that match the patterns
+	// are included in the index. Documents that don't match the patterns are excluded
+	// from the index. If a document matches both an exclusion pattern and an inclusion
+	// pattern, the document is not included in the index.
+	//
+	// The regex is applied to the file name of the attachment.
 	IncludeAttachmentFilePatterns []*string `type:"list"`
 }
 
@@ -11174,8 +11221,8 @@ type SharePointConfiguration struct {
 
 	// A list of DataSourceToIndexFieldMapping objects that map Microsoft SharePoint
 	// attributes to custom fields in the Amazon Kendra index. You must first create
-	// the index fields using the operation before you map SharePoint attributes.
-	// For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// the index fields using the UpdateIndex operation before you map SharePoint
+	// attributes. For more information, see Mapping Data Source Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
 	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
 
 	// A list of regular expression patterns. Documents that match the patterns
@@ -11627,7 +11674,7 @@ type SubmitFeedbackInput struct {
 	IndexId *string `min:"36" type:"string" required:"true"`
 
 	// The identifier of the specific query for which you are submitting feedback.
-	// The query ID is returned in the response to the operation.
+	// The query ID is returned in the response to the Query operation.
 	//
 	// QueryId is a required field
 	QueryId *string `min:"1" type:"string" required:"true"`
@@ -12290,7 +12337,7 @@ func (s UpdateDataSourceOutput) GoString() string {
 type UpdateIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// Sets the number of addtional storage and query capacity units that should
+	// Sets the number of additional storage and query capacity units that should
 	// be used by the index. You can change the capacity of the index up to 5 times
 	// per day.
 	//
@@ -13472,6 +13519,22 @@ func ScoreConfidence_Values() []string {
 		ScoreConfidenceHigh,
 		ScoreConfidenceMedium,
 		ScoreConfidenceLow,
+	}
+}
+
+const (
+	// ServiceNowAuthenticationTypeHttpBasic is a ServiceNowAuthenticationType enum value
+	ServiceNowAuthenticationTypeHttpBasic = "HTTP_BASIC"
+
+	// ServiceNowAuthenticationTypeOauth2 is a ServiceNowAuthenticationType enum value
+	ServiceNowAuthenticationTypeOauth2 = "OAUTH2"
+)
+
+// ServiceNowAuthenticationType_Values returns all elements of the ServiceNowAuthenticationType enum
+func ServiceNowAuthenticationType_Values() []string {
+	return []string{
+		ServiceNowAuthenticationTypeHttpBasic,
+		ServiceNowAuthenticationTypeOauth2,
 	}
 }
 

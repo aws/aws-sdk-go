@@ -681,6 +681,21 @@
   },
   "shapes":{
     "Action":{"type":"string"},
+    "ActionCondition":{
+      "type":"structure",
+      "required":["Action"],
+      "members":{
+        "Action":{"shape":"ActionValue"}
+      }
+    },
+    "ActionValue":{
+      "type":"string",
+      "enum":[
+        "ALLOW",
+        "BLOCK",
+        "COUNT"
+      ]
+    },
     "All":{
       "type":"structure",
       "members":{
@@ -786,6 +801,18 @@
         "GE",
         "GT"
       ]
+    },
+    "Condition":{
+      "type":"structure",
+      "members":{
+        "ActionCondition":{"shape":"ActionCondition"},
+        "LabelNameCondition":{"shape":"LabelNameCondition"}
+      }
+    },
+    "Conditions":{
+      "type":"list",
+      "member":{"shape":"Condition"},
+      "min":1
     },
     "ConsumedCapacity":{
       "type":"long",
@@ -1357,7 +1384,10 @@
       "type":"structure",
       "members":{
         "Capacity":{"shape":"CapacityUnit"},
-        "Rules":{"shape":"RuleSummaries"}
+        "Rules":{"shape":"RuleSummaries"},
+        "LabelNamespace":{"shape":"LabelName"},
+        "AvailableLabels":{"shape":"LabelSummaries"},
+        "ConsumedLabels":{"shape":"LabelSummaries"}
       }
     },
     "DisassociateWebACLRequest":{
@@ -1428,6 +1458,38 @@
       "max":64,
       "min":1,
       "pattern":".*\\S.*"
+    },
+    "Filter":{
+      "type":"structure",
+      "required":[
+        "Behavior",
+        "Requirement",
+        "Conditions"
+      ],
+      "members":{
+        "Behavior":{"shape":"FilterBehavior"},
+        "Requirement":{"shape":"FilterRequirement"},
+        "Conditions":{"shape":"Conditions"}
+      }
+    },
+    "FilterBehavior":{
+      "type":"string",
+      "enum":[
+        "KEEP",
+        "DROP"
+      ]
+    },
+    "FilterRequirement":{
+      "type":"string",
+      "enum":[
+        "MEETS_ALL",
+        "MEETS_ANY"
+      ]
+    },
+    "Filters":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "min":1
     },
     "FirewallManagerRuleGroup":{
       "type":"structure",
@@ -1790,6 +1852,64 @@
       "member":{"shape":"JsonPointerPath"},
       "min":1
     },
+    "Label":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"LabelName"}
+      }
+    },
+    "LabelMatchKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_\\-:]+$"
+    },
+    "LabelMatchScope":{
+      "type":"string",
+      "enum":[
+        "LABEL",
+        "NAMESPACE"
+      ]
+    },
+    "LabelMatchStatement":{
+      "type":"structure",
+      "required":[
+        "Scope",
+        "Key"
+      ],
+      "members":{
+        "Scope":{"shape":"LabelMatchScope"},
+        "Key":{"shape":"LabelMatchKey"}
+      }
+    },
+    "LabelName":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^[0-9A-Za-z_\\-:]+$"
+    },
+    "LabelNameCondition":{
+      "type":"structure",
+      "required":["LabelName"],
+      "members":{
+        "LabelName":{"shape":"LabelName"}
+      }
+    },
+    "LabelSummaries":{
+      "type":"list",
+      "member":{"shape":"LabelSummary"}
+    },
+    "LabelSummary":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"LabelName"}
+      }
+    },
+    "Labels":{
+      "type":"list",
+      "member":{"shape":"Label"}
+    },
     "ListAvailableManagedRuleGroupsRequest":{
       "type":"structure",
       "required":["Scope"],
@@ -1942,12 +2062,24 @@
         "ResourceArn":{"shape":"ResourceArn"},
         "LogDestinationConfigs":{"shape":"LogDestinationConfigs"},
         "RedactedFields":{"shape":"RedactedFields"},
-        "ManagedByFirewallManager":{"shape":"Boolean"}
+        "ManagedByFirewallManager":{"shape":"Boolean"},
+        "LoggingFilter":{"shape":"LoggingFilter"}
       }
     },
     "LoggingConfigurations":{
       "type":"list",
       "member":{"shape":"LoggingConfiguration"}
+    },
+    "LoggingFilter":{
+      "type":"structure",
+      "required":[
+        "Filters",
+        "DefaultBehavior"
+      ],
+      "members":{
+        "Filters":{"shape":"Filters"},
+        "DefaultBehavior":{"shape":"FilterBehavior"}
+      }
     },
     "ManagedRuleGroupStatement":{
       "type":"structure",
@@ -1958,7 +2090,8 @@
       "members":{
         "VendorName":{"shape":"VendorName"},
         "Name":{"shape":"EntityName"},
-        "ExcludedRules":{"shape":"ExcludedRules"}
+        "ExcludedRules":{"shape":"ExcludedRules"},
+        "ScopeDownStatement":{"shape":"Statement"}
       }
     },
     "ManagedRuleGroupSummaries":{
@@ -2042,6 +2175,7 @@
         "REGEX_PATTERN_REFERENCE_STATEMENT",
         "IP_SET_REFERENCE_STATEMENT",
         "MANAGED_RULE_SET_STATEMENT",
+        "LABEL_MATCH_STATEMENT",
         "AND_STATEMENT",
         "OR_STATEMENT",
         "NOT_STATEMENT",
@@ -2073,7 +2207,9 @@
         "CUSTOM_RESPONSE_BODY",
         "JSON_MATCH_PATTERN",
         "JSON_MATCH_SCOPE",
-        "BODY_PARSING_FALLBACK_BEHAVIOR"
+        "BODY_PARSING_FALLBACK_BEHAVIOR",
+        "LOGGING_FILTER",
+        "FILTER_CONDITION"
       ]
     },
     "ParameterExceptionParameter":{
@@ -2243,7 +2379,7 @@
       "type":"string",
       "max":10240,
       "min":1,
-      "pattern":".*"
+      "pattern":"[\\s\\S]*"
     },
     "ResponseContentType":{
       "type":"string",
@@ -2272,6 +2408,7 @@
         "Statement":{"shape":"Statement"},
         "Action":{"shape":"RuleAction"},
         "OverrideAction":{"shape":"OverrideAction"},
+        "RuleLabels":{"shape":"Labels"},
         "VisibilityConfig":{"shape":"VisibilityConfig"}
       }
     },
@@ -2300,7 +2437,10 @@
         "Description":{"shape":"EntityDescription"},
         "Rules":{"shape":"Rules"},
         "VisibilityConfig":{"shape":"VisibilityConfig"},
-        "CustomResponseBodies":{"shape":"CustomResponseBodies"}
+        "LabelNamespace":{"shape":"LabelName"},
+        "CustomResponseBodies":{"shape":"CustomResponseBodies"},
+        "AvailableLabels":{"shape":"LabelSummaries"},
+        "ConsumedLabels":{"shape":"LabelSummaries"}
       }
     },
     "RuleGroupReferenceStatement":{
@@ -2361,7 +2501,8 @@
         "Action":{"shape":"Action"},
         "RuleNameWithinRuleGroup":{"shape":"EntityName"},
         "RequestHeadersInserted":{"shape":"HTTPHeaders"},
-        "ResponseCodeSent":{"shape":"ResponseStatusCode"}
+        "ResponseCodeSent":{"shape":"ResponseStatusCode"},
+        "Labels":{"shape":"Labels"}
       }
     },
     "SampledHTTPRequests":{
@@ -2436,7 +2577,8 @@
         "AndStatement":{"shape":"AndStatement"},
         "OrStatement":{"shape":"OrStatement"},
         "NotStatement":{"shape":"NotStatement"},
-        "ManagedRuleGroupStatement":{"shape":"ManagedRuleGroupStatement"}
+        "ManagedRuleGroupStatement":{"shape":"ManagedRuleGroupStatement"},
+        "LabelMatchStatement":{"shape":"LabelMatchStatement"}
       }
     },
     "Statements":{
@@ -2816,6 +2958,7 @@
         "PreProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
         "PostProcessFirewallManagerRuleGroups":{"shape":"FirewallManagerRuleGroups"},
         "ManagedByFirewallManager":{"shape":"Boolean"},
+        "LabelNamespace":{"shape":"LabelName"},
         "CustomResponseBodies":{"shape":"CustomResponseBodies"}
       }
     },

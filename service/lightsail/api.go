@@ -17664,22 +17664,32 @@ type ContainerService struct {
 
 	// The current state of the container service.
 	//
-	// The state can be:
+	// The following container service states are possible:
 	//
-	//    * Pending - The container service is being created.
+	//    * PENDING - The container service is being created.
 	//
-	//    * Ready - The container service is created but does not have a container
+	//    * READY - The container service is running but it does not have an active
+	//    container deployment.
+	//
+	//    * DEPLOYING - The container service is launching a container deployment.
+	//
+	//    * RUNNING - The container service is running and it has an active container
 	//    deployment.
 	//
-	//    * Disabled - The container service is disabled.
+	//    * UPDATING - The container service capacity or its custom domains are
+	//    being updated.
 	//
-	//    * Updating - The container service capacity or other setting is being
-	//    updated.
+	//    * DELETING - The container service is being deleted.
 	//
-	//    * Deploying - The container service is launching a container deployment.
-	//
-	//    * Running - The container service is created and it has a container deployment.
+	//    * DISABLED - The container service is disabled, and its active deployment
+	//    and containers, if any, are shut down.
 	State *string `locationName:"state" type:"string" enum:"ContainerServiceState"`
+
+	// An object that describes the current state of the container service.
+	//
+	// The state detail is populated only when a container service is in a PENDING,
+	// DEPLOYING, or UPDATING state.
+	StateDetail *ContainerServiceStateDetail `locationName:"stateDetail" type:"structure"`
 
 	// The tag keys and optional values for the resource. For more information about
 	// tags in Lightsail, see the Lightsail Dev Guide (https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags).
@@ -17789,6 +17799,12 @@ func (s *ContainerService) SetScale(v int64) *ContainerService {
 // SetState sets the State field's value.
 func (s *ContainerService) SetState(v string) *ContainerService {
 	s.State = &v
+	return s
+}
+
+// SetStateDetail sets the StateDetail field's value.
+func (s *ContainerService) SetStateDetail(v *ContainerServiceStateDetail) *ContainerService {
+	s.StateDetail = v
 	return s
 }
 
@@ -18221,6 +18237,61 @@ func (s *ContainerServiceRegistryLogin) SetRegistry(v string) *ContainerServiceR
 // SetUsername sets the Username field's value.
 func (s *ContainerServiceRegistryLogin) SetUsername(v string) *ContainerServiceRegistryLogin {
 	s.Username = &v
+	return s
+}
+
+// Describes the current state of a container service.
+type ContainerServiceStateDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The state code of the container service.
+	//
+	// The following state codes are possible:
+	//
+	//    * The following state codes are possible if your container service is
+	//    in a DEPLOYING or UPDATING state: CREATING_SYSTEM_RESOURCES - The system
+	//    resources for your container service are being created. CREATING_NETWORK_INFRASTRUCTURE
+	//    - The network infrastructure for your container service are being created.
+	//    PROVISIONING_CERTIFICATE - The SSL/TLS certificate for your container
+	//    service is being created. PROVISIONING_SERVICE - Your container service
+	//    is being provisioned. CREATING_DEPLOYMENT - Your deployment is being created
+	//    on your container service. EVALUATING_HEALTH_CHECK - The health of your
+	//    deployment is being evaluated. ACTIVATING_DEPLOYMENT - Your deployment
+	//    is being activated.
+	//
+	//    * The following state codes are possible if your container service is
+	//    in a PENDING state: CERTIFICATE_LIMIT_EXCEEDED - The SSL/TLS certificate
+	//    required for your container service exceeds the maximum number of certificates
+	//    allowed for your account. UNKNOWN_ERROR - An error was experienced when
+	//    your container service was being created.
+	Code *string `locationName:"code" type:"string" enum:"ContainerServiceStateDetailCode"`
+
+	// A message that provides more information for the state code.
+	//
+	// The state detail is populated only when a container service is in a PENDING,
+	// DEPLOYING, or UPDATING state.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerServiceStateDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceStateDetail) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *ContainerServiceStateDetail) SetCode(v string) *ContainerServiceStateDetail {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ContainerServiceStateDetail) SetMessage(v string) *ContainerServiceStateDetail {
+	s.Message = &v
 	return s
 }
 
@@ -36260,6 +36331,9 @@ const (
 
 	// ContainerServiceStateDisabled is a ContainerServiceState enum value
 	ContainerServiceStateDisabled = "DISABLED"
+
+	// ContainerServiceStateDeploying is a ContainerServiceState enum value
+	ContainerServiceStateDeploying = "DEPLOYING"
 )
 
 // ContainerServiceState_Values returns all elements of the ContainerServiceState enum
@@ -36271,6 +36345,51 @@ func ContainerServiceState_Values() []string {
 		ContainerServiceStateUpdating,
 		ContainerServiceStateDeleting,
 		ContainerServiceStateDisabled,
+		ContainerServiceStateDeploying,
+	}
+}
+
+const (
+	// ContainerServiceStateDetailCodeCreatingSystemResources is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeCreatingSystemResources = "CREATING_SYSTEM_RESOURCES"
+
+	// ContainerServiceStateDetailCodeCreatingNetworkInfrastructure is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeCreatingNetworkInfrastructure = "CREATING_NETWORK_INFRASTRUCTURE"
+
+	// ContainerServiceStateDetailCodeProvisioningCertificate is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeProvisioningCertificate = "PROVISIONING_CERTIFICATE"
+
+	// ContainerServiceStateDetailCodeProvisioningService is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeProvisioningService = "PROVISIONING_SERVICE"
+
+	// ContainerServiceStateDetailCodeCreatingDeployment is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeCreatingDeployment = "CREATING_DEPLOYMENT"
+
+	// ContainerServiceStateDetailCodeEvaluatingHealthCheck is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeEvaluatingHealthCheck = "EVALUATING_HEALTH_CHECK"
+
+	// ContainerServiceStateDetailCodeActivatingDeployment is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeActivatingDeployment = "ACTIVATING_DEPLOYMENT"
+
+	// ContainerServiceStateDetailCodeCertificateLimitExceeded is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeCertificateLimitExceeded = "CERTIFICATE_LIMIT_EXCEEDED"
+
+	// ContainerServiceStateDetailCodeUnknownError is a ContainerServiceStateDetailCode enum value
+	ContainerServiceStateDetailCodeUnknownError = "UNKNOWN_ERROR"
+)
+
+// ContainerServiceStateDetailCode_Values returns all elements of the ContainerServiceStateDetailCode enum
+func ContainerServiceStateDetailCode_Values() []string {
+	return []string{
+		ContainerServiceStateDetailCodeCreatingSystemResources,
+		ContainerServiceStateDetailCodeCreatingNetworkInfrastructure,
+		ContainerServiceStateDetailCodeProvisioningCertificate,
+		ContainerServiceStateDetailCodeProvisioningService,
+		ContainerServiceStateDetailCodeCreatingDeployment,
+		ContainerServiceStateDetailCodeEvaluatingHealthCheck,
+		ContainerServiceStateDetailCodeActivatingDeployment,
+		ContainerServiceStateDetailCodeCertificateLimitExceeded,
+		ContainerServiceStateDetailCodeUnknownError,
 	}
 }
 

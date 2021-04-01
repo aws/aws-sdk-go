@@ -2,15 +2,15 @@
   "version": "2.0",
   "service": "<p>Amazon Kendra is a service for indexing large document sets.</p>",
   "operations": {
-    "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <a>BatchPutDocument</a> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages releated to the processing of the batch are sent to you CloudWatch log.</p>",
+    "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> operation enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this operation to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using AWS CloudWatch. Any error messages related to processing the batch are sent to your AWS CloudWatch log.</p>",
     "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
     "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p>",
-    "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to . The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the operation or using one of the supported data sources. </p>",
+    "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> operation or using one of the supported data sources. </p>",
     "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p>",
-    "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the operation is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
+    "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeDataSource</code> operation is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
     "DeleteFaq": "<p>Removes an FAQ from an index.</p>",
-    "DeleteIndex": "<p>Deletes an existing Amazon Kendra index. An exception is not thrown if the index is already being deleted. While the index is being deleted, the <code>Status</code> field returned by a call to the <a>DescribeIndex</a> operation is set to <code>DELETING</code>.</p>",
+    "DeleteIndex": "<p>Deletes an existing Amazon Kendra index. An exception is not thrown if the index is already being deleted. While the index is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeIndex</code> operation is set to <code>DELETING</code>.</p>",
     "DeleteThesaurus": "<p>Deletes an existing Amazon Kendra thesaurus. </p>",
     "DescribeDataSource": "<p>Gets information about a Amazon Kendra data source.</p>",
     "DescribeFaq": "<p>Gets information about an FAQ list.</p>",
@@ -108,7 +108,7 @@
       }
     },
     "BatchDeleteDocumentResponseFailedDocument": {
-      "base": "<p>Provides information about documents that could not be removed from an index by the <a>BatchDeleteDocument</a> operation.</p>",
+      "base": "<p>Provides information about documents that could not be removed from an index by the <code>BatchDeleteDocument</code> operation.</p>",
       "refs": {
         "BatchDeleteDocumentResponseFailedDocuments$member": null
       }
@@ -170,8 +170,8 @@
     "CapacityUnitsConfiguration": {
       "base": "<p>Specifies capacity units configured for your index. You can add and remove capacity units to tune an index to your requirements.</p>",
       "refs": {
-        "DescribeIndexResponse$CapacityUnits": "<p>For enterprise edtion indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A 0 for the query capacity or the storage capacity indicates that the index is using the default capacity for the index.</p>",
-        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of addtional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
+        "DescribeIndexResponse$CapacityUnits": "<p>For Enterprise edition indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A 0 for the query capacity or the storage capacity indicates that the index is using the default capacity for the index.</p>",
+        "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of additional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
       }
     },
     "ChangeDetectingColumns": {
@@ -187,7 +187,7 @@
       }
     },
     "ClickFeedback": {
-      "base": "<p>Gathers information about when a particular result was clicked by a user. Your application uses the <a>SubmitFeedback</a> operation to provide click information.</p>",
+      "base": "<p>Gathers information about when a particular result was clicked by a user. Your application uses the <code>SubmitFeedback</code> operation to provide click information.</p>",
       "refs": {
         "ClickFeedbackList$member": null
       }
@@ -216,7 +216,7 @@
     "ColumnName": {
       "base": null,
       "refs": {
-        "AclConfiguration$AllowedGroupsColumnName": "<p>A list of groups, separated by semi-colons, that filters a query response based on user context. The document is only returned to users that are in one of the groups specified in the <code>UserContext</code> field of the <a>Query</a> operation.</p>",
+        "AclConfiguration$AllowedGroupsColumnName": "<p>A list of groups, separated by semi-colons, that filters a query response based on user context. The document is only returned to users that are in one of the groups specified in the <code>UserContext</code> field of the <code>Query</code> operation.</p>",
         "ChangeDetectingColumns$member": null,
         "ColumnConfiguration$DocumentIdColumnName": "<p>The column that provides the document's unique identifier.</p>",
         "ColumnConfiguration$DocumentDataColumnName": "<p>The column that contains the contents of the document.</p>",
@@ -243,17 +243,17 @@
     "ConfluenceAttachmentFieldName": {
       "base": null,
       "refs": {
-        "ConfluenceAttachmentToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p> <p>You must first create the index field using the operation. </p>"
+        "ConfluenceAttachmentToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p> <p>You must first create the index field using the <code>UpdateIndex</code> operation. </p>"
       }
     },
     "ConfluenceAttachmentToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> operation. </p>",
       "refs": {
         "ConfluenceAttachmentFieldMappingsList$member": null
       }
     },
     "ConfluenceBlogConfiguration": {
-      "base": "<p>Specifies the blog settings for the Confluence data source. Blogs are always indexed unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code> fields in the data type.</p>",
+      "base": "<p>Specifies the blog settings for the Confluence data source. Blogs are always indexed unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code> fields in the <code>ConfluenceConfiguration</code> type.</p>",
       "refs": {
         "ConfluenceConfiguration$BlogConfiguration": "<p> Specifies configuration information for indexing Confluence blogs.</p>"
       }
@@ -271,7 +271,7 @@
       }
     },
     "ConfluenceBlogToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a blog field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "base": "<p>Defines the mapping between a blog field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> operation. </p>",
       "refs": {
         "ConfluenceBlogFieldMappingsList$member": null
       }
@@ -301,7 +301,7 @@
       }
     },
     "ConfluencePageToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> operation. </p>",
       "refs": {
         "ConfluencePageFieldMappingsList$member": null
       }
@@ -338,7 +338,7 @@
       }
     },
     "ConfluenceSpaceToIndexFieldMapping": {
-      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the <code>UpdateIndex</code> operation. </p>",
       "refs": {
         "ConfluenceSpaceFieldMappingsList$member": null
       }
@@ -431,7 +431,7 @@
         "SalesforceStandardKnowledgeArticleTypeConfiguration$DocumentTitleFieldName": "<p>The name of the field that contains the document title.</p>",
         "SalesforceStandardObjectAttachmentConfiguration$DocumentTitleFieldName": "<p>The name of the field used for the document title.</p>",
         "SalesforceStandardObjectConfiguration$DocumentDataFieldName": "<p>The name of the field in the standard object table that contains the document contents.</p>",
-        "SalesforceStandardObjectConfiguration$DocumentTitleFieldName": "<p>The name of the field in the standard object table that contains the document titleB.</p>",
+        "SalesforceStandardObjectConfiguration$DocumentTitleFieldName": "<p>The name of the field in the standard object table that contains the document title.</p>",
         "ServiceNowKnowledgeArticleConfiguration$DocumentDataFieldName": "<p>The name of the ServiceNow field that is mapped to the index document contents field in the Amazon Kendra index.</p>",
         "ServiceNowKnowledgeArticleConfiguration$DocumentTitleFieldName": "<p>The name of the ServiceNow field that is mapped to the index document title field.</p>",
         "ServiceNowServiceCatalogConfiguration$DocumentDataFieldName": "<p>The name of the ServiceNow field that is mapped to the index document contents field in the Amazon Kendra index.</p>",
@@ -470,8 +470,8 @@
         "SalesforceConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the name of the attached file.</p>",
         "ServiceNowKnowledgeArticleConfiguration$IncludeAttachmentFilePatterns": "<p>List of regular expressions applied to knowledge articles. Items that don't match the inclusion pattern are not indexed. The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
         "ServiceNowKnowledgeArticleConfiguration$ExcludeAttachmentFilePatterns": "<p>List of regular expressions applied to knowledge articles. Items that don't match the inclusion pattern are not indexed. The regex is applied to the field specified in the <code>PatternTargetField</code> </p>",
-        "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>Determines the types of file attachments that are included in the index. </p>",
-        "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>Determines the types of file attachments that are excluded from the index.</p>",
+        "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
+        "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
         "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
         "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>"
       }
@@ -494,12 +494,12 @@
     "DataSourceStatus": {
       "base": null,
       "refs": {
-        "DataSourceSummary$Status": "<p>The status of the data source. When the status is <code>ATIVE</code> the data source is ready to use.</p>",
+        "DataSourceSummary$Status": "<p>The status of the data source. When the status is <code>ACTIVE</code> the data source is ready to use.</p>",
         "DescribeDataSourceResponse$Status": "<p>The current status of the data source. When the status is <code>ACTIVE</code> the data source is ready to use. When the status is <code>FAILED</code>, the <code>ErrorMessage</code> field contains the reason that the data source failed.</p>"
       }
     },
     "DataSourceSummary": {
-      "base": "<p>Summary information for a Amazon Kendra data source. Returned in a call to .</p>",
+      "base": "<p>Summary information for a Amazon Kendra data source. Returned in a call to the <code>DescribeDataSource</code> operation.</p>",
       "refs": {
         "DataSourceSummaryList$member": null
       }
@@ -548,7 +548,7 @@
       }
     },
     "DataSourceToIndexFieldMapping": {
-      "base": "<p>Maps a column or attribute in the data source to an index field. You must first create the fields in the index using the <a>UpdateIndex</a> operation.</p>",
+      "base": "<p>Maps a column or attribute in the data source to an index field. You must first create the fields in the index using the <code>UpdateIndex</code> operation.</p>",
       "refs": {
         "DataSourceToIndexFieldMappingList$member": null
       }
@@ -556,8 +556,8 @@
     "DataSourceToIndexFieldMappingList": {
       "base": null,
       "refs": {
-        "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <a>UpdateIndex</a> operation.</p>",
-        "GoogleDriveConfiguration$FieldMappings": "<p>Defines mapping between a field in the Google Drive and a Amazon Kendra index field.</p> <p>If you are using the console, you can define index fields when creating the mapping. If you are using the API, you must first create the field using the <a>UpdateIndex</a> operation.</p>",
+        "ColumnConfiguration$FieldMappings": "<p>An array of objects that map database column names to the corresponding fields in an index. You must first create the fields in the index using the <code>UpdateIndex</code> operation.</p>",
+        "GoogleDriveConfiguration$FieldMappings": "<p>Defines mapping between a field in the Google Drive and a Amazon Kendra index field.</p> <p>If you are using the console, you can define index fields when creating the mapping. If you are using the API, you must first create the field using the <code>UpdateIndex</code> operation.</p>",
         "OneDriveConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft OneDrive fields to custom fields in the Amazon Kendra index. You must first create the index fields before you map OneDrive fields.</p>",
         "SalesforceChatterFeedConfiguration$FieldMappings": "<p>Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$FieldMappings": "<p>One or more objects that map fields in the custom knowledge article to fields in the Amazon Kendra index.</p>",
@@ -566,7 +566,7 @@
         "SalesforceStandardObjectConfiguration$FieldMappings": "<p>One or more objects that map fields in the standard object to Amazon Kendra index fields. The index field must exist before you can map a Salesforce field to it.</p>",
         "ServiceNowKnowledgeArticleConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
         "ServiceNowServiceCatalogConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
-        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft SharePoint attributes to custom fields in the Amazon Kendra index. You must first create the index fields using the operation before you map SharePoint attributes. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>.</p>"
+        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft SharePoint attributes to custom fields in the Amazon Kendra index. You must first create the index fields using the <code>UpdateIndex</code> operation before you map SharePoint attributes. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>.</p>"
       }
     },
     "DataSourceType": {
@@ -1030,7 +1030,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentRequest$IndexId": "<p>The identifier of the index that contains the documents to delete.</p>",
-        "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <a>CreateIndex</a> operation.</p>",
+        "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <code>CreateIndex</code> operation.</p>",
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index that should be associated with this data source.</p>",
         "CreateFaqRequest$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "CreateIndexResponse$Id": "<p>The unique identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
@@ -1052,7 +1052,7 @@
         "ListDataSourcesRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "ListFaqsRequest$IndexId": "<p>The index that contains the FAQ lists.</p>",
         "ListThesauriRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to list.</p>",
-        "QueryRequest$IndexId": "<p>The unique identifier of the index to search. The identifier is returned in the response from the operation.</p>",
+        "QueryRequest$IndexId": "<p>The unique identifier of the index to search. The identifier is returned in the response from the <code>CreateIndex</code> operation.</p>",
         "StartDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "StopDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "SubmitFeedbackRequest$IndexId": "<p>The identifier of the index that was queried.</p>",
@@ -1341,7 +1341,7 @@
       "base": null,
       "refs": {
         "QueryResult$QueryId": "<p>The unique identifier for the search. You use <code>QueryId</code> to identify the search when using the feedback API.</p>",
-        "SubmitFeedbackRequest$QueryId": "<p>The identifier of the specific query for which you are submitting feedback. The query ID is returned in the response to the operation.</p>"
+        "SubmitFeedbackRequest$QueryId": "<p>The identifier of the specific query for which you are submitting feedback. The query ID is returned in the response to the <code>Query</code> operation.</p>"
       }
     },
     "QueryIdentifiersEnclosingOption": {
@@ -1398,7 +1398,7 @@
       }
     },
     "RelevanceFeedback": {
-      "base": "<p>Provides feedback on how relevant a document is to a search. Your application uses the <a>SubmitFeedback</a> operation to provide relevance information.</p>",
+      "base": "<p>Provides feedback on how relevant a document is to a search. Your application uses the <code>SubmitFeedback</code> operation to provide relevance information.</p>",
       "refs": {
         "RelevanceFeedbackList$member": null
       }
@@ -1537,9 +1537,9 @@
       }
     },
     "SalesforceKnowledgeArticleConfiguration": {
-      "base": "<p>Specifies configuration information for the knowlege article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
+      "base": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both </p>",
       "refs": {
-        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowlege article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
+        "SalesforceConfiguration$KnowledgeArticleConfiguration": "<p>Specifies configuration information for the knowledge article types that Amazon Kendra indexes. Amazon Kendra indexes standard knowledge articles and the standard fields of knowledge articles, or the custom fields of custom knowledge articles, but not both.</p>"
       }
     },
     "SalesforceKnowledgeArticleState": {
@@ -1567,7 +1567,7 @@
       }
     },
     "SalesforceStandardObjectConfiguration": {
-      "base": "<p>Specifies confguration information for indexing a single standard object.</p>",
+      "base": "<p>Specifies configuration information for indexing a single standard object.</p>",
       "refs": {
         "SalesforceStandardObjectConfigurationList$member": null
       }
@@ -1635,6 +1635,12 @@
         "DescribeIndexResponse$ServerSideEncryptionConfiguration": "<p>The identifier of the AWS KMS customer master key (CMK) used to encrypt your data. Amazon Kendra doesn't support asymmetric CMKs.</p>"
       }
     },
+    "ServiceNowAuthenticationType": {
+      "base": null,
+      "refs": {
+        "ServiceNowConfiguration$AuthenticationType": "<p>Determines the type of authentication used to connect to the ServiceNow instance. If you choose <code>HTTP_BASIC</code>, Amazon Kendra is authenticated using the user name and password provided in the AWS Secrets Manager secret in the <code>SecretArn</code> field. When you choose <code>OAUTH2</code>, Amazon Kendra is authenticated using the OAuth token and secret provided in the Secrets Manager secret, and the user name and password are used to determine which information Amazon Kendra has access to.</p> <p>When you use <code>OAUTH2</code> authentication, you must generate a token and a client secret using the ServiceNow console. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-servicenow.html\">Using a ServiceNow data source</a>.</p>"
+      }
+    },
     "ServiceNowBuildVersionType": {
       "base": null,
       "refs": {
@@ -1657,6 +1663,12 @@
       "base": "<p>Provides configuration information for crawling knowledge articles in the ServiceNow site.</p>",
       "refs": {
         "ServiceNowConfiguration$KnowledgeArticleConfiguration": "<p>Provides configuration information for crawling knowledge articles in the ServiceNow site.</p>"
+      }
+    },
+    "ServiceNowKnowledgeArticleFilterQuery": {
+      "base": null,
+      "refs": {
+        "ServiceNowKnowledgeArticleConfiguration$FilterQuery": "<p>A query that selects the knowledge articles to index. The query can return articles from multiple knowledge bases, and the knowledge bases can be public or private.</p> <p>The query string must be one generated by the ServiceNow console. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/servicenow-query.html\">Specifying documents to index with a query</a>. </p>"
       }
     },
     "ServiceNowServiceCatalogConfiguration": {

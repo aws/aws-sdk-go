@@ -15,6 +15,10 @@ const (
 	// the specified Resolver operation.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeInternalServiceErrorException for service response error code
 	// "InternalServiceErrorException".
 	//
@@ -92,10 +96,15 @@ const (
 	//
 	// The specified resource doesn't exist.
 	ErrCodeUnknownResourceException = "UnknownResourceException"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	ErrCodeValidationException = "ValidationException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
+	"ConflictException":             newErrorConflictException,
 	"InternalServiceErrorException": newErrorInternalServiceErrorException,
 	"InvalidNextTokenException":     newErrorInvalidNextTokenException,
 	"InvalidParameterException":     newErrorInvalidParameterException,
@@ -109,4 +118,5 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceUnavailableException":  newErrorResourceUnavailableException,
 	"ThrottlingException":           newErrorThrottlingException,
 	"UnknownResourceException":      newErrorUnknownResourceException,
+	"ValidationException":           newErrorValidationException,
 }

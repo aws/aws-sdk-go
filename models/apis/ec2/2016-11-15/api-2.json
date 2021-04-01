@@ -2899,6 +2899,15 @@
       "input":{"shape":"GetEbsEncryptionByDefaultRequest"},
       "output":{"shape":"GetEbsEncryptionByDefaultResult"}
     },
+    "GetFlowLogsIntegrationTemplate":{
+      "name":"GetFlowLogsIntegrationTemplate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetFlowLogsIntegrationTemplateRequest"},
+      "output":{"shape":"GetFlowLogsIntegrationTemplateResult"}
+    },
     "GetGroupsForCapacityReservation":{
       "name":"GetGroupsForCapacityReservation",
       "http":{
@@ -4986,17 +4995,17 @@
     "AssociateSubnetCidrBlockRequest":{
       "type":"structure",
       "required":[
-        "SubnetId",
-        "Ipv6CidrBlock"
+        "Ipv6CidrBlock",
+        "SubnetId"
       ],
       "members":{
-        "SubnetId":{
-          "shape":"SubnetId",
-          "locationName":"subnetId"
-        },
         "Ipv6CidrBlock":{
           "shape":"String",
           "locationName":"ipv6CidrBlock"
+        },
+        "SubnetId":{
+          "shape":"SubnetId",
+          "locationName":"subnetId"
         }
       }
     },
@@ -5168,6 +5177,28 @@
         "disassociating",
         "disassociated"
       ]
+    },
+    "AthenaIntegration":{
+      "type":"structure",
+      "required":[
+        "IntegrationResultS3DestinationArn",
+        "PartitionLoadFrequency"
+      ],
+      "members":{
+        "IntegrationResultS3DestinationArn":{"shape":"String"},
+        "PartitionLoadFrequency":{"shape":"PartitionLoadFrequency"},
+        "PartitionStartDate":{"shape":"MillisecondDateTime"},
+        "PartitionEndDate":{"shape":"MillisecondDateTime"}
+      }
+    },
+    "AthenaIntegrationsSet":{
+      "type":"list",
+      "member":{
+        "shape":"AthenaIntegration",
+        "locationName":"item"
+      },
+      "max":10,
+      "min":1
     },
     "AttachClassicLinkVpcRequest":{
       "type":"structure",
@@ -8486,8 +8517,8 @@
     "CreateSubnetRequest":{
       "type":"structure",
       "required":[
-        "VpcId",
-        "CidrBlock"
+        "CidrBlock",
+        "VpcId"
       ],
       "members":{
         "TagSpecifications":{
@@ -8496,14 +8527,14 @@
         },
         "AvailabilityZone":{"shape":"String"},
         "AvailabilityZoneId":{"shape":"String"},
+        "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "OutpostArn":{"shape":"String"},
         "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        },
-        "CidrBlock":{"shape":"String"}
+        }
       }
     },
     "CreateSubnetResult":{
@@ -17200,6 +17231,32 @@
         }
       }
     },
+    "GetFlowLogsIntegrationTemplateRequest":{
+      "type":"structure",
+      "required":[
+        "FlowLogId",
+        "ConfigDeliveryS3DestinationArn",
+        "IntegrateServices"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "FlowLogId":{"shape":"VpcFlowLogId"},
+        "ConfigDeliveryS3DestinationArn":{"shape":"String"},
+        "IntegrateServices":{
+          "shape":"IntegrateServices",
+          "locationName":"IntegrateService"
+        }
+      }
+    },
+    "GetFlowLogsIntegrationTemplateResult":{
+      "type":"structure",
+      "members":{
+        "Result":{
+          "shape":"String",
+          "locationName":"result"
+        }
+      }
+    },
     "GetGroupsForCapacityReservationRequest":{
       "type":"structure",
       "required":["CapacityReservationId"],
@@ -20545,6 +20602,15 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegrateServices":{
+      "type":"structure",
+      "members":{
+        "AthenaIntegrations":{
+          "shape":"AthenaIntegrationsSet",
+          "locationName":"AthenaIntegration"
+        }
+      }
+    },
     "InterfacePermissionType":{
       "type":"string",
       "enum":[
@@ -24420,6 +24486,15 @@
         "shape":"String",
         "locationName":"Owner"
       }
+    },
+    "PartitionLoadFrequency":{
+      "type":"string",
+      "enum":[
+        "none",
+        "daily",
+        "weekly",
+        "monthly"
+      ]
     },
     "PathComponent":{
       "type":"structure",
