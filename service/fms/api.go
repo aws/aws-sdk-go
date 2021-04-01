@@ -3400,6 +3400,150 @@ func (s DisassociateAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
+// A DNS Firewall rule group that Firewall Manager tried to associate with a
+// VPC is already associated with the VPC and can't be associated again.
+type DnsDuplicateRuleGroupViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the VPC.
+	ViolationTarget *string `type:"string"`
+
+	// A description of the violation that specifies the rule group and VPC.
+	ViolationTargetDescription *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DnsDuplicateRuleGroupViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DnsDuplicateRuleGroupViolation) GoString() string {
+	return s.String()
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *DnsDuplicateRuleGroupViolation) SetViolationTarget(v string) *DnsDuplicateRuleGroupViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// SetViolationTargetDescription sets the ViolationTargetDescription field's value.
+func (s *DnsDuplicateRuleGroupViolation) SetViolationTargetDescription(v string) *DnsDuplicateRuleGroupViolation {
+	s.ViolationTargetDescription = &v
+	return s
+}
+
+// The VPC that Firewall Manager was applying a DNS Fireall policy to reached
+// the limit for associated DNS Firewall rule groups. Firewall Manager tried
+// to associate another rule group with the VPC and failed due to the limit.
+type DnsRuleGroupLimitExceededViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The number of rule groups currently associated with the VPC.
+	NumberOfRuleGroupsAlreadyAssociated *int64 `type:"integer"`
+
+	// The ID of the VPC.
+	ViolationTarget *string `type:"string"`
+
+	// A description of the violation that specifies the rule group and VPC.
+	ViolationTargetDescription *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DnsRuleGroupLimitExceededViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DnsRuleGroupLimitExceededViolation) GoString() string {
+	return s.String()
+}
+
+// SetNumberOfRuleGroupsAlreadyAssociated sets the NumberOfRuleGroupsAlreadyAssociated field's value.
+func (s *DnsRuleGroupLimitExceededViolation) SetNumberOfRuleGroupsAlreadyAssociated(v int64) *DnsRuleGroupLimitExceededViolation {
+	s.NumberOfRuleGroupsAlreadyAssociated = &v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *DnsRuleGroupLimitExceededViolation) SetViolationTarget(v string) *DnsRuleGroupLimitExceededViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// SetViolationTargetDescription sets the ViolationTargetDescription field's value.
+func (s *DnsRuleGroupLimitExceededViolation) SetViolationTargetDescription(v string) *DnsRuleGroupLimitExceededViolation {
+	s.ViolationTargetDescription = &v
+	return s
+}
+
+// A rule group that Firewall Manager tried to associate with a VPC has the
+// same priority as a rule group that's already associated.
+type DnsRuleGroupPriorityConflictViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Firewall Manager DNS Firewall policy that was already applied
+	// to the VPC. This policy contains the rule group that's already associated
+	// with the VPC.
+	ConflictingPolicyId *string `min:"36" type:"string"`
+
+	// The priority setting of the two conflicting rule groups.
+	ConflictingPriority *int64 `type:"integer"`
+
+	// The priorities of rule groups that are already associated with the VPC. To
+	// retry your operation, choose priority settings that aren't in this list for
+	// the rule groups in your new DNS Firewall policy.
+	UnavailablePriorities []*int64 `type:"list"`
+
+	// The ID of the VPC.
+	ViolationTarget *string `type:"string"`
+
+	// A description of the violation that specifies the VPC and the rule group
+	// that's already associated with it.
+	ViolationTargetDescription *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DnsRuleGroupPriorityConflictViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DnsRuleGroupPriorityConflictViolation) GoString() string {
+	return s.String()
+}
+
+// SetConflictingPolicyId sets the ConflictingPolicyId field's value.
+func (s *DnsRuleGroupPriorityConflictViolation) SetConflictingPolicyId(v string) *DnsRuleGroupPriorityConflictViolation {
+	s.ConflictingPolicyId = &v
+	return s
+}
+
+// SetConflictingPriority sets the ConflictingPriority field's value.
+func (s *DnsRuleGroupPriorityConflictViolation) SetConflictingPriority(v int64) *DnsRuleGroupPriorityConflictViolation {
+	s.ConflictingPriority = &v
+	return s
+}
+
+// SetUnavailablePriorities sets the UnavailablePriorities field's value.
+func (s *DnsRuleGroupPriorityConflictViolation) SetUnavailablePriorities(v []*int64) *DnsRuleGroupPriorityConflictViolation {
+	s.UnavailablePriorities = v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *DnsRuleGroupPriorityConflictViolation) SetViolationTarget(v string) *DnsRuleGroupPriorityConflictViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// SetViolationTargetDescription sets the ViolationTargetDescription field's value.
+func (s *DnsRuleGroupPriorityConflictViolation) SetViolationTargetDescription(v string) *DnsRuleGroupPriorityConflictViolation {
+	s.ViolationTargetDescription = &v
+	return s
+}
+
 // Describes the compliance status for the account. An account is considered
 // noncompliant if it includes resources that are not protected by the specified
 // policy or that don't comply with the policy.
@@ -6462,6 +6606,21 @@ type ResourceViolation struct {
 	// Violation details for security groups.
 	AwsVPCSecurityGroupViolation *AwsVPCSecurityGroupViolation `type:"structure"`
 
+	// Violation detail for a DNS Firewall policy that indicates that a rule group
+	// that Firewall Manager tried to associate with a VPC is already associated
+	// with the VPC and can't be associated again.
+	DnsDuplicateRuleGroupViolation *DnsDuplicateRuleGroupViolation `type:"structure"`
+
+	// Violation details for a DNS Firewall policy that indicates that the VPC reached
+	// the limit for associated DNS Firewall rule groups. Firewall Manager tried
+	// to associate another rule group with the VPC and failed.
+	DnsRuleGroupLimitExceededViolation *DnsRuleGroupLimitExceededViolation `type:"structure"`
+
+	// Violation detail for a DNS Firewall policy that indicates that a rule group
+	// that Firewall Manager tried to associate with a VPC has the same priority
+	// as a rule group that's already associated.
+	DnsRuleGroupPriorityConflictViolation *DnsRuleGroupPriorityConflictViolation `type:"structure"`
+
 	// Violation detail for an Network Firewall policy that indicates that a subnet
 	// is not associated with the expected Firewall Manager managed route table.
 	NetworkFirewallMissingExpectedRTViolation *NetworkFirewallMissingExpectedRTViolation `type:"structure"`
@@ -6507,6 +6666,24 @@ func (s *ResourceViolation) SetAwsEc2NetworkInterfaceViolation(v *AwsEc2NetworkI
 // SetAwsVPCSecurityGroupViolation sets the AwsVPCSecurityGroupViolation field's value.
 func (s *ResourceViolation) SetAwsVPCSecurityGroupViolation(v *AwsVPCSecurityGroupViolation) *ResourceViolation {
 	s.AwsVPCSecurityGroupViolation = v
+	return s
+}
+
+// SetDnsDuplicateRuleGroupViolation sets the DnsDuplicateRuleGroupViolation field's value.
+func (s *ResourceViolation) SetDnsDuplicateRuleGroupViolation(v *DnsDuplicateRuleGroupViolation) *ResourceViolation {
+	s.DnsDuplicateRuleGroupViolation = v
+	return s
+}
+
+// SetDnsRuleGroupLimitExceededViolation sets the DnsRuleGroupLimitExceededViolation field's value.
+func (s *ResourceViolation) SetDnsRuleGroupLimitExceededViolation(v *DnsRuleGroupLimitExceededViolation) *ResourceViolation {
+	s.DnsRuleGroupLimitExceededViolation = v
+	return s
+}
+
+// SetDnsRuleGroupPriorityConflictViolation sets the DnsRuleGroupPriorityConflictViolation field's value.
+func (s *ResourceViolation) SetDnsRuleGroupPriorityConflictViolation(v *DnsRuleGroupPriorityConflictViolation) *ResourceViolation {
+	s.DnsRuleGroupPriorityConflictViolation = v
 	return s
 }
 
@@ -7240,6 +7417,9 @@ const (
 
 	// SecurityServiceTypeNetworkFirewall is a SecurityServiceType enum value
 	SecurityServiceTypeNetworkFirewall = "NETWORK_FIREWALL"
+
+	// SecurityServiceTypeDnsFirewall is a SecurityServiceType enum value
+	SecurityServiceTypeDnsFirewall = "DNS_FIREWALL"
 )
 
 // SecurityServiceType_Values returns all elements of the SecurityServiceType enum
@@ -7252,6 +7432,7 @@ func SecurityServiceType_Values() []string {
 		SecurityServiceTypeSecurityGroupsContentAudit,
 		SecurityServiceTypeSecurityGroupsUsageAudit,
 		SecurityServiceTypeNetworkFirewall,
+		SecurityServiceTypeDnsFirewall,
 	}
 }
 
@@ -7283,6 +7464,9 @@ const (
 	// ViolationReasonSecurityGroupRedundant is a ViolationReason enum value
 	ViolationReasonSecurityGroupRedundant = "SECURITY_GROUP_REDUNDANT"
 
+	// ViolationReasonFmsCreatedSecurityGroupEdited is a ViolationReason enum value
+	ViolationReasonFmsCreatedSecurityGroupEdited = "FMS_CREATED_SECURITY_GROUP_EDITED"
+
 	// ViolationReasonMissingFirewall is a ViolationReason enum value
 	ViolationReasonMissingFirewall = "MISSING_FIREWALL"
 
@@ -7294,6 +7478,9 @@ const (
 
 	// ViolationReasonNetworkFirewallPolicyModified is a ViolationReason enum value
 	ViolationReasonNetworkFirewallPolicyModified = "NETWORK_FIREWALL_POLICY_MODIFIED"
+
+	// ViolationReasonResourceMissingDnsFirewall is a ViolationReason enum value
+	ViolationReasonResourceMissingDnsFirewall = "RESOURCE_MISSING_DNS_FIREWALL"
 )
 
 // ViolationReason_Values returns all elements of the ViolationReason enum
@@ -7308,9 +7495,11 @@ func ViolationReason_Values() []string {
 		ViolationReasonResourceViolatesAuditSecurityGroup,
 		ViolationReasonSecurityGroupUnused,
 		ViolationReasonSecurityGroupRedundant,
+		ViolationReasonFmsCreatedSecurityGroupEdited,
 		ViolationReasonMissingFirewall,
 		ViolationReasonMissingFirewallSubnetInAz,
 		ViolationReasonMissingExpectedRouteTable,
 		ViolationReasonNetworkFirewallPolicyModified,
+		ViolationReasonResourceMissingDnsFirewall,
 	}
 }

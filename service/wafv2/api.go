@@ -227,6 +227,8 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
+//   You tried to use a managed rule group that's available by subscription, but
+//   you aren't subscribed to it yet.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CheckCapacity
 func (c *WAFV2) CheckCapacity(input *CheckCapacityInput) (*CheckCapacityOutput, error) {
@@ -602,6 +604,8 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //   error. Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
+//   You tried to use a managed rule group that's available by subscription, but
+//   you aren't subscribed to it yet.
 //
 //   * WAFNonexistentItemException
 //   AWS WAF couldn’t perform the operation because your resource doesn’t
@@ -750,6 +754,8 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //   error. Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
+//   You tried to use a managed rule group that's available by subscription, but
+//   you aren't subscribed to it yet.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4103,6 +4109,12 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //
 // Updates the specified IPSet.
 //
+// This operation completely replaces any IP address specifications that you
+// already have in the IP set with the ones that you provide to this call. If
+// you want to add to or modify the addresses that are already in the IP set,
+// retrieve those by calling GetIPSet, update them, and provide the complete
+// updated array of IP addresses to this call.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4396,6 +4408,8 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
+//   You tried to use a managed rule group that's available by subscription, but
+//   you aren't subscribed to it yet.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4533,6 +4547,8 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //   AWS WAF couldn’t retrieve the resource that you requested. Retry your request.
 //
 //   * WAFSubscriptionNotFoundException
+//   You tried to use a managed rule group that's available by subscription, but
+//   you aren't subscribed to it yet.
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
@@ -4557,6 +4573,45 @@ func (c *WAFV2) UpdateWebACLWithContext(ctx aws.Context, input *UpdateWebACLInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// A single action condition for a Condition in a logging filter.
+type ActionCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The action setting that a log record must contain in order to meet the condition.
+	//
+	// Action is a required field
+	Action *string `type:"string" required:"true" enum:"ActionValue"`
+}
+
+// String returns the string representation
+func (s ActionCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActionCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActionCondition"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *ActionCondition) SetAction(v string) *ActionCondition {
+	s.Action = &v
+	return s
 }
 
 // Inspect all of the elements that AWS WAF has parsed and extracted from the
@@ -5099,6 +5154,59 @@ func (s CheckCapacityOutput) GoString() string {
 // SetCapacity sets the Capacity field's value.
 func (s *CheckCapacityOutput) SetCapacity(v int64) *CheckCapacityOutput {
 	s.Capacity = &v
+	return s
+}
+
+// A single match condition for a Filter.
+type Condition struct {
+	_ struct{} `type:"structure"`
+
+	// A single action condition.
+	ActionCondition *ActionCondition `type:"structure"`
+
+	// A single label name condition.
+	LabelNameCondition *LabelNameCondition `type:"structure"`
+}
+
+// String returns the string representation
+func (s Condition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Condition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Condition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Condition"}
+	if s.ActionCondition != nil {
+		if err := s.ActionCondition.Validate(); err != nil {
+			invalidParams.AddNested("ActionCondition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LabelNameCondition != nil {
+		if err := s.LabelNameCondition.Validate(); err != nil {
+			invalidParams.AddNested("LabelNameCondition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActionCondition sets the ActionCondition field's value.
+func (s *Condition) SetActionCondition(v *ActionCondition) *Condition {
+	s.ActionCondition = v
+	return s
+}
+
+// SetLabelNameCondition sets the LabelNameCondition field's value.
+func (s *Condition) SetLabelNameCondition(v *LabelNameCondition) *Condition {
+	s.LabelNameCondition = v
 	return s
 }
 
@@ -7045,6 +7153,10 @@ func (s *DescribeManagedRuleGroupInput) SetVendorName(v string) *DescribeManaged
 type DescribeManagedRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The labels that one or more rules in this rule group add to matching web
+	// ACLs. These labels are defined in the RuleLabels for a Rule.
+	AvailableLabels []*LabelSummary `type:"list"`
+
 	// The web ACL capacity units (WCUs) required for this rule group. AWS WAF uses
 	// web ACL capacity units (WCU) to calculate and control the operating resources
 	// that are used to run your rules, rule groups, and web ACLs. AWS WAF calculates
@@ -7052,6 +7164,24 @@ type DescribeManagedRuleGroupOutput struct {
 	// cost. Rule group capacity is fixed at creation, so users can plan their web
 	// ACL WCU usage when they use a rule group. The WCU limit for web ACLs is 1,500.
 	Capacity *int64 `min:"1" type:"long"`
+
+	// The labels that one or more rules in this rule group match against in label
+	// match statements. These labels are defined in a LabelMatchStatement specification,
+	// in the Statement definition of a rule.
+	ConsumedLabels []*LabelSummary `type:"list"`
+
+	// The label namespace prefix for this rule group. All labels added by rules
+	// in this rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, AWS WAF adds the fully
+	//    qualified label to the request. A fully qualified label is made up of
+	//    the label namespace from the rule group or web ACL where the rule is defined
+	//    and the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
 
 	Rules []*RuleSummary `type:"list"`
 }
@@ -7066,9 +7196,27 @@ func (s DescribeManagedRuleGroupOutput) GoString() string {
 	return s.String()
 }
 
+// SetAvailableLabels sets the AvailableLabels field's value.
+func (s *DescribeManagedRuleGroupOutput) SetAvailableLabels(v []*LabelSummary) *DescribeManagedRuleGroupOutput {
+	s.AvailableLabels = v
+	return s
+}
+
 // SetCapacity sets the Capacity field's value.
 func (s *DescribeManagedRuleGroupOutput) SetCapacity(v int64) *DescribeManagedRuleGroupOutput {
 	s.Capacity = &v
+	return s
+}
+
+// SetConsumedLabels sets the ConsumedLabels field's value.
+func (s *DescribeManagedRuleGroupOutput) SetConsumedLabels(v []*LabelSummary) *DescribeManagedRuleGroupOutput {
+	s.ConsumedLabels = v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *DescribeManagedRuleGroupOutput) SetLabelNamespace(v string) *DescribeManagedRuleGroupOutput {
+	s.LabelNamespace = &v
 	return s
 }
 
@@ -7337,6 +7485,88 @@ func (s *FieldToMatch) SetSingleQueryArgument(v *SingleQueryArgument) *FieldToMa
 // SetUriPath sets the UriPath field's value.
 func (s *FieldToMatch) SetUriPath(v *UriPath) *FieldToMatch {
 	s.UriPath = v
+	return s
+}
+
+// A single logging filter, used in LoggingFilter.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// How to handle logs that satisfy the filter's conditions and requirement.
+	//
+	// Behavior is a required field
+	Behavior *string `type:"string" required:"true" enum:"FilterBehavior"`
+
+	// Match conditions for the filter.
+	//
+	// Conditions is a required field
+	Conditions []*Condition `min:"1" type:"list" required:"true"`
+
+	// Logic to apply to the filtering conditions. You can specify that, in order
+	// to satisfy the filter, a log must match all conditions or must match at least
+	// one condition.
+	//
+	// Requirement is a required field
+	Requirement *string `type:"string" required:"true" enum:"FilterRequirement"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Filter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Filter"}
+	if s.Behavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("Behavior"))
+	}
+	if s.Conditions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Conditions"))
+	}
+	if s.Conditions != nil && len(s.Conditions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Conditions", 1))
+	}
+	if s.Requirement == nil {
+		invalidParams.Add(request.NewErrParamRequired("Requirement"))
+	}
+	if s.Conditions != nil {
+		for i, v := range s.Conditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Conditions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBehavior sets the Behavior field's value.
+func (s *Filter) SetBehavior(v string) *Filter {
+	s.Behavior = &v
+	return s
+}
+
+// SetConditions sets the Conditions field's value.
+func (s *Filter) SetConditions(v []*Condition) *Filter {
+	s.Conditions = v
+	return s
+}
+
+// SetRequirement sets the Requirement field's value.
+func (s *Filter) SetRequirement(v string) *Filter {
+	s.Requirement = &v
 	return s
 }
 
@@ -9112,25 +9342,33 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 type JsonBody struct {
 	_ struct{} `type:"structure"`
 
-	// The inspection behavior to fall back to if the JSON in the request body is
-	// invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical
-	// JSON, content whose root node isn't an object or an array, and duplicate
-	// keys in the content.
+	// What AWS WAF should do if it fails to completely parse the JSON body. The
+	// options are the following:
 	//
-	// You can specify the following fallback behaviors:
+	//    * EVALUATE_AS_STRING - Inspect the body as plain text. AWS WAF applies
+	//    the text transformations and inspection criteria that you defined for
+	//    the JSON inspection to the body text string.
 	//
 	//    * MATCH - Treat the web request as matching the rule statement. AWS WAF
 	//    applies the rule action to the request.
 	//
 	//    * NO_MATCH - Treat the web request as not matching the rule statement.
 	//
-	//    * EVALUATE_AS_STRING - Inspect the body as plain text. This option applies
-	//    the text transformations and inspection criteria that you defined for
-	//    the JSON inspection to the body text string.
+	// If you don't provide this setting, AWS WAF parses and evaluates the content
+	// only up to the first parsing failure that it encounters.
 	//
-	// If you don't provide this setting, when AWS WAF encounters invalid JSON,
-	// it parses and inspects what it can, up to the first invalid JSON that it
-	// encounters.
+	// AWS WAF does its best to parse the entire JSON body, but might be forced
+	// to stop for reasons such as invalid characters, duplicate keys, truncation,
+	// and any content whose root node isn't an object or an array.
+	//
+	// AWS WAF parses the JSON in the following examples as two valid key, value
+	// pairs:
+	//
+	//    * Missing comma: {"key1":"value1""key2":"value2"}
+	//
+	//    * Missing colon: {"key1":"value1","key2""value2"}
+	//
+	//    * Extra colons: {"key1"::"value1","key2""value2"}
 	InvalidFallbackBehavior *string `type:"string" enum:"BodyParsingFallbackBehavior"`
 
 	// The patterns to look for in the JSON body. AWS WAF inspects the results of
@@ -9252,6 +9490,206 @@ func (s *JsonMatchPattern) SetAll(v *All) *JsonMatchPattern {
 // SetIncludedPaths sets the IncludedPaths field's value.
 func (s *JsonMatchPattern) SetIncludedPaths(v []*string) *JsonMatchPattern {
 	s.IncludedPaths = v
+	return s
+}
+
+// A single label container. This is used as an element of a label array in
+// multiple contexts, for example, in RuleLabels inside a Rule and in Labels
+// inside a SampledHTTPRequest.
+type Label struct {
+	_ struct{} `type:"structure"`
+
+	// The label string.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Label) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Label) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Label) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Label"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Label) SetName(v string) *Label {
+	s.Name = &v
+	return s
+}
+
+// A rule statement that defines a string match search against labels that have
+// been added to the web request by rules that have already run in the web ACL.
+//
+// The label match statement provides the label or namespace string to search
+// for. The label string can represent a part or all of the fully qualified
+// label name that had been added to the web request. Fully qualified labels
+// have a prefix, optional namespaces, and label name. The prefix identifies
+// the rule group or web ACL context of the rule that added the label. If you
+// do not provide the fully qualified name in your label match string, AWS WAF
+// performs the search for labels that were added in the same context as the
+// label match statement.
+type LabelMatchStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The string to match against. The setting you provide for this depends on
+	// the match statement's Scope settings:
+	//
+	//    * If the Scope indicates LABEL, then this specification must include the
+	//    name and can include any number of preceding namespace specifications
+	//    and prefix up to providing the fully qualified label name.
+	//
+	//    * If the Scope indicates NAMESPACE, then this specification can include
+	//    any number of contiguous namespace strings, and can include the entire
+	//    label namespace prefix from the rule group or web ACL where the label
+	//    originates.
+	//
+	// Labels are case sensitive and components of a label must be separated by
+	// colon, for example NS1:NS2:name.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// Specify whether you want to match using the label name or just the namespace.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"LabelMatchScope"`
+}
+
+// String returns the string representation
+func (s LabelMatchStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LabelMatchStatement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LabelMatchStatement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LabelMatchStatement"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *LabelMatchStatement) SetKey(v string) *LabelMatchStatement {
+	s.Key = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *LabelMatchStatement) SetScope(v string) *LabelMatchStatement {
+	s.Scope = &v
+	return s
+}
+
+// A single label name condition for a Condition in a logging filter.
+type LabelNameCondition struct {
+	_ struct{} `type:"structure"`
+
+	// The label name that a log record must contain in order to meet the condition.
+	// This must be a fully qualified label name. Fully qualified labels have a
+	// prefix, optional namespaces, and label name. The prefix identifies the rule
+	// group or web ACL context of the rule that added the label.
+	//
+	// LabelName is a required field
+	LabelName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s LabelNameCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LabelNameCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LabelNameCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LabelNameCondition"}
+	if s.LabelName == nil {
+		invalidParams.Add(request.NewErrParamRequired("LabelName"))
+	}
+	if s.LabelName != nil && len(*s.LabelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LabelName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLabelName sets the LabelName field's value.
+func (s *LabelNameCondition) SetLabelName(v string) *LabelNameCondition {
+	s.LabelName = &v
+	return s
+}
+
+// List of labels used by one or more of the rules of a RuleGroup. This summary
+// object is used for the following rule group lists:
+//
+//    * AvailableLabels - Labels that rules add to matching requests. These
+//    labels are defined in the RuleLabels for a Rule.
+//
+//    * ConsumedLabels - Labels that rules match against. These labels are defined
+//    in a LabelMatchStatement specification, in the Statement definition of
+//    a rule.
+type LabelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An individual label specification.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LabelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LabelSummary) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *LabelSummary) SetName(v string) *LabelSummary {
+	s.Name = &v
 	return s
 }
 
@@ -10100,7 +10538,9 @@ func (s *ListWebACLsOutput) SetWebACLs(v []*WebACLSummary) *ListWebACLsOutput {
 
 // Defines an association between Amazon Kinesis Data Firehose destinations
 // and a web ACL resource, for logging from AWS WAF. As part of the association,
-// you can specify parts of the standard logging fields to keep out of the logs.
+// you can specify parts of the standard logging fields to keep out of the logs
+// and you can specify filters so that you log only a subset of the logging
+// records.
 type LoggingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10109,6 +10549,11 @@ type LoggingConfiguration struct {
 	//
 	// LogDestinationConfigs is a required field
 	LogDestinationConfigs []*string `min:"1" type:"list" required:"true"`
+
+	// Filtering that specifies which web requests are kept in the logs and which
+	// are dropped. You can filter on the rule action and on the web request labels
+	// that were applied by matching rules during web ACL evaluation.
+	LoggingFilter *LoggingFilter `type:"structure"`
 
 	// Indicates whether the logging configuration was created by AWS Firewall Manager,
 	// as part of an AWS WAF policy configuration. If true, only Firewall Manager
@@ -10154,6 +10599,11 @@ func (s *LoggingConfiguration) Validate() error {
 	if s.ResourceArn != nil && len(*s.ResourceArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 20))
 	}
+	if s.LoggingFilter != nil {
+		if err := s.LoggingFilter.Validate(); err != nil {
+			invalidParams.AddNested("LoggingFilter", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RedactedFields != nil {
 		for i, v := range s.RedactedFields {
 			if v == nil {
@@ -10177,6 +10627,12 @@ func (s *LoggingConfiguration) SetLogDestinationConfigs(v []*string) *LoggingCon
 	return s
 }
 
+// SetLoggingFilter sets the LoggingFilter field's value.
+func (s *LoggingConfiguration) SetLoggingFilter(v *LoggingFilter) *LoggingConfiguration {
+	s.LoggingFilter = v
+	return s
+}
+
 // SetManagedByFirewallManager sets the ManagedByFirewallManager field's value.
 func (s *LoggingConfiguration) SetManagedByFirewallManager(v bool) *LoggingConfiguration {
 	s.ManagedByFirewallManager = &v
@@ -10192,6 +10648,77 @@ func (s *LoggingConfiguration) SetRedactedFields(v []*FieldToMatch) *LoggingConf
 // SetResourceArn sets the ResourceArn field's value.
 func (s *LoggingConfiguration) SetResourceArn(v string) *LoggingConfiguration {
 	s.ResourceArn = &v
+	return s
+}
+
+// Filtering that specifies which web requests are kept in the logs and which
+// are dropped, defined for a web ACL's LoggingConfiguration.
+//
+// You can filter on the rule action and on the web request labels that were
+// applied by matching rules during web ACL evaluation.
+type LoggingFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Default handling for logs that don't match any of the specified filtering
+	// conditions.
+	//
+	// DefaultBehavior is a required field
+	DefaultBehavior *string `type:"string" required:"true" enum:"FilterBehavior"`
+
+	// The filters that you want to apply to the logs.
+	//
+	// Filters is a required field
+	Filters []*Filter `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s LoggingFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LoggingFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LoggingFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LoggingFilter"}
+	if s.DefaultBehavior == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultBehavior"))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultBehavior sets the DefaultBehavior field's value.
+func (s *LoggingFilter) SetDefaultBehavior(v string) *LoggingFilter {
+	s.DefaultBehavior = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *LoggingFilter) SetFilters(v []*Filter) *LoggingFilter {
+	s.Filters = v
 	return s
 }
 
@@ -10215,6 +10742,10 @@ type ManagedRuleGroupStatement struct {
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
+
+	// The processing guidance for a Rule, used by AWS WAF to determine whether
+	// a web request matches the rule.
+	ScopeDownStatement *Statement `type:"structure"`
 
 	// The name of the managed rule group vendor. You use this, along with the rule
 	// group name, to identify the rule group.
@@ -10258,6 +10789,11 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 			}
 		}
 	}
+	if s.ScopeDownStatement != nil {
+		if err := s.ScopeDownStatement.Validate(); err != nil {
+			invalidParams.AddNested("ScopeDownStatement", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10274,6 +10810,12 @@ func (s *ManagedRuleGroupStatement) SetExcludedRules(v []*ExcludedRule) *Managed
 // SetName sets the Name field's value.
 func (s *ManagedRuleGroupStatement) SetName(v string) *ManagedRuleGroupStatement {
 	s.Name = &v
+	return s
+}
+
+// SetScopeDownStatement sets the ScopeDownStatement field's value.
+func (s *ManagedRuleGroupStatement) SetScopeDownStatement(v *Statement) *ManagedRuleGroupStatement {
+	s.ScopeDownStatement = v
 	return s
 }
 
@@ -10535,7 +11077,9 @@ type PutLoggingConfigurationInput struct {
 
 	// Defines an association between Amazon Kinesis Data Firehose destinations
 	// and a web ACL resource, for logging from AWS WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs.
+	// you can specify parts of the standard logging fields to keep out of the logs
+	// and you can specify filters so that you log only a subset of the logging
+	// records.
 	//
 	// LoggingConfiguration is a required field
 	LoggingConfiguration *LoggingConfiguration `type:"structure" required:"true"`
@@ -10580,7 +11124,9 @@ type PutLoggingConfigurationOutput struct {
 
 	// Defines an association between Amazon Kinesis Data Firehose destinations
 	// and a web ACL resource, for logging from AWS WAF. As part of the association,
-	// you can specify parts of the standard logging fields to keep out of the logs.
+	// you can specify parts of the standard logging fields to keep out of the logs
+	// and you can specify filters so that you log only a subset of the logging
+	// records.
 	LoggingConfiguration *LoggingConfiguration `type:"structure"`
 }
 
@@ -11205,6 +11751,29 @@ type Rule struct {
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
 
+	// Labels to apply to web requests that match the rule match statement. AWS
+	// WAF applies fully qualified labels to matching web requests. A fully qualified
+	// label is the concatenation of a label namespace and a rule label. The rule's
+	// rule group or web ACL defines the label namespace.
+	//
+	// Rules that run after this rule in the web ACL can match against these labels
+	// using a LabelMatchStatement.
+	//
+	// For each label, provide a case-sensitive string containing optional namespaces
+	// and a label name, according to the following guidelines:
+	//
+	//    * Separate each component of the label with a colon.
+	//
+	//    * Each namespace or name can have up to 128 characters.
+	//
+	//    * You can specify up to 5 namespaces in a label.
+	//
+	//    * Don't use the following reserved words in your label specification:
+	//    aws, waf, managed, rulegroup, webacl, regexpatternset, or ipset.
+	//
+	// For example, myLabelName or nameSpace1:nameSpace2:myLabelName.
+	RuleLabels []*Label `type:"list"`
+
 	// The AWS WAF processing statement for the rule, for example ByteMatchStatement
 	// or SizeConstraintStatement.
 	//
@@ -11255,6 +11824,16 @@ func (s *Rule) Validate() error {
 			invalidParams.AddNested("OverrideAction", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RuleLabels != nil {
+		for i, v := range s.RuleLabels {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RuleLabels", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Statement != nil {
 		if err := s.Statement.Validate(); err != nil {
 			invalidParams.AddNested("Statement", err.(request.ErrInvalidParams))
@@ -11293,6 +11872,12 @@ func (s *Rule) SetOverrideAction(v *OverrideAction) *Rule {
 // SetPriority sets the Priority field's value.
 func (s *Rule) SetPriority(v int64) *Rule {
 	s.Priority = &v
+	return s
+}
+
+// SetRuleLabels sets the RuleLabels field's value.
+func (s *Rule) SetRuleLabels(v []*Label) *Rule {
+	s.RuleLabels = v
 	return s
 }
 
@@ -11389,6 +11974,10 @@ type RuleGroup struct {
 	// ARN is a required field
 	ARN *string `min:"20" type:"string" required:"true"`
 
+	// The labels that one or more rules in this rule group add to matching web
+	// ACLs. These labels are defined in the RuleLabels for a Rule.
+	AvailableLabels []*LabelSummary `type:"list"`
+
 	// The web ACL capacity units (WCUs) required for this rule group.
 	//
 	// When you create your own rule group, you define this, and you cannot change
@@ -11406,6 +11995,11 @@ type RuleGroup struct {
 	//
 	// Capacity is a required field
 	Capacity *int64 `min:"1" type:"long" required:"true"`
+
+	// The labels that one or more rules in this rule group match against in label
+	// match statements. These labels are defined in a LabelMatchStatement specification,
+	// in the Statement definition of a rule.
+	ConsumedLabels []*LabelSummary `type:"list"`
 
 	// A map of custom response keys and content bodies. When you create a rule
 	// with a block action, you can send a custom response to the web request. You
@@ -11430,6 +12024,19 @@ type RuleGroup struct {
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
+
+	// The label namespace prefix for this rule group. All labels added by rules
+	// in this rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for your rule groups is the
+	//    following: awswaf:<account ID>:rulegroup:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, AWS WAF adds the fully
+	//    qualified label to the request. A fully qualified label is made up of
+	//    the label namespace from the rule group or web ACL where the rule is defined
+	//    and the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
 
 	// The name of the rule group. You cannot change the name of a rule group after
 	// you create it.
@@ -11465,9 +12072,21 @@ func (s *RuleGroup) SetARN(v string) *RuleGroup {
 	return s
 }
 
+// SetAvailableLabels sets the AvailableLabels field's value.
+func (s *RuleGroup) SetAvailableLabels(v []*LabelSummary) *RuleGroup {
+	s.AvailableLabels = v
+	return s
+}
+
 // SetCapacity sets the Capacity field's value.
 func (s *RuleGroup) SetCapacity(v int64) *RuleGroup {
 	s.Capacity = &v
+	return s
+}
+
+// SetConsumedLabels sets the ConsumedLabels field's value.
+func (s *RuleGroup) SetConsumedLabels(v []*LabelSummary) *RuleGroup {
+	s.ConsumedLabels = v
 	return s
 }
 
@@ -11486,6 +12105,12 @@ func (s *RuleGroup) SetDescription(v string) *RuleGroup {
 // SetId sets the Id field's value.
 func (s *RuleGroup) SetId(v string) *RuleGroup {
 	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *RuleGroup) SetLabelNamespace(v string) *RuleGroup {
+	s.LabelNamespace = &v
 	return s
 }
 
@@ -11695,6 +12320,15 @@ type SampledHTTPRequest struct {
 	// The action for the Rule that the request matched: ALLOW, BLOCK, or COUNT.
 	Action *string `type:"string"`
 
+	// Labels applied to the web request by matching rules. AWS WAF applies fully
+	// qualified labels to matching web requests. A fully qualified label is the
+	// concatenation of a label namespace and a rule label. The rule's rule group
+	// or web ACL defines the label namespace.
+	//
+	// For example, awswaf:111122223333:myRuleGroup:testRules:testNS1:testNS2:labelNameA
+	// or awswaf:managed:aws:managed-rule-set:header:encoding:utf8.
+	Labels []*Label `type:"list"`
+
 	// A complex type that contains detailed information about the request.
 	//
 	// Request is a required field
@@ -11739,6 +12373,12 @@ func (s SampledHTTPRequest) GoString() string {
 // SetAction sets the Action field's value.
 func (s *SampledHTTPRequest) SetAction(v string) *SampledHTTPRequest {
 	s.Action = &v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *SampledHTTPRequest) SetLabels(v []*Label) *SampledHTTPRequest {
+	s.Labels = v
 	return s
 }
 
@@ -12096,6 +12736,19 @@ type Statement struct {
 	// updates all rules that reference it.
 	IPSetReferenceStatement *IPSetReferenceStatement `type:"structure"`
 
+	// A rule statement that defines a string match search against labels that have
+	// been added to the web request by rules that have already run in the web ACL.
+	//
+	// The label match statement provides the label or namespace string to search
+	// for. The label string can represent a part or all of the fully qualified
+	// label name that had been added to the web request. Fully qualified labels
+	// have a prefix, optional namespaces, and label name. The prefix identifies
+	// the rule group or web ACL context of the rule that added the label. If you
+	// do not provide the fully qualified name in your label match string, AWS WAF
+	// performs the search for labels that were added in the same context as the
+	// label match statement.
+	LabelMatchStatement *LabelMatchStatement `type:"structure"`
+
 	// A rule statement used to run the rules that are defined in a managed rule
 	// group. To use this, provide the vendor name and the name of the rule group
 	// in this statement. You can retrieve the required names by calling ListAvailableManagedRuleGroups.
@@ -12233,6 +12886,11 @@ func (s *Statement) Validate() error {
 			invalidParams.AddNested("IPSetReferenceStatement", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LabelMatchStatement != nil {
+		if err := s.LabelMatchStatement.Validate(); err != nil {
+			invalidParams.AddNested("LabelMatchStatement", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ManagedRuleGroupStatement != nil {
 		if err := s.ManagedRuleGroupStatement.Validate(); err != nil {
 			invalidParams.AddNested("ManagedRuleGroupStatement", err.(request.ErrInvalidParams))
@@ -12306,6 +12964,12 @@ func (s *Statement) SetGeoMatchStatement(v *GeoMatchStatement) *Statement {
 // SetIPSetReferenceStatement sets the IPSetReferenceStatement field's value.
 func (s *Statement) SetIPSetReferenceStatement(v *IPSetReferenceStatement) *Statement {
 	s.IPSetReferenceStatement = v
+	return s
+}
+
+// SetLabelMatchStatement sets the LabelMatchStatement field's value.
+func (s *Statement) SetLabelMatchStatement(v *LabelMatchStatement) *Statement {
+	s.LabelMatchStatement = v
 	return s
 }
 
@@ -14391,6 +15055,8 @@ func (s *WAFServiceLinkedRoleErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// You tried to use a managed rule group that's available by subscription, but
+// you aren't subscribed to it yet.
 type WAFSubscriptionNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14673,6 +15339,19 @@ type WebACL struct {
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true"`
 
+	// The label namespace prefix for this web ACL. All labels added by rules in
+	// this web ACL have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a web ACL is the following:
+	//    awswaf:<account ID>:webacl:<web ACL name>:
+	//
+	//    * When a rule with a label matches a web request, AWS WAF adds the fully
+	//    qualified label to the request. A fully qualified label is made up of
+	//    the label namespace from the rule group or web ACL where the rule is defined
+	//    and the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
 	// Indicates whether this web ACL is managed by AWS Firewall Manager. If true,
 	// then only AWS Firewall Manager can delete the web ACL or any Firewall Manager
 	// rule groups in the web ACL.
@@ -14761,6 +15440,12 @@ func (s *WebACL) SetDescription(v string) *WebACL {
 // SetId sets the Id field's value.
 func (s *WebACL) SetId(v string) *WebACL {
 	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *WebACL) SetLabelNamespace(v string) *WebACL {
+	s.LabelNamespace = &v
 	return s
 }
 
@@ -14952,6 +15637,26 @@ func (s *XssMatchStatement) SetFieldToMatch(v *FieldToMatch) *XssMatchStatement 
 func (s *XssMatchStatement) SetTextTransformations(v []*TextTransformation) *XssMatchStatement {
 	s.TextTransformations = v
 	return s
+}
+
+const (
+	// ActionValueAllow is a ActionValue enum value
+	ActionValueAllow = "ALLOW"
+
+	// ActionValueBlock is a ActionValue enum value
+	ActionValueBlock = "BLOCK"
+
+	// ActionValueCount is a ActionValue enum value
+	ActionValueCount = "COUNT"
+)
+
+// ActionValue_Values returns all elements of the ActionValue enum
+func ActionValue_Values() []string {
+	return []string{
+		ActionValueAllow,
+		ActionValueBlock,
+		ActionValueCount,
+	}
 }
 
 const (
@@ -16027,6 +16732,38 @@ func FallbackBehavior_Values() []string {
 }
 
 const (
+	// FilterBehaviorKeep is a FilterBehavior enum value
+	FilterBehaviorKeep = "KEEP"
+
+	// FilterBehaviorDrop is a FilterBehavior enum value
+	FilterBehaviorDrop = "DROP"
+)
+
+// FilterBehavior_Values returns all elements of the FilterBehavior enum
+func FilterBehavior_Values() []string {
+	return []string{
+		FilterBehaviorKeep,
+		FilterBehaviorDrop,
+	}
+}
+
+const (
+	// FilterRequirementMeetsAll is a FilterRequirement enum value
+	FilterRequirementMeetsAll = "MEETS_ALL"
+
+	// FilterRequirementMeetsAny is a FilterRequirement enum value
+	FilterRequirementMeetsAny = "MEETS_ANY"
+)
+
+// FilterRequirement_Values returns all elements of the FilterRequirement enum
+func FilterRequirement_Values() []string {
+	return []string{
+		FilterRequirementMeetsAll,
+		FilterRequirementMeetsAny,
+	}
+}
+
+const (
 	// ForwardedIPPositionFirst is a ForwardedIPPosition enum value
 	ForwardedIPPositionFirst = "FIRST"
 
@@ -16079,6 +16816,22 @@ func JsonMatchScope_Values() []string {
 		JsonMatchScopeAll,
 		JsonMatchScopeKey,
 		JsonMatchScopeValue,
+	}
+}
+
+const (
+	// LabelMatchScopeLabel is a LabelMatchScope enum value
+	LabelMatchScopeLabel = "LABEL"
+
+	// LabelMatchScopeNamespace is a LabelMatchScope enum value
+	LabelMatchScopeNamespace = "NAMESPACE"
+)
+
+// LabelMatchScope_Values returns all elements of the LabelMatchScope enum
+func LabelMatchScope_Values() []string {
+	return []string{
+		LabelMatchScopeLabel,
+		LabelMatchScopeNamespace,
 	}
 }
 
@@ -16136,6 +16889,9 @@ const (
 
 	// ParameterExceptionFieldManagedRuleSetStatement is a ParameterExceptionField enum value
 	ParameterExceptionFieldManagedRuleSetStatement = "MANAGED_RULE_SET_STATEMENT"
+
+	// ParameterExceptionFieldLabelMatchStatement is a ParameterExceptionField enum value
+	ParameterExceptionFieldLabelMatchStatement = "LABEL_MATCH_STATEMENT"
 
 	// ParameterExceptionFieldAndStatement is a ParameterExceptionField enum value
 	ParameterExceptionFieldAndStatement = "AND_STATEMENT"
@@ -16232,6 +16988,12 @@ const (
 
 	// ParameterExceptionFieldBodyParsingFallbackBehavior is a ParameterExceptionField enum value
 	ParameterExceptionFieldBodyParsingFallbackBehavior = "BODY_PARSING_FALLBACK_BEHAVIOR"
+
+	// ParameterExceptionFieldLoggingFilter is a ParameterExceptionField enum value
+	ParameterExceptionFieldLoggingFilter = "LOGGING_FILTER"
+
+	// ParameterExceptionFieldFilterCondition is a ParameterExceptionField enum value
+	ParameterExceptionFieldFilterCondition = "FILTER_CONDITION"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -16255,6 +17017,7 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldRegexPatternReferenceStatement,
 		ParameterExceptionFieldIpSetReferenceStatement,
 		ParameterExceptionFieldManagedRuleSetStatement,
+		ParameterExceptionFieldLabelMatchStatement,
 		ParameterExceptionFieldAndStatement,
 		ParameterExceptionFieldOrStatement,
 		ParameterExceptionFieldNotStatement,
@@ -16287,6 +17050,8 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldJsonMatchPattern,
 		ParameterExceptionFieldJsonMatchScope,
 		ParameterExceptionFieldBodyParsingFallbackBehavior,
+		ParameterExceptionFieldLoggingFilter,
+		ParameterExceptionFieldFilterCondition,
 	}
 }
 

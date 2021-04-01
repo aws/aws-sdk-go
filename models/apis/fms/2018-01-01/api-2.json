@@ -484,6 +484,11 @@
         "PossibleSecurityGroupRemediationActions":{"shape":"SecurityGroupRemediationActions"}
       }
     },
+    "BasicInteger":{
+      "type":"integer",
+      "max":2147483647,
+      "min":-2147483648
+    },
     "Boolean":{"type":"boolean"},
     "CIDR":{
       "type":"string",
@@ -570,6 +575,40 @@
     "DisassociateAdminAccountRequest":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DnsDuplicateRuleGroupViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ViolationTargetDescription":{"shape":"LengthBoundedString"}
+      }
+    },
+    "DnsRuleGroupLimitExceededViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ViolationTargetDescription":{"shape":"LengthBoundedString"},
+        "NumberOfRuleGroupsAlreadyAssociated":{"shape":"BasicInteger"}
+      }
+    },
+    "DnsRuleGroupPriorities":{
+      "type":"list",
+      "member":{"shape":"DnsRuleGroupPriority"}
+    },
+    "DnsRuleGroupPriority":{
+      "type":"integer",
+      "max":10000,
+      "min":0
+    },
+    "DnsRuleGroupPriorityConflictViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ViolationTargetDescription":{"shape":"LengthBoundedString"},
+        "ConflictingPriority":{"shape":"DnsRuleGroupPriority"},
+        "ConflictingPolicyId":{"shape":"PolicyId"},
+        "UnavailablePriorities":{"shape":"DnsRuleGroupPriorities"}
       }
     },
     "ErrorMessage":{"type":"string"},
@@ -1239,7 +1278,10 @@
         "NetworkFirewallMissingFirewallViolation":{"shape":"NetworkFirewallMissingFirewallViolation"},
         "NetworkFirewallMissingSubnetViolation":{"shape":"NetworkFirewallMissingSubnetViolation"},
         "NetworkFirewallMissingExpectedRTViolation":{"shape":"NetworkFirewallMissingExpectedRTViolation"},
-        "NetworkFirewallPolicyModifiedViolation":{"shape":"NetworkFirewallPolicyModifiedViolation"}
+        "NetworkFirewallPolicyModifiedViolation":{"shape":"NetworkFirewallPolicyModifiedViolation"},
+        "DnsRuleGroupPriorityConflictViolation":{"shape":"DnsRuleGroupPriorityConflictViolation"},
+        "DnsDuplicateRuleGroupViolation":{"shape":"DnsDuplicateRuleGroupViolation"},
+        "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"}
       }
     },
     "ResourceViolations":{
@@ -1287,7 +1329,8 @@
         "SECURITY_GROUPS_COMMON",
         "SECURITY_GROUPS_CONTENT_AUDIT",
         "SECURITY_GROUPS_USAGE_AUDIT",
-        "NETWORK_FIREWALL"
+        "NETWORK_FIREWALL",
+        "DNS_FIREWALL"
       ]
     },
     "StatefulRuleGroup":{
@@ -1433,10 +1476,12 @@
         "RESOURCE_VIOLATES_AUDIT_SECURITY_GROUP",
         "SECURITY_GROUP_UNUSED",
         "SECURITY_GROUP_REDUNDANT",
+        "FMS_CREATED_SECURITY_GROUP_EDITED",
         "MISSING_FIREWALL",
         "MISSING_FIREWALL_SUBNET_IN_AZ",
         "MISSING_EXPECTED_ROUTE_TABLE",
-        "NETWORK_FIREWALL_POLICY_MODIFIED"
+        "NETWORK_FIREWALL_POLICY_MODIFIED",
+        "RESOURCE_MISSING_DNS_FIREWALL"
       ]
     },
     "ViolationTarget":{

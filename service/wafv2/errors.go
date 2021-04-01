@@ -122,6 +122,9 @@ const (
 
 	// ErrCodeWAFSubscriptionNotFoundException for service response error code
 	// "WAFSubscriptionNotFoundException".
+	//
+	// You tried to use a managed rule group that's available by subscription, but
+	// you aren't subscribed to it yet.
 	ErrCodeWAFSubscriptionNotFoundException = "WAFSubscriptionNotFoundException"
 
 	// ErrCodeWAFTagOperationException for service response error code

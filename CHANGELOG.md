@@ -1,3 +1,21 @@
+Release v1.38.11 (2021-04-01)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * VPC Flow Logs Service adds a new API, GetFlowLogsIntegrationTemplate, which generates CloudFormation templates for Athena. For more info, see https://docs.aws.amazon.com/console/vpc/flow-logs/athena
+* `service/fms`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * AWS Kendra's ServiceNow data source now supports OAuth 2.0 authentication and knowledge article filtering via a ServiceNow query.
+* `service/lex-models`: Updates service API
+* `service/lightsail`: Updates service API and documentation
+  * - This release adds support for state detail for Amazon Lightsail container services.
+* `service/mediaconvert`: Updates service API and documentation
+  * MediaConvert now supports HLS ingest, sidecar WebVTT ingest, Teletext color & style passthrough to TTML subtitles, TTML to WebVTT subtitle conversion with style, & DRC profiles in AC3 audio.
+* `service/route53resolver`: Updates service API, documentation, and paginators
+* `service/runtime.lex`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.38.10 (2021-03-31)
 ===
 

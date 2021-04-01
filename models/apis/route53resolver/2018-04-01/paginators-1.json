@@ -1,5 +1,41 @@
 {
   "pagination": {
+    "ListFirewallConfigs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FirewallConfigs"
+    },
+    "ListFirewallDomainLists": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FirewallDomainLists"
+    },
+    "ListFirewallDomains": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "Domains"
+    },
+    "ListFirewallRuleGroupAssociations": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FirewallRuleGroupAssociations"
+    },
+    "ListFirewallRuleGroups": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FirewallRuleGroups"
+    },
+    "ListFirewallRules": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "FirewallRules"
+    },
     "ListResolverDnssecConfigs": {
       "input_token": "NextToken",
       "output_token": "NextToken",

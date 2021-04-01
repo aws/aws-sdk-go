@@ -38,7 +38,7 @@
     "PutPermissionPolicy": "<p>Attaches an IAM policy to the specified resource. Use this to share a rule group across accounts.</p> <p>You must be the owner of the rule group to perform this operation.</p> <p>This action is subject to the following restrictions:</p> <ul> <li> <p>You can attach only one policy with each <code>PutPermissionPolicy</code> request.</p> </li> <li> <p>The ARN in the request must be a valid WAF <a>RuleGroup</a> ARN and the rule group must exist in the same region.</p> </li> <li> <p>The user making the request must be the owner of the rule group.</p> </li> </ul>",
     "TagResource": "<p>Associates tags with the specified AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.</p> <p>You can tag the AWS resources that you manage through AWS WAF: web ACLs, rule groups, IP sets, and regex pattern sets. You can't manage or view tags through the AWS WAF console. </p>",
     "UntagResource": "<p>Disassociates tags from an AWS resource. Tags are key:value pairs that you can associate with AWS resources. For example, the tag key might be \"customer\" and the tag value might be \"companyA.\" You can specify one or more tags to add to each container. You can add up to 50 tags to each AWS resource.</p>",
-    "UpdateIPSet": "<p>Updates the specified <a>IPSet</a>.</p>",
+    "UpdateIPSet": "<p>Updates the specified <a>IPSet</a>. </p> <note> <p>This operation completely replaces any IP address specifications that you already have in the IP set with the ones that you provide to this call. If you want to add to or modify the addresses that are already in the IP set, retrieve those by calling <a>GetIPSet</a>, update them, and provide the complete updated array of IP addresses to this call.</p> </note>",
     "UpdateRegexPatternSet": "<p>Updates the specified <a>RegexPatternSet</a>.</p>",
     "UpdateRuleGroup": "<p>Updates the specified <a>RuleGroup</a>.</p> <p> A rule group defines a collection of rules to inspect and control web requests that you can use in a <a>WebACL</a>. When you create a rule group, you define an immutable capacity limit. If you update a rule group, you must stay within the capacity. This allows others to reuse the rule group with confidence in its capacity requirements. </p>",
     "UpdateWebACL": "<p>Updates the specified <a>WebACL</a>.</p> <p> A Web ACL defines a collection of rules to use to inspect and control web requests. Each rule has an action defined (allow, block, or count) for requests that match the statement of the rule. In the Web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a Web ACL can be a combination of the types <a>Rule</a>, <a>RuleGroup</a>, and managed rule group. You can associate a Web ACL with one or more AWS resources to protect. The resources can be Amazon CloudFront, an Amazon API Gateway REST API, an Application Load Balancer, or an AWS AppSync GraphQL API. </p>"
@@ -48,6 +48,18 @@
       "base": null,
       "refs": {
         "SampledHTTPRequest$Action": "<p>The action for the <code>Rule</code> that the request matched: <code>ALLOW</code>, <code>BLOCK</code>, or <code>COUNT</code>.</p>"
+      }
+    },
+    "ActionCondition": {
+      "base": "<p>A single action condition for a <a>Condition</a> in a logging filter.</p>",
+      "refs": {
+        "Condition$ActionCondition": "<p>A single action condition.</p>"
+      }
+    },
+    "ActionValue": {
+      "base": null,
+      "refs": {
+        "ActionCondition$Action": "<p>The action setting that a log record must contain in order to meet the condition. </p>"
       }
     },
     "All": {
@@ -101,7 +113,7 @@
     "BodyParsingFallbackBehavior": {
       "base": null,
       "refs": {
-        "JsonBody$InvalidFallbackBehavior": "<p>The inspection behavior to fall back to if the JSON in the request body is invalid. For AWS WAF, invalid JSON is any content that isn't complete syntactical JSON, content whose root node isn't an object or an array, and duplicate keys in the content. </p> <p>You can specify the following fallback behaviors:</p> <ul> <li> <p> <code>MATCH</code> - Treat the web request as matching the rule statement. AWS WAF applies the rule action to the request.</p> </li> <li> <p> <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.</p> </li> <li> <p> <code>EVALUATE_AS_STRING</code> - Inspect the body as plain text. This option applies the text transformations and inspection criteria that you defined for the JSON inspection to the body text string. </p> </li> </ul> <p>If you don't provide this setting, when AWS WAF encounters invalid JSON, it parses and inspects what it can, up to the first invalid JSON that it encounters. </p>"
+        "JsonBody$InvalidFallbackBehavior": "<p>What AWS WAF should do if it fails to completely parse the JSON body. The options are the following:</p> <ul> <li> <p> <code>EVALUATE_AS_STRING</code> - Inspect the body as plain text. AWS WAF applies the text transformations and inspection criteria that you defined for the JSON inspection to the body text string.</p> </li> <li> <p> <code>MATCH</code> - Treat the web request as matching the rule statement. AWS WAF applies the rule action to the request.</p> </li> <li> <p> <code>NO_MATCH</code> - Treat the web request as not matching the rule statement.</p> </li> </ul> <p>If you don't provide this setting, AWS WAF parses and evaluates the content only up to the first parsing failure that it encounters. </p> <p>AWS WAF does its best to parse the entire JSON body, but might be forced to stop for reasons such as invalid characters, duplicate keys, truncation, and any content whose root node isn't an object or an array. </p> <p>AWS WAF parses the JSON in the following examples as two valid key, value pairs: </p> <ul> <li> <p>Missing comma: <code>{\"key1\":\"value1\"\"key2\":\"value2\"}</code> </p> </li> <li> <p>Missing colon: <code>{\"key1\":\"value1\",\"key2\"\"value2\"}</code> </p> </li> <li> <p>Extra colons: <code>{\"key1\"::\"value1\",\"key2\"\"value2\"}</code> </p> </li> </ul>"
       }
     },
     "Boolean": {
@@ -141,6 +153,18 @@
       "base": null,
       "refs": {
         "SizeConstraintStatement$ComparisonOperator": "<p>The operator to use to compare the request part to the size setting. </p>"
+      }
+    },
+    "Condition": {
+      "base": "<p>A single match condition for a <a>Filter</a>.</p>",
+      "refs": {
+        "Conditions$member": null
+      }
+    },
+    "Conditions": {
+      "base": null,
+      "refs": {
+        "Filter$Conditions": "<p>Match conditions for the filter.</p>"
       }
     },
     "ConsumedCapacity": {
@@ -521,6 +545,31 @@
         "SingleQueryArgument$Name": "<p>The name of the query argument to inspect.</p>"
       }
     },
+    "Filter": {
+      "base": "<p>A single logging filter, used in <a>LoggingFilter</a>. </p>",
+      "refs": {
+        "Filters$member": null
+      }
+    },
+    "FilterBehavior": {
+      "base": null,
+      "refs": {
+        "Filter$Behavior": "<p>How to handle logs that satisfy the filter's conditions and requirement. </p>",
+        "LoggingFilter$DefaultBehavior": "<p>Default handling for logs that don't match any of the specified filtering conditions. </p>"
+      }
+    },
+    "FilterRequirement": {
+      "base": null,
+      "refs": {
+        "Filter$Requirement": "<p>Logic to apply to the filtering conditions. You can specify that, in order to satisfy the filter, a log must match all conditions or must match at least one condition.</p>"
+      }
+    },
+    "Filters": {
+      "base": null,
+      "refs": {
+        "LoggingFilter$Filters": "<p>The filters that you want to apply to the logs. </p>"
+      }
+    },
     "FirewallManagerRuleGroup": {
       "base": "<p>A rule group that's defined for an AWS Firewall Manager WAF policy.</p>",
       "refs": {
@@ -789,6 +838,69 @@
         "JsonMatchPattern$IncludedPaths": "<p>Match only the specified include paths. See also <code>MatchScope</code> in <a>JsonBody</a>. </p> <p>Provide the include paths using JSON Pointer syntax. For example, <code>\"IncludedPaths\": [\"/dogs/0/name\", \"/dogs/1/name\"]</code>. For information about this syntax, see the Internet Engineering Task Force (IETF) documentation <a href=\"https://tools.ietf.org/html/rfc6901\">JavaScript Object Notation (JSON) Pointer</a>. </p> <p>You must specify either this setting or the <code>All</code> setting, but not both.</p> <note> <p>Don't use this option to include all paths. Instead, use the <code>All</code> setting. </p> </note>"
       }
     },
+    "Label": {
+      "base": "<p>A single label container. This is used as an element of a label array in multiple contexts, for example, in <code>RuleLabels</code> inside a <a>Rule</a> and in <code>Labels</code> inside a <a>SampledHTTPRequest</a>. </p>",
+      "refs": {
+        "Labels$member": null
+      }
+    },
+    "LabelMatchKey": {
+      "base": null,
+      "refs": {
+        "LabelMatchStatement$Key": "<p>The string to match against. The setting you provide for this depends on the match statement's <code>Scope</code> settings: </p> <ul> <li> <p>If the <code>Scope</code> indicates <code>LABEL</code>, then this specification must include the name and can include any number of preceding namespace specifications and prefix up to providing the fully qualified label name. </p> </li> <li> <p>If the <code>Scope</code> indicates <code>NAMESPACE</code>, then this specification can include any number of contiguous namespace strings, and can include the entire label namespace prefix from the rule group or web ACL where the label originates.</p> </li> </ul> <p>Labels are case sensitive and components of a label must be separated by colon, for example <code>NS1:NS2:name</code>.</p>"
+      }
+    },
+    "LabelMatchScope": {
+      "base": null,
+      "refs": {
+        "LabelMatchStatement$Scope": "<p>Specify whether you want to match using the label name or just the namespace. </p>"
+      }
+    },
+    "LabelMatchStatement": {
+      "base": "<p>A rule statement that defines a string match search against labels that have been added to the web request by rules that have already run in the web ACL. </p> <p>The label match statement provides the label or namespace string to search for. The label string can represent a part or all of the fully qualified label name that had been added to the web request. Fully qualified labels have a prefix, optional namespaces, and label name. The prefix identifies the rule group or web ACL context of the rule that added the label. If you do not provide the fully qualified name in your label match string, AWS WAF performs the search for labels that were added in the same context as the label match statement. </p>",
+      "refs": {
+        "Statement$LabelMatchStatement": "<p>A rule statement that defines a string match search against labels that have been added to the web request by rules that have already run in the web ACL. </p> <p>The label match statement provides the label or namespace string to search for. The label string can represent a part or all of the fully qualified label name that had been added to the web request. Fully qualified labels have a prefix, optional namespaces, and label name. The prefix identifies the rule group or web ACL context of the rule that added the label. If you do not provide the fully qualified name in your label match string, AWS WAF performs the search for labels that were added in the same context as the label match statement. </p>"
+      }
+    },
+    "LabelName": {
+      "base": null,
+      "refs": {
+        "DescribeManagedRuleGroupResponse$LabelNamespace": "<p>The label namespace prefix for this rule group. All labels added by rules in this rule group have this prefix. </p> <ul> <li> <p>The syntax for the label namespace prefix for a managed rule group is the following: </p> <p> <code>awswaf:managed:&lt;vendor&gt;:&lt;rule group name&gt;</code>:</p> </li> <li> <p>When a rule with a label matches a web request, AWS WAF adds the fully qualified label to the request. A fully qualified label is made up of the label namespace from the rule group or web ACL where the rule is defined and the label from the rule, separated by a colon: </p> <p> <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> </p> </li> </ul>",
+        "Label$Name": "<p>The label string. </p>",
+        "LabelNameCondition$LabelName": "<p>The label name that a log record must contain in order to meet the condition. This must be a fully qualified label name. Fully qualified labels have a prefix, optional namespaces, and label name. The prefix identifies the rule group or web ACL context of the rule that added the label. </p>",
+        "LabelSummary$Name": "<p>An individual label specification.</p>",
+        "RuleGroup$LabelNamespace": "<p>The label namespace prefix for this rule group. All labels added by rules in this rule group have this prefix. </p> <ul> <li> <p>The syntax for the label namespace prefix for your rule groups is the following: </p> <p> <code>awswaf:&lt;account ID&gt;:rulegroup:&lt;rule group name&gt;:</code> </p> </li> <li> <p>When a rule with a label matches a web request, AWS WAF adds the fully qualified label to the request. A fully qualified label is made up of the label namespace from the rule group or web ACL where the rule is defined and the label from the rule, separated by a colon: </p> <p> <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> </p> </li> </ul>",
+        "WebACL$LabelNamespace": "<p>The label namespace prefix for this web ACL. All labels added by rules in this web ACL have this prefix. </p> <ul> <li> <p>The syntax for the label namespace prefix for a web ACL is the following: </p> <p> <code>awswaf:&lt;account ID&gt;:webacl:&lt;web ACL name&gt;:</code> </p> </li> <li> <p>When a rule with a label matches a web request, AWS WAF adds the fully qualified label to the request. A fully qualified label is made up of the label namespace from the rule group or web ACL where the rule is defined and the label from the rule, separated by a colon: </p> <p> <code>&lt;label namespace&gt;:&lt;label from rule&gt;</code> </p> </li> </ul>"
+      }
+    },
+    "LabelNameCondition": {
+      "base": "<p>A single label name condition for a <a>Condition</a> in a logging filter.</p>",
+      "refs": {
+        "Condition$LabelNameCondition": "<p>A single label name condition.</p>"
+      }
+    },
+    "LabelSummaries": {
+      "base": null,
+      "refs": {
+        "DescribeManagedRuleGroupResponse$AvailableLabels": "<p>The labels that one or more rules in this rule group add to matching web ACLs. These labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>.</p>",
+        "DescribeManagedRuleGroupResponse$ConsumedLabels": "<p>The labels that one or more rules in this rule group match against in label match statements. These labels are defined in a <code>LabelMatchStatement</code> specification, in the <a>Statement</a> definition of a rule. </p>",
+        "RuleGroup$AvailableLabels": "<p>The labels that one or more rules in this rule group add to matching web ACLs. These labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>.</p>",
+        "RuleGroup$ConsumedLabels": "<p>The labels that one or more rules in this rule group match against in label match statements. These labels are defined in a <code>LabelMatchStatement</code> specification, in the <a>Statement</a> definition of a rule. </p>"
+      }
+    },
+    "LabelSummary": {
+      "base": "<p>List of labels used by one or more of the rules of a <a>RuleGroup</a>. This summary object is used for the following rule group lists: </p> <ul> <li> <p> <code>AvailableLabels</code> - Labels that rules add to matching requests. These labels are defined in the <code>RuleLabels</code> for a <a>Rule</a>. </p> </li> <li> <p> <code>ConsumedLabels</code> - Labels that rules match against. These labels are defined in a <code>LabelMatchStatement</code> specification, in the <a>Statement</a> definition of a rule. </p> </li> </ul>",
+      "refs": {
+        "LabelSummaries$member": null
+      }
+    },
+    "Labels": {
+      "base": null,
+      "refs": {
+        "Rule$RuleLabels": "<p>Labels to apply to web requests that match the rule match statement. AWS WAF applies fully qualified labels to matching web requests. A fully qualified label is the concatenation of a label namespace and a rule label. The rule's rule group or web ACL defines the label namespace. </p> <p>Rules that run after this rule in the web ACL can match against these labels using a <code>LabelMatchStatement</code>.</p> <p>For each label, provide a case-sensitive string containing optional namespaces and a label name, according to the following guidelines:</p> <ul> <li> <p>Separate each component of the label with a colon. </p> </li> <li> <p>Each namespace or name can have up to 128 characters.</p> </li> <li> <p>You can specify up to 5 namespaces in a label.</p> </li> <li> <p>Don't use the following reserved words in your label specification: <code>aws</code>, <code>waf</code>, <code>managed</code>, <code>rulegroup</code>, <code>webacl</code>, <code>regexpatternset</code>, or <code>ipset</code>.</p> </li> </ul> <p>For example, <code>myLabelName</code> or <code>nameSpace1:nameSpace2:myLabelName</code>. </p>",
+        "SampledHTTPRequest$Labels": "<p>Labels applied to the web request by matching rules. AWS WAF applies fully qualified labels to matching web requests. A fully qualified label is the concatenation of a label namespace and a rule label. The rule's rule group or web ACL defines the label namespace. </p> <p>For example, <code>awswaf:111122223333:myRuleGroup:testRules:testNS1:testNS2:labelNameA</code> or <code>awswaf:managed:aws:managed-rule-set:header:encoding:utf8</code>. </p>"
+      }
+    },
     "ListAvailableManagedRuleGroupsRequest": {
       "base": null,
       "refs": {
@@ -909,7 +1021,7 @@
       }
     },
     "LoggingConfiguration": {
-      "base": "<p>Defines an association between Amazon Kinesis Data Firehose destinations and a web ACL resource, for logging from AWS WAF. As part of the association, you can specify parts of the standard logging fields to keep out of the logs. </p>",
+      "base": "<p>Defines an association between Amazon Kinesis Data Firehose destinations and a web ACL resource, for logging from AWS WAF. As part of the association, you can specify parts of the standard logging fields to keep out of the logs and you can specify filters so that you log only a subset of the logging records. </p>",
       "refs": {
         "GetLoggingConfigurationResponse$LoggingConfiguration": "<p>The <a>LoggingConfiguration</a> for the specified web ACL.</p>",
         "LoggingConfigurations$member": null,
@@ -921,6 +1033,12 @@
       "base": null,
       "refs": {
         "ListLoggingConfigurationsResponse$LoggingConfigurations": "<p/>"
+      }
+    },
+    "LoggingFilter": {
+      "base": "<p>Filtering that specifies which web requests are kept in the logs and which are dropped, defined for a web ACL's <a>LoggingConfiguration</a>. </p> <p>You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation. </p>",
+      "refs": {
+        "LoggingConfiguration$LoggingFilter": "<p>Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation. </p>"
       }
     },
     "ManagedRuleGroupStatement": {
@@ -1368,6 +1486,7 @@
     "Statement": {
       "base": "<p>The processing guidance for a <a>Rule</a>, used by AWS WAF to determine whether a web request matches the rule. </p>",
       "refs": {
+        "ManagedRuleGroupStatement$ScopeDownStatement": null,
         "NotStatement$Statement": "<p>The statement to negate. You can use any statement that can be nested.</p>",
         "RateBasedStatement$ScopeDownStatement": "<p>An optional nested statement that narrows the scope of the rate-based statement to matching web requests. This can be any nestable statement, and you can nest statements at any level below this scope-down statement.</p>",
         "Rule$Statement": "<p>The AWS WAF processing statement for the rule, for example <a>ByteMatchStatement</a> or <a>SizeConstraintStatement</a>. </p>",
@@ -1615,7 +1734,7 @@
       }
     },
     "WAFSubscriptionNotFoundException": {
-      "base": "<p/>",
+      "base": "<p>You tried to use a managed rule group that's available by subscription, but you aren't subscribed to it yet. </p>",
       "refs": {
       }
     },

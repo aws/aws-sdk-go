@@ -12,6 +12,103 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAssociateFirewallRuleGroup = "AssociateFirewallRuleGroup"
+
+// AssociateFirewallRuleGroupRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateFirewallRuleGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateFirewallRuleGroup for more information on using the AssociateFirewallRuleGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateFirewallRuleGroupRequest method.
+//    req, resp := client.AssociateFirewallRuleGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateFirewallRuleGroup
+func (c *Route53Resolver) AssociateFirewallRuleGroupRequest(input *AssociateFirewallRuleGroupInput) (req *request.Request, output *AssociateFirewallRuleGroupOutput) {
+	op := &request.Operation{
+		Name:       opAssociateFirewallRuleGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateFirewallRuleGroupInput{}
+	}
+
+	output = &AssociateFirewallRuleGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateFirewallRuleGroup API operation for Amazon Route 53 Resolver.
+//
+// Associates a FirewallRuleGroup with a VPC, to provide DNS filtering for the
+// VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation AssociateFirewallRuleGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/AssociateFirewallRuleGroup
+func (c *Route53Resolver) AssociateFirewallRuleGroup(input *AssociateFirewallRuleGroupInput) (*AssociateFirewallRuleGroupOutput, error) {
+	req, out := c.AssociateFirewallRuleGroupRequest(input)
+	return out, req.Send()
+}
+
+// AssociateFirewallRuleGroupWithContext is the same as AssociateFirewallRuleGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateFirewallRuleGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) AssociateFirewallRuleGroupWithContext(ctx aws.Context, input *AssociateFirewallRuleGroupInput, opts ...request.Option) (*AssociateFirewallRuleGroupOutput, error) {
+	req, out := c.AssociateFirewallRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAssociateResolverEndpointIpAddress = "AssociateResolverEndpointIpAddress"
 
 // AssociateResolverEndpointIpAddressRequest generates a "aws/request.Request" representing the
@@ -324,6 +421,286 @@ func (c *Route53Resolver) AssociateResolverRule(input *AssociateResolverRuleInpu
 // for more information on using Contexts.
 func (c *Route53Resolver) AssociateResolverRuleWithContext(ctx aws.Context, input *AssociateResolverRuleInput, opts ...request.Option) (*AssociateResolverRuleOutput, error) {
 	req, out := c.AssociateResolverRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFirewallDomainList = "CreateFirewallDomainList"
+
+// CreateFirewallDomainListRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFirewallDomainList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFirewallDomainList for more information on using the CreateFirewallDomainList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFirewallDomainListRequest method.
+//    req, resp := client.CreateFirewallDomainListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallDomainList
+func (c *Route53Resolver) CreateFirewallDomainListRequest(input *CreateFirewallDomainListInput) (req *request.Request, output *CreateFirewallDomainListOutput) {
+	op := &request.Operation{
+		Name:       opCreateFirewallDomainList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFirewallDomainListInput{}
+	}
+
+	output = &CreateFirewallDomainListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFirewallDomainList API operation for Amazon Route 53 Resolver.
+//
+// Creates an empty firewall domain list for use in DNS Firewall rules. You
+// can populate the domains for the new list with a file, using ImportFirewallDomains,
+// or with domain strings, using UpdateFirewallDomains.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation CreateFirewallDomainList for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallDomainList
+func (c *Route53Resolver) CreateFirewallDomainList(input *CreateFirewallDomainListInput) (*CreateFirewallDomainListOutput, error) {
+	req, out := c.CreateFirewallDomainListRequest(input)
+	return out, req.Send()
+}
+
+// CreateFirewallDomainListWithContext is the same as CreateFirewallDomainList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFirewallDomainList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) CreateFirewallDomainListWithContext(ctx aws.Context, input *CreateFirewallDomainListInput, opts ...request.Option) (*CreateFirewallDomainListOutput, error) {
+	req, out := c.CreateFirewallDomainListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFirewallRule = "CreateFirewallRule"
+
+// CreateFirewallRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFirewallRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFirewallRule for more information on using the CreateFirewallRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFirewallRuleRequest method.
+//    req, resp := client.CreateFirewallRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRule
+func (c *Route53Resolver) CreateFirewallRuleRequest(input *CreateFirewallRuleInput) (req *request.Request, output *CreateFirewallRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateFirewallRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFirewallRuleInput{}
+	}
+
+	output = &CreateFirewallRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFirewallRule API operation for Amazon Route 53 Resolver.
+//
+// Creates a single DNS Firewall rule in the specified rule group, using the
+// specified domain list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation CreateFirewallRule for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRule
+func (c *Route53Resolver) CreateFirewallRule(input *CreateFirewallRuleInput) (*CreateFirewallRuleOutput, error) {
+	req, out := c.CreateFirewallRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateFirewallRuleWithContext is the same as CreateFirewallRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFirewallRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) CreateFirewallRuleWithContext(ctx aws.Context, input *CreateFirewallRuleInput, opts ...request.Option) (*CreateFirewallRuleOutput, error) {
+	req, out := c.CreateFirewallRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFirewallRuleGroup = "CreateFirewallRuleGroup"
+
+// CreateFirewallRuleGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFirewallRuleGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFirewallRuleGroup for more information on using the CreateFirewallRuleGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFirewallRuleGroupRequest method.
+//    req, resp := client.CreateFirewallRuleGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRuleGroup
+func (c *Route53Resolver) CreateFirewallRuleGroupRequest(input *CreateFirewallRuleGroupInput) (req *request.Request, output *CreateFirewallRuleGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateFirewallRuleGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateFirewallRuleGroupInput{}
+	}
+
+	output = &CreateFirewallRuleGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFirewallRuleGroup API operation for Amazon Route 53 Resolver.
+//
+// Creates an empty DNS Firewall rule group for filtering DNS network traffic
+// in a VPC. You can add rules to the new rule group by calling CreateFirewallRule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation CreateFirewallRuleGroup for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/CreateFirewallRuleGroup
+func (c *Route53Resolver) CreateFirewallRuleGroup(input *CreateFirewallRuleGroupInput) (*CreateFirewallRuleGroupOutput, error) {
+	req, out := c.CreateFirewallRuleGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateFirewallRuleGroupWithContext is the same as CreateFirewallRuleGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFirewallRuleGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) CreateFirewallRuleGroupWithContext(ctx aws.Context, input *CreateFirewallRuleGroupInput, opts ...request.Option) (*CreateFirewallRuleGroupOutput, error) {
+	req, out := c.CreateFirewallRuleGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -648,6 +1025,279 @@ func (c *Route53Resolver) CreateResolverRuleWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDeleteFirewallDomainList = "DeleteFirewallDomainList"
+
+// DeleteFirewallDomainListRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFirewallDomainList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFirewallDomainList for more information on using the DeleteFirewallDomainList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFirewallDomainListRequest method.
+//    req, resp := client.DeleteFirewallDomainListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallDomainList
+func (c *Route53Resolver) DeleteFirewallDomainListRequest(input *DeleteFirewallDomainListInput) (req *request.Request, output *DeleteFirewallDomainListOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFirewallDomainList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFirewallDomainListInput{}
+	}
+
+	output = &DeleteFirewallDomainListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFirewallDomainList API operation for Amazon Route 53 Resolver.
+//
+// Deletes the specified domain list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DeleteFirewallDomainList for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallDomainList
+func (c *Route53Resolver) DeleteFirewallDomainList(input *DeleteFirewallDomainListInput) (*DeleteFirewallDomainListOutput, error) {
+	req, out := c.DeleteFirewallDomainListRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFirewallDomainListWithContext is the same as DeleteFirewallDomainList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFirewallDomainList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DeleteFirewallDomainListWithContext(ctx aws.Context, input *DeleteFirewallDomainListInput, opts ...request.Option) (*DeleteFirewallDomainListOutput, error) {
+	req, out := c.DeleteFirewallDomainListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFirewallRule = "DeleteFirewallRule"
+
+// DeleteFirewallRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFirewallRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFirewallRule for more information on using the DeleteFirewallRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFirewallRuleRequest method.
+//    req, resp := client.DeleteFirewallRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRule
+func (c *Route53Resolver) DeleteFirewallRuleRequest(input *DeleteFirewallRuleInput) (req *request.Request, output *DeleteFirewallRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFirewallRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFirewallRuleInput{}
+	}
+
+	output = &DeleteFirewallRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFirewallRule API operation for Amazon Route 53 Resolver.
+//
+// Deletes the specified firewall rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DeleteFirewallRule for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRule
+func (c *Route53Resolver) DeleteFirewallRule(input *DeleteFirewallRuleInput) (*DeleteFirewallRuleOutput, error) {
+	req, out := c.DeleteFirewallRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFirewallRuleWithContext is the same as DeleteFirewallRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFirewallRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DeleteFirewallRuleWithContext(ctx aws.Context, input *DeleteFirewallRuleInput, opts ...request.Option) (*DeleteFirewallRuleOutput, error) {
+	req, out := c.DeleteFirewallRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFirewallRuleGroup = "DeleteFirewallRuleGroup"
+
+// DeleteFirewallRuleGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFirewallRuleGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFirewallRuleGroup for more information on using the DeleteFirewallRuleGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFirewallRuleGroupRequest method.
+//    req, resp := client.DeleteFirewallRuleGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRuleGroup
+func (c *Route53Resolver) DeleteFirewallRuleGroupRequest(input *DeleteFirewallRuleGroupInput) (req *request.Request, output *DeleteFirewallRuleGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFirewallRuleGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteFirewallRuleGroupInput{}
+	}
+
+	output = &DeleteFirewallRuleGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFirewallRuleGroup API operation for Amazon Route 53 Resolver.
+//
+// Deletes the specified firewall rule group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DeleteFirewallRuleGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ConflictException
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DeleteFirewallRuleGroup
+func (c *Route53Resolver) DeleteFirewallRuleGroup(input *DeleteFirewallRuleGroupInput) (*DeleteFirewallRuleGroupOutput, error) {
+	req, out := c.DeleteFirewallRuleGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFirewallRuleGroupWithContext is the same as DeleteFirewallRuleGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFirewallRuleGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DeleteFirewallRuleGroupWithContext(ctx aws.Context, input *DeleteFirewallRuleGroupInput, opts ...request.Option) (*DeleteFirewallRuleGroupOutput, error) {
+	req, out := c.DeleteFirewallRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteResolverEndpoint = "DeleteResolverEndpoint"
 
 // DeleteResolverEndpointRequest generates a "aws/request.Request" representing the
@@ -947,6 +1597,100 @@ func (c *Route53Resolver) DeleteResolverRuleWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDisassociateFirewallRuleGroup = "DisassociateFirewallRuleGroup"
+
+// DisassociateFirewallRuleGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFirewallRuleGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFirewallRuleGroup for more information on using the DisassociateFirewallRuleGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateFirewallRuleGroupRequest method.
+//    req, resp := client.DisassociateFirewallRuleGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateFirewallRuleGroup
+func (c *Route53Resolver) DisassociateFirewallRuleGroupRequest(input *DisassociateFirewallRuleGroupInput) (req *request.Request, output *DisassociateFirewallRuleGroupOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFirewallRuleGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateFirewallRuleGroupInput{}
+	}
+
+	output = &DisassociateFirewallRuleGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateFirewallRuleGroup API operation for Amazon Route 53 Resolver.
+//
+// Disassociates a FirewallRuleGroup from a VPC, to remove DNS filtering from
+// the VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation DisassociateFirewallRuleGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * ConflictException
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/DisassociateFirewallRuleGroup
+func (c *Route53Resolver) DisassociateFirewallRuleGroup(input *DisassociateFirewallRuleGroupInput) (*DisassociateFirewallRuleGroupOutput, error) {
+	req, out := c.DisassociateFirewallRuleGroupRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFirewallRuleGroupWithContext is the same as DisassociateFirewallRuleGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFirewallRuleGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) DisassociateFirewallRuleGroupWithContext(ctx aws.Context, input *DisassociateFirewallRuleGroupInput, opts ...request.Option) (*DisassociateFirewallRuleGroupOutput, error) {
+	req, out := c.DisassociateFirewallRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateResolverEndpointIpAddress = "DisassociateResolverEndpointIpAddress"
 
 // DisassociateResolverEndpointIpAddressRequest generates a "aws/request.Request" representing the
@@ -1238,6 +1982,461 @@ func (c *Route53Resolver) DisassociateResolverRule(input *DisassociateResolverRu
 // for more information on using Contexts.
 func (c *Route53Resolver) DisassociateResolverRuleWithContext(ctx aws.Context, input *DisassociateResolverRuleInput, opts ...request.Option) (*DisassociateResolverRuleOutput, error) {
 	req, out := c.DisassociateResolverRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFirewallConfig = "GetFirewallConfig"
+
+// GetFirewallConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetFirewallConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFirewallConfig for more information on using the GetFirewallConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFirewallConfigRequest method.
+//    req, resp := client.GetFirewallConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
+func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput) (req *request.Request, output *GetFirewallConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetFirewallConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFirewallConfigInput{}
+	}
+
+	output = &GetFirewallConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFirewallConfig API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the configuration of the firewall behavior provided by DNS Firewall
+// for a single Amazon virtual private cloud (VPC).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetFirewallConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallConfig
+func (c *Route53Resolver) GetFirewallConfig(input *GetFirewallConfigInput) (*GetFirewallConfigOutput, error) {
+	req, out := c.GetFirewallConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetFirewallConfigWithContext is the same as GetFirewallConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFirewallConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetFirewallConfigWithContext(ctx aws.Context, input *GetFirewallConfigInput, opts ...request.Option) (*GetFirewallConfigOutput, error) {
+	req, out := c.GetFirewallConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFirewallDomainList = "GetFirewallDomainList"
+
+// GetFirewallDomainListRequest generates a "aws/request.Request" representing the
+// client's request for the GetFirewallDomainList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFirewallDomainList for more information on using the GetFirewallDomainList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFirewallDomainListRequest method.
+//    req, resp := client.GetFirewallDomainListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallDomainList
+func (c *Route53Resolver) GetFirewallDomainListRequest(input *GetFirewallDomainListInput) (req *request.Request, output *GetFirewallDomainListOutput) {
+	op := &request.Operation{
+		Name:       opGetFirewallDomainList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFirewallDomainListInput{}
+	}
+
+	output = &GetFirewallDomainListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFirewallDomainList API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the specified firewall domain list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetFirewallDomainList for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallDomainList
+func (c *Route53Resolver) GetFirewallDomainList(input *GetFirewallDomainListInput) (*GetFirewallDomainListOutput, error) {
+	req, out := c.GetFirewallDomainListRequest(input)
+	return out, req.Send()
+}
+
+// GetFirewallDomainListWithContext is the same as GetFirewallDomainList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFirewallDomainList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetFirewallDomainListWithContext(ctx aws.Context, input *GetFirewallDomainListInput, opts ...request.Option) (*GetFirewallDomainListOutput, error) {
+	req, out := c.GetFirewallDomainListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFirewallRuleGroup = "GetFirewallRuleGroup"
+
+// GetFirewallRuleGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetFirewallRuleGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFirewallRuleGroup for more information on using the GetFirewallRuleGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFirewallRuleGroupRequest method.
+//    req, resp := client.GetFirewallRuleGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroup
+func (c *Route53Resolver) GetFirewallRuleGroupRequest(input *GetFirewallRuleGroupInput) (req *request.Request, output *GetFirewallRuleGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetFirewallRuleGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFirewallRuleGroupInput{}
+	}
+
+	output = &GetFirewallRuleGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFirewallRuleGroup API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the specified firewall rule group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetFirewallRuleGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroup
+func (c *Route53Resolver) GetFirewallRuleGroup(input *GetFirewallRuleGroupInput) (*GetFirewallRuleGroupOutput, error) {
+	req, out := c.GetFirewallRuleGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetFirewallRuleGroupWithContext is the same as GetFirewallRuleGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFirewallRuleGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetFirewallRuleGroupWithContext(ctx aws.Context, input *GetFirewallRuleGroupInput, opts ...request.Option) (*GetFirewallRuleGroupOutput, error) {
+	req, out := c.GetFirewallRuleGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFirewallRuleGroupAssociation = "GetFirewallRuleGroupAssociation"
+
+// GetFirewallRuleGroupAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the GetFirewallRuleGroupAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFirewallRuleGroupAssociation for more information on using the GetFirewallRuleGroupAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFirewallRuleGroupAssociationRequest method.
+//    req, resp := client.GetFirewallRuleGroupAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupAssociation
+func (c *Route53Resolver) GetFirewallRuleGroupAssociationRequest(input *GetFirewallRuleGroupAssociationInput) (req *request.Request, output *GetFirewallRuleGroupAssociationOutput) {
+	op := &request.Operation{
+		Name:       opGetFirewallRuleGroupAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFirewallRuleGroupAssociationInput{}
+	}
+
+	output = &GetFirewallRuleGroupAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFirewallRuleGroupAssociation API operation for Amazon Route 53 Resolver.
+//
+// Retrieves a firewall rule group association, which enables DNS filtering
+// for a VPC with one rule group. A VPC can have more than one firewall rule
+// group association, and a rule group can be associated with more than one
+// VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetFirewallRuleGroupAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupAssociation
+func (c *Route53Resolver) GetFirewallRuleGroupAssociation(input *GetFirewallRuleGroupAssociationInput) (*GetFirewallRuleGroupAssociationOutput, error) {
+	req, out := c.GetFirewallRuleGroupAssociationRequest(input)
+	return out, req.Send()
+}
+
+// GetFirewallRuleGroupAssociationWithContext is the same as GetFirewallRuleGroupAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFirewallRuleGroupAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetFirewallRuleGroupAssociationWithContext(ctx aws.Context, input *GetFirewallRuleGroupAssociationInput, opts ...request.Option) (*GetFirewallRuleGroupAssociationOutput, error) {
+	req, out := c.GetFirewallRuleGroupAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetFirewallRuleGroupPolicy = "GetFirewallRuleGroupPolicy"
+
+// GetFirewallRuleGroupPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetFirewallRuleGroupPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFirewallRuleGroupPolicy for more information on using the GetFirewallRuleGroupPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFirewallRuleGroupPolicyRequest method.
+//    req, resp := client.GetFirewallRuleGroupPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupPolicy
+func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRuleGroupPolicyInput) (req *request.Request, output *GetFirewallRuleGroupPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetFirewallRuleGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetFirewallRuleGroupPolicyInput{}
+	}
+
+	output = &GetFirewallRuleGroupPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
+//
+// Returns the AWS Identity and Access Management (AWS IAM) policy for sharing
+// the specified rule group. You can use the policy to share the rule group
+// using AWS Resource Access Manager (RAM).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation GetFirewallRuleGroupPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/GetFirewallRuleGroupPolicy
+func (c *Route53Resolver) GetFirewallRuleGroupPolicy(input *GetFirewallRuleGroupPolicyInput) (*GetFirewallRuleGroupPolicyOutput, error) {
+	req, out := c.GetFirewallRuleGroupPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetFirewallRuleGroupPolicyWithContext is the same as GetFirewallRuleGroupPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFirewallRuleGroupPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) GetFirewallRuleGroupPolicyWithContext(ctx aws.Context, input *GetFirewallRuleGroupPolicyInput, opts ...request.Option) (*GetFirewallRuleGroupPolicyOutput, error) {
+	req, out := c.GetFirewallRuleGroupPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1982,6 +3181,1021 @@ func (c *Route53Resolver) GetResolverRulePolicyWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opImportFirewallDomains = "ImportFirewallDomains"
+
+// ImportFirewallDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the ImportFirewallDomains operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportFirewallDomains for more information on using the ImportFirewallDomains
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportFirewallDomainsRequest method.
+//    req, resp := client.ImportFirewallDomainsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ImportFirewallDomains
+func (c *Route53Resolver) ImportFirewallDomainsRequest(input *ImportFirewallDomainsInput) (req *request.Request, output *ImportFirewallDomainsOutput) {
+	op := &request.Operation{
+		Name:       opImportFirewallDomains,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportFirewallDomainsInput{}
+	}
+
+	output = &ImportFirewallDomainsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportFirewallDomains API operation for Amazon Route 53 Resolver.
+//
+// Imports domain names from a file into a domain list, for use in a DNS firewall
+// rule group.
+//
+// Each domain specification in your domain list must satisfy the following
+// requirements:
+//
+//    * It can optionally start with * (asterisk).
+//
+//    * With the exception of the optional starting asterisk, it must only contain
+//    the following characters: A-Z, a-z, 0-9, - (hyphen).
+//
+//    * It must be from 1-255 characters in length.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ImportFirewallDomains for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * ConflictException
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ImportFirewallDomains
+func (c *Route53Resolver) ImportFirewallDomains(input *ImportFirewallDomainsInput) (*ImportFirewallDomainsOutput, error) {
+	req, out := c.ImportFirewallDomainsRequest(input)
+	return out, req.Send()
+}
+
+// ImportFirewallDomainsWithContext is the same as ImportFirewallDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportFirewallDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ImportFirewallDomainsWithContext(ctx aws.Context, input *ImportFirewallDomainsInput, opts ...request.Option) (*ImportFirewallDomainsOutput, error) {
+	req, out := c.ImportFirewallDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListFirewallConfigs = "ListFirewallConfigs"
+
+// ListFirewallConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallConfigs for more information on using the ListFirewallConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallConfigsRequest method.
+//    req, resp := client.ListFirewallConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallConfigs
+func (c *Route53Resolver) ListFirewallConfigsRequest(input *ListFirewallConfigsInput) (req *request.Request, output *ListFirewallConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallConfigsInput{}
+	}
+
+	output = &ListFirewallConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallConfigs API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the firewall configurations that you have defined. DNS Firewall
+// uses the configurations to manage firewall behavior for your VPCs.
+//
+// A single call might return only a partial list of the configurations. For
+// information, see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallConfigs
+func (c *Route53Resolver) ListFirewallConfigs(input *ListFirewallConfigsInput) (*ListFirewallConfigsOutput, error) {
+	req, out := c.ListFirewallConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallConfigsWithContext is the same as ListFirewallConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallConfigsWithContext(ctx aws.Context, input *ListFirewallConfigsInput, opts ...request.Option) (*ListFirewallConfigsOutput, error) {
+	req, out := c.ListFirewallConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallConfigsPages iterates over the pages of a ListFirewallConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallConfigs operation.
+//    pageNum := 0
+//    err := client.ListFirewallConfigsPages(params,
+//        func(page *route53resolver.ListFirewallConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallConfigsPages(input *ListFirewallConfigsInput, fn func(*ListFirewallConfigsOutput, bool) bool) error {
+	return c.ListFirewallConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallConfigsPagesWithContext same as ListFirewallConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallConfigsPagesWithContext(ctx aws.Context, input *ListFirewallConfigsInput, fn func(*ListFirewallConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallConfigsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFirewallDomainLists = "ListFirewallDomainLists"
+
+// ListFirewallDomainListsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallDomainLists operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallDomainLists for more information on using the ListFirewallDomainLists
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallDomainListsRequest method.
+//    req, resp := client.ListFirewallDomainListsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomainLists
+func (c *Route53Resolver) ListFirewallDomainListsRequest(input *ListFirewallDomainListsInput) (req *request.Request, output *ListFirewallDomainListsOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallDomainLists,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallDomainListsInput{}
+	}
+
+	output = &ListFirewallDomainListsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallDomainLists API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the firewall domain lists that you have defined. For each firewall
+// domain list, you can retrieve the domains that are defined for a list by
+// calling ListFirewallDomains.
+//
+// A single call to this list operation might return only a partial list of
+// the domain lists. For information, see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallDomainLists for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomainLists
+func (c *Route53Resolver) ListFirewallDomainLists(input *ListFirewallDomainListsInput) (*ListFirewallDomainListsOutput, error) {
+	req, out := c.ListFirewallDomainListsRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallDomainListsWithContext is the same as ListFirewallDomainLists with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallDomainLists for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallDomainListsWithContext(ctx aws.Context, input *ListFirewallDomainListsInput, opts ...request.Option) (*ListFirewallDomainListsOutput, error) {
+	req, out := c.ListFirewallDomainListsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallDomainListsPages iterates over the pages of a ListFirewallDomainLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallDomainLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallDomainLists operation.
+//    pageNum := 0
+//    err := client.ListFirewallDomainListsPages(params,
+//        func(page *route53resolver.ListFirewallDomainListsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallDomainListsPages(input *ListFirewallDomainListsInput, fn func(*ListFirewallDomainListsOutput, bool) bool) error {
+	return c.ListFirewallDomainListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallDomainListsPagesWithContext same as ListFirewallDomainListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallDomainListsPagesWithContext(ctx aws.Context, input *ListFirewallDomainListsInput, fn func(*ListFirewallDomainListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallDomainListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallDomainListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallDomainListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFirewallDomains = "ListFirewallDomains"
+
+// ListFirewallDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallDomains operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallDomains for more information on using the ListFirewallDomains
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallDomainsRequest method.
+//    req, resp := client.ListFirewallDomainsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomains
+func (c *Route53Resolver) ListFirewallDomainsRequest(input *ListFirewallDomainsInput) (req *request.Request, output *ListFirewallDomainsOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallDomains,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallDomainsInput{}
+	}
+
+	output = &ListFirewallDomainsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallDomains API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the domains that you have defined for the specified firewall domain
+// list.
+//
+// A single call might return only a partial list of the domains. For information,
+// see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallDomains for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallDomains
+func (c *Route53Resolver) ListFirewallDomains(input *ListFirewallDomainsInput) (*ListFirewallDomainsOutput, error) {
+	req, out := c.ListFirewallDomainsRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallDomainsWithContext is the same as ListFirewallDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallDomainsWithContext(ctx aws.Context, input *ListFirewallDomainsInput, opts ...request.Option) (*ListFirewallDomainsOutput, error) {
+	req, out := c.ListFirewallDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallDomainsPages iterates over the pages of a ListFirewallDomains operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallDomains method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallDomains operation.
+//    pageNum := 0
+//    err := client.ListFirewallDomainsPages(params,
+//        func(page *route53resolver.ListFirewallDomainsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallDomainsPages(input *ListFirewallDomainsInput, fn func(*ListFirewallDomainsOutput, bool) bool) error {
+	return c.ListFirewallDomainsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallDomainsPagesWithContext same as ListFirewallDomainsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallDomainsPagesWithContext(ctx aws.Context, input *ListFirewallDomainsInput, fn func(*ListFirewallDomainsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallDomainsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallDomainsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallDomainsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFirewallRuleGroupAssociations = "ListFirewallRuleGroupAssociations"
+
+// ListFirewallRuleGroupAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallRuleGroupAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallRuleGroupAssociations for more information on using the ListFirewallRuleGroupAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallRuleGroupAssociationsRequest method.
+//    req, resp := client.ListFirewallRuleGroupAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroupAssociations
+func (c *Route53Resolver) ListFirewallRuleGroupAssociationsRequest(input *ListFirewallRuleGroupAssociationsInput) (req *request.Request, output *ListFirewallRuleGroupAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallRuleGroupAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallRuleGroupAssociationsInput{}
+	}
+
+	output = &ListFirewallRuleGroupAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallRuleGroupAssociations API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the firewall rule group associations that you have defined. Each
+// association enables DNS filtering for a VPC with one rule group.
+//
+// A single call might return only a partial list of the associations. For information,
+// see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallRuleGroupAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroupAssociations
+func (c *Route53Resolver) ListFirewallRuleGroupAssociations(input *ListFirewallRuleGroupAssociationsInput) (*ListFirewallRuleGroupAssociationsOutput, error) {
+	req, out := c.ListFirewallRuleGroupAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallRuleGroupAssociationsWithContext is the same as ListFirewallRuleGroupAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallRuleGroupAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRuleGroupAssociationsWithContext(ctx aws.Context, input *ListFirewallRuleGroupAssociationsInput, opts ...request.Option) (*ListFirewallRuleGroupAssociationsOutput, error) {
+	req, out := c.ListFirewallRuleGroupAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallRuleGroupAssociationsPages iterates over the pages of a ListFirewallRuleGroupAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallRuleGroupAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallRuleGroupAssociations operation.
+//    pageNum := 0
+//    err := client.ListFirewallRuleGroupAssociationsPages(params,
+//        func(page *route53resolver.ListFirewallRuleGroupAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallRuleGroupAssociationsPages(input *ListFirewallRuleGroupAssociationsInput, fn func(*ListFirewallRuleGroupAssociationsOutput, bool) bool) error {
+	return c.ListFirewallRuleGroupAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallRuleGroupAssociationsPagesWithContext same as ListFirewallRuleGroupAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRuleGroupAssociationsPagesWithContext(ctx aws.Context, input *ListFirewallRuleGroupAssociationsInput, fn func(*ListFirewallRuleGroupAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallRuleGroupAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallRuleGroupAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallRuleGroupAssociationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFirewallRuleGroups = "ListFirewallRuleGroups"
+
+// ListFirewallRuleGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallRuleGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallRuleGroups for more information on using the ListFirewallRuleGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallRuleGroupsRequest method.
+//    req, resp := client.ListFirewallRuleGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroups
+func (c *Route53Resolver) ListFirewallRuleGroupsRequest(input *ListFirewallRuleGroupsInput) (req *request.Request, output *ListFirewallRuleGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallRuleGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallRuleGroupsInput{}
+	}
+
+	output = &ListFirewallRuleGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallRuleGroups API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the minimal high-level information for the rule groups that you
+// have defined.
+//
+// A single call might return only a partial list of the rule groups. For information,
+// see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallRuleGroups for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRuleGroups
+func (c *Route53Resolver) ListFirewallRuleGroups(input *ListFirewallRuleGroupsInput) (*ListFirewallRuleGroupsOutput, error) {
+	req, out := c.ListFirewallRuleGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallRuleGroupsWithContext is the same as ListFirewallRuleGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallRuleGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRuleGroupsWithContext(ctx aws.Context, input *ListFirewallRuleGroupsInput, opts ...request.Option) (*ListFirewallRuleGroupsOutput, error) {
+	req, out := c.ListFirewallRuleGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallRuleGroupsPages iterates over the pages of a ListFirewallRuleGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallRuleGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallRuleGroups operation.
+//    pageNum := 0
+//    err := client.ListFirewallRuleGroupsPages(params,
+//        func(page *route53resolver.ListFirewallRuleGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallRuleGroupsPages(input *ListFirewallRuleGroupsInput, fn func(*ListFirewallRuleGroupsOutput, bool) bool) error {
+	return c.ListFirewallRuleGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallRuleGroupsPagesWithContext same as ListFirewallRuleGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRuleGroupsPagesWithContext(ctx aws.Context, input *ListFirewallRuleGroupsInput, fn func(*ListFirewallRuleGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallRuleGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallRuleGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallRuleGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFirewallRules = "ListFirewallRules"
+
+// ListFirewallRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListFirewallRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFirewallRules for more information on using the ListFirewallRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFirewallRulesRequest method.
+//    req, resp := client.ListFirewallRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRules
+func (c *Route53Resolver) ListFirewallRulesRequest(input *ListFirewallRulesInput) (req *request.Request, output *ListFirewallRulesOutput) {
+	op := &request.Operation{
+		Name:       opListFirewallRules,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFirewallRulesInput{}
+	}
+
+	output = &ListFirewallRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFirewallRules API operation for Amazon Route 53 Resolver.
+//
+// Retrieves the firewall rules that you have defined for the specified firewall
+// rule group. DNS Firewall uses the rules in a rule group to filter DNS network
+// traffic for a VPC.
+//
+// A single call might return only a partial list of the rules. For information,
+// see MaxResults.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation ListFirewallRules for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/ListFirewallRules
+func (c *Route53Resolver) ListFirewallRules(input *ListFirewallRulesInput) (*ListFirewallRulesOutput, error) {
+	req, out := c.ListFirewallRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListFirewallRulesWithContext is the same as ListFirewallRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFirewallRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRulesWithContext(ctx aws.Context, input *ListFirewallRulesInput, opts ...request.Option) (*ListFirewallRulesOutput, error) {
+	req, out := c.ListFirewallRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFirewallRulesPages iterates over the pages of a ListFirewallRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFirewallRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFirewallRules operation.
+//    pageNum := 0
+//    err := client.ListFirewallRulesPages(params,
+//        func(page *route53resolver.ListFirewallRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Route53Resolver) ListFirewallRulesPages(input *ListFirewallRulesInput, fn func(*ListFirewallRulesOutput, bool) bool) error {
+	return c.ListFirewallRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFirewallRulesPagesWithContext same as ListFirewallRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) ListFirewallRulesPagesWithContext(ctx aws.Context, input *ListFirewallRulesInput, fn func(*ListFirewallRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFirewallRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFirewallRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFirewallRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListResolverDnssecConfigs = "ListResolverDnssecConfigs"
@@ -3197,6 +5411,99 @@ func (c *Route53Resolver) ListTagsForResourcePagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opPutFirewallRuleGroupPolicy = "PutFirewallRuleGroupPolicy"
+
+// PutFirewallRuleGroupPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutFirewallRuleGroupPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutFirewallRuleGroupPolicy for more information on using the PutFirewallRuleGroupPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutFirewallRuleGroupPolicyRequest method.
+//    req, resp := client.PutFirewallRuleGroupPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutFirewallRuleGroupPolicy
+func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRuleGroupPolicyInput) (req *request.Request, output *PutFirewallRuleGroupPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutFirewallRuleGroupPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutFirewallRuleGroupPolicyInput{}
+	}
+
+	output = &PutFirewallRuleGroupPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
+//
+// Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing
+// the rule group. You can use the policy to share the rule group using AWS
+// Resource Access Manager (RAM).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation PutFirewallRuleGroupPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/PutFirewallRuleGroupPolicy
+func (c *Route53Resolver) PutFirewallRuleGroupPolicy(input *PutFirewallRuleGroupPolicyInput) (*PutFirewallRuleGroupPolicyOutput, error) {
+	req, out := c.PutFirewallRuleGroupPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutFirewallRuleGroupPolicyWithContext is the same as PutFirewallRuleGroupPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutFirewallRuleGroupPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) PutFirewallRuleGroupPolicyWithContext(ctx aws.Context, input *PutFirewallRuleGroupPolicyInput, opts ...request.Option) (*PutFirewallRuleGroupPolicyOutput, error) {
+	req, out := c.PutFirewallRuleGroupPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutResolverQueryLogConfigPolicy = "PutResolverQueryLogConfigPolicy"
 
 // PutResolverQueryLogConfigPolicyRequest generates a "aws/request.Request" representing the
@@ -3574,6 +5881,381 @@ func (c *Route53Resolver) UntagResourceWithContext(ctx aws.Context, input *Untag
 	return out, req.Send()
 }
 
+const opUpdateFirewallConfig = "UpdateFirewallConfig"
+
+// UpdateFirewallConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFirewallConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFirewallConfig for more information on using the UpdateFirewallConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFirewallConfigRequest method.
+//    req, resp := client.UpdateFirewallConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallConfig
+func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfigInput) (req *request.Request, output *UpdateFirewallConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFirewallConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFirewallConfigInput{}
+	}
+
+	output = &UpdateFirewallConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFirewallConfig API operation for Amazon Route 53 Resolver.
+//
+// Updates the configuration of the firewall behavior provided by DNS Firewall
+// for a single Amazon virtual private cloud (VPC).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateFirewallConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallConfig
+func (c *Route53Resolver) UpdateFirewallConfig(input *UpdateFirewallConfigInput) (*UpdateFirewallConfigOutput, error) {
+	req, out := c.UpdateFirewallConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFirewallConfigWithContext is the same as UpdateFirewallConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFirewallConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateFirewallConfigWithContext(ctx aws.Context, input *UpdateFirewallConfigInput, opts ...request.Option) (*UpdateFirewallConfigOutput, error) {
+	req, out := c.UpdateFirewallConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFirewallDomains = "UpdateFirewallDomains"
+
+// UpdateFirewallDomainsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFirewallDomains operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFirewallDomains for more information on using the UpdateFirewallDomains
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFirewallDomainsRequest method.
+//    req, resp := client.UpdateFirewallDomainsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallDomains
+func (c *Route53Resolver) UpdateFirewallDomainsRequest(input *UpdateFirewallDomainsInput) (req *request.Request, output *UpdateFirewallDomainsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFirewallDomains,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFirewallDomainsInput{}
+	}
+
+	output = &UpdateFirewallDomainsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFirewallDomains API operation for Amazon Route 53 Resolver.
+//
+// Updates the firewall domain list from an array of domain specifications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateFirewallDomains for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * LimitExceededException
+//   The request caused one or more limits to be exceeded.
+//
+//   * ConflictException
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallDomains
+func (c *Route53Resolver) UpdateFirewallDomains(input *UpdateFirewallDomainsInput) (*UpdateFirewallDomainsOutput, error) {
+	req, out := c.UpdateFirewallDomainsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFirewallDomainsWithContext is the same as UpdateFirewallDomains with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFirewallDomains for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateFirewallDomainsWithContext(ctx aws.Context, input *UpdateFirewallDomainsInput, opts ...request.Option) (*UpdateFirewallDomainsOutput, error) {
+	req, out := c.UpdateFirewallDomainsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFirewallRule = "UpdateFirewallRule"
+
+// UpdateFirewallRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFirewallRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFirewallRule for more information on using the UpdateFirewallRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFirewallRuleRequest method.
+//    req, resp := client.UpdateFirewallRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRule
+func (c *Route53Resolver) UpdateFirewallRuleRequest(input *UpdateFirewallRuleInput) (req *request.Request, output *UpdateFirewallRuleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFirewallRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFirewallRuleInput{}
+	}
+
+	output = &UpdateFirewallRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFirewallRule API operation for Amazon Route 53 Resolver.
+//
+// Updates the specified firewall rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateFirewallRule for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRule
+func (c *Route53Resolver) UpdateFirewallRule(input *UpdateFirewallRuleInput) (*UpdateFirewallRuleOutput, error) {
+	req, out := c.UpdateFirewallRuleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFirewallRuleWithContext is the same as UpdateFirewallRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFirewallRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateFirewallRuleWithContext(ctx aws.Context, input *UpdateFirewallRuleInput, opts ...request.Option) (*UpdateFirewallRuleOutput, error) {
+	req, out := c.UpdateFirewallRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFirewallRuleGroupAssociation = "UpdateFirewallRuleGroupAssociation"
+
+// UpdateFirewallRuleGroupAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFirewallRuleGroupAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFirewallRuleGroupAssociation for more information on using the UpdateFirewallRuleGroupAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFirewallRuleGroupAssociationRequest method.
+//    req, resp := client.UpdateFirewallRuleGroupAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRuleGroupAssociation
+func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationRequest(input *UpdateFirewallRuleGroupAssociationInput) (req *request.Request, output *UpdateFirewallRuleGroupAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFirewallRuleGroupAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFirewallRuleGroupAssociationInput{}
+	}
+
+	output = &UpdateFirewallRuleGroupAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFirewallRuleGroupAssociation API operation for Amazon Route 53 Resolver.
+//
+// Changes the association of a FirewallRuleGroup with a VPC. The association
+// enables DNS filtering for the VPC.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Route 53 Resolver's
+// API operation UpdateFirewallRuleGroupAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//   The current account doesn't have the IAM permissions required to perform
+//   the specified Resolver operation.
+//
+//   * InternalServiceErrorException
+//   We encountered an unknown error. Try again in a few minutes.
+//
+//   * ThrottlingException
+//   The request was throttled. Try again in a few minutes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/route53resolver-2018-04-01/UpdateFirewallRuleGroupAssociation
+func (c *Route53Resolver) UpdateFirewallRuleGroupAssociation(input *UpdateFirewallRuleGroupAssociationInput) (*UpdateFirewallRuleGroupAssociationOutput, error) {
+	req, out := c.UpdateFirewallRuleGroupAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFirewallRuleGroupAssociationWithContext is the same as UpdateFirewallRuleGroupAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFirewallRuleGroupAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Route53Resolver) UpdateFirewallRuleGroupAssociationWithContext(ctx aws.Context, input *UpdateFirewallRuleGroupAssociationInput, opts ...request.Option) (*UpdateFirewallRuleGroupAssociationOutput, error) {
+	req, out := c.UpdateFirewallRuleGroupAssociationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResolverDnssecConfig = "UpdateResolverDnssecConfig"
 
 // UpdateResolverDnssecConfigRequest generates a "aws/request.Request" representing the
@@ -3917,6 +6599,169 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type AssociateFirewallRuleGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the request and that allows failed requests
+	// to be retried without the risk of executing the operation twice. CreatorRequestId
+	// can be any unique string, for example, a date/time stamp.
+	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier of the firewall rule group.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+
+	// If enabled, this setting disallows modification or removal of the association,
+	// to help prevent against accidentally altering DNS firewall protections. When
+	// you create the association, the default setting is DISABLED.
+	MutationProtection *string `type:"string" enum:"MutationProtectionStatus"`
+
+	// A name that lets you identify the association, to manage and use it.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The setting that determines the processing order of the rule group among
+	// the rule groups that you associate with the specified VPC. DNS Firewall filters
+	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	//
+	// You must specify a unique priority for each rule group that you associate
+	// with a single VPC. To make it easier to insert rule groups later, leave space
+	// between the numbers, for example, use 100, 200, and so on. You can change
+	// the priority setting for a rule group association after you create it.
+	//
+	// Priority is a required field
+	Priority *int64 `type:"integer" required:"true"`
+
+	// A list of the tag keys and values that you want to associate with the rule
+	// group association.
+	Tags []*Tag `type:"list"`
+
+	// The unique identifier of the VPC that you want to associate with the rule
+	// group.
+	//
+	// VpcId is a required field
+	VpcId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateFirewallRuleGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateFirewallRuleGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateFirewallRuleGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateFirewallRuleGroupInput"}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Priority == nil {
+		invalidParams.Add(request.NewErrParamRequired("Priority"))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *AssociateFirewallRuleGroupInput) SetCreatorRequestId(v string) *AssociateFirewallRuleGroupInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *AssociateFirewallRuleGroupInput) SetFirewallRuleGroupId(v string) *AssociateFirewallRuleGroupInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetMutationProtection sets the MutationProtection field's value.
+func (s *AssociateFirewallRuleGroupInput) SetMutationProtection(v string) *AssociateFirewallRuleGroupInput {
+	s.MutationProtection = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AssociateFirewallRuleGroupInput) SetName(v string) *AssociateFirewallRuleGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *AssociateFirewallRuleGroupInput) SetPriority(v int64) *AssociateFirewallRuleGroupInput {
+	s.Priority = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssociateFirewallRuleGroupInput) SetTags(v []*Tag) *AssociateFirewallRuleGroupInput {
+	s.Tags = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AssociateFirewallRuleGroupInput) SetVpcId(v string) *AssociateFirewallRuleGroupInput {
+	s.VpcId = &v
+	return s
+}
+
+type AssociateFirewallRuleGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association that you just created. The association has an Id that you
+	// can use to identify it in other requests, like update and delete.
+	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateFirewallRuleGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateFirewallRuleGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupAssociation sets the FirewallRuleGroupAssociation field's value.
+func (s *AssociateFirewallRuleGroupOutput) SetFirewallRuleGroupAssociation(v *FirewallRuleGroupAssociation) *AssociateFirewallRuleGroupOutput {
+	s.FirewallRuleGroupAssociation = v
+	return s
+}
+
 type AssociateResolverEndpointIpAddressInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4178,6 +7023,466 @@ func (s AssociateResolverRuleOutput) GoString() string {
 // SetResolverRuleAssociation sets the ResolverRuleAssociation field's value.
 func (s *AssociateResolverRuleOutput) SetResolverRuleAssociation(v *ResolverRuleAssociation) *AssociateResolverRuleOutput {
 	s.ResolverRuleAssociation = v
+	return s
+}
+
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type CreateFirewallDomainListInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string that identifies the request and that allows you to retry
+	// failed requests without the risk of executing the operation twice. CreatorRequestId
+	// can be any unique string, for example, a date/time stamp.
+	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A name that lets you identify the domain list to manage and use it.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// A list of the tag keys and values that you want to associate with the domain
+	// list.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateFirewallDomainListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallDomainListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFirewallDomainListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFirewallDomainListInput"}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateFirewallDomainListInput) SetCreatorRequestId(v string) *CreateFirewallDomainListInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFirewallDomainListInput) SetName(v string) *CreateFirewallDomainListInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFirewallDomainListInput) SetTags(v []*Tag) *CreateFirewallDomainListInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFirewallDomainListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain list that you just created.
+	FirewallDomainList *FirewallDomainList `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateFirewallDomainListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallDomainListOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallDomainList sets the FirewallDomainList field's value.
+func (s *CreateFirewallDomainListOutput) SetFirewallDomainList(v *FirewallDomainList) *CreateFirewallDomainListOutput {
+	s.FirewallDomainList = v
+	return s
+}
+
+type CreateFirewallRuleGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A name that lets you identify the rule group, to manage and use it.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// A list of the tag keys and values that you want to associate with the rule
+	// group.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateFirewallRuleGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallRuleGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFirewallRuleGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFirewallRuleGroupInput"}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateFirewallRuleGroupInput) SetCreatorRequestId(v string) *CreateFirewallRuleGroupInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFirewallRuleGroupInput) SetName(v string) *CreateFirewallRuleGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFirewallRuleGroupInput) SetTags(v []*Tag) *CreateFirewallRuleGroupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFirewallRuleGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of rules used to filter DNS network traffic.
+	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateFirewallRuleGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallRuleGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroup sets the FirewallRuleGroup field's value.
+func (s *CreateFirewallRuleGroupOutput) SetFirewallRuleGroup(v *FirewallRuleGroup) *CreateFirewallRuleGroupOutput {
+	s.FirewallRuleGroup = v
+	return s
+}
+
+type CreateFirewallRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action that DNS Firewall should take on a DNS query when it matches one
+	// of the domains in the rule's domain list:
+	//
+	//    * ALLOW - Permit the request to go through.
+	//
+	//    * ALERT - Permit the request and send metrics and log to Cloud Watch.
+	//
+	//    * BLOCK - Disallow the request. This option requires additional details
+	//    in the rule's BlockResponse.
+	//
+	// Action is a required field
+	Action *string `type:"string" required:"true" enum:"Action"`
+
+	// The DNS record's type. This determines the format of the record value that
+	// you provided in BlockOverrideDomain. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	//
+	// This setting is required if the BlockResponse setting is OVERRIDE.
+	BlockOverrideDnsType *string `type:"string" enum:"BlockOverrideDnsType"`
+
+	// The custom DNS record to send back in response to the query. Used for the
+	// rule action BLOCK with a BlockResponse setting of OVERRIDE.
+	//
+	// This setting is required if the BlockResponse setting is OVERRIDE.
+	BlockOverrideDomain *string `min:"1" type:"string"`
+
+	// The recommended amount of time, in seconds, for the DNS resolver or web browser
+	// to cache the provided override record. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	//
+	// This setting is required if the BlockResponse setting is OVERRIDE.
+	BlockOverrideTtl *int64 `type:"integer"`
+
+	// The way that you want DNS Firewall to block the request, used with the rule
+	// aciton setting BLOCK.
+	//
+	//    * NODATA - Respond indicating that the query was successful, but no response
+	//    is available for it.
+	//
+	//    * NXDOMAIN - Respond indicating that the domain name that's in the query
+	//    doesn't exist.
+	//
+	//    * OVERRIDE - Provide a custom override in the response. This option requires
+	//    custom handling details in the rule's BlockOverride* settings.
+	//
+	// This setting is required if the rule action setting is BLOCK.
+	BlockResponse *string `type:"string" enum:"BlockResponse"`
+
+	// A unique string that identifies the request and that allows you to retry
+	// failed requests without the risk of executing the operation twice. CreatorRequestId
+	// can be any unique string, for example, a date/time stamp.
+	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the domain list that you want to use in the rule.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the firewall rule group where you want to create
+	// the rule.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+
+	// A name that lets you identify the rule in the rule group.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The setting that determines the processing order of the rule in the rule
+	// group. DNS Firewall processes the rules in a rule group by order of priority,
+	// starting from the lowest setting.
+	//
+	// You must specify a unique priority for each rule in a rule group. To make
+	// it easier to insert rules later, leave space between the numbers, for example,
+	// use 100, 200, and so on. You can change the priority setting for the rules
+	// in a rule group at any time.
+	//
+	// Priority is a required field
+	Priority *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateFirewallRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFirewallRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFirewallRuleInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.BlockOverrideDomain != nil && len(*s.BlockOverrideDomain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockOverrideDomain", 1))
+	}
+	if s.CreatorRequestId != nil && len(*s.CreatorRequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CreatorRequestId", 1))
+	}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Priority == nil {
+		invalidParams.Add(request.NewErrParamRequired("Priority"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateFirewallRuleInput) SetAction(v string) *CreateFirewallRuleInput {
+	s.Action = &v
+	return s
+}
+
+// SetBlockOverrideDnsType sets the BlockOverrideDnsType field's value.
+func (s *CreateFirewallRuleInput) SetBlockOverrideDnsType(v string) *CreateFirewallRuleInput {
+	s.BlockOverrideDnsType = &v
+	return s
+}
+
+// SetBlockOverrideDomain sets the BlockOverrideDomain field's value.
+func (s *CreateFirewallRuleInput) SetBlockOverrideDomain(v string) *CreateFirewallRuleInput {
+	s.BlockOverrideDomain = &v
+	return s
+}
+
+// SetBlockOverrideTtl sets the BlockOverrideTtl field's value.
+func (s *CreateFirewallRuleInput) SetBlockOverrideTtl(v int64) *CreateFirewallRuleInput {
+	s.BlockOverrideTtl = &v
+	return s
+}
+
+// SetBlockResponse sets the BlockResponse field's value.
+func (s *CreateFirewallRuleInput) SetBlockResponse(v string) *CreateFirewallRuleInput {
+	s.BlockResponse = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *CreateFirewallRuleInput) SetCreatorRequestId(v string) *CreateFirewallRuleInput {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *CreateFirewallRuleInput) SetFirewallDomainListId(v string) *CreateFirewallRuleInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *CreateFirewallRuleInput) SetFirewallRuleGroupId(v string) *CreateFirewallRuleInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFirewallRuleInput) SetName(v string) *CreateFirewallRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *CreateFirewallRuleInput) SetPriority(v int64) *CreateFirewallRuleInput {
+	s.Priority = &v
+	return s
+}
+
+type CreateFirewallRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The firewall rule that you just created.
+	FirewallRule *FirewallRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateFirewallRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFirewallRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRule sets the FirewallRule field's value.
+func (s *CreateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *CreateFirewallRuleOutput {
+	s.FirewallRule = v
 	return s
 }
 
@@ -4651,6 +7956,216 @@ func (s *CreateResolverRuleOutput) SetResolverRule(v *ResolverRule) *CreateResol
 	return s
 }
 
+type DeleteFirewallDomainListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the domain list that you want to delete.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallDomainListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallDomainListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFirewallDomainListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFirewallDomainListInput"}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *DeleteFirewallDomainListInput) SetFirewallDomainListId(v string) *DeleteFirewallDomainListInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+type DeleteFirewallDomainListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain list that you just deleted.
+	FirewallDomainList *FirewallDomainList `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallDomainListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallDomainListOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallDomainList sets the FirewallDomainList field's value.
+func (s *DeleteFirewallDomainListOutput) SetFirewallDomainList(v *FirewallDomainList) *DeleteFirewallDomainListOutput {
+	s.FirewallDomainList = v
+	return s
+}
+
+type DeleteFirewallRuleGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the firewall rule group that you want to delete.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallRuleGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallRuleGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFirewallRuleGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFirewallRuleGroupInput"}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *DeleteFirewallRuleGroupInput) SetFirewallRuleGroupId(v string) *DeleteFirewallRuleGroupInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+type DeleteFirewallRuleGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of rules used to filter DNS network traffic.
+	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallRuleGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallRuleGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroup sets the FirewallRuleGroup field's value.
+func (s *DeleteFirewallRuleGroupOutput) SetFirewallRuleGroup(v *FirewallRuleGroup) *DeleteFirewallRuleGroupOutput {
+	s.FirewallRuleGroup = v
+	return s
+}
+
+type DeleteFirewallRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the domain list that's used in the rule.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the firewall rule group that you want to delete
+	// the rule from.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFirewallRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFirewallRuleInput"}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *DeleteFirewallRuleInput) SetFirewallDomainListId(v string) *DeleteFirewallRuleInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *DeleteFirewallRuleInput) SetFirewallRuleGroupId(v string) *DeleteFirewallRuleInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+type DeleteFirewallRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The specification for the firewall rule that you just deleted.
+	FirewallRule *FirewallRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFirewallRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFirewallRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRule sets the FirewallRule field's value.
+func (s *DeleteFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *DeleteFirewallRuleOutput {
+	s.FirewallRule = v
+	return s
+}
+
 type DeleteResolverEndpointInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4843,6 +8358,70 @@ func (s DeleteResolverRuleOutput) GoString() string {
 // SetResolverRule sets the ResolverRule field's value.
 func (s *DeleteResolverRuleOutput) SetResolverRule(v *ResolverRule) *DeleteResolverRuleOutput {
 	s.ResolverRule = v
+	return s
+}
+
+type DisassociateFirewallRuleGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the FirewallRuleGroupAssociation.
+	//
+	// FirewallRuleGroupAssociationId is a required field
+	FirewallRuleGroupAssociationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateFirewallRuleGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFirewallRuleGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateFirewallRuleGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateFirewallRuleGroupInput"}
+	if s.FirewallRuleGroupAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupAssociationId"))
+	}
+	if s.FirewallRuleGroupAssociationId != nil && len(*s.FirewallRuleGroupAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupAssociationId sets the FirewallRuleGroupAssociationId field's value.
+func (s *DisassociateFirewallRuleGroupInput) SetFirewallRuleGroupAssociationId(v string) *DisassociateFirewallRuleGroupInput {
+	s.FirewallRuleGroupAssociationId = &v
+	return s
+}
+
+type DisassociateFirewallRuleGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The firewall rule group association that you just removed.
+	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateFirewallRuleGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFirewallRuleGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupAssociation sets the FirewallRuleGroupAssociation field's value.
+func (s *DisassociateFirewallRuleGroupOutput) SetFirewallRuleGroupAssociation(v *FirewallRuleGroupAssociation) *DisassociateFirewallRuleGroupOutput {
+	s.FirewallRuleGroupAssociation = v
 	return s
 }
 
@@ -5298,6 +8877,1074 @@ func (s *Filter) SetName(v string) *Filter {
 // SetValues sets the Values field's value.
 func (s *Filter) SetValues(v []*string) *Filter {
 	s.Values = v
+	return s
+}
+
+// Configuration of the firewall behavior provided by DNS Firewall for a single
+// Amazon virtual private cloud (VPC).
+type FirewallConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how DNS Firewall operates during failures, for example when all
+	// traffic that is sent to DNS Firewall fails to receive a reply.
+	//
+	//    * By default, fail open is disabled, which means the failure mode is closed.
+	//    This approach favors security over availability. DNS Firewall returns
+	//    a failure error when it is unable to properly evaluate a query.
+	//
+	//    * If you enable this option, the failure mode is open. This approach favors
+	//    availability over security. DNS Firewall allows queries to proceed if
+	//    it is unable to properly evaluate them.
+	//
+	// This behavior is only enforced for VPCs that have at least one DNS Firewall
+	// rule group association.
+	FirewallFailOpen *string `type:"string" enum:"FirewallFailOpenStatus"`
+
+	// The Id of the firewall configuration.
+	Id *string `min:"1" type:"string"`
+
+	// The AWS account ID of the owner of the VPC that this firewall configuration
+	// applies to.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The ID of the VPC that this firewall configuration applies to.
+	ResourceId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s FirewallConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallConfig) GoString() string {
+	return s.String()
+}
+
+// SetFirewallFailOpen sets the FirewallFailOpen field's value.
+func (s *FirewallConfig) SetFirewallFailOpen(v string) *FirewallConfig {
+	s.FirewallFailOpen = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallConfig) SetId(v string) *FirewallConfig {
+	s.Id = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FirewallConfig) SetOwnerId(v string) *FirewallConfig {
+	s.OwnerId = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *FirewallConfig) SetResourceId(v string) *FirewallConfig {
+	s.ResourceId = &v
+	return s
+}
+
+// High level information about a list of firewall domains for use in a FirewallRule.
+// This is returned by GetFirewallDomainList.
+//
+// To retrieve the domains that are defined for this domain list, call ListFirewallDomains.
+type FirewallDomainList struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the firewall domain list.
+	Arn *string `min:"1" type:"string"`
+
+	// The date and time that the domain list was created, in Unix time format and
+	// Coordinated Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The number of domain names that are specified in the domain list.
+	DomainCount *int64 `type:"integer"`
+
+	// The ID of the domain list.
+	Id *string `min:"1" type:"string"`
+
+	// The owner of the list, used only for lists that are not managed by you. For
+	// example, the managed domain list AWSManagedDomainsMalwareDomainList has the
+	// managed owner name Route 53 Resolver DNS Firewall.
+	ManagedOwnerName *string `min:"1" type:"string"`
+
+	// The date and time that the domain list was last modified, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// The name of the domain list.
+	Name *string `type:"string"`
+
+	// The status of the domain list.
+	Status *string `type:"string" enum:"FirewallDomainListStatus"`
+
+	// Additional information about the status of the list, if available.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FirewallDomainList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallDomainList) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FirewallDomainList) SetArn(v string) *FirewallDomainList {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FirewallDomainList) SetCreationTime(v string) *FirewallDomainList {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallDomainList) SetCreatorRequestId(v string) *FirewallDomainList {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetDomainCount sets the DomainCount field's value.
+func (s *FirewallDomainList) SetDomainCount(v int64) *FirewallDomainList {
+	s.DomainCount = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallDomainList) SetId(v string) *FirewallDomainList {
+	s.Id = &v
+	return s
+}
+
+// SetManagedOwnerName sets the ManagedOwnerName field's value.
+func (s *FirewallDomainList) SetManagedOwnerName(v string) *FirewallDomainList {
+	s.ManagedOwnerName = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *FirewallDomainList) SetModificationTime(v string) *FirewallDomainList {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallDomainList) SetName(v string) *FirewallDomainList {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FirewallDomainList) SetStatus(v string) *FirewallDomainList {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *FirewallDomainList) SetStatusMessage(v string) *FirewallDomainList {
+	s.StatusMessage = &v
+	return s
+}
+
+// Minimal high-level information for a firewall domain list. The action ListFirewallDomainLists
+// returns an array of these objects.
+//
+// To retrieve full information for a firewall domain list, call GetFirewallDomainList
+// and ListFirewallDomains.
+type FirewallDomainListMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the firewall domain list metadata.
+	Arn *string `min:"1" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the domain list.
+	Id *string `min:"1" type:"string"`
+
+	// The owner of the list, used only for lists that are not managed by you. For
+	// example, the managed domain list AWSManagedDomainsMalwareDomainList has the
+	// managed owner name Route 53 Resolver DNS Firewall.
+	ManagedOwnerName *string `min:"1" type:"string"`
+
+	// The name of the domain list.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FirewallDomainListMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallDomainListMetadata) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FirewallDomainListMetadata) SetArn(v string) *FirewallDomainListMetadata {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallDomainListMetadata) SetCreatorRequestId(v string) *FirewallDomainListMetadata {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallDomainListMetadata) SetId(v string) *FirewallDomainListMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetManagedOwnerName sets the ManagedOwnerName field's value.
+func (s *FirewallDomainListMetadata) SetManagedOwnerName(v string) *FirewallDomainListMetadata {
+	s.ManagedOwnerName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallDomainListMetadata) SetName(v string) *FirewallDomainListMetadata {
+	s.Name = &v
+	return s
+}
+
+// A single firewall rule in a rule group.
+type FirewallRule struct {
+	_ struct{} `type:"structure"`
+
+	// The action that DNS Firewall should take on a DNS query when it matches one
+	// of the domains in the rule's domain list:
+	//
+	//    * ALLOW - Permit the request to go through.
+	//
+	//    * ALERT - Permit the request to go through but send an alert to the logs.
+	//
+	//    * BLOCK - Disallow the request. If this is specified, additional handling
+	//    details are provided in the rule's BlockResponse setting.
+	Action *string `type:"string" enum:"Action"`
+
+	// The DNS record's type. This determines the format of the record value that
+	// you provided in BlockOverrideDomain. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	BlockOverrideDnsType *string `type:"string" enum:"BlockOverrideDnsType"`
+
+	// The custom DNS record to send back in response to the query. Used for the
+	// rule action BLOCK with a BlockResponse setting of OVERRIDE.
+	BlockOverrideDomain *string `min:"1" type:"string"`
+
+	// The recommended amount of time, in seconds, for the DNS resolver or web browser
+	// to cache the provided override record. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	BlockOverrideTtl *int64 `type:"integer"`
+
+	// The way that you want DNS Firewall to block the request. Used for the rule
+	// action setting BLOCK.
+	//
+	//    * NODATA - Respond indicating that the query was successful, but no response
+	//    is available for it.
+	//
+	//    * NXDOMAIN - Respond indicating that the domain name that's in the query
+	//    doesn't exist.
+	//
+	//    * OVERRIDE - Provide a custom override in the response. This option requires
+	//    custom handling details in the rule's BlockOverride* settings.
+	BlockResponse *string `type:"string" enum:"BlockResponse"`
+
+	// The date and time that the rule was created, in Unix time format and Coordinated
+	// Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the domain list that's used in the rule.
+	FirewallDomainListId *string `min:"1" type:"string"`
+
+	// The unique identifier of the firewall rule group of the rule.
+	FirewallRuleGroupId *string `min:"1" type:"string"`
+
+	// The date and time that the rule was last modified, in Unix time format and
+	// Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// The name of the rule.
+	Name *string `type:"string"`
+
+	// The priority of the rule in the rule group. This value must be unique within
+	// the rule group. DNS Firewall processes the rules in a rule group by order
+	// of priority, starting from the lowest setting.
+	Priority *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s FirewallRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallRule) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *FirewallRule) SetAction(v string) *FirewallRule {
+	s.Action = &v
+	return s
+}
+
+// SetBlockOverrideDnsType sets the BlockOverrideDnsType field's value.
+func (s *FirewallRule) SetBlockOverrideDnsType(v string) *FirewallRule {
+	s.BlockOverrideDnsType = &v
+	return s
+}
+
+// SetBlockOverrideDomain sets the BlockOverrideDomain field's value.
+func (s *FirewallRule) SetBlockOverrideDomain(v string) *FirewallRule {
+	s.BlockOverrideDomain = &v
+	return s
+}
+
+// SetBlockOverrideTtl sets the BlockOverrideTtl field's value.
+func (s *FirewallRule) SetBlockOverrideTtl(v int64) *FirewallRule {
+	s.BlockOverrideTtl = &v
+	return s
+}
+
+// SetBlockResponse sets the BlockResponse field's value.
+func (s *FirewallRule) SetBlockResponse(v string) *FirewallRule {
+	s.BlockResponse = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FirewallRule) SetCreationTime(v string) *FirewallRule {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallRule) SetCreatorRequestId(v string) *FirewallRule {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *FirewallRule) SetFirewallDomainListId(v string) *FirewallRule {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *FirewallRule) SetFirewallRuleGroupId(v string) *FirewallRule {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *FirewallRule) SetModificationTime(v string) *FirewallRule {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallRule) SetName(v string) *FirewallRule {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *FirewallRule) SetPriority(v int64) *FirewallRule {
+	s.Priority = &v
+	return s
+}
+
+// High-level information for a firewall rule group. A firewall rule group is
+// a collection of rules that DNS Firewall uses to filter DNS network traffic
+// for a VPC. To retrieve the rules for the rule group, call ListFirewallRules.
+type FirewallRuleGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the rule group.
+	Arn *string `min:"1" type:"string"`
+
+	// The date and time that the rule group was created, in Unix time format and
+	// Coordinated Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the rule group.
+	Id *string `min:"1" type:"string"`
+
+	// The date and time that the rule group was last modified, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// The name of the rule group.
+	Name *string `type:"string"`
+
+	// The AWS account ID for the account that created the rule group. When a rule
+	// group is shared with your account, this is the account that has shared the
+	// rule group with you.
+	OwnerId *string `min:"12" type:"string"`
+
+	// The number of rules in the rule group.
+	RuleCount *int64 `type:"integer"`
+
+	// Whether the rule group is shared with other AWS accounts, or was shared with
+	// the current account by another AWS account. Sharing is configured through
+	// AWS Resource Access Manager (AWS RAM).
+	ShareStatus *string `type:"string" enum:"ShareStatus"`
+
+	// The status of the domain list.
+	Status *string `type:"string" enum:"FirewallRuleGroupStatus"`
+
+	// Additional information about the status of the rule group, if available.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FirewallRuleGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallRuleGroup) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FirewallRuleGroup) SetArn(v string) *FirewallRuleGroup {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FirewallRuleGroup) SetCreationTime(v string) *FirewallRuleGroup {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallRuleGroup) SetCreatorRequestId(v string) *FirewallRuleGroup {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallRuleGroup) SetId(v string) *FirewallRuleGroup {
+	s.Id = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *FirewallRuleGroup) SetModificationTime(v string) *FirewallRuleGroup {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallRuleGroup) SetName(v string) *FirewallRuleGroup {
+	s.Name = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FirewallRuleGroup) SetOwnerId(v string) *FirewallRuleGroup {
+	s.OwnerId = &v
+	return s
+}
+
+// SetRuleCount sets the RuleCount field's value.
+func (s *FirewallRuleGroup) SetRuleCount(v int64) *FirewallRuleGroup {
+	s.RuleCount = &v
+	return s
+}
+
+// SetShareStatus sets the ShareStatus field's value.
+func (s *FirewallRuleGroup) SetShareStatus(v string) *FirewallRuleGroup {
+	s.ShareStatus = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FirewallRuleGroup) SetStatus(v string) *FirewallRuleGroup {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *FirewallRuleGroup) SetStatusMessage(v string) *FirewallRuleGroup {
+	s.StatusMessage = &v
+	return s
+}
+
+// An association between a firewall rul group and a VPC, which enables DNS
+// filtering for the VPC.
+type FirewallRuleGroupAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the firewall rule group association.
+	Arn *string `min:"1" type:"string"`
+
+	// The date and time that the association was created, in Unix time format and
+	// Coordinated Universal Time (UTC).
+	CreationTime *string `min:"20" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The unique identifier of the firewall rule group.
+	FirewallRuleGroupId *string `min:"1" type:"string"`
+
+	// The identifier for the association.
+	Id *string `min:"1" type:"string"`
+
+	// The owner of the association, used only for associations that are not managed
+	// by you. If you use AWS Firewall Manager to manage your DNS Firewalls, then
+	// this reports Firewall Manager as the managed owner.
+	ManagedOwnerName *string `min:"1" type:"string"`
+
+	// The date and time that the association was last modified, in Unix time format
+	// and Coordinated Universal Time (UTC).
+	ModificationTime *string `min:"20" type:"string"`
+
+	// If enabled, this setting disallows modification or removal of the association,
+	// to help prevent against accidentally altering DNS firewall protections.
+	MutationProtection *string `type:"string" enum:"MutationProtectionStatus"`
+
+	// The name of the association.
+	Name *string `type:"string"`
+
+	// The setting that determines the processing order of the rule group among
+	// the rule groups that are associated with a single VPC. DNS Firewall filters
+	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	Priority *int64 `type:"integer"`
+
+	// The current status of the association.
+	Status *string `type:"string" enum:"FirewallRuleGroupAssociationStatus"`
+
+	// Additional information about the status of the response, if available.
+	StatusMessage *string `type:"string"`
+
+	// The unique identifier of the VPC that is associated with the rule group.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s FirewallRuleGroupAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallRuleGroupAssociation) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FirewallRuleGroupAssociation) SetArn(v string) *FirewallRuleGroupAssociation {
+	s.Arn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *FirewallRuleGroupAssociation) SetCreationTime(v string) *FirewallRuleGroupAssociation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallRuleGroupAssociation) SetCreatorRequestId(v string) *FirewallRuleGroupAssociation {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *FirewallRuleGroupAssociation) SetFirewallRuleGroupId(v string) *FirewallRuleGroupAssociation {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallRuleGroupAssociation) SetId(v string) *FirewallRuleGroupAssociation {
+	s.Id = &v
+	return s
+}
+
+// SetManagedOwnerName sets the ManagedOwnerName field's value.
+func (s *FirewallRuleGroupAssociation) SetManagedOwnerName(v string) *FirewallRuleGroupAssociation {
+	s.ManagedOwnerName = &v
+	return s
+}
+
+// SetModificationTime sets the ModificationTime field's value.
+func (s *FirewallRuleGroupAssociation) SetModificationTime(v string) *FirewallRuleGroupAssociation {
+	s.ModificationTime = &v
+	return s
+}
+
+// SetMutationProtection sets the MutationProtection field's value.
+func (s *FirewallRuleGroupAssociation) SetMutationProtection(v string) *FirewallRuleGroupAssociation {
+	s.MutationProtection = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallRuleGroupAssociation) SetName(v string) *FirewallRuleGroupAssociation {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *FirewallRuleGroupAssociation) SetPriority(v int64) *FirewallRuleGroupAssociation {
+	s.Priority = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FirewallRuleGroupAssociation) SetStatus(v string) *FirewallRuleGroupAssociation {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *FirewallRuleGroupAssociation) SetStatusMessage(v string) *FirewallRuleGroupAssociation {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *FirewallRuleGroupAssociation) SetVpcId(v string) *FirewallRuleGroupAssociation {
+	s.VpcId = &v
+	return s
+}
+
+// Minimal high-level information for a firewall rule group. The action ListFirewallRuleGroups
+// returns an array of these objects.
+//
+// To retrieve full information for a firewall rule group, call GetFirewallRuleGroup
+// and ListFirewallRules.
+type FirewallRuleGroupMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) of the rule group.
+	Arn *string `min:"1" type:"string"`
+
+	// A unique string defined by you to identify the request. This allows you to
+	// retry failed requests without the risk of executing the operation twice.
+	// This can be any unique string, for example, a timestamp.
+	CreatorRequestId *string `min:"1" type:"string"`
+
+	// The ID of the rule group.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the rule group.
+	Name *string `type:"string"`
+
+	// The AWS account ID for the account that created the rule group. When a rule
+	// group is shared with your account, this is the account that has shared the
+	// rule group with you.
+	OwnerId *string `min:"12" type:"string"`
+
+	// Whether the rule group is shared with other AWS accounts, or was shared with
+	// the current account by another AWS account. Sharing is configured through
+	// AWS Resource Access Manager (AWS RAM).
+	ShareStatus *string `type:"string" enum:"ShareStatus"`
+}
+
+// String returns the string representation
+func (s FirewallRuleGroupMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FirewallRuleGroupMetadata) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FirewallRuleGroupMetadata) SetArn(v string) *FirewallRuleGroupMetadata {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatorRequestId sets the CreatorRequestId field's value.
+func (s *FirewallRuleGroupMetadata) SetCreatorRequestId(v string) *FirewallRuleGroupMetadata {
+	s.CreatorRequestId = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *FirewallRuleGroupMetadata) SetId(v string) *FirewallRuleGroupMetadata {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FirewallRuleGroupMetadata) SetName(v string) *FirewallRuleGroupMetadata {
+	s.Name = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *FirewallRuleGroupMetadata) SetOwnerId(v string) *FirewallRuleGroupMetadata {
+	s.OwnerId = &v
+	return s
+}
+
+// SetShareStatus sets the ShareStatus field's value.
+func (s *FirewallRuleGroupMetadata) SetShareStatus(v string) *FirewallRuleGroupMetadata {
+	s.ShareStatus = &v
+	return s
+}
+
+type GetFirewallConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Amazon virtual private cloud (VPC) that the configuration is
+	// for.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFirewallConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFirewallConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFirewallConfigInput"}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *GetFirewallConfigInput) SetResourceId(v string) *GetFirewallConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type GetFirewallConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of the firewall behavior provided by DNS Firewall for a single
+	// Amazon virtual private cloud (VPC).
+	FirewallConfig *FirewallConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFirewallConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallConfig sets the FirewallConfig field's value.
+func (s *GetFirewallConfigOutput) SetFirewallConfig(v *FirewallConfig) *GetFirewallConfigOutput {
+	s.FirewallConfig = v
+	return s
+}
+
+type GetFirewallDomainListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the domain list.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFirewallDomainListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallDomainListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFirewallDomainListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFirewallDomainListInput"}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *GetFirewallDomainListInput) SetFirewallDomainListId(v string) *GetFirewallDomainListInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+type GetFirewallDomainListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The domain list that you requested.
+	FirewallDomainList *FirewallDomainList `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFirewallDomainListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallDomainListOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallDomainList sets the FirewallDomainList field's value.
+func (s *GetFirewallDomainListOutput) SetFirewallDomainList(v *FirewallDomainList) *GetFirewallDomainListOutput {
+	s.FirewallDomainList = v
+	return s
+}
+
+type GetFirewallRuleGroupAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the FirewallRuleGroupAssociation.
+	//
+	// FirewallRuleGroupAssociationId is a required field
+	FirewallRuleGroupAssociationId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFirewallRuleGroupAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFirewallRuleGroupAssociationInput"}
+	if s.FirewallRuleGroupAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupAssociationId"))
+	}
+	if s.FirewallRuleGroupAssociationId != nil && len(*s.FirewallRuleGroupAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupAssociationId sets the FirewallRuleGroupAssociationId field's value.
+func (s *GetFirewallRuleGroupAssociationInput) SetFirewallRuleGroupAssociationId(v string) *GetFirewallRuleGroupAssociationInput {
+	s.FirewallRuleGroupAssociationId = &v
+	return s
+}
+
+type GetFirewallRuleGroupAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association that you requested.
+	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupAssociation sets the FirewallRuleGroupAssociation field's value.
+func (s *GetFirewallRuleGroupAssociationOutput) SetFirewallRuleGroupAssociation(v *FirewallRuleGroupAssociation) *GetFirewallRuleGroupAssociationOutput {
+	s.FirewallRuleGroupAssociation = v
+	return s
+}
+
+type GetFirewallRuleGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the firewall rule group.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFirewallRuleGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFirewallRuleGroupInput"}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *GetFirewallRuleGroupInput) SetFirewallRuleGroupId(v string) *GetFirewallRuleGroupInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+type GetFirewallRuleGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of rules used to filter DNS network traffic.
+	FirewallRuleGroup *FirewallRuleGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroup sets the FirewallRuleGroup field's value.
+func (s *GetFirewallRuleGroupOutput) SetFirewallRuleGroup(v *FirewallRuleGroup) *GetFirewallRuleGroupOutput {
+	s.FirewallRuleGroup = v
+	return s
+}
+
+type GetFirewallRuleGroupPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) for the rule group.
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFirewallRuleGroupPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFirewallRuleGroupPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetFirewallRuleGroupPolicyInput) SetArn(v string) *GetFirewallRuleGroupPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+type GetFirewallRuleGroupPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Identity and Access Management (AWS IAM) policy for sharing the specified
+	// rule group. You can use the policy to share the rule group using AWS Resource
+	// Access Manager (RAM).
+	FirewallRuleGroupPolicy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetFirewallRuleGroupPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFirewallRuleGroupPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupPolicy sets the FirewallRuleGroupPolicy field's value.
+func (s *GetFirewallRuleGroupPolicyOutput) SetFirewallRuleGroupPolicy(v string) *GetFirewallRuleGroupPolicyOutput {
+	s.FirewallRuleGroupPolicy = &v
 	return s
 }
 
@@ -5822,6 +10469,133 @@ func (s GetResolverRulePolicyOutput) GoString() string {
 // SetResolverRulePolicy sets the ResolverRulePolicy field's value.
 func (s *GetResolverRulePolicyOutput) SetResolverRulePolicy(v string) *GetResolverRulePolicyOutput {
 	s.ResolverRulePolicy = &v
+	return s
+}
+
+type ImportFirewallDomainsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The fully qualified URL or URI of the file stored in Amazon Simple Storage
+	// Service (S3) that contains the list of domains to import.
+	//
+	// The file must be in an S3 bucket that's in the same Region as your DNS Firewall.
+	// The file must be a text file and must contain a single domain per line.
+	//
+	// DomainFileUrl is a required field
+	DomainFileUrl *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the domain list that you want to modify with the import operation.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// What you want DNS Firewall to do with the domains that are listed in the
+	// file. This must be set to REPLACE, which updates the domain list to exactly
+	// match the list in the file.
+	//
+	// Operation is a required field
+	Operation *string `type:"string" required:"true" enum:"FirewallDomainImportOperation"`
+}
+
+// String returns the string representation
+func (s ImportFirewallDomainsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportFirewallDomainsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportFirewallDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportFirewallDomainsInput"}
+	if s.DomainFileUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainFileUrl"))
+	}
+	if s.DomainFileUrl != nil && len(*s.DomainFileUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainFileUrl", 1))
+	}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.Operation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainFileUrl sets the DomainFileUrl field's value.
+func (s *ImportFirewallDomainsInput) SetDomainFileUrl(v string) *ImportFirewallDomainsInput {
+	s.DomainFileUrl = &v
+	return s
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *ImportFirewallDomainsInput) SetFirewallDomainListId(v string) *ImportFirewallDomainsInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *ImportFirewallDomainsInput) SetOperation(v string) *ImportFirewallDomainsInput {
+	s.Operation = &v
+	return s
+}
+
+type ImportFirewallDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Id of the firewall domain list that DNS Firewall just updated.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the domain list.
+	Name *string `type:"string"`
+
+	Status *string `type:"string" enum:"FirewallDomainListStatus"`
+
+	// Additional information about the status of the list, if available.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ImportFirewallDomainsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportFirewallDomainsOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *ImportFirewallDomainsOutput) SetId(v string) *ImportFirewallDomainsOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ImportFirewallDomainsOutput) SetName(v string) *ImportFirewallDomainsOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ImportFirewallDomainsOutput) SetStatus(v string) *ImportFirewallDomainsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ImportFirewallDomainsOutput) SetStatusMessage(v string) *ImportFirewallDomainsOutput {
+	s.StatusMessage = &v
 	return s
 }
 
@@ -6427,6 +11201,672 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListFirewallConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"5" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallConfigsInput) SetMaxResults(v int64) *ListFirewallConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallConfigsInput) SetNextToken(v string) *ListFirewallConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configurations for the firewall behavior provided by DNS Firewall for
+	// Amazon virtual private clouds (VPC).
+	FirewallConfigs []*FirewallConfig `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallConfigs sets the FirewallConfigs field's value.
+func (s *ListFirewallConfigsOutput) SetFirewallConfigs(v []*FirewallConfig) *ListFirewallConfigsOutput {
+	s.FirewallConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallConfigsOutput) SetNextToken(v string) *ListFirewallConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallDomainListsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallDomainListsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallDomainListsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallDomainListsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallDomainListsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallDomainListsInput) SetMaxResults(v int64) *ListFirewallDomainListsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallDomainListsInput) SetNextToken(v string) *ListFirewallDomainListsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallDomainListsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the domain lists that you have defined.
+	//
+	// This might be a parital list of the domain lists that you've defined. For
+	// information, see MaxResults.
+	FirewallDomainLists []*FirewallDomainListMetadata `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallDomainListsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallDomainListsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallDomainLists sets the FirewallDomainLists field's value.
+func (s *ListFirewallDomainListsOutput) SetFirewallDomainLists(v []*FirewallDomainListMetadata) *ListFirewallDomainListsOutput {
+	s.FirewallDomainLists = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallDomainListsOutput) SetNextToken(v string) *ListFirewallDomainListsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallDomainsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the domain list whose domains you want to retrieve.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallDomainsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallDomainsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallDomainsInput"}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *ListFirewallDomainsInput) SetFirewallDomainListId(v string) *ListFirewallDomainsInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallDomainsInput) SetMaxResults(v int64) *ListFirewallDomainsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallDomainsInput) SetNextToken(v string) *ListFirewallDomainsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the domains in the firewall domain list.
+	//
+	// This might be a parital list of the domains that you've defined in the domain
+	// list. For information, see MaxResults.
+	Domains []*string `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallDomainsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallDomainsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDomains sets the Domains field's value.
+func (s *ListFirewallDomainsOutput) SetDomains(v []*string) *ListFirewallDomainsOutput {
+	s.Domains = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallDomainsOutput) SetNextToken(v string) *ListFirewallDomainsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallRuleGroupAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the firewall rule group that you want to retrieve
+	// the associations for. Leave this blank to retrieve associations for any rule
+	// group.
+	FirewallRuleGroupId *string `min:"1" type:"string"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+
+	// The setting that determines the processing order of the rule group among
+	// the rule groups that are associated with a single VPC. DNS Firewall filters
+	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	Priority *int64 `type:"integer"`
+
+	// The association Status setting that you want DNS Firewall to filter on for
+	// the list. If you don't specify this, then DNS Firewall returns all associations,
+	// regardless of status.
+	Status *string `type:"string" enum:"FirewallRuleGroupAssociationStatus"`
+
+	// The unique identifier of the VPC that you want to retrieve the associations
+	// for. Leave this blank to retrieve associations for any VPC.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallRuleGroupAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRuleGroupAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallRuleGroupAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallRuleGroupAssociationsInput"}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetFirewallRuleGroupId(v string) *ListFirewallRuleGroupAssociationsInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetMaxResults(v int64) *ListFirewallRuleGroupAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetNextToken(v string) *ListFirewallRuleGroupAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetPriority(v int64) *ListFirewallRuleGroupAssociationsInput {
+	s.Priority = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetStatus(v string) *ListFirewallRuleGroupAssociationsInput {
+	s.Status = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *ListFirewallRuleGroupAssociationsInput) SetVpcId(v string) *ListFirewallRuleGroupAssociationsInput {
+	s.VpcId = &v
+	return s
+}
+
+type ListFirewallRuleGroupAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of your firewall rule group associations.
+	//
+	// This might be a partial list of the associations that you have defined. For
+	// information, see MaxResults.
+	FirewallRuleGroupAssociations []*FirewallRuleGroupAssociation `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallRuleGroupAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRuleGroupAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupAssociations sets the FirewallRuleGroupAssociations field's value.
+func (s *ListFirewallRuleGroupAssociationsOutput) SetFirewallRuleGroupAssociations(v []*FirewallRuleGroupAssociation) *ListFirewallRuleGroupAssociationsOutput {
+	s.FirewallRuleGroupAssociations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRuleGroupAssociationsOutput) SetNextToken(v string) *ListFirewallRuleGroupAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallRuleGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallRuleGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRuleGroupsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallRuleGroupsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallRuleGroupsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallRuleGroupsInput) SetMaxResults(v int64) *ListFirewallRuleGroupsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRuleGroupsInput) SetNextToken(v string) *ListFirewallRuleGroupsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallRuleGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of your firewall rule groups.
+	//
+	// This might be a partial list of the rule groups that you have defined. For
+	// information, see MaxResults.
+	FirewallRuleGroups []*FirewallRuleGroupMetadata `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallRuleGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRuleGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroups sets the FirewallRuleGroups field's value.
+func (s *ListFirewallRuleGroupsOutput) SetFirewallRuleGroups(v []*FirewallRuleGroupMetadata) *ListFirewallRuleGroupsOutput {
+	s.FirewallRuleGroups = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRuleGroupsOutput) SetNextToken(v string) *ListFirewallRuleGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFirewallRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional additional filter for the rules to retrieve.
+	//
+	// The action that DNS Firewall should take on a DNS query when it matches one
+	// of the domains in the rule's domain list:
+	//
+	//    * ALLOW - Permit the request to go through.
+	//
+	//    * ALERT - Permit the request to go through but send an alert to the logs.
+	//
+	//    * BLOCK - Disallow the request. If this is specified, additional handling
+	//    details are provided in the rule's BlockResponse setting.
+	Action *string `type:"string" enum:"Action"`
+
+	// The unique identifier of the firewall rule group that you want to retrieve
+	// the rules for.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of objects that you want Resolver to return for this request.
+	// If more objects are available, in the response, Resolver provides a NextToken
+	// value that you can use in a subsequent call to get the next batch of objects.
+	//
+	// If you don't specify a value for MaxResults, Resolver returns up to 100 objects.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// For the first call to this list request, omit this value.
+	//
+	// When you request a list of objects, Resolver returns at most the number of
+	// objects specified in MaxResults. If more objects are available for retrieval,
+	// Resolver returns a NextToken value in the response. To retrieve the next
+	// batch of objects, use the token that was returned for the prior request in
+	// your next request.
+	NextToken *string `type:"string"`
+
+	// Optional additional filter for the rules to retrieve.
+	//
+	// The setting that determines the processing order of the rules in a rule group.
+	// DNS Firewall processes the rules in a rule group by order of priority, starting
+	// from the lowest setting.
+	Priority *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFirewallRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFirewallRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFirewallRulesInput"}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *ListFirewallRulesInput) SetAction(v string) *ListFirewallRulesInput {
+	s.Action = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *ListFirewallRulesInput) SetFirewallRuleGroupId(v string) *ListFirewallRulesInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFirewallRulesInput) SetMaxResults(v int64) *ListFirewallRulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRulesInput) SetNextToken(v string) *ListFirewallRulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *ListFirewallRulesInput) SetPriority(v int64) *ListFirewallRulesInput {
+	s.Priority = &v
+	return s
+}
+
+type ListFirewallRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the rules that you have defined.
+	//
+	// This might be a parital list of the firewall rules that you've defined. For
+	// information, see MaxResults.
+	FirewallRules []*FirewallRule `type:"list"`
+
+	// If objects are still available for retrieval, Resolver returns this token
+	// in the response. To retrieve the next batch of objects, provide this token
+	// in your next request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFirewallRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFirewallRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRules sets the FirewallRules field's value.
+func (s *ListFirewallRulesOutput) SetFirewallRules(v []*FirewallRule) *ListFirewallRulesOutput {
+	s.FirewallRules = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFirewallRulesOutput) SetNextToken(v string) *ListFirewallRulesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListResolverDnssecConfigsInput struct {
@@ -7510,6 +12950,84 @@ func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceO
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+type PutFirewallRuleGroupPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (Amazon Resource Name) for the rule group that you want to share.
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+
+	// The AWS Identity and Access Management (AWS IAM) policy to attach to the
+	// rule group.
+	//
+	// FirewallRuleGroupPolicy is a required field
+	FirewallRuleGroupPolicy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutFirewallRuleGroupPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFirewallRuleGroupPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutFirewallRuleGroupPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutFirewallRuleGroupPolicyInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.FirewallRuleGroupPolicy == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupPolicy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *PutFirewallRuleGroupPolicyInput) SetArn(v string) *PutFirewallRuleGroupPolicyInput {
+	s.Arn = &v
+	return s
+}
+
+// SetFirewallRuleGroupPolicy sets the FirewallRuleGroupPolicy field's value.
+func (s *PutFirewallRuleGroupPolicyInput) SetFirewallRuleGroupPolicy(v string) *PutFirewallRuleGroupPolicyInput {
+	s.FirewallRuleGroupPolicy = &v
+	return s
+}
+
+type PutFirewallRuleGroupPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	ReturnValue *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s PutFirewallRuleGroupPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutFirewallRuleGroupPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetReturnValue sets the ReturnValue field's value.
+func (s *PutFirewallRuleGroupPolicyOutput) SetReturnValue(v bool) *PutFirewallRuleGroupPolicyOutput {
+	s.ReturnValue = &v
 	return s
 }
 
@@ -9140,6 +14658,510 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateFirewallConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// Determines how Route 53 Resolver handles queries during failures, for example
+	// when all traffic that is sent to DNS Firewall fails to receive a reply.
+	//
+	//    * By default, fail open is disabled, which means the failure mode is closed.
+	//    This approach favors security over availability. DNS Firewall blocks queries
+	//    that it is unable to evaluate properly.
+	//
+	//    * If you enable this option, the failure mode is open. This approach favors
+	//    availability over security. DNS Firewall allows queries to proceed if
+	//    it is unable to properly evaluate them.
+	//
+	// This behavior is only enforced for VPCs that have at least one DNS Firewall
+	// rule group association.
+	//
+	// FirewallFailOpen is a required field
+	FirewallFailOpen *string `type:"string" required:"true" enum:"FirewallFailOpenStatus"`
+
+	// The ID of the Amazon virtual private cloud (VPC) that the configuration is
+	// for.
+	//
+	// ResourceId is a required field
+	ResourceId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFirewallConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFirewallConfigInput"}
+	if s.FirewallFailOpen == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallFailOpen"))
+	}
+	if s.ResourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceId"))
+	}
+	if s.ResourceId != nil && len(*s.ResourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallFailOpen sets the FirewallFailOpen field's value.
+func (s *UpdateFirewallConfigInput) SetFirewallFailOpen(v string) *UpdateFirewallConfigInput {
+	s.FirewallFailOpen = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *UpdateFirewallConfigInput) SetResourceId(v string) *UpdateFirewallConfigInput {
+	s.ResourceId = &v
+	return s
+}
+
+type UpdateFirewallConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration of the firewall behavior provided by DNS Firewall for a single
+	// Amazon virtual private cloud (VPC).
+	FirewallConfig *FirewallConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallConfig sets the FirewallConfig field's value.
+func (s *UpdateFirewallConfigOutput) SetFirewallConfig(v *FirewallConfig) *UpdateFirewallConfigOutput {
+	s.FirewallConfig = v
+	return s
+}
+
+type UpdateFirewallDomainsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of domains to use in the update operation.
+	//
+	// Each domain specification in your domain list must satisfy the following
+	// requirements:
+	//
+	//    * It can optionally start with * (asterisk).
+	//
+	//    * With the exception of the optional starting asterisk, it must only contain
+	//    the following characters: A-Z, a-z, 0-9, - (hyphen).
+	//
+	//    * It must be from 1-255 characters in length.
+	//
+	// Domains is a required field
+	Domains []*string `type:"list" required:"true"`
+
+	// The ID of the domain list whose domains you want to update.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// What you want DNS Firewall to do with the domains that you are providing:
+	//
+	//    * ADD - Add the domains to the ones that are already in the domain list.
+	//
+	//    * REMOVE - Search the domain list for the domains and remove them from
+	//    the list.
+	//
+	//    * REPLACE - Update the domain list to exactly match the list that you
+	//    are providing.
+	//
+	// Operation is a required field
+	Operation *string `type:"string" required:"true" enum:"FirewallDomainUpdateOperation"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallDomainsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallDomainsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFirewallDomainsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFirewallDomainsInput"}
+	if s.Domains == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domains"))
+	}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.Operation == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomains sets the Domains field's value.
+func (s *UpdateFirewallDomainsInput) SetDomains(v []*string) *UpdateFirewallDomainsInput {
+	s.Domains = v
+	return s
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *UpdateFirewallDomainsInput) SetFirewallDomainListId(v string) *UpdateFirewallDomainsInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *UpdateFirewallDomainsInput) SetOperation(v string) *UpdateFirewallDomainsInput {
+	s.Operation = &v
+	return s
+}
+
+type UpdateFirewallDomainsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Id of the firewall domain list that DNS Firewall just updated.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the domain list.
+	Name *string `type:"string"`
+
+	Status *string `type:"string" enum:"FirewallDomainListStatus"`
+
+	// Additional information about the status of the list, if available.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallDomainsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallDomainsOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateFirewallDomainsOutput) SetId(v string) *UpdateFirewallDomainsOutput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFirewallDomainsOutput) SetName(v string) *UpdateFirewallDomainsOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFirewallDomainsOutput) SetStatus(v string) *UpdateFirewallDomainsOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *UpdateFirewallDomainsOutput) SetStatusMessage(v string) *UpdateFirewallDomainsOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+type UpdateFirewallRuleGroupAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the FirewallRuleGroupAssociation.
+	//
+	// FirewallRuleGroupAssociationId is a required field
+	FirewallRuleGroupAssociationId *string `min:"1" type:"string" required:"true"`
+
+	// If enabled, this setting disallows modification or removal of the association,
+	// to help prevent against accidentally altering DNS firewall protections.
+	MutationProtection *string `type:"string" enum:"MutationProtectionStatus"`
+
+	// The name of the rule group association.
+	Name *string `type:"string"`
+
+	// The setting that determines the processing order of the rule group among
+	// the rule groups that you associate with the specified VPC. DNS Firewall filters
+	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	//
+	// You must specify a unique priority for each rule group that you associate
+	// with a single VPC. To make it easier to insert rule groups later, leave space
+	// between the numbers, for example, use 100, 200, and so on. You can change
+	// the priority setting for a rule group association after you create it.
+	Priority *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallRuleGroupAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallRuleGroupAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFirewallRuleGroupAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFirewallRuleGroupAssociationInput"}
+	if s.FirewallRuleGroupAssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupAssociationId"))
+	}
+	if s.FirewallRuleGroupAssociationId != nil && len(*s.FirewallRuleGroupAssociationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupAssociationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirewallRuleGroupAssociationId sets the FirewallRuleGroupAssociationId field's value.
+func (s *UpdateFirewallRuleGroupAssociationInput) SetFirewallRuleGroupAssociationId(v string) *UpdateFirewallRuleGroupAssociationInput {
+	s.FirewallRuleGroupAssociationId = &v
+	return s
+}
+
+// SetMutationProtection sets the MutationProtection field's value.
+func (s *UpdateFirewallRuleGroupAssociationInput) SetMutationProtection(v string) *UpdateFirewallRuleGroupAssociationInput {
+	s.MutationProtection = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFirewallRuleGroupAssociationInput) SetName(v string) *UpdateFirewallRuleGroupAssociationInput {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *UpdateFirewallRuleGroupAssociationInput) SetPriority(v int64) *UpdateFirewallRuleGroupAssociationInput {
+	s.Priority = &v
+	return s
+}
+
+type UpdateFirewallRuleGroupAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association that you just updated.
+	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallRuleGroupAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallRuleGroupAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRuleGroupAssociation sets the FirewallRuleGroupAssociation field's value.
+func (s *UpdateFirewallRuleGroupAssociationOutput) SetFirewallRuleGroupAssociation(v *FirewallRuleGroupAssociation) *UpdateFirewallRuleGroupAssociationOutput {
+	s.FirewallRuleGroupAssociation = v
+	return s
+}
+
+type UpdateFirewallRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The action that DNS Firewall should take on a DNS query when it matches one
+	// of the domains in the rule's domain list:
+	//
+	//    * ALLOW - Permit the request to go through.
+	//
+	//    * ALERT - Permit the request to go through but send an alert to the logs.
+	//
+	//    * BLOCK - Disallow the request. This option requires additional details
+	//    in the rule's BlockResponse.
+	Action *string `type:"string" enum:"Action"`
+
+	// The DNS record's type. This determines the format of the record value that
+	// you provided in BlockOverrideDomain. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	BlockOverrideDnsType *string `type:"string" enum:"BlockOverrideDnsType"`
+
+	// The custom DNS record to send back in response to the query. Used for the
+	// rule action BLOCK with a BlockResponse setting of OVERRIDE.
+	BlockOverrideDomain *string `min:"1" type:"string"`
+
+	// The recommended amount of time, in seconds, for the DNS resolver or web browser
+	// to cache the provided override record. Used for the rule action BLOCK with
+	// a BlockResponse setting of OVERRIDE.
+	BlockOverrideTtl *int64 `type:"integer"`
+
+	// The way that you want DNS Firewall to block the request. Used for the rule
+	// action setting BLOCK.
+	//
+	//    * NODATA - Respond indicating that the query was successful, but no response
+	//    is available for it.
+	//
+	//    * NXDOMAIN - Respond indicating that the domain name that's in the query
+	//    doesn't exist.
+	//
+	//    * OVERRIDE - Provide a custom override in the response. This option requires
+	//    custom handling details in the rule's BlockOverride* settings.
+	BlockResponse *string `type:"string" enum:"BlockResponse"`
+
+	// The ID of the domain list to use in the rule.
+	//
+	// FirewallDomainListId is a required field
+	FirewallDomainListId *string `min:"1" type:"string" required:"true"`
+
+	// The unique identifier of the firewall rule group for the rule.
+	//
+	// FirewallRuleGroupId is a required field
+	FirewallRuleGroupId *string `min:"1" type:"string" required:"true"`
+
+	// The name of the rule.
+	Name *string `type:"string"`
+
+	// The setting that determines the processing order of the rule in the rule
+	// group. DNS Firewall processes the rules in a rule group by order of priority,
+	// starting from the lowest setting.
+	//
+	// You must specify a unique priority for each rule in a rule group. To make
+	// it easier to insert rules later, leave space between the numbers, for example,
+	// use 100, 200, and so on. You can change the priority setting for the rules
+	// in a rule group at any time.
+	Priority *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFirewallRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFirewallRuleInput"}
+	if s.BlockOverrideDomain != nil && len(*s.BlockOverrideDomain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlockOverrideDomain", 1))
+	}
+	if s.FirewallDomainListId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallDomainListId"))
+	}
+	if s.FirewallDomainListId != nil && len(*s.FirewallDomainListId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallDomainListId", 1))
+	}
+	if s.FirewallRuleGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FirewallRuleGroupId"))
+	}
+	if s.FirewallRuleGroupId != nil && len(*s.FirewallRuleGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirewallRuleGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateFirewallRuleInput) SetAction(v string) *UpdateFirewallRuleInput {
+	s.Action = &v
+	return s
+}
+
+// SetBlockOverrideDnsType sets the BlockOverrideDnsType field's value.
+func (s *UpdateFirewallRuleInput) SetBlockOverrideDnsType(v string) *UpdateFirewallRuleInput {
+	s.BlockOverrideDnsType = &v
+	return s
+}
+
+// SetBlockOverrideDomain sets the BlockOverrideDomain field's value.
+func (s *UpdateFirewallRuleInput) SetBlockOverrideDomain(v string) *UpdateFirewallRuleInput {
+	s.BlockOverrideDomain = &v
+	return s
+}
+
+// SetBlockOverrideTtl sets the BlockOverrideTtl field's value.
+func (s *UpdateFirewallRuleInput) SetBlockOverrideTtl(v int64) *UpdateFirewallRuleInput {
+	s.BlockOverrideTtl = &v
+	return s
+}
+
+// SetBlockResponse sets the BlockResponse field's value.
+func (s *UpdateFirewallRuleInput) SetBlockResponse(v string) *UpdateFirewallRuleInput {
+	s.BlockResponse = &v
+	return s
+}
+
+// SetFirewallDomainListId sets the FirewallDomainListId field's value.
+func (s *UpdateFirewallRuleInput) SetFirewallDomainListId(v string) *UpdateFirewallRuleInput {
+	s.FirewallDomainListId = &v
+	return s
+}
+
+// SetFirewallRuleGroupId sets the FirewallRuleGroupId field's value.
+func (s *UpdateFirewallRuleInput) SetFirewallRuleGroupId(v string) *UpdateFirewallRuleInput {
+	s.FirewallRuleGroupId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFirewallRuleInput) SetName(v string) *UpdateFirewallRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *UpdateFirewallRuleInput) SetPriority(v int64) *UpdateFirewallRuleInput {
+	s.Priority = &v
+	return s
+}
+
+type UpdateFirewallRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The firewall rule that you just updated.
+	FirewallRule *FirewallRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFirewallRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFirewallRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetFirewallRule sets the FirewallRule field's value.
+func (s *UpdateFirewallRuleOutput) SetFirewallRule(v *FirewallRule) *UpdateFirewallRuleOutput {
+	s.FirewallRule = v
+	return s
+}
+
 type UpdateResolverDnssecConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9377,6 +15399,229 @@ func (s *UpdateResolverRuleOutput) SetResolverRule(v *ResolverRule) *UpdateResol
 	return s
 }
 
+type ValidationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ValidationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationException) GoString() string {
+	return s.String()
+}
+
+func newErrorValidationException(v protocol.ResponseMetadata) error {
+	return &ValidationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ValidationException) Code() string {
+	return "ValidationException"
+}
+
+// Message returns the exception's message.
+func (s *ValidationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ValidationException) OrigErr() error {
+	return nil
+}
+
+func (s *ValidationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ValidationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ValidationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+const (
+	// ActionAllow is a Action enum value
+	ActionAllow = "ALLOW"
+
+	// ActionBlock is a Action enum value
+	ActionBlock = "BLOCK"
+
+	// ActionAlert is a Action enum value
+	ActionAlert = "ALERT"
+)
+
+// Action_Values returns all elements of the Action enum
+func Action_Values() []string {
+	return []string{
+		ActionAllow,
+		ActionBlock,
+		ActionAlert,
+	}
+}
+
+const (
+	// BlockOverrideDnsTypeCname is a BlockOverrideDnsType enum value
+	BlockOverrideDnsTypeCname = "CNAME"
+)
+
+// BlockOverrideDnsType_Values returns all elements of the BlockOverrideDnsType enum
+func BlockOverrideDnsType_Values() []string {
+	return []string{
+		BlockOverrideDnsTypeCname,
+	}
+}
+
+const (
+	// BlockResponseNodata is a BlockResponse enum value
+	BlockResponseNodata = "NODATA"
+
+	// BlockResponseNxdomain is a BlockResponse enum value
+	BlockResponseNxdomain = "NXDOMAIN"
+
+	// BlockResponseOverride is a BlockResponse enum value
+	BlockResponseOverride = "OVERRIDE"
+)
+
+// BlockResponse_Values returns all elements of the BlockResponse enum
+func BlockResponse_Values() []string {
+	return []string{
+		BlockResponseNodata,
+		BlockResponseNxdomain,
+		BlockResponseOverride,
+	}
+}
+
+const (
+	// FirewallDomainImportOperationReplace is a FirewallDomainImportOperation enum value
+	FirewallDomainImportOperationReplace = "REPLACE"
+)
+
+// FirewallDomainImportOperation_Values returns all elements of the FirewallDomainImportOperation enum
+func FirewallDomainImportOperation_Values() []string {
+	return []string{
+		FirewallDomainImportOperationReplace,
+	}
+}
+
+const (
+	// FirewallDomainListStatusComplete is a FirewallDomainListStatus enum value
+	FirewallDomainListStatusComplete = "COMPLETE"
+
+	// FirewallDomainListStatusCompleteImportFailed is a FirewallDomainListStatus enum value
+	FirewallDomainListStatusCompleteImportFailed = "COMPLETE_IMPORT_FAILED"
+
+	// FirewallDomainListStatusImporting is a FirewallDomainListStatus enum value
+	FirewallDomainListStatusImporting = "IMPORTING"
+
+	// FirewallDomainListStatusDeleting is a FirewallDomainListStatus enum value
+	FirewallDomainListStatusDeleting = "DELETING"
+
+	// FirewallDomainListStatusUpdating is a FirewallDomainListStatus enum value
+	FirewallDomainListStatusUpdating = "UPDATING"
+)
+
+// FirewallDomainListStatus_Values returns all elements of the FirewallDomainListStatus enum
+func FirewallDomainListStatus_Values() []string {
+	return []string{
+		FirewallDomainListStatusComplete,
+		FirewallDomainListStatusCompleteImportFailed,
+		FirewallDomainListStatusImporting,
+		FirewallDomainListStatusDeleting,
+		FirewallDomainListStatusUpdating,
+	}
+}
+
+const (
+	// FirewallDomainUpdateOperationAdd is a FirewallDomainUpdateOperation enum value
+	FirewallDomainUpdateOperationAdd = "ADD"
+
+	// FirewallDomainUpdateOperationRemove is a FirewallDomainUpdateOperation enum value
+	FirewallDomainUpdateOperationRemove = "REMOVE"
+
+	// FirewallDomainUpdateOperationReplace is a FirewallDomainUpdateOperation enum value
+	FirewallDomainUpdateOperationReplace = "REPLACE"
+)
+
+// FirewallDomainUpdateOperation_Values returns all elements of the FirewallDomainUpdateOperation enum
+func FirewallDomainUpdateOperation_Values() []string {
+	return []string{
+		FirewallDomainUpdateOperationAdd,
+		FirewallDomainUpdateOperationRemove,
+		FirewallDomainUpdateOperationReplace,
+	}
+}
+
+const (
+	// FirewallFailOpenStatusEnabled is a FirewallFailOpenStatus enum value
+	FirewallFailOpenStatusEnabled = "ENABLED"
+
+	// FirewallFailOpenStatusDisabled is a FirewallFailOpenStatus enum value
+	FirewallFailOpenStatusDisabled = "DISABLED"
+)
+
+// FirewallFailOpenStatus_Values returns all elements of the FirewallFailOpenStatus enum
+func FirewallFailOpenStatus_Values() []string {
+	return []string{
+		FirewallFailOpenStatusEnabled,
+		FirewallFailOpenStatusDisabled,
+	}
+}
+
+const (
+	// FirewallRuleGroupAssociationStatusComplete is a FirewallRuleGroupAssociationStatus enum value
+	FirewallRuleGroupAssociationStatusComplete = "COMPLETE"
+
+	// FirewallRuleGroupAssociationStatusDeleting is a FirewallRuleGroupAssociationStatus enum value
+	FirewallRuleGroupAssociationStatusDeleting = "DELETING"
+
+	// FirewallRuleGroupAssociationStatusUpdating is a FirewallRuleGroupAssociationStatus enum value
+	FirewallRuleGroupAssociationStatusUpdating = "UPDATING"
+)
+
+// FirewallRuleGroupAssociationStatus_Values returns all elements of the FirewallRuleGroupAssociationStatus enum
+func FirewallRuleGroupAssociationStatus_Values() []string {
+	return []string{
+		FirewallRuleGroupAssociationStatusComplete,
+		FirewallRuleGroupAssociationStatusDeleting,
+		FirewallRuleGroupAssociationStatusUpdating,
+	}
+}
+
+const (
+	// FirewallRuleGroupStatusComplete is a FirewallRuleGroupStatus enum value
+	FirewallRuleGroupStatusComplete = "COMPLETE"
+
+	// FirewallRuleGroupStatusDeleting is a FirewallRuleGroupStatus enum value
+	FirewallRuleGroupStatusDeleting = "DELETING"
+
+	// FirewallRuleGroupStatusUpdating is a FirewallRuleGroupStatus enum value
+	FirewallRuleGroupStatusUpdating = "UPDATING"
+)
+
+// FirewallRuleGroupStatus_Values returns all elements of the FirewallRuleGroupStatus enum
+func FirewallRuleGroupStatus_Values() []string {
+	return []string{
+		FirewallRuleGroupStatusComplete,
+		FirewallRuleGroupStatusDeleting,
+		FirewallRuleGroupStatusUpdating,
+	}
+}
+
 const (
 	// IpAddressStatusCreating is a IpAddressStatus enum value
 	IpAddressStatusCreating = "CREATING"
@@ -9422,6 +15667,22 @@ func IpAddressStatus_Values() []string {
 		IpAddressStatusFailedResourceGone,
 		IpAddressStatusDeleting,
 		IpAddressStatusDeleteFailedFasExpired,
+	}
+}
+
+const (
+	// MutationProtectionStatusEnabled is a MutationProtectionStatus enum value
+	MutationProtectionStatusEnabled = "ENABLED"
+
+	// MutationProtectionStatusDisabled is a MutationProtectionStatus enum value
+	MutationProtectionStatusDisabled = "DISABLED"
+)
+
+// MutationProtectionStatus_Values returns all elements of the MutationProtectionStatus enum
+func MutationProtectionStatus_Values() []string {
+	return []string{
+		MutationProtectionStatusEnabled,
+		MutationProtectionStatusDisabled,
 	}
 }
 

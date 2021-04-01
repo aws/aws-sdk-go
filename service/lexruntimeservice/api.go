@@ -2265,14 +2265,14 @@ type PostContentOutput struct {
 
 	// The text used to process the request.
 	//
-	// If the input was an audio stream, the inputTranscript field contains the
-	// text extracted from the audio stream. This is the text that is actually processed
-	// to recognize intents and slot values. You can use this information to determine
-	// if Amazon Lex is correctly processing the audio that you send.
-	InputTranscript *string `location:"header" locationName:"x-amz-lex-input-transcript" type:"string"`
-
-	// Current user intent that Amazon Lex is aware of.
-	IntentName *string `location:"header" locationName:"x-amz-lex-intent-name" type:"string"`
+	// If the input was an audio stream, the encodedInputTranscript field contains
+	// the text extracted from the audio stream. This is the text that is actually
+	// processed to recognize intents and slot values. You can use this information
+	// to determine if Amazon Lex is correctly processing the audio that you send.
+	//
+	// The encodedInputTranscript field is base-64 encoded. You must decode the
+	// field before you can use the value.
+	EncodedInputTranscript *string `location:"header" locationName:"x-amz-lex-encoded-input-transcript" type:"string" sensitive:"true"`
 
 	// The message to convey to the user. The message can come from the bot's configuration
 	// or from a Lambda function.
@@ -2292,7 +2292,53 @@ type PostContentOutput struct {
 	//
 	// If the Lambda function returns a message, Amazon Lex passes it to the client
 	// in its response.
-	Message *string `location:"header" locationName:"x-amz-lex-message" min:"1" type:"string" sensitive:"true"`
+	//
+	// The encodedMessage field is base-64 encoded. You must decode the field before
+	// you can use the value.
+	EncodedMessage *string `location:"header" locationName:"x-amz-lex-encoded-message" min:"1" type:"string" sensitive:"true"`
+
+	// The text used to process the request.
+	//
+	// You can use this field only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES,
+	// es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the inputTranscript
+	// field is null. You should use the encodedInputTranscript field instead.
+	//
+	// If the input was an audio stream, the inputTranscript field contains the
+	// text extracted from the audio stream. This is the text that is actually processed
+	// to recognize intents and slot values. You can use this information to determine
+	// if Amazon Lex is correctly processing the audio that you send.
+	//
+	// Deprecated: The inputTranscript field is deprecated, use the encodedInputTranscript field instead. The inputTranscript field is available only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US, fr-CA, fr-FR and it-IT locales.
+	InputTranscript *string `location:"header" locationName:"x-amz-lex-input-transcript" deprecated:"true" type:"string"`
+
+	// Current user intent that Amazon Lex is aware of.
+	IntentName *string `location:"header" locationName:"x-amz-lex-intent-name" type:"string"`
+
+	// You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419, es-ES,
+	// es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the message
+	// field is null. You should use the encodedMessage field instead.
+	//
+	// The message to convey to the user. The message can come from the bot's configuration
+	// or from a Lambda function.
+	//
+	// If the intent is not configured with a Lambda function, or if the Lambda
+	// function returned Delegate as the dialogAction.type in its response, Amazon
+	// Lex decides on the next course of action and selects an appropriate message
+	// from the bot's configuration based on the current interaction context. For
+	// example, if Amazon Lex isn't able to understand user input, it uses a clarification
+	// prompt message.
+	//
+	// When you create an intent you can assign messages to groups. When messages
+	// are assigned to groups Amazon Lex returns one message from each group in
+	// the response. The message field is an escaped JSON string containing the
+	// messages. For more information about the structure of the JSON string returned,
+	// see msg-prompts-formats.
+	//
+	// If the Lambda function returns a message, Amazon Lex passes it to the client
+	// in its response.
+	//
+	// Deprecated: The message field is deprecated, use the encodedMessage field instead. The message field is available only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US, fr-CA, fr-FR and it-IT locales.
+	Message *string `location:"header" locationName:"x-amz-lex-message" min:"1" deprecated:"true" type:"string" sensitive:"true"`
 
 	// The format of the response message. One of the following values:
 	//
@@ -2388,6 +2434,18 @@ func (s *PostContentOutput) SetContentType(v string) *PostContentOutput {
 // SetDialogState sets the DialogState field's value.
 func (s *PostContentOutput) SetDialogState(v string) *PostContentOutput {
 	s.DialogState = &v
+	return s
+}
+
+// SetEncodedInputTranscript sets the EncodedInputTranscript field's value.
+func (s *PostContentOutput) SetEncodedInputTranscript(v string) *PostContentOutput {
+	s.EncodedInputTranscript = &v
+	return s
+}
+
+// SetEncodedMessage sets the EncodedMessage field's value.
+func (s *PostContentOutput) SetEncodedMessage(v string) *PostContentOutput {
+	s.EncodedMessage = &v
 	return s
 }
 
@@ -3107,11 +3165,23 @@ type PutSessionOutput struct {
 	//    * ReadyForFulfillment - Conveys that the client has to fulfill the intent.
 	DialogState *string `location:"header" locationName:"x-amz-lex-dialog-state" type:"string" enum:"DialogState"`
 
+	// The next message that should be presented to the user.
+	//
+	// The encodedMessage field is base-64 encoded. You must decode the field before
+	// you can use the value.
+	EncodedMessage *string `location:"header" locationName:"x-amz-lex-encoded-message" min:"1" type:"string" sensitive:"true"`
+
 	// The name of the current intent.
 	IntentName *string `location:"header" locationName:"x-amz-lex-intent-name" type:"string"`
 
 	// The next message that should be presented to the user.
-	Message *string `location:"header" locationName:"x-amz-lex-message" min:"1" type:"string" sensitive:"true"`
+	//
+	// You can only use this field in the de-DE, en-AU, en-GB, en-US, es-419, es-ES,
+	// es-US, fr-CA, fr-FR, and it-IT locales. In all other locales, the message
+	// field is null. You should use the encodedMessage field instead.
+	//
+	// Deprecated: The message field is deprecated, use the encodedMessage field instead. The message field is available only in the de-DE, en-AU, en-GB, en-US, es-419, es-ES, es-US, fr-CA, fr-FR and it-IT locales.
+	Message *string `location:"header" locationName:"x-amz-lex-message" min:"1" deprecated:"true" type:"string" sensitive:"true"`
 
 	// The format of the response message. One of the following values:
 	//
@@ -3181,6 +3251,12 @@ func (s *PutSessionOutput) SetContentType(v string) *PutSessionOutput {
 // SetDialogState sets the DialogState field's value.
 func (s *PutSessionOutput) SetDialogState(v string) *PutSessionOutput {
 	s.DialogState = &v
+	return s
+}
+
+// SetEncodedMessage sets the EncodedMessage field's value.
+func (s *PutSessionOutput) SetEncodedMessage(v string) *PutSessionOutput {
+	s.EncodedMessage = &v
 	return s
 }
 

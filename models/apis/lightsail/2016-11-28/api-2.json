@@ -3056,6 +3056,7 @@
         "power":{"shape":"ContainerServicePowerName"},
         "powerId":{"shape":"string"},
         "state":{"shape":"ContainerServiceState"},
+        "stateDetail":{"shape":"ContainerServiceStateDetail"},
         "scale":{"shape":"ContainerServiceScale"},
         "currentDeployment":{"shape":"ContainerServiceDeployment"},
         "nextDeployment":{"shape":"ContainerServiceDeployment"},
@@ -3218,7 +3219,29 @@
         "RUNNING",
         "UPDATING",
         "DELETING",
-        "DISABLED"
+        "DISABLED",
+        "DEPLOYING"
+      ]
+    },
+    "ContainerServiceStateDetail":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"ContainerServiceStateDetailCode"},
+        "message":{"shape":"string"}
+      }
+    },
+    "ContainerServiceStateDetailCode":{
+      "type":"string",
+      "enum":[
+        "CREATING_SYSTEM_RESOURCES",
+        "CREATING_NETWORK_INFRASTRUCTURE",
+        "PROVISIONING_CERTIFICATE",
+        "PROVISIONING_SERVICE",
+        "CREATING_DEPLOYMENT",
+        "EVALUATING_HEALTH_CHECK",
+        "ACTIVATING_DEPLOYMENT",
+        "CERTIFICATE_LIMIT_EXCEEDED",
+        "UNKNOWN_ERROR"
       ]
     },
     "ContainerServicesListResult":{

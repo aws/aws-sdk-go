@@ -117,6 +117,12 @@
         "ResourceViolation$AwsVPCSecurityGroupViolation": "<p>Violation details for security groups.</p>"
       }
     },
+    "BasicInteger": {
+      "base": null,
+      "refs": {
+        "DnsRuleGroupLimitExceededViolation$NumberOfRuleGroupsAlreadyAssociated": "<p>The number of rule groups currently associated with the VPC. </p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {
@@ -212,6 +218,37 @@
     "DisassociateAdminAccountRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "DnsDuplicateRuleGroupViolation": {
+      "base": "<p>A DNS Firewall rule group that Firewall Manager tried to associate with a VPC is already associated with the VPC and can't be associated again. </p>",
+      "refs": {
+        "ResourceViolation$DnsDuplicateRuleGroupViolation": "<p>Violation detail for a DNS Firewall policy that indicates that a rule group that Firewall Manager tried to associate with a VPC is already associated with the VPC and can't be associated again. </p>"
+      }
+    },
+    "DnsRuleGroupLimitExceededViolation": {
+      "base": "<p>The VPC that Firewall Manager was applying a DNS Fireall policy to reached the limit for associated DNS Firewall rule groups. Firewall Manager tried to associate another rule group with the VPC and failed due to the limit. </p>",
+      "refs": {
+        "ResourceViolation$DnsRuleGroupLimitExceededViolation": "<p>Violation details for a DNS Firewall policy that indicates that the VPC reached the limit for associated DNS Firewall rule groups. Firewall Manager tried to associate another rule group with the VPC and failed. </p>"
+      }
+    },
+    "DnsRuleGroupPriorities": {
+      "base": null,
+      "refs": {
+        "DnsRuleGroupPriorityConflictViolation$UnavailablePriorities": "<p>The priorities of rule groups that are already associated with the VPC. To retry your operation, choose priority settings that aren't in this list for the rule groups in your new DNS Firewall policy. </p>"
+      }
+    },
+    "DnsRuleGroupPriority": {
+      "base": null,
+      "refs": {
+        "DnsRuleGroupPriorities$member": null,
+        "DnsRuleGroupPriorityConflictViolation$ConflictingPriority": "<p>The priority setting of the two conflicting rule groups.</p>"
+      }
+    },
+    "DnsRuleGroupPriorityConflictViolation": {
+      "base": "<p>A rule group that Firewall Manager tried to associate with a VPC has the same priority as a rule group that's already associated. </p>",
+      "refs": {
+        "ResourceViolation$DnsRuleGroupPriorityConflictViolation": "<p>Violation detail for a DNS Firewall policy that indicates that a rule group that Firewall Manager tried to associate with a VPC has the same priority as a rule group that's already associated. </p>"
       }
     },
     "ErrorMessage": {
@@ -356,6 +393,9 @@
       "base": null,
       "refs": {
         "AwsVPCSecurityGroupViolation$ViolationTargetDescription": "<p>A description of the security group that violates the policy.</p>",
+        "DnsDuplicateRuleGroupViolation$ViolationTargetDescription": "<p>A description of the violation that specifies the rule group and VPC.</p>",
+        "DnsRuleGroupLimitExceededViolation$ViolationTargetDescription": "<p>A description of the violation that specifies the rule group and VPC.</p>",
+        "DnsRuleGroupPriorityConflictViolation$ViolationTargetDescription": "<p>A description of the violation that specifies the VPC and the rule group that's already associated with it.</p>",
         "NetworkFirewallMissingExpectedRTViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
         "NetworkFirewallMissingFirewallViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
         "NetworkFirewallMissingSubnetViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
@@ -581,6 +621,7 @@
       "base": null,
       "refs": {
         "DeletePolicyRequest$PolicyId": "<p>The ID of the policy that you want to delete. You can retrieve this ID from <code>PutPolicy</code> and <code>ListPolicies</code>.</p>",
+        "DnsRuleGroupPriorityConflictViolation$ConflictingPolicyId": "<p>The ID of the Firewall Manager DNS Firewall policy that was already applied to the VPC. This policy contains the rule group that's already associated with the VPC. </p>",
         "GetComplianceDetailRequest$PolicyId": "<p>The ID of the policy that you want to get the details for. <code>PolicyId</code> is returned by <code>PutPolicy</code> and by <code>ListPolicies</code>.</p>",
         "GetPolicyRequest$PolicyId": "<p>The ID of the AWS Firewall Manager policy that you want the details for.</p>",
         "GetProtectionStatusRequest$PolicyId": "<p>The ID of the policy for which you want to get the attack information.</p>",
@@ -1015,6 +1056,9 @@
         "AwsEc2InstanceViolation$ViolationTarget": "<p>The resource ID of the EC2 instance.</p>",
         "AwsEc2NetworkInterfaceViolation$ViolationTarget": "<p>The resource ID of the network interface.</p>",
         "AwsVPCSecurityGroupViolation$ViolationTarget": "<p>The security group rule that is being evaluated.</p>",
+        "DnsDuplicateRuleGroupViolation$ViolationTarget": "<p>The ID of the VPC. </p>",
+        "DnsRuleGroupLimitExceededViolation$ViolationTarget": "<p>The ID of the VPC. </p>",
+        "DnsRuleGroupPriorityConflictViolation$ViolationTarget": "<p>The ID of the VPC. </p>",
         "NetworkFirewallMissingExpectedRTViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
         "NetworkFirewallMissingFirewallViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
         "NetworkFirewallMissingSubnetViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
