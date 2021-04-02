@@ -1,3 +1,11 @@
+Release v1.38.12 (2021-04-02)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service API and documentation
+* `service/mediapackage`: Updates service API and documentation
+  * SPEKE v2 is an upgrade to the existing SPEKE API to support multiple encryption keys, based on an encryption contract selected by the customer.
+
 Release v1.38.11 (2021-04-01)
 ===
 

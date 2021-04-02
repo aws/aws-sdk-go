@@ -1414,6 +1414,23 @@
       },
       "type": "structure"
     },
+    "EncryptionContractConfiguration": {
+      "members": {
+        "PresetSpeke20Audio": {
+          "locationName": "presetSpeke20Audio",
+          "shape": "PresetSpeke20Audio"
+        },
+        "PresetSpeke20Video": {
+          "locationName": "presetSpeke20Video",
+          "shape": "PresetSpeke20Video"
+        }
+      },
+      "required": [
+        "PresetSpeke20Audio",
+        "PresetSpeke20Video"
+      ],
+      "type": "structure"
+    },
     "EncryptionMethod": {
       "enum": [
         "AES_128",
@@ -2123,6 +2140,18 @@
       ],
       "type": "string"
     },
+    "PresetSpeke20Audio": {
+      "enum": [
+        "PRESET-AUDIO-1"
+      ],
+      "type": "string"
+    },
+    "PresetSpeke20Video": {
+      "enum": [
+        "PRESET-VIDEO-1"
+      ],
+      "type": "string"
+    },
     "Profile": {
       "enum": [
         "NONE",
@@ -2278,6 +2307,10 @@
         "CertificateArn": {
           "locationName": "certificateArn",
           "shape": "__string"
+        },
+        "EncryptionContractConfiguration": {
+          "locationName": "encryptionContractConfiguration",
+          "shape": "EncryptionContractConfiguration"
         },
         "ResourceId": {
           "locationName": "resourceId",
