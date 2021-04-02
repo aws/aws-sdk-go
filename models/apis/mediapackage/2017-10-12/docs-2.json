@@ -118,6 +118,12 @@
         "ConfigureLogsParameters$EgressAccessLogs" : null
       }
     },
+    "EncryptionContractConfiguration" : {
+      "base" : "Use encryptionContractConfiguration to configure one or more content encryption keys for your endpoints that use SPEKE 2.0. \nThe encryption contract defines which content keys are used to encrypt the audio and video tracks in your stream. \nTo configure the encryption contract, specify which audio and video encryption presets to use.\nNote the following considerations when using encryptionContractConfiguration:\nencryptionContractConfiguration can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the CPIX 2.3 specification.\nYou must disable key rotation for this endpoint by setting keyRotationIntervalSeconds to 0.\n",
+      "refs" : {
+        "SpekeKeyProvider$EncryptionContractConfiguration" : null
+      }
+    },
     "EncryptionMethod" : {
       "base" : null,
       "refs" : {
@@ -235,6 +241,18 @@
         "HlsManifest$PlaylistType" : "The HTTP Live Streaming (HLS) playlist type.\nWhen either \"EVENT\" or \"VOD\" is specified, a corresponding EXT-X-PLAYLIST-TYPE\nentry will be included in the media playlist.\n",
         "HlsManifestCreateOrUpdateParameters$PlaylistType" : "The HTTP Live Streaming (HLS) playlist type.\nWhen either \"EVENT\" or \"VOD\" is specified, a corresponding EXT-X-PLAYLIST-TYPE\nentry will be included in the media playlist.\n",
         "HlsPackage$PlaylistType" : "The HTTP Live Streaming (HLS) playlist type.\nWhen either \"EVENT\" or \"VOD\" is specified, a corresponding EXT-X-PLAYLIST-TYPE\nentry will be included in the media playlist.\n"
+      }
+    },
+    "PresetSpeke20Audio" : {
+      "base" : null,
+      "refs" : {
+        "EncryptionContractConfiguration$PresetSpeke20Audio" : "A collection of audio encryption presets."
+      }
+    },
+    "PresetSpeke20Video" : {
+      "base" : null,
+      "refs" : {
+        "EncryptionContractConfiguration$PresetSpeke20Video" : "A collection of video encryption presets."
       }
     },
     "Profile" : {

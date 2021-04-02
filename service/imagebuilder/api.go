@@ -6316,7 +6316,7 @@ type ComponentVersion struct {
 	// The platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
-	// The operating system (OS) version supported by the component. If the OS information
+	// he operating system (OS) version supported by the component. If the OS information
 	// is available, a prefix match is performed against the parent image OS version
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
@@ -6522,6 +6522,10 @@ type ContainerRecipe struct {
 	// A flag that indicates if the target container is encrypted.
 	Encrypted *bool `locationName:"encrypted" type:"boolean"`
 
+	// A group of options that can be used to configure an instance for building
+	// and testing container images.
+	InstanceConfiguration *InstanceConfiguration `locationName:"instanceConfiguration" type:"structure"`
+
 	// Identifies which KMS key is used to encrypt the container image for distribution
 	// to the target Region.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
@@ -6600,6 +6604,12 @@ func (s *ContainerRecipe) SetDockerfileTemplateData(v string) *ContainerRecipe {
 // SetEncrypted sets the Encrypted field's value.
 func (s *ContainerRecipe) SetEncrypted(v bool) *ContainerRecipe {
 	s.Encrypted = &v
+	return s
+}
+
+// SetInstanceConfiguration sets the InstanceConfiguration field's value.
+func (s *ContainerRecipe) SetInstanceConfiguration(v *InstanceConfiguration) *ContainerRecipe {
+	s.InstanceConfiguration = v
 	return s
 }
 
@@ -6975,15 +6985,17 @@ type CreateContainerRecipeInput struct {
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The Dockerfile template used to build your image as an inline data blob.
-	//
-	// DockerfileTemplateData is a required field
-	DockerfileTemplateData *string `locationName:"dockerfileTemplateData" min:"1" type:"string" required:"true"`
+	DockerfileTemplateData *string `locationName:"dockerfileTemplateData" min:"1" type:"string"`
 
 	// The S3 URI for the Dockerfile that will be used to build your container image.
 	DockerfileTemplateUri *string `locationName:"dockerfileTemplateUri" type:"string"`
 
 	// Specifies the operating system version for the source image.
 	ImageOsVersionOverride *string `locationName:"imageOsVersionOverride" min:"1" type:"string"`
+
+	// A group of options that can be used to configure an instance for building
+	// and testing container images.
+	InstanceConfiguration *InstanceConfiguration `locationName:"instanceConfiguration" type:"structure"`
 
 	// Identifies which KMS key is used to encrypt the container image.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
@@ -7046,9 +7058,6 @@ func (s *CreateContainerRecipeInput) Validate() error {
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
-	if s.DockerfileTemplateData == nil {
-		invalidParams.Add(request.NewErrParamRequired("DockerfileTemplateData"))
-	}
 	if s.DockerfileTemplateData != nil && len(*s.DockerfileTemplateData) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DockerfileTemplateData", 1))
 	}
@@ -7087,6 +7096,11 @@ func (s *CreateContainerRecipeInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Components", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.InstanceConfiguration != nil {
+		if err := s.InstanceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("InstanceConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TargetRepository != nil {
@@ -7140,6 +7154,12 @@ func (s *CreateContainerRecipeInput) SetDockerfileTemplateUri(v string) *CreateC
 // SetImageOsVersionOverride sets the ImageOsVersionOverride field's value.
 func (s *CreateContainerRecipeInput) SetImageOsVersionOverride(v string) *CreateContainerRecipeInput {
 	s.ImageOsVersionOverride = &v
+	return s
+}
+
+// SetInstanceConfiguration sets the InstanceConfiguration field's value.
+func (s *CreateContainerRecipeInput) SetInstanceConfiguration(v *InstanceConfiguration) *CreateContainerRecipeInput {
+	s.InstanceConfiguration = v
 	return s
 }
 
@@ -8676,12 +8696,16 @@ func (s *DeleteInfrastructureConfigurationOutput) SetRequestId(v string) *Delete
 type Distribution struct {
 	_ struct{} `type:"structure"`
 
-	// The specific AMI settings (for example, launch permissions, AMI tags).
+	// The specific AMI settings; for example, launch permissions or AMI tags.
 	AmiDistributionConfiguration *AmiDistributionConfiguration `locationName:"amiDistributionConfiguration" type:"structure"`
 
 	// Container distribution settings for encryption, licensing, and sharing in
 	// a specific Region.
 	ContainerDistributionConfiguration *ContainerDistributionConfiguration `locationName:"containerDistributionConfiguration" type:"structure"`
+
+	// A group of launchTemplateConfiguration settings that apply to image distribution
+	// for specified accounts.
+	LaunchTemplateConfigurations []*LaunchTemplateConfiguration `locationName:"launchTemplateConfigurations" min:"1" type:"list"`
 
 	// The License Manager Configuration to associate with the AMI in the specified
 	// Region.
@@ -8706,6 +8730,9 @@ func (s Distribution) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Distribution) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Distribution"}
+	if s.LaunchTemplateConfigurations != nil && len(s.LaunchTemplateConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LaunchTemplateConfigurations", 1))
+	}
 	if s.LicenseConfigurationArns != nil && len(s.LicenseConfigurationArns) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LicenseConfigurationArns", 1))
 	}
@@ -8725,6 +8752,16 @@ func (s *Distribution) Validate() error {
 			invalidParams.AddNested("ContainerDistributionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LaunchTemplateConfigurations != nil {
+		for i, v := range s.LaunchTemplateConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LaunchTemplateConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8741,6 +8778,12 @@ func (s *Distribution) SetAmiDistributionConfiguration(v *AmiDistributionConfigu
 // SetContainerDistributionConfiguration sets the ContainerDistributionConfiguration field's value.
 func (s *Distribution) SetContainerDistributionConfiguration(v *ContainerDistributionConfiguration) *Distribution {
 	s.ContainerDistributionConfiguration = v
+	return s
+}
+
+// SetLaunchTemplateConfigurations sets the LaunchTemplateConfigurations field's value.
+func (s *Distribution) SetLaunchTemplateConfigurations(v []*LaunchTemplateConfiguration) *Distribution {
+	s.LaunchTemplateConfigurations = v
 	return s
 }
 
@@ -8772,7 +8815,8 @@ type DistributionConfiguration struct {
 	// The description of the distribution configuration.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The distributions of the distribution configuration.
+	// The distribution objects that apply Region-specific settings for the deployment
+	// of the image to targeted Regions.
 	Distributions []*Distribution `locationName:"distributions" type:"list"`
 
 	// The name of the distribution configuration.
@@ -11387,6 +11431,66 @@ func (s *InstanceBlockDeviceMapping) SetVirtualName(v string) *InstanceBlockDevi
 	return s
 }
 
+// Defines a custom source AMI and block device mapping configurations of an
+// instance used for building and testing container images.
+type InstanceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines the block devices to attach for building an instance from this Image
+	// Builder AMI.
+	BlockDeviceMappings []*InstanceBlockDeviceMapping `locationName:"blockDeviceMappings" type:"list"`
+
+	// The AMI ID to use as the base image for a container build and test instance.
+	// If not specified, Image Builder will use the appropriate ECS-optimized AMI
+	// as a base image.
+	Image *string `locationName:"image" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s InstanceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InstanceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceConfiguration"}
+	if s.Image != nil && len(*s.Image) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Image", 1))
+	}
+	if s.BlockDeviceMappings != nil {
+		for i, v := range s.BlockDeviceMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BlockDeviceMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *InstanceConfiguration) SetBlockDeviceMappings(v []*InstanceBlockDeviceMapping) *InstanceConfiguration {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *InstanceConfiguration) SetImage(v string) *InstanceConfiguration {
+	s.Image = &v
+	return s
+}
+
 // You have provided an invalid pagination token in your request.
 type InvalidPaginationTokenException struct {
 	_            struct{}                  `type:"structure"`
@@ -11773,6 +11877,64 @@ func (s *LaunchPermissionConfiguration) SetUserGroups(v []*string) *LaunchPermis
 // SetUserIds sets the UserIds field's value.
 func (s *LaunchPermissionConfiguration) SetUserIds(v []*string) *LaunchPermissionConfiguration {
 	s.UserIds = v
+	return s
+}
+
+// Identifies an EC2 launch template to use for a specific account.
+type LaunchTemplateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID that this configuration applies to.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// Identifies the EC2 launch template to use.
+	//
+	// LaunchTemplateId is a required field
+	LaunchTemplateId *string `locationName:"launchTemplateId" type:"string" required:"true"`
+
+	// Set the specified EC2 launch template as the default launch template for
+	// the specified account.
+	SetDefaultVersion *bool `locationName:"setDefaultVersion" type:"boolean"`
+}
+
+// String returns the string representation
+func (s LaunchTemplateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LaunchTemplateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LaunchTemplateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LaunchTemplateConfiguration"}
+	if s.LaunchTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LaunchTemplateId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *LaunchTemplateConfiguration) SetAccountId(v string) *LaunchTemplateConfiguration {
+	s.AccountId = &v
+	return s
+}
+
+// SetLaunchTemplateId sets the LaunchTemplateId field's value.
+func (s *LaunchTemplateConfiguration) SetLaunchTemplateId(v string) *LaunchTemplateConfiguration {
+	s.LaunchTemplateId = &v
+	return s
+}
+
+// SetSetDefaultVersion sets the SetDefaultVersion field's value.
+func (s *LaunchTemplateConfiguration) SetSetDefaultVersion(v bool) *LaunchTemplateConfiguration {
+	s.SetDefaultVersion = &v
 	return s
 }
 

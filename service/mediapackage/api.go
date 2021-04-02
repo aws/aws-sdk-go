@@ -3728,6 +3728,66 @@ func (s *EgressAccessLogs) SetLogGroupName(v string) *EgressAccessLogs {
 	return s
 }
 
+// Use encryptionContractConfiguration to configure one or more content encryption
+// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+// which content keys are used to encrypt the audio and video tracks in your
+// stream. To configure the encryption contract, specify which audio and video
+// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+// setting keyRotationIntervalSeconds to 0.
+type EncryptionContractConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of audio encryption presets.
+	//
+	// PresetSpeke20Audio is a required field
+	PresetSpeke20Audio *string `locationName:"presetSpeke20Audio" type:"string" required:"true" enum:"PresetSpeke20Audio"`
+
+	// A collection of video encryption presets.
+	//
+	// PresetSpeke20Video is a required field
+	PresetSpeke20Video *string `locationName:"presetSpeke20Video" type:"string" required:"true" enum:"PresetSpeke20Video"`
+}
+
+// String returns the string representation
+func (s EncryptionContractConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EncryptionContractConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncryptionContractConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncryptionContractConfiguration"}
+	if s.PresetSpeke20Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Audio"))
+	}
+	if s.PresetSpeke20Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("PresetSpeke20Video"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPresetSpeke20Audio sets the PresetSpeke20Audio field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Audio(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Audio = &v
+	return s
+}
+
+// SetPresetSpeke20Video sets the PresetSpeke20Video field's value.
+func (s *EncryptionContractConfiguration) SetPresetSpeke20Video(v string) *EncryptionContractConfiguration {
+	s.PresetSpeke20Video = &v
+	return s
+}
+
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5536,6 +5596,16 @@ type SpekeKeyProvider struct {
 	// service.
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
 
+	// Use encryptionContractConfiguration to configure one or more content encryption
+	// keys for your endpoints that use SPEKE 2.0. The encryption contract defines
+	// which content keys are used to encrypt the audio and video tracks in your
+	// stream. To configure the encryption contract, specify which audio and video
+	// encryption presets to use.Note the following considerations when using encryptionContractConfiguration:encryptionContractConfiguration
+	// can be used for DASH endpoints that use SPEKE 2.0. SPEKE 2.0 relies on the
+	// CPIX 2.3 specification.You must disable key rotation for this endpoint by
+	// setting keyRotationIntervalSeconds to 0.
+	EncryptionContractConfiguration *EncryptionContractConfiguration `locationName:"encryptionContractConfiguration" type:"structure"`
+
 	// The resource ID to include in key requests.
 	//
 	// ResourceId is a required field
@@ -5583,6 +5653,11 @@ func (s *SpekeKeyProvider) Validate() error {
 	if s.Url == nil {
 		invalidParams.Add(request.NewErrParamRequired("Url"))
 	}
+	if s.EncryptionContractConfiguration != nil {
+		if err := s.EncryptionContractConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionContractConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5593,6 +5668,12 @@ func (s *SpekeKeyProvider) Validate() error {
 // SetCertificateArn sets the CertificateArn field's value.
 func (s *SpekeKeyProvider) SetCertificateArn(v string) *SpekeKeyProvider {
 	s.CertificateArn = &v
+	return s
+}
+
+// SetEncryptionContractConfiguration sets the EncryptionContractConfiguration field's value.
+func (s *SpekeKeyProvider) SetEncryptionContractConfiguration(v *EncryptionContractConfiguration) *SpekeKeyProvider {
+	s.EncryptionContractConfiguration = v
 	return s
 }
 
@@ -6451,6 +6532,30 @@ func PlaylistType_Values() []string {
 		PlaylistTypeNone,
 		PlaylistTypeEvent,
 		PlaylistTypeVod,
+	}
+}
+
+const (
+	// PresetSpeke20AudioPresetAudio1 is a PresetSpeke20Audio enum value
+	PresetSpeke20AudioPresetAudio1 = "PRESET-AUDIO-1"
+)
+
+// PresetSpeke20Audio_Values returns all elements of the PresetSpeke20Audio enum
+func PresetSpeke20Audio_Values() []string {
+	return []string{
+		PresetSpeke20AudioPresetAudio1,
+	}
+}
+
+const (
+	// PresetSpeke20VideoPresetVideo1 is a PresetSpeke20Video enum value
+	PresetSpeke20VideoPresetVideo1 = "PRESET-VIDEO-1"
+)
+
+// PresetSpeke20Video_Values returns all elements of the PresetSpeke20Video enum
+func PresetSpeke20Video_Values() []string {
+	return []string{
+		PresetSpeke20VideoPresetVideo1,
 	}
 }
 
