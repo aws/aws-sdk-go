@@ -1,3 +1,12 @@
+Release v1.38.13 (2021-04-05)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/auditmanager`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * MediaLive now support HTML5 Motion Graphics overlay
+
 Release v1.38.12 (2021-04-02)
 ===
 

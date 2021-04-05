@@ -13203,6 +13203,9 @@ type EncoderSettings struct {
 	// Configuration settings that apply to the event as a whole.
 	GlobalConfiguration *GlobalConfiguration `locationName:"globalConfiguration" type:"structure"`
 
+	// Settings for motion graphics.
+	MotionGraphicsConfiguration *MotionGraphicsConfiguration `locationName:"motionGraphicsConfiguration" type:"structure"`
+
 	// Nielsen configuration settings.
 	NielsenConfiguration *NielsenConfiguration `locationName:"nielsenConfiguration" type:"structure"`
 
@@ -13283,6 +13286,11 @@ func (s *EncoderSettings) Validate() error {
 			invalidParams.AddNested("GlobalConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MotionGraphicsConfiguration != nil {
+		if err := s.MotionGraphicsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MotionGraphicsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OutputGroups != nil {
 		for i, v := range s.OutputGroups {
 			if v == nil {
@@ -13354,6 +13362,12 @@ func (s *EncoderSettings) SetFeatureActivations(v *FeatureActivations) *EncoderS
 // SetGlobalConfiguration sets the GlobalConfiguration field's value.
 func (s *EncoderSettings) SetGlobalConfiguration(v *GlobalConfiguration) *EncoderSettings {
 	s.GlobalConfiguration = v
+	return s
+}
+
+// SetMotionGraphicsConfiguration sets the MotionGraphicsConfiguration field's value.
+func (s *EncoderSettings) SetMotionGraphicsConfiguration(v *MotionGraphicsConfiguration) *EncoderSettings {
+	s.MotionGraphicsConfiguration = v
 	return s
 }
 
@@ -16323,6 +16337,21 @@ func (s *HlsWebdavSettings) SetNumRetries(v int64) *HlsWebdavSettings {
 func (s *HlsWebdavSettings) SetRestartDelay(v int64) *HlsWebdavSettings {
 	s.RestartDelay = &v
 	return s
+}
+
+// Html Motion Graphics Settings
+type HtmlMotionGraphicsSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s HtmlMotionGraphicsSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HtmlMotionGraphicsSettings) GoString() string {
+	return s.String()
 }
 
 // Settings to configure an action so that it occurs as soon as possible.
@@ -19879,6 +19908,149 @@ func (s MediaPackageOutputSettings) GoString() string {
 	return s.String()
 }
 
+// Settings to specify the rendering of motion graphics into the video stream.
+type MotionGraphicsActivateScheduleActionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Duration (in milliseconds) that motion graphics should render on to the video
+	// stream. Leaving out this property or setting to 0 will result in rendering
+	// continuing until a deactivate action is processed.
+	Duration *int64 `locationName:"duration" type:"long"`
+
+	// Key used to extract the password from EC2 Parameter store
+	PasswordParam *string `locationName:"passwordParam" type:"string"`
+
+	// URI of the HTML5 content to be rendered into the live stream.
+	Url *string `locationName:"url" type:"string"`
+
+	// Username if credentials are required to access a file. This must be a reference
+	// to an AWS parameter store name from which the password can be retrieved.
+	// AWS Parameter store format: \"ssm://\"
+	Username *string `locationName:"username" type:"string"`
+}
+
+// String returns the string representation
+func (s MotionGraphicsActivateScheduleActionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MotionGraphicsActivateScheduleActionSettings) GoString() string {
+	return s.String()
+}
+
+// SetDuration sets the Duration field's value.
+func (s *MotionGraphicsActivateScheduleActionSettings) SetDuration(v int64) *MotionGraphicsActivateScheduleActionSettings {
+	s.Duration = &v
+	return s
+}
+
+// SetPasswordParam sets the PasswordParam field's value.
+func (s *MotionGraphicsActivateScheduleActionSettings) SetPasswordParam(v string) *MotionGraphicsActivateScheduleActionSettings {
+	s.PasswordParam = &v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *MotionGraphicsActivateScheduleActionSettings) SetUrl(v string) *MotionGraphicsActivateScheduleActionSettings {
+	s.Url = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *MotionGraphicsActivateScheduleActionSettings) SetUsername(v string) *MotionGraphicsActivateScheduleActionSettings {
+	s.Username = &v
+	return s
+}
+
+// Motion Graphics Configuration
+type MotionGraphicsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Motion Graphics Insertion
+	MotionGraphicsInsertion *string `locationName:"motionGraphicsInsertion" type:"string" enum:"MotionGraphicsInsertion"`
+
+	// Motion Graphics Settings
+	//
+	// MotionGraphicsSettings is a required field
+	MotionGraphicsSettings *MotionGraphicsSettings `locationName:"motionGraphicsSettings" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s MotionGraphicsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MotionGraphicsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MotionGraphicsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MotionGraphicsConfiguration"}
+	if s.MotionGraphicsSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("MotionGraphicsSettings"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMotionGraphicsInsertion sets the MotionGraphicsInsertion field's value.
+func (s *MotionGraphicsConfiguration) SetMotionGraphicsInsertion(v string) *MotionGraphicsConfiguration {
+	s.MotionGraphicsInsertion = &v
+	return s
+}
+
+// SetMotionGraphicsSettings sets the MotionGraphicsSettings field's value.
+func (s *MotionGraphicsConfiguration) SetMotionGraphicsSettings(v *MotionGraphicsSettings) *MotionGraphicsConfiguration {
+	s.MotionGraphicsSettings = v
+	return s
+}
+
+// Settings to specify the ending of rendering motion graphics into the video
+// stream.
+type MotionGraphicsDeactivateScheduleActionSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s MotionGraphicsDeactivateScheduleActionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MotionGraphicsDeactivateScheduleActionSettings) GoString() string {
+	return s.String()
+}
+
+// Motion Graphics Settings
+type MotionGraphicsSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Html Motion Graphics Settings
+	HtmlMotionGraphicsSettings *HtmlMotionGraphicsSettings `locationName:"htmlMotionGraphicsSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s MotionGraphicsSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MotionGraphicsSettings) GoString() string {
+	return s.String()
+}
+
+// SetHtmlMotionGraphicsSettings sets the HtmlMotionGraphicsSettings field's value.
+func (s *MotionGraphicsSettings) SetHtmlMotionGraphicsSettings(v *HtmlMotionGraphicsSettings) *MotionGraphicsSettings {
+	s.HtmlMotionGraphicsSettings = v
+	return s
+}
+
 // Mp2 Settings
 type Mp2Settings struct {
 	_ struct{} `type:"structure"`
@@ -22261,6 +22433,13 @@ type PipelineDetail struct {
 	// pipeline.
 	ActiveInputSwitchActionName *string `locationName:"activeInputSwitchActionName" type:"string"`
 
+	// The name of the motion graphics activate action that occurred most recently
+	// and that resulted in the current graphics URI for this pipeline.
+	ActiveMotionGraphicsActionName *string `locationName:"activeMotionGraphicsActionName" type:"string"`
+
+	// The current URI being used for HTML5 motion graphics for this pipeline.
+	ActiveMotionGraphicsUri *string `locationName:"activeMotionGraphicsUri" type:"string"`
+
 	// Pipeline ID
 	PipelineId *string `locationName:"pipelineId" type:"string"`
 }
@@ -22284,6 +22463,18 @@ func (s *PipelineDetail) SetActiveInputAttachmentName(v string) *PipelineDetail 
 // SetActiveInputSwitchActionName sets the ActiveInputSwitchActionName field's value.
 func (s *PipelineDetail) SetActiveInputSwitchActionName(v string) *PipelineDetail {
 	s.ActiveInputSwitchActionName = &v
+	return s
+}
+
+// SetActiveMotionGraphicsActionName sets the ActiveMotionGraphicsActionName field's value.
+func (s *PipelineDetail) SetActiveMotionGraphicsActionName(v string) *PipelineDetail {
+	s.ActiveMotionGraphicsActionName = &v
+	return s
+}
+
+// SetActiveMotionGraphicsUri sets the ActiveMotionGraphicsUri field's value.
+func (s *PipelineDetail) SetActiveMotionGraphicsUri(v string) *PipelineDetail {
+	s.ActiveMotionGraphicsUri = &v
 	return s
 }
 
@@ -23169,6 +23360,12 @@ type ScheduleActionSettings struct {
 	// Action to switch the input
 	InputSwitchSettings *InputSwitchScheduleActionSettings `locationName:"inputSwitchSettings" type:"structure"`
 
+	// Action to activate a motion graphics image overlay
+	MotionGraphicsImageActivateSettings *MotionGraphicsActivateScheduleActionSettings `locationName:"motionGraphicsImageActivateSettings" type:"structure"`
+
+	// Action to deactivate a motion graphics image overlay
+	MotionGraphicsImageDeactivateSettings *MotionGraphicsDeactivateScheduleActionSettings `locationName:"motionGraphicsImageDeactivateSettings" type:"structure"`
+
 	// Action to pause or unpause one or both channel pipelines
 	PauseStateSettings *PauseStateScheduleActionSettings `locationName:"pauseStateSettings" type:"structure"`
 
@@ -23274,6 +23471,18 @@ func (s *ScheduleActionSettings) SetInputPrepareSettings(v *InputPrepareSchedule
 // SetInputSwitchSettings sets the InputSwitchSettings field's value.
 func (s *ScheduleActionSettings) SetInputSwitchSettings(v *InputSwitchScheduleActionSettings) *ScheduleActionSettings {
 	s.InputSwitchSettings = v
+	return s
+}
+
+// SetMotionGraphicsImageActivateSettings sets the MotionGraphicsImageActivateSettings field's value.
+func (s *ScheduleActionSettings) SetMotionGraphicsImageActivateSettings(v *MotionGraphicsActivateScheduleActionSettings) *ScheduleActionSettings {
+	s.MotionGraphicsImageActivateSettings = v
+	return s
+}
+
+// SetMotionGraphicsImageDeactivateSettings sets the MotionGraphicsImageDeactivateSettings field's value.
+func (s *ScheduleActionSettings) SetMotionGraphicsImageDeactivateSettings(v *MotionGraphicsDeactivateScheduleActionSettings) *ScheduleActionSettings {
+	s.MotionGraphicsImageDeactivateSettings = v
 	return s
 }
 
@@ -25420,8 +25629,6 @@ type TransferringInputDeviceSummary struct {
 	// The AWS account ID for the recipient of the input device transfer.
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
-	TargetRegion *string `locationName:"targetRegion" type:"string"`
-
 	// The type (direction) of the input device transfer.
 	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
 }
@@ -25451,12 +25658,6 @@ func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInput
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
 	s.TargetCustomerId = &v
-	return s
-}
-
-// SetTargetRegion sets the TargetRegion field's value.
-func (s *TransferringInputDeviceSummary) SetTargetRegion(v string) *TransferringInputDeviceSummary {
-	s.TargetRegion = &v
 	return s
 }
 
@@ -30942,6 +31143,23 @@ func M3u8TimedMetadataBehavior_Values() []string {
 	return []string{
 		M3u8TimedMetadataBehaviorNoPassthrough,
 		M3u8TimedMetadataBehaviorPassthrough,
+	}
+}
+
+// Motion Graphics Insertion
+const (
+	// MotionGraphicsInsertionDisabled is a MotionGraphicsInsertion enum value
+	MotionGraphicsInsertionDisabled = "DISABLED"
+
+	// MotionGraphicsInsertionEnabled is a MotionGraphicsInsertion enum value
+	MotionGraphicsInsertionEnabled = "ENABLED"
+)
+
+// MotionGraphicsInsertion_Values returns all elements of the MotionGraphicsInsertion enum
+func MotionGraphicsInsertion_Values() []string {
+	return []string{
+		MotionGraphicsInsertionDisabled,
+		MotionGraphicsInsertionEnabled,
 	}
 }
 

@@ -634,7 +634,8 @@
         "HoneycodeDestinationProperties$errorHandlingConfig": null,
         "RedshiftDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Amazon Redshift destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
         "SalesforceDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Salesforce destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
-        "SnowflakeDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Snowflake destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>"
+        "SnowflakeDestinationProperties$errorHandlingConfig": "<p> The settings that determine how Amazon AppFlow handles an error when placing data in the Snowflake destination. For example, this setting would determine if the flow should fail after one insertion error, or continue and attempt to insert every record regardless of the initial failure. <code>ErrorHandlingConfig</code> is a part of the destination connector details. </p>",
+        "ZendeskDestinationProperties$errorHandlingConfig": null
       }
     },
     "ErrorInfo": {
@@ -863,7 +864,8 @@
     "IdFieldNameList": {
       "base": "<p> A list of field names that can be used as an ID field when performing a write operation. </p>",
       "refs": {
-        "SalesforceDestinationProperties$idFieldNames": "<p> The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. </p>"
+        "SalesforceDestinationProperties$idFieldNames": "<p> The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. </p>",
+        "ZendeskDestinationProperties$idFieldNames": null
       }
     },
     "Identifier": {
@@ -1095,6 +1097,7 @@
         "SnowflakeDestinationProperties$object": "<p> The object specified in the Snowflake flow destination. </p>",
         "TrendmicroSourceProperties$object": "<p> The object specified in the Trend Micro flow source. </p>",
         "VeevaSourceProperties$object": "<p> The object specified in the Veeva flow source. </p>",
+        "ZendeskDestinationProperties$object": null,
         "ZendeskSourceProperties$object": "<p> The object specified in the Zendesk flow source. </p>"
       }
     },
@@ -1771,7 +1774,8 @@
       "base": "<p> The possible write operations in the destination connector. When this value is not provided, this defaults to the <code>INSERT</code> operation. </p>",
       "refs": {
         "SalesforceDestinationProperties$writeOperationType": "<p> This specifies the type of write operation to be performed in Salesforce. When the value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. </p>",
-        "SupportedWriteOperationList$member": null
+        "SupportedWriteOperationList$member": null,
+        "ZendeskDestinationProperties$writeOperationType": null
       }
     },
     "ZendeskConnectorOperator": {
@@ -1790,6 +1794,12 @@
       "base": "<p> The connector-specific profile properties required when using Zendesk. </p>",
       "refs": {
         "ConnectorProfileProperties$Zendesk": "<p> The connector-specific properties required by Zendesk. </p>"
+      }
+    },
+    "ZendeskDestinationProperties": {
+      "base": null,
+      "refs": {
+        "DestinationConnectorProperties$Zendesk": null
       }
     },
     "ZendeskMetadata": {

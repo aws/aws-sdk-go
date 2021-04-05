@@ -1552,6 +1552,12 @@
         "HlsCdnSettings$HlsWebdavSettings": null
       }
     },
+    "HtmlMotionGraphicsSettings": {
+      "base": "Html Motion Graphics Settings",
+      "refs": {
+        "MotionGraphicsSettings$HtmlMotionGraphicsSettings": null
+      }
+    },
     "IFrameOnlyPlaylistType": {
       "base": "When set to \"standard\", an I-Frame only playlist will be written out for each video output in the output group. This I-Frame only playlist will contain byte range offsets pointing to the I-frame(s) in each segment.",
       "refs": {
@@ -2197,6 +2203,36 @@
       "base": "Media Package Output Settings",
       "refs": {
         "OutputSettings$MediaPackageOutputSettings": null
+      }
+    },
+    "MotionGraphicsActivateScheduleActionSettings": {
+      "base": "Settings to specify the rendering of motion graphics into the video stream.",
+      "refs": {
+        "ScheduleActionSettings$MotionGraphicsImageActivateSettings": "Action to activate a motion graphics image overlay"
+      }
+    },
+    "MotionGraphicsConfiguration": {
+      "base": "Motion Graphics Configuration",
+      "refs": {
+        "EncoderSettings$MotionGraphicsConfiguration": "Settings for motion graphics."
+      }
+    },
+    "MotionGraphicsDeactivateScheduleActionSettings": {
+      "base": "Settings to specify the ending of rendering motion graphics into the video stream.",
+      "refs": {
+        "ScheduleActionSettings$MotionGraphicsImageDeactivateSettings": "Action to deactivate a motion graphics image overlay"
+      }
+    },
+    "MotionGraphicsInsertion": {
+      "base": "Motion Graphics Insertion",
+      "refs": {
+        "MotionGraphicsConfiguration$MotionGraphicsInsertion": null
+      }
+    },
+    "MotionGraphicsSettings": {
+      "base": "Motion Graphics Settings",
+      "refs": {
+        "MotionGraphicsConfiguration$MotionGraphicsSettings": "Motion Graphics Settings"
       }
     },
     "Mp2CodingMode": {
@@ -4146,6 +4182,12 @@
         "Scte35SpliceInsertScheduleActionSettings$Duration": "Optional, the duration for the splice_insert, in 90 KHz ticks. To convert seconds to ticks, multiple the seconds by 90,000. If you enter a duration, there is an expectation that the downstream system can read the duration and cue in at that time. If you do not enter a duration, the splice_insert will continue indefinitely and there is an expectation that you will enter a return_to_network to end the splice_insert at the appropriate time."
       }
     },
+    "__longMin0Max86400000": {
+      "base": null,
+      "refs": {
+        "MotionGraphicsActivateScheduleActionSettings$Duration": "Duration (in milliseconds) that motion graphics should render on to the video stream. Leaving out this property or setting to 0 will result in rendering continuing until a deactivate action is processed."
+      }
+    },
     "__string": {
       "base": null,
       "refs": {
@@ -4291,6 +4333,9 @@
         "M3u8Settings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "MediaConnectFlow$FlowArn": "The unique ARN of the MediaConnect Flow being used as a source.",
         "MediaConnectFlowRequest$FlowArn": "The ARN of the MediaConnect Flow that you want to use as a source.",
+        "MotionGraphicsActivateScheduleActionSettings$PasswordParam": "Key used to extract the password from EC2 Parameter store",
+        "MotionGraphicsActivateScheduleActionSettings$Url": "URI of the HTML5 content to be rendered into the live stream.",
+        "MotionGraphicsActivateScheduleActionSettings$Username": "Username if credentials are required to access a file. This must be a reference to an AWS parameter store name from which the password can be retrieved. AWS Parameter store format: \\\"ssm://<parameter name>\\\"",
         "MsSmoothGroupSettings$AcquisitionPointId": "The ID to include in each message in the sparse track. Ignored if sparseTrackType is NONE.",
         "MsSmoothGroupSettings$EventId": "MS Smooth event ID to be sent to the IIS server.\n\nShould only be specified if eventIdMode is set to useConfigured.",
         "MsSmoothGroupSettings$TimestampOffset": "Timestamp offset for the event.  Only used if timestampOffsetMode is set to useConfiguredOffset.",
@@ -4323,6 +4368,8 @@
         "OutputLocationRef$DestinationRefId": null,
         "PipelineDetail$ActiveInputAttachmentName": "The name of the active input attachment currently being ingested by this pipeline.",
         "PipelineDetail$ActiveInputSwitchActionName": "The name of the input switch schedule action that occurred most recently and that resulted in the switch to the current input attachment for this pipeline.",
+        "PipelineDetail$ActiveMotionGraphicsActionName": "The name of the motion graphics activate action that occurred most recently and that resulted in the current graphics URI for this pipeline.",
+        "PipelineDetail$ActiveMotionGraphicsUri": "The current URI being used for HTML5 motion graphics for this pipeline.",
         "PipelineDetail$PipelineId": "Pipeline ID",
         "PurchaseOffering$Name": "Name for the new reservation",
         "PurchaseOffering$RequestId": "Unique request ID to be specified. This is needed to prevent retries from creating multiple resources.",

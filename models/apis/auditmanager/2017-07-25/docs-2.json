@@ -89,7 +89,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p> You do not have sufficient access to perform this action. </p>",
+      "base": "<p> Your account is not registered with AWS Audit Manager. Check the delegated administrator setup on the AWS Audit Manager settings page, and try again. </p>",
       "refs": {
       }
     },
@@ -1185,7 +1185,7 @@
       "base": null,
       "refs": {
         "Keywords$member": null,
-        "SourceKeyword$keywordValue": "<p> The value of the keyword used to search AWS CloudTrail logs when mapping a control data source. </p>"
+        "SourceKeyword$keywordValue": "<p> The value of the keyword used to search AWS CloudTrail logs, AWS Config rules, AWS Security Hub checks, and AWS API names when mapping a control data source. </p>"
       }
     },
     "Keywords": {
@@ -1386,8 +1386,9 @@
       }
     },
     "Role": {
-      "base": "<p> The wrapper that contains AWS Audit Manager role information, such as the role type and IAM Amazon Resource Name (ARN). </p>",
+      "base": "<p> The wrapper that contains the AWS Audit Manager role information of the current user, such as the role type and IAM Amazon Resource Name (ARN). </p>",
       "refs": {
+        "GetAssessmentResponse$userRole": null,
         "Roles$member": null
       }
     },
@@ -1479,7 +1480,7 @@
       }
     },
     "SourceKeyword": {
-      "base": "<p> The keyword to search for in AWS CloudTrail logs. </p>",
+      "base": "<p> The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security Hub checks, and AWS API names. </p>",
       "refs": {
         "ControlMappingSource$sourceKeyword": null,
         "CreateControlMappingSource$sourceKeyword": null

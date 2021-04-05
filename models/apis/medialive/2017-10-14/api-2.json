@@ -5592,13 +5592,13 @@
     "EbuTtDDestinationSettings": {
       "type": "structure",
       "members": {
-        "FillLineGap": {
-          "shape": "EbuTtDFillLineGapControl",
-          "locationName": "fillLineGap"
-        },
         "CopyrightHolder": {
           "shape": "__stringMax1000",
           "locationName": "copyrightHolder"
+        },
+        "FillLineGap": {
+          "shape": "EbuTtDFillLineGapControl",
+          "locationName": "fillLineGap"
         },
         "FontFamily": {
           "shape": "__string",
@@ -5704,6 +5704,10 @@
         "GlobalConfiguration": {
           "shape": "GlobalConfiguration",
           "locationName": "globalConfiguration"
+        },
+        "MotionGraphicsConfiguration": {
+          "shape": "MotionGraphicsConfiguration",
+          "locationName": "motionGraphicsConfiguration"
         },
         "NielsenConfiguration": {
           "shape": "NielsenConfiguration",
@@ -7268,6 +7272,11 @@
           "shape": "__integerMin0Max15",
           "locationName": "restartDelay"
         }
+      }
+    },
+    "HtmlMotionGraphicsSettings": {
+      "type": "structure",
+      "members": {
       }
     },
     "IFrameOnlyPlaylistType": {
@@ -9213,6 +9222,64 @@
       "members": {
       }
     },
+    "MotionGraphicsActivateScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Duration": {
+          "shape": "__longMin0Max86400000",
+          "locationName": "duration"
+        },
+        "PasswordParam": {
+          "shape": "__string",
+          "locationName": "passwordParam"
+        },
+        "Url": {
+          "shape": "__string",
+          "locationName": "url"
+        },
+        "Username": {
+          "shape": "__string",
+          "locationName": "username"
+        }
+      }
+    },
+    "MotionGraphicsConfiguration": {
+      "type": "structure",
+      "members": {
+        "MotionGraphicsInsertion": {
+          "shape": "MotionGraphicsInsertion",
+          "locationName": "motionGraphicsInsertion"
+        },
+        "MotionGraphicsSettings": {
+          "shape": "MotionGraphicsSettings",
+          "locationName": "motionGraphicsSettings"
+        }
+      },
+      "required": [
+        "MotionGraphicsSettings"
+      ]
+    },
+    "MotionGraphicsDeactivateScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+      }
+    },
+    "MotionGraphicsInsertion": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "MotionGraphicsSettings": {
+      "type": "structure",
+      "members": {
+        "HtmlMotionGraphicsSettings": {
+          "shape": "HtmlMotionGraphicsSettings",
+          "locationName": "htmlMotionGraphicsSettings"
+        }
+      }
+    },
     "Mp2CodingMode": {
       "type": "string",
       "enum": [
@@ -10169,6 +10236,14 @@
           "shape": "__string",
           "locationName": "activeInputSwitchActionName"
         },
+        "ActiveMotionGraphicsActionName": {
+          "shape": "__string",
+          "locationName": "activeMotionGraphicsActionName"
+        },
+        "ActiveMotionGraphicsUri": {
+          "shape": "__string",
+          "locationName": "activeMotionGraphicsUri"
+        },
         "PipelineId": {
           "shape": "__string",
           "locationName": "pipelineId"
@@ -10675,6 +10750,14 @@
         "InputSwitchSettings": {
           "shape": "InputSwitchScheduleActionSettings",
           "locationName": "inputSwitchSettings"
+        },
+        "MotionGraphicsImageActivateSettings": {
+          "shape": "MotionGraphicsActivateScheduleActionSettings",
+          "locationName": "motionGraphicsImageActivateSettings"
+        },
+        "MotionGraphicsImageDeactivateSettings": {
+          "shape": "MotionGraphicsDeactivateScheduleActionSettings",
+          "locationName": "motionGraphicsImageDeactivateSettings"
         },
         "PauseStateSettings": {
           "shape": "PauseStateScheduleActionSettings",
@@ -11681,10 +11764,6 @@
         "TargetCustomerId": {
           "shape": "__string",
           "locationName": "targetCustomerId"
-        },
-        "TargetRegion": {
-          "shape": "__string",
-          "locationName": "targetRegion"
         },
         "TransferType": {
           "shape": "InputDeviceTransferType",
@@ -13109,6 +13188,11 @@
       "type": "long",
       "min": 0,
       "max": 8589934591
+    },
+    "__longMin0Max86400000": {
+      "type": "long",
+      "min": 0,
+      "max": 86400000
     },
     "__string": {
       "type": "string"

@@ -1948,7 +1948,8 @@
     "GetAssessmentResponse":{
       "type":"structure",
       "members":{
-        "assessment":{"shape":"Assessment"}
+        "assessment":{"shape":"Assessment"},
+        "userRole":{"shape":"Role"}
       }
     },
     "GetChangeLogsRequest":{
