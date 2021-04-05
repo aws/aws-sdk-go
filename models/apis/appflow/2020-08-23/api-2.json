@@ -922,7 +922,8 @@
         "LookoutMetrics":{"shape":"LookoutMetricsDestinationProperties"},
         "Upsolver":{"shape":"UpsolverDestinationProperties"},
         "Honeycode":{"shape":"HoneycodeDestinationProperties"},
-        "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"}
+        "CustomerProfiles":{"shape":"CustomerProfilesDestinationProperties"},
+        "Zendesk":{"shape":"ZendeskDestinationProperties"}
       }
     },
     "DestinationField":{
@@ -2515,6 +2516,16 @@
       "required":["instanceUrl"],
       "members":{
         "instanceUrl":{"shape":"InstanceUrl"}
+      }
+    },
+    "ZendeskDestinationProperties":{
+      "type":"structure",
+      "required":["object"],
+      "members":{
+        "object":{"shape":"Object"},
+        "idFieldNames":{"shape":"IdFieldNameList"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"},
+        "writeOperationType":{"shape":"WriteOperationType"}
       }
     },
     "ZendeskMetadata":{

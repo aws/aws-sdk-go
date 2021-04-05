@@ -4656,6 +4656,8 @@ type DestinationConnectorProperties struct {
 
 	// The properties required to query Upsolver.
 	Upsolver *UpsolverDestinationProperties `type:"structure"`
+
+	Zendesk *ZendeskDestinationProperties `type:"structure"`
 }
 
 // String returns the string representation
@@ -4709,6 +4711,11 @@ func (s *DestinationConnectorProperties) Validate() error {
 	if s.Upsolver != nil {
 		if err := s.Upsolver.Validate(); err != nil {
 			invalidParams.AddNested("Upsolver", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Zendesk != nil {
+		if err := s.Zendesk.Validate(); err != nil {
+			invalidParams.AddNested("Zendesk", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4769,6 +4776,12 @@ func (s *DestinationConnectorProperties) SetSnowflake(v *SnowflakeDestinationPro
 // SetUpsolver sets the Upsolver field's value.
 func (s *DestinationConnectorProperties) SetUpsolver(v *UpsolverDestinationProperties) *DestinationConnectorProperties {
 	s.Upsolver = v
+	return s
+}
+
+// SetZendesk sets the Zendesk field's value.
+func (s *DestinationConnectorProperties) SetZendesk(v *ZendeskDestinationProperties) *DestinationConnectorProperties {
+	s.Zendesk = v
 	return s
 }
 
@@ -9845,6 +9858,80 @@ func (s *ZendeskConnectorProfileProperties) Validate() error {
 // SetInstanceUrl sets the InstanceUrl field's value.
 func (s *ZendeskConnectorProfileProperties) SetInstanceUrl(v string) *ZendeskConnectorProfileProperties {
 	s.InstanceUrl = &v
+	return s
+}
+
+type ZendeskDestinationProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The settings that determine how Amazon AppFlow handles an error when placing
+	// data in the destination. For example, this setting would determine if the
+	// flow should fail after one insertion error, or continue and attempt to insert
+	// every record regardless of the initial failure. ErrorHandlingConfig is a
+	// part of the destination connector details.
+	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
+
+	// A list of field names that can be used as an ID field when performing a write
+	// operation.
+	IdFieldNames []*string `locationName:"idFieldNames" type:"list"`
+
+	// Object is a required field
+	Object *string `locationName:"object" type:"string" required:"true"`
+
+	// The possible write operations in the destination connector. When this value
+	// is not provided, this defaults to the INSERT operation.
+	WriteOperationType *string `locationName:"writeOperationType" type:"string" enum:"WriteOperationType"`
+}
+
+// String returns the string representation
+func (s ZendeskDestinationProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZendeskDestinationProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZendeskDestinationProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZendeskDestinationProperties"}
+	if s.Object == nil {
+		invalidParams.Add(request.NewErrParamRequired("Object"))
+	}
+	if s.ErrorHandlingConfig != nil {
+		if err := s.ErrorHandlingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ErrorHandlingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetErrorHandlingConfig sets the ErrorHandlingConfig field's value.
+func (s *ZendeskDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlingConfig) *ZendeskDestinationProperties {
+	s.ErrorHandlingConfig = v
+	return s
+}
+
+// SetIdFieldNames sets the IdFieldNames field's value.
+func (s *ZendeskDestinationProperties) SetIdFieldNames(v []*string) *ZendeskDestinationProperties {
+	s.IdFieldNames = v
+	return s
+}
+
+// SetObject sets the Object field's value.
+func (s *ZendeskDestinationProperties) SetObject(v string) *ZendeskDestinationProperties {
+	s.Object = &v
+	return s
+}
+
+// SetWriteOperationType sets the WriteOperationType field's value.
+func (s *ZendeskDestinationProperties) SetWriteOperationType(v string) *ZendeskDestinationProperties {
+	s.WriteOperationType = &v
 	return s
 }
 

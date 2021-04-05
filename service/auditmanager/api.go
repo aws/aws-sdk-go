@@ -73,7 +73,8 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -163,7 +164,8 @@ func (c *AuditManager) BatchAssociateAssessmentReportEvidenceRequest(input *Batc
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -252,7 +254,8 @@ func (c *AuditManager) BatchCreateDelegationByAssessmentRequest(input *BatchCrea
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -341,7 +344,8 @@ func (c *AuditManager) BatchDeleteDelegationByAssessmentRequest(input *BatchDele
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -431,7 +435,8 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -521,7 +526,8 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -613,7 +619,8 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -702,7 +709,8 @@ func (c *AuditManager) CreateAssessmentFrameworkRequest(input *CreateAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -788,7 +796,8 @@ func (c *AuditManager) CreateAssessmentReportRequest(input *CreateAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -880,7 +889,8 @@ func (c *AuditManager) CreateControlRequest(input *CreateControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -970,7 +980,8 @@ func (c *AuditManager) DeleteAssessmentRequest(input *DeleteAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1060,7 +1071,8 @@ func (c *AuditManager) DeleteAssessmentFrameworkRequest(input *DeleteAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1147,7 +1159,8 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1240,7 +1253,8 @@ func (c *AuditManager) DeleteControlRequest(input *DeleteControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1326,7 +1340,8 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1416,7 +1431,8 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1507,7 +1523,8 @@ func (c *AuditManager) DisassociateAssessmentReportEvidenceFolderRequest(input *
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1679,7 +1696,8 @@ func (c *AuditManager) GetAssessmentRequest(input *GetAssessmentInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1768,7 +1786,8 @@ func (c *AuditManager) GetAssessmentFrameworkRequest(input *GetAssessmentFramewo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1854,7 +1873,8 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1946,7 +1966,8 @@ func (c *AuditManager) GetChangeLogsRequest(input *GetChangeLogsInput) (req *req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request cannot be found.
@@ -2093,7 +2114,8 @@ func (c *AuditManager) GetControlRequest(input *GetControlInput) (req *request.R
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2185,7 +2207,8 @@ func (c *AuditManager) GetDelegationsRequest(input *GetDelegationsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2326,7 +2349,8 @@ func (c *AuditManager) GetEvidenceRequest(input *GetEvidenceInput) (req *request
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2421,7 +2445,8 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderRequest(input *GetEvidenceByEv
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2562,7 +2587,8 @@ func (c *AuditManager) GetEvidenceFolderRequest(input *GetEvidenceFolderInput) (
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2654,7 +2680,8 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentRequest(input *GetEvidenceF
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -2805,7 +2832,8 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2943,7 +2971,8 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3029,7 +3058,8 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3115,7 +3145,8 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3208,7 +3239,8 @@ func (c *AuditManager) ListAssessmentFrameworksRequest(input *ListAssessmentFram
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3352,7 +3384,8 @@ func (c *AuditManager) ListAssessmentReportsRequest(input *ListAssessmentReports
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3493,7 +3526,8 @@ func (c *AuditManager) ListAssessmentsRequest(input *ListAssessmentsInput) (req 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3637,7 +3671,8 @@ func (c *AuditManager) ListControlsRequest(input *ListControlsInput) (req *reque
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3782,7 +3817,8 @@ func (c *AuditManager) ListKeywordsForDataSourceRequest(input *ListKeywordsForDa
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3926,7 +3962,8 @@ func (c *AuditManager) ListNotificationsRequest(input *ListNotificationsInput) (
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -4153,7 +4190,8 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4243,7 +4281,8 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4509,7 +4548,8 @@ func (c *AuditManager) UpdateAssessmentRequest(input *UpdateAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4598,7 +4638,8 @@ func (c *AuditManager) UpdateAssessmentControlRequest(input *UpdateAssessmentCon
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4687,7 +4728,8 @@ func (c *AuditManager) UpdateAssessmentControlSetStatusRequest(input *UpdateAsse
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4776,7 +4818,8 @@ func (c *AuditManager) UpdateAssessmentFrameworkRequest(input *UpdateAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4865,7 +4908,8 @@ func (c *AuditManager) UpdateAssessmentStatusRequest(input *UpdateAssessmentStat
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4954,7 +4998,8 @@ func (c *AuditManager) UpdateControlRequest(input *UpdateControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5040,7 +5085,8 @@ func (c *AuditManager) UpdateSettingsRequest(input *UpdateSettingsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5126,7 +5172,8 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityRequest(input *ValidateA
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   You do not have sufficient access to perform this action.
+//   Your account is not registered with AWS Audit Manager. Check the delegated
+//   administrator setup on the AWS Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5256,7 +5303,8 @@ func (s *AWSService) SetServiceName(v string) *AWSService {
 	return s
 }
 
-// You do not have sufficient access to perform this action.
+// Your account is not registered with AWS Audit Manager. Check the delegated
+// administrator setup on the AWS Audit Manager settings page, and try again.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7373,7 +7421,8 @@ type ControlMappingSource struct {
 	// The unique identifier for the specified source.
 	SourceId *string `locationName:"sourceId" min:"36" type:"string"`
 
-	// The keyword to search for in AWS CloudTrail logs.
+	// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
+	// Hub checks, and AWS API names.
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the specified source.
@@ -8183,7 +8232,8 @@ type CreateControlMappingSource struct {
 	// The frequency of evidence collection for the specified control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
-	// The keyword to search for in AWS CloudTrail logs.
+	// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
+	// Hub checks, and AWS API names.
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the control mapping data source.
@@ -9462,6 +9512,10 @@ type GetAssessmentOutput struct {
 	// Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit
 	// Manager framework.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
+
+	// The wrapper that contains the AWS Audit Manager role information of the current
+	// user, such as the role type and IAM Amazon Resource Name (ARN).
+	UserRole *Role `locationName:"userRole" type:"structure"`
 }
 
 // String returns the string representation
@@ -9477,6 +9531,12 @@ func (s GetAssessmentOutput) GoString() string {
 // SetAssessment sets the Assessment field's value.
 func (s *GetAssessmentOutput) SetAssessment(v *Assessment) *GetAssessmentOutput {
 	s.Assessment = v
+	return s
+}
+
+// SetUserRole sets the UserRole field's value.
+func (s *GetAssessmentOutput) SetUserRole(v *Role) *GetAssessmentOutput {
+	s.UserRole = v
 	return s
 }
 
@@ -11560,8 +11620,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The wrapper that contains AWS Audit Manager role information, such as the
-// role type and IAM Amazon Resource Name (ARN).
+// The wrapper that contains the AWS Audit Manager role information of the current
+// user, such as the role type and IAM Amazon Resource Name (ARN).
 type Role struct {
 	_ struct{} `type:"structure"`
 
@@ -11789,15 +11849,16 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 	return s
 }
 
-// The keyword to search for in AWS CloudTrail logs.
+// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
+// Hub checks, and AWS API names.
 type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 
 	// The method of input for the specified keyword.
 	KeywordInputType *string `locationName:"keywordInputType" type:"string" enum:"KeywordInputType"`
 
-	// The value of the keyword used to search AWS CloudTrail logs when mapping
-	// a control data source.
+	// The value of the keyword used to search AWS CloudTrail logs, AWS Config rules,
+	// AWS Security Hub checks, and AWS API names when mapping a control data source.
 	KeywordValue *string `locationName:"keywordValue" min:"1" type:"string"`
 }
 
