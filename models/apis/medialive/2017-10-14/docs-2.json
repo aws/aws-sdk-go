@@ -3276,9 +3276,14 @@
     "VpcOutputSettings": {
       "base": "The properties for a private VPC Output\nWhen this property is specified, the output egress addresses will be created in a user specified VPC\n",
       "refs": {
-        "Channel$Vpc": "Settings for VPC output",
-        "ChannelSummary$Vpc": "Settings for VPC output",
         "CreateChannel$Vpc": "Settings for VPC output"
+      }
+    },
+    "VpcOutputSettingsDescription": {
+      "base": "The properties for a private VPC Output\n",
+      "refs": {
+        "Channel$Vpc": "Settings for VPC output",
+        "ChannelSummary$Vpc": "Settings for VPC output"
       }
     },
     "WavCodingMode": {
@@ -4159,7 +4164,11 @@
         "UpdateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "VpcOutputSettings$PublicAddressAllocationIds": "List of public address allocation ids to associate with ENIs that will be created in Output VPC.\nMust specify one for SINGLE_PIPELINE, two for STANDARD channels\n",
         "VpcOutputSettings$SecurityGroupIds": "A list of up to 5 EC2 VPC security group IDs to attach to the Output VPC network interfaces.\nIf none are specified then the VPC default security group will be used\n",
-        "VpcOutputSettings$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n"
+        "VpcOutputSettings$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n",
+        "VpcOutputSettingsDescription$AvailabilityZones": "The Availability Zones where the vpc subnets are located.\nThe first Availability Zone applies to the first subnet in the list of subnets.\nThe second Availability Zone applies to the second subnet.\n",
+        "VpcOutputSettingsDescription$NetworkInterfaceIds": "A list of Elastic Network Interfaces created by MediaLive in the customer's VPC\n",
+        "VpcOutputSettingsDescription$SecurityGroupIds": "A list of up EC2 VPC security group IDs attached to the Output VPC network interfaces.\n",
+        "VpcOutputSettingsDescription$SubnetIds": "A list of VPC subnet IDs from the same VPC.\nIf STANDARD channel, subnet IDs must be mapped to two unique availability zones (AZ).\n"
       }
     },
     "__longMin0Max1099511627775": {

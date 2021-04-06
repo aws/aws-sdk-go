@@ -1568,25 +1568,27 @@ type CreateEnvironmentEC2Input struct {
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
 	// The identifier for the Amazon Machine Image (AMI) that's used to create the
-	// EC2 instance. You can specify the AMI for the instance using an AMI alias
-	// or an AWS Systems Manager (SSM) path. The default AMI is used if the parameter
-	// isn't explicitly assigned a value in the request.
+	// EC2 instance. To choose an AMI for the instance, you must specify a valid
+	// AMI alias or a valid AWS Systems Manager (SSM) path.
+	//
+	// The default AMI is used if the parameter isn't explicitly assigned a value
+	// in the request.
 	//
 	// AMI aliases
+	//
+	//    * Amazon Linux (default): amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: ubuntu-18.04-x86_64
 	//
-	//    * Amazon Linux (default): amazonlinux-1-x86_64
-	//
 	// SSM paths
+	//
+	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
 	//
 	//    * Amazon Linux 2: resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
 	//
 	//    * Ubuntu 18.04: resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
-	//
-	//    * Amazon Linux (default): resolve:ssm:/aws/service/cloud9/amis/amazonlinux-1-x86_64
 	ImageId *string `locationName:"imageId" type:"string"`
 
 	// The type of instance to connect to the environment (for example, t2.micro).
