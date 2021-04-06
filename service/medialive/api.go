@@ -8947,7 +8947,7 @@ type Channel struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Settings for VPC output
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -9057,7 +9057,7 @@ func (s *Channel) SetTags(v map[string]*string) *Channel {
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *Channel) SetVpc(v *VpcOutputSettings) *Channel {
+func (s *Channel) SetVpc(v *VpcOutputSettingsDescription) *Channel {
 	s.Vpc = v
 	return s
 }
@@ -9133,7 +9133,7 @@ type ChannelSummary struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Settings for VPC output
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -9231,7 +9231,7 @@ func (s *ChannelSummary) SetTags(v map[string]*string) *ChannelSummary {
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *ChannelSummary) SetVpc(v *VpcOutputSettings) *ChannelSummary {
+func (s *ChannelSummary) SetVpc(v *VpcOutputSettingsDescription) *ChannelSummary {
 	s.Vpc = v
 	return s
 }
@@ -10111,9 +10111,8 @@ type DeleteChannelOutput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The properties for a private VPC OutputWhen this property is specified, the
-	// output egress addresses will be created in a user specified VPC
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	// The properties for a private VPC Output
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -10223,7 +10222,7 @@ func (s *DeleteChannelOutput) SetTags(v map[string]*string) *DeleteChannelOutput
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *DeleteChannelOutput) SetVpc(v *VpcOutputSettings) *DeleteChannelOutput {
+func (s *DeleteChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *DeleteChannelOutput {
 	s.Vpc = v
 	return s
 }
@@ -10976,9 +10975,8 @@ type DescribeChannelOutput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The properties for a private VPC OutputWhen this property is specified, the
-	// output egress addresses will be created in a user specified VPC
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	// The properties for a private VPC Output
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -11088,7 +11086,7 @@ func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOu
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *DescribeChannelOutput) SetVpc(v *VpcOutputSettings) *DescribeChannelOutput {
+func (s *DescribeChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *DescribeChannelOutput {
 	s.Vpc = v
 	return s
 }
@@ -24437,9 +24435,8 @@ type StartChannelOutput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The properties for a private VPC OutputWhen this property is specified, the
-	// output egress addresses will be created in a user specified VPC
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	// The properties for a private VPC Output
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -24549,7 +24546,7 @@ func (s *StartChannelOutput) SetTags(v map[string]*string) *StartChannelOutput {
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *StartChannelOutput) SetVpc(v *VpcOutputSettings) *StartChannelOutput {
+func (s *StartChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StartChannelOutput {
 	s.Vpc = v
 	return s
 }
@@ -25034,9 +25031,8 @@ type StopChannelOutput struct {
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	// The properties for a private VPC OutputWhen this property is specified, the
-	// output egress addresses will be created in a user specified VPC
-	Vpc *VpcOutputSettings `locationName:"vpc" type:"structure"`
+	// The properties for a private VPC Output
+	Vpc *VpcOutputSettingsDescription `locationName:"vpc" type:"structure"`
 }
 
 // String returns the string representation
@@ -25146,7 +25142,7 @@ func (s *StopChannelOutput) SetTags(v map[string]*string) *StopChannelOutput {
 }
 
 // SetVpc sets the Vpc field's value.
-func (s *StopChannelOutput) SetVpc(v *VpcOutputSettings) *StopChannelOutput {
+func (s *StopChannelOutput) SetVpc(v *VpcOutputSettingsDescription) *StopChannelOutput {
 	s.Vpc = v
 	return s
 }
@@ -25629,6 +25625,8 @@ type TransferringInputDeviceSummary struct {
 	// The AWS account ID for the recipient of the input device transfer.
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
+	TargetRegion *string `locationName:"targetRegion" type:"string"`
+
 	// The type (direction) of the input device transfer.
 	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
 }
@@ -25658,6 +25656,12 @@ func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInput
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
 	s.TargetCustomerId = &v
+	return s
+}
+
+// SetTargetRegion sets the TargetRegion field's value.
+func (s *TransferringInputDeviceSummary) SetTargetRegion(v string) *TransferringInputDeviceSummary {
+	s.TargetRegion = &v
 	return s
 }
 
@@ -27311,6 +27315,62 @@ func (s *VpcOutputSettings) SetSecurityGroupIds(v []*string) *VpcOutputSettings 
 
 // SetSubnetIds sets the SubnetIds field's value.
 func (s *VpcOutputSettings) SetSubnetIds(v []*string) *VpcOutputSettings {
+	s.SubnetIds = v
+	return s
+}
+
+// The properties for a private VPC Output
+type VpcOutputSettingsDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zones where the vpc subnets are located.The first Availability
+	// Zone applies to the first subnet in the list of subnets.The second Availability
+	// Zone applies to the second subnet.
+	AvailabilityZones []*string `locationName:"availabilityZones" type:"list"`
+
+	// A list of Elastic Network Interfaces created by MediaLive in the customer's
+	// VPC
+	NetworkInterfaceIds []*string `locationName:"networkInterfaceIds" type:"list"`
+
+	// A list of up EC2 VPC security group IDs attached to the Output VPC network
+	// interfaces.
+	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
+
+	// A list of VPC subnet IDs from the same VPC.If STANDARD channel, subnet IDs
+	// must be mapped to two unique availability zones (AZ).
+	SubnetIds []*string `locationName:"subnetIds" type:"list"`
+}
+
+// String returns the string representation
+func (s VpcOutputSettingsDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VpcOutputSettingsDescription) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *VpcOutputSettingsDescription) SetAvailabilityZones(v []*string) *VpcOutputSettingsDescription {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
+func (s *VpcOutputSettingsDescription) SetNetworkInterfaceIds(v []*string) *VpcOutputSettingsDescription {
+	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *VpcOutputSettingsDescription) SetSecurityGroupIds(v []*string) *VpcOutputSettingsDescription {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *VpcOutputSettingsDescription) SetSubnetIds(v []*string) *VpcOutputSettingsDescription {
 	s.SubnetIds = v
 	return s
 }

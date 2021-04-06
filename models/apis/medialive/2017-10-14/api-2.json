@@ -3574,7 +3574,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -3684,7 +3684,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -4296,7 +4296,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -4647,7 +4647,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -5599,6 +5599,10 @@
         "FillLineGap": {
           "shape": "EbuTtDFillLineGapControl",
           "locationName": "fillLineGap"
+        },
+        "CopyrightHolder": {
+          "shape": "__stringMax1000",
+          "locationName": "copyrightHolder"
         },
         "FontFamily": {
           "shape": "__string",
@@ -11272,7 +11276,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -11502,7 +11506,7 @@
           "locationName": "tags"
         },
         "Vpc": {
-          "shape": "VpcOutputSettings",
+          "shape": "VpcOutputSettingsDescription",
           "locationName": "vpc"
         }
       }
@@ -11764,6 +11768,10 @@
         "TargetCustomerId": {
           "shape": "__string",
           "locationName": "targetCustomerId"
+        },
+        "TargetRegion": {
+          "shape": "__string",
+          "locationName": "targetRegion"
         },
         "TransferType": {
           "shape": "InputDeviceTransferType",
@@ -12577,6 +12585,27 @@
       "required": [
         "SubnetIds"
       ]
+    },
+    "VpcOutputSettingsDescription": {
+      "type": "structure",
+      "members": {
+        "AvailabilityZones": {
+          "shape": "__listOf__string",
+          "locationName": "availabilityZones"
+        },
+        "NetworkInterfaceIds": {
+          "shape": "__listOf__string",
+          "locationName": "networkInterfaceIds"
+        },
+        "SecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "securityGroupIds"
+        },
+        "SubnetIds": {
+          "shape": "__listOf__string",
+          "locationName": "subnetIds"
+        }
+      }
     },
     "WavCodingMode": {
       "type": "string",

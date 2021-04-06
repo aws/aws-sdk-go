@@ -1719,6 +1719,21 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UnlabelParameterVersion":{
+      "name":"UnlabelParameterVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UnlabelParameterVersionRequest"},
+      "output":{"shape":"UnlabelParameterVersionResult"},
+      "errors":[
+        {"shape":"InternalServerError"},
+        {"shape":"TooManyUpdates"},
+        {"shape":"ParameterNotFound"},
+        {"shape":"ParameterVersionNotFound"}
+      ]
+    },
     "UpdateAssociation":{
       "name":"UpdateAssociation",
       "http":{
@@ -2761,6 +2776,11 @@
       "members":{
         "WindowExecutionId":{"shape":"MaintenanceWindowExecutionId"}
       }
+    },
+    "ChangeDetailsValue":{
+      "type":"string",
+      "max":32768,
+      "min":1
     },
     "ChangeRequestName":{
       "type":"string",
@@ -4208,6 +4228,18 @@
         "InstancesWithUnreportedNotApplicablePatches":{
           "shape":"Integer",
           "box":true
+        },
+        "InstancesWithCriticalNonCompliantPatches":{
+          "shape":"InstancesCount",
+          "box":true
+        },
+        "InstancesWithSecurityNonCompliantPatches":{
+          "shape":"InstancesCount",
+          "box":true
+        },
+        "InstancesWithOtherNonCompliantPatches":{
+          "shape":"InstancesCount",
+          "box":true
         }
       }
     },
@@ -5507,7 +5539,19 @@
         "OperationEndTime":{"shape":"DateTime"},
         "Operation":{"shape":"PatchOperationType"},
         "LastNoRebootInstallOperationTime":{"shape":"DateTime"},
-        "RebootOption":{"shape":"RebootOption"}
+        "RebootOption":{"shape":"RebootOption"},
+        "CriticalNonCompliantCount":{
+          "shape":"PatchCriticalNonCompliantCount",
+          "box":true
+        },
+        "SecurityNonCompliantCount":{
+          "shape":"PatchSecurityNonCompliantCount",
+          "box":true
+        },
+        "OtherNonCompliantCount":{
+          "shape":"PatchOtherNonCompliantCount",
+          "box":true
+        }
       }
     },
     "InstancePatchStateFilter":{
@@ -8079,6 +8123,7 @@
       "min":10
     },
     "PatchContentUrl":{"type":"string"},
+    "PatchCriticalNonCompliantCount":{"type":"integer"},
     "PatchDeploymentStatus":{
       "type":"string",
       "enum":[
@@ -8231,6 +8276,7 @@
       "type":"list",
       "member":{"shape":"PatchOrchestratorFilterValue"}
     },
+    "PatchOtherNonCompliantCount":{"type":"integer"},
     "PatchProduct":{"type":"string"},
     "PatchProductFamily":{"type":"string"},
     "PatchPropertiesList":{
@@ -8288,6 +8334,7 @@
       "max":10,
       "min":0
     },
+    "PatchSecurityNonCompliantCount":{"type":"integer"},
     "PatchSet":{
       "type":"string",
       "enum":[
@@ -9327,7 +9374,9 @@
         "ChangeRequestName":{"shape":"ChangeRequestName"},
         "ClientToken":{"shape":"IdempotencyToken"},
         "Runbooks":{"shape":"Runbooks"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ScheduledEndTime":{"shape":"DateTime"},
+        "ChangeDetails":{"shape":"ChangeDetailsValue"}
       }
     },
     "StartChangeRequestExecutionResult":{
@@ -9681,6 +9730,29 @@
     "UUID":{
       "type":"string",
       "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "UnlabelParameterVersionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "ParameterVersion",
+        "Labels"
+      ],
+      "members":{
+        "Name":{"shape":"PSParameterName"},
+        "ParameterVersion":{
+          "shape":"PSParameterVersion",
+          "box":true
+        },
+        "Labels":{"shape":"ParameterLabelList"}
+      }
+    },
+    "UnlabelParameterVersionResult":{
+      "type":"structure",
+      "members":{
+        "RemovedLabels":{"shape":"ParameterLabelList"},
+        "InvalidLabels":{"shape":"ParameterLabelList"}
+      }
     },
     "UnsupportedCalendarException":{
       "type":"structure",

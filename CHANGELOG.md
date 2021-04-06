@@ -1,3 +1,16 @@
+Release v1.38.14 (2021-04-06)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service documentation
+  * Documentation updates for Cloud9
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for storing EBS-backed AMIs in S3 and restoring them from S3 to enable cross-partition copying of AMIs
+* `service/medialive`: Updates service API and documentation
+  * MediaLive VPC outputs update to include Availability Zones, Security groups, Elastic Network Interfaces, and Subnet Ids in channel response
+* `service/ssm`: Updates service API and documentation
+  * Supports removing a label or labels from a parameter, enables ScheduledEndTime and ChangeDetails for StartChangeRequestExecution API, supports critical/security/other noncompliant count for patch API.
+
 Release v1.38.13 (2021-04-05)
 ===
 
