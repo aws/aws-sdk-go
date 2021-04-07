@@ -84,6 +84,10 @@ type StorageGatewayAPI interface {
 	AssignTapePoolWithContext(aws.Context, *storagegateway.AssignTapePoolInput, ...request.Option) (*storagegateway.AssignTapePoolOutput, error)
 	AssignTapePoolRequest(*storagegateway.AssignTapePoolInput) (*request.Request, *storagegateway.AssignTapePoolOutput)
 
+	AssociateFileSystem(*storagegateway.AssociateFileSystemInput) (*storagegateway.AssociateFileSystemOutput, error)
+	AssociateFileSystemWithContext(aws.Context, *storagegateway.AssociateFileSystemInput, ...request.Option) (*storagegateway.AssociateFileSystemOutput, error)
+	AssociateFileSystemRequest(*storagegateway.AssociateFileSystemInput) (*request.Request, *storagegateway.AssociateFileSystemOutput)
+
 	AttachVolume(*storagegateway.AttachVolumeInput) (*storagegateway.AttachVolumeOutput, error)
 	AttachVolumeWithContext(aws.Context, *storagegateway.AttachVolumeInput, ...request.Option) (*storagegateway.AttachVolumeOutput, error)
 	AttachVolumeRequest(*storagegateway.AttachVolumeInput) (*request.Request, *storagegateway.AttachVolumeOutput)
@@ -196,6 +200,10 @@ type StorageGatewayAPI interface {
 	DescribeChapCredentialsWithContext(aws.Context, *storagegateway.DescribeChapCredentialsInput, ...request.Option) (*storagegateway.DescribeChapCredentialsOutput, error)
 	DescribeChapCredentialsRequest(*storagegateway.DescribeChapCredentialsInput) (*request.Request, *storagegateway.DescribeChapCredentialsOutput)
 
+	DescribeFileSystemAssociations(*storagegateway.DescribeFileSystemAssociationsInput) (*storagegateway.DescribeFileSystemAssociationsOutput, error)
+	DescribeFileSystemAssociationsWithContext(aws.Context, *storagegateway.DescribeFileSystemAssociationsInput, ...request.Option) (*storagegateway.DescribeFileSystemAssociationsOutput, error)
+	DescribeFileSystemAssociationsRequest(*storagegateway.DescribeFileSystemAssociationsInput) (*request.Request, *storagegateway.DescribeFileSystemAssociationsOutput)
+
 	DescribeGatewayInformation(*storagegateway.DescribeGatewayInformationInput) (*storagegateway.DescribeGatewayInformationOutput, error)
 	DescribeGatewayInformationWithContext(aws.Context, *storagegateway.DescribeGatewayInformationInput, ...request.Option) (*storagegateway.DescribeGatewayInformationOutput, error)
 	DescribeGatewayInformationRequest(*storagegateway.DescribeGatewayInformationInput) (*request.Request, *storagegateway.DescribeGatewayInformationOutput)
@@ -268,6 +276,10 @@ type StorageGatewayAPI interface {
 	DisableGatewayWithContext(aws.Context, *storagegateway.DisableGatewayInput, ...request.Option) (*storagegateway.DisableGatewayOutput, error)
 	DisableGatewayRequest(*storagegateway.DisableGatewayInput) (*request.Request, *storagegateway.DisableGatewayOutput)
 
+	DisassociateFileSystem(*storagegateway.DisassociateFileSystemInput) (*storagegateway.DisassociateFileSystemOutput, error)
+	DisassociateFileSystemWithContext(aws.Context, *storagegateway.DisassociateFileSystemInput, ...request.Option) (*storagegateway.DisassociateFileSystemOutput, error)
+	DisassociateFileSystemRequest(*storagegateway.DisassociateFileSystemInput) (*request.Request, *storagegateway.DisassociateFileSystemOutput)
+
 	JoinDomain(*storagegateway.JoinDomainInput) (*storagegateway.JoinDomainOutput, error)
 	JoinDomainWithContext(aws.Context, *storagegateway.JoinDomainInput, ...request.Option) (*storagegateway.JoinDomainOutput, error)
 	JoinDomainRequest(*storagegateway.JoinDomainInput) (*request.Request, *storagegateway.JoinDomainOutput)
@@ -282,6 +294,13 @@ type StorageGatewayAPI interface {
 
 	ListFileSharesPages(*storagegateway.ListFileSharesInput, func(*storagegateway.ListFileSharesOutput, bool) bool) error
 	ListFileSharesPagesWithContext(aws.Context, *storagegateway.ListFileSharesInput, func(*storagegateway.ListFileSharesOutput, bool) bool, ...request.Option) error
+
+	ListFileSystemAssociations(*storagegateway.ListFileSystemAssociationsInput) (*storagegateway.ListFileSystemAssociationsOutput, error)
+	ListFileSystemAssociationsWithContext(aws.Context, *storagegateway.ListFileSystemAssociationsInput, ...request.Option) (*storagegateway.ListFileSystemAssociationsOutput, error)
+	ListFileSystemAssociationsRequest(*storagegateway.ListFileSystemAssociationsInput) (*request.Request, *storagegateway.ListFileSystemAssociationsOutput)
+
+	ListFileSystemAssociationsPages(*storagegateway.ListFileSystemAssociationsInput, func(*storagegateway.ListFileSystemAssociationsOutput, bool) bool) error
+	ListFileSystemAssociationsPagesWithContext(aws.Context, *storagegateway.ListFileSystemAssociationsInput, func(*storagegateway.ListFileSystemAssociationsOutput, bool) bool, ...request.Option) error
 
 	ListGateways(*storagegateway.ListGatewaysInput) (*storagegateway.ListGatewaysOutput, error)
 	ListGatewaysWithContext(aws.Context, *storagegateway.ListGatewaysInput, ...request.Option) (*storagegateway.ListGatewaysOutput, error)
@@ -389,6 +408,10 @@ type StorageGatewayAPI interface {
 	UpdateChapCredentials(*storagegateway.UpdateChapCredentialsInput) (*storagegateway.UpdateChapCredentialsOutput, error)
 	UpdateChapCredentialsWithContext(aws.Context, *storagegateway.UpdateChapCredentialsInput, ...request.Option) (*storagegateway.UpdateChapCredentialsOutput, error)
 	UpdateChapCredentialsRequest(*storagegateway.UpdateChapCredentialsInput) (*request.Request, *storagegateway.UpdateChapCredentialsOutput)
+
+	UpdateFileSystemAssociation(*storagegateway.UpdateFileSystemAssociationInput) (*storagegateway.UpdateFileSystemAssociationOutput, error)
+	UpdateFileSystemAssociationWithContext(aws.Context, *storagegateway.UpdateFileSystemAssociationInput, ...request.Option) (*storagegateway.UpdateFileSystemAssociationOutput, error)
+	UpdateFileSystemAssociationRequest(*storagegateway.UpdateFileSystemAssociationInput) (*request.Request, *storagegateway.UpdateFileSystemAssociationOutput)
 
 	UpdateGatewayInformation(*storagegateway.UpdateGatewayInformationInput) (*storagegateway.UpdateGatewayInformationOutput, error)
 	UpdateGatewayInformationWithContext(aws.Context, *storagegateway.UpdateGatewayInformationInput, ...request.Option) (*storagegateway.UpdateGatewayInformationOutput, error)

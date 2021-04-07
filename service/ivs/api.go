@@ -219,6 +219,8 @@ func (c *IVS) CreateChannelRequest(input *CreateChannelInput) (req *request.Requ
 //
 //   * AccessDeniedException
 //
+//   * ResourceNotFoundException
+//
 //   * ServiceQuotaExceededException
 //
 //   * PendingVerification
@@ -240,6 +242,106 @@ func (c *IVS) CreateChannel(input *CreateChannelInput) (*CreateChannelOutput, er
 // for more information on using Contexts.
 func (c *IVS) CreateChannelWithContext(ctx aws.Context, input *CreateChannelInput, opts ...request.Option) (*CreateChannelOutput, error) {
 	req, out := c.CreateChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRecordingConfiguration = "CreateRecordingConfiguration"
+
+// CreateRecordingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRecordingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRecordingConfiguration for more information on using the CreateRecordingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRecordingConfigurationRequest method.
+//    req, resp := client.CreateRecordingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreateRecordingConfiguration
+func (c *IVS) CreateRecordingConfigurationRequest(input *CreateRecordingConfigurationInput) (req *request.Request, output *CreateRecordingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opCreateRecordingConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/CreateRecordingConfiguration",
+	}
+
+	if input == nil {
+		input = &CreateRecordingConfigurationInput{}
+	}
+
+	output = &CreateRecordingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRecordingConfiguration API operation for Amazon Interactive Video Service.
+//
+// Creates a new recording configuration, used to enable recording to Amazon
+// S3.
+//
+// Known issue: In the us-east-1 region, if you use the AWS CLI to create a
+// recording configuration, it returns success even if the S3 bucket is in a
+// different region. In this case, the state of the recording configuration
+// is CREATE_FAILED (instead of ACTIVE). (In other regions, the CLI correctly
+// returns failure if the bucket is in a different region.)
+//
+// Workaround: Ensure that your S3 bucket is in the same region as the recording
+// configuration. If you create a recording configuration in a different region
+// as your S3 bucket, delete that recording configuration and create a new one
+// with an S3 bucket from the correct region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation CreateRecordingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+//   * PendingVerification
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/CreateRecordingConfiguration
+func (c *IVS) CreateRecordingConfiguration(input *CreateRecordingConfigurationInput) (*CreateRecordingConfigurationOutput, error) {
+	req, out := c.CreateRecordingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// CreateRecordingConfigurationWithContext is the same as CreateRecordingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRecordingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) CreateRecordingConfigurationWithContext(ctx aws.Context, input *CreateRecordingConfigurationInput, opts ...request.Option) (*CreateRecordingConfigurationOutput, error) {
+	req, out := c.CreateRecordingConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -384,6 +486,12 @@ func (c *IVS) DeleteChannelRequest(input *DeleteChannelInput) (req *request.Requ
 //
 // Deletes the specified channel and its associated stream keys.
 //
+// If you try to delete a live channel, you will get an error (409 ConflictException).
+// To delete a channel that is live, call StopStream, wait for the Amazon EventBridge
+// "Stream End" event (to verify that the stream's state was changed from Live
+// to Offline), then call DeleteChannel. (See Using EventBridge with Amazon
+// IVS (https://docs.aws.amazon.com/ivs/latest/userguide/eventbridge.html).)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -470,7 +578,9 @@ func (c *IVS) DeletePlaybackKeyPairRequest(input *DeletePlaybackKeyPairInput) (r
 // DeletePlaybackKeyPair API operation for Amazon Interactive Video Service.
 //
 // Deletes a specified authorization key pair. This invalidates future viewer
-// tokens generated using the key pair’s privateKey.
+// tokens generated using the key pair’s privateKey. For more information,
+// see Setting Up Private Channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html)
+// in the Amazon IVS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -505,6 +615,98 @@ func (c *IVS) DeletePlaybackKeyPair(input *DeletePlaybackKeyPairInput) (*DeleteP
 // for more information on using Contexts.
 func (c *IVS) DeletePlaybackKeyPairWithContext(ctx aws.Context, input *DeletePlaybackKeyPairInput, opts ...request.Option) (*DeletePlaybackKeyPairOutput, error) {
 	req, out := c.DeletePlaybackKeyPairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRecordingConfiguration = "DeleteRecordingConfiguration"
+
+// DeleteRecordingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRecordingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRecordingConfiguration for more information on using the DeleteRecordingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRecordingConfigurationRequest method.
+//    req, resp := client.DeleteRecordingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeleteRecordingConfiguration
+func (c *IVS) DeleteRecordingConfigurationRequest(input *DeleteRecordingConfigurationInput) (req *request.Request, output *DeleteRecordingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRecordingConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteRecordingConfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteRecordingConfigurationInput{}
+	}
+
+	output = &DeleteRecordingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRecordingConfiguration API operation for Amazon Interactive Video Service.
+//
+// Deletes the recording configuration for the specified ARN.
+//
+// If you try to delete a recording configuration that is associated with a
+// channel, you will get an error (409 ConflictException). To avoid this, for
+// all channels that reference the recording configuration, first use UpdateChannel
+// to set the recordingConfigurationArn field to an empty string, then use DeleteRecordingConfiguration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation DeleteRecordingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+//   * ResourceNotFoundException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/DeleteRecordingConfiguration
+func (c *IVS) DeleteRecordingConfiguration(input *DeleteRecordingConfigurationInput) (*DeleteRecordingConfigurationOutput, error) {
+	req, out := c.DeleteRecordingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRecordingConfigurationWithContext is the same as DeleteRecordingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRecordingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) DeleteRecordingConfigurationWithContext(ctx aws.Context, input *DeleteRecordingConfigurationInput, opts ...request.Option) (*DeleteRecordingConfigurationOutput, error) {
+	req, out := c.DeleteRecordingConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -724,7 +926,9 @@ func (c *IVS) GetPlaybackKeyPairRequest(input *GetPlaybackKeyPairInput) (req *re
 //
 // Gets a specified playback authorization key pair and returns the arn and
 // fingerprint. The privateKey held by the caller can be used to generate viewer
-// authorization tokens, to grant viewers access to authorized channels.
+// authorization tokens, to grant viewers access to private channels. For more
+// information, see Setting Up Private Channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html)
+// in the Amazon IVS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -757,6 +961,90 @@ func (c *IVS) GetPlaybackKeyPair(input *GetPlaybackKeyPairInput) (*GetPlaybackKe
 // for more information on using Contexts.
 func (c *IVS) GetPlaybackKeyPairWithContext(ctx aws.Context, input *GetPlaybackKeyPairInput, opts ...request.Option) (*GetPlaybackKeyPairOutput, error) {
 	req, out := c.GetPlaybackKeyPairRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetRecordingConfiguration = "GetRecordingConfiguration"
+
+// GetRecordingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetRecordingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRecordingConfiguration for more information on using the GetRecordingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRecordingConfigurationRequest method.
+//    req, resp := client.GetRecordingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetRecordingConfiguration
+func (c *IVS) GetRecordingConfigurationRequest(input *GetRecordingConfigurationInput) (req *request.Request, output *GetRecordingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetRecordingConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/GetRecordingConfiguration",
+	}
+
+	if input == nil {
+		input = &GetRecordingConfigurationInput{}
+	}
+
+	output = &GetRecordingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRecordingConfiguration API operation for Amazon Interactive Video Service.
+//
+// Gets the recording configuration for the specified ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation GetRecordingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+//   * ResourceNotFoundException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/GetRecordingConfiguration
+func (c *IVS) GetRecordingConfiguration(input *GetRecordingConfigurationInput) (*GetRecordingConfigurationOutput, error) {
+	req, out := c.GetRecordingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetRecordingConfigurationWithContext is the same as GetRecordingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRecordingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) GetRecordingConfigurationWithContext(ctx aws.Context, input *GetRecordingConfigurationInput, opts ...request.Option) (*GetRecordingConfigurationOutput, error) {
+	req, out := c.GetRecordingConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -974,7 +1262,9 @@ func (c *IVS) ImportPlaybackKeyPairRequest(input *ImportPlaybackKeyPairInput) (r
 //
 // Imports the public portion of a new key pair and returns its arn and fingerprint.
 // The privateKey can then be used to generate viewer authorization tokens,
-// to grant viewers access to authorized channels.
+// to grant viewers access to private channels. For more information, see Setting
+// Up Private Channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html)
+// in the Amazon IVS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1068,7 +1358,9 @@ func (c *IVS) ListChannelsRequest(input *ListChannelsInput) (req *request.Reques
 //
 // Gets summary information about all channels in your account, in the AWS region
 // where the API request is processed. This list can be filtered to match a
-// specified string.
+// specified name or recording-configuration ARN. Filters are mutually exclusive
+// and cannot be used together. If you try to use both filters, you will get
+// an error (409 ConflictException).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1208,7 +1500,9 @@ func (c *IVS) ListPlaybackKeyPairsRequest(input *ListPlaybackKeyPairsInput) (req
 
 // ListPlaybackKeyPairs API operation for Amazon Interactive Video Service.
 //
-// Gets summary information about playback key pairs.
+// Gets summary information about playback key pairs. For more information,
+// see Setting Up Private Channels (https://docs.aws.amazon.com/ivs/latest/userguide/private-channels.html)
+// in the Amazon IVS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1289,6 +1583,147 @@ func (c *IVS) ListPlaybackKeyPairsPagesWithContext(ctx aws.Context, input *ListP
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPlaybackKeyPairsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListRecordingConfigurations = "ListRecordingConfigurations"
+
+// ListRecordingConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRecordingConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRecordingConfigurations for more information on using the ListRecordingConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRecordingConfigurationsRequest method.
+//    req, resp := client.ListRecordingConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListRecordingConfigurations
+func (c *IVS) ListRecordingConfigurationsRequest(input *ListRecordingConfigurationsInput) (req *request.Request, output *ListRecordingConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListRecordingConfigurations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/ListRecordingConfigurations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRecordingConfigurationsInput{}
+	}
+
+	output = &ListRecordingConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRecordingConfigurations API operation for Amazon Interactive Video Service.
+//
+// Gets summary information about all recording configurations in your account,
+// in the AWS region where the API request is processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Interactive Video Service's
+// API operation ListRecordingConfigurations for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+//   * ValidationException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ivs-2020-07-14/ListRecordingConfigurations
+func (c *IVS) ListRecordingConfigurations(input *ListRecordingConfigurationsInput) (*ListRecordingConfigurationsOutput, error) {
+	req, out := c.ListRecordingConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListRecordingConfigurationsWithContext is the same as ListRecordingConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRecordingConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListRecordingConfigurationsWithContext(ctx aws.Context, input *ListRecordingConfigurationsInput, opts ...request.Option) (*ListRecordingConfigurationsOutput, error) {
+	req, out := c.ListRecordingConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRecordingConfigurationsPages iterates over the pages of a ListRecordingConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRecordingConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRecordingConfigurations operation.
+//    pageNum := 0
+//    err := client.ListRecordingConfigurationsPages(params,
+//        func(page *ivs.ListRecordingConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IVS) ListRecordingConfigurationsPages(input *ListRecordingConfigurationsInput, fn func(*ListRecordingConfigurationsOutput, bool) bool) error {
+	return c.ListRecordingConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRecordingConfigurationsPagesWithContext same as ListRecordingConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IVS) ListRecordingConfigurationsPagesWithContext(ctx aws.Context, input *ListRecordingConfigurationsInput, fn func(*ListRecordingConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRecordingConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRecordingConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRecordingConfigurationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1758,9 +2193,12 @@ func (c *IVS) PutMetadataRequest(input *PutMetadataInput) (req *request.Request,
 
 // PutMetadata API operation for Amazon Interactive Video Service.
 //
-// Inserts metadata into an RTMPS stream for the specified channel. A maximum
-// of 5 requests per second per channel is allowed, each with a maximum 1KB
-// payload.
+// Inserts metadata into the active stream of the specified channel. A maximum
+// of 5 requests per second per channel is allowed, each with a maximum 1 KB
+// payload. (If 5 TPS is not sufficient for your needs, we recommend batching
+// your data into a single PutMetadata call.) Also see Embedding Metadata within
+// a Video Stream (https://docs.aws.amazon.com/ivs/latest/userguide/metadata.html)
+// in the Amazon IVS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2398,14 +2836,18 @@ type Channel struct {
 	// Channel ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
-	// Whether the channel is authorized.
+	// Whether the channel is private (enabled for playback authorization). Default:
+	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
 	// Channel ingest endpoint, part of the definition of an ingest server, used
 	// when you set up streaming software.
 	IngestEndpoint *string `locationName:"ingestEndpoint" type:"string"`
 
-	// Channel latency mode. Default: LOW.
+	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
+	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
+	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
+	// and Standard, respectively.)
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
@@ -2414,12 +2856,16 @@ type Channel struct {
 	// Channel playback URL.
 	PlaybackUrl *string `locationName:"playbackUrl" type:"string"`
 
+	// Recording-configuration ARN. A value other than an empty string indicates
+	// that recording is enabled. Default: "" (empty string, recording is disabled).
+	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
+
 	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
 	// exceed the allowable resolution or bitrate, the stream probably will disconnect
-	// immediately. Valid values:
+	// immediately. Default: STANDARD. Valid values:
 	//
 	//    * STANDARD: Multiple qualities are generated from the original input,
 	//    to automatically give viewers the best experience for their devices and
@@ -2429,8 +2875,6 @@ type Channel struct {
 	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
 	//    video-quality choice is limited to the original input. Vertical resolution
 	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
-	//
-	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 
@@ -2477,6 +2921,12 @@ func (s *Channel) SetName(v string) *Channel {
 // SetPlaybackUrl sets the PlaybackUrl field's value.
 func (s *Channel) SetPlaybackUrl(v string) *Channel {
 	s.PlaybackUrl = &v
+	return s
+}
+
+// SetRecordingConfigurationArn sets the RecordingConfigurationArn field's value.
+func (s *Channel) SetRecordingConfigurationArn(v string) *Channel {
+	s.RecordingConfigurationArn = &v
 	return s
 }
 
@@ -2557,14 +3007,22 @@ type ChannelSummary struct {
 	// Channel ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
-	// Whether the channel is authorized.
+	// Whether the channel is private (enabled for playback authorization). Default:
+	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
-	// Channel latency mode. Default: LOW.
+	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
+	// Full HD. Use LOW for near-real-time interaction with viewers. Default: LOW.
+	// (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low
+	// and Standard, respectively.)
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
+
+	// Recording-configuration ARN. A value other than an empty string indicates
+	// that recording is enabled. Default: "" (empty string, recording is disabled).
+	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2601,6 +3059,12 @@ func (s *ChannelSummary) SetLatencyMode(v string) *ChannelSummary {
 // SetName sets the Name field's value.
 func (s *ChannelSummary) SetName(v string) *ChannelSummary {
 	s.Name = &v
+	return s
+}
+
+// SetRecordingConfigurationArn sets the RecordingConfigurationArn field's value.
+func (s *ChannelSummary) SetRecordingConfigurationArn(v string) *ChannelSummary {
+	s.RecordingConfigurationArn = &v
 	return s
 }
 
@@ -2671,21 +3135,28 @@ func (s *ConflictException) RequestID() string {
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the channel is authorized. Default: false.
+	// Whether the channel is private (enabled for playback authorization). Default:
+	// false.
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
-	// Channel latency mode. Default: LOW.
+	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
+	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
+	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
+	// respectively.) Default: LOW.
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
 
-	// See Channel$tags.
+	// Recording-configuration ARN. Default: "" (empty string, recording is disabled).
+	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
 	// exceed the allowable resolution or bitrate, the stream probably will disconnect
-	// immediately. Valid values:
+	// immediately. Default: STANDARD. Valid values:
 	//
 	//    * STANDARD: Multiple qualities are generated from the original input,
 	//    to automatically give viewers the best experience for their devices and
@@ -2695,8 +3166,6 @@ type CreateChannelInput struct {
 	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
 	//    video-quality choice is limited to the original input. Vertical resolution
 	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
-	//
-	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 
@@ -2725,6 +3194,12 @@ func (s *CreateChannelInput) SetLatencyMode(v string) *CreateChannelInput {
 // SetName sets the Name field's value.
 func (s *CreateChannelInput) SetName(v string) *CreateChannelInput {
 	s.Name = &v
+	return s
+}
+
+// SetRecordingConfigurationArn sets the RecordingConfigurationArn field's value.
+func (s *CreateChannelInput) SetRecordingConfigurationArn(v string) *CreateChannelInput {
+	s.RecordingConfigurationArn = &v
 	return s
 }
 
@@ -2772,6 +3247,92 @@ func (s *CreateChannelOutput) SetStreamKey(v *StreamKey) *CreateChannelOutput {
 	return s
 }
 
+type CreateRecordingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A complex type that contains a destination configuration for where recorded
+	// video will be stored.
+	//
+	// DestinationConfiguration is a required field
+	DestinationConfiguration *DestinationConfiguration `locationName:"destinationConfiguration" type:"structure" required:"true"`
+
+	// An arbitrary string (a nickname) that helps the customer identify that resource.
+	// The value does not need to be unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateRecordingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRecordingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRecordingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRecordingConfigurationInput"}
+	if s.DestinationConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationConfiguration"))
+	}
+	if s.DestinationConfiguration != nil {
+		if err := s.DestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfiguration sets the DestinationConfiguration field's value.
+func (s *CreateRecordingConfigurationInput) SetDestinationConfiguration(v *DestinationConfiguration) *CreateRecordingConfigurationInput {
+	s.DestinationConfiguration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRecordingConfigurationInput) SetName(v string) *CreateRecordingConfigurationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRecordingConfigurationInput) SetTags(v map[string]*string) *CreateRecordingConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateRecordingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing a configuration to record a channel stream.
+	RecordingConfiguration *RecordingConfiguration `locationName:"recordingConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateRecordingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRecordingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecordingConfiguration sets the RecordingConfiguration field's value.
+func (s *CreateRecordingConfigurationOutput) SetRecordingConfiguration(v *RecordingConfiguration) *CreateRecordingConfigurationOutput {
+	s.RecordingConfiguration = v
+	return s
+}
+
 type CreateStreamKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2780,7 +3341,7 @@ type CreateStreamKeyInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
 
-	// See Channel$tags.
+	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -2955,6 +3516,58 @@ func (s DeletePlaybackKeyPairOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteRecordingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the recording configuration to be deleted.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteRecordingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRecordingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRecordingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRecordingConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteRecordingConfigurationInput) SetArn(v string) *DeleteRecordingConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type DeleteRecordingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRecordingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRecordingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteStreamKeyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3008,6 +3621,47 @@ func (s DeleteStreamKeyOutput) String() string {
 // GoString returns the string representation
 func (s DeleteStreamKeyOutput) GoString() string {
 	return s.String()
+}
+
+// A complex type that describes a location where recorded videos will be stored.
+// Each member represents a type of destination configuration. For recording,
+// you define one and only one type of destination configuration.
+type DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// An S3 destination configuration where recorded videos will be stored.
+	S3 *S3DestinationConfiguration `locationName:"s3" type:"structure"`
+}
+
+// String returns the string representation
+func (s DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DestinationConfiguration"}
+	if s.S3 != nil {
+		if err := s.S3.Validate(); err != nil {
+			invalidParams.AddNested("S3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3 sets the S3 field's value.
+func (s *DestinationConfiguration) SetS3(v *S3DestinationConfiguration) *DestinationConfiguration {
+	s.S3 = v
+	return s
 }
 
 type GetChannelInput struct {
@@ -3135,6 +3789,67 @@ func (s GetPlaybackKeyPairOutput) GoString() string {
 // SetKeyPair sets the KeyPair field's value.
 func (s *GetPlaybackKeyPairOutput) SetKeyPair(v *PlaybackKeyPair) *GetPlaybackKeyPairOutput {
 	s.KeyPair = v
+	return s
+}
+
+type GetRecordingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the recording configuration to be retrieved.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRecordingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRecordingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRecordingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRecordingConfigurationInput"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetRecordingConfigurationInput) SetArn(v string) *GetRecordingConfigurationInput {
+	s.Arn = &v
+	return s
+}
+
+type GetRecordingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing a configuration to record a channel stream.
+	RecordingConfiguration *RecordingConfiguration `locationName:"recordingConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetRecordingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRecordingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecordingConfiguration sets the RecordingConfiguration field's value.
+func (s *GetRecordingConfigurationOutput) SetRecordingConfiguration(v *RecordingConfiguration) *GetRecordingConfigurationOutput {
+	s.RecordingConfiguration = v
 	return s
 }
 
@@ -3410,7 +4125,10 @@ type ListChannelsInput struct {
 	// Filters the channel list to match the specified name.
 	FilterByName *string `locationName:"filterByName" type:"string"`
 
-	// Maximum number of channels to return.
+	// Filters the channel list to match the specified recording-configuration ARN.
+	FilterByRecordingConfigurationArn *string `locationName:"filterByRecordingConfigurationArn" type:"string"`
+
+	// Maximum number of channels to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first channel to retrieve. This is used for pagination; see the nextToken
@@ -3444,6 +4162,12 @@ func (s *ListChannelsInput) Validate() error {
 // SetFilterByName sets the FilterByName field's value.
 func (s *ListChannelsInput) SetFilterByName(v string) *ListChannelsInput {
 	s.FilterByName = &v
+	return s
+}
+
+// SetFilterByRecordingConfigurationArn sets the FilterByRecordingConfigurationArn field's value.
+func (s *ListChannelsInput) SetFilterByRecordingConfigurationArn(v string) *ListChannelsInput {
+	s.FilterByRecordingConfigurationArn = &v
 	return s
 }
 
@@ -3498,7 +4222,7 @@ type ListPlaybackKeyPairsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The first key pair to retrieve. This is used for pagination; see the nextToken
-	// response field.
+	// response field. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// Maximum number of key pairs to return.
@@ -3575,6 +4299,87 @@ func (s *ListPlaybackKeyPairsOutput) SetNextToken(v string) *ListPlaybackKeyPair
 	return s
 }
 
+type ListRecordingConfigurationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum number of recording configurations to return. Default: 50.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// The first recording configuration to retrieve. This is used for pagination;
+	// see the nextToken response field.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRecordingConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecordingConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRecordingConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRecordingConfigurationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRecordingConfigurationsInput) SetMaxResults(v int64) *ListRecordingConfigurationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecordingConfigurationsInput) SetNextToken(v string) *ListRecordingConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRecordingConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are more recording configurations than maxResults, use nextToken
+	// in the request to get the next set.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// List of the matching recording configurations.
+	//
+	// RecordingConfigurations is a required field
+	RecordingConfigurations []*RecordingConfigurationSummary `locationName:"recordingConfigurations" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListRecordingConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRecordingConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRecordingConfigurationsOutput) SetNextToken(v string) *ListRecordingConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRecordingConfigurations sets the RecordingConfigurations field's value.
+func (s *ListRecordingConfigurationsOutput) SetRecordingConfigurations(v []*RecordingConfigurationSummary) *ListRecordingConfigurationsOutput {
+	s.RecordingConfigurations = v
+	return s
+}
+
 type ListStreamKeysInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3583,7 +4388,7 @@ type ListStreamKeysInput struct {
 	// ChannelArn is a required field
 	ChannelArn *string `locationName:"channelArn" min:"1" type:"string" required:"true"`
 
-	// Maximum number of streamKeys to return.
+	// Maximum number of streamKeys to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first stream key to retrieve. This is used for pagination; see the nextToken
@@ -3676,7 +4481,7 @@ func (s *ListStreamKeysOutput) SetStreamKeys(v []*StreamKeySummary) *ListStreamK
 type ListStreamsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum number of streams to return.
+	// Maximum number of streams to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first stream to retrieve. This is used for pagination; see the nextToken
@@ -3757,7 +4562,7 @@ func (s *ListStreamsOutput) SetStreams(v []*StreamSummary) *ListStreamsOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum number of tags to return.
+	// Maximum number of tags to return. Default: 50.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// The first tag to retrieve. This is used for pagination; see the nextToken
@@ -3918,7 +4723,8 @@ type PlaybackKeyPair struct {
 	// Key-pair identifier.
 	Fingerprint *string `locationName:"fingerprint" type:"string"`
 
-	// Key-pair name.
+	// An arbitrary string (a nickname) assigned to a playback key pair that helps
+	// the customer identify that resource. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
 	// Array of 1-50 maps, each of the form string:string (key:value).
@@ -3966,10 +4772,11 @@ type PlaybackKeyPairSummary struct {
 	// Key-pair ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
-	// Key-pair name.
+	// An arbitrary string (a nickname) assigned to a playback key pair that helps
+	// the customer identify that resource. The value does not need to be unique.
 	Name *string `locationName:"name" type:"string"`
 
-	// Array of 1-50 maps, each of the form string:string (key:value)
+	// Array of 1-50 maps, each of the form string:string (key:value).
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
@@ -4013,7 +4820,7 @@ type PutMetadataInput struct {
 	// Metadata to insert into the stream. Maximum: 1 KB per request.
 	//
 	// Metadata is a required field
-	Metadata *string `locationName:"metadata" type:"string" required:"true"`
+	Metadata *string `locationName:"metadata" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -4037,6 +4844,9 @@ func (s *PutMetadataInput) Validate() error {
 	}
 	if s.Metadata == nil {
 		invalidParams.Add(request.NewErrParamRequired("Metadata"))
+	}
+	if s.Metadata != nil && len(*s.Metadata) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -4069,6 +4879,146 @@ func (s PutMetadataOutput) String() string {
 // GoString returns the string representation
 func (s PutMetadataOutput) GoString() string {
 	return s.String()
+}
+
+// An object representing a configuration to record a channel stream.
+type RecordingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Recording-configuration ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// A complex type that contains information about where recorded video will
+	// be stored.
+	//
+	// DestinationConfiguration is a required field
+	DestinationConfiguration *DestinationConfiguration `locationName:"destinationConfiguration" type:"structure" required:"true"`
+
+	// An arbitrary string (a nickname) assigned to a recording configuration that
+	// helps the customer identify that resource. The value does not need to be
+	// unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Indicates the current state of the recording configuration. When the state
+	// is ACTIVE, the configuration is ready for recording a channel stream.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s RecordingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecordingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RecordingConfiguration) SetArn(v string) *RecordingConfiguration {
+	s.Arn = &v
+	return s
+}
+
+// SetDestinationConfiguration sets the DestinationConfiguration field's value.
+func (s *RecordingConfiguration) SetDestinationConfiguration(v *DestinationConfiguration) *RecordingConfiguration {
+	s.DestinationConfiguration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RecordingConfiguration) SetName(v string) *RecordingConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RecordingConfiguration) SetState(v string) *RecordingConfiguration {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RecordingConfiguration) SetTags(v map[string]*string) *RecordingConfiguration {
+	s.Tags = v
+	return s
+}
+
+// Summary information about a RecordingConfiguration.
+type RecordingConfigurationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Recording-configuration ARN.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// A complex type that contains information about where recorded video will
+	// be stored.
+	//
+	// DestinationConfiguration is a required field
+	DestinationConfiguration *DestinationConfiguration `locationName:"destinationConfiguration" type:"structure" required:"true"`
+
+	// An arbitrary string (a nickname) assigned to a recording configuration that
+	// helps the customer identify that resource. The value does not need to be
+	// unique.
+	Name *string `locationName:"name" type:"string"`
+
+	// Indicates the current state of the recording configuration. When the state
+	// is ACTIVE, the configuration is ready for recording a channel stream.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"RecordingConfigurationState"`
+
+	// Array of 1-50 maps, each of the form string:string (key:value).
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s RecordingConfigurationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecordingConfigurationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RecordingConfigurationSummary) SetArn(v string) *RecordingConfigurationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetDestinationConfiguration sets the DestinationConfiguration field's value.
+func (s *RecordingConfigurationSummary) SetDestinationConfiguration(v *DestinationConfiguration) *RecordingConfigurationSummary {
+	s.DestinationConfiguration = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RecordingConfigurationSummary) SetName(v string) *RecordingConfigurationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *RecordingConfigurationSummary) SetState(v string) *RecordingConfigurationSummary {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RecordingConfigurationSummary) SetTags(v map[string]*string) *RecordingConfigurationSummary {
+	s.Tags = v
+	return s
 }
 
 type ResourceNotFoundException struct {
@@ -4127,6 +5077,49 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A complex type that describes an S3 location where recorded videos will be
+// stored.
+type S3DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Location (S3 bucket name) where recorded videos will be stored.
+	//
+	// BucketName is a required field
+	BucketName *string `locationName:"bucketName" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3DestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3DestinationConfiguration"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3DestinationConfiguration) SetBucketName(v string) *S3DestinationConfiguration {
+	s.BucketName = &v
+	return s
 }
 
 type ServiceQuotaExceededException struct {
@@ -4252,8 +5245,8 @@ type Stream struct {
 	// The stream’s health.
 	Health *string `locationName:"health" type:"string" enum:"StreamHealth"`
 
-	// URL of the video master manifest, required by the video player to play the
-	// HLS stream.
+	// URL of the master playlist, required by the video player to play the HLS
+	// stream.
 	PlaybackUrl *string `locationName:"playbackUrl" type:"string"`
 
 	// ISO-8601 formatted timestamp of the stream’s start.
@@ -4262,7 +5255,8 @@ type Stream struct {
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
 
-	// Number of current viewers of the stream.
+	// Number of current viewers of the stream. A value of -1 indicates that the
+	// request timed out; in this case, retry.
 	ViewerCount *int64 `locationName:"viewerCount" type:"long"`
 }
 
@@ -4421,7 +5415,8 @@ type StreamSummary struct {
 	// The stream’s state.
 	State *string `locationName:"state" type:"string" enum:"StreamState"`
 
-	// Number of current viewers of the stream.
+	// Number of current viewers of the stream. A value of -1 indicates that the
+	// request timed out; in this case, retry.
 	ViewerCount *int64 `locationName:"viewerCount" type:"long"`
 }
 
@@ -4727,14 +5722,22 @@ type UpdateChannelInput struct {
 	// Arn is a required field
 	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
 
-	// Whether the channel is authorized. Default: false.
+	// Whether the channel is private (enabled for playback authorization).
 	Authorized *bool `locationName:"authorized" type:"boolean"`
 
-	// Channel latency mode. Default: LOW.
+	// Channel latency mode. Use NORMAL to broadcast and deliver live video up to
+	// Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the
+	// Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard,
+	// respectively.)
 	LatencyMode *string `locationName:"latencyMode" type:"string" enum:"ChannelLatencyMode"`
 
 	// Channel name.
 	Name *string `locationName:"name" type:"string"`
+
+	// Recording-configuration ARN. If this is set to an empty string, recording
+	// is disabled. A value other than an empty string indicates that recording
+	// is enabled
+	RecordingConfigurationArn *string `locationName:"recordingConfigurationArn" type:"string"`
 
 	// Channel type, which determines the allowable resolution and bitrate. If you
 	// exceed the allowable resolution or bitrate, the stream probably will disconnect
@@ -4748,8 +5751,6 @@ type UpdateChannelInput struct {
 	//    * BASIC: Amazon IVS delivers the original input to viewers. The viewer’s
 	//    video-quality choice is limited to the original input. Vertical resolution
 	//    can be up to 480 and bitrate can be up to 1.5 Mbps.
-	//
-	// Default: STANDARD.
 	Type *string `locationName:"type" type:"string" enum:"ChannelType"`
 }
 
@@ -4800,6 +5801,12 @@ func (s *UpdateChannelInput) SetLatencyMode(v string) *UpdateChannelInput {
 // SetName sets the Name field's value.
 func (s *UpdateChannelInput) SetName(v string) *UpdateChannelInput {
 	s.Name = &v
+	return s
+}
+
+// SetRecordingConfigurationArn sets the RecordingConfigurationArn field's value.
+func (s *UpdateChannelInput) SetRecordingConfigurationArn(v string) *UpdateChannelInput {
+	s.RecordingConfigurationArn = &v
 	return s
 }
 
@@ -4919,6 +5926,26 @@ func ChannelType_Values() []string {
 	return []string{
 		ChannelTypeBasic,
 		ChannelTypeStandard,
+	}
+}
+
+const (
+	// RecordingConfigurationStateCreating is a RecordingConfigurationState enum value
+	RecordingConfigurationStateCreating = "CREATING"
+
+	// RecordingConfigurationStateCreateFailed is a RecordingConfigurationState enum value
+	RecordingConfigurationStateCreateFailed = "CREATE_FAILED"
+
+	// RecordingConfigurationStateActive is a RecordingConfigurationState enum value
+	RecordingConfigurationStateActive = "ACTIVE"
+)
+
+// RecordingConfigurationState_Values returns all elements of the RecordingConfigurationState enum
+func RecordingConfigurationState_Values() []string {
+	return []string{
+		RecordingConfigurationStateCreating,
+		RecordingConfigurationStateCreateFailed,
+		RecordingConfigurationStateActive,
 	}
 }
 

@@ -106,6 +106,95 @@ func (c *AccessAnalyzer) ApplyArchiveRuleWithContext(ctx aws.Context, input *App
 	return out, req.Send()
 }
 
+const opCancelPolicyGeneration = "CancelPolicyGeneration"
+
+// CancelPolicyGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the CancelPolicyGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelPolicyGeneration for more information on using the CancelPolicyGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelPolicyGenerationRequest method.
+//    req, resp := client.CancelPolicyGenerationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CancelPolicyGeneration
+func (c *AccessAnalyzer) CancelPolicyGenerationRequest(input *CancelPolicyGenerationInput) (req *request.Request, output *CancelPolicyGenerationOutput) {
+	op := &request.Operation{
+		Name:       opCancelPolicyGeneration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/policy/generation/{jobId}",
+	}
+
+	if input == nil {
+		input = &CancelPolicyGenerationInput{}
+	}
+
+	output = &CancelPolicyGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelPolicyGeneration API operation for Access Analyzer.
+//
+// Cancels the requested policy generation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation CancelPolicyGeneration for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/CancelPolicyGeneration
+func (c *AccessAnalyzer) CancelPolicyGeneration(input *CancelPolicyGenerationInput) (*CancelPolicyGenerationOutput, error) {
+	req, out := c.CancelPolicyGenerationRequest(input)
+	return out, req.Send()
+}
+
+// CancelPolicyGenerationWithContext is the same as CancelPolicyGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelPolicyGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) CancelPolicyGenerationWithContext(ctx aws.Context, input *CancelPolicyGenerationInput, opts ...request.Option) (*CancelPolicyGenerationOutput, error) {
+	req, out := c.CancelPolicyGenerationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAccessPreview = "CreateAccessPreview"
 
 // CreateAccessPreviewRequest generates a "aws/request.Request" representing the
@@ -1048,6 +1137,94 @@ func (c *AccessAnalyzer) GetFindingWithContext(ctx aws.Context, input *GetFindin
 	return out, req.Send()
 }
 
+const opGetGeneratedPolicy = "GetGeneratedPolicy"
+
+// GetGeneratedPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetGeneratedPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetGeneratedPolicy for more information on using the GetGeneratedPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetGeneratedPolicyRequest method.
+//    req, resp := client.GetGeneratedPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetGeneratedPolicy
+func (c *AccessAnalyzer) GetGeneratedPolicyRequest(input *GetGeneratedPolicyInput) (req *request.Request, output *GetGeneratedPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetGeneratedPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/policy/generation/{jobId}",
+	}
+
+	if input == nil {
+		input = &GetGeneratedPolicyInput{}
+	}
+
+	output = &GetGeneratedPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetGeneratedPolicy API operation for Access Analyzer.
+//
+// Retrieves the policy that was generated using StartPolicyGeneration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation GetGeneratedPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/GetGeneratedPolicy
+func (c *AccessAnalyzer) GetGeneratedPolicy(input *GetGeneratedPolicyInput) (*GetGeneratedPolicyOutput, error) {
+	req, out := c.GetGeneratedPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetGeneratedPolicyWithContext is the same as GetGeneratedPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetGeneratedPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) GetGeneratedPolicyWithContext(ctx aws.Context, input *GetGeneratedPolicyInput, opts ...request.Option) (*GetGeneratedPolicyOutput, error) {
+	req, out := c.GetGeneratedPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccessPreviewFindings = "ListAccessPreviewFindings"
 
 // ListAccessPreviewFindingsRequest generates a "aws/request.Request" representing the
@@ -1945,6 +2122,152 @@ func (c *AccessAnalyzer) ListFindingsPagesWithContext(ctx aws.Context, input *Li
 	return p.Err()
 }
 
+const opListPolicyGenerations = "ListPolicyGenerations"
+
+// ListPolicyGenerationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPolicyGenerations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPolicyGenerations for more information on using the ListPolicyGenerations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPolicyGenerationsRequest method.
+//    req, resp := client.ListPolicyGenerationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListPolicyGenerations
+func (c *AccessAnalyzer) ListPolicyGenerationsRequest(input *ListPolicyGenerationsInput) (req *request.Request, output *ListPolicyGenerationsOutput) {
+	op := &request.Operation{
+		Name:       opListPolicyGenerations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/policy/generation",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPolicyGenerationsInput{}
+	}
+
+	output = &ListPolicyGenerationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPolicyGenerations API operation for Access Analyzer.
+//
+// Lists all of the policy generations requested in the last seven days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation ListPolicyGenerations for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ListPolicyGenerations
+func (c *AccessAnalyzer) ListPolicyGenerations(input *ListPolicyGenerationsInput) (*ListPolicyGenerationsOutput, error) {
+	req, out := c.ListPolicyGenerationsRequest(input)
+	return out, req.Send()
+}
+
+// ListPolicyGenerationsWithContext is the same as ListPolicyGenerations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPolicyGenerations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListPolicyGenerationsWithContext(ctx aws.Context, input *ListPolicyGenerationsInput, opts ...request.Option) (*ListPolicyGenerationsOutput, error) {
+	req, out := c.ListPolicyGenerationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPolicyGenerationsPages iterates over the pages of a ListPolicyGenerations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPolicyGenerations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPolicyGenerations operation.
+//    pageNum := 0
+//    err := client.ListPolicyGenerationsPages(params,
+//        func(page *accessanalyzer.ListPolicyGenerationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *AccessAnalyzer) ListPolicyGenerationsPages(input *ListPolicyGenerationsInput, fn func(*ListPolicyGenerationsOutput, bool) bool) error {
+	return c.ListPolicyGenerationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPolicyGenerationsPagesWithContext same as ListPolicyGenerationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ListPolicyGenerationsPagesWithContext(ctx aws.Context, input *ListPolicyGenerationsInput, fn func(*ListPolicyGenerationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPolicyGenerationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPolicyGenerationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPolicyGenerationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2031,6 +2354,100 @@ func (c *AccessAnalyzer) ListTagsForResource(input *ListTagsForResourceInput) (*
 // for more information on using Contexts.
 func (c *AccessAnalyzer) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartPolicyGeneration = "StartPolicyGeneration"
+
+// StartPolicyGenerationRequest generates a "aws/request.Request" representing the
+// client's request for the StartPolicyGeneration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartPolicyGeneration for more information on using the StartPolicyGeneration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartPolicyGenerationRequest method.
+//    req, resp := client.StartPolicyGenerationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/StartPolicyGeneration
+func (c *AccessAnalyzer) StartPolicyGenerationRequest(input *StartPolicyGenerationInput) (req *request.Request, output *StartPolicyGenerationOutput) {
+	op := &request.Operation{
+		Name:       opStartPolicyGeneration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/policy/generation",
+	}
+
+	if input == nil {
+		input = &StartPolicyGenerationInput{}
+	}
+
+	output = &StartPolicyGenerationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartPolicyGeneration API operation for Access Analyzer.
+//
+// Starts the policy generation request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation StartPolicyGeneration for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   A conflict exception error.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ServiceQuotaExceededException
+//   Service quote met error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/StartPolicyGeneration
+func (c *AccessAnalyzer) StartPolicyGeneration(input *StartPolicyGenerationInput) (*StartPolicyGenerationOutput, error) {
+	req, out := c.StartPolicyGenerationRequest(input)
+	return out, req.Send()
+}
+
+// StartPolicyGenerationWithContext is the same as StartPolicyGeneration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartPolicyGeneration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) StartPolicyGenerationWithContext(ctx aws.Context, input *StartPolicyGenerationInput, opts ...request.Option) (*StartPolicyGenerationOutput, error) {
+	req, out := c.StartPolicyGenerationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3553,6 +3970,208 @@ func (s *ArchiveRuleSummary) SetUpdatedAt(v time.Time) *ArchiveRuleSummary {
 	return s
 }
 
+type CancelPolicyGenerationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
+	// can be used with GetGeneratedPolicy to retrieve the generated policies or
+	// used with CancelPolicyGeneration to cancel the policy generation request.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelPolicyGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelPolicyGenerationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelPolicyGenerationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelPolicyGenerationInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *CancelPolicyGenerationInput) SetJobId(v string) *CancelPolicyGenerationInput {
+	s.JobId = &v
+	return s
+}
+
+type CancelPolicyGenerationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelPolicyGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelPolicyGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// Contains information about CloudTrail access.
+type CloudTrailDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the service role that Access Analyzer uses to access your CloudTrail
+	// trail and service last accessed information.
+	//
+	// AccessRole is a required field
+	AccessRole *string `locationName:"accessRole" type:"string" required:"true"`
+
+	// The end of the time range for which Access Analyzer reviews your CloudTrail
+	// events. Events with a timestamp after this time are not considered to generate
+	// a policy. If this is not included in the request, the default value is the
+	// current time.
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The start of the time range for which Access Analyzer reviews your CloudTrail
+	// events. Events with a timestamp before this time are not considered to generate
+	// a policy.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A Trail object that contains settings for a trail.
+	//
+	// Trails is a required field
+	Trails []*Trail `locationName:"trails" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudTrailDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudTrailDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudTrailDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudTrailDetails"}
+	if s.AccessRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessRole"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.Trails == nil {
+		invalidParams.Add(request.NewErrParamRequired("Trails"))
+	}
+	if s.Trails != nil {
+		for i, v := range s.Trails {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Trails", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessRole sets the AccessRole field's value.
+func (s *CloudTrailDetails) SetAccessRole(v string) *CloudTrailDetails {
+	s.AccessRole = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CloudTrailDetails) SetEndTime(v time.Time) *CloudTrailDetails {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CloudTrailDetails) SetStartTime(v time.Time) *CloudTrailDetails {
+	s.StartTime = &v
+	return s
+}
+
+// SetTrails sets the Trails field's value.
+func (s *CloudTrailDetails) SetTrails(v []*Trail) *CloudTrailDetails {
+	s.Trails = v
+	return s
+}
+
+// Contains information about CloudTrail access.
+type CloudTrailProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time range for which Access Analyzer reviews your CloudTrail
+	// events. Events with a timestamp after this time are not considered to generate
+	// a policy. If this is not included in the request, the default value is the
+	// current time.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The start of the time range for which Access Analyzer reviews your CloudTrail
+	// events. Events with a timestamp before this time are not considered to generate
+	// a policy.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// A TrailProperties object that contains settings for trail properties.
+	//
+	// TrailProperties is a required field
+	TrailProperties []*TrailProperties `locationName:"trailProperties" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CloudTrailProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudTrailProperties) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CloudTrailProperties) SetEndTime(v time.Time) *CloudTrailProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CloudTrailProperties) SetStartTime(v time.Time) *CloudTrailProperties {
+	s.StartTime = &v
+	return s
+}
+
+// SetTrailProperties sets the TrailProperties field's value.
+func (s *CloudTrailProperties) SetTrailProperties(v []*TrailProperties) *CloudTrailProperties {
+	s.TrailProperties = v
+	return s
+}
+
 // Access control configuration structures for your resource. You specify the
 // configuration as a type-value pair. You can specify only one type of access
 // control configuration.
@@ -4628,6 +5247,118 @@ func (s *FindingSummary) SetUpdatedAt(v time.Time) *FindingSummary {
 	return s
 }
 
+// Contains the text for the generated policy.
+type GeneratedPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The text to use as the content for the new policy. The policy is created
+	// using the CreatePolicy (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html)
+	// action.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GeneratedPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GeneratedPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GeneratedPolicy) SetPolicy(v string) *GeneratedPolicy {
+	s.Policy = &v
+	return s
+}
+
+// Contains the generated policy details.
+type GeneratedPolicyProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Lists details about the Trail used to generated policy.
+	CloudTrailProperties *CloudTrailProperties `locationName:"cloudTrailProperties" type:"structure"`
+
+	// This value is set to true if the generated policy contains all possible actions
+	// for a service that Access Analyzer identified from the CloudTrail trail that
+	// you specified, and false otherwise.
+	IsComplete *bool `locationName:"isComplete" type:"boolean"`
+
+	// The ARN of the IAM entity (user or role) for which you are generating a policy.
+	//
+	// PrincipalArn is a required field
+	PrincipalArn *string `locationName:"principalArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GeneratedPolicyProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GeneratedPolicyProperties) GoString() string {
+	return s.String()
+}
+
+// SetCloudTrailProperties sets the CloudTrailProperties field's value.
+func (s *GeneratedPolicyProperties) SetCloudTrailProperties(v *CloudTrailProperties) *GeneratedPolicyProperties {
+	s.CloudTrailProperties = v
+	return s
+}
+
+// SetIsComplete sets the IsComplete field's value.
+func (s *GeneratedPolicyProperties) SetIsComplete(v bool) *GeneratedPolicyProperties {
+	s.IsComplete = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *GeneratedPolicyProperties) SetPrincipalArn(v string) *GeneratedPolicyProperties {
+	s.PrincipalArn = &v
+	return s
+}
+
+// Contains the text for the generated policy and its details.
+type GeneratedPolicyResult struct {
+	_ struct{} `type:"structure"`
+
+	// The text to use as the content for the new policy. The policy is created
+	// using the CreatePolicy (https://docs.aws.amazon.com/IAM/latest/APIReference/API_CreatePolicy.html)
+	// action.
+	GeneratedPolicies []*GeneratedPolicy `locationName:"generatedPolicies" type:"list"`
+
+	// A GeneratedPolicyProperties object that contains properties of the generated
+	// policy.
+	//
+	// Properties is a required field
+	Properties *GeneratedPolicyProperties `locationName:"properties" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GeneratedPolicyResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GeneratedPolicyResult) GoString() string {
+	return s.String()
+}
+
+// SetGeneratedPolicies sets the GeneratedPolicies field's value.
+func (s *GeneratedPolicyResult) SetGeneratedPolicies(v []*GeneratedPolicy) *GeneratedPolicyResult {
+	s.GeneratedPolicies = v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *GeneratedPolicyResult) SetProperties(v *GeneratedPolicyProperties) *GeneratedPolicyResult {
+	s.Properties = v
+	return s
+}
+
 type GetAccessPreviewInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5022,6 +5753,114 @@ func (s *GetFindingOutput) SetFinding(v *Finding) *GetFindingOutput {
 	return s
 }
 
+type GetGeneratedPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The level of detail that you want to generate. You can specify whether to
+	// generate policies with placeholders for resource ARNs for actions that support
+	// resource level granularity in policies.
+	//
+	// For example, in the resource section of a policy, you can receive a placeholder
+	// such as "Resource":"arn:aws:s3:::${BucketName}" instead of "*".
+	IncludeResourcePlaceholders *bool `location:"querystring" locationName:"includeResourcePlaceholders" type:"boolean"`
+
+	// The level of detail that you want to generate. You can specify whether to
+	// generate service-level policies.
+	//
+	// Access Analyzer uses iam:servicelastaccessed to identify services that have
+	// been used recently to create this service-level template.
+	IncludeServiceLevelTemplate *bool `location:"querystring" locationName:"includeServiceLevelTemplate" type:"boolean"`
+
+	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
+	// can be used with GetGeneratedPolicy to retrieve the generated policies or
+	// used with CancelPolicyGeneration to cancel the policy generation request.
+	//
+	// JobId is a required field
+	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetGeneratedPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGeneratedPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetGeneratedPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetGeneratedPolicyInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeResourcePlaceholders sets the IncludeResourcePlaceholders field's value.
+func (s *GetGeneratedPolicyInput) SetIncludeResourcePlaceholders(v bool) *GetGeneratedPolicyInput {
+	s.IncludeResourcePlaceholders = &v
+	return s
+}
+
+// SetIncludeServiceLevelTemplate sets the IncludeServiceLevelTemplate field's value.
+func (s *GetGeneratedPolicyInput) SetIncludeServiceLevelTemplate(v bool) *GetGeneratedPolicyInput {
+	s.IncludeServiceLevelTemplate = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *GetGeneratedPolicyInput) SetJobId(v string) *GetGeneratedPolicyInput {
+	s.JobId = &v
+	return s
+}
+
+type GetGeneratedPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A GeneratedPolicyResult object that contains the generated policies and associated
+	// details.
+	//
+	// GeneratedPolicyResult is a required field
+	GeneratedPolicyResult *GeneratedPolicyResult `locationName:"generatedPolicyResult" type:"structure" required:"true"`
+
+	// A GeneratedPolicyDetails object that contains details about the generated
+	// policy.
+	//
+	// JobDetails is a required field
+	JobDetails *JobDetails `locationName:"jobDetails" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s GetGeneratedPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetGeneratedPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetGeneratedPolicyResult sets the GeneratedPolicyResult field's value.
+func (s *GetGeneratedPolicyOutput) SetGeneratedPolicyResult(v *GeneratedPolicyResult) *GetGeneratedPolicyOutput {
+	s.GeneratedPolicyResult = v
+	return s
+}
+
+// SetJobDetails sets the JobDetails field's value.
+func (s *GetGeneratedPolicyOutput) SetJobDetails(v *JobDetails) *GetGeneratedPolicyOutput {
+	s.JobDetails = v
+	return s
+}
+
 // The proposed access control configuration for an IAM role. You can propose
 // a configuration for a new IAM role or an existing IAM role that you own by
 // specifying the trust policy. If the configuration is for a new IAM role,
@@ -5192,6 +6031,112 @@ func (s InternetConfiguration) String() string {
 // GoString returns the string representation
 func (s InternetConfiguration) GoString() string {
 	return s.String()
+}
+
+// Contains details about the policy generation request.
+type JobDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp of when the job was completed.
+	CompletedOn *time.Time `locationName:"completedOn" type:"timestamp" timestampFormat:"iso8601"`
+
+	// Contains the details about the policy generation error.
+	JobError *JobError `locationName:"jobError" type:"structure"`
+
+	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
+	// can be used with GetGeneratedPolicy to retrieve the generated policies or
+	// used with CancelPolicyGeneration to cancel the policy generation request.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
+
+	// A timestamp of when the job was started.
+	//
+	// StartedOn is a required field
+	StartedOn *time.Time `locationName:"startedOn" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The status of the job request.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s JobDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobDetails) GoString() string {
+	return s.String()
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *JobDetails) SetCompletedOn(v time.Time) *JobDetails {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetJobError sets the JobError field's value.
+func (s *JobDetails) SetJobError(v *JobError) *JobDetails {
+	s.JobError = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *JobDetails) SetJobId(v string) *JobDetails {
+	s.JobId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *JobDetails) SetStartedOn(v time.Time) *JobDetails {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *JobDetails) SetStatus(v string) *JobDetails {
+	s.Status = &v
+	return s
+}
+
+// Contains the details about the policy generation error.
+type JobError struct {
+	_ struct{} `type:"structure"`
+
+	// The job error code.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"JobErrorCode"`
+
+	// Specific information about the error. For example, which service quota was
+	// exceeded or which resource was not found.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s JobError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *JobError) SetCode(v string) *JobError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *JobError) SetMessage(v string) *JobError {
+	s.Message = &v
+	return s
 }
 
 // A proposed grant configuration for a KMS key. For more information, see CreateGrant
@@ -6010,6 +6955,96 @@ func (s *ListFindingsOutput) SetNextToken(v string) *ListFindingsOutput {
 	return s
 }
 
+type ListPolicyGenerationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in the response.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ARN of the IAM entity (user or role) for which you are generating a policy.
+	// Use this with ListGeneratedPolicies to filter the results to only include
+	// results for a specific principal.
+	PrincipalArn *string `location:"querystring" locationName:"principalArn" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPolicyGenerationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyGenerationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPolicyGenerationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPolicyGenerationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPolicyGenerationsInput) SetMaxResults(v int64) *ListPolicyGenerationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPolicyGenerationsInput) SetNextToken(v string) *ListPolicyGenerationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *ListPolicyGenerationsInput) SetPrincipalArn(v string) *ListPolicyGenerationsInput {
+	s.PrincipalArn = &v
+	return s
+}
+
+type ListPolicyGenerationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token used for pagination of results returned.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A PolicyGeneration object that contains details about the generated policy.
+	//
+	// PolicyGenerations is a required field
+	PolicyGenerations []*PolicyGeneration `locationName:"policyGenerations" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListPolicyGenerationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPolicyGenerationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPolicyGenerationsOutput) SetNextToken(v string) *ListPolicyGenerationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPolicyGenerations sets the PolicyGenerations field's value.
+func (s *ListPolicyGenerationsOutput) SetPolicyGenerations(v []*PolicyGeneration) *ListPolicyGenerationsOutput {
+	s.PolicyGenerations = v
+	return s
+}
+
 // Retrieves a list of tags applied to the specified resource.
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -6216,6 +7251,115 @@ func (s *PathElement) SetSubstring(v *Substring) *PathElement {
 // SetValue sets the Value field's value.
 func (s *PathElement) SetValue(v string) *PathElement {
 	s.Value = &v
+	return s
+}
+
+// Contains details about the policy generation status and properties.
+type PolicyGeneration struct {
+	_ struct{} `type:"structure"`
+
+	// A timestamp of when the policy generation was completed.
+	CompletedOn *time.Time `locationName:"completedOn" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
+	// can be used with GetGeneratedPolicy to retrieve the generated policies or
+	// used with CancelPolicyGeneration to cancel the policy generation request.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
+
+	// The ARN of the IAM entity (user or role) for which you are generating a policy.
+	//
+	// PrincipalArn is a required field
+	PrincipalArn *string `locationName:"principalArn" type:"string" required:"true"`
+
+	// A timestamp of when the policy generation started.
+	//
+	// StartedOn is a required field
+	StartedOn *time.Time `locationName:"startedOn" type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The status of the policy generation request.
+	//
+	// Status is a required field
+	Status *string `locationName:"status" type:"string" required:"true" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s PolicyGeneration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PolicyGeneration) GoString() string {
+	return s.String()
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *PolicyGeneration) SetCompletedOn(v time.Time) *PolicyGeneration {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *PolicyGeneration) SetJobId(v string) *PolicyGeneration {
+	s.JobId = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *PolicyGeneration) SetPrincipalArn(v string) *PolicyGeneration {
+	s.PrincipalArn = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *PolicyGeneration) SetStartedOn(v time.Time) *PolicyGeneration {
+	s.StartedOn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PolicyGeneration) SetStatus(v string) *PolicyGeneration {
+	s.Status = &v
+	return s
+}
+
+// Contains the ARN details about the IAM entity for which the policy is generated.
+type PolicyGenerationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the IAM entity (user or role) for which you are generating a policy.
+	//
+	// PrincipalArn is a required field
+	PrincipalArn *string `locationName:"principalArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PolicyGenerationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PolicyGenerationDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PolicyGenerationDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PolicyGenerationDetails"}
+	if s.PrincipalArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrincipalArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *PolicyGenerationDetails) SetPrincipalArn(v string) *PolicyGenerationDetails {
+	s.PrincipalArn = &v
 	return s
 }
 
@@ -6840,6 +7984,108 @@ func (s *SqsQueueConfiguration) SetQueuePolicy(v string) *SqsQueueConfiguration 
 	return s
 }
 
+type StartPolicyGenerationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request. Idempotency ensures that an API request completes only once.
+	// With an idempotent request, if the original request completes successfully,
+	// the subsequent retries with the same client token return the result from
+	// the original successful request and they have no additional effect.
+	//
+	// If you do not specify a client token, one is automatically generated by the
+	// AWS SDK.
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// A CloudTrailDetails object that contains details about a Trail that you want
+	// to analyze to generate policies.
+	CloudTrailDetails *CloudTrailDetails `locationName:"cloudTrailDetails" type:"structure"`
+
+	// Contains the ARN of the IAM entity (user or role) for which you are generating
+	// a policy.
+	//
+	// PolicyGenerationDetails is a required field
+	PolicyGenerationDetails *PolicyGenerationDetails `locationName:"policyGenerationDetails" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartPolicyGenerationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartPolicyGenerationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartPolicyGenerationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartPolicyGenerationInput"}
+	if s.PolicyGenerationDetails == nil {
+		invalidParams.Add(request.NewErrParamRequired("PolicyGenerationDetails"))
+	}
+	if s.CloudTrailDetails != nil {
+		if err := s.CloudTrailDetails.Validate(); err != nil {
+			invalidParams.AddNested("CloudTrailDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PolicyGenerationDetails != nil {
+		if err := s.PolicyGenerationDetails.Validate(); err != nil {
+			invalidParams.AddNested("PolicyGenerationDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartPolicyGenerationInput) SetClientToken(v string) *StartPolicyGenerationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetCloudTrailDetails sets the CloudTrailDetails field's value.
+func (s *StartPolicyGenerationInput) SetCloudTrailDetails(v *CloudTrailDetails) *StartPolicyGenerationInput {
+	s.CloudTrailDetails = v
+	return s
+}
+
+// SetPolicyGenerationDetails sets the PolicyGenerationDetails field's value.
+func (s *StartPolicyGenerationInput) SetPolicyGenerationDetails(v *PolicyGenerationDetails) *StartPolicyGenerationInput {
+	s.PolicyGenerationDetails = v
+	return s
+}
+
+type StartPolicyGenerationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
+	// can be used with GetGeneratedPolicy to retrieve the generated policies or
+	// used with CancelPolicyGeneration to cancel the policy generation request.
+	//
+	// JobId is a required field
+	JobId *string `locationName:"jobId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartPolicyGenerationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartPolicyGenerationOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartPolicyGenerationOutput) SetJobId(v string) *StartPolicyGenerationOutput {
+	s.JobId = &v
+	return s
+}
+
 // Starts a scan of the policies applied to the specified resource.
 type StartResourceScanInput struct {
 	_ struct{} `type:"structure"`
@@ -7103,6 +8349,111 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains details about the CloudTrail trail being analyzed to generate a
+// policy.
+type Trail struct {
+	_ struct{} `type:"structure"`
+
+	// Possible values are true or false. If set to true, Access Analyzer retrieves
+	// CloudTrail data from all regions to analyze and generate a policy.
+	AllRegions *bool `locationName:"allRegions" type:"boolean"`
+
+	// Specifies the ARN of the trail. The format of a trail ARN is arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail.
+	//
+	// CloudTrailArn is a required field
+	CloudTrailArn *string `locationName:"cloudTrailArn" type:"string" required:"true"`
+
+	// A list of regions to get CloudTrail data from and analyze to generate a policy.
+	Regions []*string `locationName:"regions" type:"list"`
+}
+
+// String returns the string representation
+func (s Trail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Trail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Trail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Trail"}
+	if s.CloudTrailArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("CloudTrailArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllRegions sets the AllRegions field's value.
+func (s *Trail) SetAllRegions(v bool) *Trail {
+	s.AllRegions = &v
+	return s
+}
+
+// SetCloudTrailArn sets the CloudTrailArn field's value.
+func (s *Trail) SetCloudTrailArn(v string) *Trail {
+	s.CloudTrailArn = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *Trail) SetRegions(v []*string) *Trail {
+	s.Regions = v
+	return s
+}
+
+// Contains details about the CloudTrail trail being analyzed to generate a
+// policy.
+type TrailProperties struct {
+	_ struct{} `type:"structure"`
+
+	// Possible values are true or false. If set to true, Access Analyzer retrieves
+	// CloudTrail data from all regions to analyze and generate a policy.
+	AllRegions *bool `locationName:"allRegions" type:"boolean"`
+
+	// Specifies the ARN of the trail. The format of a trail ARN is arn:aws:cloudtrail:us-east-2:123456789012:trail/MyTrail.
+	//
+	// CloudTrailArn is a required field
+	CloudTrailArn *string `locationName:"cloudTrailArn" type:"string" required:"true"`
+
+	// A list of regions to get CloudTrail data from and analyze to generate a policy.
+	Regions []*string `locationName:"regions" type:"list"`
+}
+
+// String returns the string representation
+func (s TrailProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrailProperties) GoString() string {
+	return s.String()
+}
+
+// SetAllRegions sets the AllRegions field's value.
+func (s *TrailProperties) SetAllRegions(v bool) *TrailProperties {
+	s.AllRegions = &v
+	return s
+}
+
+// SetCloudTrailArn sets the CloudTrailArn field's value.
+func (s *TrailProperties) SetCloudTrailArn(v string) *TrailProperties {
+	s.CloudTrailArn = &v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *TrailProperties) SetRegions(v []*string) *TrailProperties {
+	s.Regions = v
+	return s
 }
 
 // Removes a tag from the specified resource.
@@ -7890,6 +9241,54 @@ func FindingStatusUpdate_Values() []string {
 	return []string{
 		FindingStatusUpdateActive,
 		FindingStatusUpdateArchived,
+	}
+}
+
+const (
+	// JobErrorCodeAuthorizationError is a JobErrorCode enum value
+	JobErrorCodeAuthorizationError = "AUTHORIZATION_ERROR"
+
+	// JobErrorCodeResourceNotFoundError is a JobErrorCode enum value
+	JobErrorCodeResourceNotFoundError = "RESOURCE_NOT_FOUND_ERROR"
+
+	// JobErrorCodeServiceQuotaExceededError is a JobErrorCode enum value
+	JobErrorCodeServiceQuotaExceededError = "SERVICE_QUOTA_EXCEEDED_ERROR"
+
+	// JobErrorCodeServiceError is a JobErrorCode enum value
+	JobErrorCodeServiceError = "SERVICE_ERROR"
+)
+
+// JobErrorCode_Values returns all elements of the JobErrorCode enum
+func JobErrorCode_Values() []string {
+	return []string{
+		JobErrorCodeAuthorizationError,
+		JobErrorCodeResourceNotFoundError,
+		JobErrorCodeServiceQuotaExceededError,
+		JobErrorCodeServiceError,
+	}
+}
+
+const (
+	// JobStatusInProgress is a JobStatus enum value
+	JobStatusInProgress = "IN_PROGRESS"
+
+	// JobStatusSucceeded is a JobStatus enum value
+	JobStatusSucceeded = "SUCCEEDED"
+
+	// JobStatusFailed is a JobStatus enum value
+	JobStatusFailed = "FAILED"
+
+	// JobStatusCanceled is a JobStatus enum value
+	JobStatusCanceled = "CANCELED"
+)
+
+// JobStatus_Values returns all elements of the JobStatus enum
+func JobStatus_Values() []string {
+	return []string{
+		JobStatusInProgress,
+		JobStatusSucceeded,
+		JobStatusFailed,
+		JobStatusCanceled,
 	}
 }
 

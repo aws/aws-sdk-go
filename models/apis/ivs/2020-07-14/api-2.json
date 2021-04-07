@@ -41,8 +41,26 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"PendingVerification"}
+      ]
+    },
+    "CreateRecordingConfiguration":{
+      "name":"CreateRecordingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/CreateRecordingConfiguration"
+      },
+      "input":{"shape":"CreateRecordingConfigurationRequest"},
+      "output":{"shape":"CreateRecordingConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"PendingVerification"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"}
       ]
     },
     "CreateStreamKey":{
@@ -92,6 +110,21 @@
         {"shape":"PendingVerification"}
       ]
     },
+    "DeleteRecordingConfiguration":{
+      "name":"DeleteRecordingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/DeleteRecordingConfiguration"
+      },
+      "input":{"shape":"DeleteRecordingConfigurationRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "DeleteStreamKey":{
       "name":"DeleteStreamKey",
       "http":{
@@ -133,6 +166,21 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetRecordingConfiguration":{
+      "name":"GetRecordingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/GetRecordingConfiguration"
+      },
+      "input":{"shape":"GetRecordingConfigurationRequest"},
+      "output":{"shape":"GetRecordingConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetStream":{
@@ -205,6 +253,20 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListRecordingConfigurations":{
+      "name":"ListRecordingConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/ListRecordingConfigurations"
+      },
+      "input":{"shape":"ListRecordingConfigurationsRequest"},
+      "output":{"shape":"ListRecordingConfigurationsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
       ]
     },
     "ListStreamKeys":{
@@ -380,6 +442,7 @@
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "type":{"shape":"ChannelType"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "ingestEndpoint":{"shape":"IngestEndpoint"},
         "playbackUrl":{"shape":"PlaybackURL"},
         "authorized":{"shape":"IsAuthorized"},
@@ -423,6 +486,12 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ChannelRecordingConfigurationArn":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^$|^arn:aws:ivs:[a-z0-9-]+:[0-9]+:recording-configuration/[a-zA-Z0-9-]+$"
+    },
     "ChannelSummary":{
       "type":"structure",
       "members":{
@@ -430,6 +499,7 @@
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "authorized":{"shape":"IsAuthorized"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -459,6 +529,7 @@
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "type":{"shape":"ChannelType"},
         "authorized":{"shape":"Boolean"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -467,6 +538,21 @@
       "members":{
         "channel":{"shape":"Channel"},
         "streamKey":{"shape":"StreamKey"}
+      }
+    },
+    "CreateRecordingConfigurationRequest":{
+      "type":"structure",
+      "required":["destinationConfiguration"],
+      "members":{
+        "name":{"shape":"RecordingConfigurationName"},
+        "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "CreateRecordingConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "recordingConfiguration":{"shape":"RecordingConfiguration"}
       }
     },
     "CreateStreamKeyRequest":{
@@ -502,11 +588,24 @@
       "members":{
       }
     },
+    "DeleteRecordingConfigurationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"RecordingConfigurationArn"}
+      }
+    },
     "DeleteStreamKeyRequest":{
       "type":"structure",
       "required":["arn"],
       "members":{
         "arn":{"shape":"StreamKeyArn"}
+      }
+    },
+    "DestinationConfiguration":{
+      "type":"structure",
+      "members":{
+        "s3":{"shape":"S3DestinationConfiguration"}
       }
     },
     "GetChannelRequest":{
@@ -533,6 +632,19 @@
       "type":"structure",
       "members":{
         "keyPair":{"shape":"PlaybackKeyPair"}
+      }
+    },
+    "GetRecordingConfigurationRequest":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"RecordingConfigurationArn"}
+      }
+    },
+    "GetRecordingConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "recordingConfiguration":{"shape":"RecordingConfiguration"}
       }
     },
     "GetStreamKeyRequest":{
@@ -590,6 +702,7 @@
       "type":"structure",
       "members":{
         "filterByName":{"shape":"ChannelName"},
+        "filterByRecordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"},
         "nextToken":{"shape":"PaginationToken"},
         "maxResults":{"shape":"MaxChannelResults"}
       }
@@ -614,6 +727,21 @@
       "required":["keyPairs"],
       "members":{
         "keyPairs":{"shape":"PlaybackKeyPairList"},
+        "nextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListRecordingConfigurationsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "maxResults":{"shape":"MaxRecordingConfigurationResults"}
+      }
+    },
+    "ListRecordingConfigurationsResponse":{
+      "type":"structure",
+      "required":["recordingConfigurations"],
+      "members":{
+        "recordingConfigurations":{"shape":"RecordingConfigurationList"},
         "nextToken":{"shape":"PaginationToken"}
       }
     },
@@ -676,6 +804,11 @@
       "min":1
     },
     "MaxPlaybackKeyPairResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "MaxRecordingConfigurationResults":{
       "type":"integer",
       "max":50,
       "min":1
@@ -755,6 +888,60 @@
         "metadata":{"shape":"StreamMetadata"}
       }
     },
+    "RecordingConfiguration":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "destinationConfiguration",
+        "state"
+      ],
+      "members":{
+        "arn":{"shape":"RecordingConfigurationArn"},
+        "name":{"shape":"RecordingConfigurationName"},
+        "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "state":{"shape":"RecordingConfigurationState"},
+        "tags":{"shape":"Tags"}
+      }
+    },
+    "RecordingConfigurationArn":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^arn:aws:ivs:[a-z0-9-]+:[0-9]+:recording-configuration/[a-zA-Z0-9-]+$"
+    },
+    "RecordingConfigurationList":{
+      "type":"list",
+      "member":{"shape":"RecordingConfigurationSummary"}
+    },
+    "RecordingConfigurationName":{
+      "type":"string",
+      "max":128,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-_]*$"
+    },
+    "RecordingConfigurationState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATE_FAILED",
+        "ACTIVE"
+      ]
+    },
+    "RecordingConfigurationSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "destinationConfiguration",
+        "state"
+      ],
+      "members":{
+        "arn":{"shape":"RecordingConfigurationArn"},
+        "name":{"shape":"RecordingConfigurationName"},
+        "destinationConfiguration":{"shape":"DestinationConfiguration"},
+        "state":{"shape":"RecordingConfigurationState"},
+        "tags":{"shape":"Tags"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":128,
@@ -768,6 +955,19 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "S3DestinationBucketName":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9-.]+$"
+    },
+    "S3DestinationConfiguration":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"S3DestinationBucketName"}
+      }
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -850,7 +1050,10 @@
       "type":"list",
       "member":{"shape":"StreamSummary"}
     },
-    "StreamMetadata":{"type":"string"},
+    "StreamMetadata":{
+      "type":"string",
+      "min":1
+    },
     "StreamStartTime":{
       "type":"timestamp",
       "timestampFormat":"iso8601"
@@ -964,7 +1167,8 @@
         "name":{"shape":"ChannelName"},
         "latencyMode":{"shape":"ChannelLatencyMode"},
         "type":{"shape":"ChannelType"},
-        "authorized":{"shape":"Boolean"}
+        "authorized":{"shape":"Boolean"},
+        "recordingConfigurationArn":{"shape":"ChannelRecordingConfigurationArn"}
       }
     },
     "UpdateChannelResponse":{

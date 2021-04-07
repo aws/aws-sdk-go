@@ -90,6 +90,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "AssociateFileSystem":{
+      "name":"AssociateFileSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateFileSystemInput"},
+      "output":{"shape":"AssociateFileSystemOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "AttachVolume":{
       "name":"AttachVolume",
       "http":{
@@ -456,6 +469,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeFileSystemAssociations":{
+      "name":"DescribeFileSystemAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFileSystemAssociationsInput"},
+      "output":{"shape":"DescribeFileSystemAssociationsOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeGatewayInformation":{
       "name":"DescribeGatewayInformation",
       "http":{
@@ -651,6 +677,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DisassociateFileSystem":{
+      "name":"DisassociateFileSystem",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateFileSystemInput"},
+      "output":{"shape":"DisassociateFileSystemOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "JoinDomain":{
       "name":"JoinDomain",
       "http":{
@@ -685,6 +724,19 @@
       },
       "input":{"shape":"ListFileSharesInput"},
       "output":{"shape":"ListFileSharesOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "ListFileSystemAssociations":{
+      "name":"ListFileSystemAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFileSystemAssociationsInput"},
+      "output":{"shape":"ListFileSystemAssociationsOutput"},
       "errors":[
         {"shape":"InvalidGatewayRequestException"},
         {"shape":"InternalServerError"}
@@ -989,6 +1041,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateFileSystemAssociation":{
+      "name":"UpdateFileSystemAssociation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateFileSystemAssociationInput"},
+      "output":{"shape":"UpdateFileSystemAssociationOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateGatewayInformation":{
       "name":"UpdateGatewayInformation",
       "http":{
@@ -1234,6 +1299,32 @@
       "type":"structure",
       "members":{
         "TapeARN":{"shape":"TapeARN"}
+      }
+    },
+    "AssociateFileSystemInput":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "Password",
+        "ClientToken",
+        "GatewayARN",
+        "LocationARN"
+      ],
+      "members":{
+        "UserName":{"shape":"DomainUserName"},
+        "Password":{"shape":"DomainUserPassword"},
+        "ClientToken":{"shape":"ClientToken"},
+        "GatewayARN":{"shape":"GatewayARN"},
+        "LocationARN":{"shape":"FileSystemLocationARN"},
+        "Tags":{"shape":"Tags"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
+      }
+    },
+    "AssociateFileSystemOutput":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"}
       }
     },
     "AttachVolumeInput":{
@@ -1531,9 +1622,9 @@
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
         "AccessBasedEnumeration":{"shape":"Boolean"},
-        "AdminUserList":{"shape":"FileShareUserList"},
-        "ValidUserList":{"shape":"FileShareUserList"},
-        "InvalidUserList":{"shape":"FileShareUserList"},
+        "AdminUserList":{"shape":"UserList"},
+        "ValidUserList":{"shape":"UserList"},
+        "InvalidUserList":{"shape":"UserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
         "CaseSensitivity":{"shape":"CaseSensitivity"},
@@ -1946,6 +2037,19 @@
         "ChapCredentials":{"shape":"ChapCredentials"}
       }
     },
+    "DescribeFileSystemAssociationsInput":{
+      "type":"structure",
+      "required":["FileSystemAssociationARNList"],
+      "members":{
+        "FileSystemAssociationARNList":{"shape":"FileSystemAssociationARNList"}
+      }
+    },
+    "DescribeFileSystemAssociationsOutput":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationInfoList":{"shape":"FileSystemAssociationInfoList"}
+      }
+    },
     "DescribeGatewayInformationInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -2214,6 +2318,20 @@
         "GatewayARN":{"shape":"GatewayARN"}
       }
     },
+    "DisassociateFileSystemInput":{
+      "type":"structure",
+      "required":["FileSystemAssociationARN"],
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"},
+        "ForceDelete":{"shape":"boolean"}
+      }
+    },
+    "DisassociateFileSystemOutput":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"}
+      }
+    },
     "Disk":{
       "type":"structure",
       "members":{
@@ -2403,16 +2521,60 @@
         "SMB"
       ]
     },
-    "FileShareUser":{
+    "FileSystemAssociationARN":{
       "type":"string",
-      "max":64,
+      "max":500,
+      "min":50
+    },
+    "FileSystemAssociationARNList":{
+      "type":"list",
+      "member":{"shape":"FileSystemAssociationARN"},
+      "max":10,
       "min":1
     },
-    "FileShareUserList":{
+    "FileSystemAssociationId":{
+      "type":"string",
+      "max":30,
+      "min":10
+    },
+    "FileSystemAssociationInfo":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"},
+        "LocationARN":{"shape":"FileSystemLocationARN"},
+        "FileSystemAssociationStatus":{"shape":"FileSystemAssociationStatus"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
+        "GatewayARN":{"shape":"GatewayARN"},
+        "Tags":{"shape":"Tags"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
+      }
+    },
+    "FileSystemAssociationInfoList":{
       "type":"list",
-      "member":{"shape":"FileShareUser"},
-      "max":100,
-      "min":0
+      "member":{"shape":"FileSystemAssociationInfo"}
+    },
+    "FileSystemAssociationStatus":{
+      "type":"string",
+      "max":50,
+      "min":3
+    },
+    "FileSystemAssociationSummary":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationId":{"shape":"FileSystemAssociationId"},
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"},
+        "FileSystemAssociationStatus":{"shape":"FileSystemAssociationStatus"},
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "FileSystemAssociationSummaryList":{
+      "type":"list",
+      "member":{"shape":"FileSystemAssociationSummary"}
+    },
+    "FileSystemLocationARN":{
+      "type":"string",
+      "max":512,
+      "min":8
     },
     "Folder":{
       "type":"string",
@@ -2603,6 +2765,22 @@
         "Marker":{"shape":"Marker"},
         "NextMarker":{"shape":"Marker"},
         "FileShareInfoList":{"shape":"FileShareInfoList"}
+      }
+    },
+    "ListFileSystemAssociationsInput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "Limit":{"shape":"PositiveIntObject"},
+        "Marker":{"shape":"Marker"}
+      }
+    },
+    "ListFileSystemAssociationsOutput":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"Marker"},
+        "NextMarker":{"shape":"Marker"},
+        "FileSystemAssociationSummaryList":{"shape":"FileSystemAssociationSummaryList"}
       }
     },
     "ListGatewaysInput":{
@@ -3049,9 +3227,9 @@
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
         "AccessBasedEnumeration":{"shape":"Boolean"},
-        "AdminUserList":{"shape":"FileShareUserList"},
-        "ValidUserList":{"shape":"FileShareUserList"},
-        "InvalidUserList":{"shape":"FileShareUserList"},
+        "AdminUserList":{"shape":"UserList"},
+        "ValidUserList":{"shape":"UserList"},
+        "InvalidUserList":{"shape":"UserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "Authentication":{"shape":"Authentication"},
         "CaseSensitivity":{"shape":"CaseSensitivity"},
@@ -3445,6 +3623,23 @@
         "InitiatorName":{"shape":"IqnName"}
       }
     },
+    "UpdateFileSystemAssociationInput":{
+      "type":"structure",
+      "required":["FileSystemAssociationARN"],
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"},
+        "UserName":{"shape":"DomainUserName"},
+        "Password":{"shape":"DomainUserPassword"},
+        "AuditDestinationARN":{"shape":"AuditDestinationARN"},
+        "CacheAttributes":{"shape":"CacheAttributes"}
+      }
+    },
+    "UpdateFileSystemAssociationOutput":{
+      "type":"structure",
+      "members":{
+        "FileSystemAssociationARN":{"shape":"FileSystemAssociationARN"}
+      }
+    },
     "UpdateGatewayInformationInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -3536,9 +3731,9 @@
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
         "AccessBasedEnumeration":{"shape":"Boolean"},
-        "AdminUserList":{"shape":"FileShareUserList"},
-        "ValidUserList":{"shape":"FileShareUserList"},
-        "InvalidUserList":{"shape":"FileShareUserList"},
+        "AdminUserList":{"shape":"UserList"},
+        "ValidUserList":{"shape":"UserList"},
+        "InvalidUserList":{"shape":"UserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "CaseSensitivity":{"shape":"CaseSensitivity"},
         "FileShareName":{"shape":"FileShareName"},
@@ -3623,6 +3818,17 @@
       "members":{
         "VTLDeviceARN":{"shape":"VTLDeviceARN"}
       }
+    },
+    "UserList":{
+      "type":"list",
+      "member":{"shape":"UserListUser"},
+      "max":100,
+      "min":0
+    },
+    "UserListUser":{
+      "type":"string",
+      "max":64,
+      "min":1
     },
     "VTLDevice":{
       "type":"structure",

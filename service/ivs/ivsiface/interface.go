@@ -72,6 +72,10 @@ type IVSAPI interface {
 	CreateChannelWithContext(aws.Context, *ivs.CreateChannelInput, ...request.Option) (*ivs.CreateChannelOutput, error)
 	CreateChannelRequest(*ivs.CreateChannelInput) (*request.Request, *ivs.CreateChannelOutput)
 
+	CreateRecordingConfiguration(*ivs.CreateRecordingConfigurationInput) (*ivs.CreateRecordingConfigurationOutput, error)
+	CreateRecordingConfigurationWithContext(aws.Context, *ivs.CreateRecordingConfigurationInput, ...request.Option) (*ivs.CreateRecordingConfigurationOutput, error)
+	CreateRecordingConfigurationRequest(*ivs.CreateRecordingConfigurationInput) (*request.Request, *ivs.CreateRecordingConfigurationOutput)
+
 	CreateStreamKey(*ivs.CreateStreamKeyInput) (*ivs.CreateStreamKeyOutput, error)
 	CreateStreamKeyWithContext(aws.Context, *ivs.CreateStreamKeyInput, ...request.Option) (*ivs.CreateStreamKeyOutput, error)
 	CreateStreamKeyRequest(*ivs.CreateStreamKeyInput) (*request.Request, *ivs.CreateStreamKeyOutput)
@@ -84,6 +88,10 @@ type IVSAPI interface {
 	DeletePlaybackKeyPairWithContext(aws.Context, *ivs.DeletePlaybackKeyPairInput, ...request.Option) (*ivs.DeletePlaybackKeyPairOutput, error)
 	DeletePlaybackKeyPairRequest(*ivs.DeletePlaybackKeyPairInput) (*request.Request, *ivs.DeletePlaybackKeyPairOutput)
 
+	DeleteRecordingConfiguration(*ivs.DeleteRecordingConfigurationInput) (*ivs.DeleteRecordingConfigurationOutput, error)
+	DeleteRecordingConfigurationWithContext(aws.Context, *ivs.DeleteRecordingConfigurationInput, ...request.Option) (*ivs.DeleteRecordingConfigurationOutput, error)
+	DeleteRecordingConfigurationRequest(*ivs.DeleteRecordingConfigurationInput) (*request.Request, *ivs.DeleteRecordingConfigurationOutput)
+
 	DeleteStreamKey(*ivs.DeleteStreamKeyInput) (*ivs.DeleteStreamKeyOutput, error)
 	DeleteStreamKeyWithContext(aws.Context, *ivs.DeleteStreamKeyInput, ...request.Option) (*ivs.DeleteStreamKeyOutput, error)
 	DeleteStreamKeyRequest(*ivs.DeleteStreamKeyInput) (*request.Request, *ivs.DeleteStreamKeyOutput)
@@ -95,6 +103,10 @@ type IVSAPI interface {
 	GetPlaybackKeyPair(*ivs.GetPlaybackKeyPairInput) (*ivs.GetPlaybackKeyPairOutput, error)
 	GetPlaybackKeyPairWithContext(aws.Context, *ivs.GetPlaybackKeyPairInput, ...request.Option) (*ivs.GetPlaybackKeyPairOutput, error)
 	GetPlaybackKeyPairRequest(*ivs.GetPlaybackKeyPairInput) (*request.Request, *ivs.GetPlaybackKeyPairOutput)
+
+	GetRecordingConfiguration(*ivs.GetRecordingConfigurationInput) (*ivs.GetRecordingConfigurationOutput, error)
+	GetRecordingConfigurationWithContext(aws.Context, *ivs.GetRecordingConfigurationInput, ...request.Option) (*ivs.GetRecordingConfigurationOutput, error)
+	GetRecordingConfigurationRequest(*ivs.GetRecordingConfigurationInput) (*request.Request, *ivs.GetRecordingConfigurationOutput)
 
 	GetStream(*ivs.GetStreamInput) (*ivs.GetStreamOutput, error)
 	GetStreamWithContext(aws.Context, *ivs.GetStreamInput, ...request.Option) (*ivs.GetStreamOutput, error)
@@ -121,6 +133,13 @@ type IVSAPI interface {
 
 	ListPlaybackKeyPairsPages(*ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool) error
 	ListPlaybackKeyPairsPagesWithContext(aws.Context, *ivs.ListPlaybackKeyPairsInput, func(*ivs.ListPlaybackKeyPairsOutput, bool) bool, ...request.Option) error
+
+	ListRecordingConfigurations(*ivs.ListRecordingConfigurationsInput) (*ivs.ListRecordingConfigurationsOutput, error)
+	ListRecordingConfigurationsWithContext(aws.Context, *ivs.ListRecordingConfigurationsInput, ...request.Option) (*ivs.ListRecordingConfigurationsOutput, error)
+	ListRecordingConfigurationsRequest(*ivs.ListRecordingConfigurationsInput) (*request.Request, *ivs.ListRecordingConfigurationsOutput)
+
+	ListRecordingConfigurationsPages(*ivs.ListRecordingConfigurationsInput, func(*ivs.ListRecordingConfigurationsOutput, bool) bool) error
+	ListRecordingConfigurationsPagesWithContext(aws.Context, *ivs.ListRecordingConfigurationsInput, func(*ivs.ListRecordingConfigurationsOutput, bool) bool, ...request.Option) error
 
 	ListStreamKeys(*ivs.ListStreamKeysInput) (*ivs.ListStreamKeysOutput, error)
 	ListStreamKeysWithContext(aws.Context, *ivs.ListStreamKeysInput, ...request.Option) (*ivs.ListStreamKeysOutput, error)
