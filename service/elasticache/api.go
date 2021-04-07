@@ -57,16 +57,20 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 
 // AddTagsToResource API operation for Amazon ElastiCache.
 //
-// Adds up to 50 cost allocation tags to the named resource. A cost allocation
-// tag is a key-value pair where the key and value are case-sensitive. You can
-// use cost allocation tags to categorize and track your AWS costs.
+// A tag is a key-value pair where the key and value are case-sensitive. You
+// can use tags to categorize and track all your ElastiCache resources, with
+// the exception of global replication group. When you add or remove tags on
+// replication groups, those actions will be replicated to all nodes in the
+// replication group. For more information, see Resource-level permissions (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html).
 //
-// When you apply tags to your ElastiCache resources, AWS generates a cost allocation
-// report as a comma-separated value (CSV) file with your usage and costs aggregated
-// by your tags. You can apply tags that represent business categories (such
-// as cost centers, application names, or owners) to organize your costs across
-// multiple services. For more information, see Using Cost Allocation Tags in
-// Amazon ElastiCache (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Tagging.html)
+// For example, you can use cost-allocation tags to your ElastiCache resources,
+// AWS generates a cost allocation report as a comma-separated value (CSV) file
+// with your usage and costs aggregated by your tags. You can apply tags that
+// represent business categories (such as cost centers, application names, or
+// owners) to organize your costs across multiple services.
+//
+// For more information, see Using Cost Allocation Tags in Amazon ElastiCache
+// (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Tagging.html)
 // in the ElastiCache User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -80,8 +84,35 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 //   * ErrCodeCacheClusterNotFoundFault "CacheClusterNotFound"
 //   The requested cluster ID does not refer to an existing cluster.
 //
+//   * ErrCodeCacheParameterGroupNotFoundFault "CacheParameterGroupNotFound"
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * ErrCodeCacheSecurityGroupNotFoundFault "CacheSecurityGroupNotFound"
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * ErrCodeCacheSubnetGroupNotFoundFault "CacheSubnetGroupNotFoundFault"
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * ErrCodeInvalidReplicationGroupStateFault "InvalidReplicationGroupState"
+//   The requested replication group is not in the available state.
+//
+//   * ErrCodeReplicationGroupNotFoundFault "ReplicationGroupNotFoundFault"
+//   The specified replication group does not exist.
+//
+//   * ErrCodeReservedCacheNodeNotFoundFault "ReservedCacheNodeNotFound"
+//   The requested reserved cache node was not found.
+//
 //   * ErrCodeSnapshotNotFoundFault "SnapshotNotFoundFault"
 //   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
 //
 //   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
 //   The request cannot be processed because it would cause the resource to have
@@ -585,6 +616,11 @@ func (c *ElastiCache) CopySnapshotRequest(input *CopySnapshotInput) (req *reques
 //   The current state of the snapshot does not allow the requested operation
 //   to occur.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
 //
@@ -822,6 +858,11 @@ func (c *ElastiCache) CreateCacheParameterGroupRequest(input *CreateCacheParamet
 //   The current state of the cache parameter group does not allow the requested
 //   operation to occur.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
 //
@@ -916,6 +957,11 @@ func (c *ElastiCache) CreateCacheSecurityGroupRequest(input *CreateCacheSecurity
 //   * ErrCodeCacheSecurityGroupQuotaExceededFault "QuotaExceeded.CacheSecurityGroup"
 //   The request cannot be processed because it would exceed the allowed number
 //   of cache security groups.
+//
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -1014,6 +1060,11 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 //   The request cannot be processed because it would exceed the allowed number
 //   of subnets in a cache subnet group.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 //   * ErrCodeInvalidSubnet "InvalidSubnet"
 //   An invalid subnet identifier was specified.
 //
@@ -1095,7 +1146,7 @@ func (c *ElastiCache) CreateGlobalReplicationGroupRequest(input *CreateGlobalRep
 // reads and disaster recovery across regions. For more information, see Replication
 // Across Regions Using Global Datastore (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastore.html).
 //
-//    * The GlobalReplicationGroupIdSuffix is the name of the Global Datastore.
+//    * The GlobalReplicationGroupIdSuffix is the name of the Global datastore.
 //
 //    * The PrimaryReplicationGroupId represents the name of the primary cluster
 //    that accepts writes and will replicate updates to the secondary cluster.
@@ -1115,7 +1166,7 @@ func (c *ElastiCache) CreateGlobalReplicationGroupRequest(input *CreateGlobalRep
 //   The requested replication group is not in the available state.
 //
 //   * ErrCodeGlobalReplicationGroupAlreadyExistsFault "GlobalReplicationGroupAlreadyExistsFault"
-//   The Global Datastore name already exists.
+//   The Global datastore name already exists.
 //
 //   * ErrCodeServiceLinkedRoleNotFoundFault "ServiceLinkedRoleNotFoundFault"
 //   The specified service linked role (SLR) was not found.
@@ -1193,7 +1244,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // replication group.
 //
 // This API can be used to create a standalone regional replication group or
-// a secondary replication group associated with a Global Datastore.
+// a secondary replication group associated with a Global datastore.
 //
 // A Redis (cluster mode disabled) replication group is a collection of clusters,
 // where one of the clusters is a read/write primary and the others are read-only
@@ -1292,10 +1343,10 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 //   maximum is 90
 //
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -1412,6 +1463,11 @@ func (c *ElastiCache) CreateSnapshotRequest(input *CreateSnapshotInput) (req *re
 //
 //   Neither of these are supported by ElastiCache.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 //   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
 //   Two or more incompatible parameters were specified.
 //
@@ -1510,6 +1566,11 @@ func (c *ElastiCache) CreateUserRequest(input *CreateUserInput) (req *request.Re
 //   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
 //   Two or more incompatible parameters were specified.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUser
 func (c *ElastiCache) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
@@ -1605,6 +1666,11 @@ func (c *ElastiCache) CreateUserGroupRequest(input *CreateUserGroupInput) (req *
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUserGroup
 func (c *ElastiCache) CreateUserGroup(input *CreateUserGroupInput) (*CreateUserGroupOutput, error) {
 	req, out := c.CreateUserGroupRequest(input)
@@ -1671,7 +1737,7 @@ func (c *ElastiCache) DecreaseNodeGroupsInGlobalReplicationGroupRequest(input *D
 
 // DecreaseNodeGroupsInGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Decreases the number of node groups in a Global Datastore
+// Decreases the number of node groups in a Global datastore
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1682,10 +1748,10 @@ func (c *ElastiCache) DecreaseNodeGroupsInGlobalReplicationGroupRequest(input *D
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -2277,17 +2343,19 @@ func (c *ElastiCache) DeleteGlobalReplicationGroupRequest(input *DeleteGlobalRep
 
 // DeleteGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Deleting a Global Datastore is a two-step process:
+// Deleting a Global datastore is a two-step process:
 //
 //    * First, you must DisassociateGlobalReplicationGroup to remove the secondary
-//    clusters in the Global Datastore.
+//    clusters in the Global datastore.
 //
-//    * Once the Global Datastore contains only the primary cluster, you can
-//    use DeleteGlobalReplicationGroup API to delete the Global Datastore while
-//    retainining the primary cluster using Retain…= true.
+//    * Once the Global datastore contains only the primary cluster, you can
+//    use the DeleteGlobalReplicationGroup API to delete the Global datastore
+//    while retainining the primary cluster using RetainPrimaryReplicationGroup=true.
 //
 // Since the Global Datastore has only a primary cluster, you can delete the
-// Global Datastore while retaining the primary by setting RetainPrimaryCluster=true.
+// Global Datastore while retaining the primary by setting RetainPrimaryReplicationGroup=true.
+// The primary cluster is never deleted when deleting a Global Datastore. It
+// can only be deleted when it no longer is associated with any Global Datastore.
 //
 // When you receive a successful response from this operation, Amazon ElastiCache
 // immediately begins deleting the selected resources; you cannot cancel or
@@ -2302,10 +2370,10 @@ func (c *ElastiCache) DeleteGlobalReplicationGroupRequest(input *DeleteGlobalRep
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -3927,7 +3995,7 @@ func (c *ElastiCache) DescribeGlobalReplicationGroupsRequest(input *DescribeGlob
 // DescribeGlobalReplicationGroups API operation for Amazon ElastiCache.
 //
 // Returns information about a particular global replication group. If no identifier
-// is specified, returns information about all Global Datastores.
+// is specified, returns information about all Global datastores.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3938,7 +4006,7 @@ func (c *ElastiCache) DescribeGlobalReplicationGroupsRequest(input *DescribeGlob
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -5212,7 +5280,7 @@ func (c *ElastiCache) DisassociateGlobalReplicationGroupRequest(input *Disassoci
 
 // DisassociateGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Remove a secondary cluster from the Global Datastore using the Global Datastore
+// Remove a secondary cluster from the Global datastore using the Global datastore
 // name. The secondary cluster will no longer receive updates from the primary
 // cluster, but will remain as a standalone cluster in that AWS region.
 //
@@ -5225,10 +5293,10 @@ func (c *ElastiCache) DisassociateGlobalReplicationGroupRequest(input *Disassoci
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -5315,10 +5383,10 @@ func (c *ElastiCache) FailoverGlobalReplicationGroupRequest(input *FailoverGloba
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -5392,7 +5460,7 @@ func (c *ElastiCache) IncreaseNodeGroupsInGlobalReplicationGroupRequest(input *I
 
 // IncreaseNodeGroupsInGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Increase the number of node groups in the Global Datastore
+// Increase the number of node groups in the Global datastore
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5403,10 +5471,10 @@ func (c *ElastiCache) IncreaseNodeGroupsInGlobalReplicationGroupRequest(input *I
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -5691,16 +5759,16 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 
 // ListTagsForResource API operation for Amazon ElastiCache.
 //
-// Lists all cost allocation tags currently on the named resource. A cost allocation
-// tag is a key-value pair where the key is case-sensitive and the value is
-// optional. You can use cost allocation tags to categorize and track your AWS
-// costs.
+// Lists all tags currently on a named resource.
+//
+// A tag is a key-value pair where the key and value are case-sensitive. You
+// can use tags to categorize and track all your ElastiCache resources, with
+// the exception of global replication group. When you add or remove tags on
+// replication groups, those actions will be replicated to all nodes in the
+// replication group. For more information, see Resource-level permissions (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html).
 //
 // If the cluster is not in the available state, ListTagsForResource returns
 // an error.
-//
-// You can have a maximum of 50 cost allocation tags on an ElastiCache resource.
-// For more information, see Monitoring Costs with Tags (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5713,8 +5781,35 @@ func (c *ElastiCache) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   * ErrCodeCacheClusterNotFoundFault "CacheClusterNotFound"
 //   The requested cluster ID does not refer to an existing cluster.
 //
+//   * ErrCodeCacheParameterGroupNotFoundFault "CacheParameterGroupNotFound"
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * ErrCodeCacheSecurityGroupNotFoundFault "CacheSecurityGroupNotFound"
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * ErrCodeCacheSubnetGroupNotFoundFault "CacheSubnetGroupNotFoundFault"
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * ErrCodeInvalidReplicationGroupStateFault "InvalidReplicationGroupState"
+//   The requested replication group is not in the available state.
+//
+//   * ErrCodeReplicationGroupNotFoundFault "ReplicationGroupNotFoundFault"
+//   The specified replication group does not exist.
+//
+//   * ErrCodeReservedCacheNodeNotFoundFault "ReservedCacheNodeNotFound"
+//   The requested reserved cache node was not found.
+//
 //   * ErrCodeSnapshotNotFoundFault "SnapshotNotFoundFault"
 //   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
 //
 //   * ErrCodeInvalidARNFault "InvalidARN"
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
@@ -5929,7 +6024,7 @@ func (c *ElastiCache) ModifyCacheParameterGroupRequest(input *ModifyCacheParamet
 //   Two or more incompatible parameters were specified.
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyCacheParameterGroup
 func (c *ElastiCache) ModifyCacheParameterGroup(input *ModifyCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
@@ -6093,7 +6188,7 @@ func (c *ElastiCache) ModifyGlobalReplicationGroupRequest(input *ModifyGlobalRep
 
 // ModifyGlobalReplicationGroup API operation for Amazon ElastiCache.
 //
-// Modifies the settings for a Global Datastore.
+// Modifies the settings for a Global datastore.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6104,10 +6199,10 @@ func (c *ElastiCache) ModifyGlobalReplicationGroupRequest(input *ModifyGlobalRep
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -6637,6 +6732,11 @@ func (c *ElastiCache) PurchaseReservedCacheNodesOfferingRequest(input *PurchaseR
 //   The request cannot be processed because it would exceed the user's cache
 //   node quota.
 //
+//   * ErrCodeTagQuotaPerResourceExceeded "TagQuotaPerResourceExceeded"
+//   The request cannot be processed because it would cause the resource to have
+//   more than the allowed number of tags. The maximum number of tags permitted
+//   on a resource is 50.
+//
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
 //
@@ -6721,10 +6821,10 @@ func (c *ElastiCache) RebalanceSlotsInGlobalReplicationGroupRequest(input *Rebal
 //
 // Returned Error Codes:
 //   * ErrCodeGlobalReplicationGroupNotFoundFault "GlobalReplicationGroupNotFoundFault"
-//   The Global Datastore does not exist
+//   The Global datastore does not exist
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 //   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
 //   The value for a parameter is invalid.
@@ -6894,6 +6994,11 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 // RemoveTagsFromResource API operation for Amazon ElastiCache.
 //
 // Removes the tags identified by the TagKeys list from the named resource.
+// A tag is a key-value pair where the key and value are case-sensitive. You
+// can use tags to categorize and track all your ElastiCache resources, with
+// the exception of global replication group. When you add or remove tags on
+// replication groups, those actions will be replicated to all nodes in the
+// replication group. For more information, see Resource-level permissions (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6906,8 +7011,35 @@ func (c *ElastiCache) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourc
 //   * ErrCodeCacheClusterNotFoundFault "CacheClusterNotFound"
 //   The requested cluster ID does not refer to an existing cluster.
 //
+//   * ErrCodeCacheParameterGroupNotFoundFault "CacheParameterGroupNotFound"
+//   The requested cache parameter group name does not refer to an existing cache
+//   parameter group.
+//
+//   * ErrCodeCacheSecurityGroupNotFoundFault "CacheSecurityGroupNotFound"
+//   The requested cache security group name does not refer to an existing cache
+//   security group.
+//
+//   * ErrCodeCacheSubnetGroupNotFoundFault "CacheSubnetGroupNotFoundFault"
+//   The requested cache subnet group name does not refer to an existing cache
+//   subnet group.
+//
+//   * ErrCodeInvalidReplicationGroupStateFault "InvalidReplicationGroupState"
+//   The requested replication group is not in the available state.
+//
+//   * ErrCodeReplicationGroupNotFoundFault "ReplicationGroupNotFoundFault"
+//   The specified replication group does not exist.
+//
+//   * ErrCodeReservedCacheNodeNotFoundFault "ReservedCacheNodeNotFound"
+//   The requested reserved cache node was not found.
+//
 //   * ErrCodeSnapshotNotFoundFault "SnapshotNotFoundFault"
 //   The requested snapshot name does not refer to an existing snapshot.
+//
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
 //
 //   * ErrCodeInvalidARNFault "InvalidARN"
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
@@ -7009,7 +7141,7 @@ func (c *ElastiCache) ResetCacheParameterGroupRequest(input *ResetCacheParameter
 //   Two or more incompatible parameters were specified.
 //
 //   * ErrCodeInvalidGlobalReplicationGroupStateFault "InvalidGlobalReplicationGroupState"
-//   The Global Datastore is not available or in primary-only state.
+//   The Global datastore is not available or in primary-only state.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ResetCacheParameterGroup
 func (c *ElastiCache) ResetCacheParameterGroup(input *ResetCacheParameterGroupInput) (*CacheParameterGroupNameMessage, error) {
@@ -7366,8 +7498,8 @@ type AddTagsToResourceInput struct {
 	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
 
-	// A list of cost allocation tags to be added to this resource. A tag is a key-value
-	// pair. A tag key must be accompanied by a tag value.
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
 	//
 	// Tags is a required field
 	Tags []*Tag `locationNameList:"Tag" type:"list" required:"true"`
@@ -8562,7 +8694,7 @@ type CacheParameterGroup struct {
 	// The description for this cache parameter group.
 	Description *string `type:"string"`
 
-	// Indicates whether the parameter group is associated with a Global Datastore
+	// Indicates whether the parameter group is associated with a Global datastore
 	IsGlobal *bool `type:"boolean"`
 }
 
@@ -9020,15 +9152,19 @@ type CopySnapshotInput struct {
 	// SourceSnapshotName is a required field
 	SourceSnapshotName *string `type:"string" required:"true"`
 
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The Amazon S3 bucket to which the snapshot is exported. This parameter is
 	// used only when exporting a snapshot for external access.
 	//
 	// When using this parameter to export a snapshot, be sure Amazon ElastiCache
 	// has the needed permissions to this S3 bucket. For more information, see Step
-	// 2: Grant ElastiCache Access to Your Amazon S3 Bucket (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access)
+	// 2: Grant ElastiCache Access to Your Amazon S3 Bucket (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html#backups-exporting-grant-access)
 	// in the Amazon ElastiCache User Guide.
 	//
-	// For more information, see Exporting a Snapshot (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Snapshots.Exporting.html)
+	// For more information, see Exporting a Snapshot (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/backups-exporting.html)
 	// in the Amazon ElastiCache User Guide.
 	TargetBucket *string `type:"string"`
 
@@ -9075,6 +9211,12 @@ func (s *CopySnapshotInput) SetKmsKeyId(v string) *CopySnapshotInput {
 // SetSourceSnapshotName sets the SourceSnapshotName field's value.
 func (s *CopySnapshotInput) SetSourceSnapshotName(v string) *CopySnapshotInput {
 	s.SourceSnapshotName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CopySnapshotInput) SetTags(v []*Tag) *CopySnapshotInput {
+	s.Tags = v
 	return s
 }
 
@@ -9362,7 +9504,7 @@ type CreateCacheClusterInput struct {
 	// This parameter is only valid if the Engine parameter is redis.
 	SnapshotWindow *string `type:"string"`
 
-	// A list of cost allocation tags to be added to this resource.
+	// A list of tags to be added to this resource.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
@@ -9590,6 +9732,10 @@ type CreateCacheParameterGroupInput struct {
 	//
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
 // String returns the string representation
@@ -9639,6 +9785,12 @@ func (s *CreateCacheParameterGroupInput) SetDescription(v string) *CreateCachePa
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateCacheParameterGroupInput) SetTags(v []*Tag) *CreateCacheParameterGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateCacheParameterGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9681,6 +9833,10 @@ type CreateCacheSecurityGroupInput struct {
 	//
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
 // String returns the string representation
@@ -9718,6 +9874,12 @@ func (s *CreateCacheSecurityGroupInput) SetCacheSecurityGroupName(v string) *Cre
 // SetDescription sets the Description field's value.
 func (s *CreateCacheSecurityGroupInput) SetDescription(v string) *CreateCacheSecurityGroupInput {
 	s.Description = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCacheSecurityGroupInput) SetTags(v []*Tag) *CreateCacheSecurityGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -9772,6 +9934,10 @@ type CreateCacheSubnetGroupInput struct {
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `locationNameList:"SubnetIdentifier" type:"list" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
 // String returns the string representation
@@ -9821,6 +9987,12 @@ func (s *CreateCacheSubnetGroupInput) SetSubnetIds(v []*string) *CreateCacheSubn
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateCacheSubnetGroupInput) SetTags(v []*Tag) *CreateCacheSubnetGroupInput {
+	s.Tags = v
+	return s
+}
+
 type CreateCacheSubnetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9851,18 +10023,18 @@ func (s *CreateCacheSubnetGroupOutput) SetCacheSubnetGroup(v *CacheSubnetGroup) 
 type CreateGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Provides details of the Global Datastore
+	// Provides details of the Global datastore
 	GlobalReplicationGroupDescription *string `type:"string"`
 
-	// The suffix name of a Global Datastore. Amazon ElastiCache automatically applies
-	// a prefix to the Global Datastore ID when it is created. Each AWS Region has
-	// its own prefix. For instance, a Global Datastore ID created in the US-West-1
+	// The suffix name of a Global datastore. Amazon ElastiCache automatically applies
+	// a prefix to the Global datastore ID when it is created. Each AWS Region has
+	// its own prefix. For instance, a Global datastore ID created in the US-West-1
 	// region will begin with "dsdfu" along with the suffix name you provide. The
 	// suffix, combined with the auto-generated prefix, guarantees uniqueness of
-	// the Global Datastore name across multiple regions.
+	// the Global datastore name across multiple regions.
 	//
-	// For a full list of AWS Regions and their respective Global Datastore iD prefixes,
-	// see Using the AWS CLI with Global Datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html).
+	// For a full list of AWS Regions and their respective Global datastore iD prefixes,
+	// see Using the AWS CLI with Global datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html).
 	//
 	// GlobalReplicationGroupIdSuffix is a required field
 	GlobalReplicationGroupIdSuffix *string `type:"string" required:"true"`
@@ -9927,7 +10099,7 @@ type CreateGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -10084,7 +10256,7 @@ type CreateReplicationGroupInput struct {
 	// engine version.
 	EngineVersion *string `type:"string"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	GlobalReplicationGroupId *string `type:"string"`
 
 	// The ID of the KMS key used to encrypt the disk in the cluster.
@@ -10248,9 +10420,10 @@ type CreateReplicationGroupInput struct {
 	// appropriate time range.
 	SnapshotWindow *string `type:"string"`
 
-	// A list of cost allocation tags to be added to this resource. Tags are comma-separated
-	// key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple
-	// tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.
+	// A list of tags to be added to this resource. Tags are comma-separated key,value
+	// pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as
+	// shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.
+	// Tags on replication groups will be replicated to all nodes.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// A flag that enables in-transit encryption when set to true.
@@ -10551,6 +10724,10 @@ type CreateSnapshotInput struct {
 	//
 	// SnapshotName is a required field
 	SnapshotName *string `type:"string" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
 // String returns the string representation
@@ -10600,6 +10777,12 @@ func (s *CreateSnapshotInput) SetSnapshotName(v string) *CreateSnapshotInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateSnapshotInput) SetTags(v []*Tag) *CreateSnapshotInput {
+	s.Tags = v
+	return s
+}
+
 type CreateSnapshotOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10631,6 +10814,10 @@ type CreateUserGroupInput struct {
 	//
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
 	// The ID of the user group.
 	//
@@ -10673,6 +10860,12 @@ func (s *CreateUserGroupInput) Validate() error {
 // SetEngine sets the Engine field's value.
 func (s *CreateUserGroupInput) SetEngine(v string) *CreateUserGroupInput {
 	s.Engine = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUserGroupInput) SetTags(v []*Tag) *CreateUserGroupInput {
+	s.Tags = v
 	return s
 }
 
@@ -10785,6 +10978,10 @@ type CreateUserInput struct {
 	// user.
 	Passwords []*string `min:"1" type:"list"`
 
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ID of the user.
 	//
 	// UserId is a required field
@@ -10858,6 +11055,12 @@ func (s *CreateUserInput) SetNoPasswordRequired(v bool) *CreateUserInput {
 // SetPasswords sets the Passwords field's value.
 func (s *CreateUserInput) SetPasswords(v []*string) *CreateUserInput {
 	s.Passwords = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUserInput) SetTags(v []*Tag) *CreateUserInput {
+	s.Tags = v
 	return s
 }
 
@@ -11015,7 +11218,7 @@ type DecreaseNodeGroupsInGlobalReplicationGroupInput struct {
 	// from the cluster.
 	GlobalNodeGroupsToRetain []*string `locationNameList:"GlobalNodeGroupId" type:"list"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
@@ -11095,7 +11298,7 @@ type DecreaseNodeGroupsInGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -11485,7 +11688,7 @@ func (s DeleteCacheSubnetGroupOutput) GoString() string {
 type DeleteGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
@@ -11543,7 +11746,7 @@ type DeleteGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -12778,7 +12981,7 @@ func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
 type DescribeGlobalReplicationGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	GlobalReplicationGroupId *string `type:"string"`
 
 	// An optional marker returned from a prior request. Use this marker for pagination
@@ -12791,7 +12994,7 @@ type DescribeGlobalReplicationGroupsInput struct {
 	// so that the remaining results can be retrieved.
 	MaxRecords *int64 `type:"integer"`
 
-	// Returns the list of members that comprise the Global Datastore.
+	// Returns the list of members that comprise the Global datastore.
 	ShowMemberInfo *bool `type:"boolean"`
 }
 
@@ -13874,17 +14077,17 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 type DisassociateGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
 
-	// The name of the secondary cluster you wish to remove from the Global Datastore
+	// The name of the secondary cluster you wish to remove from the Global datastore
 	//
 	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
-	// The AWS region of secondary cluster you wish to remove from the Global Datastore
+	// The AWS region of secondary cluster you wish to remove from the Global datastore
 	//
 	// ReplicationGroupRegion is a required field
 	ReplicationGroupRegion *string `type:"string" required:"true"`
@@ -13946,7 +14149,7 @@ type DisassociateGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -14156,12 +14359,12 @@ func (s *Event) SetSourceType(v string) *Event {
 type FailoverGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
 
-	// The AWS region of the primary cluster of the Global Datastore
+	// The AWS region of the primary cluster of the Global datastore
 	//
 	// PrimaryRegion is a required field
 	PrimaryRegion *string `type:"string" required:"true"`
@@ -14228,7 +14431,7 @@ type FailoverGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -14343,7 +14546,7 @@ func (s *GlobalNodeGroup) SetSlots(v string) *GlobalNodeGroup {
 // cluster.
 //
 //    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-//    Datastore, which is what you use to associate a secondary cluster.
+//    datastore, which is what you use to associate a secondary cluster.
 type GlobalReplicationGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -14366,10 +14569,10 @@ type GlobalReplicationGroup struct {
 	// Default: false
 	AuthTokenEnabled *bool `type:"boolean"`
 
-	// The cache node type of the Global Datastore
+	// The cache node type of the Global datastore
 	CacheNodeType *string `type:"string"`
 
-	// A flag that indicates whether the Global Datastore is cluster enabled.
+	// A flag that indicates whether the Global datastore is cluster enabled.
 	ClusterEnabled *bool `type:"boolean"`
 
 	// The Elasticache engine. For Redis only.
@@ -14381,16 +14584,16 @@ type GlobalReplicationGroup struct {
 	// Indicates the slot configuration and global identifier for each slice group.
 	GlobalNodeGroups []*GlobalNodeGroup `locationNameList:"GlobalNodeGroup" type:"list"`
 
-	// The optional description of the Global Datastore
+	// The optional description of the Global datastore
 	GlobalReplicationGroupDescription *string `type:"string"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	GlobalReplicationGroupId *string `type:"string"`
 
-	// The replication groups that comprise the Global Datastore.
+	// The replication groups that comprise the Global datastore.
 	Members []*GlobalReplicationGroupMember `locationNameList:"GlobalReplicationGroupMember" type:"list"`
 
-	// The status of the Global Datastore
+	// The status of the Global datastore
 	Status *string `type:"string"`
 
 	// A flag that enables in-transit encryption when set to true. You cannot modify
@@ -14491,15 +14694,15 @@ func (s *GlobalReplicationGroup) SetTransitEncryptionEnabled(v bool) *GlobalRepl
 	return s
 }
 
-// The name of the Global Datastore and role of this replication group in the
-// Global Datastore.
+// The name of the Global datastore and role of this replication group in the
+// Global datastore.
 type GlobalReplicationGroupInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	GlobalReplicationGroupId *string `type:"string"`
 
-	// The role of the replication group in a Global Datastore. Can be primary or
+	// The role of the replication group in a Global datastore. Can be primary or
 	// secondary.
 	GlobalReplicationGroupMemberRole *string `type:"string"`
 }
@@ -14526,7 +14729,7 @@ func (s *GlobalReplicationGroupInfo) SetGlobalReplicationGroupMemberRole(v strin
 	return s
 }
 
-// A member of a Global Datastore. It contains the Replication Group Id, the
+// A member of a Global datastore. It contains the Replication Group Id, the
 // AWS region and the role of the replication group.
 type GlobalReplicationGroupMember struct {
 	_ struct{} `type:"structure"`
@@ -14534,10 +14737,10 @@ type GlobalReplicationGroupMember struct {
 	// Indicates whether automatic failover is enabled for the replication group.
 	AutomaticFailover *string `type:"string" enum:"AutomaticFailoverStatus"`
 
-	// The replication group id of the Global Datastore member.
+	// The replication group id of the Global datastore member.
 	ReplicationGroupId *string `type:"string"`
 
-	// The AWS region of the Global Datastore member.
+	// The AWS region of the Global datastore member.
 	ReplicationGroupRegion *string `type:"string"`
 
 	// Indicates the role of the replication group, primary or secondary.
@@ -14596,7 +14799,7 @@ type IncreaseNodeGroupsInGlobalReplicationGroupInput struct {
 	// ApplyImmediately is a required field
 	ApplyImmediately *bool `type:"boolean" required:"true"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
@@ -14607,7 +14810,7 @@ type IncreaseNodeGroupsInGlobalReplicationGroupInput struct {
 	NodeGroupCount *int64 `type:"integer" required:"true"`
 
 	// Describes the replication group IDs, the AWS regions where they are stored
-	// and the shard configuration for each that comprise the Global Datastore
+	// and the shard configuration for each that comprise the Global datastore
 	RegionalConfigurations []*RegionalConfiguration `locationNameList:"RegionalConfiguration" type:"list"`
 }
 
@@ -14683,7 +14886,7 @@ type IncreaseNodeGroupsInGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -15499,7 +15702,7 @@ type ModifyGlobalReplicationGroupInput struct {
 	// primary if the existing primary encounters a failure.
 	AutomaticFailoverEnabled *bool `type:"boolean"`
 
-	// A valid cache node type that you want to scale this Global Datastore to.
+	// A valid cache node type that you want to scale this Global datastore to.
 	CacheNodeType *string `type:"string"`
 
 	// The name of the cache parameter group to use with the Global datastore. It
@@ -15507,13 +15710,13 @@ type ModifyGlobalReplicationGroupInput struct {
 	CacheParameterGroupName *string `type:"string"`
 
 	// The upgraded version of the cache engine to be run on the clusters in the
-	// Global Datastore.
+	// Global datastore.
 	EngineVersion *string `type:"string"`
 
-	// A description of the Global Datastore
+	// A description of the Global datastore
 	GlobalReplicationGroupDescription *string `type:"string"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
@@ -15596,7 +15799,7 @@ type ModifyGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -15694,8 +15897,8 @@ type ModifyReplicationGroupInput struct {
 	// and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
-	// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
-	// For more information, see Minimizing Downtime: Multi-AZ (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html).
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
 	MultiAZEnabled *bool `type:"boolean"`
 
 	// Deprecated. This parameter is not used.
@@ -17206,6 +17409,10 @@ type PurchaseReservedCacheNodesOfferingInput struct {
 	//
 	// ReservedCacheNodesOfferingId is a required field
 	ReservedCacheNodesOfferingId *string `type:"string" required:"true"`
+
+	// A list of tags to be added to this resource. A tag is a key-value pair. A
+	// tag key must be accompanied by a tag value, although null is accepted.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
 }
 
 // String returns the string representation
@@ -17249,6 +17456,12 @@ func (s *PurchaseReservedCacheNodesOfferingInput) SetReservedCacheNodesOfferingI
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *PurchaseReservedCacheNodesOfferingInput) SetTags(v []*Tag) *PurchaseReservedCacheNodesOfferingInput {
+	s.Tags = v
+	return s
+}
+
 type PurchaseReservedCacheNodesOfferingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17280,7 +17493,7 @@ type RebalanceSlotsInGlobalReplicationGroupInput struct {
 	// ApplyImmediately is a required field
 	ApplyImmediately *bool `type:"boolean" required:"true"`
 
-	// The name of the Global Datastore
+	// The name of the Global datastore
 	//
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
@@ -17333,7 +17546,7 @@ type RebalanceSlotsInGlobalReplicationGroupOutput struct {
 	// cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
-	//    Datastore, which is what you use to associate a secondary cluster.
+	//    datastore, which is what you use to associate a secondary cluster.
 	GlobalReplicationGroup *GlobalReplicationGroup `type:"structure"`
 }
 
@@ -17648,8 +17861,8 @@ type ReplicationGroup struct {
 	// The user supplied description of the replication group.
 	Description *string `type:"string"`
 
-	// The name of the Global Datastore and role of this replication group in the
-	// Global Datastore.
+	// The name of the Global datastore and role of this replication group in the
+	// Global datastore.
 	GlobalReplicationGroupInfo *GlobalReplicationGroupInfo `type:"structure"`
 
 	// The ID of the KMS key used to encrypt the disk in the cluster.
@@ -19147,9 +19360,12 @@ func (s *SubnetOutpost) SetSubnetOutpostArn(v string) *SubnetOutpost {
 	return s
 }
 
-// A cost allocation Tag that can be added to an ElastiCache cluster or replication
-// group. Tags are composed of a Key/Value pair. A tag with a null Value is
-// permitted.
+// A tag that can be added to an ElastiCache cluster or replication group. Tags
+// are composed of a Key/Value pair. You can use tags to categorize and track
+// all your ElastiCache resources, with the exception of global replication
+// group. When you add or remove tags on replication groups, those actions will
+// be replicated to all nodes in the replication group. A tag with a null Value
+// is permitted.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -19187,7 +19403,7 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagListMessage struct {
 	_ struct{} `type:"structure"`
 
-	// A list of cost allocation tags as key-value pairs.
+	// A list of tags as key-value pairs.
 	TagList []*Tag `locationNameList:"Tag" type:"list"`
 }
 

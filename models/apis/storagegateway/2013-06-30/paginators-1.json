@@ -39,6 +39,15 @@
       "output_token": "NextMarker",
       "result_key": "FileShareInfoList"
     },
+    "ListFileSystemAssociations": {
+      "input_token": "Marker",
+      "limit_key": "Limit",
+      "non_aggregate_keys": [
+        "Marker"
+      ],
+      "output_token": "NextMarker",
+      "result_key": "FileSystemAssociationSummaryList"
+    },
     "ListGateways": {
       "input_token": "Marker",
       "limit_key": "Limit",

@@ -5,16 +5,17 @@
     "ActivateGateway": "<p>Activates the gateway you previously deployed on your host. In the activation process, you specify information such as the AWS Region that you want to use for storing snapshots or tapes, the time zone for scheduled snapshots the gateway snapshot schedule window, an activation key, and a name for your gateway. The activation process also associates your gateway with your account. For more information, see <a>UpdateGatewayInformation</a>.</p> <note> <p>You must turn on the gateway VM before you can activate your gateway.</p> </note>",
     "AddCache": "<p>Configures one or more gateway local disks as cache for a gateway. This operation is only supported in the cached volume, tape, and file gateway type (see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/StorageGatewayConcepts.html\">How AWS Storage Gateway works (architecture)</a>.</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add cache, and one or more disk IDs that you want to configure as cache.</p>",
     "AddTagsToResource": "<p>Adds one or more tags to the specified resource. You use tags to add metadata to resources, which you can use to categorize these resources. For example, you can categorize resources by purpose, owner, environment, or team. Each tag consists of a key and a value, which you define. You can add tags to the following AWS Storage Gateway resources:</p> <ul> <li> <p>Storage gateways of all types</p> </li> <li> <p>Storage volumes</p> </li> <li> <p>Virtual tapes</p> </li> <li> <p>NFS and SMB file shares</p> </li> </ul> <p>You can create a maximum of 50 tags for each resource. Virtual tapes and storage volumes that are recovered to a new gateway maintain their tags.</p>",
-    "AddUploadBuffer": "<p>Configures one or more gateway local disks as upload buffer for a specified gateway. This operation is supported for the stored volume, cached volume and tape gateway types.</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add upload buffer, and one or more disk IDs that you want to configure as upload buffer.</p>",
+    "AddUploadBuffer": "<p>Configures one or more gateway local disks as upload buffer for a specified gateway. This operation is supported for the stored volume, cached volume, and tape gateway types.</p> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add upload buffer, and one or more disk IDs that you want to configure as upload buffer.</p>",
     "AddWorkingStorage": "<p>Configures one or more gateway local disks as working storage for a gateway. This operation is only supported in the stored volume gateway type. This operation is deprecated in cached volume API version 20120630. Use <a>AddUploadBuffer</a> instead.</p> <note> <p>Working storage is also referred to as upload buffer. You can also use the <a>AddUploadBuffer</a> operation to add upload buffer to a stored volume gateway.</p> </note> <p>In the request, you specify the gateway Amazon Resource Name (ARN) to which you want to add working storage, and one or more disk IDs that you want to configure as working storage.</p>",
     "AssignTapePool": "<p>Assigns a tape to a tape pool for archiving. The tape assigned to a pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the S3 storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool.</p> <p>Valid Values: <code>GLACIER</code> | <code>DEEP_ARCHIVE</code> </p>",
+    "AssociateFileSystem": "<p>Associate an Amazon FSx file system with the Amazon FSx file gateway. After the association process is complete, the file shares on the Amazon FSx file system are available for access through the gateway. This operation only supports the Amazon FSx file gateway type.</p>",
     "AttachVolume": "<p>Connects a volume to an iSCSI connection and then attaches the volume to the specified gateway. Detaching and attaching a volume enables you to recover your data from one gateway to a different gateway without creating a snapshot. It also makes it easier to move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance.</p>",
     "CancelArchival": "<p>Cancels archiving of a virtual tape to the virtual tape shelf (VTS) after the archiving process is initiated. This operation is only supported in the tape gateway type.</p>",
     "CancelRetrieval": "<p>Cancels retrieval of a virtual tape from the virtual tape shelf (VTS) to a gateway after the retrieval process is initiated. The virtual tape is returned to the VTS. This operation is only supported in the tape gateway type.</p>",
     "CreateCachediSCSIVolume": "<p>Creates a cached volume on a specified cached volume gateway. This operation is only supported in the cached volume gateway type.</p> <note> <p>Cache storage must be allocated to the gateway before you can create a cached volume. Use the <a>AddCache</a> operation to add cache storage to a gateway.</p> </note> <p>In the request, you must specify the gateway, size of the volume in bytes, the iSCSI target name, an IP address on which to expose the target, and a unique client token. In response, the gateway creates the volume and returns information about it. This information includes the volume Amazon Resource Name (ARN), its size, and the iSCSI target ARN that initiators can use to connect to the volume target.</p> <p>Optionally, you can provide the ARN for an existing volume as the <code>SourceVolumeARN</code> for this cached volume, which creates an exact copy of the existing volume’s latest recovery point. The <code>VolumeSizeInBytes</code> value must be equal to or larger than the size of the copied volume, in bytes.</p>",
     "CreateNFSFileShare": "<p>Creates a Network File System (NFS) file share on an existing file gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an NFS interface. This operation is only supported for file gateways.</p> <important> <p>File gateway requires AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in the AWS Region, activate it. For information about how to activate AWS STS, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <p>File gateway does not support creating hard or symbolic links on a file share.</p> </important>",
     "CreateSMBFileShare": "<p>Creates a Server Message Block (SMB) file share on an existing file gateway. In Storage Gateway, a file share is a file system mount point backed by Amazon S3 cloud storage. Storage Gateway exposes file shares using an SMB interface. This operation is only supported for file gateways.</p> <important> <p>File gateways require AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure that AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in this AWS Region, activate it. For information about how to activate AWS STS, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <p>File gateways don't support creating hard or symbolic links on a file share.</p> </important>",
-    "CreateSnapshot": "<p>Initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (Amazon S3) for durable off-site recovery, as well as import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad hoc basis. This API enables you to take an ad hoc snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/managing-volumes.html#SchedulingSnapshot\">Editing a snapshot schedule</a>.</p> <p>In the <code>CreateSnapshot</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot. This operation is only supported in stored and cached volume gateway type.</p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSnapshots.html\">DescribeSnapshots</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteSnapshot.html\">DeleteSnapshot</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note> <important> <p>Volume and snapshot IDs are changing to a longer length ID format. For more information, see the important note on the <a href=\"https://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html\">Welcome</a> page.</p> </important>",
+    "CreateSnapshot": "<p>Initiates a snapshot of a volume.</p> <p>AWS Storage Gateway provides the ability to back up point-in-time snapshots of your data to Amazon Simple Storage (Amazon S3) for durable off-site recovery, and also import the data to an Amazon Elastic Block Store (EBS) volume in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway volume on a scheduled or ad hoc basis. This API enables you to take an ad hoc snapshot. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/managing-volumes.html#SchedulingSnapshot\">Editing a snapshot schedule</a>.</p> <p>In the <code>CreateSnapshot</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide description for the snapshot. When AWS Storage Gateway takes the snapshot of specified volume, the snapshot and description appears in the AWS Storage Gateway console. In response, AWS Storage Gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot. This operation is only supported in stored and cached volume gateway type.</p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSnapshots.html\">DescribeSnapshots</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteSnapshot.html\">DeleteSnapshot</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note> <important> <p>Volume and snapshot IDs are changing to a longer length ID format. For more information, see the important note on the <a href=\"https://docs.aws.amazon.com/storagegateway/latest/APIReference/Welcome.html\">Welcome</a> page.</p> </important>",
     "CreateSnapshotFromVolumeRecoveryPoint": "<p>Initiates a snapshot of a gateway from a volume recovery point. This operation is only supported in the cached volume gateway type.</p> <p>A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot. To get a list of volume recovery point for cached volume gateway, use <a>ListVolumeRecoveryPoints</a>.</p> <p>In the <code>CreateSnapshotFromVolumeRecoveryPoint</code> request, you identify the volume by providing its Amazon Resource Name (ARN). You must also provide a description for the snapshot. When the gateway takes a snapshot of the specified volume, the snapshot and its description appear in the AWS Storage Gateway console. In response, the gateway returns you a snapshot ID. You can use this snapshot ID to check the snapshot progress or later use it when you want to create a volume from a snapshot.</p> <note> <p>To list or delete a snapshot, you must use the Amazon EC2 API. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeSnapshots.html\">DescribeSnapshots</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeleteSnapshot.html\">DeleteSnapshot</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </note>",
     "CreateStorediSCSIVolume": "<p>Creates a volume on a specified gateway. This operation is only supported in the stored volume gateway type.</p> <p>The size of the volume to create is inferred from the disk size. You can choose to preserve existing data on the disk, create volume from an existing snapshot, or create an empty volume. If you choose to create an empty gateway volume, then any existing data on the disk is erased.</p> <p>In the request, you must specify the gateway and the disk information on which you are creating the volume. In response, the gateway creates the volume and returns volume information such as the volume Amazon Resource Name (ARN), its size, and the iSCSI target ARN that initiators can use to connect to the volume target.</p>",
     "CreateTapePool": "<p>Creates a new custom tape pool. You can use custom tape pool to enable tape retention lock on tapes that are archived in the custom pool.</p>",
@@ -30,12 +31,13 @@
     "DeleteTapeArchive": "<p>Deletes the specified virtual tape from the virtual tape shelf (VTS). This operation is only supported in the tape gateway type.</p>",
     "DeleteTapePool": "<p>Delete a custom tape pool. A custom tape pool can only be deleted if there are no tapes in the pool and if there are no automatic tape creation policies that reference the custom tape pool.</p>",
     "DeleteVolume": "<p>Deletes the specified storage volume that you previously created using the <a>CreateCachediSCSIVolume</a> or <a>CreateStorediSCSIVolume</a> API. This operation is only supported in the cached volume and stored volume types. For stored volume gateways, the local disk that was configured as the storage volume is not deleted. You can reuse the local disk to create another storage volume.</p> <p>Before you delete a volume, make sure there are no iSCSI connections to the volume you are deleting. You should also make sure there is no snapshot in progress. You can use the Amazon Elastic Compute Cloud (Amazon EC2) API to query snapshots on the volume you are deleting and check the snapshot status. For more information, go to <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> <p>In the request, you must provide the Amazon Resource Name (ARN) of the storage volume you want to delete.</p>",
-    "DescribeAvailabilityMonitorTest": "<p>Returns information about the most recent High Availability monitoring test that was performed on the host in a cluster. If a test isn't performed, the status and start time in the response would be null.</p>",
+    "DescribeAvailabilityMonitorTest": "<p>Returns information about the most recent high availability monitoring test that was performed on the host in a cluster. If a test isn't performed, the status and start time in the response would be null.</p>",
     "DescribeBandwidthRateLimit": "<p>Returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect. This operation is supported for the stored volume, cached volume, and tape gateway types.</p> <p>This operation only returns a value for a bandwidth rate limit only if the limit is set. If no limits are set for the gateway, then this operation returns only the gateway ARN in the response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DescribeBandwidthRateLimitSchedule": "<p> Returns information about the bandwidth rate limit schedule of a gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. This operation is supported only in the volume and tape gateway types. </p> <p>This operation returns information about a gateway's bandwidth rate limit schedule. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both. </p> <p> A bandwidth rate limit interval consists of one or more days of the week, a start hour and minute, an ending hour and minute, and bandwidth rate limits for uploading and downloading </p> <p> If no bandwidth rate limit schedule intervals are set for the gateway, this operation returns an empty response. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DescribeCache": "<p>Returns information about the cache of a gateway. This operation is only supported in the cached volume, tape, and file gateway types.</p> <p>The response includes disk IDs that are configured as cache, and it includes the amount of cache allocated and used.</p>",
     "DescribeCachediSCSIVolumes": "<p>Returns a description of the gateway volumes specified in the request. This operation is only supported in the cached volume gateway types.</p> <p>The list of gateway volumes in the request must be from one gateway. In the response, AWS Storage Gateway returns volume information sorted by volume Amazon Resource Name (ARN).</p>",
     "DescribeChapCredentials": "<p>Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials information for a specified iSCSI target, one for each target-initiator pair. This operation is supported in the volume and tape gateway types.</p>",
+    "DescribeFileSystemAssociations": "<p>Gets the file system association information. This operation is only supported for Amazon FSx file gateways.</p>",
     "DescribeGatewayInformation": "<p>Returns metadata about a gateway such as its name, network interfaces, configured time zone, and the state (whether the gateway is running or not). To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DescribeMaintenanceStartTime": "<p>Returns your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone.</p>",
     "DescribeNFSFileShares": "<p>Gets a description for one or more Network File System (NFS) file shares from a file gateway. This operation is only supported for file gateways.</p>",
@@ -51,9 +53,11 @@
     "DescribeWorkingStorage": "<p>Returns information about the working storage of a gateway. This operation is only supported in the stored volumes gateway type. This operation is deprecated in cached volumes API version (20120630). Use DescribeUploadBuffer instead.</p> <note> <p>Working storage is also referred to as upload buffer. You can also use the DescribeUploadBuffer operation to add upload buffer to a stored volume gateway.</p> </note> <p>The response includes disk IDs that are configured as working storage, and it includes the amount of working storage allocated and used.</p>",
     "DetachVolume": "<p>Disconnects a volume from an iSCSI connection and then detaches the volume from the specified gateway. Detaching and attaching a volume enables you to recover your data from one gateway to a different gateway without creating a snapshot. It also makes it easier to move your volumes from an on-premises gateway to a gateway hosted on an Amazon EC2 instance. This operation is only supported in the volume gateway type.</p>",
     "DisableGateway": "<p>Disables a tape gateway when the gateway is no longer functioning. For example, if your gateway VM is damaged, you can disable the gateway so you can recover virtual tapes.</p> <p>Use this operation for a tape gateway that is not reachable or not functioning. This operation is only supported in the tape gateway type.</p> <important> <p>After a gateway is disabled, it cannot be enabled.</p> </important>",
+    "DisassociateFileSystem": "<p>Disassociates an Amazon FSx file system from the specified gateway. After the disassociation process finishes, the gateway can no longer access the Amazon FSx file system. This operation is only supported in the Amazon FSx file gateway type.</p>",
     "JoinDomain": "<p>Adds a file gateway to an Active Directory domain. This operation is only supported for file gateways that support the SMB file protocol.</p>",
     "ListAutomaticTapeCreationPolicies": "<p>Lists the automatic tape creation policies for a gateway. If there are no automatic tape creation policies for the gateway, it returns an empty list.</p> <p>This operation is only supported for tape gateways.</p>",
     "ListFileShares": "<p>Gets a list of the file shares for a specific file gateway, or the list of file shares that belong to the calling user account. This operation is only supported for file gateways.</p>",
+    "ListFileSystemAssociations": "<p>Gets a list of <code>FileSystemAssociationSummary</code> objects. Each object contains a summary of a file system association. This operation is only supported for Amazon FSx file gateways.</p>",
     "ListGateways": "<p>Lists gateways owned by an AWS account in an AWS Region specified in the request. The returned list is ordered by gateway Amazon Resource Name (ARN).</p> <p>By default, the operation returns a maximum of 100 gateways. This operation supports pagination that allows you to optionally reduce the number of gateways returned in a response.</p> <p>If you have more gateways than are returned in a response (that is, the response returns only a truncated list of your gateways), the response contains a marker that you can specify in your next request to fetch the next page of gateways.</p>",
     "ListLocalDisks": "<p>Returns a list of the gateway's local disks. To specify which gateway to describe, you use the Amazon Resource Name (ARN) of the gateway in the body of the request.</p> <p>The request returns a list of all disks, specifying which are configured as working storage, cache storage, or stored volume or not configured at all. The response includes a <code>DiskStatus</code> field. This field can have a value of present (the disk is available to use), missing (the disk is no longer connected to the gateway), or mismatch (the disk node is occupied by a disk that has incorrect metadata or the disk content is corrupted).</p>",
     "ListTagsForResource": "<p>Lists the tags that have been added to the specified resource. This operation is supported in storage gateways of all types.</p>",
@@ -63,7 +67,7 @@
     "ListVolumeRecoveryPoints": "<p>Lists the recovery points for a specified gateway. This operation is only supported in the cached volume gateway type.</p> <p>Each cache volume has one recovery point. A volume recovery point is a point in time at which all data of the volume is consistent and from which you can create a snapshot or clone a new cached volume from a source volume. To create a snapshot from a volume recovery point use the <a>CreateSnapshotFromVolumeRecoveryPoint</a> operation.</p>",
     "ListVolumes": "<p>Lists the iSCSI stored volumes of a gateway. Results are sorted by volume ARN. The response includes only the volume ARNs. If you want additional volume information, use the <a>DescribeStorediSCSIVolumes</a> or the <a>DescribeCachediSCSIVolumes</a> API.</p> <p>The operation supports pagination. By default, the operation returns a maximum of up to 100 volumes. You can optionally specify the <code>Limit</code> field in the body to limit the number of volumes in the response. If the number of volumes returned in the response is truncated, the response includes a Marker field. You can use this Marker value in your subsequent request to retrieve the next set of volumes. This operation is only supported in the cached volume and stored volume gateway types.</p>",
     "NotifyWhenUploaded": "<p>Sends you notification through CloudWatch Events when all files written to your file share have been uploaded to Amazon S3.</p> <p>AWS Storage Gateway can send a notification through Amazon CloudWatch Events when all files written to your file share up to that point in time have been uploaded to Amazon S3. These files include files written to the file share up to the time that you make a request for notification. When the upload is done, Storage Gateway sends you notification through an Amazon CloudWatch Event. You can configure CloudWatch Events to send the notification through event targets such as Amazon SNS or AWS Lambda function. This operation is only supported for file gateways.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-upload-notification\">Getting file upload notification</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
-    "RefreshCache": "<p>Refreshes the cache for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation is only supported in the file gateway type. You can subscribe to be notified through an Amazon CloudWatch event when your RefreshCache operation completes. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through an CloudWatch event when your <code>RefreshCache</code> operation completes.</p> <p>Throttle limit: This API is asynchronous so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an <code>InvalidGatewayRequestException</code> error because too many requests were sent to the server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
+    "RefreshCache": "<p>Refreshes the cached inventory of objects for the specified file share. This operation finds objects in the Amazon S3 bucket that were added, removed, or replaced since the gateway last listed the bucket's contents and cached the results. This operation does not import files into the file gateway cache storage. It only updates the cached inventory to reflect changes in the inventory of the objects in the S3 bucket. This operation is only supported in the file gateway type. You can subscribe to be notified through an Amazon CloudWatch event when your <code>RefreshCache</code> operation completes. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>When this API is called, it only initiates the refresh operation. When the API call completes and returns a success code, it doesn't necessarily mean that the file refresh has completed. You should use the refresh-complete notification to determine that the operation has completed before you check for new files on the gateway file share. You can subscribe to be notified through a CloudWatch event when your <code>RefreshCache</code> operation completes.</p> <p>Throttle limit: This API is asynchronous, so the gateway will accept no more than two refreshes at any time. We recommend using the refresh-complete CloudWatch event notification before issuing additional requests. For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>If you invoke the RefreshCache API when two requests are already being processed, any new request will cause an <code>InvalidGatewayRequestException</code> error because too many requests were sent to the server.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification\">Getting notified about file operations</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
     "RemoveTagsFromResource": "<p>Removes one or more tags from the specified resource. This operation is supported in storage gateways of all types.</p>",
     "ResetCache": "<p>Resets all cache disks that have encountered an error and makes the disks available for reconfiguration as cache storage. If your cache disk encounters an error, the gateway prevents read and write operations on virtual tapes in the gateway. For example, an error can occur when a disk is corrupted or removed from the gateway. When a cache is reset, the gateway loses its cache storage. At this point, you can reconfigure the disks as cache disks. This operation is only supported in the cached volume and tape types.</p> <important> <p>If the cache disk you are resetting contains data that has not been uploaded to Amazon S3 yet, that data can be lost. After you reset cache disks, there will be no configured cache disks left in the gateway, so you must configure at least one new cache disk for your gateway to function properly.</p> </important>",
     "RetrieveTapeArchive": "<p>Retrieves an archived virtual tape from the virtual tape shelf (VTS) to a tape gateway. Virtual tapes archived in the VTS are not associated with any gateway. However after a tape is retrieved, it is associated with a gateway, even though it is also listed in the VTS, that is, archive. This operation is only supported in the tape gateway type.</p> <p>Once a tape is successfully retrieved to a gateway, it cannot be retrieved again to another gateway. You must archive the tape again before you can retrieve it to another gateway. This operation is only supported in the tape gateway type.</p>",
@@ -77,6 +81,7 @@
     "UpdateBandwidthRateLimit": "<p>Updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains. This operation is supported for the stored volume, cached volume, and tape gateway types.</p> <p>By default, a gateway's bandwidth rate limits are not set. If you don't set any limit, the gateway does not have any limitations on its bandwidth usage and could potentially use the maximum available bandwidth.</p> <p>To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "UpdateBandwidthRateLimitSchedule": "<p> Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This operation is supported in the volume and tape gateway types. </p>",
     "UpdateChapCredentials": "<p>Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target. By default, a gateway does not have CHAP enabled; however, for added security, you might use it. This operation is supported in the volume and tape gateway types.</p> <important> <p>When you update CHAP credentials, all existing connections on the target are closed and initiators must reconnect with the new credentials.</p> </important>",
+    "UpdateFileSystemAssociation": "<p>Updates a file system association. This operation is only supported in the Amazon FSx file gateway type.</p>",
     "UpdateGatewayInformation": "<p>Updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p> <note> <p>For gateways activated after September 2, 2015, the gateway's ARN contains the gateway ID rather than the gateway name. However, changing the name of the gateway has no effect on the gateway's ARN.</p> </note>",
     "UpdateGatewaySoftwareNow": "<p>Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.</p> <note> <p>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete. You can call <a>DescribeGatewayInformation</a> to verify the gateway is in the <code>STATE_RUNNING</code> state.</p> </note> <important> <p>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing your Windows iSCSI settings</a> and <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing your Linux iSCSI settings</a>, respectively.</p> </important>",
     "UpdateMaintenanceStartTime": "<p>Updates a gateway's weekly maintenance start time information, including day and time of the week. The maintenance time is the time in your gateway's time zone.</p>",
@@ -161,6 +166,16 @@
       "refs": {
       }
     },
+    "AssociateFileSystemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateFileSystemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AttachVolumeInput": {
       "base": "<p>AttachVolumeInput</p>",
       "refs": {
@@ -174,9 +189,12 @@
     "AuditDestinationARN": {
       "base": null,
       "refs": {
-        "CreateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
-        "SMBFileShareInfo$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
-        "UpdateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>"
+        "AssociateFileSystemInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
+        "CreateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for audit logs.</p>",
+        "FileSystemAssociationInfo$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
+        "SMBFileShareInfo$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for audit logs.</p>",
+        "UpdateFileSystemAssociationInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for the audit logs.</p>",
+        "UpdateSMBFileShareInput$AuditDestinationARN": "<p>The Amazon Resource Name (ARN) of the storage used for audit logs.</p>"
       }
     },
     "Authentication": {
@@ -214,7 +232,7 @@
     "AvailabilityMonitorTestStatus": {
       "base": null,
       "refs": {
-        "DescribeAvailabilityMonitorTestOutput$Status": "<p>The status of the High Availability monitoring test. If a test hasn't been performed, the value of this field is null.</p>"
+        "DescribeAvailabilityMonitorTestOutput$Status": "<p>The status of the high availability monitoring test. If a test hasn't been performed, the value of this field is null.</p>"
       }
     },
     "BandwidthDownloadRateLimit": {
@@ -295,20 +313,23 @@
       }
     },
     "CacheAttributes": {
-      "base": "<p>Lists refresh cache information.</p>",
+      "base": "<p>The refresh cache information for the file share.</p>",
       "refs": {
-        "CreateNFSFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
-        "CreateSMBFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
-        "NFSFileShareInfo$CacheAttributes": "<p>Refresh cache information.</p>",
-        "SMBFileShareInfo$CacheAttributes": "<p>Refresh cache information.</p>",
-        "UpdateNFSFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>",
-        "UpdateSMBFileShareInput$CacheAttributes": "<p>Refresh cache information.</p>"
+        "AssociateFileSystemInput$CacheAttributes": null,
+        "CreateNFSFileShareInput$CacheAttributes": "<p>Specifies refresh cache information for the file share.</p>",
+        "CreateSMBFileShareInput$CacheAttributes": "<p>Specifies refresh cache information for the file share.</p>",
+        "FileSystemAssociationInfo$CacheAttributes": null,
+        "NFSFileShareInfo$CacheAttributes": "<p>Refresh cache information for the file share.</p>",
+        "SMBFileShareInfo$CacheAttributes": "<p>Refresh cache information for the file share.</p>",
+        "UpdateFileSystemAssociationInput$CacheAttributes": null,
+        "UpdateNFSFileShareInput$CacheAttributes": "<p>specifies refresh cache information for the file share.</p>",
+        "UpdateSMBFileShareInput$CacheAttributes": "<p>Specifies refresh cache information for the file share.</p>"
       }
     },
     "CacheStaleTimeoutInSeconds": {
       "base": null,
       "refs": {
-        "CacheAttributes$CacheStaleTimeoutInSeconds": "<p>Refreshes a file share's cache by using Time To Live (TTL). TTL is the length of time since the last refresh after which access to the directory would cause the file gateway to first refresh that directory's contents from the Amazon S3 bucket. The TTL duration is in seconds.</p> <p>Valid Values: 300 to 2,592,000 seconds (5 minutes to 30 days)</p>"
+        "CacheAttributes$CacheStaleTimeoutInSeconds": "<p>Refreshes a file share's cache by using Time To Live (TTL). TTL is the length of time since the last refresh after which access to the directory would cause the file gateway to first refresh that directory's contents from the Amazon S3 bucket or Amazon FSx file system. The TTL duration is in seconds.</p> <p>Valid Values: 300 to 2,592,000 seconds (5 minutes to 30 days)</p>"
       }
     },
     "CachediSCSIVolume": {
@@ -375,6 +396,7 @@
     "ClientToken": {
       "base": null,
       "refs": {
+        "AssociateFileSystemInput$ClientToken": "<p>A unique string value that you supply that is used by the file gateway to ensure idempotent file system association creation.</p>",
         "CreateCachediSCSIVolumeInput$ClientToken": "<p>A unique identifier that you use to retry a request. If you retry a request, use the same <code>ClientToken</code> you specified in the initial request.</p>",
         "CreateNFSFileShareInput$ClientToken": "<p>A unique string value that you supply that is used by file gateway to ensure idempotent file share creation.</p>",
         "CreateSMBFileShareInput$ClientToken": "<p>A unique string value that you supply that is used by file gateway to ensure idempotent file share creation.</p>",
@@ -503,7 +525,7 @@
     "DaysOfWeek": {
       "base": null,
       "refs": {
-        "BandwidthRateLimitInterval$DaysOfWeek": "<p> The days of the week component of the bandwidth rate limit interval, represented as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 Saturday. </p>"
+        "BandwidthRateLimitInterval$DaysOfWeek": "<p> The days of the week component of the bandwidth rate limit interval, represented as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 represents Saturday. </p>"
       }
     },
     "DeleteAutomaticTapeCreationPolicyInput": {
@@ -669,6 +691,16 @@
     },
     "DescribeChapCredentialsOutput": {
       "base": "<p>A JSON object containing the following fields:</p>",
+      "refs": {
+      }
+    },
+    "DescribeFileSystemAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFileSystemAssociationsOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -841,6 +873,16 @@
       "refs": {
       }
     },
+    "DisassociateFileSystemInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateFileSystemOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Disk": {
       "base": "<p>Represents a gateway's local disk.</p>",
       "refs": {
@@ -902,13 +944,17 @@
     "DomainUserName": {
       "base": null,
       "refs": {
-        "JoinDomainInput$UserName": "<p>Sets the user name of user who has permission to add the gateway to the Active Directory domain. The domain user account should be enabled to join computers to the domain. For example, you can use the domain administrator account or an account with delegated permissions to join computers to the domain.</p>"
+        "AssociateFileSystemInput$UserName": "<p>The user name of the user credential that has permission to access the root share D$ of the Amazon FSx file system. The user account must belong to the Amazon FSx delegated admin user group.</p>",
+        "JoinDomainInput$UserName": "<p>Sets the user name of user who has permission to add the gateway to the Active Directory domain. The domain user account should be enabled to join computers to the domain. For example, you can use the domain administrator account or an account with delegated permissions to join computers to the domain.</p>",
+        "UpdateFileSystemAssociationInput$UserName": "<p>The user name of the user credential that has permission to access the root share D$ of the Amazon FSx file system. The user account must belong to the Amazon FSx delegated admin user group.</p>"
       }
     },
     "DomainUserPassword": {
       "base": null,
       "refs": {
-        "JoinDomainInput$Password": "<p>Sets the password of the user who has permission to add the gateway to the Active Directory domain.</p>"
+        "AssociateFileSystemInput$Password": "<p>The password of the user credential.</p>",
+        "JoinDomainInput$Password": "<p>Sets the password of the user who has permission to add the gateway to the Active Directory domain.</p>",
+        "UpdateFileSystemAssociationInput$Password": "<p>The password of the user credential.</p>"
       }
     },
     "DoubleObject": {
@@ -1026,24 +1072,67 @@
         "FileShareInfo$FileShareType": null
       }
     },
-    "FileShareUser": {
+    "FileSystemAssociationARN": {
       "base": null,
       "refs": {
-        "FileShareUserList$member": null
+        "AssociateFileSystemOutput$FileSystemAssociationARN": "<p>The ARN of the newly created file system association.</p>",
+        "DisassociateFileSystemInput$FileSystemAssociationARN": "<p>The Amazon Resource Name (ARN) of the file system association to be deleted.</p>",
+        "DisassociateFileSystemOutput$FileSystemAssociationARN": "<p>The Amazon Resource Name (ARN) of the deleted file system association.</p>",
+        "FileSystemAssociationARNList$member": null,
+        "FileSystemAssociationInfo$FileSystemAssociationARN": "<p>The Amazon Resource Name (ARN) of the file system association.</p>",
+        "FileSystemAssociationSummary$FileSystemAssociationARN": "<p>The Amazon Resource Name (ARN) of the file system association.</p>",
+        "UpdateFileSystemAssociationInput$FileSystemAssociationARN": "<p>The Amazon Resource Name (ARN) of the file system association that you want to update.</p>",
+        "UpdateFileSystemAssociationOutput$FileSystemAssociationARN": "<p>The ARN of the updated file system association.</p>"
       }
     },
-    "FileShareUserList": {
+    "FileSystemAssociationARNList": {
       "base": null,
       "refs": {
-        "CreateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that will be granted administrator privileges on the file share. These users can do all file operations as the super-user. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>.</p> <important> <p>Use this option very carefully, because any user in this list can do anything they like on the file share, regardless of file permissions.</p> </important>",
-        "CreateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file <a href=\"\"/> share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "CreateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "SMBFileShareInfo$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
-        "UpdateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>"
+        "DescribeFileSystemAssociationsInput$FileSystemAssociationARNList": "<p>An array containing the Amazon Resource Name (ARN) of each file system association to be described.</p>"
+      }
+    },
+    "FileSystemAssociationId": {
+      "base": null,
+      "refs": {
+        "FileSystemAssociationSummary$FileSystemAssociationId": "<p>The ID of the file system association.</p>"
+      }
+    },
+    "FileSystemAssociationInfo": {
+      "base": "<p>Describes the object returned by <code>DescribeFileSystemAssociations</code> that describes a created file system association.</p>",
+      "refs": {
+        "FileSystemAssociationInfoList$member": null
+      }
+    },
+    "FileSystemAssociationInfoList": {
+      "base": null,
+      "refs": {
+        "DescribeFileSystemAssociationsOutput$FileSystemAssociationInfoList": "<p>An array containing the <code>FileSystemAssociationInfo</code> data type of each file system association to be described. </p>"
+      }
+    },
+    "FileSystemAssociationStatus": {
+      "base": null,
+      "refs": {
+        "FileSystemAssociationInfo$FileSystemAssociationStatus": "<p>The status of the file system association. Valid Values: <code>AVAILABLE</code> | <code>CREATING</code> | <code>DELETING</code> | <code>FORCE_DELETING</code> | <code>MISCONFIGURED</code> | <code>UPDATING</code> | <code>UNAVAILABLE</code> </p>",
+        "FileSystemAssociationSummary$FileSystemAssociationStatus": "<p>The status of the file share. Valid Values: <code>AVAILABLE</code> | <code>CREATING</code> | <code>DELETING</code> | <code>FORCE_DELETING</code> | <code>MISCONFIGURED</code> | <code>UPDATING</code> | <code>UNAVAILABLE</code> </p>"
+      }
+    },
+    "FileSystemAssociationSummary": {
+      "base": "<p>Gets the summary returned by <code>ListFileSystemAssociation</code>, which is a summary of a created file system association.</p>",
+      "refs": {
+        "FileSystemAssociationSummaryList$member": null
+      }
+    },
+    "FileSystemAssociationSummaryList": {
+      "base": null,
+      "refs": {
+        "ListFileSystemAssociationsOutput$FileSystemAssociationSummaryList": "<p>An array of information about the Amazon FSx gateway's file system associations.</p>"
+      }
+    },
+    "FileSystemLocationARN": {
+      "base": null,
+      "refs": {
+        "AssociateFileSystemInput$LocationARN": "<p>The Amazon Resource Name (ARN) of the Amazon FSx file system to associate with the Amazon FSx file gateway.</p>",
+        "FileSystemAssociationInfo$LocationARN": "<p>The ARN of the backend Amazon FSx file system used for storing file data. For information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/APIReference/API_FileSystem.html\">FileSystem</a> in the <i>Amazon FSx API Reference</i>.</p>"
       }
     },
     "Folder": {
@@ -1068,6 +1157,7 @@
         "AddUploadBufferOutput$GatewayARN": null,
         "AddWorkingStorageInput$GatewayARN": null,
         "AddWorkingStorageOutput$GatewayARN": null,
+        "AssociateFileSystemInput$GatewayARN": null,
         "AttachVolumeInput$GatewayARN": "<p>The Amazon Resource Name (ARN) of the gateway that you want to attach the volume to.</p>",
         "AutomaticTapeCreationPolicyInfo$GatewayARN": null,
         "CancelArchivalInput$GatewayARN": null,
@@ -1111,11 +1201,14 @@
         "DisableGatewayInput$GatewayARN": null,
         "DisableGatewayOutput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) of the disabled gateway.</p>",
         "FileShareInfo$GatewayARN": null,
+        "FileSystemAssociationInfo$GatewayARN": null,
+        "FileSystemAssociationSummary$GatewayARN": null,
         "GatewayInfo$GatewayARN": "<p>The Amazon Resource Name (ARN) of the gateway. Use the <a>ListGateways</a> operation to return a list of gateways for your account and AWS Region.</p>",
         "JoinDomainInput$GatewayARN": "<p>The Amazon Resource Name (ARN) of the gateway. Use the <code>ListGateways</code> operation to return a list of gateways for your account and AWS Region.</p>",
         "JoinDomainOutput$GatewayARN": "<p>The unique Amazon Resource Name (ARN) of the gateway that joined the domain.</p>",
         "ListAutomaticTapeCreationPoliciesInput$GatewayARN": null,
         "ListFileSharesInput$GatewayARN": "<p>The Amazon Resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.</p>",
+        "ListFileSystemAssociationsInput$GatewayARN": null,
         "ListLocalDisksInput$GatewayARN": null,
         "ListLocalDisksOutput$GatewayARN": null,
         "ListVolumeRecoveryPointsInput$GatewayARN": null,
@@ -1344,6 +1437,16 @@
       "refs": {
       }
     },
+    "ListFileSystemAssociationsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFileSystemAssociationsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListGatewaysInput": {
       "base": "<p>A JSON object containing zero or more of the following fields:</p> <ul> <li> <p> <a>ListGatewaysInput$Limit</a> </p> </li> <li> <p> <a>ListGatewaysInput$Marker</a> </p> </li> </ul>",
       "refs": {
@@ -1447,12 +1550,15 @@
         "DescribeTapeRecoveryPointsInput$Marker": "<p>An opaque string that indicates the position at which to begin describing the virtual tape recovery points.</p>",
         "DescribeTapeRecoveryPointsOutput$Marker": "<p>An opaque string that indicates the position at which the virtual tape recovery points that were listed for description ended.</p> <p>Use this marker in your next request to list the next set of virtual tape recovery points in the list. If there are no more recovery points to describe, this field does not appear in the response.</p>",
         "DescribeTapesInput$Marker": "<p>A marker value, obtained in a previous call to <code>DescribeTapes</code>. This marker indicates which page of results to retrieve.</p> <p>If not specified, the first page of results is retrieved.</p>",
-        "DescribeTapesOutput$Marker": "<p>An opaque string which can be used as part of a subsequent DescribeTapes call to retrieve the next page of results.</p> <p>If a response does not contain a marker, then there are no more results to be retrieved.</p>",
+        "DescribeTapesOutput$Marker": "<p>An opaque string that can be used as part of a subsequent <code>DescribeTapes</code> call to retrieve the next page of results.</p> <p>If a response does not contain a marker, then there are no more results to be retrieved.</p>",
         "DescribeVTLDevicesInput$Marker": "<p>An opaque string that indicates the position at which to begin describing the VTL devices.</p>",
         "DescribeVTLDevicesOutput$Marker": "<p>An opaque string that indicates the position at which the VTL devices that were fetched for description ended. Use the marker in your next request to fetch the next set of VTL devices in the list. If there are no more VTL devices to describe, this field does not appear in the response.</p>",
         "ListFileSharesInput$Marker": "<p>Opaque pagination token returned from a previous ListFileShares operation. If present, <code>Marker</code> specifies where to continue the list from after a previous call to ListFileShares. Optional.</p>",
         "ListFileSharesOutput$Marker": "<p>If the request includes <code>Marker</code>, the response returns that value in this field.</p>",
         "ListFileSharesOutput$NextMarker": "<p>If a value is present, there are more file shares to return. In a subsequent request, use <code>NextMarker</code> as the value for <code>Marker</code> to retrieve the next set of file shares.</p>",
+        "ListFileSystemAssociationsInput$Marker": "<p>Opaque pagination token returned from a previous <code>ListFileSystemAssociations</code> operation. If present, <code>Marker</code> specifies where to continue the list from after a previous call to <code>ListFileSystemAssociations</code>. Optional.</p>",
+        "ListFileSystemAssociationsOutput$Marker": "<p>If the request includes <code>Marker</code>, the response returns that value in this field.</p>",
+        "ListFileSystemAssociationsOutput$NextMarker": "<p>If a value is present, there are more file system associations to return. In a subsequent request, use <code>NextMarker</code> as the value for <code>Marker</code> to retrieve the next set of file system associations.</p>",
         "ListGatewaysInput$Marker": "<p>An opaque string that indicates the position at which to begin the returned list of gateways.</p>",
         "ListGatewaysOutput$Marker": "<p>Use the marker in your next request to fetch the next set of gateways in the list. If there are no more gateways to list, this field does not appear in the response.</p>",
         "ListTagsForResourceInput$Marker": "<p>An opaque string that indicates the position at which to begin returning the list of tags.</p>",
@@ -1538,12 +1644,12 @@
     "NotificationPolicy": {
       "base": null,
       "refs": {
-        "CreateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
-        "CreateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
-        "NFSFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share.</p>",
-        "SMBFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share.</p>",
-        "UpdateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
-        "UpdateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>"
+        "CreateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>",
+        "CreateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>",
+        "NFSFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>",
+        "SMBFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>",
+        "UpdateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>",
+        "UpdateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share. <code>SettlingTimeInSeconds</code> controls the number of seconds to wait after the last point in time a client wrote to a file before generating an <code>ObjectUploaded</code> notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.</p> <note> <p> <code>SettlingTimeInSeconds</code> has no effect on the timing of the object uploading to Amazon S3, only the timing of the notification.</p> </note> <p>The following example sets <code>NotificationPolicy</code> on with <code>SettlingTimeInSeconds</code> set to 60.</p> <p> <code>{\\\"Upload\\\": {\\\"SettlingTimeInSeconds\\\": 60}}</code> </p> <p>The following example sets <code>NotificationPolicy</code> off.</p> <p> <code>{}</code> </p>"
       }
     },
     "NotifyWhenUploadedInput": {
@@ -1661,6 +1767,7 @@
         "DescribeTapesInput$Limit": "<p>Specifies that the number of virtual tapes described be limited to the specified number.</p> <note> <p>Amazon Web Services may impose its own limit, if this field is not set.</p> </note>",
         "DescribeVTLDevicesInput$Limit": "<p>Specifies that the number of VTL devices described be limited to the specified number.</p>",
         "ListFileSharesInput$Limit": "<p>The maximum number of file shares to return in the response. The value must be an integer with a value greater than zero. Optional.</p>",
+        "ListFileSystemAssociationsInput$Limit": "<p>The maximum number of file system associations to return in the response. If present, <code>Limit</code> must be an integer with a value greater than zero. Optional.</p>",
         "ListGatewaysInput$Limit": "<p>Specifies that the list of gateways returned be limited to the specified number of items.</p>",
         "ListTagsForResourceInput$Limit": "<p>Specifies that the list of tags returned be limited to the specified number of items.</p>",
         "ListTapePoolsInput$Limit": "<p>An optional number limit for the tape pools in the list returned by this call.</p>",
@@ -1840,7 +1947,7 @@
         "CreateCachediSCSIVolumeInput$SnapshotId": "<p>The snapshot ID (e.g. \"snap-1122aabb\") of the snapshot to restore as the new cached volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p>",
         "CreateSnapshotFromVolumeRecoveryPointOutput$SnapshotId": "<p>The ID of the snapshot.</p>",
         "CreateSnapshotOutput$SnapshotId": "<p>The snapshot ID that is used to refer to the snapshot in future operations such as describing snapshots (Amazon Elastic Compute Cloud API <code>DescribeSnapshots</code>) or creating a volume from a snapshot (<a>CreateStorediSCSIVolume</a>).</p>",
-        "CreateStorediSCSIVolumeInput$SnapshotId": "<p>The snapshot ID (e.g. \"snap-1122aabb\") of the snapshot to restore as the new stored volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p>",
+        "CreateStorediSCSIVolumeInput$SnapshotId": "<p>The snapshot ID (e.g., \"snap-1122aabb\") of the snapshot to restore as the new stored volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p>",
         "StorediSCSIVolume$SourceSnapshotId": "<p>If the stored volume was created from a snapshot, this field contains the snapshot ID used, e.g. snap-78e22663. Otherwise, this field is not included.</p>"
       }
     },
@@ -1939,6 +2046,7 @@
       "refs": {
         "ActivateGatewayInput$Tags": "<p>A list of up to 50 tags that you can assign to the gateway. Each tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers that can be represented in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256 characters.</p> </note>",
         "AddTagsToResourceInput$Tags": "<p>The key-value pair that represents the tag you want to add to the resource. The value can be an empty string.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
+        "AssociateFileSystemInput$Tags": "<p>A list of up to 50 tags that can be assigned to the file system association. Each tag is a key-value pair.</p>",
         "CreateCachediSCSIVolumeInput$Tags": "<p>A list of up to 50 tags that you can assign to a cached volume. Each tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers that you can represent in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256 characters.</p> </note>",
         "CreateNFSFileShareInput$Tags": "<p>A list of up to 50 tags that can be assigned to the NFS file share. Each tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
         "CreateSMBFileShareInput$Tags": "<p>A list of up to 50 tags that can be assigned to the NFS file share. Each tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
@@ -1950,6 +2058,7 @@
         "CreateTapesInput$Tags": "<p>A list of up to 50 tags that can be assigned to a virtual tape. Each tag is a key-value pair.</p> <note> <p>Valid characters for key and value are letters, spaces, and numbers representable in UTF-8 format, and the following special characters: + - = . _ : / @. The maximum length of a tag's key is 128 characters, and the maximum length for a tag's value is 256.</p> </note>",
         "DescribeGatewayInformationOutput$Tags": "<p>A list of up to 50 tags assigned to the gateway, sorted alphabetically by key name. Each tag is a key-value pair. For a gateway with more than 10 tags assigned, you can view all tags using the <code>ListTagsForResource</code> API operation.</p>",
         "DescribeSnapshotScheduleOutput$Tags": "<p>A list of up to 50 tags assigned to the snapshot schedule, sorted alphabetically by key name. Each tag is a key-value pair. For a gateway with more than 10 tags assigned, you can view all tags using the <code>ListTagsForResource</code> API operation.</p>",
+        "FileSystemAssociationInfo$Tags": "<p>A list of up to 50 tags assigned to the SMB file share, sorted alphabetically by key name. Each tag is a key-value pair.</p>",
         "ListTagsForResourceOutput$Tags": "<p>An array that contains the tags for the specified resource.</p>",
         "NFSFileShareInfo$Tags": "<p>A list of up to 50 tags assigned to the NFS file share, sorted alphabetically by key name. Each tag is a key-value pair. For a gateway with more than 10 tags assigned, you can view all tags using the <code>ListTagsForResource</code> API operation.</p>",
         "SMBFileShareInfo$Tags": "<p>A list of up to 50 tags assigned to the SMB file share, sorted alphabetically by key name. Each tag is a key-value pair. For a gateway with more than 10 tags assigned, you can view all tags using the <code>ListTagsForResource</code> API operation.</p>",
@@ -2027,7 +2136,7 @@
       "base": null,
       "refs": {
         "AutomaticTapeCreationRule$TapeBarcodePrefix": "<p>A prefix that you append to the barcode of the virtual tape that you are creating. This prefix makes the barcode unique.</p> <note> <p>The prefix must be 1-4 characters in length and must be one of the uppercase letters from A to Z.</p> </note>",
-        "CreateTapesInput$TapeBarcodePrefix": "<p>A prefix that you append to the barcode of the virtual tape you are creating. This prefix makes the barcode unique.</p> <note> <p>The prefix must be 1 to 4 characters in length and must be one of the uppercase letters from A to Z.</p> </note>"
+        "CreateTapesInput$TapeBarcodePrefix": "<p>A prefix that you append to the barcode of the virtual tape you are creating. This prefix makes the barcode unique.</p> <note> <p>The prefix must be 1-4 characters in length and must be one of the uppercase letters from A to Z.</p> </note>"
       }
     },
     "TapeDriveType": {
@@ -2134,7 +2243,7 @@
     "Time": {
       "base": null,
       "refs": {
-        "DescribeAvailabilityMonitorTestOutput$StartTime": "<p>The time the High Availability monitoring test was started. If a test hasn't been performed, the value of this field is null.</p>",
+        "DescribeAvailabilityMonitorTestOutput$StartTime": "<p>The time the high availability monitoring test was started. If a test hasn't been performed, the value of this field is null.</p>",
         "Tape$TapeCreatedDate": "<p>The date the virtual tape was created.</p>",
         "Tape$RetentionStartDate": "<p>The date that the tape is first archived with tape retention lock enabled.</p>",
         "Tape$PoolEntryDate": "<p>The date that the tape enters a custom tape pool.</p>",
@@ -2190,6 +2299,16 @@
     },
     "UpdateChapCredentialsOutput": {
       "base": "<p>A JSON object containing the following fields:</p>",
+      "refs": {
+      }
+    },
+    "UpdateFileSystemAssociationInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFileSystemAssociationOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -2281,6 +2400,26 @@
     "UpdateVTLDeviceTypeOutput": {
       "base": "<p>UpdateVTLDeviceTypeOutput</p>",
       "refs": {
+      }
+    },
+    "UserList": {
+      "base": null,
+      "refs": {
+        "CreateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that will be granted administrator privileges on the file share. These users can do all file operations as the super-user. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>.</p> <important> <p>Use this option very carefully, because any user in this list can do anything they like on the file share, regardless of file permissions.</p> </important>",
+        "CreateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file <a href=\"\"/> share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "CreateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "SMBFileShareInfo$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$AdminUserList": "<p>A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$ValidUserList": "<p>A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>",
+        "UpdateSMBFileShareInput$InvalidUserList": "<p>A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: <code>DOMAIN\\User1</code>, <code>user1</code>, <code>@group1</code>, and <code>@DOMAIN\\group1</code>. Can only be set if Authentication is set to <code>ActiveDirectory</code>.</p>"
+      }
+    },
+    "UserListUser": {
+      "base": null,
+      "refs": {
+        "UserList$member": null
       }
     },
     "VTLDevice": {
@@ -2440,13 +2579,14 @@
       "refs": {
         "AssignTapePoolInput$BypassGovernanceRetention": "<p>Set permissions to bypass governance retention. If the lock type of the archived tape is <code>Governance</code>, the tape's archived age is not older than <code>RetentionLockInDays</code>, and the user does not already have <code>BypassGovernanceRetention</code>, setting this to TRUE enables the user to bypass the retention lock. This parameter is set to true by default for calls from the console.</p> <p>Valid values: <code>TRUE</code> | <code>FALSE</code> </p>",
         "AutomaticTapeCreationRule$Worm": "<p>Set to <code>true</code> to indicate that tapes are to be archived as write-once-read-many (WORM). Set to <code>false</code> when WORM is not enabled for tapes.</p>",
-        "CreateStorediSCSIVolumeInput$PreserveExistingData": "<p>Set to true <code>true</code> if you want to preserve the data on the local disk. Otherwise, set to <code>false</code> to create an empty volume.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
+        "CreateStorediSCSIVolumeInput$PreserveExistingData": "<p>Set to <code>true</code> if you want to preserve the data on the local disk. Otherwise, set to <code>false</code> to create an empty volume.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "CreateTapeWithBarcodeInput$Worm": "<p>Set to <code>TRUE</code> if the tape you are creating is to be configured as a write-once-read-many (WORM) tape.</p>",
         "CreateTapesInput$Worm": "<p>Set to <code>TRUE</code> if the tape you are creating is to be configured as a write-once-read-many (WORM) tape.</p>",
         "DeleteFileShareInput$ForceDelete": "<p>If this value is set to <code>true</code>, the operation deletes a file share immediately and aborts all data uploads to AWS. Otherwise, the file share is not deleted until all data is uploaded to AWS. This process aborts the data upload process, and the file share enters the <code>FORCE_DELETING</code> status.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "DeleteTapeArchiveInput$BypassGovernanceRetention": "<p>Set to <code>TRUE</code> to delete an archived tape that belongs to a custom pool with tape retention lock. Only archived tapes with tape retention lock set to <code>governance</code> can be deleted. Archived tapes with tape retention lock set to <code>compliance</code> can't be deleted.</p>",
         "DeleteTapeInput$BypassGovernanceRetention": "<p>Set to <code>TRUE</code> to delete an archived tape that belongs to a custom pool with tape retention lock. Only archived tapes with tape retention lock set to <code>governance</code> can be deleted. Archived tapes with tape retention lock set to <code>compliance</code> can't be deleted.</p>",
         "DeviceiSCSIAttributes$ChapEnabled": "<p>Indicates whether mutual CHAP is enabled for the iSCSI target.</p>",
+        "DisassociateFileSystemInput$ForceDelete": "<p>If this value is set to true, the operation disassociates an Amazon FSx file system immediately. It ends all data uploads to the file system, and the file system association enters the <code>FORCE_DELETING</code> status. If this value is set to false, the Amazon FSx file system does not disassociate until all data is uploaded.</p>",
         "NFSFileShareInfo$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "SMBFileShareInfo$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "StorediSCSIVolume$PreservedExistingData": "<p>Indicates if when the stored volume was created, existing data on the underlying local disk was preserved.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",

@@ -1,3 +1,15 @@
+Release v1.38.15 (2021-04-07)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API, documentation, and paginators
+* `service/elasticache`: Updates service API and documentation
+  * This release adds tagging support for all AWS ElastiCache resources except Global Replication Groups.
+* `service/ivs`: Updates service API, documentation, and paginators
+* `service/mgn`: Updates service API, documentation, paginators, and examples
+* `service/storagegateway`: Updates service API, documentation, and paginators
+  * File Gateway APIs now support FSx for Windows as a cloud storage.
+
 Release v1.38.14 (2021-04-06)
 ===
 

@@ -337,7 +337,7 @@ func (c *StorageGateway) AddUploadBufferRequest(input *AddUploadBufferInput) (re
 // AddUploadBuffer API operation for AWS Storage Gateway.
 //
 // Configures one or more gateway local disks as upload buffer for a specified
-// gateway. This operation is supported for the stored volume, cached volume
+// gateway. This operation is supported for the stored volume, cached volume,
 // and tape gateway types.
 //
 // In the request, you specify the gateway Amazon Resource Name (ARN) to which
@@ -561,6 +561,93 @@ func (c *StorageGateway) AssignTapePool(input *AssignTapePoolInput) (*AssignTape
 // for more information on using Contexts.
 func (c *StorageGateway) AssignTapePoolWithContext(ctx aws.Context, input *AssignTapePoolInput, opts ...request.Option) (*AssignTapePoolOutput, error) {
 	req, out := c.AssignTapePoolRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAssociateFileSystem = "AssociateFileSystem"
+
+// AssociateFileSystemRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateFileSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateFileSystem for more information on using the AssociateFileSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateFileSystemRequest method.
+//    req, resp := client.AssociateFileSystemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AssociateFileSystem
+func (c *StorageGateway) AssociateFileSystemRequest(input *AssociateFileSystemInput) (req *request.Request, output *AssociateFileSystemOutput) {
+	op := &request.Operation{
+		Name:       opAssociateFileSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateFileSystemInput{}
+	}
+
+	output = &AssociateFileSystemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateFileSystem API operation for AWS Storage Gateway.
+//
+// Associate an Amazon FSx file system with the Amazon FSx file gateway. After
+// the association process is complete, the file shares on the Amazon FSx file
+// system are available for access through the gateway. This operation only
+// supports the Amazon FSx file gateway type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation AssociateFileSystem for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/AssociateFileSystem
+func (c *StorageGateway) AssociateFileSystem(input *AssociateFileSystemInput) (*AssociateFileSystemOutput, error) {
+	req, out := c.AssociateFileSystemRequest(input)
+	return out, req.Send()
+}
+
+// AssociateFileSystemWithContext is the same as AssociateFileSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateFileSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) AssociateFileSystemWithContext(ctx aws.Context, input *AssociateFileSystemInput, opts ...request.Option) (*AssociateFileSystemOutput, error) {
+	req, out := c.AssociateFileSystemRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1166,8 +1253,8 @@ func (c *StorageGateway) CreateSnapshotRequest(input *CreateSnapshotInput) (req 
 //
 // AWS Storage Gateway provides the ability to back up point-in-time snapshots
 // of your data to Amazon Simple Storage (Amazon S3) for durable off-site recovery,
-// as well as import the data to an Amazon Elastic Block Store (EBS) volume
-// in Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway
+// and also import the data to an Amazon Elastic Block Store (EBS) volume in
+// Amazon Elastic Compute Cloud (EC2). You can take snapshots of your gateway
 // volume on a scheduled or ad hoc basis. This API enables you to take an ad
 // hoc snapshot. For more information, see Editing a snapshot schedule (https://docs.aws.amazon.com/storagegateway/latest/userguide/managing-volumes.html#SchedulingSnapshot).
 //
@@ -2635,7 +2722,7 @@ func (c *StorageGateway) DescribeAvailabilityMonitorTestRequest(input *DescribeA
 
 // DescribeAvailabilityMonitorTest API operation for AWS Storage Gateway.
 //
-// Returns information about the most recent High Availability monitoring test
+// Returns information about the most recent high availability monitoring test
 // that was performed on the host in a cluster. If a test isn't performed, the
 // status and start time in the response would be null.
 //
@@ -3127,6 +3214,91 @@ func (c *StorageGateway) DescribeChapCredentials(input *DescribeChapCredentialsI
 // for more information on using Contexts.
 func (c *StorageGateway) DescribeChapCredentialsWithContext(ctx aws.Context, input *DescribeChapCredentialsInput, opts ...request.Option) (*DescribeChapCredentialsOutput, error) {
 	req, out := c.DescribeChapCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFileSystemAssociations = "DescribeFileSystemAssociations"
+
+// DescribeFileSystemAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFileSystemAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFileSystemAssociations for more information on using the DescribeFileSystemAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFileSystemAssociationsRequest method.
+//    req, resp := client.DescribeFileSystemAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeFileSystemAssociations
+func (c *StorageGateway) DescribeFileSystemAssociationsRequest(input *DescribeFileSystemAssociationsInput) (req *request.Request, output *DescribeFileSystemAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFileSystemAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeFileSystemAssociationsInput{}
+	}
+
+	output = &DescribeFileSystemAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFileSystemAssociations API operation for AWS Storage Gateway.
+//
+// Gets the file system association information. This operation is only supported
+// for Amazon FSx file gateways.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DescribeFileSystemAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DescribeFileSystemAssociations
+func (c *StorageGateway) DescribeFileSystemAssociations(input *DescribeFileSystemAssociationsInput) (*DescribeFileSystemAssociationsOutput, error) {
+	req, out := c.DescribeFileSystemAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFileSystemAssociationsWithContext is the same as DescribeFileSystemAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFileSystemAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DescribeFileSystemAssociationsWithContext(ctx aws.Context, input *DescribeFileSystemAssociationsInput, opts ...request.Option) (*DescribeFileSystemAssociationsOutput, error) {
+	req, out := c.DescribeFileSystemAssociationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4677,6 +4849,93 @@ func (c *StorageGateway) DisableGatewayWithContext(ctx aws.Context, input *Disab
 	return out, req.Send()
 }
 
+const opDisassociateFileSystem = "DisassociateFileSystem"
+
+// DisassociateFileSystemRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFileSystem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFileSystem for more information on using the DisassociateFileSystem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateFileSystemRequest method.
+//    req, resp := client.DisassociateFileSystemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DisassociateFileSystem
+func (c *StorageGateway) DisassociateFileSystemRequest(input *DisassociateFileSystemInput) (req *request.Request, output *DisassociateFileSystemOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFileSystem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateFileSystemInput{}
+	}
+
+	output = &DisassociateFileSystemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateFileSystem API operation for AWS Storage Gateway.
+//
+// Disassociates an Amazon FSx file system from the specified gateway. After
+// the disassociation process finishes, the gateway can no longer access the
+// Amazon FSx file system. This operation is only supported in the Amazon FSx
+// file gateway type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation DisassociateFileSystem for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/DisassociateFileSystem
+func (c *StorageGateway) DisassociateFileSystem(input *DisassociateFileSystemInput) (*DisassociateFileSystemOutput, error) {
+	req, out := c.DisassociateFileSystemRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFileSystemWithContext is the same as DisassociateFileSystem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFileSystem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) DisassociateFileSystemWithContext(ctx aws.Context, input *DisassociateFileSystemInput, opts ...request.Option) (*DisassociateFileSystemOutput, error) {
+	req, out := c.DisassociateFileSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opJoinDomain = "JoinDomain"
 
 // JoinDomainRequest generates a "aws/request.Request" representing the
@@ -4986,6 +5245,150 @@ func (c *StorageGateway) ListFileSharesPagesWithContext(ctx aws.Context, input *
 
 	for p.Next() {
 		if !fn(p.Page().(*ListFileSharesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFileSystemAssociations = "ListFileSystemAssociations"
+
+// ListFileSystemAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFileSystemAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFileSystemAssociations for more information on using the ListFileSystemAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFileSystemAssociationsRequest method.
+//    req, resp := client.ListFileSystemAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListFileSystemAssociations
+func (c *StorageGateway) ListFileSystemAssociationsRequest(input *ListFileSystemAssociationsInput) (req *request.Request, output *ListFileSystemAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListFileSystemAssociations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"NextMarker"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFileSystemAssociationsInput{}
+	}
+
+	output = &ListFileSystemAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFileSystemAssociations API operation for AWS Storage Gateway.
+//
+// Gets a list of FileSystemAssociationSummary objects. Each object contains
+// a summary of a file system association. This operation is only supported
+// for Amazon FSx file gateways.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation ListFileSystemAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/ListFileSystemAssociations
+func (c *StorageGateway) ListFileSystemAssociations(input *ListFileSystemAssociationsInput) (*ListFileSystemAssociationsOutput, error) {
+	req, out := c.ListFileSystemAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListFileSystemAssociationsWithContext is the same as ListFileSystemAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFileSystemAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListFileSystemAssociationsWithContext(ctx aws.Context, input *ListFileSystemAssociationsInput, opts ...request.Option) (*ListFileSystemAssociationsOutput, error) {
+	req, out := c.ListFileSystemAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFileSystemAssociationsPages iterates over the pages of a ListFileSystemAssociations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFileSystemAssociations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFileSystemAssociations operation.
+//    pageNum := 0
+//    err := client.ListFileSystemAssociationsPages(params,
+//        func(page *storagegateway.ListFileSystemAssociationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *StorageGateway) ListFileSystemAssociationsPages(input *ListFileSystemAssociationsInput, fn func(*ListFileSystemAssociationsOutput, bool) bool) error {
+	return c.ListFileSystemAssociationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFileSystemAssociationsPagesWithContext same as ListFileSystemAssociationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) ListFileSystemAssociationsPagesWithContext(ctx aws.Context, input *ListFileSystemAssociationsInput, fn func(*ListFileSystemAssociationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFileSystemAssociationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFileSystemAssociationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFileSystemAssociationsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6154,12 +6557,15 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 
 // RefreshCache API operation for AWS Storage Gateway.
 //
-// Refreshes the cache for the specified file share. This operation finds objects
-// in the Amazon S3 bucket that were added, removed, or replaced since the gateway
-// last listed the bucket's contents and cached the results. This operation
-// is only supported in the file gateway type. You can subscribe to be notified
-// through an Amazon CloudWatch event when your RefreshCache operation completes.
-// For more information, see Getting notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
+// Refreshes the cached inventory of objects for the specified file share. This
+// operation finds objects in the Amazon S3 bucket that were added, removed,
+// or replaced since the gateway last listed the bucket's contents and cached
+// the results. This operation does not import files into the file gateway cache
+// storage. It only updates the cached inventory to reflect changes in the inventory
+// of the objects in the S3 bucket. This operation is only supported in the
+// file gateway type. You can subscribe to be notified through an Amazon CloudWatch
+// event when your RefreshCache operation completes. For more information, see
+// Getting notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
 // in the AWS Storage Gateway User Guide.
 //
 // When this API is called, it only initiates the refresh operation. When the
@@ -6167,9 +6573,9 @@ func (c *StorageGateway) RefreshCacheRequest(input *RefreshCacheInput) (req *req
 // that the file refresh has completed. You should use the refresh-complete
 // notification to determine that the operation has completed before you check
 // for new files on the gateway file share. You can subscribe to be notified
-// through an CloudWatch event when your RefreshCache operation completes.
+// through a CloudWatch event when your RefreshCache operation completes.
 //
-// Throttle limit: This API is asynchronous so the gateway will accept no more
+// Throttle limit: This API is asynchronous, so the gateway will accept no more
 // than two refreshes at any time. We recommend using the refresh-complete CloudWatch
 // event notification before issuing additional requests. For more information,
 // see Getting notified about file operations (https://docs.aws.amazon.com/storagegateway/latest/userguide/monitoring-file-gateway.html#get-notification)
@@ -7404,6 +7810,91 @@ func (c *StorageGateway) UpdateChapCredentials(input *UpdateChapCredentialsInput
 // for more information on using Contexts.
 func (c *StorageGateway) UpdateChapCredentialsWithContext(ctx aws.Context, input *UpdateChapCredentialsInput, opts ...request.Option) (*UpdateChapCredentialsOutput, error) {
 	req, out := c.UpdateChapCredentialsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFileSystemAssociation = "UpdateFileSystemAssociation"
+
+// UpdateFileSystemAssociationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFileSystemAssociation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFileSystemAssociation for more information on using the UpdateFileSystemAssociation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFileSystemAssociationRequest method.
+//    req, resp := client.UpdateFileSystemAssociationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateFileSystemAssociation
+func (c *StorageGateway) UpdateFileSystemAssociationRequest(input *UpdateFileSystemAssociationInput) (req *request.Request, output *UpdateFileSystemAssociationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFileSystemAssociation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateFileSystemAssociationInput{}
+	}
+
+	output = &UpdateFileSystemAssociationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFileSystemAssociation API operation for AWS Storage Gateway.
+//
+// Updates a file system association. This operation is only supported in the
+// Amazon FSx file gateway type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateFileSystemAssociation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateFileSystemAssociation
+func (c *StorageGateway) UpdateFileSystemAssociation(input *UpdateFileSystemAssociationInput) (*UpdateFileSystemAssociationOutput, error) {
+	req, out := c.UpdateFileSystemAssociationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFileSystemAssociationWithContext is the same as UpdateFileSystemAssociation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFileSystemAssociation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateFileSystemAssociationWithContext(ctx aws.Context, input *UpdateFileSystemAssociationInput, opts ...request.Option) (*UpdateFileSystemAssociationOutput, error) {
+	req, out := c.UpdateFileSystemAssociationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8917,6 +9408,181 @@ func (s *AssignTapePoolOutput) SetTapeARN(v string) *AssignTapePoolOutput {
 	return s
 }
 
+type AssociateFileSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
+	// The refresh cache information for the file share.
+	CacheAttributes *CacheAttributes `type:"structure"`
+
+	// A unique string value that you supply that is used by the file gateway to
+	// ensure idempotent file system association creation.
+	//
+	// ClientToken is a required field
+	ClientToken *string `min:"5" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	//
+	// GatewayARN is a required field
+	GatewayARN *string `min:"50" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the Amazon FSx file system to associate
+	// with the Amazon FSx file gateway.
+	//
+	// LocationARN is a required field
+	LocationARN *string `min:"8" type:"string" required:"true"`
+
+	// The password of the user credential.
+	//
+	// Password is a required field
+	Password *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// A list of up to 50 tags that can be assigned to the file system association.
+	// Each tag is a key-value pair.
+	Tags []*Tag `type:"list"`
+
+	// The user name of the user credential that has permission to access the root
+	// share D$ of the Amazon FSx file system. The user account must belong to the
+	// Amazon FSx delegated admin user group.
+	//
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateFileSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateFileSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateFileSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateFileSystemInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 5))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.LocationARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocationARN"))
+	}
+	if s.LocationARN != nil && len(*s.LocationARN) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("LocationARN", 8))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *AssociateFileSystemInput) SetAuditDestinationARN(v string) *AssociateFileSystemInput {
+	s.AuditDestinationARN = &v
+	return s
+}
+
+// SetCacheAttributes sets the CacheAttributes field's value.
+func (s *AssociateFileSystemInput) SetCacheAttributes(v *CacheAttributes) *AssociateFileSystemInput {
+	s.CacheAttributes = v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *AssociateFileSystemInput) SetClientToken(v string) *AssociateFileSystemInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *AssociateFileSystemInput) SetGatewayARN(v string) *AssociateFileSystemInput {
+	s.GatewayARN = &v
+	return s
+}
+
+// SetLocationARN sets the LocationARN field's value.
+func (s *AssociateFileSystemInput) SetLocationARN(v string) *AssociateFileSystemInput {
+	s.LocationARN = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *AssociateFileSystemInput) SetPassword(v string) *AssociateFileSystemInput {
+	s.Password = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AssociateFileSystemInput) SetTags(v []*Tag) *AssociateFileSystemInput {
+	s.Tags = v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *AssociateFileSystemInput) SetUserName(v string) *AssociateFileSystemInput {
+	s.UserName = &v
+	return s
+}
+
+type AssociateFileSystemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the newly created file system association.
+	FileSystemAssociationARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateFileSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateFileSystemOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *AssociateFileSystemOutput) SetFileSystemAssociationARN(v string) *AssociateFileSystemOutput {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
 // AttachVolumeInput
 type AttachVolumeInput struct {
 	_ struct{} `type:"structure"`
@@ -9233,7 +9899,8 @@ type BandwidthRateLimitInterval struct {
 	AverageUploadRateLimitInBitsPerSec *int64 `min:"51200" type:"long"`
 
 	// The days of the week component of the bandwidth rate limit interval, represented
-	// as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 Saturday.
+	// as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 represents
+	// Saturday.
 	//
 	// DaysOfWeek is a required field
 	DaysOfWeek []*int64 `min:"1" type:"list" required:"true"`
@@ -9350,14 +10017,14 @@ func (s *BandwidthRateLimitInterval) SetStartMinuteOfHour(v int64) *BandwidthRat
 	return s
 }
 
-// Lists refresh cache information.
+// The refresh cache information for the file share.
 type CacheAttributes struct {
 	_ struct{} `type:"structure"`
 
 	// Refreshes a file share's cache by using Time To Live (TTL). TTL is the length
 	// of time since the last refresh after which access to the directory would
 	// cause the file gateway to first refresh that directory's contents from the
-	// Amazon S3 bucket. The TTL duration is in seconds.
+	// Amazon S3 bucket or Amazon FSx file system. The TTL duration is in seconds.
 	//
 	// Valid Values: 300 to 2,592,000 seconds (5 minutes to 30 days)
 	CacheStaleTimeoutInSeconds *int64 `type:"integer"`
@@ -9994,7 +10661,7 @@ func (s *CreateCachediSCSIVolumeOutput) SetVolumeARN(v string) *CreateCachediSCS
 type CreateNFSFileShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Refresh cache information.
+	// Specifies refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The list of clients that are allowed to access the file gateway. The list
@@ -10051,7 +10718,24 @@ type CreateNFSFileShareInput struct {
 	// File share default values. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
@@ -10330,7 +11014,7 @@ type CreateSMBFileShareInput struct {
 	// they like on the file share, regardless of file permissions.
 	AdminUserList []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	// The Amazon Resource Name (ARN) of the storage used for audit logs.
 	AuditDestinationARN *string `type:"string"`
 
 	// The authentication method that users use to access the file share. The default
@@ -10339,7 +11023,7 @@ type CreateSMBFileShareInput struct {
 	// Valid Values: ActiveDirectory | GuestAccess
 	Authentication *string `min:"5" type:"string"`
 
-	// Refresh cache information.
+	// Specifies refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The case of an object name in an Amazon S3 bucket. For ClientSpecified, the
@@ -10399,7 +11083,24 @@ type CreateSMBFileShareInput struct {
 	// LocationARN is a required field
 	LocationARN *string `min:"16" type:"string" required:"true"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
@@ -10990,7 +11691,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// NetworkInterfaceId is a required field
 	NetworkInterfaceId *string `type:"string" required:"true"`
 
-	// Set to true true if you want to preserve the data on the local disk. Otherwise,
+	// Set to true if you want to preserve the data on the local disk. Otherwise,
 	// set to false to create an empty volume.
 	//
 	// Valid Values: true | false
@@ -10998,7 +11699,7 @@ type CreateStorediSCSIVolumeInput struct {
 	// PreserveExistingData is a required field
 	PreserveExistingData *bool `type:"boolean" required:"true"`
 
-	// The snapshot ID (e.g. "snap-1122aabb") of the snapshot to restore as the
+	// The snapshot ID (e.g., "snap-1122aabb") of the snapshot to restore as the
 	// new stored volume. Specify this field if you want to create the iSCSI storage
 	// volume from a snapshot; otherwise, do not include this field. To list snapshots
 	// for your account use DescribeSnapshots (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html)
@@ -11551,7 +12252,7 @@ type CreateTapesInput struct {
 	// A prefix that you append to the barcode of the virtual tape you are creating.
 	// This prefix makes the barcode unique.
 	//
-	// The prefix must be 1 to 4 characters in length and must be one of the uppercase
+	// The prefix must be 1-4 characters in length and must be one of the uppercase
 	// letters from A to Z.
 	//
 	// TapeBarcodePrefix is a required field
@@ -12542,11 +13243,11 @@ type DescribeAvailabilityMonitorTestOutput struct {
 	// to return a list of gateways for your account and AWS Region.
 	GatewayARN *string `min:"50" type:"string"`
 
-	// The time the High Availability monitoring test was started. If a test hasn't
+	// The time the high availability monitoring test was started. If a test hasn't
 	// been performed, the value of this field is null.
 	StartTime *time.Time `type:"timestamp"`
 
-	// The status of the High Availability monitoring test. If a test hasn't been
+	// The status of the high availability monitoring test. If a test hasn't been
 	// performed, the value of this field is null.
 	Status *string `type:"string" enum:"AvailabilityMonitorTestStatus"`
 }
@@ -13015,6 +13716,72 @@ func (s DescribeChapCredentialsOutput) GoString() string {
 // SetChapCredentials sets the ChapCredentials field's value.
 func (s *DescribeChapCredentialsOutput) SetChapCredentials(v []*ChapInfo) *DescribeChapCredentialsOutput {
 	s.ChapCredentials = v
+	return s
+}
+
+type DescribeFileSystemAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing the Amazon Resource Name (ARN) of each file system association
+	// to be described.
+	//
+	// FileSystemAssociationARNList is a required field
+	FileSystemAssociationARNList []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFileSystemAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFileSystemAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFileSystemAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFileSystemAssociationsInput"}
+	if s.FileSystemAssociationARNList == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemAssociationARNList"))
+	}
+	if s.FileSystemAssociationARNList != nil && len(s.FileSystemAssociationARNList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemAssociationARNList", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemAssociationARNList sets the FileSystemAssociationARNList field's value.
+func (s *DescribeFileSystemAssociationsInput) SetFileSystemAssociationARNList(v []*string) *DescribeFileSystemAssociationsInput {
+	s.FileSystemAssociationARNList = v
+	return s
+}
+
+type DescribeFileSystemAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array containing the FileSystemAssociationInfo data type of each file
+	// system association to be described.
+	FileSystemAssociationInfoList []*FileSystemAssociationInfo `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeFileSystemAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFileSystemAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationInfoList sets the FileSystemAssociationInfoList field's value.
+func (s *DescribeFileSystemAssociationsOutput) SetFileSystemAssociationInfoList(v []*FileSystemAssociationInfo) *DescribeFileSystemAssociationsOutput {
+	s.FileSystemAssociationInfoList = v
 	return s
 }
 
@@ -14199,8 +14966,8 @@ func (s *DescribeTapesInput) SetTapeARNs(v []*string) *DescribeTapesInput {
 type DescribeTapesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An opaque string which can be used as part of a subsequent DescribeTapes
-	// call to retrieve the next page of results.
+	// An opaque string that can be used as part of a subsequent DescribeTapes call
+	// to retrieve the next page of results.
 	//
 	// If a response does not contain a marker, then there are no more results to
 	// be retrieved.
@@ -14756,6 +15523,83 @@ func (s *DisableGatewayOutput) SetGatewayARN(v string) *DisableGatewayOutput {
 	return s
 }
 
+type DisassociateFileSystemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the file system association to be deleted.
+	//
+	// FileSystemAssociationARN is a required field
+	FileSystemAssociationARN *string `min:"50" type:"string" required:"true"`
+
+	// If this value is set to true, the operation disassociates an Amazon FSx file
+	// system immediately. It ends all data uploads to the file system, and the
+	// file system association enters the FORCE_DELETING status. If this value is
+	// set to false, the Amazon FSx file system does not disassociate until all
+	// data is uploaded.
+	ForceDelete *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s DisassociateFileSystemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFileSystemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateFileSystemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateFileSystemInput"}
+	if s.FileSystemAssociationARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemAssociationARN"))
+	}
+	if s.FileSystemAssociationARN != nil && len(*s.FileSystemAssociationARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemAssociationARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *DisassociateFileSystemInput) SetFileSystemAssociationARN(v string) *DisassociateFileSystemInput {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
+// SetForceDelete sets the ForceDelete field's value.
+func (s *DisassociateFileSystemInput) SetForceDelete(v bool) *DisassociateFileSystemInput {
+	s.ForceDelete = &v
+	return s
+}
+
+type DisassociateFileSystemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the deleted file system association.
+	FileSystemAssociationARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s DisassociateFileSystemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFileSystemOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *DisassociateFileSystemOutput) SetFileSystemAssociationARN(v string) *DisassociateFileSystemOutput {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
 // Represents a gateway's local disk.
 type Disk struct {
 	_ struct{} `type:"structure"`
@@ -14943,6 +15787,144 @@ func (s *FileShareInfo) SetFileShareType(v string) *FileShareInfo {
 
 // SetGatewayARN sets the GatewayARN field's value.
 func (s *FileShareInfo) SetGatewayARN(v string) *FileShareInfo {
+	s.GatewayARN = &v
+	return s
+}
+
+// Describes the object returned by DescribeFileSystemAssociations that describes
+// a created file system association.
+type FileSystemAssociationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
+	// The refresh cache information for the file share.
+	CacheAttributes *CacheAttributes `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the file system association.
+	FileSystemAssociationARN *string `min:"50" type:"string"`
+
+	// The status of the file system association. Valid Values: AVAILABLE | CREATING
+	// | DELETING | FORCE_DELETING | MISCONFIGURED | UPDATING | UNAVAILABLE
+	FileSystemAssociationStatus *string `min:"3" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	GatewayARN *string `min:"50" type:"string"`
+
+	// The ARN of the backend Amazon FSx file system used for storing file data.
+	// For information, see FileSystem (https://docs.aws.amazon.com/fsx/latest/APIReference/API_FileSystem.html)
+	// in the Amazon FSx API Reference.
+	LocationARN *string `min:"8" type:"string"`
+
+	// A list of up to 50 tags assigned to the SMB file share, sorted alphabetically
+	// by key name. Each tag is a key-value pair.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s FileSystemAssociationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemAssociationInfo) GoString() string {
+	return s.String()
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *FileSystemAssociationInfo) SetAuditDestinationARN(v string) *FileSystemAssociationInfo {
+	s.AuditDestinationARN = &v
+	return s
+}
+
+// SetCacheAttributes sets the CacheAttributes field's value.
+func (s *FileSystemAssociationInfo) SetCacheAttributes(v *CacheAttributes) *FileSystemAssociationInfo {
+	s.CacheAttributes = v
+	return s
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *FileSystemAssociationInfo) SetFileSystemAssociationARN(v string) *FileSystemAssociationInfo {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
+// SetFileSystemAssociationStatus sets the FileSystemAssociationStatus field's value.
+func (s *FileSystemAssociationInfo) SetFileSystemAssociationStatus(v string) *FileSystemAssociationInfo {
+	s.FileSystemAssociationStatus = &v
+	return s
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *FileSystemAssociationInfo) SetGatewayARN(v string) *FileSystemAssociationInfo {
+	s.GatewayARN = &v
+	return s
+}
+
+// SetLocationARN sets the LocationARN field's value.
+func (s *FileSystemAssociationInfo) SetLocationARN(v string) *FileSystemAssociationInfo {
+	s.LocationARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *FileSystemAssociationInfo) SetTags(v []*Tag) *FileSystemAssociationInfo {
+	s.Tags = v
+	return s
+}
+
+// Gets the summary returned by ListFileSystemAssociation, which is a summary
+// of a created file system association.
+type FileSystemAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the file system association.
+	FileSystemAssociationARN *string `min:"50" type:"string"`
+
+	// The ID of the file system association.
+	FileSystemAssociationId *string `min:"10" type:"string"`
+
+	// The status of the file share. Valid Values: AVAILABLE | CREATING | DELETING
+	// | FORCE_DELETING | MISCONFIGURED | UPDATING | UNAVAILABLE
+	FileSystemAssociationStatus *string `min:"3" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	GatewayARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *FileSystemAssociationSummary) SetFileSystemAssociationARN(v string) *FileSystemAssociationSummary {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
+// SetFileSystemAssociationId sets the FileSystemAssociationId field's value.
+func (s *FileSystemAssociationSummary) SetFileSystemAssociationId(v string) *FileSystemAssociationSummary {
+	s.FileSystemAssociationId = &v
+	return s
+}
+
+// SetFileSystemAssociationStatus sets the FileSystemAssociationStatus field's value.
+func (s *FileSystemAssociationSummary) SetFileSystemAssociationStatus(v string) *FileSystemAssociationSummary {
+	s.FileSystemAssociationStatus = &v
+	return s
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *FileSystemAssociationSummary) SetGatewayARN(v string) *FileSystemAssociationSummary {
 	s.GatewayARN = &v
 	return s
 }
@@ -15505,6 +16487,113 @@ func (s *ListFileSharesOutput) SetMarker(v string) *ListFileSharesOutput {
 
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListFileSharesOutput) SetNextMarker(v string) *ListFileSharesOutput {
+	s.NextMarker = &v
+	return s
+}
+
+type ListFileSystemAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	GatewayARN *string `min:"50" type:"string"`
+
+	// The maximum number of file system associations to return in the response.
+	// If present, Limit must be an integer with a value greater than zero. Optional.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// Opaque pagination token returned from a previous ListFileSystemAssociations
+	// operation. If present, Marker specifies where to continue the list from after
+	// a previous call to ListFileSystemAssociations. Optional.
+	Marker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFileSystemAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFileSystemAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFileSystemAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFileSystemAssociationsInput"}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Marker != nil && len(*s.Marker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Marker", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *ListFileSystemAssociationsInput) SetGatewayARN(v string) *ListFileSystemAssociationsInput {
+	s.GatewayARN = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListFileSystemAssociationsInput) SetLimit(v int64) *ListFileSystemAssociationsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListFileSystemAssociationsInput) SetMarker(v string) *ListFileSystemAssociationsInput {
+	s.Marker = &v
+	return s
+}
+
+type ListFileSystemAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of information about the Amazon FSx gateway's file system associations.
+	FileSystemAssociationSummaryList []*FileSystemAssociationSummary `type:"list"`
+
+	// If the request includes Marker, the response returns that value in this field.
+	Marker *string `min:"1" type:"string"`
+
+	// If a value is present, there are more file system associations to return.
+	// In a subsequent request, use NextMarker as the value for Marker to retrieve
+	// the next set of file system associations.
+	NextMarker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFileSystemAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFileSystemAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationSummaryList sets the FileSystemAssociationSummaryList field's value.
+func (s *ListFileSystemAssociationsOutput) SetFileSystemAssociationSummaryList(v []*FileSystemAssociationSummary) *ListFileSystemAssociationsOutput {
+	s.FileSystemAssociationSummaryList = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListFileSystemAssociationsOutput) SetMarker(v string) *ListFileSystemAssociationsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListFileSystemAssociationsOutput) SetNextMarker(v string) *ListFileSystemAssociationsOutput {
 	s.NextMarker = &v
 	return s
 }
@@ -16341,7 +17430,7 @@ func (s *NFSFileShareDefaults) SetOwnerId(v int64) *NFSFileShareDefaults {
 type NFSFileShareInfo struct {
 	_ struct{} `type:"structure"`
 
-	// Refresh cache information.
+	// Refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The list of clients that are allowed to access the file gateway. The list
@@ -16404,7 +17493,24 @@ type NFSFileShareInfo struct {
 	// gateways.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
@@ -17234,7 +18340,7 @@ type SMBFileShareInfo struct {
 	// Can only be set if Authentication is set to ActiveDirectory.
 	AdminUserList []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	// The Amazon Resource Name (ARN) of the storage used for audit logs.
 	AuditDestinationARN *string `type:"string"`
 
 	// The authentication method of the file share. The default is ActiveDirectory.
@@ -17242,7 +18348,7 @@ type SMBFileShareInfo struct {
 	// Valid Values: ActiveDirectory | GuestAccess
 	Authentication *string `min:"5" type:"string"`
 
-	// Refresh cache information.
+	// Refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The case of an object name in an Amazon S3 bucket. For ClientSpecified, the
@@ -17304,7 +18410,24 @@ type SMBFileShareInfo struct {
 	// can be added to the S3 bucket name. It must end with a "/".
 	LocationARN *string `min:"16" type:"string"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
@@ -19063,6 +20186,115 @@ func (s *UpdateChapCredentialsOutput) SetTargetARN(v string) *UpdateChapCredenti
 	return s
 }
 
+type UpdateFileSystemAssociationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	AuditDestinationARN *string `type:"string"`
+
+	// The refresh cache information for the file share.
+	CacheAttributes *CacheAttributes `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the file system association that you want
+	// to update.
+	//
+	// FileSystemAssociationARN is a required field
+	FileSystemAssociationARN *string `min:"50" type:"string" required:"true"`
+
+	// The password of the user credential.
+	Password *string `min:"1" type:"string" sensitive:"true"`
+
+	// The user name of the user credential that has permission to access the root
+	// share D$ of the Amazon FSx file system. The user account must belong to the
+	// Amazon FSx delegated admin user group.
+	UserName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFileSystemAssociationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFileSystemAssociationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemAssociationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemAssociationInput"}
+	if s.FileSystemAssociationARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemAssociationARN"))
+	}
+	if s.FileSystemAssociationARN != nil && len(*s.FileSystemAssociationARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemAssociationARN", 50))
+	}
+	if s.Password != nil && len(*s.Password) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Password", 1))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditDestinationARN sets the AuditDestinationARN field's value.
+func (s *UpdateFileSystemAssociationInput) SetAuditDestinationARN(v string) *UpdateFileSystemAssociationInput {
+	s.AuditDestinationARN = &v
+	return s
+}
+
+// SetCacheAttributes sets the CacheAttributes field's value.
+func (s *UpdateFileSystemAssociationInput) SetCacheAttributes(v *CacheAttributes) *UpdateFileSystemAssociationInput {
+	s.CacheAttributes = v
+	return s
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *UpdateFileSystemAssociationInput) SetFileSystemAssociationARN(v string) *UpdateFileSystemAssociationInput {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *UpdateFileSystemAssociationInput) SetPassword(v string) *UpdateFileSystemAssociationInput {
+	s.Password = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *UpdateFileSystemAssociationInput) SetUserName(v string) *UpdateFileSystemAssociationInput {
+	s.UserName = &v
+	return s
+}
+
+type UpdateFileSystemAssociationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the updated file system association.
+	FileSystemAssociationARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFileSystemAssociationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFileSystemAssociationOutput) GoString() string {
+	return s.String()
+}
+
+// SetFileSystemAssociationARN sets the FileSystemAssociationARN field's value.
+func (s *UpdateFileSystemAssociationOutput) SetFileSystemAssociationARN(v string) *UpdateFileSystemAssociationOutput {
+	s.FileSystemAssociationARN = &v
+	return s
+}
+
 type UpdateGatewayInformationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19383,7 +20615,7 @@ func (s *UpdateMaintenanceStartTimeOutput) SetGatewayARN(v string) *UpdateMainte
 type UpdateNFSFileShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Refresh cache information.
+	// specifies refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The list of clients that are allowed to access the file gateway. The list
@@ -19427,7 +20659,24 @@ type UpdateNFSFileShareInput struct {
 	// The default values for the file share. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
@@ -19636,10 +20885,10 @@ type UpdateSMBFileShareInput struct {
 	// Can only be set if Authentication is set to ActiveDirectory.
 	AdminUserList []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of the storage used for the audit logs.
+	// The Amazon Resource Name (ARN) of the storage used for audit logs.
 	AuditDestinationARN *string `type:"string"`
 
-	// Refresh cache information.
+	// Specifies refresh cache information for the file share.
 	CacheAttributes *CacheAttributes `type:"structure"`
 
 	// The case of an object name in an Amazon S3 bucket. For ClientSpecified, the
@@ -19687,7 +20936,24 @@ type UpdateSMBFileShareInput struct {
 	// CMKs. This value can only be set when KMSEncrypted is true. Optional.
 	KMSKey *string `min:"7" type:"string"`
 
-	// The notification policy of the file share.
+	// The notification policy of the file share. SettlingTimeInSeconds controls
+	// the number of seconds to wait after the last point in time a client wrote
+	// to a file before generating an ObjectUploaded notification. Because clients
+	// can make many small writes to files, it's best to set this parameter for
+	// as long as possible to avoid generating multiple notifications for the same
+	// file in a small time period.
+	//
+	// SettlingTimeInSeconds has no effect on the timing of the object uploading
+	// to Amazon S3, only the timing of the notification.
+	//
+	// The following example sets NotificationPolicy on with SettlingTimeInSeconds
+	// set to 60.
+	//
+	// {\"Upload\": {\"SettlingTimeInSeconds\": 60}}
+	//
+	// The following example sets NotificationPolicy off.
+	//
+	// {}
 	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in

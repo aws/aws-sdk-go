@@ -24,7 +24,15 @@
       },
       "errors":[
         {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"ReservedCacheNodeNotFoundFault"},
         {"shape":"SnapshotNotFoundFault"},
+        {"shape":"UserNotFoundFault"},
+        {"shape":"UserGroupNotFoundFault"},
         {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidARNFault"}
       ]
@@ -113,6 +121,7 @@
         {"shape":"SnapshotNotFoundFault"},
         {"shape":"SnapshotQuotaExceededFault"},
         {"shape":"InvalidSnapshotStateFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -160,6 +169,7 @@
         {"shape":"CacheParameterGroupQuotaExceededFault"},
         {"shape":"CacheParameterGroupAlreadyExistsFault"},
         {"shape":"InvalidCacheParameterGroupStateFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -178,6 +188,7 @@
       "errors":[
         {"shape":"CacheSecurityGroupAlreadyExistsFault"},
         {"shape":"CacheSecurityGroupQuotaExceededFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -197,6 +208,7 @@
         {"shape":"CacheSubnetGroupAlreadyExistsFault"},
         {"shape":"CacheSubnetGroupQuotaExceededFault"},
         {"shape":"CacheSubnetQuotaExceededFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidSubnet"},
         {"shape":"SubnetNotAllowedFault"}
       ]
@@ -272,6 +284,7 @@
         {"shape":"InvalidReplicationGroupStateFault"},
         {"shape":"SnapshotQuotaExceededFault"},
         {"shape":"SnapshotFeatureNotSupportedFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterCombinationException"},
         {"shape":"InvalidParameterValueException"}
       ]
@@ -292,7 +305,8 @@
         {"shape":"UserQuotaExceededFault"},
         {"shape":"DuplicateUserNameFault"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"TagQuotaPerResourceExceeded"}
       ]
     },
     "CreateUserGroup":{
@@ -312,7 +326,8 @@
         {"shape":"UserGroupAlreadyExistsFault"},
         {"shape":"DefaultUserRequired"},
         {"shape":"UserGroupQuotaExceededFault"},
-        {"shape":"InvalidParameterValueException"}
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"TagQuotaPerResourceExceeded"}
       ]
     },
     "DecreaseNodeGroupsInGlobalReplicationGroup":{
@@ -899,7 +914,15 @@
       },
       "errors":[
         {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"ReservedCacheNodeNotFoundFault"},
         {"shape":"SnapshotNotFoundFault"},
+        {"shape":"UserNotFoundFault"},
+        {"shape":"UserGroupNotFoundFault"},
         {"shape":"InvalidARNFault"}
       ]
     },
@@ -1091,6 +1114,7 @@
         {"shape":"ReservedCacheNodesOfferingNotFoundFault"},
         {"shape":"ReservedCacheNodeAlreadyExistsFault"},
         {"shape":"ReservedCacheNodeQuotaExceededFault"},
+        {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"InvalidParameterValueException"},
         {"shape":"InvalidParameterCombinationException"}
       ]
@@ -1141,7 +1165,15 @@
       },
       "errors":[
         {"shape":"CacheClusterNotFoundFault"},
+        {"shape":"CacheParameterGroupNotFoundFault"},
+        {"shape":"CacheSecurityGroupNotFoundFault"},
+        {"shape":"CacheSubnetGroupNotFoundFault"},
+        {"shape":"InvalidReplicationGroupStateFault"},
+        {"shape":"ReplicationGroupNotFoundFault"},
+        {"shape":"ReservedCacheNodeNotFoundFault"},
         {"shape":"SnapshotNotFoundFault"},
+        {"shape":"UserNotFoundFault"},
+        {"shape":"UserGroupNotFoundFault"},
         {"shape":"InvalidARNFault"},
         {"shape":"TagNotFoundFault"}
       ]
@@ -1869,7 +1901,8 @@
         "SourceSnapshotName":{"shape":"String"},
         "TargetSnapshotName":{"shape":"String"},
         "TargetBucket":{"shape":"String"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CopySnapshotResult":{
@@ -1926,7 +1959,8 @@
       "members":{
         "CacheParameterGroupName":{"shape":"String"},
         "CacheParameterGroupFamily":{"shape":"String"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateCacheParameterGroupResult":{
@@ -1943,7 +1977,8 @@
       ],
       "members":{
         "CacheSecurityGroupName":{"shape":"String"},
-        "Description":{"shape":"String"}
+        "Description":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateCacheSecurityGroupResult":{
@@ -1962,7 +1997,8 @@
       "members":{
         "CacheSubnetGroupName":{"shape":"String"},
         "CacheSubnetGroupDescription":{"shape":"String"},
-        "SubnetIds":{"shape":"SubnetIdentifierList"}
+        "SubnetIds":{"shape":"SubnetIdentifierList"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateCacheSubnetGroupResult":{
@@ -2043,7 +2079,8 @@
         "ReplicationGroupId":{"shape":"String"},
         "CacheClusterId":{"shape":"String"},
         "SnapshotName":{"shape":"String"},
-        "KmsKeyId":{"shape":"String"}
+        "KmsKeyId":{"shape":"String"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateSnapshotResult":{
@@ -2061,7 +2098,8 @@
       "members":{
         "UserGroupId":{"shape":"String"},
         "Engine":{"shape":"EngineType"},
-        "UserIds":{"shape":"UserIdListInput"}
+        "UserIds":{"shape":"UserIdListInput"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateUserMessage":{
@@ -2078,7 +2116,8 @@
         "Engine":{"shape":"EngineType"},
         "Passwords":{"shape":"PasswordListInput"},
         "AccessString":{"shape":"AccessString"},
-        "NoPasswordRequired":{"shape":"BooleanOptional"}
+        "NoPasswordRequired":{"shape":"BooleanOptional"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CustomerNodeEndpoint":{
@@ -3396,7 +3435,8 @@
       "members":{
         "ReservedCacheNodesOfferingId":{"shape":"String"},
         "ReservedCacheNodeId":{"shape":"String"},
-        "CacheNodeCount":{"shape":"IntegerOptional"}
+        "CacheNodeCount":{"shape":"IntegerOptional"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "PurchaseReservedCacheNodesOfferingResult":{

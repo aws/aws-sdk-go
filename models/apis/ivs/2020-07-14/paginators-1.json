@@ -12,6 +12,12 @@
       "limit_key": "maxResults",
       "result_key": "keyPairs"
     },
+    "ListRecordingConfigurations": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "recordingConfigurations"
+    },
     "ListStreamKeys": {
       "input_token": "nextToken",
       "output_token": "nextToken",
