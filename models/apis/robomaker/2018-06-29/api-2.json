@@ -1503,7 +1503,11 @@
         "PostLaunchFileFailure",
         "BadPermissionError",
         "DownloadConditionFailed",
-        "InternalServerError"
+        "BadLambdaAssociated",
+        "InternalServerError",
+        "RobotApplicationDoesNotExist",
+        "DeploymentFleetDoesNotExist",
+        "FleetDeploymentTimeout"
       ]
     },
     "DeploymentJobs":{
@@ -1825,6 +1829,13 @@
       "max":1024,
       "min":1,
       "pattern":".*"
+    },
+    "ExitBehavior":{
+      "type":"string",
+      "enum":[
+        "FAIL",
+        "RESTART"
+      ]
     },
     "FailedAt":{"type":"timestamp"},
     "FailedCreateSimulationJobRequest":{
@@ -2369,7 +2380,9 @@
         "applicationVersion":{"shape":"Version"},
         "launchConfig":{"shape":"LaunchConfig"},
         "uploadConfigurations":{"shape":"UploadConfigurations"},
-        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"}
+        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"},
+        "tools":{"shape":"Tools"},
+        "useDefaultTools":{"shape":"BoxedBoolean"}
       }
     },
     "RobotApplicationConfigs":{
@@ -2534,7 +2547,9 @@
         "launchConfig":{"shape":"LaunchConfig"},
         "uploadConfigurations":{"shape":"UploadConfigurations"},
         "worldConfigs":{"shape":"WorldConfigs"},
-        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"}
+        "useDefaultUploadConfigurations":{"shape":"BoxedBoolean"},
+        "tools":{"shape":"Tools"},
+        "useDefaultTools":{"shape":"BoxedBoolean"}
       }
     },
     "SimulationApplicationConfigs":{
@@ -2630,6 +2645,8 @@
         "InternalServiceError",
         "RobotApplicationCrash",
         "SimulationApplicationCrash",
+        "RobotApplicationHealthCheckFailure",
+        "SimulationApplicationHealthCheckFailure",
         "BadPermissionsRobotApplication",
         "BadPermissionsSimulationApplication",
         "BadPermissionsS3Object",
@@ -2641,6 +2658,7 @@
         "InvalidBundleRobotApplication",
         "InvalidBundleSimulationApplication",
         "InvalidS3Resource",
+        "ThrottlingError",
         "LimitExceeded",
         "MismatchedEtag",
         "RobotApplicationVersionMismatchedEtag",
@@ -2905,6 +2923,32 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "Tool":{
+      "type":"structure",
+      "required":[
+        "name",
+        "command"
+      ],
+      "members":{
+        "streamUI":{"shape":"BoxedBoolean"},
+        "name":{"shape":"Name"},
+        "command":{"shape":"UnrestrictedCommand"},
+        "streamOutputToCloudWatch":{"shape":"BoxedBoolean"},
+        "exitBehavior":{"shape":"ExitBehavior"}
+      }
+    },
+    "Tools":{
+      "type":"list",
+      "member":{"shape":"Tool"},
+      "max":10,
+      "min":0
+    },
+    "UnrestrictedCommand":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".*"
     },
     "UntagResourceRequest":{
       "type":"structure",

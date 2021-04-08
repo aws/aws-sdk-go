@@ -12,6 +12,7 @@
     "CreateImageBuilderStreamingURL": "<p>Creates a URL to start an image builder streaming session.</p>",
     "CreateStack": "<p>Creates a stack to start streaming applications to users. A stack consists of an associated fleet, user access policies, and storage configurations. </p>",
     "CreateStreamingURL": "<p>Creates a temporary URL to start an AppStream 2.0 streaming session for the specified user. A streaming URL enables application streaming to be tested without user setup. </p>",
+    "CreateUpdatedImage": "<p>Creates a new image with the latest Windows operating system updates, driver updates, and AppStream 2.0 agent software.</p> <p>For more information, see the \"Update an Image by Using Managed AppStream 2.0 Image Updates\" section in <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/administer-images.html\">Administer Your AppStream 2.0 Images</a>, in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
     "CreateUsageReportSubscription": "<p>Creates a usage report subscription. Usage reports are generated daily.</p>",
     "CreateUser": "<p>Creates a new user in the user pool.</p>",
     "DeleteDirectoryConfig": "<p>Deletes the specified Directory Config object from AppStream 2.0. This object includes the information required to join streaming instances to an Active Directory domain.</p>",
@@ -222,6 +223,8 @@
         "Application$Enabled": "<p>If there is a problem, the application can be disabled after image creation.</p>",
         "ApplicationSettings$Enabled": "<p>Enables or disables persistent application settings for users during their streaming sessions. </p>",
         "ApplicationSettingsResponse$Enabled": "<p>Specifies whether persistent application settings are enabled for users during their streaming sessions.</p>",
+        "CreateUpdatedImageRequest$dryRun": "<p>Indicates whether to display the status of image update availability before AppStream 2.0 initiates the process of creating a new updated image. If this value is set to <code>true</code>, AppStream 2.0 displays whether image updates are available. If this value is set to <code>false</code>, AppStream 2.0 initiates the process of creating a new updated image without displaying whether image updates are available.</p>",
+        "CreateUpdatedImageResult$canUpdateImage": "<p>Indicates whether a new image can be created.</p>",
         "Image$ImageBuilderSupported": "<p>Indicates whether an image builder can be launched from this image.</p>",
         "UpdateFleetRequest$DeleteVpcConfig": "<p>Deletes the VPC association for the specified fleet.</p>",
         "UpdateStackRequest$DeleteStorageConnectors": "<p>Deletes the storage connectors currently enabled for the stack.</p>",
@@ -325,6 +328,16 @@
       }
     },
     "CreateStreamingURLResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUpdatedImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUpdatedImageResult": {
       "base": null,
       "refs": {
       }
@@ -542,6 +555,7 @@
         "CreateFleetRequest$Description": "<p>The description to display.</p>",
         "CreateImageBuilderRequest$Description": "<p>The description to display.</p>",
         "CreateStackRequest$Description": "<p>The description to display.</p>",
+        "CreateUpdatedImageRequest$newImageDescription": "<p>The description to display for the new image.</p>",
         "UpdateFleetRequest$Description": "<p>The description to display.</p>",
         "UpdateStackRequest$Description": "<p>The description to display.</p>"
       }
@@ -603,6 +617,7 @@
         "CreateFleetRequest$DisplayName": "<p>The fleet name to display.</p>",
         "CreateImageBuilderRequest$DisplayName": "<p>The image builder name to display.</p>",
         "CreateStackRequest$DisplayName": "<p>The stack name to display.</p>",
+        "CreateUpdatedImageRequest$newImageDisplayName": "<p>The name to display for the new image.</p>",
         "UpdateFleetRequest$DisplayName": "<p>The fleet name to display.</p>",
         "UpdateStackRequest$DisplayName": "<p>The stack name to display.</p>"
       }
@@ -749,6 +764,7 @@
     "Image": {
       "base": "<p>Describes an image.</p>",
       "refs": {
+        "CreateUpdatedImageResult$image": null,
         "DeleteImageResult$Image": "<p>Information about the image.</p>",
         "ImageList$member": null
       }
@@ -820,7 +836,7 @@
       }
     },
     "IncompatibleImageException": {
-      "base": "<p>The image does not support storage connectors.</p>",
+      "base": "<p>The image can't be updated because it's not compatible for updates.</p>",
       "refs": {
       }
     },
@@ -945,6 +961,8 @@
         "CreateFleetRequest$Name": "<p>A unique name for the fleet.</p>",
         "CreateImageBuilderRequest$Name": "<p>A unique name for the image builder.</p>",
         "CreateStackRequest$Name": "<p>The name of the stack.</p>",
+        "CreateUpdatedImageRequest$existingImageName": "<p>The name of the image to update.</p>",
+        "CreateUpdatedImageRequest$newImageName": "<p>The name of the new image. The name must be unique within the AWS account and Region.</p>",
         "DeleteImageBuilderRequest$Name": "<p>The name of the image builder.</p>",
         "DeleteImagePermissionsRequest$Name": "<p>The name of the private image.</p>",
         "DeleteImageRequest$Name": "<p>The name of the image.</p>",
@@ -1026,6 +1044,7 @@
     "ResourceErrors": {
       "base": null,
       "refs": {
+        "Image$ImageErrors": "<p>Describes the errors that are returned when a new image can't be created.</p>",
         "ImageBuilder$ImageBuilderErrors": "<p>The image builder errors.</p>"
       }
     },
@@ -1381,6 +1400,7 @@
         "CreateFleetRequest$Tags": "<p>The tags to associate with the fleet. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateImageBuilderRequest$Tags": "<p>The tags to associate with the image builder. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "CreateStackRequest$Tags": "<p>The tags to associate with the stack. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
+        "CreateUpdatedImageRequest$newImageTags": "<p>The tags to associate with the new image. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>For more information about tags, see <a href=\"https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html\">Tagging Your Resources</a> in the <i>Amazon AppStream 2.0 Administration Guide</i>.</p>",
         "ListTagsForResourceResponse$Tags": "<p>The information about the tags.</p>",
         "TagResourceRequest$Tags": "<p>The tags to associate. A tag is a key-value pair, and the value is optional. For example, Environment=Test. If you do not specify a value, Environment=. </p> <p>If you do not specify a value, the value is set to an empty string.</p> <p>Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following special characters: </p> <p>_ . : / = + \\ - @</p>"
       }

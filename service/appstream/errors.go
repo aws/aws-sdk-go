@@ -17,7 +17,7 @@ const (
 	// ErrCodeIncompatibleImageException for service response error code
 	// "IncompatibleImageException".
 	//
-	// The image does not support storage connectors.
+	// The image can't be updated because it's not compatible for updates.
 	ErrCodeIncompatibleImageException = "IncompatibleImageException"
 
 	// ErrCodeInvalidAccountStatusException for service response error code

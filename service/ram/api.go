@@ -2892,7 +2892,9 @@ type AssociateResourceShareInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The principals.
+	// The principals to associate with the resource share. The possible values
+	// are IDs of AWS accounts, and the ARNs of organizational units (OU) or organizations
+	// from AWS Organizations.
 	Principals []*string `locationName:"principals" type:"list"`
 
 	// The Amazon Resource Names (ARN) of the resources.
@@ -4666,11 +4668,15 @@ type ListPrincipalsInput struct {
 
 	// The resource type.
 	//
-	// Valid values: codebuild:Project | codebuild:ReportGroup | ec2:CapacityReservation
-	// | ec2:DedicatedHost | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
+	// Valid values: acm-pca:CertificateAuthority | appmesh:Mesh | codebuild:Project
+	// | codebuild:ReportGroup | ec2:CapacityReservation | ec2:DedicatedHost | ec2:LocalGatewayRouteTable
+	// | ec2:PrefixList | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
 	// | imagebuilder:Component | imagebuilder:Image | imagebuilder:ImageRecipe
-	// | license-manager:LicenseConfiguration I resource-groups:Group | rds:Cluster
-	// | route53resolver:ResolverRule
+	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
+	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
+	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
+	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -4973,11 +4979,15 @@ type ListResourcesInput struct {
 
 	// The resource type.
 	//
-	// Valid values: codebuild:Project | codebuild:ReportGroup | ec2:CapacityReservation
-	// | ec2:DedicatedHost | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
+	// Valid values: acm-pca:CertificateAuthority | appmesh:Mesh | codebuild:Project
+	// | codebuild:ReportGroup | ec2:CapacityReservation | ec2:DedicatedHost | ec2:LocalGatewayRouteTable
+	// | ec2:PrefixList | ec2:Subnet | ec2:TrafficMirrorTarget | ec2:TransitGateway
 	// | imagebuilder:Component | imagebuilder:Image | imagebuilder:ImageRecipe
-	// | license-manager:LicenseConfiguration I resource-groups:Group | rds:Cluster
-	// | route53resolver:ResolverRule
+	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
+	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
+	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
+	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 

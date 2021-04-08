@@ -2987,17 +2987,23 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The operation to be performed on the provided source fields.
 type ConnectorOperator struct {
 	_ struct{} `type:"structure"`
 
+	// The operation to be performed on the provided Marketo source fields.
 	Marketo *string `type:"string" enum:"MarketoConnectorOperator"`
 
+	// The operation to be performed on the provided Amazon S3 source fields.
 	S3 *string `type:"string" enum:"S3ConnectorOperator"`
 
+	// The operation to be performed on the provided Salesforce source fields.
 	Salesforce *string `type:"string" enum:"SalesforceConnectorOperator"`
 
+	// The operation to be performed on the provided ServiceNow source fields.
 	ServiceNow *string `type:"string" enum:"ServiceNowConnectorOperator"`
 
+	// The operation to be performed on the provided Zendesk source fields.
 	Zendesk *string `type:"string" enum:"ZendeskConnectorOperator"`
 }
 
@@ -4127,23 +4133,41 @@ func (s *DomainStats) SetTotalSize(v int64) *DomainStats {
 	return s
 }
 
+// The configurations that control how Customer Profiles retrieves data from
+// the source, Amazon AppFlow. Customer Profiles uses this information to create
+// an AppFlow flow on behalf of customers.
 type FlowDefinition struct {
 	_ struct{} `type:"structure"`
 
+	// A description of the flow you want to create.
 	Description *string `type:"string"`
 
+	// The specified name of the flow. Use underscores (_) or hyphens (-) only.
+	// Spaces are not allowed.
+	//
 	// FlowName is a required field
 	FlowName *string `type:"string" required:"true"`
 
+	// The Amazon Resource Name of the AWS Key Management Service (KMS) key you
+	// provide for encryption.
+	//
 	// KmsArn is a required field
 	KmsArn *string `min:"20" type:"string" required:"true"`
 
+	// The configuration that controls how Customer Profiles retrieves data from
+	// the source.
+	//
 	// SourceFlowConfig is a required field
 	SourceFlowConfig *SourceFlowConfig `type:"structure" required:"true"`
 
+	// A list of tasks that Customer Profiles performs while transferring the data
+	// in the flow run.
+	//
 	// Tasks is a required field
 	Tasks []*Task `type:"list" required:"true"`
 
+	// The trigger settings that determine how and when the flow runs.
+	//
 	// TriggerConfig is a required field
 	TriggerConfig *TriggerConfig `type:"structure" required:"true"`
 }
@@ -4809,9 +4833,13 @@ func (s *GetProfileObjectTypeTemplateOutput) SetTemplateId(v string) *GetProfile
 	return s
 }
 
+// Specifies the configuration used when importing incremental records from
+// the source.
 type IncrementalPullConfig struct {
 	_ struct{} `type:"structure"`
 
+	// A field that specifies the date time or timestamp field as the criteria to
+	// use when importing incremental records from the source.
 	DatetimeTypeFieldName *string `type:"string"`
 }
 
@@ -5814,9 +5842,12 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// The properties that are applied when Marketo is being used as a source.
 type MarketoSourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The object specified in the Marketo flow source.
+	//
 	// Object is a required field
 	Object *string `type:"string" required:"true"`
 }
@@ -6177,6 +6208,8 @@ type PutIntegrationInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
+	// The configuration that controls how Customer Profiles retrieves data from
+	// the source.
 	FlowDefinition *FlowDefinition `type:"structure"`
 
 	// The name of the profile object type.
@@ -6782,12 +6815,17 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The properties that are applied when Amazon S3 is being used as the flow
+// source.
 type S3SourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon S3 bucket name where the source files are stored.
+	//
 	// BucketName is a required field
 	BucketName *string `min:"3" type:"string" required:"true"`
 
+	// The object key for the Amazon S3 bucket in which the source files are stored.
 	BucketPrefix *string `type:"string"`
 }
 
@@ -6829,13 +6867,19 @@ func (s *S3SourceProperties) SetBucketPrefix(v string) *S3SourceProperties {
 	return s
 }
 
+// The properties that are applied when Salesforce is being used as a source.
 type SalesforceSourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The flag that enables dynamic fetching of new (recently added) fields in
+	// the Salesforce objects while running a flow.
 	EnableDynamicFieldUpdate *bool `type:"boolean"`
 
+	// Indicates whether Amazon AppFlow includes deleted files in the flow run.
 	IncludeDeletedRecords *bool `type:"boolean"`
 
+	// The object specified in the Salesforce flow source.
+	//
 	// Object is a required field
 	Object *string `type:"string" required:"true"`
 }
@@ -6881,22 +6925,37 @@ func (s *SalesforceSourceProperties) SetObject(v string) *SalesforceSourceProper
 	return s
 }
 
+// Specifies the configuration details of a scheduled-trigger flow that you
+// define. Currently, these settings only apply to the scheduled-trigger type.
 type ScheduledTriggerProperties struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether a scheduled flow has an incremental data transfer or a
+	// complete data transfer for each flow run.
 	DataPullMode *string `type:"string" enum:"DataPullMode"`
 
+	// Specifies the date range for the records to import from the connector in
+	// the first flow run.
 	FirstExecutionFrom *time.Time `type:"timestamp"`
 
+	// Specifies the scheduled end time for a scheduled-trigger flow.
 	ScheduleEndTime *time.Time `type:"timestamp"`
 
+	// The scheduling expression that determines the rate at which the schedule
+	// will run, for example rate (5 minutes).
+	//
 	// ScheduleExpression is a required field
 	ScheduleExpression *string `type:"string" required:"true"`
 
+	// Specifies the optional offset that is added to the time interval for a schedule-triggered
+	// flow.
 	ScheduleOffset *int64 `type:"long"`
 
+	// Specifies the scheduled start time for a scheduled-trigger flow.
 	ScheduleStartTime *time.Time `type:"timestamp"`
 
+	// Specifies the time zone used when referring to the date and time of a scheduled-triggered
+	// flow, such as America/New_York.
 	Timezone *string `type:"string"`
 }
 
@@ -7096,9 +7155,12 @@ func (s *SearchProfilesOutput) SetNextToken(v string) *SearchProfilesOutput {
 	return s
 }
 
+// The properties that are applied when ServiceNow is being used as a source.
 type ServiceNowSourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The object specified in the ServiceNow flow source.
+	//
 	// Object is a required field
 	Object *string `type:"string" required:"true"`
 }
@@ -7132,17 +7194,26 @@ func (s *ServiceNowSourceProperties) SetObject(v string) *ServiceNowSourceProper
 	return s
 }
 
+// Specifies the information that is required to query a particular Amazon AppFlow
+// connector. Customer Profiles supports Salesforce, Zendesk, Marketo, ServiceNow
+// and Amazon S3.
 type SourceConnectorProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The properties that are applied when Marketo is being used as a source.
 	Marketo *MarketoSourceProperties `type:"structure"`
 
+	// The properties that are applied when Amazon S3 is being used as the flow
+	// source.
 	S3 *S3SourceProperties `type:"structure"`
 
+	// The properties that are applied when Salesforce is being used as a source.
 	Salesforce *SalesforceSourceProperties `type:"structure"`
 
+	// The properties that are applied when ServiceNow is being used as a source.
 	ServiceNow *ServiceNowSourceProperties `type:"structure"`
 
+	// The properties that are applied when using Zendesk as a flow source.
 	Zendesk *ZendeskSourceProperties `type:"structure"`
 }
 
@@ -7221,16 +7292,27 @@ func (s *SourceConnectorProperties) SetZendesk(v *ZendeskSourceProperties) *Sour
 	return s
 }
 
+// Contains information about the configuration of the source connector used
+// in the flow.
 type SourceFlowConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the AppFlow connector profile. This name must be unique for each
+	// connector profile in the AWS account.
 	ConnectorProfileName *string `type:"string"`
 
+	// The type of connector, such as Salesforce, Marketo, and so on.
+	//
 	// ConnectorType is a required field
 	ConnectorType *string `type:"string" required:"true" enum:"SourceConnectorType"`
 
+	// Defines the configuration for a scheduled incremental data pull. If a valid
+	// configuration is provided, the fields specified in the configuration are
+	// used when querying for the incremental data pull.
 	IncrementalPullConfig *IncrementalPullConfig `type:"structure"`
 
+	// Specifies the information that is required to query a particular source connector.
+	//
 	// SourceConnectorProperties is a required field
 	SourceConnectorProperties *SourceConnectorProperties `type:"structure" required:"true"`
 }
@@ -7362,18 +7444,29 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// A class for modeling different type of tasks. Task implementation varies
+// based on the TaskType.
 type Task struct {
 	_ struct{} `type:"structure"`
 
+	// The operation to be performed on the provided source fields.
 	ConnectorOperator *ConnectorOperator `type:"structure"`
 
+	// A field in a destination connector, or a field value against which Amazon
+	// AppFlow validates a source field.
 	DestinationField *string `type:"string"`
 
+	// The source fields to which a particular task is applied.
+	//
 	// SourceFields is a required field
 	SourceFields []*string `type:"list" required:"true"`
 
+	// A map used to store task-related information. The service looks for particular
+	// information based on the TaskType.
 	TaskProperties map[string]*string `type:"map"`
 
+	// Specifies the particular task implementation that Amazon AppFlow performs.
+	//
 	// TaskType is a required field
 	TaskType *string `type:"string" required:"true" enum:"TaskType"`
 }
@@ -7490,11 +7583,17 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The trigger settings that determine how and when Amazon AppFlow runs the
+// specified flow.
 type TriggerConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the configuration details of a schedule-triggered flow that you
+	// define. Currently, these settings only apply to the Scheduled trigger type.
 	TriggerProperties *TriggerProperties `type:"structure"`
 
+	// Specifies the type of flow trigger. It can be OnDemand, Scheduled, or Event.
+	//
 	// TriggerType is a required field
 	TriggerType *string `type:"string" required:"true" enum:"TriggerType"`
 }
@@ -7539,9 +7638,13 @@ func (s *TriggerConfig) SetTriggerType(v string) *TriggerConfig {
 	return s
 }
 
+// Specifies the configuration details that control the trigger for a flow.
+// Currently, these settings only apply to the Scheduled trigger type.
 type TriggerProperties struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the configuration details of a schedule-triggered flow that you
+	// define.
 	Scheduled *ScheduledTriggerProperties `type:"structure"`
 }
 
@@ -8201,9 +8304,12 @@ func (s *UpdateProfileOutput) SetProfileId(v string) *UpdateProfileOutput {
 	return s
 }
 
+// The properties that are applied when using Zendesk as a flow source.
 type ZendeskSourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The object specified in the Zendesk flow source.
+	//
 	// Object is a required field
 	Object *string `type:"string" required:"true"`
 }

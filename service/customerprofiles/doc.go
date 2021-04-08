@@ -13,7 +13,7 @@
 // (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with
 // contact history from your Amazon Connect contact center.
 //
-// If you're new to Amazon Connect, you might find it helpful to also review
+// If you're new to Amazon Connect , you might find it helpful to also review
 // the Amazon Connect Administrator Guide (https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15 for more information on this service.
