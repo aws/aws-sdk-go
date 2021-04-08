@@ -122,9 +122,12 @@
       {
         "input": {
           "AutoScalingGroupName": "my-auto-scaling-group",
-          "HealthCheckGracePeriod": 120,
+          "HealthCheckGracePeriod": 300,
           "HealthCheckType": "ELB",
-          "LaunchConfigurationName": "my-launch-config",
+          "LaunchTemplate": {
+            "LaunchTemplateId": "lt-0a20c965061f64abc",
+            "Version": "$Default"
+          },
           "MaxSize": 3,
           "MinSize": 1,
           "TargetGroupARNs": [
@@ -144,18 +147,39 @@
       },
       {
         "input": {
-          "AutoScalingGroupName": "my-auto-scaling-group",
-          "AvailabilityZones": [
-            "us-west-2c"
-          ],
-          "HealthCheckGracePeriod": 120,
-          "HealthCheckType": "ELB",
-          "LaunchConfigurationName": "my-launch-config",
-          "LoadBalancerNames": [
-            "my-load-balancer"
-          ],
-          "MaxSize": 3,
-          "MinSize": 1
+          "AutoScalingGroupName": "my-asg",
+          "DesiredCapacity": 3,
+          "MaxSize": 5,
+          "MinSize": 1,
+          "MixedInstancesPolicy": {
+            "InstancesDistribution": {
+              "OnDemandBaseCapacity": 1,
+              "OnDemandPercentageAboveBaseCapacity": 50,
+              "SpotAllocationStrategy": "capacity-optimized"
+            },
+            "LaunchTemplate": {
+              "LaunchTemplateSpecification": {
+                "LaunchTemplateName": "my-launch-template-for-x86",
+                "Version": "$Latest"
+              },
+              "Overrides": [
+                {
+                  "InstanceType": "c6g.large",
+                  "LaunchTemplateSpecification": {
+                    "LaunchTemplateName": "my-launch-template-for-arm",
+                    "Version": "$Latest"
+                  }
+                },
+                {
+                  "InstanceType": "c5.large"
+                },
+                {
+                  "InstanceType": "c5a.large"
+                }
+              ]
+            }
+          },
+          "VPCZoneIdentifier": "subnet-057fa0918fEXAMPLE, subnet-610acd08EXAMPLE"
         },
         "comments": {
           "input": {
@@ -163,9 +187,9 @@
           "output": {
           }
         },
-        "description": "This example creates an Auto Scaling group and attaches the specified Classic Load Balancer.",
-        "id": "autoscaling-create-auto-scaling-group-3",
-        "title": "To create an Auto Scaling group with an attached load balancer"
+        "description": "This example creates an Auto Scaling group with a mixed instances policy. It specifies the c5.large, c5a.large, and c6g.large instance types and defines a different launch template for the c6g.large instance type.",
+        "id": "to-create-an-auto-scaling-group-with-a-mixed-instances-policy-1617815269039",
+        "title": "To create an Auto Scaling group with a mixed instances policy"
       }
     ],
     "CreateLaunchConfiguration": [
@@ -1224,7 +1248,7 @@
           "TargetTrackingConfiguration": {
             "PredefinedMetricSpecification": {
               "PredefinedMetricType": "ALBRequestCountPerTarget",
-              "ResourceLabel": "app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d"
+              "ResourceLabel": "app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff"
             },
             "TargetValue": 1000.0
           }
@@ -1273,6 +1297,24 @@
         "description": "This example adds the specified scheduled action to the specified Auto Scaling group.",
         "id": "autoscaling-put-scheduled-update-group-action-1",
         "title": "To add a scheduled action to an Auto Scaling group"
+      }
+    ],
+    "PutWarmPool": [
+      {
+        "input": {
+          "AutoScalingGroupName": "my-auto-scaling-group",
+          "MinSize": 30,
+          "PoolState": "Stopped"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This example adds a warm pool to the specified Auto Scaling group.",
+        "id": "to-add-a-warm-pool-to-an-auto-scaling-group-1617818810383",
+        "title": "To add a warm pool to an Auto Scaling group"
       }
     ],
     "RecordLifecycleActionHeartbeat": [

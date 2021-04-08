@@ -100,6 +100,10 @@ type AppStreamAPI interface {
 	CreateStreamingURLWithContext(aws.Context, *appstream.CreateStreamingURLInput, ...request.Option) (*appstream.CreateStreamingURLOutput, error)
 	CreateStreamingURLRequest(*appstream.CreateStreamingURLInput) (*request.Request, *appstream.CreateStreamingURLOutput)
 
+	CreateUpdatedImage(*appstream.CreateUpdatedImageInput) (*appstream.CreateUpdatedImageOutput, error)
+	CreateUpdatedImageWithContext(aws.Context, *appstream.CreateUpdatedImageInput, ...request.Option) (*appstream.CreateUpdatedImageOutput, error)
+	CreateUpdatedImageRequest(*appstream.CreateUpdatedImageInput) (*request.Request, *appstream.CreateUpdatedImageOutput)
+
 	CreateUsageReportSubscription(*appstream.CreateUsageReportSubscriptionInput) (*appstream.CreateUsageReportSubscriptionOutput, error)
 	CreateUsageReportSubscriptionWithContext(aws.Context, *appstream.CreateUsageReportSubscriptionInput, ...request.Option) (*appstream.CreateUsageReportSubscriptionOutput, error)
 	CreateUsageReportSubscriptionRequest(*appstream.CreateUsageReportSubscriptionInput) (*request.Request, *appstream.CreateUsageReportSubscriptionOutput)

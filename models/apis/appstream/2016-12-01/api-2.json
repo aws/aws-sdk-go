@@ -180,6 +180,24 @@
         {"shape":"InvalidParameterCombinationException"}
       ]
     },
+    "CreateUpdatedImage":{
+      "name":"CreateUpdatedImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateUpdatedImageRequest"},
+      "output":{"shape":"CreateUpdatedImageResult"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidAccountStatusException"},
+        {"shape":"OperationNotPermittedException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"IncompatibleImageException"}
+      ]
+    },
     "CreateUsageReportSubscription":{
       "name":"CreateUsageReportSubscription",
       "http":{
@@ -1015,6 +1033,28 @@
         "Expires":{"shape":"Timestamp"}
       }
     },
+    "CreateUpdatedImageRequest":{
+      "type":"structure",
+      "required":[
+        "existingImageName",
+        "newImageName"
+      ],
+      "members":{
+        "existingImageName":{"shape":"Name"},
+        "newImageName":{"shape":"Name"},
+        "newImageDescription":{"shape":"Description"},
+        "newImageDisplayName":{"shape":"DisplayName"},
+        "newImageTags":{"shape":"Tags"},
+        "dryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateUpdatedImageResult":{
+      "type":"structure",
+      "members":{
+        "image":{"shape":"Image"},
+        "canUpdateImage":{"shape":"Boolean"}
+      }
+    },
     "CreateUsageReportSubscriptionRequest":{
       "type":"structure",
       "members":{
@@ -1568,7 +1608,8 @@
         "CreatedTime":{"shape":"Timestamp"},
         "PublicBaseImageReleasedDate":{"shape":"Timestamp"},
         "AppstreamAgentVersion":{"shape":"AppstreamAgentVersion"},
-        "ImagePermissions":{"shape":"ImagePermissions"}
+        "ImagePermissions":{"shape":"ImagePermissions"},
+        "ImageErrors":{"shape":"ResourceErrors"}
       }
     },
     "ImageBuilder":{
@@ -1610,7 +1651,9 @@
         "REBOOTING",
         "SNAPSHOTTING",
         "DELETING",
-        "FAILED"
+        "FAILED",
+        "UPDATING",
+        "PENDING_QUALIFICATION"
       ]
     },
     "ImageBuilderStateChangeReason":{

@@ -243,8 +243,12 @@
       "refs": {
         "LoggingConfig$recordAllRosTopics": "<p>A boolean indicating whether to record all ROS topics.</p>",
         "RobotApplicationConfig$useDefaultUploadConfigurations": "<p>A Boolean indicating whether to use default upload configurations. By default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when the application terminates and all ROS topics will be recorded.</p> <p>If you set this value, you must specify an <code>outputLocation</code>. </p>",
+        "RobotApplicationConfig$useDefaultTools": "<p>A Boolean indicating whether to use default robot application tools. The default tools are rviz, rqt, terminal and rosbag record. The default is <code>False</code>. </p>",
         "SimulationApplicationConfig$useDefaultUploadConfigurations": "<p>A Boolean indicating whether to use default upload configurations. By default, <code>.ros</code> and <code>.gazebo</code> files are uploaded when the application terminates and all ROS topics will be recorded.</p> <p>If you set this value, you must specify an <code>outputLocation</code>. </p>",
-        "SimulationJobRequest$useDefaultApplications": "<p>A Boolean indicating whether to use default applications in the simulation job. Default applications include Gazebo, rqt, rviz and terminal access. </p>"
+        "SimulationApplicationConfig$useDefaultTools": "<p>A Boolean indicating whether to use default simulation application tools. The default tools are rviz, rqt, terminal and rosbag record. The default is <code>False</code>. </p>",
+        "SimulationJobRequest$useDefaultApplications": "<p>A Boolean indicating whether to use default applications in the simulation job. Default applications include Gazebo, rqt, rviz and terminal access. </p>",
+        "Tool$streamUI": "<p>Boolean indicating whether a streaming session will be configured for the tool. If <code>True</code>, AWS RoboMaker will configure a connection so you can interact with the tool as it is running in the simulation. It must have a graphical user interface. The default is <code>False</code>. </p>",
+        "Tool$streamOutputToCloudWatch": "<p>Boolean indicating whether logs will be recorded in CloudWatch for the tool. The default is <code>False</code>. </p>"
       }
     },
     "CancelDeploymentJobRequest": {
@@ -802,6 +806,12 @@
         "EnvironmentVariableMap$value": null
       }
     },
+    "ExitBehavior": {
+      "base": null,
+      "refs": {
+        "Tool$exitBehavior": "<p>Exit behavior determines what happens when your tool quits running. <code>RESTART</code> will cause your tool to be restarted. <code>FAIL</code> will cause your job to exit. The default is <code>RESTART</code>. </p>"
+      }
+    },
     "FailedAt": {
       "base": null,
       "refs": {
@@ -1228,6 +1238,7 @@
         "SimulationApplicationSummary$name": "<p>The name of the simulation application.</p>",
         "SimulationJob$name": "<p>The name of the simulation job.</p>",
         "SimulationJobSummary$name": "<p>The name of the simulation job.</p>",
+        "Tool$name": "<p>The name of the tool.</p>",
         "UpdateRobotApplicationResponse$name": "<p>The name of the robot application.</p>",
         "UpdateSimulationApplicationResponse$name": "<p>The name of the simulation application.</p>",
         "UploadConfiguration$name": "<p>A prefix that specifies where files will be uploaded in Amazon S3. It is appended to the simulation output location to determine the final path. </p> <p> For example, if your simulation output location is <code>s3://my-bucket</code> and your upload configuration name is <code>robot-test</code>, your files will be uploaded to <code>s3://my-bucket/&lt;simid&gt;/&lt;runid&gt;/robot-test</code>. </p>"
@@ -1905,6 +1916,25 @@
       "refs": {
       }
     },
+    "Tool": {
+      "base": "<p>Information about a tool. Tools are used in a simulation job.</p>",
+      "refs": {
+        "Tools$member": null
+      }
+    },
+    "Tools": {
+      "base": null,
+      "refs": {
+        "RobotApplicationConfig$tools": "<p>Information about tools configured for the robot application.</p>",
+        "SimulationApplicationConfig$tools": "<p>Information about tools configured for the simulation application.</p>"
+      }
+    },
+    "UnrestrictedCommand": {
+      "base": null,
+      "refs": {
+        "Tool$command": "<p>Command-line arguments for the tool. It must include the tool executable name.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1948,7 +1978,7 @@
     "UploadBehavior": {
       "base": null,
       "refs": {
-        "UploadConfiguration$uploadBehavior": "<p>Specifies how to upload the files:</p> <dl> <dt>UPLOAD_ON_TERMINATE</dt> <dd> <p>Matching files are uploaded once the simulation enters the <code>TERMINATING</code> state. Matching files are not uploaded until all of your code (including tools) have stopped. </p> <p>If there is a problem uploading a file, the upload is retried. If problems persist, no further upload attempts will be made.</p> </dd> <dt>UPLOAD_ROLLING_AUTO_REMOVE</dt> <dd> <p>Matching files are uploaded as they are created. They are deleted after they are uploaded. The specified path is checked every 5 seconds. A final check is made when all of your code (including tools) have stopped. </p> </dd> </dl>"
+        "UploadConfiguration$uploadBehavior": "<p>Specifies when to upload the files:</p> <dl> <dt>UPLOAD_ON_TERMINATE</dt> <dd> <p>Matching files are uploaded once the simulation enters the <code>TERMINATING</code> state. Matching files are not uploaded until all of your code (including tools) have stopped. </p> <p>If there is a problem uploading a file, the upload is retried. If problems persist, no further upload attempts will be made.</p> </dd> <dt>UPLOAD_ROLLING_AUTO_REMOVE</dt> <dd> <p>Matching files are uploaded as they are created. They are deleted after they are uploaded. The specified path is checked every 5 seconds. A final check is made when all of your code (including tools) have stopped. </p> </dd> </dl>"
       }
     },
     "UploadConfiguration": {

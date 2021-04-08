@@ -14154,8 +14154,15 @@ type RobotApplicationConfig struct {
 	// LaunchConfig is a required field
 	LaunchConfig *LaunchConfig `locationName:"launchConfig" type:"structure" required:"true"`
 
+	// Information about tools configured for the robot application.
+	Tools []*Tool `locationName:"tools" type:"list"`
+
 	// The upload configurations for the robot application.
 	UploadConfigurations []*UploadConfiguration `locationName:"uploadConfigurations" type:"list"`
+
+	// A Boolean indicating whether to use default robot application tools. The
+	// default tools are rviz, rqt, terminal and rosbag record. The default is False.
+	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
@@ -14195,6 +14202,16 @@ func (s *RobotApplicationConfig) Validate() error {
 			invalidParams.AddNested("LaunchConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tools != nil {
+		for i, v := range s.Tools {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tools", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.UploadConfigurations != nil {
 		for i, v := range s.UploadConfigurations {
 			if v == nil {
@@ -14230,9 +14247,21 @@ func (s *RobotApplicationConfig) SetLaunchConfig(v *LaunchConfig) *RobotApplicat
 	return s
 }
 
+// SetTools sets the Tools field's value.
+func (s *RobotApplicationConfig) SetTools(v []*Tool) *RobotApplicationConfig {
+	s.Tools = v
+	return s
+}
+
 // SetUploadConfigurations sets the UploadConfigurations field's value.
 func (s *RobotApplicationConfig) SetUploadConfigurations(v []*UploadConfiguration) *RobotApplicationConfig {
 	s.UploadConfigurations = v
+	return s
+}
+
+// SetUseDefaultTools sets the UseDefaultTools field's value.
+func (s *RobotApplicationConfig) SetUseDefaultTools(v bool) *RobotApplicationConfig {
+	s.UseDefaultTools = &v
 	return s
 }
 
@@ -14588,8 +14617,16 @@ type SimulationApplicationConfig struct {
 	// LaunchConfig is a required field
 	LaunchConfig *LaunchConfig `locationName:"launchConfig" type:"structure" required:"true"`
 
+	// Information about tools configured for the simulation application.
+	Tools []*Tool `locationName:"tools" type:"list"`
+
 	// Information about upload configurations for the simulation application.
 	UploadConfigurations []*UploadConfiguration `locationName:"uploadConfigurations" type:"list"`
+
+	// A Boolean indicating whether to use default simulation application tools.
+	// The default tools are rviz, rqt, terminal and rosbag record. The default
+	// is False.
+	UseDefaultTools *bool `locationName:"useDefaultTools" type:"boolean"`
 
 	// A Boolean indicating whether to use default upload configurations. By default,
 	// .ros and .gazebo files are uploaded when the application terminates and all
@@ -14630,6 +14667,16 @@ func (s *SimulationApplicationConfig) Validate() error {
 	if s.LaunchConfig != nil {
 		if err := s.LaunchConfig.Validate(); err != nil {
 			invalidParams.AddNested("LaunchConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tools != nil {
+		for i, v := range s.Tools {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tools", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.UploadConfigurations != nil {
@@ -14677,9 +14724,21 @@ func (s *SimulationApplicationConfig) SetLaunchConfig(v *LaunchConfig) *Simulati
 	return s
 }
 
+// SetTools sets the Tools field's value.
+func (s *SimulationApplicationConfig) SetTools(v []*Tool) *SimulationApplicationConfig {
+	s.Tools = v
+	return s
+}
+
 // SetUploadConfigurations sets the UploadConfigurations field's value.
 func (s *SimulationApplicationConfig) SetUploadConfigurations(v []*UploadConfiguration) *SimulationApplicationConfig {
 	s.UploadConfigurations = v
+	return s
+}
+
+// SetUseDefaultTools sets the UseDefaultTools field's value.
+func (s *SimulationApplicationConfig) SetUseDefaultTools(v bool) *SimulationApplicationConfig {
+	s.UseDefaultTools = &v
 	return s
 }
 
@@ -16231,6 +16290,99 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a tool. Tools are used in a simulation job.
+type Tool struct {
+	_ struct{} `type:"structure"`
+
+	// Command-line arguments for the tool. It must include the tool executable
+	// name.
+	//
+	// Command is a required field
+	Command *string `locationName:"command" min:"1" type:"string" required:"true"`
+
+	// Exit behavior determines what happens when your tool quits running. RESTART
+	// will cause your tool to be restarted. FAIL will cause your job to exit. The
+	// default is RESTART.
+	ExitBehavior *string `locationName:"exitBehavior" type:"string" enum:"ExitBehavior"`
+
+	// The name of the tool.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Boolean indicating whether logs will be recorded in CloudWatch for the tool.
+	// The default is False.
+	StreamOutputToCloudWatch *bool `locationName:"streamOutputToCloudWatch" type:"boolean"`
+
+	// Boolean indicating whether a streaming session will be configured for the
+	// tool. If True, AWS RoboMaker will configure a connection so you can interact
+	// with the tool as it is running in the simulation. It must have a graphical
+	// user interface. The default is False.
+	StreamUI *bool `locationName:"streamUI" type:"boolean"`
+}
+
+// String returns the string representation
+func (s Tool) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tool) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tool) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tool"}
+	if s.Command == nil {
+		invalidParams.Add(request.NewErrParamRequired("Command"))
+	}
+	if s.Command != nil && len(*s.Command) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Command", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommand sets the Command field's value.
+func (s *Tool) SetCommand(v string) *Tool {
+	s.Command = &v
+	return s
+}
+
+// SetExitBehavior sets the ExitBehavior field's value.
+func (s *Tool) SetExitBehavior(v string) *Tool {
+	s.ExitBehavior = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Tool) SetName(v string) *Tool {
+	s.Name = &v
+	return s
+}
+
+// SetStreamOutputToCloudWatch sets the StreamOutputToCloudWatch field's value.
+func (s *Tool) SetStreamOutputToCloudWatch(v bool) *Tool {
+	s.StreamOutputToCloudWatch = &v
+	return s
+}
+
+// SetStreamUI sets the StreamUI field's value.
+func (s *Tool) SetStreamUI(v bool) *Tool {
+	s.StreamUI = &v
+	return s
+}
+
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16835,7 +16987,7 @@ type UploadConfiguration struct {
 	// Path is a required field
 	Path *string `locationName:"path" min:"1" type:"string" required:"true"`
 
-	// Specifies how to upload the files:
+	// Specifies when to upload the files:
 	//
 	// UPLOAD_ON_TERMINATE
 	//
@@ -17479,8 +17631,20 @@ const (
 	// DeploymentJobErrorCodeDownloadConditionFailed is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeDownloadConditionFailed = "DownloadConditionFailed"
 
+	// DeploymentJobErrorCodeBadLambdaAssociated is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeBadLambdaAssociated = "BadLambdaAssociated"
+
 	// DeploymentJobErrorCodeInternalServerError is a DeploymentJobErrorCode enum value
 	DeploymentJobErrorCodeInternalServerError = "InternalServerError"
+
+	// DeploymentJobErrorCodeRobotApplicationDoesNotExist is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeRobotApplicationDoesNotExist = "RobotApplicationDoesNotExist"
+
+	// DeploymentJobErrorCodeDeploymentFleetDoesNotExist is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeDeploymentFleetDoesNotExist = "DeploymentFleetDoesNotExist"
+
+	// DeploymentJobErrorCodeFleetDeploymentTimeout is a DeploymentJobErrorCode enum value
+	DeploymentJobErrorCodeFleetDeploymentTimeout = "FleetDeploymentTimeout"
 )
 
 // DeploymentJobErrorCode_Values returns all elements of the DeploymentJobErrorCode enum
@@ -17505,7 +17669,11 @@ func DeploymentJobErrorCode_Values() []string {
 		DeploymentJobErrorCodePostLaunchFileFailure,
 		DeploymentJobErrorCodeBadPermissionError,
 		DeploymentJobErrorCodeDownloadConditionFailed,
+		DeploymentJobErrorCodeBadLambdaAssociated,
 		DeploymentJobErrorCodeInternalServerError,
+		DeploymentJobErrorCodeRobotApplicationDoesNotExist,
+		DeploymentJobErrorCodeDeploymentFleetDoesNotExist,
+		DeploymentJobErrorCodeFleetDeploymentTimeout,
 	}
 }
 
@@ -17538,6 +17706,22 @@ func DeploymentStatus_Values() []string {
 		DeploymentStatusFailed,
 		DeploymentStatusSucceeded,
 		DeploymentStatusCanceled,
+	}
+}
+
+const (
+	// ExitBehaviorFail is a ExitBehavior enum value
+	ExitBehaviorFail = "FAIL"
+
+	// ExitBehaviorRestart is a ExitBehavior enum value
+	ExitBehaviorRestart = "RESTART"
+)
+
+// ExitBehavior_Values returns all elements of the ExitBehavior enum
+func ExitBehavior_Values() []string {
+	return []string{
+		ExitBehaviorFail,
+		ExitBehaviorRestart,
 	}
 }
 
@@ -17743,6 +17927,12 @@ const (
 	// SimulationJobErrorCodeSimulationApplicationCrash is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeSimulationApplicationCrash = "SimulationApplicationCrash"
 
+	// SimulationJobErrorCodeRobotApplicationHealthCheckFailure is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeRobotApplicationHealthCheckFailure = "RobotApplicationHealthCheckFailure"
+
+	// SimulationJobErrorCodeSimulationApplicationHealthCheckFailure is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeSimulationApplicationHealthCheckFailure = "SimulationApplicationHealthCheckFailure"
+
 	// SimulationJobErrorCodeBadPermissionsRobotApplication is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeBadPermissionsRobotApplication = "BadPermissionsRobotApplication"
 
@@ -17775,6 +17965,9 @@ const (
 
 	// SimulationJobErrorCodeInvalidS3resource is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeInvalidS3resource = "InvalidS3Resource"
+
+	// SimulationJobErrorCodeThrottlingError is a SimulationJobErrorCode enum value
+	SimulationJobErrorCodeThrottlingError = "ThrottlingError"
 
 	// SimulationJobErrorCodeLimitExceeded is a SimulationJobErrorCode enum value
 	SimulationJobErrorCodeLimitExceeded = "LimitExceeded"
@@ -17825,6 +18018,8 @@ func SimulationJobErrorCode_Values() []string {
 		SimulationJobErrorCodeInternalServiceError,
 		SimulationJobErrorCodeRobotApplicationCrash,
 		SimulationJobErrorCodeSimulationApplicationCrash,
+		SimulationJobErrorCodeRobotApplicationHealthCheckFailure,
+		SimulationJobErrorCodeSimulationApplicationHealthCheckFailure,
 		SimulationJobErrorCodeBadPermissionsRobotApplication,
 		SimulationJobErrorCodeBadPermissionsSimulationApplication,
 		SimulationJobErrorCodeBadPermissionsS3object,
@@ -17836,6 +18031,7 @@ func SimulationJobErrorCode_Values() []string {
 		SimulationJobErrorCodeInvalidBundleRobotApplication,
 		SimulationJobErrorCodeInvalidBundleSimulationApplication,
 		SimulationJobErrorCodeInvalidS3resource,
+		SimulationJobErrorCodeThrottlingError,
 		SimulationJobErrorCodeLimitExceeded,
 		SimulationJobErrorCodeMismatchedEtag,
 		SimulationJobErrorCodeRobotApplicationVersionMismatchedEtag,

@@ -82,7 +82,7 @@ func (c *AppStream) AssociateFleetRequest(input *AssociateFleetInput) (req *requ
 //   An API error occurred. Wait a few minutes and try again.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
@@ -347,7 +347,7 @@ func (c *AppStream) CopyImageRequest(input *CopyImageInput) (req *request.Reques
 //   assistance, contact AWS Support.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CopyImage
 func (c *AppStream) CopyImage(input *CopyImageInput) (*CopyImageOutput, error) {
@@ -554,7 +554,7 @@ func (c *AppStream) CreateFleetRequest(input *CreateFleetInput) (req *request.Re
 //   Indicates an incorrect combination of parameters, or a missing parameter.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
@@ -670,7 +670,7 @@ func (c *AppStream) CreateImageBuilderRequest(input *CreateImageBuilderInput) (r
 //   Indicates an incorrect combination of parameters, or a missing parameter.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
@@ -963,6 +963,109 @@ func (c *AppStream) CreateStreamingURL(input *CreateStreamingURLInput) (*CreateS
 // for more information on using Contexts.
 func (c *AppStream) CreateStreamingURLWithContext(ctx aws.Context, input *CreateStreamingURLInput, opts ...request.Option) (*CreateStreamingURLOutput, error) {
 	req, out := c.CreateStreamingURLRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUpdatedImage = "CreateUpdatedImage"
+
+// CreateUpdatedImageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUpdatedImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUpdatedImage for more information on using the CreateUpdatedImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUpdatedImageRequest method.
+//    req, resp := client.CreateUpdatedImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUpdatedImage
+func (c *AppStream) CreateUpdatedImageRequest(input *CreateUpdatedImageInput) (req *request.Request, output *CreateUpdatedImageOutput) {
+	op := &request.Operation{
+		Name:       opCreateUpdatedImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUpdatedImageInput{}
+	}
+
+	output = &CreateUpdatedImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUpdatedImage API operation for Amazon AppStream.
+//
+// Creates a new image with the latest Windows operating system updates, driver
+// updates, and AppStream 2.0 agent software.
+//
+// For more information, see the "Update an Image by Using Managed AppStream
+// 2.0 Image Updates" section in Administer Your AppStream 2.0 Images (https://docs.aws.amazon.com/appstream2/latest/developerguide/administer-images.html),
+// in the Amazon AppStream 2.0 Administration Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppStream's
+// API operation CreateUpdatedImage for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The requested limit exceeds the permitted limit for an account.
+//
+//   * InvalidAccountStatusException
+//   The resource cannot be created because your AWS account is suspended. For
+//   assistance, contact AWS Support.
+//
+//   * OperationNotPermittedException
+//   The attempted operation is not permitted.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ConcurrentModificationException
+//   An API error occurred. Wait a few minutes and try again.
+//
+//   * IncompatibleImageException
+//   The image can't be updated because it's not compatible for updates.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/CreateUpdatedImage
+func (c *AppStream) CreateUpdatedImage(input *CreateUpdatedImageInput) (*CreateUpdatedImageOutput, error) {
+	req, out := c.CreateUpdatedImageRequest(input)
+	return out, req.Send()
+}
+
+// CreateUpdatedImageWithContext is the same as CreateUpdatedImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUpdatedImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppStream) CreateUpdatedImageWithContext(ctx aws.Context, input *CreateUpdatedImageInput, opts ...request.Option) (*CreateUpdatedImageOutput, error) {
+	req, out := c.CreateUpdatedImageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3505,7 +3608,7 @@ func (c *AppStream) StartImageBuilderRequest(input *StartImageBuilderInput) (req
 //   assistance, contact AWS Support.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appstream-2016-12-01/StartImageBuilder
 func (c *AppStream) StartImageBuilder(input *StartImageBuilderInput) (*StartImageBuilderOutput, error) {
@@ -4064,7 +4167,7 @@ func (c *AppStream) UpdateFleetRequest(input *UpdateFleetInput) (req *request.Re
 //   An API error occurred. Wait a few minutes and try again.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
@@ -4251,7 +4354,7 @@ func (c *AppStream) UpdateStackRequest(input *UpdateStackInput) (req *request.Re
 //   assistance, contact AWS Support.
 //
 //   * IncompatibleImageException
-//   The image does not support storage connectors.
+//   The image can't be updated because it's not compatible for updates.
 //
 //   * OperationNotPermittedException
 //   The attempted operation is not permitted.
@@ -6174,6 +6277,146 @@ func (s *CreateStreamingURLOutput) SetExpires(v time.Time) *CreateStreamingURLOu
 // SetStreamingURL sets the StreamingURL field's value.
 func (s *CreateStreamingURLOutput) SetStreamingURL(v string) *CreateStreamingURLOutput {
 	s.StreamingURL = &v
+	return s
+}
+
+type CreateUpdatedImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether to display the status of image update availability before
+	// AppStream 2.0 initiates the process of creating a new updated image. If this
+	// value is set to true, AppStream 2.0 displays whether image updates are available.
+	// If this value is set to false, AppStream 2.0 initiates the process of creating
+	// a new updated image without displaying whether image updates are available.
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
+	// The name of the image to update.
+	//
+	// ExistingImageName is a required field
+	ExistingImageName *string `locationName:"existingImageName" type:"string" required:"true"`
+
+	// The description to display for the new image.
+	NewImageDescription *string `locationName:"newImageDescription" type:"string"`
+
+	// The name to display for the new image.
+	NewImageDisplayName *string `locationName:"newImageDisplayName" type:"string"`
+
+	// The name of the new image. The name must be unique within the AWS account
+	// and Region.
+	//
+	// NewImageName is a required field
+	NewImageName *string `locationName:"newImageName" type:"string" required:"true"`
+
+	// The tags to associate with the new image. A tag is a key-value pair, and
+	// the value is optional. For example, Environment=Test. If you do not specify
+	// a value, Environment=.
+	//
+	// Generally allowed characters are: letters, numbers, and spaces representable
+	// in UTF-8, and the following special characters:
+	//
+	// _ . : / = + \ - @
+	//
+	// If you do not specify a value, the value is set to an empty string.
+	//
+	// For more information about tags, see Tagging Your Resources (https://docs.aws.amazon.com/appstream2/latest/developerguide/tagging-basic.html)
+	// in the Amazon AppStream 2.0 Administration Guide.
+	NewImageTags map[string]*string `locationName:"newImageTags" min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateUpdatedImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUpdatedImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUpdatedImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUpdatedImageInput"}
+	if s.ExistingImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExistingImageName"))
+	}
+	if s.NewImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NewImageName"))
+	}
+	if s.NewImageTags != nil && len(s.NewImageTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewImageTags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateUpdatedImageInput) SetDryRun(v bool) *CreateUpdatedImageInput {
+	s.DryRun = &v
+	return s
+}
+
+// SetExistingImageName sets the ExistingImageName field's value.
+func (s *CreateUpdatedImageInput) SetExistingImageName(v string) *CreateUpdatedImageInput {
+	s.ExistingImageName = &v
+	return s
+}
+
+// SetNewImageDescription sets the NewImageDescription field's value.
+func (s *CreateUpdatedImageInput) SetNewImageDescription(v string) *CreateUpdatedImageInput {
+	s.NewImageDescription = &v
+	return s
+}
+
+// SetNewImageDisplayName sets the NewImageDisplayName field's value.
+func (s *CreateUpdatedImageInput) SetNewImageDisplayName(v string) *CreateUpdatedImageInput {
+	s.NewImageDisplayName = &v
+	return s
+}
+
+// SetNewImageName sets the NewImageName field's value.
+func (s *CreateUpdatedImageInput) SetNewImageName(v string) *CreateUpdatedImageInput {
+	s.NewImageName = &v
+	return s
+}
+
+// SetNewImageTags sets the NewImageTags field's value.
+func (s *CreateUpdatedImageInput) SetNewImageTags(v map[string]*string) *CreateUpdatedImageInput {
+	s.NewImageTags = v
+	return s
+}
+
+type CreateUpdatedImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a new image can be created.
+	CanUpdateImage *bool `locationName:"canUpdateImage" type:"boolean"`
+
+	// Describes an image.
+	Image *Image `locationName:"image" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUpdatedImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUpdatedImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetCanUpdateImage sets the CanUpdateImage field's value.
+func (s *CreateUpdatedImageOutput) SetCanUpdateImage(v bool) *CreateUpdatedImageOutput {
+	s.CanUpdateImage = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *CreateUpdatedImageOutput) SetImage(v *Image) *CreateUpdatedImageOutput {
+	s.Image = v
 	return s
 }
 
@@ -8529,6 +8772,9 @@ type Image struct {
 	// Indicates whether an image builder can be launched from this image.
 	ImageBuilderSupported *bool `type:"boolean"`
 
+	// Describes the errors that are returned when a new image can't be created.
+	ImageErrors []*ResourceError `type:"list"`
+
 	// The permissions to provide to the destination AWS account for the specified
 	// image.
 	ImagePermissions *ImagePermissions `type:"structure"`
@@ -8617,6 +8863,12 @@ func (s *Image) SetImageBuilderName(v string) *Image {
 // SetImageBuilderSupported sets the ImageBuilderSupported field's value.
 func (s *Image) SetImageBuilderSupported(v bool) *Image {
 	s.ImageBuilderSupported = &v
+	return s
+}
+
+// SetImageErrors sets the ImageErrors field's value.
+func (s *Image) SetImageErrors(v []*ResourceError) *Image {
+	s.ImageErrors = v
 	return s
 }
 
@@ -9019,7 +9271,7 @@ func (s *ImageStateChangeReason) SetMessage(v string) *ImageStateChangeReason {
 	return s
 }
 
-// The image does not support storage connectors.
+// The image can't be updated because it's not compatible for updates.
 type IncompatibleImageException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12228,6 +12480,12 @@ const (
 
 	// ImageBuilderStateFailed is a ImageBuilderState enum value
 	ImageBuilderStateFailed = "FAILED"
+
+	// ImageBuilderStateUpdating is a ImageBuilderState enum value
+	ImageBuilderStateUpdating = "UPDATING"
+
+	// ImageBuilderStatePendingQualification is a ImageBuilderState enum value
+	ImageBuilderStatePendingQualification = "PENDING_QUALIFICATION"
 )
 
 // ImageBuilderState_Values returns all elements of the ImageBuilderState enum
@@ -12242,6 +12500,8 @@ func ImageBuilderState_Values() []string {
 		ImageBuilderStateSnapshotting,
 		ImageBuilderStateDeleting,
 		ImageBuilderStateFailed,
+		ImageBuilderStateUpdating,
+		ImageBuilderStatePendingQualification,
 	}
 }
 

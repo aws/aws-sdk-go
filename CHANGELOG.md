@@ -1,3 +1,17 @@
+Release v1.38.16 (2021-04-08)
+===
+
+### Service Client Updates
+* `service/appstream`: Updates service API and documentation
+  * This release provides support for image updates
+* `service/autoscaling`: Updates service API, documentation, and examples
+  * Amazon EC2 Auto Scaling announces Warm Pools that help applications to scale out faster by pre-initializing EC2 instances and save money by requiring fewer continuously running instances
+* `service/customer-profiles`: Updates service documentation
+* `service/kinesis-video-archived-media`: Updates service documentation
+* `service/lookoutequipment`: Adds new service
+* `service/ram`: Updates service documentation
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.38.15 (2021-04-07)
 ===
 
