@@ -96,7 +96,8 @@
         {"shape":"LimitsExceededException"},
         {"shape":"ResourceAlreadyExistsException"},
         {"shape":"OptimisticLockException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterException"}
       ]
     },
     "CreateProtectionGroup":{

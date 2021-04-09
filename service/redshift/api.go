@@ -1655,7 +1655,7 @@ func (c *Redshift) CreateHsmClientCertificateRequest(input *CreateHsmClientCerti
 // The command returns a public key, which you must store in the HSM. In addition
 // to creating the HSM certificate, you must create an Amazon Redshift HSM configuration
 // that provides a cluster the information needed to store and use encryption
-// keys in the HSM. For more information, go to Hardware Security Modules (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-HSM.html)
+// keys in the HSM. For more information, go to Hardware Security Modules (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html#working-with-HSM)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -25238,6 +25238,11 @@ type RestoreTableFromClusterSnapshotInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
+	// Indicates whether name identifiers for database, schema, and table are case
+	// sensitive. If true, the names are case sensitive. If false (default), the
+	// names are not case sensitive.
+	EnableCaseSensitiveIdentifier *bool `type:"boolean"`
+
 	// The name of the table to create as a result of the current request.
 	//
 	// NewTableName is a required field
@@ -25309,6 +25314,12 @@ func (s *RestoreTableFromClusterSnapshotInput) Validate() error {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *RestoreTableFromClusterSnapshotInput) SetClusterIdentifier(v string) *RestoreTableFromClusterSnapshotInput {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetEnableCaseSensitiveIdentifier sets the EnableCaseSensitiveIdentifier field's value.
+func (s *RestoreTableFromClusterSnapshotInput) SetEnableCaseSensitiveIdentifier(v bool) *RestoreTableFromClusterSnapshotInput {
+	s.EnableCaseSensitiveIdentifier = &v
 	return s
 }
 

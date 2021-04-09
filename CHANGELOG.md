@@ -1,3 +1,14 @@
+Release v1.38.17 (2021-04-09)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * Add paginator support to DescribeStoreImageTasks and update documentation.
+* `service/redshift`: Updates service API and documentation
+  * Add support for case sensitive table level restore
+* `service/shield`: Updates service API and documentation
+  * CreateProtection now throws InvalidParameterException instead of InternalErrorException when system tags (tag with keys prefixed with "aws:") are passed in.
+
 Release v1.38.16 (2021-04-08)
 ===
 

@@ -488,13 +488,13 @@
     "LimitNumber": {
       "base": null,
       "refs": {
-        "LimitsExceededException$Limit": null
+        "LimitsExceededException$Limit": "<p>The threshold that would be exceeded.</p>"
       }
     },
     "LimitType": {
       "base": null,
       "refs": {
-        "LimitsExceededException$Type": null
+        "LimitsExceededException$Type": "<p>The type of limit that would be exceeded.</p>"
       }
     },
     "Limits": {
@@ -505,7 +505,7 @@
       }
     },
     "LimitsExceededException": {
-      "base": "<p>Exception that indicates that the operation would exceed a limit.</p> <p> <code>Type</code> is the type of limit that would be exceeded.</p> <p> <code>Limit</code> is the threshold that would be exceeded.</p>",
+      "base": "<p>Exception that indicates that the operation would exceed a limit.</p>",
       "refs": {
       }
     },

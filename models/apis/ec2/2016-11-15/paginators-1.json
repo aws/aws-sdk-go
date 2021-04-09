@@ -410,6 +410,12 @@
       "output_token": "NextToken",
       "result_key": "StaleSecurityGroupSet"
     },
+    "DescribeStoreImageTasks": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "StoreImageTaskResults"
+    },
     "DescribeSubnets": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
