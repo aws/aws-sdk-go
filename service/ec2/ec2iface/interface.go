@@ -1270,6 +1270,9 @@ type EC2API interface {
 	DescribeStoreImageTasksWithContext(aws.Context, *ec2.DescribeStoreImageTasksInput, ...request.Option) (*ec2.DescribeStoreImageTasksOutput, error)
 	DescribeStoreImageTasksRequest(*ec2.DescribeStoreImageTasksInput) (*request.Request, *ec2.DescribeStoreImageTasksOutput)
 
+	DescribeStoreImageTasksPages(*ec2.DescribeStoreImageTasksInput, func(*ec2.DescribeStoreImageTasksOutput, bool) bool) error
+	DescribeStoreImageTasksPagesWithContext(aws.Context, *ec2.DescribeStoreImageTasksInput, func(*ec2.DescribeStoreImageTasksOutput, bool) bool, ...request.Option) error
+
 	DescribeSubnets(*ec2.DescribeSubnetsInput) (*ec2.DescribeSubnetsOutput, error)
 	DescribeSubnetsWithContext(aws.Context, *ec2.DescribeSubnetsInput, ...request.Option) (*ec2.DescribeSubnetsOutput, error)
 	DescribeSubnetsRequest(*ec2.DescribeSubnetsInput) (*request.Request, *ec2.DescribeSubnetsOutput)

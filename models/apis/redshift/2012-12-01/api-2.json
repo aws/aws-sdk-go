@@ -4940,7 +4940,8 @@
         "SourceTableName":{"shape":"String"},
         "TargetDatabaseName":{"shape":"String"},
         "TargetSchemaName":{"shape":"String"},
-        "NewTableName":{"shape":"String"}
+        "NewTableName":{"shape":"String"},
+        "EnableCaseSensitiveIdentifier":{"shape":"BooleanOptional"}
       }
     },
     "RestoreTableFromClusterSnapshotResult":{

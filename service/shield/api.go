@@ -88,10 +88,6 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 //   * LimitsExceededException
 //   Exception that indicates that the operation would exceed a limit.
 //
-//   Type is the type of limit that would be exceeded.
-//
-//   Limit is the threshold that would be exceeded.
-//
 //   * InvalidParameterException
 //   Exception that indicates that the parameters passed to the API are invalid.
 //   If available, this exception includes details in additional properties.
@@ -331,10 +327,6 @@ func (c *Shield) AssociateHealthCheckRequest(input *AssociateHealthCheckInput) (
 //   * LimitsExceededException
 //   Exception that indicates that the operation would exceed a limit.
 //
-//   Type is the type of limit that would be exceeded.
-//
-//   Limit is the threshold that would be exceeded.
-//
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist. If available,
 //   this exception includes details in additional properties.
@@ -559,10 +551,6 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 //   * LimitsExceededException
 //   Exception that indicates that the operation would exceed a limit.
 //
-//   Type is the type of limit that would be exceeded.
-//
-//   Limit is the threshold that would be exceeded.
-//
 //   * ResourceAlreadyExistsException
 //   Exception indicating the specified resource already exists. If available,
 //   this exception includes details in additional properties.
@@ -574,6 +562,10 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 //   * ResourceNotFoundException
 //   Exception indicating the specified resource does not exist. If available,
 //   this exception includes details in additional properties.
+//
+//   * InvalidParameterException
+//   Exception that indicates that the parameters passed to the API are invalid.
+//   If available, this exception includes details in additional properties.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtection
 func (c *Shield) CreateProtection(input *CreateProtectionInput) (*CreateProtectionOutput, error) {
@@ -676,10 +668,6 @@ func (c *Shield) CreateProtectionGroupRequest(input *CreateProtectionGroupInput)
 //
 //   * LimitsExceededException
 //   Exception that indicates that the operation would exceed a limit.
-//
-//   Type is the type of limit that would be exceeded.
-//
-//   Limit is the threshold that would be exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/shield-2016-06-02/CreateProtectionGroup
 func (c *Shield) CreateProtectionGroup(input *CreateProtectionGroupInput) (*CreateProtectionGroupOutput, error) {
@@ -5676,18 +5664,16 @@ func (s *Limit) SetType(v string) *Limit {
 }
 
 // Exception that indicates that the operation would exceed a limit.
-//
-// Type is the type of limit that would be exceeded.
-//
-// Limit is the threshold that would be exceeded.
 type LimitsExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The threshold that would be exceeded.
 	Limit *int64 `type:"long"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
+	// The type of limit that would be exceeded.
 	Type *string `type:"string"`
 }
 
