@@ -1,3 +1,11 @@
+Release v1.38.18 (2021-04-12)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now allows you to set the access permissions for build artifacts, project artifacts, and log files that are uploaded to an Amazon S3 bucket that is owned by another account.
+* `service/fsx`: Updates service API, documentation, and examples
+
 Release v1.38.17 (2021-04-09)
 ===
 

@@ -44,6 +44,29 @@
       ],
       "idempotent":true
     },
+    "CopyBackup":{
+      "name":"CopyBackup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CopyBackupRequest"},
+      "output":{"shape":"CopyBackupResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"BackupNotFound"},
+        {"shape":"ServiceLimitExceeded"},
+        {"shape":"UnsupportedOperation"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"InvalidSourceKmsKey"},
+        {"shape":"InvalidDestinationKmsKey"},
+        {"shape":"InvalidRegion"},
+        {"shape":"SourceBackupUnavailable"},
+        {"shape":"IncompatibleRegionForMultiAZ"}
+      ],
+      "idempotent":true
+    },
     "CreateBackup":{
       "name":"CreateBackup",
       "http":{
@@ -137,7 +160,8 @@
         {"shape":"BackupNotFound"},
         {"shape":"BackupRestoring"},
         {"shape":"IncompatibleParameterError"},
-        {"shape":"InternalServerError"}
+        {"shape":"InternalServerError"},
+        {"shape":"BackupBeingCopied"}
       ],
       "idempotent":true
     },
@@ -310,7 +334,8 @@
       "type":"structure",
       "members":{
         "DomainName":{"shape":"ActiveDirectoryFullyQualifiedName"},
-        "ActiveDirectoryId":{"shape":"DirectoryId"}
+        "ActiveDirectoryId":{"shape":"DirectoryId"},
+        "ResourceARN":{"shape":"ResourceARN"}
       }
     },
     "ActiveDirectoryError":{
@@ -462,8 +487,19 @@
         "ResourceARN":{"shape":"ResourceARN"},
         "Tags":{"shape":"Tags"},
         "FileSystem":{"shape":"FileSystem"},
-        "DirectoryInformation":{"shape":"ActiveDirectoryBackupAttributes"}
+        "DirectoryInformation":{"shape":"ActiveDirectoryBackupAttributes"},
+        "OwnerId":{"shape":"AWSAccountId"},
+        "SourceBackupId":{"shape":"BackupId"},
+        "SourceBackupRegion":{"shape":"Region"}
       }
+    },
+    "BackupBeingCopied":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "BackupId":{"shape":"BackupId"}
+      },
+      "exception":true
     },
     "BackupFailureDetails":{
       "type":"structure",
@@ -497,7 +533,8 @@
         "TRANSFERRING",
         "DELETED",
         "FAILED",
-        "PENDING"
+        "PENDING",
+        "COPYING"
       ]
     },
     "BackupNotFound":{
@@ -565,6 +602,27 @@
         "Scope":{"shape":"ReportScope"}
       }
     },
+    "CopyBackupRequest":{
+      "type":"structure",
+      "required":["SourceBackupId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "SourceBackupId":{"shape":"SourceBackupId"},
+        "SourceRegion":{"shape":"Region"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "CopyTags":{"shape":"Flag"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CopyBackupResponse":{
+      "type":"structure",
+      "members":{
+        "Backup":{"shape":"Backup"}
+      }
+    },
     "CreateBackupRequest":{
       "type":"structure",
       "required":["FileSystemId"],
@@ -625,7 +683,8 @@
         "Tags":{"shape":"Tags"},
         "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"},
         "LustreConfiguration":{"shape":"CreateFileSystemLustreConfiguration"},
-        "StorageType":{"shape":"StorageType"}
+        "StorageType":{"shape":"StorageType"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateFileSystemFromBackupResponse":{
@@ -1181,6 +1240,13 @@
       },
       "exception":true
     },
+    "IncompatibleRegionForMultiAZ":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "InternalServerError":{
       "type":"structure",
       "members":{
@@ -1188,6 +1254,13 @@
       },
       "exception":true,
       "fault":true
+    },
+    "InvalidDestinationKmsKey":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
     },
     "InvalidExportPath":{
       "type":"structure",
@@ -1213,6 +1286,20 @@
       "exception":true
     },
     "InvalidPerUnitStorageThroughput":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidRegion":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "InvalidSourceKmsKey":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}
@@ -1344,6 +1431,12 @@
       "max":100,
       "min":0
     },
+    "Region":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[a-z0-9-]{1,20}$"
+    },
     "ReportFormat":{
       "type":"string",
       "enum":["REPORT_CSV_20191124"]
@@ -1429,7 +1522,9 @@
         "FILE_SYSTEM_COUNT",
         "TOTAL_THROUGHPUT_CAPACITY",
         "TOTAL_STORAGE",
-        "TOTAL_USER_INITIATED_BACKUPS"
+        "TOTAL_USER_INITIATED_BACKUPS",
+        "TOTAL_USER_TAGS",
+        "TOTAL_IN_PROGRESS_COPY_BACKUPS"
       ]
     },
     "ServiceLimitExceeded":{
@@ -1438,6 +1533,20 @@
       "members":{
         "Limit":{"shape":"ServiceLimit"},
         "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "SourceBackupId":{
+      "type":"string",
+      "max":128,
+      "min":12,
+      "pattern":"^(backup-[0-9a-f]{8,})$"
+    },
+    "SourceBackupUnavailable":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "BackupId":{"shape":"BackupId"}
       },
       "exception":true
     },

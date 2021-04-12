@@ -25,6 +25,56 @@ func parseTime(layout, value string) *time.Time {
 	return &t
 }
 
+// To copy a backup
+//
+// This operation copies an Amazon FSx backup.
+func ExampleFSx_CopyBackup_shared00() {
+	svc := fsx.New(session.New())
+	input := &fsx.CopyBackupInput{
+		SourceBackupId: aws.String("backup-03e3c82e0183b7b6b"),
+		SourceRegion:   aws.String("us-east-2"),
+	}
+
+	result, err := svc.CopyBackup(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case fsx.ErrCodeBadRequest:
+				fmt.Println(fsx.ErrCodeBadRequest, aerr.Error())
+			case fsx.ErrCodeBackupNotFound:
+				fmt.Println(fsx.ErrCodeBackupNotFound, aerr.Error())
+			case fsx.ErrCodeServiceLimitExceeded:
+				fmt.Println(fsx.ErrCodeServiceLimitExceeded, aerr.Error())
+			case fsx.ErrCodeUnsupportedOperation:
+				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
+			case fsx.ErrCodeIncompatibleParameterError:
+				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
+			case fsx.ErrCodeInternalServerError:
+				fmt.Println(fsx.ErrCodeInternalServerError, aerr.Error())
+			case fsx.ErrCodeInvalidSourceKmsKey:
+				fmt.Println(fsx.ErrCodeInvalidSourceKmsKey, aerr.Error())
+			case fsx.ErrCodeInvalidDestinationKmsKey:
+				fmt.Println(fsx.ErrCodeInvalidDestinationKmsKey, aerr.Error())
+			case fsx.ErrCodeInvalidRegion:
+				fmt.Println(fsx.ErrCodeInvalidRegion, aerr.Error())
+			case fsx.ErrCodeSourceBackupUnavailable:
+				fmt.Println(fsx.ErrCodeSourceBackupUnavailable, aerr.Error())
+			case fsx.ErrCodeIncompatibleRegionForMultiAZ:
+				fmt.Println(fsx.ErrCodeIncompatibleRegionForMultiAZ, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To create a new backup
 //
 // This operation creates a new backup.
@@ -231,6 +281,8 @@ func ExampleFSx_DeleteBackup_shared00() {
 				fmt.Println(fsx.ErrCodeIncompatibleParameterError, aerr.Error())
 			case fsx.ErrCodeInternalServerError:
 				fmt.Println(fsx.ErrCodeInternalServerError, aerr.Error())
+			case fsx.ErrCodeBackupBeingCopied:
+				fmt.Println(fsx.ErrCodeBackupBeingCopied, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

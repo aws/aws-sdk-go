@@ -68,6 +68,10 @@ type FSxAPI interface {
 	CancelDataRepositoryTaskWithContext(aws.Context, *fsx.CancelDataRepositoryTaskInput, ...request.Option) (*fsx.CancelDataRepositoryTaskOutput, error)
 	CancelDataRepositoryTaskRequest(*fsx.CancelDataRepositoryTaskInput) (*request.Request, *fsx.CancelDataRepositoryTaskOutput)
 
+	CopyBackup(*fsx.CopyBackupInput) (*fsx.CopyBackupOutput, error)
+	CopyBackupWithContext(aws.Context, *fsx.CopyBackupInput, ...request.Option) (*fsx.CopyBackupOutput, error)
+	CopyBackupRequest(*fsx.CopyBackupInput) (*request.Request, *fsx.CopyBackupOutput)
+
 	CreateBackup(*fsx.CreateBackupInput) (*fsx.CreateBackupOutput, error)
 	CreateBackupWithContext(aws.Context, *fsx.CreateBackupInput, ...request.Option) (*fsx.CreateBackupOutput, error)
 	CreateBackupRequest(*fsx.CreateBackupInput) (*request.Request, *fsx.CreateBackupOutput)
