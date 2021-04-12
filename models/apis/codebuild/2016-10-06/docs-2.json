@@ -156,6 +156,14 @@
         "UpdateWebhookInput$rotateSecret": "<p> A boolean value that specifies whether the associated GitHub repository's secret token should be updated. If you use Bitbucket for your repository, <code>rotateSecret</code> is ignored. </p>"
       }
     },
+    "BucketOwnerAccess": {
+      "base": "<p>Specifies the access for objects that are uploaded to an Amazon S3 bucket that is owned by another account.</p> <p>By default, only the account that uploads the objects to the bucket has access to these objects. This property allows you to give the bucket owner access to these objects.</p> <dl> <dt>NONE</dt> <dd> <p>The bucket owner does not have access to the objects. This is the default.</p> </dd> <dt>READ_ONLY</dt> <dd> <p>The bucket owner has read only access to the objects. The uploading account retains ownership of the objects.</p> </dd> <dt>FULL</dt> <dd> <p>The bucket owner has full access to the objects. Object ownership is determined by the following criteria:</p> <ul> <li> <p>If the bucket is configured with the <b>Bucket owner preferred</b> setting, the bucket owner owns the objects. The uploading account will have object access as specified by the bucket's policy.</p> </li> <li> <p>Otherwise, the uploading account retains ownership of the objects.</p> </li> </ul> <p>For more information about Amazon S3 object ownership, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html\">Controlling ownership of uploaded objects using S3 Object Ownership</a> in the <i>Amazon Simple Storage Service User Guide</i>.</p> </dd> </dl>",
+      "refs": {
+        "BuildArtifacts$bucketOwnerAccess": null,
+        "ProjectArtifacts$bucketOwnerAccess": null,
+        "S3LogsConfig$bucketOwnerAccess": null
+      }
+    },
     "Build": {
       "base": "<p>Information about a build.</p>",
       "refs": {
@@ -564,7 +572,7 @@
       }
     },
     "ExportedEnvironmentVariable": {
-      "base": "<p> Information about an exported environment variable. </p>",
+      "base": "<p>Contains information about an exported environment variable. </p> <p>Exported environment variables are used in conjunction with AWS CodePipeline to export environment variables from the current build stage to subsequent stages in the pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-variables.html\">Working with variables</a> in the <i>AWS CodePipeline User Guide</i>.</p> <note> <p> During a build, the value of a variable is available starting with the <code>install</code> phase. It can be updated between the start of the <code>install</code> phase and the end of the <code>post_build</code> phase. After the <code>post_build</code> phase ends, the value of exported variables cannot change.</p> </note>",
       "refs": {
         "ExportedEnvironmentVariables$member": null
       }
@@ -572,7 +580,7 @@
     "ExportedEnvironmentVariables": {
       "base": null,
       "refs": {
-        "Build$exportedEnvironmentVariables": "<p> A list of exported environment variables for this build. </p>"
+        "Build$exportedEnvironmentVariables": "<p>A list of exported environment variables for this build.</p> <p>Exported environment variables are used in conjunction with AWS CodePipeline to export environment variables from the current build stage to subsequent stages in the pipeline. For more information, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-variables.html\">Working with variables</a> in the <i>AWS CodePipeline User Guide</i>.</p>"
       }
     },
     "FileSystemType": {
@@ -874,7 +882,7 @@
         "DeleteSourceCredentialsOutput$arn": "<p> The Amazon Resource Name (ARN) of the token. </p>",
         "DescribeCodeCoveragesInput$reportArn": "<p> The ARN of the report for which test cases are returned. </p>",
         "EnvironmentVariable$name": "<p>The name or key of the environment variable.</p>",
-        "ExportedEnvironmentVariable$name": "<p> The name of this exported environment variable. </p>",
+        "ExportedEnvironmentVariable$name": "<p>The name of the exported environment variable.</p>",
         "GetReportGroupTrendInput$reportGroupArn": "<p>The ARN of the report group that contains the reports to analyze.</p>",
         "GetResourcePolicyInput$resourceArn": "<p> The ARN of the resource that is associated with the resource policy. </p>",
         "GetResourcePolicyOutput$policy": "<p> The resource policy for the resource identified by the input ARN parameter. </p>",
@@ -1549,7 +1557,7 @@
         "EnvironmentImage$name": "<p>The name of the Docker image.</p>",
         "EnvironmentImage$description": "<p>The description of the Docker image.</p>",
         "EnvironmentVariable$value": "<p>The value of the environment variable.</p> <important> <p>We strongly discourage the use of <code>PLAINTEXT</code> environment variables to store sensitive values, especially AWS secret key IDs and secret access keys. <code>PLAINTEXT</code> environment variables can be displayed in plain text using the AWS CodeBuild console and the AWS Command Line Interface (AWS CLI). For sensitive values, we recommend you use an environment variable of type <code>PARAMETER_STORE</code> or <code>SECRETS_MANAGER</code>. </p> </important>",
-        "ExportedEnvironmentVariable$value": "<p> The value assigned to this exported environment variable. </p> <note> <p> During a build, the value of a variable is available starting with the <code>install</code> phase. It can be updated between the start of the <code>install</code> phase and the end of the <code>post_build</code> phase. After the <code>post_build</code> phase ends, the value of exported variables cannot change.</p> </note>",
+        "ExportedEnvironmentVariable$value": "<p>The value assigned to the exported environment variable.</p>",
         "ImageVersions$member": null,
         "ListBuildBatchesForProjectInput$nextToken": "<p>The <code>nextToken</code> value returned from a previous call to <code>ListBuildBatchesForProject</code>. This specifies the next item to return. To return the beginning of the list, exclude this parameter.</p>",
         "ListBuildBatchesForProjectOutput$nextToken": "<p>If there are more items to return, this contains a token that is passed to a subsequent call to <code>ListBuildBatchesForProject</code> to retrieve the next set of items.</p>",
@@ -1798,7 +1806,7 @@
       "refs": {
         "BuildArtifacts$overrideArtifactName": "<p> If this flag is set, a name specified in the buildspec file overrides the artifact name. The name specified in a buildspec file is calculated at build time and uses the Shell Command Language. For example, you can append a date and time to your artifact name so that it is always unique. </p>",
         "BuildArtifacts$encryptionDisabled": "<p> Information that tells you if encryption for build artifacts is disabled. </p>",
-        "BuildBatch$debugSessionEnabled": "<p/> <p>Specifies if session debugging is enabled for this batch build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>. Batch session debugging is not supported for matrix batch builds.</p>",
+        "BuildBatch$debugSessionEnabled": "<p>Specifies if session debugging is enabled for this batch build. For more information, see <a href=\"https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html\">Viewing a running build in Session Manager</a>. Batch session debugging is not supported for matrix batch builds.</p>",
         "CreateProjectInput$badgeEnabled": "<p>Set this to true to generate a publicly accessible URL for your project's build badge.</p>",
         "DebugSession$sessionEnabled": "<p>Specifies if session debugging is enabled for this build.</p>",
         "GitSubmodulesConfig$fetchSubmodules": "<p> Set to true to fetch Git submodules for your AWS CodeBuild build project. </p>",
