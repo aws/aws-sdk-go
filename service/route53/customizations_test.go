@@ -16,7 +16,7 @@ func TestBuildCorrectURI(t *testing.T) {
 		Id: aws.String("/hostedzone/ABCDEFG"),
 	})
 
-	expectPath := strings.ReplaceAll(req.Operation.HTTPPath, "{Id}", "ABCDEFG")
+	expectPath := strings.Replace(req.Operation.HTTPPath, "{Id}", "ABCDEFG", -1)
 
 	req.HTTPRequest.URL.RawQuery = "abc=123"
 
