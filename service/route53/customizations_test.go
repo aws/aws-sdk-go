@@ -1,6 +1,7 @@
 package route53_test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -9,23 +10,23 @@ import (
 )
 
 func TestBuildCorrectURI(t *testing.T) {
-	const expectPath = "/2013-04-01/hostedzone/ABCDEFG"
+	const pathID = "/hostedzone/ABCDEFG"
 
 	svc := route53.New(unit.Session)
 	svc.Handlers.Validate.Clear()
 	req, _ := svc.GetHostedZoneRequest(&route53.GetHostedZoneInput{
-		Id: aws.String("/hostedzone/ABCDEFG"),
+		Id: aws.String(pathID),
 	})
 
 	req.HTTPRequest.URL.RawQuery = "abc=123"
 
 	req.Build()
 
-	if a, e := req.HTTPRequest.URL.Path, expectPath; a != e {
+	if a, e := req.HTTPRequest.URL.Path, pathID; !strings.HasSuffix(a, e) {
 		t.Errorf("expect path %q, got %q", e, a)
 	}
 
-	if a, e := req.HTTPRequest.URL.RawPath, expectPath; a != e {
+	if a, e := req.HTTPRequest.URL.RawPath, pathID; !strings.HasSuffix(a, e) {
 		t.Errorf("expect raw path %q, got %q", e, a)
 	}
 
