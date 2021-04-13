@@ -9,8 +9,8 @@
     "DetectEntities": "<p>The <code>DetectEntities</code> operation is deprecated. You should use the <a>DetectEntitiesV2</a> operation instead.</p> <p> Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information .</p>",
     "DetectEntitiesV2": "<p>Inspects the clinical text for a variety of medical entities and returns specific information about them such as entity category, location, and confidence score on that information. Amazon Comprehend Medical only detects medical entities in English language texts.</p> <p>The <code>DetectEntitiesV2</code> operation replaces the <a>DetectEntities</a> operation. This new action uses a different model for determining the entities in your medical text and changes the way that some entities are returned in the output. You should use the <code>DetectEntitiesV2</code> operation in all new applications.</p> <p>The <code>DetectEntitiesV2</code> operation returns the <code>Acuity</code> and <code>Direction</code> entities as attributes instead of types. </p>",
     "DetectPHI": "<p> Inspects the clinical text for protected health information (PHI) entities and returns the entity category, location, and confidence score for each entity. Amazon Comprehend Medical only detects entities in English language texts.</p>",
-    "InferICD10CM": "<p>InferICD10CM detects medical conditions as entities listed in a patient record and links those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the Centers for Disease Control. Amazon Comprehend Medical only detects medical entities in English language texts.</p>",
-    "InferRxNorm": "<p>InferRxNorm detects medications as entities listed in a patient record and links to the normalized concept identifiers in the RxNorm database from the National Library of Medicine. Amazon Comprehend Medical only detects medical entities in English language texts.</p>",
+    "InferICD10CM": "<p>InferICD10CM detects medical conditions as entities listed in a patient record and links those entities to normalized concept identifiers in the ICD-10-CM knowledge base from the Centers for Disease Control. Amazon Comprehend Medical only detects medical entities in English language texts. </p>",
+    "InferRxNorm": "<p>InferRxNorm detects medications as entities listed in a patient record and links to the normalized concept identifiers in the RxNorm database from the National Library of Medicine. Amazon Comprehend Medical only detects medical entities in English language texts. </p>",
     "ListEntitiesDetectionV2Jobs": "<p>Gets a list of medical entity detection jobs that you have submitted.</p>",
     "ListICD10CMInferenceJobs": "<p>Gets a list of InferICD10CM jobs that you have submitted.</p>",
     "ListPHIDetectionJobs": "<p>Gets a list of protected health information (PHI) detection jobs that you have submitted.</p>",
@@ -264,7 +264,14 @@
     "ICD10CMEntityType": {
       "base": null,
       "refs": {
-        "ICD10CMEntity$Type": "<p>Describes the specific type of entity with category of entities. InferICD10CM detects entities of the type <code>DX_NAME</code>.</p>"
+        "ICD10CMAttribute$Category": "<p>The category of attribute. Can be either of <code>DX_NAME</code> or <code>TIME_EXPRESSION</code>.</p>",
+        "ICD10CMEntity$Type": "<p>Describes the specific type of entity with category of entities. InferICD10CM detects entities of the type <code>DX_NAME</code> and <code>TIME_EXPRESSION</code>.</p>"
+      }
+    },
+    "ICD10CMRelationshipType": {
+      "base": null,
+      "refs": {
+        "ICD10CMAttribute$RelationshipType": "<p>The type of relationship between the entity and attribute. Type for the relationship can be either of <code>OVERLAP</code> or <code>SYSTEM_ORGAN_SITE</code>.</p>"
       }
     },
     "ICD10CMTrait": {
@@ -317,7 +324,7 @@
       }
     },
     "InputDataConfig": {
-      "base": "<p>The input properties for an entities detection job. This includes the name of the S3 bucket and the path to the files to be analyzed. See <a>batch-manifest</a> for more information. </p>",
+      "base": "<p>The input properties for an entities detection job. This includes the name of the S3 bucket and the path to the files to be analyzed. </p>",
       "refs": {
         "ComprehendMedicalAsyncJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the detection job.</p>",
         "StartEntitiesDetectionV2JobRequest$InputDataConfig": "<p>Specifies the format and location of the input data for the job.</p>",

@@ -161,7 +161,8 @@
         "TransitiveTagKeys":{"shape":"tagKeyListType"},
         "ExternalId":{"shape":"externalIdType"},
         "SerialNumber":{"shape":"serialNumberType"},
-        "TokenCode":{"shape":"tokenCodeType"}
+        "TokenCode":{"shape":"tokenCodeType"},
+        "SourceIdentity":{"shape":"sourceIdentityType"}
       }
     },
     "AssumeRoleResponse":{
@@ -169,7 +170,8 @@
       "members":{
         "Credentials":{"shape":"Credentials"},
         "AssumedRoleUser":{"shape":"AssumedRoleUser"},
-        "PackedPolicySize":{"shape":"nonNegativeIntegerType"}
+        "PackedPolicySize":{"shape":"nonNegativeIntegerType"},
+        "SourceIdentity":{"shape":"sourceIdentityType"}
       }
     },
     "AssumeRoleWithSAMLRequest":{
@@ -198,7 +200,8 @@
         "SubjectType":{"shape":"SubjectType"},
         "Issuer":{"shape":"Issuer"},
         "Audience":{"shape":"Audience"},
-        "NameQualifier":{"shape":"NameQualifier"}
+        "NameQualifier":{"shape":"NameQualifier"},
+        "SourceIdentity":{"shape":"sourceIdentityType"}
       }
     },
     "AssumeRoleWithWebIdentityRequest":{
@@ -226,7 +229,8 @@
         "AssumedRoleUser":{"shape":"AssumedRoleUser"},
         "PackedPolicySize":{"shape":"nonNegativeIntegerType"},
         "Provider":{"shape":"Issuer"},
-        "Audience":{"shape":"Audience"}
+        "Audience":{"shape":"Audience"},
+        "SourceIdentity":{"shape":"sourceIdentityType"}
       }
     },
     "AssumedRoleUser":{
@@ -548,6 +552,12 @@
       "max":2048,
       "min":1,
       "pattern":"[\\u0009\\u000A\\u000D\\u0020-\\u00FF]+"
+    },
+    "sourceIdentityType":{
+      "type":"string",
+      "max":64,
+      "min":2,
+      "pattern":"[\\w+=,.@-]*"
     },
     "tagKeyListType":{
       "type":"list",

@@ -10093,7 +10093,7 @@ func (c *RDS) FailoverGlobalClusterRequest(input *FailoverGlobalClusterInput) (r
 // the Aurora global database.
 //
 // For more information about failing over an Amazon Aurora global database,
-// see Managed planned failover for Amazon Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.managed-failover)
+// see Managed planned failover for Amazon Aurora global databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database-disaster-recovery.html#aurora-global-database-disaster-recovery.managed-failover)
 // in the Amazon Aurora User Guide.
 //
 // This action applies to GlobalCluster (Aurora global databases) only. Use
@@ -14113,7 +14113,7 @@ func (c *RDS) RevokeDBSecurityGroupIngressRequest(input *RevokeDBSecurityGroupIn
 // RevokeDBSecurityGroupIngress API operation for Amazon Relational Database Service.
 //
 // Revokes ingress from a DBSecurityGroup for previously authorized IP ranges
-// or EC2 or VPC Security Groups. Required parameters for this API are one of
+// or EC2 or VPC security groups. Required parameters for this API are one of
 // CIDRIP, EC2SecurityGroupId for VPC, or (EC2SecurityGroupOwnerId and either
 // EC2SecurityGroupName or EC2SecurityGroupId).
 //
@@ -18024,8 +18024,8 @@ type CreateDBClusterInput struct {
 	// backups are enabled using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region. To see the time blocks available, see Adjusting
-	// the Preferred DB Cluster Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow.Aurora)
+	// of time for each AWS Region. To view the time blocks available, see Backup
+	// window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow)
 	// in the Amazon Aurora User Guide.
 	//
 	// Constraints:
@@ -19235,19 +19235,15 @@ type CreateDBInstanceInput struct {
 	Port *int64 `type:"integer"`
 
 	// The daily time range during which automated backups are created if automated
-	// backups are enabled, using the BackupRetentionPeriod parameter. For more
-	// information, see The Backup Window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow)
+	// backups are enabled, using the BackupRetentionPeriod parameter. The default
+	// is a 30-minute window selected at random from an 8-hour block of time for
+	// each AWS Region. For more information, see Backup window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow)
 	// in the Amazon RDS User Guide.
 	//
 	// Amazon Aurora
 	//
 	// Not applicable. The daily time range for creating automated backups is managed
 	// by the DB cluster.
-	//
-	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region. To see the time blocks available, see Adjusting
-	// the Preferred DB Instance Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow)
-	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
 	//
@@ -21081,7 +21077,7 @@ type CreateEventSubscriptionInput struct {
 	//
 	// Constraints:
 	//
-	//    * If a SourceIds value is supplied, SourceType must also be provided.
+	//    * If SourceIds are supplied, SourceType must also be provided.
 	//
 	//    * If the source type is a DB instance, a DBInstanceIdentifier value must
 	//    be supplied.
@@ -34408,8 +34404,8 @@ type ModifyDBClusterInput struct {
 	// backups are enabled, using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region. To see the time blocks available, see Adjusting
-	// the Preferred DB Cluster Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow.Aurora)
+	// of time for each AWS Region. To view the time blocks available, see Backup
+	// window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow)
 	// in the Amazon Aurora User Guide.
 	//
 	// Constraints:
@@ -34862,11 +34858,14 @@ type ModifyDBInstanceInput struct {
 	// a positive number enables backups. Setting this parameter to 0 disables automated
 	// backups.
 	//
-	// Changing this parameter can result in an outage if you change from 0 to a
-	// non-zero value or from a non-zero value to 0. These changes are applied during
-	// the next maintenance window unless the ApplyImmediately parameter is enabled
-	// for this request. If you change the parameter from one non-zero value to
-	// another non-zero value, the change is asynchronously applied as soon as possible.
+	// Enabling and disabling backups can result in a brief I/O suspension that
+	// lasts from a few seconds to a few minutes, depending on the size and class
+	// of your DB instance.
+	//
+	// These changes are applied during the next maintenance window unless the ApplyImmediately
+	// parameter is enabled for this request. If you change the parameter from one
+	// non-zero value to another non-zero value, the change is asynchronously applied
+	// as soon as possible.
 	//
 	// Amazon Aurora
 	//
@@ -35258,7 +35257,10 @@ type ModifyDBInstanceInput struct {
 	// The daily time range during which automated backups are created if automated
 	// backups are enabled, as determined by the BackupRetentionPeriod parameter.
 	// Changing this parameter doesn't result in an outage and the change is asynchronously
-	// applied as soon as possible.
+	// applied as soon as possible. The default is a 30-minute window selected at
+	// random from an 8-hour block of time for each AWS Region. For more information,
+	// see Backup window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow)
+	// in the Amazon RDS User Guide.
 	//
 	// Amazon Aurora
 	//
@@ -35284,6 +35286,9 @@ type ModifyDBInstanceInput struct {
 	// this parameter will cause a reboot of the DB instance. If moving this window
 	// to the current time, there must be at least 30 minutes between the current
 	// time and end of the window to ensure pending changes are applied.
+	//
+	// For more information, see Amazon RDS Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html#Concepts.DBMaintenance)
+	// in the Amazon RDS User Guide.
 	//
 	// Default: Uses existing setting
 	//
@@ -39762,8 +39767,8 @@ type RestoreDBClusterFromS3Input struct {
 	// backups are enabled using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region. To see the time blocks available, see Adjusting
-	// the Preferred Maintenance Window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_UpgradeDBInstance.Maintenance.html#AdjustingTheMaintenanceWindow.Aurora)
+	// of time for each AWS Region. To view the time blocks available, see Backup
+	// window (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Aurora.Managing.Backups.html#Aurora.Managing.Backups.BackupWindow)
 	// in the Amazon Aurora User Guide.
 	//
 	// Constraints:
@@ -41530,7 +41535,7 @@ type RestoreDBInstanceFromS3Input struct {
 	Port *int64 `type:"integer"`
 
 	// The time range each day during which automated backups are created if automated
-	// backups are enabled. For more information, see The Backup Window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow)
+	// backups are enabled. For more information, see Backup window (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow)
 	// in the Amazon RDS User Guide.
 	//
 	// Constraints:
@@ -42680,6 +42685,8 @@ type ScalingConfiguration struct {
 	MinCapacity *int64 `type:"integer"`
 
 	// The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
+	//
+	// Specify a value between 300 and 86,400 seconds.
 	SecondsUntilAutoPause *int64 `type:"integer"`
 
 	// The action to take when the timeout is reached, either ForceApplyCapacityChange

@@ -75,6 +75,7 @@
     "EnableSnapshotCopy": "<p>Enables the automatic copy of snapshots from one region to another region for a specified cluster.</p>",
     "GetClusterCredentials": "<p>Returns a database user name and temporary password with temporary authorization to log on to an Amazon Redshift database. The action returns the database user name prefixed with <code>IAM:</code> if <code>AutoCreate</code> is <code>False</code> or <code>IAMA:</code> if <code>AutoCreate</code> is <code>True</code>. You can optionally specify one or more database user groups that the user will join at log on. By default, the temporary credentials expire in 900 seconds. You can optionally specify a duration between 900 seconds (15 minutes) and 3600 seconds (60 minutes). For more information, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/generating-user-credentials.html\">Using IAM Authentication to Generate Database User Credentials</a> in the Amazon Redshift Cluster Management Guide.</p> <p>The AWS Identity and Access Management (IAM)user or role that executes GetClusterCredentials must have an IAM policy attached that allows access to all necessary actions and resources. For more information about permissions, see <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/redshift-iam-access-control-identity-based.html#redshift-policy-resources.getclustercredentials-resources\">Resource Policies for GetClusterCredentials</a> in the Amazon Redshift Cluster Management Guide.</p> <p>If the <code>DbGroups</code> parameter is specified, the IAM policy must allow the <code>redshift:JoinGroup</code> action with access to the listed <code>dbgroups</code>. </p> <p>In addition, if the <code>AutoCreate</code> parameter is set to <code>True</code>, then the policy must include the <code>redshift:CreateClusterUser</code> privilege.</p> <p>If the <code>DbName</code> parameter is specified, the IAM policy must allow access to the resource <code>dbname</code> for the specified database name. </p>",
     "GetReservedNodeExchangeOfferings": "<p>Returns an array of DC2 ReservedNodeOfferings that matches the payment type, term, and usage price of the given DC1 reserved node.</p>",
+    "ModifyAquaConfiguration": "<p>Modifies whether a cluster can use AQUA (Advanced Query Accelerator). </p>",
     "ModifyCluster": "<p>Modifies the settings for a cluster.</p> <p>You can also change node type and the number of nodes to scale up or down the cluster. When resizing a cluster, you must specify both the number of nodes and the node type even if one of the parameters does not change.</p> <p>You can add another security or parameter group, or change the master user password. Resetting a cluster password or modifying the security groups associated with a cluster do not need a reboot. However, modifying a parameter group requires a reboot for parameters to take effect. For more information about managing clusters, go to <a href=\"https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html\">Amazon Redshift Clusters</a> in the <i>Amazon Redshift Cluster Management Guide</i>.</p>",
     "ModifyClusterDbRevision": "<p>Modifies the database revision of a cluster. The database revision is a unique revision of the database running in a cluster.</p>",
     "ModifyClusterIamRoles": "<p>Modifies the list of AWS Identity and Access Management (IAM) roles that can be used by the cluster to access other AWS services.</p> <p>A cluster can have up to 10 IAM roles associated at any time.</p>",
@@ -150,6 +151,28 @@
       "base": null,
       "refs": {
         "DescribeNodeConfigurationOptionsMessage$ActionType": "<p>The action type to evaluate for possible node configurations. Specify \"restore-cluster\" to get configuration combinations based on an existing snapshot. Specify \"recommend-node-config\" to get configuration recommendations based on an existing cluster or snapshot. Specify \"resize-cluster\" to get configuration combinations for elastic resize based on an existing cluster. </p>"
+      }
+    },
+    "AquaConfiguration": {
+      "base": "<p>The AQUA (Advanced Query Accelerator) configuration of the cluster.</p>",
+      "refs": {
+        "Cluster$AquaConfiguration": "<p>The AQUA (Advanced Query Accelerator) configuration of the cluster.</p>",
+        "ModifyAquaOutputMessage$AquaConfiguration": "<p>The updated AQUA configuration of the cluster. </p>"
+      }
+    },
+    "AquaConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "AquaConfiguration$AquaConfigurationStatus": "<p>The value represents how the cluster is configured to use AQUA. Possible values include the following.</p> <ul> <li> <p>enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.</p> </li> <li> <p>disabled - Don't use AQUA. </p> </li> <li> <p>auto - Amazon Redshift determines whether to use AQUA.</p> </li> </ul>",
+        "CreateClusterMessage$AquaConfigurationStatus": "<p>The value represents how the cluster is configured to use AQUA (Advanced Query Accelerator) when it is created. Possible values include the following.</p> <ul> <li> <p>enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.</p> </li> <li> <p>disabled - Don't use AQUA. </p> </li> <li> <p>auto - Amazon Redshift determines whether to use AQUA.</p> </li> </ul>",
+        "ModifyAquaInputMessage$AquaConfigurationStatus": "<p>The new value of AQUA configuration status. Possible values include the following.</p> <ul> <li> <p>enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.</p> </li> <li> <p>disabled - Don't use AQUA. </p> </li> <li> <p>auto - Amazon Redshift determines whether to use AQUA.</p> </li> </ul>",
+        "RestoreFromClusterSnapshotMessage$AquaConfigurationStatus": "<p>The value represents how the cluster is configured to use AQUA (Advanced Query Accelerator) after the cluster is restored. Possible values include the following.</p> <ul> <li> <p>enabled - Use AQUA if it is available for the current AWS Region and Amazon Redshift node type.</p> </li> <li> <p>disabled - Don't use AQUA. </p> </li> <li> <p>auto - Amazon Redshift determines whether to use AQUA.</p> </li> </ul>"
+      }
+    },
+    "AquaStatus": {
+      "base": null,
+      "refs": {
+        "AquaConfiguration$AquaStatus": "<p>The value indicates the status of AQUA on the cluster. Possible values include the following.</p> <ul> <li> <p>enabled - AQUA is enabled.</p> </li> <li> <p>disabled - AQUA is not enabled. </p> </li> <li> <p>applying - AQUA status is being applied. </p> </li> </ul>"
       }
     },
     "AssociatedClusterList": {
@@ -1720,6 +1743,16 @@
         "NodeConfigurationOption$Mode": "<p>The category of the node configuration recommendation.</p>"
       }
     },
+    "ModifyAquaInputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyAquaOutputMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ModifyClusterDbRevisionMessage": {
       "base": null,
       "refs": {
@@ -2780,6 +2813,7 @@
         "LoggingStatus$LastFailureMessage": "<p>The message indicating that logs failed to be delivered.</p>",
         "MaintenanceTrack$MaintenanceTrackName": "<p>The name of the maintenance track. Possible values are <code>current</code> and <code>trailing</code>.</p>",
         "MaintenanceTrack$DatabaseVersion": "<p>The version number for the cluster release.</p>",
+        "ModifyAquaInputMessage$ClusterIdentifier": "<p>The identifier of the cluster to be modified.</p>",
         "ModifyClusterDbRevisionMessage$ClusterIdentifier": "<p>The unique identifier of a cluster whose database revision you want to modify. </p> <p>Example: <code>examplecluster</code> </p>",
         "ModifyClusterDbRevisionMessage$RevisionTarget": "<p>The identifier of the database revision. You can retrieve this value from the response to the <a>DescribeClusterDbRevisions</a> request.</p>",
         "ModifyClusterIamRolesMessage$ClusterIdentifier": "<p>The unique identifier of the cluster for which you want to associate or disassociate IAM roles.</p>",
