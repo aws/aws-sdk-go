@@ -1,6 +1,7 @@
 package route53_test
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -9,13 +10,13 @@ import (
 )
 
 func TestBuildCorrectURI(t *testing.T) {
-	const expectPath = "/2013-04-01/hostedzone/ABCDEFG"
-
 	svc := route53.New(unit.Session)
 	svc.Handlers.Validate.Clear()
 	req, _ := svc.GetHostedZoneRequest(&route53.GetHostedZoneInput{
 		Id: aws.String("/hostedzone/ABCDEFG"),
 	})
+
+	expectPath := strings.Replace(req.Operation.HTTPPath, "{Id}", "ABCDEFG", -1)
 
 	req.HTTPRequest.URL.RawQuery = "abc=123"
 
