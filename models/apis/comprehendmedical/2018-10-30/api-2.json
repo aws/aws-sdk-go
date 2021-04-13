@@ -601,7 +601,9 @@
         "BeginOffset":{"shape":"Integer"},
         "EndOffset":{"shape":"Integer"},
         "Text":{"shape":"String"},
-        "Traits":{"shape":"ICD10CMTraitList"}
+        "Traits":{"shape":"ICD10CMTraitList"},
+        "Category":{"shape":"ICD10CMEntityType"},
+        "RelationshipType":{"shape":"ICD10CMRelationshipType"}
       }
     },
     "ICD10CMAttributeList":{
@@ -615,7 +617,9 @@
         "DIRECTION",
         "SYSTEM_ORGAN_SITE",
         "QUALITY",
-        "QUANTITY"
+        "QUANTITY",
+        "TIME_TO_DX_NAME",
+        "TIME_EXPRESSION"
       ]
     },
     "ICD10CMConcept":{
@@ -655,7 +659,17 @@
     },
     "ICD10CMEntityType":{
       "type":"string",
-      "enum":["DX_NAME"]
+      "enum":[
+        "DX_NAME",
+        "TIME_EXPRESSION"
+      ]
+    },
+    "ICD10CMRelationshipType":{
+      "type":"string",
+      "enum":[
+        "OVERLAP",
+        "SYSTEM_ORGAN_SITE"
+      ]
     },
     "ICD10CMTrait":{
       "type":"structure",

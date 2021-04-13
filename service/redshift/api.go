@@ -8254,6 +8254,88 @@ func (c *Redshift) GetReservedNodeExchangeOfferingsPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opModifyAquaConfiguration = "ModifyAquaConfiguration"
+
+// ModifyAquaConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyAquaConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyAquaConfiguration for more information on using the ModifyAquaConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyAquaConfigurationRequest method.
+//    req, resp := client.ModifyAquaConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyAquaConfiguration
+func (c *Redshift) ModifyAquaConfigurationRequest(input *ModifyAquaConfigurationInput) (req *request.Request, output *ModifyAquaConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opModifyAquaConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyAquaConfigurationInput{}
+	}
+
+	output = &ModifyAquaConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyAquaConfiguration API operation for Amazon Redshift.
+//
+// Modifies whether a cluster can use AQUA (Advanced Query Accelerator).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation ModifyAquaConfiguration for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
+//   The requested operation isn't supported.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyAquaConfiguration
+func (c *Redshift) ModifyAquaConfiguration(input *ModifyAquaConfigurationInput) (*ModifyAquaConfigurationOutput, error) {
+	req, out := c.ModifyAquaConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// ModifyAquaConfigurationWithContext is the same as ModifyAquaConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyAquaConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) ModifyAquaConfigurationWithContext(ctx aws.Context, input *ModifyAquaConfigurationInput, opts ...request.Option) (*ModifyAquaConfigurationOutput, error) {
+	req, out := c.ModifyAquaConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyCluster = "ModifyCluster"
 
 // ModifyClusterRequest generates a "aws/request.Request" representing the
@@ -10951,6 +11033,54 @@ func (s *AccountWithRestoreAccess) SetAccountId(v string) *AccountWithRestoreAcc
 	return s
 }
 
+// The AQUA (Advanced Query Accelerator) configuration of the cluster.
+type AquaConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The value represents how the cluster is configured to use AQUA. Possible
+	// values include the following.
+	//
+	//    * enabled - Use AQUA if it is available for the current AWS Region and
+	//    Amazon Redshift node type.
+	//
+	//    * disabled - Don't use AQUA.
+	//
+	//    * auto - Amazon Redshift determines whether to use AQUA.
+	AquaConfigurationStatus *string `type:"string" enum:"AquaConfigurationStatus"`
+
+	// The value indicates the status of AQUA on the cluster. Possible values include
+	// the following.
+	//
+	//    * enabled - AQUA is enabled.
+	//
+	//    * disabled - AQUA is not enabled.
+	//
+	//    * applying - AQUA status is being applied.
+	AquaStatus *string `type:"string" enum:"AquaStatus"`
+}
+
+// String returns the string representation
+func (s AquaConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AquaConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAquaConfigurationStatus sets the AquaConfigurationStatus field's value.
+func (s *AquaConfiguration) SetAquaConfigurationStatus(v string) *AquaConfiguration {
+	s.AquaConfigurationStatus = &v
+	return s
+}
+
+// SetAquaStatus sets the AquaStatus field's value.
+func (s *AquaConfiguration) SetAquaStatus(v string) *AquaConfiguration {
+	s.AquaStatus = &v
+	return s
+}
+
 // Describes an attribute value.
 type AttributeValueTarget struct {
 	_ struct{} `type:"structure"`
@@ -11751,6 +11881,9 @@ type Cluster struct {
 	// be applied automatically to the cluster during the maintenance window.
 	AllowVersionUpgrade *bool `type:"boolean"`
 
+	// The AQUA (Advanced Query Accelerator) configuration of the cluster.
+	AquaConfiguration *AquaConfiguration `type:"structure"`
+
 	// The number of days that automatic cluster snapshots are retained.
 	AutomatedSnapshotRetentionPeriod *int64 `type:"integer"`
 
@@ -12012,6 +12145,12 @@ func (s Cluster) GoString() string {
 // SetAllowVersionUpgrade sets the AllowVersionUpgrade field's value.
 func (s *Cluster) SetAllowVersionUpgrade(v bool) *Cluster {
 	s.AllowVersionUpgrade = &v
+	return s
+}
+
+// SetAquaConfiguration sets the AquaConfiguration field's value.
+func (s *Cluster) SetAquaConfiguration(v *AquaConfiguration) *Cluster {
+	s.AquaConfiguration = v
 	return s
 }
 
@@ -13071,6 +13210,17 @@ type CreateClusterInput struct {
 	// Default: true
 	AllowVersionUpgrade *bool `type:"boolean"`
 
+	// The value represents how the cluster is configured to use AQUA (Advanced
+	// Query Accelerator) when it is created. Possible values include the following.
+	//
+	//    * enabled - Use AQUA if it is available for the current AWS Region and
+	//    Amazon Redshift node type.
+	//
+	//    * disabled - Don't use AQUA.
+	//
+	//    * auto - Amazon Redshift determines whether to use AQUA.
+	AquaConfigurationStatus *string `type:"string" enum:"AquaConfigurationStatus"`
+
 	// The number of days that automated snapshots are retained. If the value is
 	// 0, automated snapshots are disabled. Even if automated snapshots are disabled,
 	// you can still create manual snapshots when you want with CreateClusterSnapshot.
@@ -13389,6 +13539,12 @@ func (s *CreateClusterInput) SetAdditionalInfo(v string) *CreateClusterInput {
 // SetAllowVersionUpgrade sets the AllowVersionUpgrade field's value.
 func (s *CreateClusterInput) SetAllowVersionUpgrade(v bool) *CreateClusterInput {
 	s.AllowVersionUpgrade = &v
+	return s
+}
+
+// SetAquaConfigurationStatus sets the AquaConfigurationStatus field's value.
+func (s *CreateClusterInput) SetAquaConfigurationStatus(v string) *CreateClusterInput {
+	s.AquaConfigurationStatus = &v
 	return s
 }
 
@@ -21590,6 +21746,83 @@ func (s *MaintenanceTrack) SetUpdateTargets(v []*UpdateTarget) *MaintenanceTrack
 	return s
 }
 
+type ModifyAquaConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new value of AQUA configuration status. Possible values include the following.
+	//
+	//    * enabled - Use AQUA if it is available for the current AWS Region and
+	//    Amazon Redshift node type.
+	//
+	//    * disabled - Don't use AQUA.
+	//
+	//    * auto - Amazon Redshift determines whether to use AQUA.
+	AquaConfigurationStatus *string `type:"string" enum:"AquaConfigurationStatus"`
+
+	// The identifier of the cluster to be modified.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModifyAquaConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyAquaConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyAquaConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyAquaConfigurationInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAquaConfigurationStatus sets the AquaConfigurationStatus field's value.
+func (s *ModifyAquaConfigurationInput) SetAquaConfigurationStatus(v string) *ModifyAquaConfigurationInput {
+	s.AquaConfigurationStatus = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *ModifyAquaConfigurationInput) SetClusterIdentifier(v string) *ModifyAquaConfigurationInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+type ModifyAquaConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated AQUA configuration of the cluster.
+	AquaConfiguration *AquaConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyAquaConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyAquaConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAquaConfiguration sets the AquaConfiguration field's value.
+func (s *ModifyAquaConfigurationOutput) SetAquaConfiguration(v *AquaConfiguration) *ModifyAquaConfigurationOutput {
+	s.AquaConfiguration = v
+	return s
+}
+
 type ModifyClusterDbRevisionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -24749,6 +24982,18 @@ type RestoreFromClusterSnapshotInput struct {
 	// Default: true
 	AllowVersionUpgrade *bool `type:"boolean"`
 
+	// The value represents how the cluster is configured to use AQUA (Advanced
+	// Query Accelerator) after the cluster is restored. Possible values include
+	// the following.
+	//
+	//    * enabled - Use AQUA if it is available for the current AWS Region and
+	//    Amazon Redshift node type.
+	//
+	//    * disabled - Don't use AQUA.
+	//
+	//    * auto - Amazon Redshift determines whether to use AQUA.
+	AquaConfigurationStatus *string `type:"string" enum:"AquaConfigurationStatus"`
+
 	// The number of days that automated snapshots are retained. If the value is
 	// 0, automated snapshots are disabled. Even if automated snapshots are disabled,
 	// you can still create manual snapshots when you want with CreateClusterSnapshot.
@@ -24975,6 +25220,12 @@ func (s *RestoreFromClusterSnapshotInput) SetAdditionalInfo(v string) *RestoreFr
 // SetAllowVersionUpgrade sets the AllowVersionUpgrade field's value.
 func (s *RestoreFromClusterSnapshotInput) SetAllowVersionUpgrade(v bool) *RestoreFromClusterSnapshotInput {
 	s.AllowVersionUpgrade = &v
+	return s
+}
+
+// SetAquaConfigurationStatus sets the AquaConfigurationStatus field's value.
+func (s *RestoreFromClusterSnapshotInput) SetAquaConfigurationStatus(v string) *RestoreFromClusterSnapshotInput {
+	s.AquaConfigurationStatus = &v
 	return s
 }
 
@@ -27319,6 +27570,46 @@ func ActionType_Values() []string {
 		ActionTypeRestoreCluster,
 		ActionTypeRecommendNodeConfig,
 		ActionTypeResizeCluster,
+	}
+}
+
+const (
+	// AquaConfigurationStatusEnabled is a AquaConfigurationStatus enum value
+	AquaConfigurationStatusEnabled = "enabled"
+
+	// AquaConfigurationStatusDisabled is a AquaConfigurationStatus enum value
+	AquaConfigurationStatusDisabled = "disabled"
+
+	// AquaConfigurationStatusAuto is a AquaConfigurationStatus enum value
+	AquaConfigurationStatusAuto = "auto"
+)
+
+// AquaConfigurationStatus_Values returns all elements of the AquaConfigurationStatus enum
+func AquaConfigurationStatus_Values() []string {
+	return []string{
+		AquaConfigurationStatusEnabled,
+		AquaConfigurationStatusDisabled,
+		AquaConfigurationStatusAuto,
+	}
+}
+
+const (
+	// AquaStatusEnabled is a AquaStatus enum value
+	AquaStatusEnabled = "enabled"
+
+	// AquaStatusDisabled is a AquaStatus enum value
+	AquaStatusDisabled = "disabled"
+
+	// AquaStatusApplying is a AquaStatus enum value
+	AquaStatusApplying = "applying"
+)
+
+// AquaStatus_Values returns all elements of the AquaStatus enum
+func AquaStatus_Values() []string {
+	return []string{
+		AquaStatusEnabled,
+		AquaStatusDisabled,
+		AquaStatusApplying,
 	}
 }
 

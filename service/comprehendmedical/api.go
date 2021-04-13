@@ -3014,6 +3014,9 @@ type ICD10CMAttribute struct {
 	// begins. The offset returns the UTF-8 code point in the string.
 	BeginOffset *int64 `type:"integer"`
 
+	// The category of attribute. Can be either of DX_NAME or TIME_EXPRESSION.
+	Category *string `type:"string" enum:"ICD10CMEntityType"`
+
 	// The 0-based character offset in the input text that shows where the attribute
 	// ends. The offset returns the UTF-8 code point in the string.
 	EndOffset *int64 `type:"integer"`
@@ -3025,6 +3028,10 @@ type ICD10CMAttribute struct {
 	// The level of confidence that Amazon Comprehend Medical has that this attribute
 	// is correctly related to this entity.
 	RelationshipScore *float64 `type:"float"`
+
+	// The type of relationship between the entity and attribute. Type for the relationship
+	// can be either of OVERLAP or SYSTEM_ORGAN_SITE.
+	RelationshipType *string `type:"string" enum:"ICD10CMRelationshipType"`
 
 	// The level of confidence that Amazon Comprehend Medical has that the segment
 	// of text is correctly recognized as an attribute.
@@ -3057,6 +3064,12 @@ func (s *ICD10CMAttribute) SetBeginOffset(v int64) *ICD10CMAttribute {
 	return s
 }
 
+// SetCategory sets the Category field's value.
+func (s *ICD10CMAttribute) SetCategory(v string) *ICD10CMAttribute {
+	s.Category = &v
+	return s
+}
+
 // SetEndOffset sets the EndOffset field's value.
 func (s *ICD10CMAttribute) SetEndOffset(v int64) *ICD10CMAttribute {
 	s.EndOffset = &v
@@ -3072,6 +3085,12 @@ func (s *ICD10CMAttribute) SetId(v int64) *ICD10CMAttribute {
 // SetRelationshipScore sets the RelationshipScore field's value.
 func (s *ICD10CMAttribute) SetRelationshipScore(v float64) *ICD10CMAttribute {
 	s.RelationshipScore = &v
+	return s
+}
+
+// SetRelationshipType sets the RelationshipType field's value.
+func (s *ICD10CMAttribute) SetRelationshipType(v string) *ICD10CMAttribute {
+	s.RelationshipType = &v
 	return s
 }
 
@@ -3189,7 +3208,7 @@ type ICD10CMEntity struct {
 	Traits []*ICD10CMTrait `type:"list"`
 
 	// Describes the specific type of entity with category of entities. InferICD10CM
-	// detects entities of the type DX_NAME.
+	// detects entities of the type DX_NAME and TIME_EXPRESSION.
 	Type *string `type:"string" enum:"ICD10CMEntityType"`
 }
 
@@ -3479,8 +3498,7 @@ func (s *InferRxNormOutput) SetPaginationToken(v string) *InferRxNormOutput {
 }
 
 // The input properties for an entities detection job. This includes the name
-// of the S3 bucket and the path to the files to be analyzed. See batch-manifest
-// for more information.
+// of the S3 bucket and the path to the files to be analyzed.
 type InputDataConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -5895,6 +5913,12 @@ const (
 
 	// ICD10CMAttributeTypeQuantity is a ICD10CMAttributeType enum value
 	ICD10CMAttributeTypeQuantity = "QUANTITY"
+
+	// ICD10CMAttributeTypeTimeToDxName is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeTimeToDxName = "TIME_TO_DX_NAME"
+
+	// ICD10CMAttributeTypeTimeExpression is a ICD10CMAttributeType enum value
+	ICD10CMAttributeTypeTimeExpression = "TIME_EXPRESSION"
 )
 
 // ICD10CMAttributeType_Values returns all elements of the ICD10CMAttributeType enum
@@ -5905,6 +5929,8 @@ func ICD10CMAttributeType_Values() []string {
 		ICD10CMAttributeTypeSystemOrganSite,
 		ICD10CMAttributeTypeQuality,
 		ICD10CMAttributeTypeQuantity,
+		ICD10CMAttributeTypeTimeToDxName,
+		ICD10CMAttributeTypeTimeExpression,
 	}
 }
 
@@ -5923,12 +5949,32 @@ func ICD10CMEntityCategory_Values() []string {
 const (
 	// ICD10CMEntityTypeDxName is a ICD10CMEntityType enum value
 	ICD10CMEntityTypeDxName = "DX_NAME"
+
+	// ICD10CMEntityTypeTimeExpression is a ICD10CMEntityType enum value
+	ICD10CMEntityTypeTimeExpression = "TIME_EXPRESSION"
 )
 
 // ICD10CMEntityType_Values returns all elements of the ICD10CMEntityType enum
 func ICD10CMEntityType_Values() []string {
 	return []string{
 		ICD10CMEntityTypeDxName,
+		ICD10CMEntityTypeTimeExpression,
+	}
+}
+
+const (
+	// ICD10CMRelationshipTypeOverlap is a ICD10CMRelationshipType enum value
+	ICD10CMRelationshipTypeOverlap = "OVERLAP"
+
+	// ICD10CMRelationshipTypeSystemOrganSite is a ICD10CMRelationshipType enum value
+	ICD10CMRelationshipTypeSystemOrganSite = "SYSTEM_ORGAN_SITE"
+)
+
+// ICD10CMRelationshipType_Values returns all elements of the ICD10CMRelationshipType enum
+func ICD10CMRelationshipType_Values() []string {
+	return []string{
+		ICD10CMRelationshipTypeOverlap,
+		ICD10CMRelationshipTypeSystemOrganSite,
 	}
 }
 

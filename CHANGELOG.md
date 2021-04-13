@@ -1,3 +1,17 @@
+Release v1.38.19 (2021-04-13)
+===
+
+### Service Client Updates
+* `service/comprehendmedical`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Amazon Lightsail.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Clarify that enabling or disabling automated backups causes a brief downtime, not an outage.
+* `service/redshift`: Updates service API and documentation
+  * Added support to enable AQUA in Amazon Redshift clusters.
+* `service/sts`: Updates service API and documentation
+  * This release adds the SourceIdentity parameter that can be set when assuming a role.
+
 Release v1.38.18 (2021-04-12)
 ===
 
