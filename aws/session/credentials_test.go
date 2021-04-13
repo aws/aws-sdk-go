@@ -788,5 +788,6 @@ func ssoTestSetup() (func(), error) {
 	}
 
 	return func() {
+		os.RemoveAll(dir)
 	}, nil
 }
