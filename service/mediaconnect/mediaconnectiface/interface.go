@@ -179,6 +179,15 @@ type MediaConnectAPI interface {
 	UpdateFlowSource(*mediaconnect.UpdateFlowSourceInput) (*mediaconnect.UpdateFlowSourceOutput, error)
 	UpdateFlowSourceWithContext(aws.Context, *mediaconnect.UpdateFlowSourceInput, ...request.Option) (*mediaconnect.UpdateFlowSourceOutput, error)
 	UpdateFlowSourceRequest(*mediaconnect.UpdateFlowSourceInput) (*request.Request, *mediaconnect.UpdateFlowSourceOutput)
+
+	WaitUntilFlowActive(*mediaconnect.DescribeFlowInput) error
+	WaitUntilFlowActiveWithContext(aws.Context, *mediaconnect.DescribeFlowInput, ...request.WaiterOption) error
+
+	WaitUntilFlowDeleted(*mediaconnect.DescribeFlowInput) error
+	WaitUntilFlowDeletedWithContext(aws.Context, *mediaconnect.DescribeFlowInput, ...request.WaiterOption) error
+
+	WaitUntilFlowStandby(*mediaconnect.DescribeFlowInput) error
+	WaitUntilFlowStandbyWithContext(aws.Context, *mediaconnect.DescribeFlowInput, ...request.WaiterOption) error
 }
 
 var _ MediaConnectAPI = (*mediaconnect.MediaConnect)(nil)

@@ -169,7 +169,8 @@
       "errors":[
         {"shape":"NoSuchRemediationConfigurationException"},
         {"shape":"RemediationInProgressException"},
-        {"shape":"InsufficientPermissionsException"}
+        {"shape":"InsufficientPermissionsException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DeleteRemediationExceptions":{
@@ -562,7 +563,8 @@
       "output":{"shape":"DescribeRemediationExecutionStatusResponse"},
       "errors":[
         {"shape":"NoSuchRemediationConfigurationException"},
-        {"shape":"InvalidNextTokenException"}
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidParameterValueException"}
       ]
     },
     "DescribeRetentionConfigurations":{

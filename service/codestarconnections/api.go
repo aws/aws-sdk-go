@@ -1392,6 +1392,8 @@ type CreateHostInput struct {
 	// ProviderType is a required field
 	ProviderType *string `type:"string" required:"true" enum:"ProviderType"`
 
+	Tags []*Tag `type:"list"`
+
 	// The VPC configuration to be provisioned for the host. A VPC must be configured
 	// and the infrastructure to be represented by the host must already be connected
 	// to the VPC.
@@ -1426,6 +1428,16 @@ func (s *CreateHostInput) Validate() error {
 	if s.ProviderType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProviderType"))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
@@ -1456,6 +1468,12 @@ func (s *CreateHostInput) SetProviderType(v string) *CreateHostInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateHostInput) SetTags(v []*Tag) *CreateHostInput {
+	s.Tags = v
+	return s
+}
+
 // SetVpcConfiguration sets the VpcConfiguration field's value.
 func (s *CreateHostInput) SetVpcConfiguration(v *VpcConfiguration) *CreateHostInput {
 	s.VpcConfiguration = v
@@ -1467,6 +1485,8 @@ type CreateHostOutput struct {
 
 	// The Amazon Resource Name (ARN) of the host to be created.
 	HostArn *string `type:"string"`
+
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -1482,6 +1502,12 @@ func (s CreateHostOutput) GoString() string {
 // SetHostArn sets the HostArn field's value.
 func (s *CreateHostOutput) SetHostArn(v string) *CreateHostOutput {
 	s.HostArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateHostOutput) SetTags(v []*Tag) *CreateHostOutput {
+	s.Tags = v
 	return s
 }
 
@@ -1703,7 +1729,7 @@ type GetHostOutput struct {
 	ProviderType *string `type:"string" enum:"ProviderType"`
 
 	// The status of the requested host.
-	Status *string `type:"string"`
+	Status *string `min:"1" type:"string"`
 
 	// The VPC configuration of the requested host.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
@@ -1775,7 +1801,7 @@ type Host struct {
 
 	// The status of the host, such as PENDING, AVAILABLE, VPC_CONFIG_DELETING,
 	// VPC_CONFIG_INITIALIZING, and VPC_CONFIG_FAILED_INITIALIZATION.
-	Status *string `type:"string"`
+	Status *string `min:"1" type:"string"`
 
 	// The status description for the host.
 	StatusMessage *string `type:"string"`

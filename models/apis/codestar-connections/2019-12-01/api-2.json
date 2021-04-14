@@ -245,13 +245,15 @@
         "Name":{"shape":"HostName"},
         "ProviderType":{"shape":"ProviderType"},
         "ProviderEndpoint":{"shape":"Url"},
-        "VpcConfiguration":{"shape":"VpcConfiguration"}
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateHostOutput":{
       "type":"structure",
       "members":{
-        "HostArn":{"shape":"HostArn"}
+        "HostArn":{"shape":"HostArn"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "DeleteConnectionInput":{
@@ -340,7 +342,12 @@
       "min":1,
       "pattern":".*"
     },
-    "HostStatus":{"type":"string"},
+    "HostStatus":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":".*"
+    },
     "HostStatusMessage":{"type":"string"},
     "LimitExceededException":{
       "type":"structure",

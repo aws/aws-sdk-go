@@ -1329,6 +1329,10 @@ func (c *ConfigService) DeleteRemediationConfigurationRequest(input *DeleteRemed
 //      pack cannot be created because you do not have permissions: To call IAM
 //      GetRole action or create a service linked role. To read Amazon S3 bucket.
 //
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DeleteRemediationConfiguration
 func (c *ConfigService) DeleteRemediationConfiguration(input *DeleteRemediationConfigurationInput) (*DeleteRemediationConfigurationOutput, error) {
 	req, out := c.DeleteRemediationConfigurationRequest(input)
@@ -1946,7 +1950,9 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 //
 // Returns a list of the conformance packs and their associated compliance status
 // with the count of compliant and noncompliant AWS Config rules within each
-// conformance pack.
+// conformance pack. Also returns the total rule count which includes compliant
+// rules, noncompliant rules, and rules that cannot be evaluated due to insufficient
+// data.
 //
 // The results can return an empty result page, but if you have a nextToken,
 // the results are displayed on the next page.
@@ -4134,6 +4140,10 @@ func (c *ConfigService) DescribeRemediationExecutionStatusRequest(input *Describ
 //   The specified next token is invalid. Specify the nextToken string that was
 //   returned in the previous response to get the next page of results.
 //
+//   * InvalidParameterValueException
+//   One or more of the specified parameters are invalid. Verify that your parameters
+//   are valid and try again.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/config-2014-11-12/DescribeRemediationExecutionStatus
 func (c *ConfigService) DescribeRemediationExecutionStatus(input *DescribeRemediationExecutionStatusInput) (*DescribeRemediationExecutionStatusOutput, error) {
 	req, out := c.DescribeRemediationExecutionStatusRequest(input)
@@ -4549,8 +4559,8 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 // GetAggregateConformancePackComplianceSummary API operation for AWS Config.
 //
 // Returns the count of compliant and noncompliant conformance packs across
-// all AWS Accounts and AWS Regions. You can filter based on AWS Account ID
-// or AWS Region.
+// all AWS Accounts and AWS Regions in an aggregator. You can filter based on
+// AWS Account ID or AWS Region.
 //
 // The results can return an empty result page, but if you have a nextToken,
 // the results are displayed on the next page.
@@ -9220,14 +9230,13 @@ func (s *AggregateComplianceByConfigRule) SetConfigRuleName(v string) *Aggregate
 // a conformance pack is compliant based on the name of the conformance pack,
 // account ID, and region.
 //
-// A conformance pack is compliant if all of the rules in that conformance packs
+// A conformance pack is compliant if all of the rules in a conformance packs
 // are compliant. It is noncompliant if any of the rules are not compliant.
-//
-// If a conformance pack has rules that return INSUFFICIENT_DATA, the conformance
-// pack returns INSUFFICIENT_DATA only if all the rules within that conformance
-// pack return INSUFFICIENT_DATA. If some of the rules in a conformance pack
-// are compliant and others return INSUFFICIENT_DATA, the conformance pack shows
-// compliant.
+// The compliance status of a conformance pack is INSUFFICIENT_DATA only if
+// all rules within a conformance pack cannot be evaluated due to insufficient
+// data. If some of the rules in a conformance pack are compliant but the compliance
+// status of other rules in that same conformance pack is INSUFFICIENT_DATA,
+// the conformance pack shows compliant.
 type AggregateComplianceByConformancePack struct {
 	_ struct{} `type:"structure"`
 
@@ -9313,9 +9322,17 @@ func (s *AggregateComplianceCount) SetGroupName(v string) *AggregateComplianceCo
 }
 
 // Provides the number of compliant and noncompliant rules within a conformance
-// pack. Also provides the total count of compliant rules, noncompliant rules,
-// and the rules that do not have any applicable resources to evaluate upon
-// resulting in insufficient data.
+// pack. Also provides the compliance status of the conformance pack and the
+// total rule count which includes compliant rules, noncompliant rules, and
+// rules that cannot be evaluated due to insufficient data.
+//
+// A conformance pack is compliant if all of the rules in a conformance packs
+// are compliant. It is noncompliant if any of the rules are not compliant.
+// The compliance status of a conformance pack is INSUFFICIENT_DATA only if
+// all rules within a conformance pack cannot be evaluated due to insufficient
+// data. If some of the rules in a conformance pack are compliant but the compliance
+// status of other rules in that same conformance pack is INSUFFICIENT_DATA,
+// the conformance pack shows compliant.
 type AggregateConformancePackCompliance struct {
 	_ struct{} `type:"structure"`
 
@@ -13388,8 +13405,8 @@ type DescribeAggregateComplianceByConformancePacksInput struct {
 	// Filters the result by AggregateConformancePackComplianceFilters object.
 	Filters *AggregateConformancePackComplianceFilters `type:"structure"`
 
-	// The maximum number of conformance packs details returned on each page. The
-	// default is maximum. If you specify 0, AWS Config uses the default.
+	// The maximum number of conformance packs compliance details returned on each
+	// page. The default is maximum. If you specify 0, AWS Config uses the default.
 	Limit *int64 `type:"integer"`
 
 	// The nextToken string returned on a previous page that you use to get the
