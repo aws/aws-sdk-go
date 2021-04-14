@@ -1,3 +1,13 @@
+Release v1.38.20 (2021-04-14)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API and documentation
+* `service/config`: Updates service API and documentation
+* `service/mediaconnect`: Updates service API, documentation, and waiters
+* `service/route53`: Updates service documentation
+  * Documentation updates for route53
+
 Release v1.38.19 (2021-04-13)
 ===
 

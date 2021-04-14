@@ -637,6 +637,7 @@
         "Output$Description": "A description of the output.",
         "Output$Destination": "The address where you want to send the output.",
         "Output$EntitlementArn": "The ARN of the entitlement on the originator''s flow. This value is relevant only on entitled flows.",
+        "Output$ListenerAddress" : "The IP address that the receiver requires in order to establish a connection with the flow. For public networking, the ListenerAddress is represented by the elastic IP address of the flow. For private networking, the ListenerAddress is represented by the elastic network interface IP address of the VPC. This field applies only to outputs that use the Zixi pull or SRT listener protocol.",
         "Output$MediaLiveInputArn": "The input ARN of the AWS Elemental MediaLive channel. This parameter is relevant only for outputs that were added by creating a MediaLive input.",
         "Output$Name": "The name of the output. This value must be unique within the current flow.",
         "Output$OutputArn": "The ARN of the output.",

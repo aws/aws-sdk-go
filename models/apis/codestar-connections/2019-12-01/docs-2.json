@@ -306,6 +306,8 @@
       "refs": {
         "CreateConnectionInput$Tags": "<p>The key-value pair to use when tagging the resource.</p>",
         "CreateConnectionOutput$Tags": "<p>Specifies the tags applied to the resource.</p>",
+        "CreateHostInput$Tags": null,
+        "CreateHostOutput$Tags": null,
         "ListTagsForResourceOutput$Tags": "<p>A list of tag key and value pairs associated with the specified resource.</p>",
         "TagResourceInput$Tags": "<p>The tags you want to modify or add to the resource.</p>"
       }

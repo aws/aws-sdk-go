@@ -1812,6 +1812,10 @@
           "shape": "__string",
           "locationName": "entitlementArn"
         },
+        "ListenerAddress": {
+          "shape": "__string",
+          "locationName": "listenerAddress"
+        },
         "MediaLiveInputArn": {
           "shape": "__string",
           "locationName": "mediaLiveInputArn"
