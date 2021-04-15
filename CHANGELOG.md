@@ -1,3 +1,12 @@
+Release v1.38.21 (2021-04-15)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API, documentation, waiters, and paginators
+  * AWS DMS added support of TLS for Kafka endpoint. Added Describe endpoint setting API for DMS endpoints.
+* `service/sts`: Updates service API
+  * STS now supports assume role with Web Identity using JWT token length upto 20000 characters
+
 Release v1.38.20 (2021-04-14)
 ===
 

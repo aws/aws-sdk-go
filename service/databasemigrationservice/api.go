@@ -2004,6 +2004,139 @@ func (c *DatabaseMigrationService) DescribeConnectionsPagesWithContext(ctx aws.C
 	return p.Err()
 }
 
+const opDescribeEndpointSettings = "DescribeEndpointSettings"
+
+// DescribeEndpointSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeEndpointSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeEndpointSettings for more information on using the DescribeEndpointSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeEndpointSettingsRequest method.
+//    req, resp := client.DescribeEndpointSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointSettings
+func (c *DatabaseMigrationService) DescribeEndpointSettingsRequest(input *DescribeEndpointSettingsInput) (req *request.Request, output *DescribeEndpointSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeEndpointSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeEndpointSettingsInput{}
+	}
+
+	output = &DescribeEndpointSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeEndpointSettings API operation for AWS Database Migration Service.
+//
+// Returns information about the possible endpoint settings available when you
+// create an endpoint for a specific database engine.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Database Migration Service's
+// API operation DescribeEndpointSettings for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/DescribeEndpointSettings
+func (c *DatabaseMigrationService) DescribeEndpointSettings(input *DescribeEndpointSettingsInput) (*DescribeEndpointSettingsOutput, error) {
+	req, out := c.DescribeEndpointSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeEndpointSettingsWithContext is the same as DescribeEndpointSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeEndpointSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEndpointSettingsWithContext(ctx aws.Context, input *DescribeEndpointSettingsInput, opts ...request.Option) (*DescribeEndpointSettingsOutput, error) {
+	req, out := c.DescribeEndpointSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeEndpointSettingsPages iterates over the pages of a DescribeEndpointSettings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEndpointSettings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEndpointSettings operation.
+//    pageNum := 0
+//    err := client.DescribeEndpointSettingsPages(params,
+//        func(page *databasemigrationservice.DescribeEndpointSettingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DatabaseMigrationService) DescribeEndpointSettingsPages(input *DescribeEndpointSettingsInput, fn func(*DescribeEndpointSettingsOutput, bool) bool) error {
+	return c.DescribeEndpointSettingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEndpointSettingsPagesWithContext same as DescribeEndpointSettingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DatabaseMigrationService) DescribeEndpointSettingsPagesWithContext(ctx aws.Context, input *DescribeEndpointSettingsInput, fn func(*DescribeEndpointSettingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEndpointSettingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEndpointSettingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEndpointSettingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEndpointTypes = "DescribeEndpointTypes"
 
 // DescribeEndpointTypesRequest generates a "aws/request.Request" representing the
@@ -4970,6 +5103,9 @@ func (c *DatabaseMigrationService) MoveReplicationTaskRequest(input *MoveReplica
 //   * ResourceNotFoundFault
 //   The resource could not be found.
 //
+//   * KMSKeyNotAccessibleFault
+//   AWS DMS cannot access the AWS KMS key.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
 func (c *DatabaseMigrationService) MoveReplicationTask(input *MoveReplicationTaskInput) (*MoveReplicationTaskOutput, error) {
 	req, out := c.MoveReplicationTaskRequest(input)
@@ -5781,6 +5917,10 @@ func (c *DatabaseMigrationService) TestConnectionRequest(input *TestConnectionIn
 //
 //   * ResourceQuotaExceededFault
 //   The quota for this resource quota has been exceeded.
+//
+//   * AccessDeniedFault
+//   AWS DMS was denied access to the endpoint. Check that the role is correctly
+//   configured.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/TestConnection
 func (c *DatabaseMigrationService) TestConnection(input *TestConnectionInput) (*TestConnectionOutput, error) {
@@ -8427,6 +8567,101 @@ func (s *DescribeConnectionsOutput) SetMarker(v string) *DescribeConnectionsOutp
 	return s
 }
 
+type DescribeEndpointSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The databse engine used for your source or target endpoint.
+	//
+	// EngineName is a required field
+	EngineName *string `type:"string" required:"true"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeEndpointSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeEndpointSettingsInput"}
+	if s.EngineName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngineName sets the EngineName field's value.
+func (s *DescribeEndpointSettingsInput) SetEngineName(v string) *DescribeEndpointSettingsInput {
+	s.EngineName = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointSettingsInput) SetMarker(v string) *DescribeEndpointSettingsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeEndpointSettingsInput) SetMaxRecords(v int64) *DescribeEndpointSettingsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeEndpointSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Descriptions of the endpoint settings available for your source or target
+	// database engine.
+	EndpointSettings []*EndpointSetting `type:"list"`
+
+	// An optional pagination token provided by a previous request. If this parameter
+	// is specified, the response includes only records beyond the marker, up to
+	// the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeEndpointSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeEndpointSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndpointSettings sets the EndpointSettings field's value.
+func (s *DescribeEndpointSettingsOutput) SetEndpointSettings(v []*EndpointSetting) *DescribeEndpointSettingsOutput {
+	s.EndpointSettings = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeEndpointSettingsOutput) SetMarker(v string) *DescribeEndpointSettingsOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeEndpointTypesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10855,6 +11090,94 @@ func (s *Endpoint) SetUsername(v string) *Endpoint {
 	return s
 }
 
+// Endpoint settings.
+type EndpointSetting struct {
+	_ struct{} `type:"structure"`
+
+	// The relevance or validity of an endpoint setting for an engine name and its
+	// endpoint type.
+	Applicability *string `type:"string"`
+
+	// Enumerated values to use for this endpoint.
+	EnumValues []*string `type:"list"`
+
+	// The maximum value of an endpoint setting that is of type int.
+	IntValueMax *int64 `type:"integer"`
+
+	// The minimum value of an endpoint setting that is of type int.
+	IntValueMin *int64 `type:"integer"`
+
+	// The name that you want to give the endpoint settings.
+	Name *string `type:"string"`
+
+	// A value that marks this endpoint setting as sensitive.
+	Sensitive *bool `type:"boolean"`
+
+	// The type of endpoint. Valid values are source and target.
+	Type *string `type:"string" enum:"EndpointSettingTypeValue"`
+
+	// The unit of measure for this endpoint setting.
+	Units *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EndpointSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointSetting) GoString() string {
+	return s.String()
+}
+
+// SetApplicability sets the Applicability field's value.
+func (s *EndpointSetting) SetApplicability(v string) *EndpointSetting {
+	s.Applicability = &v
+	return s
+}
+
+// SetEnumValues sets the EnumValues field's value.
+func (s *EndpointSetting) SetEnumValues(v []*string) *EndpointSetting {
+	s.EnumValues = v
+	return s
+}
+
+// SetIntValueMax sets the IntValueMax field's value.
+func (s *EndpointSetting) SetIntValueMax(v int64) *EndpointSetting {
+	s.IntValueMax = &v
+	return s
+}
+
+// SetIntValueMin sets the IntValueMin field's value.
+func (s *EndpointSetting) SetIntValueMin(v int64) *EndpointSetting {
+	s.IntValueMin = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *EndpointSetting) SetName(v string) *EndpointSetting {
+	s.Name = &v
+	return s
+}
+
+// SetSensitive sets the Sensitive field's value.
+func (s *EndpointSetting) SetSensitive(v bool) *EndpointSetting {
+	s.Sensitive = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EndpointSetting) SetType(v string) *EndpointSetting {
+	s.Type = &v
+	return s
+}
+
+// SetUnits sets the Units field's value.
+func (s *EndpointSetting) SetUnits(v string) *EndpointSetting {
+	s.Units = &v
+	return s
+}
+
 // Describes an identifiable significant activity that affects a replication
 // instance or task. This object can provide the message, the available event
 // categories, the date and source of the event, and the AWS DMS resource type.
@@ -11254,7 +11577,7 @@ type ImportCertificateInput struct {
 	CertificateIdentifier *string `type:"string" required:"true"`
 
 	// The contents of a .pem file, which contains an X.509 certificate.
-	CertificatePem *string `type:"string"`
+	CertificatePem *string `type:"string" sensitive:"true"`
 
 	// The location of an imported Oracle Wallet certificate for use with SSL.
 	//
@@ -11960,9 +12283,12 @@ func (s *KMSThrottlingFault) RequestID() string {
 type KafkaSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The broker location and port of the Kafka broker that hosts your Kafka instance.
-	// Specify the broker in the form broker-hostname-or-ip:port . For example,
-	// "ec2-12-345-678-901.compute-1.amazonaws.com:2345".
+	// A comma-separated list of one or more broker locations in your Kafka cluster
+	// that host your Kafka instance. Specify each broker location in the form broker-hostname-or-ip:port
+	// . For example, "ec2-12-345-678-901.compute-1.amazonaws.com:2345". For more
+	// information and examples of specifying a list of broker locations, see Using
+	// Apache Kafka as a target for AWS Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html)
+	// in the AWS Data Migration Service User Guide.
 	Broker *string `type:"string"`
 
 	// Shows detailed control information for table definition, column definition,
@@ -12004,6 +12330,37 @@ type KafkaSettings struct {
 	// key is sent from thousands of tables to the same partition, which causes
 	// throttling. The default is false.
 	PartitionIncludeSchemaTable *bool `type:"boolean"`
+
+	// The secure password you created when you first set up your MSK cluster to
+	// validate a client identity and make an encrypted connection between server
+	// and client using SASL-SSL authentication.
+	SaslPassword *string `type:"string" sensitive:"true"`
+
+	// The secure username you created when you first set up your MSK cluster to
+	// validate a client identity and make an encrypted connection between server
+	// and client using SASL-SSL authentication.
+	SaslUsername *string `type:"string"`
+
+	// Set secure connection to a Kafka target endpoint using Transport Layer Security
+	// (TLS). Options include ssl-encryption, ssl-authentication, and sasl-ssl.
+	// sasl-ssl requires SaslUsername and SaslPassword.
+	SecurityProtocol *string `type:"string" enum:"KafkaSecurityProtocol"`
+
+	// The Amazon Resource Name (ARN) for the private Certification Authority (CA)
+	// cert that AWS DMS uses to securely connect to your Kafka target endpoint.
+	SslCaCertificateArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the client certificate used to securely
+	// connect to a Kafka target endpoint.
+	SslClientCertificateArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the client private key used to securely
+	// connect to a Kafka target endpoint.
+	SslClientKeyArn *string `type:"string"`
+
+	// The password for the client private key used to securely connect to a Kafka
+	// target endpoint.
+	SslClientKeyPassword *string `type:"string" sensitive:"true"`
 
 	// The topic to which you migrate the data. If you don't specify a topic, AWS
 	// DMS specifies "kafka-default-topic" as the migration topic.
@@ -12071,6 +12428,48 @@ func (s *KafkaSettings) SetMessageMaxBytes(v int64) *KafkaSettings {
 // SetPartitionIncludeSchemaTable sets the PartitionIncludeSchemaTable field's value.
 func (s *KafkaSettings) SetPartitionIncludeSchemaTable(v bool) *KafkaSettings {
 	s.PartitionIncludeSchemaTable = &v
+	return s
+}
+
+// SetSaslPassword sets the SaslPassword field's value.
+func (s *KafkaSettings) SetSaslPassword(v string) *KafkaSettings {
+	s.SaslPassword = &v
+	return s
+}
+
+// SetSaslUsername sets the SaslUsername field's value.
+func (s *KafkaSettings) SetSaslUsername(v string) *KafkaSettings {
+	s.SaslUsername = &v
+	return s
+}
+
+// SetSecurityProtocol sets the SecurityProtocol field's value.
+func (s *KafkaSettings) SetSecurityProtocol(v string) *KafkaSettings {
+	s.SecurityProtocol = &v
+	return s
+}
+
+// SetSslCaCertificateArn sets the SslCaCertificateArn field's value.
+func (s *KafkaSettings) SetSslCaCertificateArn(v string) *KafkaSettings {
+	s.SslCaCertificateArn = &v
+	return s
+}
+
+// SetSslClientCertificateArn sets the SslClientCertificateArn field's value.
+func (s *KafkaSettings) SetSslClientCertificateArn(v string) *KafkaSettings {
+	s.SslClientCertificateArn = &v
+	return s
+}
+
+// SetSslClientKeyArn sets the SslClientKeyArn field's value.
+func (s *KafkaSettings) SetSslClientKeyArn(v string) *KafkaSettings {
+	s.SslClientKeyArn = &v
+	return s
+}
+
+// SetSslClientKeyPassword sets the SslClientKeyPassword field's value.
+func (s *KafkaSettings) SetSslClientKeyPassword(v string) *KafkaSettings {
+	s.SslClientKeyPassword = &v
 	return s
 }
 
@@ -12277,6 +12676,12 @@ type MicrosoftSQLServerSettings struct {
 	// Endpoint TCP port.
 	Port *int64 `type:"integer"`
 
+	// Cleans and recreates table metadata information on the replication instance
+	// when a mismatch occurs. An example is a situation where running an alter
+	// DDL statement on a table might result in different information about the
+	// table cached in the replication instance.
+	QuerySingleAlwaysOnNode *bool `type:"boolean"`
+
 	// When this attribute is set to Y, AWS DMS only reads changes from transaction
 	// log backups and doesn't read from the active transaction log file during
 	// ongoing replication. Setting this parameter to Y enables you to control active
@@ -12329,6 +12734,10 @@ type MicrosoftSQLServerSettings struct {
 	// the source table, you must disable the use BCP for loading table option.
 	UseBcpFullLoad *bool `type:"boolean"`
 
+	// When this attribute is set to Y, DMS processes third-party transaction log
+	// backups if they are created in native format.
+	UseThirdPartyBackupDevice *bool `type:"boolean"`
+
 	// Endpoint connection user name.
 	Username *string `type:"string"`
 }
@@ -12373,6 +12782,12 @@ func (s *MicrosoftSQLServerSettings) SetPort(v int64) *MicrosoftSQLServerSetting
 	return s
 }
 
+// SetQuerySingleAlwaysOnNode sets the QuerySingleAlwaysOnNode field's value.
+func (s *MicrosoftSQLServerSettings) SetQuerySingleAlwaysOnNode(v bool) *MicrosoftSQLServerSettings {
+	s.QuerySingleAlwaysOnNode = &v
+	return s
+}
+
 // SetReadBackupOnly sets the ReadBackupOnly field's value.
 func (s *MicrosoftSQLServerSettings) SetReadBackupOnly(v bool) *MicrosoftSQLServerSettings {
 	s.ReadBackupOnly = &v
@@ -12406,6 +12821,12 @@ func (s *MicrosoftSQLServerSettings) SetServerName(v string) *MicrosoftSQLServer
 // SetUseBcpFullLoad sets the UseBcpFullLoad field's value.
 func (s *MicrosoftSQLServerSettings) SetUseBcpFullLoad(v bool) *MicrosoftSQLServerSettings {
 	s.UseBcpFullLoad = &v
+	return s
+}
+
+// SetUseThirdPartyBackupDevice sets the UseThirdPartyBackupDevice field's value.
+func (s *MicrosoftSQLServerSettings) SetUseThirdPartyBackupDevice(v bool) *MicrosoftSQLServerSettings {
+	s.UseThirdPartyBackupDevice = &v
 	return s
 }
 
@@ -13273,9 +13694,9 @@ type ModifyReplicationTaskInput struct {
 	ReplicationTaskSettings *string `type:"string"`
 
 	// When using the AWS CLI or boto3, provide the path of the JSON file that contains
-	// the table mappings. Precede the path with file://. When working with the
-	// DMS API, provide the JSON as the parameter value, for example: --table-mappings
-	// file://mappingfile.json
+	// the table mappings. Precede the path with file://. For example, --table-mappings
+	// file://mappingfile.json. When working with the DMS API, provide the JSON
+	// as the parameter value.
 	TableMappings *string `type:"string"`
 
 	// Supplemental information that the task requires to migrate the data for certain
@@ -13645,6 +14066,12 @@ type MySQLSettings struct {
 	// or fails.
 	AfterConnectScript *string `type:"string"`
 
+	// Adjusts the behavior of DMS when migrating from an SQL Server source database
+	// that is hosted as part of an Always On availability group cluster. If you
+	// need DMS to poll all the nodes in the Always On cluster for transaction backups,
+	// set this attribute to false.
+	CleanSourceMetadataOnMismatch *bool `type:"boolean"`
+
 	// Database name for the endpoint.
 	DatabaseName *string `type:"string"`
 
@@ -13730,6 +14157,12 @@ func (s MySQLSettings) GoString() string {
 // SetAfterConnectScript sets the AfterConnectScript field's value.
 func (s *MySQLSettings) SetAfterConnectScript(v string) *MySQLSettings {
 	s.AfterConnectScript = &v
+	return s
+}
+
+// SetCleanSourceMetadataOnMismatch sets the CleanSourceMetadataOnMismatch field's value.
+func (s *MySQLSettings) SetCleanSourceMetadataOnMismatch(v bool) *MySQLSettings {
+	s.CleanSourceMetadataOnMismatch = &v
 	return s
 }
 
@@ -14121,6 +14554,12 @@ type OracleSettings struct {
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
+	// Use this attribute to convert SDO_GEOMETRY to GEOJSON format. By default,
+	// DMS calls the SDO2GEOJSON custom function if present and accessible. Or you
+	// can create your own custom function that mimics the operation of SDOGEOJSON
+	// and set SpatialDataOptionToGeoJsonFunctionName to call it instead.
+	SpatialDataOptionToGeoJsonFunctionName *string `type:"string"`
+
 	// Set this attribute to true in order to use the Binary Reader to capture change
 	// data for an Amazon RDS for Oracle as the source. This tells the DMS instance
 	// to use any specified prefix replacement to access all online redo logs.
@@ -14329,6 +14768,12 @@ func (s *OracleSettings) SetSecurityDbEncryptionName(v string) *OracleSettings {
 // SetServerName sets the ServerName field's value.
 func (s *OracleSettings) SetServerName(v string) *OracleSettings {
 	s.ServerName = &v
+	return s
+}
+
+// SetSpatialDataOptionToGeoJsonFunctionName sets the SpatialDataOptionToGeoJsonFunctionName field's value.
+func (s *OracleSettings) SetSpatialDataOptionToGeoJsonFunctionName(v string) *OracleSettings {
+	s.SpatialDataOptionToGeoJsonFunctionName = &v
 	return s
 }
 
@@ -17338,7 +17783,7 @@ type S3Settings struct {
 	ServerSideEncryptionKmsKeyId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) used by the service access IAM role. It is
-	// a required parameter that enables DMS to write and read objects from an 3S
+	// a required parameter that enables DMS to write and read objects from an S3
 	// bucket.
 	ServiceAccessRoleArn *string `type:"string"`
 
@@ -19100,6 +19545,54 @@ func EncryptionModeValue_Values() []string {
 	return []string{
 		EncryptionModeValueSseS3,
 		EncryptionModeValueSseKms,
+	}
+}
+
+const (
+	// EndpointSettingTypeValueString is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueString = "string"
+
+	// EndpointSettingTypeValueBoolean is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueBoolean = "boolean"
+
+	// EndpointSettingTypeValueInteger is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueInteger = "integer"
+
+	// EndpointSettingTypeValueEnum is a EndpointSettingTypeValue enum value
+	EndpointSettingTypeValueEnum = "enum"
+)
+
+// EndpointSettingTypeValue_Values returns all elements of the EndpointSettingTypeValue enum
+func EndpointSettingTypeValue_Values() []string {
+	return []string{
+		EndpointSettingTypeValueString,
+		EndpointSettingTypeValueBoolean,
+		EndpointSettingTypeValueInteger,
+		EndpointSettingTypeValueEnum,
+	}
+}
+
+const (
+	// KafkaSecurityProtocolPlaintext is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolPlaintext = "plaintext"
+
+	// KafkaSecurityProtocolSslAuthentication is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSslAuthentication = "ssl-authentication"
+
+	// KafkaSecurityProtocolSslEncryption is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSslEncryption = "ssl-encryption"
+
+	// KafkaSecurityProtocolSaslSsl is a KafkaSecurityProtocol enum value
+	KafkaSecurityProtocolSaslSsl = "sasl-ssl"
+)
+
+// KafkaSecurityProtocol_Values returns all elements of the KafkaSecurityProtocol enum
+func KafkaSecurityProtocol_Values() []string {
+	return []string{
+		KafkaSecurityProtocolPlaintext,
+		KafkaSecurityProtocolSslAuthentication,
+		KafkaSecurityProtocolSslEncryption,
+		KafkaSecurityProtocolSaslSsl,
 	}
 }
 

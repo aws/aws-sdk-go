@@ -297,6 +297,15 @@
         {"shape":"ResourceNotFoundFault"}
       ]
     },
+    "DescribeEndpointSettings":{
+      "name":"DescribeEndpointSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeEndpointSettingsMessage"},
+      "output":{"shape":"DescribeEndpointSettingsResponse"}
+    },
     "DescribeEndpointTypes":{
       "name":"DescribeEndpointTypes",
       "http":{
@@ -616,7 +625,8 @@
       "errors":[
         {"shape":"AccessDeniedFault"},
         {"shape":"InvalidResourceStateFault"},
-        {"shape":"ResourceNotFoundFault"}
+        {"shape":"ResourceNotFoundFault"},
+        {"shape":"KMSKeyNotAccessibleFault"}
       ]
     },
     "RebootReplicationInstance":{
@@ -747,7 +757,8 @@
         {"shape":"ResourceNotFoundFault"},
         {"shape":"InvalidResourceStateFault"},
         {"shape":"KMSKeyNotAccessibleFault"},
-        {"shape":"ResourceQuotaExceededFault"}
+        {"shape":"ResourceQuotaExceededFault"},
+        {"shape":"AccessDeniedFault"}
       ]
     }
   },
@@ -1242,6 +1253,22 @@
         "Connections":{"shape":"ConnectionList"}
       }
     },
+    "DescribeEndpointSettingsMessage":{
+      "type":"structure",
+      "required":["EngineName"],
+      "members":{
+        "EngineName":{"shape":"String"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
+      }
+    },
+    "DescribeEndpointSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "EndpointSettings":{"shape":"EndpointSettingsList"}
+      }
+    },
     "DescribeEndpointTypesMessage":{
       "type":"structure",
       "members":{
@@ -1617,6 +1644,36 @@
       "type":"list",
       "member":{"shape":"Endpoint"}
     },
+    "EndpointSetting":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Type":{"shape":"EndpointSettingTypeValue"},
+        "EnumValues":{"shape":"EndpointSettingEnumValues"},
+        "Sensitive":{"shape":"BooleanOptional"},
+        "Units":{"shape":"String"},
+        "Applicability":{"shape":"String"},
+        "IntValueMin":{"shape":"IntegerOptional"},
+        "IntValueMax":{"shape":"IntegerOptional"}
+      }
+    },
+    "EndpointSettingEnumValues":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "EndpointSettingTypeValue":{
+      "type":"string",
+      "enum":[
+        "string",
+        "boolean",
+        "integer",
+        "enum"
+      ]
+    },
+    "EndpointSettingsList":{
+      "type":"list",
+      "member":{"shape":"EndpointSetting"}
+    },
     "Event":{
       "type":"structure",
       "members":{
@@ -1708,7 +1765,7 @@
       "required":["CertificateIdentifier"],
       "members":{
         "CertificateIdentifier":{"shape":"String"},
-        "CertificatePem":{"shape":"String"},
+        "CertificatePem":{"shape":"SecretString"},
         "CertificateWallet":{"shape":"CertificateWallet"},
         "Tags":{"shape":"TagList"}
       }
@@ -1806,6 +1863,15 @@
       },
       "exception":true
     },
+    "KafkaSecurityProtocol":{
+      "type":"string",
+      "enum":[
+        "plaintext",
+        "ssl-authentication",
+        "ssl-encryption",
+        "sasl-ssl"
+      ]
+    },
     "KafkaSettings":{
       "type":"structure",
       "members":{
@@ -1818,7 +1884,14 @@
         "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
         "IncludeControlDetails":{"shape":"BooleanOptional"},
         "MessageMaxBytes":{"shape":"IntegerOptional"},
-        "IncludeNullAndEmpty":{"shape":"BooleanOptional"}
+        "IncludeNullAndEmpty":{"shape":"BooleanOptional"},
+        "SecurityProtocol":{"shape":"KafkaSecurityProtocol"},
+        "SslClientCertificateArn":{"shape":"String"},
+        "SslClientKeyArn":{"shape":"String"},
+        "SslClientKeyPassword":{"shape":"SecretString"},
+        "SslCaCertificateArn":{"shape":"String"},
+        "SaslUsername":{"shape":"String"},
+        "SaslPassword":{"shape":"SecretString"}
       }
     },
     "KeyList":{
@@ -1868,11 +1941,13 @@
         "DatabaseName":{"shape":"String"},
         "ControlTablesFileGroup":{"shape":"String"},
         "Password":{"shape":"SecretString"},
+        "QuerySingleAlwaysOnNode":{"shape":"BooleanOptional"},
         "ReadBackupOnly":{"shape":"BooleanOptional"},
         "SafeguardPolicy":{"shape":"SafeguardPolicy"},
         "ServerName":{"shape":"String"},
         "Username":{"shape":"String"},
         "UseBcpFullLoad":{"shape":"BooleanOptional"},
+        "UseThirdPartyBackupDevice":{"shape":"BooleanOptional"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"}
       }
@@ -2046,6 +2121,7 @@
       "type":"structure",
       "members":{
         "AfterConnectScript":{"shape":"String"},
+        "CleanSourceMetadataOnMismatch":{"shape":"BooleanOptional"},
         "DatabaseName":{"shape":"String"},
         "EventsPollInterval":{"shape":"IntegerOptional"},
         "TargetDbType":{"shape":"TargetDbType"},
@@ -2115,6 +2191,7 @@
         "SecurityDbEncryption":{"shape":"SecretString"},
         "SecurityDbEncryptionName":{"shape":"String"},
         "ServerName":{"shape":"String"},
+        "SpatialDataOptionToGeoJsonFunctionName":{"shape":"String"},
         "Username":{"shape":"String"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"},

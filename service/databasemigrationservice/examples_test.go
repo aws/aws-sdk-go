@@ -1262,6 +1262,8 @@ func ExampleDatabaseMigrationService_TestConnection_shared00() {
 				fmt.Println(databasemigrationservice.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
 			case databasemigrationservice.ErrCodeResourceQuotaExceededFault:
 				fmt.Println(databasemigrationservice.ErrCodeResourceQuotaExceededFault, aerr.Error())
+			case databasemigrationservice.ErrCodeAccessDeniedFault:
+				fmt.Println(databasemigrationservice.ErrCodeAccessDeniedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
