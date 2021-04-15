@@ -149,6 +149,13 @@ type DatabaseMigrationServiceAPI interface {
 	DescribeConnectionsPages(*databasemigrationservice.DescribeConnectionsInput, func(*databasemigrationservice.DescribeConnectionsOutput, bool) bool) error
 	DescribeConnectionsPagesWithContext(aws.Context, *databasemigrationservice.DescribeConnectionsInput, func(*databasemigrationservice.DescribeConnectionsOutput, bool) bool, ...request.Option) error
 
+	DescribeEndpointSettings(*databasemigrationservice.DescribeEndpointSettingsInput) (*databasemigrationservice.DescribeEndpointSettingsOutput, error)
+	DescribeEndpointSettingsWithContext(aws.Context, *databasemigrationservice.DescribeEndpointSettingsInput, ...request.Option) (*databasemigrationservice.DescribeEndpointSettingsOutput, error)
+	DescribeEndpointSettingsRequest(*databasemigrationservice.DescribeEndpointSettingsInput) (*request.Request, *databasemigrationservice.DescribeEndpointSettingsOutput)
+
+	DescribeEndpointSettingsPages(*databasemigrationservice.DescribeEndpointSettingsInput, func(*databasemigrationservice.DescribeEndpointSettingsOutput, bool) bool) error
+	DescribeEndpointSettingsPagesWithContext(aws.Context, *databasemigrationservice.DescribeEndpointSettingsInput, func(*databasemigrationservice.DescribeEndpointSettingsOutput, bool) bool, ...request.Option) error
+
 	DescribeEndpointTypes(*databasemigrationservice.DescribeEndpointTypesInput) (*databasemigrationservice.DescribeEndpointTypesOutput, error)
 	DescribeEndpointTypesWithContext(aws.Context, *databasemigrationservice.DescribeEndpointTypesInput, ...request.Option) (*databasemigrationservice.DescribeEndpointTypesOutput, error)
 	DescribeEndpointTypesRequest(*databasemigrationservice.DescribeEndpointTypesInput) (*request.Request, *databasemigrationservice.DescribeEndpointTypesOutput)

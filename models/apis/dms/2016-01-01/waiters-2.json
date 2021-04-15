@@ -193,12 +193,6 @@
                 },
                 {
                     "argument":"ReplicationTasks[].Status",
-                    "expected":"running",
-                    "matcher":"pathAny",
-                    "state":"failure"
-                },
-                {
-                    "argument":"ReplicationTasks[].Status",
                     "expected":"failed",
                     "matcher":"pathAny",
                     "state":"failure"

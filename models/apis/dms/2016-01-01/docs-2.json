@@ -22,6 +22,7 @@
     "DescribeApplicableIndividualAssessments": "<p>Provides a list of individual assessments that you can specify for a new premigration assessment run, given one or more parameters.</p> <p>If you specify an existing migration task, this operation provides the default individual assessments you can specify for that task. Otherwise, the specified parameters model elements of a possible migration task on which to base a premigration assessment run.</p> <p>To use these migration task modeling parameters, you must specify an existing replication instance, a source database engine, a target database engine, and a migration type. This combination of parameters potentially limits the default individual assessments available for an assessment run created for a corresponding migration task.</p> <p>If you specify no parameters, this operation provides a list of all possible individual assessments that you can specify for an assessment run. If you specify any one of the task modeling parameters, you must specify all of them or the operation cannot provide a list of individual assessments. The only parameter that you can specify alone is for an existing migration task. The specified task definition then determines the default list of individual assessments that you can specify in an assessment run for the task.</p>",
     "DescribeCertificates": "<p>Provides a description of the certificate.</p>",
     "DescribeConnections": "<p>Describes the status of the connections that have been made between the replication instance and an endpoint. Connections are created when you test an endpoint.</p>",
+    "DescribeEndpointSettings": "<p>Returns information about the possible endpoint settings available when you create an endpoint for a specific database engine.</p>",
     "DescribeEndpointTypes": "<p>Returns information about the type of endpoints available.</p>",
     "DescribeEndpoints": "<p>Returns information about the endpoints for your account in the current region.</p>",
     "DescribeEventCategories": "<p>Lists categories for all event source types, or, if specified, for a specified source type. You can see a list of the event categories and source types in <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Events.html\">Working with Events and Notifications</a> in the <i>AWS Database Migration Service User Guide.</i> </p>",
@@ -140,6 +141,7 @@
         "CreateReplicationInstanceMessage$PubliclyAccessible": "<p> Specifies the accessibility options for the replication instance. A value of <code>true</code> represents an instance with a public IP address. A value of <code>false</code> represents an instance with a private IP address. The default value is <code>true</code>. </p>",
         "DescribeReplicationTasksMessage$WithoutSettings": "<p>An option to set to avoid returning information about settings. Use this to reduce overhead when setting information is too large. To use this option, choose <code>true</code>; otherwise, choose <code>false</code> (the default).</p>",
         "DocDbSettings$ExtractDocId": "<p> Specifies the document ID. Use this setting when <code>NestingLevel</code> is set to <code>\"none\"</code>. </p> <p>Default value is <code>\"false\"</code>. </p>",
+        "EndpointSetting$Sensitive": "<p>A value that marks this endpoint setting as sensitive.</p>",
         "IBMDb2Settings$SetDataCaptureChanges": "<p>Enables ongoing replication (CDC) as a BOOLEAN value. The default is true.</p>",
         "KafkaSettings$IncludeTransactionDetails": "<p>Provides detailed transaction information from the source database. This information includes a commit timestamp, a log position, and values for <code>transaction_id</code>, previous <code>transaction_id</code>, and <code>transaction_record_id</code> (the record offset within a transaction). The default is <code>false</code>.</p>",
         "KafkaSettings$IncludePartitionValue": "<p>Shows the partition value within the Kafka message output, unless the partition type is <code>schema-table-type</code>. The default is <code>false</code>.</p>",
@@ -153,11 +155,14 @@
         "KinesisSettings$IncludeTableAlterOperations": "<p>Includes any data definition language (DDL) operations that change the table in the control data, such as <code>rename-table</code>, <code>drop-table</code>, <code>add-column</code>, <code>drop-column</code>, and <code>rename-column</code>. The default is <code>false</code>.</p>",
         "KinesisSettings$IncludeControlDetails": "<p>Shows detailed control information for table definition, column definition, and table and column changes in the Kinesis message output. The default is <code>false</code>.</p>",
         "KinesisSettings$IncludeNullAndEmpty": "<p>Include NULL and empty columns for records migrated to the endpoint. The default is <code>false</code>.</p>",
+        "MicrosoftSQLServerSettings$QuerySingleAlwaysOnNode": "<p>Cleans and recreates table metadata information on the replication instance when a mismatch occurs. An example is a situation where running an alter DDL statement on a table might result in different information about the table cached in the replication instance.</p>",
         "MicrosoftSQLServerSettings$ReadBackupOnly": "<p>When this attribute is set to <code>Y</code>, AWS DMS only reads changes from transaction log backups and doesn't read from the active transaction log file during ongoing replication. Setting this parameter to <code>Y</code> enables you to control active transaction log file growth during full load and ongoing replication tasks. However, it can add some source latency to ongoing replication.</p>",
         "MicrosoftSQLServerSettings$UseBcpFullLoad": "<p>Use this to attribute to transfer data for full-load operations using BCP. When the target table contains an identity column that does not exist in the source table, you must disable the use BCP for loading table option.</p>",
+        "MicrosoftSQLServerSettings$UseThirdPartyBackupDevice": "<p>When this attribute is set to <code>Y</code>, DMS processes third-party transaction log backups if they are created in native format.</p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <b>true</b> to activate the subscription. </p>",
         "ModifyReplicationInstanceMessage$MultiAZ": "<p> Specifies whether the replication instance is a Multi-AZ deployment. You can't set the <code>AvailabilityZone</code> parameter if the Multi-AZ parameter is set to <code>true</code>. </p>",
         "ModifyReplicationInstanceMessage$AutoMinorVersionUpgrade": "<p>A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible. </p> <p>An outage does result if these factors apply: </p> <ul> <li> <p>This parameter is set to <code>true</code> during the maintenance window.</p> </li> <li> <p>A newer minor version is available. </p> </li> <li> <p>AWS DMS has enabled automatic patching for the given engine version. </p> </li> </ul>",
+        "MySQLSettings$CleanSourceMetadataOnMismatch": "<p>Adjusts the behavior of DMS when migrating from an SQL Server source database that is hosted as part of an Always On availability group cluster. If you need DMS to poll all the nodes in the Always On cluster for transaction backups, set this attribute to <code>false</code>.</p>",
         "NeptuneSettings$IamAuthEnabled": "<p>If you want AWS Identity and Access Management (IAM) authorization enabled for this endpoint, set this parameter to <code>true</code>. Then attach the appropriate IAM policy document to your service role specified by <code>ServiceAccessRoleArn</code>. The default is <code>false</code>.</p>",
         "OracleSettings$AddSupplementalLogging": "<p>Set this attribute to set up table-level supplemental logging for the Oracle database. This attribute enables PRIMARY KEY supplemental logging on all tables selected for a migration task.</p> <p>If you use this option, you still need to enable database-level supplemental logging.</p>",
         "OracleSettings$AllowSelectNestedTables": "<p>Set this attribute to <code>true</code> to enable replication of Oracle tables containing columns that are nested tables or defined types.</p>",
@@ -438,6 +443,16 @@
       "refs": {
       }
     },
+    "DescribeEndpointSettingsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeEndpointSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeEndpointTypesMessage": {
       "base": "<p/>",
       "refs": {
@@ -676,6 +691,30 @@
         "DescribeEndpointsResponse$Endpoints": "<p>Endpoint description.</p>"
       }
     },
+    "EndpointSetting": {
+      "base": "<p>Endpoint settings.</p>",
+      "refs": {
+        "EndpointSettingsList$member": null
+      }
+    },
+    "EndpointSettingEnumValues": {
+      "base": null,
+      "refs": {
+        "EndpointSetting$EnumValues": "<p>Enumerated values to use for this endpoint.</p>"
+      }
+    },
+    "EndpointSettingTypeValue": {
+      "base": null,
+      "refs": {
+        "EndpointSetting$Type": "<p>The type of endpoint. Valid values are <code>source</code> and <code>target</code>.</p>"
+      }
+    },
+    "EndpointSettingsList": {
+      "base": null,
+      "refs": {
+        "DescribeEndpointSettingsResponse$EndpointSettings": "<p>Descriptions of the endpoint settings available for your source or target database engine.</p>"
+      }
+    },
     "Event": {
       "base": "<p>Describes an identifiable significant activity that affects a replication instance or task. This object can provide the message, the available event categories, the date and source of the event, and the AWS DMS resource type.</p>",
       "refs": {
@@ -852,6 +891,7 @@
         "DescribeApplicableIndividualAssessmentsMessage$MaxRecords": "<p>Maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeCertificatesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 10</p>",
         "DescribeConnectionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeEndpointSettingsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p>",
         "DescribeEndpointTypesMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEndpointsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -873,6 +913,8 @@
         "ElasticsearchSettings$FullLoadErrorPercentage": "<p>The maximum percentage of records that can fail to be written before a full load operation stops.</p> <p>To avoid early failure, this counter is only effective after 1000 records are transferred. Elasticsearch also has the concept of error monitoring during the last 10 minutes of an Observation Window. If transfer of all records fail in the last 10 minutes, the full load operation stops. </p>",
         "ElasticsearchSettings$ErrorRetryDuration": "<p>The maximum number of seconds for which DMS retries failed API requests to the Elasticsearch cluster.</p>",
         "Endpoint$Port": "<p>The port value used to access the endpoint.</p>",
+        "EndpointSetting$IntValueMin": "<p>The minimum value of an endpoint setting that is of type <code>int</code>.</p>",
+        "EndpointSetting$IntValueMax": "<p>The maximum value of an endpoint setting that is of type <code>int</code>.</p>",
         "IBMDb2Settings$Port": "<p>Endpoint TCP port.</p>",
         "IBMDb2Settings$MaxKBytesPerRead": "<p>Maximum number of bytes per read, as a NUMBER value. The default is 64 KB.</p>",
         "KafkaSettings$MessageMaxBytes": "<p>The maximum size in bytes for records created on the endpoint The default is 1,000,000.</p>",
@@ -959,6 +1001,12 @@
     "KMSThrottlingFault": {
       "base": "<p>This request triggered AWS KMS request throttling.</p>",
       "refs": {
+      }
+    },
+    "KafkaSecurityProtocol": {
+      "base": null,
+      "refs": {
+        "KafkaSettings$SecurityProtocol": "<p>Set secure connection to a Kafka target endpoint using Transport Layer Security (TLS). Options include <code>ssl-encryption</code>, <code>ssl-authentication</code>, and <code>sasl-ssl</code>. <code>sasl-ssl</code> requires <code>SaslUsername</code> and <code>SaslPassword</code>.</p>"
       }
     },
     "KafkaSettings": {
@@ -1471,6 +1519,9 @@
         "CreateEndpointMessage$Password": "<p>The password to be used to log in to the endpoint database.</p>",
         "DocDbSettings$Password": "<p> The password for the user account you use to access the DocumentDB source endpoint. </p>",
         "IBMDb2Settings$Password": "<p>Endpoint connection password.</p>",
+        "ImportCertificateMessage$CertificatePem": "<p>The contents of a <code>.pem</code> file, which contains an X.509 certificate.</p>",
+        "KafkaSettings$SslClientKeyPassword": "<p> The password for the client private key used to securely connect to a Kafka target endpoint.</p>",
+        "KafkaSettings$SaslPassword": "<p>The secure password you created when you first set up your MSK cluster to validate a client identity and make an encrypted connection between server and client using SASL-SSL authentication.</p>",
         "MicrosoftSQLServerSettings$Password": "<p>Endpoint connection password.</p>",
         "ModifyEndpointMessage$Password": "<p>The password to be used to login to the endpoint database.</p>",
         "MongoDbSettings$Password": "<p> The password for the user account you use to access the MongoDB source endpoint. </p>",
@@ -1625,6 +1676,9 @@
         "DescribeCertificatesResponse$Marker": "<p>The pagination token.</p>",
         "DescribeConnectionsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeConnectionsResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
+        "DescribeEndpointSettingsMessage$EngineName": "<p>The databse engine used for your source or target endpoint.</p>",
+        "DescribeEndpointSettingsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeEndpointSettingsResponse$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeEndpointTypesMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEndpointTypesResponse$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeEndpointsMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
@@ -1692,6 +1746,10 @@
         "Endpoint$ServiceAccessRoleArn": "<p>The Amazon Resource Name (ARN) used by the service access IAM role.</p>",
         "Endpoint$ExternalTableDefinition": "<p>The external table definition.</p>",
         "Endpoint$ExternalId": "<p> Value returned by a call to CreateEndpoint that can be used for cross-account validation. Use it on a subsequent call to CreateEndpoint to create the endpoint with a cross-account. </p>",
+        "EndpointSetting$Name": "<p>The name that you want to give the endpoint settings.</p>",
+        "EndpointSetting$Units": "<p>The unit of measure for this endpoint setting.</p>",
+        "EndpointSetting$Applicability": "<p>The relevance or validity of an endpoint setting for an engine name and its endpoint type.</p>",
+        "EndpointSettingEnumValues$member": null,
         "Event$SourceIdentifier": "<p> The identifier of an event source.</p>",
         "Event$Message": "<p>The event message.</p>",
         "EventCategoriesList$member": null,
@@ -1712,11 +1770,14 @@
         "IBMDb2Settings$SecretsManagerAccessRoleArn": "<p>The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS as the trusted entity and grants the required permissions to access the value in <code>SecretsManagerSecret</code>. <code>SecretsManagerSecret</code> has the value of the AWS Secrets Manager secret that allows access to the Db2 LUW endpoint. </p> <note> <p>You can specify one of two sets of values for these permissions. You can specify the values for this setting and <code>SecretsManagerSecretId</code>. Or you can specify clear-text values for <code>UserName</code>, <code>Password</code>, <code>ServerName</code>, and <code>Port</code>. You can't specify both. For more information on creating this <code>SecretsManagerSecret</code> and the <code>SecretsManagerAccessRoleArn</code> and <code>SecretsManagerSecretId</code> required to access it, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager\">Using secrets to access AWS Database Migration Service resources</a> in the <i>AWS Database Migration Service User Guide</i>.</p> </note>",
         "IBMDb2Settings$SecretsManagerSecretId": "<p>The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code> that contains the Db2 LUW endpoint connection details.</p>",
         "ImportCertificateMessage$CertificateIdentifier": "<p>A customer-assigned name for the certificate. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.</p>",
-        "ImportCertificateMessage$CertificatePem": "<p>The contents of a <code>.pem</code> file, which contains an X.509 certificate.</p>",
         "IncludeTestList$member": null,
         "IndividualAssessmentNameList$member": null,
-        "KafkaSettings$Broker": "<p>The broker location and port of the Kafka broker that hosts your Kafka instance. Specify the broker in the form <code> <i>broker-hostname-or-ip</i>:<i>port</i> </code>. For example, <code>\"ec2-12-345-678-901.compute-1.amazonaws.com:2345\"</code>.</p>",
+        "KafkaSettings$Broker": "<p>A comma-separated list of one or more broker locations in your Kafka cluster that host your Kafka instance. Specify each broker location in the form <code> <i>broker-hostname-or-ip</i>:<i>port</i> </code>. For example, <code>\"ec2-12-345-678-901.compute-1.amazonaws.com:2345\"</code>. For more information and examples of specifying a list of broker locations, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.Kafka.html\">Using Apache Kafka as a target for AWS Database Migration Service</a> in the <i>AWS Data Migration Service User Guide</i>. </p>",
         "KafkaSettings$Topic": "<p>The topic to which you migrate the data. If you don't specify a topic, AWS DMS specifies <code>\"kafka-default-topic\"</code> as the migration topic.</p>",
+        "KafkaSettings$SslClientCertificateArn": "<p>The Amazon Resource Name (ARN) of the client certificate used to securely connect to a Kafka target endpoint.</p>",
+        "KafkaSettings$SslClientKeyArn": "<p>The Amazon Resource Name (ARN) for the client private key used to securely connect to a Kafka target endpoint.</p>",
+        "KafkaSettings$SslCaCertificateArn": "<p> The Amazon Resource Name (ARN) for the private Certification Authority (CA) cert that AWS DMS uses to securely connect to your Kafka target endpoint.</p>",
+        "KafkaSettings$SaslUsername": "<p> The secure username you created when you first set up your MSK cluster to validate a client identity and make an encrypted connection between server and client using SASL-SSL authentication.</p>",
         "KeyList$member": null,
         "KinesisSettings$StreamArn": "<p>The Amazon Resource Name (ARN) for the Amazon Kinesis Data Streams endpoint.</p>",
         "KinesisSettings$ServiceAccessRoleArn": "<p>The Amazon Resource Name (ARN) for the AWS Identity and Access Management (IAM) role that AWS DMS uses to write to the Kinesis data stream.</p>",
@@ -1749,7 +1810,7 @@
         "ModifyReplicationSubnetGroupMessage$ReplicationSubnetGroupDescription": "<p>A description for the replication instance subnet group.</p>",
         "ModifyReplicationTaskMessage$ReplicationTaskArn": "<p>The Amazon Resource Name (ARN) of the replication task.</p>",
         "ModifyReplicationTaskMessage$ReplicationTaskIdentifier": "<p>The replication task identifier.</p> <p>Constraints:</p> <ul> <li> <p>Must contain 1-255 alphanumeric characters or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
-        "ModifyReplicationTaskMessage$TableMappings": "<p>When using the AWS CLI or boto3, provide the path of the JSON file that contains the table mappings. Precede the path with <code>file://</code>. When working with the DMS API, provide the JSON as the parameter value, for example: <code>--table-mappings file://mappingfile.json</code> </p>",
+        "ModifyReplicationTaskMessage$TableMappings": "<p>When using the AWS CLI or boto3, provide the path of the JSON file that contains the table mappings. Precede the path with <code>file://</code>. For example, <code>--table-mappings file://mappingfile.json</code>. When working with the DMS API, provide the JSON as the parameter value. </p>",
         "ModifyReplicationTaskMessage$ReplicationTaskSettings": "<p>JSON file that contains settings for the task, such as task metadata settings.</p>",
         "ModifyReplicationTaskMessage$CdcStartPosition": "<p>Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.</p> <p> The value can be in date, checkpoint, or LSN/SCN format.</p> <p>Date Example: --cdc-start-position “2018-03-08T12:12:12”</p> <p>Checkpoint Example: --cdc-start-position \"checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93\"</p> <p>LSN Example: --cdc-start-position “mysql-bin-changelog.000024:373”</p> <note> <p>When you use this task setting with a source PostgreSQL database, a logical replication slot should already be created and associated with the source endpoint. You can verify this by setting the <code>slotName</code> extra connection attribute to the name of this logical replication slot. For more information, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib\">Extra Connection Attributes When Using PostgreSQL as a Source for AWS DMS</a>.</p> </note>",
         "ModifyReplicationTaskMessage$CdcStopPosition": "<p>Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.</p> <p>Server time example: --cdc-stop-position “server_time:2018-02-09T12:12:12”</p> <p>Commit time example: --cdc-stop-position “commit_time: 2018-02-09T12:12:12 “</p>",
@@ -1782,6 +1843,7 @@
         "OracleSettings$DatabaseName": "<p>Database name for the endpoint.</p>",
         "OracleSettings$SecurityDbEncryptionName": "<p>For an Oracle source endpoint, the name of a key used for the transparent data encryption (TDE) of the columns and tablespaces in an Oracle source database that is encrypted using TDE. The key value is the value of the <code>SecurityDbEncryption</code> setting. For more information on setting the key name value of <code>SecurityDbEncryptionName</code>, see the information and example for setting the <code>securityDbEncryptionName</code> extra connection attribute in <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.Oracle.html#CHAP_Source.Oracle.Encryption\"> Supported encryption methods for using Oracle as a source for AWS DMS</a> in the <i>AWS Database Migration Service User Guide</i>.</p>",
         "OracleSettings$ServerName": "<p>Fully qualified domain name of the endpoint.</p>",
+        "OracleSettings$SpatialDataOptionToGeoJsonFunctionName": "<p>Use this attribute to convert <code>SDO_GEOMETRY</code> to <code>GEOJSON</code> format. By default, DMS calls the <code>SDO2GEOJSON</code> custom function if present and accessible. Or you can create your own custom function that mimics the operation of <code>SDOGEOJSON</code> and set <code>SpatialDataOptionToGeoJsonFunctionName</code> to call it instead. </p>",
         "OracleSettings$Username": "<p>Endpoint connection user name.</p>",
         "OracleSettings$SecretsManagerAccessRoleArn": "<p>The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS as the trusted entity and grants the required permissions to access the value in <code>SecretsManagerSecret</code>. <code>SecretsManagerSecret</code> has the value of the AWS Secrets Manager secret that allows access to the Oracle endpoint.</p> <note> <p>You can specify one of two sets of values for these permissions. You can specify the values for this setting and <code>SecretsManagerSecretId</code>. Or you can specify clear-text values for <code>UserName</code>, <code>Password</code>, <code>ServerName</code>, and <code>Port</code>. You can't specify both. For more information on creating this <code>SecretsManagerSecret</code> and the <code>SecretsManagerAccessRoleArn</code> and <code>SecretsManagerSecretId</code> required to access it, see <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager\">Using secrets to access AWS Database Migration Service resources</a> in the <i>AWS Database Migration Service User Guide</i>.</p> </note>",
         "OracleSettings$SecretsManagerSecretId": "<p>The full ARN, partial ARN, or friendly name of the <code>SecretsManagerSecret</code> that contains the Oracle endpoint connection details.</p>",
@@ -1882,7 +1944,7 @@
         "ReplicationTaskIndividualAssessment$IndividualAssessmentName": "<p>Name of this individual assessment.</p>",
         "ReplicationTaskIndividualAssessment$Status": "<p>Individual assessment status.</p> <p>This status can have one of the following values:</p> <ul> <li> <p> <code>\"cancelled\"</code> </p> </li> <li> <p> <code>\"error\"</code> </p> </li> <li> <p> <code>\"failed\"</code> </p> </li> <li> <p> <code>\"passed\"</code> </p> </li> <li> <p> <code>\"pending\"</code> </p> </li> <li> <p> <code>\"running\"</code> </p> </li> </ul>",
         "ResourcePendingMaintenanceActions$ResourceIdentifier": "<p>The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance action applies to. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html\"> Constructing an Amazon Resource Name (ARN) for AWS DMS</a> in the DMS documentation.</p>",
-        "S3Settings$ServiceAccessRoleArn": "<p> The Amazon Resource Name (ARN) used by the service access IAM role. It is a required parameter that enables DMS to write and read objects from an 3S bucket.</p>",
+        "S3Settings$ServiceAccessRoleArn": "<p> The Amazon Resource Name (ARN) used by the service access IAM role. It is a required parameter that enables DMS to write and read objects from an S3 bucket.</p>",
         "S3Settings$ExternalTableDefinition": "<p> Specifies how tables are defined in the S3 source files only. </p>",
         "S3Settings$CsvRowDelimiter": "<p> The delimiter used to separate rows in the .csv file for both source and target. The default is a carriage return (<code>\\n</code>). </p>",
         "S3Settings$CsvDelimiter": "<p> The delimiter used to separate columns in the .csv file for both source and target. The default is a comma. </p>",

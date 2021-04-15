@@ -470,11 +470,6 @@ func (c *DatabaseMigrationService) WaitUntilReplicationTaskStoppedWithContext(ct
 			{
 				State:   request.FailureWaiterState,
 				Matcher: request.PathAnyWaiterMatch, Argument: "ReplicationTasks[].Status",
-				Expected: "running",
-			},
-			{
-				State:   request.FailureWaiterState,
-				Matcher: request.PathAnyWaiterMatch, Argument: "ReplicationTasks[].Status",
 				Expected: "failed",
 			},
 			{
