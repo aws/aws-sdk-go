@@ -248,6 +248,10 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 			{{- if $inputStream }}
 
 				req.Handlers.Sign.PushFront(es.setupInputPipe)
+				req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+					Name: "InputWriterCloser",
+					Fn:   es.closeInputWriter,
+				})
 				req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 					"Content-Type": "application/vnd.amazon.eventstream",
 					"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",

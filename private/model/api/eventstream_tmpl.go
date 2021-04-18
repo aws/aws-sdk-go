@@ -214,6 +214,13 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 			es.inputWriter = inputWriter
 	}
 
+	func (es *{{ $esapi.Name }}) closeInputWriter(r *request.Request) {
+		err := es.inputWriter.Close()
+		if err != nil {
+			r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+		}
+	}	
+
 	// Send writes the event to the stream blocking until the event is written.
 	// Returns an error if the event was not written.
 	//
