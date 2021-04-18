@@ -69,6 +69,10 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(inpu
 	output.eventStream = es
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+		Name: "InputWriterCloser",
+		Fn:   es.closeInputWriter,
+	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
@@ -243,6 +247,13 @@ func (es *StartMedicalStreamTranscriptionEventStream) setupInputPipe(r *request.
 	inputReader, inputWriter := io.Pipe()
 	r.SetStreamingBody(inputReader)
 	es.inputWriter = inputWriter
+}
+
+func (es *StartMedicalStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
+	err := es.inputWriter.Close()
+	if err != nil {
+		r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+	}
 }
 
 // Send writes the event to the stream blocking until the event is written.
@@ -431,6 +442,10 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	output.eventStream = es
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+		Name: "InputWriterCloser",
+		Fn:   es.closeInputWriter,
+	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
@@ -615,6 +630,13 @@ func (es *StartStreamTranscriptionEventStream) setupInputPipe(r *request.Request
 	inputReader, inputWriter := io.Pipe()
 	r.SetStreamingBody(inputReader)
 	es.inputWriter = inputWriter
+}
+
+func (es *StartStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
+	err := es.inputWriter.Close()
+	if err != nil {
+		r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+	}
 }
 
 // Send writes the event to the stream blocking until the event is written.
