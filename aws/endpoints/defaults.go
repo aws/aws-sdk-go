@@ -1314,7 +1314,10 @@ var awsPartition = partition{
 				"ap-southeast-2": endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
+				"eu-south-1":     endpoint{},
 				"eu-west-1":      endpoint{},
+				"eu-west-2":      endpoint{},
+				"eu-west-3":      endpoint{},
 				"us-east-1":      endpoint{},
 				"us-east-2":      endpoint{},
 				"us-west-2":      endpoint{},
@@ -6428,10 +6431,12 @@ var awsPartition = partition{
 				},
 				"me-south-1": endpoint{},
 				"sa-east-1":  endpoint{},
-				"us-east-1":  endpoint{},
-				"us-east-2":  endpoint{},
-				"us-west-1":  endpoint{},
-				"us-west-2":  endpoint{},
+				"us-east-1": endpoint{
+					SSLCommonName: "queue.{dnsSuffix}",
+				},
+				"us-east-2": endpoint{},
+				"us-west-1": endpoint{},
+				"us-west-2": endpoint{},
 			},
 		},
 		"ssm": service{
@@ -8463,6 +8468,18 @@ var awsusgovPartition = partition{
 		"batch": service{
 
 			Endpoints: endpoints{
+				"fips-us-gov-east-1": endpoint{
+					Hostname: "batch.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
+					},
+				},
+				"fips-us-gov-west-1": endpoint{
+					Hostname: "batch.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
 			},

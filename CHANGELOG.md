@@ -1,3 +1,10 @@
+Release v1.38.22 (2021-04-19)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API
+* `service/savingsplans`: Updates service API
+
 Release v1.38.21 (2021-04-15)
 ===
 
