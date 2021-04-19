@@ -217,7 +217,7 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 	func (es *{{ $esapi.Name }}) closeInputWriter(r *request.Request) {
 		err := es.inputWriter.Close()
 		if err != nil {
-			r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+			r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
 		}
 	}	
 

@@ -252,7 +252,7 @@ func (es *StartMedicalStreamTranscriptionEventStream) setupInputPipe(r *request.
 func (es *StartMedicalStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
 	err := es.inputWriter.Close()
 	if err != nil {
-		r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+		r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
 	}
 }
 
@@ -635,7 +635,7 @@ func (es *StartStreamTranscriptionEventStream) setupInputPipe(r *request.Request
 func (es *StartStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
 	err := es.inputWriter.Close()
 	if err != nil {
-		r.Error = fmt.Errorf("error closing io.Writer for stream, %v,  original error : %w", err.Error(), r.Error)
+		r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
 	}
 }
 
