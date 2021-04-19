@@ -7204,6 +7204,9 @@ func (c *SESV2) SendEmailRequest(input *SendEmailInput) (req *request.Request, o
 //   * BadRequestException
 //   The input you provided is invalid.
 //
+//	 * Throtling
+// 	 The request was denied due to request throttling.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/SendEmail
 func (c *SESV2) SendEmail(input *SendEmailInput) (*SendEmailOutput, error) {
 	req, out := c.SendEmailRequest(input)
@@ -18754,6 +18757,62 @@ func (s TestRenderEmailTemplateOutput) GoString() string {
 func (s *TestRenderEmailTemplateOutput) SetRenderedTemplate(v string) *TestRenderEmailTemplateOutput {
 	s.RenderedTemplate = &v
 	return s
+}
+
+// The request was denied due to request throttling.
+type Throttling struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s Throttling) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Throttling) GoString() string {
+	return s.String()
+}
+
+func newErrorThrottling(v protocol.ResponseMetadata) error {
+	return &Throttling{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *Throttling) Code() string {
+	return "Throttling"
+}
+
+// Message returns the exception's message.
+func (s *Throttling) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *Throttling) OrigErr() error {
+	return nil
+}
+
+func (s *Throttling) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *Throttling) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *Throttling) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Too many requests have been made to the operation.

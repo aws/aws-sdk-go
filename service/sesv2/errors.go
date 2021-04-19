@@ -81,6 +81,12 @@ const (
 	//
 	// Too many requests have been made to the operation.
 	ErrCodeTooManyRequestsException = "TooManyRequestsException"
+
+	// ErrCodeThrottling for service response error code
+	// "Throttling".
+	//
+	// Indicates that request was denied due to request throttling.
+	ErrCodeThrottling = "Throttling"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -95,5 +101,6 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"MessageRejected":                    newErrorMessageRejected,
 	"NotFoundException":                  newErrorNotFoundException,
 	"SendingPausedException":             newErrorSendingPausedException,
+	"Throttling":                         newErrorThrottling,
 	"TooManyRequestsException":           newErrorTooManyRequestsException,
 }

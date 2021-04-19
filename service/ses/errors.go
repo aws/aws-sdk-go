@@ -247,4 +247,10 @@ const (
 	//
 	// Indicates that the TrackingOptions object you specified does not exist.
 	ErrCodeTrackingOptionsDoesNotExistException = "TrackingOptionsDoesNotExistException"
+
+	// ErrCodeThrottling for service response error code
+	// "Throttling".
+	//
+	// Indicates that request was denied due to request throttling.
+	ErrCodeThrottling = "Throttling"
 )
