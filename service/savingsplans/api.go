@@ -2734,6 +2734,9 @@ const (
 
 	// SavingsPlanProductTypeLambda is a SavingsPlanProductType enum value
 	SavingsPlanProductTypeLambda = "Lambda"
+
+	// SavingsPlanProductTypeSageMaker is a SavingsPlanProductType enum value
+	SavingsPlanProductTypeSageMaker = "SageMaker"
 )
 
 // SavingsPlanProductType_Values returns all elements of the SavingsPlanProductType enum
@@ -2742,6 +2745,7 @@ func SavingsPlanProductType_Values() []string {
 		SavingsPlanProductTypeEc2,
 		SavingsPlanProductTypeFargate,
 		SavingsPlanProductTypeLambda,
+		SavingsPlanProductTypeSageMaker,
 	}
 }
 
@@ -2852,8 +2856,14 @@ const (
 	// SavingsPlanRateServiceCodeAmazonEcs is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAmazonEcs = "AmazonECS"
 
+	// SavingsPlanRateServiceCodeAmazonEks is a SavingsPlanRateServiceCode enum value
+	SavingsPlanRateServiceCodeAmazonEks = "AmazonEKS"
+
 	// SavingsPlanRateServiceCodeAwslambda is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAwslambda = "AWSLambda"
+
+	// SavingsPlanRateServiceCodeAmazonSageMaker is a SavingsPlanRateServiceCode enum value
+	SavingsPlanRateServiceCodeAmazonSageMaker = "AmazonSageMaker"
 )
 
 // SavingsPlanRateServiceCode_Values returns all elements of the SavingsPlanRateServiceCode enum
@@ -2861,7 +2871,9 @@ func SavingsPlanRateServiceCode_Values() []string {
 	return []string{
 		SavingsPlanRateServiceCodeAmazonEc2,
 		SavingsPlanRateServiceCodeAmazonEcs,
+		SavingsPlanRateServiceCodeAmazonEks,
 		SavingsPlanRateServiceCodeAwslambda,
+		SavingsPlanRateServiceCodeAmazonSageMaker,
 	}
 }
 
@@ -2923,6 +2935,9 @@ const (
 
 	// SavingsPlanTypeEc2instance is a SavingsPlanType enum value
 	SavingsPlanTypeEc2instance = "EC2Instance"
+
+	// SavingsPlanTypeSageMaker is a SavingsPlanType enum value
+	SavingsPlanTypeSageMaker = "SageMaker"
 )
 
 // SavingsPlanType_Values returns all elements of the SavingsPlanType enum
@@ -2930,6 +2945,7 @@ func SavingsPlanType_Values() []string {
 	return []string{
 		SavingsPlanTypeCompute,
 		SavingsPlanTypeEc2instance,
+		SavingsPlanTypeSageMaker,
 	}
 }
 

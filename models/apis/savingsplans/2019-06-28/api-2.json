@@ -530,7 +530,8 @@
       "enum":[
         "EC2",
         "Fargate",
-        "Lambda"
+        "Lambda",
+        "SageMaker"
       ]
     },
     "SavingsPlanProductTypeList":{
@@ -625,7 +626,9 @@
       "enum":[
         "AmazonEC2",
         "AmazonECS",
-        "AWSLambda"
+        "AmazonEKS",
+        "AWSLambda",
+        "AmazonSageMaker"
       ]
     },
     "SavingsPlanRateServiceCodeList":{
@@ -677,7 +680,8 @@
       "type":"string",
       "enum":[
         "Compute",
-        "EC2Instance"
+        "EC2Instance",
+        "SageMaker"
       ]
     },
     "SavingsPlanTypeList":{

@@ -5806,7 +5806,9 @@ type GetCostAndUsageInput struct {
 	// Sets the AWS cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity
 	// isn't set, the response object doesn't include the Granularity, either MONTHLY
 	// or DAILY, or HOURLY.
-	Granularity *string `type:"string" enum:"Granularity"`
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"Granularity"`
 
 	// You can group AWS costs using up to two different groups, either dimensions,
 	// tag keys, cost categories, or any two group by types.
@@ -5863,6 +5865,9 @@ func (s GetCostAndUsageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetCostAndUsageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCostAndUsageInput"}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
+	}
 	if s.Metrics == nil {
 		invalidParams.Add(request.NewErrParamRequired("Metrics"))
 	}
@@ -5995,7 +6000,9 @@ type GetCostAndUsageWithResourcesInput struct {
 	// Sets the AWS cost granularity to MONTHLY, DAILY, or HOURLY. If Granularity
 	// isn't set, the response object doesn't include the Granularity, MONTHLY,
 	// DAILY, or HOURLY.
-	Granularity *string `type:"string" enum:"Granularity"`
+	//
+	// Granularity is a required field
+	Granularity *string `type:"string" required:"true" enum:"Granularity"`
 
 	// You can group Amazon Web Services costs using up to two different groups:
 	// DIMENSION, TAG, COST_CATEGORY.
@@ -6049,6 +6056,9 @@ func (s *GetCostAndUsageWithResourcesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetCostAndUsageWithResourcesInput"}
 	if s.Filter == nil {
 		invalidParams.Add(request.NewErrParamRequired("Filter"))
+	}
+	if s.Granularity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Granularity"))
 	}
 	if s.TimePeriod == nil {
 		invalidParams.Add(request.NewErrParamRequired("TimePeriod"))
@@ -13292,6 +13302,9 @@ const (
 
 	// SupportedSavingsPlansTypeEc2InstanceSp is a SupportedSavingsPlansType enum value
 	SupportedSavingsPlansTypeEc2InstanceSp = "EC2_INSTANCE_SP"
+
+	// SupportedSavingsPlansTypeSagemakerSp is a SupportedSavingsPlansType enum value
+	SupportedSavingsPlansTypeSagemakerSp = "SAGEMAKER_SP"
 )
 
 // SupportedSavingsPlansType_Values returns all elements of the SupportedSavingsPlansType enum
@@ -13299,6 +13312,7 @@ func SupportedSavingsPlansType_Values() []string {
 	return []string{
 		SupportedSavingsPlansTypeComputeSp,
 		SupportedSavingsPlansTypeEc2InstanceSp,
+		SupportedSavingsPlansTypeSagemakerSp,
 	}
 }
 
