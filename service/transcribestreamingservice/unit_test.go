@@ -10,6 +10,7 @@ import (
 	"testing"
 
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 )
 
@@ -27,7 +28,8 @@ func newTestClient(fn roundTripFunc) *http.Client {
 
 func TestStartStreamTranscription_Error(t *testing.T) {
 	cfg := &aws.Config{
-		Region: aws.String("us-west-2"),
+		Region:      aws.String("us-west-2"),
+		Credentials: credentials.AnonymousCredentials,
 		HTTPClient: newTestClient(func(req *http.Request) *http.Response {
 			return &http.Response{
 				StatusCode: http.StatusBadRequest,
