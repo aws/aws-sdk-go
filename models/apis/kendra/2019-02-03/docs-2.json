@@ -815,7 +815,20 @@
     "DocumentMetadataConfigurationName": {
       "base": null,
       "refs": {
-        "DocumentMetadataConfiguration$Name": "<p>The name of the index field.</p>"
+        "DocumentMetadataConfiguration$Name": "<p>The name of the index field.</p>",
+        "DocumentRelevanceConfiguration$Name": "<p>The name of the tuning configuration to override document relevance at the index level.</p>"
+      }
+    },
+    "DocumentRelevanceConfiguration": {
+      "base": "<p>Overrides the document relevance properties of a custom index field.</p>",
+      "refs": {
+        "DocumentRelevanceOverrideConfigurationList$member": null
+      }
+    },
+    "DocumentRelevanceOverrideConfigurationList": {
+      "base": null,
+      "refs": {
+        "QueryRequest$DocumentRelevanceOverrideConfigurations": "<p>Overrides relevance tuning configurations of fields or attributes set at the index level.</p> <p>If you use this API to override the relevance tuning configured at the index level, but there is no relevance tuning configured at the index level, then Amazon Kendra does not apply any relevance tuning.</p> <p>If there is relevance tuning configured at the index level, but you do not use this API to override any relevance tuning in the index, then Amazon Kendra uses the relevance tuning that is configured at the index level.</p> <p>If there is relevance tuning configured for fields at the index level, but you use this API to override only some of these fields, then for the fields you did not override, the importance is set to 1.</p>"
       }
     },
     "DocumentsMetadataConfiguration": {
@@ -1394,7 +1407,8 @@
     "Relevance": {
       "base": "<p>Provides information for manually tuning the relevance of a field in a search. When a query includes terms that match the field, the results are given a boost in the response based on these tuning parameters.</p>",
       "refs": {
-        "DocumentMetadataConfiguration$Relevance": "<p>Provides manual tuning parameters to determine how the field affects the search results.</p>"
+        "DocumentMetadataConfiguration$Relevance": "<p>Provides manual tuning parameters to determine how the field affects the search results.</p>",
+        "DocumentRelevanceConfiguration$Relevance": null
       }
     },
     "RelevanceFeedback": {

@@ -7420,6 +7420,70 @@ func (s *DocumentMetadataConfiguration) SetType(v string) *DocumentMetadataConfi
 	return s
 }
 
+// Overrides the document relevance properties of a custom index field.
+type DocumentRelevanceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the tuning configuration to override document relevance at the
+	// index level.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Provides information for manually tuning the relevance of a field in a search.
+	// When a query includes terms that match the field, the results are given a
+	// boost in the response based on these tuning parameters.
+	//
+	// Relevance is a required field
+	Relevance *Relevance `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DocumentRelevanceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentRelevanceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentRelevanceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentRelevanceConfiguration"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Relevance == nil {
+		invalidParams.Add(request.NewErrParamRequired("Relevance"))
+	}
+	if s.Relevance != nil {
+		if err := s.Relevance.Validate(); err != nil {
+			invalidParams.AddNested("Relevance", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DocumentRelevanceConfiguration) SetName(v string) *DocumentRelevanceConfiguration {
+	s.Name = &v
+	return s
+}
+
+// SetRelevance sets the Relevance field's value.
+func (s *DocumentRelevanceConfiguration) SetRelevance(v *Relevance) *DocumentRelevanceConfiguration {
+	s.Relevance = v
+	return s
+}
+
 // Document metadata files that contain information such as the document access
 // control information, source URI, document author, and custom attributes.
 // Each metadata file contains metadata about a single document.
@@ -9041,6 +9105,22 @@ type QueryInput struct {
 	// that a document must satisfy to be included in the query results.
 	AttributeFilter *AttributeFilter `type:"structure"`
 
+	// Overrides relevance tuning configurations of fields or attributes set at
+	// the index level.
+	//
+	// If you use this API to override the relevance tuning configured at the index
+	// level, but there is no relevance tuning configured at the index level, then
+	// Amazon Kendra does not apply any relevance tuning.
+	//
+	// If there is relevance tuning configured at the index level, but you do not
+	// use this API to override any relevance tuning in the index, then Amazon Kendra
+	// uses the relevance tuning that is configured at the index level.
+	//
+	// If there is relevance tuning configured for fields at the index level, but
+	// you use this API to override only some of these fields, then for the fields
+	// you did not override, the importance is set to 1.
+	DocumentRelevanceOverrideConfigurations []*DocumentRelevanceConfiguration `type:"list"`
+
 	// An array of documents attributes. Amazon Kendra returns a count for each
 	// attribute key specified. You can use this information to help narrow the
 	// search for your user.
@@ -9129,6 +9209,16 @@ func (s *QueryInput) Validate() error {
 			invalidParams.AddNested("AttributeFilter", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DocumentRelevanceOverrideConfigurations != nil {
+		for i, v := range s.DocumentRelevanceOverrideConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentRelevanceOverrideConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Facets != nil {
 		for i, v := range s.Facets {
 			if v == nil {
@@ -9159,6 +9249,12 @@ func (s *QueryInput) Validate() error {
 // SetAttributeFilter sets the AttributeFilter field's value.
 func (s *QueryInput) SetAttributeFilter(v *AttributeFilter) *QueryInput {
 	s.AttributeFilter = v
+	return s
+}
+
+// SetDocumentRelevanceOverrideConfigurations sets the DocumentRelevanceOverrideConfigurations field's value.
+func (s *QueryInput) SetDocumentRelevanceOverrideConfigurations(v []*DocumentRelevanceConfiguration) *QueryInput {
+	s.DocumentRelevanceOverrideConfigurations = v
 	return s
 }
 

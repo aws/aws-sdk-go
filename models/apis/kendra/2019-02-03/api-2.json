@@ -1507,6 +1507,23 @@
       "max":30,
       "min":1
     },
+    "DocumentRelevanceConfiguration":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Relevance"
+      ],
+      "members":{
+        "Name":{"shape":"DocumentMetadataConfigurationName"},
+        "Relevance":{"shape":"Relevance"}
+      }
+    },
+    "DocumentRelevanceOverrideConfigurationList":{
+      "type":"list",
+      "member":{"shape":"DocumentRelevanceConfiguration"},
+      "max":500,
+      "min":0
+    },
     "DocumentsMetadataConfiguration":{
       "type":"structure",
       "members":{
@@ -2050,6 +2067,7 @@
         "Facets":{"shape":"FacetList"},
         "RequestedDocumentAttributes":{"shape":"DocumentAttributeKeyList"},
         "QueryResultTypeFilter":{"shape":"QueryResultType"},
+        "DocumentRelevanceOverrideConfigurations":{"shape":"DocumentRelevanceOverrideConfigurationList"},
         "PageNumber":{"shape":"Integer"},
         "PageSize":{"shape":"Integer"},
         "SortingConfiguration":{"shape":"SortingConfiguration"},

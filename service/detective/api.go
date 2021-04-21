@@ -2704,12 +2704,10 @@ type MemberDetail struct {
 	// The value is in milliseconds since the epoch.
 	InvitedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// Deprecated. Instead of MasterId, use AdministratorId.
-	//
 	// The AWS account identifier of the administrator account for the behavior
 	// graph.
 	//
-	// Deprecated: This property is deprecated, use AdministratorId instead.
+	// Deprecated: This property is deprecated. Use AdministratorId instead.
 	MasterId *string `min:"12" deprecated:"true" type:"string"`
 
 	// The member account data volume as a percentage of the maximum allowed data
@@ -2721,10 +2719,14 @@ type MemberDetail struct {
 	// maximum data volume is 160 GB per day. If the data volume for the member
 	// account is 40 GB per day, then PercentOfGraphUtilization is 25. It represents
 	// 25% of the maximum allowed data volume.
-	PercentOfGraphUtilization *float64 `type:"double"`
+	//
+	// Deprecated: This property is deprecated. Use VolumeUsageInBytes instead.
+	PercentOfGraphUtilization *float64 `deprecated:"true" type:"double"`
 
 	// The date and time when the graph utilization percentage was last updated.
-	PercentOfGraphUtilizationUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+	//
+	// Deprecated: This property is deprecated. Use VolumeUsageUpdatedTime instead.
+	PercentOfGraphUtilizationUpdatedTime *time.Time `deprecated:"true" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The current membership status of the member account. The status can have
 	// one of the following values:
@@ -2756,6 +2758,12 @@ type MemberDetail struct {
 	// The date and time that the member account was last updated. The value is
 	// in milliseconds since the epoch.
 	UpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The data volume in bytes per day for the member account.
+	VolumeUsageInBytes *int64 `type:"long"`
+
+	// The data and time when the member account data volume was last updated.
+	VolumeUsageUpdatedTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 }
 
 // String returns the string representation
@@ -2831,6 +2839,18 @@ func (s *MemberDetail) SetStatus(v string) *MemberDetail {
 // SetUpdatedTime sets the UpdatedTime field's value.
 func (s *MemberDetail) SetUpdatedTime(v time.Time) *MemberDetail {
 	s.UpdatedTime = &v
+	return s
+}
+
+// SetVolumeUsageInBytes sets the VolumeUsageInBytes field's value.
+func (s *MemberDetail) SetVolumeUsageInBytes(v int64) *MemberDetail {
+	s.VolumeUsageInBytes = &v
+	return s
+}
+
+// SetVolumeUsageUpdatedTime sets the VolumeUsageUpdatedTime field's value.
+func (s *MemberDetail) SetVolumeUsageUpdatedTime(v time.Time) *MemberDetail {
+	s.VolumeUsageUpdatedTime = &v
 	return s
 }
 

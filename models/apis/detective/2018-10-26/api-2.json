@@ -264,6 +264,7 @@
       "min":1
     },
     "Boolean":{"type":"boolean"},
+    "ByteValue":{"type":"long"},
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -459,15 +460,25 @@
         "MasterId":{
           "shape":"AccountId",
           "deprecated":true,
-          "deprecatedMessage":"This property is deprecated, use AdministratorId instead."
+          "deprecatedMessage":"This property is deprecated. Use AdministratorId instead."
         },
         "AdministratorId":{"shape":"AccountId"},
         "Status":{"shape":"MemberStatus"},
         "DisabledReason":{"shape":"MemberDisabledReason"},
         "InvitedTime":{"shape":"Timestamp"},
         "UpdatedTime":{"shape":"Timestamp"},
-        "PercentOfGraphUtilization":{"shape":"Percentage"},
-        "PercentOfGraphUtilizationUpdatedTime":{"shape":"Timestamp"}
+        "VolumeUsageInBytes":{"shape":"ByteValue"},
+        "VolumeUsageUpdatedTime":{"shape":"Timestamp"},
+        "PercentOfGraphUtilization":{
+          "shape":"Percentage",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageInBytes instead."
+        },
+        "PercentOfGraphUtilizationUpdatedTime":{
+          "shape":"Timestamp",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated. Use VolumeUsageUpdatedTime instead."
+        }
       }
     },
     "MemberDetailList":{
