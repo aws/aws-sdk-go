@@ -2811,6 +2811,9 @@ type ConfigDetails struct {
 
 	// Information about the endpoint details.
 	EndpointDetails *EndpointDetails `locationName:"endpointDetails" type:"structure"`
+
+	// Details for an S3 recording Config in a contact.
+	S3RecordingDetails *S3RecordingDetails `locationName:"s3RecordingDetails" type:"structure"`
 }
 
 // String returns the string representation
@@ -2832,6 +2835,12 @@ func (s *ConfigDetails) SetAntennaDemodDecodeDetails(v *AntennaDemodDecodeDetail
 // SetEndpointDetails sets the EndpointDetails field's value.
 func (s *ConfigDetails) SetEndpointDetails(v *EndpointDetails) *ConfigDetails {
 	s.EndpointDetails = v
+	return s
+}
+
+// SetS3RecordingDetails sets the S3RecordingDetails field's value.
+func (s *ConfigDetails) SetS3RecordingDetails(v *S3RecordingDetails) *ConfigDetails {
+	s.S3RecordingDetails = v
 	return s
 }
 
@@ -2907,6 +2916,9 @@ type ConfigTypeData struct {
 	// Information about the dataflow endpoint Config.
 	DataflowEndpointConfig *DataflowEndpointConfig `locationName:"dataflowEndpointConfig" type:"structure"`
 
+	// Information about an S3 recording Config.
+	S3RecordingConfig *S3RecordingConfig `locationName:"s3RecordingConfig" type:"structure"`
+
 	// Object that determines whether tracking should be used during a contact executed
 	// with this Config in the mission profile.
 	TrackingConfig *TrackingConfig `locationName:"trackingConfig" type:"structure"`
@@ -2951,6 +2963,11 @@ func (s *ConfigTypeData) Validate() error {
 			invalidParams.AddNested("DataflowEndpointConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3RecordingConfig != nil {
+		if err := s.S3RecordingConfig.Validate(); err != nil {
+			invalidParams.AddNested("S3RecordingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.TrackingConfig != nil {
 		if err := s.TrackingConfig.Validate(); err != nil {
 			invalidParams.AddNested("TrackingConfig", err.(request.ErrInvalidParams))
@@ -2989,6 +3006,12 @@ func (s *ConfigTypeData) SetAntennaUplinkConfig(v *AntennaUplinkConfig) *ConfigT
 // SetDataflowEndpointConfig sets the DataflowEndpointConfig field's value.
 func (s *ConfigTypeData) SetDataflowEndpointConfig(v *DataflowEndpointConfig) *ConfigTypeData {
 	s.DataflowEndpointConfig = v
+	return s
+}
+
+// SetS3RecordingConfig sets the S3RecordingConfig field's value.
+func (s *ConfigTypeData) SetS3RecordingConfig(v *S3RecordingConfig) *ConfigTypeData {
+	s.S3RecordingConfig = v
 	return s
 }
 
@@ -6050,6 +6073,104 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about an S3 recording Config.
+type S3RecordingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the bucket to record to.
+	//
+	// BucketArn is a required field
+	BucketArn *string `locationName:"bucketArn" type:"string" required:"true"`
+
+	// S3 Key prefix to prefice data files.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+
+	// ARN of the role Ground Station assumes to write data to the bucket.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3RecordingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3RecordingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3RecordingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3RecordingConfig"}
+	if s.BucketArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketArn"))
+	}
+	if s.Prefix != nil && len(*s.Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Prefix", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketArn sets the BucketArn field's value.
+func (s *S3RecordingConfig) SetBucketArn(v string) *S3RecordingConfig {
+	s.BucketArn = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3RecordingConfig) SetPrefix(v string) *S3RecordingConfig {
+	s.Prefix = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *S3RecordingConfig) SetRoleArn(v string) *S3RecordingConfig {
+	s.RoleArn = &v
+	return s
+}
+
+// Details about an S3 recording Config used in a contact.
+type S3RecordingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// ARN of the bucket used.
+	BucketArn *string `locationName:"bucketArn" type:"string"`
+
+	// Template of the S3 key used.
+	KeyTemplate *string `locationName:"keyTemplate" type:"string"`
+}
+
+// String returns the string representation
+func (s S3RecordingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3RecordingDetails) GoString() string {
+	return s.String()
+}
+
+// SetBucketArn sets the BucketArn field's value.
+func (s *S3RecordingDetails) SetBucketArn(v string) *S3RecordingDetails {
+	s.BucketArn = &v
+	return s
+}
+
+// SetKeyTemplate sets the KeyTemplate field's value.
+func (s *S3RecordingDetails) SetKeyTemplate(v string) *S3RecordingDetails {
+	s.KeyTemplate = &v
+	return s
+}
+
 // Item in a list of satellites.
 type SatelliteListItem struct {
 	_ struct{} `type:"structure"`
@@ -6969,6 +7090,9 @@ const (
 
 	// ConfigCapabilityTypeUplinkEcho is a ConfigCapabilityType enum value
 	ConfigCapabilityTypeUplinkEcho = "uplink-echo"
+
+	// ConfigCapabilityTypeS3Recording is a ConfigCapabilityType enum value
+	ConfigCapabilityTypeS3Recording = "s3-recording"
 )
 
 // ConfigCapabilityType_Values returns all elements of the ConfigCapabilityType enum
@@ -6980,6 +7104,7 @@ func ConfigCapabilityType_Values() []string {
 		ConfigCapabilityTypeDataflowEndpoint,
 		ConfigCapabilityTypeTracking,
 		ConfigCapabilityTypeUplinkEcho,
+		ConfigCapabilityTypeS3Recording,
 	}
 }
 

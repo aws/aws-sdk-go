@@ -36,7 +36,7 @@
         "Account$AccountId": "<p>The account identifier of the AWS account.</p>",
         "AccountIdList$member": null,
         "MemberDetail$AccountId": "<p>The AWS account identifier for the member account.</p>",
-        "MemberDetail$MasterId": "<p>Deprecated. Instead of <code>MasterId</code>, use <code>AdministratorId</code>.</p> <p>The AWS account identifier of the administrator account for the behavior graph.</p>",
+        "MemberDetail$MasterId": "<p>The AWS account identifier of the administrator account for the behavior graph.</p>",
         "MemberDetail$AdministratorId": "<p>The AWS account identifier of the administrator account for the behavior graph.</p>",
         "StartMonitoringMemberRequest$AccountId": "<p>The account ID of the member account to try to enable.</p> <p>The account must be an invited member account with a status of <code>ACCEPTED_BUT_DISABLED</code>. </p>",
         "UnprocessedAccount$AccountId": "<p>The AWS account identifier of the member account that was not processed.</p>"
@@ -60,6 +60,12 @@
       "base": null,
       "refs": {
         "CreateMembersRequest$DisableEmailNotification": "<p>if set to <code>true</code>, then the member accounts do not receive email notifications. By default, this is set to <code>false</code>, and the member accounts receive email notifications.</p>"
+      }
+    },
+    "ByteValue": {
+      "base": null,
+      "refs": {
+        "MemberDetail$VolumeUsageInBytes": "<p>The data volume in bytes per day for the member account.</p>"
       }
     },
     "ConflictException": {
@@ -332,6 +338,7 @@
         "Graph$CreatedTime": "<p>The date and time that the behavior graph was created. The value is in milliseconds since the epoch.</p>",
         "MemberDetail$InvitedTime": "<p>The date and time that Detective sent the invitation to the member account. The value is in milliseconds since the epoch.</p>",
         "MemberDetail$UpdatedTime": "<p>The date and time that the member account was last updated. The value is in milliseconds since the epoch.</p>",
+        "MemberDetail$VolumeUsageUpdatedTime": "<p>The data and time when the member account data volume was last updated.</p>",
         "MemberDetail$PercentOfGraphUtilizationUpdatedTime": "<p>The date and time when the graph utilization percentage was last updated.</p>"
       }
     },

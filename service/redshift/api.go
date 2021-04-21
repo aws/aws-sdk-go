@@ -113,6 +113,93 @@ func (c *Redshift) AcceptReservedNodeExchangeWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opAddPartner = "AddPartner"
+
+// AddPartnerRequest generates a "aws/request.Request" representing the
+// client's request for the AddPartner operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddPartner for more information on using the AddPartner
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddPartnerRequest method.
+//    req, resp := client.AddPartnerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AddPartner
+func (c *Redshift) AddPartnerRequest(input *AddPartnerInput) (req *request.Request, output *AddPartnerOutput) {
+	op := &request.Operation{
+		Name:       opAddPartner,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddPartnerInput{}
+	}
+
+	output = &AddPartnerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddPartner API operation for Amazon Redshift.
+//
+// Adds a partner integration to a cluster. This operation authorizes a partner
+// to push status updates for the specified database. To complete the integration,
+// you also set up the integration on the partner website.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation AddPartner for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodePartnerNotFoundFault "PartnerNotFound"
+//   The name of the partner was not found.
+//
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
+//   The partner integration is not authorized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AddPartner
+func (c *Redshift) AddPartner(input *AddPartnerInput) (*AddPartnerOutput, error) {
+	req, out := c.AddPartnerRequest(input)
+	return out, req.Send()
+}
+
+// AddPartnerWithContext is the same as AddPartner with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddPartner for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) AddPartnerWithContext(ctx aws.Context, input *AddPartnerInput, opts ...request.Option) (*AddPartnerOutput, error) {
+	req, out := c.AddPartnerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAuthorizeClusterSecurityGroupIngress = "AuthorizeClusterSecurityGroupIngress"
 
 // AuthorizeClusterSecurityGroupIngressRequest generates a "aws/request.Request" representing the
@@ -3101,6 +3188,92 @@ func (c *Redshift) DeleteHsmConfigurationWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
+const opDeletePartner = "DeletePartner"
+
+// DeletePartnerRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePartner operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePartner for more information on using the DeletePartner
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePartnerRequest method.
+//    req, resp := client.DeletePartnerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeletePartner
+func (c *Redshift) DeletePartnerRequest(input *DeletePartnerInput) (req *request.Request, output *DeletePartnerOutput) {
+	op := &request.Operation{
+		Name:       opDeletePartner,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeletePartnerInput{}
+	}
+
+	output = &DeletePartnerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeletePartner API operation for Amazon Redshift.
+//
+// Deletes a partner integration from a cluster. Data can still flow to the
+// cluster until the integration is deleted at the partner's website.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DeletePartner for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodePartnerNotFoundFault "PartnerNotFound"
+//   The name of the partner was not found.
+//
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
+//   The partner integration is not authorized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeletePartner
+func (c *Redshift) DeletePartner(input *DeletePartnerInput) (*DeletePartnerOutput, error) {
+	req, out := c.DeletePartnerRequest(input)
+	return out, req.Send()
+}
+
+// DeletePartnerWithContext is the same as DeletePartner with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePartner for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DeletePartnerWithContext(ctx aws.Context, input *DeletePartnerInput, opts ...request.Option) (*DeletePartnerOutput, error) {
+	req, out := c.DeletePartnerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteScheduledAction = "DeleteScheduledAction"
 
 // DeleteScheduledActionRequest generates a "aws/request.Request" representing the
@@ -5102,6 +5275,12 @@ func (c *Redshift) DescribeEndpointAccessRequest(input *DescribeEndpointAccessIn
 		Name:       opDescribeEndpointAccess,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5156,6 +5335,58 @@ func (c *Redshift) DescribeEndpointAccessWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+// DescribeEndpointAccessPages iterates over the pages of a DescribeEndpointAccess operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEndpointAccess method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEndpointAccess operation.
+//    pageNum := 0
+//    err := client.DescribeEndpointAccessPages(params,
+//        func(page *redshift.DescribeEndpointAccessOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeEndpointAccessPages(input *DescribeEndpointAccessInput, fn func(*DescribeEndpointAccessOutput, bool) bool) error {
+	return c.DescribeEndpointAccessPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEndpointAccessPagesWithContext same as DescribeEndpointAccessPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeEndpointAccessPagesWithContext(ctx aws.Context, input *DescribeEndpointAccessInput, fn func(*DescribeEndpointAccessOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEndpointAccessInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEndpointAccessRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEndpointAccessOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeEndpointAuthorization = "DescribeEndpointAuthorization"
 
 // DescribeEndpointAuthorizationRequest generates a "aws/request.Request" representing the
@@ -5187,6 +5418,12 @@ func (c *Redshift) DescribeEndpointAuthorizationRequest(input *DescribeEndpointA
 		Name:       opDescribeEndpointAuthorization,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5236,6 +5473,58 @@ func (c *Redshift) DescribeEndpointAuthorizationWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeEndpointAuthorizationPages iterates over the pages of a DescribeEndpointAuthorization operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeEndpointAuthorization method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeEndpointAuthorization operation.
+//    pageNum := 0
+//    err := client.DescribeEndpointAuthorizationPages(params,
+//        func(page *redshift.DescribeEndpointAuthorizationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeEndpointAuthorizationPages(input *DescribeEndpointAuthorizationInput, fn func(*DescribeEndpointAuthorizationOutput, bool) bool) error {
+	return c.DescribeEndpointAuthorizationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeEndpointAuthorizationPagesWithContext same as DescribeEndpointAuthorizationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeEndpointAuthorizationPagesWithContext(ctx aws.Context, input *DescribeEndpointAuthorizationInput, fn func(*DescribeEndpointAuthorizationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeEndpointAuthorizationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeEndpointAuthorizationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeEndpointAuthorizationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeEventCategories = "DescribeEventCategories"
@@ -6273,6 +6562,88 @@ func (c *Redshift) DescribeOrderableClusterOptionsPagesWithContext(ctx aws.Conte
 	}
 
 	return p.Err()
+}
+
+const opDescribePartners = "DescribePartners"
+
+// DescribePartnersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePartners operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePartners for more information on using the DescribePartners
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePartnersRequest method.
+//    req, resp := client.DescribePartnersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribePartners
+func (c *Redshift) DescribePartnersRequest(input *DescribePartnersInput) (req *request.Request, output *DescribePartnersOutput) {
+	op := &request.Operation{
+		Name:       opDescribePartners,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribePartnersInput{}
+	}
+
+	output = &DescribePartnersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePartners API operation for Amazon Redshift.
+//
+// Returns information about the partner integrations defined for a cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribePartners for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
+//   The partner integration is not authorized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribePartners
+func (c *Redshift) DescribePartners(input *DescribePartnersInput) (*DescribePartnersOutput, error) {
+	req, out := c.DescribePartnersRequest(input)
+	return out, req.Send()
+}
+
+// DescribePartnersWithContext is the same as DescribePartners with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePartners for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribePartnersWithContext(ctx aws.Context, input *DescribePartnersInput, opts ...request.Option) (*DescribePartnersOutput, error) {
+	req, out := c.DescribePartnersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeReservedNodeOfferings = "DescribeReservedNodeOfferings"
@@ -10888,6 +11259,91 @@ func (c *Redshift) RotateEncryptionKeyWithContext(ctx aws.Context, input *Rotate
 	return out, req.Send()
 }
 
+const opUpdatePartnerStatus = "UpdatePartnerStatus"
+
+// UpdatePartnerStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePartnerStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePartnerStatus for more information on using the UpdatePartnerStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePartnerStatusRequest method.
+//    req, resp := client.UpdatePartnerStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/UpdatePartnerStatus
+func (c *Redshift) UpdatePartnerStatusRequest(input *UpdatePartnerStatusInput) (req *request.Request, output *UpdatePartnerStatusOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePartnerStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePartnerStatusInput{}
+	}
+
+	output = &UpdatePartnerStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePartnerStatus API operation for Amazon Redshift.
+//
+// Updates the status of a partner integration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation UpdatePartnerStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodePartnerNotFoundFault "PartnerNotFound"
+//   The name of the partner was not found.
+//
+//   * ErrCodeClusterNotFoundFault "ClusterNotFound"
+//   The ClusterIdentifier parameter does not refer to an existing cluster.
+//
+//   * ErrCodeUnauthorizedPartnerIntegrationFault "UnauthorizedPartnerIntegration"
+//   The partner integration is not authorized.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/UpdatePartnerStatus
+func (c *Redshift) UpdatePartnerStatus(input *UpdatePartnerStatusInput) (*UpdatePartnerStatusOutput, error) {
+	req, out := c.UpdatePartnerStatusRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePartnerStatusWithContext is the same as UpdatePartnerStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePartnerStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) UpdatePartnerStatusWithContext(ctx aws.Context, input *UpdatePartnerStatusInput, opts ...request.Option) (*UpdatePartnerStatusOutput, error) {
+	req, out := c.UpdatePartnerStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type AcceptReservedNodeExchangeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11030,6 +11486,121 @@ func (s *AccountWithRestoreAccess) SetAccountAlias(v string) *AccountWithRestore
 // SetAccountId sets the AccountId field's value.
 func (s *AccountWithRestoreAccess) SetAccountId(v string) *AccountWithRestoreAccess {
 	s.AccountId = &v
+	return s
+}
+
+type AddPartnerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID that owns the cluster.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// The cluster identifier of the cluster that receives data from the partner.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database that receives data from the partner.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// The name of the partner that is authorized to send data.
+	//
+	// PartnerName is a required field
+	PartnerName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AddPartnerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddPartnerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddPartnerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddPartnerInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.PartnerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartnerName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AddPartnerInput) SetAccountId(v string) *AddPartnerInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *AddPartnerInput) SetClusterIdentifier(v string) *AddPartnerInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *AddPartnerInput) SetDatabaseName(v string) *AddPartnerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *AddPartnerInput) SetPartnerName(v string) *AddPartnerInput {
+	s.PartnerName = &v
+	return s
+}
+
+type AddPartnerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database that receives data from the partner.
+	DatabaseName *string `type:"string"`
+
+	// The name of the partner that is authorized to send data.
+	PartnerName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AddPartnerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddPartnerOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *AddPartnerOutput) SetDatabaseName(v string) *AddPartnerOutput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *AddPartnerOutput) SetPartnerName(v string) *AddPartnerOutput {
+	s.PartnerName = &v
 	return s
 }
 
@@ -16398,6 +16969,121 @@ func (s DeleteHsmConfigurationOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePartnerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID that owns the cluster.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// The cluster identifier of the cluster that receives data from the partner.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database that receives data from the partner.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// The name of the partner that is authorized to send data.
+	//
+	// PartnerName is a required field
+	PartnerName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeletePartnerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePartnerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePartnerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePartnerInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.PartnerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartnerName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeletePartnerInput) SetAccountId(v string) *DeletePartnerInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DeletePartnerInput) SetClusterIdentifier(v string) *DeletePartnerInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeletePartnerInput) SetDatabaseName(v string) *DeletePartnerInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *DeletePartnerInput) SetPartnerName(v string) *DeletePartnerInput {
+	s.PartnerName = &v
+	return s
+}
+
+type DeletePartnerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database that receives data from the partner.
+	DatabaseName *string `type:"string"`
+
+	// The name of the partner that is authorized to send data.
+	PartnerName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeletePartnerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePartnerOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DeletePartnerOutput) SetDatabaseName(v string) *DeletePartnerOutput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *DeletePartnerOutput) SetPartnerName(v string) *DeletePartnerOutput {
+	s.PartnerName = &v
+	return s
+}
+
 type DeleteScheduledActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17938,10 +18624,14 @@ type DescribeEndpointAccessInput struct {
 	// The name of the endpoint to be described.
 	EndpointName *string `type:"string"`
 
-	// Reserved for Amazon Redshift internal use.
+	// An optional pagination token provided by a previous DescribeEndpointAccess
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
 	Marker *string `type:"string"`
 
-	// Reserved for Amazon Redshift internal use.
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a Marker
+	// is included in the response so that the remaining results can be retrieved.
 	MaxRecords *int64 `type:"integer"`
 
 	// The AWS account ID of the owner of the cluster.
@@ -18003,7 +18693,9 @@ type DescribeEndpointAccessOutput struct {
 	// The list of endpoints with access to the cluster.
 	EndpointAccessList []*EndpointAccess `type:"list"`
 
-	// Reserved for Amazon Redshift internal use.
+	// An optional pagination token provided by a previous DescribeEndpointAccess
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
 	Marker *string `type:"string"`
 }
 
@@ -18045,10 +18737,14 @@ type DescribeEndpointAuthorizationInput struct {
 	// of view.
 	Grantee *bool `type:"boolean"`
 
-	// Reserved for Amazon Redshift internal use.
+	// An optional pagination token provided by a previous DescribeEndpointAuthorization
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
 	Marker *string `type:"string"`
 
-	// Reserved for Amazon Redshift internal use.
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a Marker
+	// is included in the response so that the remaining results can be retrieved.
 	MaxRecords *int64 `type:"integer"`
 }
 
@@ -18098,7 +18794,9 @@ type DescribeEndpointAuthorizationOutput struct {
 	// The authorizations to an endpoint.
 	EndpointAuthorizationList []*EndpointAuthorization `type:"list"`
 
-	// Reserved for Amazon Redshift internal use.
+	// An optional pagination token provided by a previous DescribeEndpointAuthorization
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by the MaxRecords parameter.
 	Marker *string `type:"string"`
 }
 
@@ -18984,6 +19682,105 @@ func (s *DescribeOrderableClusterOptionsOutput) SetMarker(v string) *DescribeOrd
 // SetOrderableClusterOptions sets the OrderableClusterOptions field's value.
 func (s *DescribeOrderableClusterOptionsOutput) SetOrderableClusterOptions(v []*OrderableClusterOption) *DescribeOrderableClusterOptionsOutput {
 	s.OrderableClusterOptions = v
+	return s
+}
+
+type DescribePartnersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID that owns the cluster.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// The cluster identifier of the cluster whose partner integration is being
+	// described.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database whose partner integration is being described. If
+	// database name is not specified, then all databases in the cluster are described.
+	DatabaseName *string `type:"string"`
+
+	// The name of the partner that is being described. If partner name is not specified,
+	// then all partner integrations are described.
+	PartnerName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribePartnersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePartnersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePartnersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePartnersInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribePartnersInput) SetAccountId(v string) *DescribePartnersInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *DescribePartnersInput) SetClusterIdentifier(v string) *DescribePartnersInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DescribePartnersInput) SetDatabaseName(v string) *DescribePartnersInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *DescribePartnersInput) SetPartnerName(v string) *DescribePartnersInput {
+	s.PartnerName = &v
+	return s
+}
+
+type DescribePartnersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of partner integrations.
+	PartnerIntegrationInfoList []*PartnerIntegrationInfo `locationNameList:"PartnerIntegrationInfo" type:"list"`
+}
+
+// String returns the string representation
+func (s DescribePartnersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePartnersOutput) GoString() string {
+	return s.String()
+}
+
+// SetPartnerIntegrationInfoList sets the PartnerIntegrationInfoList field's value.
+func (s *DescribePartnersOutput) SetPartnerIntegrationInfoList(v []*PartnerIntegrationInfo) *DescribePartnersOutput {
+	s.PartnerIntegrationInfoList = v
 	return s
 }
 
@@ -24047,6 +24844,76 @@ func (s *Parameter) SetSource(v string) *Parameter {
 	return s
 }
 
+// Describes a partner integration.
+type PartnerIntegrationInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The date (UTC) that the partner integration was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The name of the database that receives data from a partner.
+	DatabaseName *string `type:"string"`
+
+	// The name of the partner.
+	PartnerName *string `type:"string"`
+
+	// The partner integration status.
+	Status *string `type:"string" enum:"PartnerIntegrationStatus"`
+
+	// The status message provided by the partner.
+	StatusMessage *string `type:"string"`
+
+	// The date (UTC) that the partner integration status was last updated by the
+	// partner.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s PartnerIntegrationInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PartnerIntegrationInfo) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PartnerIntegrationInfo) SetCreatedAt(v time.Time) *PartnerIntegrationInfo {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *PartnerIntegrationInfo) SetDatabaseName(v string) *PartnerIntegrationInfo {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *PartnerIntegrationInfo) SetPartnerName(v string) *PartnerIntegrationInfo {
+	s.PartnerName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PartnerIntegrationInfo) SetStatus(v string) *PartnerIntegrationInfo {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *PartnerIntegrationInfo) SetStatusMessage(v string) *PartnerIntegrationInfo {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *PartnerIntegrationInfo) SetUpdatedAt(v time.Time) *PartnerIntegrationInfo {
+	s.UpdatedAt = &v
+	return s
+}
+
 // Describes a pause cluster operation. For example, a scheduled action to run
 // the PauseCluster API operation.
 type PauseClusterInput struct {
@@ -27336,6 +28203,145 @@ func (s *TaggedResource) SetTag(v *Tag) *TaggedResource {
 	return s
 }
 
+type UpdatePartnerStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID that owns the cluster.
+	//
+	// AccountId is a required field
+	AccountId *string `min:"12" type:"string" required:"true"`
+
+	// The cluster identifier of the cluster whose partner integration status is
+	// being updated.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database whose partner integration status is being updated.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `type:"string" required:"true"`
+
+	// The name of the partner whose integration status is being updated.
+	//
+	// PartnerName is a required field
+	PartnerName *string `type:"string" required:"true"`
+
+	// The value of the updated status.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"PartnerIntegrationStatus"`
+
+	// The status message provided by the partner.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdatePartnerStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePartnerStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePartnerStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePartnerStatusInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 12))
+	}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.PartnerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PartnerName"))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *UpdatePartnerStatusInput) SetAccountId(v string) *UpdatePartnerStatusInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *UpdatePartnerStatusInput) SetClusterIdentifier(v string) *UpdatePartnerStatusInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *UpdatePartnerStatusInput) SetDatabaseName(v string) *UpdatePartnerStatusInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *UpdatePartnerStatusInput) SetPartnerName(v string) *UpdatePartnerStatusInput {
+	s.PartnerName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdatePartnerStatusInput) SetStatus(v string) *UpdatePartnerStatusInput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *UpdatePartnerStatusInput) SetStatusMessage(v string) *UpdatePartnerStatusInput {
+	s.StatusMessage = &v
+	return s
+}
+
+type UpdatePartnerStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the database that receives data from the partner.
+	DatabaseName *string `type:"string"`
+
+	// The name of the partner that is authorized to send data.
+	PartnerName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdatePartnerStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePartnerStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *UpdatePartnerStatusOutput) SetDatabaseName(v string) *UpdatePartnerStatusOutput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetPartnerName sets the PartnerName field's value.
+func (s *UpdatePartnerStatusOutput) SetPartnerName(v string) *UpdatePartnerStatusOutput {
+	s.PartnerName = &v
+	return s
+}
+
 // A maintenance track that you can switch the current track to.
 type UpdateTarget struct {
 	_ struct{} `type:"structure"`
@@ -27718,6 +28724,30 @@ func ParameterApplyType_Values() []string {
 	return []string{
 		ParameterApplyTypeStatic,
 		ParameterApplyTypeDynamic,
+	}
+}
+
+const (
+	// PartnerIntegrationStatusActive is a PartnerIntegrationStatus enum value
+	PartnerIntegrationStatusActive = "Active"
+
+	// PartnerIntegrationStatusInactive is a PartnerIntegrationStatus enum value
+	PartnerIntegrationStatusInactive = "Inactive"
+
+	// PartnerIntegrationStatusRuntimeFailure is a PartnerIntegrationStatus enum value
+	PartnerIntegrationStatusRuntimeFailure = "RuntimeFailure"
+
+	// PartnerIntegrationStatusConnectionFailure is a PartnerIntegrationStatus enum value
+	PartnerIntegrationStatusConnectionFailure = "ConnectionFailure"
+)
+
+// PartnerIntegrationStatus_Values returns all elements of the PartnerIntegrationStatus enum
+func PartnerIntegrationStatus_Values() []string {
+	return []string{
+		PartnerIntegrationStatusActive,
+		PartnerIntegrationStatusInactive,
+		PartnerIntegrationStatusRuntimeFailure,
+		PartnerIntegrationStatusConnectionFailure,
 	}
 }
 

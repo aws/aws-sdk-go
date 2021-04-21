@@ -516,6 +516,12 @@ const (
 	// in the Amazon Redshift Cluster Management Guide.
 	ErrCodeNumberOfNodesQuotaExceededFault = "NumberOfNodesQuotaExceeded"
 
+	// ErrCodePartnerNotFoundFault for service response error code
+	// "PartnerNotFound".
+	//
+	// The name of the partner was not found.
+	ErrCodePartnerNotFoundFault = "PartnerNotFound"
+
 	// ErrCodeReservedNodeAlreadyExistsFault for service response error code
 	// "ReservedNodeAlreadyExists".
 	//
@@ -745,6 +751,12 @@ const (
 	//
 	// Your account is not authorized to perform the requested operation.
 	ErrCodeUnauthorizedOperation = "UnauthorizedOperation"
+
+	// ErrCodeUnauthorizedPartnerIntegrationFault for service response error code
+	// "UnauthorizedPartnerIntegration".
+	//
+	// The partner integration is not authorized.
+	ErrCodeUnauthorizedPartnerIntegrationFault = "UnauthorizedPartnerIntegration"
 
 	// ErrCodeUnknownSnapshotCopyRegionFault for service response error code
 	// "UnknownSnapshotCopyRegionFault".

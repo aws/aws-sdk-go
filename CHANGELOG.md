@@ -1,3 +1,16 @@
+Release v1.38.23 (2021-04-21)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service documentation
+  * Added support for creating and updating stack sets with self-managed permissions from templates that reference macros.
+* `service/detective`: Updates service API and documentation
+* `service/groundstation`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now enables users to override index-level boosting configurations for each query.
+* `service/redshift`: Updates service API, documentation, and paginators
+  * Add operations: AddPartner, DescribePartners, DeletePartner, and UpdatePartnerStatus to support tracking integration status with data partners.
+
 Release v1.38.22 (2021-04-19)
 ===
 

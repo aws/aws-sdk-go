@@ -73,6 +73,13 @@
         "UplinkEchoConfig$enabled": "<p>Whether or not an uplink <code>Config</code> is enabled.</p>"
       }
     },
+    "BucketArn": {
+      "base": null,
+      "refs": {
+        "S3RecordingConfig$bucketArn": "<p>ARN of the bucket to record to.</p>",
+        "S3RecordingDetails$bucketArn": "<p>ARN of the bucket used.</p>"
+      }
+    },
     "CancelContactRequest": {
       "base": "<p/>",
       "refs": {
@@ -238,7 +245,7 @@
         "DataflowEndpointGroupList$member": null
       }
     },
-    "DataflowEndpointmtuInteger": {
+    "DataflowEndpointMtuInteger": {
       "base": null,
       "refs": {
         "DataflowEndpoint$mtu": "<p>Maximum transmission unit (MTU) size in bytes of a dataflow endpoint.</p>"
@@ -601,7 +608,26 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "S3RecordingConfig$roleArn": "<p>ARN of the role Ground Station assumes to write data to the bucket.</p>",
         "SecurityDetails$roleArn": "<p>ARN to a role needed for connecting streams to your instances. </p>"
+      }
+    },
+    "S3KeyPrefix": {
+      "base": null,
+      "refs": {
+        "S3RecordingConfig$prefix": "<p>S3 Key prefix to prefice data files.</p>"
+      }
+    },
+    "S3RecordingConfig": {
+      "base": "<p>Information about an S3 recording <code>Config</code>.</p>",
+      "refs": {
+        "ConfigTypeData$s3RecordingConfig": "<p>Information about an S3 recording <code>Config</code>.</p>"
+      }
+    },
+    "S3RecordingDetails": {
+      "base": "<p>Details about an S3 recording <code>Config</code> used in a contact.</p>",
+      "refs": {
+        "ConfigDetails$s3RecordingDetails": "<p>Details for an S3 recording <code>Config</code> in a contact.</p>"
       }
     },
     "SafeName": {
@@ -732,6 +758,7 @@
         "ResourceLimitExceededException$message": null,
         "ResourceLimitExceededException$parameterName": "<p/>",
         "ResourceNotFoundException$message": null,
+        "S3RecordingDetails$keyTemplate": "<p>Template of the S3 key used.</p>",
         "SecurityGroupIdList$member": null,
         "SocketAddress$name": "<p>Name of a socket address.</p>",
         "Source$configId": "<p>UUID of a <code>Config</code>.</p>",
