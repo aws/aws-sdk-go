@@ -6057,6 +6057,9 @@ type DescribeDatasetImportJobOutput struct {
 	// The name of the dataset import job.
 	DatasetImportJobName *string `min:"1" type:"string"`
 
+	// The estimated time in minutes for the dataset import job to complete.
+	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
+
 	// Statistical information about each field in the input data.
 	FieldStatistics map[string]*Statistics `type:"map"`
 
@@ -6151,6 +6154,12 @@ func (s *DescribeDatasetImportJobOutput) SetDatasetImportJobArn(v string) *Descr
 // SetDatasetImportJobName sets the DatasetImportJobName field's value.
 func (s *DescribeDatasetImportJobOutput) SetDatasetImportJobName(v string) *DescribeDatasetImportJobOutput {
 	s.DatasetImportJobName = &v
+	return s
+}
+
+// SetEstimatedTimeRemainingInMinutes sets the EstimatedTimeRemainingInMinutes field's value.
+func (s *DescribeDatasetImportJobOutput) SetEstimatedTimeRemainingInMinutes(v int64) *DescribeDatasetImportJobOutput {
+	s.EstimatedTimeRemainingInMinutes = &v
 	return s
 }
 
@@ -6564,6 +6573,9 @@ type DescribeForecastOutput struct {
 	// The ARN of the dataset group that provided the data used to train the predictor.
 	DatasetGroupArn *string `type:"string"`
 
+	// The estimated time in minutes for the forecast job to complete.
+	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
+
 	// The forecast ARN as specified in the request.
 	ForecastArn *string `type:"string"`
 
@@ -6627,6 +6639,12 @@ func (s *DescribeForecastOutput) SetCreationTime(v time.Time) *DescribeForecastO
 // SetDatasetGroupArn sets the DatasetGroupArn field's value.
 func (s *DescribeForecastOutput) SetDatasetGroupArn(v string) *DescribeForecastOutput {
 	s.DatasetGroupArn = &v
+	return s
+}
+
+// SetEstimatedTimeRemainingInMinutes sets the EstimatedTimeRemainingInMinutes field's value.
+func (s *DescribeForecastOutput) SetEstimatedTimeRemainingInMinutes(v int64) *DescribeForecastOutput {
+	s.EstimatedTimeRemainingInMinutes = &v
 	return s
 }
 
@@ -6876,6 +6894,9 @@ type DescribePredictorOutput struct {
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
+	// The estimated time in minutes for the predictor training job to complete.
+	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
+
 	// Used to override the default evaluation parameters of the specified algorithm.
 	// Amazon Forecast evaluates a predictor by splitting a dataset into training
 	// data and testing data. The evaluation parameters define how to perform the
@@ -6990,6 +7011,12 @@ func (s *DescribePredictorOutput) SetDatasetImportJobArns(v []*string) *Describe
 // SetEncryptionConfig sets the EncryptionConfig field's value.
 func (s *DescribePredictorOutput) SetEncryptionConfig(v *EncryptionConfig) *DescribePredictorOutput {
 	s.EncryptionConfig = v
+	return s
+}
+
+// SetEstimatedTimeRemainingInMinutes sets the EstimatedTimeRemainingInMinutes field's value.
+func (s *DescribePredictorOutput) SetEstimatedTimeRemainingInMinutes(v int64) *DescribePredictorOutput {
+	s.EstimatedTimeRemainingInMinutes = &v
 	return s
 }
 

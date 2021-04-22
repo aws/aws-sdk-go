@@ -10,7 +10,7 @@
 // This API reference provides information about user pools in Amazon Cognito
 // User Pools.
 //
-// For more information, see the Amazon Cognito Documentation.
+// For more information, see the Amazon Cognito Documentation (https://docs.aws.amazon.com/cognito/latest/developerguide/what-is-amazon-cognito.html).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18 for more information on this service.
 //

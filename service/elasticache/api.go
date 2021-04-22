@@ -7993,6 +7993,9 @@ type CacheCluster struct {
 	// The version of the cache engine that is used in this cluster.
 	EngineVersion *string `type:"string"`
 
+	// Returns the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfiguration `locationNameList:"LogDeliveryConfiguration" type:"list"`
+
 	// Describes a notification topic and its status. Notification topics are used
 	// for publishing ElastiCache events to subscribers using Amazon Simple Notification
 	// Service (SNS).
@@ -8001,7 +8004,7 @@ type CacheCluster struct {
 	// The number of cache nodes in the cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 20.
+	// this value must be between 1 and 40.
 	NumCacheNodes *int64 `type:"integer"`
 
 	// A group of settings that are applied to the cluster in the future, or that
@@ -8041,6 +8044,10 @@ type CacheCluster struct {
 	// The replication group to which this cluster belongs. If this field is empty,
 	// the cluster is not associated with any replication group.
 	ReplicationGroupId *string `type:"string"`
+
+	// A boolean value indicating whether log delivery is enabled for the replication
+	// group.
+	ReplicationGroupLogDeliveryEnabled *bool `type:"boolean"`
 
 	// A list of VPC Security Groups associated with the cluster.
 	SecurityGroups []*SecurityGroupMembership `type:"list"`
@@ -8184,6 +8191,12 @@ func (s *CacheCluster) SetEngineVersion(v string) *CacheCluster {
 	return s
 }
 
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *CacheCluster) SetLogDeliveryConfigurations(v []*LogDeliveryConfiguration) *CacheCluster {
+	s.LogDeliveryConfigurations = v
+	return s
+}
+
 // SetNotificationConfiguration sets the NotificationConfiguration field's value.
 func (s *CacheCluster) SetNotificationConfiguration(v *NotificationConfiguration) *CacheCluster {
 	s.NotificationConfiguration = v
@@ -8223,6 +8236,12 @@ func (s *CacheCluster) SetPreferredOutpostArn(v string) *CacheCluster {
 // SetReplicationGroupId sets the ReplicationGroupId field's value.
 func (s *CacheCluster) SetReplicationGroupId(v string) *CacheCluster {
 	s.ReplicationGroupId = &v
+	return s
+}
+
+// SetReplicationGroupLogDeliveryEnabled sets the ReplicationGroupLogDeliveryEnabled field's value.
+func (s *CacheCluster) SetReplicationGroupLogDeliveryEnabled(v bool) *CacheCluster {
+	s.ReplicationGroupLogDeliveryEnabled = &v
 	return s
 }
 
@@ -8976,6 +8995,30 @@ func (s *CacheSubnetGroup) SetVpcId(v string) *CacheSubnetGroup {
 	return s
 }
 
+// The configuration details of the CloudWatch Logs destination.
+type CloudWatchLogsDestinationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the CloudWatch Logs log group.
+	LogGroup *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CloudWatchLogsDestinationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudWatchLogsDestinationDetails) GoString() string {
+	return s.String()
+}
+
+// SetLogGroup sets the LogGroup field's value.
+func (s *CloudWatchLogsDestinationDetails) SetLogGroup(v string) *CloudWatchLogsDestinationDetails {
+	s.LogGroup = &v
+	return s
+}
+
 type CompleteMigrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9388,6 +9431,9 @@ type CreateCacheClusterInput struct {
 	// group and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// Specifies the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
+
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
 	// (SNS) topic to which notifications are sent.
 	//
@@ -9397,7 +9443,7 @@ type CreateCacheClusterInput struct {
 	// The initial number of cache nodes that the cluster has.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 20.
+	// this value must be between 1 and 40.
 	//
 	// If you need more than 20 nodes for your Memcached cluster, please fill out
 	// the ElastiCache Limit Increase Request form at http://aws.amazon.com/contact-us/elasticache-node-limit-request/
@@ -9588,6 +9634,12 @@ func (s *CreateCacheClusterInput) SetEngine(v string) *CreateCacheClusterInput {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *CreateCacheClusterInput) SetEngineVersion(v string) *CreateCacheClusterInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *CreateCacheClusterInput) SetLogDeliveryConfigurations(v []*LogDeliveryConfigurationRequest) *CreateCacheClusterInput {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -10262,6 +10314,9 @@ type CreateReplicationGroupInput struct {
 	// The ID of the KMS key used to encrypt the disk in the cluster.
 	KmsKeyId *string `type:"string"`
 
+	// Specifies the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
+
 	// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
 	// For more information, see Minimizing Downtime: Multi-AZ (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html).
 	MultiAZEnabled *bool `type:"boolean"`
@@ -10559,6 +10614,12 @@ func (s *CreateReplicationGroupInput) SetGlobalReplicationGroupId(v string) *Cre
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateReplicationGroupInput) SetKmsKeyId(v string) *CreateReplicationGroupInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *CreateReplicationGroupInput) SetLogDeliveryConfigurations(v []*LogDeliveryConfigurationRequest) *CreateReplicationGroupInput {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -11206,15 +11267,15 @@ type DecreaseNodeGroupsInGlobalReplicationGroupInput struct {
 
 	// If the value of NodeGroupCount is less than the current number of node groups
 	// (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required.
-	// NodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster.
-	// ElastiCache for Redis will attempt to remove all node groups listed by NodeGroupsToRemove
+	// GlobalNodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster.
+	// ElastiCache for Redis will attempt to remove all node groups listed by GlobalNodeGroupsToRemove
 	// from the cluster.
 	GlobalNodeGroupsToRemove []*string `locationNameList:"GlobalNodeGroupId" type:"list"`
 
 	// If the value of NodeGroupCount is less than the current number of node groups
 	// (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required.
-	// NodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster.
-	// ElastiCache for Redis will attempt to remove all node groups listed by NodeGroupsToRemove
+	// GlobalNodeGroupsToRetain is a list of NodeGroupIds to retain from the cluster.
+	// ElastiCache for Redis will attempt to retain all node groups listed by GlobalNodeGroupsToRetain
 	// from the cluster.
 	GlobalNodeGroupsToRetain []*string `locationNameList:"GlobalNodeGroupId" type:"list"`
 
@@ -14074,6 +14135,40 @@ func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
 	return s
 }
 
+// Configuration details of either a CloudWatch Logs destination or Kinesis
+// Data Firehose destination.
+type DestinationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of the CloudWatch Logs destination.
+	CloudWatchLogsDetails *CloudWatchLogsDestinationDetails `type:"structure"`
+
+	// The configuration details of the Kinesis Data Firehose destination.
+	KinesisFirehoseDetails *KinesisFirehoseDestinationDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s DestinationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsDetails sets the CloudWatchLogsDetails field's value.
+func (s *DestinationDetails) SetCloudWatchLogsDetails(v *CloudWatchLogsDestinationDetails) *DestinationDetails {
+	s.CloudWatchLogsDetails = v
+	return s
+}
+
+// SetKinesisFirehoseDetails sets the KinesisFirehoseDetails field's value.
+func (s *DestinationDetails) SetKinesisFirehoseDetails(v *KinesisFirehoseDestinationDetails) *DestinationDetails {
+	s.KinesisFirehoseDetails = v
+	return s
+}
+
 type DisassociateGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15016,6 +15111,30 @@ func (s *IncreaseReplicaCountOutput) SetReplicationGroup(v *ReplicationGroup) *I
 	return s
 }
 
+// The configuration details of the Kinesis Data Firehose destination.
+type KinesisFirehoseDestinationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Kinesis Data Firehose delivery stream.
+	DeliveryStream *string `type:"string"`
+}
+
+// String returns the string representation
+func (s KinesisFirehoseDestinationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KinesisFirehoseDestinationDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeliveryStream sets the DeliveryStream field's value.
+func (s *KinesisFirehoseDestinationDetails) SetDeliveryStream(v string) *KinesisFirehoseDestinationDetails {
+	s.DeliveryStream = &v
+	return s
+}
+
 // The input parameters for the ListAllowedNodeTypeModifications operation.
 type ListAllowedNodeTypeModificationsInput struct {
 	_ struct{} `type:"structure"`
@@ -15144,6 +15263,138 @@ func (s *ListTagsForResourceInput) SetResourceName(v string) *ListTagsForResourc
 	return s
 }
 
+// Returns the destination, format and type of the logs.
+type LogDeliveryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details of either a CloudWatch Logs destination or Kinesis
+	// Data Firehose destination.
+	DestinationDetails *DestinationDetails `type:"structure"`
+
+	// Returns the destination type, either cloudwatch-logs or kinesis-firehose.
+	DestinationType *string `type:"string" enum:"DestinationType"`
+
+	// Returns the log format, either JSON or TEXT.
+	LogFormat *string `type:"string" enum:"LogFormat"`
+
+	// Refers to slow-log (https://redis.io/commands/slowlog).
+	LogType *string `type:"string" enum:"LogType"`
+
+	// Returns an error message for the log delivery configuration.
+	Message *string `type:"string"`
+
+	// Returns the log delivery configuration status. Values are one of enabling
+	// | disabling | modifying | active | error
+	Status *string `type:"string" enum:"LogDeliveryConfigurationStatus"`
+}
+
+// String returns the string representation
+func (s LogDeliveryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LogDeliveryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestinationDetails sets the DestinationDetails field's value.
+func (s *LogDeliveryConfiguration) SetDestinationDetails(v *DestinationDetails) *LogDeliveryConfiguration {
+	s.DestinationDetails = v
+	return s
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *LogDeliveryConfiguration) SetDestinationType(v string) *LogDeliveryConfiguration {
+	s.DestinationType = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *LogDeliveryConfiguration) SetLogFormat(v string) *LogDeliveryConfiguration {
+	s.LogFormat = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *LogDeliveryConfiguration) SetLogType(v string) *LogDeliveryConfiguration {
+	s.LogType = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *LogDeliveryConfiguration) SetMessage(v string) *LogDeliveryConfiguration {
+	s.Message = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LogDeliveryConfiguration) SetStatus(v string) *LogDeliveryConfiguration {
+	s.Status = &v
+	return s
+}
+
+// Specifies the destination, format and type of the logs.
+type LogDeliveryConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details of either a CloudWatch Logs destination or Kinesis
+	// Data Firehose destination.
+	DestinationDetails *DestinationDetails `type:"structure"`
+
+	// Specify either cloudwatch-logs or kinesis-firehose as the destination type.
+	DestinationType *string `type:"string" enum:"DestinationType"`
+
+	// Specify if log delivery is enabled. Default true.
+	Enabled *bool `type:"boolean"`
+
+	// Specifies either JSON or TEXT
+	LogFormat *string `type:"string" enum:"LogFormat"`
+
+	// Refers to slow-log (https://redis.io/commands/slowlog).
+	LogType *string `type:"string" enum:"LogType"`
+}
+
+// String returns the string representation
+func (s LogDeliveryConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LogDeliveryConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// SetDestinationDetails sets the DestinationDetails field's value.
+func (s *LogDeliveryConfigurationRequest) SetDestinationDetails(v *DestinationDetails) *LogDeliveryConfigurationRequest {
+	s.DestinationDetails = v
+	return s
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *LogDeliveryConfigurationRequest) SetDestinationType(v string) *LogDeliveryConfigurationRequest {
+	s.DestinationType = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *LogDeliveryConfigurationRequest) SetEnabled(v bool) *LogDeliveryConfigurationRequest {
+	s.Enabled = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *LogDeliveryConfigurationRequest) SetLogFormat(v string) *LogDeliveryConfigurationRequest {
+	s.LogFormat = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *LogDeliveryConfigurationRequest) SetLogType(v string) *LogDeliveryConfigurationRequest {
+	s.LogType = &v
+	return s
+}
+
 // Represents the input of a ModifyCacheCluster operation.
 type ModifyCacheClusterInput struct {
 	_ struct{} `type:"structure"`
@@ -15247,14 +15498,18 @@ type ModifyCacheClusterInput struct {
 	// it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// Specifies the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
+
+	//
+	// This option is only supported on Memcached clusters.
+	//
 	// The list of Availability Zones where the new Memcached cache nodes are created.
 	//
 	// This parameter is only valid when NumCacheNodes in the request is greater
 	// than the sum of the number of active cache nodes and the number of cache
 	// nodes pending creation (which may be zero). The number of Availability Zones
 	// supplied in this list must match the cache nodes being added in this request.
-	//
-	// This option is only supported on Memcached clusters.
 	//
 	// Scenarios:
 	//
@@ -15320,7 +15575,7 @@ type ModifyCacheClusterInput struct {
 	// to provide the IDs of the specific cache nodes to remove.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 20.
+	// this value must be between 1 and 40.
 	//
 	// Adding or removing Memcached cache nodes can be applied immediately or as
 	// a pending operation (see ApplyImmediately).
@@ -15470,6 +15725,12 @@ func (s *ModifyCacheClusterInput) SetCacheSecurityGroupNames(v []*string) *Modif
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyCacheClusterInput) SetEngineVersion(v string) *ModifyCacheClusterInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *ModifyCacheClusterInput) SetLogDeliveryConfigurations(v []*LogDeliveryConfigurationRequest) *ModifyCacheClusterInput {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -15897,6 +16158,9 @@ type ModifyReplicationGroupInput struct {
 	// and create it anew with the earlier engine version.
 	EngineVersion *string `type:"string"`
 
+	// Specifies the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
+
 	// A list of tags to be added to this resource. A tag is a key-value pair. A
 	// tag key must be accompanied by a tag value, although null is accepted.
 	MultiAZEnabled *bool `type:"boolean"`
@@ -16070,6 +16334,12 @@ func (s *ModifyReplicationGroupInput) SetCacheSecurityGroupNames(v []*string) *M
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *ModifyReplicationGroupInput) SetEngineVersion(v string) *ModifyReplicationGroupInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *ModifyReplicationGroupInput) SetLogDeliveryConfigurations(v []*LogDeliveryConfigurationRequest) *ModifyReplicationGroupInput {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -17269,6 +17539,58 @@ func (s *ParameterNameValue) SetParameterValue(v string) *ParameterNameValue {
 	return s
 }
 
+// The log delivery configurations being modified
+type PendingLogDeliveryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration details of either a CloudWatch Logs destination or Kinesis
+	// Data Firehose destination.
+	DestinationDetails *DestinationDetails `type:"structure"`
+
+	// Returns the destination type, either CloudWatch Logs or Kinesis Data Firehose.
+	DestinationType *string `type:"string" enum:"DestinationType"`
+
+	// Returns the log format, either JSON or TEXT
+	LogFormat *string `type:"string" enum:"LogFormat"`
+
+	// Refers to slow-log (https://redis.io/commands/slowlog).
+	LogType *string `type:"string" enum:"LogType"`
+}
+
+// String returns the string representation
+func (s PendingLogDeliveryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PendingLogDeliveryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestinationDetails sets the DestinationDetails field's value.
+func (s *PendingLogDeliveryConfiguration) SetDestinationDetails(v *DestinationDetails) *PendingLogDeliveryConfiguration {
+	s.DestinationDetails = v
+	return s
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *PendingLogDeliveryConfiguration) SetDestinationType(v string) *PendingLogDeliveryConfiguration {
+	s.DestinationType = &v
+	return s
+}
+
+// SetLogFormat sets the LogFormat field's value.
+func (s *PendingLogDeliveryConfiguration) SetLogFormat(v string) *PendingLogDeliveryConfiguration {
+	s.LogFormat = &v
+	return s
+}
+
+// SetLogType sets the LogType field's value.
+func (s *PendingLogDeliveryConfiguration) SetLogType(v string) *PendingLogDeliveryConfiguration {
+	s.LogType = &v
+	return s
+}
+
 // A group of settings that are applied to the cluster in the future, or that
 // are currently being applied.
 type PendingModifiedValues struct {
@@ -17287,10 +17609,13 @@ type PendingModifiedValues struct {
 	// The new cache engine version that the cluster runs.
 	EngineVersion *string `type:"string"`
 
+	// The log delivery configurations being modified
+	LogDeliveryConfigurations []*PendingLogDeliveryConfiguration `locationName:"PendingLogDeliveryConfiguration" type:"list"`
+
 	// The new number of cache nodes for the cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 20.
+	// this value must be between 1 and 40.
 	NumCacheNodes *int64 `type:"integer"`
 }
 
@@ -17325,6 +17650,12 @@ func (s *PendingModifiedValues) SetCacheNodeType(v string) *PendingModifiedValue
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *PendingModifiedValues) SetEngineVersion(v string) *PendingModifiedValues {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *PendingModifiedValues) SetLogDeliveryConfigurations(v []*PendingLogDeliveryConfiguration) *PendingModifiedValues {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -17868,6 +18199,9 @@ type ReplicationGroup struct {
 	// The ID of the KMS key used to encrypt the disk in the cluster.
 	KmsKeyId *string `type:"string"`
 
+	// Returns the destination, format and type of the logs.
+	LogDeliveryConfigurations []*LogDeliveryConfiguration `locationNameList:"LogDeliveryConfiguration" type:"list"`
+
 	// The names of all the cache clusters that are part of this replication group.
 	MemberClusters []*string `locationNameList:"ClusterId" type:"list"`
 
@@ -18010,6 +18344,12 @@ func (s *ReplicationGroup) SetKmsKeyId(v string) *ReplicationGroup {
 	return s
 }
 
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *ReplicationGroup) SetLogDeliveryConfigurations(v []*LogDeliveryConfiguration) *ReplicationGroup {
+	s.LogDeliveryConfigurations = v
+	return s
+}
+
 // SetMemberClusters sets the MemberClusters field's value.
 func (s *ReplicationGroup) SetMemberClusters(v []*string) *ReplicationGroup {
 	s.MemberClusters = v
@@ -18093,6 +18433,9 @@ type ReplicationGroupPendingModifiedValues struct {
 	// Indicates the status of automatic failover for this Redis replication group.
 	AutomaticFailoverStatus *string `type:"string" enum:"PendingAutomaticFailoverStatus"`
 
+	// The log delivery configurations being modified
+	LogDeliveryConfigurations []*PendingLogDeliveryConfiguration `locationName:"PendingLogDeliveryConfiguration" type:"list"`
+
 	// The primary cluster ID that is applied immediately (if --apply-immediately
 	// was specified), or during the next maintenance window.
 	PrimaryClusterId *string `type:"string"`
@@ -18123,6 +18466,12 @@ func (s *ReplicationGroupPendingModifiedValues) SetAuthTokenStatus(v string) *Re
 // SetAutomaticFailoverStatus sets the AutomaticFailoverStatus field's value.
 func (s *ReplicationGroupPendingModifiedValues) SetAutomaticFailoverStatus(v string) *ReplicationGroupPendingModifiedValues {
 	s.AutomaticFailoverStatus = &v
+	return s
+}
+
+// SetLogDeliveryConfigurations sets the LogDeliveryConfigurations field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetLogDeliveryConfigurations(v []*PendingLogDeliveryConfiguration) *ReplicationGroupPendingModifiedValues {
+	s.LogDeliveryConfigurations = v
 	return s
 }
 
@@ -18961,7 +19310,7 @@ type Snapshot struct {
 	// The number of cache nodes in the source cluster.
 	//
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
-	// this value must be between 1 and 20.
+	// this value must be between 1 and 40.
 	NumCacheNodes *int64 `type:"integer"`
 
 	// The number of node groups (shards) in this snapshot. When restoring from
@@ -20106,6 +20455,78 @@ func ChangeType_Values() []string {
 	return []string{
 		ChangeTypeImmediate,
 		ChangeTypeRequiresReboot,
+	}
+}
+
+const (
+	// DestinationTypeCloudwatchLogs is a DestinationType enum value
+	DestinationTypeCloudwatchLogs = "cloudwatch-logs"
+
+	// DestinationTypeKinesisFirehose is a DestinationType enum value
+	DestinationTypeKinesisFirehose = "kinesis-firehose"
+)
+
+// DestinationType_Values returns all elements of the DestinationType enum
+func DestinationType_Values() []string {
+	return []string{
+		DestinationTypeCloudwatchLogs,
+		DestinationTypeKinesisFirehose,
+	}
+}
+
+const (
+	// LogDeliveryConfigurationStatusActive is a LogDeliveryConfigurationStatus enum value
+	LogDeliveryConfigurationStatusActive = "active"
+
+	// LogDeliveryConfigurationStatusEnabling is a LogDeliveryConfigurationStatus enum value
+	LogDeliveryConfigurationStatusEnabling = "enabling"
+
+	// LogDeliveryConfigurationStatusModifying is a LogDeliveryConfigurationStatus enum value
+	LogDeliveryConfigurationStatusModifying = "modifying"
+
+	// LogDeliveryConfigurationStatusDisabling is a LogDeliveryConfigurationStatus enum value
+	LogDeliveryConfigurationStatusDisabling = "disabling"
+
+	// LogDeliveryConfigurationStatusError is a LogDeliveryConfigurationStatus enum value
+	LogDeliveryConfigurationStatusError = "error"
+)
+
+// LogDeliveryConfigurationStatus_Values returns all elements of the LogDeliveryConfigurationStatus enum
+func LogDeliveryConfigurationStatus_Values() []string {
+	return []string{
+		LogDeliveryConfigurationStatusActive,
+		LogDeliveryConfigurationStatusEnabling,
+		LogDeliveryConfigurationStatusModifying,
+		LogDeliveryConfigurationStatusDisabling,
+		LogDeliveryConfigurationStatusError,
+	}
+}
+
+const (
+	// LogFormatText is a LogFormat enum value
+	LogFormatText = "text"
+
+	// LogFormatJson is a LogFormat enum value
+	LogFormatJson = "json"
+)
+
+// LogFormat_Values returns all elements of the LogFormat enum
+func LogFormat_Values() []string {
+	return []string{
+		LogFormatText,
+		LogFormatJson,
+	}
+}
+
+const (
+	// LogTypeSlowLog is a LogType enum value
+	LogTypeSlowLog = "slow-log"
+)
+
+// LogType_Values returns all elements of the LogType enum
+func LogType_Values() []string {
+	return []string{
+		LogTypeSlowLog,
 	}
 }
 

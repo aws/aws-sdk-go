@@ -4511,7 +4511,7 @@ func (c *CognitoIdentityProvider) DeleteGroupRequest(input *DeleteGroupInput) (r
 
 // DeleteGroup API operation for Amazon Cognito Identity Provider.
 //
-// Deletes a group. Currently only groups with no members can be deleted.
+// Deletes a group.
 //
 // Calling this action requires developer credentials.
 //
@@ -12345,7 +12345,7 @@ func (s AdminDisableProviderForUserOutput) GoString() string {
 	return s.String()
 }
 
-// Represents the request to disable any user as an administrator.
+// Represents the request to disable the user as an administrator.
 type AdminDisableUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13127,9 +13127,18 @@ type AdminInitiateAuthOutput struct {
 	//    USERNAME and PASSWORD directly. An app client must be enabled to use this
 	//    flow.
 	//
-	//    * NEW_PASSWORD_REQUIRED: For users which are required to change their
-	//    passwords after successful first login. This challenge should be passed
-	//    with NEW_PASSWORD and any other required attributes.
+	//    * NEW_PASSWORD_REQUIRED: For users who are required to change their passwords
+	//    after successful first login. This challenge should be passed with NEW_PASSWORD
+	//    and any other required attributes.
+	//
+	//    * MFA_SETUP: For users who are required to setup an MFA factor before
+	//    they can sign-in. The MFA types enabled for the user pool will be listed
+	//    in the challenge parameters MFA_CAN_SETUP value. To setup software token
+	//    MFA, use the session returned here from InitiateAuth as an input to AssociateSoftwareToken,
+	//    and use the session returned by VerifySoftwareToken as an input to RespondToAuthChallenge
+	//    with challenge name MFA_SETUP to complete sign-in. To setup SMS MFA, users
+	//    will need help from an administrator to add a phone number to their account
+	//    and then call InitiateAuth again to restart sign-in.
 	ChallengeName *string `type:"string" enum:"ChallengeNameType"`
 
 	// The challenge parameters. These are returned to you in the AdminInitiateAuth
@@ -13872,6 +13881,9 @@ type AdminRespondToAuthChallengeInput struct {
 	//
 	//    * NEW_PASSWORD_REQUIRED: NEW_PASSWORD, any other required attributes,
 	//    USERNAME, SECRET_HASH (if app client is configured with client secret).
+	//
+	//    * MFA_SETUP requires USERNAME, plus you need to use the session value
+	//    returned by VerifySoftwareToken in the Session parameter.
 	//
 	// The value of the USERNAME attribute must be the user's actual username, not
 	// an alias (such as email address or phone number). To make this easier, the
@@ -21044,9 +21056,18 @@ type InitiateAuthOutput struct {
 	//    * DEVICE_PASSWORD_VERIFIER: Similar to PASSWORD_VERIFIER, but for devices
 	//    only.
 	//
-	//    * NEW_PASSWORD_REQUIRED: For users which are required to change their
-	//    passwords after successful first login. This challenge should be passed
-	//    with NEW_PASSWORD and any other required attributes.
+	//    * NEW_PASSWORD_REQUIRED: For users who are required to change their passwords
+	//    after successful first login. This challenge should be passed with NEW_PASSWORD
+	//    and any other required attributes.
+	//
+	//    * MFA_SETUP: For users who are required to setup an MFA factor before
+	//    they can sign-in. The MFA types enabled for the user pool will be listed
+	//    in the challenge parameters MFA_CAN_SETUP value. To setup software token
+	//    MFA, use the session returned here from InitiateAuth as an input to AssociateSoftwareToken,
+	//    and use the session returned by VerifySoftwareToken as an input to RespondToAuthChallenge
+	//    with challenge name MFA_SETUP to complete sign-in. To setup SMS MFA, users
+	//    will need help from an administrator to add a phone number to their account
+	//    and then call InitiateAuth again to restart sign-in.
 	ChallengeName *string `type:"string" enum:"ChallengeNameType"`
 
 	// The challenge parameters. These are returned to you in the InitiateAuth response
@@ -24088,6 +24109,9 @@ type RespondToAuthChallengeInput struct {
 	//
 	//    * DEVICE_PASSWORD_VERIFIER requires everything that PASSWORD_VERIFIER
 	//    requires plus DEVICE_KEY.
+	//
+	//    * MFA_SETUP requires USERNAME, plus you need to use the session value
+	//    returned by VerifySoftwareToken in the Session parameter.
 	ChallengeResponses map[string]*string `type:"map"`
 
 	// The app client ID.
@@ -24873,7 +24897,10 @@ func (s SetUserMFAPreferenceOutput) GoString() string {
 type SetUserPoolMfaConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The MFA configuration. Valid values include:
+	// The MFA configuration. Users who don't have an MFA factor set up won't be
+	// able to sign-in if you set the MfaConfiguration value to ‘ON’. See Adding
+	// Multi-Factor Authentication (MFA) to a User Pool (cognito/latest/developerguide/user-pool-settings-mfa.html)
+	// to learn more. Valid values include:
 	//
 	//    * OFF MFA will not be used for any users.
 	//
@@ -25326,6 +25353,9 @@ type SmsConfigurationType struct {
 	// policy to require the ExternalID. If you use the Cognito Management Console
 	// to create a role for SMS MFA, Cognito will create a role with the required
 	// permissions and a trust policy that demonstrates use of the ExternalId.
+	//
+	// For more information about the ExternalId of a role, see How to use an external
+	// ID when granting access to your AWS resources to a third party (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html)
 	ExternalId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
@@ -27474,7 +27504,9 @@ type UpdateUserPoolInput struct {
 	//    registration.
 	//
 	//    * ON - MFA tokens are required for all user registrations. You can only
-	//    specify required when you are initially creating a user pool.
+	//    specify ON when you are initially creating a user pool. You can use the
+	//    SetUserPoolMfaConfig (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SetUserPoolMfaConfig.html)
+	//    API operation to turn MFA "ON" for existing user pools.
 	//
 	//    * OPTIONAL - Users have the option when registering to create an MFA token.
 	MfaConfiguration *string `type:"string" enum:"UserPoolMfaType"`

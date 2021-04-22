@@ -12,6 +12,22 @@
     "uid":"securityhub-2018-10-26"
   },
   "operations":{
+    "AcceptAdministratorInvitation":{
+      "name":"AcceptAdministratorInvitation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/administrator"
+      },
+      "input":{"shape":"AcceptAdministratorInvitationRequest"},
+      "output":{"shape":"AcceptAdministratorInvitationResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidAccessException"}
+      ]
+    },
     "AcceptInvitation":{
       "name":"AcceptInvitation",
       "http":{
@@ -26,7 +42,9 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidAccessException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API has been deprecated, use AcceptAdministratorInvitation API instead."
     },
     "BatchDisableStandards":{
       "name":"BatchDisableStandards",
@@ -350,6 +368,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DisassociateFromAdministratorAccount":{
+      "name":"DisassociateFromAdministratorAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/administrator/disassociate"
+      },
+      "input":{"shape":"DisassociateFromAdministratorAccountRequest"},
+      "output":{"shape":"DisassociateFromAdministratorAccountResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DisassociateFromMasterAccount":{
       "name":"DisassociateFromMasterAccount",
       "http":{
@@ -364,7 +398,9 @@
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API has been deprecated, use DisassociateFromAdministratorAccount API instead."
     },
     "DisassociateMembers":{
       "name":"DisassociateMembers",
@@ -427,6 +463,22 @@
         {"shape":"InvalidAccessException"},
         {"shape":"ResourceConflictException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetAdministratorAccount":{
+      "name":"GetAdministratorAccount",
+      "http":{
+        "method":"GET",
+        "requestUri":"/administrator"
+      },
+      "input":{"shape":"GetAdministratorAccountRequest"},
+      "output":{"shape":"GetAdministratorAccountResponse"},
+      "errors":[
+        {"shape":"InternalException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidAccessException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetEnabledStandards":{
@@ -520,7 +572,9 @@
         {"shape":"InvalidAccessException"},
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "deprecated":true,
+      "deprecatedMessage":"This API has been deprecated, use GetAdministratorAccount API instead."
     },
     "GetMembers":{
       "name":"GetMembers",
@@ -751,6 +805,22 @@
     }
   },
   "shapes":{
+    "AcceptAdministratorInvitationRequest":{
+      "type":"structure",
+      "required":[
+        "AdministratorId",
+        "InvitationId"
+      ],
+      "members":{
+        "AdministratorId":{"shape":"NonEmptyString"},
+        "InvitationId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AcceptAdministratorInvitationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AcceptInvitationRequest":{
       "type":"structure",
       "required":[
@@ -3575,6 +3645,16 @@
       "members":{
       }
     },
+    "DisassociateFromAdministratorAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DisassociateFromAdministratorAccountResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateFromMasterAccountRequest":{
       "type":"structure",
       "members":{
@@ -3670,6 +3750,17 @@
       "members":{
         "Lon":{"shape":"Double"},
         "Lat":{"shape":"Double"}
+      }
+    },
+    "GetAdministratorAccountRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetAdministratorAccountResponse":{
+      "type":"structure",
+      "members":{
+        "Administrator":{"shape":"Invitation"}
       }
     },
     "GetEnabledStandardsRequest":{
@@ -3843,7 +3934,8 @@
       "type":"string",
       "enum":[
         "SEND_FINDINGS_TO_SECURITY_HUB",
-        "RECEIVE_FINDINGS_FROM_SECURITY_HUB"
+        "RECEIVE_FINDINGS_FROM_SECURITY_HUB",
+        "UPDATE_FINDINGS_IN_SECURITY_HUB"
       ]
     },
     "IntegrationTypeList":{
@@ -4142,7 +4234,12 @@
       "members":{
         "AccountId":{"shape":"AccountId"},
         "Email":{"shape":"NonEmptyString"},
-        "MasterId":{"shape":"NonEmptyString"},
+        "MasterId":{
+          "shape":"NonEmptyString",
+          "deprecated":true,
+          "deprecatedMessage":"This field is deprecated, use AdministratorId instead."
+        },
+        "AdministratorId":{"shape":"NonEmptyString"},
         "MemberStatus":{"shape":"NonEmptyString"},
         "InvitedAt":{"shape":"Timestamp"},
         "UpdatedAt":{"shape":"Timestamp"}

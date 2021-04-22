@@ -1449,7 +1449,9 @@
         "AuthTokenLastModifiedDate":{"shape":"TStamp"},
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
-        "ARN":{"shape":"String"}
+        "ARN":{"shape":"String"},
+        "ReplicationGroupLogDeliveryEnabled":{"shape":"Boolean"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"}
       },
       "wrapper":true
     },
@@ -1846,6 +1848,12 @@
         "requires-reboot"
       ]
     },
+    "CloudWatchLogsDestinationDetails":{
+      "type":"structure",
+      "members":{
+        "LogGroup":{"shape":"String"}
+      }
+    },
     "ClusterIdList":{
       "type":"list",
       "member":{
@@ -1940,7 +1948,8 @@
         "AuthToken":{"shape":"String"},
         "OutpostMode":{"shape":"OutpostMode"},
         "PreferredOutpostArn":{"shape":"String"},
-        "PreferredOutpostArns":{"shape":"PreferredOutpostArnList"}
+        "PreferredOutpostArns":{"shape":"PreferredOutpostArnList"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
       }
     },
     "CreateCacheClusterResult":{
@@ -2063,7 +2072,8 @@
         "TransitEncryptionEnabled":{"shape":"BooleanOptional"},
         "AtRestEncryptionEnabled":{"shape":"BooleanOptional"},
         "KmsKeyId":{"shape":"String"},
-        "UserGroupIds":{"shape":"UserGroupIdListInput"}
+        "UserGroupIds":{"shape":"UserGroupIdListInput"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
       }
     },
     "CreateReplicationGroupResult":{
@@ -2493,6 +2503,20 @@
         "Users":{"shape":"UserList"},
         "Marker":{"shape":"String"}
       }
+    },
+    "DestinationDetails":{
+      "type":"structure",
+      "members":{
+        "CloudWatchLogsDetails":{"shape":"CloudWatchLogsDestinationDetails"},
+        "KinesisFirehoseDetails":{"shape":"KinesisFirehoseDestinationDetails"}
+      }
+    },
+    "DestinationType":{
+      "type":"string",
+      "enum":[
+        "cloudwatch-logs",
+        "kinesis-firehose"
+      ]
     },
     "DisassociateGlobalReplicationGroupMessage":{
       "type":"structure",
@@ -2939,6 +2963,12 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "KinesisFirehoseDestinationDetails":{
+      "type":"structure",
+      "members":{
+        "DeliveryStream":{"shape":"String"}
+      }
+    },
     "ListAllowedNodeTypeModificationsMessage":{
       "type":"structure",
       "members":{
@@ -2952,6 +2982,62 @@
       "members":{
         "ResourceName":{"shape":"String"}
       }
+    },
+    "LogDeliveryConfiguration":{
+      "type":"structure",
+      "members":{
+        "LogType":{"shape":"LogType"},
+        "DestinationType":{"shape":"DestinationType"},
+        "DestinationDetails":{"shape":"DestinationDetails"},
+        "LogFormat":{"shape":"LogFormat"},
+        "Status":{"shape":"LogDeliveryConfigurationStatus"},
+        "Message":{"shape":"String"}
+      }
+    },
+    "LogDeliveryConfigurationList":{
+      "type":"list",
+      "member":{
+        "shape":"LogDeliveryConfiguration",
+        "locationName":"LogDeliveryConfiguration"
+      }
+    },
+    "LogDeliveryConfigurationRequest":{
+      "type":"structure",
+      "members":{
+        "LogType":{"shape":"LogType"},
+        "DestinationType":{"shape":"DestinationType"},
+        "DestinationDetails":{"shape":"DestinationDetails"},
+        "LogFormat":{"shape":"LogFormat"},
+        "Enabled":{"shape":"BooleanOptional"}
+      }
+    },
+    "LogDeliveryConfigurationRequestList":{
+      "type":"list",
+      "member":{
+        "shape":"LogDeliveryConfigurationRequest",
+        "locationName":"LogDeliveryConfigurationRequest"
+      }
+    },
+    "LogDeliveryConfigurationStatus":{
+      "type":"string",
+      "enum":[
+        "active",
+        "enabling",
+        "modifying",
+        "disabling",
+        "error"
+      ]
+    },
+    "LogFormat":{
+      "type":"string",
+      "enum":[
+        "text",
+        "json"
+      ]
+    },
+    "LogType":{
+      "type":"string",
+      "enum":["slow-log"]
     },
     "ModifyCacheClusterMessage":{
       "type":"structure",
@@ -2975,7 +3061,8 @@
         "SnapshotWindow":{"shape":"String"},
         "CacheNodeType":{"shape":"String"},
         "AuthToken":{"shape":"String"},
-        "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"}
+        "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
       }
     },
     "ModifyCacheClusterResult":{
@@ -3062,7 +3149,8 @@
         "AuthTokenUpdateStrategy":{"shape":"AuthTokenUpdateStrategyType"},
         "UserGroupIdsToAdd":{"shape":"UserGroupIdList"},
         "UserGroupIdsToRemove":{"shape":"UserGroupIdList"},
-        "RemoveUserGroups":{"shape":"BooleanOptional"}
+        "RemoveUserGroups":{"shape":"BooleanOptional"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationRequestList"}
       }
     },
     "ModifyReplicationGroupResult":{
@@ -3389,6 +3477,20 @@
         "disabled"
       ]
     },
+    "PendingLogDeliveryConfiguration":{
+      "type":"structure",
+      "members":{
+        "LogType":{"shape":"LogType"},
+        "DestinationType":{"shape":"DestinationType"},
+        "DestinationDetails":{"shape":"DestinationDetails"},
+        "LogFormat":{"shape":"LogFormat"}
+      }
+    },
+    "PendingLogDeliveryConfigurationList":{
+      "type":"list",
+      "member":{"shape":"PendingLogDeliveryConfiguration"},
+      "locationName":"PendingLogDeliveryConfiguration"
+    },
     "PendingModifiedValues":{
       "type":"structure",
       "members":{
@@ -3396,7 +3498,8 @@
         "CacheNodeIdsToRemove":{"shape":"CacheNodeIdsList"},
         "EngineVersion":{"shape":"String"},
         "CacheNodeType":{"shape":"String"},
-        "AuthTokenStatus":{"shape":"AuthTokenUpdateStatus"}
+        "AuthTokenStatus":{"shape":"AuthTokenUpdateStatus"},
+        "LogDeliveryConfigurations":{"shape":"PendingLogDeliveryConfigurationList"}
       }
     },
     "PreferredAvailabilityZoneList":{
@@ -3561,7 +3664,8 @@
         "MemberClustersOutpostArns":{"shape":"ReplicationGroupOutpostArnList"},
         "KmsKeyId":{"shape":"String"},
         "ARN":{"shape":"String"},
-        "UserGroupIds":{"shape":"UserGroupIdList"}
+        "UserGroupIds":{"shape":"UserGroupIdList"},
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"}
       },
       "wrapper":true
     },
@@ -3642,7 +3746,8 @@
         "AutomaticFailoverStatus":{"shape":"PendingAutomaticFailoverStatus"},
         "Resharding":{"shape":"ReshardingStatus"},
         "AuthTokenStatus":{"shape":"AuthTokenUpdateStatus"},
-        "UserGroups":{"shape":"UserGroupsUpdateStatus"}
+        "UserGroups":{"shape":"UserGroupsUpdateStatus"},
+        "LogDeliveryConfigurations":{"shape":"PendingLogDeliveryConfigurationList"}
       }
     },
     "ReservedCacheNode":{

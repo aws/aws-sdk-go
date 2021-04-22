@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS SecurityHub.
 //    func myFunc(svc securityhubiface.SecurityHubAPI) bool {
-//        // Make svc.AcceptInvitation request
+//        // Make svc.AcceptAdministratorInvitation request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockSecurityHubClient struct {
 //        securityhubiface.SecurityHubAPI
 //    }
-//    func (m *mockSecurityHubClient) AcceptInvitation(input *securityhub.AcceptInvitationInput) (*securityhub.AcceptInvitationOutput, error) {
+//    func (m *mockSecurityHubClient) AcceptAdministratorInvitation(input *securityhub.AcceptAdministratorInvitationInput) (*securityhub.AcceptAdministratorInvitationOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type SecurityHubAPI interface {
+	AcceptAdministratorInvitation(*securityhub.AcceptAdministratorInvitationInput) (*securityhub.AcceptAdministratorInvitationOutput, error)
+	AcceptAdministratorInvitationWithContext(aws.Context, *securityhub.AcceptAdministratorInvitationInput, ...request.Option) (*securityhub.AcceptAdministratorInvitationOutput, error)
+	AcceptAdministratorInvitationRequest(*securityhub.AcceptAdministratorInvitationInput) (*request.Request, *securityhub.AcceptAdministratorInvitationOutput)
+
 	AcceptInvitation(*securityhub.AcceptInvitationInput) (*securityhub.AcceptInvitationOutput, error)
 	AcceptInvitationWithContext(aws.Context, *securityhub.AcceptInvitationInput, ...request.Option) (*securityhub.AcceptInvitationOutput, error)
 	AcceptInvitationRequest(*securityhub.AcceptInvitationInput) (*request.Request, *securityhub.AcceptInvitationOutput)
@@ -160,6 +164,10 @@ type SecurityHubAPI interface {
 	DisableSecurityHubWithContext(aws.Context, *securityhub.DisableSecurityHubInput, ...request.Option) (*securityhub.DisableSecurityHubOutput, error)
 	DisableSecurityHubRequest(*securityhub.DisableSecurityHubInput) (*request.Request, *securityhub.DisableSecurityHubOutput)
 
+	DisassociateFromAdministratorAccount(*securityhub.DisassociateFromAdministratorAccountInput) (*securityhub.DisassociateFromAdministratorAccountOutput, error)
+	DisassociateFromAdministratorAccountWithContext(aws.Context, *securityhub.DisassociateFromAdministratorAccountInput, ...request.Option) (*securityhub.DisassociateFromAdministratorAccountOutput, error)
+	DisassociateFromAdministratorAccountRequest(*securityhub.DisassociateFromAdministratorAccountInput) (*request.Request, *securityhub.DisassociateFromAdministratorAccountOutput)
+
 	DisassociateFromMasterAccount(*securityhub.DisassociateFromMasterAccountInput) (*securityhub.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountWithContext(aws.Context, *securityhub.DisassociateFromMasterAccountInput, ...request.Option) (*securityhub.DisassociateFromMasterAccountOutput, error)
 	DisassociateFromMasterAccountRequest(*securityhub.DisassociateFromMasterAccountInput) (*request.Request, *securityhub.DisassociateFromMasterAccountOutput)
@@ -179,6 +187,10 @@ type SecurityHubAPI interface {
 	EnableSecurityHub(*securityhub.EnableSecurityHubInput) (*securityhub.EnableSecurityHubOutput, error)
 	EnableSecurityHubWithContext(aws.Context, *securityhub.EnableSecurityHubInput, ...request.Option) (*securityhub.EnableSecurityHubOutput, error)
 	EnableSecurityHubRequest(*securityhub.EnableSecurityHubInput) (*request.Request, *securityhub.EnableSecurityHubOutput)
+
+	GetAdministratorAccount(*securityhub.GetAdministratorAccountInput) (*securityhub.GetAdministratorAccountOutput, error)
+	GetAdministratorAccountWithContext(aws.Context, *securityhub.GetAdministratorAccountInput, ...request.Option) (*securityhub.GetAdministratorAccountOutput, error)
+	GetAdministratorAccountRequest(*securityhub.GetAdministratorAccountInput) (*request.Request, *securityhub.GetAdministratorAccountOutput)
 
 	GetEnabledStandards(*securityhub.GetEnabledStandardsInput) (*securityhub.GetEnabledStandardsOutput, error)
 	GetEnabledStandardsWithContext(aws.Context, *securityhub.GetEnabledStandardsInput, ...request.Option) (*securityhub.GetEnabledStandardsOutput, error)

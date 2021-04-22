@@ -1,3 +1,13 @@
+Release v1.38.24 (2021-04-22)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service documentation
+* `service/elasticache`: Updates service API and documentation
+  * This release introduces log delivery of Redis slow log from Amazon ElastiCache.
+* `service/forecast`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.38.23 (2021-04-21)
 ===
 
