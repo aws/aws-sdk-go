@@ -1,15 +1,16 @@
 {
   "version": "2.0",
-  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the master account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>BatchEnableStandards</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p> <code> <a>UpdateStandardsControl</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
+  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the administrator account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>BatchEnableStandards</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p> <code> <a>UpdateStandardsControl</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
   "operations": {
-    "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
+    "AcceptAdministratorInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
+    "AcceptInvitation": "<p>This method is deprecated. Instead, use <code>AcceptAdministratorInvitation</code>.</p> <p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchImportFindings": "<p>Imports security findings generated from an integrated product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Finding providers also should not use <code>BatchImportFindings</code> to update the following attributes.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> </ul> <p>Instead, finding providers use <code>FindingProviderFields</code> to provide values for these attributes.</p>",
-    "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>AWS Security Hub User Guide</i>.</p>",
+    "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by administrator accounts or member accounts. Administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Administrator and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>AWS Security Hub User Guide</i>.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
-    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the master account. If you are integrated with Organizations, then the master account is the Security Hub administrator account that is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are part of an organization, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new accounts in an organization.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code> <a>InviteMembers</a> </code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are part of an organization do not receive an invitation. They automatically become a member account in Security Hub.</p> <p>A permissions policy is added that permits the master account to view the findings generated in the member account. When Security Hub is enabled in a member account, findings are sent to both the member and master accounts. </p> <p>To remove the association between the master and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
+    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are part of an organization, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new accounts in an organization.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code> <a>InviteMembers</a> </code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are part of an organization do not receive an invitation. They automatically become a member account in Security Hub.</p> <p>A permissions policy is added that permits the administrator account to view the findings generated in the member account. When Security Hub is enabled in a member account, the member account findings are also visible to the administrator account. </p> <p>To remove the association between the administrator and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
     "DeclineInvitations": "<p>Declines invitations to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
     "DeleteActionTarget": "<p>Deletes a custom action target from Security Hub.</p> <p>Deleting a custom action target does not affect any findings or insights that were already sent to Amazon CloudWatch Events using the custom action.</p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
@@ -23,23 +24,25 @@
     "DescribeStandardsControls": "<p>Returns a list of security standards controls.</p> <p>For each control, the results include information about whether it is currently enabled, the severity, and a link to remediation information.</p>",
     "DisableImportFindingsForProduct": "<p>Disables the integration of the specified product with Security Hub. After the integration is disabled, findings from that product are no longer sent to Security Hub.</p>",
     "DisableOrganizationAdminAccount": "<p>Disables a Security Hub administrator account. Can only be called by the organization management account.</p>",
-    "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for a master account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your master and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
-    "DisassociateFromMasterAccount": "<p>Disassociates the current Security Hub member account from the associated master account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the master account (the designated Security Hub administrator) can disassociate a member account.</p>",
-    "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated master account.</p> <p>Can be used to disassociate both accounts that are in an organization and accounts that were invited manually.</p>",
+    "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for an administrator account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your administrator and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
+    "DisassociateFromAdministratorAccount": "<p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
+    "DisassociateFromMasterAccount": "<p>This method is deprecated. Instead, use <code>DisassociateFromAdministratorAccount</code>.</p> <p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
+    "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated administrator account.</p> <p>Can be used to disassociate both accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub.</p> <p>When you enable a product integration, a permissions policy that grants permission for the product to send findings to Security Hub is applied.</p>",
     "EnableOrganizationAdminAccount": "<p>Designates the Security Hub administrator account for an organization. Can only be called by the organization management account.</p>",
     "EnableSecurityHub": "<p>Enables Security Hub for your account in the current Region or the Region you specify in the request.</p> <p>When you enable Security Hub, you grant to Security Hub the permissions necessary to gather findings from other services that are integrated with Security Hub.</p> <p>When you use the <code>EnableSecurityHub</code> operation to enable Security Hub, you also automatically enable the following standards.</p> <ul> <li> <p>CIS AWS Foundations</p> </li> <li> <p>AWS Foundational Security Best Practices</p> </li> </ul> <p>You do not enable the Payment Card Industry Data Security Standard (PCI DSS) standard. </p> <p>To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p> <p>After you enable Security Hub, to enable a standard, use the <code> <a>BatchEnableStandards</a> </code> operation. To disable a standard, use the <code> <a>BatchDisableStandards</a> </code> operation.</p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-settingup.html\">Setting Up AWS Security Hub</a> in the <i>AWS Security Hub User Guide</i>.</p>",
+    "GetAdministratorAccount": "<p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "GetEnabledStandards": "<p>Returns a list of the standards that are currently enabled.</p>",
     "GetFindings": "<p>Returns a list of findings that match the specified criteria.</p>",
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
     "GetInsights": "<p>Lists and describes insights for the specified insight ARNs.</p>",
     "GetInvitationsCount": "<p>Returns the count of all Security Hub membership invitations that were sent to the current member account, not including the currently accepted invitation. </p>",
-    "GetMasterAccount": "<p>Provides the details for the Security Hub master account for the current member account.</p> <p>Can be used by both member accounts that are in an organization and accounts that were invited manually.</p>",
-    "GetMembers": "<p>Returns the details for the Security Hub member accounts for the specified account IDs.</p> <p>A master account can be either a delegated Security Hub administrator account for an organization or a master account that enabled Security Hub manually.</p> <p>The results include both member accounts that are in an organization and accounts that were invited manually.</p>",
-    "InviteMembers": "<p>Invites other AWS accounts to become member accounts for the Security Hub master account that the invitation is sent from.</p> <p>This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations.</p> <p>Before you can use this action to invite a member, you must first use the <code> <a>CreateMembers</a> </code> action to create the member account in Security Hub.</p> <p>When the account owner enables Security Hub and accepts the invitation to become a member account, the master account can view the findings generated from the member account.</p>",
+    "GetMasterAccount": "<p>This method is deprecated. Instead, use <code>GetAdministratorAccount</code>.</p> <p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
+    "GetMembers": "<p>Returns the details for the Security Hub member accounts for the specified account IDs.</p> <p>An administrator account can be either the delegated Security Hub administrator account for an organization or an administrator account that enabled Security Hub manually.</p> <p>The results include both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
+    "InviteMembers": "<p>Invites other AWS accounts to become member accounts for the Security Hub administrator account that the invitation is sent from.</p> <p>This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations.</p> <p>Before you can use this action to invite a member, you must first use the <code> <a>CreateMembers</a> </code> action to create the member account in Security Hub.</p> <p>When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated from the member account.</p>",
     "ListEnabledProductsForImport": "<p>Lists all findings-generating solutions (products) that you are subscribed to receive findings from in Security Hub.</p>",
-    "ListInvitations": "<p>Lists all Security Hub membership invitations that were sent to the current AWS account.</p> <p>This operation is only used by accounts that do not belong to an organization. Organization accounts do not receive invitations.</p>",
-    "ListMembers": "<p>Lists details about all member accounts for the current Security Hub master account.</p> <p>The results include both member accounts that belong to an organization and member accounts that were invited manually.</p>",
+    "ListInvitations": "<p>Lists all Security Hub membership invitations that were sent to the current AWS account.</p> <p>This operation is only used by accounts that are managed by invitation. Accounts that are managed using the integration with AWS Organizations do not receive invitations.</p>",
+    "ListMembers": "<p>Lists details about all member accounts for the current Security Hub administrator account.</p> <p>The results include both member accounts that belong to an organization and member accounts that were invited manually.</p>",
     "ListOrganizationAdminAccounts": "<p>Lists the Security Hub administrator accounts. Can only be called by the organization management account.</p>",
     "ListTagsForResource": "<p>Returns a list of tags associated with a resource.</p>",
     "TagResource": "<p>Adds one or more tags to a resource.</p>",
@@ -52,6 +55,16 @@
     "UpdateStandardsControl": "<p>Used to control whether an individual security standard control is enabled or disabled.</p>"
   },
   "shapes": {
+    "AcceptAdministratorInvitationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AcceptAdministratorInvitationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AcceptInvitationRequest": {
       "base": null,
       "refs": {
@@ -76,14 +89,14 @@
     "AccountDetailsList": {
       "base": null,
       "refs": {
-        "CreateMembersRequest$AccountDetails": "<p>The list of accounts to associate with the Security Hub master account. For each account, the list includes the account ID and optionally the email address.</p>"
+        "CreateMembersRequest$AccountDetails": "<p>The list of accounts to associate with the Security Hub administrator account. For each account, the list includes the account ID and optionally the email address.</p>"
       }
     },
     "AccountId": {
       "base": null,
       "refs": {
         "AccountDetails$AccountId": "<p>The ID of an AWS account.</p>",
-        "Invitation$AccountId": "<p>The account ID of the Security Hub master account that the invitation was sent from.</p>",
+        "Invitation$AccountId": "<p>The account ID of the Security Hub administrator account that the invitation was sent from.</p>",
         "Member$AccountId": "<p>The AWS account ID of the member account.</p>",
         "Result$AccountId": "<p>An AWS account ID of the account that was not processed.</p>"
       }
@@ -94,7 +107,7 @@
         "DeclineInvitationsRequest$AccountIds": "<p>The list of account IDs for the accounts from which to decline the invitations to Security Hub.</p>",
         "DeleteInvitationsRequest$AccountIds": "<p>The list of the account IDs that sent the invitations to delete.</p>",
         "DeleteMembersRequest$AccountIds": "<p>The list of account IDs for the member accounts to delete.</p>",
-        "DisassociateMembersRequest$AccountIds": "<p>The account IDs of the member accounts to disassociate from the master account.</p>",
+        "DisassociateMembersRequest$AccountIds": "<p>The account IDs of the member accounts to disassociate from the administrator account.</p>",
         "GetMembersRequest$AccountIds": "<p>The list of account IDs for the Security Hub member accounts to return the details for. </p>",
         "InviteMembersRequest$AccountIds": "<p>The list of account IDs of the AWS accounts to invite to Security Hub as members. </p>"
       }
@@ -1739,7 +1752,7 @@
         "DescribeOrganizationConfigurationResponse$MemberAccountLimitReached": "<p>Whether the maximum number of allowed member accounts are already associated with the Security Hub administrator account.</p>",
         "DnsRequestAction$Blocked": "<p>Indicates whether the DNS request was blocked.</p>",
         "EnableSecurityHubRequest$EnableDefaultStandards": "<p>Whether to enable the security standards that Security Hub has designated as automatically enabled. If you do not provide a value for <code>EnableDefaultStandards</code>, it is set to <code>true</code>. To not enable the automatically enabled standards, set <code>EnableDefaultStandards</code> to <code>false</code>.</p>",
-        "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the master account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the master is set to <code>ENABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
+        "ListMembersRequest$OnlyAssociated": "<p>Specifies which member accounts to include in the response based on their relationship status with the administrator account. The default value is <code>TRUE</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>TRUE</code>, the response includes member accounts whose relationship status with the administrator account is set to <code>ENABLED</code>.</p> <p>If <code>OnlyAssociated</code> is set to <code>FALSE</code>, the response includes all existing member accounts. </p>",
         "NetworkConnectionAction$Blocked": "<p>Indicates whether the network connection attempt was blocked.</p>",
         "PortProbeAction$Blocked": "<p>Indicates whether the port probe was blocked.</p>",
         "Standard$EnabledByDefault": "<p>Whether the standard is enabled by default. When Security Hub is enabled from the console, if a standard is enabled by default, the check box for that standard is selected by default.</p> <p>When Security Hub is enabled using the <code>EnableSecurityHub</code> API operation, the standard is enabled by default unless <code>EnableDefaultStandards</code> is set to <code>false</code>.</p>",
@@ -2073,6 +2086,16 @@
       "refs": {
       }
     },
+    "DisassociateFromAdministratorAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateFromAdministratorAccountResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateFromMasterAccountRequest": {
       "base": null,
       "refs": {
@@ -2179,6 +2202,16 @@
       "base": "<p>Provides the latitude and longitude coordinates of a location.</p>",
       "refs": {
         "ActionRemoteIpDetails$GeoLocation": "<p>The coordinates of the location of the remote IP address.</p>"
+      }
+    },
+    "GetAdministratorAccountRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAdministratorAccountResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetEnabledStandardsRequest": {
@@ -2412,7 +2445,7 @@
     "IntegrationTypeList": {
       "base": null,
       "refs": {
-        "Product$IntegrationTypes": "<p>The types of integration that the product supports. Available values are the following.</p> <ul> <li> <p> <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - Indicates that the integration sends findings to Security Hub.</p> </li> <li> <p> <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - Indicates that the integration receives findings from Security Hub.</p> </li> </ul>"
+        "Product$IntegrationTypes": "<p>The types of integration that the product supports. Available values are the following.</p> <ul> <li> <p> <code>SEND_FINDINGS_TO_SECURITY_HUB</code> - The integration sends findings to Security Hub.</p> </li> <li> <p> <code>RECEIVE_FINDINGS_FROM_SECURITY_HUB</code> - The integration receives findings from Security Hub.</p> </li> <li> <p> <code>UPDATE_FINDINGS_IN_SECURITY_HUB</code> - The integration does not send new findings to Security Hub, but does make updates to the findings that it receives from Security Hub.</p> </li> </ul>"
       }
     },
     "InternalException": {
@@ -2433,7 +2466,8 @@
     "Invitation": {
       "base": "<p>Details about an invitation.</p>",
       "refs": {
-        "GetMasterAccountResponse$Master": "<p>A list of details about the Security Hub master account for the current member account. </p>",
+        "GetAdministratorAccountResponse$Administrator": null,
+        "GetMasterAccountResponse$Master": "<p>A list of details about the Security Hub administrator account for the current member account. </p>",
         "InvitationList$member": null
       }
     },
@@ -2726,8 +2760,10 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
-        "AcceptInvitationRequest$MasterId": "<p>The account ID of the Security Hub master account that sent the invitation.</p>",
-        "AcceptInvitationRequest$InvitationId": "<p>The ID of the invitation sent from the Security Hub master account.</p>",
+        "AcceptAdministratorInvitationRequest$AdministratorId": "<p>The account ID of the Security Hub administrator account that sent the invitation.</p>",
+        "AcceptAdministratorInvitationRequest$InvitationId": "<p>The identifier of the invitation sent from the Security Hub administrator account.</p>",
+        "AcceptInvitationRequest$MasterId": "<p>The account ID of the Security Hub administrator account that sent the invitation.</p>",
+        "AcceptInvitationRequest$InvitationId": "<p>The identifier of the invitation sent from the Security Hub administrator account.</p>",
         "AccessDeniedException$Message": null,
         "AccessDeniedException$Code": null,
         "AccountDetails$Email": "<p>The email of an AWS account.</p>",
@@ -3346,7 +3382,7 @@
         "InvalidInputException$Message": null,
         "InvalidInputException$Code": null,
         "Invitation$InvitationId": "<p>The ID of the invitation sent to the member account.</p>",
-        "Invitation$MemberStatus": "<p>The current status of the association between the member and master accounts.</p>",
+        "Invitation$MemberStatus": "<p>The current status of the association between the member and administrator accounts.</p>",
         "IpFilter$Cidr": "<p>A finding's CIDR value.</p>",
         "IpOrganizationDetails$AsnOrg": "<p>The name of the organization that registered the ASN.</p>",
         "IpOrganizationDetails$Isp": "<p>The ISP information for the internet provider.</p>",
@@ -3366,8 +3402,9 @@
         "MapFilter$Key": "<p>The key of the map filter. For example, for <code>ResourceTags</code>, <code>Key</code> identifies the name of the tag. For <code>UserDefinedFields</code>, <code>Key</code> is the name of the field.</p>",
         "MapFilter$Value": "<p>The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called <code>Department</code> might be <code>Security</code>. If you provide <code>security</code> as the filter value, then there is no match.</p>",
         "Member$Email": "<p>The email address of the member account.</p>",
-        "Member$MasterId": "<p>The AWS account ID of the Security Hub master account associated with this member account.</p>",
-        "Member$MemberStatus": "<p>The status of the relationship between the member account and its master account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>CREATED</code> - Indicates that the master account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>INVITED</code> - Indicates that the master account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>ENABLED</code> - Indicates that the member account is currently active. For manually invited member accounts, indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>REMOVED</code> - Indicates that the master account disassociated the member account.</p> </li> <li> <p> <code>RESIGNED</code> - Indicates that the member account disassociated themselves from the master account.</p> </li> <li> <p> <code>DELETED</code> - Indicates that the master account deleted the member account.</p> </li> </ul>",
+        "Member$MasterId": "<p>This is replaced by <code>AdministratorID</code>.</p> <p>The AWS account ID of the Security Hub administrator account associated with this member account.</p>",
+        "Member$AdministratorId": "<p>The AWS account ID of the Security Hub administrator account associated with this member account.</p>",
+        "Member$MemberStatus": "<p>The status of the relationship between the member account and its administrator account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>CREATED</code> - Indicates that the administrator account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>INVITED</code> - Indicates that the administrator account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>ENABLED</code> - Indicates that the member account is currently active. For manually invited member accounts, indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>REMOVED</code> - Indicates that the administrator account disassociated the member account.</p> </li> <li> <p> <code>RESIGNED</code> - Indicates that the member account disassociated themselves from the administrator account.</p> </li> <li> <p> <code>DELETED</code> - Indicates that the administrator account deleted the member account.</p> </li> </ul>",
         "Network$Protocol": "<p>The protocol of network-related information about a finding.</p>",
         "Network$SourceIpV4": "<p>The source IPv4 address of network-related information about a finding.</p>",
         "Network$SourceIpV6": "<p>The source IPv6 address of network-related information about a finding.</p>",
@@ -3400,8 +3437,8 @@
         "Product$ProductName": "<p>The name of the product.</p>",
         "Product$CompanyName": "<p>The name of the company that provides the product.</p>",
         "Product$Description": "<p>A description of the product.</p>",
-        "Product$MarketplaceUrl": "<p>The URL for the page that contains more information about the product.</p>",
-        "Product$ActivationUrl": "<p>The URL used to activate the product.</p>",
+        "Product$MarketplaceUrl": "<p>For integrations with AWS services, the AWS Console URL from which to activate the service.</p> <p>For integrations with third-party products, the AWS Marketplace URL from which to subscribe to or purchase the product.</p>",
+        "Product$ActivationUrl": "<p>The URL to the service or product documentation about the integration with Security Hub, including how to activate the integration.</p>",
         "Product$ProductSubscriptionResourcePolicy": "<p>The resource policy associated with the product.</p>",
         "ProductSubscriptionArnList$member": null,
         "Recommendation$Text": "<p>Describes the recommended steps to take to remediate an issue identified in a finding.</p>",

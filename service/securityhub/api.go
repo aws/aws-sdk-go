@@ -13,6 +13,110 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAcceptAdministratorInvitation = "AcceptAdministratorInvitation"
+
+// AcceptAdministratorInvitationRequest generates a "aws/request.Request" representing the
+// client's request for the AcceptAdministratorInvitation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AcceptAdministratorInvitation for more information on using the AcceptAdministratorInvitation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AcceptAdministratorInvitationRequest method.
+//    req, resp := client.AcceptAdministratorInvitationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptAdministratorInvitation
+func (c *SecurityHub) AcceptAdministratorInvitationRequest(input *AcceptAdministratorInvitationInput) (req *request.Request, output *AcceptAdministratorInvitationOutput) {
+	op := &request.Operation{
+		Name:       opAcceptAdministratorInvitation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/administrator",
+	}
+
+	if input == nil {
+		input = &AcceptAdministratorInvitationInput{}
+	}
+
+	output = &AcceptAdministratorInvitationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AcceptAdministratorInvitation API operation for AWS SecurityHub.
+//
+// Accepts the invitation to be a member account and be monitored by the Security
+// Hub administrator account that the invitation was sent from.
+//
+// This operation is only used by member accounts that are not added through
+// Organizations.
+//
+// When the member account accepts the invitation, permission is granted to
+// the administrator account to view findings generated in the member account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation AcceptAdministratorInvitation for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current AWS account or throttling limits. The error code describes the
+//   limit exceeded.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptAdministratorInvitation
+func (c *SecurityHub) AcceptAdministratorInvitation(input *AcceptAdministratorInvitationInput) (*AcceptAdministratorInvitationOutput, error) {
+	req, out := c.AcceptAdministratorInvitationRequest(input)
+	return out, req.Send()
+}
+
+// AcceptAdministratorInvitationWithContext is the same as AcceptAdministratorInvitation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AcceptAdministratorInvitation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) AcceptAdministratorInvitationWithContext(ctx aws.Context, input *AcceptAdministratorInvitationInput, opts ...request.Option) (*AcceptAdministratorInvitationOutput, error) {
+	req, out := c.AcceptAdministratorInvitationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAcceptInvitation = "AcceptInvitation"
 
 // AcceptInvitationRequest generates a "aws/request.Request" representing the
@@ -39,7 +143,12 @@ const opAcceptInvitation = "AcceptInvitation"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptInvitation
+//
+// Deprecated: This API has been deprecated, use AcceptAdministratorInvitation API instead.
 func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req *request.Request, output *AcceptInvitationOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, AcceptInvitation, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opAcceptInvitation,
 		HTTPMethod: "POST",
@@ -58,14 +167,16 @@ func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req
 
 // AcceptInvitation API operation for AWS SecurityHub.
 //
+// This method is deprecated. Instead, use AcceptAdministratorInvitation.
+//
 // Accepts the invitation to be a member account and be monitored by the Security
-// Hub master account that the invitation was sent from.
+// Hub administrator account that the invitation was sent from.
 //
 // This operation is only used by member accounts that are not added through
 // Organizations.
 //
 // When the member account accepts the invitation, permission is granted to
-// the master account to view findings generated in the member account.
+// the administrator account to view findings generated in the member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -96,6 +207,8 @@ func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req
 //   to perform this action.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/AcceptInvitation
+//
+// Deprecated: This API has been deprecated, use AcceptAdministratorInvitation API instead.
 func (c *SecurityHub) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
 	return out, req.Send()
@@ -110,6 +223,8 @@ func (c *SecurityHub) AcceptInvitation(input *AcceptInvitationInput) (*AcceptInv
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API has been deprecated, use AcceptAdministratorInvitation API instead.
 func (c *SecurityHub) AcceptInvitationWithContext(ctx aws.Context, input *AcceptInvitationInput, opts ...request.Option) (*AcceptInvitationOutput, error) {
 	req, out := c.AcceptInvitationRequest(input)
 	req.SetContext(ctx)
@@ -481,15 +596,15 @@ func (c *SecurityHub) BatchUpdateFindingsRequest(input *BatchUpdateFindingsInput
 // BatchUpdateFindings API operation for AWS SecurityHub.
 //
 // Used by Security Hub customers to update information about their investigation
-// into a finding. Requested by master accounts or member accounts. Master accounts
-// can update findings for their account and their member accounts. Member accounts
-// can update findings for their account.
+// into a finding. Requested by administrator accounts or member accounts. Administrator
+// accounts can update findings for their account and their member accounts.
+// Member accounts can update findings for their account.
 //
 // Updates from BatchUpdateFindings do not affect the value of UpdatedAt for
 // a finding.
 //
-// Master and member accounts can use BatchUpdateFindings to update the following
-// finding fields and objects.
+// Administrator and member accounts can use BatchUpdateFindings to update the
+// following finding fields and objects.
 //
 //    * Confidence
 //
@@ -805,10 +920,9 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 // CreateMembers API operation for AWS SecurityHub.
 //
 // Creates a member association in Security Hub between the specified accounts
-// and the account used to make the request, which is the master account. If
-// you are integrated with Organizations, then the master account is the Security
-// Hub administrator account that is designated by the organization management
-// account.
+// and the account used to make the request, which is the administrator account.
+// If you are integrated with Organizations, then the administrator account
+// is designated by the organization management account.
 //
 // CreateMembers is always used to add accounts that are not organization members.
 //
@@ -831,12 +945,13 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 // Accounts that are part of an organization do not receive an invitation. They
 // automatically become a member account in Security Hub.
 //
-// A permissions policy is added that permits the master account to view the
-// findings generated in the member account. When Security Hub is enabled in
-// a member account, findings are sent to both the member and master accounts.
+// A permissions policy is added that permits the administrator account to view
+// the findings generated in the member account. When Security Hub is enabled
+// in a member account, the member account findings are also visible to the
+// administrator account.
 //
-// To remove the association between the master and member accounts, use the
-// DisassociateFromMasterAccount or DisassociateMembers operation.
+// To remove the association between the administrator and member accounts,
+// use the DisassociateFromMasterAccount or DisassociateMembers operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2411,12 +2526,12 @@ func (c *SecurityHub) DisableSecurityHubRequest(input *DisableSecurityHubInput) 
 // Security Hub in all Regions, you must submit one request per Region where
 // you have enabled Security Hub.
 //
-// When you disable Security Hub for a master account, it doesn't disable Security
-// Hub for any associated member accounts.
+// When you disable Security Hub for an administrator account, it doesn't disable
+// Security Hub for any associated member accounts.
 //
 // When you disable Security Hub, your existing findings and insights and any
 // Security Hub configuration settings are deleted after 90 days and cannot
-// be recovered. Any standards that were enabled are disabled, and your master
+// be recovered. Any standards that were enabled are disabled, and your administrator
 // and member account associations are removed.
 //
 // If you want to save your existing findings, you must export them before you
@@ -2468,6 +2583,108 @@ func (c *SecurityHub) DisableSecurityHubWithContext(ctx aws.Context, input *Disa
 	return out, req.Send()
 }
 
+const opDisassociateFromAdministratorAccount = "DisassociateFromAdministratorAccount"
+
+// DisassociateFromAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateFromAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateFromAdministratorAccount for more information on using the DisassociateFromAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateFromAdministratorAccountRequest method.
+//    req, resp := client.DisassociateFromAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateFromAdministratorAccount
+func (c *SecurityHub) DisassociateFromAdministratorAccountRequest(input *DisassociateFromAdministratorAccountInput) (req *request.Request, output *DisassociateFromAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateFromAdministratorAccount,
+		HTTPMethod: "POST",
+		HTTPPath:   "/administrator/disassociate",
+	}
+
+	if input == nil {
+		input = &DisassociateFromAdministratorAccountInput{}
+	}
+
+	output = &DisassociateFromAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateFromAdministratorAccount API operation for AWS SecurityHub.
+//
+// Disassociates the current Security Hub member account from the associated
+// administrator account.
+//
+// This operation is only used by accounts that are not part of an organization.
+// For organization accounts, only the administrator account can disassociate
+// a member account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation DisassociateFromAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current AWS account or throttling limits. The error code describes the
+//   limit exceeded.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateFromAdministratorAccount
+func (c *SecurityHub) DisassociateFromAdministratorAccount(input *DisassociateFromAdministratorAccountInput) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateFromAdministratorAccountWithContext is the same as DisassociateFromAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateFromAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) DisassociateFromAdministratorAccountWithContext(ctx aws.Context, input *DisassociateFromAdministratorAccountInput, opts ...request.Option) (*DisassociateFromAdministratorAccountOutput, error) {
+	req, out := c.DisassociateFromAdministratorAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 
 // DisassociateFromMasterAccountRequest generates a "aws/request.Request" representing the
@@ -2494,7 +2711,12 @@ const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateFromMasterAccount
+//
+// Deprecated: This API has been deprecated, use DisassociateFromAdministratorAccount API instead.
 func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFromMasterAccountInput) (req *request.Request, output *DisassociateFromMasterAccountOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, DisassociateFromMasterAccount, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opDisassociateFromMasterAccount,
 		HTTPMethod: "POST",
@@ -2513,12 +2735,14 @@ func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFr
 
 // DisassociateFromMasterAccount API operation for AWS SecurityHub.
 //
+// This method is deprecated. Instead, use DisassociateFromAdministratorAccount.
+//
 // Disassociates the current Security Hub member account from the associated
-// master account.
+// administrator account.
 //
 // This operation is only used by accounts that are not part of an organization.
-// For organization accounts, only the master account (the designated Security
-// Hub administrator) can disassociate a member account.
+// For organization accounts, only the administrator account can disassociate
+// a member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2549,6 +2773,8 @@ func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFr
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/DisassociateFromMasterAccount
+//
+// Deprecated: This API has been deprecated, use DisassociateFromAdministratorAccount API instead.
 func (c *SecurityHub) DisassociateFromMasterAccount(input *DisassociateFromMasterAccountInput) (*DisassociateFromMasterAccountOutput, error) {
 	req, out := c.DisassociateFromMasterAccountRequest(input)
 	return out, req.Send()
@@ -2563,6 +2789,8 @@ func (c *SecurityHub) DisassociateFromMasterAccount(input *DisassociateFromMaste
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API has been deprecated, use DisassociateFromAdministratorAccount API instead.
 func (c *SecurityHub) DisassociateFromMasterAccountWithContext(ctx aws.Context, input *DisassociateFromMasterAccountInput, opts ...request.Option) (*DisassociateFromMasterAccountOutput, error) {
 	req, out := c.DisassociateFromMasterAccountRequest(input)
 	req.SetContext(ctx)
@@ -2615,10 +2843,11 @@ func (c *SecurityHub) DisassociateMembersRequest(input *DisassociateMembersInput
 
 // DisassociateMembers API operation for AWS SecurityHub.
 //
-// Disassociates the specified member accounts from the associated master account.
+// Disassociates the specified member accounts from the associated administrator
+// account.
 //
-// Can be used to disassociate both accounts that are in an organization and
-// accounts that were invited manually.
+// Can be used to disassociate both accounts that are managed using Organizations
+// and accounts that were invited manually.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2980,6 +3209,106 @@ func (c *SecurityHub) EnableSecurityHub(input *EnableSecurityHubInput) (*EnableS
 // for more information on using Contexts.
 func (c *SecurityHub) EnableSecurityHubWithContext(ctx aws.Context, input *EnableSecurityHubInput, opts ...request.Option) (*EnableSecurityHubOutput, error) {
 	req, out := c.EnableSecurityHubRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetAdministratorAccount = "GetAdministratorAccount"
+
+// GetAdministratorAccountRequest generates a "aws/request.Request" representing the
+// client's request for the GetAdministratorAccount operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAdministratorAccount for more information on using the GetAdministratorAccount
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAdministratorAccountRequest method.
+//    req, resp := client.GetAdministratorAccountRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetAdministratorAccount
+func (c *SecurityHub) GetAdministratorAccountRequest(input *GetAdministratorAccountInput) (req *request.Request, output *GetAdministratorAccountOutput) {
+	op := &request.Operation{
+		Name:       opGetAdministratorAccount,
+		HTTPMethod: "GET",
+		HTTPPath:   "/administrator",
+	}
+
+	if input == nil {
+		input = &GetAdministratorAccountInput{}
+	}
+
+	output = &GetAdministratorAccountOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAdministratorAccount API operation for AWS SecurityHub.
+//
+// Provides the details for the Security Hub administrator account for the current
+// member account.
+//
+// Can be used by both member accounts that are managed using Organizations
+// and accounts that were invited manually.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS SecurityHub's
+// API operation GetAdministratorAccount for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   Internal server error.
+//
+//   * InvalidInputException
+//   The request was rejected because you supplied an invalid or out-of-range
+//   value for an input parameter.
+//
+//   * InvalidAccessException
+//   There is an issue with the account used to make the request. Either Security
+//   Hub is not enabled for the account, or the account does not have permission
+//   to perform this action.
+//
+//   * LimitExceededException
+//   The request was rejected because it attempted to create resources beyond
+//   the current AWS account or throttling limits. The error code describes the
+//   limit exceeded.
+//
+//   * ResourceNotFoundException
+//   The request was rejected because we can't find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetAdministratorAccount
+func (c *SecurityHub) GetAdministratorAccount(input *GetAdministratorAccountInput) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
+	return out, req.Send()
+}
+
+// GetAdministratorAccountWithContext is the same as GetAdministratorAccount with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAdministratorAccount for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SecurityHub) GetAdministratorAccountWithContext(ctx aws.Context, input *GetAdministratorAccountInput, opts ...request.Option) (*GetAdministratorAccountOutput, error) {
+	req, out := c.GetAdministratorAccountRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3657,7 +3986,12 @@ const opGetMasterAccount = "GetMasterAccount"
 //    }
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetMasterAccount
+//
+// Deprecated: This API has been deprecated, use GetAdministratorAccount API instead.
 func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req *request.Request, output *GetMasterAccountOutput) {
+	if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log("This operation, GetMasterAccount, has been deprecated")
+	}
 	op := &request.Operation{
 		Name:       opGetMasterAccount,
 		HTTPMethod: "GET",
@@ -3675,11 +4009,13 @@ func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req
 
 // GetMasterAccount API operation for AWS SecurityHub.
 //
-// Provides the details for the Security Hub master account for the current
+// This method is deprecated. Instead, use GetAdministratorAccount.
+//
+// Provides the details for the Security Hub administrator account for the current
 // member account.
 //
-// Can be used by both member accounts that are in an organization and accounts
-// that were invited manually.
+// Can be used by both member accounts that are managed using Organizations
+// and accounts that were invited manually.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3710,6 +4046,8 @@ func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req
 //   The request was rejected because we can't find the specified resource.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/securityhub-2018-10-26/GetMasterAccount
+//
+// Deprecated: This API has been deprecated, use GetAdministratorAccount API instead.
 func (c *SecurityHub) GetMasterAccount(input *GetMasterAccountInput) (*GetMasterAccountOutput, error) {
 	req, out := c.GetMasterAccountRequest(input)
 	return out, req.Send()
@@ -3724,6 +4062,8 @@ func (c *SecurityHub) GetMasterAccount(input *GetMasterAccountInput) (*GetMaster
 // the context is nil a panic will occur. In the future the SDK may create
 // sub-contexts for http.Requests. See https://golang.org/pkg/context/
 // for more information on using Contexts.
+//
+// Deprecated: This API has been deprecated, use GetAdministratorAccount API instead.
 func (c *SecurityHub) GetMasterAccountWithContext(ctx aws.Context, input *GetMasterAccountInput, opts ...request.Option) (*GetMasterAccountOutput, error) {
 	req, out := c.GetMasterAccountRequest(input)
 	req.SetContext(ctx)
@@ -3778,11 +4118,12 @@ func (c *SecurityHub) GetMembersRequest(input *GetMembersInput) (req *request.Re
 // Returns the details for the Security Hub member accounts for the specified
 // account IDs.
 //
-// A master account can be either a delegated Security Hub administrator account
-// for an organization or a master account that enabled Security Hub manually.
+// An administrator account can be either the delegated Security Hub administrator
+// account for an organization or an administrator account that enabled Security
+// Hub manually.
 //
-// The results include both member accounts that are in an organization and
-// accounts that were invited manually.
+// The results include both member accounts that are managed using Organizations
+// and accounts that were invited manually.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3879,7 +4220,7 @@ func (c *SecurityHub) InviteMembersRequest(input *InviteMembersInput) (req *requ
 // InviteMembers API operation for AWS SecurityHub.
 //
 // Invites other AWS accounts to become member accounts for the Security Hub
-// master account that the invitation is sent from.
+// administrator account that the invitation is sent from.
 //
 // This operation is only used to invite accounts that do not belong to an organization.
 // Organization accounts do not receive invitations.
@@ -3888,8 +4229,8 @@ func (c *SecurityHub) InviteMembersRequest(input *InviteMembersInput) (req *requ
 // CreateMembers action to create the member account in Security Hub.
 //
 // When the account owner enables Security Hub and accepts the invitation to
-// become a member account, the master account can view the findings generated
-// from the member account.
+// become a member account, the administrator account can view the findings
+// generated from the member account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4142,8 +4483,9 @@ func (c *SecurityHub) ListInvitationsRequest(input *ListInvitationsInput) (req *
 // Lists all Security Hub membership invitations that were sent to the current
 // AWS account.
 //
-// This operation is only used by accounts that do not belong to an organization.
-// Organization accounts do not receive invitations.
+// This operation is only used by accounts that are managed by invitation. Accounts
+// that are managed using the integration with AWS Organizations do not receive
+// invitations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4294,7 +4636,7 @@ func (c *SecurityHub) ListMembersRequest(input *ListMembersInput) (req *request.
 
 // ListMembers API operation for AWS SecurityHub.
 //
-// Lists details about all member accounts for the current Security Hub master
+// Lists details about all member accounts for the current Security Hub administrator
 // account.
 //
 // The results include both member accounts that belong to an organization and
@@ -5389,15 +5731,83 @@ func (c *SecurityHub) UpdateStandardsControlWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+type AcceptAdministratorInvitationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the Security Hub administrator account that sent the invitation.
+	//
+	// AdministratorId is a required field
+	AdministratorId *string `type:"string" required:"true"`
+
+	// The identifier of the invitation sent from the Security Hub administrator
+	// account.
+	//
+	// InvitationId is a required field
+	InvitationId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AcceptAdministratorInvitationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AcceptAdministratorInvitationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptAdministratorInvitationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptAdministratorInvitationInput"}
+	if s.AdministratorId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AdministratorId"))
+	}
+	if s.InvitationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InvitationId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdministratorId sets the AdministratorId field's value.
+func (s *AcceptAdministratorInvitationInput) SetAdministratorId(v string) *AcceptAdministratorInvitationInput {
+	s.AdministratorId = &v
+	return s
+}
+
+// SetInvitationId sets the InvitationId field's value.
+func (s *AcceptAdministratorInvitationInput) SetInvitationId(v string) *AcceptAdministratorInvitationInput {
+	s.InvitationId = &v
+	return s
+}
+
+type AcceptAdministratorInvitationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AcceptAdministratorInvitationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AcceptAdministratorInvitationOutput) GoString() string {
+	return s.String()
+}
+
 type AcceptInvitationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the invitation sent from the Security Hub master account.
+	// The identifier of the invitation sent from the Security Hub administrator
+	// account.
 	//
 	// InvitationId is a required field
 	InvitationId *string `type:"string" required:"true"`
 
-	// The account ID of the Security Hub master account that sent the invitation.
+	// The account ID of the Security Hub administrator account that sent the invitation.
 	//
 	// MasterId is a required field
 	MasterId *string `type:"string" required:"true"`
@@ -19922,8 +20332,9 @@ func (s *CreateInsightOutput) SetInsightArn(v string) *CreateInsightOutput {
 type CreateMembersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of accounts to associate with the Security Hub master account. For
-	// each account, the list includes the account ID and optionally the email address.
+	// The list of accounts to associate with the Security Hub administrator account.
+	// For each account, the list includes the account ID and optionally the email
+	// address.
 	//
 	// AccountDetails is a required field
 	AccountDetails []*AccountDetails `type:"list" required:"true"`
@@ -21165,6 +21576,34 @@ func (s DisableSecurityHubOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateFromAdministratorAccountInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateFromAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFromAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+type DisassociateFromAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateFromAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateFromAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateFromMasterAccountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -21196,7 +21635,8 @@ func (s DisassociateFromMasterAccountOutput) GoString() string {
 type DisassociateMembersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account IDs of the member accounts to disassociate from the master account.
+	// The account IDs of the member accounts to disassociate from the administrator
+	// account.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `type:"list" required:"true"`
@@ -21623,6 +22063,43 @@ func (s *GeoLocation) SetLon(v float64) *GeoLocation {
 	return s
 }
 
+type GetAdministratorAccountInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAdministratorAccountInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAdministratorAccountInput) GoString() string {
+	return s.String()
+}
+
+type GetAdministratorAccountOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Details about an invitation.
+	Administrator *Invitation `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAdministratorAccountOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAdministratorAccountOutput) GoString() string {
+	return s.String()
+}
+
+// SetAdministrator sets the Administrator field's value.
+func (s *GetAdministratorAccountOutput) SetAdministrator(v *Invitation) *GetAdministratorAccountOutput {
+	s.Administrator = v
+	return s
+}
+
 type GetEnabledStandardsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22040,8 +22517,8 @@ func (s GetMasterAccountInput) GoString() string {
 type GetMasterAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of details about the Security Hub master account for the current member
-	// account.
+	// A list of details about the Security Hub administrator account for the current
+	// member account.
 	Master *Invitation `type:"structure"`
 }
 
@@ -22515,8 +22992,8 @@ func (s *InvalidInputException) RequestID() string {
 type Invitation struct {
 	_ struct{} `type:"structure"`
 
-	// The account ID of the Security Hub master account that the invitation was
-	// sent from.
+	// The account ID of the Security Hub administrator account that the invitation
+	// was sent from.
 	AccountId *string `type:"string"`
 
 	// The ID of the invitation sent to the member account.
@@ -22525,7 +23002,8 @@ type Invitation struct {
 	// The timestamp of when the invitation was sent.
 	InvitedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The current status of the association between the member and master accounts.
+	// The current status of the association between the member and administrator
+	// accounts.
 	MemberStatus *string `type:"string"`
 }
 
@@ -23003,10 +23481,11 @@ type ListMembersInput struct {
 	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
 
 	// Specifies which member accounts to include in the response based on their
-	// relationship status with the master account. The default value is TRUE.
+	// relationship status with the administrator account. The default value is
+	// TRUE.
 	//
 	// If OnlyAssociated is set to TRUE, the response includes member accounts whose
-	// relationship status with the master is set to ENABLED.
+	// relationship status with the administrator account is set to ENABLED.
 	//
 	// If OnlyAssociated is set to FALSE, the response includes all existing member
 	// accounts.
@@ -23405,6 +23884,10 @@ type Member struct {
 	// The AWS account ID of the member account.
 	AccountId *string `type:"string"`
 
+	// The AWS account ID of the Security Hub administrator account associated with
+	// this member account.
+	AdministratorId *string `type:"string"`
+
 	// The email address of the member account.
 	Email *string `type:"string"`
 
@@ -23412,32 +23895,37 @@ type Member struct {
 	// account.
 	InvitedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
-	// The AWS account ID of the Security Hub master account associated with this
-	// member account.
-	MasterId *string `type:"string"`
+	// This is replaced by AdministratorID.
+	//
+	// The AWS account ID of the Security Hub administrator account associated with
+	// this member account.
+	//
+	// Deprecated: This field is deprecated, use AdministratorId instead.
+	MasterId *string `deprecated:"true" type:"string"`
 
-	// The status of the relationship between the member account and its master
+	// The status of the relationship between the member account and its administrator
 	// account.
 	//
 	// The status can have one of the following values:
 	//
-	//    * CREATED - Indicates that the master account added the member account,
-	//    but has not yet invited the member account.
+	//    * CREATED - Indicates that the administrator account added the member
+	//    account, but has not yet invited the member account.
 	//
-	//    * INVITED - Indicates that the master account invited the member account.
-	//    The member account has not yet responded to the invitation.
+	//    * INVITED - Indicates that the administrator account invited the member
+	//    account. The member account has not yet responded to the invitation.
 	//
 	//    * ENABLED - Indicates that the member account is currently active. For
 	//    manually invited member accounts, indicates that the member account accepted
 	//    the invitation.
 	//
-	//    * REMOVED - Indicates that the master account disassociated the member
-	//    account.
+	//    * REMOVED - Indicates that the administrator account disassociated the
+	//    member account.
 	//
 	//    * RESIGNED - Indicates that the member account disassociated themselves
-	//    from the master account.
+	//    from the administrator account.
 	//
-	//    * DELETED - Indicates that the master account deleted the member account.
+	//    * DELETED - Indicates that the administrator account deleted the member
+	//    account.
 	MemberStatus *string `type:"string"`
 
 	// The timestamp for the date and time when the member account was updated.
@@ -23457,6 +23945,12 @@ func (s Member) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *Member) SetAccountId(v string) *Member {
 	s.AccountId = &v
+	return s
+}
+
+// SetAdministratorId sets the AdministratorId field's value.
+func (s *Member) SetAdministratorId(v string) *Member {
+	s.AdministratorId = &v
 	return s
 }
 
@@ -24428,7 +24922,8 @@ func (s *ProcessDetails) SetTerminatedAt(v string) *ProcessDetails {
 type Product struct {
 	_ struct{} `type:"structure"`
 
-	// The URL used to activate the product.
+	// The URL to the service or product documentation about the integration with
+	// Security Hub, including how to activate the integration.
 	ActivationUrl *string `type:"string"`
 
 	// The categories assigned to the product.
@@ -24443,14 +24938,22 @@ type Product struct {
 	// The types of integration that the product supports. Available values are
 	// the following.
 	//
-	//    * SEND_FINDINGS_TO_SECURITY_HUB - Indicates that the integration sends
-	//    findings to Security Hub.
+	//    * SEND_FINDINGS_TO_SECURITY_HUB - The integration sends findings to Security
+	//    Hub.
 	//
-	//    * RECEIVE_FINDINGS_FROM_SECURITY_HUB - Indicates that the integration
-	//    receives findings from Security Hub.
+	//    * RECEIVE_FINDINGS_FROM_SECURITY_HUB - The integration receives findings
+	//    from Security Hub.
+	//
+	//    * UPDATE_FINDINGS_IN_SECURITY_HUB - The integration does not send new
+	//    findings to Security Hub, but does make updates to the findings that it
+	//    receives from Security Hub.
 	IntegrationTypes []*string `type:"list"`
 
-	// The URL for the page that contains more information about the product.
+	// For integrations with AWS services, the AWS Console URL from which to activate
+	// the service.
+	//
+	// For integrations with third-party products, the AWS Marketplace URL from
+	// which to subscribe to or purchase the product.
 	MarketplaceUrl *string `type:"string"`
 
 	// The ARN assigned to the product.
@@ -27243,6 +27746,9 @@ const (
 
 	// IntegrationTypeReceiveFindingsFromSecurityHub is a IntegrationType enum value
 	IntegrationTypeReceiveFindingsFromSecurityHub = "RECEIVE_FINDINGS_FROM_SECURITY_HUB"
+
+	// IntegrationTypeUpdateFindingsInSecurityHub is a IntegrationType enum value
+	IntegrationTypeUpdateFindingsInSecurityHub = "UPDATE_FINDINGS_IN_SECURITY_HUB"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
@@ -27250,6 +27756,7 @@ func IntegrationType_Values() []string {
 	return []string{
 		IntegrationTypeSendFindingsToSecurityHub,
 		IntegrationTypeReceiveFindingsFromSecurityHub,
+		IntegrationTypeUpdateFindingsInSecurityHub,
 	}
 }
 

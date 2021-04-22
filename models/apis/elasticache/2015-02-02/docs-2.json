@@ -199,6 +199,7 @@
       "base": null,
       "refs": {
         "CacheCluster$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
+        "CacheCluster$ReplicationGroupLogDeliveryEnabled": "<p>A boolean value indicating whether log delivery is enabled for the replication group.</p>",
         "CacheNodeTypeSpecificParameter$IsModifiable": "<p>Indicates whether (<code>true</code>) or not (<code>false</code>) the parameter can be modified. Some parameters have security or operational implications that prevent them from being changed.</p>",
         "CacheParameterGroup$IsGlobal": "<p>Indicates whether the parameter group is associated with a Global datastore</p>",
         "CompleteMigrationMessage$Force": "<p>Forces the migration to stop without ensuring that data is in sync. It is recommended to use this option only to abort the migration and not recommended when application wants to continue migration to ElastiCache.</p>",
@@ -241,6 +242,7 @@
         "GlobalReplicationGroup$AuthTokenEnabled": "<p>A flag that enables using an <code>AuthToken</code> (password) when issuing Redis commands.</p> <p>Default: <code>false</code> </p>",
         "GlobalReplicationGroup$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to true. You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to true when you create a cluster. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p>",
         "GlobalReplicationGroup$AtRestEncryptionEnabled": "<p>A flag that enables encryption at rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication group is created. To enable encryption at rest on a replication group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication group. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p>",
+        "LogDeliveryConfigurationRequest$Enabled": "<p>Specify if log delivery is enabled. Default <code>true</code>.</p>",
         "ModifyCacheClusterMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "ModifyGlobalReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure. </p>",
         "ModifyReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
@@ -523,6 +525,12 @@
       "refs": {
         "CacheNodeTypeSpecificParameter$ChangeType": "<p>Indicates whether a change to the parameter is applied immediately or requires a reboot for the change to be applied. You can force a reboot or wait until the next maintenance window's reboot. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html\">Rebooting a Cluster</a>.</p>",
         "Parameter$ChangeType": "<p>Indicates whether a change to the parameter is applied immediately or requires a reboot for the change to be applied. You can force a reboot or wait until the next maintenance window's reboot. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html\">Rebooting a Cluster</a>.</p>"
+      }
+    },
+    "CloudWatchLogsDestinationDetails": {
+      "base": "<p>The configuration details of the CloudWatch Logs destination.</p>",
+      "refs": {
+        "DestinationDetails$CloudWatchLogsDetails": "<p>The configuration details of the CloudWatch Logs destination.</p>"
       }
     },
     "ClusterIdList": {
@@ -859,6 +867,22 @@
       "refs": {
       }
     },
+    "DestinationDetails": {
+      "base": "<p>Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination.</p>",
+      "refs": {
+        "LogDeliveryConfiguration$DestinationDetails": "<p>Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination.</p>",
+        "LogDeliveryConfigurationRequest$DestinationDetails": "<p>Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination.</p>",
+        "PendingLogDeliveryConfiguration$DestinationDetails": "<p>Configuration details of either a CloudWatch Logs destination or Kinesis Data Firehose destination.</p>"
+      }
+    },
+    "DestinationType": {
+      "base": null,
+      "refs": {
+        "LogDeliveryConfiguration$DestinationType": "<p>Returns the destination type, either <code>cloudwatch-logs</code> or <code>kinesis-firehose</code>.</p>",
+        "LogDeliveryConfigurationRequest$DestinationType": "<p>Specify either <code>cloudwatch-logs</code> or <code>kinesis-firehose</code> as the destination type.</p>",
+        "PendingLogDeliveryConfiguration$DestinationType": "<p>Returns the destination type, either CloudWatch Logs or Kinesis Data Firehose.</p>"
+      }
+    },
     "DisassociateGlobalReplicationGroupMessage": {
       "base": null,
       "refs": {
@@ -990,8 +1014,8 @@
     "GlobalNodeGroupIdList": {
       "base": null,
       "refs": {
-        "DecreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalNodeGroupsToRemove": "<p>If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. NodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster. ElastiCache for Redis will attempt to remove all node groups listed by NodeGroupsToRemove from the cluster. </p>",
-        "DecreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalNodeGroupsToRetain": "<p>If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. NodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster. ElastiCache for Redis will attempt to remove all node groups listed by NodeGroupsToRemove from the cluster. </p>"
+        "DecreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalNodeGroupsToRemove": "<p>If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. GlobalNodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster. ElastiCache for Redis will attempt to remove all node groups listed by GlobalNodeGroupsToRemove from the cluster. </p>",
+        "DecreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalNodeGroupsToRetain": "<p>If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. GlobalNodeGroupsToRetain is a list of NodeGroupIds to retain from the cluster. ElastiCache for Redis will attempt to retain all node groups listed by GlobalNodeGroupsToRetain from the cluster. </p>"
       }
     },
     "GlobalNodeGroupList": {
@@ -1090,9 +1114,9 @@
       "base": null,
       "refs": {
         "Authentication$PasswordCount": "<p>The number of passwords belonging to the user. The maximum is two.</p>",
-        "CacheCluster$NumCacheNodes": "<p>The number of cache nodes in the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p>",
+        "CacheCluster$NumCacheNodes": "<p>The number of cache nodes in the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p>",
         "CacheCluster$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <important> <p> If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.</p> </important>",
-        "CreateCacheClusterMessage$NumCacheNodes": "<p>The initial number of cache nodes that the cluster has.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p> <p>If you need more than 20 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at <a href=\"http://aws.amazon.com/contact-us/elasticache-node-limit-request/\">http://aws.amazon.com/contact-us/elasticache-node-limit-request/</a>.</p>",
+        "CreateCacheClusterMessage$NumCacheNodes": "<p>The initial number of cache nodes that the cluster has.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p> <p>If you need more than 20 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at <a href=\"http://aws.amazon.com/contact-us/elasticache-node-limit-request/\">http://aws.amazon.com/contact-us/elasticache-node-limit-request/</a>.</p>",
         "CreateCacheClusterMessage$Port": "<p>The port number on which each of the cache nodes accepts connections.</p>",
         "CreateCacheClusterMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot taken today is retained for 5 days before being deleted.</p> <note> <p>This parameter is only valid if the <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Default: 0 (i.e., automatic backups are disabled for this cache cluster).</p>",
         "CreateReplicationGroupMessage$NumCacheClusters": "<p>The number of clusters this replication group initially has.</p> <p>This parameter is not used if there is more than one node group (shard). You should use <code>ReplicasPerNodeGroup</code> instead.</p> <p>If <code>AutomaticFailoverEnabled</code> is <code>true</code>, the value of this parameter must be at least 2. If <code>AutomaticFailoverEnabled</code> is <code>false</code> you can omit this parameter (it will default to 1), or you can explicitly set it to a value between 2 and 6.</p> <p>The maximum permitted value for <code>NumCacheClusters</code> is 6 (1 primary plus 5 replicas).</p>",
@@ -1121,14 +1145,14 @@
         "DescribeUserGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved. </p>",
         "DescribeUsersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved. </p>",
         "IncreaseReplicaCountMessage$NewReplicaCount": "<p>The number of read replica nodes you want at the completion of this operation. For Redis (cluster mode disabled) replication groups, this is the number of replica nodes in the replication group. For Redis (cluster mode enabled) replication groups, this is the number of replica nodes in each of the replication group's node groups.</p>",
-        "ModifyCacheClusterMessage$NumCacheNodes": "<p>The number of cache nodes that the cluster should have. If the value for <code>NumCacheNodes</code> is greater than the sum of the number of current cache nodes and the number of cache nodes pending creation (which may be zero), more nodes are added. If the value is less than the number of existing cache nodes, nodes are removed. If the value is equal to the number of current cache nodes, any pending add or remove requests are canceled.</p> <p>If you are removing cache nodes, you must use the <code>CacheNodeIdsToRemove</code> parameter to provide the IDs of the specific cache nodes to remove.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p> <note> <p>Adding or removing Memcached cache nodes can be applied immediately or as a pending operation (see <code>ApplyImmediately</code>).</p> <p>A pending operation to modify the number of cache nodes in a cluster during its maintenance window, whether by adding or removing nodes in accordance with the scale out architecture, is not queued. The customer's latest request to add or remove nodes to the cluster overrides any previous pending operations to modify the number of cache nodes in the cluster. For example, a request to remove 2 nodes would override a previous pending operation to remove 3 nodes. Similarly, a request to add 2 nodes would override a previous pending operation to remove 3 nodes and vice versa. As Memcached cache nodes may now be provisioned in different Availability Zones with flexible cache node placement, a request to add nodes does not automatically override a previous pending operation to add nodes. The customer can modify the previous pending operation to add more nodes or explicitly cancel the pending request and retry the new request. To cancel pending operations to modify the number of cache nodes in a cluster, use the <code>ModifyCacheCluster</code> request and set <code>NumCacheNodes</code> equal to the number of cache nodes currently in the cluster.</p> </note>",
+        "ModifyCacheClusterMessage$NumCacheNodes": "<p>The number of cache nodes that the cluster should have. If the value for <code>NumCacheNodes</code> is greater than the sum of the number of current cache nodes and the number of cache nodes pending creation (which may be zero), more nodes are added. If the value is less than the number of existing cache nodes, nodes are removed. If the value is equal to the number of current cache nodes, any pending add or remove requests are canceled.</p> <p>If you are removing cache nodes, you must use the <code>CacheNodeIdsToRemove</code> parameter to provide the IDs of the specific cache nodes to remove.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p> <note> <p>Adding or removing Memcached cache nodes can be applied immediately or as a pending operation (see <code>ApplyImmediately</code>).</p> <p>A pending operation to modify the number of cache nodes in a cluster during its maintenance window, whether by adding or removing nodes in accordance with the scale out architecture, is not queued. The customer's latest request to add or remove nodes to the cluster overrides any previous pending operations to modify the number of cache nodes in the cluster. For example, a request to remove 2 nodes would override a previous pending operation to remove 3 nodes. Similarly, a request to add 2 nodes would override a previous pending operation to remove 3 nodes and vice versa. As Memcached cache nodes may now be provisioned in different Availability Zones with flexible cache node placement, a request to add nodes does not automatically override a previous pending operation to add nodes. The customer can modify the previous pending operation to add more nodes or explicitly cancel the pending request and retry the new request. To cancel pending operations to modify the number of cache nodes in a cluster, use the <code>ModifyCacheCluster</code> request and set <code>NumCacheNodes</code> equal to the number of cache nodes currently in the cluster.</p> </note>",
         "ModifyCacheClusterMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <note> <p>If the value of <code>SnapshotRetentionLimit</code> is set to zero (0), backups are turned off.</p> </note>",
         "ModifyReplicationGroupMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic node group (shard) snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <p> <b>Important</b> If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.</p>",
         "NodeGroupConfiguration$ReplicaCount": "<p>The number of read replica nodes in this node group (shard).</p>",
-        "PendingModifiedValues$NumCacheNodes": "<p>The new number of cache nodes for the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p>",
+        "PendingModifiedValues$NumCacheNodes": "<p>The new number of cache nodes for the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p>",
         "PurchaseReservedCacheNodesOfferingMessage$CacheNodeCount": "<p>The number of cache node instances to reserve.</p> <p>Default: <code>1</code> </p>",
         "ReplicationGroup$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <important> <p> If the value of <code>SnapshotRetentionLimit</code> is set to zero (0), backups are turned off.</p> </important>",
-        "Snapshot$NumCacheNodes": "<p>The number of cache nodes in the source cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p>",
+        "Snapshot$NumCacheNodes": "<p>The number of cache nodes in the source cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p>",
         "Snapshot$Port": "<p>The port number used by each cache nodes in the source cluster.</p>",
         "Snapshot$SnapshotRetentionLimit": "<p>For an automatic snapshot, the number of days for which ElastiCache retains the snapshot before deleting it.</p> <p>For manual snapshots, this field reflects the <code>SnapshotRetentionLimit</code> for the source cluster when the snapshot was created. This field is otherwise ignored: Manual snapshots do not expire, and can only be deleted using the <code>DeleteSnapshot</code> operation. </p> <p> <b>Important</b> If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.</p>",
         "Snapshot$NumNodeGroups": "<p>The number of node groups (shards) in this snapshot. When restoring from a snapshot, the number of node groups (shards) in the snapshot and in the restored replication group must be the same.</p>"
@@ -1210,6 +1234,12 @@
         "RemoveTagsFromResourceMessage$TagKeys": "<p>A list of <code>TagKeys</code> identifying the tags you want removed from the named resource.</p>"
       }
     },
+    "KinesisFirehoseDestinationDetails": {
+      "base": "<p>The configuration details of the Kinesis Data Firehose destination.</p>",
+      "refs": {
+        "DestinationDetails$KinesisFirehoseDetails": "<p>The configuration details of the Kinesis Data Firehose destination.</p>"
+      }
+    },
     "ListAllowedNodeTypeModificationsMessage": {
       "base": "<p>The input parameters for the <code>ListAllowedNodeTypeModifications</code> operation.</p>",
       "refs": {
@@ -1218,6 +1248,56 @@
     "ListTagsForResourceMessage": {
       "base": "<p>The input parameters for the <code>ListTagsForResource</code> operation.</p>",
       "refs": {
+      }
+    },
+    "LogDeliveryConfiguration": {
+      "base": "<p>Returns the destination, format and type of the logs. </p>",
+      "refs": {
+        "LogDeliveryConfigurationList$member": null
+      }
+    },
+    "LogDeliveryConfigurationList": {
+      "base": null,
+      "refs": {
+        "CacheCluster$LogDeliveryConfigurations": "<p>Returns the destination, format and type of the logs.</p>",
+        "ReplicationGroup$LogDeliveryConfigurations": "<p>Returns the destination, format and type of the logs. </p>"
+      }
+    },
+    "LogDeliveryConfigurationRequest": {
+      "base": "<p>Specifies the destination, format and type of the logs. </p>",
+      "refs": {
+        "LogDeliveryConfigurationRequestList$member": null
+      }
+    },
+    "LogDeliveryConfigurationRequestList": {
+      "base": null,
+      "refs": {
+        "CreateCacheClusterMessage$LogDeliveryConfigurations": "<p>Specifies the destination, format and type of the logs. </p>",
+        "CreateReplicationGroupMessage$LogDeliveryConfigurations": "<p>Specifies the destination, format and type of the logs.</p>",
+        "ModifyCacheClusterMessage$LogDeliveryConfigurations": "<p>Specifies the destination, format and type of the logs.</p>",
+        "ModifyReplicationGroupMessage$LogDeliveryConfigurations": "<p>Specifies the destination, format and type of the logs.</p>"
+      }
+    },
+    "LogDeliveryConfigurationStatus": {
+      "base": null,
+      "refs": {
+        "LogDeliveryConfiguration$Status": "<p>Returns the log delivery configuration status. Values are one of <code>enabling</code> | <code>disabling</code> | <code>modifying</code> | <code>active</code> | <code>error</code> </p>"
+      }
+    },
+    "LogFormat": {
+      "base": null,
+      "refs": {
+        "LogDeliveryConfiguration$LogFormat": "<p>Returns the log format, either JSON or TEXT.</p>",
+        "LogDeliveryConfigurationRequest$LogFormat": "<p>Specifies either JSON or TEXT</p>",
+        "PendingLogDeliveryConfiguration$LogFormat": "<p>Returns the log format, either JSON or TEXT</p>"
+      }
+    },
+    "LogType": {
+      "base": null,
+      "refs": {
+        "LogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>",
+        "LogDeliveryConfigurationRequest$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>",
+        "PendingLogDeliveryConfiguration$LogType": "<p>Refers to <a href=\"https://redis.io/commands/slowlog\">slow-log</a>.</p>"
       }
     },
     "ModifyCacheClusterMessage": {
@@ -1479,6 +1559,19 @@
         "ReplicationGroupPendingModifiedValues$AutomaticFailoverStatus": "<p>Indicates the status of automatic failover for this Redis replication group.</p>"
       }
     },
+    "PendingLogDeliveryConfiguration": {
+      "base": "<p>The log delivery configurations being modified </p>",
+      "refs": {
+        "PendingLogDeliveryConfigurationList$member": null
+      }
+    },
+    "PendingLogDeliveryConfigurationList": {
+      "base": null,
+      "refs": {
+        "PendingModifiedValues$LogDeliveryConfigurations": "<p>The log delivery configurations being modified </p>",
+        "ReplicationGroupPendingModifiedValues$LogDeliveryConfigurations": "<p>The log delivery configurations being modified </p>"
+      }
+    },
     "PendingModifiedValues": {
       "base": "<p>A group of settings that are applied to the cluster in the future, or that are currently being applied.</p>",
       "refs": {
@@ -1490,7 +1583,7 @@
       "refs": {
         "ConfigureShard$PreferredAvailabilityZones": "<p>A list of <code>PreferredAvailabilityZone</code> strings that specify which availability zones the replication group's nodes are to be in. The nummber of <code>PreferredAvailabilityZone</code> values must equal the value of <code>NewReplicaCount</code> plus 1 to account for the primary node. If this member of <code>ReplicaConfiguration</code> is omitted, ElastiCache for Redis selects the availability zone for each of the replicas.</p>",
         "CreateCacheClusterMessage$PreferredAvailabilityZones": "<p>A list of the Availability Zones in which cache nodes are created. The order of the zones in the list is not important.</p> <p>This option is only supported on Memcached.</p> <note> <p>If you are creating your cluster in an Amazon VPC (recommended) you can only locate nodes in Availability Zones that are associated with the subnets in the selected subnet group.</p> <p>The number of Availability Zones listed must equal the value of <code>NumCacheNodes</code>.</p> </note> <p>If you want all the nodes in the same Availability Zone, use <code>PreferredAvailabilityZone</code> instead, or repeat the Availability Zone multiple times in the list.</p> <p>Default: System chosen Availability Zones.</p>",
-        "ModifyCacheClusterMessage$NewAvailabilityZones": "<p>The list of Availability Zones where the new Memcached cache nodes are created.</p> <p>This parameter is only valid when <code>NumCacheNodes</code> in the request is greater than the sum of the number of active cache nodes and the number of cache nodes pending creation (which may be zero). The number of Availability Zones supplied in this list must match the cache nodes being added in this request.</p> <p>This option is only supported on Memcached clusters.</p> <p>Scenarios:</p> <ul> <li> <p> <b>Scenario 1:</b> You have 3 active nodes and wish to add 2 nodes. Specify <code>NumCacheNodes=5</code> (3 + 2) and optionally specify two Availability Zones for the two new nodes.</p> </li> <li> <p> <b>Scenario 2:</b> You have 3 active nodes and 2 nodes pending creation (from the scenario 1 call) and want to add 1 more node. Specify <code>NumCacheNodes=6</code> ((3 + 2) + 1) and optionally specify an Availability Zone for the new node.</p> </li> <li> <p> <b>Scenario 3:</b> You want to cancel all pending operations. Specify <code>NumCacheNodes=3</code> to cancel all pending operations.</p> </li> </ul> <p>The Availability Zone placement of nodes pending creation cannot be modified. If you wish to cancel any nodes pending creation, add 0 nodes by setting <code>NumCacheNodes</code> to the number of current nodes.</p> <p>If <code>cross-az</code> is specified, existing Memcached nodes remain in their current Availability Zone. Only newly created nodes can be located in different Availability Zones. For guidance on how to move existing Memcached nodes to different Availability Zones, see the <b>Availability Zone Considerations</b> section of <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/CacheNodes.SupportedTypes.html\">Cache Node Considerations for Memcached</a>.</p> <p> <b>Impact of new add/remove requests upon pending requests</b> </p> <ul> <li> <p>Scenario-1</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-2</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-3</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending create.</p> </li> </ul> </li> <li> <p>Scenario-4</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create is added to the pending create.</p> <important> <p> <b>Important:</b> If the new create request is <b>Apply Immediately - Yes</b>, all creates are performed immediately. If the new create request is <b>Apply Immediately - No</b>, all creates are pending.</p> </important> </li> </ul> </li> </ul>"
+        "ModifyCacheClusterMessage$NewAvailabilityZones": "<note> <p>This option is only supported on Memcached clusters.</p> </note> <p>The list of Availability Zones where the new Memcached cache nodes are created.</p> <p>This parameter is only valid when <code>NumCacheNodes</code> in the request is greater than the sum of the number of active cache nodes and the number of cache nodes pending creation (which may be zero). The number of Availability Zones supplied in this list must match the cache nodes being added in this request.</p> <p>Scenarios:</p> <ul> <li> <p> <b>Scenario 1:</b> You have 3 active nodes and wish to add 2 nodes. Specify <code>NumCacheNodes=5</code> (3 + 2) and optionally specify two Availability Zones for the two new nodes.</p> </li> <li> <p> <b>Scenario 2:</b> You have 3 active nodes and 2 nodes pending creation (from the scenario 1 call) and want to add 1 more node. Specify <code>NumCacheNodes=6</code> ((3 + 2) + 1) and optionally specify an Availability Zone for the new node.</p> </li> <li> <p> <b>Scenario 3:</b> You want to cancel all pending operations. Specify <code>NumCacheNodes=3</code> to cancel all pending operations.</p> </li> </ul> <p>The Availability Zone placement of nodes pending creation cannot be modified. If you wish to cancel any nodes pending creation, add 0 nodes by setting <code>NumCacheNodes</code> to the number of current nodes.</p> <p>If <code>cross-az</code> is specified, existing Memcached nodes remain in their current Availability Zone. Only newly created nodes can be located in different Availability Zones. For guidance on how to move existing Memcached nodes to different Availability Zones, see the <b>Availability Zone Considerations</b> section of <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/CacheNodes.SupportedTypes.html\">Cache Node Considerations for Memcached</a>.</p> <p> <b>Impact of new add/remove requests upon pending requests</b> </p> <ul> <li> <p>Scenario-1</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-2</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-3</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending create.</p> </li> </ul> </li> <li> <p>Scenario-4</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create is added to the pending create.</p> <important> <p> <b>Important:</b> If the new create request is <b>Apply Immediately - Yes</b>, all creates are performed immediately. If the new create request is <b>Apply Immediately - No</b>, all creates are pending.</p> </important> </li> </ul> </li> </ul>"
       }
     },
     "PreferredOutpostArnList": {
@@ -1958,6 +2051,7 @@
         "CacheSubnetGroup$VpcId": "<p>The Amazon Virtual Private Cloud identifier (VPC ID) of the cache subnet group.</p>",
         "CacheSubnetGroup$ARN": "<p>The ARN (Amazon Resource Name) of the cache subnet group.</p>",
         "CacheSubnetGroupMessage$Marker": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
+        "CloudWatchLogsDestinationDetails$LogGroup": "<p>The name of the CloudWatch Logs log group.</p>",
         "ClusterIdList$member": null,
         "CompleteMigrationMessage$ReplicationGroupId": "<p>The ID of the replication group to which data is being migrated.</p>",
         "CopySnapshotMessage$SourceSnapshotName": "<p>The name of an existing snapshot from which to make a copy.</p>",
@@ -2108,9 +2202,11 @@
         "IncreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalReplicationGroupId": "<p>The name of the Global datastore</p>",
         "IncreaseReplicaCountMessage$ReplicationGroupId": "<p>The id of the replication group to which you want to add replica nodes.</p>",
         "KeyList$member": null,
+        "KinesisFirehoseDestinationDetails$DeliveryStream": "<p>The name of the Kinesis Data Firehose delivery stream.</p>",
         "ListAllowedNodeTypeModificationsMessage$CacheClusterId": "<p>The name of the cluster you want to scale up to a larger node instanced type. ElastiCache uses the cluster id to identify the current node type of this cluster and from that to create a list of node types you can scale up to.</p> <important> <p>You must provide a value for either the <code>CacheClusterId</code> or the <code>ReplicationGroupId</code>.</p> </important>",
         "ListAllowedNodeTypeModificationsMessage$ReplicationGroupId": "<p>The name of the replication group want to scale up to a larger node type. ElastiCache uses the replication group id to identify the current node type being used by this replication group, and from that to create a list of node types you can scale up to.</p> <important> <p>You must provide a value for either the <code>CacheClusterId</code> or the <code>ReplicationGroupId</code>.</p> </important>",
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon Resource Name (ARN) of the resource for which you want the list of tags, for example <code>arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster</code> or <code>arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot</code>.</p> <p>For more information about ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>",
+        "LogDeliveryConfiguration$Message": "<p>Returns an error message for the log delivery configuration.</p>",
         "ModifyCacheClusterMessage$CacheClusterId": "<p>The cluster identifier. This value is stored as a lowercase string.</p>",
         "ModifyCacheClusterMessage$PreferredMaintenanceWindow": "<p>Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul> <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li> <p> <code>tue</code> </p> </li> <li> <p> <code>wed</code> </p> </li> <li> <p> <code>thu</code> </p> </li> <li> <p> <code>fri</code> </p> </li> <li> <p> <code>sat</code> </p> </li> </ul> <p>Example: <code>sun:23:00-mon:01:30</code> </p>",
         "ModifyCacheClusterMessage$NotificationTopicArn": "<p>The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic owner must be same as the cluster owner.</p> </note>",

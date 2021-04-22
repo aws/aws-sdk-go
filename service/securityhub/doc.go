@@ -20,7 +20,7 @@
 //
 // For example, if your Region is set to us-west-2, when you use CreateMembers
 // to add a member account to Security Hub, the association of the member account
-// with the master account is created only in the us-west-2 Region. Security
+// with the administrator account is created only in the us-west-2 Region. Security
 // Hub must be enabled for the member account in the same Region that the invitation
 // was sent from.
 //

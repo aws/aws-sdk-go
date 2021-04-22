@@ -758,6 +758,14 @@
       "refs": {
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "DescribeDatasetImportJobResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the dataset import job to complete.</p>",
+        "DescribeForecastResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the forecast job to complete.</p>",
+        "DescribePredictorResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the predictor training job to complete.</p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
