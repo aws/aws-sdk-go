@@ -70,8 +70,13 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(inpu
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
 	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
-		Name: "InputWriterCloser",
-		Fn:   es.closeInputWriter,
+		Name: "InputPipeCloser",
+		Fn: func(r *request.Request) {
+			err := es.closeInputPipe()
+			if err != nil {
+				r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+			}
+		},
 	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
@@ -249,11 +254,12 @@ func (es *StartMedicalStreamTranscriptionEventStream) setupInputPipe(r *request.
 	es.inputWriter = inputWriter
 }
 
-func (es *StartMedicalStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
-	err := es.inputWriter.Close()
-	if err != nil {
-		r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+// Closes the input-pipe writer
+func (es *StartMedicalStreamTranscriptionEventStream) closeInputPipe() error {
+	if es.inputWriter != nil {
+		return es.inputWriter.Close()
 	}
+	return nil
 }
 
 // Send writes the event to the stream blocking until the event is written.
@@ -369,8 +375,8 @@ func (es *StartMedicalStreamTranscriptionEventStream) safeClose() {
 	case <-t.C:
 	case <-writeCloseDone:
 	}
-	if es.inputWriter != nil {
-		es.inputWriter.Close()
+	if err := es.closeInputPipe(); err != nil {
+		es.err.SetError(err)
 	}
 
 	es.Reader.Close()
@@ -443,8 +449,13 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
 	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
-		Name: "InputWriterCloser",
-		Fn:   es.closeInputWriter,
+		Name: "InputPipeCloser",
+		Fn: func(r *request.Request) {
+			err := es.closeInputPipe()
+			if err != nil {
+				r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+			}
+		},
 	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
@@ -632,11 +643,12 @@ func (es *StartStreamTranscriptionEventStream) setupInputPipe(r *request.Request
 	es.inputWriter = inputWriter
 }
 
-func (es *StartStreamTranscriptionEventStream) closeInputWriter(r *request.Request) {
-	err := es.inputWriter.Close()
-	if err != nil {
-		r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+// Closes the input-pipe writer
+func (es *StartStreamTranscriptionEventStream) closeInputPipe() error {
+	if es.inputWriter != nil {
+		return es.inputWriter.Close()
 	}
+	return nil
 }
 
 // Send writes the event to the stream blocking until the event is written.
@@ -752,8 +764,8 @@ func (es *StartStreamTranscriptionEventStream) safeClose() {
 	case <-t.C:
 	case <-writeCloseDone:
 	}
-	if es.inputWriter != nil {
-		es.inputWriter.Close()
+	if err := es.closeInputPipe(); err != nil {
+		es.err.SetError(err)
 	}
 
 	es.Reader.Close()

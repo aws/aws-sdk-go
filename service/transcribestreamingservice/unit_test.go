@@ -34,6 +34,7 @@ func TestStartStreamTranscription_Error(t *testing.T) {
 			return &http.Response{
 				StatusCode: http.StatusBadRequest,
 				Body:       ioutil.NopCloser(bytes.NewReader([]byte("{ \"code\" : \"BadRequestException\" }"))),
+				Header:     http.Header{},
 			}
 		}),
 	}
@@ -56,11 +57,12 @@ func TestStartStreamTranscription_Error(t *testing.T) {
 	n, err := resp.GetStream().inputWriter.Write([]byte("text"))
 	if err == nil {
 		t.Fatalf("expected error stating write on closed pipe, got none")
-	} else {
-		if e, a := "write on closed pipe", err.Error(); !strings.Contains(a, e) {
-			t.Fatalf("expected error to contain %v, got error as %v", e, a)
-		}
 	}
+
+	if e, a := "write on closed pipe", err.Error(); !strings.Contains(a, e) {
+		t.Fatalf("expected error to contain %v, got error as %v", e, a)
+	}
+
 	if e, a := 0, n; e != a {
 		t.Fatalf("expected %d bytes to be written on inputWriter, but %v bytes were written", e, a)
 	}
