@@ -249,8 +249,13 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 
 				req.Handlers.Sign.PushFront(es.setupInputPipe)
 				req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
-					Name: "InputWriterCloser",
-					Fn:   es.closeInputWriter,
+					Name: "InputPipeCloser",
+					Fn: func (r *request.Request) {
+							err := es.closeInputPipe()
+							if err != nil {
+								r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+							}
+						},
 				})
 				req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 					"Content-Type": "application/vnd.amazon.eventstream",
