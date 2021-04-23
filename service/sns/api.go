@@ -4602,7 +4602,7 @@ type GetSubscriptionAttributesOutput struct {
 	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
 	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
 	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	Attributes map[string]*string `type:"map"`
 }
@@ -5272,7 +5272,7 @@ func (s *MessageAttributeValue) SetStringValue(v string) *MessageAttributeValue 
 type OptInPhoneNumberInput struct {
 	_ struct{} `type:"structure"`
 
-	// The phone number to opt in.
+	// The phone number to opt in. Use E.164 format.
 	//
 	// PhoneNumber is a required field
 	PhoneNumber *string `locationName:"phoneNumber" type:"string" required:"true"`
@@ -6013,7 +6013,7 @@ type SetSubscriptionAttributesInput struct {
 	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
 	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
 	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	//
 	// AttributeName is a required field
@@ -6228,7 +6228,7 @@ type SubscribeInput struct {
 	//    SNS listed as a trusted entity Specifying a valid ARN for this attribute
 	//    is required for Kinesis Data Firehose delivery stream subscriptions. For
 	//    more information, see Fanout to Kinesis Data Firehose delivery streams
-	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-kinesis-subscriber.html)
+	//    (https://docs.aws.amazon.com/sns/latest/dg/sns-firehose-as-subscriber.html)
 	//    in the Amazon SNS Developer Guide.
 	Attributes map[string]*string `type:"map"`
 

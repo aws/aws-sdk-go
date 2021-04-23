@@ -1,3 +1,12 @@
+Release v1.38.25 (2021-04-23)
+===
+
+### Service Client Updates
+* `service/mediapackage`: Updates service API and documentation
+  * Add support for Widevine DRM on CMAF origin endpoints. Both Widevine and FairPlay DRMs can now be used simultaneously, with CBCS encryption.
+* `service/sns`: Updates service documentation
+  * Amazon SNS adds two new attributes, TemplateId and EntityId, for using sender IDs to send SMS messages to destinations in India.
+
 Release v1.38.24 (2021-04-22)
 ===
 
