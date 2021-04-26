@@ -646,3 +646,23 @@ func TestRegionValidator(t *testing.T) {
 		})
 	}
 }
+
+func TestResolveEndpoint_FipsAwsGlobal(t *testing.T) {
+	resolved, err := testPartitions.EndpointFor("globalService", "fips-aws-global")
+
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+	if e, a := "https://globalService-fips.amazonaws.com", resolved.URL; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "us-east-1", resolved.SigningRegion; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if e, a := "globalService", resolved.SigningName; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+	if !resolved.SigningNameDerived {
+		t.Errorf("expect the signing name to be derived")
+	}
+}

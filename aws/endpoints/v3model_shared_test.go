@@ -62,6 +62,12 @@ var testPartitions = partitions{
 						},
 						Hostname: "globalService.amazonaws.com",
 					},
+					"fips-aws-global": endpoint{
+						CredentialScope: credentialScope{
+							Region: "us-east-1",
+						},
+						Hostname: "globalService-fips.amazonaws.com",
+					},
 				},
 			},
 		},
