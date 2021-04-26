@@ -16731,9 +16731,7 @@
       "member":{
         "shape":"FleetLaunchTemplateOverridesRequest",
         "locationName":"item"
-      },
-      "max":50,
-      "min":0
+      }
     },
     "FleetLaunchTemplateOverridesRequest":{
       "type":"structure",

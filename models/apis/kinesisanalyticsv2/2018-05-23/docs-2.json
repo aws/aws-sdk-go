@@ -9,7 +9,7 @@
     "AddApplicationReferenceDataSource": "<p>Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
     "AddApplicationVpcConfiguration": "<p>Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.</p> <p>Note the following about VPC configurations for Kinesis Data Analytics applications:</p> <ul> <li> <p>VPC configurations are not supported for SQL applications.</p> </li> <li> <p>When a VPC is added to a Kinesis Data Analytics application, the application can no longer be accessed from the Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.</p> </li> </ul>",
     "CreateApplication": "<p>Creates a Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>.</p>",
-    "CreateApplicationPresignedUrl": "<p>Creates and returns a URL that you can use to connect to an application's extension. Currently, the only available extension is the Apache Flink dashboard.</p> <p>The IAM role or user used to call this API defines the permissions to access the extension. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request that attempts to connect to the extension. </p> <note> <p>The URL that you get from a call to CreateApplicationPresignedUrl must be used within 3 minutes to be valid. If you first try to use the URL after the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.</p> </note>",
+    "CreateApplicationPresignedUrl": "<p>Creates and returns a URL that you can use to connect to an application's extension. Currently, the only available extension is the Apache Flink dashboard.</p> <p>The IAM role or user used to call this API defines the permissions to access the extension. After the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request that attempts to connect to the extension. </p> <p>You control the amount of time that the URL will be valid using the <code>SessionExpirationDurationInSeconds</code> parameter. If you do not provide this parameter, the returned URL is valid for twelve hours.</p> <note> <p>The URL that you get from a call to CreateApplicationPresignedUrl must be used within 3 minutes to be valid. If you first try to use the URL after the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.</p> </note>",
     "CreateApplicationSnapshot": "<p>Creates a snapshot of the application's state data.</p>",
     "DeleteApplication": "<p>Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.</p>",
     "DeleteApplicationCloudWatchLoggingOption": "<p>Deletes an Amazon CloudWatch log stream from an Kinesis Data Analytics application. </p>",
@@ -28,7 +28,8 @@
     "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Kinesis Data Analytics takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
     "TagResource": "<p>Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "UntagResource": "<p>Removes one or more tags from a Kinesis Data Analytics application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
-    "UpdateApplication": "<p>Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>You cannot update the <code>RuntimeEnvironment</code> of an existing application. If you need to update an application's <code>RuntimeEnvironment</code>, you must delete the application and create it again.</p> </note>"
+    "UpdateApplication": "<p>Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>You cannot update the <code>RuntimeEnvironment</code> of an existing application. If you need to update an application's <code>RuntimeEnvironment</code>, you must delete the application and create it again.</p> </note>",
+    "UpdateApplicationMaintenanceConfiguration": "<p>Updates the configuration for the automatic maintenance that Kinesis Data Analytics performs on the application. For information about automatic application maintenance, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html\">Kinesis Data Analytics for Apache Flink Maintenance</a>.</p>"
   },
   "shapes": {
     "AddApplicationCloudWatchLoggingOptionRequest": {
@@ -142,6 +143,32 @@
         "UpdateApplicationResponse$ApplicationDetail": "<p>Describes application updates.</p>"
       }
     },
+    "ApplicationMaintenanceConfigurationDescription": {
+      "base": "<p>Describes the time window for automatic application maintenance.</p>",
+      "refs": {
+        "ApplicationDetail$ApplicationMaintenanceConfigurationDescription": "<p>Describes the time window for automatic application maintenance.</p>",
+        "UpdateApplicationMaintenanceConfigurationResponse$ApplicationMaintenanceConfigurationDescription": "<p>The application maintenance configuration description after the update.</p>"
+      }
+    },
+    "ApplicationMaintenanceConfigurationUpdate": {
+      "base": "<p>Describes the updated time window for automatic application maintenance.</p>",
+      "refs": {
+        "UpdateApplicationMaintenanceConfigurationRequest$ApplicationMaintenanceConfigurationUpdate": "<p>Describes the application maintenance configuration update.</p>"
+      }
+    },
+    "ApplicationMaintenanceWindowEndTime": {
+      "base": null,
+      "refs": {
+        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowEndTime": "<p>The end time for the automatic maintenance window.</p>"
+      }
+    },
+    "ApplicationMaintenanceWindowStartTime": {
+      "base": null,
+      "refs": {
+        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowStartTime": "<p>The start time for the automatic maintenance window.</p>",
+        "ApplicationMaintenanceConfigurationUpdate$ApplicationMaintenanceWindowStartTimeUpdate": "<p>The updated start time for the automatic maintenance window.</p>"
+      }
+    },
     "ApplicationName": {
       "base": null,
       "refs": {
@@ -170,6 +197,7 @@
         "ListApplicationsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. Pass this token into a subsequent command to retrieve the next set of items For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
         "StartApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StopApplicationRequest$ApplicationName": "<p>The name of the running application to stop.</p>",
+        "UpdateApplicationMaintenanceConfigurationRequest$ApplicationName": "<p>The name of the application for which you want to update the maintenance time window.</p>",
         "UpdateApplicationRequest$ApplicationName": "<p>The name of the application to update.</p>"
       }
     },
@@ -317,9 +345,9 @@
     "CheckpointInterval": {
       "base": null,
       "refs": {
-        "CheckpointConfiguration$CheckpointInterval": "<p>Describes the interval in milliseconds between checkpoint operations. </p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> vaue of 60000, even if this value is set to another value using this API or in application code.</p> </note>",
-        "CheckpointConfigurationDescription$CheckpointInterval": "<p>Describes the interval in milliseconds between checkpoint operations. </p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> vaue of 60000, even if this value is set to another value using this API or in application code.</p> </note>",
-        "CheckpointConfigurationUpdate$CheckpointIntervalUpdate": "<p>Describes updates to the interval in milliseconds between checkpoint operations.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> vaue of 60000, even if this value is set to another value using this API or in application code.</p> </note>"
+        "CheckpointConfiguration$CheckpointInterval": "<p>Describes the interval in milliseconds between checkpoint operations. </p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> value of 60000, even if this value is set to another value using this API or in application code.</p> </note>",
+        "CheckpointConfigurationDescription$CheckpointInterval": "<p>Describes the interval in milliseconds between checkpoint operations. </p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> value of 60000, even if this value is set to another value using this API or in application code.</p> </note>",
+        "CheckpointConfigurationUpdate$CheckpointIntervalUpdate": "<p>Describes updates to the interval in milliseconds between checkpoint operations.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointInterval</code> value of 60000, even if this value is set to another value using this API or in application code.</p> </note>"
       }
     },
     "CloudWatchLoggingOption": {
@@ -1093,7 +1121,7 @@
       }
     },
     "ParallelismConfiguration": {
-      "base": "<p>Describes parameters for how a Flink-based Kinesis Data Analytics application application executes multiple tasks simultaneously. For more information about parallelism, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html\">Parallel Execution</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink Documentation</a>.</p>",
+      "base": "<p>Describes parameters for how a Flink-based Kinesis Data Analytics application executes multiple tasks simultaneously. For more information about parallelism, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html\">Parallel Execution</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink Documentation</a>.</p>",
       "refs": {
         "FlinkApplicationConfiguration$ParallelismConfiguration": "<p>Describes parameters for how an application executes multiple tasks simultaneously.</p>"
       }
@@ -1336,7 +1364,8 @@
         "KinesisStreamsOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you want to write the output.</p>",
         "LambdaOutput$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function to write to.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
         "LambdaOutputDescription$ResourceARN": "<p>The Amazon Resource Name (ARN) of the destination Lambda function.</p>",
-        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination AWS Lambda function.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>"
+        "LambdaOutputUpdate$ResourceARNUpdate": "<p>The Amazon Resource Name (ARN) of the destination AWS Lambda function.</p> <note> <p>To specify an earlier version of the Lambda function than the latest, include the Lambda function version in the Lambda function ARN. For more information about Lambda ARNs, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-lambda\">Example ARNs: AWS Lambda</a> </p> </note>",
+        "UpdateApplicationMaintenanceConfigurationResponse$ApplicationARN": "<p>The Amazon Resource Name (ARN) of the application.</p>"
       }
     },
     "ResourceInUseException": {
@@ -1392,9 +1421,9 @@
     "RuntimeEnvironment": {
       "base": null,
       "refs": {
-        "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code>, <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).</p>",
-        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code>, <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).</p>",
-        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1.0</code>, <code>FLINK-1_6</code>, or <code>FLINK-1_8</code>).</p>"
+        "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>",
+        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>",
+        "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>"
       }
     },
     "S3ApplicationCodeLocationDescription": {
@@ -1650,6 +1679,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationMaintenanceConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationMaintenanceConfigurationResponse": {
       "base": null,
       "refs": {
       }

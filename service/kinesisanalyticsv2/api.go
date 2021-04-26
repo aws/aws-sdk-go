@@ -772,9 +772,13 @@ func (c *KinesisAnalyticsV2) CreateApplicationPresignedUrlRequest(input *CreateA
 // extension. Currently, the only available extension is the Apache Flink dashboard.
 //
 // The IAM role or user used to call this API defines the permissions to access
-// the extension. Once the presigned URL is created, no additional permission
+// the extension. After the presigned URL is created, no additional permission
 // is required to access this URL. IAM authorization policies for this API are
 // also enforced for every HTTP request that attempts to connect to the extension.
+//
+// You control the amount of time that the URL will be valid using the SessionExpirationDurationInSeconds
+// parameter. If you do not provide this parameter, the returned URL is valid
+// for twelve hours.
 //
 // The URL that you get from a call to CreateApplicationPresignedUrl must be
 // used within 3 minutes to be valid. If you first try to use the URL after
@@ -2595,6 +2599,9 @@ func (c *KinesisAnalyticsV2) UpdateApplicationRequest(input *UpdateApplicationIn
 //   * InvalidApplicationConfigurationException
 //   The user-provided application configuration is not valid.
 //
+//   * LimitExceededException
+//   The number of allowed resources has been exceeded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/UpdateApplication
 func (c *KinesisAnalyticsV2) UpdateApplication(input *UpdateApplicationInput) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
@@ -2612,6 +2619,102 @@ func (c *KinesisAnalyticsV2) UpdateApplication(input *UpdateApplicationInput) (*
 // for more information on using Contexts.
 func (c *KinesisAnalyticsV2) UpdateApplicationWithContext(ctx aws.Context, input *UpdateApplicationInput, opts ...request.Option) (*UpdateApplicationOutput, error) {
 	req, out := c.UpdateApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateApplicationMaintenanceConfiguration = "UpdateApplicationMaintenanceConfiguration"
+
+// UpdateApplicationMaintenanceConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateApplicationMaintenanceConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateApplicationMaintenanceConfiguration for more information on using the UpdateApplicationMaintenanceConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateApplicationMaintenanceConfigurationRequest method.
+//    req, resp := client.UpdateApplicationMaintenanceConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/UpdateApplicationMaintenanceConfiguration
+func (c *KinesisAnalyticsV2) UpdateApplicationMaintenanceConfigurationRequest(input *UpdateApplicationMaintenanceConfigurationInput) (req *request.Request, output *UpdateApplicationMaintenanceConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateApplicationMaintenanceConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateApplicationMaintenanceConfigurationInput{}
+	}
+
+	output = &UpdateApplicationMaintenanceConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateApplicationMaintenanceConfiguration API operation for Amazon Kinesis Analytics.
+//
+// Updates the configuration for the automatic maintenance that Kinesis Data
+// Analytics performs on the application. For information about automatic application
+// maintenance, see Kinesis Data Analytics for Apache Flink Maintenance (https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation UpdateApplicationMaintenanceConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   The application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   The specified input parameter value is not valid.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modifications to an application.
+//   This error can be the result of attempting to modify an application without
+//   using the current application ID.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/UpdateApplicationMaintenanceConfiguration
+func (c *KinesisAnalyticsV2) UpdateApplicationMaintenanceConfiguration(input *UpdateApplicationMaintenanceConfigurationInput) (*UpdateApplicationMaintenanceConfigurationOutput, error) {
+	req, out := c.UpdateApplicationMaintenanceConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateApplicationMaintenanceConfigurationWithContext is the same as UpdateApplicationMaintenanceConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateApplicationMaintenanceConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) UpdateApplicationMaintenanceConfigurationWithContext(ctx aws.Context, input *UpdateApplicationMaintenanceConfigurationInput, opts ...request.Option) (*UpdateApplicationMaintenanceConfigurationOutput, error) {
+	req, out := c.UpdateApplicationMaintenanceConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3863,6 +3966,9 @@ type ApplicationDetail struct {
 	// The description of the application.
 	ApplicationDescription *string `type:"string"`
 
+	// Describes the time window for automatic application maintenance.
+	ApplicationMaintenanceConfigurationDescription *ApplicationMaintenanceConfigurationDescription `type:"structure"`
+
 	// The name of the application.
 	//
 	// ApplicationName is a required field
@@ -3888,7 +3994,8 @@ type ApplicationDetail struct {
 	// The current timestamp when the application was last updated.
 	LastUpdateTimestamp *time.Time `type:"timestamp"`
 
-	// The runtime environment for the application (SQL-1.0, FLINK-1_6, or FLINK-1_8).
+	// The runtime environment for the application (SQL-1_0, FLINK-1_6, FLINK-1_8,
+	// or FLINK-1_11).
 	//
 	// RuntimeEnvironment is a required field
 	RuntimeEnvironment *string `type:"string" required:"true" enum:"RuntimeEnvironment"`
@@ -3922,6 +4029,12 @@ func (s *ApplicationDetail) SetApplicationConfigurationDescription(v *Applicatio
 // SetApplicationDescription sets the ApplicationDescription field's value.
 func (s *ApplicationDetail) SetApplicationDescription(v string) *ApplicationDetail {
 	s.ApplicationDescription = &v
+	return s
+}
+
+// SetApplicationMaintenanceConfigurationDescription sets the ApplicationMaintenanceConfigurationDescription field's value.
+func (s *ApplicationDetail) SetApplicationMaintenanceConfigurationDescription(v *ApplicationMaintenanceConfigurationDescription) *ApplicationDetail {
+	s.ApplicationMaintenanceConfigurationDescription = v
 	return s
 }
 
@@ -3970,6 +4083,85 @@ func (s *ApplicationDetail) SetRuntimeEnvironment(v string) *ApplicationDetail {
 // SetServiceExecutionRole sets the ServiceExecutionRole field's value.
 func (s *ApplicationDetail) SetServiceExecutionRole(v string) *ApplicationDetail {
 	s.ServiceExecutionRole = &v
+	return s
+}
+
+// Describes the time window for automatic application maintenance.
+type ApplicationMaintenanceConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The end time for the automatic maintenance window.
+	//
+	// ApplicationMaintenanceWindowEndTime is a required field
+	ApplicationMaintenanceWindowEndTime *string `min:"5" type:"string" required:"true"`
+
+	// The start time for the automatic maintenance window.
+	//
+	// ApplicationMaintenanceWindowStartTime is a required field
+	ApplicationMaintenanceWindowStartTime *string `min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ApplicationMaintenanceConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationMaintenanceConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetApplicationMaintenanceWindowEndTime sets the ApplicationMaintenanceWindowEndTime field's value.
+func (s *ApplicationMaintenanceConfigurationDescription) SetApplicationMaintenanceWindowEndTime(v string) *ApplicationMaintenanceConfigurationDescription {
+	s.ApplicationMaintenanceWindowEndTime = &v
+	return s
+}
+
+// SetApplicationMaintenanceWindowStartTime sets the ApplicationMaintenanceWindowStartTime field's value.
+func (s *ApplicationMaintenanceConfigurationDescription) SetApplicationMaintenanceWindowStartTime(v string) *ApplicationMaintenanceConfigurationDescription {
+	s.ApplicationMaintenanceWindowStartTime = &v
+	return s
+}
+
+// Describes the updated time window for automatic application maintenance.
+type ApplicationMaintenanceConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The updated start time for the automatic maintenance window.
+	//
+	// ApplicationMaintenanceWindowStartTimeUpdate is a required field
+	ApplicationMaintenanceWindowStartTimeUpdate *string `min:"5" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ApplicationMaintenanceConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationMaintenanceConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplicationMaintenanceConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplicationMaintenanceConfigurationUpdate"}
+	if s.ApplicationMaintenanceWindowStartTimeUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationMaintenanceWindowStartTimeUpdate"))
+	}
+	if s.ApplicationMaintenanceWindowStartTimeUpdate != nil && len(*s.ApplicationMaintenanceWindowStartTimeUpdate) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationMaintenanceWindowStartTimeUpdate", 5))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationMaintenanceWindowStartTimeUpdate sets the ApplicationMaintenanceWindowStartTimeUpdate field's value.
+func (s *ApplicationMaintenanceConfigurationUpdate) SetApplicationMaintenanceWindowStartTimeUpdate(v string) *ApplicationMaintenanceConfigurationUpdate {
+	s.ApplicationMaintenanceWindowStartTimeUpdate = &v
 	return s
 }
 
@@ -4162,7 +4354,8 @@ type ApplicationSummary struct {
 	// ApplicationVersionId is a required field
 	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
-	// The runtime environment for the application (SQL-1.0, FLINK-1_6, or FLINK-1_8).
+	// The runtime environment for the application (SQL-1_0, FLINK-1_6, FLINK-1_8,
+	// or FLINK-1_11).
 	//
 	// RuntimeEnvironment is a required field
 	RuntimeEnvironment *string `type:"string" required:"true" enum:"RuntimeEnvironment"`
@@ -4286,7 +4479,7 @@ type CheckpointConfiguration struct {
 	// Describes the interval in milliseconds between checkpoint operations.
 	//
 	// If CheckpointConfiguration.ConfigurationType is DEFAULT, the application
-	// will use a CheckpointInterval vaue of 60000, even if this value is set to
+	// will use a CheckpointInterval value of 60000, even if this value is set to
 	// another value using this API or in application code.
 	CheckpointInterval *int64 `min:"1" type:"long"`
 
@@ -4384,7 +4577,7 @@ type CheckpointConfigurationDescription struct {
 	// Describes the interval in milliseconds between checkpoint operations.
 	//
 	// If CheckpointConfiguration.ConfigurationType is DEFAULT, the application
-	// will use a CheckpointInterval vaue of 60000, even if this value is set to
+	// will use a CheckpointInterval value of 60000, even if this value is set to
 	// another value using this API or in application code.
 	CheckpointInterval *int64 `min:"1" type:"long"`
 
@@ -4460,7 +4653,7 @@ type CheckpointConfigurationUpdate struct {
 	// Describes updates to the interval in milliseconds between checkpoint operations.
 	//
 	// If CheckpointConfiguration.ConfigurationType is DEFAULT, the application
-	// will use a CheckpointInterval vaue of 60000, even if this value is set to
+	// will use a CheckpointInterval value of 60000, even if this value is set to
 	// another value using this API or in application code.
 	CheckpointIntervalUpdate *int64 `min:"1" type:"long"`
 
@@ -4995,7 +5188,8 @@ type CreateApplicationInput struct {
 	// application configuration errors.
 	CloudWatchLoggingOptions []*CloudWatchLoggingOption `type:"list"`
 
-	// The runtime environment for the application (SQL-1.0, FLINK-1_6, or FLINK-1_8).
+	// The runtime environment for the application (SQL-1_0, FLINK-1_6, FLINK-1_8,
+	// or FLINK-1_11).
 	//
 	// RuntimeEnvironment is a required field
 	RuntimeEnvironment *string `type:"string" required:"true" enum:"RuntimeEnvironment"`
@@ -9230,8 +9424,8 @@ func (s *OutputUpdate) SetOutputId(v string) *OutputUpdate {
 }
 
 // Describes parameters for how a Flink-based Kinesis Data Analytics application
-// application executes multiple tasks simultaneously. For more information
-// about parallelism, see Parallel Execution (https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html)
+// executes multiple tasks simultaneously. For more information about parallelism,
+// see Parallel Execution (https://ci.apache.org/projects/flink/flink-docs-release-1.8/dev/parallel.html)
 // in the Apache Flink Documentation (https://ci.apache.org/projects/flink/flink-docs-release-1.8/).
 type ParallelismConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -11763,6 +11957,99 @@ func (s *UpdateApplicationInput) SetServiceExecutionRoleUpdate(v string) *Update
 	return s
 }
 
+type UpdateApplicationMaintenanceConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the application maintenance configuration update.
+	//
+	// ApplicationMaintenanceConfigurationUpdate is a required field
+	ApplicationMaintenanceConfigurationUpdate *ApplicationMaintenanceConfigurationUpdate `type:"structure" required:"true"`
+
+	// The name of the application for which you want to update the maintenance
+	// time window.
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateApplicationMaintenanceConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApplicationMaintenanceConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateApplicationMaintenanceConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateApplicationMaintenanceConfigurationInput"}
+	if s.ApplicationMaintenanceConfigurationUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationMaintenanceConfigurationUpdate"))
+	}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.ApplicationMaintenanceConfigurationUpdate != nil {
+		if err := s.ApplicationMaintenanceConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("ApplicationMaintenanceConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationMaintenanceConfigurationUpdate sets the ApplicationMaintenanceConfigurationUpdate field's value.
+func (s *UpdateApplicationMaintenanceConfigurationInput) SetApplicationMaintenanceConfigurationUpdate(v *ApplicationMaintenanceConfigurationUpdate) *UpdateApplicationMaintenanceConfigurationInput {
+	s.ApplicationMaintenanceConfigurationUpdate = v
+	return s
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *UpdateApplicationMaintenanceConfigurationInput) SetApplicationName(v string) *UpdateApplicationMaintenanceConfigurationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+type UpdateApplicationMaintenanceConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the application.
+	ApplicationARN *string `min:"1" type:"string"`
+
+	// The application maintenance configuration description after the update.
+	ApplicationMaintenanceConfigurationDescription *ApplicationMaintenanceConfigurationDescription `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateApplicationMaintenanceConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateApplicationMaintenanceConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationARN sets the ApplicationARN field's value.
+func (s *UpdateApplicationMaintenanceConfigurationOutput) SetApplicationARN(v string) *UpdateApplicationMaintenanceConfigurationOutput {
+	s.ApplicationARN = &v
+	return s
+}
+
+// SetApplicationMaintenanceConfigurationDescription sets the ApplicationMaintenanceConfigurationDescription field's value.
+func (s *UpdateApplicationMaintenanceConfigurationOutput) SetApplicationMaintenanceConfigurationDescription(v *ApplicationMaintenanceConfigurationDescription) *UpdateApplicationMaintenanceConfigurationOutput {
+	s.ApplicationMaintenanceConfigurationDescription = v
+	return s
+}
+
 type UpdateApplicationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12022,6 +12309,9 @@ const (
 
 	// ApplicationStatusForceStopping is a ApplicationStatus enum value
 	ApplicationStatusForceStopping = "FORCE_STOPPING"
+
+	// ApplicationStatusMaintenance is a ApplicationStatus enum value
+	ApplicationStatusMaintenance = "MAINTENANCE"
 )
 
 // ApplicationStatus_Values returns all elements of the ApplicationStatus enum
@@ -12035,6 +12325,7 @@ func ApplicationStatus_Values() []string {
 		ApplicationStatusUpdating,
 		ApplicationStatusAutoscaling,
 		ApplicationStatusForceStopping,
+		ApplicationStatusMaintenance,
 	}
 }
 

@@ -10522,6 +10522,9 @@ func (s *SidewalkListDevice) SetSidewalkManufacturingSn(v string) *SidewalkListD
 type SidewalkSendDataToDevice struct {
 	_ struct{} `type:"structure"`
 
+	// Sidewalk device message type.
+	MessageType *string `type:"string" enum:"MessageType"`
+
 	// The sequence number.
 	Seq *int64 `type:"integer"`
 }
@@ -10534,6 +10537,12 @@ func (s SidewalkSendDataToDevice) String() string {
 // GoString returns the string representation
 func (s SidewalkSendDataToDevice) GoString() string {
 	return s.String()
+}
+
+// SetMessageType sets the MessageType field's value.
+func (s *SidewalkSendDataToDevice) SetMessageType(v string) *SidewalkSendDataToDevice {
+	s.MessageType = &v
+	return s
 }
 
 // SetSeq sets the Seq field's value.
@@ -11777,6 +11786,31 @@ func ExpressionType_Values() []string {
 	return []string{
 		ExpressionTypeRuleName,
 		ExpressionTypeMqttTopic,
+	}
+}
+
+// Sidewalk device message type.
+const (
+	// MessageTypeCustomCommandIdNotify is a MessageType enum value
+	MessageTypeCustomCommandIdNotify = "CUSTOM_COMMAND_ID_NOTIFY"
+
+	// MessageTypeCustomCommandIdGet is a MessageType enum value
+	MessageTypeCustomCommandIdGet = "CUSTOM_COMMAND_ID_GET"
+
+	// MessageTypeCustomCommandIdSet is a MessageType enum value
+	MessageTypeCustomCommandIdSet = "CUSTOM_COMMAND_ID_SET"
+
+	// MessageTypeCustomCommandIdResp is a MessageType enum value
+	MessageTypeCustomCommandIdResp = "CUSTOM_COMMAND_ID_RESP"
+)
+
+// MessageType_Values returns all elements of the MessageType enum
+func MessageType_Values() []string {
+	return []string{
+		MessageTypeCustomCommandIdNotify,
+		MessageTypeCustomCommandIdGet,
+		MessageTypeCustomCommandIdSet,
+		MessageTypeCustomCommandIdResp,
 	}
 }
 

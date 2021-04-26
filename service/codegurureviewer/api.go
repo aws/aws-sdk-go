@@ -69,8 +69,8 @@ func (c *CodeGuruReviewer) AssociateRepositoryRequest(input *AssociateRepository
 // and AWS account where its CodeGuru Reviewer code reviews are configured.
 //
 // Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar
-// Connections to connect to CodeGuru Reviewer. For more information, see Connect
-// to a repository source provider (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/reviewer-ug/step-one.html#select-repository-source-provider)
+// Connections to connect to CodeGuru Reviewer. For more information, see Associate
+// a repository (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-associate-repository.html)
 // in the Amazon CodeGuru Reviewer User Guide.
 //
 // You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub
@@ -1603,6 +1603,15 @@ type AssociateRepositoryInput struct {
 	// of duplicate repository associations if there are failures and retries.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// A KMSKeyDetails object that contains:
+	//
+	//    * The encryption option for this repository association. It is either
+	//    owned by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer
+	//    managed (CUSTOMER_MANAGED_CMK).
+	//
+	//    * The ID of the AWS KMS key that is associated with this respository association.
+	KMSKeyDetails *KMSKeyDetails `type:"structure"`
+
 	// The repository to associate.
 	//
 	// Repository is a required field
@@ -1642,6 +1651,11 @@ func (s *AssociateRepositoryInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.KMSKeyDetails != nil {
+		if err := s.KMSKeyDetails.Validate(); err != nil {
+			invalidParams.AddNested("KMSKeyDetails", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Repository != nil {
 		if err := s.Repository.Validate(); err != nil {
 			invalidParams.AddNested("Repository", err.(request.ErrInvalidParams))
@@ -1657,6 +1671,12 @@ func (s *AssociateRepositoryInput) Validate() error {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *AssociateRepositoryInput) SetClientRequestToken(v string) *AssociateRepositoryInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetKMSKeyDetails sets the KMSKeyDetails field's value.
+func (s *AssociateRepositoryInput) SetKMSKeyDetails(v *KMSKeyDetails) *AssociateRepositoryInput {
+	s.KMSKeyDetails = v
 	return s
 }
 
@@ -2048,18 +2068,18 @@ func (s *CodeReviewSummary) SetType(v string) *CodeReviewSummary {
 // The type of a code review. There are two code review types:
 //
 //    * PullRequest - A code review that is automatically triggered by a pull
-//    request on an assocaited repository. Because this type of code review
+//    request on an associated repository. Because this type of code review
 //    is automatically generated, you cannot specify this code review type using
 //    CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 //
 //    * RepositoryAnalysis - A code review that analyzes all code under a specified
-//    branch in an associated respository. The assocated repository is specified
+//    branch in an associated repository. The associated repository is specified
 //    using its ARN in CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 type CodeReviewType struct {
 	_ struct{} `type:"structure"`
 
 	// A code review that analyzes all code under a specified branch in an associated
-	// respository. The assocated repository is specified using its ARN in CreateCodeReview
+	// repository. The associated repository is specified using its ARN in CreateCodeReview
 	// (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 	//
 	// RepositoryAnalysis is a required field
@@ -2697,6 +2717,59 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An object that contains:
+//
+//    * The encryption option for a repository association. It is either owned
+//    by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed
+//    (CUSTOMER_MANAGED_CMK).
+//
+//    * The ID of the AWS KMS key that is associated with a respository association.
+type KMSKeyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption option for a repository association. It is either owned by
+	// AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed (CUSTOMER_MANAGED_CMK).
+	EncryptionOption *string `type:"string" enum:"EncryptionOption"`
+
+	// The ID of the AWS KMS key that is associated with a respository association.
+	KMSKeyId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s KMSKeyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KMSKeyDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KMSKeyDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KMSKeyDetails"}
+	if s.KMSKeyId != nil && len(*s.KMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSKeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionOption sets the EncryptionOption field's value.
+func (s *KMSKeyDetails) SetEncryptionOption(v string) *KMSKeyDetails {
+	s.EncryptionOption = &v
+	return s
+}
+
+// SetKMSKeyId sets the KMSKeyId field's value.
+func (s *KMSKeyDetails) SetKMSKeyId(v string) *KMSKeyDetails {
+	s.KMSKeyId = &v
+	return s
 }
 
 type ListCodeReviewsInput struct {
@@ -3817,7 +3890,7 @@ func (s *Repository) SetGitHubEnterpriseServer(v *ThirdPartySourceRepository) *R
 }
 
 // A code review type that analyzes all code under a specified branch in an
-// associated respository. The assocated repository is specified using its ARN
+// associated repository. The associated repository is specified using its ARN
 // when you call CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 type RepositoryAnalysis struct {
 	_ struct{} `type:"structure"`
@@ -3884,6 +3957,15 @@ type RepositoryAssociation struct {
 	// The time, in milliseconds since the epoch, when the repository association
 	// was created.
 	CreatedTimeStamp *time.Time `type:"timestamp"`
+
+	// A KMSKeyDetails object that contains:
+	//
+	//    * The encryption option for this repository association. It is either
+	//    owned by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer
+	//    managed (CUSTOMER_MANAGED_CMK).
+	//
+	//    * The ID of the AWS KMS key that is associated with this respository association.
+	KMSKeyDetails *KMSKeyDetails `type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the repository association
 	// was last updated.
@@ -3965,6 +4047,12 @@ func (s *RepositoryAssociation) SetConnectionArn(v string) *RepositoryAssociatio
 // SetCreatedTimeStamp sets the CreatedTimeStamp field's value.
 func (s *RepositoryAssociation) SetCreatedTimeStamp(v time.Time) *RepositoryAssociation {
 	s.CreatedTimeStamp = &v
+	return s
+}
+
+// SetKMSKeyDetails sets the KMSKeyDetails field's value.
+func (s *RepositoryAssociation) SetKMSKeyDetails(v *KMSKeyDetails) *RepositoryAssociation {
+	s.KMSKeyDetails = v
 	return s
 }
 
@@ -4605,6 +4693,22 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// EncryptionOptionAwsOwnedCmk is a EncryptionOption enum value
+	EncryptionOptionAwsOwnedCmk = "AWS_OWNED_CMK"
+
+	// EncryptionOptionCustomerManagedCmk is a EncryptionOption enum value
+	EncryptionOptionCustomerManagedCmk = "CUSTOMER_MANAGED_CMK"
+)
+
+// EncryptionOption_Values returns all elements of the EncryptionOption enum
+func EncryptionOption_Values() []string {
+	return []string{
+		EncryptionOptionAwsOwnedCmk,
+		EncryptionOptionCustomerManagedCmk,
+	}
 }
 
 const (

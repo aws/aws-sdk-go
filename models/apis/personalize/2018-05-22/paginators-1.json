@@ -12,6 +12,12 @@
       "output_token": "nextToken",
       "result_key": "campaigns"
     },
+    "ListDatasetExportJobs": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "datasetExportJobs"
+    },
     "ListDatasetGroups": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
@@ -35,6 +41,12 @@
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "eventTrackers"
+    },
+    "ListFilters": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "Filters"
     },
     "ListRecipes": {
       "input_token": "nextToken",

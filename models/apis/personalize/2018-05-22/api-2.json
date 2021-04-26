@@ -63,6 +63,23 @@
       ],
       "idempotent":true
     },
+    "CreateDatasetExportJob":{
+      "name":"CreateDatasetExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDatasetExportJobRequest"},
+      "output":{"shape":"CreateDatasetExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "CreateDatasetGroup":{
       "name":"CreateDatasetGroup",
       "http":{
@@ -324,6 +341,20 @@
       ],
       "idempotent":true
     },
+    "DescribeDatasetExportJob":{
+      "name":"DescribeDatasetExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDatasetExportJobRequest"},
+      "output":{"shape":"DescribeDatasetExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribeDatasetGroup":{
       "name":"DescribeDatasetGroup",
       "http":{
@@ -486,6 +517,20 @@
       },
       "input":{"shape":"ListCampaignsRequest"},
       "output":{"shape":"ListCampaignsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InvalidNextTokenException"}
+      ],
+      "idempotent":true
+    },
+    "ListDatasetExportJobs":{
+      "name":"ListDatasetExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDatasetExportJobsRequest"},
+      "output":{"shape":"ListDatasetExportJobsResponse"},
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"InvalidNextTokenException"}
@@ -880,6 +925,28 @@
         "campaignArn":{"shape":"Arn"}
       }
     },
+    "CreateDatasetExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "jobName",
+        "datasetArn",
+        "roleArn",
+        "jobOutput"
+      ],
+      "members":{
+        "jobName":{"shape":"Name"},
+        "datasetArn":{"shape":"Arn"},
+        "ingestionMode":{"shape":"IngestionMode"},
+        "roleArn":{"shape":"RoleArn"},
+        "jobOutput":{"shape":"DatasetExportJobOutput"}
+      }
+    },
+    "CreateDatasetExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "datasetExportJobArn":{"shape":"Arn"}
+      }
+    },
     "CreateDatasetGroupRequest":{
       "type":"structure",
       "required":["name"],
@@ -1045,6 +1112,44 @@
         "creationDateTime":{"shape":"Date"},
         "lastUpdatedDateTime":{"shape":"Date"}
       }
+    },
+    "DatasetExportJob":{
+      "type":"structure",
+      "members":{
+        "jobName":{"shape":"Name"},
+        "datasetExportJobArn":{"shape":"Arn"},
+        "datasetArn":{"shape":"Arn"},
+        "ingestionMode":{"shape":"IngestionMode"},
+        "roleArn":{"shape":"Arn"},
+        "status":{"shape":"Status"},
+        "jobOutput":{"shape":"DatasetExportJobOutput"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "DatasetExportJobOutput":{
+      "type":"structure",
+      "required":["s3DataDestination"],
+      "members":{
+        "s3DataDestination":{"shape":"S3DataConfig"}
+      }
+    },
+    "DatasetExportJobSummary":{
+      "type":"structure",
+      "members":{
+        "datasetExportJobArn":{"shape":"Arn"},
+        "jobName":{"shape":"Name"},
+        "status":{"shape":"Status"},
+        "creationDateTime":{"shape":"Date"},
+        "lastUpdatedDateTime":{"shape":"Date"},
+        "failureReason":{"shape":"FailureReason"}
+      }
+    },
+    "DatasetExportJobs":{
+      "type":"list",
+      "member":{"shape":"DatasetExportJobSummary"},
+      "max":100
     },
     "DatasetGroup":{
       "type":"structure",
@@ -1280,6 +1385,19 @@
       "type":"structure",
       "members":{
         "campaign":{"shape":"Campaign"}
+      }
+    },
+    "DescribeDatasetExportJobRequest":{
+      "type":"structure",
+      "required":["datasetExportJobArn"],
+      "members":{
+        "datasetExportJobArn":{"shape":"Arn"}
+      }
+    },
+    "DescribeDatasetExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "datasetExportJob":{"shape":"DatasetExportJob"}
       }
     },
     "DescribeDatasetGroupRequest":{
@@ -1573,6 +1691,14 @@
       "value":{"shape":"ParameterValue"},
       "max":100
     },
+    "IngestionMode":{
+      "type":"string",
+      "enum":[
+        "BULK",
+        "PUT",
+        "ALL"
+      ]
+    },
     "IntegerHyperParameterRange":{
       "type":"structure",
       "members":{
@@ -1643,6 +1769,21 @@
       "type":"structure",
       "members":{
         "campaigns":{"shape":"Campaigns"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListDatasetExportJobsRequest":{
+      "type":"structure",
+      "members":{
+        "datasetArn":{"shape":"Arn"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListDatasetExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "datasetExportJobs":{"shape":"DatasetExportJobs"},
         "nextToken":{"shape":"NextToken"}
       }
     },

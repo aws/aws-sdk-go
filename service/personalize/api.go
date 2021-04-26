@@ -364,6 +364,114 @@ func (c *Personalize) CreateDatasetWithContext(ctx aws.Context, input *CreateDat
 	return out, req.Send()
 }
 
+const opCreateDatasetExportJob = "CreateDatasetExportJob"
+
+// CreateDatasetExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDatasetExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDatasetExportJob for more information on using the CreateDatasetExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDatasetExportJobRequest method.
+//    req, resp := client.CreateDatasetExportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
+func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJobInput) (req *request.Request, output *CreateDatasetExportJobOutput) {
+	op := &request.Operation{
+		Name:       opCreateDatasetExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDatasetExportJobInput{}
+	}
+
+	output = &CreateDatasetExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDatasetExportJob API operation for Amazon Personalize.
+//
+// Creates a job that exports data from your dataset to an Amazon S3 bucket.
+// To allow Amazon Personalize to export the training data, you must specify
+// an service-linked AWS Identity and Access Management (IAM) role that gives
+// Amazon Personalize PutObject permissions for your Amazon S3 bucket. For information,
+// see Dataset export job permissions requirements (https://docs.aws.amazon.com/personalize/latest/dg/export-permissions.html)
+// in the Amazon Personalize developer guide.
+//
+// Status
+//
+// A dataset export job can be in one of the following states:
+//
+//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//
+// To get the status of the export job, call DescribeDatasetExportJob, and specify
+// the Amazon Resource Name (ARN) of the dataset export job. The dataset export
+// is complete when the status shows as ACTIVE. If the status shows as CREATE
+// FAILED, the response includes a failureReason key, which describes why the
+// job failed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation CreateDatasetExportJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * LimitExceededException
+//   The limit on the number of requests per second has been exceeded.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/CreateDatasetExportJob
+func (c *Personalize) CreateDatasetExportJob(input *CreateDatasetExportJobInput) (*CreateDatasetExportJobOutput, error) {
+	req, out := c.CreateDatasetExportJobRequest(input)
+	return out, req.Send()
+}
+
+// CreateDatasetExportJobWithContext is the same as CreateDatasetExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDatasetExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) CreateDatasetExportJobWithContext(ctx aws.Context, input *CreateDatasetExportJobInput, opts ...request.Option) (*CreateDatasetExportJobOutput, error) {
+	req, out := c.CreateDatasetExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDatasetGroup = "CreateDatasetGroup"
 
 // CreateDatasetGroupRequest generates a "aws/request.Request" representing the
@@ -540,9 +648,10 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 // Creates a job that imports training data from your data source (an Amazon
 // S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize
 // to import the training data, you must specify an AWS Identity and Access
-// Management (IAM) role that has permission to read from the data source, as
-// Amazon Personalize makes a copy of your data and processes it in an internal
-// AWS system.
+// Management (IAM) service role that has permission to read from the data source,
+// as Amazon Personalize makes a copy of your data and processes it in an internal
+// AWS system. For information on granting access to your Amazon S3 bucket,
+// see Giving Amazon Personalize Access to Amazon S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
 //
 // The dataset import job replaces any existing data in the dataset that you
 // imported in bulk.
@@ -2134,6 +2243,89 @@ func (c *Personalize) DescribeDatasetWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+const opDescribeDatasetExportJob = "DescribeDatasetExportJob"
+
+// DescribeDatasetExportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDatasetExportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDatasetExportJob for more information on using the DescribeDatasetExportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDatasetExportJobRequest method.
+//    req, resp := client.DescribeDatasetExportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
+func (c *Personalize) DescribeDatasetExportJobRequest(input *DescribeDatasetExportJobInput) (req *request.Request, output *DescribeDatasetExportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDatasetExportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDatasetExportJobInput{}
+	}
+
+	output = &DescribeDatasetExportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDatasetExportJob API operation for Amazon Personalize.
+//
+// Describes the dataset export job created by CreateDatasetExportJob, including
+// the export job status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation DescribeDatasetExportJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/DescribeDatasetExportJob
+func (c *Personalize) DescribeDatasetExportJob(input *DescribeDatasetExportJobInput) (*DescribeDatasetExportJobOutput, error) {
+	req, out := c.DescribeDatasetExportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDatasetExportJobWithContext is the same as DescribeDatasetExportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDatasetExportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) DescribeDatasetExportJobWithContext(ctx aws.Context, input *DescribeDatasetExportJobInput, opts ...request.Option) (*DescribeDatasetExportJobOutput, error) {
+	req, out := c.DescribeDatasetExportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDatasetGroup = "DescribeDatasetGroup"
 
 // DescribeDatasetGroupRequest generates a "aws/request.Request" representing the
@@ -3261,6 +3453,151 @@ func (c *Personalize) ListCampaignsPagesWithContext(ctx aws.Context, input *List
 	return p.Err()
 }
 
+const opListDatasetExportJobs = "ListDatasetExportJobs"
+
+// ListDatasetExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDatasetExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDatasetExportJobs for more information on using the ListDatasetExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDatasetExportJobsRequest method.
+//    req, resp := client.ListDatasetExportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
+func (c *Personalize) ListDatasetExportJobsRequest(input *ListDatasetExportJobsInput) (req *request.Request, output *ListDatasetExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListDatasetExportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDatasetExportJobsInput{}
+	}
+
+	output = &ListDatasetExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDatasetExportJobs API operation for Amazon Personalize.
+//
+// Returns a list of dataset export jobs that use the given dataset. When a
+// dataset is not specified, all the dataset export jobs associated with the
+// account are listed. The response provides the properties for each dataset
+// export job, including the Amazon Resource Name (ARN). For more information
+// on dataset export jobs, see CreateDatasetExportJob. For more information
+// on datasets, see CreateDataset.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation ListDatasetExportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * InvalidNextTokenException
+//   The token is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/ListDatasetExportJobs
+func (c *Personalize) ListDatasetExportJobs(input *ListDatasetExportJobsInput) (*ListDatasetExportJobsOutput, error) {
+	req, out := c.ListDatasetExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListDatasetExportJobsWithContext is the same as ListDatasetExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDatasetExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListDatasetExportJobsWithContext(ctx aws.Context, input *ListDatasetExportJobsInput, opts ...request.Option) (*ListDatasetExportJobsOutput, error) {
+	req, out := c.ListDatasetExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDatasetExportJobsPages iterates over the pages of a ListDatasetExportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDatasetExportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDatasetExportJobs operation.
+//    pageNum := 0
+//    err := client.ListDatasetExportJobsPages(params,
+//        func(page *personalize.ListDatasetExportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Personalize) ListDatasetExportJobsPages(input *ListDatasetExportJobsInput, fn func(*ListDatasetExportJobsOutput, bool) bool) error {
+	return c.ListDatasetExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDatasetExportJobsPagesWithContext same as ListDatasetExportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListDatasetExportJobsPagesWithContext(ctx aws.Context, input *ListDatasetExportJobsInput, fn func(*ListDatasetExportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDatasetExportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDatasetExportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDatasetExportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDatasetGroups = "ListDatasetGroups"
 
 // ListDatasetGroupsRequest generates a "aws/request.Request" representing the
@@ -3860,6 +4197,12 @@ func (c *Personalize) ListFiltersRequest(input *ListFiltersInput) (req *request.
 		Name:       opListFilters,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3909,6 +4252,58 @@ func (c *Personalize) ListFiltersWithContext(ctx aws.Context, input *ListFilters
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListFiltersPages iterates over the pages of a ListFilters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFilters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFilters operation.
+//    pageNum := 0
+//    err := client.ListFiltersPages(params,
+//        func(page *personalize.ListFiltersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Personalize) ListFiltersPages(input *ListFiltersInput, fn func(*ListFiltersOutput, bool) bool) error {
+	return c.ListFiltersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFiltersPagesWithContext same as ListFiltersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) ListFiltersPagesWithContext(ctx aws.Context, input *ListFiltersInput, fn func(*ListFiltersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFiltersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFiltersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFiltersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListRecipes = "ListRecipes"
@@ -4928,7 +5323,7 @@ type BatchInferenceJobConfig struct {
 	// A string to string map specifying the exploration configuration hyperparameters,
 	// including explorationWeight and explorationItemAgeCutOff, you want to use
 	// to configure the amount of item exploration Amazon Personalize uses when
-	// recommending items. See native-recipe-new-item-USER_PERSONALIZATION.
+	// recommending items. See User-Personalization (https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html).
 	ItemExplorationConfig map[string]*string `locationName:"itemExplorationConfig" type:"map"`
 }
 
@@ -5529,7 +5924,7 @@ type CreateBatchInferenceJobInput struct {
 	BatchInferenceJobConfig *BatchInferenceJobConfig `locationName:"batchInferenceJobConfig" type:"structure"`
 
 	// The ARN of the filter to apply to the batch inference job. For more information
-	// on using filters, see Using Filters with Amazon Personalize.
+	// on using filters, see Filtering Batch Recommendations (https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html)..
 	FilterArn *string `locationName:"filterArn" type:"string"`
 
 	// The Amazon S3 path that leads to the input file to base your recommendations
@@ -5552,7 +5947,7 @@ type CreateBatchInferenceJobInput struct {
 	NumResults *int64 `locationName:"numResults" type:"integer"`
 
 	// The ARN of the Amazon Identity and Access Management role that has permissions
-	// to read and write to your input and out Amazon S3 buckets respectively.
+	// to read and write to your input and output Amazon S3 buckets respectively.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -5786,6 +6181,130 @@ func (s CreateCampaignOutput) GoString() string {
 // SetCampaignArn sets the CampaignArn field's value.
 func (s *CreateCampaignOutput) SetCampaignArn(v string) *CreateCampaignOutput {
 	s.CampaignArn = &v
+	return s
+}
+
+type CreateDatasetExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset that contains the data to export.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
+
+	// The data to export, based on how you imported the data. You can choose to
+	// export only BULK data that you imported using a dataset import job, only
+	// PUT data that you imported incrementally (using the console, PutEvents, PutUsers
+	// and PutItems operations), or ALL for both types. The default value is PUT.
+	IngestionMode *string `locationName:"ingestionMode" type:"string" enum:"IngestionMode"`
+
+	// The name for the dataset export job.
+	//
+	// JobName is a required field
+	JobName *string `locationName:"jobName" min:"1" type:"string" required:"true"`
+
+	// The path to the Amazon S3 bucket where the job's output is stored.
+	//
+	// JobOutput is a required field
+	JobOutput *DatasetExportJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// service role that has permissions to add data to your output Amazon S3 bucket.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateDatasetExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDatasetExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDatasetExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDatasetExportJobInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.JobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobName"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.JobOutput == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobOutput"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.JobOutput != nil {
+		if err := s.JobOutput.Validate(); err != nil {
+			invalidParams.AddNested("JobOutput", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *CreateDatasetExportJobInput) SetDatasetArn(v string) *CreateDatasetExportJobInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetIngestionMode sets the IngestionMode field's value.
+func (s *CreateDatasetExportJobInput) SetIngestionMode(v string) *CreateDatasetExportJobInput {
+	s.IngestionMode = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *CreateDatasetExportJobInput) SetJobName(v string) *CreateDatasetExportJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *CreateDatasetExportJobInput) SetJobOutput(v *DatasetExportJobOutput) *CreateDatasetExportJobInput {
+	s.JobOutput = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateDatasetExportJobInput) SetRoleArn(v string) *CreateDatasetExportJobInput {
+	s.RoleArn = &v
+	return s
+}
+
+type CreateDatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateDatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *CreateDatasetExportJobOutput) SetDatasetExportJobArn(v string) *CreateDatasetExportJobOutput {
+	s.DatasetExportJobArn = &v
 	return s
 }
 
@@ -6598,7 +7117,7 @@ type DataSource struct {
 	// The path to the Amazon S3 bucket where the data that you want to upload to
 	// your dataset is stored. For example:
 	//
-	// s3://bucket-name/training-data.csv
+	// s3://bucket-name/folder-name/
 	DataLocation *string `locationName:"dataLocation" type:"string"`
 }
 
@@ -6713,6 +7232,246 @@ func (s *Dataset) SetSchemaArn(v string) *Dataset {
 
 // SetStatus sets the Status field's value.
 func (s *Dataset) SetStatus(v string) *Dataset {
+	s.Status = &v
+	return s
+}
+
+// Describes a job that exports a dataset to an Amazon S3 bucket. For more information,
+// see CreateDatasetExportJob.
+//
+// A dataset export job can be in one of the following states:
+//
+//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+type DatasetExportJob struct {
+	_ struct{} `type:"structure"`
+
+	// The creation date and time (in Unix time) of the dataset export job.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the dataset to export.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+
+	// If a dataset export job fails, provides the reason why.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The data to export, based on how you imported the data. You can choose to
+	// export BULK data that you imported using a dataset import job, PUT data that
+	// you imported incrementally (using the console, PutEvents, PutUsers and PutItems
+	// operations), or ALL for both types. The default value is PUT.
+	IngestionMode *string `locationName:"ingestionMode" type:"string" enum:"IngestionMode"`
+
+	// The name of the export job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The path to the Amazon S3 bucket where the job's output is stored. For example:
+	//
+	// s3://bucket-name/folder-name/
+	JobOutput *DatasetExportJobOutput `locationName:"jobOutput" type:"structure"`
+
+	// The date and time (in Unix time) the status of the dataset export job was
+	// last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// service role that has permissions to add data to your output Amazon S3 bucket.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+
+	// The status of the dataset export job.
+	//
+	// A dataset export job can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation
+func (s DatasetExportJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatasetExportJob) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DatasetExportJob) SetCreationDateTime(v time.Time) *DatasetExportJob {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *DatasetExportJob) SetDatasetArn(v string) *DatasetExportJob {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DatasetExportJob) SetDatasetExportJobArn(v string) *DatasetExportJob {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DatasetExportJob) SetFailureReason(v string) *DatasetExportJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIngestionMode sets the IngestionMode field's value.
+func (s *DatasetExportJob) SetIngestionMode(v string) *DatasetExportJob {
+	s.IngestionMode = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DatasetExportJob) SetJobName(v string) *DatasetExportJob {
+	s.JobName = &v
+	return s
+}
+
+// SetJobOutput sets the JobOutput field's value.
+func (s *DatasetExportJob) SetJobOutput(v *DatasetExportJobOutput) *DatasetExportJob {
+	s.JobOutput = v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DatasetExportJob) SetLastUpdatedDateTime(v time.Time) *DatasetExportJob {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DatasetExportJob) SetRoleArn(v string) *DatasetExportJob {
+	s.RoleArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetExportJob) SetStatus(v string) *DatasetExportJob {
+	s.Status = &v
+	return s
+}
+
+// The output configuration parameters of a dataset export job.
+type DatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration details of an Amazon S3 input or output bucket.
+	//
+	// S3DataDestination is a required field
+	S3DataDestination *S3DataConfig `locationName:"s3DataDestination" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatasetExportJobOutput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatasetExportJobOutput"}
+	if s.S3DataDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DataDestination"))
+	}
+	if s.S3DataDestination != nil {
+		if err := s.S3DataDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3DataDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3DataDestination sets the S3DataDestination field's value.
+func (s *DatasetExportJobOutput) SetS3DataDestination(v *S3DataConfig) *DatasetExportJobOutput {
+	s.S3DataDestination = v
+	return s
+}
+
+// Provides a summary of the properties of a dataset export job. For a complete
+// listing, call the DescribeDatasetExportJob API.
+type DatasetExportJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (in Unix time) that the dataset export job was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job.
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string"`
+
+	// If a dataset export job fails, the reason behind the failure.
+	FailureReason *string `locationName:"failureReason" type:"string"`
+
+	// The name of the dataset export job.
+	JobName *string `locationName:"jobName" min:"1" type:"string"`
+
+	// The date and time (in Unix time) that the dataset export job status was last
+	// updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The status of the dataset export job.
+	//
+	// A dataset export job can be in one of the following states:
+	//
+	//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+	Status *string `locationName:"status" type:"string"`
+}
+
+// String returns the string representation
+func (s DatasetExportJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatasetExportJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DatasetExportJobSummary) SetCreationDateTime(v time.Time) *DatasetExportJobSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DatasetExportJobSummary) SetDatasetExportJobArn(v string) *DatasetExportJobSummary {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DatasetExportJobSummary) SetFailureReason(v string) *DatasetExportJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *DatasetExportJobSummary) SetJobName(v string) *DatasetExportJobSummary {
+	s.JobName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DatasetExportJobSummary) SetLastUpdatedDateTime(v time.Time) *DatasetExportJobSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DatasetExportJobSummary) SetStatus(v string) *DatasetExportJobSummary {
 	s.Status = &v
 	return s
 }
@@ -7017,7 +7776,8 @@ type DatasetImportJobSummary struct {
 	// The name of the dataset import job.
 	JobName *string `locationName:"jobName" min:"1" type:"string"`
 
-	// The date and time (in Unix time) that the dataset was last updated.
+	// The date and time (in Unix time) that the dataset import job status was last
+	// updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
 	// The status of the dataset import job.
@@ -8008,6 +8768,77 @@ func (s DescribeCampaignOutput) GoString() string {
 // SetCampaign sets the Campaign field's value.
 func (s *DescribeCampaignOutput) SetCampaign(v *Campaign) *DescribeCampaignOutput {
 	s.Campaign = v
+	return s
+}
+
+type DescribeDatasetExportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset export job to describe.
+	//
+	// DatasetExportJobArn is a required field
+	DatasetExportJobArn *string `locationName:"datasetExportJobArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeDatasetExportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDatasetExportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDatasetExportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDatasetExportJobInput"}
+	if s.DatasetExportJobArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetExportJobArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetExportJobArn sets the DatasetExportJobArn field's value.
+func (s *DescribeDatasetExportJobInput) SetDatasetExportJobArn(v string) *DescribeDatasetExportJobInput {
+	s.DatasetExportJobArn = &v
+	return s
+}
+
+type DescribeDatasetExportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the dataset export job, including the status.
+	//
+	// The status is one of the following values:
+	//
+	//    * CREATE PENDING
+	//
+	//    * CREATE IN_PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * CREATE FAILED
+	DatasetExportJob *DatasetExportJob `locationName:"datasetExportJob" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeDatasetExportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDatasetExportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJob sets the DatasetExportJob field's value.
+func (s *DescribeDatasetExportJobOutput) SetDatasetExportJob(v *DatasetExportJob) *DescribeDatasetExportJobOutput {
+	s.DatasetExportJob = v
 	return s
 }
 
@@ -9602,7 +10433,7 @@ type ListBatchInferenceJobsOutput struct {
 	// A list containing information on each job that is returned.
 	BatchInferenceJobs []*BatchInferenceJobSummary `locationName:"batchInferenceJobs" type:"list"`
 
-	// The token to use to retreive the next page of results. The value is null
+	// The token to use to retrieve the next page of results. The value is null
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
@@ -9714,6 +10545,94 @@ func (s *ListCampaignsOutput) SetCampaigns(v []*CampaignSummary) *ListCampaignsO
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListCampaignsOutput) SetNextToken(v string) *ListCampaignsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetExportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dataset to list the dataset export
+	// jobs for.
+	DatasetArn *string `locationName:"datasetArn" type:"string"`
+
+	// The maximum number of dataset export jobs to return.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// A token returned from the previous call to ListDatasetExportJobs for getting
+	// the next set of dataset export jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDatasetExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDatasetExportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDatasetExportJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *ListDatasetExportJobsInput) SetDatasetArn(v string) *ListDatasetExportJobsInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDatasetExportJobsInput) SetMaxResults(v int64) *ListDatasetExportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetExportJobsInput) SetNextToken(v string) *ListDatasetExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDatasetExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of dataset export jobs.
+	DatasetExportJobs []*DatasetExportJobSummary `locationName:"datasetExportJobs" type:"list"`
+
+	// A token for getting the next set of dataset export jobs (if they exist).
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDatasetExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDatasetExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatasetExportJobs sets the DatasetExportJobs field's value.
+func (s *ListDatasetExportJobsOutput) SetDatasetExportJobs(v []*DatasetExportJobSummary) *ListDatasetExportJobsOutput {
+	s.DatasetExportJobs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDatasetExportJobsOutput) SetNextToken(v string) *ListDatasetExportJobsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -11519,6 +12438,26 @@ func (s UpdateCampaignOutput) GoString() string {
 func (s *UpdateCampaignOutput) SetCampaignArn(v string) *UpdateCampaignOutput {
 	s.CampaignArn = &v
 	return s
+}
+
+const (
+	// IngestionModeBulk is a IngestionMode enum value
+	IngestionModeBulk = "BULK"
+
+	// IngestionModePut is a IngestionMode enum value
+	IngestionModePut = "PUT"
+
+	// IngestionModeAll is a IngestionMode enum value
+	IngestionModeAll = "ALL"
+)
+
+// IngestionMode_Values returns all elements of the IngestionMode enum
+func IngestionMode_Values() []string {
+	return []string{
+		IngestionModeBulk,
+		IngestionModePut,
+		IngestionModeAll,
+	}
 }
 
 const (

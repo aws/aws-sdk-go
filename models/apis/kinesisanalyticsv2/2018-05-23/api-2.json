@@ -439,7 +439,24 @@
         {"shape":"InvalidArgumentException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"InvalidApplicationConfigurationException"}
+        {"shape":"InvalidApplicationConfigurationException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "UpdateApplicationMaintenanceConfiguration":{
+      "name":"UpdateApplicationMaintenanceConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateApplicationMaintenanceConfigurationRequest"},
+      "output":{"shape":"UpdateApplicationMaintenanceConfigurationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     }
   },
@@ -656,8 +673,39 @@
         "CreateTimestamp":{"shape":"Timestamp"},
         "LastUpdateTimestamp":{"shape":"Timestamp"},
         "ApplicationConfigurationDescription":{"shape":"ApplicationConfigurationDescription"},
-        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"}
+        "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"},
+        "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"}
       }
+    },
+    "ApplicationMaintenanceConfigurationDescription":{
+      "type":"structure",
+      "required":[
+        "ApplicationMaintenanceWindowStartTime",
+        "ApplicationMaintenanceWindowEndTime"
+      ],
+      "members":{
+        "ApplicationMaintenanceWindowStartTime":{"shape":"ApplicationMaintenanceWindowStartTime"},
+        "ApplicationMaintenanceWindowEndTime":{"shape":"ApplicationMaintenanceWindowEndTime"}
+      }
+    },
+    "ApplicationMaintenanceConfigurationUpdate":{
+      "type":"structure",
+      "required":["ApplicationMaintenanceWindowStartTimeUpdate"],
+      "members":{
+        "ApplicationMaintenanceWindowStartTimeUpdate":{"shape":"ApplicationMaintenanceWindowStartTime"}
+      }
+    },
+    "ApplicationMaintenanceWindowEndTime":{
+      "type":"string",
+      "max":5,
+      "min":5,
+      "pattern":"([01][0-9]|2[0-3]):[0-5][0-9]"
+    },
+    "ApplicationMaintenanceWindowStartTime":{
+      "type":"string",
+      "max":5,
+      "min":5,
+      "pattern":"([01][0-9]|2[0-3]):[0-5][0-9]"
     },
     "ApplicationName":{
       "type":"string",
@@ -712,7 +760,8 @@
         "RUNNING",
         "UPDATING",
         "AUTOSCALING",
-        "FORCE_STOPPING"
+        "FORCE_STOPPING",
+        "MAINTENANCE"
       ]
     },
     "ApplicationSummaries":{
@@ -2257,6 +2306,24 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateApplicationMaintenanceConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "ApplicationMaintenanceConfigurationUpdate"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "ApplicationMaintenanceConfigurationUpdate":{"shape":"ApplicationMaintenanceConfigurationUpdate"}
+      }
+    },
+    "UpdateApplicationMaintenanceConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationARN":{"shape":"ResourceARN"},
+        "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"}
       }
     },
     "UpdateApplicationRequest":{
