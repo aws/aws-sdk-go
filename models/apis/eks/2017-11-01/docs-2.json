@@ -169,9 +169,7 @@
     "Capacity": {
       "base": null,
       "refs": {
-        "NodegroupScalingConfig$minSize": "<p>The minimum number of nodes that the managed node group can scale in to. This number must be greater than zero.</p>",
-        "NodegroupScalingConfig$maxSize": "<p>The maximum number of nodes that the managed node group can scale out to. For information about the maximum number that you can specify, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html\">Amazon EKS service quotas</a> in the <i>Amazon EKS User Guide</i>.</p>",
-        "NodegroupScalingConfig$desiredSize": "<p>The current number of nodes that the managed node group should maintain.</p>"
+        "NodegroupScalingConfig$maxSize": "<p>The maximum number of nodes that the managed node group can scale out to. For information about the maximum number that you can specify, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/service-quotas.html\">Amazon EKS service quotas</a> in the <i>Amazon EKS User Guide</i>.</p>"
       }
     },
     "CapacityTypes": {
@@ -1183,6 +1181,13 @@
       "base": "<p>An object representing an Amazon EKS cluster VPC configuration response.</p>",
       "refs": {
         "Cluster$resourcesVpcConfig": "<p>The VPC configuration used by the cluster control plane. Amazon EKS VPC resources have specific requirements to work properly with Kubernetes. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/network_reqs.html\">Cluster VPC Considerations</a> and <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/sec-group-reqs.html\">Cluster Security Group Considerations</a> in the <i>Amazon EKS User Guide</i>.</p>"
+      }
+    },
+    "ZeroCapacity": {
+      "base": null,
+      "refs": {
+        "NodegroupScalingConfig$minSize": "<p>The minimum number of nodes that the managed node group can scale in to. This number must be greater than zero.</p>",
+        "NodegroupScalingConfig$desiredSize": "<p>The current number of nodes that the managed node group should maintain.</p>"
       }
     },
     "configStatus": {

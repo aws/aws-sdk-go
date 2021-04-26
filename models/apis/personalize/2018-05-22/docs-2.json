@@ -5,8 +5,9 @@
     "CreateBatchInferenceJob": "<p>Creates a batch inference job. The operation can handle up to 50 million records and the input file must be in JSON format. For more information, see <a>recommendations-batch</a>.</p>",
     "CreateCampaign": "<p>Creates a campaign by deploying a solution version. When a client calls the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetRecommendations.html\">GetRecommendations</a> and <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_RS_GetPersonalizedRanking.html\">GetPersonalizedRanking</a> APIs, a campaign is specified in the request.</p> <p> <b>Minimum Provisioned TPS and Auto-Scaling</b> </p> <p>A transaction is a single <code>GetRecommendations</code> or <code>GetPersonalizedRanking</code> call. Transactions per second (TPS) is the throughput and unit of billing for Amazon Personalize. The minimum provisioned TPS (<code>minProvisionedTPS</code>) specifies the baseline throughput provisioned by Amazon Personalize, and thus, the minimum billing charge. </p> <p> If your TPS increases beyond <code>minProvisionedTPS</code>, Amazon Personalize auto-scales the provisioned capacity up and down, but never below <code>minProvisionedTPS</code>. There's a short time delay while the capacity is increased that might cause loss of transactions.</p> <p>The actual TPS used is calculated as the average requests/second within a 5-minute window. You pay for maximum of either the minimum provisioned TPS or the actual TPS. We recommend starting with a low <code>minProvisionedTPS</code>, track your usage using Amazon CloudWatch metrics, and then increase the <code>minProvisionedTPS</code> as necessary.</p> <p> <b>Status</b> </p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the campaign status, call <a>DescribeCampaign</a>.</p> <note> <p>Wait until the <code>status</code> of the campaign is <code>ACTIVE</code> before asking the campaign for recommendations.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListCampaigns</a> </p> </li> <li> <p> <a>DescribeCampaign</a> </p> </li> <li> <p> <a>UpdateCampaign</a> </p> </li> <li> <p> <a>DeleteCampaign</a> </p> </li> </ul>",
     "CreateDataset": "<p>Creates an empty dataset and adds it to the specified dataset group. Use <a>CreateDatasetImportJob</a> to import your training data to a dataset.</p> <p>There are three types of datasets:</p> <ul> <li> <p>Interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> </ul> <p>Each dataset type has an associated schema with required field types. Only the <code>Interactions</code> dataset is required in order to train a model (also referred to as creating a solution).</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the dataset, call <a>DescribeDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>CreateDatasetGroup</a> </p> </li> <li> <p> <a>ListDatasets</a> </p> </li> <li> <p> <a>DescribeDataset</a> </p> </li> <li> <p> <a>DeleteDataset</a> </p> </li> </ul>",
+    "CreateDatasetExportJob": "<p> Creates a job that exports data from your dataset to an Amazon S3 bucket. To allow Amazon Personalize to export the training data, you must specify an service-linked AWS Identity and Access Management (IAM) role that gives Amazon Personalize <code>PutObject</code> permissions for your Amazon S3 bucket. For information, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/export-permissions.html\">Dataset export job permissions requirements</a> in the Amazon Personalize developer guide. </p> <p> <b>Status</b> </p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p> To get the status of the export job, call <a>DescribeDatasetExportJob</a>, and specify the Amazon Resource Name (ARN) of the dataset export job. The dataset export is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed. </p>",
     "CreateDatasetGroup": "<p>Creates an empty dataset group. A dataset group contains related datasets that supply data for training a model. A dataset group can contain at most three datasets, one for each type of dataset:</p> <ul> <li> <p>Interactions</p> </li> <li> <p>Items</p> </li> <li> <p>Users</p> </li> </ul> <p>To train a model (create a solution), a dataset group that contains an <code>Interactions</code> dataset is required. Call <a>CreateDataset</a> to add a dataset to the group.</p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul> <p>To get the status of the dataset group, call <a>DescribeDatasetGroup</a>. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the creation failed.</p> <note> <p>You must wait until the <code>status</code> of the dataset group is <code>ACTIVE</code> before adding a dataset to the group.</p> </note> <p>You can specify an AWS Key Management Service (KMS) key to encrypt the datasets in the group. If you specify a KMS key, you must also include an AWS Identity and Access Management (IAM) role that has permission to access the key.</p> <p class=\"title\"> <b>APIs that require a dataset group ARN in the request</b> </p> <ul> <li> <p> <a>CreateDataset</a> </p> </li> <li> <p> <a>CreateEventTracker</a> </p> </li> <li> <p> <a>CreateSolution</a> </p> </li> </ul> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetGroups</a> </p> </li> <li> <p> <a>DescribeDatasetGroup</a> </p> </li> <li> <p> <a>DeleteDatasetGroup</a> </p> </li> </ul>",
-    "CreateDatasetImportJob": "<p>Creates a job that imports training data from your data source (an Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the training data, you must specify an AWS Identity and Access Management (IAM) role that has permission to read from the data source, as Amazon Personalize makes a copy of your data and processes it in an internal AWS system.</p> <important> <p>The dataset import job replaces any existing data in the dataset that you imported in bulk.</p> </important> <p> <b>Status</b> </p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p>To get the status of the import job, call <a>DescribeDatasetImportJob</a>, providing the Amazon Resource Name (ARN) of the dataset import job. The dataset import is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <note> <p>Importing takes time. You must wait until the status shows as ACTIVE before training a model using the dataset.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetImportJobs</a> </p> </li> <li> <p> <a>DescribeDatasetImportJob</a> </p> </li> </ul>",
+    "CreateDatasetImportJob": "<p>Creates a job that imports training data from your data source (an Amazon S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize to import the training data, you must specify an AWS Identity and Access Management (IAM) service role that has permission to read from the data source, as Amazon Personalize makes a copy of your data and processes it in an internal AWS system. For information on granting access to your Amazon S3 bucket, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html\">Giving Amazon Personalize Access to Amazon S3 Resources</a>. </p> <important> <p>The dataset import job replaces any existing data in the dataset that you imported in bulk.</p> </important> <p> <b>Status</b> </p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul> <p>To get the status of the import job, call <a>DescribeDatasetImportJob</a>, providing the Amazon Resource Name (ARN) of the dataset import job. The dataset import is complete when the status shows as ACTIVE. If the status shows as CREATE FAILED, the response includes a <code>failureReason</code> key, which describes why the job failed.</p> <note> <p>Importing takes time. You must wait until the status shows as ACTIVE before training a model using the dataset.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListDatasetImportJobs</a> </p> </li> <li> <p> <a>DescribeDatasetImportJob</a> </p> </li> </ul>",
     "CreateEventTracker": "<p>Creates an event tracker that you use when adding event data to a specified dataset group using the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> API.</p> <note> <p>Only one event tracker can be associated with a dataset group. You will get an error if you call <code>CreateEventTracker</code> using the same dataset group as an existing event tracker.</p> </note> <p>When you create an event tracker, the response includes a tracking ID, which you pass as a parameter when you use the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/API_UBS_PutEvents.html\">PutEvents</a> operation. Amazon Personalize then appends the event data to the Interactions dataset of the dataset group you specify in your event tracker. </p> <p>The event tracker can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>To get the status of the event tracker, call <a>DescribeEventTracker</a>.</p> <note> <p>The event tracker must be in the ACTIVE state before using the tracking ID.</p> </note> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListEventTrackers</a> </p> </li> <li> <p> <a>DescribeEventTracker</a> </p> </li> <li> <p> <a>DeleteEventTracker</a> </p> </li> </ul>",
     "CreateFilter": "<p>Creates a recommendation filter. For more information, see <a>filter</a>.</p>",
     "CreateSchema": "<p>Creates an Amazon Personalize schema from the specified schema string. The schema you create must be in Avro JSON format.</p> <p>Amazon Personalize recognizes three schema variants. Each schema is associated with a dataset type and has a set of required field and keywords. You specify a schema when you call <a>CreateDataset</a>.</p> <p class=\"title\"> <b>Related APIs</b> </p> <ul> <li> <p> <a>ListSchemas</a> </p> </li> <li> <p> <a>DescribeSchema</a> </p> </li> <li> <p> <a>DeleteSchema</a> </p> </li> </ul>",
@@ -23,6 +24,7 @@
     "DescribeBatchInferenceJob": "<p>Gets the properties of a batch inference job including name, Amazon Resource Name (ARN), status, input and output configurations, and the ARN of the solution version used to generate the recommendations.</p>",
     "DescribeCampaign": "<p>Describes the given campaign, including its status.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul> <p>When the <code>status</code> is <code>CREATE FAILED</code>, the response includes the <code>failureReason</code> key, which describes why.</p> <p>For more information on campaigns, see <a>CreateCampaign</a>.</p>",
     "DescribeDataset": "<p>Describes the given dataset. For more information on datasets, see <a>CreateDataset</a>.</p>",
+    "DescribeDatasetExportJob": "<p>Describes the dataset export job created by <a>CreateDatasetExportJob</a>, including the export job status.</p>",
     "DescribeDatasetGroup": "<p>Describes the given dataset group. For more information on dataset groups, see <a>CreateDatasetGroup</a>.</p>",
     "DescribeDatasetImportJob": "<p>Describes the dataset import job created by <a>CreateDatasetImportJob</a>, including the import job status.</p>",
     "DescribeEventTracker": "<p>Describes an event tracker. The response includes the <code>trackingId</code> and <code>status</code> of the event tracker. For more information on event trackers, see <a>CreateEventTracker</a>.</p>",
@@ -35,6 +37,7 @@
     "GetSolutionMetrics": "<p>Gets the metrics for the specified solution version.</p>",
     "ListBatchInferenceJobs": "<p>Gets a list of the batch inference jobs that have been performed off of a solution version.</p>",
     "ListCampaigns": "<p>Returns a list of campaigns that use the given solution. When a solution is not specified, all the campaigns associated with the account are listed. The response provides the properties for each campaign, including the Amazon Resource Name (ARN). For more information on campaigns, see <a>CreateCampaign</a>.</p>",
+    "ListDatasetExportJobs": "<p>Returns a list of dataset export jobs that use the given dataset. When a dataset is not specified, all the dataset export jobs associated with the account are listed. The response provides the properties for each dataset export job, including the Amazon Resource Name (ARN). For more information on dataset export jobs, see <a>CreateDatasetExportJob</a>. For more information on datasets, see <a>CreateDataset</a>.</p>",
     "ListDatasetGroups": "<p>Returns a list of dataset groups. The response provides the properties for each dataset group, including the Amazon Resource Name (ARN). For more information on dataset groups, see <a>CreateDatasetGroup</a>.</p>",
     "ListDatasetImportJobs": "<p>Returns a list of dataset import jobs that use the given dataset. When a dataset is not specified, all the dataset import jobs associated with the account are listed. The response provides the properties for each dataset import job, including the Amazon Resource Name (ARN). For more information on dataset import jobs, see <a>CreateDatasetImportJob</a>. For more information on datasets, see <a>CreateDataset</a>.</p>",
     "ListDatasets": "<p>Returns the list of datasets contained in the given dataset group. The response provides the properties for each dataset, including the Amazon Resource Name (ARN). For more information on datasets, see <a>CreateDataset</a>.</p>",
@@ -82,10 +85,12 @@
         "CampaignSummary$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "CampaignUpdateSummary$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the deployed solution version.</p>",
         "CreateBatchInferenceJobRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version that will be used to generate the batch inference recommendations.</p>",
-        "CreateBatchInferenceJobRequest$filterArn": "<p>The ARN of the filter to apply to the batch inference job. For more information on using filters, see Using Filters with Amazon Personalize.</p>",
+        "CreateBatchInferenceJobRequest$filterArn": "<p>The ARN of the filter to apply to the batch inference job. For more information on using filters, see <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/filter-batch.html\">Filtering Batch Recommendations</a>..</p>",
         "CreateBatchInferenceJobResponse$batchInferenceJobArn": "<p>The ARN of the batch inference job.</p>",
         "CreateCampaignRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version to deploy.</p>",
         "CreateCampaignResponse$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
+        "CreateDatasetExportJobRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that contains the data to export.</p>",
+        "CreateDatasetExportJobResponse$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job.</p>",
         "CreateDatasetGroupResponse$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the new dataset group.</p>",
         "CreateDatasetImportJobRequest$datasetArn": "<p>The ARN of the dataset that receives the imported data.</p>",
         "CreateDatasetImportJobResponse$datasetImportJobArn": "<p>The ARN of the dataset import job.</p>",
@@ -105,6 +110,10 @@
         "Dataset$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset that you want metadata for.</p>",
         "Dataset$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "Dataset$schemaArn": "<p>The ARN of the associated schema.</p>",
+        "DatasetExportJob$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job.</p>",
+        "DatasetExportJob$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to export.</p>",
+        "DatasetExportJob$roleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management service role that has permissions to add data to your output Amazon S3 bucket.</p>",
+        "DatasetExportJobSummary$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job.</p>",
         "DatasetGroup$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "DatasetGroupSummary$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "DatasetImportJob$datasetImportJobArn": "<p>The ARN of the dataset import job.</p>",
@@ -124,6 +133,7 @@
         "DescribeAlgorithmRequest$algorithmArn": "<p>The Amazon Resource Name (ARN) of the algorithm to describe.</p>",
         "DescribeBatchInferenceJobRequest$batchInferenceJobArn": "<p>The ARN of the batch inference job to describe.</p>",
         "DescribeCampaignRequest$campaignArn": "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
+        "DescribeDatasetExportJobRequest$datasetExportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset export job to describe.</p>",
         "DescribeDatasetGroupRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group to describe.</p>",
         "DescribeDatasetImportJobRequest$datasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job to describe.</p>",
         "DescribeDatasetRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to describe.</p>",
@@ -146,6 +156,7 @@
         "GetSolutionMetricsResponse$solutionVersionArn": "<p>The same solution version ARN as specified in the request.</p>",
         "ListBatchInferenceJobsRequest$solutionVersionArn": "<p>The Amazon Resource Name (ARN) of the solution version from which the batch inference jobs were created.</p>",
         "ListCampaignsRequest$solutionArn": "<p>The Amazon Resource Name (ARN) of the solution to list the campaigns for. When a solution is not specified, all the campaigns associated with the account are listed.</p>",
+        "ListDatasetExportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset export jobs for.</p>",
         "ListDatasetImportJobsRequest$datasetArn": "<p>The Amazon Resource Name (ARN) of the dataset to list the dataset import jobs for.</p>",
         "ListDatasetsRequest$datasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group that contains the datasets to list.</p>",
         "ListEventTrackersRequest$datasetGroupArn": "<p>The ARN of a dataset group used to filter the response.</p>",
@@ -344,6 +355,16 @@
       "refs": {
       }
     },
+    "CreateDatasetExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatasetExportJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateDatasetGroupRequest": {
       "base": null,
       "refs": {
@@ -437,6 +458,31 @@
         "DescribeDatasetResponse$dataset": "<p>A listing of the dataset's properties.</p>"
       }
     },
+    "DatasetExportJob": {
+      "base": "<p>Describes a job that exports a dataset to an Amazon S3 bucket. For more information, see <a>CreateDatasetExportJob</a>.</p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
+      "refs": {
+        "DescribeDatasetExportJobResponse$datasetExportJob": "<p>Information about the dataset export job, including the status.</p> <p>The status is one of the following values:</p> <ul> <li> <p>CREATE PENDING</p> </li> <li> <p>CREATE IN_PROGRESS</p> </li> <li> <p>ACTIVE</p> </li> <li> <p>CREATE FAILED</p> </li> </ul>"
+      }
+    },
+    "DatasetExportJobOutput": {
+      "base": "<p>The output configuration parameters of a dataset export job.</p>",
+      "refs": {
+        "CreateDatasetExportJobRequest$jobOutput": "<p>The path to the Amazon S3 bucket where the job's output is stored.</p>",
+        "DatasetExportJob$jobOutput": "<p>The path to the Amazon S3 bucket where the job's output is stored. For example:</p> <p> <code>s3://bucket-name/folder-name/</code> </p>"
+      }
+    },
+    "DatasetExportJobSummary": {
+      "base": "<p>Provides a summary of the properties of a dataset export job. For a complete listing, call the <a>DescribeDatasetExportJob</a> API.</p>",
+      "refs": {
+        "DatasetExportJobs$member": null
+      }
+    },
+    "DatasetExportJobs": {
+      "base": null,
+      "refs": {
+        "ListDatasetExportJobsResponse$datasetExportJobs": "<p>The list of dataset export jobs.</p>"
+      }
+    },
     "DatasetGroup": {
       "base": "<p>A dataset group is a collection of related datasets (Interactions, User, and Item). You create a dataset group by calling <a>CreateDatasetGroup</a>. You then create a dataset and add it to a dataset group by calling <a>CreateDataset</a>. The dataset group is used to create and train a solution by calling <a>CreateSolution</a>. A dataset group can contain only one of each type of dataset.</p> <p>You can specify an AWS Key Management Service (KMS) key to encrypt the datasets in the group.</p>",
       "refs": {
@@ -522,6 +568,10 @@
         "CampaignUpdateSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the campaign update was last updated.</p>",
         "Dataset$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset.</p>",
         "Dataset$lastUpdatedDateTime": "<p>A time stamp that shows when the dataset was updated.</p>",
+        "DatasetExportJob$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset export job.</p>",
+        "DatasetExportJob$lastUpdatedDateTime": "<p>The date and time (in Unix time) the status of the dataset export job was last updated.</p>",
+        "DatasetExportJobSummary$creationDateTime": "<p>The date and time (in Unix time) that the dataset export job was created.</p>",
+        "DatasetExportJobSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the dataset export job status was last updated.</p>",
         "DatasetGroup$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset group.</p>",
         "DatasetGroup$lastUpdatedDateTime": "<p>The last update date and time (in Unix time) of the dataset group.</p>",
         "DatasetGroupSummary$creationDateTime": "<p>The date and time (in Unix time) that the dataset group was created.</p>",
@@ -529,7 +579,7 @@
         "DatasetImportJob$creationDateTime": "<p>The creation date and time (in Unix time) of the dataset import job.</p>",
         "DatasetImportJob$lastUpdatedDateTime": "<p>The date and time (in Unix time) the dataset was last updated.</p>",
         "DatasetImportJobSummary$creationDateTime": "<p>The date and time (in Unix time) that the dataset import job was created.</p>",
-        "DatasetImportJobSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the dataset was last updated.</p>",
+        "DatasetImportJobSummary$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the dataset import job status was last updated.</p>",
         "DatasetSchema$creationDateTime": "<p>The date and time (in Unix time) that the schema was created.</p>",
         "DatasetSchema$lastUpdatedDateTime": "<p>The date and time (in Unix time) that the schema was last updated.</p>",
         "DatasetSchemaSummary$creationDateTime": "<p>The date and time (in Unix time) that the schema was created.</p>",
@@ -663,6 +713,16 @@
       }
     },
     "DescribeCampaignResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDatasetExportJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDatasetExportJobResponse": {
       "base": null,
       "refs": {
       }
@@ -830,6 +890,8 @@
         "Campaign$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignSummary$failureReason": "<p>If a campaign fails, the reason behind the failure.</p>",
         "CampaignUpdateSummary$failureReason": "<p>If a campaign update fails, the reason behind the failure.</p>",
+        "DatasetExportJob$failureReason": "<p>If a dataset export job fails, provides the reason why.</p>",
+        "DatasetExportJobSummary$failureReason": "<p>If a dataset export job fails, the reason behind the failure.</p>",
         "DatasetGroup$failureReason": "<p>If creating a dataset group fails, provides the reason why.</p>",
         "DatasetGroupSummary$failureReason": "<p>If creating a dataset group fails, the reason behind the failure.</p>",
         "DatasetImportJob$failureReason": "<p>If a dataset import job fails, provides the reason why.</p>",
@@ -934,10 +996,17 @@
       "base": null,
       "refs": {
         "Algorithm$defaultHyperParameters": "<p>Specifies the default hyperparameters.</p>",
-        "BatchInferenceJobConfig$itemExplorationConfig": "<p>A string to string map specifying the exploration configuration hyperparameters, including <code>explorationWeight</code> and <code>explorationItemAgeCutOff</code>, you want to use to configure the amount of item exploration Amazon Personalize uses when recommending items. See <a>native-recipe-new-item-USER_PERSONALIZATION</a>.</p>",
+        "BatchInferenceJobConfig$itemExplorationConfig": "<p>A string to string map specifying the exploration configuration hyperparameters, including <code>explorationWeight</code> and <code>explorationItemAgeCutOff</code>, you want to use to configure the amount of item exploration Amazon Personalize uses when recommending items. See <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html\">User-Personalization</a>.</p>",
         "CampaignConfig$itemExplorationConfig": "<p>A string to string map specifying the exploration configuration hyperparameters, including <code>explorationWeight</code> and <code>explorationItemAgeCutOff</code>, you want to use to configure the amount of item exploration Amazon Personalize uses when recommending items. Provide <code>itemExplorationConfig</code> data only if your solution uses the <a href=\"https://docs.aws.amazon.com/personalize/latest/dg/native-recipe-new-item-USER_PERSONALIZATION.html\">User-Personalization</a> recipe.</p>",
         "SolutionConfig$algorithmHyperParameters": "<p>Lists the hyperparameter names and ranges.</p>",
         "TunedHPOParams$algorithmHyperParameters": "<p>A list of the hyperparameter values of the best performing model.</p>"
+      }
+    },
+    "IngestionMode": {
+      "base": null,
+      "refs": {
+        "CreateDatasetExportJobRequest$ingestionMode": "<p>The data to export, based on how you imported the data. You can choose to export only <code>BULK</code> data that you imported using a dataset import job, only <code>PUT</code> data that you imported incrementally (using the console, PutEvents, PutUsers and PutItems operations), or <code>ALL</code> for both types. The default value is <code>PUT</code>. </p>",
+        "DatasetExportJob$ingestionMode": "<p>The data to export, based on how you imported the data. You can choose to export <code>BULK</code> data that you imported using a dataset import job, <code>PUT</code> data that you imported incrementally (using the console, PutEvents, PutUsers and PutItems operations), or <code>ALL</code> for both types. The default value is <code>PUT</code>. </p>"
       }
     },
     "IntegerHyperParameterRange": {
@@ -1005,6 +1074,16 @@
       }
     },
     "ListCampaignsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatasetExportJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatasetExportJobsResponse": {
       "base": null,
       "refs": {
       }
@@ -1104,6 +1183,7 @@
       "refs": {
         "ListBatchInferenceJobsRequest$maxResults": "<p>The maximum number of batch inference job results to return in each page. The default value is 100.</p>",
         "ListCampaignsRequest$maxResults": "<p>The maximum number of campaigns to return.</p>",
+        "ListDatasetExportJobsRequest$maxResults": "<p>The maximum number of dataset export jobs to return.</p>",
         "ListDatasetGroupsRequest$maxResults": "<p>The maximum number of dataset groups to return.</p>",
         "ListDatasetImportJobsRequest$maxResults": "<p>The maximum number of dataset import jobs to return.</p>",
         "ListDatasetsRequest$maxResults": "<p>The maximum number of datasets to return.</p>",
@@ -1152,6 +1232,7 @@
         "CampaignSummary$name": "<p>The name of the campaign.</p>",
         "CreateBatchInferenceJobRequest$jobName": "<p>The name of the batch inference job to create.</p>",
         "CreateCampaignRequest$name": "<p>A name for the new campaign. The campaign name must be unique within your account.</p>",
+        "CreateDatasetExportJobRequest$jobName": "<p>The name for the dataset export job.</p>",
         "CreateDatasetGroupRequest$name": "<p>The name for the new dataset group.</p>",
         "CreateDatasetImportJobRequest$jobName": "<p>The name for the dataset import job.</p>",
         "CreateDatasetRequest$name": "<p>The name for the dataset.</p>",
@@ -1160,6 +1241,8 @@
         "CreateSchemaRequest$name": "<p>The name for the schema.</p>",
         "CreateSolutionRequest$name": "<p>The name for the solution.</p>",
         "Dataset$name": "<p>The name of the dataset.</p>",
+        "DatasetExportJob$jobName": "<p>The name of the export job.</p>",
+        "DatasetExportJobSummary$jobName": "<p>The name of the dataset export job.</p>",
         "DatasetGroup$name": "<p>The name of the dataset group.</p>",
         "DatasetGroupSummary$name": "<p>The name of the dataset group.</p>",
         "DatasetImportJob$jobName": "<p>The name of the import job.</p>",
@@ -1182,9 +1265,11 @@
       "base": null,
       "refs": {
         "ListBatchInferenceJobsRequest$nextToken": "<p>The token to request the next page of results.</p>",
-        "ListBatchInferenceJobsResponse$nextToken": "<p>The token to use to retreive the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
+        "ListBatchInferenceJobsResponse$nextToken": "<p>The token to use to retrieve the next page of results. The value is <code>null</code> when there are no more results to return.</p>",
         "ListCampaignsRequest$nextToken": "<p>A token returned from the previous call to <code>ListCampaigns</code> for getting the next set of campaigns (if they exist).</p>",
         "ListCampaignsResponse$nextToken": "<p>A token for getting the next set of campaigns (if they exist).</p>",
+        "ListDatasetExportJobsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetExportJobs</code> for getting the next set of dataset export jobs (if they exist).</p>",
+        "ListDatasetExportJobsResponse$nextToken": "<p>A token for getting the next set of dataset export jobs (if they exist).</p>",
         "ListDatasetGroupsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetGroups</code> for getting the next set of dataset groups (if they exist).</p>",
         "ListDatasetGroupsResponse$nextToken": "<p>A token for getting the next set of dataset groups (if they exist).</p>",
         "ListDatasetImportJobsRequest$nextToken": "<p>A token returned from the previous call to <code>ListDatasetImportJobs</code> for getting the next set of dataset import jobs (if they exist).</p>",
@@ -1306,7 +1391,8 @@
       "base": null,
       "refs": {
         "BatchInferenceJob$roleArn": "<p>The ARN of the Amazon Identity and Access Management (IAM) role that requested the batch inference job.</p>",
-        "CreateBatchInferenceJobRequest$roleArn": "<p>The ARN of the Amazon Identity and Access Management role that has permissions to read and write to your input and out Amazon S3 buckets respectively.</p>",
+        "CreateBatchInferenceJobRequest$roleArn": "<p>The ARN of the Amazon Identity and Access Management role that has permissions to read and write to your input and output Amazon S3 buckets respectively.</p>",
+        "CreateDatasetExportJobRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management service role that has permissions to add data to your output Amazon S3 bucket.</p>",
         "CreateDatasetGroupRequest$roleArn": "<p>The ARN of the IAM role that has permissions to access the KMS key. Supplying an IAM role is only valid when also specifying a KMS key.</p>",
         "CreateDatasetImportJobRequest$roleArn": "<p>The ARN of the IAM role that has permissions to read from the Amazon S3 data source.</p>",
         "DatasetGroup$roleArn": "<p>The ARN of the IAM role that has permissions to create the dataset group.</p>"
@@ -1316,13 +1402,14 @@
       "base": "<p>The configuration details of an Amazon S3 input or output bucket.</p>",
       "refs": {
         "BatchInferenceJobInput$s3DataSource": "<p>The URI of the Amazon S3 location that contains your input data. The Amazon S3 bucket must be in the same region as the API endpoint you are calling.</p>",
-        "BatchInferenceJobOutput$s3DataDestination": "<p>Information on the Amazon S3 bucket in which the batch inference job's output is stored.</p>"
+        "BatchInferenceJobOutput$s3DataDestination": "<p>Information on the Amazon S3 bucket in which the batch inference job's output is stored.</p>",
+        "DatasetExportJobOutput$s3DataDestination": null
       }
     },
     "S3Location": {
       "base": null,
       "refs": {
-        "DataSource$dataLocation": "<p>The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For example: </p> <p> <code>s3://bucket-name/training-data.csv</code> </p>",
+        "DataSource$dataLocation": "<p>The path to the Amazon S3 bucket where the data that you want to upload to your dataset is stored. For example: </p> <p> <code>s3://bucket-name/folder-name/</code> </p>",
         "S3DataConfig$path": "<p>The file path of the Amazon S3 bucket.</p>"
       }
     },
@@ -1386,6 +1473,8 @@
         "CampaignSummary$status": "<p>The status of the campaign.</p> <p>A campaign can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "CampaignUpdateSummary$status": "<p>The status of the campaign update.</p> <p>A campaign update can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
         "Dataset$status": "<p>The status of the dataset.</p> <p>A dataset can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING &gt; DELETE IN_PROGRESS</p> </li> </ul>",
+        "DatasetExportJob$status": "<p>The status of the dataset export job.</p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
+        "DatasetExportJobSummary$status": "<p>The status of the dataset export job.</p> <p>A dataset export job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",
         "DatasetGroup$status": "<p>The current status of the dataset group.</p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul>",
         "DatasetGroupSummary$status": "<p>The status of the dataset group.</p> <p>A dataset group can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> <li> <p>DELETE PENDING</p> </li> </ul>",
         "DatasetImportJob$status": "<p>The status of the dataset import job.</p> <p>A dataset import job can be in one of the following states:</p> <ul> <li> <p>CREATE PENDING &gt; CREATE IN_PROGRESS &gt; ACTIVE -or- CREATE FAILED</p> </li> </ul>",

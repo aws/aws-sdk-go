@@ -19349,6 +19349,24 @@ type Connection struct {
 	//
 	//    * CONNECTOR_CLASS_NAME - The connector class name for a MARKETPLACE or
 	//    CUSTOM connection.
+	//
+	//    * KAFKA_CLIENT_KEYSTORE - The Amazon S3 location of the client keystore
+	//    file for Kafka client side authentication (Optional).
+	//
+	//    * KAFKA_CLIENT_KEYSTORE_PASSWORD - The password to access the provided
+	//    keystore (Optional).
+	//
+	//    * KAFKA_CLIENT_KEY_PASSWORD - A keystore can consist of multiple keys,
+	//    so this is the password to access the client key to be used with the Kafka
+	//    server side key (Optional).
+	//
+	//    * ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD - The encrypted version of
+	//    the Kafka client keystore password (if the user has the AWS Glue encrypt
+	//    passwords setting selected).
+	//
+	//    * ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD - The encrypted version of the Kafka
+	//    client key password (if the user has the AWS Glue encrypt passwords setting
+	//    selected).
 	ConnectionProperties map[string]*string `type:"map"`
 
 	// The type of the connection. Currently, SFTP is not supported.
@@ -44574,6 +44592,21 @@ const (
 	// ConnectionPropertyKeyKafkaSkipCustomCertValidation is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeyKafkaSkipCustomCertValidation = "KAFKA_SKIP_CUSTOM_CERT_VALIDATION"
 
+	// ConnectionPropertyKeyKafkaClientKeystore is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaClientKeystore = "KAFKA_CLIENT_KEYSTORE"
+
+	// ConnectionPropertyKeyKafkaClientKeystorePassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaClientKeystorePassword = "KAFKA_CLIENT_KEYSTORE_PASSWORD"
+
+	// ConnectionPropertyKeyKafkaClientKeyPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyKafkaClientKeyPassword = "KAFKA_CLIENT_KEY_PASSWORD"
+
+	// ConnectionPropertyKeyEncryptedKafkaClientKeystorePassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyEncryptedKafkaClientKeystorePassword = "ENCRYPTED_KAFKA_CLIENT_KEYSTORE_PASSWORD"
+
+	// ConnectionPropertyKeyEncryptedKafkaClientKeyPassword is a ConnectionPropertyKey enum value
+	ConnectionPropertyKeyEncryptedKafkaClientKeyPassword = "ENCRYPTED_KAFKA_CLIENT_KEY_PASSWORD"
+
 	// ConnectionPropertyKeySecretId is a ConnectionPropertyKey enum value
 	ConnectionPropertyKeySecretId = "SECRET_ID"
 
@@ -44611,6 +44644,11 @@ func ConnectionPropertyKey_Values() []string {
 		ConnectionPropertyKeyKafkaSslEnabled,
 		ConnectionPropertyKeyKafkaCustomCert,
 		ConnectionPropertyKeyKafkaSkipCustomCertValidation,
+		ConnectionPropertyKeyKafkaClientKeystore,
+		ConnectionPropertyKeyKafkaClientKeystorePassword,
+		ConnectionPropertyKeyKafkaClientKeyPassword,
+		ConnectionPropertyKeyEncryptedKafkaClientKeystorePassword,
+		ConnectionPropertyKeyEncryptedKafkaClientKeyPassword,
 		ConnectionPropertyKeySecretId,
 		ConnectionPropertyKeyConnectorUrl,
 		ConnectionPropertyKeyConnectorType,

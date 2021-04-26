@@ -529,7 +529,8 @@
       "enum":[
         "AL2_x86_64",
         "AL2_x86_64_GPU",
-        "AL2_ARM_64"
+        "AL2_ARM_64",
+        "CUSTOM"
       ]
     },
     "Addon":{
@@ -1686,9 +1687,9 @@
     "NodegroupScalingConfig":{
       "type":"structure",
       "members":{
-        "minSize":{"shape":"Capacity"},
+        "minSize":{"shape":"ZeroCapacity"},
         "maxSize":{"shape":"Capacity"},
-        "desiredSize":{"shape":"Capacity"}
+        "desiredSize":{"shape":"ZeroCapacity"}
       }
     },
     "NodegroupStatus":{
@@ -2098,6 +2099,8 @@
         "MinSize",
         "ReleaseVersion",
         "PublicAccessCidrs",
+        "LaunchTemplateName",
+        "LaunchTemplateVersion",
         "IdentityProviderConfig",
         "EncryptionConfig",
         "AddonVersion",
@@ -2152,6 +2155,11 @@
         "endpointPrivateAccess":{"shape":"Boolean"},
         "publicAccessCidrs":{"shape":"StringList"}
       }
+    },
+    "ZeroCapacity":{
+      "type":"integer",
+      "box":true,
+      "min":0
     },
     "configStatus":{
       "type":"string",

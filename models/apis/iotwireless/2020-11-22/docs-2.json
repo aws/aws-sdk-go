@@ -1063,6 +1063,12 @@
         "SendDataToWirelessDeviceResponse$MessageId": "<p>The ID of the message sent to the wireless device.</p>"
       }
     },
+    "MessageType": {
+      "base": "<p>Sidewalk device message type.</p>",
+      "refs": {
+        "SidewalkSendDataToDevice$MessageType": null
+      }
+    },
     "MinGwDiversity": {
       "base": null,
       "refs": {

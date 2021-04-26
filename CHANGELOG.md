@@ -1,3 +1,19 @@
+Release v1.38.26 (2021-04-26)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Adding support for Red Hat Enterprise Linux with HA for Reserved Instances.
+* `service/eks`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Adding Kafka Client Auth Related Parameters
+* `service/iotwireless`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * Documentation updates for mediaconvert
+* `service/personalize`: Updates service API, documentation, and paginators
+
 Release v1.38.25 (2021-04-23)
 ===
 

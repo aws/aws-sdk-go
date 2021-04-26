@@ -72,6 +72,10 @@ type PersonalizeAPI interface {
 	CreateDatasetWithContext(aws.Context, *personalize.CreateDatasetInput, ...request.Option) (*personalize.CreateDatasetOutput, error)
 	CreateDatasetRequest(*personalize.CreateDatasetInput) (*request.Request, *personalize.CreateDatasetOutput)
 
+	CreateDatasetExportJob(*personalize.CreateDatasetExportJobInput) (*personalize.CreateDatasetExportJobOutput, error)
+	CreateDatasetExportJobWithContext(aws.Context, *personalize.CreateDatasetExportJobInput, ...request.Option) (*personalize.CreateDatasetExportJobOutput, error)
+	CreateDatasetExportJobRequest(*personalize.CreateDatasetExportJobInput) (*request.Request, *personalize.CreateDatasetExportJobOutput)
+
 	CreateDatasetGroup(*personalize.CreateDatasetGroupInput) (*personalize.CreateDatasetGroupOutput, error)
 	CreateDatasetGroupWithContext(aws.Context, *personalize.CreateDatasetGroupInput, ...request.Option) (*personalize.CreateDatasetGroupOutput, error)
 	CreateDatasetGroupRequest(*personalize.CreateDatasetGroupInput) (*request.Request, *personalize.CreateDatasetGroupOutput)
@@ -144,6 +148,10 @@ type PersonalizeAPI interface {
 	DescribeDatasetWithContext(aws.Context, *personalize.DescribeDatasetInput, ...request.Option) (*personalize.DescribeDatasetOutput, error)
 	DescribeDatasetRequest(*personalize.DescribeDatasetInput) (*request.Request, *personalize.DescribeDatasetOutput)
 
+	DescribeDatasetExportJob(*personalize.DescribeDatasetExportJobInput) (*personalize.DescribeDatasetExportJobOutput, error)
+	DescribeDatasetExportJobWithContext(aws.Context, *personalize.DescribeDatasetExportJobInput, ...request.Option) (*personalize.DescribeDatasetExportJobOutput, error)
+	DescribeDatasetExportJobRequest(*personalize.DescribeDatasetExportJobInput) (*request.Request, *personalize.DescribeDatasetExportJobOutput)
+
 	DescribeDatasetGroup(*personalize.DescribeDatasetGroupInput) (*personalize.DescribeDatasetGroupOutput, error)
 	DescribeDatasetGroupWithContext(aws.Context, *personalize.DescribeDatasetGroupInput, ...request.Option) (*personalize.DescribeDatasetGroupOutput, error)
 	DescribeDatasetGroupRequest(*personalize.DescribeDatasetGroupInput) (*request.Request, *personalize.DescribeDatasetGroupOutput)
@@ -198,6 +206,13 @@ type PersonalizeAPI interface {
 	ListCampaignsPages(*personalize.ListCampaignsInput, func(*personalize.ListCampaignsOutput, bool) bool) error
 	ListCampaignsPagesWithContext(aws.Context, *personalize.ListCampaignsInput, func(*personalize.ListCampaignsOutput, bool) bool, ...request.Option) error
 
+	ListDatasetExportJobs(*personalize.ListDatasetExportJobsInput) (*personalize.ListDatasetExportJobsOutput, error)
+	ListDatasetExportJobsWithContext(aws.Context, *personalize.ListDatasetExportJobsInput, ...request.Option) (*personalize.ListDatasetExportJobsOutput, error)
+	ListDatasetExportJobsRequest(*personalize.ListDatasetExportJobsInput) (*request.Request, *personalize.ListDatasetExportJobsOutput)
+
+	ListDatasetExportJobsPages(*personalize.ListDatasetExportJobsInput, func(*personalize.ListDatasetExportJobsOutput, bool) bool) error
+	ListDatasetExportJobsPagesWithContext(aws.Context, *personalize.ListDatasetExportJobsInput, func(*personalize.ListDatasetExportJobsOutput, bool) bool, ...request.Option) error
+
 	ListDatasetGroups(*personalize.ListDatasetGroupsInput) (*personalize.ListDatasetGroupsOutput, error)
 	ListDatasetGroupsWithContext(aws.Context, *personalize.ListDatasetGroupsInput, ...request.Option) (*personalize.ListDatasetGroupsOutput, error)
 	ListDatasetGroupsRequest(*personalize.ListDatasetGroupsInput) (*request.Request, *personalize.ListDatasetGroupsOutput)
@@ -229,6 +244,9 @@ type PersonalizeAPI interface {
 	ListFilters(*personalize.ListFiltersInput) (*personalize.ListFiltersOutput, error)
 	ListFiltersWithContext(aws.Context, *personalize.ListFiltersInput, ...request.Option) (*personalize.ListFiltersOutput, error)
 	ListFiltersRequest(*personalize.ListFiltersInput) (*request.Request, *personalize.ListFiltersOutput)
+
+	ListFiltersPages(*personalize.ListFiltersInput, func(*personalize.ListFiltersOutput, bool) bool) error
+	ListFiltersPagesWithContext(aws.Context, *personalize.ListFiltersInput, func(*personalize.ListFiltersOutput, bool) bool, ...request.Option) error
 
 	ListRecipes(*personalize.ListRecipesInput) (*personalize.ListRecipesOutput, error)
 	ListRecipesWithContext(aws.Context, *personalize.ListRecipesInput, ...request.Option) (*personalize.ListRecipesOutput, error)

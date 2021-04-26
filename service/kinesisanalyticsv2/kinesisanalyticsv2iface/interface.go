@@ -167,6 +167,10 @@ type KinesisAnalyticsV2API interface {
 	UpdateApplication(*kinesisanalyticsv2.UpdateApplicationInput) (*kinesisanalyticsv2.UpdateApplicationOutput, error)
 	UpdateApplicationWithContext(aws.Context, *kinesisanalyticsv2.UpdateApplicationInput, ...request.Option) (*kinesisanalyticsv2.UpdateApplicationOutput, error)
 	UpdateApplicationRequest(*kinesisanalyticsv2.UpdateApplicationInput) (*request.Request, *kinesisanalyticsv2.UpdateApplicationOutput)
+
+	UpdateApplicationMaintenanceConfiguration(*kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationInput) (*kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationOutput, error)
+	UpdateApplicationMaintenanceConfigurationWithContext(aws.Context, *kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationInput, ...request.Option) (*kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationOutput, error)
+	UpdateApplicationMaintenanceConfigurationRequest(*kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationInput) (*request.Request, *kinesisanalyticsv2.UpdateApplicationMaintenanceConfigurationOutput)
 }
 
 var _ KinesisAnalyticsV2API = (*kinesisanalyticsv2.KinesisAnalyticsV2)(nil)

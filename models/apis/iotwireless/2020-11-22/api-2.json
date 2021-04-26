@@ -2232,6 +2232,15 @@
       "max":2048
     },
     "MessageId":{"type":"string"},
+    "MessageType":{
+      "type":"string",
+      "enum":[
+        "CUSTOM_COMMAND_ID_NOTIFY",
+        "CUSTOM_COMMAND_ID_GET",
+        "CUSTOM_COMMAND_ID_SET",
+        "CUSTOM_COMMAND_ID_RESP"
+      ]
+    },
     "MinGwDiversity":{
       "type":"integer",
       "max":100,
@@ -2492,7 +2501,8 @@
     "SidewalkSendDataToDevice":{
       "type":"structure",
       "members":{
-        "Seq":{"shape":"Seq"}
+        "Seq":{"shape":"Seq"},
+        "MessageType":{"shape":"MessageType"}
       }
     },
     "SidewalkUpdateAccount":{

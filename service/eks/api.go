@@ -8047,7 +8047,7 @@ type NodegroupScalingConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The current number of nodes that the managed node group should maintain.
-	DesiredSize *int64 `locationName:"desiredSize" min:"1" type:"integer"`
+	DesiredSize *int64 `locationName:"desiredSize" type:"integer"`
 
 	// The maximum number of nodes that the managed node group can scale out to.
 	// For information about the maximum number that you can specify, see Amazon
@@ -8057,7 +8057,7 @@ type NodegroupScalingConfig struct {
 
 	// The minimum number of nodes that the managed node group can scale in to.
 	// This number must be greater than zero.
-	MinSize *int64 `locationName:"minSize" min:"1" type:"integer"`
+	MinSize *int64 `locationName:"minSize" type:"integer"`
 }
 
 // String returns the string representation
@@ -8073,14 +8073,8 @@ func (s NodegroupScalingConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *NodegroupScalingConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "NodegroupScalingConfig"}
-	if s.DesiredSize != nil && *s.DesiredSize < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DesiredSize", 1))
-	}
 	if s.MaxSize != nil && *s.MaxSize < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxSize", 1))
-	}
-	if s.MinSize != nil && *s.MinSize < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("MinSize", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -9981,6 +9975,9 @@ const (
 
 	// AMITypesAl2Arm64 is a AMITypes enum value
 	AMITypesAl2Arm64 = "AL2_ARM_64"
+
+	// AMITypesCustom is a AMITypes enum value
+	AMITypesCustom = "CUSTOM"
 )
 
 // AMITypes_Values returns all elements of the AMITypes enum
@@ -9989,6 +9986,7 @@ func AMITypes_Values() []string {
 		AMITypesAl2X8664,
 		AMITypesAl2X8664Gpu,
 		AMITypesAl2Arm64,
+		AMITypesCustom,
 	}
 }
 
@@ -10417,6 +10415,12 @@ const (
 	// UpdateParamTypePublicAccessCidrs is a UpdateParamType enum value
 	UpdateParamTypePublicAccessCidrs = "PublicAccessCidrs"
 
+	// UpdateParamTypeLaunchTemplateName is a UpdateParamType enum value
+	UpdateParamTypeLaunchTemplateName = "LaunchTemplateName"
+
+	// UpdateParamTypeLaunchTemplateVersion is a UpdateParamType enum value
+	UpdateParamTypeLaunchTemplateVersion = "LaunchTemplateVersion"
+
 	// UpdateParamTypeIdentityProviderConfig is a UpdateParamType enum value
 	UpdateParamTypeIdentityProviderConfig = "IdentityProviderConfig"
 
@@ -10448,6 +10452,8 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeMinSize,
 		UpdateParamTypeReleaseVersion,
 		UpdateParamTypePublicAccessCidrs,
+		UpdateParamTypeLaunchTemplateName,
+		UpdateParamTypeLaunchTemplateVersion,
 		UpdateParamTypeIdentityProviderConfig,
 		UpdateParamTypeEncryptionConfig,
 		UpdateParamTypeAddonVersion,

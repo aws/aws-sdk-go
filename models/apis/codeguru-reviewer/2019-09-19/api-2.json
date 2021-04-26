@@ -255,7 +255,8 @@
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "KMSKeyDetails":{"shape":"KMSKeyDetails"}
       }
     },
     "AssociateRepositoryResponse":{
@@ -478,6 +479,13 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "EncryptionOption":{
+      "type":"string",
+      "enum":[
+        "AWS_OWNED_CMK",
+        "CUSTOMER_MANAGED_CMK"
+      ]
+    },
     "ErrorMessage":{"type":"string"},
     "FilePath":{
       "type":"string",
@@ -508,6 +516,19 @@
       "member":{"shape":"JobState"},
       "max":3,
       "min":1
+    },
+    "KMSKeyDetails":{
+      "type":"structure",
+      "members":{
+        "KMSKeyId":{"shape":"KMSKeyId"},
+        "EncryptionOption":{"shape":"EncryptionOption"}
+      }
+    },
+    "KMSKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
     },
     "LineNumber":{"type":"integer"},
     "ListCodeReviewsMaxResults":{
@@ -866,7 +887,8 @@
         "State":{"shape":"RepositoryAssociationState"},
         "StateReason":{"shape":"StateReason"},
         "LastUpdatedTimeStamp":{"shape":"TimeStamp"},
-        "CreatedTimeStamp":{"shape":"TimeStamp"}
+        "CreatedTimeStamp":{"shape":"TimeStamp"},
+        "KMSKeyDetails":{"shape":"KMSKeyDetails"}
       }
     },
     "RepositoryAssociationState":{

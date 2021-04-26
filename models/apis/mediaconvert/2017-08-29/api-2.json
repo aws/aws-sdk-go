@@ -1574,7 +1574,7 @@
           "locationName": "maxBitrate"
         },
         "NumberBFramesBetweenReferenceFrames": {
-          "shape": "__integerMin7Max15",
+          "shape": "__integerMin0Max15",
           "locationName": "numberBFramesBetweenReferenceFrames"
         },
         "QvbrSettings": {
@@ -9414,11 +9414,6 @@
       "type": "integer",
       "min": 64000,
       "max": 640000
-    },
-    "__integerMin7Max15": {
-      "type": "integer",
-      "min": 7,
-      "max": 15
     },
     "__integerMin8000Max192000": {
       "type": "integer",
