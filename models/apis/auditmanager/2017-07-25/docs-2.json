@@ -577,6 +577,7 @@
       "refs": {
         "ControlSet$name": "<p> The name of the control set. </p>",
         "CreateAssessmentFrameworkControlSet$name": "<p> The name of the specified control set. </p>",
+        "UpdateAssessmentFrameworkControlSet$id": "<p> The unique identifier for the control set. </p>",
         "UpdateAssessmentFrameworkControlSet$name": "<p> The name of the control set. </p>"
       }
     },
@@ -1727,7 +1728,6 @@
         "UpdateAssessmentControlRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
         "UpdateAssessmentControlRequest$controlId": "<p> The identifier for the specified control. </p>",
         "UpdateAssessmentControlSetStatusRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
-        "UpdateAssessmentFrameworkControlSet$id": "<p> The unique identifier for the control set. </p>",
         "UpdateAssessmentFrameworkRequest$frameworkId": "<p> The identifier for the specified framework. </p>",
         "UpdateAssessmentRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",
         "UpdateAssessmentStatusRequest$assessmentId": "<p> The identifier for the specified assessment. </p>",

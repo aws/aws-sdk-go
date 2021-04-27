@@ -989,7 +989,7 @@
       "type":"string",
       "max":300,
       "min":1,
-      "pattern":"^[\\w\\W\\s\\S]*$"
+      "pattern":"^[^\\\\]*$"
     },
     "AssessmentReport":{
       "type":"structure",
@@ -1356,7 +1356,7 @@
       "type":"string",
       "max":300,
       "min":1,
-      "pattern":"^[\\w\\W\\s\\S]*$"
+      "pattern":"^[^\\\\]*$"
     },
     "ControlResponse":{
       "type":"string",
@@ -1866,7 +1866,7 @@
       "type":"string",
       "max":300,
       "min":1,
-      "pattern":"^[\\w\\W\\s\\S]*$"
+      "pattern":"^[^\\\\]*$"
     },
     "FrameworkType":{
       "type":"string",
@@ -2866,7 +2866,7 @@
     "UpdateAssessmentFrameworkControlSet":{
       "type":"structure",
       "members":{
-        "id":{"shape":"UUID"},
+        "id":{"shape":"ControlSetName"},
         "name":{"shape":"ControlSetName"},
         "controls":{"shape":"CreateAssessmentFrameworkControls"}
       }
