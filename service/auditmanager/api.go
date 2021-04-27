@@ -12308,7 +12308,7 @@ type UpdateAssessmentFrameworkControlSet struct {
 	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list"`
 
 	// The unique identifier for the control set.
-	Id *string `locationName:"id" min:"36" type:"string"`
+	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The name of the control set.
 	Name *string `locationName:"name" min:"1" type:"string"`
@@ -12330,8 +12330,8 @@ func (s *UpdateAssessmentFrameworkControlSet) Validate() error {
 	if s.Controls != nil && len(s.Controls) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Controls", 1))
 	}
-	if s.Id != nil && len(*s.Id) < 36 {
-		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))

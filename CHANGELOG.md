@@ -1,3 +1,9 @@
+Release v1.38.27 (2021-04-27)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+
 Release v1.38.26 (2021-04-26)
 ===
 
