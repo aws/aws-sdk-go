@@ -69,6 +69,15 @@ func (c *TranscribeStreamingService) StartMedicalStreamTranscriptionRequest(inpu
 	output.eventStream = es
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+		Name: "InputPipeCloser",
+		Fn: func(r *request.Request) {
+			err := es.closeInputPipe()
+			if err != nil {
+				r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+			}
+		},
+	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
@@ -245,6 +254,14 @@ func (es *StartMedicalStreamTranscriptionEventStream) setupInputPipe(r *request.
 	es.inputWriter = inputWriter
 }
 
+// Closes the input-pipe writer
+func (es *StartMedicalStreamTranscriptionEventStream) closeInputPipe() error {
+	if es.inputWriter != nil {
+		return es.inputWriter.Close()
+	}
+	return nil
+}
+
 // Send writes the event to the stream blocking until the event is written.
 // Returns an error if the event was not written.
 //
@@ -358,8 +375,8 @@ func (es *StartMedicalStreamTranscriptionEventStream) safeClose() {
 	case <-t.C:
 	case <-writeCloseDone:
 	}
-	if es.inputWriter != nil {
-		es.inputWriter.Close()
+	if err := es.closeInputPipe(); err != nil {
+		es.err.SetError(err)
 	}
 
 	es.Reader.Close()
@@ -431,6 +448,15 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 	output.eventStream = es
 
 	req.Handlers.Sign.PushFront(es.setupInputPipe)
+	req.Handlers.UnmarshalError.PushBackNamed(request.NamedHandler{
+		Name: "InputPipeCloser",
+		Fn: func(r *request.Request) {
+			err := es.closeInputPipe()
+			if err != nil {
+				r.Error = awserr.New(eventstreamapi.InputWriterCloseErrorCode, err.Error(), r.Error)
+			}
+		},
+	})
 	req.Handlers.Build.PushBack(request.WithSetRequestHeaders(map[string]string{
 		"Content-Type":         "application/vnd.amazon.eventstream",
 		"X-Amz-Content-Sha256": "STREAMING-AWS4-HMAC-SHA256-EVENTS",
@@ -617,6 +643,14 @@ func (es *StartStreamTranscriptionEventStream) setupInputPipe(r *request.Request
 	es.inputWriter = inputWriter
 }
 
+// Closes the input-pipe writer
+func (es *StartStreamTranscriptionEventStream) closeInputPipe() error {
+	if es.inputWriter != nil {
+		return es.inputWriter.Close()
+	}
+	return nil
+}
+
 // Send writes the event to the stream blocking until the event is written.
 // Returns an error if the event was not written.
 //
@@ -730,8 +764,8 @@ func (es *StartStreamTranscriptionEventStream) safeClose() {
 	case <-t.C:
 	case <-writeCloseDone:
 	}
-	if es.inputWriter != nil {
-		es.inputWriter.Close()
+	if err := es.closeInputPipe(); err != nil {
+		es.err.SetError(err)
 	}
 
 	es.Reader.Close()

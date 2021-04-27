@@ -214,6 +214,14 @@ func (es *{{ $esapi.Name }}) waitStreamPartClose() {
 			es.inputWriter = inputWriter
 	}
 
+	// Closes the input-pipe writer
+	func (es *{{ $esapi.Name }}) closeInputPipe() error {
+		if es.inputWriter != nil {
+			return es.inputWriter.Close()
+		}
+		return nil
+	}	
+
 	// Send writes the event to the stream blocking until the event is written.
 	// Returns an error if the event was not written.
 	//
@@ -400,8 +408,8 @@ func (es *{{ $esapi.Name }}) safeClose() {
 		case <-t.C:
 		case <-writeCloseDone:
 		}
-		if es.inputWriter != nil {
-			es.inputWriter.Close()
+		if err := es.closeInputPipe(); err != nil {
+			es.err.SetError(err)
 		}
 	{{- end }}
 
