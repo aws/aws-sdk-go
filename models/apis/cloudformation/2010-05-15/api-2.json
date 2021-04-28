@@ -1716,7 +1716,8 @@
         "TemplateBody":{"shape":"TemplateBody"},
         "TemplateURL":{"shape":"TemplateURL"},
         "StackName":{"shape":"StackNameOrId"},
-        "StackSetName":{"shape":"StackSetNameOrId"}
+        "StackSetName":{"shape":"StackSetNameOrId"},
+        "CallAs":{"shape":"CallAs"}
       }
     },
     "GetTemplateSummaryOutput":{

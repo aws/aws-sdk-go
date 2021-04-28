@@ -702,6 +702,10 @@
           "locationName": "hlsManifests",
           "shape": "__listOfHlsManifest"
         },
+        "IncludeEncoderConfigurationInSegments": {
+          "locationName": "includeEncoderConfigurationInSegments",
+          "shape": "__boolean"
+        },
         "SegmentDurationSeconds": {
           "locationName": "segmentDurationSeconds",
           "shape": "__integer"
@@ -1016,6 +1020,10 @@
         "Encryption": {
           "locationName": "encryption",
           "shape": "DashEncryption"
+        },
+        "IncludeEncoderConfigurationInSegments": {
+          "locationName": "includeEncoderConfigurationInSegments",
+          "shape": "__boolean"
         },
         "PeriodTriggers": {
           "locationName": "periodTriggers",

@@ -1847,6 +1847,13 @@ type CmafPackage struct {
 	// HlsManifests is a required field
 	HlsManifests []*HlsManifest `locationName:"hlsManifests" type:"list" required:"true"`
 
+	// When includeEncoderConfigurationInSegments is set to true, MediaPackage places
+	// your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS),
+	// and Video Parameter Set (VPS) metadata in every video segment instead of
+	// in the init fragment. This lets you use different SPS/PPS/VPS settings for
+	// your assets during content playback.
+	IncludeEncoderConfigurationInSegments *bool `locationName:"includeEncoderConfigurationInSegments" type:"boolean"`
+
 	// Duration (in seconds) of each fragment. Actual fragments will berounded to
 	// the nearest multiple of the source fragment duration.
 	SegmentDurationSeconds *int64 `locationName:"segmentDurationSeconds" type:"integer"`
@@ -1889,6 +1896,12 @@ func (s *CmafPackage) SetEncryption(v *CmafEncryption) *CmafPackage {
 // SetHlsManifests sets the HlsManifests field's value.
 func (s *CmafPackage) SetHlsManifests(v []*HlsManifest) *CmafPackage {
 	s.HlsManifests = v
+	return s
+}
+
+// SetIncludeEncoderConfigurationInSegments sets the IncludeEncoderConfigurationInSegments field's value.
+func (s *CmafPackage) SetIncludeEncoderConfigurationInSegments(v bool) *CmafPackage {
+	s.IncludeEncoderConfigurationInSegments = &v
 	return s
 }
 
@@ -2638,6 +2651,13 @@ type DashPackage struct {
 	// A Dynamic Adaptive Streaming over HTTP (DASH) encryption configuration.
 	Encryption *DashEncryption `locationName:"encryption" type:"structure"`
 
+	// When includeEncoderConfigurationInSegments is set to true, MediaPackage places
+	// your encoder's Sequence Parameter Set (SPS), Picture Parameter Set (PPS),
+	// and Video Parameter Set (VPS) metadata in every video segment instead of
+	// in the init fragment. This lets you use different SPS/PPS/VPS settings for
+	// your assets during content playback.
+	IncludeEncoderConfigurationInSegments *bool `locationName:"includeEncoderConfigurationInSegments" type:"boolean"`
+
 	// A list of triggers that controls when the outgoing Dynamic Adaptive Streaming
 	// over HTTP (DASH)Media Presentation Description (MPD) will be partitioned
 	// into multiple periods. If empty, the content will notbe partitioned into
@@ -2695,6 +2715,12 @@ func (s *DashPackage) SetDashManifests(v []*DashManifest) *DashPackage {
 // SetEncryption sets the Encryption field's value.
 func (s *DashPackage) SetEncryption(v *DashEncryption) *DashPackage {
 	s.Encryption = v
+	return s
+}
+
+// SetIncludeEncoderConfigurationInSegments sets the IncludeEncoderConfigurationInSegments field's value.
+func (s *DashPackage) SetIncludeEncoderConfigurationInSegments(v bool) *DashPackage {
+	s.IncludeEncoderConfigurationInSegments = &v
 	return s
 }
 
