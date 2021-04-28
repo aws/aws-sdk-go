@@ -198,6 +198,13 @@ type IoTSiteWiseAPI interface {
 	GetAssetPropertyValueHistoryPages(*iotsitewise.GetAssetPropertyValueHistoryInput, func(*iotsitewise.GetAssetPropertyValueHistoryOutput, bool) bool) error
 	GetAssetPropertyValueHistoryPagesWithContext(aws.Context, *iotsitewise.GetAssetPropertyValueHistoryInput, func(*iotsitewise.GetAssetPropertyValueHistoryOutput, bool) bool, ...request.Option) error
 
+	GetInterpolatedAssetPropertyValues(*iotsitewise.GetInterpolatedAssetPropertyValuesInput) (*iotsitewise.GetInterpolatedAssetPropertyValuesOutput, error)
+	GetInterpolatedAssetPropertyValuesWithContext(aws.Context, *iotsitewise.GetInterpolatedAssetPropertyValuesInput, ...request.Option) (*iotsitewise.GetInterpolatedAssetPropertyValuesOutput, error)
+	GetInterpolatedAssetPropertyValuesRequest(*iotsitewise.GetInterpolatedAssetPropertyValuesInput) (*request.Request, *iotsitewise.GetInterpolatedAssetPropertyValuesOutput)
+
+	GetInterpolatedAssetPropertyValuesPages(*iotsitewise.GetInterpolatedAssetPropertyValuesInput, func(*iotsitewise.GetInterpolatedAssetPropertyValuesOutput, bool) bool) error
+	GetInterpolatedAssetPropertyValuesPagesWithContext(aws.Context, *iotsitewise.GetInterpolatedAssetPropertyValuesInput, func(*iotsitewise.GetInterpolatedAssetPropertyValuesOutput, bool) bool, ...request.Option) error
+
 	ListAccessPolicies(*iotsitewise.ListAccessPoliciesInput) (*iotsitewise.ListAccessPoliciesOutput, error)
 	ListAccessPoliciesWithContext(aws.Context, *iotsitewise.ListAccessPoliciesInput, ...request.Option) (*iotsitewise.ListAccessPoliciesOutput, error)
 	ListAccessPoliciesRequest(*iotsitewise.ListAccessPoliciesInput) (*request.Request, *iotsitewise.ListAccessPoliciesOutput)

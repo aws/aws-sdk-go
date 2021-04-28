@@ -1,3 +1,14 @@
+Release v1.38.28 (2021-04-28)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * Add CallAs parameter to GetTemplateSummary to enable use with StackSets delegated administrator integration
+* `service/connect`: Updates service API
+* `service/iotsitewise`: Updates service API, documentation, and paginators
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/nimble`: Updates service API, documentation, and paginators
+
 Release v1.38.27 (2021-04-27)
 ===
 

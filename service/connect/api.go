@@ -23072,9 +23072,7 @@ type UpdateQueueMaxContactsInput struct {
 
 	// The maximum number of contacts that can be in the queue before it is considered
 	// full.
-	//
-	// MaxContacts is a required field
-	MaxContacts *int64 `type:"integer" required:"true"`
+	MaxContacts *int64 `type:"integer"`
 
 	// The identifier for the queue.
 	//
@@ -23100,9 +23098,6 @@ func (s *UpdateQueueMaxContactsInput) Validate() error {
 	}
 	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
-	}
-	if s.MaxContacts == nil {
-		invalidParams.Add(request.NewErrParamRequired("MaxContacts"))
 	}
 	if s.QueueId == nil {
 		invalidParams.Add(request.NewErrParamRequired("QueueId"))

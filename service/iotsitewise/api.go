@@ -3535,6 +3535,173 @@ func (c *IoTSiteWise) GetAssetPropertyValueHistoryPagesWithContext(ctx aws.Conte
 	return p.Err()
 }
 
+const opGetInterpolatedAssetPropertyValues = "GetInterpolatedAssetPropertyValues"
+
+// GetInterpolatedAssetPropertyValuesRequest generates a "aws/request.Request" representing the
+// client's request for the GetInterpolatedAssetPropertyValues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInterpolatedAssetPropertyValues for more information on using the GetInterpolatedAssetPropertyValues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInterpolatedAssetPropertyValuesRequest method.
+//    req, resp := client.GetInterpolatedAssetPropertyValuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/GetInterpolatedAssetPropertyValues
+func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesRequest(input *GetInterpolatedAssetPropertyValuesInput) (req *request.Request, output *GetInterpolatedAssetPropertyValuesOutput) {
+	op := &request.Operation{
+		Name:       opGetInterpolatedAssetPropertyValues,
+		HTTPMethod: "GET",
+		HTTPPath:   "/properties/interpolated",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetInterpolatedAssetPropertyValuesInput{}
+	}
+
+	output = &GetInterpolatedAssetPropertyValuesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("data.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetInterpolatedAssetPropertyValues API operation for AWS IoT SiteWise.
+//
+// Get interpolated values for an asset property for a specified time interval,
+// during a period of time. For example, you can use the this operation to return
+// the interpolated temperature values for a wind turbine every 24 hours over
+// a duration of 7 days.
+//
+// To identify an asset property, you must specify one of the following:
+//
+//    * The assetId and propertyId of an asset property.
+//
+//    * A propertyAlias, which is a data stream alias (for example, /company/windfarm/3/turbine/7/temperature).
+//    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation GetInterpolatedAssetPropertyValues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   AWS IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of AWS IoT SiteWise assets that can be created per second, the
+//   allowed number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+//   * ServiceUnavailableException
+//   The requested service is unavailable.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/GetInterpolatedAssetPropertyValues
+func (c *IoTSiteWise) GetInterpolatedAssetPropertyValues(input *GetInterpolatedAssetPropertyValuesInput) (*GetInterpolatedAssetPropertyValuesOutput, error) {
+	req, out := c.GetInterpolatedAssetPropertyValuesRequest(input)
+	return out, req.Send()
+}
+
+// GetInterpolatedAssetPropertyValuesWithContext is the same as GetInterpolatedAssetPropertyValues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInterpolatedAssetPropertyValues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesWithContext(ctx aws.Context, input *GetInterpolatedAssetPropertyValuesInput, opts ...request.Option) (*GetInterpolatedAssetPropertyValuesOutput, error) {
+	req, out := c.GetInterpolatedAssetPropertyValuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetInterpolatedAssetPropertyValuesPages iterates over the pages of a GetInterpolatedAssetPropertyValues operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetInterpolatedAssetPropertyValues method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetInterpolatedAssetPropertyValues operation.
+//    pageNum := 0
+//    err := client.GetInterpolatedAssetPropertyValuesPages(params,
+//        func(page *iotsitewise.GetInterpolatedAssetPropertyValuesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesPages(input *GetInterpolatedAssetPropertyValuesInput, fn func(*GetInterpolatedAssetPropertyValuesOutput, bool) bool) error {
+	return c.GetInterpolatedAssetPropertyValuesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetInterpolatedAssetPropertyValuesPagesWithContext same as GetInterpolatedAssetPropertyValuesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesPagesWithContext(ctx aws.Context, input *GetInterpolatedAssetPropertyValuesInput, fn func(*GetInterpolatedAssetPropertyValuesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetInterpolatedAssetPropertyValuesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetInterpolatedAssetPropertyValuesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetInterpolatedAssetPropertyValuesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListAccessPolicies = "ListAccessPolicies"
 
 // ListAccessPoliciesRequest generates a "aws/request.Request" representing the
@@ -12736,6 +12903,236 @@ func (s *GetAssetPropertyValueOutput) SetPropertyValue(v *AssetPropertyValue) *G
 	return s
 }
 
+type GetInterpolatedAssetPropertyValuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset.
+	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
+
+	// The inclusive end of the range from which to interpolate data, expressed
+	// in seconds in Unix epoch time.
+	//
+	// EndTimeInSeconds is a required field
+	EndTimeInSeconds *int64 `location:"querystring" locationName:"endTimeInSeconds" min:"1" type:"long" required:"true"`
+
+	// The nanosecond offset converted from endTimeInSeconds.
+	EndTimeOffsetInNanos *int64 `location:"querystring" locationName:"endTimeOffsetInNanos" type:"integer"`
+
+	// The time interval in seconds over which to interpolate data. Each interval
+	// starts when the previous one ends.
+	//
+	// IntervalInSeconds is a required field
+	IntervalInSeconds *int64 `location:"querystring" locationName:"intervalInSeconds" min:"1" type:"long" required:"true"`
+
+	// The maximum number of results to be returned per paginated request. If not
+	// specified, the default value is 10.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The property alias that identifies the property, such as an OPC-UA server
+	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
+	// For more information, see Mapping industrial data streams to asset properties
+	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the AWS IoT SiteWise User Guide.
+	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
+
+	// The ID of the asset property.
+	PropertyId *string `location:"querystring" locationName:"propertyId" min:"36" type:"string"`
+
+	// The quality of the asset property value. You can use this parameter as a
+	// filter to choose only the asset property values that have a specific quality.
+	//
+	// Quality is a required field
+	Quality *string `location:"querystring" locationName:"quality" type:"string" required:"true" enum:"Quality"`
+
+	// The exclusive start of the range from which to interpolate data, expressed
+	// in seconds in Unix epoch time.
+	//
+	// StartTimeInSeconds is a required field
+	StartTimeInSeconds *int64 `location:"querystring" locationName:"startTimeInSeconds" min:"1" type:"long" required:"true"`
+
+	// The nanosecond offset converted from startTimeInSeconds.
+	StartTimeOffsetInNanos *int64 `location:"querystring" locationName:"startTimeOffsetInNanos" type:"integer"`
+
+	// The interpolation type.
+	//
+	// Valid values: LINEAR_INTERPOLATION
+	//
+	// Type is a required field
+	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetInterpolatedAssetPropertyValuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInterpolatedAssetPropertyValuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInterpolatedAssetPropertyValuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInterpolatedAssetPropertyValuesInput"}
+	if s.AssetId != nil && len(*s.AssetId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("AssetId", 36))
+	}
+	if s.EndTimeInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTimeInSeconds"))
+	}
+	if s.EndTimeInSeconds != nil && *s.EndTimeInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EndTimeInSeconds", 1))
+	}
+	if s.IntervalInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("IntervalInSeconds"))
+	}
+	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.PropertyAlias != nil && len(*s.PropertyAlias) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyAlias", 1))
+	}
+	if s.PropertyId != nil && len(*s.PropertyId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PropertyId", 36))
+	}
+	if s.Quality == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quality"))
+	}
+	if s.StartTimeInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTimeInSeconds"))
+	}
+	if s.StartTimeInSeconds != nil && *s.StartTimeInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("StartTimeInSeconds", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Type != nil && len(*s.Type) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Type", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssetId sets the AssetId field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetAssetId(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.AssetId = &v
+	return s
+}
+
+// SetEndTimeInSeconds sets the EndTimeInSeconds field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetEndTimeInSeconds(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.EndTimeInSeconds = &v
+	return s
+}
+
+// SetEndTimeOffsetInNanos sets the EndTimeOffsetInNanos field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetEndTimeOffsetInNanos(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.EndTimeOffsetInNanos = &v
+	return s
+}
+
+// SetIntervalInSeconds sets the IntervalInSeconds field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetIntervalInSeconds(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.IntervalInSeconds = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetMaxResults(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetNextToken(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPropertyAlias sets the PropertyAlias field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetPropertyAlias(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.PropertyAlias = &v
+	return s
+}
+
+// SetPropertyId sets the PropertyId field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetPropertyId(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.PropertyId = &v
+	return s
+}
+
+// SetQuality sets the Quality field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetQuality(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.Quality = &v
+	return s
+}
+
+// SetStartTimeInSeconds sets the StartTimeInSeconds field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetStartTimeInSeconds(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.StartTimeInSeconds = &v
+	return s
+}
+
+// SetStartTimeOffsetInNanos sets the StartTimeOffsetInNanos field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetStartTimeOffsetInNanos(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.StartTimeOffsetInNanos = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetType(v string) *GetInterpolatedAssetPropertyValuesInput {
+	s.Type = &v
+	return s
+}
+
+type GetInterpolatedAssetPropertyValuesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The requested interpolated values.
+	//
+	// InterpolatedAssetPropertyValues is a required field
+	InterpolatedAssetPropertyValues []*InterpolatedAssetPropertyValue `locationName:"interpolatedAssetPropertyValues" type:"list" required:"true"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetInterpolatedAssetPropertyValuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInterpolatedAssetPropertyValuesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInterpolatedAssetPropertyValues sets the InterpolatedAssetPropertyValues field's value.
+func (s *GetInterpolatedAssetPropertyValuesOutput) SetInterpolatedAssetPropertyValues(v []*InterpolatedAssetPropertyValue) *GetInterpolatedAssetPropertyValuesOutput {
+	s.InterpolatedAssetPropertyValues = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInterpolatedAssetPropertyValuesOutput) SetNextToken(v string) *GetInterpolatedAssetPropertyValuesOutput {
+	s.NextToken = &v
+	return s
+}
+
 // Contains details for a gateway that runs on AWS IoT Greengrass. To create
 // a gateway that runs on AWS IoT Greengrass, you must add the IoT SiteWise
 // connector to a Greengrass group and deploy it. Your Greengrass group must
@@ -12835,7 +13232,7 @@ func (s *GroupIdentity) SetId(v string) *GroupIdentity {
 type IAMRoleIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the IAM role. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.htmll#identifiers-arns)
+	// The ARN of the IAM role. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide.
 	//
 	// Arn is a required field
@@ -13214,6 +13611,43 @@ func (s *InternalFailureException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains information about an interpolated asset property value.
+type InterpolatedAssetPropertyValue struct {
+	_ struct{} `type:"structure"`
+
+	// Contains a timestamp with optional nanosecond granularity.
+	//
+	// Timestamp is a required field
+	Timestamp *TimeInNanos `locationName:"timestamp" type:"structure" required:"true"`
+
+	// Contains an asset property value (of a single type only).
+	//
+	// Value is a required field
+	Value *Variant `locationName:"value" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s InterpolatedAssetPropertyValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InterpolatedAssetPropertyValue) GoString() string {
+	return s.String()
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *InterpolatedAssetPropertyValue) SetTimestamp(v *TimeInNanos) *InterpolatedAssetPropertyValue {
+	s.Timestamp = v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *InterpolatedAssetPropertyValue) SetValue(v *Variant) *InterpolatedAssetPropertyValue {
+	s.Value = v
+	return s
 }
 
 // The request isn't valid. This can occur if your request contains malformed

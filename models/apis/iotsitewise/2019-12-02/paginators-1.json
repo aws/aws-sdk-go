@@ -12,6 +12,12 @@
       "limit_key": "maxResults",
       "result_key": "assetPropertyValueHistory"
     },
+    "GetInterpolatedAssetPropertyValues": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults",
+      "result_key": "interpolatedAssetPropertyValues"
+    },
     "ListAccessPolicies": {
       "input_token": "nextToken",
       "output_token": "nextToken",
