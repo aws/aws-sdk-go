@@ -6870,6 +6870,9 @@ func (s *BucketCountByEffectivePermission) SetUnknown(v int64) *BucketCountByEff
 
 // Provides information about the number of S3 buckets that use certain types
 // of server-side encryption by default or don't encrypt new objects by default.
+// For detailed information about these settings, see Setting default server-side
+// encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+// in the Amazon Simple Storage Service User Guide.
 type BucketCountByEncryptionType struct {
 	_ struct{} `type:"structure"`
 
@@ -6878,6 +6881,8 @@ type BucketCountByEncryptionType struct {
 	S3Managed *int64 `locationName:"s3Managed" type:"long"`
 
 	Unencrypted *int64 `locationName:"unencrypted" type:"long"`
+
+	Unknown *int64 `locationName:"unknown" type:"long"`
 }
 
 // String returns the string representation
@@ -6908,8 +6913,14 @@ func (s *BucketCountByEncryptionType) SetUnencrypted(v int64) *BucketCountByEncr
 	return s
 }
 
-// Provides information about the number of S3 buckets that are shared with
-// other AWS accounts.
+// SetUnknown sets the Unknown field's value.
+func (s *BucketCountByEncryptionType) SetUnknown(v int64) *BucketCountByEncryptionType {
+	s.Unknown = &v
+	return s
+}
+
+// Provides information about the number of S3 buckets that are and aren't shared
+// with other AWS accounts.
 type BucketCountBySharedAccessType struct {
 	_ struct{} `type:"structure"`
 
@@ -6952,6 +6963,47 @@ func (s *BucketCountBySharedAccessType) SetNotShared(v int64) *BucketCountByShar
 
 // SetUnknown sets the Unknown field's value.
 func (s *BucketCountBySharedAccessType) SetUnknown(v int64) *BucketCountBySharedAccessType {
+	s.Unknown = &v
+	return s
+}
+
+// Provides information about the number of S3 buckets whose bucket policies
+// do and don't require server-side encryption of objects when objects are uploaded
+// to the buckets.
+type BucketCountPolicyAllowsUnencryptedObjectUploads struct {
+	_ struct{} `type:"structure"`
+
+	AllowsUnencryptedObjectUploads *int64 `locationName:"allowsUnencryptedObjectUploads" type:"long"`
+
+	DeniesUnencryptedObjectUploads *int64 `locationName:"deniesUnencryptedObjectUploads" type:"long"`
+
+	Unknown *int64 `locationName:"unknown" type:"long"`
+}
+
+// String returns the string representation
+func (s BucketCountPolicyAllowsUnencryptedObjectUploads) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketCountPolicyAllowsUnencryptedObjectUploads) GoString() string {
+	return s.String()
+}
+
+// SetAllowsUnencryptedObjectUploads sets the AllowsUnencryptedObjectUploads field's value.
+func (s *BucketCountPolicyAllowsUnencryptedObjectUploads) SetAllowsUnencryptedObjectUploads(v int64) *BucketCountPolicyAllowsUnencryptedObjectUploads {
+	s.AllowsUnencryptedObjectUploads = &v
+	return s
+}
+
+// SetDeniesUnencryptedObjectUploads sets the DeniesUnencryptedObjectUploads field's value.
+func (s *BucketCountPolicyAllowsUnencryptedObjectUploads) SetDeniesUnencryptedObjectUploads(v int64) *BucketCountPolicyAllowsUnencryptedObjectUploads {
+	s.DeniesUnencryptedObjectUploads = &v
+	return s
+}
+
+// SetUnknown sets the Unknown field's value.
+func (s *BucketCountPolicyAllowsUnencryptedObjectUploads) SetUnknown(v int64) *BucketCountPolicyAllowsUnencryptedObjectUploads {
 	s.Unknown = &v
 	return s
 }
@@ -7044,8 +7096,8 @@ type BucketLevelPermissions struct {
 	// in the Amazon Simple Storage Service User Guide.
 	BlockPublicAccess *BlockPublicAccess `locationName:"blockPublicAccess" type:"structure"`
 
-	// Provides information about the permissions settings of a bucket policy for
-	// an S3 bucket.
+	// Provides information about the permissions settings of the bucket policy
+	// for an S3 bucket.
 	BucketPolicy *BucketPolicy `locationName:"bucketPolicy" type:"structure"`
 }
 
@@ -7082,6 +7134,8 @@ type BucketMetadata struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
+
+	AllowsUnencryptedObjectUploads *string `locationName:"allowsUnencryptedObjectUploads" type:"string" enum:"AllowsUnencryptedObjectUploads"`
 
 	BucketArn *string `locationName:"bucketArn" type:"string"`
 
@@ -7164,6 +7218,12 @@ func (s BucketMetadata) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *BucketMetadata) SetAccountId(v string) *BucketMetadata {
 	s.AccountId = &v
+	return s
+}
+
+// SetAllowsUnencryptedObjectUploads sets the AllowsUnencryptedObjectUploads field's value.
+func (s *BucketMetadata) SetAllowsUnencryptedObjectUploads(v string) *BucketMetadata {
+	s.AllowsUnencryptedObjectUploads = &v
 	return s
 }
 
@@ -7323,8 +7383,8 @@ func (s *BucketPermissionConfiguration) SetBucketLevelPermissions(v *BucketLevel
 	return s
 }
 
-// Provides information about the permissions settings of a bucket policy for
-// an S3 bucket.
+// Provides information about the permissions settings of the bucket policy
+// for an S3 bucket.
 type BucketPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -10110,10 +10170,18 @@ type GetBucketStatisticsOutput struct {
 
 	// Provides information about the number of S3 buckets that use certain types
 	// of server-side encryption by default or don't encrypt new objects by default.
+	// For detailed information about these settings, see Setting default server-side
+	// encryption behavior for Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucket-encryption.html)
+	// in the Amazon Simple Storage Service User Guide.
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
-	// Provides information about the number of S3 buckets that are shared with
-	// other AWS accounts.
+	// Provides information about the number of S3 buckets whose bucket policies
+	// do and don't require server-side encryption of objects when objects are uploaded
+	// to the buckets.
+	BucketCountByObjectEncryptionRequirement *BucketCountPolicyAllowsUnencryptedObjectUploads `locationName:"bucketCountByObjectEncryptionRequirement" type:"structure"`
+
+	// Provides information about the number of S3 buckets that are and aren't shared
+	// with other AWS accounts.
 	BucketCountBySharedAccessType *BucketCountBySharedAccessType `locationName:"bucketCountBySharedAccessType" type:"structure"`
 
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
@@ -10170,6 +10238,12 @@ func (s *GetBucketStatisticsOutput) SetBucketCountByEffectivePermission(v *Bucke
 // SetBucketCountByEncryptionType sets the BucketCountByEncryptionType field's value.
 func (s *GetBucketStatisticsOutput) SetBucketCountByEncryptionType(v *BucketCountByEncryptionType) *GetBucketStatisticsOutput {
 	s.BucketCountByEncryptionType = v
+	return s
+}
+
+// SetBucketCountByObjectEncryptionRequirement sets the BucketCountByObjectEncryptionRequirement field's value.
+func (s *GetBucketStatisticsOutput) SetBucketCountByObjectEncryptionRequirement(v *BucketCountPolicyAllowsUnencryptedObjectUploads) *GetBucketStatisticsOutput {
+	s.BucketCountByObjectEncryptionRequirement = v
 	return s
 }
 
@@ -12718,6 +12792,8 @@ type ObjectCountByEncryptionType struct {
 	S3Managed *int64 `locationName:"s3Managed" type:"long"`
 
 	Unencrypted *int64 `locationName:"unencrypted" type:"long"`
+
+	Unknown *int64 `locationName:"unknown" type:"long"`
 }
 
 // String returns the string representation
@@ -12751,6 +12827,12 @@ func (s *ObjectCountByEncryptionType) SetS3Managed(v int64) *ObjectCountByEncryp
 // SetUnencrypted sets the Unencrypted field's value.
 func (s *ObjectCountByEncryptionType) SetUnencrypted(v int64) *ObjectCountByEncryptionType {
 	s.Unencrypted = &v
+	return s
+}
+
+// SetUnknown sets the Unknown field's value.
+func (s *ObjectCountByEncryptionType) SetUnknown(v int64) *ObjectCountByEncryptionType {
+	s.Unknown = &v
 	return s
 }
 
@@ -13297,6 +13379,8 @@ func (s *ResourcesAffected) SetS3Object(v *S3Object) *ResourcesAffected {
 type S3Bucket struct {
 	_ struct{} `type:"structure"`
 
+	AllowsUnencryptedObjectUploads *string `locationName:"allowsUnencryptedObjectUploads" type:"string" enum:"AllowsUnencryptedObjectUploads"`
+
 	Arn *string `locationName:"arn" type:"string"`
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -13328,6 +13412,12 @@ func (s S3Bucket) String() string {
 // GoString returns the string representation
 func (s S3Bucket) GoString() string {
 	return s.String()
+}
+
+// SetAllowsUnencryptedObjectUploads sets the AllowsUnencryptedObjectUploads field's value.
+func (s *S3Bucket) SetAllowsUnencryptedObjectUploads(v string) *S3Bucket {
+	s.AllowsUnencryptedObjectUploads = &v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -15475,6 +15565,26 @@ func AdminStatus_Values() []string {
 	return []string{
 		AdminStatusEnabled,
 		AdminStatusDisablingInProgress,
+	}
+}
+
+const (
+	// AllowsUnencryptedObjectUploadsTrue is a AllowsUnencryptedObjectUploads enum value
+	AllowsUnencryptedObjectUploadsTrue = "TRUE"
+
+	// AllowsUnencryptedObjectUploadsFalse is a AllowsUnencryptedObjectUploads enum value
+	AllowsUnencryptedObjectUploadsFalse = "FALSE"
+
+	// AllowsUnencryptedObjectUploadsUnknown is a AllowsUnencryptedObjectUploads enum value
+	AllowsUnencryptedObjectUploadsUnknown = "UNKNOWN"
+)
+
+// AllowsUnencryptedObjectUploads_Values returns all elements of the AllowsUnencryptedObjectUploads enum
+func AllowsUnencryptedObjectUploads_Values() []string {
+	return []string{
+		AllowsUnencryptedObjectUploadsTrue,
+		AllowsUnencryptedObjectUploadsFalse,
+		AllowsUnencryptedObjectUploadsUnknown,
 	}
 }
 

@@ -372,7 +372,7 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -439,7 +439,7 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -890,8 +890,8 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //    operation.
 //
 //    * Check the AWS CloudTrail log for the CreateAccountResult event. For
-//    information on using AWS CloudTrail with AWS Organizations, see Monitoring
-//    the Activity in Your Organization (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_monitoring.html)
+//    information on using AWS CloudTrail with AWS Organizations, see Logging
+//    and monitoring in AWS Organizations (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_security_incident-response.html#orgs_cloudtrail-integration)
 //    in the AWS Organizations User Guide.
 //
 // The user who calls the API to create an account must have the organizations:CreateAccount
@@ -980,7 +980,7 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -1047,7 +1047,7 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -1418,7 +1418,7 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -1485,7 +1485,7 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -1761,7 +1761,7 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -1828,7 +1828,7 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -2099,7 +2099,7 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -2166,7 +2166,7 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -2435,7 +2435,7 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -2502,7 +2502,7 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -3572,7 +3572,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -3639,7 +3639,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -4277,7 +4277,7 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -4344,7 +4344,7 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -5294,7 +5294,7 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -5361,7 +5361,7 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -5686,7 +5686,7 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -5753,7 +5753,7 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6025,7 +6025,7 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -6092,7 +6092,7 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6383,7 +6383,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -6450,7 +6450,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -6974,7 +6974,7 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -7041,7 +7041,7 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -7392,7 +7392,7 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -7459,7 +7459,7 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -7724,6 +7724,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //    to the account object in the organization are deleted. AWS accounts outside
 //    of an organization do not support tags.
 //
+//    * A newly created account has a waiting period before it can be removed
+//    from its organization. If you get an error that indicates that a wait
+//    period is required, then try again in a few days.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7763,7 +7767,7 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -7830,7 +7834,7 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -8102,7 +8106,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -8169,7 +8173,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -9474,7 +9478,7 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -9541,7 +9545,7 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -9863,7 +9867,7 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -9930,7 +9934,7 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -12704,7 +12708,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -12771,7 +12775,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -13066,7 +13070,7 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -13133,7 +13137,7 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -13408,7 +13412,7 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -13475,7 +13479,7 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -13745,7 +13749,7 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -13812,7 +13816,7 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -14261,7 +14265,7 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //      account from the organization. You can't remove the management account.
 //      Instead, after you remove all member accounts, delete the organization
 //      itself.
@@ -14328,7 +14332,7 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//      in China. To create an organization, the master must have an valid business
+//      in China. To create an organization, the master must have a valid business
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -15458,7 +15462,7 @@ func (s *ConcurrentModificationException) RequestID() string {
 // Some of the reasons in the following list might not be applicable to this
 // specific API or operation.
 //
-//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//    * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 //    account from the organization. You can't remove the management account.
 //    Instead, after you remove all member accounts, delete the organization
 //    itself.
@@ -15525,7 +15529,7 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    with the same marketplace.
 //
 //    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-//    in China. To create an organization, the master must have an valid business
+//    in China. To create an organization, the master must have a valid business
 //    license. For more information, contact customer support.
 //
 //    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
@@ -15832,8 +15836,8 @@ type CreateAccountStatus struct {
 
 	// If the request failed, a description of the reason for the failure.
 	//
-	//    * ACCOUNT_LIMIT_EXCEEDED: The account could not be created because you
-	//    have reached the limit on the number of accounts in your organization.
+	//    * ACCOUNT_LIMIT_EXCEEDED: The account couldn't be created because you
+	//    reached the limit on the number of accounts in your organization.
 	//
 	//    * CONCURRENT_ACCOUNT_MODIFICATION: You already submitted a request with
 	//    the same information.
@@ -15859,7 +15863,8 @@ type CreateAccountStatus struct {
 	//    you provided is not valid.
 	//
 	//    * INTERNAL_FAILURE: The account could not be created because of an internal
-	//    failure. Try again later. If the problem persists, contact Customer Support.
+	//    failure. Try again later. If the problem persists, contact AWS Customer
+	//    Support.
 	//
 	//    * MISSING_BUSINESS_VALIDATION: The AWS account that owns your organization
 	//    has not received Business Validation.
@@ -15889,7 +15894,7 @@ type CreateAccountStatus struct {
 	// The date and time that the request was made for the account creation.
 	RequestedTimestamp *time.Time `type:"timestamp"`
 
-	// The status of the request.
+	// The status of the asynchronous request to create an AWS account.
 	State *string `type:"string" enum:"CreateAccountState"`
 }
 
@@ -16662,8 +16667,8 @@ type DelegatedService struct {
 	// The date that the account became a delegated administrator for this service.
 	DelegationEnabledDate *time.Time `type:"timestamp"`
 
-	// The name of a service that can request an operation for the specified service.
-	// This is typically in the form of a URL, such as: servicename.amazonaws.com.
+	// The name of an AWS service that can request an operation for the specified
+	// service. This is typically in the form of a URL, such as: servicename.amazonaws.com.
 	ServicePrincipal *string `min:"1" type:"string"`
 }
 
