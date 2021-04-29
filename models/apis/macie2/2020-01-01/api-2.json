@@ -2078,6 +2078,14 @@
         "DISABLING_IN_PROGRESS"
       ]
     },
+    "AllowsUnencryptedObjectUploads": {
+      "type": "string",
+      "enum": [
+        "TRUE",
+        "FALSE",
+        "UNKNOWN"
+      ]
+    },
     "ApiCallDetails": {
       "type": "structure",
       "members": {
@@ -2253,6 +2261,10 @@
         "unencrypted": {
           "shape": "__long",
           "locationName": "unencrypted"
+        },
+        "unknown": {
+          "shape": "__long",
+          "locationName": "unknown"
         }
       }
     },
@@ -2270,6 +2282,23 @@
         "notShared": {
           "shape": "__long",
           "locationName": "notShared"
+        },
+        "unknown": {
+          "shape": "__long",
+          "locationName": "unknown"
+        }
+      }
+    },
+    "BucketCountPolicyAllowsUnencryptedObjectUploads": {
+      "type": "structure",
+      "members": {
+        "allowsUnencryptedObjectUploads": {
+          "shape": "__long",
+          "locationName": "allowsUnencryptedObjectUploads"
+        },
+        "deniesUnencryptedObjectUploads": {
+          "shape": "__long",
+          "locationName": "deniesUnencryptedObjectUploads"
         },
         "unknown": {
           "shape": "__long",
@@ -2342,6 +2371,10 @@
         "accountId": {
           "shape": "__string",
           "locationName": "accountId"
+        },
+        "allowsUnencryptedObjectUploads": {
+          "shape": "AllowsUnencryptedObjectUploads",
+          "locationName": "allowsUnencryptedObjectUploads"
         },
         "bucketArn": {
           "shape": "__string",
@@ -3624,6 +3657,10 @@
           "shape": "BucketCountByEncryptionType",
           "locationName": "bucketCountByEncryptionType"
         },
+        "bucketCountByObjectEncryptionRequirement": {
+          "shape": "BucketCountPolicyAllowsUnencryptedObjectUploads",
+          "locationName": "bucketCountByObjectEncryptionRequirement"
+        },
         "bucketCountBySharedAccessType": {
           "shape": "BucketCountBySharedAccessType",
           "locationName": "bucketCountBySharedAccessType"
@@ -4743,6 +4780,10 @@
         "unencrypted": {
           "shape": "__long",
           "locationName": "unencrypted"
+        },
+        "unknown": {
+          "shape": "__long",
+          "locationName": "unknown"
         }
       }
     },
@@ -4973,6 +5014,10 @@
     "S3Bucket": {
       "type": "structure",
       "members": {
+        "allowsUnencryptedObjectUploads": {
+          "shape": "AllowsUnencryptedObjectUploads",
+          "locationName": "allowsUnencryptedObjectUploads"
+        },
         "arn": {
           "shape": "__string",
           "locationName": "arn"

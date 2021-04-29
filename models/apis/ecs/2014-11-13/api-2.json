@@ -1805,6 +1805,13 @@
       "type":"list",
       "member":{"shape":"KeyValuePair"}
     },
+    "EphemeralStorage":{
+      "type":"structure",
+      "required":["sizeInGiB"],
+      "members":{
+        "sizeInGiB":{"shape":"Integer"}
+      }
+    },
     "ExecuteCommandConfiguration":{
       "type":"structure",
       "members":{
@@ -2588,7 +2595,8 @@
         "pidMode":{"shape":"PidMode"},
         "ipcMode":{"shape":"IpcMode"},
         "proxyConfiguration":{"shape":"ProxyConfiguration"},
-        "inferenceAccelerators":{"shape":"InferenceAccelerators"}
+        "inferenceAccelerators":{"shape":"InferenceAccelerators"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -3087,7 +3095,8 @@
         "tags":{"shape":"Tags"},
         "taskArn":{"shape":"String"},
         "taskDefinitionArn":{"shape":"String"},
-        "version":{"shape":"Long"}
+        "version":{"shape":"Long"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "TaskDefinition":{
@@ -3114,7 +3123,8 @@
         "proxyConfiguration":{"shape":"ProxyConfiguration"},
         "registeredAt":{"shape":"Timestamp"},
         "deregisteredAt":{"shape":"Timestamp"},
-        "registeredBy":{"shape":"String"}
+        "registeredBy":{"shape":"String"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "TaskDefinitionFamilyStatus":{
@@ -3171,7 +3181,8 @@
         "inferenceAcceleratorOverrides":{"shape":"InferenceAcceleratorOverrides"},
         "executionRoleArn":{"shape":"String"},
         "memory":{"shape":"String"},
-        "taskRoleArn":{"shape":"String"}
+        "taskRoleArn":{"shape":"String"},
+        "ephemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "TaskSet":{

@@ -1,3 +1,15 @@
+Release v1.38.29 (2021-04-29)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API
+  * Increase AppInstanceUserId length to 64 characters
+* `service/ecs`: Updates service API and documentation
+  * Add support for EphemeralStorage on TaskDefinition and TaskOverride
+* `service/macie2`: Updates service API and documentation
+* `service/organizations`: Updates service documentation
+  * Minor text updates for AWS Organizations API Reference
+
 Release v1.38.28 (2021-04-28)
 ===
 

@@ -5268,10 +5268,16 @@ func (c *ECS) UpdateContainerAgentRequest(input *UpdateContainerAgentInput) (req
 // differs depending on whether your container instance was launched with the
 // Amazon ECS-optimized AMI or another operating system.
 //
-// UpdateContainerAgent requires the Amazon ECS-optimized AMI or Amazon Linux
-// with the ecs-init service installed and running. For help updating the Amazon
-// ECS container agent on other operating systems, see Manually Updating the
-// Amazon ECS Container Agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent)
+// The UpdateContainerAgent API isn't supported for container instances using
+// the Amazon ECS-optimized Amazon Linux 2 (arm64) AMI. To update the container
+// agent, you can update the ecs-init package which will update the agent. For
+// more information, see Updating the Amazon ECS container agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/agent-update-ecs-ami.html)
+// in the Amazon Elastic Container Service Developer Guide.
+//
+// The UpdateContainerAgent API requires an Amazon ECS-optimized AMI or Amazon
+// Linux AMI with the ecs-init service installed and running. For help updating
+// the Amazon ECS container agent on other operating systems, see Manually updating
+// the Amazon ECS container agent (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-agent-update.html#manually_update_agent)
 // in the Amazon Elastic Container Service Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6292,16 +6298,6 @@ type AutoScalingGroupProviderUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// The managed scaling settings for the Auto Scaling group capacity provider.
-	//
-	// When managed scaling is enabled, Amazon ECS manages the scale-in and scale-out
-	// actions of the Auto Scaling group. Amazon ECS manages a target tracking scaling
-	// policy using an Amazon ECS-managed CloudWatch metric with the specified targetCapacity
-	// value as the target value for the metric. For more information, see Using
-	// Managed Scaling (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/asg-capacity-providers.html#asg-capacity-providers-managed-scaling)
-	// in the Amazon Elastic Container Service Developer Guide.
-	//
-	// If managed scaling is disabled, the user must manage the scaling of the Auto
-	// Scaling group.
 	ManagedScaling *ManagedScaling `locationName:"managedScaling" type:"structure"`
 
 	// The managed termination protection setting to use for the Auto Scaling group
@@ -7555,8 +7551,7 @@ type ContainerDefinition struct {
 	// This parameter maps to NetworkDisabled in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/).
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	DisableNetworking *bool `locationName:"disableNetworking" type:"boolean"`
 
 	// A list of DNS search domains that are presented to the container. This parameter
@@ -7564,8 +7559,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --dns-search option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	DnsSearchDomains []*string `locationName:"dnsSearchDomains" type:"list"`
 
 	// A list of DNS servers that are presented to the container. This parameter
@@ -7573,8 +7567,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --dns option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	DnsServers []*string `locationName:"dnsServers" type:"list"`
 
 	// A key/value map of labels to add to the container. This parameter maps to
@@ -7748,8 +7741,7 @@ type ContainerDefinition struct {
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --link option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	//
 	// Containers that are collocated on a single container instance may be able
 	// to communicate with each other without requiring links or host port mappings.
@@ -7910,8 +7902,7 @@ type ContainerDefinition struct {
 	// of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/) and
 	// the --read-only option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	ReadonlyRootFilesystem *bool `locationName:"readonlyRootFilesystem" type:"boolean"`
 
 	// The private repository authentication credentials to use.
@@ -7998,14 +7989,20 @@ type ContainerDefinition struct {
 	// This parameter maps to Ulimits in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
 	// section of the Docker Remote API (https://docs.docker.com/engine/api/v1.35/)
 	// and the --ulimit option to docker run (https://docs.docker.com/engine/reference/run/#security-configuration).
-	// Valid naming values are displayed in the Ulimit data type. This parameter
-	// requires version 1.18 of the Docker Remote API or greater on your container
-	// instance. To check the Docker Remote API version on your container instance,
-	// log in to your container instance and run the following command: sudo docker
-	// version --format '{{.Server.APIVersion}}'
+	// Valid naming values are displayed in the Ulimit data type.
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// Amazon ECS tasks hosted on Fargate use the default resource limit values
+	// set by the operating system with the exception of the nofile resource limit
+	// parameter which Fargate overrides. The nofile resource limit sets a restriction
+	// on the number of open files that a container can use. The default nofile
+	// soft limit is 1024 and hard limit is 4096.
+	//
+	// This parameter requires version 1.18 of the Docker Remote API or greater
+	// on your container instance. To check the Docker Remote API version on your
+	// container instance, log in to your container instance and run the following
+	// command: sudo docker version --format '{{.Server.APIVersion}}'
+	//
+	// This parameter is not supported for Windows containers.
 	Ulimits []*Ulimit `locationName:"ulimits" type:"list"`
 
 	// The user to use inside the container. This parameter maps to User in the
@@ -8032,8 +8029,7 @@ type ContainerDefinition struct {
 	//
 	//    * uid:group
 	//
-	// This parameter is not supported for Windows containers or tasks that use
-	// the awsvpc network mode.
+	// This parameter is not supported for Windows containers.
 	User *string `locationName:"user" type:"string"`
 
 	// Data volumes to mount from another container. This parameter maps to VolumesFrom
@@ -9253,7 +9249,8 @@ type CreateServiceInput struct {
 	// deployment and the ordering of stopping and starting tasks.
 	DeploymentConfiguration *DeploymentConfiguration `locationName:"deploymentConfiguration" type:"structure"`
 
-	// The deployment controller to use for the service.
+	// The deployment controller to use for the service. If no deployment controller
+	// is specified, the default value of ECS is used.
 	DeploymentController *DeploymentController `locationName:"deploymentController" type:"structure"`
 
 	// The number of instantiations of the specified task definition to place and
@@ -9437,12 +9434,11 @@ type CreateServiceInput struct {
 	// ServiceName is a required field
 	ServiceName *string `locationName:"serviceName" type:"string" required:"true"`
 
-	// The details of the service discovery registries to assign to this service.
+	// The details of the service discovery registry to associate with this service.
 	// For more information, see Service discovery (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html).
 	//
-	// Service discovery is supported for Fargate tasks if you are using platform
-	// version v1.1.0 or later. For more information, see AWS Fargate platform versions
-	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html).
+	// Each service may be associated with one service registry. Multiple service
+	// registries per service isn't supported.
 	ServiceRegistries []*ServiceRegistry `locationName:"serviceRegistries" type:"list"`
 
 	// The metadata that you apply to the service to help you categorize and organize
@@ -9758,7 +9754,7 @@ type CreateTaskSetInput struct {
 	// or a Network Load Balancer.
 	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
 
-	// An object representing the network configuration for a task or service.
+	// An object representing the network configuration for a task set.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
 	// The platform version that the tasks in the task set should use. A platform
@@ -9950,9 +9946,9 @@ type CreateTaskSetOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about a set of Amazon ECS tasks in either an AWS CodeDeploy or
-	// an EXTERNAL deployment. An Amazon ECS task set includes details such as the
-	// desired number of tasks, how many tasks are running, and whether the task
-	// set serves production traffic.
+	// an EXTERNAL deployment. A task set includes details such as the desired number
+	// of tasks, how many tasks are running, and whether the task set serves production
+	// traffic.
 	TaskSet *TaskSet `locationName:"taskSet" type:"structure"`
 }
 
@@ -10178,7 +10174,7 @@ func (s *DeleteCapacityProviderInput) SetCapacityProvider(v string) *DeleteCapac
 type DeleteCapacityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of a capacity provider.
+	// The details of the capacity provider.
 	CapacityProvider *CapacityProvider `locationName:"capacityProvider" type:"structure"`
 }
 
@@ -10423,10 +10419,7 @@ func (s *DeleteTaskSetInput) SetTaskSet(v string) *DeleteTaskSetInput {
 type DeleteTaskSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a set of Amazon ECS tasks in either an AWS CodeDeploy or
-	// an EXTERNAL deployment. An Amazon ECS task set includes details such as the
-	// desired number of tasks, how many tasks are running, and whether the task
-	// set serves production traffic.
+	// Details about the task set.
 	TaskSet *TaskSet `locationName:"taskSet" type:"structure"`
 }
 
@@ -12138,6 +12131,53 @@ func (s *EnvironmentFile) SetValue(v string) *EnvironmentFile {
 	return s
 }
 
+// The amount of ephemeral storage to allocate for the task. This parameter
+// is used to expand the total amount of ephemeral storage available, beyond
+// the default amount, for tasks hosted on AWS Fargate. For more information,
+// see Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
+// in the Amazon ECS User Guide for AWS Fargate.
+//
+// This parameter is only supported for tasks hosted on AWS Fargate using platform
+// version 1.4.0 or later.
+type EphemeralStorage struct {
+	_ struct{} `type:"structure"`
+
+	// The total amount, in GiB, of ephemeral storage to set for the task. The minimum
+	// supported value is 21 GiB and the maximum supported value is 200 GiB.
+	//
+	// SizeInGiB is a required field
+	SizeInGiB *int64 `locationName:"sizeInGiB" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s EphemeralStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EphemeralStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EphemeralStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EphemeralStorage"}
+	if s.SizeInGiB == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeInGiB"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSizeInGiB sets the SizeInGiB field's value.
+func (s *EphemeralStorage) SetSizeInGiB(v int64) *EphemeralStorage {
+	s.SizeInGiB = &v
+	return s
+}
+
 // The details of the execute command configuration.
 type ExecuteCommandConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -13384,6 +13424,9 @@ type ListAccountSettingsInput struct {
 	// The ARN of the principal, which can be an IAM user, IAM role, or the root
 	// user. If this field is omitted, the account settings are listed only for
 	// the authenticated user.
+	//
+	// Federated users assume the account setting of the root user and can't have
+	// explicit account settings set for them.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
 	// The value of the account settings with which to filter results. You must
@@ -15361,6 +15404,9 @@ func (s *PlatformUnknownException) RequestID() string {
 // exposed ports should be specified using containerPort. The hostPort can be
 // left blank or it must be the same value as the containerPort.
 //
+// You cannot expose the same container port for multiple protocols. An error
+// will be returned if this is attempted
+//
 // After a task reaches the RUNNING status, manual and automatic host and container
 // port assignments are visible in the networkBindings section of DescribeTasks
 // API responses.
@@ -15599,7 +15645,7 @@ func (s *PutAccountSettingDefaultInput) SetValue(v string) *PutAccountSettingDef
 type PutAccountSettingDefaultOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current account setting for a resource.
+	// The current setting for a resource.
 	Setting *Setting `locationName:"setting" type:"structure"`
 }
 
@@ -15640,6 +15686,9 @@ type PutAccountSettingInput struct {
 	// IAM users, IAM roles, and the root user of the account unless an IAM user
 	// or role explicitly overrides these settings. If this field is omitted, the
 	// setting is changed only for the authenticated user.
+	//
+	// Federated users assume the account setting of the root user and can't have
+	// explicit account settings set for them.
 	PrincipalArn *string `locationName:"principalArn" type:"string"`
 
 	// The account setting value for the specified principal ARN. Accepted values
@@ -15907,10 +15956,7 @@ func (s *PutClusterCapacityProvidersInput) SetDefaultCapacityProviderStrategy(v 
 type PutClusterCapacityProvidersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A regional grouping of one or more container instances on which you can run
-	// task requests. Each account receives a default cluster the first time you
-	// use the Amazon ECS service, but you may also create other clusters. Clusters
-	// may contain more than one instance type simultaneously.
+	// Details about the cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 }
 
@@ -16160,6 +16206,16 @@ type RegisterTaskDefinitionInput struct {
 	//    (30 GB) in increments of 1024 (1 GB)
 	Cpu *string `locationName:"cpu" type:"string"`
 
+	// The amount of ephemeral storage to allocate for the task. This parameter
+	// is used to expand the total amount of ephemeral storage available, beyond
+	// the default amount, for tasks hosted on AWS Fargate. For more information,
+	// see Fargate task storage (https://docs.aws.amazon.com/AmazonECS/latest/userguide/using_data_volumes.html)
+	// in the Amazon ECS User Guide for AWS Fargate.
+	//
+	// This parameter is only supported for tasks hosted on AWS Fargate using platform
+	// version 1.4.0 or later.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
 	// Amazon ECS container agent permission to make AWS API calls on your behalf.
 	// The task execution IAM role is required depending on the requirements of
@@ -16305,12 +16361,14 @@ type RegisterTaskDefinitionInput struct {
 
 	// The configuration details for the App Mesh proxy.
 	//
-	// For tasks using the EC2 launch type, the container instances require at least
-	// version 1.26.0 of the container agent and at least version 1.26.0-1 of the
-	// ecs-init package to enable a proxy configuration. If your container instances
-	// are launched from the Amazon ECS-optimized AMI version 20190301 or later,
-	// then they contain the required versions of the container agent and ecs-init.
-	// For more information, see Amazon ECS-optimized Linux AMI (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html)
+	// For tasks hosted on Amazon EC2 instances, the container instances require
+	// at least version 1.26.0 of the container agent and at least version 1.26.0-1
+	// of the ecs-init package to enable a proxy configuration. If your container
+	// instances are launched from the Amazon ECS-optimized AMI version 20190301
+	// or later, then they contain the required versions of the container agent
+	// and ecs-init. For more information, see Amazon ECS-optimized AMI versions
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-ami-versions.html)
+	// in the Amazon Elastic Container Service Developer Guide.
 	ProxyConfiguration *ProxyConfiguration `locationName:"proxyConfiguration" type:"structure"`
 
 	// The task launch type that Amazon ECS should validate the task definition
@@ -16388,6 +16446,11 @@ func (s *RegisterTaskDefinitionInput) Validate() error {
 			}
 		}
 	}
+	if s.EphemeralStorage != nil {
+		if err := s.EphemeralStorage.Validate(); err != nil {
+			invalidParams.AddNested("EphemeralStorage", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.InferenceAccelerators != nil {
 		for i, v := range s.InferenceAccelerators {
 			if v == nil {
@@ -16439,6 +16502,12 @@ func (s *RegisterTaskDefinitionInput) SetContainerDefinitions(v []*ContainerDefi
 // SetCpu sets the Cpu field's value.
 func (s *RegisterTaskDefinitionInput) SetCpu(v string) *RegisterTaskDefinitionInput {
 	s.Cpu = &v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *RegisterTaskDefinitionInput) SetEphemeralStorage(v *EphemeralStorage) *RegisterTaskDefinitionInput {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -19103,6 +19172,9 @@ type Task struct {
 	// task.
 	EnableExecuteCommand *bool `locationName:"enableExecuteCommand" type:"boolean"`
 
+	// The ephemeral storage settings for the task.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
+
 	// The Unix timestamp for when the task execution stopped.
 	ExecutionStoppedAt *time.Time `locationName:"executionStoppedAt" type:"timestamp"`
 
@@ -19333,6 +19405,12 @@ func (s *Task) SetEnableExecuteCommand(v bool) *Task {
 	return s
 }
 
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *Task) SetEphemeralStorage(v *EphemeralStorage) *Task {
+	s.EphemeralStorage = v
+	return s
+}
+
 // SetExecutionStoppedAt sets the ExecutionStoppedAt field's value.
 func (s *Task) SetExecutionStoppedAt(v time.Time) *Task {
 	s.ExecutionStoppedAt = &v
@@ -19502,6 +19580,9 @@ type TaskDefinition struct {
 
 	// The Unix timestamp for when the task definition was deregistered.
 	DeregisteredAt *time.Time `locationName:"deregisteredAt" type:"timestamp"`
+
+	// The ephemeral storage settings to use for tasks run with the task definition.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task execution role that grants the
 	// Amazon ECS container agent permission to make AWS API calls on your behalf.
@@ -19749,6 +19830,12 @@ func (s *TaskDefinition) SetDeregisteredAt(v time.Time) *TaskDefinition {
 	return s
 }
 
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *TaskDefinition) SetEphemeralStorage(v *EphemeralStorage) *TaskDefinition {
+	s.EphemeralStorage = v
+	return s
+}
+
 // SetExecutionRoleArn sets the ExecutionRoleArn field's value.
 func (s *TaskDefinition) SetExecutionRoleArn(v string) *TaskDefinition {
 	s.ExecutionRoleArn = &v
@@ -19907,6 +19994,12 @@ type TaskOverride struct {
 	// The cpu override for the task.
 	Cpu *string `locationName:"cpu" type:"string"`
 
+	// The ephemeral storage setting override for the task.
+	//
+	// This parameter is only supported for tasks hosted on AWS Fargate using platform
+	// version 1.4.0 or later.
+	EphemeralStorage *EphemeralStorage `locationName:"ephemeralStorage" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the task execution IAM role override for
 	// the task.
 	ExecutionRoleArn *string `locationName:"executionRoleArn" type:"string"`
@@ -19946,6 +20039,11 @@ func (s *TaskOverride) Validate() error {
 			}
 		}
 	}
+	if s.EphemeralStorage != nil {
+		if err := s.EphemeralStorage.Validate(); err != nil {
+			invalidParams.AddNested("EphemeralStorage", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19962,6 +20060,12 @@ func (s *TaskOverride) SetContainerOverrides(v []*ContainerOverride) *TaskOverri
 // SetCpu sets the Cpu field's value.
 func (s *TaskOverride) SetCpu(v string) *TaskOverride {
 	s.Cpu = &v
+	return s
+}
+
+// SetEphemeralStorage sets the EphemeralStorage field's value.
+func (s *TaskOverride) SetEphemeralStorage(v *EphemeralStorage) *TaskOverride {
+	s.EphemeralStorage = v
 	return s
 }
 
@@ -20418,6 +20522,12 @@ func (s *Tmpfs) SetSize(v int64) *Tmpfs {
 }
 
 // The ulimit settings to pass to the container.
+//
+// Amazon ECS tasks hosted on Fargate use the default resource limit values
+// set by the operating system with the exception of the nofile resource limit
+// parameter which Fargate overrides. The nofile resource limit sets a restriction
+// on the number of open files that a container can use. The default nofile
+// soft limit is 1024 and hard limit is 4096.
 type Ulimit struct {
 	_ struct{} `type:"structure"`
 
@@ -20669,7 +20779,7 @@ func (s *UpdateCapacityProviderInput) SetName(v string) *UpdateCapacityProviderI
 type UpdateCapacityProviderOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of a capacity provider.
+	// Details about the capacity provider.
 	CapacityProvider *CapacityProvider `locationName:"capacityProvider" type:"structure"`
 }
 
@@ -20748,10 +20858,7 @@ func (s *UpdateClusterInput) SetSettings(v []*ClusterSetting) *UpdateClusterInpu
 type UpdateClusterOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A regional grouping of one or more container instances on which you can run
-	// task requests. Each account receives a default cluster the first time you
-	// use the Amazon ECS service, but you may also create other clusters. Clusters
-	// may contain more than one instance type simultaneously.
+	// Details about the cluster.
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 }
 
@@ -20829,10 +20936,7 @@ func (s *UpdateClusterSettingsInput) SetSettings(v []*ClusterSetting) *UpdateClu
 type UpdateClusterSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A regional grouping of one or more container instances on which you can run
-	// task requests. Each account receives a default cluster the first time you
-	// use the Amazon ECS service, but you may also create other clusters. Clusters
-	// may contain more than one instance type simultaneously.
+	// Details about the cluster
 	Cluster *Cluster `locationName:"cluster" type:"structure"`
 }
 
@@ -21152,7 +21256,7 @@ type UpdateServiceInput struct {
 	// and stopping them before they have time to come up.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
-	// An object representing the network configuration for a task or service.
+	// An object representing the network configuration for the service.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
 	// An array of task placement constraint objects to update the service to use.
@@ -21410,10 +21514,7 @@ func (s *UpdateServicePrimaryTaskSetInput) SetService(v string) *UpdateServicePr
 type UpdateServicePrimaryTaskSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a set of Amazon ECS tasks in either an AWS CodeDeploy or
-	// an EXTERNAL deployment. An Amazon ECS task set includes details such as the
-	// desired number of tasks, how many tasks are running, and whether the task
-	// set serves production traffic.
+	// Details about the task set.
 	TaskSet *TaskSet `locationName:"taskSet" type:"structure"`
 }
 
@@ -21519,10 +21620,7 @@ func (s *UpdateTaskSetInput) SetTaskSet(v string) *UpdateTaskSetInput {
 type UpdateTaskSetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about a set of Amazon ECS tasks in either an AWS CodeDeploy or
-	// an EXTERNAL deployment. An Amazon ECS task set includes details such as the
-	// desired number of tasks, how many tasks are running, and whether the task
-	// set serves production traffic.
+	// Details about the task set.
 	TaskSet *TaskSet `locationName:"taskSet" type:"structure"`
 }
 

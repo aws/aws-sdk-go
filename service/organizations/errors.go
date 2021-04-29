@@ -96,7 +96,7 @@ const (
 	// Some of the reasons in the following list might not be applicable to this
 	// specific API or operation.
 	//
-	//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+	//    * ACCOUNT_CANNOT_LEAVE_ORGANIZATION: You attempted to remove the management
 	//    account from the organization. You can't remove the management account.
 	//    Instead, after you remove all member accounts, delete the organization
 	//    itself.
@@ -163,7 +163,7 @@ const (
 	//    with the same marketplace.
 	//
 	//    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
-	//    in China. To create an organization, the master must have an valid business
+	//    in China. To create an organization, the master must have a valid business
 	//    license. For more information, contact customer support.
 	//
 	//    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
