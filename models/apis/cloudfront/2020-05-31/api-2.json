@@ -99,6 +99,9 @@
         {"shape":"TooManyDistributionsWithSingleFunctionARN"},
         {"shape":"TooManyLambdaFunctionAssociations"},
         {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
         {"shape":"InvalidOriginReadTimeout"},
         {"shape":"InvalidOriginKeepaliveTimeout"},
         {"shape":"NoSuchFieldLevelEncryptionConfig"},
@@ -110,7 +113,9 @@
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
-        {"shape":"TrustedKeyGroupDoesNotExist"}
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"}
       ]
     },
     "CreateDistributionWithTags":{
@@ -164,6 +169,9 @@
         {"shape":"TooManyDistributionsWithSingleFunctionARN"},
         {"shape":"TooManyLambdaFunctionAssociations"},
         {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
         {"shape":"InvalidOriginReadTimeout"},
         {"shape":"InvalidOriginKeepaliveTimeout"},
         {"shape":"NoSuchFieldLevelEncryptionConfig"},
@@ -175,7 +183,9 @@
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
-        {"shape":"TrustedKeyGroupDoesNotExist"}
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"}
       ]
     },
     "CreateFieldLevelEncryptionConfig":{
@@ -216,6 +226,26 @@
         {"shape":"TooManyFieldLevelEncryptionProfiles"},
         {"shape":"TooManyFieldLevelEncryptionEncryptionEntities"},
         {"shape":"TooManyFieldLevelEncryptionFieldPatterns"}
+      ]
+    },
+    "CreateFunction":{
+      "name":"CreateFunction2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/function",
+        "responseCode":201
+      },
+      "input":{
+        "shape":"CreateFunctionRequest",
+        "locationName":"CreateFunctionRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"CreateFunctionResult"},
+      "errors":[
+        {"shape":"TooManyFunctions"},
+        {"shape":"FunctionAlreadyExists"},
+        {"shape":"FunctionSizeLimitExceeded"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "CreateInvalidation":{
@@ -263,7 +293,8 @@
       "output":{"shape":"CreateMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
-        {"shape":"NoSuchDistribution"}
+        {"shape":"NoSuchDistribution"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "CreateOriginRequestPolicy":{
@@ -451,6 +482,21 @@
         {"shape":"FieldLevelEncryptionProfileInUse"}
       ]
     },
+    "DeleteFunction":{
+      "name":"DeleteFunction2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/function/{Name}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteFunctionRequest"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"FunctionInUse"},
+        {"shape":"PreconditionFailed"}
+      ]
+    },
     "DeleteKeyGroup":{
       "name":"DeleteKeyGroup2020_05_31",
       "http":{
@@ -476,7 +522,8 @@
       "output":{"shape":"DeleteMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
-        {"shape":"NoSuchDistribution"}
+        {"shape":"NoSuchDistribution"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "DeleteOriginRequestPolicy":{
@@ -545,6 +592,18 @@
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"NoSuchStreamingDistribution"},
         {"shape":"PreconditionFailed"}
+      ]
+    },
+    "DescribeFunction":{
+      "name":"DescribeFunction2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/function/{Name}/describe"
+      },
+      "input":{"shape":"DescribeFunctionRequest"},
+      "output":{"shape":"DescribeFunctionResult"},
+      "errors":[
+        {"shape":"NoSuchFunctionExists"}
       ]
     },
     "GetCachePolicy":{
@@ -677,6 +736,18 @@
         {"shape":"NoSuchFieldLevelEncryptionProfile"}
       ]
     },
+    "GetFunction":{
+      "name":"GetFunction2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/function/{Name}"
+      },
+      "input":{"shape":"GetFunctionRequest"},
+      "output":{"shape":"GetFunctionResult"},
+      "errors":[
+        {"shape":"NoSuchFunctionExists"}
+      ]
+    },
     "GetInvalidation":{
       "name":"GetInvalidation2020_05_31",
       "http":{
@@ -725,7 +796,8 @@
       "output":{"shape":"GetMonitoringSubscriptionResult"},
       "errors":[
         {"shape":"AccessDenied"},
-        {"shape":"NoSuchDistribution"}
+        {"shape":"NoSuchDistribution"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "GetOriginRequestPolicy":{
@@ -956,6 +1028,18 @@
         {"shape":"InvalidArgument"}
       ]
     },
+    "ListFunctions":{
+      "name":"ListFunctions2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/function"
+      },
+      "input":{"shape":"ListFunctionsRequest"},
+      "output":{"shape":"ListFunctionsResult"},
+      "errors":[
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "ListInvalidations":{
       "name":"ListInvalidations2020_05_31",
       "http":{
@@ -1049,6 +1133,21 @@
         {"shape":"NoSuchResource"}
       ]
     },
+    "PublishFunction":{
+      "name":"PublishFunction2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/function/{Name}/publish"
+      },
+      "input":{"shape":"PublishFunctionRequest"},
+      "output":{"shape":"PublishFunctionResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"PreconditionFailed"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource2020_05_31",
       "http":{
@@ -1062,6 +1161,25 @@
         {"shape":"InvalidArgument"},
         {"shape":"InvalidTagging"},
         {"shape":"NoSuchResource"}
+      ]
+    },
+    "TestFunction":{
+      "name":"TestFunction2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/function/{Name}/test"
+      },
+      "input":{
+        "shape":"TestFunctionRequest",
+        "locationName":"TestFunctionRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"TestFunctionResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"TestFunctionFailed"}
       ]
     },
     "UntagResource":{
@@ -1169,6 +1287,9 @@
         {"shape":"TooManyDistributionsWithSingleFunctionARN"},
         {"shape":"TooManyLambdaFunctionAssociations"},
         {"shape":"InvalidLambdaFunctionAssociation"},
+        {"shape":"TooManyDistributionsWithFunctionAssociations"},
+        {"shape":"TooManyFunctionAssociations"},
+        {"shape":"InvalidFunctionAssociation"},
         {"shape":"InvalidOriginReadTimeout"},
         {"shape":"InvalidOriginKeepaliveTimeout"},
         {"shape":"NoSuchFieldLevelEncryptionConfig"},
@@ -1180,7 +1301,9 @@
         {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
         {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
         {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
-        {"shape":"TrustedKeyGroupDoesNotExist"}
+        {"shape":"TrustedKeyGroupDoesNotExist"},
+        {"shape":"NoSuchRealtimeLogConfig"},
+        {"shape":"RealtimeLogConfigOwnerMismatch"}
       ]
     },
     "UpdateFieldLevelEncryptionConfig":{
@@ -1226,6 +1349,26 @@
         {"shape":"FieldLevelEncryptionProfileSizeExceeded"},
         {"shape":"TooManyFieldLevelEncryptionEncryptionEntities"},
         {"shape":"TooManyFieldLevelEncryptionFieldPatterns"}
+      ]
+    },
+    "UpdateFunction":{
+      "name":"UpdateFunction2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/function/{Name}"
+      },
+      "input":{
+        "shape":"UpdateFunctionRequest",
+        "locationName":"UpdateFunctionRequest",
+        "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+      },
+      "output":{"shape":"UpdateFunctionResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"FunctionSizeLimitExceeded"}
       ]
     },
     "UpdateKeyGroup":{
@@ -1442,6 +1585,7 @@
         "SmoothStreaming":{"shape":"boolean"},
         "Compress":{"shape":"boolean"},
         "LambdaFunctionAssociations":{"shape":"LambdaFunctionAssociations"},
+        "FunctionAssociations":{"shape":"FunctionAssociations"},
         "FieldLevelEncryptionId":{"shape":"string"},
         "RealtimeLogConfigArn":{"shape":"string"},
         "CachePolicyId":{"shape":"string"},
@@ -1949,6 +2093,36 @@
       },
       "payload":"FieldLevelEncryptionProfile"
     },
+    "CreateFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FunctionConfig",
+        "FunctionCode"
+      ],
+      "members":{
+        "Name":{"shape":"FunctionName"},
+        "FunctionConfig":{"shape":"FunctionConfig"},
+        "FunctionCode":{"shape":"FunctionBlob"}
+      }
+    },
+    "CreateFunctionResult":{
+      "type":"structure",
+      "members":{
+        "FunctionSummary":{"shape":"FunctionSummary"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"FunctionSummary"
+    },
     "CreateInvalidationRequest":{
       "type":"structure",
       "required":[
@@ -2238,6 +2412,7 @@
         "SmoothStreaming":{"shape":"boolean"},
         "Compress":{"shape":"boolean"},
         "LambdaFunctionAssociations":{"shape":"LambdaFunctionAssociations"},
+        "FunctionAssociations":{"shape":"FunctionAssociations"},
         "FieldLevelEncryptionId":{"shape":"string"},
         "RealtimeLogConfigArn":{"shape":"string"},
         "CachePolicyId":{"shape":"string"},
@@ -2340,6 +2515,25 @@
         }
       }
     },
+    "DeleteFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "IfMatch",
+        "Name"
+      ],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
     "DeleteKeyGroupRequest":{
       "type":"structure",
       "required":["Id"],
@@ -2426,6 +2620,34 @@
           "locationName":"If-Match"
         }
       }
+    },
+    "DescribeFunctionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "Stage":{
+          "shape":"FunctionStage",
+          "location":"querystring",
+          "locationName":"Stage"
+        }
+      }
+    },
+    "DescribeFunctionResult":{
+      "type":"structure",
+      "members":{
+        "FunctionSummary":{"shape":"FunctionSummary"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"FunctionSummary"
     },
     "Distribution":{
       "type":"structure",
@@ -2848,6 +3070,151 @@
         "QueryStringCacheKeys":{"shape":"QueryStringCacheKeys"}
       }
     },
+    "FunctionARN":{
+      "type":"string",
+      "max":108,
+      "pattern":"arn:aws:cloudfront::[0-9]{12}:function\\/[a-zA-Z0-9-_]{1,64}$"
+    },
+    "FunctionAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "FunctionAssociation":{
+      "type":"structure",
+      "required":[
+        "FunctionARN",
+        "EventType"
+      ],
+      "members":{
+        "FunctionARN":{"shape":"FunctionARN"},
+        "EventType":{"shape":"EventType"}
+      }
+    },
+    "FunctionAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"FunctionAssociation",
+        "locationName":"FunctionAssociation"
+      }
+    },
+    "FunctionAssociations":{
+      "type":"structure",
+      "required":["Quantity"],
+      "members":{
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"FunctionAssociationList"}
+      }
+    },
+    "FunctionBlob":{
+      "type":"blob",
+      "max":40960,
+      "min":1,
+      "sensitive":true
+    },
+    "FunctionConfig":{
+      "type":"structure",
+      "required":[
+        "Comment",
+        "Runtime"
+      ],
+      "members":{
+        "Comment":{"shape":"string"},
+        "Runtime":{"shape":"FunctionRuntime"}
+      }
+    },
+    "FunctionEventObject":{
+      "type":"blob",
+      "max":40960,
+      "sensitive":true
+    },
+    "FunctionExecutionLogList":{
+      "type":"list",
+      "member":{"shape":"string"}
+    },
+    "FunctionInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "FunctionList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"FunctionSummaryList"}
+      }
+    },
+    "FunctionMetadata":{
+      "type":"structure",
+      "required":[
+        "FunctionARN",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "FunctionARN":{"shape":"string"},
+        "Stage":{"shape":"FunctionStage"},
+        "CreatedTime":{"shape":"timestamp"},
+        "LastModifiedTime":{"shape":"timestamp"}
+      }
+    },
+    "FunctionName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-_]{1,64}$"
+    },
+    "FunctionRuntime":{
+      "type":"string",
+      "enum":["cloudfront-js-1.0"]
+    },
+    "FunctionSizeLimitExceeded":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":413},
+      "exception":true
+    },
+    "FunctionStage":{
+      "type":"string",
+      "enum":[
+        "DEVELOPMENT",
+        "LIVE"
+      ]
+    },
+    "FunctionSummary":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "FunctionConfig",
+        "FunctionMetadata"
+      ],
+      "members":{
+        "Name":{"shape":"FunctionName"},
+        "Status":{"shape":"string"},
+        "FunctionConfig":{"shape":"FunctionConfig"},
+        "FunctionMetadata":{"shape":"FunctionMetadata"}
+      }
+    },
+    "FunctionSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"FunctionSummary",
+        "locationName":"FunctionSummary"
+      }
+    },
     "GeoRestriction":{
       "type":"structure",
       "required":[
@@ -3097,6 +3464,39 @@
         }
       },
       "payload":"FieldLevelEncryption"
+    },
+    "GetFunctionRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "Stage":{
+          "shape":"FunctionStage",
+          "location":"querystring",
+          "locationName":"Stage"
+        }
+      }
+    },
+    "GetFunctionResult":{
+      "type":"structure",
+      "members":{
+        "FunctionCode":{"shape":"FunctionBlob"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        },
+        "ContentType":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Content-Type"
+        }
+      },
+      "payload":"FunctionCode"
     },
     "GetInvalidationRequest":{
       "type":"structure",
@@ -3426,6 +3826,14 @@
       "exception":true
     },
     "InvalidForwardCookies":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidFunctionAssociation":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4027,6 +4435,33 @@
       },
       "payload":"FieldLevelEncryptionProfileList"
     },
+    "ListFunctionsRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        },
+        "Stage":{
+          "shape":"FunctionStage",
+          "location":"querystring",
+          "locationName":"Stage"
+        }
+      }
+    },
+    "ListFunctionsResult":{
+      "type":"structure",
+      "members":{
+        "FunctionList":{"shape":"FunctionList"}
+      },
+      "payload":"FunctionList"
+    },
     "ListInvalidationsRequest":{
       "type":"structure",
       "required":["DistributionId"],
@@ -4288,6 +4723,14 @@
       "exception":true
     },
     "NoSuchFieldLevelEncryptionProfile":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":404},
+      "exception":true
+    },
+    "NoSuchFunctionExists":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -4766,6 +5209,32 @@
         "locationName":"PublicKeySummary"
       }
     },
+    "PublishFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "IfMatch"
+      ],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
+    "PublishFunctionResult":{
+      "type":"structure",
+      "members":{
+        "FunctionSummary":{"shape":"FunctionSummary"}
+      },
+      "payload":"FunctionSummary"
+    },
     "QueryArgProfile":{
       "type":"structure",
       "required":[
@@ -4874,6 +5343,14 @@
     "RealtimeLogConfigList":{
       "type":"list",
       "member":{"shape":"RealtimeLogConfig"}
+    },
+    "RealtimeLogConfigOwnerMismatch":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":401},
+      "exception":true
     },
     "RealtimeLogConfigs":{
       "type":"structure",
@@ -5197,6 +5674,53 @@
         "Items":{"shape":"TagList"}
       }
     },
+    "TestFunctionFailed":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":500},
+      "exception":true
+    },
+    "TestFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "IfMatch",
+        "EventObject"
+      ],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        },
+        "Stage":{"shape":"FunctionStage"},
+        "EventObject":{"shape":"FunctionEventObject"}
+      }
+    },
+    "TestFunctionResult":{
+      "type":"structure",
+      "members":{
+        "TestResult":{"shape":"TestResult"}
+      },
+      "payload":"TestResult"
+    },
+    "TestResult":{
+      "type":"structure",
+      "members":{
+        "FunctionSummary":{"shape":"FunctionSummary"},
+        "ComputeUtilization":{"shape":"string"},
+        "FunctionExecutionLogs":{"shape":"FunctionExecutionLogList"},
+        "FunctionErrorMessage":{"shape":"string"},
+        "FunctionOutput":{"shape":"string"}
+      }
+    },
     "TooManyCacheBehaviors":{
       "type":"structure",
       "members":{
@@ -5301,6 +5825,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyDistributionsWithFunctionAssociations":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyDistributionsWithLambdaAssociations":{
       "type":"structure",
       "members":{
@@ -5358,6 +5890,22 @@
       "exception":true
     },
     "TooManyFieldLevelEncryptionQueryArgProfiles":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyFunctionAssociations":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyFunctions":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -5572,6 +6120,14 @@
         "Items":{"shape":"AwsAccountNumberList"}
       }
     },
+    "UnsupportedOperation":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -5776,6 +6332,41 @@
         }
       },
       "payload":"FieldLevelEncryptionProfile"
+    },
+    "UpdateFunctionRequest":{
+      "type":"structure",
+      "required":[
+        "IfMatch",
+        "FunctionConfig",
+        "FunctionCode",
+        "Name"
+      ],
+      "members":{
+        "Name":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Name"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        },
+        "FunctionConfig":{"shape":"FunctionConfig"},
+        "FunctionCode":{"shape":"FunctionBlob"}
+      }
+    },
+    "UpdateFunctionResult":{
+      "type":"structure",
+      "members":{
+        "FunctionSummary":{"shape":"FunctionSummary"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETtag"
+        }
+      },
+      "payload":"FunctionSummary"
     },
     "UpdateKeyGroupRequest":{
       "type":"structure",

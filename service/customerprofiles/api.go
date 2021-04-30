@@ -1031,6 +1031,128 @@ func (c *CustomerProfiles) GetIntegrationWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
+const opGetMatches = "GetMatches"
+
+// GetMatchesRequest generates a "aws/request.Request" representing the
+// client's request for the GetMatches operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMatches for more information on using the GetMatches
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMatchesRequest method.
+//    req, resp := client.GetMatchesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetMatches
+func (c *CustomerProfiles) GetMatchesRequest(input *GetMatchesInput) (req *request.Request, output *GetMatchesOutput) {
+	op := &request.Operation{
+		Name:       opGetMatches,
+		HTTPMethod: "GET",
+		HTTPPath:   "/domains/{DomainName}/matches",
+	}
+
+	if input == nil {
+		input = &GetMatchesInput{}
+	}
+
+	output = &GetMatchesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMatches API operation for Amazon Connect Customer Profiles.
+//
+// This API is in preview release for Amazon Connect and subject to change.
+//
+// Before calling this API, use CreateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html)
+// or UpdateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html)
+// to enable identity resolution: set Matching to true.
+//
+// GetMatches returns potentially matching profiles, based on the results of
+// the latest run of a machine learning process.
+//
+// Amazon Connect runs a batch process every Saturday at 12AM UTC to identify
+// matching profiles. The results are returned up to seven days after the Saturday
+// run.
+//
+// Amazon Connect uses the following profile attributes to identify matches:
+//
+//    * PhoneNumber
+//
+//    * HomePhoneNumber
+//
+//    * BusinessPhoneNumber
+//
+//    * MobilePhoneNumber
+//
+//    * EmailAddress
+//
+//    * PersonalEmailAddress
+//
+//    * BusinessEmailAddress
+//
+//    * FullName
+//
+//    * BusinessName
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation GetMatches for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * ThrottlingException
+//   You exceeded the maximum number of requests.
+//
+//   * InternalServerException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/GetMatches
+func (c *CustomerProfiles) GetMatches(input *GetMatchesInput) (*GetMatchesOutput, error) {
+	req, out := c.GetMatchesRequest(input)
+	return out, req.Send()
+}
+
+// GetMatchesWithContext is the same as GetMatches with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMatches for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) GetMatchesWithContext(ctx aws.Context, input *GetMatchesInput, opts ...request.Option) (*GetMatchesOutput, error) {
+	req, out := c.GetMatchesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetProfileObjectType = "GetProfileObjectType"
 
 // GetProfileObjectTypeRequest generates a "aws/request.Request" representing the
@@ -1851,6 +1973,123 @@ func (c *CustomerProfiles) ListTagsForResourceWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opMergeProfiles = "MergeProfiles"
+
+// MergeProfilesRequest generates a "aws/request.Request" representing the
+// client's request for the MergeProfiles operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See MergeProfiles for more information on using the MergeProfiles
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the MergeProfilesRequest method.
+//    req, resp := client.MergeProfilesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/MergeProfiles
+func (c *CustomerProfiles) MergeProfilesRequest(input *MergeProfilesInput) (req *request.Request, output *MergeProfilesOutput) {
+	op := &request.Operation{
+		Name:       opMergeProfiles,
+		HTTPMethod: "POST",
+		HTTPPath:   "/domains/{DomainName}/profiles/objects/merge",
+	}
+
+	if input == nil {
+		input = &MergeProfilesInput{}
+	}
+
+	output = &MergeProfilesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// MergeProfiles API operation for Amazon Connect Customer Profiles.
+//
+// This API is in preview release for Amazon Connect and subject to change.
+//
+// Runs an AWS Lambda job that does the following:
+//
+// All the profileKeys in the ProfileToBeMerged will be moved to the main profile.
+//
+// All the objects in the ProfileToBeMerged will be moved to the main profile.
+//
+// All the ProfileToBeMerged will be deleted at the end.
+//
+// All the profileKeys in the ProfileIdsToBeMerged will be moved to the main
+// profile.
+//
+// Standard fields are merged as follows:
+//
+// Fields are always "union"-ed if there are no conflicts in standard fields
+// or attributeKeys.
+//
+// When there are conflicting fields:
+//
+// If no SourceProfileIds entry is specified, the main Profile value is always
+// taken.
+//
+// If a SourceProfileIds entry is specified, the specified profileId is always
+// taken, even if it is a NULL value.
+//
+// You can use MergeProfiles together with GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html),
+// which returns potentially matching profiles, or use it with the results of
+// another matching system. After profiles have been merged, they cannot be
+// separated (unmerged).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Customer Profiles's
+// API operation MergeProfiles for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * ResourceNotFoundException
+//   The requested resource does not exist, or access was denied.
+//
+//   * ThrottlingException
+//   You exceeded the maximum number of requests.
+//
+//   * InternalServerException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/customer-profiles-2020-08-15/MergeProfiles
+func (c *CustomerProfiles) MergeProfiles(input *MergeProfilesInput) (*MergeProfilesOutput, error) {
+	req, out := c.MergeProfilesRequest(input)
+	return out, req.Send()
+}
+
+// MergeProfilesWithContext is the same as MergeProfiles with the addition of
+// the ability to pass a context and additional request options.
+//
+// See MergeProfiles for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CustomerProfiles) MergeProfilesWithContext(ctx aws.Context, input *MergeProfilesInput, opts ...request.Option) (*MergeProfilesOutput, error) {
+	req, out := c.MergeProfilesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutIntegration = "PutIntegration"
 
 // PutIntegrationRequest generates a "aws/request.Request" representing the
@@ -2468,7 +2707,7 @@ func (c *CustomerProfiles) UpdateDomainRequest(input *UpdateDomainInput) (req *r
 // Updates the properties of a domain, including creating or selecting a dead
 // letter queue or an encryption key.
 //
-// Once a domain is created, the name can’t be changed.
+// After a domain is created, the name can’t be changed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3071,6 +3310,10 @@ type CreateDomainInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
+	// The process of matching duplicate profiles. This process runs every Saturday
+	// at 12AM.
+	Matching *MatchingRequest `type:"structure"`
+
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
 }
@@ -3103,6 +3346,11 @@ func (s *CreateDomainInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.Matching != nil {
+		if err := s.Matching.Validate(); err != nil {
+			invalidParams.AddNested("Matching", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3131,6 +3379,12 @@ func (s *CreateDomainInput) SetDefaultExpirationDays(v int64) *CreateDomainInput
 // SetDomainName sets the DomainName field's value.
 func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 	s.DomainName = &v
+	return s
+}
+
+// SetMatching sets the Matching field's value.
+func (s *CreateDomainInput) SetMatching(v *MatchingRequest) *CreateDomainInput {
+	s.Matching = v
 	return s
 }
 
@@ -3171,6 +3425,10 @@ type CreateDomainOutput struct {
 	//
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
+
+	// The process of matching duplicate profiles. This process runs every Saturday
+	// at 12AM.
+	Matching *MatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -3222,6 +3480,12 @@ func (s *CreateDomainOutput) SetLastUpdatedAt(v time.Time) *CreateDomainOutput {
 	return s
 }
 
+// SetMatching sets the Matching field's value.
+func (s *CreateDomainOutput) SetMatching(v *MatchingResponse) *CreateDomainOutput {
+	s.Matching = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *CreateDomainOutput) SetTags(v map[string]*string) *CreateDomainOutput {
 	s.Tags = v
@@ -3234,7 +3498,7 @@ type CreateProfileInput struct {
 	// A unique account number that you have given to the customer.
 	AccountNumber *string `min:"1" type:"string"`
 
-	// Any additional information relevant to the customer's profile.
+	// Any additional information relevant to the customer’s profile.
 	AdditionalInformation *string `min:"1" type:"string"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
@@ -3264,7 +3528,7 @@ type CreateProfileInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
-	// The customer's email address, which has not been specified as a personal
+	// The customer’s email address, which has not been specified as a personal
 	// or business address.
 	EmailAddress *string `min:"1" type:"string"`
 
@@ -3295,8 +3559,8 @@ type CreateProfileInput struct {
 	// The customer’s personal email address.
 	PersonalEmailAddress *string `min:"1" type:"string"`
 
-	// The customer's phone number, which has not been specified as a mobile, home,
-	// or business number.
+	// The customer’s phone number, which has not been specified as a mobile,
+	// home, or business number.
 	PhoneNumber *string `min:"1" type:"string"`
 
 	// The customer’s shipping address.
@@ -4133,6 +4397,210 @@ func (s *DomainStats) SetTotalSize(v int64) *DomainStats {
 	return s
 }
 
+// A duplicate customer profile that is to be merged into a main profile.
+type FieldSourceProfileIds struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the account number field to be merged.
+	AccountNumber *string `type:"string"`
+
+	// A unique identifier for the additional information field to be merged.
+	AdditionalInformation *string `type:"string"`
+
+	// A unique identifier for the party type field to be merged.
+	Address *string `type:"string"`
+
+	// A unique identifier for the attributes field to be merged.
+	Attributes map[string]*string `type:"map"`
+
+	// A unique identifier for the billing type field to be merged.
+	BillingAddress *string `type:"string"`
+
+	// A unique identifier for the birthdate field to be merged.
+	BirthDate *string `type:"string"`
+
+	// A unique identifier for the party type field to be merged.
+	BusinessEmailAddress *string `type:"string"`
+
+	// A unique identifier for the business name field to be merged.
+	BusinessName *string `type:"string"`
+
+	// A unique identifier for the business phone number field to be merged.
+	BusinessPhoneNumber *string `type:"string"`
+
+	// A unique identifier for the email address field to be merged.
+	EmailAddress *string `type:"string"`
+
+	// A unique identifier for the first name field to be merged.
+	FirstName *string `type:"string"`
+
+	// A unique identifier for the gender field to be merged.
+	Gender *string `type:"string"`
+
+	// A unique identifier for the home phone number field to be merged.
+	HomePhoneNumber *string `type:"string"`
+
+	// A unique identifier for the last name field to be merged.
+	LastName *string `type:"string"`
+
+	// A unique identifier for the mailing address field to be merged.
+	MailingAddress *string `type:"string"`
+
+	// A unique identifier for the middle name field to be merged.
+	MiddleName *string `type:"string"`
+
+	// A unique identifier for the mobile phone number field to be merged.
+	MobilePhoneNumber *string `type:"string"`
+
+	// A unique identifier for the party type field to be merged.
+	PartyType *string `type:"string"`
+
+	// A unique identifier for the personal email address field to be merged.
+	PersonalEmailAddress *string `type:"string"`
+
+	// A unique identifier for the phone number field to be merged.
+	PhoneNumber *string `type:"string"`
+
+	// A unique identifier for the shipping address field to be merged.
+	ShippingAddress *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FieldSourceProfileIds) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FieldSourceProfileIds) GoString() string {
+	return s.String()
+}
+
+// SetAccountNumber sets the AccountNumber field's value.
+func (s *FieldSourceProfileIds) SetAccountNumber(v string) *FieldSourceProfileIds {
+	s.AccountNumber = &v
+	return s
+}
+
+// SetAdditionalInformation sets the AdditionalInformation field's value.
+func (s *FieldSourceProfileIds) SetAdditionalInformation(v string) *FieldSourceProfileIds {
+	s.AdditionalInformation = &v
+	return s
+}
+
+// SetAddress sets the Address field's value.
+func (s *FieldSourceProfileIds) SetAddress(v string) *FieldSourceProfileIds {
+	s.Address = &v
+	return s
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *FieldSourceProfileIds) SetAttributes(v map[string]*string) *FieldSourceProfileIds {
+	s.Attributes = v
+	return s
+}
+
+// SetBillingAddress sets the BillingAddress field's value.
+func (s *FieldSourceProfileIds) SetBillingAddress(v string) *FieldSourceProfileIds {
+	s.BillingAddress = &v
+	return s
+}
+
+// SetBirthDate sets the BirthDate field's value.
+func (s *FieldSourceProfileIds) SetBirthDate(v string) *FieldSourceProfileIds {
+	s.BirthDate = &v
+	return s
+}
+
+// SetBusinessEmailAddress sets the BusinessEmailAddress field's value.
+func (s *FieldSourceProfileIds) SetBusinessEmailAddress(v string) *FieldSourceProfileIds {
+	s.BusinessEmailAddress = &v
+	return s
+}
+
+// SetBusinessName sets the BusinessName field's value.
+func (s *FieldSourceProfileIds) SetBusinessName(v string) *FieldSourceProfileIds {
+	s.BusinessName = &v
+	return s
+}
+
+// SetBusinessPhoneNumber sets the BusinessPhoneNumber field's value.
+func (s *FieldSourceProfileIds) SetBusinessPhoneNumber(v string) *FieldSourceProfileIds {
+	s.BusinessPhoneNumber = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *FieldSourceProfileIds) SetEmailAddress(v string) *FieldSourceProfileIds {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetFirstName sets the FirstName field's value.
+func (s *FieldSourceProfileIds) SetFirstName(v string) *FieldSourceProfileIds {
+	s.FirstName = &v
+	return s
+}
+
+// SetGender sets the Gender field's value.
+func (s *FieldSourceProfileIds) SetGender(v string) *FieldSourceProfileIds {
+	s.Gender = &v
+	return s
+}
+
+// SetHomePhoneNumber sets the HomePhoneNumber field's value.
+func (s *FieldSourceProfileIds) SetHomePhoneNumber(v string) *FieldSourceProfileIds {
+	s.HomePhoneNumber = &v
+	return s
+}
+
+// SetLastName sets the LastName field's value.
+func (s *FieldSourceProfileIds) SetLastName(v string) *FieldSourceProfileIds {
+	s.LastName = &v
+	return s
+}
+
+// SetMailingAddress sets the MailingAddress field's value.
+func (s *FieldSourceProfileIds) SetMailingAddress(v string) *FieldSourceProfileIds {
+	s.MailingAddress = &v
+	return s
+}
+
+// SetMiddleName sets the MiddleName field's value.
+func (s *FieldSourceProfileIds) SetMiddleName(v string) *FieldSourceProfileIds {
+	s.MiddleName = &v
+	return s
+}
+
+// SetMobilePhoneNumber sets the MobilePhoneNumber field's value.
+func (s *FieldSourceProfileIds) SetMobilePhoneNumber(v string) *FieldSourceProfileIds {
+	s.MobilePhoneNumber = &v
+	return s
+}
+
+// SetPartyType sets the PartyType field's value.
+func (s *FieldSourceProfileIds) SetPartyType(v string) *FieldSourceProfileIds {
+	s.PartyType = &v
+	return s
+}
+
+// SetPersonalEmailAddress sets the PersonalEmailAddress field's value.
+func (s *FieldSourceProfileIds) SetPersonalEmailAddress(v string) *FieldSourceProfileIds {
+	s.PersonalEmailAddress = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *FieldSourceProfileIds) SetPhoneNumber(v string) *FieldSourceProfileIds {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetShippingAddress sets the ShippingAddress field's value.
+func (s *FieldSourceProfileIds) SetShippingAddress(v string) *FieldSourceProfileIds {
+	s.ShippingAddress = &v
+	return s
+}
+
 // The configurations that control how Customer Profiles retrieves data from
 // the source, Amazon AppFlow. Customer Profiles uses this information to create
 // an AppFlow flow on behalf of customers.
@@ -4269,7 +4737,7 @@ func (s *FlowDefinition) SetTriggerConfig(v *TriggerConfig) *FlowDefinition {
 type GetDomainInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique name for the domain.
+	// The unique name of the domain.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
@@ -4337,6 +4805,10 @@ type GetDomainOutput struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
+	// The process of matching duplicate profiles. This process runs every Saturday
+	// at 12AM.
+	Matching *MatchingResponse `type:"structure"`
+
 	// Usage-specific statistics about the domain.
 	Stats *DomainStats `type:"structure"`
 
@@ -4387,6 +4859,12 @@ func (s *GetDomainOutput) SetDomainName(v string) *GetDomainOutput {
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *GetDomainOutput) SetLastUpdatedAt(v time.Time) *GetDomainOutput {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetMatching sets the Matching field's value.
+func (s *GetDomainOutput) SetMatching(v *MatchingResponse) *GetDomainOutput {
+	s.Matching = v
 	return s
 }
 
@@ -4535,6 +5013,122 @@ func (s *GetIntegrationOutput) SetTags(v map[string]*string) *GetIntegrationOutp
 // SetUri sets the Uri field's value.
 func (s *GetIntegrationOutput) SetUri(v string) *GetIntegrationOutput {
 	s.Uri = &v
+	return s
+}
+
+type GetMatchesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetMatchesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMatchesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMatchesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMatchesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *GetMatchesInput) SetDomainName(v string) *GetMatchesInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetMatchesInput) SetMaxResults(v int64) *GetMatchesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMatchesInput) SetNextToken(v string) *GetMatchesInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetMatchesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp this version of Match Result generated.
+	MatchGenerationDate *time.Time `type:"timestamp"`
+
+	// The list of matched profiles for this instance.
+	Matches []*MatchItem `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The number of potential matches found.
+	PotentialMatches *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s GetMatchesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMatchesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMatchGenerationDate sets the MatchGenerationDate field's value.
+func (s *GetMatchesOutput) SetMatchGenerationDate(v time.Time) *GetMatchesOutput {
+	s.MatchGenerationDate = &v
+	return s
+}
+
+// SetMatches sets the Matches field's value.
+func (s *GetMatchesOutput) SetMatches(v []*MatchItem) *GetMatchesOutput {
+	s.Matches = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMatchesOutput) SetNextToken(v string) *GetMatchesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPotentialMatches sets the PotentialMatches field's value.
+func (s *GetMatchesOutput) SetPotentialMatches(v int64) *GetMatchesOutput {
+	s.PotentialMatches = &v
 	return s
 }
 
@@ -5881,6 +6475,209 @@ func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
 	return s
 }
 
+// The Match group object.
+type MatchItem struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifiers for this group of profiles that match.
+	MatchId *string `min:"1" type:"string"`
+
+	// A list of identifiers for profiles that match.
+	ProfileIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s MatchItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MatchItem) GoString() string {
+	return s.String()
+}
+
+// SetMatchId sets the MatchId field's value.
+func (s *MatchItem) SetMatchId(v string) *MatchItem {
+	s.MatchId = &v
+	return s
+}
+
+// SetProfileIds sets the ProfileIds field's value.
+func (s *MatchItem) SetProfileIds(v []*string) *MatchItem {
+	s.ProfileIds = v
+	return s
+}
+
+// The flag that enables the matching process of duplicate profiles.
+type MatchingRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The flag that enables the matching process of duplicate profiles.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s MatchingRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MatchingRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MatchingRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MatchingRequest"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *MatchingRequest) SetEnabled(v bool) *MatchingRequest {
+	s.Enabled = &v
+	return s
+}
+
+// The flag that enables the matching process of duplicate profiles.
+type MatchingResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The flag that enables the matching process of duplicate profiles.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s MatchingResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MatchingResponse) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *MatchingResponse) SetEnabled(v bool) *MatchingResponse {
+	s.Enabled = &v
+	return s
+}
+
+type MergeProfilesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the domain.
+	//
+	// DomainName is a required field
+	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The identifiers of the fields in the profile that has the information you
+	// want to apply to the merge. For example, say you want to merge EmailAddress
+	// from Profile1 into MainProfile. This would be the identifier of the EmailAddress
+	// field in Profile1.
+	FieldSourceProfileIds *FieldSourceProfileIds `type:"structure"`
+
+	// The identifier of the profile to be taken.
+	//
+	// MainProfileId is a required field
+	MainProfileId *string `type:"string" required:"true"`
+
+	// The identifier of the profile to be merged into MainProfileId.
+	//
+	// ProfileIdsToBeMerged is a required field
+	ProfileIdsToBeMerged []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s MergeProfilesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MergeProfilesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MergeProfilesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MergeProfilesInput"}
+	if s.DomainName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DomainName"))
+	}
+	if s.DomainName != nil && len(*s.DomainName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainName", 1))
+	}
+	if s.MainProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MainProfileId"))
+	}
+	if s.ProfileIdsToBeMerged == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProfileIdsToBeMerged"))
+	}
+	if s.ProfileIdsToBeMerged != nil && len(s.ProfileIdsToBeMerged) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileIdsToBeMerged", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *MergeProfilesInput) SetDomainName(v string) *MergeProfilesInput {
+	s.DomainName = &v
+	return s
+}
+
+// SetFieldSourceProfileIds sets the FieldSourceProfileIds field's value.
+func (s *MergeProfilesInput) SetFieldSourceProfileIds(v *FieldSourceProfileIds) *MergeProfilesInput {
+	s.FieldSourceProfileIds = v
+	return s
+}
+
+// SetMainProfileId sets the MainProfileId field's value.
+func (s *MergeProfilesInput) SetMainProfileId(v string) *MergeProfilesInput {
+	s.MainProfileId = &v
+	return s
+}
+
+// SetProfileIdsToBeMerged sets the ProfileIdsToBeMerged field's value.
+func (s *MergeProfilesInput) SetProfileIdsToBeMerged(v []*string) *MergeProfilesInput {
+	s.ProfileIdsToBeMerged = v
+	return s
+}
+
+type MergeProfilesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A message that indicates the merge request is complete.
+	Message *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MergeProfilesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MergeProfilesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *MergeProfilesOutput) SetMessage(v string) *MergeProfilesOutput {
+	s.Message = &v
+	return s
+}
+
 // Represents a field in a ProfileObjectType.
 type ObjectTypeField struct {
 	_ struct{} `type:"structure"`
@@ -5991,7 +6788,7 @@ type Profile struct {
 	// A unique account number that you have given to the customer.
 	AccountNumber *string `min:"1" type:"string"`
 
-	// Any additional information relevant to the customer's profile.
+	// Any additional information relevant to the customer’s profile.
 	AdditionalInformation *string `min:"1" type:"string"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
@@ -6016,7 +6813,7 @@ type Profile struct {
 	// The customer’s home phone number.
 	BusinessPhoneNumber *string `min:"1" type:"string"`
 
-	// The customer's email address, which has not been specified as a personal
+	// The customer’s email address, which has not been specified as a personal
 	// or business address.
 	EmailAddress *string `min:"1" type:"string"`
 
@@ -7875,10 +8672,14 @@ type UpdateDomainInput struct {
 	// The default number of days until the data within the domain expires.
 	DefaultExpirationDays *int64 `min:"1" type:"integer"`
 
-	// The unique name for the domain.
+	// The unique name of the domain.
 	//
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
+
+	// The process of matching duplicate profiles. This process runs every Saturday
+	// at 12AM.
+	Matching *MatchingRequest `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -7908,6 +8709,11 @@ func (s *UpdateDomainInput) Validate() error {
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Matching != nil {
+		if err := s.Matching.Validate(); err != nil {
+			invalidParams.AddNested("Matching", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7940,6 +8746,12 @@ func (s *UpdateDomainInput) SetDomainName(v string) *UpdateDomainInput {
 	return s
 }
 
+// SetMatching sets the Matching field's value.
+func (s *UpdateDomainInput) SetMatching(v *MatchingRequest) *UpdateDomainInput {
+	s.Matching = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *UpdateDomainInput) SetTags(v map[string]*string) *UpdateDomainInput {
 	s.Tags = v
@@ -7966,7 +8778,7 @@ type UpdateDomainOutput struct {
 	// The default number of days until the data within the domain expires.
 	DefaultExpirationDays *int64 `min:"1" type:"integer"`
 
-	// The unique name for the domain.
+	// The unique name of the domain.
 	//
 	// DomainName is a required field
 	DomainName *string `min:"1" type:"string" required:"true"`
@@ -7975,6 +8787,10 @@ type UpdateDomainOutput struct {
 	//
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
+
+	// The process of matching duplicate profiles. This process runs every Saturday
+	// at 12AM.
+	Matching *MatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -8026,6 +8842,12 @@ func (s *UpdateDomainOutput) SetLastUpdatedAt(v time.Time) *UpdateDomainOutput {
 	return s
 }
 
+// SetMatching sets the Matching field's value.
+func (s *UpdateDomainOutput) SetMatching(v *MatchingResponse) *UpdateDomainOutput {
+	s.Matching = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *UpdateDomainOutput) SetTags(v map[string]*string) *UpdateDomainOutput {
 	s.Tags = v
@@ -8038,7 +8860,7 @@ type UpdateProfileInput struct {
 	// A unique account number that you have given to the customer.
 	AccountNumber *string `type:"string"`
 
-	// Any additional information relevant to the customer's profile.
+	// Any additional information relevant to the customer’s profile.
 	AdditionalInformation *string `type:"string"`
 
 	// A generic address associated with the customer that is not mailing, shipping,
@@ -8068,7 +8890,7 @@ type UpdateProfileInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
-	// The customer's email address, which has not been specified as a personal
+	// The customer’s email address, which has not been specified as a personal
 	// or business address.
 	EmailAddress *string `type:"string"`
 
@@ -8099,8 +8921,8 @@ type UpdateProfileInput struct {
 	// The customer’s personal email address.
 	PersonalEmailAddress *string `type:"string"`
 
-	// The customer's phone number, which has not been specified as a mobile, home,
-	// or business number.
+	// The customer’s phone number, which has not been specified as a mobile,
+	// home, or business number.
 	PhoneNumber *string `type:"string"`
 
 	// The unique identifier of a customer profile.

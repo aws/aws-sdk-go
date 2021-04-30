@@ -189,6 +189,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetMatches":{
+      "name":"GetMatches",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/matches"
+      },
+      "input":{"shape":"GetMatchesRequest"},
+      "output":{"shape":"GetMatchesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetProfileObjectType":{
       "name":"GetProfileObjectType",
       "http":{
@@ -329,6 +345,21 @@
         {"shape":"InternalServerException"},
         {"shape":"BadRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "MergeProfiles":{
+      "name":"MergeProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/profiles/objects/merge"
+      },
+      "input":{"shape":"MergeProfilesRequest"},
+      "output":{"shape":"MergeProfilesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "PutIntegration":{
@@ -512,6 +543,11 @@
         "PostalCode":{"shape":"string1To255"}
       }
     },
+    "AttributeSourceIdMap":{
+      "type":"map",
+      "key":{"shape":"string1To255"},
+      "value":{"shape":"uuid"}
+    },
     "Attributes":{
       "type":"map",
       "key":{"shape":"string1To255"},
@@ -566,6 +602,7 @@
         "DefaultExpirationDays":{"shape":"expirationDaysInteger"},
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
+        "Matching":{"shape":"MatchingRequest"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -582,6 +619,7 @@
         "DefaultExpirationDays":{"shape":"expirationDaysInteger"},
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
+        "Matching":{"shape":"MatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -813,6 +851,32 @@
       "type":"list",
       "member":{"shape":"name"}
     },
+    "FieldSourceProfileIds":{
+      "type":"structure",
+      "members":{
+        "AccountNumber":{"shape":"uuid"},
+        "AdditionalInformation":{"shape":"uuid"},
+        "PartyType":{"shape":"uuid"},
+        "BusinessName":{"shape":"uuid"},
+        "FirstName":{"shape":"uuid"},
+        "MiddleName":{"shape":"uuid"},
+        "LastName":{"shape":"uuid"},
+        "BirthDate":{"shape":"uuid"},
+        "Gender":{"shape":"uuid"},
+        "PhoneNumber":{"shape":"uuid"},
+        "MobilePhoneNumber":{"shape":"uuid"},
+        "HomePhoneNumber":{"shape":"uuid"},
+        "BusinessPhoneNumber":{"shape":"uuid"},
+        "EmailAddress":{"shape":"uuid"},
+        "PersonalEmailAddress":{"shape":"uuid"},
+        "BusinessEmailAddress":{"shape":"uuid"},
+        "Address":{"shape":"uuid"},
+        "ShippingAddress":{"shape":"uuid"},
+        "MailingAddress":{"shape":"uuid"},
+        "BillingAddress":{"shape":"uuid"},
+        "Attributes":{"shape":"AttributeSourceIdMap"}
+      }
+    },
     "FlowDefinition":{
       "type":"structure",
       "required":[
@@ -873,6 +937,7 @@
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
         "Stats":{"shape":"DomainStats"},
+        "Matching":{"shape":"MatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -909,6 +974,36 @@
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "GetMatchesRequest":{
+      "type":"structure",
+      "required":["DomainName"],
+      "members":{
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        }
+      }
+    },
+    "GetMatchesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"token"},
+        "MatchGenerationDate":{"shape":"timestamp"},
+        "PotentialMatches":{"shape":"matchesNumber"},
+        "Matches":{"shape":"MatchesList"}
       }
     },
     "GetProfileObjectTypeRequest":{
@@ -1267,6 +1362,54 @@
         "Object":{"shape":"Object"}
       }
     },
+    "MatchItem":{
+      "type":"structure",
+      "members":{
+        "MatchId":{"shape":"string1To255"},
+        "ProfileIds":{"shape":"ProfileIdList"}
+      }
+    },
+    "MatchesList":{
+      "type":"list",
+      "member":{"shape":"MatchItem"}
+    },
+    "MatchingRequest":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"optionalBoolean"}
+      }
+    },
+    "MatchingResponse":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"optionalBoolean"}
+      }
+    },
+    "MergeProfilesRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "MainProfileId",
+        "ProfileIdsToBeMerged"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "MainProfileId":{"shape":"uuid"},
+        "ProfileIdsToBeMerged":{"shape":"ProfileIdToBeMergedList"},
+        "FieldSourceProfileIds":{"shape":"FieldSourceProfileIds"}
+      }
+    },
+    "MergeProfilesResponse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"message"}
+      }
+    },
     "Object":{
       "type":"string",
       "max":512,
@@ -1344,6 +1487,16 @@
         "BillingAddress":{"shape":"Address"},
         "Attributes":{"shape":"Attributes"}
       }
+    },
+    "ProfileIdList":{
+      "type":"list",
+      "member":{"shape":"uuid"}
+    },
+    "ProfileIdToBeMergedList":{
+      "type":"list",
+      "member":{"shape":"uuid"},
+      "max":20,
+      "min":1
     },
     "ProfileList":{
       "type":"list",
@@ -1867,6 +2020,7 @@
         "DefaultExpirationDays":{"shape":"expirationDaysInteger"},
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
+        "Matching":{"shape":"MatchingRequest"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -1882,6 +2036,7 @@
         "DefaultExpirationDays":{"shape":"expirationDaysInteger"},
         "DefaultEncryptionKey":{"shape":"encryptionKey"},
         "DeadLetterQueueUrl":{"shape":"sqsQueueUrl"},
+        "Matching":{"shape":"MatchingResponse"},
         "CreatedAt":{"shape":"timestamp"},
         "LastUpdatedAt":{"shape":"timestamp"},
         "Tags":{"shape":"TagMap"}
@@ -1968,12 +2123,17 @@
       "min":1
     },
     "long":{"type":"long"},
+    "matchesNumber":{
+      "type":"integer",
+      "min":0
+    },
     "maxSize100":{
       "type":"integer",
       "max":100,
       "min":1
     },
     "message":{"type":"string"},
+    "optionalBoolean":{"type":"boolean"},
     "requestValueList":{
       "type":"list",
       "member":{"shape":"string1To255"}

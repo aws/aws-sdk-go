@@ -17814,6 +17814,9 @@ const (
 
 	// RobotSoftwareSuiteVersionTypeDashing is a RobotSoftwareSuiteVersionType enum value
 	RobotSoftwareSuiteVersionTypeDashing = "Dashing"
+
+	// RobotSoftwareSuiteVersionTypeFoxy is a RobotSoftwareSuiteVersionType enum value
+	RobotSoftwareSuiteVersionTypeFoxy = "Foxy"
 )
 
 // RobotSoftwareSuiteVersionType_Values returns all elements of the RobotSoftwareSuiteVersionType enum
@@ -17822,6 +17825,7 @@ func RobotSoftwareSuiteVersionType_Values() []string {
 		RobotSoftwareSuiteVersionTypeKinetic,
 		RobotSoftwareSuiteVersionTypeMelodic,
 		RobotSoftwareSuiteVersionTypeDashing,
+		RobotSoftwareSuiteVersionTypeFoxy,
 	}
 }
 
