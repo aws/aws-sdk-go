@@ -412,7 +412,7 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 // To allow Amazon Personalize to export the training data, you must specify
 // an service-linked AWS Identity and Access Management (IAM) role that gives
 // Amazon Personalize PutObject permissions for your Amazon S3 bucket. For information,
-// see Dataset export job permissions requirements (https://docs.aws.amazon.com/personalize/latest/dg/export-permissions.html)
+// see Exporting a dataset (https://docs.aws.amazon.com/personalize/latest/dg/export-data.html)
 // in the Amazon Personalize developer guide.
 //
 // Status

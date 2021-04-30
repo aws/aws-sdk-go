@@ -8,6 +8,7 @@
     "CreateDistributionWithTags": "<p>Create a new distribution with tags.</p>",
     "CreateFieldLevelEncryptionConfig": "<p>Create a new field-level encryption configuration.</p>",
     "CreateFieldLevelEncryptionProfile": "<p>Create a field-level encryption profile.</p>",
+    "CreateFunction": "<p>Creates a CloudFront function.</p> <p>To create a function, you provide the function code and some configuration information about the function. The response contains an Amazon Resource Name (ARN) that uniquely identifies the function.</p> <p>When you create a function, it’s in the <code>DEVELOPMENT</code> stage. In this stage, you can test the function with <code>TestFunction</code>, and update it with <code>UpdateFunction</code>.</p> <p>When you’re ready to use your function with a CloudFront distribution, use <code>PublishFunction</code> to copy the function from the <code>DEVELOPMENT</code> stage to <code>LIVE</code>. When it’s live, you can attach the function to a distribution’s cache behavior, using the function’s ARN.</p>",
     "CreateInvalidation": "<p>Create a new invalidation. </p>",
     "CreateKeyGroup": "<p>Creates a key group that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p> <p>To create a key group, you must specify at least one public key for the key group. After you create a key group, you can reference it from one or more cache behaviors. When you reference a key group in a cache behavior, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -21,12 +22,14 @@
     "DeleteDistribution": "<p>Delete a distribution. </p>",
     "DeleteFieldLevelEncryptionConfig": "<p>Remove a field-level encryption configuration.</p>",
     "DeleteFieldLevelEncryptionProfile": "<p>Remove a field-level encryption profile.</p>",
+    "DeleteFunction": "<p>Deletes a CloudFront function.</p> <p>You cannot delete a function if it’s associated with a cache behavior. First, update your distributions to remove the function association from all cache behaviors, then delete the function.</p> <p>To delete a function, you must provide the function’s name and version (<code>ETag</code> value). To get these values, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "DeleteKeyGroup": "<p>Deletes a key group.</p> <p>You cannot delete a key group that is referenced in a cache behavior. First update your distributions to remove the key group from all cache behaviors, then delete the key group.</p> <p>To delete a key group, you must provide the key group’s identifier and version. To get these values, use <code>ListKeyGroups</code> followed by <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
     "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
     "DeleteRealtimeLogConfig": "<p>Deletes a real-time log configuration.</p> <p>You cannot delete a real-time log configuration if it’s attached to a cache behavior. First update your distributions to remove the real-time log configuration from all cache behaviors, then delete the real-time log configuration.</p> <p>To delete a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to delete.</p>",
     "DeleteStreamingDistribution": "<p>Delete a streaming distribution. To delete an RTMP distribution using the CloudFront API, perform the following steps.</p> <p> <b>To delete an RTMP distribution using the CloudFront API</b>:</p> <ol> <li> <p>Disable the RTMP distribution.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to get the current configuration and the <code>Etag</code> header for the distribution. </p> </li> <li> <p>Update the XML document that was returned in the response to your <code>GET Streaming Distribution Config</code> request to change the value of <code>Enabled</code> to <code>false</code>.</p> </li> <li> <p>Submit a <code>PUT Streaming Distribution Config</code> request to update the configuration for your distribution. In the request body, include the XML document that you updated in Step 3. Then set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to the <code>PUT Streaming Distribution Config</code> request to confirm that the distribution was successfully disabled.</p> </li> <li> <p>Submit a <code>GET Streaming Distribution Config</code> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> <li> <p>Submit a <code>DELETE Streaming Distribution</code> request. Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GET Streaming Distribution Config</code> request in Step 2.</p> </li> <li> <p>Review the response to your <code>DELETE Streaming Distribution</code> request to confirm that the distribution was successfully deleted.</p> </li> </ol> <p>For information about deleting a distribution using the CloudFront console, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/HowToDeleteDistribution.html\">Deleting a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+    "DescribeFunction": "<p>Gets configuration information and metadata about a CloudFront function, but not the function’s code. To get a function’s code, use <code>GetFunction</code>.</p> <p>To get configuration information and metadata about a function, you must provide the function’s name and stage. To get these values, you can use <code>ListFunctions</code>.</p>",
     "GetCachePolicy": "<p>Gets a cache policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get a cache policy, you must provide the policy’s identifier. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
     "GetCachePolicyConfig": "<p>Gets a cache policy configuration.</p> <p>To get a cache policy configuration, you must provide the policy’s identifier. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
     "GetCloudFrontOriginAccessIdentity": "<p>Get the information about an origin access identity. </p>",
@@ -37,6 +40,7 @@
     "GetFieldLevelEncryptionConfig": "<p>Get the field-level encryption configuration information.</p>",
     "GetFieldLevelEncryptionProfile": "<p>Get the field-level encryption profile information.</p>",
     "GetFieldLevelEncryptionProfileConfig": "<p>Get the field-level encryption profile configuration information.</p>",
+    "GetFunction": "<p>Gets the code of a CloudFront function. To get configuration information and metadata about a function, use <code>DescribeFunction</code>.</p> <p>To get a function’s code, you must provide the function’s name and stage. To get these values, you can use <code>ListFunctions</code>.</p>",
     "GetInvalidation": "<p>Get the information about an invalidation. </p>",
     "GetKeyGroup": "<p>Gets a key group, including the date and time when the key group was last modified.</p> <p>To get a key group, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetKeyGroupConfig": "<p>Gets a key group configuration.</p> <p>To get a key group configuration, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
@@ -58,6 +62,7 @@
     "ListDistributionsByWebACLId": "<p>List the distributions that are associated with a specified AWS WAF web ACL. </p>",
     "ListFieldLevelEncryptionConfigs": "<p>List all field-level encryption configurations that have been created in CloudFront for this account.</p>",
     "ListFieldLevelEncryptionProfiles": "<p>Request a list of field-level encryption profiles that have been created in CloudFront for this account.</p>",
+    "ListFunctions": "<p>Gets a list of all CloudFront functions in your AWS account.</p> <p>You can optionally apply a filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListInvalidations": "<p>Lists invalidation batches. </p>",
     "ListKeyGroups": "<p>Gets a list of key groups.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by AWS, or only the custom policies created in your AWS account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
@@ -65,13 +70,16 @@
     "ListRealtimeLogConfigs": "<p>Gets a list of real-time log configurations.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
     "ListStreamingDistributions": "<p>List streaming distributions. </p>",
     "ListTagsForResource": "<p>List tags for a CloudFront resource.</p>",
+    "PublishFunction": "<p>Publishes a CloudFront function by copying the function code from the <code>DEVELOPMENT</code> stage to <code>LIVE</code>. This automatically updates all cache behaviors that are using this function to use the newly published copy in the <code>LIVE</code> stage.</p> <p>When a function is published to the <code>LIVE</code> stage, you can attach the function to a distribution’s cache behavior, using the function’s Amazon Resource Name (ARN).</p> <p>To publish a function, you must provide the function’s name and version (<code>ETag</code> value). To get these values, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "TagResource": "<p>Add tags to a CloudFront resource.</p>",
+    "TestFunction": "<p>Tests a CloudFront function.</p> <p>To test a function, you provide an <i>event object</i> that represents an HTTP request or response that your CloudFront distribution could receive in production. CloudFront runs the function, passing it the event object that you provided, and returns the function’s result (the modified event object) in the response. The response also contains function logs and error messages, if any exist. For more information about testing functions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function\">Testing functions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>To test a function, you provide the function’s name and version (<code>ETag</code> value) along with the event object. To get the function’s name and version, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "UntagResource": "<p>Remove tags from a CloudFront resource.</p>",
     "UpdateCachePolicy": "<p>Updates a cache policy configuration.</p> <p>When you update a cache policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a cache policy configuration:</p> <ol> <li> <p>Use <code>GetCachePolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the cache policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateCachePolicy</code> by providing the entire cache policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdateCloudFrontOriginAccessIdentity": "<p>Update an origin access identity. </p>",
     "UpdateDistribution": "<p>Updates the configuration for a web distribution. </p> <important> <p>When you update a distribution, there are more required fields than when you create a distribution. When you update your distribution by using this API action, follow the steps here to get the current configuration and then make your updates, to make sure that you include all of the required fields. To view a summary, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-overview-required-fields.html\">Required Fields for Create Distribution and Update Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> </important> <p>The update process includes getting the current distribution configuration, updating the XML document that is returned to make your changes, and then submitting an <code>UpdateDistribution</code> request to make the updates.</p> <p>For information about updating a distribution using the CloudFront console instead, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-creating-console.html\">Creating a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p> <b>To update a web distribution using the CloudFront API</b> </p> <ol> <li> <p>Submit a <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html\">GetDistributionConfig</a> request to get the current configuration and an <code>Etag</code> header for the distribution.</p> <note> <p>If you update the distribution again, you must get a new <code>Etag</code> header.</p> </note> </li> <li> <p>Update the XML document that was returned in the response to your <code>GetDistributionConfig</code> request to include your changes. </p> <important> <p>When you edit the XML file, be aware of the following:</p> <ul> <li> <p>You must strip out the ETag parameter that is returned.</p> </li> <li> <p>Additional fields are required when you update a distribution. There may be fields included in the XML file for features that you haven't configured for your distribution. This is expected and required to successfully update the distribution.</p> </li> <li> <p>You can't change the value of <code>CallerReference</code>. If you try to change this value, CloudFront returns an <code>IllegalUpdate</code> error. </p> </li> <li> <p>The new configuration replaces the existing configuration; the values that you specify in an <code>UpdateDistribution</code> request are not merged into your existing configuration. When you add, delete, or replace values in an element that allows multiple values (for example, <code>CNAME</code>), you must specify all of the values that you want to appear in the updated distribution. In addition, you must update the corresponding <code>Quantity</code> element.</p> </li> </ul> </important> </li> <li> <p>Submit an <code>UpdateDistribution</code> request to update the configuration for your distribution:</p> <ul> <li> <p>In the request body, include the XML document that you updated in Step 2. The request body must include an XML document with a <code>DistributionConfig</code> element.</p> </li> <li> <p>Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GetDistributionConfig</code> request in Step 1.</p> </li> </ul> </li> <li> <p>Review the response to the <code>UpdateDistribution</code> request to confirm that the configuration was successfully updated.</p> </li> <li> <p>Optional: Submit a <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html\">GetDistribution</a> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> </ol>",
     "UpdateFieldLevelEncryptionConfig": "<p>Update a field-level encryption configuration. </p>",
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile. </p>",
+    "UpdateFunction": "<p>Updates a CloudFront function.</p> <p>You can update a function’s code or the comment that describes the function. You cannot update a function’s name.</p> <p>To update a function, you provide the function’s name and version (<code>ETag</code> value) along with the updated function code. To get the name and version, you can use <code>ListFunctions</code> and <code>DescribeFunction</code>.</p>",
     "UpdateKeyGroup": "<p>Updates a key group.</p> <p>When you update a key group, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a key group:</p> <ol> <li> <p>Get the current key group with <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p> </li> <li> <p>Locally modify the fields in the key group that you want to update. For example, add or remove public key IDs.</p> </li> <li> <p>Call <code>UpdateKeyGroup</code> with the entire key group object, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
@@ -321,7 +329,7 @@
     "CommentType": {
       "base": null,
       "refs": {
-        "DistributionConfig$Comment": "<p>Any comments you want to include about the distribution.</p> <p>If you don't want to specify a comment, include an empty <code>Comment</code> element.</p> <p>To delete an existing comment, update the distribution configuration and include an empty <code>Comment</code> element.</p> <p>To add or change a comment, update the distribution configuration and specify the new comment.</p>"
+        "DistributionConfig$Comment": "<p>An optional comment to describe the distribution. The comment cannot be longer than 128 characters.</p>"
       }
     },
     "ContentTypeProfile": {
@@ -425,6 +433,16 @@
       }
     },
     "CreateFieldLevelEncryptionProfileResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFunctionResult": {
       "base": null,
       "refs": {
       }
@@ -572,6 +590,11 @@
       "refs": {
       }
     },
+    "DeleteFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteKeyGroupRequest": {
       "base": null,
       "refs": {
@@ -604,6 +627,16 @@
     },
     "DeleteStreamingDistributionRequest": {
       "base": "<p>The request to delete a streaming distribution.</p>",
+      "refs": {
+      }
+    },
+    "DescribeFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFunctionResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -712,6 +745,7 @@
     "EventType": {
       "base": null,
       "refs": {
+        "FunctionAssociation$EventType": "<p>The event type of the function, either <code>viewer-request</code> or <code>viewer-response</code>. You cannot use origin-facing event types (<code>origin-request</code> and <code>origin-response</code>) with a CloudFront function.</p>",
         "LambdaFunctionAssociation$EventType": "<p>Specifies the event type that triggers a Lambda function invocation. You can specify the following values:</p> <ul> <li> <p> <code>viewer-request</code>: The function executes when CloudFront receives a request from a viewer and before it checks to see whether the requested object is in the edge cache. </p> </li> <li> <p> <code>origin-request</code>: The function executes only when CloudFront sends a request to your origin. When the requested object is in the edge cache, the function doesn't execute.</p> </li> <li> <p> <code>origin-response</code>: The function executes after CloudFront receives a response from the origin and before it caches the object in the response. When the requested object is in the edge cache, the function doesn't execute.</p> </li> <li> <p> <code>viewer-response</code>: The function executes before CloudFront returns the requested object to the viewer. The function executes regardless of whether the object was already in the edge cache.</p> <p>If the origin returns an HTTP status code other than HTTP 200 (OK), the function doesn't execute.</p> </li> </ul>"
       }
     },
@@ -839,8 +873,128 @@
     "ForwardedValues": {
       "base": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>",
       "refs": {
-        "CacheBehavior$ForwardedValues": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html\">Working with policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>",
-        "DefaultCacheBehavior$ForwardedValues": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html\">Working with policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>"
+        "CacheBehavior$ForwardedValues": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html\">Working with policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>CacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>",
+        "DefaultCacheBehavior$ForwardedValues": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/working-with-policies.html\">Working with policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to include values in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send values to the origin but not include them in the cache key, use an origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>DefaultCacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p> <p>A complex type that specifies how CloudFront handles query strings, cookies, and HTTP headers.</p>"
+      }
+    },
+    "FunctionARN": {
+      "base": null,
+      "refs": {
+        "FunctionAssociation$FunctionARN": "<p>The Amazon Resource Name (ARN) of the function.</p>"
+      }
+    },
+    "FunctionAlreadyExists": {
+      "base": "<p>A function with the same name already exists in this AWS account. To create a function, you must provide a unique name. To update an existing function, use <code>UpdateFunction</code>.</p>",
+      "refs": {
+      }
+    },
+    "FunctionAssociation": {
+      "base": "<p>A CloudFront function that is associated with a cache behavior in a CloudFront distribution.</p>",
+      "refs": {
+        "FunctionAssociationList$member": null
+      }
+    },
+    "FunctionAssociationList": {
+      "base": null,
+      "refs": {
+        "FunctionAssociations$Items": "<p>The CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the <code>LIVE</code> stage to associate them with a cache behavior.</p>"
+      }
+    },
+    "FunctionAssociations": {
+      "base": "<p>A list of CloudFront functions that are associated with a cache behavior in a CloudFront distribution. CloudFront functions must be published to the <code>LIVE</code> stage to associate them with a cache behavior.</p>",
+      "refs": {
+        "CacheBehavior$FunctionAssociations": "<p>A list of CloudFront functions that are associated with this cache behavior. CloudFront functions must be published to the <code>LIVE</code> stage to associate them with a cache behavior.</p>",
+        "DefaultCacheBehavior$FunctionAssociations": "<p>A list of CloudFront functions that are associated with this cache behavior. CloudFront functions must be published to the <code>LIVE</code> stage to associate them with a cache behavior.</p>"
+      }
+    },
+    "FunctionBlob": {
+      "base": null,
+      "refs": {
+        "CreateFunctionRequest$FunctionCode": "<p>The function code. For more information about writing a CloudFront function, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html\">Writing function code for CloudFront Functions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "GetFunctionResult$FunctionCode": "<p>The function code of a CloudFront function.</p>",
+        "UpdateFunctionRequest$FunctionCode": "<p>The function code. For more information about writing a CloudFront function, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html\">Writing function code for CloudFront Functions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+      }
+    },
+    "FunctionConfig": {
+      "base": "<p>Contains configuration information about a CloudFront function.</p>",
+      "refs": {
+        "CreateFunctionRequest$FunctionConfig": "<p>Configuration information about the function, including an optional comment and the function’s runtime.</p>",
+        "FunctionSummary$FunctionConfig": "<p>Contains configuration information about a CloudFront function.</p>",
+        "UpdateFunctionRequest$FunctionConfig": "<p>Configuration information about the function.</p>"
+      }
+    },
+    "FunctionEventObject": {
+      "base": null,
+      "refs": {
+        "TestFunctionRequest$EventObject": "<p>The event object to test the function with. For more information about the structure of the event object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function\">Testing functions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+      }
+    },
+    "FunctionExecutionLogList": {
+      "base": null,
+      "refs": {
+        "TestResult$FunctionExecutionLogs": "<p>Contains the log lines that the function wrote (if any) when running the test.</p>"
+      }
+    },
+    "FunctionInUse": {
+      "base": "<p>Cannot delete the function because it’s attached to one or more cache behaviors.</p>",
+      "refs": {
+      }
+    },
+    "FunctionList": {
+      "base": "<p>A list of CloudFront functions.</p>",
+      "refs": {
+        "ListFunctionsResult$FunctionList": "<p>A list of CloudFront functions.</p>"
+      }
+    },
+    "FunctionMetadata": {
+      "base": "<p>Contains metadata about a CloudFront function.</p>",
+      "refs": {
+        "FunctionSummary$FunctionMetadata": "<p>Contains metadata about a CloudFront function.</p>"
+      }
+    },
+    "FunctionName": {
+      "base": null,
+      "refs": {
+        "CreateFunctionRequest$Name": "<p>A name to identify the function.</p>",
+        "FunctionSummary$Name": "<p>The name of the CloudFront function.</p>"
+      }
+    },
+    "FunctionRuntime": {
+      "base": null,
+      "refs": {
+        "FunctionConfig$Runtime": "<p>The function’s runtime environment. The only valid value is <code>cloudfront-js-1.0</code>.</p>"
+      }
+    },
+    "FunctionSizeLimitExceeded": {
+      "base": "<p>The function is too large. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "FunctionStage": {
+      "base": null,
+      "refs": {
+        "DescribeFunctionRequest$Stage": "<p>The function’s stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p>",
+        "FunctionMetadata$Stage": "<p>The stage that the function is in, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p> <p>When a function is in the <code>DEVELOPMENT</code> stage, you can test the function with <code>TestFunction</code>, and update it with <code>UpdateFunction</code>.</p> <p>When a function is in the <code>LIVE</code> stage, you can attach the function to a distribution’s cache behavior, using the function’s ARN.</p>",
+        "GetFunctionRequest$Stage": "<p>The function’s stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p>",
+        "ListFunctionsRequest$Stage": "<p>An optional filter to return only the functions that are in the specified stage, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p>",
+        "TestFunctionRequest$Stage": "<p>The stage of the function that you are testing, either <code>DEVELOPMENT</code> or <code>LIVE</code>.</p>"
+      }
+    },
+    "FunctionSummary": {
+      "base": "<p>Contains configuration information and metadata about a CloudFront function.</p>",
+      "refs": {
+        "CreateFunctionResult$FunctionSummary": "<p>Contains configuration information and metadata about a CloudFront function.</p>",
+        "DescribeFunctionResult$FunctionSummary": "<p>Contains configuration information and metadata about a CloudFront function.</p>",
+        "FunctionSummaryList$member": null,
+        "PublishFunctionResult$FunctionSummary": "<p>Contains configuration information and metadata about a CloudFront function.</p>",
+        "TestResult$FunctionSummary": "<p>Contains configuration information and metadata about the CloudFront function that was tested.</p>",
+        "UpdateFunctionResult$FunctionSummary": "<p>Contains configuration information and metadata about a CloudFront function.</p>"
+      }
+    },
+    "FunctionSummaryList": {
+      "base": null,
+      "refs": {
+        "FunctionList$Items": "<p>Contains the functions in the list.</p>"
       }
     },
     "GeoRestriction": {
@@ -951,6 +1105,16 @@
       }
     },
     "GetFieldLevelEncryptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetFunctionResult": {
       "base": null,
       "refs": {
       }
@@ -1129,6 +1293,11 @@
     },
     "InvalidForwardCookies": {
       "base": "<p>Your request contains forward cookies option which doesn't match with the expectation for the <code>whitelisted</code> list of cookie names. Either list of cookie names has been specified when not allowed or list of cookie names is missing when expected.</p>",
+      "refs": {
+      }
+    },
+    "InvalidFunctionAssociation": {
+      "base": "<p>A CloudFront function association is invalid.</p>",
       "refs": {
       }
     },
@@ -1462,6 +1631,16 @@
       "refs": {
       }
     },
+    "ListFunctionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFunctionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListInvalidationsRequest": {
       "base": "<p>The request to list invalidations. </p>",
       "refs": {
@@ -1598,6 +1777,11 @@
     },
     "NoSuchFieldLevelEncryptionProfile": {
       "base": "<p>The specified profile for field-level encryption doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "NoSuchFunctionExists": {
+      "base": "<p>The function does not exist.</p>",
       "refs": {
       }
     },
@@ -1842,7 +2026,7 @@
       }
     },
     "PreconditionFailed": {
-      "base": "<p>The precondition given in one or more of the request header fields evaluated to <code>false</code>.</p>",
+      "base": "<p>The precondition in one or more of the request fields evaluated to <code>false</code>.</p>",
       "refs": {
       }
     },
@@ -1904,6 +2088,16 @@
       "base": null,
       "refs": {
         "PublicKeyList$Items": "<p>A list of public keys.</p>"
+      }
+    },
+    "PublishFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PublishFunctionResult": {
+      "base": null,
+      "refs": {
       }
     },
     "QueryArgProfile": {
@@ -1984,6 +2178,11 @@
       "base": null,
       "refs": {
         "RealtimeLogConfigs$Items": "<p>Contains the list of real-time log configurations.</p>"
+      }
+    },
+    "RealtimeLogConfigOwnerMismatch": {
+      "base": "<p>The specified real-time log configuration belongs to a different AWS account.</p>",
+      "refs": {
       }
     },
     "RealtimeLogConfigs": {
@@ -2189,6 +2388,27 @@
         "TagResourceRequest$Tags": "<p> A complex type that contains zero or more <code>Tag</code> elements.</p>"
       }
     },
+    "TestFunctionFailed": {
+      "base": "<p>The CloudFront function failed.</p>",
+      "refs": {
+      }
+    },
+    "TestFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestFunctionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TestResult": {
+      "base": "<p>Contains the result of testing a CloudFront function with <code>TestFunction</code>.</p>",
+      "refs": {
+        "TestFunctionResult$TestResult": "<p>An object that represents the result of running the function with the provided event object.</p>"
+      }
+    },
     "TooManyCacheBehaviors": {
       "base": "<p>You cannot create more cache behaviors for the distribution.</p>",
       "refs": {
@@ -2254,6 +2474,11 @@
       "refs": {
       }
     },
+    "TooManyDistributionsWithFunctionAssociations": {
+      "base": "<p>You have reached the maximum number of distributions that are associated with a CloudFront function. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyDistributionsWithLambdaAssociations": {
       "base": "<p>Processing your request would cause the maximum number of distributions with Lambda function associations per owner to be exceeded.</p>",
       "refs": {
@@ -2291,6 +2516,16 @@
     },
     "TooManyFieldLevelEncryptionQueryArgProfiles": {
       "base": "<p>The maximum number of query arg profiles for field-level encryption have been created.</p>",
+      "refs": {
+      }
+    },
+    "TooManyFunctionAssociations": {
+      "base": "<p>You have reached the maximum number of CloudFront function associations for this distribution. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "TooManyFunctions": {
+      "base": "<p>You have reached the maximum number of CloudFront functions for this AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2426,6 +2661,11 @@
         "StreamingDistributionSummary$TrustedSigners": "<p>A complex type that specifies the AWS accounts, if any, that you want to allow to create signed URLs for private content. If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>.If you don't want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>. To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it's currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
       }
     },
+    "UnsupportedOperation": {
+      "base": "<p>This operation is not supported in this region.</p>",
+      "refs": {
+      }
+    },
     "UntagResourceRequest": {
       "base": "<p> The request to remove tags from a CloudFront resource.</p>",
       "refs": {
@@ -2477,6 +2717,16 @@
       }
     },
     "UpdateFieldLevelEncryptionProfileResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFunctionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateFunctionResult": {
       "base": null,
       "refs": {
       }
@@ -2614,6 +2864,9 @@
         "FieldLevelEncryptionProfileList$MaxItems": "<p>The maximum number of field-level encryption profiles you want in the response body. </p>",
         "FieldLevelEncryptionProfileList$Quantity": "<p>The number of field-level encryption profiles.</p>",
         "FieldPatterns$Quantity": "<p>The number of field-level encryption field patterns.</p>",
+        "FunctionAssociations$Quantity": "<p>The number of CloudFront functions in the list.</p>",
+        "FunctionList$MaxItems": "<p>The maximum number of functions requested.</p>",
+        "FunctionList$Quantity": "<p>The number of functions returned in the response.</p>",
         "GeoRestriction$Quantity": "<p>When geo restriction is <code>enabled</code>, this is the number of countries in your <code>whitelist</code> or <code>blacklist</code>. Otherwise, when it is not enabled, <code>Quantity</code> is <code>0</code>, and you can omit <code>Items</code>.</p>",
         "Headers$Quantity": "<p>The number of header names in the <code>Items</code> list.</p>",
         "InvalidationList$MaxItems": "<p>The value that you provided for the <code>MaxItems</code> request parameter.</p>",
@@ -2676,11 +2929,11 @@
         "CacheBehavior$TargetOriginId": "<p>The value of <code>ID</code> for the origin that you want CloudFront to route requests to when they match this cache behavior.</p>",
         "CacheBehavior$FieldLevelEncryptionId": "<p>The value of <code>ID</code> for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for this cache behavior.</p>",
         "CacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "CacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "CacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>CacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p>",
         "CacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CachePolicy$Id": "<p>The unique identifier for the cache policy.</p>",
         "CachePolicyAlreadyExists$Message": null,
-        "CachePolicyConfig$Comment": "<p>A comment to describe the cache policy.</p>",
+        "CachePolicyConfig$Comment": "<p>A comment to describe the cache policy. The comment cannot be longer than 128 characters.</p>",
         "CachePolicyConfig$Name": "<p>A unique name to identify the cache policy.</p>",
         "CachePolicyInUse$Message": null,
         "CachePolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing cache policies where you left off.</p>",
@@ -2689,7 +2942,7 @@
         "CloudFrontOriginAccessIdentity$S3CanonicalUserId": "<p>The Amazon S3 canonical user ID for the origin access identity, used when giving the origin access identity read permission to an object in Amazon S3. </p>",
         "CloudFrontOriginAccessIdentityAlreadyExists$Message": null,
         "CloudFrontOriginAccessIdentityConfig$CallerReference": "<p>A unique value (for example, a date-time stamp) that ensures that the request can't be replayed.</p> <p>If the value of <code>CallerReference</code> is new (regardless of the content of the <code>CloudFrontOriginAccessIdentityConfig</code> object), a new origin access identity is created.</p> <p>If the <code>CallerReference</code> is a value already sent in a previous identity request, and the content of the <code>CloudFrontOriginAccessIdentityConfig</code> is identical to the original request (ignoring white space), the response includes the same information returned to the original request. </p> <p>If the <code>CallerReference</code> is a value you already sent in a previous request to create an identity, but the content of the <code>CloudFrontOriginAccessIdentityConfig</code> is different from the original request, CloudFront returns a <code>CloudFrontOriginAccessIdentityAlreadyExists</code> error. </p>",
-        "CloudFrontOriginAccessIdentityConfig$Comment": "<p>Any comments you want to include about the origin access identity. </p>",
+        "CloudFrontOriginAccessIdentityConfig$Comment": "<p>An optional comment to describe the origin access identity. The comment cannot be longer than 128 characters.</p>",
         "CloudFrontOriginAccessIdentityInUse$Message": null,
         "CloudFrontOriginAccessIdentityList$Marker": "<p>Use this when paginating results to indicate where to begin in your list of origin access identities. The results include identities in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last identity on that page). </p>",
         "CloudFrontOriginAccessIdentityList$NextMarker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value you can use for the <code>Marker</code> request parameter to continue listing your origin access identities where they left off. </p>",
@@ -2711,6 +2964,8 @@
         "CreateFieldLevelEncryptionConfigResult$ETag": "<p>The current version of the field level encryption configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "CreateFieldLevelEncryptionProfileResult$Location": "<p>The fully qualified URI of the new profile resource just created.</p>",
         "CreateFieldLevelEncryptionProfileResult$ETag": "<p>The current version of the field level encryption profile. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "CreateFunctionResult$Location": "<p>The URL of the CloudFront function. Use the URL to manage the function with the CloudFront API.</p>",
+        "CreateFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
         "CreateInvalidationRequest$DistributionId": "<p>The distribution's id.</p>",
         "CreateInvalidationResult$Location": "<p>The fully qualified URI of the distribution and invalidation batch request, including the <code>Invalidation ID</code>.</p>",
         "CreateKeyGroupResult$Location": "<p>The URL of the key group.</p>",
@@ -2730,7 +2985,7 @@
         "DefaultCacheBehavior$TargetOriginId": "<p>The value of <code>ID</code> for the origin that you want CloudFront to route requests to when they use the default cache behavior.</p>",
         "DefaultCacheBehavior$FieldLevelEncryptionId": "<p>The value of <code>ID</code> for the field-level encryption configuration that you want CloudFront to use for encrypting specific fields of data for the default cache behavior.</p>",
         "DefaultCacheBehavior$RealtimeLogConfigArn": "<p>The Amazon Resource Name (ARN) of the real-time log configuration that is attached to this cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "DefaultCacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "DefaultCacheBehavior$CachePolicyId": "<p>The unique identifier of the cache policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html\">Using the managed cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>A <code>DefaultCacheBehavior</code> must include either a <code>CachePolicyId</code> or <code>ForwardedValues</code>. We recommend that you use a <code>CachePolicyId</code>.</p>",
         "DefaultCacheBehavior$OriginRequestPolicyId": "<p>The unique identifier of the origin request policy that is attached to the default cache behavior. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> or <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html\">Using the managed origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "DeleteCachePolicyRequest$Id": "<p>The unique identifier for the cache policy that you are deleting. To get the identifier, you can use <code>ListCachePolicies</code>.</p>",
         "DeleteCachePolicyRequest$IfMatch": "<p>The version of the cache policy that you are deleting. The version is the cache policy’s <code>ETag</code> value, which you can get using <code>ListCachePolicies</code>, <code>GetCachePolicy</code>, or <code>GetCachePolicyConfig</code>.</p>",
@@ -2742,6 +2997,8 @@
         "DeleteFieldLevelEncryptionConfigRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the configuration identity to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$Id": "<p>Request the ID of the profile you want to delete from CloudFront.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the profile to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "DeleteFunctionRequest$Name": "<p>The name of the function that you are deleting.</p>",
+        "DeleteFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are deleting, which you can get using <code>DescribeFunction</code>.</p>",
         "DeleteKeyGroupRequest$Id": "<p>The identifier of the key group that you are deleting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
         "DeleteKeyGroupRequest$IfMatch": "<p>The version of the key group that you are deleting. The version is the key group’s <code>ETag</code> value. To get the <code>ETag</code>, use <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
         "DeleteMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are disabling metrics for.</p>",
@@ -2753,6 +3010,8 @@
         "DeleteRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to delete.</p>",
         "DeleteStreamingDistributionRequest$Id": "<p>The distribution ID. </p>",
         "DeleteStreamingDistributionRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when you disabled the streaming distribution. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "DescribeFunctionRequest$Name": "<p>The name of the function that you are getting information about.</p>",
+        "DescribeFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
         "Distribution$Id": "<p>The identifier for the distribution. For example: <code>EDFDVBD632BHDS5</code>. </p>",
         "Distribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your AWS account ID.</p>",
         "Distribution$Status": "<p>This response element indicates the current status of the distribution. When the status is <code>Deployed</code>, the distribution's information is fully propagated to all CloudFront edge locations. </p>",
@@ -2778,7 +3037,7 @@
         "EndPoint$StreamType": "<p>The type of data stream where you are sending real-time log data. The only valid value is <code>Kinesis</code>.</p>",
         "FieldLevelEncryption$Id": "<p>The configuration ID for a field-level encryption configuration which includes a set of profiles that specify certain selected data fields to be encrypted by specific public keys.</p>",
         "FieldLevelEncryptionConfig$CallerReference": "<p>A unique number that ensures the request can't be replayed.</p>",
-        "FieldLevelEncryptionConfig$Comment": "<p>An optional comment about the configuration.</p>",
+        "FieldLevelEncryptionConfig$Comment": "<p>An optional comment about the configuration. The comment cannot be longer than 128 characters.</p>",
         "FieldLevelEncryptionConfigAlreadyExists$Message": null,
         "FieldLevelEncryptionConfigInUse$Message": null,
         "FieldLevelEncryptionList$NextMarker": "<p>If there are more elements to be listed, this element is present and contains the value that you can use for the <code>Marker</code> request parameter to continue listing your configurations where you left off.</p>",
@@ -2786,17 +3045,25 @@
         "FieldLevelEncryptionProfileAlreadyExists$Message": null,
         "FieldLevelEncryptionProfileConfig$Name": "<p>Profile name for the field-level encryption profile.</p>",
         "FieldLevelEncryptionProfileConfig$CallerReference": "<p>A unique number that ensures that the request can't be replayed.</p>",
-        "FieldLevelEncryptionProfileConfig$Comment": "<p>An optional comment for the field-level encryption profile.</p>",
+        "FieldLevelEncryptionProfileConfig$Comment": "<p>An optional comment for the field-level encryption profile. The comment cannot be longer than 128 characters.</p>",
         "FieldLevelEncryptionProfileInUse$Message": null,
         "FieldLevelEncryptionProfileList$NextMarker": "<p>If there are more elements to be listed, this element is present and contains the value that you can use for the <code>Marker</code> request parameter to continue listing your profiles where you left off.</p>",
         "FieldLevelEncryptionProfileSizeExceeded$Message": null,
         "FieldLevelEncryptionProfileSummary$Id": "<p>ID for the field-level encryption profile summary.</p>",
         "FieldLevelEncryptionProfileSummary$Name": "<p>Name for the field-level encryption profile summary.</p>",
-        "FieldLevelEncryptionProfileSummary$Comment": "<p>An optional comment for the field-level encryption profile summary.</p>",
+        "FieldLevelEncryptionProfileSummary$Comment": "<p>An optional comment for the field-level encryption profile summary. The comment cannot be longer than 128 characters.</p>",
         "FieldLevelEncryptionSummary$Id": "<p>The unique ID of a field-level encryption item.</p>",
-        "FieldLevelEncryptionSummary$Comment": "<p>An optional comment about the field-level encryption item.</p>",
+        "FieldLevelEncryptionSummary$Comment": "<p>An optional comment about the field-level encryption item. The comment cannot be longer than 128 characters.</p>",
         "FieldList$member": null,
         "FieldPatternList$member": null,
+        "FunctionAlreadyExists$Message": null,
+        "FunctionConfig$Comment": "<p>A comment to describe the function.</p>",
+        "FunctionExecutionLogList$member": null,
+        "FunctionInUse$Message": null,
+        "FunctionList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing functions where you left off.</p>",
+        "FunctionMetadata$FunctionARN": "<p>The Amazon Resource Name (ARN) of the function. The ARN uniquely identifies the function.</p>",
+        "FunctionSizeLimitExceeded$Message": null,
+        "FunctionSummary$Status": "<p>The status of the CloudFront function.</p>",
         "GetCachePolicyConfigRequest$Id": "<p>The unique identifier for the cache policy. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
         "GetCachePolicyConfigResult$ETag": "<p>The current version of the cache policy.</p>",
         "GetCachePolicyRequest$Id": "<p>The unique identifier for the cache policy. If the cache policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the cache policy is not attached to a cache behavior, you can get the identifier using <code>ListCachePolicies</code>.</p>",
@@ -2817,6 +3084,9 @@
         "GetFieldLevelEncryptionProfileResult$ETag": "<p>The current version of the field level encryption profile. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "GetFieldLevelEncryptionRequest$Id": "<p>Request the ID for the field-level encryption configuration information.</p>",
         "GetFieldLevelEncryptionResult$ETag": "<p>The current version of the field level encryption configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "GetFunctionRequest$Name": "<p>The name of the function whose code you are getting.</p>",
+        "GetFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
+        "GetFunctionResult$ContentType": "<p>The content type (media type) of the response.</p>",
         "GetInvalidationRequest$DistributionId": "<p>The distribution's ID.</p>",
         "GetInvalidationRequest$Id": "<p>The identifier for the invalidation request, for example, <code>IDFDVBD632BHDS5</code>.</p>",
         "GetKeyGroupConfigRequest$Id": "<p>The identifier of the key group whose configuration you are getting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
@@ -2847,6 +3117,7 @@
         "InvalidDefaultRootObject$Message": null,
         "InvalidErrorCode$Message": null,
         "InvalidForwardCookies$Message": null,
+        "InvalidFunctionAssociation$Message": null,
         "InvalidGeoRestrictionParameter$Message": null,
         "InvalidHeadersForS3Origin$Message": null,
         "InvalidIfMatchVersion$Message": null,
@@ -2877,7 +3148,7 @@
         "KeyGroup$Id": "<p>The identifier for the key group.</p>",
         "KeyGroupAlreadyExists$Message": null,
         "KeyGroupConfig$Name": "<p>A name to identify the key group.</p>",
-        "KeyGroupConfig$Comment": "<p>A comment to describe the key group.</p>",
+        "KeyGroupConfig$Comment": "<p>A comment to describe the key group. The comment cannot be longer than 128 characters.</p>",
         "KeyGroupList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing key groups.</p>",
         "KeyPairIdList$member": null,
         "KinesisStreamConfig$RoleARN": "<p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that CloudFront can use to send real-time log data to your Kinesis data stream.</p> <p>For more information the IAM role, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-iam-role\">Real-time log configuration IAM role</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -2908,6 +3179,8 @@
         "ListFieldLevelEncryptionConfigsRequest$MaxItems": "<p>The maximum number of field-level encryption configurations you want in the response body. </p>",
         "ListFieldLevelEncryptionProfilesRequest$Marker": "<p>Use this when paginating results to indicate where to begin in your list of profiles. The results include profiles in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last profile on that page). </p>",
         "ListFieldLevelEncryptionProfilesRequest$MaxItems": "<p>The maximum number of field-level encryption profiles you want in the response body. </p>",
+        "ListFunctionsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of functions. The response includes functions in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListFunctionsRequest$MaxItems": "<p>The maximum number of functions that you want in the response.</p>",
         "ListInvalidationsRequest$DistributionId": "<p>The distribution's ID.</p>",
         "ListInvalidationsRequest$Marker": "<p>Use this parameter when paginating results to indicate where to begin in your list of invalidation batches. Because the results are returned in decreasing order from most recent to oldest, the most recent results are on the first page, the second page will contain earlier results, and so on. To get the next page of results, set <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response. This value is the same as the ID of the last invalidation batch on that page. </p>",
         "ListInvalidationsRequest$MaxItems": "<p>The maximum number of invalidation batches that you want in the response body.</p>",
@@ -2930,6 +3203,7 @@
         "NoSuchDistribution$Message": null,
         "NoSuchFieldLevelEncryptionConfig$Message": null,
         "NoSuchFieldLevelEncryptionProfile$Message": null,
+        "NoSuchFunctionExists$Message": null,
         "NoSuchInvalidation$Message": null,
         "NoSuchOrigin$Message": null,
         "NoSuchOriginRequestPolicy$Message": null,
@@ -2946,7 +3220,7 @@
         "OriginGroupMember$OriginId": "<p>The ID for an origin in an origin group.</p>",
         "OriginRequestPolicy$Id": "<p>The unique identifier for the origin request policy.</p>",
         "OriginRequestPolicyAlreadyExists$Message": null,
-        "OriginRequestPolicyConfig$Comment": "<p>A comment to describe the origin request policy.</p>",
+        "OriginRequestPolicyConfig$Comment": "<p>A comment to describe the origin request policy. The comment cannot be longer than 128 characters.</p>",
         "OriginRequestPolicyConfig$Name": "<p>A unique name to identify the origin request policy.</p>",
         "OriginRequestPolicyInUse$Message": null,
         "OriginRequestPolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing origin request policies where you left off.</p>",
@@ -2957,14 +3231,16 @@
         "PublicKeyConfig$CallerReference": "<p>A string included in the request to help make sure that the request can’t be replayed.</p>",
         "PublicKeyConfig$Name": "<p>A name to help identify the public key.</p>",
         "PublicKeyConfig$EncodedKey": "<p>The public key that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
-        "PublicKeyConfig$Comment": "<p>A comment to describe the public key.</p>",
+        "PublicKeyConfig$Comment": "<p>A comment to describe the public key. The comment cannot be longer than 128 characters.</p>",
         "PublicKeyIdList$member": null,
         "PublicKeyInUse$Message": null,
         "PublicKeyList$NextMarker": "<p>If there are more elements to be listed, this element is present and contains the value that you can use for the <code>Marker</code> request parameter to continue listing your public keys where you left off.</p>",
         "PublicKeySummary$Id": "<p>The identifier of the public key.</p>",
         "PublicKeySummary$Name": "<p>A name to help identify the public key.</p>",
         "PublicKeySummary$EncodedKey": "<p>The public key.</p>",
-        "PublicKeySummary$Comment": "<p>A comment to describe the public key.</p>",
+        "PublicKeySummary$Comment": "<p>A comment to describe the public key. The comment cannot be longer than 128 characters.</p>",
+        "PublishFunctionRequest$Name": "<p>The name of the function that you are publishing.</p>",
+        "PublishFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are publishing, which you can get using <code>DescribeFunction</code>.</p>",
         "QueryArgProfile$QueryArg": "<p>Query argument for field-level encryption query argument-profile mapping.</p>",
         "QueryArgProfile$ProfileId": "<p>ID of profile to use for field-level encryption query argument-profile mapping</p>",
         "QueryArgProfileEmpty$Message": null,
@@ -2974,6 +3250,7 @@
         "RealtimeLogConfig$Name": "<p>The unique name of this real-time log configuration.</p>",
         "RealtimeLogConfigAlreadyExists$Message": null,
         "RealtimeLogConfigInUse$Message": null,
+        "RealtimeLogConfigOwnerMismatch$Message": null,
         "RealtimeLogConfigs$Marker": "<p>This parameter indicates where this list of real-time log configurations begins. This list includes real-time log configurations that occur after the marker.</p>",
         "RealtimeLogConfigs$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing real-time log configurations where you left off. </p>",
         "ResourceInUse$Message": null,
@@ -2998,6 +3275,12 @@
         "StreamingDistributionSummary$Comment": "<p>The comment originally specified when this distribution was created.</p>",
         "StreamingLoggingConfig$Bucket": "<p>The Amazon S3 bucket to store the access logs in, for example, <code>myawslogbucket.s3.amazonaws.com</code>.</p>",
         "StreamingLoggingConfig$Prefix": "<p>An optional string that you want CloudFront to prefix to the access log filenames for this streaming distribution, for example, <code>myprefix/</code>. If you want to enable logging, but you don't want to specify a prefix, you still must include an empty <code>Prefix</code> element in the <code>Logging</code> element.</p>",
+        "TestFunctionFailed$Message": null,
+        "TestFunctionRequest$Name": "<p>The name of the function that you are testing.</p>",
+        "TestFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are testing, which you can get using <code>DescribeFunction</code>.</p>",
+        "TestResult$ComputeUtilization": "<p>The amount of time that the function took to run as a percentage of the maximum allowed time. For example, a compute utilization of 35 means that the function completed in 35% of the maximum allowed time.</p>",
+        "TestResult$FunctionErrorMessage": "<p>If the result of testing the function was an error, this field contains the error message.</p>",
+        "TestResult$FunctionOutput": "<p>The event object returned by the function. For more information about the structure of the event object, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html\">Event object structure</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "TooManyCacheBehaviors$Message": null,
         "TooManyCachePolicies$Message": null,
         "TooManyCertificates$Message": null,
@@ -3011,6 +3294,7 @@
         "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig$Message": null,
         "TooManyDistributionsAssociatedToKeyGroup$Message": null,
         "TooManyDistributionsAssociatedToOriginRequestPolicy$Message": null,
+        "TooManyDistributionsWithFunctionAssociations$Message": null,
         "TooManyDistributionsWithLambdaAssociations$Message": null,
         "TooManyDistributionsWithSingleFunctionARN$Message": null,
         "TooManyFieldLevelEncryptionConfigs$Message": null,
@@ -3019,6 +3303,8 @@
         "TooManyFieldLevelEncryptionFieldPatterns$Message": null,
         "TooManyFieldLevelEncryptionProfiles$Message": null,
         "TooManyFieldLevelEncryptionQueryArgProfiles$Message": null,
+        "TooManyFunctionAssociations$Message": null,
+        "TooManyFunctions$Message": null,
         "TooManyHeadersInCachePolicy$Message": null,
         "TooManyHeadersInForwardedValues$Message": null,
         "TooManyHeadersInOriginRequestPolicy$Message": null,
@@ -3042,6 +3328,7 @@
         "TrustedKeyGroupDoesNotExist$Message": null,
         "TrustedKeyGroupIdList$member": null,
         "TrustedSignerDoesNotExist$Message": null,
+        "UnsupportedOperation$Message": null,
         "UpdateCachePolicyRequest$Id": "<p>The unique identifier for the cache policy that you are updating. The identifier is returned in a cache behavior’s <code>CachePolicyId</code> field in the response to <code>GetDistributionConfig</code>.</p>",
         "UpdateCachePolicyRequest$IfMatch": "<p>The version of the cache policy that you are updating. The version is returned in the cache policy’s <code>ETag</code> field in the response to <code>GetCachePolicyConfig</code>.</p>",
         "UpdateCachePolicyResult$ETag": "<p>The current version of the cache policy.</p>",
@@ -3057,6 +3344,9 @@
         "UpdateFieldLevelEncryptionProfileRequest$Id": "<p>The ID of the field-level encryption profile request. </p>",
         "UpdateFieldLevelEncryptionProfileRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the profile identity to update. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateFieldLevelEncryptionProfileResult$ETag": "<p>The result of the field-level encryption profile request. </p>",
+        "UpdateFunctionRequest$Name": "<p>The name of the function that you are updating.</p>",
+        "UpdateFunctionRequest$IfMatch": "<p>The current version (<code>ETag</code> value) of the function that you are updating, which you can get using <code>DescribeFunction</code>.</p>",
+        "UpdateFunctionResult$ETag": "<p>The version identifier for the current version of the CloudFront function.</p>",
         "UpdateKeyGroupRequest$Id": "<p>The identifier of the key group that you are updating.</p>",
         "UpdateKeyGroupRequest$IfMatch": "<p>The version of the key group that you are updating. The version is the key group’s <code>ETag</code> value.</p>",
         "UpdateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
@@ -3086,6 +3376,8 @@
         "FieldLevelEncryptionProfile$LastModifiedTime": "<p>The last time the field-level encryption profile was updated.</p>",
         "FieldLevelEncryptionProfileSummary$LastModifiedTime": "<p>The time when the the field-level encryption profile summary was last updated.</p>",
         "FieldLevelEncryptionSummary$LastModifiedTime": "<p>The last time that the summary of field-level encryption items was modified.</p>",
+        "FunctionMetadata$CreatedTime": "<p>The date and time when the function was created.</p>",
+        "FunctionMetadata$LastModifiedTime": "<p>The date and time when the function was most recently updated.</p>",
         "Invalidation$CreateTime": "<p>The date and time the invalidation request was first made. </p>",
         "InvalidationSummary$CreateTime": "<p>The time that an invalidation request was created.</p>",
         "KeyGroup$LastModifiedTime": "<p>The date and time when the key group was last modified.</p>",

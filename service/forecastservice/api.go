@@ -1453,6 +1453,114 @@ func (c *ForecastService) DeletePredictorBacktestExportJobWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+const opDeleteResourceTree = "DeleteResourceTree"
+
+// DeleteResourceTreeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourceTree operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourceTree for more information on using the DeleteResourceTree
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteResourceTreeRequest method.
+//    req, resp := client.DeleteResourceTreeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DeleteResourceTree
+func (c *ForecastService) DeleteResourceTreeRequest(input *DeleteResourceTreeInput) (req *request.Request, output *DeleteResourceTreeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourceTree,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteResourceTreeInput{}
+	}
+
+	output = &DeleteResourceTreeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteResourceTree API operation for Amazon Forecast Service.
+//
+// Deletes an entire resource tree. This operation will delete the parent resource
+// and its child resources.
+//
+// Child resources are resources that were created from another resource. For
+// example, when a forecast is generated from a predictor, the forecast is the
+// child resource and the predictor is the parent resource.
+//
+// Amazon Forecast resources possess the following parent-child resource hierarchies:
+//
+//    * Dataset Group: predictors, predictor backtest export jobs, forecasts,
+//    forecast export jobs
+//
+//    * Dataset: dataset import jobs
+//
+//    * Predictor: predictor backtest export jobs, forecasts, forecast export
+//    jobs
+//
+//    * Forecast: forecast export jobs
+//
+// DeleteResourceTree will only delete Amazon Forecast resources, and will not
+// delete datasets or exported files stored in Amazon S3.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Forecast Service's
+// API operation DeleteResourceTree for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   We can't process the request because it includes an invalid value or a value
+//   that exceeds the valid range.
+//
+//   * ResourceNotFoundException
+//   We can't find a resource with that Amazon Resource Name (ARN). Check the
+//   ARN and try again.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/forecast-2018-06-26/DeleteResourceTree
+func (c *ForecastService) DeleteResourceTree(input *DeleteResourceTreeInput) (*DeleteResourceTreeOutput, error) {
+	req, out := c.DeleteResourceTreeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourceTreeWithContext is the same as DeleteResourceTree with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourceTree for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ForecastService) DeleteResourceTreeWithContext(ctx aws.Context, input *DeleteResourceTreeInput, opts ...request.Option) (*DeleteResourceTreeOutput, error) {
+	req, out := c.DeleteResourceTreeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeDataset = "DescribeDataset"
 
 // DescribeDatasetRequest generates a "aws/request.Request" representing the
@@ -5862,6 +5970,59 @@ func (s DeletePredictorOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteResourceTreeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the parent resource to delete. All child
+	// resources of the parent resource will also be deleted.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteResourceTreeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourceTreeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourceTreeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourceTreeInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourceTreeInput) SetResourceArn(v string) *DeleteResourceTreeInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourceTreeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteResourceTreeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourceTreeOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeDatasetGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6057,7 +6218,7 @@ type DescribeDatasetImportJobOutput struct {
 	// The name of the dataset import job.
 	DatasetImportJobName *string `min:"1" type:"string"`
 
-	// The estimated time in minutes for the dataset import job to complete.
+	// The estimated time remaining in minutes for the dataset import job to complete.
 	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
 
 	// Statistical information about each field in the input data.
@@ -6573,7 +6734,7 @@ type DescribeForecastOutput struct {
 	// The ARN of the dataset group that provided the data used to train the predictor.
 	DatasetGroupArn *string `type:"string"`
 
-	// The estimated time in minutes for the forecast job to complete.
+	// The estimated time remaining in minutes for the forecast job to complete.
 	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
 
 	// The forecast ARN as specified in the request.
@@ -6894,7 +7055,8 @@ type DescribePredictorOutput struct {
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
 
-	// The estimated time in minutes for the predictor training job to complete.
+	// The estimated time remaining in minutes for the predictor training job to
+	// complete.
 	EstimatedTimeRemainingInMinutes *int64 `type:"long"`
 
 	// Used to override the default evaluation parameters of the specified algorithm.

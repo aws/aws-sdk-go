@@ -450,6 +450,19 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
 //   The specified Lambda function association is invalid.
 //
+//   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
+//   You have reached the maximum number of distributions that are associated
+//   with a CloudFront function. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyFunctionAssociations "TooManyFunctionAssociations"
+//   You have reached the maximum number of CloudFront function associations for
+//   this distribution. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeInvalidFunctionAssociation "InvalidFunctionAssociation"
+//   A CloudFront function association is invalid.
+//
 //   * ErrCodeInvalidOriginReadTimeout "InvalidOriginReadTimeout"
 //   The read timeout specified for the origin is not valid.
 //
@@ -495,6 +508,12 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //
 //   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
 //   The specified key group does not exist.
+//
+//   * ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//   The real-time log configuration does not exist.
+//
+//   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
+//   The specified real-time log configuration belongs to a different AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistribution
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
@@ -714,6 +733,19 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
 //   The specified Lambda function association is invalid.
 //
+//   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
+//   You have reached the maximum number of distributions that are associated
+//   with a CloudFront function. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyFunctionAssociations "TooManyFunctionAssociations"
+//   You have reached the maximum number of CloudFront function associations for
+//   this distribution. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeInvalidFunctionAssociation "InvalidFunctionAssociation"
+//   A CloudFront function association is invalid.
+//
 //   * ErrCodeInvalidOriginReadTimeout "InvalidOriginReadTimeout"
 //   The read timeout specified for the origin is not valid.
 //
@@ -759,6 +791,12 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 //   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
 //   The specified key group does not exist.
+//
+//   * ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//   The real-time log configuration does not exist.
+//
+//   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
+//   The specified real-time log configuration belongs to a different AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistributionWithTags
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
@@ -982,6 +1020,111 @@ func (c *CloudFront) CreateFieldLevelEncryptionProfile(input *CreateFieldLevelEn
 // for more information on using Contexts.
 func (c *CloudFront) CreateFieldLevelEncryptionProfileWithContext(ctx aws.Context, input *CreateFieldLevelEncryptionProfileInput, opts ...request.Option) (*CreateFieldLevelEncryptionProfileOutput, error) {
 	req, out := c.CreateFieldLevelEncryptionProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFunction = "CreateFunction2020_05_31"
+
+// CreateFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFunction for more information on using the CreateFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFunctionRequest method.
+//    req, resp := client.CreateFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateFunction
+func (c *CloudFront) CreateFunctionRequest(input *CreateFunctionInput) (req *request.Request, output *CreateFunctionOutput) {
+	op := &request.Operation{
+		Name:       opCreateFunction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/function",
+	}
+
+	if input == nil {
+		input = &CreateFunctionInput{}
+	}
+
+	output = &CreateFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFunction API operation for Amazon CloudFront.
+//
+// Creates a CloudFront function.
+//
+// To create a function, you provide the function code and some configuration
+// information about the function. The response contains an Amazon Resource
+// Name (ARN) that uniquely identifies the function.
+//
+// When you create a function, it’s in the DEVELOPMENT stage. In this stage,
+// you can test the function with TestFunction, and update it with UpdateFunction.
+//
+// When you’re ready to use your function with a CloudFront distribution,
+// use PublishFunction to copy the function from the DEVELOPMENT stage to LIVE.
+// When it’s live, you can attach the function to a distribution’s cache
+// behavior, using the function’s ARN.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeTooManyFunctions "TooManyFunctions"
+//   You have reached the maximum number of CloudFront functions for this AWS
+//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeFunctionAlreadyExists "FunctionAlreadyExists"
+//   A function with the same name already exists in this AWS account. To create
+//   a function, you must provide a unique name. To update an existing function,
+//   use UpdateFunction.
+//
+//   * ErrCodeFunctionSizeLimitExceeded "FunctionSizeLimitExceeded"
+//   The function is too large. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateFunction
+func (c *CloudFront) CreateFunction(input *CreateFunctionInput) (*CreateFunctionOutput, error) {
+	req, out := c.CreateFunctionRequest(input)
+	return out, req.Send()
+}
+
+// CreateFunctionWithContext is the same as CreateFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CreateFunctionWithContext(ctx aws.Context, input *CreateFunctionInput, opts ...request.Option) (*CreateFunctionOutput, error) {
+	req, out := c.CreateFunctionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1254,6 +1397,9 @@ func (c *CloudFront) CreateMonitoringSubscriptionRequest(input *CreateMonitoring
 //
 //   * ErrCodeNoSuchDistribution "NoSuchDistribution"
 //   The specified distribution does not exist.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateMonitoringSubscription
 func (c *CloudFront) CreateMonitoringSubscription(input *CreateMonitoringSubscriptionInput) (*CreateMonitoringSubscriptionOutput, error) {
@@ -1911,8 +2057,7 @@ func (c *CloudFront) DeleteCachePolicyRequest(input *DeleteCachePolicyInput) (re
 //   The cache policy does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeIllegalDelete "IllegalDelete"
 //   You cannot delete a managed policy.
@@ -2008,8 +2153,7 @@ func (c *CloudFront) DeleteCloudFrontOriginAccessIdentityRequest(input *DeleteCl
 //   The specified origin access identity does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeOriginAccessIdentityInUse "CloudFrontOriginAccessIdentityInUse"
 //   The Origin Access Identity specified is already in use.
@@ -2105,8 +2249,7 @@ func (c *CloudFront) DeleteDistributionRequest(input *DeleteDistributionInput) (
 //   The specified distribution does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteDistribution
 func (c *CloudFront) DeleteDistribution(input *DeleteDistributionInput) (*DeleteDistributionOutput, error) {
@@ -2195,8 +2338,7 @@ func (c *CloudFront) DeleteFieldLevelEncryptionConfigRequest(input *DeleteFieldL
 //   The specified configuration for field-level encryption doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeFieldLevelEncryptionConfigInUse "FieldLevelEncryptionConfigInUse"
 //   The specified configuration for field-level encryption is in use.
@@ -2288,8 +2430,7 @@ func (c *CloudFront) DeleteFieldLevelEncryptionProfileRequest(input *DeleteField
 //   The specified profile for field-level encryption doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeFieldLevelEncryptionProfileInUse "FieldLevelEncryptionProfileInUse"
 //   The specified profile for field-level encryption is in use.
@@ -2311,6 +2452,102 @@ func (c *CloudFront) DeleteFieldLevelEncryptionProfile(input *DeleteFieldLevelEn
 // for more information on using Contexts.
 func (c *CloudFront) DeleteFieldLevelEncryptionProfileWithContext(ctx aws.Context, input *DeleteFieldLevelEncryptionProfileInput, opts ...request.Option) (*DeleteFieldLevelEncryptionProfileOutput, error) {
 	req, out := c.DeleteFieldLevelEncryptionProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFunction = "DeleteFunction2020_05_31"
+
+// DeleteFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFunction for more information on using the DeleteFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFunctionRequest method.
+//    req, resp := client.DeleteFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteFunction
+func (c *CloudFront) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request.Request, output *DeleteFunctionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFunction,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-05-31/function/{Name}",
+	}
+
+	if input == nil {
+		input = &DeleteFunctionInput{}
+	}
+
+	output = &DeleteFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFunction API operation for Amazon CloudFront.
+//
+// Deletes a CloudFront function.
+//
+// You cannot delete a function if it’s associated with a cache behavior.
+// First, update your distributions to remove the function association from
+// all cache behaviors, then delete the function.
+//
+// To delete a function, you must provide the function’s name and version
+// (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+//   * ErrCodeFunctionInUse "FunctionInUse"
+//   Cannot delete the function because it’s attached to one or more cache behaviors.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition in one or more of the request fields evaluated to false.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteFunction
+func (c *CloudFront) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutput, error) {
+	req, out := c.DeleteFunctionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFunctionWithContext is the same as DeleteFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DeleteFunctionWithContext(ctx aws.Context, input *DeleteFunctionInput, opts ...request.Option) (*DeleteFunctionOutput, error) {
+	req, out := c.DeleteFunctionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2386,8 +2623,7 @@ func (c *CloudFront) DeleteKeyGroupRequest(input *DeleteKeyGroupInput) (req *req
 //   A resource that was specified is not valid.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeResourceInUse "ResourceInUse"
 //   Cannot delete this resource because it is in use.
@@ -2474,6 +2710,9 @@ func (c *CloudFront) DeleteMonitoringSubscriptionRequest(input *DeleteMonitoring
 //
 //   * ErrCodeNoSuchDistribution "NoSuchDistribution"
 //   The specified distribution does not exist.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteMonitoringSubscription
 func (c *CloudFront) DeleteMonitoringSubscription(input *DeleteMonitoringSubscriptionInput) (*DeleteMonitoringSubscriptionOutput, error) {
@@ -2570,8 +2809,7 @@ func (c *CloudFront) DeleteOriginRequestPolicyRequest(input *DeleteOriginRequest
 //   The origin request policy does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeIllegalDelete "IllegalDelete"
 //   You cannot delete a managed policy.
@@ -2670,8 +2908,7 @@ func (c *CloudFront) DeletePublicKeyRequest(input *DeletePublicKeyInput) (req *r
 //   The specified public key doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeletePublicKey
 func (c *CloudFront) DeletePublicKey(input *DeletePublicKeyInput) (*DeletePublicKeyOutput, error) {
@@ -2898,8 +3135,7 @@ func (c *CloudFront) DeleteStreamingDistributionRequest(input *DeleteStreamingDi
 //   The specified streaming distribution does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteStreamingDistribution
 func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistributionInput) (*DeleteStreamingDistributionOutput, error) {
@@ -2918,6 +3154,90 @@ func (c *CloudFront) DeleteStreamingDistribution(input *DeleteStreamingDistribut
 // for more information on using Contexts.
 func (c *CloudFront) DeleteStreamingDistributionWithContext(ctx aws.Context, input *DeleteStreamingDistributionInput, opts ...request.Option) (*DeleteStreamingDistributionOutput, error) {
 	req, out := c.DeleteStreamingDistributionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFunction = "DescribeFunction2020_05_31"
+
+// DescribeFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFunction for more information on using the DescribeFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFunctionRequest method.
+//    req, resp := client.DescribeFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DescribeFunction
+func (c *CloudFront) DescribeFunctionRequest(input *DescribeFunctionInput) (req *request.Request, output *DescribeFunctionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFunction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/function/{Name}/describe",
+	}
+
+	if input == nil {
+		input = &DescribeFunctionInput{}
+	}
+
+	output = &DescribeFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFunction API operation for Amazon CloudFront.
+//
+// Gets configuration information and metadata about a CloudFront function,
+// but not the function’s code. To get a function’s code, use GetFunction.
+//
+// To get configuration information and metadata about a function, you must
+// provide the function’s name and stage. To get these values, you can use
+// ListFunctions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DescribeFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DescribeFunction
+func (c *CloudFront) DescribeFunction(input *DescribeFunctionInput) (*DescribeFunctionOutput, error) {
+	req, out := c.DescribeFunctionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFunctionWithContext is the same as DescribeFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DescribeFunctionWithContext(ctx aws.Context, input *DescribeFunctionInput, opts ...request.Option) (*DescribeFunctionOutput, error) {
+	req, out := c.DescribeFunctionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3759,6 +4079,89 @@ func (c *CloudFront) GetFieldLevelEncryptionProfileConfigWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+const opGetFunction = "GetFunction2020_05_31"
+
+// GetFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the GetFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetFunction for more information on using the GetFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetFunctionRequest method.
+//    req, resp := client.GetFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetFunction
+func (c *CloudFront) GetFunctionRequest(input *GetFunctionInput) (req *request.Request, output *GetFunctionOutput) {
+	op := &request.Operation{
+		Name:       opGetFunction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/function/{Name}",
+	}
+
+	if input == nil {
+		input = &GetFunctionInput{}
+	}
+
+	output = &GetFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetFunction API operation for Amazon CloudFront.
+//
+// Gets the code of a CloudFront function. To get configuration information
+// and metadata about a function, use DescribeFunction.
+//
+// To get a function’s code, you must provide the function’s name and stage.
+// To get these values, you can use ListFunctions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetFunction
+func (c *CloudFront) GetFunction(input *GetFunctionInput) (*GetFunctionOutput, error) {
+	req, out := c.GetFunctionRequest(input)
+	return out, req.Send()
+}
+
+// GetFunctionWithContext is the same as GetFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetFunctionWithContext(ctx aws.Context, input *GetFunctionInput, opts ...request.Option) (*GetFunctionOutput, error) {
+	req, out := c.GetFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetInvalidation = "GetInvalidation2020_05_31"
 
 // GetInvalidationRequest generates a "aws/request.Request" representing the
@@ -4075,6 +4478,9 @@ func (c *CloudFront) GetMonitoringSubscriptionRequest(input *GetMonitoringSubscr
 //
 //   * ErrCodeNoSuchDistribution "NoSuchDistribution"
 //   The specified distribution does not exist.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetMonitoringSubscription
 func (c *CloudFront) GetMonitoringSubscription(input *GetMonitoringSubscriptionInput) (*GetMonitoringSubscriptionOutput, error) {
@@ -5674,6 +6080,94 @@ func (c *CloudFront) ListFieldLevelEncryptionProfilesWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opListFunctions = "ListFunctions2020_05_31"
+
+// ListFunctionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFunctions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFunctions for more information on using the ListFunctions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFunctionsRequest method.
+//    req, resp := client.ListFunctionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListFunctions
+func (c *CloudFront) ListFunctionsRequest(input *ListFunctionsInput) (req *request.Request, output *ListFunctionsOutput) {
+	op := &request.Operation{
+		Name:       opListFunctions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/function",
+	}
+
+	if input == nil {
+		input = &ListFunctionsInput{}
+	}
+
+	output = &ListFunctionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFunctions API operation for Amazon CloudFront.
+//
+// Gets a list of all CloudFront functions in your AWS account.
+//
+// You can optionally apply a filter to return only the functions that are in
+// the specified stage, either DEVELOPMENT or LIVE.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListFunctions for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListFunctions
+func (c *CloudFront) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput, error) {
+	req, out := c.ListFunctionsRequest(input)
+	return out, req.Send()
+}
+
+// ListFunctionsWithContext is the same as ListFunctions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFunctions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListFunctionsWithContext(ctx aws.Context, input *ListFunctionsInput, opts ...request.Option) (*ListFunctionsOutput, error) {
+	req, out := c.ListFunctionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListInvalidations = "ListInvalidations2020_05_31"
 
 // ListInvalidationsRequest generates a "aws/request.Request" representing the
@@ -6391,6 +6885,103 @@ func (c *CloudFront) ListTagsForResourceWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
+const opPublishFunction = "PublishFunction2020_05_31"
+
+// PublishFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the PublishFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PublishFunction for more information on using the PublishFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PublishFunctionRequest method.
+//    req, resp := client.PublishFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/PublishFunction
+func (c *CloudFront) PublishFunctionRequest(input *PublishFunctionInput) (req *request.Request, output *PublishFunctionOutput) {
+	op := &request.Operation{
+		Name:       opPublishFunction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/function/{Name}/publish",
+	}
+
+	if input == nil {
+		input = &PublishFunctionInput{}
+	}
+
+	output = &PublishFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PublishFunction API operation for Amazon CloudFront.
+//
+// Publishes a CloudFront function by copying the function code from the DEVELOPMENT
+// stage to LIVE. This automatically updates all cache behaviors that are using
+// this function to use the newly published copy in the LIVE stage.
+//
+// When a function is published to the LIVE stage, you can attach the function
+// to a distribution’s cache behavior, using the function’s Amazon Resource
+// Name (ARN).
+//
+// To publish a function, you must provide the function’s name and version
+// (ETag value). To get these values, you can use ListFunctions and DescribeFunction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation PublishFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition in one or more of the request fields evaluated to false.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/PublishFunction
+func (c *CloudFront) PublishFunction(input *PublishFunctionInput) (*PublishFunctionOutput, error) {
+	req, out := c.PublishFunctionRequest(input)
+	return out, req.Send()
+}
+
+// PublishFunctionWithContext is the same as PublishFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PublishFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) PublishFunctionWithContext(ctx aws.Context, input *PublishFunctionInput, opts ...request.Option) (*PublishFunctionOutput, error) {
+	req, out := c.PublishFunctionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource2020_05_31"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -6475,6 +7066,106 @@ func (c *CloudFront) TagResource(input *TagResourceInput) (*TagResourceOutput, e
 // for more information on using Contexts.
 func (c *CloudFront) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTestFunction = "TestFunction2020_05_31"
+
+// TestFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the TestFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TestFunction for more information on using the TestFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TestFunctionRequest method.
+//    req, resp := client.TestFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/TestFunction
+func (c *CloudFront) TestFunctionRequest(input *TestFunctionInput) (req *request.Request, output *TestFunctionOutput) {
+	op := &request.Operation{
+		Name:       opTestFunction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/function/{Name}/test",
+	}
+
+	if input == nil {
+		input = &TestFunctionInput{}
+	}
+
+	output = &TestFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// TestFunction API operation for Amazon CloudFront.
+//
+// Tests a CloudFront function.
+//
+// To test a function, you provide an event object that represents an HTTP request
+// or response that your CloudFront distribution could receive in production.
+// CloudFront runs the function, passing it the event object that you provided,
+// and returns the function’s result (the modified event object) in the response.
+// The response also contains function logs and error messages, if any exist.
+// For more information about testing functions, see Testing functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function)
+// in the Amazon CloudFront Developer Guide.
+//
+// To test a function, you provide the function’s name and version (ETag value)
+// along with the event object. To get the function’s name and version, you
+// can use ListFunctions and DescribeFunction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation TestFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+//   * ErrCodeTestFunctionFailed "TestFunctionFailed"
+//   The CloudFront function failed.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/TestFunction
+func (c *CloudFront) TestFunction(input *TestFunctionInput) (*TestFunctionOutput, error) {
+	req, out := c.TestFunctionRequest(input)
+	return out, req.Send()
+}
+
+// TestFunctionWithContext is the same as TestFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TestFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) TestFunctionWithContext(ctx aws.Context, input *TestFunctionInput, opts ...request.Option) (*TestFunctionOutput, error) {
+	req, out := c.TestFunctionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6654,8 +7345,7 @@ func (c *CloudFront) UpdateCachePolicyRequest(input *UpdateCachePolicyInput) (re
 //   The cache policy does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeCachePolicyAlreadyExists "CachePolicyAlreadyExists"
 //   A cache policy with this name already exists. You must provide a unique name.
@@ -6769,8 +7459,7 @@ func (c *CloudFront) UpdateCloudFrontOriginAccessIdentityRequest(input *UpdateCl
 //   The specified origin access identity does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
@@ -6937,8 +7626,7 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   The specified distribution does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeTooManyDistributionCNAMEs "TooManyDistributionCNAMEs"
 //   Your request contains more CNAMEs than are allowed per distribution.
@@ -7053,6 +7741,19 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
 //   The specified Lambda function association is invalid.
 //
+//   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
+//   You have reached the maximum number of distributions that are associated
+//   with a CloudFront function. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyFunctionAssociations "TooManyFunctionAssociations"
+//   You have reached the maximum number of CloudFront function associations for
+//   this distribution. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeInvalidFunctionAssociation "InvalidFunctionAssociation"
+//   A CloudFront function association is invalid.
+//
 //   * ErrCodeInvalidOriginReadTimeout "InvalidOriginReadTimeout"
 //   The read timeout specified for the origin is not valid.
 //
@@ -7098,6 +7799,12 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //
 //   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
 //   The specified key group does not exist.
+//
+//   * ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//   The real-time log configuration does not exist.
+//
+//   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
+//   The specified real-time log configuration belongs to a different AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistribution
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
@@ -7197,8 +7904,7 @@ func (c *CloudFront) UpdateFieldLevelEncryptionConfigRequest(input *UpdateFieldL
 //   The specified configuration for field-level encryption doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeTooManyFieldLevelEncryptionQueryArgProfiles "TooManyFieldLevelEncryptionQueryArgProfiles"
 //   The maximum number of query arg profiles for field-level encryption have
@@ -7312,8 +8018,7 @@ func (c *CloudFront) UpdateFieldLevelEncryptionProfileRequest(input *UpdateField
 //   The specified profile for field-level encryption doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeFieldLevelEncryptionProfileSizeExceeded "FieldLevelEncryptionProfileSizeExceeded"
 //   The maximum size of a profile for field-level encryption was exceeded.
@@ -7343,6 +8048,105 @@ func (c *CloudFront) UpdateFieldLevelEncryptionProfile(input *UpdateFieldLevelEn
 // for more information on using Contexts.
 func (c *CloudFront) UpdateFieldLevelEncryptionProfileWithContext(ctx aws.Context, input *UpdateFieldLevelEncryptionProfileInput, opts ...request.Option) (*UpdateFieldLevelEncryptionProfileOutput, error) {
 	req, out := c.UpdateFieldLevelEncryptionProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFunction = "UpdateFunction2020_05_31"
+
+// UpdateFunctionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFunction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFunction for more information on using the UpdateFunction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFunctionRequest method.
+//    req, resp := client.UpdateFunctionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateFunction
+func (c *CloudFront) UpdateFunctionRequest(input *UpdateFunctionInput) (req *request.Request, output *UpdateFunctionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFunction,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/function/{Name}",
+	}
+
+	if input == nil {
+		input = &UpdateFunctionInput{}
+	}
+
+	output = &UpdateFunctionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFunction API operation for Amazon CloudFront.
+//
+// Updates a CloudFront function.
+//
+// You can update a function’s code or the comment that describes the function.
+// You cannot update a function’s name.
+//
+// To update a function, you provide the function’s name and version (ETag
+// value) along with the updated function code. To get the name and version,
+// you can use ListFunctions and DescribeFunction.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateFunction for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
+//   The function does not exist.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition in one or more of the request fields evaluated to false.
+//
+//   * ErrCodeFunctionSizeLimitExceeded "FunctionSizeLimitExceeded"
+//   The function is too large. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateFunction
+func (c *CloudFront) UpdateFunction(input *UpdateFunctionInput) (*UpdateFunctionOutput, error) {
+	req, out := c.UpdateFunctionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFunctionWithContext is the same as UpdateFunction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFunction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateFunctionWithContext(ctx aws.Context, input *UpdateFunctionInput, opts ...request.Option) (*UpdateFunctionOutput, error) {
+	req, out := c.UpdateFunctionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7421,8 +8225,7 @@ func (c *CloudFront) UpdateKeyGroupRequest(input *UpdateKeyGroupInput) (req *req
 //   A resource that was specified is not valid.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeKeyGroupAlreadyExists "KeyGroupAlreadyExists"
 //   A key group with this name already exists. You must provide a unique name.
@@ -7544,8 +8347,7 @@ func (c *CloudFront) UpdateOriginRequestPolicyRequest(input *UpdateOriginRequest
 //   The origin request policy does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeOriginRequestPolicyAlreadyExists "OriginRequestPolicyAlreadyExists"
 //   An origin request policy with this name already exists. You must provide
@@ -7662,8 +8464,7 @@ func (c *CloudFront) UpdatePublicKeyRequest(input *UpdatePublicKeyInput) (req *r
 //   The specified public key doesn't exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdatePublicKey
 func (c *CloudFront) UpdatePublicKey(input *UpdatePublicKeyInput) (*UpdatePublicKeyOutput, error) {
@@ -7861,8 +8662,7 @@ func (c *CloudFront) UpdateStreamingDistributionRequest(input *UpdateStreamingDi
 //   The specified streaming distribution does not exist.
 //
 //   * ErrCodePreconditionFailed "PreconditionFailed"
-//   The precondition given in one or more of the request header fields evaluated
-//   to false.
+//   The precondition in one or more of the request fields evaluated to false.
 //
 //   * ErrCodeTooManyStreamingDistributionCNAMEs "TooManyStreamingDistributionCNAMEs"
 //   Your request contains more CNAMEs than are allowed per distribution.
@@ -8261,6 +9061,9 @@ type CacheBehavior struct {
 	// behavior. For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
 	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
 	// in the Amazon CloudFront Developer Guide.
+	//
+	// A CacheBehavior must include either a CachePolicyId or ForwardedValues. We
+	// recommend that you use a CachePolicyId.
 	CachePolicyId *string `type:"string"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -8306,11 +9109,19 @@ type CacheBehavior struct {
 	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
+	// A CacheBehavior must include either a CachePolicyId or ForwardedValues. We
+	// recommend that you use a CachePolicyId.
+	//
 	// A complex type that specifies how CloudFront handles query strings, cookies,
 	// and HTTP headers.
 	//
 	// Deprecated: ForwardedValues has been deprecated
 	ForwardedValues *ForwardedValues `deprecated:"true" type:"structure"`
+
+	// A list of CloudFront functions that are associated with this cache behavior.
+	// CloudFront functions must be published to the LIVE stage to associate them
+	// with a cache behavior.
+	FunctionAssociations *FunctionAssociations `type:"structure"`
 
 	// A complex type that contains zero or more Lambda function associations for
 	// a cache behavior.
@@ -8486,6 +9297,11 @@ func (s *CacheBehavior) Validate() error {
 			invalidParams.AddNested("ForwardedValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FunctionAssociations != nil {
+		if err := s.FunctionAssociations.Validate(); err != nil {
+			invalidParams.AddNested("FunctionAssociations", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LambdaFunctionAssociations != nil {
 		if err := s.LambdaFunctionAssociations.Validate(); err != nil {
 			invalidParams.AddNested("LambdaFunctionAssociations", err.(request.ErrInvalidParams))
@@ -8541,6 +9357,12 @@ func (s *CacheBehavior) SetFieldLevelEncryptionId(v string) *CacheBehavior {
 // SetForwardedValues sets the ForwardedValues field's value.
 func (s *CacheBehavior) SetForwardedValues(v *ForwardedValues) *CacheBehavior {
 	s.ForwardedValues = v
+	return s
+}
+
+// SetFunctionAssociations sets the FunctionAssociations field's value.
+func (s *CacheBehavior) SetFunctionAssociations(v *FunctionAssociations) *CacheBehavior {
+	s.FunctionAssociations = v
 	return s
 }
 
@@ -8754,7 +9576,8 @@ func (s *CachePolicy) SetLastModifiedTime(v time.Time) *CachePolicy {
 type CachePolicyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A comment to describe the cache policy.
+	// A comment to describe the cache policy. The comment cannot be longer than
+	// 128 characters.
 	Comment *string `type:"string"`
 
 	// The default amount of time, in seconds, that you want objects to stay in
@@ -10095,6 +10918,130 @@ func (s *CreateFieldLevelEncryptionProfileOutput) SetLocation(v string) *CreateF
 	return s
 }
 
+type CreateFunctionInput struct {
+	_ struct{} `locationName:"CreateFunctionRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+
+	// The function code. For more information about writing a CloudFront function,
+	// see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html)
+	// in the Amazon CloudFront Developer Guide.
+	//
+	// FunctionCode is automatically base64 encoded/decoded by the SDK.
+	//
+	// FunctionCode is a required field
+	FunctionCode []byte `min:"1" type:"blob" required:"true" sensitive:"true"`
+
+	// Configuration information about the function, including an optional comment
+	// and the function’s runtime.
+	//
+	// FunctionConfig is a required field
+	FunctionConfig *FunctionConfig `type:"structure" required:"true"`
+
+	// A name to identify the function.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFunctionInput"}
+	if s.FunctionCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionCode"))
+	}
+	if s.FunctionCode != nil && len(s.FunctionCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionCode", 1))
+	}
+	if s.FunctionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionConfig"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.FunctionConfig != nil {
+		if err := s.FunctionConfig.Validate(); err != nil {
+			invalidParams.AddNested("FunctionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionCode sets the FunctionCode field's value.
+func (s *CreateFunctionInput) SetFunctionCode(v []byte) *CreateFunctionInput {
+	s.FunctionCode = v
+	return s
+}
+
+// SetFunctionConfig sets the FunctionConfig field's value.
+func (s *CreateFunctionInput) SetFunctionConfig(v *FunctionConfig) *CreateFunctionInput {
+	s.FunctionConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFunctionInput) SetName(v string) *CreateFunctionInput {
+	s.Name = &v
+	return s
+}
+
+type CreateFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionSummary"`
+
+	// The version identifier for the current version of the CloudFront function.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains configuration information and metadata about a CloudFront function.
+	FunctionSummary *FunctionSummary `type:"structure"`
+
+	// The URL of the CloudFront function. Use the URL to manage the function with
+	// the CloudFront API.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateFunctionOutput) SetETag(v string) *CreateFunctionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetFunctionSummary sets the FunctionSummary field's value.
+func (s *CreateFunctionOutput) SetFunctionSummary(v *FunctionSummary) *CreateFunctionOutput {
+	s.FunctionSummary = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateFunctionOutput) SetLocation(v string) *CreateFunctionOutput {
+	s.Location = &v
+	return s
+}
+
 // The request to create an invalidation.
 type CreateInvalidationInput struct {
 	_ struct{} `locationName:"CreateInvalidationRequest" type:"structure" payload:"InvalidationBatch"`
@@ -11226,6 +12173,9 @@ type DefaultCacheBehavior struct {
 	// cache behavior. For more information, see Creating cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy)
 	// or Using the managed cache policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-cache-policies.html)
 	// in the Amazon CloudFront Developer Guide.
+	//
+	// A DefaultCacheBehavior must include either a CachePolicyId or ForwardedValues.
+	// We recommend that you use a CachePolicyId.
 	CachePolicyId *string `type:"string"`
 
 	// Whether you want CloudFront to automatically compress certain files for this
@@ -11272,11 +12222,19 @@ type DefaultCacheBehavior struct {
 	// or Using the managed origin request policies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/using-managed-origin-request-policies.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
+	// A DefaultCacheBehavior must include either a CachePolicyId or ForwardedValues.
+	// We recommend that you use a CachePolicyId.
+	//
 	// A complex type that specifies how CloudFront handles query strings, cookies,
 	// and HTTP headers.
 	//
 	// Deprecated: ForwardedValues has been deprecated
 	ForwardedValues *ForwardedValues `deprecated:"true" type:"structure"`
+
+	// A list of CloudFront functions that are associated with this cache behavior.
+	// CloudFront functions must be published to the LIVE stage to associate them
+	// with a cache behavior.
+	FunctionAssociations *FunctionAssociations `type:"structure"`
 
 	// A complex type that contains zero or more Lambda function associations for
 	// a cache behavior.
@@ -11430,6 +12388,11 @@ func (s *DefaultCacheBehavior) Validate() error {
 			invalidParams.AddNested("ForwardedValues", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.FunctionAssociations != nil {
+		if err := s.FunctionAssociations.Validate(); err != nil {
+			invalidParams.AddNested("FunctionAssociations", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LambdaFunctionAssociations != nil {
 		if err := s.LambdaFunctionAssociations.Validate(); err != nil {
 			invalidParams.AddNested("LambdaFunctionAssociations", err.(request.ErrInvalidParams))
@@ -11485,6 +12448,12 @@ func (s *DefaultCacheBehavior) SetFieldLevelEncryptionId(v string) *DefaultCache
 // SetForwardedValues sets the ForwardedValues field's value.
 func (s *DefaultCacheBehavior) SetForwardedValues(v *ForwardedValues) *DefaultCacheBehavior {
 	s.ForwardedValues = v
+	return s
+}
+
+// SetFunctionAssociations sets the FunctionAssociations field's value.
+func (s *DefaultCacheBehavior) SetFunctionAssociations(v *FunctionAssociations) *DefaultCacheBehavior {
+	s.FunctionAssociations = v
 	return s
 }
 
@@ -11911,6 +12880,76 @@ func (s DeleteFieldLevelEncryptionProfileOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFunctionInput struct {
+	_ struct{} `locationName:"DeleteFunctionRequest" type:"structure"`
+
+	// The current version (ETag value) of the function that you are deleting, which
+	// you can get using DescribeFunction.
+	//
+	// IfMatch is a required field
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
+
+	// The name of the function that you are deleting.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFunctionInput"}
+	if s.IfMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("IfMatch"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteFunctionInput) SetIfMatch(v string) *DeleteFunctionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteFunctionInput) SetName(v string) *DeleteFunctionInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteFunctionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFunctionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteKeyGroupInput struct {
 	_ struct{} `locationName:"DeleteKeyGroupRequest" type:"structure"`
 
@@ -12276,6 +13315,88 @@ func (s DeleteStreamingDistributionOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeFunctionInput struct {
+	_ struct{} `locationName:"DescribeFunctionRequest" type:"structure"`
+
+	// The name of the function that you are getting information about.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// The function’s stage, either DEVELOPMENT or LIVE.
+	Stage *string `location:"querystring" locationName:"Stage" type:"string" enum:"FunctionStage"`
+}
+
+// String returns the string representation
+func (s DescribeFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFunctionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeFunctionInput) SetName(v string) *DescribeFunctionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *DescribeFunctionInput) SetStage(v string) *DescribeFunctionInput {
+	s.Stage = &v
+	return s
+}
+
+type DescribeFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionSummary"`
+
+	// The version identifier for the current version of the CloudFront function.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// Contains configuration information and metadata about a CloudFront function.
+	FunctionSummary *FunctionSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *DescribeFunctionOutput) SetETag(v string) *DescribeFunctionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetFunctionSummary sets the FunctionSummary field's value.
+func (s *DescribeFunctionOutput) SetFunctionSummary(v *FunctionSummary) *DescribeFunctionOutput {
+	s.FunctionSummary = v
+	return s
+}
+
 // A distribution tells CloudFront where you want content to be delivered from,
 // and the details about how to track and manage content delivery.
 type Distribution struct {
@@ -12442,15 +13563,8 @@ type DistributionConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// Any comments you want to include about the distribution.
-	//
-	// If you don't want to specify a comment, include an empty Comment element.
-	//
-	// To delete an existing comment, update the distribution configuration and
-	// include an empty Comment element.
-	//
-	// To add or change a comment, update the distribution configuration and specify
-	// the new comment.
+	// An optional comment to describe the distribution. The comment cannot be longer
+	// than 128 characters.
 	//
 	// Comment is a required field
 	Comment *string `type:"string" required:"true" sensitive:"true"`
@@ -13516,7 +14630,8 @@ type FieldLevelEncryptionConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// An optional comment about the configuration.
+	// An optional comment about the configuration. The comment cannot be longer
+	// than 128 characters.
 	Comment *string `type:"string"`
 
 	// A complex data type that specifies when to forward content if a content type
@@ -13703,7 +14818,8 @@ type FieldLevelEncryptionProfileConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// An optional comment for the field-level encryption profile.
+	// An optional comment for the field-level encryption profile. The comment cannot
+	// be longer than 128 characters.
 	Comment *string `type:"string"`
 
 	// A complex data type of encryption entities for the field-level encryption
@@ -13839,7 +14955,8 @@ func (s *FieldLevelEncryptionProfileList) SetQuantity(v int64) *FieldLevelEncryp
 type FieldLevelEncryptionProfileSummary struct {
 	_ struct{} `type:"structure"`
 
-	// An optional comment for the field-level encryption profile summary.
+	// An optional comment for the field-level encryption profile summary. The comment
+	// cannot be longer than 128 characters.
 	Comment *string `type:"string"`
 
 	// A complex data type of encryption entities for the field-level encryption
@@ -13909,7 +15026,8 @@ func (s *FieldLevelEncryptionProfileSummary) SetName(v string) *FieldLevelEncryp
 type FieldLevelEncryptionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// An optional comment about the field-level encryption item.
+	// An optional comment about the field-level encryption item. The comment cannot
+	// be longer than 128 characters.
 	Comment *string `type:"string"`
 
 	// A summary of a content type-profile mapping.
@@ -14195,6 +15313,353 @@ func (s *ForwardedValues) SetQueryString(v bool) *ForwardedValues {
 // SetQueryStringCacheKeys sets the QueryStringCacheKeys field's value.
 func (s *ForwardedValues) SetQueryStringCacheKeys(v *QueryStringCacheKeys) *ForwardedValues {
 	s.QueryStringCacheKeys = v
+	return s
+}
+
+// A CloudFront function that is associated with a cache behavior in a CloudFront
+// distribution.
+type FunctionAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The event type of the function, either viewer-request or viewer-response.
+	// You cannot use origin-facing event types (origin-request and origin-response)
+	// with a CloudFront function.
+	//
+	// EventType is a required field
+	EventType *string `type:"string" required:"true" enum:"EventType"`
+
+	// The Amazon Resource Name (ARN) of the function.
+	//
+	// FunctionARN is a required field
+	FunctionARN *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s FunctionAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionAssociation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionAssociation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionAssociation"}
+	if s.EventType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventType"))
+	}
+	if s.FunctionARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionARN"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventType sets the EventType field's value.
+func (s *FunctionAssociation) SetEventType(v string) *FunctionAssociation {
+	s.EventType = &v
+	return s
+}
+
+// SetFunctionARN sets the FunctionARN field's value.
+func (s *FunctionAssociation) SetFunctionARN(v string) *FunctionAssociation {
+	s.FunctionARN = &v
+	return s
+}
+
+// A list of CloudFront functions that are associated with a cache behavior
+// in a CloudFront distribution. CloudFront functions must be published to the
+// LIVE stage to associate them with a cache behavior.
+type FunctionAssociations struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudFront functions that are associated with a cache behavior in a CloudFront
+	// distribution. CloudFront functions must be published to the LIVE stage to
+	// associate them with a cache behavior.
+	Items []*FunctionAssociation `locationNameList:"FunctionAssociation" type:"list"`
+
+	// The number of CloudFront functions in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s FunctionAssociations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionAssociations) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionAssociations) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionAssociations"}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItems sets the Items field's value.
+func (s *FunctionAssociations) SetItems(v []*FunctionAssociation) *FunctionAssociations {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *FunctionAssociations) SetQuantity(v int64) *FunctionAssociations {
+	s.Quantity = &v
+	return s
+}
+
+// Contains configuration information about a CloudFront function.
+type FunctionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A comment to describe the function.
+	//
+	// Comment is a required field
+	Comment *string `type:"string" required:"true"`
+
+	// The function’s runtime environment. The only valid value is cloudfront-js-1.0.
+	//
+	// Runtime is a required field
+	Runtime *string `type:"string" required:"true" enum:"FunctionRuntime"`
+}
+
+// String returns the string representation
+func (s FunctionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FunctionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FunctionConfig"}
+	if s.Comment == nil {
+		invalidParams.Add(request.NewErrParamRequired("Comment"))
+	}
+	if s.Runtime == nil {
+		invalidParams.Add(request.NewErrParamRequired("Runtime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *FunctionConfig) SetComment(v string) *FunctionConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetRuntime sets the Runtime field's value.
+func (s *FunctionConfig) SetRuntime(v string) *FunctionConfig {
+	s.Runtime = &v
+	return s
+}
+
+// A list of CloudFront functions.
+type FunctionList struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the functions in the list.
+	Items []*FunctionSummary `locationNameList:"FunctionSummary" type:"list"`
+
+	// The maximum number of functions requested.
+	//
+	// MaxItems is a required field
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If there are more items in the list than are in this response, this element
+	// is present. It contains the value that you should use in the Marker field
+	// of a subsequent request to continue listing functions where you left off.
+	NextMarker *string `type:"string"`
+
+	// The number of functions returned in the response.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s FunctionList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionList) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *FunctionList) SetItems(v []*FunctionSummary) *FunctionList {
+	s.Items = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *FunctionList) SetMaxItems(v int64) *FunctionList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *FunctionList) SetNextMarker(v string) *FunctionList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *FunctionList) SetQuantity(v int64) *FunctionList {
+	s.Quantity = &v
+	return s
+}
+
+// Contains metadata about a CloudFront function.
+type FunctionMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the function was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the function. The ARN uniquely identifies
+	// the function.
+	//
+	// FunctionARN is a required field
+	FunctionARN *string `type:"string" required:"true"`
+
+	// The date and time when the function was most recently updated.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The stage that the function is in, either DEVELOPMENT or LIVE.
+	//
+	// When a function is in the DEVELOPMENT stage, you can test the function with
+	// TestFunction, and update it with UpdateFunction.
+	//
+	// When a function is in the LIVE stage, you can attach the function to a distribution’s
+	// cache behavior, using the function’s ARN.
+	Stage *string `type:"string" enum:"FunctionStage"`
+}
+
+// String returns the string representation
+func (s FunctionMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *FunctionMetadata) SetCreatedTime(v time.Time) *FunctionMetadata {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFunctionARN sets the FunctionARN field's value.
+func (s *FunctionMetadata) SetFunctionARN(v string) *FunctionMetadata {
+	s.FunctionARN = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *FunctionMetadata) SetLastModifiedTime(v time.Time) *FunctionMetadata {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *FunctionMetadata) SetStage(v string) *FunctionMetadata {
+	s.Stage = &v
+	return s
+}
+
+// Contains configuration information and metadata about a CloudFront function.
+type FunctionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Contains configuration information about a CloudFront function.
+	//
+	// FunctionConfig is a required field
+	FunctionConfig *FunctionConfig `type:"structure" required:"true"`
+
+	// Contains metadata about a CloudFront function.
+	//
+	// FunctionMetadata is a required field
+	FunctionMetadata *FunctionMetadata `type:"structure" required:"true"`
+
+	// The name of the CloudFront function.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The status of the CloudFront function.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FunctionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FunctionSummary) GoString() string {
+	return s.String()
+}
+
+// SetFunctionConfig sets the FunctionConfig field's value.
+func (s *FunctionSummary) SetFunctionConfig(v *FunctionConfig) *FunctionSummary {
+	s.FunctionConfig = v
+	return s
+}
+
+// SetFunctionMetadata sets the FunctionMetadata field's value.
+func (s *FunctionSummary) SetFunctionMetadata(v *FunctionMetadata) *FunctionSummary {
+	s.FunctionMetadata = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FunctionSummary) SetName(v string) *FunctionSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *FunctionSummary) SetStatus(v string) *FunctionSummary {
+	s.Status = &v
 	return s
 }
 
@@ -15033,6 +16498,97 @@ func (s *GetFieldLevelEncryptionProfileOutput) SetETag(v string) *GetFieldLevelE
 // SetFieldLevelEncryptionProfile sets the FieldLevelEncryptionProfile field's value.
 func (s *GetFieldLevelEncryptionProfileOutput) SetFieldLevelEncryptionProfile(v *FieldLevelEncryptionProfile) *GetFieldLevelEncryptionProfileOutput {
 	s.FieldLevelEncryptionProfile = v
+	return s
+}
+
+type GetFunctionInput struct {
+	_ struct{} `locationName:"GetFunctionRequest" type:"structure"`
+
+	// The name of the function whose code you are getting.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// The function’s stage, either DEVELOPMENT or LIVE.
+	Stage *string `location:"querystring" locationName:"Stage" type:"string" enum:"FunctionStage"`
+}
+
+// String returns the string representation
+func (s GetFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetFunctionInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *GetFunctionInput) SetName(v string) *GetFunctionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *GetFunctionInput) SetStage(v string) *GetFunctionInput {
+	s.Stage = &v
+	return s
+}
+
+type GetFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionCode"`
+
+	// The content type (media type) of the response.
+	ContentType *string `location:"header" locationName:"Content-Type" type:"string"`
+
+	// The version identifier for the current version of the CloudFront function.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The function code of a CloudFront function.
+	FunctionCode []byte `min:"1" type:"blob" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s GetFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *GetFunctionOutput) SetContentType(v string) *GetFunctionOutput {
+	s.ContentType = &v
+	return s
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetFunctionOutput) SetETag(v string) *GetFunctionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetFunctionCode sets the FunctionCode field's value.
+func (s *GetFunctionOutput) SetFunctionCode(v []byte) *GetFunctionOutput {
+	s.FunctionCode = v
 	return s
 }
 
@@ -16248,7 +17804,8 @@ func (s *KeyGroup) SetLastModifiedTime(v time.Time) *KeyGroup {
 type KeyGroupConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A comment to describe the key group.
+	// A comment to describe the key group. The comment cannot be longer than 128
+	// characters.
 	Comment *string `type:"string"`
 
 	// A list of the identifiers of the public keys in the key group.
@@ -17382,6 +18939,74 @@ func (s *ListFieldLevelEncryptionProfilesOutput) SetFieldLevelEncryptionProfileL
 	return s
 }
 
+type ListFunctionsInput struct {
+	_ struct{} `locationName:"ListFunctionsRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of functions. The response includes functions in the list that occur
+	// after the marker. To get the next page of the list, set this field’s value
+	// to the value of NextMarker from the current page’s response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of functions that you want in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+
+	// An optional filter to return only the functions that are in the specified
+	// stage, either DEVELOPMENT or LIVE.
+	Stage *string `location:"querystring" locationName:"Stage" type:"string" enum:"FunctionStage"`
+}
+
+// String returns the string representation
+func (s ListFunctionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListFunctionsInput) SetMarker(v string) *ListFunctionsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListFunctionsInput) SetMaxItems(v int64) *ListFunctionsInput {
+	s.MaxItems = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *ListFunctionsInput) SetStage(v string) *ListFunctionsInput {
+	s.Stage = &v
+	return s
+}
+
+type ListFunctionsOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionList"`
+
+	// A list of CloudFront functions.
+	FunctionList *FunctionList `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListFunctionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFunctionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFunctionList sets the FunctionList field's value.
+func (s *ListFunctionsOutput) SetFunctionList(v *FunctionList) *ListFunctionsOutput {
+	s.FunctionList = v
+	return s
+}
+
 // The request to list invalidations.
 type ListInvalidationsInput struct {
 	_ struct{} `locationName:"ListInvalidationsRequest" type:"structure"`
@@ -18244,7 +19869,8 @@ type OriginAccessIdentityConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// Any comments you want to include about the origin access identity.
+	// An optional comment to describe the origin access identity. The comment cannot
+	// be longer than 128 characters.
 	//
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`
@@ -18871,7 +20497,8 @@ func (s *OriginRequestPolicy) SetOriginRequestPolicyConfig(v *OriginRequestPolic
 type OriginRequestPolicyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A comment to describe the origin request policy.
+	// A comment to describe the origin request policy. The comment cannot be longer
+	// than 128 characters.
 	Comment *string `type:"string"`
 
 	// The cookies from viewer requests to include in origin requests.
@@ -19755,7 +21382,8 @@ type PublicKeyConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// A comment to describe the public key.
+	// A comment to describe the public key. The comment cannot be longer than 128
+	// characters.
 	Comment *string `type:"string"`
 
 	// The public key that you can use with signed URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
@@ -19886,7 +21514,8 @@ func (s *PublicKeyList) SetQuantity(v int64) *PublicKeyList {
 type PublicKeySummary struct {
 	_ struct{} `type:"structure"`
 
-	// A comment to describe the public key.
+	// A comment to describe the public key. The comment cannot be longer than 128
+	// characters.
 	Comment *string `type:"string"`
 
 	// The date and time when the public key was uploaded.
@@ -19947,6 +21576,85 @@ func (s *PublicKeySummary) SetId(v string) *PublicKeySummary {
 // SetName sets the Name field's value.
 func (s *PublicKeySummary) SetName(v string) *PublicKeySummary {
 	s.Name = &v
+	return s
+}
+
+type PublishFunctionInput struct {
+	_ struct{} `locationName:"PublishFunctionRequest" type:"structure"`
+
+	// The current version (ETag value) of the function that you are publishing,
+	// which you can get using DescribeFunction.
+	//
+	// IfMatch is a required field
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
+
+	// The name of the function that you are publishing.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PublishFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublishFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublishFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublishFunctionInput"}
+	if s.IfMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("IfMatch"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *PublishFunctionInput) SetIfMatch(v string) *PublishFunctionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PublishFunctionInput) SetName(v string) *PublishFunctionInput {
+	s.Name = &v
+	return s
+}
+
+type PublishFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionSummary"`
+
+	// Contains configuration information and metadata about a CloudFront function.
+	FunctionSummary *FunctionSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s PublishFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublishFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetFunctionSummary sets the FunctionSummary field's value.
+func (s *PublishFunctionOutput) SetFunctionSummary(v *FunctionSummary) *PublishFunctionOutput {
+	s.FunctionSummary = v
 	return s
 }
 
@@ -21531,6 +23239,180 @@ func (s *Tags) SetItems(v []*Tag) *Tags {
 	return s
 }
 
+type TestFunctionInput struct {
+	_ struct{} `locationName:"TestFunctionRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+
+	// The event object to test the function with. For more information about the
+	// structure of the event object, see Testing functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/managing-functions.html#test-function)
+	// in the Amazon CloudFront Developer Guide.
+	//
+	// EventObject is automatically base64 encoded/decoded by the SDK.
+	//
+	// EventObject is a required field
+	EventObject []byte `type:"blob" required:"true" sensitive:"true"`
+
+	// The current version (ETag value) of the function that you are testing, which
+	// you can get using DescribeFunction.
+	//
+	// IfMatch is a required field
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
+
+	// The name of the function that you are testing.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+
+	// The stage of the function that you are testing, either DEVELOPMENT or LIVE.
+	Stage *string `type:"string" enum:"FunctionStage"`
+}
+
+// String returns the string representation
+func (s TestFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TestFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestFunctionInput"}
+	if s.EventObject == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventObject"))
+	}
+	if s.IfMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("IfMatch"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventObject sets the EventObject field's value.
+func (s *TestFunctionInput) SetEventObject(v []byte) *TestFunctionInput {
+	s.EventObject = v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *TestFunctionInput) SetIfMatch(v string) *TestFunctionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TestFunctionInput) SetName(v string) *TestFunctionInput {
+	s.Name = &v
+	return s
+}
+
+// SetStage sets the Stage field's value.
+func (s *TestFunctionInput) SetStage(v string) *TestFunctionInput {
+	s.Stage = &v
+	return s
+}
+
+type TestFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"TestResult"`
+
+	// An object that represents the result of running the function with the provided
+	// event object.
+	TestResult *TestResult `type:"structure"`
+}
+
+// String returns the string representation
+func (s TestFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TestFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetTestResult sets the TestResult field's value.
+func (s *TestFunctionOutput) SetTestResult(v *TestResult) *TestFunctionOutput {
+	s.TestResult = v
+	return s
+}
+
+// Contains the result of testing a CloudFront function with TestFunction.
+type TestResult struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time that the function took to run as a percentage of the maximum
+	// allowed time. For example, a compute utilization of 35 means that the function
+	// completed in 35% of the maximum allowed time.
+	ComputeUtilization *string `type:"string"`
+
+	// If the result of testing the function was an error, this field contains the
+	// error message.
+	FunctionErrorMessage *string `type:"string"`
+
+	// Contains the log lines that the function wrote (if any) when running the
+	// test.
+	FunctionExecutionLogs []*string `type:"list"`
+
+	// The event object returned by the function. For more information about the
+	// structure of the event object, see Event object structure (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/functions-event-structure.html)
+	// in the Amazon CloudFront Developer Guide.
+	FunctionOutput *string `type:"string"`
+
+	// Contains configuration information and metadata about the CloudFront function
+	// that was tested.
+	FunctionSummary *FunctionSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s TestResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TestResult) GoString() string {
+	return s.String()
+}
+
+// SetComputeUtilization sets the ComputeUtilization field's value.
+func (s *TestResult) SetComputeUtilization(v string) *TestResult {
+	s.ComputeUtilization = &v
+	return s
+}
+
+// SetFunctionErrorMessage sets the FunctionErrorMessage field's value.
+func (s *TestResult) SetFunctionErrorMessage(v string) *TestResult {
+	s.FunctionErrorMessage = &v
+	return s
+}
+
+// SetFunctionExecutionLogs sets the FunctionExecutionLogs field's value.
+func (s *TestResult) SetFunctionExecutionLogs(v []*string) *TestResult {
+	s.FunctionExecutionLogs = v
+	return s
+}
+
+// SetFunctionOutput sets the FunctionOutput field's value.
+func (s *TestResult) SetFunctionOutput(v string) *TestResult {
+	s.FunctionOutput = &v
+	return s
+}
+
+// SetFunctionSummary sets the FunctionSummary field's value.
+func (s *TestResult) SetFunctionSummary(v *FunctionSummary) *TestResult {
+	s.FunctionSummary = v
+	return s
+}
+
 // A list of key groups whose public keys CloudFront can use to verify the signatures
 // of signed URLs and signed cookies.
 type TrustedKeyGroups struct {
@@ -22242,6 +24124,134 @@ func (s *UpdateFieldLevelEncryptionProfileOutput) SetETag(v string) *UpdateField
 // SetFieldLevelEncryptionProfile sets the FieldLevelEncryptionProfile field's value.
 func (s *UpdateFieldLevelEncryptionProfileOutput) SetFieldLevelEncryptionProfile(v *FieldLevelEncryptionProfile) *UpdateFieldLevelEncryptionProfileOutput {
 	s.FieldLevelEncryptionProfile = v
+	return s
+}
+
+type UpdateFunctionInput struct {
+	_ struct{} `locationName:"UpdateFunctionRequest" type:"structure" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+
+	// The function code. For more information about writing a CloudFront function,
+	// see Writing function code for CloudFront Functions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/writing-function-code.html)
+	// in the Amazon CloudFront Developer Guide.
+	//
+	// FunctionCode is automatically base64 encoded/decoded by the SDK.
+	//
+	// FunctionCode is a required field
+	FunctionCode []byte `min:"1" type:"blob" required:"true" sensitive:"true"`
+
+	// Configuration information about the function.
+	//
+	// FunctionConfig is a required field
+	FunctionConfig *FunctionConfig `type:"structure" required:"true"`
+
+	// The current version (ETag value) of the function that you are updating, which
+	// you can get using DescribeFunction.
+	//
+	// IfMatch is a required field
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string" required:"true"`
+
+	// The name of the function that you are updating.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateFunctionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFunctionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFunctionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFunctionInput"}
+	if s.FunctionCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionCode"))
+	}
+	if s.FunctionCode != nil && len(s.FunctionCode) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FunctionCode", 1))
+	}
+	if s.FunctionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("FunctionConfig"))
+	}
+	if s.IfMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("IfMatch"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.FunctionConfig != nil {
+		if err := s.FunctionConfig.Validate(); err != nil {
+			invalidParams.AddNested("FunctionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFunctionCode sets the FunctionCode field's value.
+func (s *UpdateFunctionInput) SetFunctionCode(v []byte) *UpdateFunctionInput {
+	s.FunctionCode = v
+	return s
+}
+
+// SetFunctionConfig sets the FunctionConfig field's value.
+func (s *UpdateFunctionInput) SetFunctionConfig(v *FunctionConfig) *UpdateFunctionInput {
+	s.FunctionConfig = v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateFunctionInput) SetIfMatch(v string) *UpdateFunctionInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFunctionInput) SetName(v string) *UpdateFunctionInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateFunctionOutput struct {
+	_ struct{} `type:"structure" payload:"FunctionSummary"`
+
+	// The version identifier for the current version of the CloudFront function.
+	ETag *string `location:"header" locationName:"ETtag" type:"string"`
+
+	// Contains configuration information and metadata about a CloudFront function.
+	FunctionSummary *FunctionSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFunctionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFunctionOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateFunctionOutput) SetETag(v string) *UpdateFunctionOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetFunctionSummary sets the FunctionSummary field's value.
+func (s *UpdateFunctionOutput) SetFunctionSummary(v *FunctionSummary) *UpdateFunctionOutput {
+	s.FunctionSummary = v
 	return s
 }
 
@@ -23094,6 +25104,34 @@ const (
 func Format_Values() []string {
 	return []string{
 		FormatUrlencoded,
+	}
+}
+
+const (
+	// FunctionRuntimeCloudfrontJs10 is a FunctionRuntime enum value
+	FunctionRuntimeCloudfrontJs10 = "cloudfront-js-1.0"
+)
+
+// FunctionRuntime_Values returns all elements of the FunctionRuntime enum
+func FunctionRuntime_Values() []string {
+	return []string{
+		FunctionRuntimeCloudfrontJs10,
+	}
+}
+
+const (
+	// FunctionStageDevelopment is a FunctionStage enum value
+	FunctionStageDevelopment = "DEVELOPMENT"
+
+	// FunctionStageLive is a FunctionStage enum value
+	FunctionStageLive = "LIVE"
+)
+
+// FunctionStage_Values returns all elements of the FunctionStage enum
+func FunctionStage_Values() []string {
+	return []string{
+		FunctionStageDevelopment,
+		FunctionStageLive,
 	}
 }
 

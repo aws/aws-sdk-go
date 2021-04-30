@@ -104,6 +104,10 @@ type CustomerProfilesAPI interface {
 	GetIntegrationWithContext(aws.Context, *customerprofiles.GetIntegrationInput, ...request.Option) (*customerprofiles.GetIntegrationOutput, error)
 	GetIntegrationRequest(*customerprofiles.GetIntegrationInput) (*request.Request, *customerprofiles.GetIntegrationOutput)
 
+	GetMatches(*customerprofiles.GetMatchesInput) (*customerprofiles.GetMatchesOutput, error)
+	GetMatchesWithContext(aws.Context, *customerprofiles.GetMatchesInput, ...request.Option) (*customerprofiles.GetMatchesOutput, error)
+	GetMatchesRequest(*customerprofiles.GetMatchesInput) (*request.Request, *customerprofiles.GetMatchesOutput)
+
 	GetProfileObjectType(*customerprofiles.GetProfileObjectTypeInput) (*customerprofiles.GetProfileObjectTypeOutput, error)
 	GetProfileObjectTypeWithContext(aws.Context, *customerprofiles.GetProfileObjectTypeInput, ...request.Option) (*customerprofiles.GetProfileObjectTypeOutput, error)
 	GetProfileObjectTypeRequest(*customerprofiles.GetProfileObjectTypeInput) (*request.Request, *customerprofiles.GetProfileObjectTypeOutput)
@@ -139,6 +143,10 @@ type CustomerProfilesAPI interface {
 	ListTagsForResource(*customerprofiles.ListTagsForResourceInput) (*customerprofiles.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *customerprofiles.ListTagsForResourceInput, ...request.Option) (*customerprofiles.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*customerprofiles.ListTagsForResourceInput) (*request.Request, *customerprofiles.ListTagsForResourceOutput)
+
+	MergeProfiles(*customerprofiles.MergeProfilesInput) (*customerprofiles.MergeProfilesOutput, error)
+	MergeProfilesWithContext(aws.Context, *customerprofiles.MergeProfilesInput, ...request.Option) (*customerprofiles.MergeProfilesOutput, error)
+	MergeProfilesRequest(*customerprofiles.MergeProfilesInput) (*request.Request, *customerprofiles.MergeProfilesOutput)
 
 	PutIntegration(*customerprofiles.PutIntegrationInput) (*customerprofiles.PutIntegrationOutput, error)
 	PutIntegrationWithContext(aws.Context, *customerprofiles.PutIntegrationInput, ...request.Option) (*customerprofiles.PutIntegrationOutput, error)

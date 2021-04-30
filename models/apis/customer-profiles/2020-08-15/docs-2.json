@@ -13,6 +13,7 @@
     "DeleteProfileObjectType": "<p>Removes a ProfileObjectType from a specific domain as well as removes all the ProfileObjects of that type. It also disables integrations from this specific ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that were populated from this ProfileObjectType.</p>",
     "GetDomain": "<p>Returns information about a specific domain.</p>",
     "GetIntegration": "<p>Returns an integration for a domain.</p>",
+    "GetMatches": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>Amazon Connect runs a batch process every Saturday at 12AM UTC to identify matching profiles. The results are returned up to seven days after the Saturday run.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> <li> <p>BusinessName</p> </li> </ul>",
     "GetProfileObjectType": "<p>Returns the object types for a specific domain.</p>",
     "GetProfileObjectTypeTemplate": "<p>Returns the template information for a specific object type.</p> <p>A template is a predefined ProfileObjectType, such as “Salesforce-Account” or “Salesforce-Contact.” When a user sends a ProfileObject, using the PutProfileObject API, with an ObjectTypeName that matches one of the TemplateIds, it uses the mappings from the template.</p>",
     "ListAccountIntegrations": "<p>Lists all of the integrations associated to a specific URI in the AWS account.</p>",
@@ -22,13 +23,14 @@
     "ListProfileObjectTypes": "<p>Lists all of the templates available within the service.</p>",
     "ListProfileObjects": "<p>Returns a list of objects associated with a profile of a given ProfileObjectType.</p>",
     "ListTagsForResource": "<p>Displays the tags associated with an Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
+    "MergeProfiles": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Runs an AWS Lambda job that does the following:</p> <ol> <li> <p>All the profileKeys in the <code>ProfileToBeMerged</code> will be moved to the main profile.</p> </li> <li> <p>All the objects in the <code>ProfileToBeMerged</code> will be moved to the main profile.</p> </li> <li> <p>All the <code>ProfileToBeMerged</code> will be deleted at the end.</p> </li> <li> <p>All the profileKeys in the <code>ProfileIdsToBeMerged</code> will be moved to the main profile.</p> </li> <li> <p>Standard fields are merged as follows:</p> <ol> <li> <p>Fields are always \"union\"-ed if there are no conflicts in standard fields or attributeKeys.</p> </li> <li> <p>When there are conflicting fields:</p> <ol> <li> <p>If no <code>SourceProfileIds</code> entry is specified, the main Profile value is always taken. </p> </li> <li> <p>If a <code>SourceProfileIds</code> entry is specified, the specified profileId is always taken, even if it is a NULL value.</p> </li> </ol> </li> </ol> </li> </ol> <p>You can use MergeProfiles together with <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a>, which returns potentially matching profiles, or use it with the results of another matching system. After profiles have been merged, they cannot be separated (unmerged).</p>",
     "PutIntegration": "<p>Adds an integration between the service and a third-party service, which includes Amazon AppFlow and Amazon Connect.</p> <p>An integration can belong to only one domain.</p>",
     "PutProfileObject": "<p>Adds additional objects to customer profiles of a given ObjectType.</p> <p>When adding a specific profile object, like a Contact Trace Record (CTR), an inferred profile can get created if it is not mapped to an existing profile. The resulting profile will only have a phone number populated in the standard ProfileObject. Any additional CTRs with the same phone number will be mapped to the same inferred profile.</p> <p>When a ProfileObject is created and if a ProfileObjectType already exists for the ProfileObject, it will provide data to a standard profile depending on the ProfileObjectType definition.</p> <p>PutProfileObject needs an ObjectType, which can be created using PutProfileObjectType.</p>",
     "PutProfileObjectType": "<p>Defines a ProfileObjectType.</p>",
     "SearchProfiles": "<p>Searches for profiles within a specific domain name using name, phone number, email address, account number, or a custom defined index.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
-    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>Once a domain is created, the name can’t be changed.</p>",
+    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p>",
     "UpdateProfile": "<p>Updates the properties of a profile. The ProfileId is required for updating a customer profile.</p> <p>When calling the UpdateProfile API, specifying an empty string value means that any existing value will be removed. Not specifying a string value means that any value already there will be kept.</p>"
   },
   "shapes": {
@@ -50,10 +52,11 @@
         "DeleteProfileRequest$DomainName": "<p>The unique name of the domain.</p>",
         "FieldMap$key": null,
         "FieldNameList$member": null,
-        "GetDomainRequest$DomainName": "<p>A unique name for the domain.</p>",
+        "GetDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "GetIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetIntegrationResponse$DomainName": "<p>The unique name of the domain.</p>",
+        "GetMatchesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetProfileObjectTypeRequest$DomainName": "<p>The unique name of the domain.</p>",
         "GetProfileObjectTypeResponse$TemplateId": "<p>A unique identifier for the object template.</p>",
         "GetProfileObjectTypeTemplateRequest$TemplateId": "<p>A unique identifier for the object template.</p>",
@@ -69,6 +72,7 @@
         "ListProfileObjectTypeTemplateItem$SourceObject": "<p>The source of the object template.</p>",
         "ListProfileObjectTypesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListProfileObjectsRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "MergeProfilesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "PutIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "PutIntegrationResponse$DomainName": "<p>The unique name of the domain.</p>",
         "PutProfileObjectRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -77,8 +81,8 @@
         "PutProfileObjectTypeResponse$TemplateId": "<p>A unique identifier for the object template.</p>",
         "SearchProfilesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "SearchProfilesRequest$KeyName": "<p>A searchable identifier of a customer profile. The predefined keys you can use to search include: _account, _profileId, _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId, _zendeskUserId, _zendeskExternalId, _serviceNowSystemId.</p>",
-        "UpdateDomainRequest$DomainName": "<p>The unique name for the domain.</p>",
-        "UpdateDomainResponse$DomainName": "<p>The unique name for the domain.</p>",
+        "UpdateDomainRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "UpdateDomainResponse$DomainName": "<p>The unique name of the domain.</p>",
         "UpdateProfileRequest$DomainName": "<p>The unique name of the domain.</p>"
       }
     },
@@ -108,6 +112,12 @@
         "Profile$ShippingAddress": "<p>The customer’s shipping address.</p>",
         "Profile$MailingAddress": "<p>The customer’s mailing address.</p>",
         "Profile$BillingAddress": "<p>The customer’s billing address.</p>"
+      }
+    },
+    "AttributeSourceIdMap": {
+      "base": null,
+      "refs": {
+        "FieldSourceProfileIds$Attributes": "<p>A unique identifier for the attributes field to be merged.</p>"
       }
     },
     "Attributes": {
@@ -285,6 +295,12 @@
         "ObjectTypeKey$FieldNames": "<p>The reference for the key name of the fields map.</p>"
       }
     },
+    "FieldSourceProfileIds": {
+      "base": "<p>A duplicate customer profile that is to be merged into a main profile. </p>",
+      "refs": {
+        "MergeProfilesRequest$FieldSourceProfileIds": "<p>The identifiers of the fields in the profile that has the information you want to apply to the merge. For example, say you want to merge EmailAddress from Profile1 into MainProfile. This would be the identifier of the EmailAddress field in Profile1. </p>"
+      }
+    },
     "FlowDefinition": {
       "base": "<p>The configurations that control how Customer Profiles retrieves data from the source, Amazon AppFlow. Customer Profiles uses this information to create an AppFlow flow on behalf of customers.</p>",
       "refs": {
@@ -306,9 +322,9 @@
     "Gender": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$Gender": "<p>The gender with which the customer identifies.</p>",
-        "Profile$Gender": "<p>The gender with which the customer identifies.</p>",
-        "UpdateProfileRequest$Gender": "<p>The gender with which the customer identifies.</p>"
+        "CreateProfileRequest$Gender": "<p>The gender with which the customer identifies. </p>",
+        "Profile$Gender": "<p>The gender with which the customer identifies. </p>",
+        "UpdateProfileRequest$Gender": "<p>The gender with which the customer identifies. </p>"
       }
     },
     "GetDomainRequest": {
@@ -327,6 +343,16 @@
       }
     },
     "GetIntegrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMatchesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMatchesResponse": {
       "base": null,
       "refs": {
       }
@@ -496,6 +522,43 @@
         "SourceConnectorProperties$Marketo": "<p>The properties that are applied when Marketo is being used as a source.</p>"
       }
     },
+    "MatchItem": {
+      "base": "<p>The Match group object.</p>",
+      "refs": {
+        "MatchesList$member": null
+      }
+    },
+    "MatchesList": {
+      "base": null,
+      "refs": {
+        "GetMatchesResponse$Matches": "<p>The list of matched profiles for this instance.</p>"
+      }
+    },
+    "MatchingRequest": {
+      "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
+      "refs": {
+        "CreateDomainRequest$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
+        "UpdateDomainRequest$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>"
+      }
+    },
+    "MatchingResponse": {
+      "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
+      "refs": {
+        "CreateDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
+        "GetDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
+        "UpdateDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>"
+      }
+    },
+    "MergeProfilesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MergeProfilesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Object": {
       "base": null,
       "refs": {
@@ -541,6 +604,18 @@
       "base": "<p>The standard profile of a customer.</p>",
       "refs": {
         "ProfileList$member": null
+      }
+    },
+    "ProfileIdList": {
+      "base": null,
+      "refs": {
+        "MatchItem$ProfileIds": "<p>A list of identifiers for profiles that match.</p>"
+      }
+    },
+    "ProfileIdToBeMergedList": {
+      "base": null,
+      "refs": {
+        "MergeProfilesRequest$ProfileIdsToBeMerged": "<p>The identifier of the profile to be merged into MainProfileId.</p>"
       }
     },
     "ProfileList": {
@@ -922,9 +997,16 @@
         "DomainStats$TotalSize": "<p>The total size, in bytes, of all objects in the domain.</p>"
       }
     },
+    "matchesNumber": {
+      "base": null,
+      "refs": {
+        "GetMatchesResponse$PotentialMatches": "<p>The number of potential matches found.</p>"
+      }
+    },
     "maxSize100": {
       "base": null,
       "refs": {
+        "GetMatchesRequest$MaxResults": "<p>The maximum number of results to return per page.</p>",
         "ListAccountIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListDomainsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
         "ListIntegrationsRequest$MaxResults": "<p>The maximum number of objects returned per page.</p>",
@@ -946,8 +1028,16 @@
         "DeleteProfileObjectTypeResponse$Message": "<p>A message that indicates the delete request is done.</p>",
         "DeleteProfileResponse$Message": "<p>A message that indicates the delete request is done.</p>",
         "InternalServerException$Message": null,
+        "MergeProfilesResponse$Message": "<p>A message that indicates the merge request is complete.</p>",
         "ResourceNotFoundException$Message": null,
         "ThrottlingException$Message": null
+      }
+    },
+    "optionalBoolean": {
+      "base": null,
+      "refs": {
+        "MatchingRequest$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>",
+        "MatchingResponse$Enabled": "<p>The flag that enables the matching process of duplicate profiles.</p>"
       }
     },
     "requestValueList": {
@@ -972,7 +1062,7 @@
     "string0To1000": {
       "base": null,
       "refs": {
-        "UpdateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer's profile.</p>"
+        "UpdateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>"
       }
     },
     "string0To255": {
@@ -994,12 +1084,12 @@
         "UpdateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
         "UpdateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
         "UpdateProfileRequest$LastName": "<p>The customer’s last name.</p>",
-        "UpdateProfileRequest$BirthDate": "<p>The customer’s birth date.</p>",
-        "UpdateProfileRequest$PhoneNumber": "<p>The customer's phone number, which has not been specified as a mobile, home, or business number.</p>",
+        "UpdateProfileRequest$BirthDate": "<p>The customer’s birth date. </p>",
+        "UpdateProfileRequest$PhoneNumber": "<p>The customer’s phone number, which has not been specified as a mobile, home, or business number. </p>",
         "UpdateProfileRequest$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
         "UpdateProfileRequest$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
         "UpdateProfileRequest$BusinessPhoneNumber": "<p>The customer’s business phone number.</p>",
-        "UpdateProfileRequest$EmailAddress": "<p>The customer's email address, which has not been specified as a personal or business address.</p>",
+        "UpdateProfileRequest$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
         "UpdateProfileRequest$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
         "UpdateProfileRequest$BusinessEmailAddress": "<p>The customer’s business email address.</p>"
       }
@@ -1007,8 +1097,8 @@
     "string1To1000": {
       "base": null,
       "refs": {
-        "CreateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer's profile.</p>",
-        "Profile$AdditionalInformation": "<p>Any additional information relevant to the customer's profile.</p>"
+        "CreateProfileRequest$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>",
+        "Profile$AdditionalInformation": "<p>Any additional information relevant to the customer’s profile.</p>"
       }
     },
     "string1To255": {
@@ -1024,6 +1114,7 @@
         "Address$Province": "<p>The province in which a customer lives.</p>",
         "Address$Country": "<p>The country in which a customer lives.</p>",
         "Address$PostalCode": "<p>The postal code of a customer address.</p>",
+        "AttributeSourceIdMap$key": null,
         "Attributes$key": null,
         "Attributes$value": null,
         "CreateProfileRequest$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
@@ -1031,12 +1122,12 @@
         "CreateProfileRequest$FirstName": "<p>The customer’s first name.</p>",
         "CreateProfileRequest$MiddleName": "<p>The customer’s middle name.</p>",
         "CreateProfileRequest$LastName": "<p>The customer’s last name.</p>",
-        "CreateProfileRequest$BirthDate": "<p>The customer’s birth date.</p>",
-        "CreateProfileRequest$PhoneNumber": "<p>The customer's phone number, which has not been specified as a mobile, home, or business number.</p>",
+        "CreateProfileRequest$BirthDate": "<p>The customer’s birth date. </p>",
+        "CreateProfileRequest$PhoneNumber": "<p>The customer’s phone number, which has not been specified as a mobile, home, or business number. </p>",
         "CreateProfileRequest$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
         "CreateProfileRequest$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
         "CreateProfileRequest$BusinessPhoneNumber": "<p>The customer’s business phone number.</p>",
-        "CreateProfileRequest$EmailAddress": "<p>The customer's email address, which has not been specified as a personal or business address.</p>",
+        "CreateProfileRequest$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
         "CreateProfileRequest$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
         "CreateProfileRequest$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
         "DeleteIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
@@ -1046,17 +1137,18 @@
         "ListAccountIntegrationsRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "ListIntegrationItem$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
         "ListProfileObjectsItem$ProfileObjectUniqueKey": "<p>The unique identifier of the ProfileObject generated by the service.</p>",
+        "MatchItem$MatchId": "<p>The unique identifiers for this group of profiles that match.</p>",
         "Profile$AccountNumber": "<p>A unique account number that you have given to the customer.</p>",
         "Profile$BusinessName": "<p>The name of the customer’s business.</p>",
         "Profile$FirstName": "<p>The customer’s first name.</p>",
         "Profile$MiddleName": "<p>The customer’s middle name.</p>",
         "Profile$LastName": "<p>The customer’s last name.</p>",
-        "Profile$BirthDate": "<p>The customer’s birth date.</p>",
+        "Profile$BirthDate": "<p>The customer’s birth date. </p>",
         "Profile$PhoneNumber": "<p>The customer's phone number, which has not been specified as a mobile, home, or business number.</p>",
         "Profile$MobilePhoneNumber": "<p>The customer’s mobile phone number.</p>",
         "Profile$HomePhoneNumber": "<p>The customer’s home phone number.</p>",
         "Profile$BusinessPhoneNumber": "<p>The customer’s home phone number.</p>",
-        "Profile$EmailAddress": "<p>The customer's email address, which has not been specified as a personal or business address.</p>",
+        "Profile$EmailAddress": "<p>The customer’s email address, which has not been specified as a personal or business address. </p>",
         "Profile$PersonalEmailAddress": "<p>The customer’s personal email address.</p>",
         "Profile$BusinessEmailAddress": "<p>The customer’s business email address.</p>",
         "PutIntegrationRequest$Uri": "<p>The URI of the S3 bucket or any other type of data source.</p>",
@@ -1099,6 +1191,7 @@
         "GetDomainResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "GetIntegrationResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetIntegrationResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
+        "GetMatchesResponse$MatchGenerationDate": "<p>The timestamp this version of Match Result generated.</p>",
         "GetProfileObjectTypeResponse$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
         "GetProfileObjectTypeResponse$LastUpdatedAt": "<p>The timestamp of when the domain was most recently edited.</p>",
         "ListDomainItem$CreatedAt": "<p>The timestamp of when the domain was created.</p>",
@@ -1118,6 +1211,8 @@
     "token": {
       "base": null,
       "refs": {
+        "GetMatchesRequest$NextToken": "<p>The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.</p>",
+        "GetMatchesResponse$NextToken": "<p>If there are additional results, this is the token for the next set of results.</p>",
         "ListAccountIntegrationsRequest$NextToken": "<p>The pagination token from the previous ListAccountIntegrations API call.</p>",
         "ListAccountIntegrationsResponse$NextToken": "<p>The pagination token from the previous ListAccountIntegrations API call.</p>",
         "ListDomainsRequest$NextToken": "<p>The pagination token from the previous ListDomain API call.</p>",
@@ -1157,12 +1252,36 @@
       "base": null,
       "refs": {
         "AddProfileKeyRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
+        "AttributeSourceIdMap$value": null,
         "CreateProfileResponse$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "DeleteProfileKeyRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "DeleteProfileObjectRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "DeleteProfileRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
+        "FieldSourceProfileIds$AccountNumber": "<p>A unique identifier for the account number field to be merged. </p>",
+        "FieldSourceProfileIds$AdditionalInformation": "<p>A unique identifier for the additional information field to be merged.</p>",
+        "FieldSourceProfileIds$PartyType": "<p>A unique identifier for the party type field to be merged.</p>",
+        "FieldSourceProfileIds$BusinessName": "<p>A unique identifier for the business name field to be merged.</p>",
+        "FieldSourceProfileIds$FirstName": "<p>A unique identifier for the first name field to be merged.</p>",
+        "FieldSourceProfileIds$MiddleName": "<p>A unique identifier for the middle name field to be merged.</p>",
+        "FieldSourceProfileIds$LastName": "<p>A unique identifier for the last name field to be merged.</p>",
+        "FieldSourceProfileIds$BirthDate": "<p>A unique identifier for the birthdate field to be merged.</p>",
+        "FieldSourceProfileIds$Gender": "<p>A unique identifier for the gender field to be merged.</p>",
+        "FieldSourceProfileIds$PhoneNumber": "<p>A unique identifier for the phone number field to be merged.</p>",
+        "FieldSourceProfileIds$MobilePhoneNumber": "<p>A unique identifier for the mobile phone number field to be merged.</p>",
+        "FieldSourceProfileIds$HomePhoneNumber": "<p>A unique identifier for the home phone number field to be merged.</p>",
+        "FieldSourceProfileIds$BusinessPhoneNumber": "<p>A unique identifier for the business phone number field to be merged.</p>",
+        "FieldSourceProfileIds$EmailAddress": "<p>A unique identifier for the email address field to be merged.</p>",
+        "FieldSourceProfileIds$PersonalEmailAddress": "<p>A unique identifier for the personal email address field to be merged.</p>",
+        "FieldSourceProfileIds$BusinessEmailAddress": "<p>A unique identifier for the party type field to be merged.</p>",
+        "FieldSourceProfileIds$Address": "<p>A unique identifier for the party type field to be merged.</p>",
+        "FieldSourceProfileIds$ShippingAddress": "<p>A unique identifier for the shipping address field to be merged.</p>",
+        "FieldSourceProfileIds$MailingAddress": "<p>A unique identifier for the mailing address field to be merged.</p>",
+        "FieldSourceProfileIds$BillingAddress": "<p>A unique identifier for the billing type field to be merged.</p>",
         "ListProfileObjectsRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
+        "MergeProfilesRequest$MainProfileId": "<p>The identifier of the profile to be taken.</p>",
         "Profile$ProfileId": "<p>The unique identifier of a customer profile.</p>",
+        "ProfileIdList$member": null,
+        "ProfileIdToBeMergedList$member": null,
         "UpdateProfileRequest$ProfileId": "<p>The unique identifier of a customer profile.</p>",
         "UpdateProfileResponse$ProfileId": "<p>The unique identifier of a customer profile.</p>"
       }

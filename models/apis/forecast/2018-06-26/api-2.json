@@ -221,6 +221,20 @@
       ],
       "idempotent":true
     },
+    "DeleteResourceTree":{
+      "name":"DeleteResourceTree",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteResourceTreeRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "DescribeDataset":{
       "name":"DescribeDataset",
       "http":{
@@ -827,6 +841,13 @@
       "required":["PredictorArn"],
       "members":{
         "PredictorArn":{"shape":"Arn"}
+      }
+    },
+    "DeleteResourceTreeRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"Arn"}
       }
     },
     "DescribeDatasetGroupRequest":{

@@ -647,8 +647,11 @@ func (c *MarketplaceCatalog) StartChangeSetRequest(input *StartChangeSetInput) (
 // you will receive a ResourceInUseException.
 //
 // For example, you cannot start the ChangeSet described in the example (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/API_StartChangeSet.html#API_StartChangeSet_Examples)
-// below because it contains two changes to execute the same change type (AddRevisions)
-// against the same entity (entity-id@1).
+// later in this topic, because it contains two changes to execute the same
+// change type (AddRevisions) against the same entity (entity-id@1).
+//
+// For more information about working with change sets, see Working with change
+// sets (https://docs.aws.amazon.com/marketplace-catalog/latest/api-reference/welcome.html#working-with-change-sets).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -706,7 +709,7 @@ type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -852,6 +855,9 @@ func (s *CancelChangeSetOutput) SetChangeSetId(v string) *CancelChangeSetOutput 
 type Change struct {
 	_ struct{} `type:"structure"`
 
+	// Optional name for the change.
+	ChangeName *string `min:"1" type:"string"`
+
 	// Change types are single string values that describe your intention for the
 	// change. Each change type is unique for each EntityType provided in the change's
 	// scope.
@@ -884,6 +890,9 @@ func (s Change) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Change) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Change"}
+	if s.ChangeName != nil && len(*s.ChangeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChangeName", 1))
+	}
 	if s.ChangeType == nil {
 		invalidParams.Add(request.NewErrParamRequired("ChangeType"))
 	}
@@ -909,6 +918,12 @@ func (s *Change) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChangeName sets the ChangeName field's value.
+func (s *Change) SetChangeName(v string) *Change {
+	s.ChangeName = &v
+	return s
 }
 
 // SetChangeType sets the ChangeType field's value.
@@ -1030,6 +1045,9 @@ func (s *ChangeSetSummaryListItem) SetStatus(v string) *ChangeSetSummaryListItem
 type ChangeSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Optional name for the change.
+	ChangeName *string `min:"1" type:"string"`
+
 	// The type of the change.
 	ChangeType *string `min:"1" type:"string"`
 
@@ -1052,6 +1070,12 @@ func (s ChangeSummary) String() string {
 // GoString returns the string representation
 func (s ChangeSummary) GoString() string {
 	return s.String()
+}
+
+// SetChangeName sets the ChangeName field's value.
+func (s *ChangeSummary) SetChangeName(v string) *ChangeSummary {
+	s.ChangeName = &v
+	return s
 }
 
 // SetChangeType sets the ChangeType field's value.
@@ -1167,7 +1191,7 @@ type DescribeChangeSetOutput struct {
 
 	// Returned if there is a failure on the change set, but that failure is not
 	// related to any of the changes in the request.
-	FailureDescription *string `type:"string"`
+	FailureDescription *string `min:"1" type:"string"`
 
 	// The date and time, in ISO 8601 format (2018-02-27T13:45:22Z), the request
 	// started.
@@ -1316,7 +1340,7 @@ type DescribeEntityOutput struct {
 	EntityType *string `min:"1" type:"string"`
 
 	// The last modified date of the entity, in ISO 8601 format (2018-02-27T13:45:22Z).
-	LastModifiedDate *string `type:"string"`
+	LastModifiedDate *string `min:"20" type:"string"`
 }
 
 // String returns the string representation
@@ -1359,8 +1383,8 @@ func (s *DescribeEntityOutput) SetLastModifiedDate(v string) *DescribeEntityOutp
 	return s
 }
 
-// A product entity contains data that describes your product, its supported
-// features, and how it can be used or launched by your customer.
+// An entity contains data that describes your product, its supported features,
+// and how it can be used or launched by your customer.
 type Entity struct {
 	_ struct{} `type:"structure"`
 
@@ -1430,16 +1454,16 @@ type EntitySummary struct {
 	EntityType *string `min:"1" type:"string"`
 
 	// The last time the entity was published, using ISO 8601 format (2018-02-27T13:45:22Z).
-	LastModifiedDate *string `type:"string"`
+	LastModifiedDate *string `min:"20" type:"string"`
 
 	// The name for the entity. This value is not unique. It is defined by the seller.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 
 	// The visibility status of the entity to buyers. This value can be Public (everyone
 	// can view the entity), Limited (the entity is visible to limited accounts
 	// only), or Restricted (the entity was published and then unpublished and only
 	// existing buyers can view it).
-	Visibility *string `type:"string"`
+	Visibility *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1493,10 +1517,10 @@ type ErrorDetail struct {
 	_ struct{} `type:"structure"`
 
 	// The error code that identifies the type of error.
-	ErrorCode *string `type:"string"`
+	ErrorCode *string `min:"1" type:"string"`
 
 	// The message for the error.
-	ErrorMessage *string `type:"string"`
+	ErrorMessage *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1601,7 +1625,7 @@ type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1945,7 +1969,7 @@ type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2001,7 +2025,7 @@ type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2057,7 +2081,7 @@ type ResourceNotSupportedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2113,7 +2137,7 @@ type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2343,7 +2367,7 @@ type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -2399,7 +2423,7 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	Message_ *string `locationName:"Message" type:"string"`
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
 // String returns the string representation

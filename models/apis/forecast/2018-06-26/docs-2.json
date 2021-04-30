@@ -16,6 +16,7 @@
     "DeleteForecastExportJob": "<p>Deletes a forecast export job created using the <a>CreateForecastExportJob</a> operation. You can delete only export jobs that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribeForecastExportJob</a> operation.</p>",
     "DeletePredictor": "<p>Deletes a predictor created using the <a>CreatePredictor</a> operation. You can delete only predictor that have a status of <code>ACTIVE</code> or <code>CREATE_FAILED</code>. To get the status, use the <a>DescribePredictor</a> operation.</p>",
     "DeletePredictorBacktestExportJob": "<p>Deletes a predictor backtest export job.</p>",
+    "DeleteResourceTree": "<p>Deletes an entire resource tree. This operation will delete the parent resource and its child resources.</p> <p>Child resources are resources that were created from another resource. For example, when a forecast is generated from a predictor, the forecast is the child resource and the predictor is the parent resource.</p> <p>Amazon Forecast resources possess the following parent-child resource hierarchies:</p> <ul> <li> <p> <b>Dataset Group</b>: predictors, predictor backtest export jobs, forecasts, forecast export jobs</p> </li> <li> <p> <b>Dataset</b>: dataset import jobs</p> </li> <li> <p> <b>Predictor</b>: predictor backtest export jobs, forecasts, forecast export jobs</p> </li> <li> <p> <b>Forecast</b>: forecast export jobs</p> </li> </ul> <note> <p> <code>DeleteResourceTree</code> will only delete Amazon Forecast resources, and will not delete datasets or exported files stored in Amazon S3. </p> </note>",
     "DescribeDataset": "<p>Describes an Amazon Forecast dataset created using the <a>CreateDataset</a> operation.</p> <p>In addition to listing the parameters specified in the <code>CreateDataset</code> request, this operation includes the following dataset properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
     "DescribeDatasetGroup": "<p>Describes a dataset group created using the <a>CreateDatasetGroup</a> operation.</p> <p>In addition to listing the parameters provided in the <code>CreateDatasetGroup</code> request, this operation includes the following properties:</p> <ul> <li> <p> <code>DatasetArns</code> - The datasets belonging to the group.</p> </li> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
     "DescribeDatasetImportJob": "<p>Describes a dataset import job created using the <a>CreateDatasetImportJob</a> operation.</p> <p>In addition to listing the parameters provided in the <code>CreateDatasetImportJob</code> request, this operation includes the following properties:</p> <ul> <li> <p> <code>CreationTime</code> </p> </li> <li> <p> <code>LastModificationTime</code> </p> </li> <li> <p> <code>DataSize</code> </p> </li> <li> <p> <code>FieldStatistics</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Message</code> - If an error occurred, information about the error.</p> </li> </ul>",
@@ -64,6 +65,7 @@
         "DeleteForecastRequest$ForecastArn": "<p>The Amazon Resource Name (ARN) of the forecast to delete.</p>",
         "DeletePredictorBacktestExportJobRequest$PredictorBacktestExportJobArn": "<p>The Amazon Resource Name (ARN) of the predictor backtest export job to delete.</p>",
         "DeletePredictorRequest$PredictorArn": "<p>The Amazon Resource Name (ARN) of the predictor to delete.</p>",
+        "DeleteResourceTreeRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the parent resource to delete. All child resources of the parent resource will also be deleted.</p>",
         "DescribeDatasetGroupRequest$DatasetGroupArn": "<p>The Amazon Resource Name (ARN) of the dataset group.</p>",
         "DescribeDatasetGroupResponse$DatasetGroupArn": "<p>The ARN of the dataset group.</p>",
         "DescribeDatasetImportJobRequest$DatasetImportJobArn": "<p>The Amazon Resource Name (ARN) of the dataset import job.</p>",
@@ -315,6 +317,11 @@
       }
     },
     "DeletePredictorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourceTreeRequest": {
       "base": null,
       "refs": {
       }
@@ -761,9 +768,9 @@
     "Long": {
       "base": null,
       "refs": {
-        "DescribeDatasetImportJobResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the dataset import job to complete.</p>",
-        "DescribeForecastResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the forecast job to complete.</p>",
-        "DescribePredictorResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time in minutes for the predictor training job to complete.</p>"
+        "DescribeDatasetImportJobResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the dataset import job to complete.</p>",
+        "DescribeForecastResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the forecast job to complete.</p>",
+        "DescribePredictorResponse$EstimatedTimeRemainingInMinutes": "<p>The estimated time remaining in minutes for the predictor training job to complete.</p>"
       }
     },
     "MaxResults": {

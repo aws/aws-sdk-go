@@ -2458,7 +2458,8 @@
       "enum":[
         "Kinetic",
         "Melodic",
-        "Dashing"
+        "Dashing",
+        "Foxy"
       ]
     },
     "RobotStatus":{
@@ -2748,7 +2749,7 @@
       "type":"string",
       "max":1024,
       "min":0,
-      "pattern":"7|9|Kinetic|Melodic|Dashing"
+      "pattern":"7|9|11|Kinetic|Melodic|Dashing|Foxy"
     },
     "SimulationTimeMillis":{"type":"long"},
     "SimulationUnit":{

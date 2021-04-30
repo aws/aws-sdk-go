@@ -1,3 +1,18 @@
+Release v1.38.30 (2021-04-30)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront now supports CloudFront Functions, a native feature of CloudFront that enables you to write lightweight functions in JavaScript for high-scale, latency-sensitive CDN customizations.
+* `service/customer-profiles`: Updates service API and documentation
+* `service/forecast`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+* `service/personalize`: Updates service documentation
+* `service/robomaker`: Updates service API
+
+### SDK Enhancements
+* `private/protocol/xml/xmlutil`: XML encoding has been updated to include encoding line feed character. ([#3881](https://github.com/aws/aws-sdk-go/pull/3881))
+
 Release v1.38.29 (2021-04-29)
 ===
 

@@ -123,7 +123,7 @@
     "AccessDeniedException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":403},
       "exception":true,
@@ -171,8 +171,15 @@
       "members":{
         "ChangeType":{"shape":"ChangeType"},
         "Entity":{"shape":"Entity"},
-        "Details":{"shape":"Json"}
+        "Details":{"shape":"Json"},
+        "ChangeName":{"shape":"ChangeName"}
       }
+    },
+    "ChangeName":{
+      "type":"string",
+      "max":72,
+      "min":1,
+      "pattern":"^[a-zA-Z]$"
     },
     "ChangeSetDescription":{
       "type":"list",
@@ -217,7 +224,8 @@
         "ChangeType":{"shape":"ChangeType"},
         "Entity":{"shape":"Entity"},
         "Details":{"shape":"Json"},
-        "ErrorDetailList":{"shape":"ErrorDetailList"}
+        "ErrorDetailList":{"shape":"ErrorDetailList"},
+        "ChangeName":{"shape":"ChangeName"}
       }
     },
     "ChangeType":{
@@ -267,7 +275,7 @@
         "EndTime":{"shape":"DateTimeISO8601"},
         "Status":{"shape":"ChangeStatus"},
         "FailureCode":{"shape":"FailureCode"},
-        "FailureDescription":{"shape":"StringValue"},
+        "FailureDescription":{"shape":"ExceptionMessageContent"},
         "ChangeSet":{"shape":"ChangeSetDescription"}
       }
     },
@@ -296,7 +304,7 @@
         "EntityType":{"shape":"EntityType"},
         "EntityIdentifier":{"shape":"Identifier"},
         "EntityArn":{"shape":"ARN"},
-        "LastModifiedDate":{"shape":"StringValue"},
+        "LastModifiedDate":{"shape":"DateTimeISO8601"},
         "Details":{"shape":"Json"}
       }
     },
@@ -308,15 +316,21 @@
         "Identifier":{"shape":"Identifier"}
       }
     },
+    "EntityNameString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^\\\\S+[\\\\S\\\\s]*"
+    },
     "EntitySummary":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"StringValue"},
+        "Name":{"shape":"EntityNameString"},
         "EntityType":{"shape":"EntityType"},
         "EntityId":{"shape":"ResourceId"},
         "EntityArn":{"shape":"ARN"},
-        "LastModifiedDate":{"shape":"StringValue"},
-        "Visibility":{"shape":"StringValue"}
+        "LastModifiedDate":{"shape":"DateTimeISO8601"},
+        "Visibility":{"shape":"VisibilityValue"}
       }
     },
     "EntitySummaryList":{
@@ -329,16 +343,28 @@
       "min":1,
       "pattern":"^[a-zA-Z]+$"
     },
+    "ErrorCodeString":{
+      "type":"string",
+      "max":72,
+      "min":1,
+      "pattern":"^[a-zA-Z_]+$"
+    },
     "ErrorDetail":{
       "type":"structure",
       "members":{
-        "ErrorCode":{"shape":"StringValue"},
-        "ErrorMessage":{"shape":"StringValue"}
+        "ErrorCode":{"shape":"ErrorCodeString"},
+        "ErrorMessage":{"shape":"ExceptionMessageContent"}
       }
     },
     "ErrorDetailList":{
       "type":"list",
       "member":{"shape":"ErrorDetail"}
+    },
+    "ExceptionMessageContent":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(.)+$"
     },
     "FailureCode":{
       "type":"string",
@@ -366,6 +392,12 @@
       "min":1,
       "pattern":"^[a-zA-Z]+$"
     },
+    "FilterValueContent":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(.)+$"
+    },
     "Identifier":{
       "type":"string",
       "max":255,
@@ -375,7 +407,7 @@
     "InternalServiceException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":500},
       "exception":true,
@@ -458,7 +490,7 @@
     "ResourceInUseException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":423},
       "exception":true,
@@ -467,7 +499,7 @@
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":404},
       "exception":true,
@@ -476,7 +508,7 @@
     "ResourceNotSupportedException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":415},
       "exception":true,
@@ -485,7 +517,7 @@
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":402},
       "exception":true,
@@ -531,11 +563,10 @@
         "ChangeSetArn":{"shape":"ARN"}
       }
     },
-    "StringValue":{"type":"string"},
     "ThrottlingException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":429},
       "exception":true,
@@ -544,7 +575,7 @@
     "ValidationException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"StringValue"}
+        "Message":{"shape":"ExceptionMessageContent"}
       },
       "error":{"httpStatusCode":422},
       "exception":true,
@@ -552,9 +583,15 @@
     },
     "ValueList":{
       "type":"list",
-      "member":{"shape":"StringValue"},
+      "member":{"shape":"FilterValueContent"},
       "max":10,
       "min":1
+    },
+    "VisibilityValue":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z]+$"
     }
   }
 }

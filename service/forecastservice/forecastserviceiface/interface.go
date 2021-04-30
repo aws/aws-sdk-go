@@ -116,6 +116,10 @@ type ForecastServiceAPI interface {
 	DeletePredictorBacktestExportJobWithContext(aws.Context, *forecastservice.DeletePredictorBacktestExportJobInput, ...request.Option) (*forecastservice.DeletePredictorBacktestExportJobOutput, error)
 	DeletePredictorBacktestExportJobRequest(*forecastservice.DeletePredictorBacktestExportJobInput) (*request.Request, *forecastservice.DeletePredictorBacktestExportJobOutput)
 
+	DeleteResourceTree(*forecastservice.DeleteResourceTreeInput) (*forecastservice.DeleteResourceTreeOutput, error)
+	DeleteResourceTreeWithContext(aws.Context, *forecastservice.DeleteResourceTreeInput, ...request.Option) (*forecastservice.DeleteResourceTreeOutput, error)
+	DeleteResourceTreeRequest(*forecastservice.DeleteResourceTreeInput) (*request.Request, *forecastservice.DeleteResourceTreeOutput)
+
 	DescribeDataset(*forecastservice.DescribeDatasetInput) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetWithContext(aws.Context, *forecastservice.DescribeDatasetInput, ...request.Option) (*forecastservice.DescribeDatasetOutput, error)
 	DescribeDatasetRequest(*forecastservice.DescribeDatasetInput) (*request.Request, *forecastservice.DescribeDatasetOutput)
