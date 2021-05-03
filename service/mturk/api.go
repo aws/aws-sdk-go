@@ -1274,8 +1274,12 @@ func (c *MTurk) GetAccountBalanceRequest(input *GetAccountBalanceInput) (req *re
 
 // GetAccountBalance API operation for Amazon Mechanical Turk.
 //
-// The GetAccountBalance operation retrieves the amount of money in your Amazon
-// Mechanical Turk account.
+// The GetAccountBalance operation retrieves the Prepaid HITs balance in your
+// Amazon Mechanical Turk account if you are a Prepaid Requester. Alternatively,
+// this operation will retrieve the remaining available AWS Billing usage if
+// you have enabled AWS Billing. Note: If you have enabled AWS Billing and still
+// have a remaining Prepaid HITs balance, this balance can be viewed on the
+// My Account page in the Requester console.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

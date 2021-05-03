@@ -169,6 +169,13 @@ func (c *SecurityHub) AcceptInvitationRequest(input *AcceptInvitationInput) (req
 //
 // This method is deprecated. Instead, use AcceptAdministratorInvitation.
 //
+// The Security Hub console continues to use AcceptInvitation. It will eventually
+// change to use AcceptAdministratorInvitation. Any IAM policies that specifically
+// control access to this function must continue to use AcceptInvitation. You
+// should also add AcceptAdministratorInvitation to your policies to ensure
+// that the correct permissions are in place after the console begins to use
+// AcceptAdministratorInvitation.
+//
 // Accepts the invitation to be a member account and be monitored by the Security
 // Hub administrator account that the invitation was sent from.
 //
@@ -2737,6 +2744,13 @@ func (c *SecurityHub) DisassociateFromMasterAccountRequest(input *DisassociateFr
 //
 // This method is deprecated. Instead, use DisassociateFromAdministratorAccount.
 //
+// The Security Hub console continues to use DisassociateFromMasterAccount.
+// It will eventually change to use DisassociateFromAdministratorAccount. Any
+// IAM policies that specifically control access to this function must continue
+// to use DisassociateFromMasterAccount. You should also add DisassociateFromAdministratorAccount
+// to your policies to ensure that the correct permissions are in place after
+// the console begins to use DisassociateFromAdministratorAccount.
+//
 // Disassociates the current Security Hub member account from the associated
 // administrator account.
 //
@@ -4010,6 +4024,12 @@ func (c *SecurityHub) GetMasterAccountRequest(input *GetMasterAccountInput) (req
 // GetMasterAccount API operation for AWS SecurityHub.
 //
 // This method is deprecated. Instead, use GetAdministratorAccount.
+//
+// The Security Hub console continues to use GetMasterAccount. It will eventually
+// change to use GetAdministratorAccount. Any IAM policies that specifically
+// control access to this function must continue to use GetMasterAccount. You
+// should also add GetAdministratorAccount to your policies to ensure that the
+// correct permissions are in place after the console begins to use GetAdministratorAccount.
 //
 // Provides the details for the Security Hub administrator account for the current
 // member account.
@@ -6700,7 +6720,7 @@ func (s *AwsApiGatewayMethodSettings) SetUnauthorizedCacheControlHeaderStrategy(
 	return s
 }
 
-// contains information about a REST API in version 1 of Amazon API Gateway.
+// Contains information about a REST API in version 1 of Amazon API Gateway.
 type AwsApiGatewayRestApiDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -9998,6 +10018,208 @@ func (s *AwsEc2InstanceDetails) SetVpcId(v string) *AwsEc2InstanceDetails {
 	return s
 }
 
+// An association between the network ACL and a subnet.
+type AwsEc2NetworkAclAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the association between the network ACL and the subnet.
+	NetworkAclAssociationId *string `type:"string"`
+
+	// The identifier of the network ACL.
+	NetworkAclId *string `type:"string"`
+
+	// The identifier of the subnet that is associated with the network ACL.
+	SubnetId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2NetworkAclAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2NetworkAclAssociation) GoString() string {
+	return s.String()
+}
+
+// SetNetworkAclAssociationId sets the NetworkAclAssociationId field's value.
+func (s *AwsEc2NetworkAclAssociation) SetNetworkAclAssociationId(v string) *AwsEc2NetworkAclAssociation {
+	s.NetworkAclAssociationId = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *AwsEc2NetworkAclAssociation) SetNetworkAclId(v string) *AwsEc2NetworkAclAssociation {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AwsEc2NetworkAclAssociation) SetSubnetId(v string) *AwsEc2NetworkAclAssociation {
+	s.SubnetId = &v
+	return s
+}
+
+// Contains details about an EC2 network access control list (ACL).
+type AwsEc2NetworkAclDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Associations between the network ACL and subnets.
+	Associations []*AwsEc2NetworkAclAssociation `type:"list"`
+
+	// The set of rules in the network ACL.
+	Entries []*AwsEc2NetworkAclEntry `type:"list"`
+
+	// Whether this is the default network ACL for the VPC.
+	IsDefault *bool `type:"boolean"`
+
+	// The identifier of the network ACL.
+	NetworkAclId *string `type:"string"`
+
+	// The identifier of the AWS account that owns the network ACL.
+	OwnerId *string `type:"string"`
+
+	// The identifier of the VPC for the network ACL.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2NetworkAclDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2NetworkAclDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssociations sets the Associations field's value.
+func (s *AwsEc2NetworkAclDetails) SetAssociations(v []*AwsEc2NetworkAclAssociation) *AwsEc2NetworkAclDetails {
+	s.Associations = v
+	return s
+}
+
+// SetEntries sets the Entries field's value.
+func (s *AwsEc2NetworkAclDetails) SetEntries(v []*AwsEc2NetworkAclEntry) *AwsEc2NetworkAclDetails {
+	s.Entries = v
+	return s
+}
+
+// SetIsDefault sets the IsDefault field's value.
+func (s *AwsEc2NetworkAclDetails) SetIsDefault(v bool) *AwsEc2NetworkAclDetails {
+	s.IsDefault = &v
+	return s
+}
+
+// SetNetworkAclId sets the NetworkAclId field's value.
+func (s *AwsEc2NetworkAclDetails) SetNetworkAclId(v string) *AwsEc2NetworkAclDetails {
+	s.NetworkAclId = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *AwsEc2NetworkAclDetails) SetOwnerId(v string) *AwsEc2NetworkAclDetails {
+	s.OwnerId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsEc2NetworkAclDetails) SetVpcId(v string) *AwsEc2NetworkAclDetails {
+	s.VpcId = &v
+	return s
+}
+
+// A rule for the network ACL. Each rule allows or denies access based on the
+// IP address, traffic direction, port, and protocol.
+type AwsEc2NetworkAclEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The IPV4 network range for which to deny or allow access.
+	CidrBlock *string `type:"string"`
+
+	// Whether the rule is an egress rule. An egress rule is a rule that applies
+	// to traffic that leaves the subnet.
+	Egress *bool `type:"boolean"`
+
+	// The Internet Control Message Protocol (ICMP) type and code for which to deny
+	// or allow access.
+	IcmpTypeCode *IcmpTypeCode `type:"structure"`
+
+	// The IPV6 network range for which to deny or allow access.
+	Ipv6CidrBlock *string `type:"string"`
+
+	// For TCP or UDP protocols, the range of ports that the rule applies to.
+	PortRange *PortRangeFromTo `type:"structure"`
+
+	// The protocol that the rule applies to. To deny or allow access to all protocols,
+	// use the value -1.
+	Protocol *string `type:"string"`
+
+	// Whether the rule is used to allow access or deny access.
+	RuleAction *string `type:"string"`
+
+	// The rule number. The rules are processed in order by their number.
+	RuleNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEc2NetworkAclEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2NetworkAclEntry) GoString() string {
+	return s.String()
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *AwsEc2NetworkAclEntry) SetCidrBlock(v string) *AwsEc2NetworkAclEntry {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetEgress sets the Egress field's value.
+func (s *AwsEc2NetworkAclEntry) SetEgress(v bool) *AwsEc2NetworkAclEntry {
+	s.Egress = &v
+	return s
+}
+
+// SetIcmpTypeCode sets the IcmpTypeCode field's value.
+func (s *AwsEc2NetworkAclEntry) SetIcmpTypeCode(v *IcmpTypeCode) *AwsEc2NetworkAclEntry {
+	s.IcmpTypeCode = v
+	return s
+}
+
+// SetIpv6CidrBlock sets the Ipv6CidrBlock field's value.
+func (s *AwsEc2NetworkAclEntry) SetIpv6CidrBlock(v string) *AwsEc2NetworkAclEntry {
+	s.Ipv6CidrBlock = &v
+	return s
+}
+
+// SetPortRange sets the PortRange field's value.
+func (s *AwsEc2NetworkAclEntry) SetPortRange(v *PortRangeFromTo) *AwsEc2NetworkAclEntry {
+	s.PortRange = v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *AwsEc2NetworkAclEntry) SetProtocol(v string) *AwsEc2NetworkAclEntry {
+	s.Protocol = &v
+	return s
+}
+
+// SetRuleAction sets the RuleAction field's value.
+func (s *AwsEc2NetworkAclEntry) SetRuleAction(v string) *AwsEc2NetworkAclEntry {
+	s.RuleAction = &v
+	return s
+}
+
+// SetRuleNumber sets the RuleNumber field's value.
+func (s *AwsEc2NetworkAclEntry) SetRuleNumber(v int64) *AwsEc2NetworkAclEntry {
+	s.RuleNumber = &v
+	return s
+}
+
 // Information about the network interface attachment.
 type AwsEc2NetworkInterfaceAttachment struct {
 	_ struct{} `type:"structure"`
@@ -10581,6 +10803,140 @@ func (s *AwsEc2SecurityGroupUserIdGroupPair) SetVpcPeeringConnectionId(v string)
 	return s
 }
 
+// Contains information about a subnet in EC2.
+type AwsEc2SubnetDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to assign an IPV6 address to a network interface that is created
+	// in this subnet.
+	AssignIpv6AddressOnCreation *bool `type:"boolean"`
+
+	// The Availability Zone for the subnet.
+	AvailabilityZone *string `type:"string"`
+
+	// The identifier of the Availability Zone for the subnet.
+	AvailabilityZoneId *string `type:"string"`
+
+	// The number of available IPV4 addresses in the subnet. Does not include addresses
+	// for stopped instances.
+	AvailableIpAddressCount *int64 `type:"integer"`
+
+	// The IPV4 CIDR block that is assigned to the subnet.
+	CidrBlock *string `type:"string"`
+
+	// Whether this subnet is the default subnet for the Availability Zone.
+	DefaultForAz *bool `type:"boolean"`
+
+	// The IPV6 CIDR blocks that are associated with the subnet.
+	Ipv6CidrBlockAssociationSet []*Ipv6CidrBlockAssociation `type:"list"`
+
+	// Whether instances in this subnet receive a public IP address.
+	MapPublicIpOnLaunch *bool `type:"boolean"`
+
+	// The identifier of the AWS account that owns the subnet.
+	OwnerId *string `type:"string"`
+
+	// The current state of the subnet.
+	State *string `type:"string"`
+
+	// The ARN of the subnet.
+	SubnetArn *string `type:"string"`
+
+	// The identifier of the subnet.
+	SubnetId *string `type:"string"`
+
+	// The identifier of the VPC that contains the subnet.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2SubnetDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2SubnetDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssignIpv6AddressOnCreation sets the AssignIpv6AddressOnCreation field's value.
+func (s *AwsEc2SubnetDetails) SetAssignIpv6AddressOnCreation(v bool) *AwsEc2SubnetDetails {
+	s.AssignIpv6AddressOnCreation = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AwsEc2SubnetDetails) SetAvailabilityZone(v string) *AwsEc2SubnetDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetAvailabilityZoneId sets the AvailabilityZoneId field's value.
+func (s *AwsEc2SubnetDetails) SetAvailabilityZoneId(v string) *AwsEc2SubnetDetails {
+	s.AvailabilityZoneId = &v
+	return s
+}
+
+// SetAvailableIpAddressCount sets the AvailableIpAddressCount field's value.
+func (s *AwsEc2SubnetDetails) SetAvailableIpAddressCount(v int64) *AwsEc2SubnetDetails {
+	s.AvailableIpAddressCount = &v
+	return s
+}
+
+// SetCidrBlock sets the CidrBlock field's value.
+func (s *AwsEc2SubnetDetails) SetCidrBlock(v string) *AwsEc2SubnetDetails {
+	s.CidrBlock = &v
+	return s
+}
+
+// SetDefaultForAz sets the DefaultForAz field's value.
+func (s *AwsEc2SubnetDetails) SetDefaultForAz(v bool) *AwsEc2SubnetDetails {
+	s.DefaultForAz = &v
+	return s
+}
+
+// SetIpv6CidrBlockAssociationSet sets the Ipv6CidrBlockAssociationSet field's value.
+func (s *AwsEc2SubnetDetails) SetIpv6CidrBlockAssociationSet(v []*Ipv6CidrBlockAssociation) *AwsEc2SubnetDetails {
+	s.Ipv6CidrBlockAssociationSet = v
+	return s
+}
+
+// SetMapPublicIpOnLaunch sets the MapPublicIpOnLaunch field's value.
+func (s *AwsEc2SubnetDetails) SetMapPublicIpOnLaunch(v bool) *AwsEc2SubnetDetails {
+	s.MapPublicIpOnLaunch = &v
+	return s
+}
+
+// SetOwnerId sets the OwnerId field's value.
+func (s *AwsEc2SubnetDetails) SetOwnerId(v string) *AwsEc2SubnetDetails {
+	s.OwnerId = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AwsEc2SubnetDetails) SetState(v string) *AwsEc2SubnetDetails {
+	s.State = &v
+	return s
+}
+
+// SetSubnetArn sets the SubnetArn field's value.
+func (s *AwsEc2SubnetDetails) SetSubnetArn(v string) *AwsEc2SubnetDetails {
+	s.SubnetArn = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *AwsEc2SubnetDetails) SetSubnetId(v string) *AwsEc2SubnetDetails {
+	s.SubnetId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsEc2SubnetDetails) SetVpcId(v string) *AwsEc2SubnetDetails {
+	s.VpcId = &v
+	return s
+}
+
 // An attachment to an AWS EC2 volume.
 type AwsEc2VolumeAttachment struct {
 	_ struct{} `type:"structure"`
@@ -10765,6 +11121,293 @@ func (s *AwsEc2VpcDetails) SetIpv6CidrBlockAssociationSet(v []*Ipv6CidrBlockAsso
 // SetState sets the State field's value.
 func (s *AwsEc2VpcDetails) SetState(v string) *AwsEc2VpcDetails {
 	s.State = &v
+	return s
+}
+
+// Contains details about an Elastic Beanstalk environment.
+type AwsElasticBeanstalkEnvironmentDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application that is associated with the environment.
+	ApplicationName *string `type:"string"`
+
+	// The URL to the CNAME for this environment.
+	Cname *string `type:"string"`
+
+	// The creation date for this environment.
+	DateCreated *string `type:"string"`
+
+	// The date when this environment was last modified.
+	DateUpdated *string `type:"string"`
+
+	// A description of the environment.
+	Description *string `type:"string"`
+
+	// For load-balanced, autoscaling environments, the URL to the load balancer.
+	// For single-instance environments, the IP address of the instance.
+	EndpointUrl *string `type:"string"`
+
+	// The ARN of the environment.
+	EnvironmentArn *string `type:"string"`
+
+	// The identifier of the environment.
+	EnvironmentId *string `type:"string"`
+
+	// Links to other environments in the same group.
+	EnvironmentLinks []*AwsElasticBeanstalkEnvironmentEnvironmentLink `type:"list"`
+
+	// The name of the environment.
+	EnvironmentName *string `type:"string"`
+
+	// The configuration setting for the environment.
+	OptionSettings []*AwsElasticBeanstalkEnvironmentOptionSetting `type:"list"`
+
+	// The ARN of the platform version for the environment.
+	PlatformArn *string `type:"string"`
+
+	// The name of the solution stack that is deployed with the environment.
+	SolutionStackName *string `type:"string"`
+
+	// The current operational status of the environment.
+	Status *string `type:"string"`
+
+	// The tier of the environment.
+	Tier *AwsElasticBeanstalkEnvironmentTier `type:"structure"`
+
+	// The application version of the environment.
+	VersionLabel *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElasticBeanstalkEnvironmentDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticBeanstalkEnvironmentDetails) GoString() string {
+	return s.String()
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetApplicationName(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCname sets the Cname field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetCname(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.Cname = &v
+	return s
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetDateCreated(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateUpdated sets the DateUpdated field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetDateUpdated(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.DateUpdated = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetDescription(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.Description = &v
+	return s
+}
+
+// SetEndpointUrl sets the EndpointUrl field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetEndpointUrl(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.EndpointUrl = &v
+	return s
+}
+
+// SetEnvironmentArn sets the EnvironmentArn field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetEnvironmentArn(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.EnvironmentArn = &v
+	return s
+}
+
+// SetEnvironmentId sets the EnvironmentId field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetEnvironmentId(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.EnvironmentId = &v
+	return s
+}
+
+// SetEnvironmentLinks sets the EnvironmentLinks field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetEnvironmentLinks(v []*AwsElasticBeanstalkEnvironmentEnvironmentLink) *AwsElasticBeanstalkEnvironmentDetails {
+	s.EnvironmentLinks = v
+	return s
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetEnvironmentName(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetOptionSettings sets the OptionSettings field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetOptionSettings(v []*AwsElasticBeanstalkEnvironmentOptionSetting) *AwsElasticBeanstalkEnvironmentDetails {
+	s.OptionSettings = v
+	return s
+}
+
+// SetPlatformArn sets the PlatformArn field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetPlatformArn(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.PlatformArn = &v
+	return s
+}
+
+// SetSolutionStackName sets the SolutionStackName field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetSolutionStackName(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.SolutionStackName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetStatus(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTier sets the Tier field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetTier(v *AwsElasticBeanstalkEnvironmentTier) *AwsElasticBeanstalkEnvironmentDetails {
+	s.Tier = v
+	return s
+}
+
+// SetVersionLabel sets the VersionLabel field's value.
+func (s *AwsElasticBeanstalkEnvironmentDetails) SetVersionLabel(v string) *AwsElasticBeanstalkEnvironmentDetails {
+	s.VersionLabel = &v
+	return s
+}
+
+// Contains information about a link to another environment that is in the same
+// group.
+type AwsElasticBeanstalkEnvironmentEnvironmentLink struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the linked environment.
+	EnvironmentName *string `type:"string"`
+
+	// The name of the environment link.
+	LinkName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElasticBeanstalkEnvironmentEnvironmentLink) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticBeanstalkEnvironmentEnvironmentLink) GoString() string {
+	return s.String()
+}
+
+// SetEnvironmentName sets the EnvironmentName field's value.
+func (s *AwsElasticBeanstalkEnvironmentEnvironmentLink) SetEnvironmentName(v string) *AwsElasticBeanstalkEnvironmentEnvironmentLink {
+	s.EnvironmentName = &v
+	return s
+}
+
+// SetLinkName sets the LinkName field's value.
+func (s *AwsElasticBeanstalkEnvironmentEnvironmentLink) SetLinkName(v string) *AwsElasticBeanstalkEnvironmentEnvironmentLink {
+	s.LinkName = &v
+	return s
+}
+
+// A configuration option setting for the environment.
+type AwsElasticBeanstalkEnvironmentOptionSetting struct {
+	_ struct{} `type:"structure"`
+
+	// The type of resource that the configuration option is associated with.
+	Namespace *string `type:"string"`
+
+	// The name of the option.
+	OptionName *string `type:"string"`
+
+	// The name of the resource.
+	ResourceName *string `type:"string"`
+
+	// The value of the configuration setting.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElasticBeanstalkEnvironmentOptionSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticBeanstalkEnvironmentOptionSetting) GoString() string {
+	return s.String()
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *AwsElasticBeanstalkEnvironmentOptionSetting) SetNamespace(v string) *AwsElasticBeanstalkEnvironmentOptionSetting {
+	s.Namespace = &v
+	return s
+}
+
+// SetOptionName sets the OptionName field's value.
+func (s *AwsElasticBeanstalkEnvironmentOptionSetting) SetOptionName(v string) *AwsElasticBeanstalkEnvironmentOptionSetting {
+	s.OptionName = &v
+	return s
+}
+
+// SetResourceName sets the ResourceName field's value.
+func (s *AwsElasticBeanstalkEnvironmentOptionSetting) SetResourceName(v string) *AwsElasticBeanstalkEnvironmentOptionSetting {
+	s.ResourceName = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsElasticBeanstalkEnvironmentOptionSetting) SetValue(v string) *AwsElasticBeanstalkEnvironmentOptionSetting {
+	s.Value = &v
+	return s
+}
+
+// Contains information about the tier of the environment.
+type AwsElasticBeanstalkEnvironmentTier struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the environment tier.
+	Name *string `type:"string"`
+
+	// The type of environment tier.
+	Type *string `type:"string"`
+
+	// The version of the environment tier.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElasticBeanstalkEnvironmentTier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticBeanstalkEnvironmentTier) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsElasticBeanstalkEnvironmentTier) SetName(v string) *AwsElasticBeanstalkEnvironmentTier {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsElasticBeanstalkEnvironmentTier) SetType(v string) *AwsElasticBeanstalkEnvironmentTier {
+	s.Type = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsElasticBeanstalkEnvironmentTier) SetVersion(v string) *AwsElasticBeanstalkEnvironmentTier {
+	s.Version = &v
 	return s
 }
 
@@ -22610,6 +23253,41 @@ func (s *GetMembersOutput) SetUnprocessedAccounts(v []*Result) *GetMembersOutput
 	return s
 }
 
+// An Internet Control Message Protocol (ICMP) type and code.
+type IcmpTypeCode struct {
+	_ struct{} `type:"structure"`
+
+	// The ICMP code for which to deny or allow access. To deny or allow all codes,
+	// use the value -1.
+	Code *int64 `type:"integer"`
+
+	// The ICMP type for which to deny or allow access. To deny or allow all types,
+	// use the value -1.
+	Type *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s IcmpTypeCode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IcmpTypeCode) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *IcmpTypeCode) SetCode(v int64) *IcmpTypeCode {
+	s.Code = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *IcmpTypeCode) SetType(v int64) *IcmpTypeCode {
+	s.Type = &v
+	return s
+}
+
 // The list of the findings that cannot be imported. For each finding, the list
 // provides the error.
 type ImportFindingsError struct {
@@ -24841,6 +25519,39 @@ func (s *PortRange) SetEnd(v int64) *PortRange {
 	return s
 }
 
+// A range of ports.
+type PortRangeFromTo struct {
+	_ struct{} `type:"structure"`
+
+	// The first port in the port range.
+	From *int64 `type:"integer"`
+
+	// The last port in the port range.
+	To *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s PortRangeFromTo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortRangeFromTo) GoString() string {
+	return s.String()
+}
+
+// SetFrom sets the From field's value.
+func (s *PortRangeFromTo) SetFrom(v int64) *PortRangeFromTo {
+	s.From = &v
+	return s
+}
+
+// SetTo sets the To field's value.
+func (s *PortRangeFromTo) SetTo(v int64) *PortRangeFromTo {
+	s.To = &v
+	return s
+}
+
 // The details of process-related information about a finding.
 type ProcessDetails struct {
 	_ struct{} `type:"structure"`
@@ -25453,17 +26164,26 @@ type ResourceDetails struct {
 	// Details about an Amazon EC2 instance related to a finding.
 	AwsEc2Instance *AwsEc2InstanceDetails `type:"structure"`
 
+	// Details about an EC2 network access control list (ACL).
+	AwsEc2NetworkAcl *AwsEc2NetworkAclDetails `type:"structure"`
+
 	// Details for an Amazon EC2 network interface.
 	AwsEc2NetworkInterface *AwsEc2NetworkInterfaceDetails `type:"structure"`
 
 	// Details for an EC2 security group.
 	AwsEc2SecurityGroup *AwsEc2SecurityGroupDetails `type:"structure"`
 
+	// Details about a subnet in EC2.
+	AwsEc2Subnet *AwsEc2SubnetDetails `type:"structure"`
+
 	// Details for an EC2 volume.
 	AwsEc2Volume *AwsEc2VolumeDetails `type:"structure"`
 
 	// Details for an EC2 VPC.
 	AwsEc2Vpc *AwsEc2VpcDetails `type:"structure"`
+
+	// Details about an Elastic Beanstalk environment.
+	AwsElasticBeanstalkEnvironment *AwsElasticBeanstalkEnvironmentDetails `type:"structure"`
 
 	// Details for an Elasticsearch domain.
 	AwsElasticsearchDomain *AwsElasticsearchDomainDetails `type:"structure"`
@@ -25651,6 +26371,12 @@ func (s *ResourceDetails) SetAwsEc2Instance(v *AwsEc2InstanceDetails) *ResourceD
 	return s
 }
 
+// SetAwsEc2NetworkAcl sets the AwsEc2NetworkAcl field's value.
+func (s *ResourceDetails) SetAwsEc2NetworkAcl(v *AwsEc2NetworkAclDetails) *ResourceDetails {
+	s.AwsEc2NetworkAcl = v
+	return s
+}
+
 // SetAwsEc2NetworkInterface sets the AwsEc2NetworkInterface field's value.
 func (s *ResourceDetails) SetAwsEc2NetworkInterface(v *AwsEc2NetworkInterfaceDetails) *ResourceDetails {
 	s.AwsEc2NetworkInterface = v
@@ -25663,6 +26389,12 @@ func (s *ResourceDetails) SetAwsEc2SecurityGroup(v *AwsEc2SecurityGroupDetails) 
 	return s
 }
 
+// SetAwsEc2Subnet sets the AwsEc2Subnet field's value.
+func (s *ResourceDetails) SetAwsEc2Subnet(v *AwsEc2SubnetDetails) *ResourceDetails {
+	s.AwsEc2Subnet = v
+	return s
+}
+
 // SetAwsEc2Volume sets the AwsEc2Volume field's value.
 func (s *ResourceDetails) SetAwsEc2Volume(v *AwsEc2VolumeDetails) *ResourceDetails {
 	s.AwsEc2Volume = v
@@ -25672,6 +26404,12 @@ func (s *ResourceDetails) SetAwsEc2Volume(v *AwsEc2VolumeDetails) *ResourceDetai
 // SetAwsEc2Vpc sets the AwsEc2Vpc field's value.
 func (s *ResourceDetails) SetAwsEc2Vpc(v *AwsEc2VpcDetails) *ResourceDetails {
 	s.AwsEc2Vpc = v
+	return s
+}
+
+// SetAwsElasticBeanstalkEnvironment sets the AwsElasticBeanstalkEnvironment field's value.
+func (s *ResourceDetails) SetAwsElasticBeanstalkEnvironment(v *AwsElasticBeanstalkEnvironmentDetails) *ResourceDetails {
+	s.AwsElasticBeanstalkEnvironment = v
 	return s
 }
 

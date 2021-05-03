@@ -3,7 +3,7 @@
   "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the administrator account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>BatchEnableStandards</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p> <code> <a>UpdateStandardsControl</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
   "operations": {
     "AcceptAdministratorInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
-    "AcceptInvitation": "<p>This method is deprecated. Instead, use <code>AcceptAdministratorInvitation</code>.</p> <p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
+    "AcceptInvitation": "<p>This method is deprecated. Instead, use <code>AcceptAdministratorInvitation</code>.</p> <p>The Security Hub console continues to use <code>AcceptInvitation</code>. It will eventually change to use <code>AcceptAdministratorInvitation</code>. Any IAM policies that specifically control access to this function must continue to use <code>AcceptInvitation</code>. You should also add <code>AcceptAdministratorInvitation</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>AcceptAdministratorInvitation</code>.</p> <p>Accepts the invitation to be a member account and be monitored by the Security Hub administrator account that the invitation was sent from.</p> <p>This operation is only used by member accounts that are not added through Organizations.</p> <p>When the member account accepts the invitation, permission is granted to the administrator account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchImportFindings": "<p>Imports security findings generated from an integrated product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Finding providers also should not use <code>BatchImportFindings</code> to update the following attributes.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> </ul> <p>Instead, finding providers use <code>FindingProviderFields</code> to provide values for these attributes.</p>",
@@ -26,7 +26,7 @@
     "DisableOrganizationAdminAccount": "<p>Disables a Security Hub administrator account. Can only be called by the organization management account.</p>",
     "DisableSecurityHub": "<p>Disables Security Hub in your account only in the current Region. To disable Security Hub in all Regions, you must submit one request per Region where you have enabled Security Hub.</p> <p>When you disable Security Hub for an administrator account, it doesn't disable Security Hub for any associated member accounts.</p> <p>When you disable Security Hub, your existing findings and insights and any Security Hub configuration settings are deleted after 90 days and cannot be recovered. Any standards that were enabled are disabled, and your administrator and member account associations are removed.</p> <p>If you want to save your existing findings, you must export them before you disable Security Hub.</p>",
     "DisassociateFromAdministratorAccount": "<p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
-    "DisassociateFromMasterAccount": "<p>This method is deprecated. Instead, use <code>DisassociateFromAdministratorAccount</code>.</p> <p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
+    "DisassociateFromMasterAccount": "<p>This method is deprecated. Instead, use <code>DisassociateFromAdministratorAccount</code>.</p> <p>The Security Hub console continues to use <code>DisassociateFromMasterAccount</code>. It will eventually change to use <code>DisassociateFromAdministratorAccount</code>. Any IAM policies that specifically control access to this function must continue to use <code>DisassociateFromMasterAccount</code>. You should also add <code>DisassociateFromAdministratorAccount</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>DisassociateFromAdministratorAccount</code>.</p> <p>Disassociates the current Security Hub member account from the associated administrator account.</p> <p>This operation is only used by accounts that are not part of an organization. For organization accounts, only the administrator account can disassociate a member account.</p>",
     "DisassociateMembers": "<p>Disassociates the specified member accounts from the associated administrator account.</p> <p>Can be used to disassociate both accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "EnableImportFindingsForProduct": "<p>Enables the integration of a partner product with Security Hub. Integrated products send findings to Security Hub.</p> <p>When you enable a product integration, a permissions policy that grants permission for the product to send findings to Security Hub is applied.</p>",
     "EnableOrganizationAdminAccount": "<p>Designates the Security Hub administrator account for an organization. Can only be called by the organization management account.</p>",
@@ -37,7 +37,7 @@
     "GetInsightResults": "<p>Lists the results of the Security Hub insight specified by the insight ARN.</p>",
     "GetInsights": "<p>Lists and describes insights for the specified insight ARNs.</p>",
     "GetInvitationsCount": "<p>Returns the count of all Security Hub membership invitations that were sent to the current member account, not including the currently accepted invitation. </p>",
-    "GetMasterAccount": "<p>This method is deprecated. Instead, use <code>GetAdministratorAccount</code>.</p> <p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
+    "GetMasterAccount": "<p>This method is deprecated. Instead, use <code>GetAdministratorAccount</code>.</p> <p>The Security Hub console continues to use <code>GetMasterAccount</code>. It will eventually change to use <code>GetAdministratorAccount</code>. Any IAM policies that specifically control access to this function must continue to use <code>GetMasterAccount</code>. You should also add <code>GetAdministratorAccount</code> to your policies to ensure that the correct permissions are in place after the console begins to use <code>GetAdministratorAccount</code>.</p> <p>Provides the details for the Security Hub administrator account for the current member account.</p> <p>Can be used by both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "GetMembers": "<p>Returns the details for the Security Hub member accounts for the specified account IDs.</p> <p>An administrator account can be either the delegated Security Hub administrator account for an organization or an administrator account that enabled Security Hub manually.</p> <p>The results include both member accounts that are managed using Organizations and accounts that were invited manually.</p>",
     "InviteMembers": "<p>Invites other AWS accounts to become member accounts for the Security Hub administrator account that the invitation is sent from.</p> <p>This operation is only used to invite accounts that do not belong to an organization. Organization accounts do not receive invitations.</p> <p>Before you can use this action to invite a member, you must first use the <code> <a>CreateMembers</a> </code> action to create the member account in Security Hub.</p> <p>When the account owner enables Security Hub and accepts the invitation to become a member account, the administrator account can view the findings generated from the member account.</p>",
     "ListEnabledProductsForImport": "<p>Lists all findings-generating solutions (products) that you are subscribed to receive findings from in Security Hub.</p>",
@@ -244,7 +244,7 @@
       }
     },
     "AwsApiGatewayRestApiDetails": {
-      "base": "<p>contains information about a REST API in version 1 of Amazon API Gateway.</p>",
+      "base": "<p>Contains information about a REST API in version 1 of Amazon API Gateway.</p>",
       "refs": {
         "ResourceDetails$AwsApiGatewayRestApi": "<p>Provides information about a REST API in version 1 of Amazon API Gateway.</p>"
       }
@@ -616,6 +616,36 @@
         "ResourceDetails$AwsEc2Instance": "<p>Details about an Amazon EC2 instance related to a finding.</p>"
       }
     },
+    "AwsEc2NetworkAclAssociation": {
+      "base": "<p>An association between the network ACL and a subnet.</p>",
+      "refs": {
+        "AwsEc2NetworkAclAssociationList$member": null
+      }
+    },
+    "AwsEc2NetworkAclAssociationList": {
+      "base": null,
+      "refs": {
+        "AwsEc2NetworkAclDetails$Associations": "<p>Associations between the network ACL and subnets.</p>"
+      }
+    },
+    "AwsEc2NetworkAclDetails": {
+      "base": "<p>Contains details about an EC2 network access control list (ACL).</p>",
+      "refs": {
+        "ResourceDetails$AwsEc2NetworkAcl": "<p>Details about an EC2 network access control list (ACL).</p>"
+      }
+    },
+    "AwsEc2NetworkAclEntry": {
+      "base": "<p>A rule for the network ACL. Each rule allows or denies access based on the IP address, traffic direction, port, and protocol.</p>",
+      "refs": {
+        "AwsEc2NetworkAclEntryList$member": null
+      }
+    },
+    "AwsEc2NetworkAclEntryList": {
+      "base": null,
+      "refs": {
+        "AwsEc2NetworkAclDetails$Entries": "<p>The set of rules in the network ACL.</p>"
+      }
+    },
     "AwsEc2NetworkInterfaceAttachment": {
       "base": "<p>Information about the network interface attachment.</p>",
       "refs": {
@@ -731,6 +761,12 @@
         "AwsEc2SecurityGroupIpPermission$UserIdGroupPairs": "<p>The security group and AWS account ID pairs.</p>"
       }
     },
+    "AwsEc2SubnetDetails": {
+      "base": "<p>Contains information about a subnet in EC2.</p>",
+      "refs": {
+        "ResourceDetails$AwsEc2Subnet": "<p>Details about a subnet in EC2.</p>"
+      }
+    },
     "AwsEc2VolumeAttachment": {
       "base": "<p>An attachment to an AWS EC2 volume.</p>",
       "refs": {
@@ -753,6 +789,42 @@
       "base": "<p>Details about an EC2 VPC.</p>",
       "refs": {
         "ResourceDetails$AwsEc2Vpc": "<p>Details for an EC2 VPC.</p>"
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentDetails": {
+      "base": "<p>Contains details about an Elastic Beanstalk environment.</p>",
+      "refs": {
+        "ResourceDetails$AwsElasticBeanstalkEnvironment": "<p>Details about an Elastic Beanstalk environment.</p>"
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentEnvironmentLink": {
+      "base": "<p>Contains information about a link to another environment that is in the same group.</p>",
+      "refs": {
+        "AwsElasticBeanstalkEnvironmentEnvironmentLinks$member": null
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentEnvironmentLinks": {
+      "base": null,
+      "refs": {
+        "AwsElasticBeanstalkEnvironmentDetails$EnvironmentLinks": "<p>Links to other environments in the same group.</p>"
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentOptionSetting": {
+      "base": "<p>A configuration option setting for the environment.</p>",
+      "refs": {
+        "AwsElasticBeanstalkEnvironmentOptionSettings$member": null
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentOptionSettings": {
+      "base": null,
+      "refs": {
+        "AwsElasticBeanstalkEnvironmentDetails$OptionSettings": "<p>The configuration setting for the environment.</p>"
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentTier": {
+      "base": "<p>Contains information about the tier of the environment.</p>",
+      "refs": {
+        "AwsElasticBeanstalkEnvironmentDetails$Tier": "<p>The tier of the environment.</p>"
       }
     },
     "AwsElasticsearchDomainDetails": {
@@ -1697,8 +1769,13 @@
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
         "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
+        "AwsEc2NetworkAclDetails$IsDefault": "<p>Whether this is the default network ACL for the VPC.</p>",
+        "AwsEc2NetworkAclEntry$Egress": "<p>Whether the rule is an egress rule. An egress rule is a rule that applies to traffic that leaves the subnet.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeleteOnTermination": "<p>Indicates whether the network interface is deleted when the instance is terminated.</p>",
         "AwsEc2NetworkInterfaceDetails$SourceDestCheck": "<p>Indicates whether traffic to or from the instance is validated.</p>",
+        "AwsEc2SubnetDetails$AssignIpv6AddressOnCreation": "<p>Whether to assign an IPV6 address to a network interface that is created in this subnet.</p>",
+        "AwsEc2SubnetDetails$DefaultForAz": "<p>Whether this subnet is the default subnet for the Availability Zone.</p>",
+        "AwsEc2SubnetDetails$MapPublicIpOnLaunch": "<p>Whether instances in this subnet receive a public IP address.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
         "AwsEc2VolumeDetails$Encrypted": "<p>Whether the volume is encrypted.</p>",
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
@@ -2284,6 +2361,12 @@
       "refs": {
       }
     },
+    "IcmpTypeCode": {
+      "base": "<p>An Internet Control Message Protocol (ICMP) type and code.</p>",
+      "refs": {
+        "AwsEc2NetworkAclEntry$IcmpTypeCode": "<p>The Internet Control Message Protocol (ICMP) type and code for which to deny or allow access.</p>"
+      }
+    },
     "ImportFindingsError": {
       "base": "<p>The list of the findings that cannot be imported. For each finding, the list provides the error.</p>",
       "refs": {
@@ -2346,9 +2429,11 @@
         "AwsDynamoDbTableProvisionedThroughput$ReadCapacityUnits": "<p>The maximum number of strongly consistent reads consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughput$WriteCapacityUnits": "<p>The maximum number of writes consumed per second before DynamoDB returns a <code>ThrottlingException</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughputOverride$ReadCapacityUnits": "<p>The read capacity units for the replica.</p>",
+        "AwsEc2NetworkAclEntry$RuleNumber": "<p>The rule number. The rules are processed in order by their number.</p>",
         "AwsEc2NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
         "AwsEc2SecurityGroupIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number.</p> <p>A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
         "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
+        "AwsEc2SubnetDetails$AvailableIpAddressCount": "<p>The number of available IPV4 addresses in the subnet. Does not include addresses for stopped instances.</p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
         "AwsElbLoadBalancerAccessLog$EmitInterval": "<p>The interval in minutes for publishing the access logs.</p> <p>You can publish access logs either every 5 minutes or every 60 minutes.</p>",
         "AwsElbLoadBalancerBackendServerDescription$InstancePort": "<p>The port on which the EC2 instance is listening.</p>",
@@ -2419,6 +2504,8 @@
         "BatchImportFindingsResponse$SuccessCount": "<p>The number of findings that were successfully imported.</p>",
         "DateRange$Value": "<p>A date range value for the date filter.</p>",
         "GetInvitationsCountResponse$InvitationsCount": "<p>The number of all membership invitations sent to this Security Hub member account, not including the currently accepted invitation.</p>",
+        "IcmpTypeCode$Code": "<p>The ICMP code for which to deny or allow access. To deny or allow all codes, use the value -1.</p>",
+        "IcmpTypeCode$Type": "<p>The ICMP type for which to deny or allow access. To deny or allow all types, use the value -1.</p>",
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
         "IpOrganizationDetails$Asn": "<p>The Autonomous System Number (ASN) of the internet provider</p>",
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
@@ -2431,6 +2518,8 @@
         "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were applied, but that require the instance to be rebooted in order to be marked as installed.</p>",
         "PortRange$Begin": "<p>The first port in the port range.</p>",
         "PortRange$End": "<p>The last port in the port range.</p>",
+        "PortRangeFromTo$From": "<p>The first port in the port range.</p>",
+        "PortRangeFromTo$To": "<p>The last port in the port range.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
         "ProcessDetails$ParentPid": "<p>The parent process ID.</p>",
         "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>"
@@ -2519,6 +2608,7 @@
     "Ipv6CidrBlockAssociationList": {
       "base": null,
       "refs": {
+        "AwsEc2SubnetDetails$Ipv6CidrBlockAssociationSet": "<p>The IPV6 CIDR blocks that are associated with the subnet.</p>",
         "AwsEc2VpcDetails$Ipv6CidrBlockAssociationSet": "<p>Information about the IPv6 CIDR blocks associated with the VPC.</p>"
       }
     },
@@ -2944,6 +3034,16 @@
         "AwsEc2InstanceDetails$VpcId": "<p>The identifier of the VPC that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$SubnetId": "<p>The identifier of the subnet that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$LaunchedAt": "<p>Indicates when the instance was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2NetworkAclAssociation$NetworkAclAssociationId": "<p>The identifier of the association between the network ACL and the subnet.</p>",
+        "AwsEc2NetworkAclAssociation$NetworkAclId": "<p>The identifier of the network ACL.</p>",
+        "AwsEc2NetworkAclAssociation$SubnetId": "<p>The identifier of the subnet that is associated with the network ACL.</p>",
+        "AwsEc2NetworkAclDetails$NetworkAclId": "<p>The identifier of the network ACL.</p>",
+        "AwsEc2NetworkAclDetails$OwnerId": "<p>The identifier of the AWS account that owns the network ACL.</p>",
+        "AwsEc2NetworkAclDetails$VpcId": "<p>The identifier of the VPC for the network ACL.</p>",
+        "AwsEc2NetworkAclEntry$CidrBlock": "<p>The IPV4 network range for which to deny or allow access.</p>",
+        "AwsEc2NetworkAclEntry$Ipv6CidrBlock": "<p>The IPV6 network range for which to deny or allow access.</p>",
+        "AwsEc2NetworkAclEntry$Protocol": "<p>The protocol that the rule applies to. To deny or allow access to all protocols, use the value -1.</p>",
+        "AwsEc2NetworkAclEntry$RuleAction": "<p>Whether the rule is used to allow access or deny access.</p>",
         "AwsEc2NetworkInterfaceAttachment$AttachTime": "<p>Indicates when the attachment initiated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEc2NetworkInterfaceAttachment$AttachmentId": "<p>The identifier of the network interface attachment</p>",
         "AwsEc2NetworkInterfaceAttachment$InstanceId": "<p>The ID of the instance.</p>",
@@ -2971,6 +3071,14 @@
         "AwsEc2SecurityGroupUserIdGroupPair$UserId": "<p>The ID of an AWS account.</p> <p>For a referenced security group in another VPC, the account ID of the referenced security group is returned in the response. If the referenced security group is deleted, this value is not returned.</p> <p>[EC2-Classic] Required when adding or removing rules that reference a security group in another AWS. </p>",
         "AwsEc2SecurityGroupUserIdGroupPair$VpcId": "<p>The ID of the VPC for the referenced security group, if applicable.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection, if applicable.</p>",
+        "AwsEc2SubnetDetails$AvailabilityZone": "<p>The Availability Zone for the subnet.</p>",
+        "AwsEc2SubnetDetails$AvailabilityZoneId": "<p>The identifier of the Availability Zone for the subnet.</p>",
+        "AwsEc2SubnetDetails$CidrBlock": "<p>The IPV4 CIDR block that is assigned to the subnet.</p>",
+        "AwsEc2SubnetDetails$OwnerId": "<p>The identifier of the AWS account that owns the subnet.</p>",
+        "AwsEc2SubnetDetails$State": "<p>The current state of the subnet.</p>",
+        "AwsEc2SubnetDetails$SubnetArn": "<p>The ARN of the subnet.</p>",
+        "AwsEc2SubnetDetails$SubnetId": "<p>The identifier of the subnet.</p>",
+        "AwsEc2SubnetDetails$VpcId": "<p>The identifier of the VPC that contains the subnet.</p>",
         "AwsEc2VolumeAttachment$AttachTime": "<p>The datetime when the attachment initiated.</p>",
         "AwsEc2VolumeAttachment$InstanceId": "<p>The identifier of the EC2 instance.</p>",
         "AwsEc2VolumeAttachment$Status": "<p>The attachment state of the volume.</p>",
@@ -2980,6 +3088,28 @@
         "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>",
         "AwsEc2VpcDetails$DhcpOptionsId": "<p>The identifier of the set of Dynamic Host Configuration Protocol (DHCP) options that are associated with the VPC. If the default options are associated with the VPC, then this is default.</p>",
         "AwsEc2VpcDetails$State": "<p>The current state of the VPC.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$ApplicationName": "<p>The name of the application that is associated with the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$Cname": "<p>The URL to the CNAME for this environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$DateCreated": "<p>The creation date for this environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$DateUpdated": "<p>The date when this environment was last modified.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$Description": "<p>A description of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$EndpointUrl": "<p>For load-balanced, autoscaling environments, the URL to the load balancer. For single-instance environments, the IP address of the instance.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$EnvironmentArn": "<p>The ARN of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$EnvironmentId": "<p>The identifier of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$EnvironmentName": "<p>The name of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$PlatformArn": "<p>The ARN of the platform version for the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$SolutionStackName": "<p>The name of the solution stack that is deployed with the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$Status": "<p>The current operational status of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentDetails$VersionLabel": "<p>The application version of the environment.</p>",
+        "AwsElasticBeanstalkEnvironmentEnvironmentLink$EnvironmentName": "<p>The name of the linked environment.</p>",
+        "AwsElasticBeanstalkEnvironmentEnvironmentLink$LinkName": "<p>The name of the environment link.</p>",
+        "AwsElasticBeanstalkEnvironmentOptionSetting$Namespace": "<p>The type of resource that the configuration option is associated with.</p>",
+        "AwsElasticBeanstalkEnvironmentOptionSetting$OptionName": "<p>The name of the option.</p>",
+        "AwsElasticBeanstalkEnvironmentOptionSetting$ResourceName": "<p>The name of the resource.</p>",
+        "AwsElasticBeanstalkEnvironmentOptionSetting$Value": "<p>The value of the configuration setting.</p>",
+        "AwsElasticBeanstalkEnvironmentTier$Name": "<p>The name of the environment tier.</p>",
+        "AwsElasticBeanstalkEnvironmentTier$Type": "<p>The type of environment tier.</p>",
+        "AwsElasticBeanstalkEnvironmentTier$Version": "<p>The version of the environment tier.</p>",
         "AwsElasticsearchDomainDetails$AccessPolicies": "<p>IAM policy document specifying the access policies for the new Amazon ES domain.</p>",
         "AwsElasticsearchDomainDetails$DomainId": "<p>Unique identifier for an Amazon ES domain.</p>",
         "AwsElasticsearchDomainDetails$DomainName": "<p>Name of an Amazon ES domain.</p> <p>Domain names are unique across all domains owned by the same account within an AWS Region.</p> <p>Domain names must start with a lowercase letter and must be between 3 and 28 characters.</p> <p>Valid characters are a-z (lowercase only), 0-9, and – (hyphen). </p>",
@@ -3616,6 +3746,12 @@
       "refs": {
         "Network$OpenPortRange": "<p>The range of open ports that is present on the network.</p>",
         "PortRangeList$member": null
+      }
+    },
+    "PortRangeFromTo": {
+      "base": "<p>A range of ports.</p>",
+      "refs": {
+        "AwsEc2NetworkAclEntry$PortRange": "<p>For TCP or UDP protocols, the range of ports that the rule applies to.</p>"
       }
     },
     "PortRangeList": {

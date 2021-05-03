@@ -1,3 +1,14 @@
+Release v1.38.31 (2021-05-03)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Added new BatchCreateChannelMembership API to support multiple membership creation for channels
+* `service/finspace`: Updates service API, documentation, paginators, and examples
+* `service/finspace-data`: Adds new service
+* `service/mturk-requester`: Updates service documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.38.30 (2021-04-30)
 ===
 

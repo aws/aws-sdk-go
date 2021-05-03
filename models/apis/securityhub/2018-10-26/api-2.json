@@ -1561,6 +1561,46 @@
         "LaunchedAt":{"shape":"NonEmptyString"}
       }
     },
+    "AwsEc2NetworkAclAssociation":{
+      "type":"structure",
+      "members":{
+        "NetworkAclAssociationId":{"shape":"NonEmptyString"},
+        "NetworkAclId":{"shape":"NonEmptyString"},
+        "SubnetId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsEc2NetworkAclAssociationList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2NetworkAclAssociation"}
+    },
+    "AwsEc2NetworkAclDetails":{
+      "type":"structure",
+      "members":{
+        "IsDefault":{"shape":"Boolean"},
+        "NetworkAclId":{"shape":"NonEmptyString"},
+        "OwnerId":{"shape":"NonEmptyString"},
+        "VpcId":{"shape":"NonEmptyString"},
+        "Associations":{"shape":"AwsEc2NetworkAclAssociationList"},
+        "Entries":{"shape":"AwsEc2NetworkAclEntryList"}
+      }
+    },
+    "AwsEc2NetworkAclEntry":{
+      "type":"structure",
+      "members":{
+        "CidrBlock":{"shape":"NonEmptyString"},
+        "Egress":{"shape":"Boolean"},
+        "IcmpTypeCode":{"shape":"IcmpTypeCode"},
+        "Ipv6CidrBlock":{"shape":"NonEmptyString"},
+        "PortRange":{"shape":"PortRangeFromTo"},
+        "Protocol":{"shape":"NonEmptyString"},
+        "RuleAction":{"shape":"NonEmptyString"},
+        "RuleNumber":{"shape":"Integer"}
+      }
+    },
+    "AwsEc2NetworkAclEntryList":{
+      "type":"list",
+      "member":{"shape":"AwsEc2NetworkAclEntry"}
+    },
     "AwsEc2NetworkInterfaceAttachment":{
       "type":"structure",
       "members":{
@@ -1690,6 +1730,24 @@
       "type":"list",
       "member":{"shape":"AwsEc2SecurityGroupUserIdGroupPair"}
     },
+    "AwsEc2SubnetDetails":{
+      "type":"structure",
+      "members":{
+        "AssignIpv6AddressOnCreation":{"shape":"Boolean"},
+        "AvailabilityZone":{"shape":"NonEmptyString"},
+        "AvailabilityZoneId":{"shape":"NonEmptyString"},
+        "AvailableIpAddressCount":{"shape":"Integer"},
+        "CidrBlock":{"shape":"NonEmptyString"},
+        "DefaultForAz":{"shape":"Boolean"},
+        "MapPublicIpOnLaunch":{"shape":"Boolean"},
+        "OwnerId":{"shape":"NonEmptyString"},
+        "State":{"shape":"NonEmptyString"},
+        "SubnetArn":{"shape":"NonEmptyString"},
+        "SubnetId":{"shape":"NonEmptyString"},
+        "VpcId":{"shape":"NonEmptyString"},
+        "Ipv6CidrBlockAssociationSet":{"shape":"Ipv6CidrBlockAssociationList"}
+      }
+    },
     "AwsEc2VolumeAttachment":{
       "type":"structure",
       "members":{
@@ -1722,6 +1780,59 @@
         "Ipv6CidrBlockAssociationSet":{"shape":"Ipv6CidrBlockAssociationList"},
         "DhcpOptionsId":{"shape":"NonEmptyString"},
         "State":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentDetails":{
+      "type":"structure",
+      "members":{
+        "ApplicationName":{"shape":"NonEmptyString"},
+        "Cname":{"shape":"NonEmptyString"},
+        "DateCreated":{"shape":"NonEmptyString"},
+        "DateUpdated":{"shape":"NonEmptyString"},
+        "Description":{"shape":"NonEmptyString"},
+        "EndpointUrl":{"shape":"NonEmptyString"},
+        "EnvironmentArn":{"shape":"NonEmptyString"},
+        "EnvironmentId":{"shape":"NonEmptyString"},
+        "EnvironmentLinks":{"shape":"AwsElasticBeanstalkEnvironmentEnvironmentLinks"},
+        "EnvironmentName":{"shape":"NonEmptyString"},
+        "OptionSettings":{"shape":"AwsElasticBeanstalkEnvironmentOptionSettings"},
+        "PlatformArn":{"shape":"NonEmptyString"},
+        "SolutionStackName":{"shape":"NonEmptyString"},
+        "Status":{"shape":"NonEmptyString"},
+        "Tier":{"shape":"AwsElasticBeanstalkEnvironmentTier"},
+        "VersionLabel":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentEnvironmentLink":{
+      "type":"structure",
+      "members":{
+        "EnvironmentName":{"shape":"NonEmptyString"},
+        "LinkName":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentEnvironmentLinks":{
+      "type":"list",
+      "member":{"shape":"AwsElasticBeanstalkEnvironmentEnvironmentLink"}
+    },
+    "AwsElasticBeanstalkEnvironmentOptionSetting":{
+      "type":"structure",
+      "members":{
+        "Namespace":{"shape":"NonEmptyString"},
+        "OptionName":{"shape":"NonEmptyString"},
+        "ResourceName":{"shape":"NonEmptyString"},
+        "Value":{"shape":"NonEmptyString"}
+      }
+    },
+    "AwsElasticBeanstalkEnvironmentOptionSettings":{
+      "type":"list",
+      "member":{"shape":"AwsElasticBeanstalkEnvironmentOptionSetting"}
+    },
+    "AwsElasticBeanstalkEnvironmentTier":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NonEmptyString"},
+        "Type":{"shape":"NonEmptyString"},
+        "Version":{"shape":"NonEmptyString"}
       }
     },
     "AwsElasticsearchDomainDetails":{
@@ -3865,6 +3976,13 @@
         "UnprocessedAccounts":{"shape":"ResultList"}
       }
     },
+    "IcmpTypeCode":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"Integer"},
+        "Type":{"shape":"Integer"}
+      }
+    },
     "ImportFindingsError":{
       "type":"structure",
       "required":[
@@ -4430,6 +4548,13 @@
         "End":{"shape":"Integer"}
       }
     },
+    "PortRangeFromTo":{
+      "type":"structure",
+      "members":{
+        "From":{"shape":"Integer"},
+        "To":{"shape":"Integer"}
+      }
+    },
     "PortRangeList":{
       "type":"list",
       "member":{"shape":"PortRange"}
@@ -4577,7 +4702,10 @@
         "AwsEc2Volume":{"shape":"AwsEc2VolumeDetails"},
         "AwsEc2Vpc":{"shape":"AwsEc2VpcDetails"},
         "AwsEc2Eip":{"shape":"AwsEc2EipDetails"},
+        "AwsEc2Subnet":{"shape":"AwsEc2SubnetDetails"},
+        "AwsEc2NetworkAcl":{"shape":"AwsEc2NetworkAclDetails"},
         "AwsElbv2LoadBalancer":{"shape":"AwsElbv2LoadBalancerDetails"},
+        "AwsElasticBeanstalkEnvironment":{"shape":"AwsElasticBeanstalkEnvironmentDetails"},
         "AwsElasticsearchDomain":{"shape":"AwsElasticsearchDomainDetails"},
         "AwsS3Bucket":{"shape":"AwsS3BucketDetails"},
         "AwsS3AccountPublicAccessBlock":{"shape":"AwsS3AccountPublicAccessBlockDetails"},
