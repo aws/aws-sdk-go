@@ -517,6 +517,102 @@ func (c *Chime) BatchCreateAttendeeWithContext(ctx aws.Context, input *BatchCrea
 	return out, req.Send()
 }
 
+const opBatchCreateChannelMembership = "BatchCreateChannelMembership"
+
+// BatchCreateChannelMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the BatchCreateChannelMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchCreateChannelMembership for more information on using the BatchCreateChannelMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchCreateChannelMembershipRequest method.
+//    req, resp := client.BatchCreateChannelMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateChannelMembership
+func (c *Chime) BatchCreateChannelMembershipRequest(input *BatchCreateChannelMembershipInput) (req *request.Request, output *BatchCreateChannelMembershipOutput) {
+	op := &request.Operation{
+		Name:       opBatchCreateChannelMembership,
+		HTTPMethod: "POST",
+		HTTPPath:   "/channels/{channelArn}/memberships?operation=batch-create",
+	}
+
+	if input == nil {
+		input = &BatchCreateChannelMembershipInput{}
+	}
+
+	output = &BatchCreateChannelMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("messaging-", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// BatchCreateChannelMembership API operation for Amazon Chime.
+//
+// Adds a specified number of users to a channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation BatchCreateChannelMembership for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/BatchCreateChannelMembership
+func (c *Chime) BatchCreateChannelMembership(input *BatchCreateChannelMembershipInput) (*BatchCreateChannelMembershipOutput, error) {
+	req, out := c.BatchCreateChannelMembershipRequest(input)
+	return out, req.Send()
+}
+
+// BatchCreateChannelMembershipWithContext is the same as BatchCreateChannelMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchCreateChannelMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) BatchCreateChannelMembershipWithContext(ctx aws.Context, input *BatchCreateChannelMembershipInput, opts ...request.Option) (*BatchCreateChannelMembershipOutput, error) {
+	req, out := c.BatchCreateChannelMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchCreateRoomMembership = "BatchCreateRoomMembership"
 
 // BatchCreateRoomMembershipRequest generates a "aws/request.Request" representing the
@@ -4107,10 +4203,10 @@ func (c *Chime) DeleteAttendeeRequest(input *DeleteAttendeeInput) (req *request.
 // DeleteAttendee API operation for Amazon Chime.
 //
 // Deletes an attendee from the specified Amazon Chime SDK meeting and deletes
-// their JoinToken . Attendees are automatically deleted when a Amazon Chime
+// their JoinToken. Attendees are automatically deleted when a Amazon Chime
 // SDK meeting is deleted. For more information about the Amazon Chime SDK,
 // see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide .
+// in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4432,6 +4528,10 @@ func (c *Chime) DeleteChannelMembershipRequest(input *DeleteChannelMembershipInp
 //
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
 //
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
@@ -4806,10 +4906,10 @@ func (c *Chime) DeleteMeetingRequest(input *DeleteMeetingInput) (req *request.Re
 
 // DeleteMeeting API operation for Amazon Chime.
 //
-// Deletes the specified Amazon Chime SDK meeting. When a meeting is deleted,
-// its attendees are also deleted, clients connected to the meeting are disconnected,
-// and clients can no longer join the meeting. For more information about the
-// Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
+// Deletes the specified Amazon Chime SDK meeting. The operation deletes all
+// attendees, disconnects all clients, and prevents new clients from joining
+// the meeting. For more information about the Amazon Chime SDK, see Using the
+// Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
 // in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10752,7 +10852,7 @@ func (c *Chime) ListAccountsRequest(input *ListAccountsInput) (req *request.Requ
 //
 // Lists the Amazon Chime accounts under the administrator's AWS account. You
 // can filter accounts by account name prefix. To find out which Amazon Chime
-// account a user belongs to, toucan filter by the user's email address, which
+// account a user belongs to, you can filter by the user's email address, which
 // returns one account result.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -12578,7 +12678,7 @@ func (c *Chime) ListChannelsRequest(input *ListChannelsInput) (req *request.Requ
 //
 // Functionality & restrictions
 //
-//    * Use privacy = PUBLIC to retrieve all public channels in the account
+//    * Use privacy = PUBLIC to retrieve all public channels in the account.
 //
 //    * Only an AppInstanceAdmin can set privacy = PRIVATE to list the private
 //    channels in an account.
@@ -20596,6 +20696,58 @@ func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The membership information, including member ARNs, the channel ARN, and membership
+// types.
+type BatchChannelMemberships struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel to which you're adding users.
+	ChannelArn *string `min:"5" type:"string"`
+
+	// The details of a user.
+	InvitedBy *Identity `type:"structure"`
+
+	// The users successfully added to the request.
+	Members []*Identity `type:"list"`
+
+	// The membership types set for the channel users.
+	Type *string `type:"string" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s BatchChannelMemberships) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchChannelMemberships) GoString() string {
+	return s.String()
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *BatchChannelMemberships) SetChannelArn(v string) *BatchChannelMemberships {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetInvitedBy sets the InvitedBy field's value.
+func (s *BatchChannelMemberships) SetInvitedBy(v *Identity) *BatchChannelMemberships {
+	s.InvitedBy = v
+	return s
+}
+
+// SetMembers sets the Members field's value.
+func (s *BatchChannelMemberships) SetMembers(v []*Identity) *BatchChannelMemberships {
+	s.Members = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BatchChannelMemberships) SetType(v string) *BatchChannelMemberships {
+	s.Type = &v
+	return s
+}
+
 type BatchCreateAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20690,6 +20842,163 @@ func (s *BatchCreateAttendeeOutput) SetAttendees(v []*Attendee) *BatchCreateAtte
 
 // SetErrors sets the Errors field's value.
 func (s *BatchCreateAttendeeOutput) SetErrors(v []*CreateAttendeeError) *BatchCreateAttendeeOutput {
+	s.Errors = v
+	return s
+}
+
+// A list of failed member ARNs, error codes, and error messages.
+type BatchCreateChannelMembershipError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	ErrorCode *string `type:"string" enum:"ErrorCode"`
+
+	// The error message.
+	ErrorMessage *string `type:"string"`
+
+	// The ARN of the member that the service couldn't add.
+	MemberArn *string `min:"5" type:"string"`
+}
+
+// String returns the string representation
+func (s BatchCreateChannelMembershipError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateChannelMembershipError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchCreateChannelMembershipError) SetErrorCode(v string) *BatchCreateChannelMembershipError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchCreateChannelMembershipError) SetErrorMessage(v string) *BatchCreateChannelMembershipError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *BatchCreateChannelMembershipError) SetMemberArn(v string) *BatchCreateChannelMembershipError {
+	s.MemberArn = &v
+	return s
+}
+
+type BatchCreateChannelMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the channel to which you're adding users.
+	//
+	// ChannelArn is a required field
+	ChannelArn *string `location:"uri" locationName:"channelArn" min:"5" type:"string" required:"true"`
+
+	// The AppInstanceUserArn of the user that makes the API call.
+	ChimeBearer *string `location:"header" locationName:"x-amz-chime-bearer" min:"5" type:"string"`
+
+	// The ARNs of the members you want to add to the channel.
+	//
+	// MemberArns is a required field
+	MemberArns []*string `min:"1" type:"list" required:"true"`
+
+	// The membership type of a user, DEFAULT or HIDDEN. Default members are always
+	// returned as part of ListChannelMemberships. Hidden members are only returned
+	// if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden
+	// members are not returned. This is only supported by moderators.
+	Type *string `type:"string" enum:"ChannelMembershipType"`
+}
+
+// String returns the string representation
+func (s BatchCreateChannelMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateChannelMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchCreateChannelMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchCreateChannelMembershipInput"}
+	if s.ChannelArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ChannelArn"))
+	}
+	if s.ChannelArn != nil && len(*s.ChannelArn) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelArn", 5))
+	}
+	if s.ChimeBearer != nil && len(*s.ChimeBearer) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("ChimeBearer", 5))
+	}
+	if s.MemberArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberArns"))
+	}
+	if s.MemberArns != nil && len(s.MemberArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberArns", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelArn sets the ChannelArn field's value.
+func (s *BatchCreateChannelMembershipInput) SetChannelArn(v string) *BatchCreateChannelMembershipInput {
+	s.ChannelArn = &v
+	return s
+}
+
+// SetChimeBearer sets the ChimeBearer field's value.
+func (s *BatchCreateChannelMembershipInput) SetChimeBearer(v string) *BatchCreateChannelMembershipInput {
+	s.ChimeBearer = &v
+	return s
+}
+
+// SetMemberArns sets the MemberArns field's value.
+func (s *BatchCreateChannelMembershipInput) SetMemberArns(v []*string) *BatchCreateChannelMembershipInput {
+	s.MemberArns = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *BatchCreateChannelMembershipInput) SetType(v string) *BatchCreateChannelMembershipInput {
+	s.Type = &v
+	return s
+}
+
+type BatchCreateChannelMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of channel memberships in the response.
+	BatchChannelMemberships *BatchChannelMemberships `type:"structure"`
+
+	// If the action fails for one or more of the memberships in the request, a
+	// list of the memberships is returned, along with error codes and error messages.
+	Errors []*BatchCreateChannelMembershipError `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchCreateChannelMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchCreateChannelMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetBatchChannelMemberships sets the BatchChannelMemberships field's value.
+func (s *BatchCreateChannelMembershipOutput) SetBatchChannelMemberships(v *BatchChannelMemberships) *BatchCreateChannelMembershipOutput {
+	s.BatchChannelMemberships = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchCreateChannelMembershipOutput) SetErrors(v []*BatchCreateChannelMembershipError) *BatchCreateChannelMembershipOutput {
 	s.Errors = v
 	return s
 }
@@ -23306,7 +23615,7 @@ type CreateMeetingDialOutInput struct {
 	// FromPhoneNumber is a required field
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
-	// Token used by the Amazon Chime SDK attendee. Call the CreateAttendee (https://docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.htmlCreateAttendee)
+	// Token used by the Amazon Chime SDK attendee. Call the CreateAttendee (https://docs.aws.amazon.com/chime/latest/APIReference/API_CreateAttendee.html)
 	// action to get a join token.
 	//
 	// JoinToken is a required field
@@ -24142,7 +24451,8 @@ func (s *CreateRoomOutput) SetRoom(v *Room) *CreateRoomOutput {
 type CreateSipMediaApplicationCallInput struct {
 	_ struct{} `type:"structure"`
 
-	// The phone number that a user calls from.
+	// The phone number that a user calls from. This is a phone number in your Amazon
+	// Chime phone number inventory.
 	//
 	// FromPhoneNumber is a required field
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
@@ -24152,7 +24462,7 @@ type CreateSipMediaApplicationCallInput struct {
 	// SipMediaApplicationId is a required field
 	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
 
-	// The phone number that the user dials in order to connect to a meeting.
+	// The phone number that the service should call.
 	//
 	// ToPhoneNumber is a required field
 	ToPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
@@ -32964,10 +33274,10 @@ type Meeting struct {
 	// The media placement for the meeting.
 	MediaPlacement *MediaPlacement `type:"structure"`
 
-	// The Region in which you create the meeting. Available values: af-south-1
-	// , ap-northeast-1 , ap-northeast-2 , ap-south-1 , ap-southeast-1 , ap-southeast-2
-	// , ca-central-1 , eu-central-1 , eu-north-1 , eu-south-1 , eu-west-1 , eu-west-2
-	// , eu-west-3 , sa-east-1 , us-east-1 , us-east-2 , us-west-1 , us-west-2 .
+	// The Region in which you create the meeting. Available values: af-south-1,
+	// ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2,
+	// ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2,
+	// eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2.
 	MediaRegion *string `type:"string"`
 
 	// The Amazon Chime SDK meeting ID.

@@ -80,6 +80,10 @@ type ChimeAPI interface {
 	BatchCreateAttendeeWithContext(aws.Context, *chime.BatchCreateAttendeeInput, ...request.Option) (*chime.BatchCreateAttendeeOutput, error)
 	BatchCreateAttendeeRequest(*chime.BatchCreateAttendeeInput) (*request.Request, *chime.BatchCreateAttendeeOutput)
 
+	BatchCreateChannelMembership(*chime.BatchCreateChannelMembershipInput) (*chime.BatchCreateChannelMembershipOutput, error)
+	BatchCreateChannelMembershipWithContext(aws.Context, *chime.BatchCreateChannelMembershipInput, ...request.Option) (*chime.BatchCreateChannelMembershipOutput, error)
+	BatchCreateChannelMembershipRequest(*chime.BatchCreateChannelMembershipInput) (*request.Request, *chime.BatchCreateChannelMembershipOutput)
+
 	BatchCreateRoomMembership(*chime.BatchCreateRoomMembershipInput) (*chime.BatchCreateRoomMembershipOutput, error)
 	BatchCreateRoomMembershipWithContext(aws.Context, *chime.BatchCreateRoomMembershipInput, ...request.Option) (*chime.BatchCreateRoomMembershipOutput, error)
 	BatchCreateRoomMembershipRequest(*chime.BatchCreateRoomMembershipInput) (*request.Request, *chime.BatchCreateRoomMembershipOutput)

@@ -109,6 +109,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "BatchCreateChannelMembership":{
+      "name":"BatchCreateChannelMembership",
+      "http":{
+        "method":"POST",
+        "requestUri":"/channels/{channelArn}/memberships?operation=batch-create",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchCreateChannelMembershipRequest"},
+      "output":{"shape":"BatchCreateChannelMembershipResponse"},
+      "errors":[
+        {"shape":"ServiceFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"}
+      ],
+      "endpoint":{"hostPrefix":"messaging-"}
+    },
     "BatchCreateRoomMembership":{
       "name":"BatchCreateRoomMembership",
       "http":{
@@ -846,6 +865,7 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
@@ -3747,6 +3767,15 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "BatchChannelMemberships":{
+      "type":"structure",
+      "members":{
+        "InvitedBy":{"shape":"Identity"},
+        "Type":{"shape":"ChannelMembershipType"},
+        "Members":{"shape":"Members"},
+        "ChannelArn":{"shape":"ChimeArn"}
+      }
+    },
     "BatchCreateAttendeeErrorList":{
       "type":"list",
       "member":{"shape":"CreateAttendeeError"}
@@ -3771,6 +3800,46 @@
       "members":{
         "Attendees":{"shape":"AttendeeList"},
         "Errors":{"shape":"BatchCreateAttendeeErrorList"}
+      }
+    },
+    "BatchCreateChannelMembershipError":{
+      "type":"structure",
+      "members":{
+        "MemberArn":{"shape":"ChimeArn"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"String"}
+      }
+    },
+    "BatchCreateChannelMembershipErrors":{
+      "type":"list",
+      "member":{"shape":"BatchCreateChannelMembershipError"}
+    },
+    "BatchCreateChannelMembershipRequest":{
+      "type":"structure",
+      "required":[
+        "ChannelArn",
+        "MemberArns"
+      ],
+      "members":{
+        "ChannelArn":{
+          "shape":"ChimeArn",
+          "location":"uri",
+          "locationName":"channelArn"
+        },
+        "Type":{"shape":"ChannelMembershipType"},
+        "MemberArns":{"shape":"MemberArns"},
+        "ChimeBearer":{
+          "shape":"ChimeArn",
+          "location":"header",
+          "locationName":"x-amz-chime-bearer"
+        }
+      }
+    },
+    "BatchCreateChannelMembershipResponse":{
+      "type":"structure",
+      "members":{
+        "BatchChannelMemberships":{"shape":"BatchChannelMemberships"},
+        "Errors":{"shape":"BatchCreateChannelMembershipErrors"}
       }
     },
     "BatchCreateRoomMembershipRequest":{
@@ -7162,6 +7231,12 @@
         "AccountId":{"shape":"NonEmptyString"}
       }
     },
+    "MemberArns":{
+      "type":"list",
+      "member":{"shape":"ChimeArn"},
+      "max":100,
+      "min":1
+    },
     "MemberError":{
       "type":"structure",
       "members":{
@@ -7181,6 +7256,10 @@
         "Bot",
         "Webhook"
       ]
+    },
+    "Members":{
+      "type":"list",
+      "member":{"shape":"Identity"}
     },
     "MembershipItem":{
       "type":"structure",
