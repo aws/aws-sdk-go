@@ -146,6 +146,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetCostEstimation":{
+      "name":"GetCostEstimation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/cost-estimation",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCostEstimationRequest"},
+      "output":{"shape":"GetCostEstimationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetResourceCollection":{
       "name":"GetResourceCollection",
       "http":{
@@ -298,6 +315,24 @@
         {"shape":"ValidationException"}
       ]
     },
+    "StartCostEstimation":{
+      "name":"StartCostEstimation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/cost-estimation",
+        "responseCode":200
+      },
+      "input":{"shape":"StartCostEstimationRequest"},
+      "output":{"shape":"StartCostEstimationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpdateResourceCollection":{
       "name":"UpdateResourceCollection",
       "http":{
@@ -400,6 +435,12 @@
       "type":"list",
       "member":{"shape":"NotificationChannel"}
     },
+    "ClientToken":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]+[a-zA-Z0-9-]*$"
+    },
     "CloudFormationCollection":{
       "type":"structure",
       "members":{
@@ -410,6 +451,12 @@
       "type":"structure",
       "members":{
         "StackNames":{"shape":"StackNames"}
+      }
+    },
+    "CloudFormationCostEstimationResourceCollectionFilter":{
+      "type":"structure",
+      "members":{
+        "StackNames":{"shape":"CostEstimationStackNames"}
       }
     },
     "CloudFormationHealth":{
@@ -482,6 +529,41 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "Cost":{"type":"double"},
+    "CostEstimationResourceCollectionFilter":{
+      "type":"structure",
+      "members":{
+        "CloudFormation":{"shape":"CloudFormationCostEstimationResourceCollectionFilter"}
+      }
+    },
+    "CostEstimationServiceResourceCount":{"type":"integer"},
+    "CostEstimationServiceResourceState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE"
+      ]
+    },
+    "CostEstimationStackNames":{
+      "type":"list",
+      "member":{"shape":"StackName"},
+      "max":1,
+      "min":1
+    },
+    "CostEstimationStatus":{
+      "type":"string",
+      "enum":[
+        "ONGOING",
+        "COMPLETED"
+      ]
+    },
+    "CostEstimationTimeRange":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"}
+      }
     },
     "DescribeAccountHealthRequest":{
       "type":"structure",
@@ -593,6 +675,7 @@
       "required":["CloudFormation"],
       "members":{
         "CloudFormation":{"shape":"CloudFormationHealths"},
+        "Service":{"shape":"ServiceHealths"},
         "NextToken":{"shape":"UuidNextToken"}
       }
     },
@@ -704,6 +787,27 @@
     "Events":{
       "type":"list",
       "member":{"shape":"Event"}
+    },
+    "GetCostEstimationRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{
+          "shape":"UuidNextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "GetCostEstimationResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceCollection":{"shape":"CostEstimationResourceCollectionFilter"},
+        "Status":{"shape":"CostEstimationStatus"},
+        "Costs":{"shape":"ServiceResourceCosts"},
+        "TimeRange":{"shape":"CostEstimationTimeRange"},
+        "TotalCost":{"shape":"Cost"},
+        "NextToken":{"shape":"UuidNextToken"}
+      }
     },
     "GetResourceCollectionRequest":{
       "type":"structure",
@@ -959,7 +1063,8 @@
       "required":["InsightId"],
       "members":{
         "InsightId":{"shape":"InsightId"},
-        "NextToken":{"shape":"UuidNextToken"}
+        "NextToken":{"shape":"UuidNextToken"},
+        "Locale":{"shape":"Locale"}
       }
     },
     "ListRecommendationsResponse":{
@@ -968,6 +1073,22 @@
         "Recommendations":{"shape":"Recommendations"},
         "NextToken":{"shape":"UuidNextToken"}
       }
+    },
+    "Locale":{
+      "type":"string",
+      "enum":[
+        "DE_DE",
+        "EN_US",
+        "EN_GB",
+        "ES_ES",
+        "FR_FR",
+        "IT_IT",
+        "JA_JP",
+        "KO_KR",
+        "PT_BR",
+        "ZH_CN",
+        "ZH_TW"
+      ]
     },
     "MeanTimeToRecoverInMilliseconds":{"type":"long"},
     "NotificationChannel":{
@@ -1078,7 +1199,8 @@
         "Status":{"shape":"InsightStatus"},
         "InsightTimeRange":{"shape":"InsightTimeRange"},
         "PredictionTimeRange":{"shape":"PredictionTimeRange"},
-        "ResourceCollection":{"shape":"ResourceCollection"}
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
       }
     },
     "ProactiveInsights":{
@@ -1144,7 +1266,8 @@
         "Severity":{"shape":"InsightSeverity"},
         "Status":{"shape":"InsightStatus"},
         "InsightTimeRange":{"shape":"InsightTimeRange"},
-        "ResourceCollection":{"shape":"ResourceCollection"}
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
       }
     },
     "ReactiveInsights":{
@@ -1274,7 +1397,10 @@
     },
     "ResourceCollectionType":{
       "type":"string",
-      "enum":["AWS_CLOUD_FORMATION"]
+      "enum":[
+        "AWS_CLOUD_FORMATION",
+        "AWS_SERVICE"
+      ]
     },
     "ResourceHours":{"type":"long"},
     "ResourceIdString":{"type":"string"},
@@ -1294,13 +1420,20 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "ResourceType":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z]+[a-zA-Z0-9-_:]*$"
+    },
     "RetryAfterSeconds":{"type":"integer"},
     "SearchInsightsFilters":{
       "type":"structure",
       "members":{
         "Severities":{"shape":"InsightSeverities"},
         "Statuses":{"shape":"InsightStatuses"},
-        "ResourceCollection":{"shape":"ResourceCollection"}
+        "ResourceCollection":{"shape":"ResourceCollection"},
+        "ServiceCollection":{"shape":"ServiceCollection"}
       }
     },
     "SearchInsightsMaxResults":{
@@ -1330,11 +1463,69 @@
         "NextToken":{"shape":"UuidNextToken"}
       }
     },
+    "ServiceCollection":{
+      "type":"structure",
+      "members":{
+        "ServiceNames":{"shape":"ServiceNames"}
+      }
+    },
+    "ServiceHealth":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{"shape":"ServiceName"},
+        "Insight":{"shape":"ServiceInsightHealth"}
+      }
+    },
+    "ServiceHealths":{
+      "type":"list",
+      "member":{"shape":"ServiceHealth"}
+    },
+    "ServiceInsightHealth":{
+      "type":"structure",
+      "members":{
+        "OpenProactiveInsights":{"shape":"NumOpenProactiveInsights"},
+        "OpenReactiveInsights":{"shape":"NumOpenReactiveInsights"}
+      }
+    },
     "ServiceIntegrationConfig":{
       "type":"structure",
       "members":{
         "OpsCenter":{"shape":"OpsCenterIntegration"}
       }
+    },
+    "ServiceName":{
+      "type":"string",
+      "enum":[
+        "API_GATEWAY",
+        "APPLICATION_ELB",
+        "AUTO_SCALING_GROUP",
+        "CLOUD_FRONT",
+        "DYNAMO_DB",
+        "EC2",
+        "ECS",
+        "EKS",
+        "ELASTIC_BEANSTALK",
+        "ELASTI_CACHE",
+        "ELB",
+        "ES",
+        "KINESIS",
+        "LAMBDA",
+        "NAT_GATEWAY",
+        "NETWORK_ELB",
+        "RDS",
+        "REDSHIFT",
+        "ROUTE_53",
+        "S3",
+        "SAGE_MAKER",
+        "SNS",
+        "SQS",
+        "STEP_FUNCTIONS",
+        "SWF"
+      ]
+    },
+    "ServiceNames":{
+      "type":"list",
+      "member":{"shape":"ServiceName"}
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -1343,6 +1534,20 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "ServiceResourceCost":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ResourceType"},
+        "State":{"shape":"CostEstimationServiceResourceState"},
+        "Count":{"shape":"CostEstimationServiceResourceCount"},
+        "UnitCost":{"shape":"Cost"},
+        "Cost":{"shape":"Cost"}
+      }
+    },
+    "ServiceResourceCosts":{
+      "type":"list",
+      "member":{"shape":"ServiceResourceCost"}
     },
     "SnsChannelConfig":{
       "type":"structure",
@@ -1365,6 +1570,22 @@
     "StackNames":{
       "type":"list",
       "member":{"shape":"StackName"}
+    },
+    "StartCostEstimationRequest":{
+      "type":"structure",
+      "required":["ResourceCollection"],
+      "members":{
+        "ResourceCollection":{"shape":"CostEstimationResourceCollectionFilter"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartCostEstimationResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "StartTimeRange":{
       "type":"structure",

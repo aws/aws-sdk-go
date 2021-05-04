@@ -2481,6 +2481,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListSupportedPhoneNumberCountries":{
+      "name":"ListSupportedPhoneNumberCountries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/phone-number-countries",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSupportedPhoneNumberCountriesRequest"},
+      "output":{"shape":"ListSupportedPhoneNumberCountriesResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -7026,6 +7045,23 @@
         "NextToken":{"shape":"NextTokenString"}
       }
     },
+    "ListSupportedPhoneNumberCountriesRequest":{
+      "type":"structure",
+      "required":["ProductType"],
+      "members":{
+        "ProductType":{
+          "shape":"PhoneNumberProductType",
+          "location":"querystring",
+          "locationName":"product-type"
+        }
+      }
+    },
+    "ListSupportedPhoneNumberCountriesResponse":{
+      "type":"structure",
+      "members":{
+        "PhoneNumberCountries":{"shape":"PhoneNumberCountriesList"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -7436,6 +7472,7 @@
       "members":{
         "PhoneNumberId":{"shape":"String"},
         "E164PhoneNumber":{"shape":"E164PhoneNumber"},
+        "Country":{"shape":"Alpha2CountryCode"},
         "Type":{"shape":"PhoneNumberType"},
         "ProductType":{"shape":"PhoneNumberProductType"},
         "Status":{"shape":"PhoneNumberStatus"},
@@ -7479,6 +7516,17 @@
         "OutboundSMS":{"shape":"NullableBoolean"},
         "InboundMMS":{"shape":"NullableBoolean"},
         "OutboundMMS":{"shape":"NullableBoolean"}
+      }
+    },
+    "PhoneNumberCountriesList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberCountry"}
+    },
+    "PhoneNumberCountry":{
+      "type":"structure",
+      "members":{
+        "CountryCode":{"shape":"Alpha2CountryCode"},
+        "SupportedPhoneNumberTypes":{"shape":"PhoneNumberTypeList"}
       }
     },
     "PhoneNumberError":{
@@ -7530,7 +7578,8 @@
       "type":"string",
       "enum":[
         "BusinessCalling",
-        "VoiceConnector"
+        "VoiceConnector",
+        "SipMediaApplicationDialIn"
       ]
     },
     "PhoneNumberStatus":{
@@ -7552,6 +7601,10 @@
         "Local",
         "TollFree"
       ]
+    },
+    "PhoneNumberTypeList":{
+      "type":"list",
+      "member":{"shape":"PhoneNumberType"}
     },
     "Port":{
       "type":"integer",
@@ -8118,7 +8171,7 @@
           "locationName":"city"
         },
         "Country":{
-          "shape":"String",
+          "shape":"Alpha2CountryCode",
           "location":"querystring",
           "locationName":"country"
         },
@@ -8131,6 +8184,11 @@
           "shape":"TollFreePrefix",
           "location":"querystring",
           "locationName":"toll-free-prefix"
+        },
+        "PhoneNumberType":{
+          "shape":"PhoneNumberType",
+          "location":"querystring",
+          "locationName":"phone-number-type"
         },
         "MaxResults":{
           "shape":"PhoneNumberMaxResults",
@@ -8147,7 +8205,8 @@
     "SearchAvailablePhoneNumbersResponse":{
       "type":"structure",
       "members":{
-        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"}
+        "E164PhoneNumbers":{"shape":"E164PhoneNumberList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "SendChannelMessageRequest":{

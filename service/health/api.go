@@ -744,10 +744,10 @@ func (c *Health) DescribeEventDetailsRequest(input *DescribeEventDetailsInput) (
 // by DescribeEvents (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEvents.html)),
 // a detailed event description, and possible additional metadata that depends
 // upon the nature of the event. Affected entities are not included. To retrieve
-// those, use the DescribeAffectedEntities (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html)
+// the entities, use the DescribeAffectedEntities (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntities.html)
 // operation.
 //
-// If a specified event cannot be retrieved, an error message is returned for
+// If a specified event can't be retrieved, an error message is returned for
 // that event.
 //
 // This operation supports resource-level permissions. You can use this operation
@@ -833,12 +833,11 @@ func (c *Health) DescribeEventDetailsForOrganizationRequest(input *DescribeEvent
 // DescribeEventDetailsForOrganization API operation for AWS Health APIs and Notifications.
 //
 // Returns detailed information about one or more specified events for one or
-// more accounts in your organization. Information includes standard event data
-// (AWS Region, service, and so on, as returned by DescribeEventsForOrganization
-// (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventsForOrganization.html)),
-// a detailed event description, and possible additional metadata that depends
-// upon the nature of the event. Affected entities are not included; to retrieve
-// those, use the DescribeAffectedEntitiesForOrganization (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html)
+// more AWS accounts in your organization. This information includes standard
+// event data (such as the AWS Region and service), an event description, and
+// (depending on the event) possible metadata. This operation doesn't return
+// affected entities, such as the resources related to the event. To return
+// affected entities, use the DescribeAffectedEntitiesForOrganization (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html)
 // operation.
 //
 // Before you can call this operation, you must first enable AWS Health to work
@@ -846,19 +845,19 @@ func (c *Health) DescribeEventDetailsForOrganizationRequest(input *DescribeEvent
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_EnableHealthServiceAccessForOrganization.html)
 // operation from your organization's management account.
 //
-// When you call the DescribeEventDetailsForOrganization operation, you specify
+// When you call the DescribeEventDetailsForOrganization operation, specify
 // the organizationEventDetailFilters object in the request. Depending on the
 // AWS Health event type, note the following differences:
 //
-//    * If the event is public, the awsAccountId parameter must be empty. If
-//    you specify an account ID for a public event, then an error message is
-//    returned. That's because the event might apply to all AWS accounts and
-//    isn't specific to an account in your organization.
+//    * To return event details for a public event, you must specify a null
+//    value for the awsAccountId parameter. If you specify an account ID for
+//    a public event, AWS Health returns an error message because public events
+//    aren't specific to an account.
 //
-//    * If the event is specific to an account, then you must specify the awsAccountId
-//    parameter in the request. If you don't specify an account ID, an error
-//    message returns because the event is specific to an AWS account in your
-//    organization.
+//    * To return event details for an event that is specific to an account
+//    in your organization, you must specify the awsAccountId parameter in the
+//    request. If you don't specify an account ID, AWS Health returns an error
+//    message because the event is specific to an account in your organization.
 //
 // For more information, see Event (https://docs.aws.amazon.com/health/latest/APIReference/API_Event.html).
 //
@@ -1608,10 +1607,10 @@ func (c *Health) EnableHealthServiceAccessForOrganizationRequest(input *EnableHe
 //
 // To call this operation, you must meet the following requirements:
 //
-//    * You must have a Business or Enterprise support plan from AWS Support
+//    * You must have a Business or Enterprise Support plan from AWS Support
 //    (http://aws.amazon.com/premiumsupport/) to use the AWS Health API. If
 //    you call the AWS Health API from an AWS account that doesn't have a Business
-//    or Enterprise support plan, you receive a SubscriptionRequiredException
+//    or Enterprise Support plan, you receive a SubscriptionRequiredException
 //    error.
 //
 //    * You must have permission to call this operation from the organization's
@@ -1677,8 +1676,12 @@ type AffectedEntity struct {
 	// The ID of the affected entity.
 	EntityValue *string `locationName:"entityValue" type:"string"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	EventArn *string `locationName:"eventArn" type:"string"`
 
 	// The most recent time that the entity was updated.
@@ -1854,8 +1857,12 @@ func (s *DateTimeRange) SetTo(v time.Time) *DateTimeRange {
 type DescribeAffectedAccountsForOrganizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	//
 	// EventArn is a required field
 	EventArn *string `locationName:"eventArn" type:"string" required:"true"`
@@ -3047,8 +3054,12 @@ type EntityAggregate struct {
 	// The number of entities that match the criteria for the specified events.
 	Count *int64 `locationName:"count" type:"integer"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	EventArn *string `locationName:"eventArn" type:"string"`
 }
 
@@ -3196,8 +3207,12 @@ func (s *EntityFilter) SetTags(v []map[string]*string) *EntityFilter {
 type Event struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The AWS Availability Zone of the event. For example, us-east-1a.
@@ -3233,7 +3248,7 @@ type Event struct {
 	// The most recent date and time that the event was updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The AWS region name of the event.
+	// The AWS Region name of the event.
 	Region *string `locationName:"region" min:"2" type:"string"`
 
 	// The AWS service that is affected by the event. For example, EC2, RDS.
@@ -3333,8 +3348,12 @@ type EventAccountFilter struct {
 	// The 12-digit AWS account numbers that contains the affected entities.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	//
 	// EventArn is a required field
 	EventArn *string `locationName:"eventArn" type:"string" required:"true"`
@@ -3483,7 +3502,7 @@ func (s *EventDetails) SetEventMetadata(v map[string]*string) *EventDetails {
 }
 
 // Error information returned when a DescribeEventDetails (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetails.html)
-// operation cannot find a specified event.
+// operation can't find a specified event.
 type EventDetailsErrorItem struct {
 	_ struct{} `type:"structure"`
 
@@ -3493,8 +3512,12 @@ type EventDetailsErrorItem struct {
 	// The name of the error.
 	ErrorName *string `locationName:"errorName" type:"string"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	EventArn *string `locationName:"eventArn" type:"string"`
 }
 
@@ -3532,7 +3555,7 @@ func (s *EventDetailsErrorItem) SetEventArn(v string) *EventDetailsErrorItem {
 type EventFilter struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS availability zones.
+	// A list of AWS Availability Zones.
 	AvailabilityZones []*string `locationName:"availabilityZones" type:"list"`
 
 	// A list of dates and times that the event ended.
@@ -3561,7 +3584,7 @@ type EventFilter struct {
 	// A list of dates and times that the event was last updated.
 	LastUpdatedTimes []*DateTimeRange `locationName:"lastUpdatedTimes" min:"1" type:"list"`
 
-	// A list of AWS regions.
+	// A list of AWS Regions.
 	Regions []*string `locationName:"regions" min:"1" type:"list"`
 
 	// The AWS services associated with the event. For example, EC2, RDS.
@@ -3882,7 +3905,7 @@ func (s *InvalidPaginationToken) RequestID() string {
 
 // Error information returned when a DescribeAffectedEntitiesForOrganization
 // (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeAffectedEntitiesForOrganization.html)
-// operation cannot find or process a specific entity.
+// operation can't find or process a specific entity.
 type OrganizationAffectedEntitiesErrorItem struct {
 	_ struct{} `type:"structure"`
 
@@ -3896,8 +3919,12 @@ type OrganizationAffectedEntitiesErrorItem struct {
 	// The name of the error.
 	ErrorName *string `locationName:"errorName" type:"string"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	EventArn *string `locationName:"eventArn" type:"string"`
 }
 
@@ -3941,8 +3968,12 @@ func (s *OrganizationAffectedEntitiesErrorItem) SetEventArn(v string) *Organizat
 type OrganizationEvent struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time that the event ended.
@@ -3977,7 +4008,7 @@ type OrganizationEvent struct {
 	// The AWS Region name of the event.
 	Region *string `locationName:"region" min:"2" type:"string"`
 
-	// The AWS service that is affected by the event. For example, EC2, RDS.
+	// The AWS service that is affected by the event, such as EC2 and RDS.
 	Service *string `locationName:"service" min:"2" type:"string"`
 
 	// The date and time that the event began.
@@ -4131,22 +4162,41 @@ func (s *OrganizationEventDetails) SetEventMetadata(v map[string]*string) *Organ
 }
 
 // Error information returned when a DescribeEventDetailsForOrganization (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html)
-// operation cannot find a specified event.
+// operation can't find a specified event.
 type OrganizationEventDetailsErrorItem struct {
 	_ struct{} `type:"structure"`
 
 	// Error information returned when a DescribeEventDetailsForOrganization (https://docs.aws.amazon.com/health/latest/APIReference/API_DescribeEventDetailsForOrganization.html)
-	// operation cannot find a specified event.
+	// operation can't find a specified event.
 	AwsAccountId *string `locationName:"awsAccountId" type:"string"`
 
 	// A message that describes the error.
+	//
+	// If you call the DescribeEventDetailsForOrganization operation and receive
+	// one of the following errors, follow the recommendations in the message:
+	//
+	//    * We couldn't find a public event that matches your request. To find an
+	//    event that is account specific, you must enter an AWS account ID in the
+	//    request.
+	//
+	//    * We couldn't find an account specific event for the specified AWS account.
+	//    To find an event that is public, you must enter a null value for the AWS
+	//    account ID in the request.
+	//
+	//    * Your AWS account doesn't include the AWS Support plan required to use
+	//    the AWS Health API. You must have either a Business or Enterprise Support
+	//    plan.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// The name of the error.
 	ErrorName *string `locationName:"errorName" type:"string"`
 
-	// The unique identifier for the event. Format: arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
-	// . Example: Example: arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
+	// The unique identifier for the event. The event ARN has the arn:aws:health:event-region::event/SERVICE/EVENT_TYPE_CODE/EVENT_TYPE_PLUS_ID
+	// format.
+	//
+	// For example, an event ARN might look like the following:
+	//
+	// arn:aws:health:us-east-1::event/EC2/EC2_INSTANCE_RETIREMENT_SCHEDULED/EC2_INSTANCE_RETIREMENT_SCHEDULED_ABC123-DEF456
 	EventArn *string `locationName:"eventArn" type:"string"`
 }
 

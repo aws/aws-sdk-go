@@ -11,14 +11,14 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// There was a conflict when you attempted to modify an experiment, trial, or
-	// trial component.
+	// There was a conflict when you attempted to modify a SageMaker entity such
+	// as an Experiment or Artifact.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeResourceInUse for service response error code
 	// "ResourceInUse".
 	//
-	// Resource being accessed is in use.
+	// The resource being accessed is in use.
 	ErrCodeResourceInUse = "ResourceInUse"
 
 	// ErrCodeResourceLimitExceeded for service response error code
@@ -31,7 +31,7 @@ const (
 	// ErrCodeResourceNotFound for service response error code
 	// "ResourceNotFound".
 	//
-	// Resource being access is not found.
+	// The resource being accessed was not found.
 	ErrCodeResourceNotFound = "ResourceNotFound"
 )
 

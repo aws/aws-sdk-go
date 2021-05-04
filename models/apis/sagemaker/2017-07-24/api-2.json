@@ -4949,7 +4949,8 @@
         "ExperimentConfig":{"shape":"ExperimentConfig"},
         "ProfilerConfig":{"shape":"ProfilerConfig"},
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
-        "Environment":{"shape":"TrainingEnvironmentMap"}
+        "Environment":{"shape":"TrainingEnvironmentMap"},
+        "RetryStrategy":{"shape":"RetryStrategy"}
       }
     },
     "CreateTrainingJobResponse":{
@@ -6879,6 +6880,7 @@
         "ProfilerRuleConfigurations":{"shape":"ProfilerRuleConfigurations"},
         "ProfilerRuleEvaluationStatuses":{"shape":"ProfilerRuleEvaluationStatuses"},
         "ProfilingStatus":{"shape":"ProfilingStatus"},
+        "RetryStrategy":{"shape":"RetryStrategy"},
         "Environment":{"shape":"TrainingEnvironmentMap"}
       }
     },
@@ -8253,7 +8255,8 @@
         "EnableNetworkIsolation":{"shape":"Boolean"},
         "EnableInterContainerTrafficEncryption":{"shape":"Boolean"},
         "EnableManagedSpotTraining":{"shape":"Boolean"},
-        "CheckpointConfig":{"shape":"CheckpointConfig"}
+        "CheckpointConfig":{"shape":"CheckpointConfig"},
+        "RetryStrategy":{"shape":"RetryStrategy"}
       }
     },
     "HyperParameterTrainingJobDefinitionName":{
@@ -10294,6 +10297,11 @@
       "type":"integer",
       "max":14400,
       "min":600
+    },
+    "MaximumRetryAttempts":{
+      "type":"integer",
+      "max":30,
+      "min":1
     },
     "MediaType":{
       "type":"string",
@@ -12653,6 +12661,13 @@
         "Delete"
       ]
     },
+    "RetryStrategy":{
+      "type":"structure",
+      "required":["MaximumRetryAttempts"],
+      "members":{
+        "MaximumRetryAttempts":{"shape":"MaximumRetryAttempts"}
+      }
+    },
     "RoleArn":{
       "type":"string",
       "max":2048,
@@ -12845,7 +12860,8 @@
         "Failed",
         "Interrupted",
         "MaxWaitTimeExceeded",
-        "Updating"
+        "Updating",
+        "Restarting"
       ]
     },
     "SecondaryStatusTransition":{
@@ -13615,6 +13631,7 @@
         "TensorBoardOutputConfig":{"shape":"TensorBoardOutputConfig"},
         "DebugRuleEvaluationStatuses":{"shape":"DebugRuleEvaluationStatuses"},
         "Environment":{"shape":"TrainingEnvironmentMap"},
+        "RetryStrategy":{"shape":"RetryStrategy"},
         "Tags":{"shape":"TagList"}
       }
     },

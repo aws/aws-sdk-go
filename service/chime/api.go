@@ -1073,14 +1073,14 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // BatchUpdatePhoneNumber API operation for Amazon Chime.
 //
 // Updates phone number product types or calling names. You can update one attribute
-// at a time for each UpdatePhoneNumberRequestItem . For example, you can update
-// either the product type or the calling name.
+// at a time for each UpdatePhoneNumberRequestItem. For example, you can update
+// the product type or the calling name.
 //
-// For product types, choose from Amazon Chime Business Calling and Amazon Chime
-// Voice Connector. For toll-free numbers, you must use the Amazon Chime Voice
-// Connector product type.
+// For toll-free numbers, you cannot use the Amazon Chime Business Calling product
+// type. For numbers outside the US, you must use the Amazon Chime SIP Media
+// Application Dial-In product type.
 //
-// Updates to outbound calling names can take up to 72 hours to complete. Pending
+// Updates to outbound calling names can take 72 hours to complete. Pending
 // updates to outbound calling names must be complete before you can request
 // another update.
 //
@@ -2666,10 +2666,10 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 
 // CreatePhoneNumberOrder API operation for Amazon Chime.
 //
-// Creates an order for phone numbers to be provisioned. Choose from Amazon
-// Chime Business Calling and Amazon Chime Voice Connector product types. For
-// toll-free numbers, you must use the Amazon Chime Voice Connector product
-// type.
+// Creates an order for phone numbers to be provisioned. For toll-free numbers,
+// you cannot use the Amazon Chime Business Calling product type. For numbers
+// outside the US, you must use the Amazon Chime SIP Media Application Dial-In
+// product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5008,9 +5008,9 @@ func (c *Chime) DeletePhoneNumberRequest(input *DeletePhoneNumberInput) (req *re
 
 // DeletePhoneNumber API operation for Amazon Chime.
 //
-// Moves the specified phone number into the Deletionqueue. A phone number must
-// be disassociated from any users or Amazon Chime Voice Connectors before it
-// can be deleted.
+// Moves the specified phone number into the Deletion queue. A phone number
+// must be disassociated from any users or Amazon Chime Voice Connectors before
+// it can be deleted.
 //
 // Deleted phone numbers remain in the Deletion queue for 7 days before they
 // are deleted permanently.
@@ -12355,7 +12355,7 @@ func (c *Chime) ListChannelMessagesRequest(input *ListChannelMessagesInput) (req
 // ListChannelMessages API operation for Amazon Chime.
 //
 // List all the messages in a channel. Returns a paginated list of ChannelMessages.
-// By default, sorted by creation timestamp in descending order .
+// By default, sorted by creation timestamp in descending order.
 //
 // Redacted messages appear in the results as empty, since they are only redacted,
 // not deleted. Deleted messages do not appear in the results. This action always
@@ -14272,6 +14272,103 @@ func (c *Chime) ListSipRulesPagesWithContext(ctx aws.Context, input *ListSipRule
 	}
 
 	return p.Err()
+}
+
+const opListSupportedPhoneNumberCountries = "ListSupportedPhoneNumberCountries"
+
+// ListSupportedPhoneNumberCountriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSupportedPhoneNumberCountries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSupportedPhoneNumberCountries for more information on using the ListSupportedPhoneNumberCountries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSupportedPhoneNumberCountriesRequest method.
+//    req, resp := client.ListSupportedPhoneNumberCountriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSupportedPhoneNumberCountries
+func (c *Chime) ListSupportedPhoneNumberCountriesRequest(input *ListSupportedPhoneNumberCountriesInput) (req *request.Request, output *ListSupportedPhoneNumberCountriesOutput) {
+	op := &request.Operation{
+		Name:       opListSupportedPhoneNumberCountries,
+		HTTPMethod: "GET",
+		HTTPPath:   "/phone-number-countries",
+	}
+
+	if input == nil {
+		input = &ListSupportedPhoneNumberCountriesInput{}
+	}
+
+	output = &ListSupportedPhoneNumberCountriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSupportedPhoneNumberCountries API operation for Amazon Chime.
+//
+// Lists supported phone number countries.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListSupportedPhoneNumberCountries for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSupportedPhoneNumberCountries
+func (c *Chime) ListSupportedPhoneNumberCountries(input *ListSupportedPhoneNumberCountriesInput) (*ListSupportedPhoneNumberCountriesOutput, error) {
+	req, out := c.ListSupportedPhoneNumberCountriesRequest(input)
+	return out, req.Send()
+}
+
+// ListSupportedPhoneNumberCountriesWithContext is the same as ListSupportedPhoneNumberCountries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSupportedPhoneNumberCountries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListSupportedPhoneNumberCountriesWithContext(ctx aws.Context, input *ListSupportedPhoneNumberCountriesInput, opts ...request.Option) (*ListSupportedPhoneNumberCountriesOutput, error) {
+	req, out := c.ListSupportedPhoneNumberCountriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -16856,6 +16953,12 @@ func (c *Chime) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNu
 		Name:       opSearchAvailablePhoneNumbers,
 		HTTPMethod: "GET",
 		HTTPPath:   "/search?type=phone-numbers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -16869,7 +16972,10 @@ func (c *Chime) SearchAvailablePhoneNumbersRequest(input *SearchAvailablePhoneNu
 
 // SearchAvailablePhoneNumbers API operation for Amazon Chime.
 //
-// Searches phone numbers that can be ordered.
+// Searches for phone numbers that can be ordered. For US numbers, provide at
+// least one of the following search filters: AreaCode, City, State, or TollFreePrefix.
+// If you provide City, you must also provide State. Numbers outside the US
+// only support the PhoneNumberType filter, which you must use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16920,6 +17026,58 @@ func (c *Chime) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input *S
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// SearchAvailablePhoneNumbersPages iterates over the pages of a SearchAvailablePhoneNumbers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchAvailablePhoneNumbers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchAvailablePhoneNumbers operation.
+//    pageNum := 0
+//    err := client.SearchAvailablePhoneNumbersPages(params,
+//        func(page *chime.SearchAvailablePhoneNumbersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) SearchAvailablePhoneNumbersPages(input *SearchAvailablePhoneNumbersInput, fn func(*SearchAvailablePhoneNumbersOutput, bool) bool) error {
+	return c.SearchAvailablePhoneNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchAvailablePhoneNumbersPagesWithContext same as SearchAvailablePhoneNumbersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) SearchAvailablePhoneNumbersPagesWithContext(ctx aws.Context, input *SearchAvailablePhoneNumbersInput, fn func(*SearchAvailablePhoneNumbersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchAvailablePhoneNumbersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchAvailablePhoneNumbersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchAvailablePhoneNumbersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opSendChannelMessage = "SendChannelMessage"
@@ -18573,10 +18731,11 @@ func (c *Chime) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *re
 // For example, you can update either the product type or the calling name in
 // one action.
 //
-// For toll-free numbers, you must use the Amazon Chime Voice Connector product
-// type.
+// For toll-free numbers, you cannot use the Amazon Chime Business Calling product
+// type. For numbers outside the U.S., you must use the Amazon Chime SIP Media
+// Application Dial-In product type.
 //
-// Updates to outbound calling names can take up to 72 hours to complete. Pending
+// Updates to outbound calling names can take 72 hours to complete. Pending
 // updates to outbound calling names must be complete before you can request
 // another update.
 //
@@ -27168,7 +27327,7 @@ func (s *DescribeChannelBanInput) SetMemberArn(v string) *DescribeChannelBanInpu
 type DescribeChannelBanOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The the details of the ban.
+	// The details of the ban.
 	ChannelBan *ChannelBan `type:"structure"`
 }
 
@@ -32693,6 +32852,67 @@ func (s *ListSipRulesOutput) SetSipRules(v []*SipRule) *ListSipRulesOutput {
 	return s
 }
 
+type ListSupportedPhoneNumberCountriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number product type.
+	//
+	// ProductType is a required field
+	ProductType *string `location:"querystring" locationName:"product-type" type:"string" required:"true" enum:"PhoneNumberProductType"`
+}
+
+// String returns the string representation
+func (s ListSupportedPhoneNumberCountriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSupportedPhoneNumberCountriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSupportedPhoneNumberCountriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSupportedPhoneNumberCountriesInput"}
+	if s.ProductType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProductType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProductType sets the ProductType field's value.
+func (s *ListSupportedPhoneNumberCountriesInput) SetProductType(v string) *ListSupportedPhoneNumberCountriesInput {
+	s.ProductType = &v
+	return s
+}
+
+type ListSupportedPhoneNumberCountriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The supported phone number countries.
+	PhoneNumberCountries []*PhoneNumberCountry `type:"list"`
+}
+
+// String returns the string representation
+func (s ListSupportedPhoneNumberCountriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSupportedPhoneNumberCountriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumberCountries sets the PhoneNumberCountries field's value.
+func (s *ListSupportedPhoneNumberCountriesOutput) SetPhoneNumberCountries(v []*PhoneNumberCountry) *ListSupportedPhoneNumberCountriesOutput {
+	s.PhoneNumberCountries = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -33807,6 +34027,9 @@ type PhoneNumber struct {
 	// The phone number capabilities.
 	Capabilities *PhoneNumberCapabilities `type:"structure"`
 
+	// The phone number country. Format: ISO 3166-1 alpha-2.
+	Country *string `type:"string"`
+
 	// The phone number creation timestamp, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -33863,6 +34086,12 @@ func (s *PhoneNumber) SetCallingNameStatus(v string) *PhoneNumber {
 // SetCapabilities sets the Capabilities field's value.
 func (s *PhoneNumber) SetCapabilities(v *PhoneNumberCapabilities) *PhoneNumber {
 	s.Capabilities = v
+	return s
+}
+
+// SetCountry sets the Country field's value.
+func (s *PhoneNumber) SetCountry(v string) *PhoneNumber {
+	s.Country = &v
 	return s
 }
 
@@ -34026,6 +34255,39 @@ func (s *PhoneNumberCapabilities) SetOutboundMMS(v bool) *PhoneNumberCapabilitie
 // SetOutboundSMS sets the OutboundSMS field's value.
 func (s *PhoneNumberCapabilities) SetOutboundSMS(v bool) *PhoneNumberCapabilities {
 	s.OutboundSMS = &v
+	return s
+}
+
+// The phone number country.
+type PhoneNumberCountry struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number country code. Format: ISO 3166-1 alpha-2.
+	CountryCode *string `type:"string"`
+
+	// The supported phone number types.
+	SupportedPhoneNumberTypes []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s PhoneNumberCountry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PhoneNumberCountry) GoString() string {
+	return s.String()
+}
+
+// SetCountryCode sets the CountryCode field's value.
+func (s *PhoneNumberCountry) SetCountryCode(v string) *PhoneNumberCountry {
+	s.CountryCode = &v
+	return s
+}
+
+// SetSupportedPhoneNumberTypes sets the SupportedPhoneNumberTypes field's value.
+func (s *PhoneNumberCountry) SetSupportedPhoneNumberTypes(v []*string) *PhoneNumberCountry {
+	s.SupportedPhoneNumberTypes = v
 	return s
 }
 
@@ -36156,25 +36418,31 @@ func (s *RoomRetentionSettings) SetRetentionDays(v int64) *RoomRetentionSettings
 type SearchAvailablePhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The area code used to filter results.
+	// The area code used to filter results. Only applies to the US.
 	AreaCode *string `location:"querystring" locationName:"area-code" type:"string"`
 
-	// The city used to filter results.
+	// The city used to filter results. Only applies to the US.
 	City *string `location:"querystring" locationName:"city" type:"string"`
 
-	// The country used to filter results.
+	// The country used to filter results. Defaults to the US Format: ISO 3166-1
+	// alpha-2.
 	Country *string `location:"querystring" locationName:"country" type:"string"`
 
 	// The maximum number of results to return in a single call.
 	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
 
-	// The token to use to retrieve the next page of results.
+	// The token used to retrieve the next page of results.
 	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
 
-	// The state used to filter results.
+	// The phone number type used to filter results. Required for non-US numbers.
+	PhoneNumberType *string `location:"querystring" locationName:"phone-number-type" type:"string" enum:"PhoneNumberType"`
+
+	// The state used to filter results. Required only if you provide City. Only
+	// applies to the US.
 	State *string `location:"querystring" locationName:"state" type:"string"`
 
-	// The toll-free prefix that you use to filter results.
+	// The toll-free prefix that you use to filter results. Only applies to the
+	// US.
 	TollFreePrefix *string `location:"querystring" locationName:"toll-free-prefix" min:"3" type:"string"`
 }
 
@@ -36234,6 +36502,12 @@ func (s *SearchAvailablePhoneNumbersInput) SetNextToken(v string) *SearchAvailab
 	return s
 }
 
+// SetPhoneNumberType sets the PhoneNumberType field's value.
+func (s *SearchAvailablePhoneNumbersInput) SetPhoneNumberType(v string) *SearchAvailablePhoneNumbersInput {
+	s.PhoneNumberType = &v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *SearchAvailablePhoneNumbersInput) SetState(v string) *SearchAvailablePhoneNumbersInput {
 	s.State = &v
@@ -36251,6 +36525,9 @@ type SearchAvailablePhoneNumbersOutput struct {
 
 	// List of phone numbers, in E.164 format.
 	E164PhoneNumbers []*string `type:"list"`
+
+	// The token used to retrieve the next page of search results.
+	NextToken *string `type:"string"`
 }
 
 // String returns the string representation
@@ -36266,6 +36543,12 @@ func (s SearchAvailablePhoneNumbersOutput) GoString() string {
 // SetE164PhoneNumbers sets the E164PhoneNumbers field's value.
 func (s *SearchAvailablePhoneNumbersOutput) SetE164PhoneNumbers(v []*string) *SearchAvailablePhoneNumbersOutput {
 	s.E164PhoneNumbers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvailablePhoneNumbersOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -40753,6 +41036,9 @@ const (
 
 	// PhoneNumberProductTypeVoiceConnector is a PhoneNumberProductType enum value
 	PhoneNumberProductTypeVoiceConnector = "VoiceConnector"
+
+	// PhoneNumberProductTypeSipMediaApplicationDialIn is a PhoneNumberProductType enum value
+	PhoneNumberProductTypeSipMediaApplicationDialIn = "SipMediaApplicationDialIn"
 )
 
 // PhoneNumberProductType_Values returns all elements of the PhoneNumberProductType enum
@@ -40760,6 +41046,7 @@ func PhoneNumberProductType_Values() []string {
 	return []string{
 		PhoneNumberProductTypeBusinessCalling,
 		PhoneNumberProductTypeVoiceConnector,
+		PhoneNumberProductTypeSipMediaApplicationDialIn,
 	}
 }
 

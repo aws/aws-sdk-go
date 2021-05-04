@@ -1,3 +1,16 @@
+Release v1.38.32 (2021-05-04)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/chime`: Updates service API, documentation, and paginators
+  * This release adds the ability to search for and order international phone numbers for Amazon Chime SIP media applications.
+* `service/devops-guru`: Updates service API, documentation, and paginators
+* `service/health`: Updates service documentation
+  * Documentation updates for health
+* `service/sagemaker`: Updates service API and documentation
+  * Enable retrying Training and Tuning Jobs that fail with InternalServerError by setting RetryStrategy.
+
 Release v1.38.31 (2021-05-03)
 ===
 

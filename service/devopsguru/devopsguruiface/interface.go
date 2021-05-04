@@ -95,6 +95,13 @@ type DevOpsGuruAPI interface {
 	DescribeServiceIntegrationWithContext(aws.Context, *devopsguru.DescribeServiceIntegrationInput, ...request.Option) (*devopsguru.DescribeServiceIntegrationOutput, error)
 	DescribeServiceIntegrationRequest(*devopsguru.DescribeServiceIntegrationInput) (*request.Request, *devopsguru.DescribeServiceIntegrationOutput)
 
+	GetCostEstimation(*devopsguru.GetCostEstimationInput) (*devopsguru.GetCostEstimationOutput, error)
+	GetCostEstimationWithContext(aws.Context, *devopsguru.GetCostEstimationInput, ...request.Option) (*devopsguru.GetCostEstimationOutput, error)
+	GetCostEstimationRequest(*devopsguru.GetCostEstimationInput) (*request.Request, *devopsguru.GetCostEstimationOutput)
+
+	GetCostEstimationPages(*devopsguru.GetCostEstimationInput, func(*devopsguru.GetCostEstimationOutput, bool) bool) error
+	GetCostEstimationPagesWithContext(aws.Context, *devopsguru.GetCostEstimationInput, func(*devopsguru.GetCostEstimationOutput, bool) bool, ...request.Option) error
+
 	GetResourceCollection(*devopsguru.GetResourceCollectionInput) (*devopsguru.GetResourceCollectionOutput, error)
 	GetResourceCollectionWithContext(aws.Context, *devopsguru.GetResourceCollectionInput, ...request.Option) (*devopsguru.GetResourceCollectionOutput, error)
 	GetResourceCollectionRequest(*devopsguru.GetResourceCollectionInput) (*request.Request, *devopsguru.GetResourceCollectionOutput)
@@ -151,6 +158,10 @@ type DevOpsGuruAPI interface {
 
 	SearchInsightsPages(*devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool) error
 	SearchInsightsPagesWithContext(aws.Context, *devopsguru.SearchInsightsInput, func(*devopsguru.SearchInsightsOutput, bool) bool, ...request.Option) error
+
+	StartCostEstimation(*devopsguru.StartCostEstimationInput) (*devopsguru.StartCostEstimationOutput, error)
+	StartCostEstimationWithContext(aws.Context, *devopsguru.StartCostEstimationInput, ...request.Option) (*devopsguru.StartCostEstimationOutput, error)
+	StartCostEstimationRequest(*devopsguru.StartCostEstimationInput) (*request.Request, *devopsguru.StartCostEstimationOutput)
 
 	UpdateResourceCollection(*devopsguru.UpdateResourceCollectionInput) (*devopsguru.UpdateResourceCollectionOutput, error)
 	UpdateResourceCollectionWithContext(aws.Context, *devopsguru.UpdateResourceCollectionInput, ...request.Option) (*devopsguru.UpdateResourceCollectionOutput, error)
