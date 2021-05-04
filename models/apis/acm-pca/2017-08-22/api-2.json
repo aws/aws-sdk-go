@@ -506,7 +506,8 @@
         "FailureReason":{"shape":"FailureReason"},
         "CertificateAuthorityConfiguration":{"shape":"CertificateAuthorityConfiguration"},
         "RevocationConfiguration":{"shape":"RevocationConfiguration"},
-        "RestorableUntil":{"shape":"TStamp"}
+        "RestorableUntil":{"shape":"TStamp"},
+        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"}
       }
     },
     "CertificateAuthorityConfiguration":{
@@ -611,6 +612,7 @@
         "RevocationConfiguration":{"shape":"RevocationConfiguration"},
         "CertificateAuthorityType":{"shape":"CertificateAuthorityType"},
         "IdempotencyToken":{"shape":"IdempotencyToken"},
+        "KeyStorageSecurityStandard":{"shape":"KeyStorageSecurityStandard"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -962,6 +964,13 @@
         "RSA_4096",
         "EC_prime256v1",
         "EC_secp384r1"
+      ]
+    },
+    "KeyStorageSecurityStandard":{
+      "type":"string",
+      "enum":[
+        "FIPS_140_2_LEVEL_2_OR_HIGHER",
+        "FIPS_140_2_LEVEL_3_OR_HIGHER"
       ]
     },
     "KeyUsage":{

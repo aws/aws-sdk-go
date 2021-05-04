@@ -662,7 +662,7 @@ func (c *DevOpsGuru) DescribeResourceCollectionHealthRequest(input *DescribeReso
 // in your account. You specify the type of AWS resources collection. The one
 // type of AWS resource collection supported is AWS CloudFormation stacks. DevOps
 // Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks.
+// in the stacks. You can specify up to 500 AWS CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -858,6 +858,163 @@ func (c *DevOpsGuru) DescribeServiceIntegrationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opGetCostEstimation = "GetCostEstimation"
+
+// GetCostEstimationRequest generates a "aws/request.Request" representing the
+// client's request for the GetCostEstimation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCostEstimation for more information on using the GetCostEstimation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCostEstimationRequest method.
+//    req, resp := client.GetCostEstimationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetCostEstimation
+func (c *DevOpsGuru) GetCostEstimationRequest(input *GetCostEstimationInput) (req *request.Request, output *GetCostEstimationOutput) {
+	op := &request.Operation{
+		Name:       opGetCostEstimation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/cost-estimation",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetCostEstimationInput{}
+	}
+
+	output = &GetCostEstimationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCostEstimation API operation for Amazon DevOps Guru.
+//
+// Returns an estimate of the monthly cost for DevOps Guru to analyze your AWS
+// resources. For more information, see Estimate your Amazon DevOps Guru costs
+// (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation GetCostEstimation for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/GetCostEstimation
+func (c *DevOpsGuru) GetCostEstimation(input *GetCostEstimationInput) (*GetCostEstimationOutput, error) {
+	req, out := c.GetCostEstimationRequest(input)
+	return out, req.Send()
+}
+
+// GetCostEstimationWithContext is the same as GetCostEstimation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCostEstimation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) GetCostEstimationWithContext(ctx aws.Context, input *GetCostEstimationInput, opts ...request.Option) (*GetCostEstimationOutput, error) {
+	req, out := c.GetCostEstimationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetCostEstimationPages iterates over the pages of a GetCostEstimation operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetCostEstimation method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetCostEstimation operation.
+//    pageNum := 0
+//    err := client.GetCostEstimationPages(params,
+//        func(page *devopsguru.GetCostEstimationOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DevOpsGuru) GetCostEstimationPages(input *GetCostEstimationInput, fn func(*GetCostEstimationOutput, bool) bool) error {
+	return c.GetCostEstimationPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetCostEstimationPagesWithContext same as GetCostEstimationPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) GetCostEstimationPagesWithContext(ctx aws.Context, input *GetCostEstimationInput, fn func(*GetCostEstimationOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetCostEstimationInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetCostEstimationRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetCostEstimationOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetResourceCollection = "GetResourceCollection"
 
 // GetResourceCollectionRequest generates a "aws/request.Request" representing the
@@ -911,7 +1068,7 @@ func (c *DevOpsGuru) GetResourceCollectionRequest(input *GetResourceCollectionIn
 // Returns lists AWS resources that are of the specified resource collection
 // type. The one type of AWS resource collection supported is AWS CloudFormation
 // stacks. DevOps Guru can be configured to analyze only the AWS resources that
-// are defined in the stacks.
+// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2146,6 +2303,107 @@ func (c *DevOpsGuru) SearchInsightsPagesWithContext(ctx aws.Context, input *Sear
 	return p.Err()
 }
 
+const opStartCostEstimation = "StartCostEstimation"
+
+// StartCostEstimationRequest generates a "aws/request.Request" representing the
+// client's request for the StartCostEstimation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCostEstimation for more information on using the StartCostEstimation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartCostEstimationRequest method.
+//    req, resp := client.StartCostEstimationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/StartCostEstimation
+func (c *DevOpsGuru) StartCostEstimationRequest(input *StartCostEstimationInput) (req *request.Request, output *StartCostEstimationOutput) {
+	op := &request.Operation{
+		Name:       opStartCostEstimation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/cost-estimation",
+	}
+
+	if input == nil {
+		input = &StartCostEstimationInput{}
+	}
+
+	output = &StartCostEstimationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartCostEstimation API operation for Amazon DevOps Guru.
+//
+// Starts the creation of an estimate of the monthly cost to analyze your AWS
+// resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DevOps Guru's
+// API operation StartCostEstimation for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation. The user or
+//   role that is making the request must have at least one IAM permissions policy
+//   attached that grants the required permissions. For more information, see
+//   Access Management (https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html)
+//   in the IAM User Guide.
+//
+//   * ConflictException
+//   An exception that is thrown when a conflict occurs.
+//
+//   * InternalServerException
+//   An internal failure in an Amazon service occurred.
+//
+//   * ResourceNotFoundException
+//   A requested resource could not be found
+//
+//   * ThrottlingException
+//   The request was denied due to a request throttling.
+//
+//   * ValidationException
+//   Contains information about data passed in to a field during a request that
+//   is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/devops-guru-2020-12-01/StartCostEstimation
+func (c *DevOpsGuru) StartCostEstimation(input *StartCostEstimationInput) (*StartCostEstimationOutput, error) {
+	req, out := c.StartCostEstimationRequest(input)
+	return out, req.Send()
+}
+
+// StartCostEstimationWithContext is the same as StartCostEstimation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCostEstimation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DevOpsGuru) StartCostEstimationWithContext(ctx aws.Context, input *StartCostEstimationInput, opts ...request.Option) (*StartCostEstimationOutput, error) {
+	req, out := c.StartCostEstimationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateResourceCollection = "UpdateResourceCollection"
 
 // UpdateResourceCollectionRequest generates a "aws/request.Request" representing the
@@ -2194,8 +2452,8 @@ func (c *DevOpsGuru) UpdateResourceCollectionRequest(input *UpdateResourceCollec
 // Updates the collection of resources that DevOps Guru analyzes. The one type
 // of AWS resource collection supported is AWS CloudFormation stacks. DevOps
 // Guru can be configured to analyze only the AWS resources that are defined
-// in the stacks. This method also creates the IAM role required for you to
-// use DevOps Guru.
+// in the stacks. You can specify up to 500 AWS CloudFormation stacks. This
+// method also creates the IAM role required for you to use DevOps Guru.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2539,9 +2797,9 @@ func (s *AnomalyTimeRange) SetStartTime(v time.Time) *AnomalyTimeRange {
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use stacks to specify
-// which AWS resources in your account to analyze. For more information, see
-// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// Information about AWS CloudFormation stacks. You can use up to 500 stacks
+// to specify which AWS resources in your account to analyze. For more information,
+// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 // in the AWS CloudFormation User Guide.
 type CloudFormationCollection struct {
 	_ struct{} `type:"structure"`
@@ -2566,9 +2824,9 @@ func (s *CloudFormationCollection) SetStackNames(v []*string) *CloudFormationCol
 	return s
 }
 
-// Information about AWS CloudFormation stacks. You can use stacks to specify
-// which AWS resources in your account to analyze. For more information, see
-// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// Information about AWS CloudFormation stacks. You can use up to 500 stacks
+// to specify which AWS resources in your account to analyze. For more information,
+// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 // in the AWS CloudFormation User Guide.
 type CloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
@@ -2589,6 +2847,48 @@ func (s CloudFormationCollectionFilter) GoString() string {
 
 // SetStackNames sets the StackNames field's value.
 func (s *CloudFormationCollectionFilter) SetStackNames(v []*string) *CloudFormationCollectionFilter {
+	s.StackNames = v
+	return s
+}
+
+// Information about an AWS CloudFormation stack used to create a monthly cost
+// estimate for DevOps Guru to analyze AWS resources. The maximum number of
+// stacks you can specify for a cost estimate is one. The estimate created is
+// for the cost to analyze the AWS resources defined by the stack. For more
+// information, see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+// in the AWS CloudFormation User Guide.
+type CloudFormationCostEstimationResourceCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An array of CloudFormation stack names. Its size is fixed at 1 item.
+	StackNames []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CloudFormationCostEstimationResourceCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CloudFormationCostEstimationResourceCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CloudFormationCostEstimationResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CloudFormationCostEstimationResourceCollectionFilter"}
+	if s.StackNames != nil && len(s.StackNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StackNames", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStackNames sets the StackNames field's value.
+func (s *CloudFormationCostEstimationResourceCollectionFilter) SetStackNames(v []*string) *CloudFormationCostEstimationResourceCollectionFilter {
 	s.StackNames = v
 	return s
 }
@@ -2804,6 +3104,82 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about a filter used to specify which AWS resources are analyzed
+// to create a monthly DevOps Guru cost estimate. For more information, see
+// Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
+type CostEstimationResourceCollectionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object that specifies the CloudFormation stack that defines the AWS resources
+	// used to create a monthly estimate for DevOps Guru.
+	CloudFormation *CloudFormationCostEstimationResourceCollectionFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s CostEstimationResourceCollectionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostEstimationResourceCollectionFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CostEstimationResourceCollectionFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CostEstimationResourceCollectionFilter"}
+	if s.CloudFormation != nil {
+		if err := s.CloudFormation.Validate(); err != nil {
+			invalidParams.AddNested("CloudFormation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCloudFormation sets the CloudFormation field's value.
+func (s *CostEstimationResourceCollectionFilter) SetCloudFormation(v *CloudFormationCostEstimationResourceCollectionFilter) *CostEstimationResourceCollectionFilter {
+	s.CloudFormation = v
+	return s
+}
+
+// The time range of a cost estimation.
+type CostEstimationTimeRange struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the cost estimation.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The start time of the cost estimation.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s CostEstimationTimeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostEstimationTimeRange) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *CostEstimationTimeRange) SetEndTime(v time.Time) *CostEstimationTimeRange {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CostEstimationTimeRange) SetStartTime(v time.Time) *CostEstimationTimeRange {
+	s.StartTime = &v
+	return s
 }
 
 type DescribeAccountHealthInput struct {
@@ -3027,10 +3403,10 @@ func (s *DescribeAnomalyInput) SetId(v string) *DescribeAnomalyInput {
 type DescribeAnomalyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An ReactiveAnomaly object that represents the requested anomaly.
+	// A ReactiveAnomaly object that represents the requested anomaly.
 	ProactiveAnomaly *ProactiveAnomaly `type:"structure"`
 
-	// An ProactiveAnomaly object that represents the requested anomaly.
+	// A ProactiveAnomaly object that represents the requested anomaly.
 	ReactiveAnomaly *ReactiveAnomaly `type:"structure"`
 }
 
@@ -3159,10 +3535,10 @@ func (s *DescribeInsightInput) SetId(v string) *DescribeInsightInput {
 type DescribeInsightOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An ProactiveInsight object that represents the requested insight.
+	// A ProactiveInsight object that represents the requested insight.
 	ProactiveInsight *ProactiveInsight `type:"structure"`
 
-	// An ReactiveInsight object that represents the requested insight.
+	// A ReactiveInsight object that represents the requested insight.
 	ReactiveInsight *ReactiveInsight `type:"structure"`
 }
 
@@ -3198,7 +3574,7 @@ type DescribeResourceCollectionHealthInput struct {
 	// An AWS resource collection type. This type specifies how analyzed AWS resources
 	// are defined. The one type of AWS resource collection supported is AWS CloudFormation
 	// stacks. DevOps Guru can be configured to analyze only the AWS resources that
-	// are defined in the stacks.
+	// are defined in the stacks. You can specify up to 500 AWS CloudFormation stacks.
 	//
 	// ResourceCollectionType is a required field
 	ResourceCollectionType *string `location:"uri" locationName:"ResourceCollectionType" type:"string" required:"true" enum:"ResourceCollectionType"`
@@ -3257,6 +3633,10 @@ type DescribeResourceCollectionHealthOutput struct {
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If there are no more pages, this value is null.
 	NextToken *string `min:"36" type:"string"`
+
+	// An array of ServiceHealth objects that describes the health of the AWS services
+	// associated with the resources in the collection.
+	Service []*ServiceHealth `type:"list"`
 }
 
 // String returns the string representation
@@ -3278,6 +3658,12 @@ func (s *DescribeResourceCollectionHealthOutput) SetCloudFormation(v []*CloudFor
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeResourceCollectionHealthOutput) SetNextToken(v string) *DescribeResourceCollectionHealthOutput {
 	s.NextToken = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *DescribeResourceCollectionHealthOutput) SetService(v []*ServiceHealth) *DescribeResourceCollectionHealthOutput {
+	s.Service = v
 	return s
 }
 
@@ -3379,6 +3765,7 @@ type Event struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// An EventResource object that contains information about the resource that
@@ -3546,6 +3933,117 @@ func (s *EventTimeRange) SetToTime(v time.Time) *EventTimeRange {
 	return s
 }
 
+type GetCostEstimationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If this value is null, it retrieves the first page.
+	NextToken *string `location:"querystring" locationName:"NextToken" min:"36" type:"string"`
+}
+
+// String returns the string representation
+func (s GetCostEstimationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostEstimationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCostEstimationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCostEstimationInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCostEstimationInput) SetNextToken(v string) *GetCostEstimationInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetCostEstimationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of ResourceCost objects that each contains details about the monthly
+	// cost estimate to analyze one of your AWS resources.
+	Costs []*ServiceResourceCost `type:"list"`
+
+	// The pagination token to use to retrieve the next page of results for this
+	// operation. If there are no more pages, this value is null.
+	NextToken *string `min:"36" type:"string"`
+
+	// The collection of the AWS resources used to create your monthly DevOps Guru
+	// cost estimate.
+	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure"`
+
+	// The status of creating this cost estimate. If it's still in progress, the
+	// status ONGOING is returned. If it is finished, the status COMPLETED is returned.
+	Status *string `type:"string" enum:"CostEstimationStatus"`
+
+	// The start and end time of the cost estimation.
+	TimeRange *CostEstimationTimeRange `type:"structure"`
+
+	// The estimated monthly cost to analyze the AWS resources. This value is the
+	// sum of the estimated costs to analyze each resource in the Costs object in
+	// this response.
+	TotalCost *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s GetCostEstimationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCostEstimationOutput) GoString() string {
+	return s.String()
+}
+
+// SetCosts sets the Costs field's value.
+func (s *GetCostEstimationOutput) SetCosts(v []*ServiceResourceCost) *GetCostEstimationOutput {
+	s.Costs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetCostEstimationOutput) SetNextToken(v string) *GetCostEstimationOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *GetCostEstimationOutput) SetResourceCollection(v *CostEstimationResourceCollectionFilter) *GetCostEstimationOutput {
+	s.ResourceCollection = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetCostEstimationOutput) SetStatus(v string) *GetCostEstimationOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTimeRange sets the TimeRange field's value.
+func (s *GetCostEstimationOutput) SetTimeRange(v *CostEstimationTimeRange) *GetCostEstimationOutput {
+	s.TimeRange = v
+	return s
+}
+
+// SetTotalCost sets the TotalCost field's value.
+func (s *GetCostEstimationOutput) SetTotalCost(v float64) *GetCostEstimationOutput {
+	s.TotalCost = &v
+	return s
+}
+
 type GetResourceCollectionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3610,7 +4108,8 @@ type GetResourceCollectionOutput struct {
 
 	// The requested list of AWS resource collections. The one type of AWS resource
 	// collection supported is AWS CloudFormation stacks. DevOps Guru can be configured
-	// to analyze only the AWS resources that are defined in the stacks.
+	// to analyze only the AWS resources that are defined in the stacks. You can
+	// specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollectionFilter `type:"structure"`
 }
 
@@ -3965,6 +4464,7 @@ type ListEventsFilters struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 }
 
@@ -4544,6 +5044,9 @@ type ListRecommendationsInput struct {
 	// InsightId is a required field
 	InsightId *string `min:"1" type:"string" required:"true"`
 
+	// A locale that specifies the language to use for recommendations.
+	Locale *string `type:"string" enum:"Locale"`
+
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
 	NextToken *string `min:"36" type:"string"`
@@ -4581,6 +5084,12 @@ func (s *ListRecommendationsInput) Validate() error {
 // SetInsightId sets the InsightId field's value.
 func (s *ListRecommendationsInput) SetInsightId(v string) *ListRecommendationsInput {
 	s.InsightId = &v
+	return s
+}
+
+// SetLocale sets the Locale field's value.
+func (s *ListRecommendationsInput) SetLocale(v string) *ListRecommendationsInput {
+	s.Locale = &v
 	return s
 }
 
@@ -4843,6 +5352,7 @@ type ProactiveAnomaly struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of a proactive anomaly.
@@ -4955,6 +5465,7 @@ type ProactiveAnomalySummary struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the anomaly.
@@ -5062,6 +5573,7 @@ type ProactiveInsight struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the proactive insight.
@@ -5155,7 +5667,11 @@ type ProactiveInsightSummary struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of AWS services.
+	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// The severity of the proactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
@@ -5201,6 +5717,12 @@ func (s *ProactiveInsightSummary) SetPredictionTimeRange(v *PredictionTimeRange)
 // SetResourceCollection sets the ResourceCollection field's value.
 func (s *ProactiveInsightSummary) SetResourceCollection(v *ResourceCollection) *ProactiveInsightSummary {
 	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ProactiveInsightSummary) SetServiceCollection(v *ServiceCollection) *ProactiveInsightSummary {
+	s.ServiceCollection = v
 	return s
 }
 
@@ -5286,6 +5808,7 @@ type ReactiveAnomaly struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the anomaly.
@@ -5369,6 +5892,7 @@ type ReactiveAnomalySummary struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of the reactive anomaly.
@@ -5451,6 +5975,7 @@ type ReactiveInsight struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
 
 	// The severity of a reactive insight.
@@ -5534,7 +6059,11 @@ type ReactiveInsightSummary struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of AWS services.
+	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// The severity of a reactive insight.
 	Severity *string `type:"string" enum:"InsightSeverity"`
@@ -5574,6 +6103,12 @@ func (s *ReactiveInsightSummary) SetName(v string) *ReactiveInsightSummary {
 // SetResourceCollection sets the ResourceCollection field's value.
 func (s *ReactiveInsightSummary) SetResourceCollection(v *ResourceCollection) *ReactiveInsightSummary {
 	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *ReactiveInsightSummary) SetServiceCollection(v *ServiceCollection) *ReactiveInsightSummary {
+	s.ServiceCollection = v
 	return s
 }
 
@@ -5798,7 +6333,7 @@ type RecommendationRelatedEvent struct {
 	Name *string `type:"string"`
 
 	// A ResourceCollection object that contains arrays of the names of AWS CloudFormation
-	// stacks.
+	// stacks. You can specify up to 500 AWS CloudFormation stacks.
 	Resources []*RecommendationRelatedEventResource `type:"list"`
 }
 
@@ -5918,11 +6453,13 @@ func (s RemoveNotificationChannelOutput) GoString() string {
 // A collection of AWS resources supported by DevOps Guru. The one type of AWS
 // resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 // be configured to analyze only the AWS resources that are defined in the stacks.
+// You can specify up to 500 AWS CloudFormation stacks.
 type ResourceCollection struct {
 	_ struct{} `type:"structure"`
 
 	// An array of the names of AWS CloudFormation stacks. The stacks define AWS
-	// resources that DevOps Guru analyzes.
+	// resources that DevOps Guru analyzes. You can specify up to 500 AWS CloudFormation
+	// stacks.
 	CloudFormation *CloudFormationCollection `type:"structure"`
 }
 
@@ -5947,9 +6484,9 @@ func (s *ResourceCollection) SetCloudFormation(v *CloudFormationCollection) *Res
 type ResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// Information about AWS CloudFormation stacks. You can use stacks to specify
-	// which AWS resources in your account to analyze. For more information, see
-	// Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
+	// Information about AWS CloudFormation stacks. You can use up to 500 stacks
+	// to specify which AWS resources in your account to analyze. For more information,
+	// see Stacks (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)
 	// in the AWS CloudFormation User Guide.
 	CloudFormation *CloudFormationCollectionFilter `type:"structure"`
 }
@@ -6044,7 +6581,11 @@ type SearchInsightsFilters struct {
 	// A collection of AWS resources supported by DevOps Guru. The one type of AWS
 	// resource collection supported is AWS CloudFormation stacks. DevOps Guru can
 	// be configured to analyze only the AWS resources that are defined in the stacks.
+	// You can specify up to 500 AWS CloudFormation stacks.
 	ResourceCollection *ResourceCollection `type:"structure"`
+
+	// A collection of the names of AWS services.
+	ServiceCollection *ServiceCollection `type:"structure"`
 
 	// An array of severity values used to search for insights.
 	Severities []*string `type:"list"`
@@ -6066,6 +6607,12 @@ func (s SearchInsightsFilters) GoString() string {
 // SetResourceCollection sets the ResourceCollection field's value.
 func (s *SearchInsightsFilters) SetResourceCollection(v *ResourceCollection) *SearchInsightsFilters {
 	s.ResourceCollection = v
+	return s
+}
+
+// SetServiceCollection sets the ServiceCollection field's value.
+func (s *SearchInsightsFilters) SetServiceCollection(v *ServiceCollection) *SearchInsightsFilters {
+	s.ServiceCollection = v
 	return s
 }
 
@@ -6212,6 +6759,98 @@ func (s *SearchInsightsOutput) SetReactiveInsights(v []*ReactiveInsightSummary) 
 	return s
 }
 
+// A collection of the names of AWS services.
+type ServiceCollection struct {
+	_ struct{} `type:"structure"`
+
+	// An array of strings that each specifies the name of an AWS service.
+	ServiceNames []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ServiceCollection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceCollection) GoString() string {
+	return s.String()
+}
+
+// SetServiceNames sets the ServiceNames field's value.
+func (s *ServiceCollection) SetServiceNames(v []*string) *ServiceCollection {
+	s.ServiceNames = v
+	return s
+}
+
+// Represents the health of an AWS service.
+type ServiceHealth struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the health of an AWS service. This is a ServiceInsightHealth that
+	// contains the number of open proactive and reactive insights for this service.
+	Insight *ServiceInsightHealth `type:"structure"`
+
+	// The name of the AWS service.
+	ServiceName *string `type:"string" enum:"ServiceName"`
+}
+
+// String returns the string representation
+func (s ServiceHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceHealth) GoString() string {
+	return s.String()
+}
+
+// SetInsight sets the Insight field's value.
+func (s *ServiceHealth) SetInsight(v *ServiceInsightHealth) *ServiceHealth {
+	s.Insight = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *ServiceHealth) SetServiceName(v string) *ServiceHealth {
+	s.ServiceName = &v
+	return s
+}
+
+// Contains the number of open proactive and reactive insights in an analyzed
+// AWS service.
+type ServiceInsightHealth struct {
+	_ struct{} `type:"structure"`
+
+	// The number of open proactive insights in the AWS service
+	OpenProactiveInsights *int64 `type:"integer"`
+
+	// The number of open reactive insights in the AWS service
+	OpenReactiveInsights *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ServiceInsightHealth) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceInsightHealth) GoString() string {
+	return s.String()
+}
+
+// SetOpenProactiveInsights sets the OpenProactiveInsights field's value.
+func (s *ServiceInsightHealth) SetOpenProactiveInsights(v int64) *ServiceInsightHealth {
+	s.OpenProactiveInsights = &v
+	return s
+}
+
+// SetOpenReactiveInsights sets the OpenReactiveInsights field's value.
+func (s *ServiceInsightHealth) SetOpenReactiveInsights(v int64) *ServiceInsightHealth {
+	s.OpenReactiveInsights = &v
+	return s
+}
+
 // Information about the integration of DevOps Guru with another AWS service,
 // such as AWS Systems Manager.
 type ServiceIntegrationConfig struct {
@@ -6294,6 +6933,76 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that contains information about the estimated monthly cost to analyze
+// an AWS resource. For more information, see Estimate your Amazon DevOps Guru
+// costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+// and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
+type ServiceResourceCost struct {
+	_ struct{} `type:"structure"`
+
+	// The total estimated monthly cost to analyze the active resources for this
+	// resource.
+	Cost *float64 `type:"double"`
+
+	// The number of active resources analyzed for this service to create a monthly
+	// cost estimate.
+	Count *int64 `type:"integer"`
+
+	// The state of the resource. The resource is ACTIVE if it produces metrics,
+	// events, or logs within an hour, otherwise it is INACTIVE. You pay for the
+	// number of active AWS resource hours analyzed for each resource. Inactive
+	// resources are not charged.
+	State *string `type:"string" enum:"CostEstimationServiceResourceState"`
+
+	// The type of the AWS resource.
+	Type *string `min:"1" type:"string"`
+
+	// The price per hour to analyze the resources in the service. For more information,
+	// see Estimate your Amazon DevOps Guru costs (https://docs.aws.amazon.com/devops-guru/latest/userguide/cost-estimate.html)
+	// and Amazon DevOps Guru pricing (http://aws.amazon.com/devops-guru/pricing/).
+	UnitCost *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s ServiceResourceCost) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceResourceCost) GoString() string {
+	return s.String()
+}
+
+// SetCost sets the Cost field's value.
+func (s *ServiceResourceCost) SetCost(v float64) *ServiceResourceCost {
+	s.Cost = &v
+	return s
+}
+
+// SetCount sets the Count field's value.
+func (s *ServiceResourceCost) SetCount(v int64) *ServiceResourceCost {
+	s.Count = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ServiceResourceCost) SetState(v string) *ServiceResourceCost {
+	s.State = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ServiceResourceCost) SetType(v string) *ServiceResourceCost {
+	s.Type = &v
+	return s
+}
+
+// SetUnitCost sets the UnitCost field's value.
+func (s *ServiceResourceCost) SetUnitCost(v float64) *ServiceResourceCost {
+	s.UnitCost = &v
+	return s
+}
+
 // Contains the Amazon Resource Name (ARN) of an Amazon Simple Notification
 // Service topic.
 //
@@ -6341,6 +7050,76 @@ func (s *SnsChannelConfig) Validate() error {
 func (s *SnsChannelConfig) SetTopicArn(v string) *SnsChannelConfig {
 	s.TopicArn = &v
 	return s
+}
+
+type StartCostEstimationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The idempotency token used to identify each cost estimate request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The collection of AWS resources used to create a monthly DevOps Guru cost
+	// estimate.
+	//
+	// ResourceCollection is a required field
+	ResourceCollection *CostEstimationResourceCollectionFilter `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartCostEstimationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartCostEstimationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCostEstimationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCostEstimationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ResourceCollection == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceCollection"))
+	}
+	if s.ResourceCollection != nil {
+		if err := s.ResourceCollection.Validate(); err != nil {
+			invalidParams.AddNested("ResourceCollection", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *StartCostEstimationInput) SetClientToken(v string) *StartCostEstimationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetResourceCollection sets the ResourceCollection field's value.
+func (s *StartCostEstimationInput) SetResourceCollection(v *CostEstimationResourceCollectionFilter) *StartCostEstimationInput {
+	s.ResourceCollection = v
+	return s
+}
+
+type StartCostEstimationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartCostEstimationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartCostEstimationOutput) GoString() string {
+	return s.String()
 }
 
 // A time range used to specify when the behavior of an insight or anomaly started.
@@ -6443,11 +7222,12 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 // Contains the names of AWS CloudFormation stacks used to update a collection
-// of stacks.
+// of stacks. You can specify up to 500 AWS CloudFormation stacks.
 type UpdateCloudFormationCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An array of the name of stacks to update.
+	// An array of the names of the AWS CloudFormation stacks to update. You can
+	// specify up to 500 AWS CloudFormation stacks.
 	StackNames []*string `type:"list"`
 }
 
@@ -6471,7 +7251,8 @@ func (s *UpdateCloudFormationCollectionFilter) SetStackNames(v []*string) *Updat
 type UpdateResourceCollectionFilter struct {
 	_ struct{} `type:"structure"`
 
-	// An collection of AWS CloudFormation stacks.
+	// An collection of AWS CloudFormation stacks. You can specify up to 500 AWS
+	// CloudFormation stacks.
 	CloudFormation *UpdateCloudFormationCollectionFilter `type:"structure"`
 }
 
@@ -6816,6 +7597,38 @@ func CloudWatchMetricsStat_Values() []string {
 }
 
 const (
+	// CostEstimationServiceResourceStateActive is a CostEstimationServiceResourceState enum value
+	CostEstimationServiceResourceStateActive = "ACTIVE"
+
+	// CostEstimationServiceResourceStateInactive is a CostEstimationServiceResourceState enum value
+	CostEstimationServiceResourceStateInactive = "INACTIVE"
+)
+
+// CostEstimationServiceResourceState_Values returns all elements of the CostEstimationServiceResourceState enum
+func CostEstimationServiceResourceState_Values() []string {
+	return []string{
+		CostEstimationServiceResourceStateActive,
+		CostEstimationServiceResourceStateInactive,
+	}
+}
+
+const (
+	// CostEstimationStatusOngoing is a CostEstimationStatus enum value
+	CostEstimationStatusOngoing = "ONGOING"
+
+	// CostEstimationStatusCompleted is a CostEstimationStatus enum value
+	CostEstimationStatusCompleted = "COMPLETED"
+)
+
+// CostEstimationStatus_Values returns all elements of the CostEstimationStatus enum
+func CostEstimationStatus_Values() []string {
+	return []string{
+		CostEstimationStatusOngoing,
+		CostEstimationStatusCompleted,
+	}
+}
+
+const (
 	// EventClassInfrastructure is a EventClass enum value
 	EventClassInfrastructure = "INFRASTRUCTURE"
 
@@ -6939,6 +7752,58 @@ func InsightType_Values() []string {
 	}
 }
 
+const (
+	// LocaleDeDe is a Locale enum value
+	LocaleDeDe = "DE_DE"
+
+	// LocaleEnUs is a Locale enum value
+	LocaleEnUs = "EN_US"
+
+	// LocaleEnGb is a Locale enum value
+	LocaleEnGb = "EN_GB"
+
+	// LocaleEsEs is a Locale enum value
+	LocaleEsEs = "ES_ES"
+
+	// LocaleFrFr is a Locale enum value
+	LocaleFrFr = "FR_FR"
+
+	// LocaleItIt is a Locale enum value
+	LocaleItIt = "IT_IT"
+
+	// LocaleJaJp is a Locale enum value
+	LocaleJaJp = "JA_JP"
+
+	// LocaleKoKr is a Locale enum value
+	LocaleKoKr = "KO_KR"
+
+	// LocalePtBr is a Locale enum value
+	LocalePtBr = "PT_BR"
+
+	// LocaleZhCn is a Locale enum value
+	LocaleZhCn = "ZH_CN"
+
+	// LocaleZhTw is a Locale enum value
+	LocaleZhTw = "ZH_TW"
+)
+
+// Locale_Values returns all elements of the Locale enum
+func Locale_Values() []string {
+	return []string{
+		LocaleDeDe,
+		LocaleEnUs,
+		LocaleEnGb,
+		LocaleEsEs,
+		LocaleFrFr,
+		LocaleItIt,
+		LocaleJaJp,
+		LocaleKoKr,
+		LocalePtBr,
+		LocaleZhCn,
+		LocaleZhTw,
+	}
+}
+
 // Specifies if DevOps Guru is enabled to create an AWS Systems Manager OpsItem
 // for each created insight.
 const (
@@ -6960,12 +7825,124 @@ func OptInStatus_Values() []string {
 const (
 	// ResourceCollectionTypeAwsCloudFormation is a ResourceCollectionType enum value
 	ResourceCollectionTypeAwsCloudFormation = "AWS_CLOUD_FORMATION"
+
+	// ResourceCollectionTypeAwsService is a ResourceCollectionType enum value
+	ResourceCollectionTypeAwsService = "AWS_SERVICE"
 )
 
 // ResourceCollectionType_Values returns all elements of the ResourceCollectionType enum
 func ResourceCollectionType_Values() []string {
 	return []string{
 		ResourceCollectionTypeAwsCloudFormation,
+		ResourceCollectionTypeAwsService,
+	}
+}
+
+const (
+	// ServiceNameApiGateway is a ServiceName enum value
+	ServiceNameApiGateway = "API_GATEWAY"
+
+	// ServiceNameApplicationElb is a ServiceName enum value
+	ServiceNameApplicationElb = "APPLICATION_ELB"
+
+	// ServiceNameAutoScalingGroup is a ServiceName enum value
+	ServiceNameAutoScalingGroup = "AUTO_SCALING_GROUP"
+
+	// ServiceNameCloudFront is a ServiceName enum value
+	ServiceNameCloudFront = "CLOUD_FRONT"
+
+	// ServiceNameDynamoDb is a ServiceName enum value
+	ServiceNameDynamoDb = "DYNAMO_DB"
+
+	// ServiceNameEc2 is a ServiceName enum value
+	ServiceNameEc2 = "EC2"
+
+	// ServiceNameEcs is a ServiceName enum value
+	ServiceNameEcs = "ECS"
+
+	// ServiceNameEks is a ServiceName enum value
+	ServiceNameEks = "EKS"
+
+	// ServiceNameElasticBeanstalk is a ServiceName enum value
+	ServiceNameElasticBeanstalk = "ELASTIC_BEANSTALK"
+
+	// ServiceNameElastiCache is a ServiceName enum value
+	ServiceNameElastiCache = "ELASTI_CACHE"
+
+	// ServiceNameElb is a ServiceName enum value
+	ServiceNameElb = "ELB"
+
+	// ServiceNameEs is a ServiceName enum value
+	ServiceNameEs = "ES"
+
+	// ServiceNameKinesis is a ServiceName enum value
+	ServiceNameKinesis = "KINESIS"
+
+	// ServiceNameLambda is a ServiceName enum value
+	ServiceNameLambda = "LAMBDA"
+
+	// ServiceNameNatGateway is a ServiceName enum value
+	ServiceNameNatGateway = "NAT_GATEWAY"
+
+	// ServiceNameNetworkElb is a ServiceName enum value
+	ServiceNameNetworkElb = "NETWORK_ELB"
+
+	// ServiceNameRds is a ServiceName enum value
+	ServiceNameRds = "RDS"
+
+	// ServiceNameRedshift is a ServiceName enum value
+	ServiceNameRedshift = "REDSHIFT"
+
+	// ServiceNameRoute53 is a ServiceName enum value
+	ServiceNameRoute53 = "ROUTE_53"
+
+	// ServiceNameS3 is a ServiceName enum value
+	ServiceNameS3 = "S3"
+
+	// ServiceNameSageMaker is a ServiceName enum value
+	ServiceNameSageMaker = "SAGE_MAKER"
+
+	// ServiceNameSns is a ServiceName enum value
+	ServiceNameSns = "SNS"
+
+	// ServiceNameSqs is a ServiceName enum value
+	ServiceNameSqs = "SQS"
+
+	// ServiceNameStepFunctions is a ServiceName enum value
+	ServiceNameStepFunctions = "STEP_FUNCTIONS"
+
+	// ServiceNameSwf is a ServiceName enum value
+	ServiceNameSwf = "SWF"
+)
+
+// ServiceName_Values returns all elements of the ServiceName enum
+func ServiceName_Values() []string {
+	return []string{
+		ServiceNameApiGateway,
+		ServiceNameApplicationElb,
+		ServiceNameAutoScalingGroup,
+		ServiceNameCloudFront,
+		ServiceNameDynamoDb,
+		ServiceNameEc2,
+		ServiceNameEcs,
+		ServiceNameEks,
+		ServiceNameElasticBeanstalk,
+		ServiceNameElastiCache,
+		ServiceNameElb,
+		ServiceNameEs,
+		ServiceNameKinesis,
+		ServiceNameLambda,
+		ServiceNameNatGateway,
+		ServiceNameNetworkElb,
+		ServiceNameRds,
+		ServiceNameRedshift,
+		ServiceNameRoute53,
+		ServiceNameS3,
+		ServiceNameSageMaker,
+		ServiceNameSns,
+		ServiceNameSqs,
+		ServiceNameStepFunctions,
+		ServiceNameSwf,
 	}
 }
 

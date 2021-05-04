@@ -12,7 +12,7 @@
     "BatchDeletePhoneNumber": "<p> Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted. </p> <p> Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
     "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account,but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action.</p> <p> To sign out users without suspending them, use the <a>LogoutUser</a> action. </p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored. </p>",
-    "BatchUpdatePhoneNumber": "<p> Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code> . For example, you can update either the product type or the calling name. </p> <p>For product types, choose from Amazon Chime Business Calling and Amazon Chime Voice Connector. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
+    "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update the product type or the calling name.</p> <p>For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the US, you must use the Amazon Chime SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "BatchUpdateUser": "<p> Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateAppInstance": "<p>Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account. Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports idempotency behavior as described in the AWS API Standard.</p>",
@@ -27,7 +27,7 @@
     "CreateMeeting": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and join them into a Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> action with the corresponding SIP media application ID.</p>",
     "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
-    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
+    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the US, you must use the Amazon Chime SIP Media Application Dial-In product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
     "CreateRoomMembership": "<p>Adds a member to a chat room in an Amazon Chime Enterprise account. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
@@ -50,7 +50,7 @@
     "DeleteChannelModerator": "<p>Deletes a channel moderator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
     "DeleteMeeting": "<p>Deletes the specified Amazon Chime SDK meeting. The operation deletes all attendees, disconnects all clients, and prevents new clients from joining the meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
-    "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletionqueue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
+    "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
     "DeleteProxySession": "<p>Deletes the specified proxy session from the specified Amazon Chime Voice Connector.</p>",
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
@@ -119,7 +119,7 @@
     "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelMembershipsForAppInstanceUser": "<p> Lists all channels that a particular <code>AppInstanceUser</code> is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN that is not their own. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
-    "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. By default, sorted by creation timestamp in descending order .</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> <p>Also, the x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. By default, sorted by creation timestamp in descending order.</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> <p>Also, the x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelModerators": "<p>Lists all the moderators for a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
@@ -132,6 +132,7 @@
     "ListRooms": "<p>Lists the room details for the specified Amazon Chime Enterprise account. Optionally, filter the results by a member ID (user ID or bot ID) to see a list of rooms that the member belongs to.</p>",
     "ListSipMediaApplications": "<p>Lists the SIP media applications under the administrator's AWS account.</p>",
     "ListSipRules": "<p>Lists the SIP rules under the administrator's AWS account.</p>",
+    "ListSupportedPhoneNumberCountries": "<p>Lists supported phone number countries.</p>",
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
     "ListVoiceConnectorGroups": "<p>Lists the Amazon Chime Voice Connector groups for the administrator's AWS account.</p>",
@@ -156,7 +157,7 @@
     "RegenerateSecurityToken": "<p>Regenerates the security token for a bot.</p>",
     "ResetPersonalPIN": "<p>Resets the personal meeting PIN for the specified user on an Amazon Chime account. Returns the <a>User</a> object with the updated personal meeting PIN.</p>",
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
-    "SearchAvailablePhoneNumbers": "<p>Searches phone numbers that can be ordered.</p>",
+    "SearchAvailablePhoneNumbers": "<p>Searches for phone numbers that can be ordered. For US numbers, provide at least one of the following search filters: <code>AreaCode</code>, <code>City</code>, <code>State</code>, or <code>TollFreePrefix</code>. If you provide <code>City</code>, you must also provide <code>State</code>. Numbers outside the US only support the <code>PhoneNumberType</code> filter, which you must use.</p>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
     "TagAttendee": "<p>Applies the specified tags to the specified Amazon Chime SDK attendee.</p>",
     "TagMeeting": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting.</p>",
@@ -173,7 +174,7 @@
     "UpdateChannelMessage": "<p>Updates the content of a message.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "UpdateChannelReadMarker": "<p>The details of the time when a user last read messages in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "UpdateGlobalSettings": "<p>Updates global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
-    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
+    "UpdatePhoneNumber": "<p>Updates phone number details, such as product type or calling name, for the specified phone number ID. You can update one phone number detail at a time. For example, you can update either the product type or the calling name in one action.</p> <p>For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "UpdatePhoneNumberSettings": "<p>Updates the phone number settings for the administrator's AWS account, such as the default outbound calling name. You can update the default outbound calling name once every seven days. Outbound calling names can take up to 72 hours to update.</p>",
     "UpdateProxySession": "<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p>",
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
@@ -238,7 +239,10 @@
     "Alpha2CountryCode": {
       "base": null,
       "refs": {
-        "DNISEmergencyCallingConfiguration$CallingCountry": "<p>The country from which emergency calls are allowed, in ISO 3166-1 alpha-2 format.</p>"
+        "DNISEmergencyCallingConfiguration$CallingCountry": "<p>The country from which emergency calls are allowed, in ISO 3166-1 alpha-2 format.</p>",
+        "PhoneNumber$Country": "<p>The phone number country. Format: ISO 3166-1 alpha-2.</p>",
+        "PhoneNumberCountry$CountryCode": "<p>The phone number country code. Format: ISO 3166-1 alpha-2.</p>",
+        "SearchAvailablePhoneNumbersRequest$Country": "<p>The country used to filter results. Defaults to the US Format: ISO 3166-1 alpha-2.</p>"
       }
     },
     "AppInstance": {
@@ -628,7 +632,7 @@
     "ChannelBan": {
       "base": "<p>The details of a channel ban.</p>",
       "refs": {
-        "DescribeChannelBanResponse$ChannelBan": "<p>The the details of the ban.</p>"
+        "DescribeChannelBanResponse$ChannelBan": "<p>The details of the ban.</p>"
       }
     },
     "ChannelBanSummary": {
@@ -2327,6 +2331,16 @@
       "refs": {
       }
     },
+    "ListSupportedPhoneNumberCountriesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSupportedPhoneNumberCountriesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -2903,6 +2917,18 @@
         "PhoneNumber$Capabilities": "<p>The phone number capabilities.</p>"
       }
     },
+    "PhoneNumberCountriesList": {
+      "base": null,
+      "refs": {
+        "ListSupportedPhoneNumberCountriesResponse$PhoneNumberCountries": "<p>The supported phone number countries.</p>"
+      }
+    },
+    "PhoneNumberCountry": {
+      "base": "<p>The phone number country.</p>",
+      "refs": {
+        "PhoneNumberCountriesList$member": null
+      }
+    },
     "PhoneNumberError": {
       "base": "<p>If the phone number action fails for one or more of the phone numbers in the request, a list of the phone numbers is returned, along with error codes and error messages.</p>",
       "refs": {
@@ -2957,6 +2983,7 @@
       "refs": {
         "CreatePhoneNumberOrderRequest$ProductType": "<p>The phone number product type.</p>",
         "ListPhoneNumbersRequest$ProductType": "<p>The phone number product type.</p>",
+        "ListSupportedPhoneNumberCountriesRequest$ProductType": "<p>The phone number product type.</p>",
         "PhoneNumber$ProductType": "<p>The phone number product type.</p>",
         "PhoneNumberOrder$ProductType": "<p>The phone number order product type.</p>",
         "UpdatePhoneNumberRequest$ProductType": "<p>The product type.</p>",
@@ -2973,7 +3000,15 @@
     "PhoneNumberType": {
       "base": null,
       "refs": {
-        "PhoneNumber$Type": "<p>The phone number type.</p>"
+        "PhoneNumber$Type": "<p>The phone number type.</p>",
+        "PhoneNumberTypeList$member": null,
+        "SearchAvailablePhoneNumbersRequest$PhoneNumberType": "<p>The phone number type used to filter results. Required for non-US numbers.</p>"
+      }
+    },
+    "PhoneNumberTypeList": {
+      "base": null,
+      "refs": {
+        "PhoneNumberCountry$SupportedPhoneNumberTypes": "<p>The supported phone number types. </p>"
       }
     },
     "Port": {
@@ -3565,11 +3600,11 @@
         "PhoneNumberAssociation$Value": "<p>Contains the ID for the entity specified in Name.</p>",
         "PhoneNumberError$ErrorMessage": "<p>The error message.</p>",
         "ResourceLimitExceededException$Message": null,
-        "SearchAvailablePhoneNumbersRequest$AreaCode": "<p>The area code used to filter results.</p>",
-        "SearchAvailablePhoneNumbersRequest$City": "<p>The city used to filter results.</p>",
-        "SearchAvailablePhoneNumbersRequest$Country": "<p>The country used to filter results.</p>",
-        "SearchAvailablePhoneNumbersRequest$State": "<p>The state used to filter results.</p>",
-        "SearchAvailablePhoneNumbersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "SearchAvailablePhoneNumbersRequest$AreaCode": "<p>The area code used to filter results. Only applies to the US.</p>",
+        "SearchAvailablePhoneNumbersRequest$City": "<p>The city used to filter results. Only applies to the US.</p>",
+        "SearchAvailablePhoneNumbersRequest$State": "<p>The state used to filter results. Required only if you provide <code>City</code>. Only applies to the US.</p>",
+        "SearchAvailablePhoneNumbersRequest$NextToken": "<p>The token used to retrieve the next page of results.</p>",
+        "SearchAvailablePhoneNumbersResponse$NextToken": "<p>The token used to retrieve the next page of search results.</p>",
         "ServiceFailureException$Message": null,
         "ServiceUnavailableException$Message": null,
         "SipMediaApplication$AwsRegion": "<p>The AWS Region in which the SIP media application is created.</p>",
@@ -3716,7 +3751,7 @@
     "TollFreePrefix": {
       "base": null,
       "refs": {
-        "SearchAvailablePhoneNumbersRequest$TollFreePrefix": "<p>The toll-free prefix that you use to filter results.</p>"
+        "SearchAvailablePhoneNumbersRequest$TollFreePrefix": "<p>The toll-free prefix that you use to filter results. Only applies to the US.</p>"
       }
     },
     "UnauthorizedClientException": {

@@ -643,6 +643,10 @@ type ChimeAPI interface {
 	ListSipRulesPages(*chime.ListSipRulesInput, func(*chime.ListSipRulesOutput, bool) bool) error
 	ListSipRulesPagesWithContext(aws.Context, *chime.ListSipRulesInput, func(*chime.ListSipRulesOutput, bool) bool, ...request.Option) error
 
+	ListSupportedPhoneNumberCountries(*chime.ListSupportedPhoneNumberCountriesInput) (*chime.ListSupportedPhoneNumberCountriesOutput, error)
+	ListSupportedPhoneNumberCountriesWithContext(aws.Context, *chime.ListSupportedPhoneNumberCountriesInput, ...request.Option) (*chime.ListSupportedPhoneNumberCountriesOutput, error)
+	ListSupportedPhoneNumberCountriesRequest(*chime.ListSupportedPhoneNumberCountriesInput) (*request.Request, *chime.ListSupportedPhoneNumberCountriesOutput)
+
 	ListTagsForResource(*chime.ListTagsForResourceInput) (*chime.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chime.ListTagsForResourceInput, ...request.Option) (*chime.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chime.ListTagsForResourceInput) (*request.Request, *chime.ListTagsForResourceOutput)
@@ -751,6 +755,9 @@ type ChimeAPI interface {
 	SearchAvailablePhoneNumbers(*chime.SearchAvailablePhoneNumbersInput) (*chime.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersWithContext(aws.Context, *chime.SearchAvailablePhoneNumbersInput, ...request.Option) (*chime.SearchAvailablePhoneNumbersOutput, error)
 	SearchAvailablePhoneNumbersRequest(*chime.SearchAvailablePhoneNumbersInput) (*request.Request, *chime.SearchAvailablePhoneNumbersOutput)
+
+	SearchAvailablePhoneNumbersPages(*chime.SearchAvailablePhoneNumbersInput, func(*chime.SearchAvailablePhoneNumbersOutput, bool) bool) error
+	SearchAvailablePhoneNumbersPagesWithContext(aws.Context, *chime.SearchAvailablePhoneNumbersInput, func(*chime.SearchAvailablePhoneNumbersOutput, bool) bool, ...request.Option) error
 
 	SendChannelMessage(*chime.SendChannelMessageInput) (*chime.SendChannelMessageOutput, error)
 	SendChannelMessageWithContext(aws.Context, *chime.SendChannelMessageInput, ...request.Option) (*chime.SendChannelMessageOutput, error)

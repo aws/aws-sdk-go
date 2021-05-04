@@ -68,7 +68,7 @@ func (c *ACMPCA) CreateCertificateAuthorityRequest(input *CreateCertificateAutho
 // S3 bucket that is included in certificates issued by the CA. If successful,
 // this action returns the Amazon Resource Name (ARN) of the CA.
 //
-// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+// ACM Private CA assets that are stored in Amazon S3 can be protected with
 // encryption. For more information, see Encrypting Your CRLs (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#crl-encryption).
 //
 // Both PCA and the IAM principal must have permission to write to the S3 bucket
@@ -177,7 +177,7 @@ func (c *ACMPCA) CreateCertificateAuthorityAuditReportRequest(input *CreateCerti
 // to write to the bucket, then an exception is thrown. For more information,
 // see Configure Access to ACM Private CA (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaAuthAccess.html).
 //
-// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+// ACM Private CA assets that are stored in Amazon S3 can be protected with
 // encryption. For more information, see Encrypting Your Audit Reports (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaAuditReport.html#audit-report-encryption).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3001,8 +3001,8 @@ func (s *AccessMethod) SetCustomObjectIdentifier(v string) *AccessMethod {
 // or else this parameter is ignored.
 //
 // If conflicting or duplicate certificate information is supplied from other
-// sources, ACM Private CA applies order of operation rules (xxxxx) to determine
-// what information is used.
+// sources, ACM Private CA applies order of operation rules (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html#template-order-of-operations)
+// to determine what information is used.
 type ApiPassthrough struct {
 	_ struct{} `type:"structure"`
 
@@ -3087,6 +3087,18 @@ type CertificateAuthority struct {
 	// Reason the request to create your private CA failed.
 	FailureReason *string `type:"string" enum:"FailureReason"`
 
+	// Defines a cryptographic key management compliance standard used for handling
+	// CA keys.
+	//
+	// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
+	//
+	// Note: AWS Region ap-northeast-3 supports only FIPS_140_2_LEVEL_2_OR_HIGHER.
+	// You must explicitly specify this parameter and value when creating a CA in
+	// that Region. Specifying a different value (or no value) results in an InvalidArgsException
+	// with the message "A certificate authority cannot be created in this region
+	// with the specified security standard."
+	KeyStorageSecurityStandard *string `type:"string" enum:"KeyStorageSecurityStandard"`
+
 	// Date and time at which your private CA was last updated.
 	LastStateChangeAt *time.Time `type:"timestamp"`
 
@@ -3150,6 +3162,12 @@ func (s *CertificateAuthority) SetCreatedAt(v time.Time) *CertificateAuthority {
 // SetFailureReason sets the FailureReason field's value.
 func (s *CertificateAuthority) SetFailureReason(v string) *CertificateAuthority {
 	s.FailureReason = &v
+	return s
+}
+
+// SetKeyStorageSecurityStandard sets the KeyStorageSecurityStandard field's value.
+func (s *CertificateAuthority) SetKeyStorageSecurityStandard(v string) *CertificateAuthority {
+	s.KeyStorageSecurityStandard = &v
 	return s
 }
 
@@ -3548,6 +3566,18 @@ type CreateCertificateAuthorityInput struct {
 	// that you are requesting multiple certificate authorities.
 	IdempotencyToken *string `min:"1" type:"string"`
 
+	// Specifies a cryptographic key management compliance standard used for handling
+	// CA keys.
+	//
+	// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
+	//
+	// Note: AWS Region ap-northeast-3 supports only FIPS_140_2_LEVEL_2_OR_HIGHER.
+	// You must explicitly specify this parameter and value when creating a CA in
+	// that Region. Specifying a different value (or no value) results in an InvalidArgsException
+	// with the message "A certificate authority cannot be created in this region
+	// with the specified security standard."
+	KeyStorageSecurityStandard *string `type:"string" enum:"KeyStorageSecurityStandard"`
+
 	// Contains a Boolean value that you can use to enable a certification revocation
 	// list (CRL) for the CA, the name of the S3 bucket to which ACM Private CA
 	// will write the CRL, and an optional CNAME alias that you can use to hide
@@ -3629,6 +3659,12 @@ func (s *CreateCertificateAuthorityInput) SetCertificateAuthorityType(v string) 
 // SetIdempotencyToken sets the IdempotencyToken field's value.
 func (s *CreateCertificateAuthorityInput) SetIdempotencyToken(v string) *CreateCertificateAuthorityInput {
 	s.IdempotencyToken = &v
+	return s
+}
+
+// SetKeyStorageSecurityStandard sets the KeyStorageSecurityStandard field's value.
+func (s *CreateCertificateAuthorityInput) SetKeyStorageSecurityStandard(v string) *CreateCertificateAuthorityInput {
+	s.KeyStorageSecurityStandard = &v
 	return s
 }
 
@@ -3784,7 +3820,7 @@ func (s CreatePermissionOutput) GoString() string {
 // Points extension of each certificate it issues. Your S3 bucket policy must
 // give write permission to ACM Private CA.
 //
-// ACM Private CAA assets that are stored in Amazon S3 can be protected with
+// ACM Private CA assets that are stored in Amazon S3 can be protected with
 // encryption. For more information, see Encrypting Your CRLs (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#crl-encryption).
 //
 // Your private CA uses the value in the ExpirationInDays parameter to calculate
@@ -5482,8 +5518,8 @@ type IssueCertificateInput struct {
 	// templates, see Understanding Certificate Templates (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html).
 	//
 	// If conflicting or duplicate certificate information is supplied during certificate
-	// issuance, ACM Private CA applies order of operation rules (xxxxx) to determine
-	// what information is used.
+	// issuance, ACM Private CA applies order of operation rules (https://docs.aws.amazon.com/acm-pca/latest/userguide/UsingTemplates.html#template-order-of-operations)
+	// to determine what information is used.
 	ApiPassthrough *ApiPassthrough `type:"structure"`
 
 	// The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority
@@ -7890,6 +7926,22 @@ func KeyAlgorithm_Values() []string {
 		KeyAlgorithmRsa4096,
 		KeyAlgorithmEcPrime256v1,
 		KeyAlgorithmEcSecp384r1,
+	}
+}
+
+const (
+	// KeyStorageSecurityStandardFips1402Level2OrHigher is a KeyStorageSecurityStandard enum value
+	KeyStorageSecurityStandardFips1402Level2OrHigher = "FIPS_140_2_LEVEL_2_OR_HIGHER"
+
+	// KeyStorageSecurityStandardFips1402Level3OrHigher is a KeyStorageSecurityStandard enum value
+	KeyStorageSecurityStandardFips1402Level3OrHigher = "FIPS_140_2_LEVEL_3_OR_HIGHER"
+)
+
+// KeyStorageSecurityStandard_Values returns all elements of the KeyStorageSecurityStandard enum
+func KeyStorageSecurityStandard_Values() []string {
+	return []string{
+		KeyStorageSecurityStandardFips1402Level2OrHigher,
+		KeyStorageSecurityStandardFips1402Level3OrHigher,
 	}
 }
 

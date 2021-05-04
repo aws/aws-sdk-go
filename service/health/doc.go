@@ -8,13 +8,19 @@
 // You can use the API operations to get information about AWS Health events
 // that affect your AWS services and resources.
 //
-// You must have a Business or Enterprise support plan from AWS Support (http://aws.amazon.com/premiumsupport/)
-// to use the AWS Health API. If you call the AWS Health API from an AWS account
-// that doesn't have a Business or Enterprise support plan, you receive a SubscriptionRequiredException
-// error.
+//    * You must have a Business or Enterprise Support plan from AWS Support
+//    (http://aws.amazon.com/premiumsupport/) to use the AWS Health API. If
+//    you call the AWS Health API from an AWS account that doesn't have a Business
+//    or Enterprise Support plan, you receive a SubscriptionRequiredException
+//    error.
 //
-// AWS Health has a single endpoint: health.us-east-1.amazonaws.com (HTTPS).
-// Use this endpoint to call the AWS Health API operations.
+//    * You can use the AWS Health endpoint health.us-east-1.amazonaws.com (HTTPS)
+//    to call the AWS Health API operations. AWS Health supports a multi-Region
+//    application architecture and has two regional endpoints in an active-passive
+//    configuration. You can use the high availability endpoint example to determine
+//    which AWS Region is active, so that you can get the latest information
+//    from the API. For more information, see Accessing the AWS Health API (https://docs.aws.amazon.com/health/latest/ug/health-api.html)
+//    in the AWS Health User Guide.
 //
 // For authentication of requests, AWS Health uses the Signature Version 4 Signing
 // Process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
