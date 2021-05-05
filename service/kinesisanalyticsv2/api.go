@@ -2121,6 +2121,113 @@ func (c *KinesisAnalyticsV2) ListTagsForResourceWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opRollbackApplication = "RollbackApplication"
+
+// RollbackApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the RollbackApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RollbackApplication for more information on using the RollbackApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RollbackApplicationRequest method.
+//    req, resp := client.RollbackApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/RollbackApplication
+func (c *KinesisAnalyticsV2) RollbackApplicationRequest(input *RollbackApplicationInput) (req *request.Request, output *RollbackApplicationOutput) {
+	op := &request.Operation{
+		Name:       opRollbackApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RollbackApplicationInput{}
+	}
+
+	output = &RollbackApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RollbackApplication API operation for Amazon Kinesis Analytics.
+//
+// Reverts the application to the previous running version. You can roll back
+// an application if you suspect it is stuck in a transient status.
+//
+// You can roll back an application only if it is in the UPDATING or AUTOSCALING
+// status.
+//
+// When you rollback an application, it loads state data from the last successful
+// snapshot. If the application has no snapshots, Kinesis Data Analytics rejects
+// the rollback request.
+//
+// This action is not supported for Kinesis Data Analytics for SQL applications.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation RollbackApplication for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * InvalidArgumentException
+//   The specified input parameter value is not valid.
+//
+//   * ResourceInUseException
+//   The application is not available for this operation.
+//
+//   * InvalidRequestException
+//   The request JSON is not valid for the operation.
+//
+//   * ConcurrentModificationException
+//   Exception thrown as a result of concurrent modifications to an application.
+//   This error can be the result of attempting to modify an application without
+//   using the current application ID.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/RollbackApplication
+func (c *KinesisAnalyticsV2) RollbackApplication(input *RollbackApplicationInput) (*RollbackApplicationOutput, error) {
+	req, out := c.RollbackApplicationRequest(input)
+	return out, req.Send()
+}
+
+// RollbackApplicationWithContext is the same as RollbackApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RollbackApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) RollbackApplicationWithContext(ctx aws.Context, input *RollbackApplicationInput, opts ...request.Option) (*RollbackApplicationOutput, error) {
+	req, out := c.RollbackApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartApplication = "StartApplication"
 
 // StartApplicationRequest generates a "aws/request.Request" representing the
@@ -2733,11 +2840,15 @@ type AddApplicationCloudWatchLoggingOptionInput struct {
 	// CloudWatchLoggingOption is a required field
 	CloudWatchLoggingOption *CloudWatchLoggingOption `type:"structure" required:"true"`
 
-	// The version ID of the Kinesis Data Analytics application. You can retrieve
-	// the application version ID using DescribeApplication.
-	//
-	// CurrentApplicationVersionId is a required field
-	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+	// A value you use to implement strong concurrency for application updates.
+	// You must provide the ApplicationVersionID or the ConditionalToken. You get
+	// the application's current ConditionalToken using DescribeApplication.
+	ConditionalToken *string `min:"1" type:"string"`
+
+	// The version ID of the Kinesis Data Analytics application. You must provide
+	// the ApplicationVersionID or the ConditionalToken.You can retrieve the application
+	// version ID using DescribeApplication.
+	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 }
 
 // String returns the string representation
@@ -2762,8 +2873,8 @@ func (s *AddApplicationCloudWatchLoggingOptionInput) Validate() error {
 	if s.CloudWatchLoggingOption == nil {
 		invalidParams.Add(request.NewErrParamRequired("CloudWatchLoggingOption"))
 	}
-	if s.CurrentApplicationVersionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	if s.ConditionalToken != nil && len(*s.ConditionalToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalToken", 1))
 	}
 	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
@@ -2789,6 +2900,12 @@ func (s *AddApplicationCloudWatchLoggingOptionInput) SetApplicationName(v string
 // SetCloudWatchLoggingOption sets the CloudWatchLoggingOption field's value.
 func (s *AddApplicationCloudWatchLoggingOptionInput) SetCloudWatchLoggingOption(v *CloudWatchLoggingOption) *AddApplicationCloudWatchLoggingOptionInput {
 	s.CloudWatchLoggingOption = v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *AddApplicationCloudWatchLoggingOptionInput) SetConditionalToken(v string) *AddApplicationCloudWatchLoggingOptionInput {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -2851,8 +2968,9 @@ type AddApplicationInputInput struct {
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
-	// The current version of your application. You can use the DescribeApplication
-	// operation to find the current application version.
+	// The current version of your application. You must provide the ApplicationVersionID
+	// or the ConditionalToken.You can use the DescribeApplication operation to
+	// find the current application version.
 	//
 	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
@@ -2972,9 +3090,10 @@ type AddApplicationInputProcessingConfigurationInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The version of the application to which you want to add the input processing
-	// configuration. You can use the DescribeApplication operation to get the current
-	// application version. If the version specified is not the current version,
-	// the ConcurrentModificationException is returned.
+	// configuration. You must provide the ApplicationVersionID or the ConditionalToken.
+	// You can use the DescribeApplication operation to get the current application
+	// version. If the version specified is not the current version, the ConcurrentModificationException
+	// is returned.
 	//
 	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
@@ -3124,8 +3243,9 @@ type AddApplicationOutputInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The version of the application to which you want to add the output configuration.
-	// You can use the DescribeApplication operation to get the current application
-	// version. If the version specified is not the current version, the ConcurrentModificationException
+	// You must provide the ApplicationVersionID or the ConditionalToken. You can
+	// use the DescribeApplication operation to get the current application version.
+	// If the version specified is not the current version, the ConcurrentModificationException
 	// is returned.
 	//
 	// CurrentApplicationVersionId is a required field
@@ -3375,13 +3495,17 @@ type AddApplicationVpcConfigurationInput struct {
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
+	// A value you use to implement strong concurrency for application updates.
+	// You must provide the ApplicationVersionID or the ConditionalToken. You get
+	// the application's current ConditionalToken using DescribeApplication.
+	ConditionalToken *string `min:"1" type:"string"`
+
 	// The version of the application to which you want to add the VPC configuration.
-	// You can use the DescribeApplication operation to get the current application
-	// version. If the version specified is not the current version, the ConcurrentModificationException
+	// You must provide the ApplicationVersionID or the ConditionalToken. You can
+	// use the DescribeApplication operation to get the current application version.
+	// If the version specified is not the current version, the ConcurrentModificationException
 	// is returned.
-	//
-	// CurrentApplicationVersionId is a required field
-	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// Description of the VPC to add to the application.
 	//
@@ -3408,8 +3532,8 @@ func (s *AddApplicationVpcConfigurationInput) Validate() error {
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
 	}
-	if s.CurrentApplicationVersionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	if s.ConditionalToken != nil && len(*s.ConditionalToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalToken", 1))
 	}
 	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
@@ -3432,6 +3556,12 @@ func (s *AddApplicationVpcConfigurationInput) Validate() error {
 // SetApplicationName sets the ApplicationName field's value.
 func (s *AddApplicationVpcConfigurationInput) SetApplicationName(v string) *AddApplicationVpcConfigurationInput {
 	s.ApplicationName = &v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *AddApplicationVpcConfigurationInput) SetConditionalToken(v string) *AddApplicationVpcConfigurationInput {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -3985,8 +4115,19 @@ type ApplicationDetail struct {
 	// ApplicationVersionId is a required field
 	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
+	// If you reverted the application using RollbackApplication, the application
+	// version when RollbackApplication was called.
+	ApplicationVersionRolledBackFrom *int64 `min:"1" type:"long"`
+
+	// The previous application version before the latest application update. RollbackApplication
+	// reverts the application to this version.
+	ApplicationVersionUpdatedFrom *int64 `min:"1" type:"long"`
+
 	// Describes the application Amazon CloudWatch logging options.
 	CloudWatchLoggingOptionDescriptions []*CloudWatchLoggingOptionDescription `type:"list"`
+
+	// A value you use to implement strong concurrency for application updates.
+	ConditionalToken *string `min:"1" type:"string"`
 
 	// The current timestamp when the application was created.
 	CreateTimestamp *time.Time `type:"timestamp"`
@@ -4056,9 +4197,27 @@ func (s *ApplicationDetail) SetApplicationVersionId(v int64) *ApplicationDetail 
 	return s
 }
 
+// SetApplicationVersionRolledBackFrom sets the ApplicationVersionRolledBackFrom field's value.
+func (s *ApplicationDetail) SetApplicationVersionRolledBackFrom(v int64) *ApplicationDetail {
+	s.ApplicationVersionRolledBackFrom = &v
+	return s
+}
+
+// SetApplicationVersionUpdatedFrom sets the ApplicationVersionUpdatedFrom field's value.
+func (s *ApplicationDetail) SetApplicationVersionUpdatedFrom(v int64) *ApplicationDetail {
+	s.ApplicationVersionUpdatedFrom = &v
+	return s
+}
+
 // SetCloudWatchLoggingOptionDescriptions sets the CloudWatchLoggingOptionDescriptions field's value.
 func (s *ApplicationDetail) SetCloudWatchLoggingOptionDescriptions(v []*CloudWatchLoggingOptionDescription) *ApplicationDetail {
 	s.CloudWatchLoggingOptionDescriptions = v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *ApplicationDetail) SetConditionalToken(v string) *ApplicationDetail {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -5516,11 +5675,15 @@ type DeleteApplicationCloudWatchLoggingOptionInput struct {
 	// CloudWatchLoggingOptionId is a required field
 	CloudWatchLoggingOptionId *string `min:"1" type:"string" required:"true"`
 
-	// The version ID of the application. You can retrieve the application version
-	// ID using DescribeApplication.
-	//
-	// CurrentApplicationVersionId is a required field
-	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+	// A value you use to implement strong concurrency for application updates.
+	// You must provide the ApplicationVersionID or the ConditionalToken. You get
+	// the application's current ConditionalToken using DescribeApplication.
+	ConditionalToken *string `min:"1" type:"string"`
+
+	// The version ID of the application. You must provide the ApplicationVersionID
+	// or the ConditionalToken. You can retrieve the application version ID using
+	// DescribeApplication.
+	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 }
 
 // String returns the string representation
@@ -5548,8 +5711,8 @@ func (s *DeleteApplicationCloudWatchLoggingOptionInput) Validate() error {
 	if s.CloudWatchLoggingOptionId != nil && len(*s.CloudWatchLoggingOptionId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CloudWatchLoggingOptionId", 1))
 	}
-	if s.CurrentApplicationVersionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	if s.ConditionalToken != nil && len(*s.ConditionalToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalToken", 1))
 	}
 	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
@@ -5570,6 +5733,12 @@ func (s *DeleteApplicationCloudWatchLoggingOptionInput) SetApplicationName(v str
 // SetCloudWatchLoggingOptionId sets the CloudWatchLoggingOptionId field's value.
 func (s *DeleteApplicationCloudWatchLoggingOptionInput) SetCloudWatchLoggingOptionId(v string) *DeleteApplicationCloudWatchLoggingOptionInput {
 	s.CloudWatchLoggingOptionId = &v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *DeleteApplicationCloudWatchLoggingOptionInput) SetConditionalToken(v string) *DeleteApplicationCloudWatchLoggingOptionInput {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -6122,11 +6291,15 @@ type DeleteApplicationVpcConfigurationInput struct {
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
-	// The current application version ID. You can retrieve the application version
-	// ID using DescribeApplication.
-	//
-	// CurrentApplicationVersionId is a required field
-	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+	// A value you use to implement strong concurrency for application updates.
+	// You must provide the ApplicationVersionID or the ConditionalToken. You get
+	// the application's current ConditionalToken using DescribeApplication.
+	ConditionalToken *string `min:"1" type:"string"`
+
+	// The current application version ID. You must provide the ApplicationVersionID
+	// or the ConditionalToken.You can retrieve the application version ID using
+	// DescribeApplication.
+	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// The ID of the VPC configuration to delete.
 	//
@@ -6153,8 +6326,8 @@ func (s *DeleteApplicationVpcConfigurationInput) Validate() error {
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
 	}
-	if s.CurrentApplicationVersionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	if s.ConditionalToken != nil && len(*s.ConditionalToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalToken", 1))
 	}
 	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
@@ -6175,6 +6348,12 @@ func (s *DeleteApplicationVpcConfigurationInput) Validate() error {
 // SetApplicationName sets the ApplicationName field's value.
 func (s *DeleteApplicationVpcConfigurationInput) SetApplicationName(v string) *DeleteApplicationVpcConfigurationInput {
 	s.ApplicationName = &v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *DeleteApplicationVpcConfigurationInput) SetConditionalToken(v string) *DeleteApplicationVpcConfigurationInput {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -10272,6 +10451,91 @@ func (s *ResourceProvisionedThroughputExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type RollbackApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application.
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// The current application version ID. You can retrieve the application version
+	// ID using DescribeApplication.
+	//
+	// CurrentApplicationVersionId is a required field
+	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s RollbackApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RollbackApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RollbackApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RollbackApplicationInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.CurrentApplicationVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	}
+	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *RollbackApplicationInput) SetApplicationName(v string) *RollbackApplicationInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetCurrentApplicationVersionId sets the CurrentApplicationVersionId field's value.
+func (s *RollbackApplicationInput) SetCurrentApplicationVersionId(v int64) *RollbackApplicationInput {
+	s.CurrentApplicationVersionId = &v
+	return s
+}
+
+type RollbackApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the application, including the application Amazon Resource Name
+	// (ARN), status, latest version, and input and output configurations.
+	//
+	// ApplicationDetail is a required field
+	ApplicationDetail *ApplicationDetail `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s RollbackApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RollbackApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationDetail sets the ApplicationDetail field's value.
+func (s *RollbackApplicationOutput) SetApplicationDetail(v *ApplicationDetail) *RollbackApplicationOutput {
+	s.ApplicationDetail = v
+	return s
+}
+
 // Describes the starting parameters for an Kinesis Data Analytics application.
 type RunConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -11853,11 +12117,15 @@ type UpdateApplicationInput struct {
 	// CloudWatch logging option, use AddApplicationCloudWatchLoggingOption.
 	CloudWatchLoggingOptionUpdates []*CloudWatchLoggingOptionUpdate `type:"list"`
 
-	// The current application version ID. You can retrieve the application version
-	// ID using DescribeApplication.
-	//
-	// CurrentApplicationVersionId is a required field
-	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+	// A value you use to implement strong concurrency for application updates.
+	// You must provide the ApplicationVersionID or the ConditionalToken. You get
+	// the application's current ConditionalToken using DescribeApplication.
+	ConditionalToken *string `min:"1" type:"string"`
+
+	// The current application version ID. You must provide the ApplicationVersionID
+	// or the ConditionalToken.You can retrieve the application version ID using
+	// DescribeApplication.
+	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// Describes updates to the application's starting parameters.
 	RunConfigurationUpdate *RunConfigurationUpdate `type:"structure"`
@@ -11885,8 +12153,8 @@ func (s *UpdateApplicationInput) Validate() error {
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
 	}
-	if s.CurrentApplicationVersionId == nil {
-		invalidParams.Add(request.NewErrParamRequired("CurrentApplicationVersionId"))
+	if s.ConditionalToken != nil && len(*s.ConditionalToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConditionalToken", 1))
 	}
 	if s.CurrentApplicationVersionId != nil && *s.CurrentApplicationVersionId < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("CurrentApplicationVersionId", 1))
@@ -11936,6 +12204,12 @@ func (s *UpdateApplicationInput) SetApplicationName(v string) *UpdateApplication
 // SetCloudWatchLoggingOptionUpdates sets the CloudWatchLoggingOptionUpdates field's value.
 func (s *UpdateApplicationInput) SetCloudWatchLoggingOptionUpdates(v []*CloudWatchLoggingOptionUpdate) *UpdateApplicationInput {
 	s.CloudWatchLoggingOptionUpdates = v
+	return s
+}
+
+// SetConditionalToken sets the ConditionalToken field's value.
+func (s *UpdateApplicationInput) SetConditionalToken(v string) *UpdateApplicationInput {
+	s.ConditionalToken = &v
 	return s
 }
 
@@ -12312,6 +12586,9 @@ const (
 
 	// ApplicationStatusMaintenance is a ApplicationStatus enum value
 	ApplicationStatusMaintenance = "MAINTENANCE"
+
+	// ApplicationStatusRollingBack is a ApplicationStatus enum value
+	ApplicationStatusRollingBack = "ROLLING_BACK"
 )
 
 // ApplicationStatus_Values returns all elements of the ApplicationStatus enum
@@ -12326,6 +12603,7 @@ func ApplicationStatus_Values() []string {
 		ApplicationStatusAutoscaling,
 		ApplicationStatusForceStopping,
 		ApplicationStatusMaintenance,
+		ApplicationStatusRollingBack,
 	}
 }
 

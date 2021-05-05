@@ -7679,7 +7679,9 @@ type CreateAssessmentFrameworkControlSet struct {
 	Controls []*CreateAssessmentFrameworkControl `locationName:"controls" min:"1" type:"list"`
 
 	// The name of the specified control set.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -7697,6 +7699,9 @@ func (s *CreateAssessmentFrameworkControlSet) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateAssessmentFrameworkControlSet"}
 	if s.Controls != nil && len(s.Controls) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Controls", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
@@ -9017,7 +9022,7 @@ func (s DisassociateAssessmentReportEvidenceFolderOutput) GoString() string {
 type Evidence struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the evidence is inclded in the assessment report.
+	// Specifies whether the evidence is included in the assessment report.
 	AssessmentReportSelection *string `locationName:"assessmentReportSelection" type:"string"`
 
 	// The names and values used by the evidence event, including an attribute name
@@ -12311,7 +12316,9 @@ type UpdateAssessmentFrameworkControlSet struct {
 	Id *string `locationName:"id" min:"1" type:"string"`
 
 	// The name of the control set.
-	Name *string `locationName:"name" min:"1" type:"string"`
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -12332,6 +12339,9 @@ func (s *UpdateAssessmentFrameworkControlSet) Validate() error {
 	}
 	if s.Id != nil && len(*s.Id) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))

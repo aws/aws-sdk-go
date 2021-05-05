@@ -148,6 +148,10 @@ type KinesisAnalyticsV2API interface {
 	ListTagsForResourceWithContext(aws.Context, *kinesisanalyticsv2.ListTagsForResourceInput, ...request.Option) (*kinesisanalyticsv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*kinesisanalyticsv2.ListTagsForResourceInput) (*request.Request, *kinesisanalyticsv2.ListTagsForResourceOutput)
 
+	RollbackApplication(*kinesisanalyticsv2.RollbackApplicationInput) (*kinesisanalyticsv2.RollbackApplicationOutput, error)
+	RollbackApplicationWithContext(aws.Context, *kinesisanalyticsv2.RollbackApplicationInput, ...request.Option) (*kinesisanalyticsv2.RollbackApplicationOutput, error)
+	RollbackApplicationRequest(*kinesisanalyticsv2.RollbackApplicationInput) (*request.Request, *kinesisanalyticsv2.RollbackApplicationOutput)
+
 	StartApplication(*kinesisanalyticsv2.StartApplicationInput) (*kinesisanalyticsv2.StartApplicationOutput, error)
 	StartApplicationWithContext(aws.Context, *kinesisanalyticsv2.StartApplicationInput, ...request.Option) (*kinesisanalyticsv2.StartApplicationOutput, error)
 	StartApplicationRequest(*kinesisanalyticsv2.StartApplicationInput) (*request.Request, *kinesisanalyticsv2.StartApplicationOutput)

@@ -1,3 +1,19 @@
+Release v1.38.34 (2021-05-05)
+===
+
+### Service Client Updates
+* `service/auditmanager`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/nimble`: Updates service documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker Autopilot now provides the ability to automatically deploy the best model to an endpoint
+
+### SDK Bugs
+* `service/finspace`: Fix Content-Type header sent in request ([#3896](https://github.com/aws/aws-sdk-go/pull/3896))
+  * Fixes the Content-Type header sent by the SDK in requests to the API
+* `service/finspacedata`: Fix Content-Type header sent in request ([#3896](https://github.com/aws/aws-sdk-go/pull/3896))
+  * Fixes the Content-Type header sent by the SDK in requests to the API
+
 Release v1.38.33 (2021-05-05)
 ===
 

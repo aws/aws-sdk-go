@@ -18,7 +18,7 @@ const (
 	// ErrCodeResourceInUse for service response error code
 	// "ResourceInUse".
 	//
-	// The resource being accessed is in use.
+	// Resource being accessed is in use.
 	ErrCodeResourceInUse = "ResourceInUse"
 
 	// ErrCodeResourceLimitExceeded for service response error code
@@ -31,7 +31,7 @@ const (
 	// ErrCodeResourceNotFound for service response error code
 	// "ResourceNotFound".
 	//
-	// The resource being accessed was not found.
+	// Resource being access is not found.
 	ErrCodeResourceNotFound = "ResourceNotFound"
 )
 
