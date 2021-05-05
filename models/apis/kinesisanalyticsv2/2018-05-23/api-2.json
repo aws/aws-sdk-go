@@ -359,6 +359,23 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "RollbackApplication":{
+      "name":"RollbackApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RollbackApplicationRequest"},
+      "output":{"shape":"RollbackApplicationResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "StartApplication":{
       "name":"StartApplication",
       "http":{
@@ -465,13 +482,13 @@
       "type":"structure",
       "required":[
         "ApplicationName",
-        "CurrentApplicationVersionId",
         "CloudWatchLoggingOption"
       ],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "CloudWatchLoggingOption":{"shape":"CloudWatchLoggingOption"}
+        "CloudWatchLoggingOption":{"shape":"CloudWatchLoggingOption"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "AddApplicationCloudWatchLoggingOptionResponse":{
@@ -573,13 +590,13 @@
       "type":"structure",
       "required":[
         "ApplicationName",
-        "CurrentApplicationVersionId",
         "VpcConfiguration"
       ],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "VpcConfiguration":{"shape":"VpcConfiguration"}
+        "VpcConfiguration":{"shape":"VpcConfiguration"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "AddApplicationVpcConfigurationResponse":{
@@ -674,7 +691,10 @@
         "LastUpdateTimestamp":{"shape":"Timestamp"},
         "ApplicationConfigurationDescription":{"shape":"ApplicationConfigurationDescription"},
         "CloudWatchLoggingOptionDescriptions":{"shape":"CloudWatchLoggingOptionDescriptions"},
-        "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"}
+        "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"},
+        "ApplicationVersionUpdatedFrom":{"shape":"ApplicationVersionId"},
+        "ApplicationVersionRolledBackFrom":{"shape":"ApplicationVersionId"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "ApplicationMaintenanceConfigurationDescription":{
@@ -761,7 +781,8 @@
         "UPDATING",
         "AUTOSCALING",
         "FORCE_STOPPING",
-        "MAINTENANCE"
+        "MAINTENANCE",
+        "ROLLING_BACK"
       ]
     },
     "ApplicationSummaries":{
@@ -937,6 +958,12 @@
       },
       "exception":true
     },
+    "ConditionalToken":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_+/=]+"
+    },
     "ConfigurationType":{
       "type":"string",
       "enum":[
@@ -1006,13 +1033,13 @@
       "type":"structure",
       "required":[
         "ApplicationName",
-        "CurrentApplicationVersionId",
         "CloudWatchLoggingOptionId"
       ],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "CloudWatchLoggingOptionId":{"shape":"Id"}
+        "CloudWatchLoggingOptionId":{"shape":"Id"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "DeleteApplicationCloudWatchLoggingOptionResponse":{
@@ -1121,13 +1148,13 @@
       "type":"structure",
       "required":[
         "ApplicationName",
-        "CurrentApplicationVersionId",
         "VpcConfigurationId"
       ],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "VpcConfigurationId":{"shape":"Id"}
+        "VpcConfigurationId":{"shape":"Id"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "DeleteApplicationVpcConfigurationResponse":{
@@ -1977,6 +2004,24 @@
       "min":1,
       "pattern":"arn:.*"
     },
+    "RollbackApplicationRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "CurrentApplicationVersionId"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"}
+      }
+    },
+    "RollbackApplicationResponse":{
+      "type":"structure",
+      "required":["ApplicationDetail"],
+      "members":{
+        "ApplicationDetail":{"shape":"ApplicationDetail"}
+      }
+    },
     "RunConfiguration":{
       "type":"structure",
       "members":{
@@ -2328,17 +2373,15 @@
     },
     "UpdateApplicationRequest":{
       "type":"structure",
-      "required":[
-        "ApplicationName",
-        "CurrentApplicationVersionId"
-      ],
+      "required":["ApplicationName"],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "CurrentApplicationVersionId":{"shape":"ApplicationVersionId"},
         "ApplicationConfigurationUpdate":{"shape":"ApplicationConfigurationUpdate"},
         "ServiceExecutionRoleUpdate":{"shape":"RoleARN"},
         "RunConfigurationUpdate":{"shape":"RunConfigurationUpdate"},
-        "CloudWatchLoggingOptionUpdates":{"shape":"CloudWatchLoggingOptionUpdates"}
+        "CloudWatchLoggingOptionUpdates":{"shape":"CloudWatchLoggingOptionUpdates"},
+        "ConditionalToken":{"shape":"ConditionalToken"}
       }
     },
     "UpdateApplicationResponse":{

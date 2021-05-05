@@ -3146,6 +3146,7 @@
         "IAM"
       ]
     },
+    "AutoGenerateEndpointName":{"type":"boolean"},
     "AutoMLCandidate":{
       "type":"structure",
       "required":[
@@ -3296,7 +3297,9 @@
         "CandidateDefinitionsGenerated",
         "GeneratingExplainabilityReport",
         "Completed",
-        "ExplainabilityError"
+        "ExplainabilityError",
+        "DeployingModel",
+        "ModelDeploymentError"
       ]
     },
     "AutoMLJobStatus":{
@@ -3698,15 +3701,15 @@
     },
     "ClientId":{
       "type":"string",
-      "max":128,
+      "max":1024,
       "min":1,
-      "pattern":"[\\w+-]+"
+      "pattern":"[ -~]+"
     },
     "ClientSecret":{
       "type":"string",
-      "max":64,
+      "max":1024,
       "min":1,
-      "pattern":"[\\w+=/-]+",
+      "pattern":"[ -~]+",
       "sensitive":true
     },
     "ClientToken":{
@@ -4190,7 +4193,8 @@
         "AutoMLJobConfig":{"shape":"AutoMLJobConfig"},
         "RoleArn":{"shape":"RoleArn"},
         "GenerateCandidateDefinitionsOnly":{"shape":"GenerateCandidateDefinitionsOnly"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ModelDeployConfig":{"shape":"ModelDeployConfig"}
       }
     },
     "CreateAutoMLJobResponse":{
@@ -5879,7 +5883,9 @@
         "AutoMLJobSecondaryStatus":{"shape":"AutoMLJobSecondaryStatus"},
         "GenerateCandidateDefinitionsOnly":{"shape":"GenerateCandidateDefinitionsOnly"},
         "AutoMLJobArtifacts":{"shape":"AutoMLJobArtifacts"},
-        "ResolvedAttributes":{"shape":"ResolvedAttributes"}
+        "ResolvedAttributes":{"shape":"ResolvedAttributes"},
+        "ModelDeployConfig":{"shape":"ModelDeployConfig"},
+        "ModelDeployResult":{"shape":"ModelDeployResult"}
       }
     },
     "DescribeCodeRepositoryInput":{
@@ -10455,6 +10461,19 @@
       "members":{
         "Statistics":{"shape":"MetricsSource"},
         "Constraints":{"shape":"MetricsSource"}
+      }
+    },
+    "ModelDeployConfig":{
+      "type":"structure",
+      "members":{
+        "AutoGenerateEndpointName":{"shape":"AutoGenerateEndpointName"},
+        "EndpointName":{"shape":"EndpointName"}
+      }
+    },
+    "ModelDeployResult":{
+      "type":"structure",
+      "members":{
+        "EndpointName":{"shape":"EndpointName"}
       }
     },
     "ModelDigests":{

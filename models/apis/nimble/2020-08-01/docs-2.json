@@ -347,7 +347,7 @@
     "LaunchProfile": {
       "base": "",
       "refs": {
-        "CreateLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>",
+        "CreateLaunchProfileOutput$LaunchProfile": "<p>The created launch profile.</p>",
         "DeleteLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>",
         "GetLaunchProfileDetailsOutput$LaunchProfile": "<p>The launch profile.</p>",
         "GetLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>",

@@ -24,6 +24,7 @@
     "ListApplicationSnapshots": "<p>Lists information about the current application snapshots.</p>",
     "ListApplications": "<p>Returns a list of Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
+    "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code> or <code>AUTOSCALING</code> status.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Kinesis Data Analytics rejects the rollback request.</p> <p>This action is not supported for Kinesis Data Analytics for SQL applications.</p>",
     "StartApplication": "<p>Starts the specified Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p>",
     "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Kinesis Data Analytics takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
     "TagResource": "<p>Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
@@ -140,6 +141,7 @@
       "refs": {
         "CreateApplicationResponse$ApplicationDetail": "<p>In response to your <code>CreateApplication</code> request, Kinesis Data Analytics returns a response with details of the application it created.</p>",
         "DescribeApplicationResponse$ApplicationDetail": "<p>Provides a description of the application, such as the application's Amazon Resource Name (ARN), status, and latest version.</p>",
+        "RollbackApplicationResponse$ApplicationDetail": null,
         "UpdateApplicationResponse$ApplicationDetail": "<p>Describes application updates.</p>"
       }
     },
@@ -195,6 +197,7 @@
         "ListApplicationSnapshotsRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "ListApplicationsRequest$NextToken": "<p>If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
         "ListApplicationsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. Pass this token into a subsequent command to retrieve the next set of items For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
+        "RollbackApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StartApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StopApplicationRequest$ApplicationName": "<p>The name of the running application to stop.</p>",
         "UpdateApplicationMaintenanceConfigurationRequest$ApplicationName": "<p>The name of the application for which you want to update the maintenance time window.</p>",
@@ -255,21 +258,23 @@
     "ApplicationVersionId": {
       "base": null,
       "refs": {
-        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the Kinesis Data Analytics application. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the Kinesis Data Analytics application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "AddApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The new version ID of the Kinesis Data Analytics application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options. </p>",
-        "AddApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the input processing configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
+        "AddApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the input processing configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version.</p>",
-        "AddApplicationInputRequest$CurrentApplicationVersionId": "<p>The current version of your application. You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
+        "AddApplicationInputRequest$CurrentApplicationVersionId": "<p>The current version of your application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
         "AddApplicationInputResponse$ApplicationVersionId": "<p>Provides the current application version.</p>",
-        "AddApplicationOutputRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the output configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
+        "AddApplicationOutputRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the output configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
         "AddApplicationOutputResponse$ApplicationVersionId": "<p>The updated application version ID. Kinesis Data Analytics increments this ID when the application is updated.</p>",
         "AddApplicationReferenceDataSourceRequest$CurrentApplicationVersionId": "<p>The version of the application for which you are adding the reference data source. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated application version ID. Kinesis Data Analytics increments this ID when the application is updated.</p>",
-        "AddApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the VPC configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
+        "AddApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the VPC configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the ApplicationVersionId each time you update the application. </p>",
         "ApplicationDetail$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
+        "ApplicationDetail$ApplicationVersionUpdatedFrom": "<p>The previous application version before the latest application update. <a>RollbackApplication</a> reverts the application to this version.</p>",
+        "ApplicationDetail$ApplicationVersionRolledBackFrom": "<p>If you reverted the application using <a>RollbackApplication</a>, the application version when <code>RollbackApplication</code> was called.</p>",
         "ApplicationSummary$ApplicationVersionId": "<p>Provides the current application version.</p>",
-        "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options.</p>",
         "DeleteApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
         "DeleteApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>The current application version ID.</p>",
@@ -277,10 +282,11 @@
         "DeleteApplicationOutputResponse$ApplicationVersionId": "<p>The current application version ID.</p>",
         "DeleteApplicationReferenceDataSourceRequest$CurrentApplicationVersionId": "<p>The current application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "DeleteApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
-        "DeleteApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "DeleteApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "DeleteApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
+        "RollbackApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "SnapshotDetails$ApplicationVersionId": "<p>The current application version ID when the snapshot was created.</p>",
-        "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>"
+        "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>"
       }
     },
     "AuthorizedUrl": {
@@ -435,6 +441,17 @@
     "ConcurrentModificationException": {
       "base": "<p>Exception thrown as a result of concurrent modifications to an application. This error can be the result of attempting to modify an application without using the current application ID.</p>",
       "refs": {
+      }
+    },
+    "ConditionalToken": {
+      "base": null,
+      "refs": {
+        "AddApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
+        "AddApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
+        "ApplicationDetail$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates.</p>",
+        "DeleteApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
+        "DeleteApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
+        "UpdateApplicationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>"
       }
     },
     "ConfigurationType": {
@@ -1398,6 +1415,16 @@
         "LambdaOutputDescription$RoleARN": "<p>The ARN of the IAM role that Kinesis Data Analytics can assume to write to the destination function.</p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "S3ReferenceDataSourceDescription$ReferenceRoleARN": "<p>The ARN of the IAM role that Kinesis Data Analytics can assume to read the Amazon S3 object on your behalf to populate the in-application reference table. </p> <note> <p>Provided for backward compatibility. Applications that are created with the current API version have an application-level service execution role rather than a resource-level role.</p> </note>",
         "UpdateApplicationRequest$ServiceExecutionRoleUpdate": "<p>Describes updates to the service execution role.</p>"
+      }
+    },
+    "RollbackApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RollbackApplicationResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "RunConfiguration": {

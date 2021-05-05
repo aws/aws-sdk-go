@@ -1436,6 +1436,7 @@
     },
     "CreateAssessmentFrameworkControlSet":{
       "type":"structure",
+      "required":["name"],
       "members":{
         "name":{"shape":"ControlSetName"},
         "controls":{"shape":"CreateAssessmentFrameworkControls"}
@@ -2865,6 +2866,7 @@
     },
     "UpdateAssessmentFrameworkControlSet":{
       "type":"structure",
+      "required":["name"],
       "members":{
         "id":{"shape":"ControlSetName"},
         "name":{"shape":"ControlSetName"},
