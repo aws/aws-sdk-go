@@ -293,7 +293,7 @@ func writeAPIErrorsFile(g *generateInfo) error {
 func writeAPIEventStreamTestFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "eventstream_test.go"),
 		codeLayout,
-		"// +build go1.10\n",
+		"// +build go1.15\n",
 		g.API.PackageName(),
 		g.API.APIEventStreamTestGoCode(),
 	)
@@ -311,7 +311,7 @@ func writeS3ManagerUploadInputFile(g *generateInfo) error {
 func writeAPISmokeTestsFile(g *generateInfo) error {
 	return writeGoFile(filepath.Join(g.PackageDir, "integ_test.go"),
 		codeLayout,
-		"// +build go1.10,integration\n",
+		"// +build go1.15,integration\n",
 		g.API.PackageName()+"_test",
 		g.API.APISmokeTestsGoCode(),
 	)
