@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The FinSpace management service provides the APIs for managing FinSpace environments.</p>",
+  "service": "<p>The FinSpace management service provides the APIs for managing the FinSpace environments. </p>",
   "operations": {
     "CreateEnvironment": "<p>Create a new FinSpace environment.</p>",
     "DeleteEnvironment": "<p>Delete an FinSpace environment.</p>",

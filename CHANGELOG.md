@@ -1,3 +1,10 @@
+Release v1.38.33 (2021-05-05)
+===
+
+### Service Client Updates
+* `service/finspace`: Updates service documentation
+* `service/finspace-data`: Updates service documentation
+
 Release v1.38.32 (2021-05-04)
 ===
 

@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p> The FinSpace APIs let you take actions inside FinSpace. </p>",
+  "service": "<p> The FinSpace APIs let you take actions inside the FinSpace environment. </p>",
   "operations": {
     "CreateChangeset": "<p>Creates a new changeset in a FinSpace dataset.</p>",
     "GetProgrammaticAccessCredentials": "<p>Request programmatic credentials to use with Habanero SDK.</p>",

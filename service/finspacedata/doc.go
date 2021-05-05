@@ -3,7 +3,7 @@
 // Package finspacedata provides the client and types for making API
 // requests to FinSpace Public API.
 //
-// The FinSpace APIs let you take actions inside FinSpace.
+// The FinSpace APIs let you take actions inside the FinSpace environment.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/finspace-2020-07-13 for more information on this service.
 //
