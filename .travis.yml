@@ -49,13 +49,6 @@ before_install:
 
 script:
   - if [ -z $(go env GOMOD) ]; then
-      if [ "$TRAVIS_GO_VERSION" == "1.14.x" ] ||
-          [ "$TRAVIS_GO_VERSION" == "1.13.x" ] ||
-          [ "$TRAVIS_GO_VERSION" == "1.12.x" ] ||
-          [ "$TRAVIS_GO_VERSION" == "1.11.x" ] ||
-          [ "$TRAVIS_GO_VERSION" == "1.10.x" ]; then
-        make get-deps-x-tests;
-      fi;
       make get-deps;
     fi;
     if [ "$TRAVIS_GO_VERSION" == "tip" ] ||

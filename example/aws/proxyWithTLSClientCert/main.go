@@ -1,4 +1,4 @@
-// +build example
+// +build example,go1.15
 
 package main
 
