@@ -428,6 +428,40 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // a node in a cluster, you only need to provide the clusterId value; the other
 // job attributes are inherited from the cluster.
 //
+// Only the Snowball; Edge device type is supported when ordering clustered
+// jobs.
+//
+// The device capacity is optional.
+//
+// Availability of device types differ by AWS Region. For more information about
+// region availability, see AWS Regional Services (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
+//
+// AWS Snow Family device types and their capacities.
+//
+//    * Snow Family device type: SNC1_SSD Capacity: T14 Description: Snowcone
+//
+//    * Snow Family device type: SNC1_HDD Capacity: T8 Description: Snowcone
+//
+//    * Device type: EDGE_S Capacity: T98 Description: Snowball Edge Storage
+//    Optimized for data transfer only
+//
+//    * Device type: EDGE_CG Capacity: T42 Description: Snowball Edge Compute
+//    Optimized with GPU
+//
+//    * Device type: EDGE_C Capacity: T42 Description: Snowball Edge Compute
+//    Optimized without GPU
+//
+//    * Device type: EDGE Capacity: T100 Description: Snowball Edge Storage
+//    Optimized with EC2 Compute
+//
+//    * Device type: STANDARD Capacity: T50 Description: Original Snowball device
+//    This device is only available in the Ningxia, Beijing, and Singapore AWS
+//    Regions.
+//
+//    * Device type: STANDARD Capacity: T80 Description: Original Snowball device
+//    This device is only available in the Ningxia, Beijing, and Singapore AWS
+//    Regions.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -476,6 +510,89 @@ func (c *Snowball) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 // for more information on using Contexts.
 func (c *Snowball) CreateJobWithContext(ctx aws.Context, input *CreateJobInput, opts ...request.Option) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLongTermPricing = "CreateLongTermPricing"
+
+// CreateLongTermPricingRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLongTermPricing operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLongTermPricing for more information on using the CreateLongTermPricing
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLongTermPricingRequest method.
+//    req, resp := client.CreateLongTermPricingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateLongTermPricing
+func (c *Snowball) CreateLongTermPricingRequest(input *CreateLongTermPricingInput) (req *request.Request, output *CreateLongTermPricingOutput) {
+	op := &request.Operation{
+		Name:       opCreateLongTermPricing,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLongTermPricingInput{}
+	}
+
+	output = &CreateLongTermPricingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLongTermPricing API operation for Amazon Import/Export Snowball.
+//
+// Creates a job with long term usage option for a device. The long term usage
+// is a one year or three year long term pricing type for the device. You are
+// billed upfront and AWS give discounts for long term pricing. For detailed
+// information see XXXXXXXX
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation CreateLongTermPricing for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/CreateLongTermPricing
+func (c *Snowball) CreateLongTermPricing(input *CreateLongTermPricingInput) (*CreateLongTermPricingOutput, error) {
+	req, out := c.CreateLongTermPricingRequest(input)
+	return out, req.Send()
+}
+
+// CreateLongTermPricingWithContext is the same as CreateLongTermPricing with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLongTermPricing for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) CreateLongTermPricingWithContext(ctx aws.Context, input *CreateLongTermPricingInput, opts ...request.Option) (*CreateLongTermPricingOutput, error) {
+	req, out := c.CreateLongTermPricingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1116,7 +1233,7 @@ func (c *Snowball) GetJobManifestRequest(input *GetJobManifestInput) (req *reque
 // Snow device associated with that job.
 //
 // The credentials of a given job, including its manifest file and unlock code,
-// expire 90 days after the job is created.
+// expire 360 days after the job is created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1201,7 +1318,7 @@ func (c *Snowball) GetJobUnlockCodeRequest(input *GetJobUnlockCodeInput) (req *r
 // GetJobUnlockCode API operation for Amazon Import/Export Snowball.
 //
 // Returns the UnlockCode code value for the specified job. A particular UnlockCode
-// value can be accessed for up to 90 days after the associated job has been
+// value can be accessed for up to 360 days after the associated job has been
 // created.
 //
 // The UnlockCode value is a 29-character code with 25 alphanumeric characters
@@ -1814,6 +1931,90 @@ func (c *Snowball) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInpu
 	return p.Err()
 }
 
+const opListLongTermPricing = "ListLongTermPricing"
+
+// ListLongTermPricingRequest generates a "aws/request.Request" representing the
+// client's request for the ListLongTermPricing operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLongTermPricing for more information on using the ListLongTermPricing
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLongTermPricingRequest method.
+//    req, resp := client.ListLongTermPricingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListLongTermPricing
+func (c *Snowball) ListLongTermPricingRequest(input *ListLongTermPricingInput) (req *request.Request, output *ListLongTermPricingOutput) {
+	op := &request.Operation{
+		Name:       opListLongTermPricing,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListLongTermPricingInput{}
+	}
+
+	output = &ListLongTermPricingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLongTermPricing API operation for Amazon Import/Export Snowball.
+//
+// Lists all long term pricing types.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation ListLongTermPricing for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+//   * InvalidNextTokenException
+//   The NextToken string was altered unexpectedly, and the operation has stopped.
+//   Run the operation without changing the NextToken string, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/ListLongTermPricing
+func (c *Snowball) ListLongTermPricing(input *ListLongTermPricingInput) (*ListLongTermPricingOutput, error) {
+	req, out := c.ListLongTermPricingRequest(input)
+	return out, req.Send()
+}
+
+// ListLongTermPricingWithContext is the same as ListLongTermPricing with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLongTermPricing for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) ListLongTermPricingWithContext(ctx aws.Context, input *ListLongTermPricingInput, opts ...request.Option) (*ListLongTermPricingOutput, error) {
+	req, out := c.ListLongTermPricingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCluster = "UpdateCluster"
 
 // UpdateClusterRequest generates a "aws/request.Request" representing the
@@ -2101,6 +2302,87 @@ func (c *Snowball) UpdateJobShipmentState(input *UpdateJobShipmentStateInput) (*
 // for more information on using Contexts.
 func (c *Snowball) UpdateJobShipmentStateWithContext(ctx aws.Context, input *UpdateJobShipmentStateInput, opts ...request.Option) (*UpdateJobShipmentStateOutput, error) {
 	req, out := c.UpdateJobShipmentStateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLongTermPricing = "UpdateLongTermPricing"
+
+// UpdateLongTermPricingRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLongTermPricing operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLongTermPricing for more information on using the UpdateLongTermPricing
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLongTermPricingRequest method.
+//    req, resp := client.UpdateLongTermPricingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/UpdateLongTermPricing
+func (c *Snowball) UpdateLongTermPricingRequest(input *UpdateLongTermPricingInput) (req *request.Request, output *UpdateLongTermPricingOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLongTermPricing,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLongTermPricingInput{}
+	}
+
+	output = &UpdateLongTermPricingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLongTermPricing API operation for Amazon Import/Export Snowball.
+//
+// Updates the long term pricing type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Import/Export Snowball's
+// API operation UpdateLongTermPricing for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidResourceException
+//   The specified resource can't be found. Check the information you provided
+//   in your last request, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/snowball-2016-06-30/UpdateLongTermPricing
+func (c *Snowball) UpdateLongTermPricing(input *UpdateLongTermPricingInput) (*UpdateLongTermPricingOutput, error) {
+	req, out := c.UpdateLongTermPricingRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLongTermPricingWithContext is the same as UpdateLongTermPricing with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLongTermPricing for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Snowball) UpdateLongTermPricingWithContext(ctx aws.Context, input *UpdateLongTermPricingInput, opts ...request.Option) (*UpdateLongTermPricingOutput, error) {
+	req, out := c.UpdateLongTermPricingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2879,6 +3161,10 @@ type CreateClusterInput struct {
 	// The type of job for this cluster. Currently, the only job type supported
 	// for clusters is LOCAL_USE.
 	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
+	//
 	// JobType is a required field
 	JobType *string `type:"string" required:"true" enum:"JobType"`
 
@@ -2941,7 +3227,13 @@ type CreateClusterInput struct {
 	//
 	// For cluster jobs, AWS Snow Family currently supports only the EDGE device
 	// type.
-	SnowballType *string `type:"string" enum:"Type"`
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
+	//
+	// SnowballType is a required field
+	SnowballType *string `type:"string" required:"true" enum:"Type"`
 
 	// The tax documents required in your AWS Region.
 	TaxDocuments *TaxDocuments `type:"structure"`
@@ -2983,6 +3275,9 @@ func (s *CreateClusterInput) Validate() error {
 	}
 	if s.ShippingOption == nil {
 		invalidParams.Add(request.NewErrParamRequired("ShippingOption"))
+	}
+	if s.SnowballType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SnowballType"))
 	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
@@ -3101,6 +3396,10 @@ type CreateJobInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// Defines the device configuration for an AWS Snowcone job.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	DeviceConfiguration *DeviceConfiguration `type:"structure"`
 
 	// The forwarding address ID for a job. This field is not supported in most
@@ -3114,6 +3413,9 @@ type CreateJobInput struct {
 	// using the CreateKey (https://docs.aws.amazon.com/kms/latest/APIReference/API_CreateKey.html)
 	// AWS Key Management Service (KMS) API action.
 	KmsKeyARN *string `type:"string"`
+
+	// The ID of the long term pricing type for the device.
+	LongTermPricingId *string `min:"41" type:"string"`
 
 	// Defines the Amazon Simple Notification Service (Amazon SNS) notification
 	// settings for this job.
@@ -3156,6 +3458,10 @@ type CreateJobInput struct {
 	// If your job is being created in one of the US regions, you have the option
 	// of specifying what size Snow device you'd like for this job. In all other
 	// regions, Snowballs come with 80 TB in storage capacity.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
 	// The type of AWS Snow Family device to use for this job.
@@ -3168,6 +3474,10 @@ type CreateJobInput struct {
 	//
 	// For more information, see Snowball Edge Device Options (https://docs.aws.amazon.com/snowball/latest/developer-guide/device-differences.html)
 	// in the Snowball Edge Developer Guide.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballType *string `type:"string" enum:"Type"`
 
 	// The tax documents required in your AWS Region.
@@ -3198,6 +3508,9 @@ func (s *CreateJobInput) Validate() error {
 	}
 	if s.ForwardingAddressId != nil && len(*s.ForwardingAddressId) < 40 {
 		invalidParams.Add(request.NewErrParamMinLen("ForwardingAddressId", 40))
+	}
+	if s.LongTermPricingId != nil && len(*s.LongTermPricingId) < 41 {
+		invalidParams.Add(request.NewErrParamMinLen("LongTermPricingId", 41))
 	}
 	if s.Resources != nil {
 		if err := s.Resources.Validate(); err != nil {
@@ -3250,6 +3563,12 @@ func (s *CreateJobInput) SetJobType(v string) *CreateJobInput {
 // SetKmsKeyARN sets the KmsKeyARN field's value.
 func (s *CreateJobInput) SetKmsKeyARN(v string) *CreateJobInput {
 	s.KmsKeyARN = &v
+	return s
+}
+
+// SetLongTermPricingId sets the LongTermPricingId field's value.
+func (s *CreateJobInput) SetLongTermPricingId(v string) *CreateJobInput {
+	s.LongTermPricingId = &v
 	return s
 }
 
@@ -3315,6 +3634,87 @@ func (s CreateJobOutput) GoString() string {
 // SetJobId sets the JobId field's value.
 func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	s.JobId = &v
+	return s
+}
+
+type CreateLongTermPricingInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether the current long term pricing type for the device should
+	// be renewed.
+	IsLongTermPricingAutoRenew *bool `type:"boolean"`
+
+	// The type of long term pricing option you want for the device - one year or
+	// three year long term pricing.
+	//
+	// LongTermPricingType is a required field
+	LongTermPricingType *string `type:"string" required:"true" enum:"LongTermPricingType"`
+
+	// The type of AWS Snow Family device to use for the long term pricing job.
+	SnowballType *string `type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s CreateLongTermPricingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLongTermPricingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLongTermPricingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLongTermPricingInput"}
+	if s.LongTermPricingType == nil {
+		invalidParams.Add(request.NewErrParamRequired("LongTermPricingType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsLongTermPricingAutoRenew sets the IsLongTermPricingAutoRenew field's value.
+func (s *CreateLongTermPricingInput) SetIsLongTermPricingAutoRenew(v bool) *CreateLongTermPricingInput {
+	s.IsLongTermPricingAutoRenew = &v
+	return s
+}
+
+// SetLongTermPricingType sets the LongTermPricingType field's value.
+func (s *CreateLongTermPricingInput) SetLongTermPricingType(v string) *CreateLongTermPricingInput {
+	s.LongTermPricingType = &v
+	return s
+}
+
+// SetSnowballType sets the SnowballType field's value.
+func (s *CreateLongTermPricingInput) SetSnowballType(v string) *CreateLongTermPricingInput {
+	s.SnowballType = &v
+	return s
+}
+
+type CreateLongTermPricingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the long term pricing type for the device.
+	LongTermPricingId *string `min:"41" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateLongTermPricingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLongTermPricingOutput) GoString() string {
+	return s.String()
+}
+
+// SetLongTermPricingId sets the LongTermPricingId field's value.
+func (s *CreateLongTermPricingOutput) SetLongTermPricingId(v string) *CreateLongTermPricingOutput {
+	s.LongTermPricingId = &v
 	return s
 }
 
@@ -3742,7 +4142,9 @@ type DescribeReturnShippingLabelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000.
-	JobId *string `min:"39" type:"string"`
+	//
+	// JobId is a required field
+	JobId *string `min:"39" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3758,6 +4160,9 @@ func (s DescribeReturnShippingLabelInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DescribeReturnShippingLabelInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeReturnShippingLabelInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
 	if s.JobId != nil && len(*s.JobId) < 39 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 39))
 	}
@@ -4082,7 +4487,7 @@ type GetJobUnlockCodeOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The UnlockCode value for the specified job. The UnlockCode value can be accessed
-	// for up to 90 days after the job has been created.
+	// for up to 360 days after the job has been created.
 	UnlockCode *string `min:"1" type:"string"`
 }
 
@@ -4726,6 +5131,9 @@ type JobMetadata struct {
 	// API action in AWS KMS.
 	KmsKeyARN *string `type:"string"`
 
+	// The ID of the long term pricing type for the device.
+	LongTermPricingId *string `min:"41" type:"string"`
+
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
 	// associated with a specific job. The Notification object is returned as a
 	// part of the response syntax of the DescribeJob action in the JobMetadata
@@ -4748,6 +5156,10 @@ type JobMetadata struct {
 	// The Snow device capacity preference for this job, specified at job creation.
 	// In US regions, you can choose between 50 TB and 80 TB Snowballs. All other
 	// regions use 80 TB capacity Snowballs.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 
 	// The type of device used with this job.
@@ -4836,6 +5248,12 @@ func (s *JobMetadata) SetJobType(v string) *JobMetadata {
 // SetKmsKeyARN sets the KmsKeyARN field's value.
 func (s *JobMetadata) SetKmsKeyARN(v string) *JobMetadata {
 	s.KmsKeyARN = &v
+	return s
+}
+
+// SetLongTermPricingId sets the LongTermPricingId field's value.
+func (s *JobMetadata) SetLongTermPricingId(v string) *JobMetadata {
+	s.LongTermPricingId = &v
 	return s
 }
 
@@ -5446,6 +5864,195 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListLongTermPricingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of ListLongTermPricing objects to return.
+	MaxResults *int64 `type:"integer"`
+
+	// Because HTTP requests are stateless, this is the starting point for your
+	// next list of ListLongTermPricing to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListLongTermPricingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLongTermPricingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLongTermPricingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLongTermPricingInput"}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLongTermPricingInput) SetMaxResults(v int64) *ListLongTermPricingInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLongTermPricingInput) SetNextToken(v string) *ListLongTermPricingInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLongTermPricingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Each LongTermPricingEntry object contains a status, ID, and other information
+	// about the LongTermPricing type.
+	LongTermPricingEntries []*LongTermPricingListEntry `type:"list"`
+
+	// Because HTTP requests are stateless, this is the starting point for your
+	// next list of returned ListLongTermPricing list.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListLongTermPricingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLongTermPricingOutput) GoString() string {
+	return s.String()
+}
+
+// SetLongTermPricingEntries sets the LongTermPricingEntries field's value.
+func (s *ListLongTermPricingOutput) SetLongTermPricingEntries(v []*LongTermPricingListEntry) *ListLongTermPricingOutput {
+	s.LongTermPricingEntries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLongTermPricingOutput) SetNextToken(v string) *ListLongTermPricingOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Each LongTermPricingListEntry object contains information about a long term
+// pricing type.
+type LongTermPricingListEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The current active jobs on the device the long term pricing type.
+	CurrentActiveJob *string `min:"39" type:"string"`
+
+	// If set to true, specifies that the current long term pricing type for the
+	// device should be automatically renewed before the long term pricing contract
+	// expires.
+	IsLongTermPricingAutoRenew *bool `type:"boolean"`
+
+	// The IDs of the jobs that are associated with a long term pricing type.
+	JobIds []*string `type:"list"`
+
+	// The end date the long term pricing contract.
+	LongTermPricingEndDate *time.Time `type:"timestamp"`
+
+	// The ID of the long term pricing type for the device.
+	LongTermPricingId *string `min:"41" type:"string"`
+
+	// The start date of the long term pricing contract.
+	LongTermPricingStartDate *time.Time `type:"timestamp"`
+
+	// The status of the long term pricing type.
+	LongTermPricingStatus *string `min:"1" type:"string"`
+
+	// The type of long term pricing that was selected for the device.
+	LongTermPricingType *string `type:"string" enum:"LongTermPricingType"`
+
+	// A new device that replaces a device that is ordered with long term pricing.
+	ReplacementJob *string `min:"39" type:"string"`
+
+	// The type of AWS Snow Family device associated with this long term pricing
+	// job.
+	SnowballType *string `type:"string" enum:"Type"`
+}
+
+// String returns the string representation
+func (s LongTermPricingListEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LongTermPricingListEntry) GoString() string {
+	return s.String()
+}
+
+// SetCurrentActiveJob sets the CurrentActiveJob field's value.
+func (s *LongTermPricingListEntry) SetCurrentActiveJob(v string) *LongTermPricingListEntry {
+	s.CurrentActiveJob = &v
+	return s
+}
+
+// SetIsLongTermPricingAutoRenew sets the IsLongTermPricingAutoRenew field's value.
+func (s *LongTermPricingListEntry) SetIsLongTermPricingAutoRenew(v bool) *LongTermPricingListEntry {
+	s.IsLongTermPricingAutoRenew = &v
+	return s
+}
+
+// SetJobIds sets the JobIds field's value.
+func (s *LongTermPricingListEntry) SetJobIds(v []*string) *LongTermPricingListEntry {
+	s.JobIds = v
+	return s
+}
+
+// SetLongTermPricingEndDate sets the LongTermPricingEndDate field's value.
+func (s *LongTermPricingListEntry) SetLongTermPricingEndDate(v time.Time) *LongTermPricingListEntry {
+	s.LongTermPricingEndDate = &v
+	return s
+}
+
+// SetLongTermPricingId sets the LongTermPricingId field's value.
+func (s *LongTermPricingListEntry) SetLongTermPricingId(v string) *LongTermPricingListEntry {
+	s.LongTermPricingId = &v
+	return s
+}
+
+// SetLongTermPricingStartDate sets the LongTermPricingStartDate field's value.
+func (s *LongTermPricingListEntry) SetLongTermPricingStartDate(v time.Time) *LongTermPricingListEntry {
+	s.LongTermPricingStartDate = &v
+	return s
+}
+
+// SetLongTermPricingStatus sets the LongTermPricingStatus field's value.
+func (s *LongTermPricingListEntry) SetLongTermPricingStatus(v string) *LongTermPricingListEntry {
+	s.LongTermPricingStatus = &v
+	return s
+}
+
+// SetLongTermPricingType sets the LongTermPricingType field's value.
+func (s *LongTermPricingListEntry) SetLongTermPricingType(v string) *LongTermPricingListEntry {
+	s.LongTermPricingType = &v
+	return s
+}
+
+// SetReplacementJob sets the ReplacementJob field's value.
+func (s *LongTermPricingListEntry) SetReplacementJob(v string) *LongTermPricingListEntry {
+	s.ReplacementJob = &v
+	return s
+}
+
+// SetSnowballType sets the SnowballType field's value.
+func (s *LongTermPricingListEntry) SetSnowballType(v string) *LongTermPricingListEntry {
+	s.SnowballType = &v
+	return s
+}
+
 // The Amazon Simple Notification Service (Amazon SNS) notification settings
 // associated with a specific job. The Notification object is returned as a
 // part of the response syntax of the DescribeJob action in the JobMetadata
@@ -5990,6 +6597,10 @@ type UpdateJobInput struct {
 
 	// The updated SnowballCapacityPreference of this job's JobMetadata object.
 	// The 50 TB Snowballs are only available in the US regions.
+	//
+	// For more information, see "https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide or "https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html"
+	// (Snow Family Devices and Capacity) in the Snowcone User Guide.
 	SnowballCapacityPreference *string `type:"string" enum:"Capacity"`
 }
 
@@ -6175,6 +6786,85 @@ func (s UpdateJobShipmentStateOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLongTermPricingInput struct {
+	_ struct{} `type:"structure"`
+
+	// If set to true, specifies that the current long term pricing type for the
+	// device should be automatically renewed before the long term pricing contract
+	// expires.
+	IsLongTermPricingAutoRenew *bool `type:"boolean"`
+
+	// The ID of the long term pricing type for the device.
+	//
+	// LongTermPricingId is a required field
+	LongTermPricingId *string `min:"41" type:"string" required:"true"`
+
+	// Specifies that a device that is ordered with long term pricing should be
+	// replaced with a new device.
+	ReplacementJob *string `min:"39" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateLongTermPricingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLongTermPricingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLongTermPricingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLongTermPricingInput"}
+	if s.LongTermPricingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LongTermPricingId"))
+	}
+	if s.LongTermPricingId != nil && len(*s.LongTermPricingId) < 41 {
+		invalidParams.Add(request.NewErrParamMinLen("LongTermPricingId", 41))
+	}
+	if s.ReplacementJob != nil && len(*s.ReplacementJob) < 39 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplacementJob", 39))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsLongTermPricingAutoRenew sets the IsLongTermPricingAutoRenew field's value.
+func (s *UpdateLongTermPricingInput) SetIsLongTermPricingAutoRenew(v bool) *UpdateLongTermPricingInput {
+	s.IsLongTermPricingAutoRenew = &v
+	return s
+}
+
+// SetLongTermPricingId sets the LongTermPricingId field's value.
+func (s *UpdateLongTermPricingInput) SetLongTermPricingId(v string) *UpdateLongTermPricingInput {
+	s.LongTermPricingId = &v
+	return s
+}
+
+// SetReplacementJob sets the ReplacementJob field's value.
+func (s *UpdateLongTermPricingInput) SetReplacementJob(v string) *UpdateLongTermPricingInput {
+	s.ReplacementJob = &v
+	return s
+}
+
+type UpdateLongTermPricingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLongTermPricingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLongTermPricingOutput) GoString() string {
+	return s.String()
+}
+
 // Configures the wireless connection on an AWS Snowcone device.
 type WirelessConnection struct {
 	_ struct{} `type:"structure"`
@@ -6218,6 +6908,9 @@ const (
 	// CapacityT8 is a Capacity enum value
 	CapacityT8 = "T8"
 
+	// CapacityT14 is a Capacity enum value
+	CapacityT14 = "T14"
+
 	// CapacityNoPreference is a Capacity enum value
 	CapacityNoPreference = "NoPreference"
 )
@@ -6231,6 +6924,7 @@ func Capacity_Values() []string {
 		CapacityT42,
 		CapacityT98,
 		CapacityT8,
+		CapacityT14,
 		CapacityNoPreference,
 	}
 }
@@ -6344,6 +7038,22 @@ func JobType_Values() []string {
 }
 
 const (
+	// LongTermPricingTypeOneYear is a LongTermPricingType enum value
+	LongTermPricingTypeOneYear = "OneYear"
+
+	// LongTermPricingTypeThreeYear is a LongTermPricingType enum value
+	LongTermPricingTypeThreeYear = "ThreeYear"
+)
+
+// LongTermPricingType_Values returns all elements of the LongTermPricingType enum
+func LongTermPricingType_Values() []string {
+	return []string{
+		LongTermPricingTypeOneYear,
+		LongTermPricingTypeThreeYear,
+	}
+}
+
+const (
 	// ShipmentStateReceived is a ShipmentState enum value
 	ShipmentStateReceived = "RECEIVED"
 
@@ -6425,6 +7135,9 @@ const (
 
 	// TypeSnc1Hdd is a Type enum value
 	TypeSnc1Hdd = "SNC1_HDD"
+
+	// TypeSnc1Ssd is a Type enum value
+	TypeSnc1Ssd = "SNC1_SSD"
 )
 
 // Type_Values returns all elements of the Type enum
@@ -6436,5 +7149,6 @@ func Type_Values() []string {
 		TypeEdgeCg,
 		TypeEdgeS,
 		TypeSnc1Hdd,
+		TypeSnc1Ssd,
 	}
 }

@@ -1,3 +1,14 @@
+Release v1.38.35 (2021-05-06)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/servicediscovery`: Updates service API and documentation
+* `service/snowball`: Updates service API and documentation
+  * AWS Snow Family adds APIs for ordering and managing Snow jobs with long term pricing
+* `service/ssm`: Updates service API and documentation
+  * SSM feature release - ChangeCalendar integration with StateManager.
+
 Release v1.38.34 (2021-05-05)
 ===
 

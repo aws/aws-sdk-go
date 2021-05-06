@@ -5697,6 +5697,11 @@ type GetBootstrapBrokersOutput struct {
 	// A string containing one or more hostname:port pairs.
 	BootstrapBrokerString *string `locationName:"bootstrapBrokerString" type:"string"`
 
+	// A string that contains one or more DNS names (or IP addresses) and SASL IAM
+	// port pairs. The following is an example.
+	//  { "BootstrapBrokerStringSaslIam": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9098"}
+	BootstrapBrokerStringSaslIam *string `locationName:"bootstrapBrokerStringSaslIam" type:"string"`
+
 	// A string containing one or more DNS names (or IP) and SASL SCRAM port pairs.
 	// The following is an example.
 	//  { "BootstrapBrokerStringSaslScram": "b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096"}
@@ -5721,6 +5726,12 @@ func (s GetBootstrapBrokersOutput) GoString() string {
 // SetBootstrapBrokerString sets the BootstrapBrokerString field's value.
 func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerString(v string) *GetBootstrapBrokersOutput {
 	s.BootstrapBrokerString = &v
+	return s
+}
+
+// SetBootstrapBrokerStringSaslIam sets the BootstrapBrokerStringSaslIam field's value.
+func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringSaslIam(v string) *GetBootstrapBrokersOutput {
+	s.BootstrapBrokerStringSaslIam = &v
 	return s
 }
 
@@ -5779,6 +5790,28 @@ func (s GetCompatibleKafkaVersionsOutput) GoString() string {
 // SetCompatibleKafkaVersions sets the CompatibleKafkaVersions field's value.
 func (s *GetCompatibleKafkaVersionsOutput) SetCompatibleKafkaVersions(v []*CompatibleKafkaVersion) *GetCompatibleKafkaVersionsOutput {
 	s.CompatibleKafkaVersions = v
+	return s
+}
+
+type Iam struct {
+	_ struct{} `type:"structure"`
+
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+}
+
+// String returns the string representation
+func (s Iam) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Iam) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *Iam) SetEnabled(v bool) *Iam {
+	s.Enabled = &v
 	return s
 }
 
@@ -7242,6 +7275,8 @@ func (s *S3) SetPrefix(v string) *S3 {
 type Sasl struct {
 	_ struct{} `type:"structure"`
 
+	Iam *Iam `locationName:"iam" type:"structure"`
+
 	Scram *Scram `locationName:"scram" type:"structure"`
 }
 
@@ -7253,6 +7288,12 @@ func (s Sasl) String() string {
 // GoString returns the string representation
 func (s Sasl) GoString() string {
 	return s.String()
+}
+
+// SetIam sets the Iam field's value.
+func (s *Sasl) SetIam(v *Iam) *Sasl {
+	s.Iam = v
+	return s
 }
 
 // SetScram sets the Scram field's value.

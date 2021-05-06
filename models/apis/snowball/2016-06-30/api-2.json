@@ -85,6 +85,18 @@
         {"shape":"Ec2RequestFailedException"}
       ]
     },
+    "CreateLongTermPricing":{
+      "name":"CreateLongTermPricing",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLongTermPricingRequest"},
+      "output":{"shape":"CreateLongTermPricingResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"}
+      ]
+    },
     "CreateReturnShippingLabel":{
       "name":"CreateReturnShippingLabel",
       "http":{
@@ -262,6 +274,19 @@
         {"shape":"InvalidNextTokenException"}
       ]
     },
+    "ListLongTermPricing":{
+      "name":"ListLongTermPricing",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLongTermPricingRequest"},
+      "output":{"shape":"ListLongTermPricingResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
     "UpdateCluster":{
       "name":"UpdateCluster",
       "http":{
@@ -306,6 +331,18 @@
       "errors":[
         {"shape":"InvalidResourceException"},
         {"shape":"InvalidJobStateException"}
+      ]
+    },
+    "UpdateLongTermPricing":{
+      "name":"UpdateLongTermPricing",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLongTermPricingRequest"},
+      "output":{"shape":"UpdateLongTermPricingResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"}
       ]
     }
   },
@@ -464,6 +501,7 @@
         "Resources",
         "AddressId",
         "RoleARN",
+        "SnowballType",
         "ShippingOption"
       ],
       "members":{
@@ -502,13 +540,29 @@
         "SnowballType":{"shape":"SnowballType"},
         "ForwardingAddressId":{"shape":"AddressId"},
         "TaxDocuments":{"shape":"TaxDocuments"},
-        "DeviceConfiguration":{"shape":"DeviceConfiguration"}
+        "DeviceConfiguration":{"shape":"DeviceConfiguration"},
+        "LongTermPricingId":{"shape":"LongTermPricingId"}
       }
     },
     "CreateJobResult":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"}
+      }
+    },
+    "CreateLongTermPricingRequest":{
+      "type":"structure",
+      "required":["LongTermPricingType"],
+      "members":{
+        "LongTermPricingType":{"shape":"LongTermPricingType"},
+        "IsLongTermPricingAutoRenew":{"shape":"JavaBoolean"},
+        "SnowballType":{"shape":"SnowballType"}
+      }
+    },
+    "CreateLongTermPricingResult":{
+      "type":"structure",
+      "members":{
+        "LongTermPricingId":{"shape":"LongTermPricingId"}
       }
     },
     "CreateReturnShippingLabelRequest":{
@@ -590,6 +644,7 @@
     },
     "DescribeReturnShippingLabelRequest":{
       "type":"structure",
+      "required":["JobId"],
       "members":{
         "JobId":{"shape":"JobId"}
       }
@@ -734,6 +789,7 @@
       },
       "exception":true
     },
+    "JavaBoolean":{"type":"boolean"},
     "JobId":{
       "type":"string",
       "max":39,
@@ -785,7 +841,8 @@
         "ClusterId":{"shape":"String"},
         "ForwardingAddressId":{"shape":"AddressId"},
         "TaxDocuments":{"shape":"TaxDocuments"},
-        "DeviceConfiguration":{"shape":"DeviceConfiguration"}
+        "DeviceConfiguration":{"shape":"DeviceConfiguration"},
+        "LongTermPricingId":{"shape":"LongTermPricingId"}
       }
     },
     "JobMetadataList":{
@@ -923,7 +980,57 @@
       "max":100,
       "min":0
     },
+    "ListLongTermPricingRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListLimit"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListLongTermPricingResult":{
+      "type":"structure",
+      "members":{
+        "LongTermPricingEntries":{"shape":"LongTermPricingEntryList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "Long":{"type":"long"},
+    "LongTermPricingAssociatedJobIdList":{
+      "type":"list",
+      "member":{"shape":"JobId"}
+    },
+    "LongTermPricingEntryList":{
+      "type":"list",
+      "member":{"shape":"LongTermPricingListEntry"}
+    },
+    "LongTermPricingId":{
+      "type":"string",
+      "max":41,
+      "min":41,
+      "pattern":"LTPID[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+    },
+    "LongTermPricingListEntry":{
+      "type":"structure",
+      "members":{
+        "LongTermPricingId":{"shape":"LongTermPricingId"},
+        "LongTermPricingEndDate":{"shape":"Timestamp"},
+        "LongTermPricingStartDate":{"shape":"Timestamp"},
+        "LongTermPricingType":{"shape":"LongTermPricingType"},
+        "CurrentActiveJob":{"shape":"JobId"},
+        "ReplacementJob":{"shape":"JobId"},
+        "IsLongTermPricingAutoRenew":{"shape":"JavaBoolean"},
+        "LongTermPricingStatus":{"shape":"String"},
+        "SnowballType":{"shape":"SnowballType"},
+        "JobIds":{"shape":"LongTermPricingAssociatedJobIdList"}
+      }
+    },
+    "LongTermPricingType":{
+      "type":"string",
+      "enum":[
+        "OneYear",
+        "ThreeYear"
+      ]
+    },
     "Notification":{
       "type":"structure",
       "members":{
@@ -934,7 +1041,8 @@
     },
     "ResourceARN":{
       "type":"string",
-      "max":255
+      "max":255,
+      "pattern":"arn:aws.*:*"
     },
     "ReturnShippingLabelAlreadyExistsException":{
       "type":"structure",
@@ -1008,6 +1116,7 @@
         "T42",
         "T98",
         "T8",
+        "T14",
         "NoPreference"
       ]
     },
@@ -1019,7 +1128,8 @@
         "EDGE_C",
         "EDGE_CG",
         "EDGE_S",
-        "SNC1_HDD"
+        "SNC1_HDD",
+        "SNC1_SSD"
       ]
     },
     "SnowconeDeviceConfiguration":{
@@ -1035,6 +1145,7 @@
     },
     "String":{
       "type":"string",
+      "max":1024,
       "min":1
     },
     "TaxDocuments":{
@@ -1102,6 +1213,20 @@
       }
     },
     "UpdateJobShipmentStateResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateLongTermPricingRequest":{
+      "type":"structure",
+      "required":["LongTermPricingId"],
+      "members":{
+        "LongTermPricingId":{"shape":"LongTermPricingId"},
+        "ReplacementJob":{"shape":"JobId"},
+        "IsLongTermPricingAutoRenew":{"shape":"JavaBoolean"}
+      }
+    },
+    "UpdateLongTermPricingResult":{
       "type":"structure",
       "members":{
       }
