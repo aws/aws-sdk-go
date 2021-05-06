@@ -11,8 +11,8 @@ const (
 	// ErrCodeCustomHealthNotFound for service response error code
 	// "CustomHealthNotFound".
 	//
-	// The health check for the instance that is specified by ServiceId and InstanceId
-	// is not a custom health check.
+	// The health check for the instance that's specified by ServiceId and InstanceId
+	// isn't a custom health check.
 	ErrCodeCustomHealthNotFound = "CustomHealthNotFound"
 
 	// ErrCodeDuplicateRequest for service response error code

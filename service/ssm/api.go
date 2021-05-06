@@ -15706,6 +15706,12 @@ type AssociationDescription struct {
 	// that use an Automation document and target resources by using rate controls.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
+	// The names or Amazon Resource Names (ARNs) of the Systems Manager Change Calendar
+	// type documents your associations are gated under. The associations only run
+	// when that Change Calendar is open. For more information, see AWS Systems
+	// Manager Change Calendar (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar).
+	CalendarNames []*string `type:"list"`
+
 	// The severity level that is assigned to the association.
 	ComplianceSeverity *string `type:"string" enum:"AssociationComplianceSeverity"`
 
@@ -15830,6 +15836,12 @@ func (s *AssociationDescription) SetAssociationVersion(v string) *AssociationDes
 // SetAutomationTargetParameterName sets the AutomationTargetParameterName field's value.
 func (s *AssociationDescription) SetAutomationTargetParameterName(v string) *AssociationDescription {
 	s.AutomationTargetParameterName = &v
+	return s
+}
+
+// SetCalendarNames sets the CalendarNames field's value.
+func (s *AssociationDescription) SetCalendarNames(v []*string) *AssociationDescription {
+	s.CalendarNames = v
 	return s
 }
 
@@ -16620,6 +16632,12 @@ type AssociationVersionInfo struct {
 	// The association version.
 	AssociationVersion *string `type:"string"`
 
+	// The names or Amazon Resource Names (ARNs) of the Systems Manager Change Calendar
+	// type documents your associations are gated under. The associations for this
+	// version only run when that Change Calendar is open. For more information,
+	// see AWS Systems Manager Change Calendar (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar).
+	CalendarNames []*string `type:"list"`
+
 	// The severity level that is assigned to the association.
 	ComplianceSeverity *string `type:"string" enum:"AssociationComplianceSeverity"`
 
@@ -16724,6 +16742,12 @@ func (s *AssociationVersionInfo) SetAssociationName(v string) *AssociationVersio
 // SetAssociationVersion sets the AssociationVersion field's value.
 func (s *AssociationVersionInfo) SetAssociationVersion(v string) *AssociationVersionInfo {
 	s.AssociationVersion = &v
+	return s
+}
+
+// SetCalendarNames sets the CalendarNames field's value.
+func (s *AssociationVersionInfo) SetCalendarNames(v []*string) *AssociationVersionInfo {
+	s.CalendarNames = v
 	return s
 }
 
@@ -19808,6 +19832,12 @@ type CreateAssociationBatchRequestEntry struct {
 	// that use an Automation document and target resources by using rate controls.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
+	// The names or Amazon Resource Names (ARNs) of the Systems Manager Change Calendar
+	// type documents your associations are gated under. The associations only run
+	// when that Change Calendar is open. For more information, see AWS Systems
+	// Manager Change Calendar (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar).
+	CalendarNames []*string `type:"list"`
+
 	// The severity level to assign to the association.
 	ComplianceSeverity *string `type:"string" enum:"AssociationComplianceSeverity"`
 
@@ -19977,6 +20007,12 @@ func (s *CreateAssociationBatchRequestEntry) SetAutomationTargetParameterName(v 
 	return s
 }
 
+// SetCalendarNames sets the CalendarNames field's value.
+func (s *CreateAssociationBatchRequestEntry) SetCalendarNames(v []*string) *CreateAssociationBatchRequestEntry {
+	s.CalendarNames = v
+	return s
+}
+
 // SetComplianceSeverity sets the ComplianceSeverity field's value.
 func (s *CreateAssociationBatchRequestEntry) SetComplianceSeverity(v string) *CreateAssociationBatchRequestEntry {
 	s.ComplianceSeverity = &v
@@ -20052,7 +20088,7 @@ func (s *CreateAssociationBatchRequestEntry) SetTargets(v []*Target) *CreateAsso
 type CreateAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// By default, when you create a new associations, the system runs it immediately
+	// By default, when you create a new association, the system runs it immediately
 	// after it is created and then according to the schedule you specified. Specify
 	// this option if you don't want an association to run immediately after you
 	// create it. This parameter is not supported for rate expressions.
@@ -20064,6 +20100,12 @@ type CreateAssociationInput struct {
 	// Specify the target for the association. This target is required for associations
 	// that use an Automation document and target resources by using rate controls.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
+
+	// The names or Amazon Resource Names (ARNs) of the Systems Manager Change Calendar
+	// type documents you want to gate your associations under. The associations
+	// only run when that Change Calendar is open. For more information, see AWS
+	// Systems Manager Change Calendar (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar).
+	CalendarNames []*string `type:"list"`
 
 	// The severity level to assign to the association.
 	ComplianceSeverity *string `type:"string" enum:"AssociationComplianceSeverity"`
@@ -20244,6 +20286,12 @@ func (s *CreateAssociationInput) SetAssociationName(v string) *CreateAssociation
 // SetAutomationTargetParameterName sets the AutomationTargetParameterName field's value.
 func (s *CreateAssociationInput) SetAutomationTargetParameterName(v string) *CreateAssociationInput {
 	s.AutomationTargetParameterName = &v
+	return s
+}
+
+// SetCalendarNames sets the CalendarNames field's value.
+func (s *CreateAssociationInput) SetCalendarNames(v []*string) *CreateAssociationInput {
+	s.CalendarNames = v
 	return s
 }
 
@@ -49149,6 +49197,12 @@ type UpdateAssociationInput struct {
 	// that use an Automation document and target resources by using rate controls.
 	AutomationTargetParameterName *string `min:"1" type:"string"`
 
+	// The names or Amazon Resource Names (ARNs) of the Systems Manager Change Calendar
+	// type documents you want to gate your associations under. The associations
+	// only run when that Change Calendar is open. For more information, see AWS
+	// Systems Manager Change Calendar (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-change-calendar).
+	CalendarNames []*string `type:"list"`
+
 	// The severity level to assign to the association.
 	ComplianceSeverity *string `type:"string" enum:"AssociationComplianceSeverity"`
 
@@ -49324,6 +49378,12 @@ func (s *UpdateAssociationInput) SetAssociationVersion(v string) *UpdateAssociat
 // SetAutomationTargetParameterName sets the AutomationTargetParameterName field's value.
 func (s *UpdateAssociationInput) SetAutomationTargetParameterName(v string) *UpdateAssociationInput {
 	s.AutomationTargetParameterName = &v
+	return s
+}
+
+// SetCalendarNames sets the CalendarNames field's value.
+func (s *UpdateAssociationInput) SetCalendarNames(v []*string) *UpdateAssociationInput {
+	s.CalendarNames = v
 	return s
 }
 

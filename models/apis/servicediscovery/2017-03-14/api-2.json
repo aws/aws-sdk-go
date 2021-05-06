@@ -754,6 +754,11 @@
       "key":{"shape":"ResourceId"},
       "value":{"shape":"HealthStatus"}
     },
+    "InstanceId":{
+      "type":"string",
+      "max":64,
+      "pattern":"^[0-9a-zA-Z_/:.@-]+$"
+    },
     "InstanceIdList":{
       "type":"list",
       "member":{"shape":"ResourceId"},
@@ -1085,7 +1090,7 @@
       ],
       "members":{
         "ServiceId":{"shape":"ResourceId"},
-        "InstanceId":{"shape":"ResourceId"},
+        "InstanceId":{"shape":"InstanceId"},
         "CreatorRequestId":{
           "shape":"ResourceId",
           "idempotencyToken":true

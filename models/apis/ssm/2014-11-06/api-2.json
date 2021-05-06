@@ -2051,7 +2051,7 @@
     "ApplyOnlyAtCronInterval":{"type":"boolean"},
     "ApproveAfterDays":{
       "type":"integer",
-      "max":100,
+      "max":360,
       "min":0
     },
     "AssociatedInstances":{
@@ -2116,6 +2116,7 @@
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
         "SyncCompliance":{"shape":"AssociationSyncCompliance"},
         "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"},
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
         "TargetLocations":{"shape":"TargetLocations"}
       }
     },
@@ -2373,6 +2374,7 @@
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
         "SyncCompliance":{"shape":"AssociationSyncCompliance"},
         "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"},
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
         "TargetLocations":{"shape":"TargetLocations"}
       }
     },
@@ -3221,6 +3223,7 @@
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
         "SyncCompliance":{"shape":"AssociationSyncCompliance"},
         "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"},
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
         "TargetLocations":{"shape":"TargetLocations"}
       }
     },
@@ -3249,6 +3252,7 @@
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
         "SyncCompliance":{"shape":"AssociationSyncCompliance"},
         "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"},
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
         "TargetLocations":{"shape":"TargetLocations"}
       }
     },
@@ -4712,7 +4716,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[\\w+=,.@-]+"
+      "pattern":"[\\w+=,.@/-]+"
     },
     "ExpirationDate":{"type":"timestamp"},
     "FailedCreateAssociation":{
@@ -9823,6 +9827,7 @@
         "ComplianceSeverity":{"shape":"AssociationComplianceSeverity"},
         "SyncCompliance":{"shape":"AssociationSyncCompliance"},
         "ApplyOnlyAtCronInterval":{"shape":"ApplyOnlyAtCronInterval"},
+        "CalendarNames":{"shape":"CalendarNameOrARNList"},
         "TargetLocations":{"shape":"TargetLocations"}
       }
     },

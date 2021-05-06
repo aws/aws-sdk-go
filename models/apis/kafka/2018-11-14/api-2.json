@@ -1889,6 +1889,10 @@
         "BootstrapBrokerStringSaslScram": {
           "shape": "__string",
           "locationName": "bootstrapBrokerStringSaslScram"
+        },
+        "BootstrapBrokerStringSaslIam": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringSaslIam"
         }
       }
     },
@@ -2311,10 +2315,23 @@
         "Scram" : {
           "shape" : "Scram",
           "locationName" : "scram"
+        },
+        "Iam" : {
+          "shape" : "Iam",
+          "locationName" : "iam"
         }
       }
     },
     "Scram" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      }
+    },
+    "Iam" : {
       "type" : "structure",
       "members" : {
         "Enabled" : {
