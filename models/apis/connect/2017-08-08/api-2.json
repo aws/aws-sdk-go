@@ -1971,7 +1971,8 @@
         "IntegrationArn":{"shape":"ARN"},
         "SourceApplicationUrl":{"shape":"URI"},
         "SourceApplicationName":{"shape":"SourceApplicationName"},
-        "SourceType":{"shape":"SourceType"}
+        "SourceType":{"shape":"SourceType"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateIntegrationAssociationResponse":{
@@ -2087,7 +2088,8 @@
           "location":"uri",
           "locationName":"IntegrationAssociationId"
         },
-        "UseCaseType":{"shape":"UseCaseType"}
+        "UseCaseType":{"shape":"UseCaseType"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateUseCaseResponse":{

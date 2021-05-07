@@ -1114,7 +1114,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:aws.*:kms:.*:[0-9]{12}:key/.*"
+      "pattern":"arn:aws.*:kms:.*:[0-9]{12}:key/[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}"
     },
     "LambdaConfiguration":{
       "type":"structure",
@@ -1389,7 +1389,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z0-9_]+"
+      "pattern":"[a-zA-Z0-9_.]+"
     },
     "RDSSourceConfig":{
       "type":"structure",
@@ -1427,7 +1427,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"[a-z0-9]+"
+      "pattern":"[a-zA-Z0-9_.]+"
     },
     "RedshiftSourceConfig":{
       "type":"structure",
@@ -1682,7 +1682,7 @@
     "UUID":{
       "type":"string",
       "max":63,
-      "pattern":"^[a-zA-Z0-9][a-zA-Z0-9\\-_]*"
+      "pattern":"[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}"
     },
     "UntagResourceRequest":{
       "type":"structure",

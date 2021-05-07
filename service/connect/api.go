@@ -860,6 +860,12 @@ func (c *Connect) CreateInstanceRequest(input *CreateInstanceInput) (req *reques
 // S3) or Amazon Kinesis. It also does not allow for any configurations on features,
 // such as Contact Lens for Amazon Connect.
 //
+// Amazon Connect enforces a limit on the total number of instances that you
+// can create or delete in 30 days. If you exceed this limit, you will get an
+// error message indicating there has been an excessive number of attempts at
+// creating or deleting instances. You must wait 30 days before you can restart
+// creating and deleting instances in your account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -948,8 +954,6 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 }
 
 // CreateIntegrationAssociation API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Create an AppIntegration association with an Amazon Connect instance.
 //
@@ -1337,8 +1341,6 @@ func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.
 
 // CreateUseCase API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Creates a use case for an AppIntegration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1633,6 +1635,12 @@ func (c *Connect) DeleteInstanceRequest(input *DeleteInstanceInput) (req *reques
 //
 // Deletes the Amazon Connect instance.
 //
+// Amazon Connect enforces a limit on the total number of instances that you
+// can create or delete in 30 days. If you exceed this limit, you will get an
+// error message indicating there has been an excessive number of attempts at
+// creating or deleting instances. You must wait 30 days before you can restart
+// creating and deleting instances in your account.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1716,8 +1724,6 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 }
 
 // DeleteIntegrationAssociation API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes an AppIntegration association from an Amazon Connect instance. The
 // association must not have any use cases associated with it.
@@ -1902,8 +1908,6 @@ func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.
 }
 
 // DeleteUseCase API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes a use case from an AppIntegration association.
 //
@@ -4104,6 +4108,12 @@ func (c *Connect) GetFederationTokenRequest(input *GetFederationTokenInput) (req
 //
 // Retrieves a token for federation.
 //
+// This API doesn't support root users. If you try to invoke GetFederationToken
+// with root credentials, an error message similar to the following one appears:
+//
+// Provided identity: Principal: .... User: .... cannot be used for federation
+// with Amazon Connect
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5264,8 +5274,6 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 
 // ListIntegrationAssociations API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Provides summary information about the AppIntegration associations for the
 // specified Amazon Connect instance.
 //
@@ -6172,6 +6180,11 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 // ListQueues API operation for Amazon Connect Service.
 //
 // Provides information about the queues for the specified Amazon Connect instance.
+//
+// If you do not specify a QueueTypes parameter, both standard and agent queues
+// are returned. This might cause an unexpected truncation of results if you
+// have more than 1000 agents and you limit the number of results of the API
+// call in code.
 //
 // For more information about queues, see Queues: Standard and Agent (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html)
 // in the Amazon Connect Administrator Guide.
@@ -7177,8 +7190,6 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 
 // ListUseCases API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Lists the use cases.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7725,7 +7736,7 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // A 429 error occurs in two situations:
 //
 //    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
-//    exception from the API Gateway.
+//    exception.
 //
 //    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 //    is exceeded. Active chat throttling returns a LimitExceededException.
@@ -8598,19 +8609,22 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 
 // UpdateContactAttributes API operation for Amazon Connect Service.
 //
-// Creates or updates the contact attributes associated with the specified contact.
+// Creates or updates user-defined contact attributes associated with the specified
+// contact.
 //
-// You can add or update attributes for both ongoing and completed contacts.
-// For example, while the call is active, you can update the customer's name
-// or the reason the customer called. You can add notes about steps that the
-// agent took during the call that display to the next agent that takes the
-// call. You can also update attributes for a contact using data from your CRM
-// application and save the data with the contact in Amazon Connect. You could
-// also flag calls for additional analysis, such as legal review or to identify
-// abusive callers.
+// You can create or update user-defined attributes for both ongoing and completed
+// contacts. For example, while the call is active, you can update the customer's
+// name or the reason the customer called. You can add notes about steps that
+// the agent took during the call that display to the next agent that takes
+// the call. You can also update attributes for a contact using data from your
+// CRM application and save the data with the contact in Amazon Connect. You
+// could also flag calls for additional analysis, such as legal review or to
+// identify abusive callers.
 //
 // Contact attributes are available in Amazon Connect for 24 months, and are
-// then deleted.
+// then deleted. For information about CTR retention and the maximum size of
+// the CTR attributes section, see Feature specifications (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html#feature-limits)
+// in the Amazon Connect Administrator Guide.
 //
 // Important: You cannot use the operation to update attributes for contacts
 // that occurred prior to the release of the API, which was September 12, 2018.
@@ -11965,6 +11979,9 @@ type CreateIntegrationAssociationInput struct {
 	//
 	// SourceType is a required field
 	SourceType *string `type:"string" required:"true" enum:"SourceType"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
 }
 
 // String returns the string representation
@@ -12007,6 +12024,9 @@ func (s *CreateIntegrationAssociationInput) Validate() error {
 	if s.SourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceType"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12047,6 +12067,12 @@ func (s *CreateIntegrationAssociationInput) SetSourceApplicationUrl(v string) *C
 // SetSourceType sets the SourceType field's value.
 func (s *CreateIntegrationAssociationInput) SetSourceType(v string) *CreateIntegrationAssociationInput {
 	s.SourceType = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateIntegrationAssociationInput) SetTags(v map[string]*string) *CreateIntegrationAssociationInput {
+	s.Tags = v
 	return s
 }
 
@@ -12570,6 +12596,9 @@ type CreateUseCaseInput struct {
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
 
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
 	// The type of use case to associate to the AppIntegration association. Each
 	// AppIntegration association can have only one of each use case type.
 	//
@@ -12602,6 +12631,9 @@ func (s *CreateUseCaseInput) Validate() error {
 	if s.IntegrationAssociationId != nil && len(*s.IntegrationAssociationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IntegrationAssociationId", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.UseCaseType == nil {
 		invalidParams.Add(request.NewErrParamRequired("UseCaseType"))
 	}
@@ -12621,6 +12653,12 @@ func (s *CreateUseCaseInput) SetInstanceId(v string) *CreateUseCaseInput {
 // SetIntegrationAssociationId sets the IntegrationAssociationId field's value.
 func (s *CreateUseCaseInput) SetIntegrationAssociationId(v string) *CreateUseCaseInput {
 	s.IntegrationAssociationId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUseCaseInput) SetTags(v map[string]*string) *CreateUseCaseInput {
+	s.Tags = v
 	return s
 }
 
@@ -15655,14 +15693,14 @@ type GetMetricDataInput struct {
 	// or channels included in the filter. You can include both queue IDs and queue
 	// ARNs in the same request. VOICE, CHAT, and TASK channels are supported.
 	//
+	// To filter by Queues, enter the queue ID/ARN, not the name of the queue.
+	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
 
 	// The grouping applied to the metrics returned. For example, when results are
 	// grouped by queue, the metrics returned are grouped by queue. The values returned
 	// apply to the metrics for each queue rather than aggregated for all queues.
-	//
-	// The only supported grouping is QUEUE.
 	//
 	// If no grouping is specified, a summary of metrics for all queues is returned.
 	Groupings []*string `type:"list"`
@@ -15818,13 +15856,14 @@ type GetMetricDataInput struct {
 	//
 	// SERVICE_LEVEL
 	//
+	// You can include up to 20 SERVICE_LEVEL metrics in a request.
+	//
 	// Unit: PERCENT
 	//
 	// Statistic: AVG
 	//
-	// Threshold: Only "Less than" comparisons are supported, with the following
-	// service level thresholds: 15, 20, 25, 30, 45, 60, 90, 120, 180, 240, 300,
-	// 600
+	// Threshold: For ThresholdValue, enter any whole number from 1 to 604800 (inclusive),
+	// in seconds. For Comparison, you must enter LT (for "Less than").
 	//
 	// HistoricalMetrics is a required field
 	HistoricalMetrics []*HistoricalMetric `type:"list" required:"true"`
@@ -19760,6 +19799,12 @@ type MediaConcurrency struct {
 	Channel *string `type:"string" required:"true" enum:"Channel"`
 
 	// The number of contacts an agent can have on a channel simultaneously.
+	//
+	// Valid Range for VOICE: Minimum value of 1. Maximum value of 1.
+	//
+	// Valid Range for CHAT: Minimum value of 1. Maximum value of 5.
+	//
+	// Valid Range for TASK: Minimum value of 1. Maximum value of 10.
 	//
 	// Concurrency is a required field
 	Concurrency *int64 `min:"1" type:"integer" required:"true"`

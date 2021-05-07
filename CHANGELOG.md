@@ -1,3 +1,11 @@
+Release v1.38.36 (2021-05-07)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API and documentation
+* `service/lakeformation`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+
 Release v1.38.35 (2021-05-06)
 ===
 

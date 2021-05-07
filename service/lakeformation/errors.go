@@ -8,6 +8,12 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// Access to a resource was denied.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeAlreadyExistsException for service response error code
 	// "AlreadyExistsException".
 	//
@@ -26,6 +32,12 @@ const (
 	// A specified entity does not exist
 	ErrCodeEntityNotFoundException = "EntityNotFoundException"
 
+	// ErrCodeGlueEncryptionException for service response error code
+	// "GlueEncryptionException".
+	//
+	// An encryption operation failed.
+	ErrCodeGlueEncryptionException = "GlueEncryptionException"
+
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
@@ -43,13 +55,22 @@ const (
 	//
 	// The operation timed out.
 	ErrCodeOperationTimeoutException = "OperationTimeoutException"
+
+	// ErrCodeResourceNumberLimitExceededException for service response error code
+	// "ResourceNumberLimitExceededException".
+	//
+	// A resource numerical limit was exceeded.
+	ErrCodeResourceNumberLimitExceededException = "ResourceNumberLimitExceededException"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AlreadyExistsException":          newErrorAlreadyExistsException,
-	"ConcurrentModificationException": newErrorConcurrentModificationException,
-	"EntityNotFoundException":         newErrorEntityNotFoundException,
-	"InternalServiceException":        newErrorInternalServiceException,
-	"InvalidInputException":           newErrorInvalidInputException,
-	"OperationTimeoutException":       newErrorOperationTimeoutException,
+	"AccessDeniedException":                newErrorAccessDeniedException,
+	"AlreadyExistsException":               newErrorAlreadyExistsException,
+	"ConcurrentModificationException":      newErrorConcurrentModificationException,
+	"EntityNotFoundException":              newErrorEntityNotFoundException,
+	"GlueEncryptionException":              newErrorGlueEncryptionException,
+	"InternalServiceException":             newErrorInternalServiceException,
+	"InvalidInputException":                newErrorInvalidInputException,
+	"OperationTimeoutException":            newErrorOperationTimeoutException,
+	"ResourceNumberLimitExceededException": newErrorResourceNumberLimitExceededException,
 }

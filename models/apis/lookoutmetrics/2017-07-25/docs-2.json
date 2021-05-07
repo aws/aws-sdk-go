@@ -8,19 +8,19 @@
     "CreateAnomalyDetector": "<p>Creates an anomaly detector.</p>",
     "CreateMetricSet": "<p>Creates a dataset.</p>",
     "DeleteAlert": "<p>Deletes an alert.</p>",
-    "DeleteAnomalyDetector": "<p>Deletes a detector. Deleting an anomaly detector will delete all of its corresponding resources including any configured datasets and alerts. </p>",
-    "DescribeAlert": "<p>Describes an alert.</p>",
+    "DeleteAnomalyDetector": "<p>Deletes a detector. Deleting an anomaly detector will delete all of its corresponding resources including any configured datasets and alerts.</p>",
+    "DescribeAlert": "<p>Describes an alert.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "DescribeAnomalyDetectionExecutions": "<p>Returns information about the status of the specified anomaly detection jobs.</p>",
-    "DescribeAnomalyDetector": "<p>Describes a detector.</p>",
-    "DescribeMetricSet": "<p>Describes a dataset.</p>",
+    "DescribeAnomalyDetector": "<p>Describes a detector.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
+    "DescribeMetricSet": "<p>Describes a dataset.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "GetAnomalyGroup": "<p>Returns details about a group of anomalous metrics.</p>",
     "GetFeedback": "<p>Get feedback for an anomaly group.</p>",
     "GetSampleData": "<p>Returns a selection of sample records from an Amazon S3 datasource.</p>",
-    "ListAlerts": "<p>Lists the alerts attached to a detector.</p>",
-    "ListAnomalyDetectors": "<p>Lists the detectors in the current AWS Region.</p>",
+    "ListAlerts": "<p>Lists the alerts attached to a detector.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
+    "ListAnomalyDetectors": "<p>Lists the detectors in the current AWS Region.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "ListAnomalyGroupSummaries": "<p>Returns a list of anomaly groups.</p>",
     "ListAnomalyGroupTimeSeries": "<p>Gets a list of anomalous metrics for a measure in an anomaly group.</p>",
-    "ListMetricSets": "<p>Lists the datasets in the current AWS Region.</p>",
+    "ListMetricSets": "<p>Lists the datasets in the current AWS Region.</p> <p>Amazon Lookout for Metrics API actions are eventually consistent. If you do a read operation on a resource immediately after creating or modifying it, use retries to allow time for the write operation to complete.</p>",
     "ListTagsForResource": "<p>Gets a list of <a href=\"https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html\">tags</a> for a detector, dataset, or alert.</p>",
     "PutFeedback": "<p>Add feedback for an anomalous metric.</p>",
     "TagResource": "<p>Adds <a href=\"https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html\">tags</a> to a detector, dataset, or alert.</p>",
@@ -248,7 +248,7 @@
         "RDSSourceConfig$RoleArn": "<p>The Amazon Resource Name (ARN) of the role.</p>",
         "RedshiftSourceConfig$RoleArn": "<p>The Amazon Resource Name (ARN) of the role providing access to the database.</p>",
         "S3SourceConfig$RoleArn": "<p>The ARN of an IAM role that has read and write access permissions to the source S3 bucket.</p>",
-        "SNSConfiguration$RoleArn": "<p>THe ARN of the IAM role that has access to the target SNS topic.</p>",
+        "SNSConfiguration$RoleArn": "<p>The ARN of the IAM role that has access to the target SNS topic.</p>",
         "SNSConfiguration$SnsTopicArn": "<p>The ARN of the target SNS topic.</p>",
         "SampleDataS3SourceConfig$RoleArn": "<p>The Amazon Resource Name (ARN) of the role.</p>",
         "TagResourceRequest$ResourceArn": "<p>The resource's Amazon Resource Name (ARN).</p>",
@@ -532,7 +532,7 @@
     "FlowName": {
       "base": null,
       "refs": {
-        "AppFlowConfig$FlowName": "<p>The name of the flow.</p>"
+        "AppFlowConfig$FlowName": "<p> name of the flow.</p>"
       }
     },
     "Frequency": {

@@ -13,6 +13,23 @@
     "uid":"lakeformation-2017-03-31"
   },
   "operations":{
+    "AddLFTagsToResource":{
+      "name":"AddLFTagsToResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddLFTagsToResourceRequest"},
+      "output":{"shape":"AddLFTagsToResourceResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "BatchGrantPermissions":{
       "name":"BatchGrantPermissions",
       "http":{
@@ -37,6 +54,39 @@
       "errors":[
         {"shape":"InvalidInputException"},
         {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "CreateLFTag":{
+      "name":"CreateLFTag",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLFTagRequest"},
+      "output":{"shape":"CreateLFTagResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteLFTag":{
+      "name":"DeleteLFTag",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLFTagRequest"},
+      "output":{"shape":"DeleteLFTagResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "DeregisterResource":{
@@ -98,6 +148,39 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "GetLFTag":{
+      "name":"GetLFTag",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLFTagRequest"},
+      "output":{"shape":"GetLFTagResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetResourceLFTags":{
+      "name":"GetResourceLFTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetResourceLFTagsRequest"},
+      "output":{"shape":"GetResourceLFTagsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "GrantPermissions":{
       "name":"GrantPermissions",
       "http":{
@@ -110,6 +193,21 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"EntityNotFoundException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "ListLFTags":{
+      "name":"ListLFTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLFTagsRequest"},
+      "output":{"shape":"ListLFTagsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
       ]
     },
     "ListPermissions":{
@@ -168,6 +266,24 @@
         {"shape":"AlreadyExistsException"}
       ]
     },
+    "RemoveLFTagsFromResource":{
+      "name":"RemoveLFTagsFromResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveLFTagsFromResourceRequest"},
+      "output":{"shape":"RemoveLFTagsFromResourceResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "RevokePermissions":{
       "name":"RevokePermissions",
       "http":{
@@ -180,6 +296,57 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"EntityNotFoundException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "SearchDatabasesByLFTags":{
+      "name":"SearchDatabasesByLFTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SearchDatabasesByLFTagsRequest"},
+      "output":{"shape":"SearchDatabasesByLFTagsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "SearchTablesByLFTags":{
+      "name":"SearchTablesByLFTags",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SearchTablesByLFTagsRequest"},
+      "output":{"shape":"SearchTablesByLFTagsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"GlueEncryptionException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateLFTag":{
+      "name":"UpdateLFTag",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateLFTagRequest"},
+      "output":{"shape":"UpdateLFTagResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "UpdateResource":{
@@ -199,6 +366,31 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
+    "AddLFTagsToResourceRequest":{
+      "type":"structure",
+      "required":[
+        "Resource",
+        "LFTags"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Resource":{"shape":"Resource"},
+        "LFTags":{"shape":"LFTagsList"}
+      }
+    },
+    "AddLFTagsToResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Failures":{"shape":"LFTagErrors"}
+      }
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -260,6 +452,7 @@
         "Failures":{"shape":"BatchPermissionsFailureList"}
       }
     },
+    "BooleanNullable":{"type":"boolean"},
     "CatalogIdString":{
       "type":"string",
       "max":255,
@@ -270,6 +463,17 @@
       "type":"structure",
       "members":{
       }
+    },
+    "ColumnLFTag":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"},
+        "LFTags":{"shape":"LFTagsList"}
+      }
+    },
+    "ColumnLFTagsList":{
+      "type":"list",
+      "member":{"shape":"ColumnLFTag"}
     },
     "ColumnNames":{
       "type":"list",
@@ -304,6 +508,23 @@
       },
       "exception":true
     },
+    "CreateLFTagRequest":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValues"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"},
+        "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "CreateLFTagResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DataLakePrincipal":{
       "type":"structure",
       "members":{
@@ -327,7 +548,11 @@
         "CATALOG",
         "DATABASE",
         "TABLE",
-        "DATA_LOCATION"
+        "DATA_LOCATION",
+        "LF_TAG",
+        "LF_TAG_POLICY",
+        "LF_TAG_POLICY_DATABASE",
+        "LF_TAG_POLICY_TABLE"
       ]
     },
     "DataLakeSettings":{
@@ -347,12 +572,29 @@
         "ResourceArn":{"shape":"ResourceArnString"}
       }
     },
+    "DatabaseLFTagsList":{
+      "type":"list",
+      "member":{"shape":"TaggedDatabase"}
+    },
     "DatabaseResource":{
       "type":"structure",
       "required":["Name"],
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "Name":{"shape":"NameString"}
+      }
+    },
+    "DeleteLFTagRequest":{
+      "type":"structure",
+      "required":["TagKey"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"}
+      }
+    },
+    "DeleteLFTagResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeregisterResourceRequest":{
@@ -406,6 +648,12 @@
         "ErrorMessage":{"shape":"DescriptionString"}
       }
     },
+    "Expression":{
+      "type":"list",
+      "member":{"shape":"LFTag"},
+      "max":5,
+      "min":1
+    },
     "FieldNameString":{
       "type":"string",
       "enum":[
@@ -457,6 +705,46 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "GetLFTagRequest":{
+      "type":"structure",
+      "required":["TagKey"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"}
+      }
+    },
+    "GetLFTagResponse":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"},
+        "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "GetResourceLFTagsRequest":{
+      "type":"structure",
+      "required":["Resource"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Resource":{"shape":"Resource"},
+        "ShowAssignedLFTags":{"shape":"BooleanNullable"}
+      }
+    },
+    "GetResourceLFTagsResponse":{
+      "type":"structure",
+      "members":{
+        "LFTagOnDatabase":{"shape":"LFTagsList"},
+        "LFTagsOnTable":{"shape":"LFTagsList"},
+        "LFTagsOnColumns":{"shape":"ColumnLFTagsList"}
+      }
+    },
+    "GlueEncryptionException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "GrantPermissionsRequest":{
       "type":"structure",
       "required":[
@@ -501,7 +789,99 @@
       },
       "exception":true
     },
+    "LFTag":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValues"
+      ],
+      "members":{
+        "TagKey":{"shape":"LFTagKey"},
+        "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "LFTagError":{
+      "type":"structure",
+      "members":{
+        "LFTag":{"shape":"LFTagPair"},
+        "Error":{"shape":"ErrorDetail"}
+      }
+    },
+    "LFTagErrors":{
+      "type":"list",
+      "member":{"shape":"LFTagError"}
+    },
+    "LFTagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*)$"
+    },
+    "LFTagKeyResource":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValues"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"NameString"},
+        "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "LFTagPair":{
+      "type":"structure",
+      "required":[
+        "TagKey",
+        "TagValues"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"},
+        "TagValues":{"shape":"TagValueList"}
+      }
+    },
+    "LFTagPolicyResource":{
+      "type":"structure",
+      "required":[
+        "ResourceType",
+        "Expression"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "ResourceType":{"shape":"ResourceType"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "LFTagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:\\*\\/=+\\-@%]*)$"
+    },
+    "LFTagsList":{
+      "type":"list",
+      "member":{"shape":"LFTagPair"},
+      "max":50,
+      "min":1
+    },
     "LastModifiedTimestamp":{"type":"timestamp"},
+    "ListLFTagsRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "ResourceShareType":{"shape":"ResourceShareType"},
+        "MaxResults":{"shape":"PageSize"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListLFTagsResponse":{
+      "type":"structure",
+      "members":{
+        "LFTags":{"shape":"LFTagsList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "ListPermissionsRequest":{
       "type":"structure",
       "members":{
@@ -571,7 +951,12 @@
         "DESCRIBE",
         "CREATE_DATABASE",
         "CREATE_TABLE",
-        "DATA_LOCATION_ACCESS"
+        "DATA_LOCATION_ACCESS",
+        "CREATE_TAG",
+        "ALTER_TAG",
+        "DELETE_TAG",
+        "DESCRIBE_TAG",
+        "ASSOCIATE_TAG"
       ]
     },
     "PermissionList":{
@@ -631,6 +1016,24 @@
       "members":{
       }
     },
+    "RemoveLFTagsFromResourceRequest":{
+      "type":"structure",
+      "required":[
+        "Resource",
+        "LFTags"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Resource":{"shape":"Resource"},
+        "LFTags":{"shape":"LFTagsList"}
+      }
+    },
+    "RemoveLFTagsFromResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Failures":{"shape":"LFTagErrors"}
+      }
+    },
     "Resource":{
       "type":"structure",
       "members":{
@@ -638,7 +1041,9 @@
         "Database":{"shape":"DatabaseResource"},
         "Table":{"shape":"TableResource"},
         "TableWithColumns":{"shape":"TableWithColumnsResource"},
-        "DataLocation":{"shape":"DataLocationResource"}
+        "DataLocation":{"shape":"DataLocationResource"},
+        "LFTag":{"shape":"LFTagKeyResource"},
+        "LFTagPolicy":{"shape":"LFTagPolicyResource"}
       }
     },
     "ResourceArnString":{"type":"string"},
@@ -654,9 +1059,30 @@
       "type":"list",
       "member":{"shape":"ResourceInfo"}
     },
+    "ResourceNumberLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "ResourceShareList":{
       "type":"list",
       "member":{"shape":"RAMResourceShareArn"}
+    },
+    "ResourceShareType":{
+      "type":"string",
+      "enum":[
+        "FOREIGN",
+        "ALL"
+      ]
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "DATABASE",
+        "TABLE"
+      ]
     },
     "RevokePermissionsRequest":{
       "type":"structure",
@@ -678,10 +1104,48 @@
       "members":{
       }
     },
+    "SearchDatabasesByLFTagsRequest":{
+      "type":"structure",
+      "required":["Expression"],
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"PageSize"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "SearchDatabasesByLFTagsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "DatabaseList":{"shape":"DatabaseLFTagsList"}
+      }
+    },
+    "SearchTablesByLFTagsRequest":{
+      "type":"structure",
+      "required":["Expression"],
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"PageSize"},
+        "CatalogId":{"shape":"CatalogIdString"},
+        "Expression":{"shape":"Expression"}
+      }
+    },
+    "SearchTablesByLFTagsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "TableList":{"shape":"TableLFTagsList"}
+      }
+    },
     "StringValue":{"type":"string"},
     "StringValueList":{
       "type":"list",
       "member":{"shape":"StringValue"}
+    },
+    "TableLFTagsList":{
+      "type":"list",
+      "member":{"shape":"TaggedTable"}
     },
     "TableResource":{
       "type":"structure",
@@ -712,10 +1176,47 @@
         "ColumnWildcard":{"shape":"ColumnWildcard"}
       }
     },
+    "TagValueList":{
+      "type":"list",
+      "member":{"shape":"LFTagValue"},
+      "max":50,
+      "min":1
+    },
+    "TaggedDatabase":{
+      "type":"structure",
+      "members":{
+        "Database":{"shape":"DatabaseResource"},
+        "LFTags":{"shape":"LFTagsList"}
+      }
+    },
+    "TaggedTable":{
+      "type":"structure",
+      "members":{
+        "Table":{"shape":"TableResource"},
+        "LFTagOnDatabase":{"shape":"LFTagsList"},
+        "LFTagsOnTable":{"shape":"LFTagsList"},
+        "LFTagsOnColumns":{"shape":"ColumnLFTagsList"}
+      }
+    },
     "Token":{"type":"string"},
     "TrustedResourceOwners":{
       "type":"list",
       "member":{"shape":"CatalogIdString"}
+    },
+    "UpdateLFTagRequest":{
+      "type":"structure",
+      "required":["TagKey"],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "TagKey":{"shape":"LFTagKey"},
+        "TagValuesToDelete":{"shape":"TagValueList"},
+        "TagValuesToAdd":{"shape":"TagValueList"}
+      }
+    },
+    "UpdateLFTagResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateResourceRequest":{
       "type":"structure",

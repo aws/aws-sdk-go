@@ -13,6 +13,100 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opAddLFTagsToResource = "AddLFTagsToResource"
+
+// AddLFTagsToResourceRequest generates a "aws/request.Request" representing the
+// client's request for the AddLFTagsToResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddLFTagsToResource for more information on using the AddLFTagsToResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddLFTagsToResourceRequest method.
+//    req, resp := client.AddLFTagsToResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/AddLFTagsToResource
+func (c *LakeFormation) AddLFTagsToResourceRequest(input *AddLFTagsToResourceInput) (req *request.Request, output *AddLFTagsToResourceOutput) {
+	op := &request.Operation{
+		Name:       opAddLFTagsToResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddLFTagsToResourceInput{}
+	}
+
+	output = &AddLFTagsToResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddLFTagsToResource API operation for AWS Lake Formation.
+//
+// Attaches one or more tags to an existing resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation AddLFTagsToResource for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/AddLFTagsToResource
+func (c *LakeFormation) AddLFTagsToResource(input *AddLFTagsToResourceInput) (*AddLFTagsToResourceOutput, error) {
+	req, out := c.AddLFTagsToResourceRequest(input)
+	return out, req.Send()
+}
+
+// AddLFTagsToResourceWithContext is the same as AddLFTagsToResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddLFTagsToResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) AddLFTagsToResourceWithContext(ctx aws.Context, input *AddLFTagsToResourceInput, opts ...request.Option) (*AddLFTagsToResourceOutput, error) {
+	req, out := c.AddLFTagsToResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGrantPermissions = "BatchGrantPermissions"
 
 // BatchGrantPermissionsRequest generates a "aws/request.Request" representing the
@@ -172,6 +266,198 @@ func (c *LakeFormation) BatchRevokePermissions(input *BatchRevokePermissionsInpu
 // for more information on using Contexts.
 func (c *LakeFormation) BatchRevokePermissionsWithContext(ctx aws.Context, input *BatchRevokePermissionsInput, opts ...request.Option) (*BatchRevokePermissionsOutput, error) {
 	req, out := c.BatchRevokePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLFTag = "CreateLFTag"
+
+// CreateLFTagRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLFTag operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLFTag for more information on using the CreateLFTag
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLFTagRequest method.
+//    req, resp := client.CreateLFTagRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLFTag
+func (c *LakeFormation) CreateLFTagRequest(input *CreateLFTagInput) (req *request.Request, output *CreateLFTagOutput) {
+	op := &request.Operation{
+		Name:       opCreateLFTag,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLFTagInput{}
+	}
+
+	output = &CreateLFTagOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateLFTag API operation for AWS Lake Formation.
+//
+// Creates a tag with the specified name and values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation CreateLFTag for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/CreateLFTag
+func (c *LakeFormation) CreateLFTag(input *CreateLFTagInput) (*CreateLFTagOutput, error) {
+	req, out := c.CreateLFTagRequest(input)
+	return out, req.Send()
+}
+
+// CreateLFTagWithContext is the same as CreateLFTag with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLFTag for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) CreateLFTagWithContext(ctx aws.Context, input *CreateLFTagInput, opts ...request.Option) (*CreateLFTagOutput, error) {
+	req, out := c.CreateLFTagRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLFTag = "DeleteLFTag"
+
+// DeleteLFTagRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLFTag operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLFTag for more information on using the DeleteLFTag
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteLFTagRequest method.
+//    req, resp := client.DeleteLFTagRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLFTag
+func (c *LakeFormation) DeleteLFTagRequest(input *DeleteLFTagInput) (req *request.Request, output *DeleteLFTagOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLFTag,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLFTagInput{}
+	}
+
+	output = &DeleteLFTagOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLFTag API operation for AWS Lake Formation.
+//
+// Deletes the specified tag key name. If the attribute key does not exist or
+// the tag does not exist, then the operation will not do anything. If the attribute
+// key exists, then the operation checks if any resources are tagged with this
+// attribute key, if yes, the API throws a 400 Exception with the message "Delete
+// not allowed" as the tag key is still attached with resources. You can consider
+// untagging resources with this tag key.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation DeleteLFTag for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/DeleteLFTag
+func (c *LakeFormation) DeleteLFTag(input *DeleteLFTagInput) (*DeleteLFTagOutput, error) {
+	req, out := c.DeleteLFTagRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLFTagWithContext is the same as DeleteLFTag with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLFTag for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) DeleteLFTagWithContext(ctx aws.Context, input *DeleteLFTagInput, opts ...request.Option) (*DeleteLFTagOutput, error) {
+	req, out := c.DeleteLFTagRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -592,6 +878,191 @@ func (c *LakeFormation) GetEffectivePermissionsForPathPagesWithContext(ctx aws.C
 	return p.Err()
 }
 
+const opGetLFTag = "GetLFTag"
+
+// GetLFTagRequest generates a "aws/request.Request" representing the
+// client's request for the GetLFTag operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLFTag for more information on using the GetLFTag
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLFTagRequest method.
+//    req, resp := client.GetLFTagRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetLFTag
+func (c *LakeFormation) GetLFTagRequest(input *GetLFTagInput) (req *request.Request, output *GetLFTagOutput) {
+	op := &request.Operation{
+		Name:       opGetLFTag,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLFTagInput{}
+	}
+
+	output = &GetLFTagOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLFTag API operation for AWS Lake Formation.
+//
+// Returns a tag definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetLFTag for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetLFTag
+func (c *LakeFormation) GetLFTag(input *GetLFTagInput) (*GetLFTagOutput, error) {
+	req, out := c.GetLFTagRequest(input)
+	return out, req.Send()
+}
+
+// GetLFTagWithContext is the same as GetLFTag with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLFTag for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetLFTagWithContext(ctx aws.Context, input *GetLFTagInput, opts ...request.Option) (*GetLFTagOutput, error) {
+	req, out := c.GetLFTagRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourceLFTags = "GetResourceLFTags"
+
+// GetResourceLFTagsRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceLFTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceLFTags for more information on using the GetResourceLFTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourceLFTagsRequest method.
+//    req, resp := client.GetResourceLFTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetResourceLFTags
+func (c *LakeFormation) GetResourceLFTagsRequest(input *GetResourceLFTagsInput) (req *request.Request, output *GetResourceLFTagsOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceLFTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetResourceLFTagsInput{}
+	}
+
+	output = &GetResourceLFTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceLFTags API operation for AWS Lake Formation.
+//
+// Returns the tags applied to a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation GetResourceLFTags for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * GlueEncryptionException
+//   An encryption operation failed.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/GetResourceLFTags
+func (c *LakeFormation) GetResourceLFTags(input *GetResourceLFTagsInput) (*GetResourceLFTagsOutput, error) {
+	req, out := c.GetResourceLFTagsRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceLFTagsWithContext is the same as GetResourceLFTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceLFTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) GetResourceLFTagsWithContext(ctx aws.Context, input *GetResourceLFTagsInput, opts ...request.Option) (*GetResourceLFTagsOutput, error) {
+	req, out := c.GetResourceLFTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGrantPermissions = "GrantPermissions"
 
 // GrantPermissionsRequest generates a "aws/request.Request" representing the
@@ -677,6 +1148,94 @@ func (c *LakeFormation) GrantPermissions(input *GrantPermissionsInput) (*GrantPe
 // for more information on using Contexts.
 func (c *LakeFormation) GrantPermissionsWithContext(ctx aws.Context, input *GrantPermissionsInput, opts ...request.Option) (*GrantPermissionsOutput, error) {
 	req, out := c.GrantPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListLFTags = "ListLFTags"
+
+// ListLFTagsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLFTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLFTags for more information on using the ListLFTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLFTagsRequest method.
+//    req, resp := client.ListLFTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLFTags
+func (c *LakeFormation) ListLFTagsRequest(input *ListLFTagsInput) (req *request.Request, output *ListLFTagsOutput) {
+	op := &request.Operation{
+		Name:       opListLFTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListLFTagsInput{}
+	}
+
+	output = &ListLFTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLFTags API operation for AWS Lake Formation.
+//
+// Lists tags that the requester has permission to view.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation ListLFTags for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/ListLFTags
+func (c *LakeFormation) ListLFTags(input *ListLFTagsInput) (*ListLFTagsOutput, error) {
+	req, out := c.ListLFTagsRequest(input)
+	return out, req.Send()
+}
+
+// ListLFTagsWithContext is the same as ListLFTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLFTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) ListLFTagsWithContext(ctx aws.Context, input *ListLFTagsInput, opts ...request.Option) (*ListLFTagsOutput, error) {
+	req, out := c.ListLFTagsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1171,6 +1730,105 @@ func (c *LakeFormation) RegisterResourceWithContext(ctx aws.Context, input *Regi
 	return out, req.Send()
 }
 
+const opRemoveLFTagsFromResource = "RemoveLFTagsFromResource"
+
+// RemoveLFTagsFromResourceRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveLFTagsFromResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveLFTagsFromResource for more information on using the RemoveLFTagsFromResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveLFTagsFromResourceRequest method.
+//    req, resp := client.RemoveLFTagsFromResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/RemoveLFTagsFromResource
+func (c *LakeFormation) RemoveLFTagsFromResourceRequest(input *RemoveLFTagsFromResourceInput) (req *request.Request, output *RemoveLFTagsFromResourceOutput) {
+	op := &request.Operation{
+		Name:       opRemoveLFTagsFromResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveLFTagsFromResourceInput{}
+	}
+
+	output = &RemoveLFTagsFromResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveLFTagsFromResource API operation for AWS Lake Formation.
+//
+// Removes a tag from the resource. Only database, table, or tableWithColumns
+// resource are allowed. To tag columns, use the column inclusion list in tableWithColumns
+// to specify column input.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation RemoveLFTagsFromResource for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * GlueEncryptionException
+//   An encryption operation failed.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/RemoveLFTagsFromResource
+func (c *LakeFormation) RemoveLFTagsFromResource(input *RemoveLFTagsFromResourceInput) (*RemoveLFTagsFromResourceOutput, error) {
+	req, out := c.RemoveLFTagsFromResourceRequest(input)
+	return out, req.Send()
+}
+
+// RemoveLFTagsFromResourceWithContext is the same as RemoveLFTagsFromResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveLFTagsFromResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) RemoveLFTagsFromResourceWithContext(ctx aws.Context, input *RemoveLFTagsFromResourceInput, opts ...request.Option) (*RemoveLFTagsFromResourceOutput, error) {
+	req, out := c.RemoveLFTagsFromResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRevokePermissions = "RevokePermissions"
 
 // RevokePermissionsRequest generates a "aws/request.Request" representing the
@@ -1253,6 +1911,302 @@ func (c *LakeFormation) RevokePermissions(input *RevokePermissionsInput) (*Revok
 // for more information on using Contexts.
 func (c *LakeFormation) RevokePermissionsWithContext(ctx aws.Context, input *RevokePermissionsInput, opts ...request.Option) (*RevokePermissionsOutput, error) {
 	req, out := c.RevokePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSearchDatabasesByLFTags = "SearchDatabasesByLFTags"
+
+// SearchDatabasesByLFTagsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchDatabasesByLFTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchDatabasesByLFTags for more information on using the SearchDatabasesByLFTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchDatabasesByLFTagsRequest method.
+//    req, resp := client.SearchDatabasesByLFTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/SearchDatabasesByLFTags
+func (c *LakeFormation) SearchDatabasesByLFTagsRequest(input *SearchDatabasesByLFTagsInput) (req *request.Request, output *SearchDatabasesByLFTagsOutput) {
+	op := &request.Operation{
+		Name:       opSearchDatabasesByLFTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SearchDatabasesByLFTagsInput{}
+	}
+
+	output = &SearchDatabasesByLFTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchDatabasesByLFTags API operation for AWS Lake Formation.
+//
+// This operation allows a search on DATABASE resources by TagCondition. This
+// operation is used by admins who want to grant user permissions on certain
+// TagConditions. Before making a grant, the admin can use SearchDatabasesByTags
+// to find all resources where the given TagConditions are valid to verify whether
+// the returned resources can be shared.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation SearchDatabasesByLFTags for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * GlueEncryptionException
+//   An encryption operation failed.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/SearchDatabasesByLFTags
+func (c *LakeFormation) SearchDatabasesByLFTags(input *SearchDatabasesByLFTagsInput) (*SearchDatabasesByLFTagsOutput, error) {
+	req, out := c.SearchDatabasesByLFTagsRequest(input)
+	return out, req.Send()
+}
+
+// SearchDatabasesByLFTagsWithContext is the same as SearchDatabasesByLFTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchDatabasesByLFTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) SearchDatabasesByLFTagsWithContext(ctx aws.Context, input *SearchDatabasesByLFTagsInput, opts ...request.Option) (*SearchDatabasesByLFTagsOutput, error) {
+	req, out := c.SearchDatabasesByLFTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSearchTablesByLFTags = "SearchTablesByLFTags"
+
+// SearchTablesByLFTagsRequest generates a "aws/request.Request" representing the
+// client's request for the SearchTablesByLFTags operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchTablesByLFTags for more information on using the SearchTablesByLFTags
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchTablesByLFTagsRequest method.
+//    req, resp := client.SearchTablesByLFTagsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/SearchTablesByLFTags
+func (c *LakeFormation) SearchTablesByLFTagsRequest(input *SearchTablesByLFTagsInput) (req *request.Request, output *SearchTablesByLFTagsOutput) {
+	op := &request.Operation{
+		Name:       opSearchTablesByLFTags,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SearchTablesByLFTagsInput{}
+	}
+
+	output = &SearchTablesByLFTagsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchTablesByLFTags API operation for AWS Lake Formation.
+//
+// This operation allows a search on TABLE resources by LFTags. This will be
+// used by admins who want to grant user permissions on certain LFTags. Before
+// making a grant, the admin can use SearchTablesByLFTags to find all resources
+// where the given LFTags are valid to verify whether the returned resources
+// can be shared.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation SearchTablesByLFTags for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * GlueEncryptionException
+//   An encryption operation failed.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/SearchTablesByLFTags
+func (c *LakeFormation) SearchTablesByLFTags(input *SearchTablesByLFTagsInput) (*SearchTablesByLFTagsOutput, error) {
+	req, out := c.SearchTablesByLFTagsRequest(input)
+	return out, req.Send()
+}
+
+// SearchTablesByLFTagsWithContext is the same as SearchTablesByLFTags with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchTablesByLFTags for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) SearchTablesByLFTagsWithContext(ctx aws.Context, input *SearchTablesByLFTagsInput, opts ...request.Option) (*SearchTablesByLFTagsOutput, error) {
+	req, out := c.SearchTablesByLFTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLFTag = "UpdateLFTag"
+
+// UpdateLFTagRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLFTag operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLFTag for more information on using the UpdateLFTag
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLFTagRequest method.
+//    req, resp := client.UpdateLFTagRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateLFTag
+func (c *LakeFormation) UpdateLFTagRequest(input *UpdateLFTagInput) (req *request.Request, output *UpdateLFTagOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLFTag,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLFTagInput{}
+	}
+
+	output = &UpdateLFTagOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLFTag API operation for AWS Lake Formation.
+//
+// Updates the list of possible values for the specified tag key. If the tag
+// does not exist, the operation throws an EntityNotFoundException. The values
+// in the delete key values will be deleted from list of possible values. If
+// any value in the delete key values is attached to a resource, then API errors
+// out with a 400 Exception - "Update not allowed". Untag the attribute before
+// deleting the tag key's value.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Lake Formation's
+// API operation UpdateLFTag for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+//   * AccessDeniedException
+//   Access to a resource was denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lakeformation-2017-03-31/UpdateLFTag
+func (c *LakeFormation) UpdateLFTag(input *UpdateLFTagInput) (*UpdateLFTagOutput, error) {
+	req, out := c.UpdateLFTagRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLFTagWithContext is the same as UpdateLFTag with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLFTag for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LakeFormation) UpdateLFTagWithContext(ctx aws.Context, input *UpdateLFTagInput, opts ...request.Option) (*UpdateLFTagOutput, error) {
+	req, out := c.UpdateLFTagRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1346,6 +2300,171 @@ func (c *LakeFormation) UpdateResourceWithContext(ctx aws.Context, input *Update
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Access to a resource was denied.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type AddLFTagsToResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The tags to attach to the resource.
+	//
+	// LFTags is a required field
+	LFTags []*LFTagPair `min:"1" type:"list" required:"true"`
+
+	// The resource to which to attach a tag.
+	//
+	// Resource is a required field
+	Resource *Resource `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AddLFTagsToResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddLFTagsToResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddLFTagsToResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddLFTagsToResourceInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.LFTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("LFTags"))
+	}
+	if s.LFTags != nil && len(s.LFTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LFTags", 1))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.LFTags != nil {
+		for i, v := range s.LFTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LFTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *AddLFTagsToResourceInput) SetCatalogId(v string) *AddLFTagsToResourceInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetLFTags sets the LFTags field's value.
+func (s *AddLFTagsToResourceInput) SetLFTags(v []*LFTagPair) *AddLFTagsToResourceInput {
+	s.LFTags = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *AddLFTagsToResourceInput) SetResource(v *Resource) *AddLFTagsToResourceInput {
+	s.Resource = v
+	return s
+}
+
+type AddLFTagsToResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of failures to tag the resource.
+	Failures []*LFTagError `type:"list"`
+}
+
+// String returns the string representation
+func (s AddLFTagsToResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddLFTagsToResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *AddLFTagsToResourceOutput) SetFailures(v []*LFTagError) *AddLFTagsToResourceOutput {
+	s.Failures = v
+	return s
 }
 
 // A resource to be created or added already exists.
@@ -1715,6 +2834,40 @@ func (s CatalogResource) GoString() string {
 	return s.String()
 }
 
+// A structure containing the name of a column resource and the tags attached
+// to it.
+type ColumnLFTag struct {
+	_ struct{} `type:"structure"`
+
+	// The tags attached to a column resource.
+	LFTags []*LFTagPair `min:"1" type:"list"`
+
+	// The name of a column resource.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ColumnLFTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnLFTag) GoString() string {
+	return s.String()
+}
+
+// SetLFTags sets the LFTags field's value.
+func (s *ColumnLFTag) SetLFTags(v []*LFTagPair) *ColumnLFTag {
+	s.LFTags = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ColumnLFTag) SetName(v string) *ColumnLFTag {
+	s.Name = &v
+	return s
+}
+
 // A wildcard object, consisting of an optional list of excluded column names
 // or indexes.
 type ColumnWildcard struct {
@@ -1795,6 +2948,93 @@ func (s *ConcurrentModificationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateLFTagInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// A list of possible values an attribute can take.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateLFTagInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLFTagInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLFTagInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLFTagInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *CreateLFTagInput) SetCatalogId(v string) *CreateLFTagInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *CreateLFTagInput) SetTagKey(v string) *CreateLFTagInput {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *CreateLFTagInput) SetTagValues(v []*string) *CreateLFTagInput {
+	s.TagValues = v
+	return s
+}
+
+type CreateLFTagOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateLFTagOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLFTagOutput) GoString() string {
+	return s.String()
 }
 
 // The AWS Lake Formation principal. Supported principals are IAM users or IAM
@@ -2044,6 +3284,76 @@ func (s *DatabaseResource) SetName(v string) *DatabaseResource {
 	return s
 }
 
+type DeleteLFTagInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag to delete.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteLFTagInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLFTagInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLFTagInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLFTagInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DeleteLFTagInput) SetCatalogId(v string) *DeleteLFTagInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *DeleteLFTagInput) SetTagKey(v string) *DeleteLFTagInput {
+	s.TagKey = &v
+	return s
+}
+
+type DeleteLFTagOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLFTagOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLFTagOutput) GoString() string {
+	return s.String()
+}
+
 type DeregisterResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2161,11 +3471,11 @@ func (s *DescribeResourceOutput) SetResourceInfo(v *ResourceInfo) *DescribeResou
 // attribute of PrincipalResourcePermissions.
 //
 // If a catalog resource is shared through AWS Resource Access Manager (AWS
-// RAM), then there will exist a corresponding RAM share resource ARN.
+// RAM), then there will exist a corresponding RAM resource share ARN.
 type DetailsMap struct {
 	_ struct{} `type:"structure"`
 
-	// A share resource ARN for a catalog resource shared through AWS Resource Access
+	// A resource share ARN for a catalog resource shared through AWS Resource Access
 	// Manager (AWS RAM).
 	ResourceShare []*string `type:"list"`
 }
@@ -2490,6 +3800,271 @@ func (s *GetEffectivePermissionsForPathOutput) SetPermissions(v []*PrincipalReso
 	return s
 }
 
+type GetLFTagInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetLFTagInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLFTagInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLFTagInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLFTagInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetLFTagInput) SetCatalogId(v string) *GetLFTagInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *GetLFTagInput) SetTagKey(v string) *GetLFTagInput {
+	s.TagKey = &v
+	return s
+}
+
+type GetLFTagOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag.
+	TagKey *string `min:"1" type:"string"`
+
+	// A list of possible values an attribute can take.
+	TagValues []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s GetLFTagOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLFTagOutput) GoString() string {
+	return s.String()
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetLFTagOutput) SetCatalogId(v string) *GetLFTagOutput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *GetLFTagOutput) SetTagKey(v string) *GetLFTagOutput {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *GetLFTagOutput) SetTagValues(v []*string) *GetLFTagOutput {
+	s.TagValues = v
+	return s
+}
+
+type GetResourceLFTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The resource for which you want to return tags.
+	//
+	// Resource is a required field
+	Resource *Resource `type:"structure" required:"true"`
+
+	// Indicates whether to show the assigned tags.
+	ShowAssignedLFTags *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GetResourceLFTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceLFTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceLFTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceLFTagsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *GetResourceLFTagsInput) SetCatalogId(v string) *GetResourceLFTagsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *GetResourceLFTagsInput) SetResource(v *Resource) *GetResourceLFTagsInput {
+	s.Resource = v
+	return s
+}
+
+// SetShowAssignedLFTags sets the ShowAssignedLFTags field's value.
+func (s *GetResourceLFTagsInput) SetShowAssignedLFTags(v bool) *GetResourceLFTagsInput {
+	s.ShowAssignedLFTags = &v
+	return s
+}
+
+type GetResourceLFTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags applied to a database resource.
+	LFTagOnDatabase []*LFTagPair `min:"1" type:"list"`
+
+	// A list of tags applied to a column resource.
+	LFTagsOnColumns []*ColumnLFTag `type:"list"`
+
+	// A list of tags applied to a table resource.
+	LFTagsOnTable []*LFTagPair `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s GetResourceLFTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceLFTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLFTagOnDatabase sets the LFTagOnDatabase field's value.
+func (s *GetResourceLFTagsOutput) SetLFTagOnDatabase(v []*LFTagPair) *GetResourceLFTagsOutput {
+	s.LFTagOnDatabase = v
+	return s
+}
+
+// SetLFTagsOnColumns sets the LFTagsOnColumns field's value.
+func (s *GetResourceLFTagsOutput) SetLFTagsOnColumns(v []*ColumnLFTag) *GetResourceLFTagsOutput {
+	s.LFTagsOnColumns = v
+	return s
+}
+
+// SetLFTagsOnTable sets the LFTagsOnTable field's value.
+func (s *GetResourceLFTagsOutput) SetLFTagsOnTable(v []*LFTagPair) *GetResourceLFTagsOutput {
+	s.LFTagsOnTable = v
+	return s
+}
+
+// An encryption operation failed.
+type GlueEncryptionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s GlueEncryptionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlueEncryptionException) GoString() string {
+	return s.String()
+}
+
+func newErrorGlueEncryptionException(v protocol.ResponseMetadata) error {
+	return &GlueEncryptionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *GlueEncryptionException) Code() string {
+	return "GlueEncryptionException"
+}
+
+// Message returns the exception's message.
+func (s *GlueEncryptionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *GlueEncryptionException) OrigErr() error {
+	return nil
+}
+
+func (s *GlueEncryptionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *GlueEncryptionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *GlueEncryptionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type GrantPermissionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2729,6 +4304,436 @@ func (s *InvalidInputException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A structure that allows an admin to grant user permissions on certain conditions.
+// For example, granting a role access to all columns not tagged 'PII' of tables
+// tagged 'Prod'.
+type LFTag struct {
+	_ struct{} `type:"structure"`
+
+	// The key-name for the tag.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// A list of possible values an attribute can take.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s LFTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LFTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTag"}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *LFTag) SetTagKey(v string) *LFTag {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *LFTag) SetTagValues(v []*string) *LFTag {
+	s.TagValues = v
+	return s
+}
+
+// A structure containing an error related to a TagResource or UnTagResource
+// operation.
+type LFTagError struct {
+	_ struct{} `type:"structure"`
+
+	// An error that occurred with the attachment or detachment of the tag.
+	Error *ErrorDetail `type:"structure"`
+
+	// The key-name of the tag.
+	LFTag *LFTagPair `type:"structure"`
+}
+
+// String returns the string representation
+func (s LFTagError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LFTagError) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *LFTagError) SetError(v *ErrorDetail) *LFTagError {
+	s.Error = v
+	return s
+}
+
+// SetLFTag sets the LFTag field's value.
+func (s *LFTagError) SetLFTag(v *LFTagPair) *LFTagError {
+	s.LFTag = v
+	return s
+}
+
+// A structure containing a tag key and values for a resource.
+type LFTagKeyResource struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// A list of possible values an attribute can take.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s LFTagKeyResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LFTagKeyResource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTagKeyResource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTagKeyResource"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *LFTagKeyResource) SetCatalogId(v string) *LFTagKeyResource {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *LFTagKeyResource) SetTagKey(v string) *LFTagKeyResource {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *LFTagKeyResource) SetTagValues(v []*string) *LFTagKeyResource {
+	s.TagValues = v
+	return s
+}
+
+// A structure containing a tag key-value pair.
+type LFTagPair struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// A list of possible values an attribute can take.
+	//
+	// TagValues is a required field
+	TagValues []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s LFTagPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LFTagPair) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTagPair) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTagPair"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValues == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagValues"))
+	}
+	if s.TagValues != nil && len(s.TagValues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValues", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *LFTagPair) SetCatalogId(v string) *LFTagPair {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *LFTagPair) SetTagKey(v string) *LFTagPair {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *LFTagPair) SetTagValues(v []*string) *LFTagPair {
+	s.TagValues = v
+	return s
+}
+
+// A structure containing a list of tag conditions that apply to a resource's
+// tag policy.
+type LFTagPolicyResource struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// A list of tag conditions that apply to the resource's tag policy.
+	//
+	// Expression is a required field
+	Expression []*LFTag `min:"1" type:"list" required:"true"`
+
+	// The resource type for which the tag policy applies.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s LFTagPolicyResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LFTagPolicyResource) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LFTagPolicyResource) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LFTagPolicyResource"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *LFTagPolicyResource) SetCatalogId(v string) *LFTagPolicyResource {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *LFTagPolicyResource) SetExpression(v []*LFTag) *LFTagPolicyResource {
+	s.Expression = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *LFTagPolicyResource) SetResourceType(v string) *LFTagPolicyResource {
+	s.ResourceType = &v
+	return s
+}
+
+type ListLFTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is not the first call to retrieve this list.
+	NextToken *string `type:"string"`
+
+	// If resource share type is ALL, returns both in-account tags and shared tags
+	// that the requester has permission to view. If resource share type is FOREIGN,
+	// returns all share tags that the requester can view. If no resource share
+	// type is passed, lists tags in the given catalog ID that the requester has
+	// permission to view.
+	ResourceShareType *string `type:"string" enum:"ResourceShareType"`
+}
+
+// String returns the string representation
+func (s ListLFTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLFTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLFTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLFTagsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *ListLFTagsInput) SetCatalogId(v string) *ListLFTagsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLFTagsInput) SetMaxResults(v int64) *ListLFTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLFTagsInput) SetNextToken(v string) *ListLFTagsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceShareType sets the ResourceShareType field's value.
+func (s *ListLFTagsInput) SetResourceShareType(v string) *ListLFTagsInput {
+	s.ResourceShareType = &v
+	return s
+}
+
+type ListLFTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags that the requested has permission to view.
+	LFTags []*LFTagPair `min:"1" type:"list"`
+
+	// A continuation token, present if the current list segment is not the last.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListLFTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLFTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLFTags sets the LFTags field's value.
+func (s *ListLFTagsOutput) SetLFTags(v []*LFTagPair) *ListLFTagsOutput {
+	s.LFTags = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLFTagsOutput) SetNextToken(v string) *ListLFTagsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListPermissionsInput struct {
@@ -3065,7 +5070,7 @@ type PrincipalResourcePermissions struct {
 	_ struct{} `type:"structure"`
 
 	// This attribute can be used to return any additional details of PrincipalResourcePermissions.
-	// Currently returns only as a RAM share resource ARN.
+	// Currently returns only as a RAM resource share ARN.
 	AdditionalDetails *DetailsMap `type:"structure"`
 
 	// The permissions to be granted or revoked on the resource.
@@ -3269,6 +5274,114 @@ func (s RegisterResourceOutput) GoString() string {
 	return s.String()
 }
 
+type RemoveLFTagsFromResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The tags to be removed from the resource.
+	//
+	// LFTags is a required field
+	LFTags []*LFTagPair `min:"1" type:"list" required:"true"`
+
+	// The resource where you want to remove a tag.
+	//
+	// Resource is a required field
+	Resource *Resource `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveLFTagsFromResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveLFTagsFromResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveLFTagsFromResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveLFTagsFromResourceInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.LFTags == nil {
+		invalidParams.Add(request.NewErrParamRequired("LFTags"))
+	}
+	if s.LFTags != nil && len(s.LFTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LFTags", 1))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.LFTags != nil {
+		for i, v := range s.LFTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LFTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Resource != nil {
+		if err := s.Resource.Validate(); err != nil {
+			invalidParams.AddNested("Resource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *RemoveLFTagsFromResourceInput) SetCatalogId(v string) *RemoveLFTagsFromResourceInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetLFTags sets the LFTags field's value.
+func (s *RemoveLFTagsFromResourceInput) SetLFTags(v []*LFTagPair) *RemoveLFTagsFromResourceInput {
+	s.LFTags = v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *RemoveLFTagsFromResourceInput) SetResource(v *Resource) *RemoveLFTagsFromResourceInput {
+	s.Resource = v
+	return s
+}
+
+type RemoveLFTagsFromResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of failures to untag a resource.
+	Failures []*LFTagError `type:"list"`
+}
+
+// String returns the string representation
+func (s RemoveLFTagsFromResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveLFTagsFromResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetFailures sets the Failures field's value.
+func (s *RemoveLFTagsFromResourceOutput) SetFailures(v []*LFTagError) *RemoveLFTagsFromResourceOutput {
+	s.Failures = v
+	return s
+}
+
 // A structure for the resource.
 type Resource struct {
 	_ struct{} `type:"structure"`
@@ -3286,6 +5399,12 @@ type Resource struct {
 	// a set of associated table definitions organized into a logical group. You
 	// can Grant and Revoke database permissions to a principal.
 	Database *DatabaseResource `type:"structure"`
+
+	// The tag key and values attached to a resource.
+	LFTag *LFTagKeyResource `type:"structure"`
+
+	// A list of tag conditions that define a resource's tag policy.
+	LFTagPolicy *LFTagPolicyResource `type:"structure"`
 
 	// The table for the resource. A table is a metadata definition that represents
 	// your data. You can Grant and Revoke table privileges to a principal.
@@ -3320,6 +5439,16 @@ func (s *Resource) Validate() error {
 			invalidParams.AddNested("Database", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.LFTag != nil {
+		if err := s.LFTag.Validate(); err != nil {
+			invalidParams.AddNested("LFTag", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LFTagPolicy != nil {
+		if err := s.LFTagPolicy.Validate(); err != nil {
+			invalidParams.AddNested("LFTagPolicy", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Table != nil {
 		if err := s.Table.Validate(); err != nil {
 			invalidParams.AddNested("Table", err.(request.ErrInvalidParams))
@@ -3352,6 +5481,18 @@ func (s *Resource) SetDataLocation(v *DataLocationResource) *Resource {
 // SetDatabase sets the Database field's value.
 func (s *Resource) SetDatabase(v *DatabaseResource) *Resource {
 	s.Database = v
+	return s
+}
+
+// SetLFTag sets the LFTag field's value.
+func (s *Resource) SetLFTag(v *LFTagKeyResource) *Resource {
+	s.LFTag = v
+	return s
+}
+
+// SetLFTagPolicy sets the LFTagPolicy field's value.
+func (s *Resource) SetLFTagPolicy(v *LFTagPolicyResource) *Resource {
+	s.LFTagPolicy = v
 	return s
 }
 
@@ -3407,6 +5548,63 @@ func (s *ResourceInfo) SetResourceArn(v string) *ResourceInfo {
 func (s *ResourceInfo) SetRoleArn(v string) *ResourceInfo {
 	s.RoleArn = &v
 	return s
+}
+
+// A resource numerical limit was exceeded.
+type ResourceNumberLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A message describing the problem.
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNumberLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNumberLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNumberLimitExceededException(v protocol.ResponseMetadata) error {
+	return &ResourceNumberLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNumberLimitExceededException) Code() string {
+	return "ResourceNumberLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNumberLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNumberLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNumberLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNumberLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNumberLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type RevokePermissionsInput struct {
@@ -3523,6 +5721,244 @@ func (s RevokePermissionsOutput) String() string {
 // GoString returns the string representation
 func (s RevokePermissionsOutput) GoString() string {
 	return s.String()
+}
+
+type SearchDatabasesByLFTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// A list of conditions (LFTag structures) to search for in database resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is not the first call to retrieve this list.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SearchDatabasesByLFTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchDatabasesByLFTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchDatabasesByLFTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchDatabasesByLFTagsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *SearchDatabasesByLFTagsInput) SetCatalogId(v string) *SearchDatabasesByLFTagsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *SearchDatabasesByLFTagsInput) SetExpression(v []*LFTag) *SearchDatabasesByLFTagsInput {
+	s.Expression = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchDatabasesByLFTagsInput) SetMaxResults(v int64) *SearchDatabasesByLFTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDatabasesByLFTagsInput) SetNextToken(v string) *SearchDatabasesByLFTagsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchDatabasesByLFTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of databases that meet the tag conditions.
+	DatabaseList []*TaggedDatabase `type:"list"`
+
+	// A continuation token, present if the current list segment is not the last.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SearchDatabasesByLFTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchDatabasesByLFTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseList sets the DatabaseList field's value.
+func (s *SearchDatabasesByLFTagsOutput) SetDatabaseList(v []*TaggedDatabase) *SearchDatabasesByLFTagsOutput {
+	s.DatabaseList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchDatabasesByLFTagsOutput) SetNextToken(v string) *SearchDatabasesByLFTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchTablesByLFTagsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// A list of conditions (LFTag structures) to search for in table resources.
+	//
+	// Expression is a required field
+	Expression []*LFTag `min:"1" type:"list" required:"true"`
+
+	// The maximum number of results to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is not the first call to retrieve this list.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SearchTablesByLFTagsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchTablesByLFTagsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchTablesByLFTagsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchTablesByLFTagsInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.Expression == nil {
+		invalidParams.Add(request.NewErrParamRequired("Expression"))
+	}
+	if s.Expression != nil && len(s.Expression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Expression != nil {
+		for i, v := range s.Expression {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Expression", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *SearchTablesByLFTagsInput) SetCatalogId(v string) *SearchTablesByLFTagsInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetExpression sets the Expression field's value.
+func (s *SearchTablesByLFTagsInput) SetExpression(v []*LFTag) *SearchTablesByLFTagsInput {
+	s.Expression = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchTablesByLFTagsInput) SetMaxResults(v int64) *SearchTablesByLFTagsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchTablesByLFTagsInput) SetNextToken(v string) *SearchTablesByLFTagsInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchTablesByLFTagsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A continuation token, present if the current list segment is not the last.
+	NextToken *string `type:"string"`
+
+	// A list of tables that meet the tag conditions.
+	TableList []*TaggedTable `type:"list"`
+}
+
+// String returns the string representation
+func (s SearchTablesByLFTagsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchTablesByLFTagsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchTablesByLFTagsOutput) SetNextToken(v string) *SearchTablesByLFTagsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTableList sets the TableList field's value.
+func (s *SearchTablesByLFTagsOutput) SetTableList(v []*TaggedTable) *SearchTablesByLFTagsOutput {
+	s.TableList = v
+	return s
 }
 
 // A structure for the table object. A table is a metadata definition that represents
@@ -3720,6 +6156,184 @@ func (s *TableWithColumnsResource) SetName(v string) *TableWithColumnsResource {
 	return s
 }
 
+// A structure describing a database resource with tags.
+type TaggedDatabase struct {
+	_ struct{} `type:"structure"`
+
+	// A database that has tags attached to it.
+	Database *DatabaseResource `type:"structure"`
+
+	// A list of tags attached to the database.
+	LFTags []*LFTagPair `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s TaggedDatabase) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TaggedDatabase) GoString() string {
+	return s.String()
+}
+
+// SetDatabase sets the Database field's value.
+func (s *TaggedDatabase) SetDatabase(v *DatabaseResource) *TaggedDatabase {
+	s.Database = v
+	return s
+}
+
+// SetLFTags sets the LFTags field's value.
+func (s *TaggedDatabase) SetLFTags(v []*LFTagPair) *TaggedDatabase {
+	s.LFTags = v
+	return s
+}
+
+// A structure describing a table resource with tags.
+type TaggedTable struct {
+	_ struct{} `type:"structure"`
+
+	// A list of tags attached to the database where the table resides.
+	LFTagOnDatabase []*LFTagPair `min:"1" type:"list"`
+
+	// A list of tags attached to columns in the table.
+	LFTagsOnColumns []*ColumnLFTag `type:"list"`
+
+	// A list of tags attached to the table.
+	LFTagsOnTable []*LFTagPair `min:"1" type:"list"`
+
+	// A table that has tags attached to it.
+	Table *TableResource `type:"structure"`
+}
+
+// String returns the string representation
+func (s TaggedTable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TaggedTable) GoString() string {
+	return s.String()
+}
+
+// SetLFTagOnDatabase sets the LFTagOnDatabase field's value.
+func (s *TaggedTable) SetLFTagOnDatabase(v []*LFTagPair) *TaggedTable {
+	s.LFTagOnDatabase = v
+	return s
+}
+
+// SetLFTagsOnColumns sets the LFTagsOnColumns field's value.
+func (s *TaggedTable) SetLFTagsOnColumns(v []*ColumnLFTag) *TaggedTable {
+	s.LFTagsOnColumns = v
+	return s
+}
+
+// SetLFTagsOnTable sets the LFTagsOnTable field's value.
+func (s *TaggedTable) SetLFTagsOnTable(v []*LFTagPair) *TaggedTable {
+	s.LFTagsOnTable = v
+	return s
+}
+
+// SetTable sets the Table field's value.
+func (s *TaggedTable) SetTable(v *TableResource) *TaggedTable {
+	s.Table = v
+	return s
+}
+
+type UpdateLFTagInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the Data Catalog. By default, the account ID. The Data
+	// Catalog is the persistent metadata store. It contains database definitions,
+	// table definitions, and other control information to manage your AWS Lake
+	// Formation environment.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The key-name for the tag for which to add or delete values.
+	//
+	// TagKey is a required field
+	TagKey *string `min:"1" type:"string" required:"true"`
+
+	// A list of tag values to add from the tag.
+	TagValuesToAdd []*string `min:"1" type:"list"`
+
+	// A list of tag values to delete from the tag.
+	TagValuesToDelete []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateLFTagInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLFTagInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLFTagInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLFTagInput"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.TagKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKey"))
+	}
+	if s.TagKey != nil && len(*s.TagKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKey", 1))
+	}
+	if s.TagValuesToAdd != nil && len(s.TagValuesToAdd) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValuesToAdd", 1))
+	}
+	if s.TagValuesToDelete != nil && len(s.TagValuesToDelete) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagValuesToDelete", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *UpdateLFTagInput) SetCatalogId(v string) *UpdateLFTagInput {
+	s.CatalogId = &v
+	return s
+}
+
+// SetTagKey sets the TagKey field's value.
+func (s *UpdateLFTagInput) SetTagKey(v string) *UpdateLFTagInput {
+	s.TagKey = &v
+	return s
+}
+
+// SetTagValuesToAdd sets the TagValuesToAdd field's value.
+func (s *UpdateLFTagInput) SetTagValuesToAdd(v []*string) *UpdateLFTagInput {
+	s.TagValuesToAdd = v
+	return s
+}
+
+// SetTagValuesToDelete sets the TagValuesToDelete field's value.
+func (s *UpdateLFTagInput) SetTagValuesToDelete(v []*string) *UpdateLFTagInput {
+	s.TagValuesToDelete = v
+	return s
+}
+
+type UpdateLFTagOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLFTagOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLFTagOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3850,6 +6464,18 @@ const (
 
 	// DataLakeResourceTypeDataLocation is a DataLakeResourceType enum value
 	DataLakeResourceTypeDataLocation = "DATA_LOCATION"
+
+	// DataLakeResourceTypeLfTag is a DataLakeResourceType enum value
+	DataLakeResourceTypeLfTag = "LF_TAG"
+
+	// DataLakeResourceTypeLfTagPolicy is a DataLakeResourceType enum value
+	DataLakeResourceTypeLfTagPolicy = "LF_TAG_POLICY"
+
+	// DataLakeResourceTypeLfTagPolicyDatabase is a DataLakeResourceType enum value
+	DataLakeResourceTypeLfTagPolicyDatabase = "LF_TAG_POLICY_DATABASE"
+
+	// DataLakeResourceTypeLfTagPolicyTable is a DataLakeResourceType enum value
+	DataLakeResourceTypeLfTagPolicyTable = "LF_TAG_POLICY_TABLE"
 )
 
 // DataLakeResourceType_Values returns all elements of the DataLakeResourceType enum
@@ -3859,6 +6485,10 @@ func DataLakeResourceType_Values() []string {
 		DataLakeResourceTypeDatabase,
 		DataLakeResourceTypeTable,
 		DataLakeResourceTypeDataLocation,
+		DataLakeResourceTypeLfTag,
+		DataLakeResourceTypeLfTagPolicy,
+		DataLakeResourceTypeLfTagPolicyDatabase,
+		DataLakeResourceTypeLfTagPolicyTable,
 	}
 }
 
@@ -3912,6 +6542,21 @@ const (
 
 	// PermissionDataLocationAccess is a Permission enum value
 	PermissionDataLocationAccess = "DATA_LOCATION_ACCESS"
+
+	// PermissionCreateTag is a Permission enum value
+	PermissionCreateTag = "CREATE_TAG"
+
+	// PermissionAlterTag is a Permission enum value
+	PermissionAlterTag = "ALTER_TAG"
+
+	// PermissionDeleteTag is a Permission enum value
+	PermissionDeleteTag = "DELETE_TAG"
+
+	// PermissionDescribeTag is a Permission enum value
+	PermissionDescribeTag = "DESCRIBE_TAG"
+
+	// PermissionAssociateTag is a Permission enum value
+	PermissionAssociateTag = "ASSOCIATE_TAG"
 )
 
 // Permission_Values returns all elements of the Permission enum
@@ -3927,5 +6572,42 @@ func Permission_Values() []string {
 		PermissionCreateDatabase,
 		PermissionCreateTable,
 		PermissionDataLocationAccess,
+		PermissionCreateTag,
+		PermissionAlterTag,
+		PermissionDeleteTag,
+		PermissionDescribeTag,
+		PermissionAssociateTag,
+	}
+}
+
+const (
+	// ResourceShareTypeForeign is a ResourceShareType enum value
+	ResourceShareTypeForeign = "FOREIGN"
+
+	// ResourceShareTypeAll is a ResourceShareType enum value
+	ResourceShareTypeAll = "ALL"
+)
+
+// ResourceShareType_Values returns all elements of the ResourceShareType enum
+func ResourceShareType_Values() []string {
+	return []string{
+		ResourceShareTypeForeign,
+		ResourceShareTypeAll,
+	}
+}
+
+const (
+	// ResourceTypeDatabase is a ResourceType enum value
+	ResourceTypeDatabase = "DATABASE"
+
+	// ResourceTypeTable is a ResourceType enum value
+	ResourceTypeTable = "TABLE"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeDatabase,
+		ResourceTypeTable,
 	}
 }
