@@ -755,6 +755,10 @@ func (c *LookoutMetrics) DescribeAlertRequest(input *DescribeAlertInput) (req *r
 //
 // Describes an alert.
 //
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1003,6 +1007,10 @@ func (c *LookoutMetrics) DescribeAnomalyDetectorRequest(input *DescribeAnomalyDe
 //
 // Describes a detector.
 //
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1097,6 +1105,10 @@ func (c *LookoutMetrics) DescribeMetricSetRequest(input *DescribeMetricSetInput)
 // DescribeMetricSet API operation for Amazon Lookout for Metrics.
 //
 // Describes a dataset.
+//
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1542,6 +1554,10 @@ func (c *LookoutMetrics) ListAlertsRequest(input *ListAlertsInput) (req *request
 //
 // Lists the alerts attached to a detector.
 //
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1694,6 +1710,10 @@ func (c *LookoutMetrics) ListAnomalyDetectorsRequest(input *ListAnomalyDetectors
 // ListAnomalyDetectors API operation for Amazon Lookout for Metrics.
 //
 // Lists the detectors in the current AWS Region.
+//
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2153,6 +2173,10 @@ func (c *LookoutMetrics) ListMetricSetsRequest(input *ListMetricSetsInput) (req 
 // ListMetricSets API operation for Amazon Lookout for Metrics.
 //
 // Lists the datasets in the current AWS Region.
+//
+// Amazon Lookout for Metrics API actions are eventually consistent. If you
+// do a read operation on a resource immediately after creating or modifying
+// it, use retries to allow time for the write operation to complete.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3589,7 +3613,7 @@ func (s *AnomalyGroupTimeSeriesFeedback) SetTimeSeriesId(v string) *AnomalyGroup
 type AppFlowConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the flow.
+	// name of the flow.
 	//
 	// FlowName is a required field
 	FlowName *string `type:"string" required:"true"`
@@ -6937,7 +6961,7 @@ func (s *S3SourceConfig) SetTemplatedPathList(v []*string) *S3SourceConfig {
 type SNSConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// THe ARN of the IAM role that has access to the target SNS topic.
+	// The ARN of the IAM role that has access to the target SNS topic.
 	//
 	// RoleArn is a required field
 	RoleArn *string `type:"string" required:"true"`

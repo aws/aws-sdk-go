@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Lake Formation.
 //    func myFunc(svc lakeformationiface.LakeFormationAPI) bool {
-//        // Make svc.BatchGrantPermissions request
+//        // Make svc.AddLFTagsToResource request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockLakeFormationClient struct {
 //        lakeformationiface.LakeFormationAPI
 //    }
-//    func (m *mockLakeFormationClient) BatchGrantPermissions(input *lakeformation.BatchGrantPermissionsInput) (*lakeformation.BatchGrantPermissionsOutput, error) {
+//    func (m *mockLakeFormationClient) AddLFTagsToResource(input *lakeformation.AddLFTagsToResourceInput) (*lakeformation.AddLFTagsToResourceOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type LakeFormationAPI interface {
+	AddLFTagsToResource(*lakeformation.AddLFTagsToResourceInput) (*lakeformation.AddLFTagsToResourceOutput, error)
+	AddLFTagsToResourceWithContext(aws.Context, *lakeformation.AddLFTagsToResourceInput, ...request.Option) (*lakeformation.AddLFTagsToResourceOutput, error)
+	AddLFTagsToResourceRequest(*lakeformation.AddLFTagsToResourceInput) (*request.Request, *lakeformation.AddLFTagsToResourceOutput)
+
 	BatchGrantPermissions(*lakeformation.BatchGrantPermissionsInput) (*lakeformation.BatchGrantPermissionsOutput, error)
 	BatchGrantPermissionsWithContext(aws.Context, *lakeformation.BatchGrantPermissionsInput, ...request.Option) (*lakeformation.BatchGrantPermissionsOutput, error)
 	BatchGrantPermissionsRequest(*lakeformation.BatchGrantPermissionsInput) (*request.Request, *lakeformation.BatchGrantPermissionsOutput)
@@ -67,6 +71,14 @@ type LakeFormationAPI interface {
 	BatchRevokePermissions(*lakeformation.BatchRevokePermissionsInput) (*lakeformation.BatchRevokePermissionsOutput, error)
 	BatchRevokePermissionsWithContext(aws.Context, *lakeformation.BatchRevokePermissionsInput, ...request.Option) (*lakeformation.BatchRevokePermissionsOutput, error)
 	BatchRevokePermissionsRequest(*lakeformation.BatchRevokePermissionsInput) (*request.Request, *lakeformation.BatchRevokePermissionsOutput)
+
+	CreateLFTag(*lakeformation.CreateLFTagInput) (*lakeformation.CreateLFTagOutput, error)
+	CreateLFTagWithContext(aws.Context, *lakeformation.CreateLFTagInput, ...request.Option) (*lakeformation.CreateLFTagOutput, error)
+	CreateLFTagRequest(*lakeformation.CreateLFTagInput) (*request.Request, *lakeformation.CreateLFTagOutput)
+
+	DeleteLFTag(*lakeformation.DeleteLFTagInput) (*lakeformation.DeleteLFTagOutput, error)
+	DeleteLFTagWithContext(aws.Context, *lakeformation.DeleteLFTagInput, ...request.Option) (*lakeformation.DeleteLFTagOutput, error)
+	DeleteLFTagRequest(*lakeformation.DeleteLFTagInput) (*request.Request, *lakeformation.DeleteLFTagOutput)
 
 	DeregisterResource(*lakeformation.DeregisterResourceInput) (*lakeformation.DeregisterResourceOutput, error)
 	DeregisterResourceWithContext(aws.Context, *lakeformation.DeregisterResourceInput, ...request.Option) (*lakeformation.DeregisterResourceOutput, error)
@@ -87,9 +99,21 @@ type LakeFormationAPI interface {
 	GetEffectivePermissionsForPathPages(*lakeformation.GetEffectivePermissionsForPathInput, func(*lakeformation.GetEffectivePermissionsForPathOutput, bool) bool) error
 	GetEffectivePermissionsForPathPagesWithContext(aws.Context, *lakeformation.GetEffectivePermissionsForPathInput, func(*lakeformation.GetEffectivePermissionsForPathOutput, bool) bool, ...request.Option) error
 
+	GetLFTag(*lakeformation.GetLFTagInput) (*lakeformation.GetLFTagOutput, error)
+	GetLFTagWithContext(aws.Context, *lakeformation.GetLFTagInput, ...request.Option) (*lakeformation.GetLFTagOutput, error)
+	GetLFTagRequest(*lakeformation.GetLFTagInput) (*request.Request, *lakeformation.GetLFTagOutput)
+
+	GetResourceLFTags(*lakeformation.GetResourceLFTagsInput) (*lakeformation.GetResourceLFTagsOutput, error)
+	GetResourceLFTagsWithContext(aws.Context, *lakeformation.GetResourceLFTagsInput, ...request.Option) (*lakeformation.GetResourceLFTagsOutput, error)
+	GetResourceLFTagsRequest(*lakeformation.GetResourceLFTagsInput) (*request.Request, *lakeformation.GetResourceLFTagsOutput)
+
 	GrantPermissions(*lakeformation.GrantPermissionsInput) (*lakeformation.GrantPermissionsOutput, error)
 	GrantPermissionsWithContext(aws.Context, *lakeformation.GrantPermissionsInput, ...request.Option) (*lakeformation.GrantPermissionsOutput, error)
 	GrantPermissionsRequest(*lakeformation.GrantPermissionsInput) (*request.Request, *lakeformation.GrantPermissionsOutput)
+
+	ListLFTags(*lakeformation.ListLFTagsInput) (*lakeformation.ListLFTagsOutput, error)
+	ListLFTagsWithContext(aws.Context, *lakeformation.ListLFTagsInput, ...request.Option) (*lakeformation.ListLFTagsOutput, error)
+	ListLFTagsRequest(*lakeformation.ListLFTagsInput) (*request.Request, *lakeformation.ListLFTagsOutput)
 
 	ListPermissions(*lakeformation.ListPermissionsInput) (*lakeformation.ListPermissionsOutput, error)
 	ListPermissionsWithContext(aws.Context, *lakeformation.ListPermissionsInput, ...request.Option) (*lakeformation.ListPermissionsOutput, error)
@@ -113,9 +137,25 @@ type LakeFormationAPI interface {
 	RegisterResourceWithContext(aws.Context, *lakeformation.RegisterResourceInput, ...request.Option) (*lakeformation.RegisterResourceOutput, error)
 	RegisterResourceRequest(*lakeformation.RegisterResourceInput) (*request.Request, *lakeformation.RegisterResourceOutput)
 
+	RemoveLFTagsFromResource(*lakeformation.RemoveLFTagsFromResourceInput) (*lakeformation.RemoveLFTagsFromResourceOutput, error)
+	RemoveLFTagsFromResourceWithContext(aws.Context, *lakeformation.RemoveLFTagsFromResourceInput, ...request.Option) (*lakeformation.RemoveLFTagsFromResourceOutput, error)
+	RemoveLFTagsFromResourceRequest(*lakeformation.RemoveLFTagsFromResourceInput) (*request.Request, *lakeformation.RemoveLFTagsFromResourceOutput)
+
 	RevokePermissions(*lakeformation.RevokePermissionsInput) (*lakeformation.RevokePermissionsOutput, error)
 	RevokePermissionsWithContext(aws.Context, *lakeformation.RevokePermissionsInput, ...request.Option) (*lakeformation.RevokePermissionsOutput, error)
 	RevokePermissionsRequest(*lakeformation.RevokePermissionsInput) (*request.Request, *lakeformation.RevokePermissionsOutput)
+
+	SearchDatabasesByLFTags(*lakeformation.SearchDatabasesByLFTagsInput) (*lakeformation.SearchDatabasesByLFTagsOutput, error)
+	SearchDatabasesByLFTagsWithContext(aws.Context, *lakeformation.SearchDatabasesByLFTagsInput, ...request.Option) (*lakeformation.SearchDatabasesByLFTagsOutput, error)
+	SearchDatabasesByLFTagsRequest(*lakeformation.SearchDatabasesByLFTagsInput) (*request.Request, *lakeformation.SearchDatabasesByLFTagsOutput)
+
+	SearchTablesByLFTags(*lakeformation.SearchTablesByLFTagsInput) (*lakeformation.SearchTablesByLFTagsOutput, error)
+	SearchTablesByLFTagsWithContext(aws.Context, *lakeformation.SearchTablesByLFTagsInput, ...request.Option) (*lakeformation.SearchTablesByLFTagsOutput, error)
+	SearchTablesByLFTagsRequest(*lakeformation.SearchTablesByLFTagsInput) (*request.Request, *lakeformation.SearchTablesByLFTagsOutput)
+
+	UpdateLFTag(*lakeformation.UpdateLFTagInput) (*lakeformation.UpdateLFTagOutput, error)
+	UpdateLFTagWithContext(aws.Context, *lakeformation.UpdateLFTagInput, ...request.Option) (*lakeformation.UpdateLFTagOutput, error)
+	UpdateLFTagRequest(*lakeformation.UpdateLFTagInput) (*request.Request, *lakeformation.UpdateLFTagOutput)
 
 	UpdateResource(*lakeformation.UpdateResourceInput) (*lakeformation.UpdateResourceOutput, error)
 	UpdateResourceWithContext(aws.Context, *lakeformation.UpdateResourceInput, ...request.Option) (*lakeformation.UpdateResourceOutput, error)
