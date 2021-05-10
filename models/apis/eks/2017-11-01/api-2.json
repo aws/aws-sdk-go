@@ -880,6 +880,7 @@
         "remoteAccess":{"shape":"RemoteAccessConfig"},
         "nodeRole":{"shape":"String"},
         "labels":{"shape":"labelsMap"},
+        "taints":{"shape":"taintsList"},
         "tags":{"shape":"TagMap"},
         "clientRequestToken":{
           "shape":"String",
@@ -1641,6 +1642,7 @@
         "amiType":{"shape":"AMITypes"},
         "nodeRole":{"shape":"String"},
         "labels":{"shape":"labelsMap"},
+        "taints":{"shape":"taintsList"},
         "resources":{"shape":"NodegroupResources"},
         "diskSize":{"shape":"BoxedInteger"},
         "health":{"shape":"NodegroupHealth"},
@@ -1879,6 +1881,22 @@
       "type":"string",
       "max":256
     },
+    "Taint":{
+      "type":"structure",
+      "members":{
+        "key":{"shape":"taintKey"},
+        "value":{"shape":"taintValue"},
+        "effect":{"shape":"TaintEffect"}
+      }
+    },
+    "TaintEffect":{
+      "type":"string",
+      "enum":[
+        "NO_SCHEDULE",
+        "NO_EXECUTE",
+        "PREFER_NO_SCHEDULE"
+      ]
+    },
     "Timestamp":{"type":"timestamp"},
     "UnsupportedAvailabilityZoneException":{
       "type":"structure",
@@ -2031,6 +2049,7 @@
           "locationName":"nodegroupName"
         },
         "labels":{"shape":"UpdateLabelsPayload"},
+        "taints":{"shape":"UpdateTaintsPayload"},
         "scalingConfig":{"shape":"NodegroupScalingConfig"},
         "clientRequestToken":{
           "shape":"String",
@@ -2095,6 +2114,8 @@
         "DesiredSize",
         "LabelsToAdd",
         "LabelsToRemove",
+        "TaintsToAdd",
+        "TaintsToRemove",
         "MaxSize",
         "MinSize",
         "ReleaseVersion",
@@ -2120,6 +2141,13 @@
         "Cancelled",
         "Successful"
       ]
+    },
+    "UpdateTaintsPayload":{
+      "type":"structure",
+      "members":{
+        "addOrUpdateTaints":{"shape":"taintsList"},
+        "removeTaints":{"shape":"taintsList"}
+      }
     },
     "UpdateType":{
       "type":"string",
@@ -2176,7 +2204,7 @@
     },
     "labelValue":{
       "type":"string",
-      "max":253,
+      "max":63,
       "min":1
     },
     "labelsKeyList":{
@@ -2202,6 +2230,20 @@
       "type":"string",
       "max":253,
       "min":1
+    },
+    "taintKey":{
+      "type":"string",
+      "max":63,
+      "min":1
+    },
+    "taintValue":{
+      "type":"string",
+      "max":63,
+      "min":0
+    },
+    "taintsList":{
+      "type":"list",
+      "member":{"shape":"Taint"}
     }
   }
 }

@@ -136,37 +136,64 @@ type ConfigServiceAPI interface {
 	DescribeAggregateComplianceByConfigRulesWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConfigRulesInput, ...request.Option) (*configservice.DescribeAggregateComplianceByConfigRulesOutput, error)
 	DescribeAggregateComplianceByConfigRulesRequest(*configservice.DescribeAggregateComplianceByConfigRulesInput) (*request.Request, *configservice.DescribeAggregateComplianceByConfigRulesOutput)
 
+	DescribeAggregateComplianceByConfigRulesPages(*configservice.DescribeAggregateComplianceByConfigRulesInput, func(*configservice.DescribeAggregateComplianceByConfigRulesOutput, bool) bool) error
+	DescribeAggregateComplianceByConfigRulesPagesWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConfigRulesInput, func(*configservice.DescribeAggregateComplianceByConfigRulesOutput, bool) bool, ...request.Option) error
+
 	DescribeAggregateComplianceByConformancePacks(*configservice.DescribeAggregateComplianceByConformancePacksInput) (*configservice.DescribeAggregateComplianceByConformancePacksOutput, error)
 	DescribeAggregateComplianceByConformancePacksWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConformancePacksInput, ...request.Option) (*configservice.DescribeAggregateComplianceByConformancePacksOutput, error)
 	DescribeAggregateComplianceByConformancePacksRequest(*configservice.DescribeAggregateComplianceByConformancePacksInput) (*request.Request, *configservice.DescribeAggregateComplianceByConformancePacksOutput)
+
+	DescribeAggregateComplianceByConformancePacksPages(*configservice.DescribeAggregateComplianceByConformancePacksInput, func(*configservice.DescribeAggregateComplianceByConformancePacksOutput, bool) bool) error
+	DescribeAggregateComplianceByConformancePacksPagesWithContext(aws.Context, *configservice.DescribeAggregateComplianceByConformancePacksInput, func(*configservice.DescribeAggregateComplianceByConformancePacksOutput, bool) bool, ...request.Option) error
 
 	DescribeAggregationAuthorizations(*configservice.DescribeAggregationAuthorizationsInput) (*configservice.DescribeAggregationAuthorizationsOutput, error)
 	DescribeAggregationAuthorizationsWithContext(aws.Context, *configservice.DescribeAggregationAuthorizationsInput, ...request.Option) (*configservice.DescribeAggregationAuthorizationsOutput, error)
 	DescribeAggregationAuthorizationsRequest(*configservice.DescribeAggregationAuthorizationsInput) (*request.Request, *configservice.DescribeAggregationAuthorizationsOutput)
 
+	DescribeAggregationAuthorizationsPages(*configservice.DescribeAggregationAuthorizationsInput, func(*configservice.DescribeAggregationAuthorizationsOutput, bool) bool) error
+	DescribeAggregationAuthorizationsPagesWithContext(aws.Context, *configservice.DescribeAggregationAuthorizationsInput, func(*configservice.DescribeAggregationAuthorizationsOutput, bool) bool, ...request.Option) error
+
 	DescribeComplianceByConfigRule(*configservice.DescribeComplianceByConfigRuleInput) (*configservice.DescribeComplianceByConfigRuleOutput, error)
 	DescribeComplianceByConfigRuleWithContext(aws.Context, *configservice.DescribeComplianceByConfigRuleInput, ...request.Option) (*configservice.DescribeComplianceByConfigRuleOutput, error)
 	DescribeComplianceByConfigRuleRequest(*configservice.DescribeComplianceByConfigRuleInput) (*request.Request, *configservice.DescribeComplianceByConfigRuleOutput)
+
+	DescribeComplianceByConfigRulePages(*configservice.DescribeComplianceByConfigRuleInput, func(*configservice.DescribeComplianceByConfigRuleOutput, bool) bool) error
+	DescribeComplianceByConfigRulePagesWithContext(aws.Context, *configservice.DescribeComplianceByConfigRuleInput, func(*configservice.DescribeComplianceByConfigRuleOutput, bool) bool, ...request.Option) error
 
 	DescribeComplianceByResource(*configservice.DescribeComplianceByResourceInput) (*configservice.DescribeComplianceByResourceOutput, error)
 	DescribeComplianceByResourceWithContext(aws.Context, *configservice.DescribeComplianceByResourceInput, ...request.Option) (*configservice.DescribeComplianceByResourceOutput, error)
 	DescribeComplianceByResourceRequest(*configservice.DescribeComplianceByResourceInput) (*request.Request, *configservice.DescribeComplianceByResourceOutput)
 
+	DescribeComplianceByResourcePages(*configservice.DescribeComplianceByResourceInput, func(*configservice.DescribeComplianceByResourceOutput, bool) bool) error
+	DescribeComplianceByResourcePagesWithContext(aws.Context, *configservice.DescribeComplianceByResourceInput, func(*configservice.DescribeComplianceByResourceOutput, bool) bool, ...request.Option) error
+
 	DescribeConfigRuleEvaluationStatus(*configservice.DescribeConfigRuleEvaluationStatusInput) (*configservice.DescribeConfigRuleEvaluationStatusOutput, error)
 	DescribeConfigRuleEvaluationStatusWithContext(aws.Context, *configservice.DescribeConfigRuleEvaluationStatusInput, ...request.Option) (*configservice.DescribeConfigRuleEvaluationStatusOutput, error)
 	DescribeConfigRuleEvaluationStatusRequest(*configservice.DescribeConfigRuleEvaluationStatusInput) (*request.Request, *configservice.DescribeConfigRuleEvaluationStatusOutput)
+
+	DescribeConfigRuleEvaluationStatusPages(*configservice.DescribeConfigRuleEvaluationStatusInput, func(*configservice.DescribeConfigRuleEvaluationStatusOutput, bool) bool) error
+	DescribeConfigRuleEvaluationStatusPagesWithContext(aws.Context, *configservice.DescribeConfigRuleEvaluationStatusInput, func(*configservice.DescribeConfigRuleEvaluationStatusOutput, bool) bool, ...request.Option) error
 
 	DescribeConfigRules(*configservice.DescribeConfigRulesInput) (*configservice.DescribeConfigRulesOutput, error)
 	DescribeConfigRulesWithContext(aws.Context, *configservice.DescribeConfigRulesInput, ...request.Option) (*configservice.DescribeConfigRulesOutput, error)
 	DescribeConfigRulesRequest(*configservice.DescribeConfigRulesInput) (*request.Request, *configservice.DescribeConfigRulesOutput)
 
+	DescribeConfigRulesPages(*configservice.DescribeConfigRulesInput, func(*configservice.DescribeConfigRulesOutput, bool) bool) error
+	DescribeConfigRulesPagesWithContext(aws.Context, *configservice.DescribeConfigRulesInput, func(*configservice.DescribeConfigRulesOutput, bool) bool, ...request.Option) error
+
 	DescribeConfigurationAggregatorSourcesStatus(*configservice.DescribeConfigurationAggregatorSourcesStatusInput) (*configservice.DescribeConfigurationAggregatorSourcesStatusOutput, error)
 	DescribeConfigurationAggregatorSourcesStatusWithContext(aws.Context, *configservice.DescribeConfigurationAggregatorSourcesStatusInput, ...request.Option) (*configservice.DescribeConfigurationAggregatorSourcesStatusOutput, error)
 	DescribeConfigurationAggregatorSourcesStatusRequest(*configservice.DescribeConfigurationAggregatorSourcesStatusInput) (*request.Request, *configservice.DescribeConfigurationAggregatorSourcesStatusOutput)
 
+	DescribeConfigurationAggregatorSourcesStatusPages(*configservice.DescribeConfigurationAggregatorSourcesStatusInput, func(*configservice.DescribeConfigurationAggregatorSourcesStatusOutput, bool) bool) error
+	DescribeConfigurationAggregatorSourcesStatusPagesWithContext(aws.Context, *configservice.DescribeConfigurationAggregatorSourcesStatusInput, func(*configservice.DescribeConfigurationAggregatorSourcesStatusOutput, bool) bool, ...request.Option) error
+
 	DescribeConfigurationAggregators(*configservice.DescribeConfigurationAggregatorsInput) (*configservice.DescribeConfigurationAggregatorsOutput, error)
 	DescribeConfigurationAggregatorsWithContext(aws.Context, *configservice.DescribeConfigurationAggregatorsInput, ...request.Option) (*configservice.DescribeConfigurationAggregatorsOutput, error)
 	DescribeConfigurationAggregatorsRequest(*configservice.DescribeConfigurationAggregatorsInput) (*request.Request, *configservice.DescribeConfigurationAggregatorsOutput)
+
+	DescribeConfigurationAggregatorsPages(*configservice.DescribeConfigurationAggregatorsInput, func(*configservice.DescribeConfigurationAggregatorsOutput, bool) bool) error
+	DescribeConfigurationAggregatorsPagesWithContext(aws.Context, *configservice.DescribeConfigurationAggregatorsInput, func(*configservice.DescribeConfigurationAggregatorsOutput, bool) bool, ...request.Option) error
 
 	DescribeConfigurationRecorderStatus(*configservice.DescribeConfigurationRecorderStatusInput) (*configservice.DescribeConfigurationRecorderStatusOutput, error)
 	DescribeConfigurationRecorderStatusWithContext(aws.Context, *configservice.DescribeConfigurationRecorderStatusInput, ...request.Option) (*configservice.DescribeConfigurationRecorderStatusOutput, error)
@@ -180,13 +207,22 @@ type ConfigServiceAPI interface {
 	DescribeConformancePackComplianceWithContext(aws.Context, *configservice.DescribeConformancePackComplianceInput, ...request.Option) (*configservice.DescribeConformancePackComplianceOutput, error)
 	DescribeConformancePackComplianceRequest(*configservice.DescribeConformancePackComplianceInput) (*request.Request, *configservice.DescribeConformancePackComplianceOutput)
 
+	DescribeConformancePackCompliancePages(*configservice.DescribeConformancePackComplianceInput, func(*configservice.DescribeConformancePackComplianceOutput, bool) bool) error
+	DescribeConformancePackCompliancePagesWithContext(aws.Context, *configservice.DescribeConformancePackComplianceInput, func(*configservice.DescribeConformancePackComplianceOutput, bool) bool, ...request.Option) error
+
 	DescribeConformancePackStatus(*configservice.DescribeConformancePackStatusInput) (*configservice.DescribeConformancePackStatusOutput, error)
 	DescribeConformancePackStatusWithContext(aws.Context, *configservice.DescribeConformancePackStatusInput, ...request.Option) (*configservice.DescribeConformancePackStatusOutput, error)
 	DescribeConformancePackStatusRequest(*configservice.DescribeConformancePackStatusInput) (*request.Request, *configservice.DescribeConformancePackStatusOutput)
 
+	DescribeConformancePackStatusPages(*configservice.DescribeConformancePackStatusInput, func(*configservice.DescribeConformancePackStatusOutput, bool) bool) error
+	DescribeConformancePackStatusPagesWithContext(aws.Context, *configservice.DescribeConformancePackStatusInput, func(*configservice.DescribeConformancePackStatusOutput, bool) bool, ...request.Option) error
+
 	DescribeConformancePacks(*configservice.DescribeConformancePacksInput) (*configservice.DescribeConformancePacksOutput, error)
 	DescribeConformancePacksWithContext(aws.Context, *configservice.DescribeConformancePacksInput, ...request.Option) (*configservice.DescribeConformancePacksOutput, error)
 	DescribeConformancePacksRequest(*configservice.DescribeConformancePacksInput) (*request.Request, *configservice.DescribeConformancePacksOutput)
+
+	DescribeConformancePacksPages(*configservice.DescribeConformancePacksInput, func(*configservice.DescribeConformancePacksOutput, bool) bool) error
+	DescribeConformancePacksPagesWithContext(aws.Context, *configservice.DescribeConformancePacksInput, func(*configservice.DescribeConformancePacksOutput, bool) bool, ...request.Option) error
 
 	DescribeDeliveryChannelStatus(*configservice.DescribeDeliveryChannelStatusInput) (*configservice.DescribeDeliveryChannelStatusOutput, error)
 	DescribeDeliveryChannelStatusWithContext(aws.Context, *configservice.DescribeDeliveryChannelStatusInput, ...request.Option) (*configservice.DescribeDeliveryChannelStatusOutput, error)
@@ -200,21 +236,36 @@ type ConfigServiceAPI interface {
 	DescribeOrganizationConfigRuleStatusesWithContext(aws.Context, *configservice.DescribeOrganizationConfigRuleStatusesInput, ...request.Option) (*configservice.DescribeOrganizationConfigRuleStatusesOutput, error)
 	DescribeOrganizationConfigRuleStatusesRequest(*configservice.DescribeOrganizationConfigRuleStatusesInput) (*request.Request, *configservice.DescribeOrganizationConfigRuleStatusesOutput)
 
+	DescribeOrganizationConfigRuleStatusesPages(*configservice.DescribeOrganizationConfigRuleStatusesInput, func(*configservice.DescribeOrganizationConfigRuleStatusesOutput, bool) bool) error
+	DescribeOrganizationConfigRuleStatusesPagesWithContext(aws.Context, *configservice.DescribeOrganizationConfigRuleStatusesInput, func(*configservice.DescribeOrganizationConfigRuleStatusesOutput, bool) bool, ...request.Option) error
+
 	DescribeOrganizationConfigRules(*configservice.DescribeOrganizationConfigRulesInput) (*configservice.DescribeOrganizationConfigRulesOutput, error)
 	DescribeOrganizationConfigRulesWithContext(aws.Context, *configservice.DescribeOrganizationConfigRulesInput, ...request.Option) (*configservice.DescribeOrganizationConfigRulesOutput, error)
 	DescribeOrganizationConfigRulesRequest(*configservice.DescribeOrganizationConfigRulesInput) (*request.Request, *configservice.DescribeOrganizationConfigRulesOutput)
+
+	DescribeOrganizationConfigRulesPages(*configservice.DescribeOrganizationConfigRulesInput, func(*configservice.DescribeOrganizationConfigRulesOutput, bool) bool) error
+	DescribeOrganizationConfigRulesPagesWithContext(aws.Context, *configservice.DescribeOrganizationConfigRulesInput, func(*configservice.DescribeOrganizationConfigRulesOutput, bool) bool, ...request.Option) error
 
 	DescribeOrganizationConformancePackStatuses(*configservice.DescribeOrganizationConformancePackStatusesInput) (*configservice.DescribeOrganizationConformancePackStatusesOutput, error)
 	DescribeOrganizationConformancePackStatusesWithContext(aws.Context, *configservice.DescribeOrganizationConformancePackStatusesInput, ...request.Option) (*configservice.DescribeOrganizationConformancePackStatusesOutput, error)
 	DescribeOrganizationConformancePackStatusesRequest(*configservice.DescribeOrganizationConformancePackStatusesInput) (*request.Request, *configservice.DescribeOrganizationConformancePackStatusesOutput)
 
+	DescribeOrganizationConformancePackStatusesPages(*configservice.DescribeOrganizationConformancePackStatusesInput, func(*configservice.DescribeOrganizationConformancePackStatusesOutput, bool) bool) error
+	DescribeOrganizationConformancePackStatusesPagesWithContext(aws.Context, *configservice.DescribeOrganizationConformancePackStatusesInput, func(*configservice.DescribeOrganizationConformancePackStatusesOutput, bool) bool, ...request.Option) error
+
 	DescribeOrganizationConformancePacks(*configservice.DescribeOrganizationConformancePacksInput) (*configservice.DescribeOrganizationConformancePacksOutput, error)
 	DescribeOrganizationConformancePacksWithContext(aws.Context, *configservice.DescribeOrganizationConformancePacksInput, ...request.Option) (*configservice.DescribeOrganizationConformancePacksOutput, error)
 	DescribeOrganizationConformancePacksRequest(*configservice.DescribeOrganizationConformancePacksInput) (*request.Request, *configservice.DescribeOrganizationConformancePacksOutput)
 
+	DescribeOrganizationConformancePacksPages(*configservice.DescribeOrganizationConformancePacksInput, func(*configservice.DescribeOrganizationConformancePacksOutput, bool) bool) error
+	DescribeOrganizationConformancePacksPagesWithContext(aws.Context, *configservice.DescribeOrganizationConformancePacksInput, func(*configservice.DescribeOrganizationConformancePacksOutput, bool) bool, ...request.Option) error
+
 	DescribePendingAggregationRequests(*configservice.DescribePendingAggregationRequestsInput) (*configservice.DescribePendingAggregationRequestsOutput, error)
 	DescribePendingAggregationRequestsWithContext(aws.Context, *configservice.DescribePendingAggregationRequestsInput, ...request.Option) (*configservice.DescribePendingAggregationRequestsOutput, error)
 	DescribePendingAggregationRequestsRequest(*configservice.DescribePendingAggregationRequestsInput) (*request.Request, *configservice.DescribePendingAggregationRequestsOutput)
+
+	DescribePendingAggregationRequestsPages(*configservice.DescribePendingAggregationRequestsInput, func(*configservice.DescribePendingAggregationRequestsOutput, bool) bool) error
+	DescribePendingAggregationRequestsPagesWithContext(aws.Context, *configservice.DescribePendingAggregationRequestsInput, func(*configservice.DescribePendingAggregationRequestsOutput, bool) bool, ...request.Option) error
 
 	DescribeRemediationConfigurations(*configservice.DescribeRemediationConfigurationsInput) (*configservice.DescribeRemediationConfigurationsOutput, error)
 	DescribeRemediationConfigurationsWithContext(aws.Context, *configservice.DescribeRemediationConfigurationsInput, ...request.Option) (*configservice.DescribeRemediationConfigurationsOutput, error)
@@ -238,21 +289,36 @@ type ConfigServiceAPI interface {
 	DescribeRetentionConfigurationsWithContext(aws.Context, *configservice.DescribeRetentionConfigurationsInput, ...request.Option) (*configservice.DescribeRetentionConfigurationsOutput, error)
 	DescribeRetentionConfigurationsRequest(*configservice.DescribeRetentionConfigurationsInput) (*request.Request, *configservice.DescribeRetentionConfigurationsOutput)
 
+	DescribeRetentionConfigurationsPages(*configservice.DescribeRetentionConfigurationsInput, func(*configservice.DescribeRetentionConfigurationsOutput, bool) bool) error
+	DescribeRetentionConfigurationsPagesWithContext(aws.Context, *configservice.DescribeRetentionConfigurationsInput, func(*configservice.DescribeRetentionConfigurationsOutput, bool) bool, ...request.Option) error
+
 	GetAggregateComplianceDetailsByConfigRule(*configservice.GetAggregateComplianceDetailsByConfigRuleInput) (*configservice.GetAggregateComplianceDetailsByConfigRuleOutput, error)
 	GetAggregateComplianceDetailsByConfigRuleWithContext(aws.Context, *configservice.GetAggregateComplianceDetailsByConfigRuleInput, ...request.Option) (*configservice.GetAggregateComplianceDetailsByConfigRuleOutput, error)
 	GetAggregateComplianceDetailsByConfigRuleRequest(*configservice.GetAggregateComplianceDetailsByConfigRuleInput) (*request.Request, *configservice.GetAggregateComplianceDetailsByConfigRuleOutput)
+
+	GetAggregateComplianceDetailsByConfigRulePages(*configservice.GetAggregateComplianceDetailsByConfigRuleInput, func(*configservice.GetAggregateComplianceDetailsByConfigRuleOutput, bool) bool) error
+	GetAggregateComplianceDetailsByConfigRulePagesWithContext(aws.Context, *configservice.GetAggregateComplianceDetailsByConfigRuleInput, func(*configservice.GetAggregateComplianceDetailsByConfigRuleOutput, bool) bool, ...request.Option) error
 
 	GetAggregateConfigRuleComplianceSummary(*configservice.GetAggregateConfigRuleComplianceSummaryInput) (*configservice.GetAggregateConfigRuleComplianceSummaryOutput, error)
 	GetAggregateConfigRuleComplianceSummaryWithContext(aws.Context, *configservice.GetAggregateConfigRuleComplianceSummaryInput, ...request.Option) (*configservice.GetAggregateConfigRuleComplianceSummaryOutput, error)
 	GetAggregateConfigRuleComplianceSummaryRequest(*configservice.GetAggregateConfigRuleComplianceSummaryInput) (*request.Request, *configservice.GetAggregateConfigRuleComplianceSummaryOutput)
 
+	GetAggregateConfigRuleComplianceSummaryPages(*configservice.GetAggregateConfigRuleComplianceSummaryInput, func(*configservice.GetAggregateConfigRuleComplianceSummaryOutput, bool) bool) error
+	GetAggregateConfigRuleComplianceSummaryPagesWithContext(aws.Context, *configservice.GetAggregateConfigRuleComplianceSummaryInput, func(*configservice.GetAggregateConfigRuleComplianceSummaryOutput, bool) bool, ...request.Option) error
+
 	GetAggregateConformancePackComplianceSummary(*configservice.GetAggregateConformancePackComplianceSummaryInput) (*configservice.GetAggregateConformancePackComplianceSummaryOutput, error)
 	GetAggregateConformancePackComplianceSummaryWithContext(aws.Context, *configservice.GetAggregateConformancePackComplianceSummaryInput, ...request.Option) (*configservice.GetAggregateConformancePackComplianceSummaryOutput, error)
 	GetAggregateConformancePackComplianceSummaryRequest(*configservice.GetAggregateConformancePackComplianceSummaryInput) (*request.Request, *configservice.GetAggregateConformancePackComplianceSummaryOutput)
 
+	GetAggregateConformancePackComplianceSummaryPages(*configservice.GetAggregateConformancePackComplianceSummaryInput, func(*configservice.GetAggregateConformancePackComplianceSummaryOutput, bool) bool) error
+	GetAggregateConformancePackComplianceSummaryPagesWithContext(aws.Context, *configservice.GetAggregateConformancePackComplianceSummaryInput, func(*configservice.GetAggregateConformancePackComplianceSummaryOutput, bool) bool, ...request.Option) error
+
 	GetAggregateDiscoveredResourceCounts(*configservice.GetAggregateDiscoveredResourceCountsInput) (*configservice.GetAggregateDiscoveredResourceCountsOutput, error)
 	GetAggregateDiscoveredResourceCountsWithContext(aws.Context, *configservice.GetAggregateDiscoveredResourceCountsInput, ...request.Option) (*configservice.GetAggregateDiscoveredResourceCountsOutput, error)
 	GetAggregateDiscoveredResourceCountsRequest(*configservice.GetAggregateDiscoveredResourceCountsInput) (*request.Request, *configservice.GetAggregateDiscoveredResourceCountsOutput)
+
+	GetAggregateDiscoveredResourceCountsPages(*configservice.GetAggregateDiscoveredResourceCountsInput, func(*configservice.GetAggregateDiscoveredResourceCountsOutput, bool) bool) error
+	GetAggregateDiscoveredResourceCountsPagesWithContext(aws.Context, *configservice.GetAggregateDiscoveredResourceCountsInput, func(*configservice.GetAggregateDiscoveredResourceCountsOutput, bool) bool, ...request.Option) error
 
 	GetAggregateResourceConfig(*configservice.GetAggregateResourceConfigInput) (*configservice.GetAggregateResourceConfigOutput, error)
 	GetAggregateResourceConfigWithContext(aws.Context, *configservice.GetAggregateResourceConfigInput, ...request.Option) (*configservice.GetAggregateResourceConfigOutput, error)
@@ -262,9 +328,15 @@ type ConfigServiceAPI interface {
 	GetComplianceDetailsByConfigRuleWithContext(aws.Context, *configservice.GetComplianceDetailsByConfigRuleInput, ...request.Option) (*configservice.GetComplianceDetailsByConfigRuleOutput, error)
 	GetComplianceDetailsByConfigRuleRequest(*configservice.GetComplianceDetailsByConfigRuleInput) (*request.Request, *configservice.GetComplianceDetailsByConfigRuleOutput)
 
+	GetComplianceDetailsByConfigRulePages(*configservice.GetComplianceDetailsByConfigRuleInput, func(*configservice.GetComplianceDetailsByConfigRuleOutput, bool) bool) error
+	GetComplianceDetailsByConfigRulePagesWithContext(aws.Context, *configservice.GetComplianceDetailsByConfigRuleInput, func(*configservice.GetComplianceDetailsByConfigRuleOutput, bool) bool, ...request.Option) error
+
 	GetComplianceDetailsByResource(*configservice.GetComplianceDetailsByResourceInput) (*configservice.GetComplianceDetailsByResourceOutput, error)
 	GetComplianceDetailsByResourceWithContext(aws.Context, *configservice.GetComplianceDetailsByResourceInput, ...request.Option) (*configservice.GetComplianceDetailsByResourceOutput, error)
 	GetComplianceDetailsByResourceRequest(*configservice.GetComplianceDetailsByResourceInput) (*request.Request, *configservice.GetComplianceDetailsByResourceOutput)
+
+	GetComplianceDetailsByResourcePages(*configservice.GetComplianceDetailsByResourceInput, func(*configservice.GetComplianceDetailsByResourceOutput, bool) bool) error
+	GetComplianceDetailsByResourcePagesWithContext(aws.Context, *configservice.GetComplianceDetailsByResourceInput, func(*configservice.GetComplianceDetailsByResourceOutput, bool) bool, ...request.Option) error
 
 	GetComplianceSummaryByConfigRule(*configservice.GetComplianceSummaryByConfigRuleInput) (*configservice.GetComplianceSummaryByConfigRuleOutput, error)
 	GetComplianceSummaryByConfigRuleWithContext(aws.Context, *configservice.GetComplianceSummaryByConfigRuleInput, ...request.Option) (*configservice.GetComplianceSummaryByConfigRuleOutput, error)
@@ -278,21 +350,36 @@ type ConfigServiceAPI interface {
 	GetConformancePackComplianceDetailsWithContext(aws.Context, *configservice.GetConformancePackComplianceDetailsInput, ...request.Option) (*configservice.GetConformancePackComplianceDetailsOutput, error)
 	GetConformancePackComplianceDetailsRequest(*configservice.GetConformancePackComplianceDetailsInput) (*request.Request, *configservice.GetConformancePackComplianceDetailsOutput)
 
+	GetConformancePackComplianceDetailsPages(*configservice.GetConformancePackComplianceDetailsInput, func(*configservice.GetConformancePackComplianceDetailsOutput, bool) bool) error
+	GetConformancePackComplianceDetailsPagesWithContext(aws.Context, *configservice.GetConformancePackComplianceDetailsInput, func(*configservice.GetConformancePackComplianceDetailsOutput, bool) bool, ...request.Option) error
+
 	GetConformancePackComplianceSummary(*configservice.GetConformancePackComplianceSummaryInput) (*configservice.GetConformancePackComplianceSummaryOutput, error)
 	GetConformancePackComplianceSummaryWithContext(aws.Context, *configservice.GetConformancePackComplianceSummaryInput, ...request.Option) (*configservice.GetConformancePackComplianceSummaryOutput, error)
 	GetConformancePackComplianceSummaryRequest(*configservice.GetConformancePackComplianceSummaryInput) (*request.Request, *configservice.GetConformancePackComplianceSummaryOutput)
+
+	GetConformancePackComplianceSummaryPages(*configservice.GetConformancePackComplianceSummaryInput, func(*configservice.GetConformancePackComplianceSummaryOutput, bool) bool) error
+	GetConformancePackComplianceSummaryPagesWithContext(aws.Context, *configservice.GetConformancePackComplianceSummaryInput, func(*configservice.GetConformancePackComplianceSummaryOutput, bool) bool, ...request.Option) error
 
 	GetDiscoveredResourceCounts(*configservice.GetDiscoveredResourceCountsInput) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsWithContext(aws.Context, *configservice.GetDiscoveredResourceCountsInput, ...request.Option) (*configservice.GetDiscoveredResourceCountsOutput, error)
 	GetDiscoveredResourceCountsRequest(*configservice.GetDiscoveredResourceCountsInput) (*request.Request, *configservice.GetDiscoveredResourceCountsOutput)
 
+	GetDiscoveredResourceCountsPages(*configservice.GetDiscoveredResourceCountsInput, func(*configservice.GetDiscoveredResourceCountsOutput, bool) bool) error
+	GetDiscoveredResourceCountsPagesWithContext(aws.Context, *configservice.GetDiscoveredResourceCountsInput, func(*configservice.GetDiscoveredResourceCountsOutput, bool) bool, ...request.Option) error
+
 	GetOrganizationConfigRuleDetailedStatus(*configservice.GetOrganizationConfigRuleDetailedStatusInput) (*configservice.GetOrganizationConfigRuleDetailedStatusOutput, error)
 	GetOrganizationConfigRuleDetailedStatusWithContext(aws.Context, *configservice.GetOrganizationConfigRuleDetailedStatusInput, ...request.Option) (*configservice.GetOrganizationConfigRuleDetailedStatusOutput, error)
 	GetOrganizationConfigRuleDetailedStatusRequest(*configservice.GetOrganizationConfigRuleDetailedStatusInput) (*request.Request, *configservice.GetOrganizationConfigRuleDetailedStatusOutput)
 
+	GetOrganizationConfigRuleDetailedStatusPages(*configservice.GetOrganizationConfigRuleDetailedStatusInput, func(*configservice.GetOrganizationConfigRuleDetailedStatusOutput, bool) bool) error
+	GetOrganizationConfigRuleDetailedStatusPagesWithContext(aws.Context, *configservice.GetOrganizationConfigRuleDetailedStatusInput, func(*configservice.GetOrganizationConfigRuleDetailedStatusOutput, bool) bool, ...request.Option) error
+
 	GetOrganizationConformancePackDetailedStatus(*configservice.GetOrganizationConformancePackDetailedStatusInput) (*configservice.GetOrganizationConformancePackDetailedStatusOutput, error)
 	GetOrganizationConformancePackDetailedStatusWithContext(aws.Context, *configservice.GetOrganizationConformancePackDetailedStatusInput, ...request.Option) (*configservice.GetOrganizationConformancePackDetailedStatusOutput, error)
 	GetOrganizationConformancePackDetailedStatusRequest(*configservice.GetOrganizationConformancePackDetailedStatusInput) (*request.Request, *configservice.GetOrganizationConformancePackDetailedStatusOutput)
+
+	GetOrganizationConformancePackDetailedStatusPages(*configservice.GetOrganizationConformancePackDetailedStatusInput, func(*configservice.GetOrganizationConformancePackDetailedStatusOutput, bool) bool) error
+	GetOrganizationConformancePackDetailedStatusPagesWithContext(aws.Context, *configservice.GetOrganizationConformancePackDetailedStatusInput, func(*configservice.GetOrganizationConformancePackDetailedStatusOutput, bool) bool, ...request.Option) error
 
 	GetResourceConfigHistory(*configservice.GetResourceConfigHistoryInput) (*configservice.GetResourceConfigHistoryOutput, error)
 	GetResourceConfigHistoryWithContext(aws.Context, *configservice.GetResourceConfigHistoryInput, ...request.Option) (*configservice.GetResourceConfigHistoryOutput, error)
@@ -309,9 +396,15 @@ type ConfigServiceAPI interface {
 	ListAggregateDiscoveredResourcesWithContext(aws.Context, *configservice.ListAggregateDiscoveredResourcesInput, ...request.Option) (*configservice.ListAggregateDiscoveredResourcesOutput, error)
 	ListAggregateDiscoveredResourcesRequest(*configservice.ListAggregateDiscoveredResourcesInput) (*request.Request, *configservice.ListAggregateDiscoveredResourcesOutput)
 
+	ListAggregateDiscoveredResourcesPages(*configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool) error
+	ListAggregateDiscoveredResourcesPagesWithContext(aws.Context, *configservice.ListAggregateDiscoveredResourcesInput, func(*configservice.ListAggregateDiscoveredResourcesOutput, bool) bool, ...request.Option) error
+
 	ListDiscoveredResources(*configservice.ListDiscoveredResourcesInput) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, ...request.Option) (*configservice.ListDiscoveredResourcesOutput, error)
 	ListDiscoveredResourcesRequest(*configservice.ListDiscoveredResourcesInput) (*request.Request, *configservice.ListDiscoveredResourcesOutput)
+
+	ListDiscoveredResourcesPages(*configservice.ListDiscoveredResourcesInput, func(*configservice.ListDiscoveredResourcesOutput, bool) bool) error
+	ListDiscoveredResourcesPagesWithContext(aws.Context, *configservice.ListDiscoveredResourcesInput, func(*configservice.ListDiscoveredResourcesOutput, bool) bool, ...request.Option) error
 
 	ListStoredQueries(*configservice.ListStoredQueriesInput) (*configservice.ListStoredQueriesOutput, error)
 	ListStoredQueriesWithContext(aws.Context, *configservice.ListStoredQueriesInput, ...request.Option) (*configservice.ListStoredQueriesOutput, error)
@@ -323,6 +416,9 @@ type ConfigServiceAPI interface {
 	ListTagsForResource(*configservice.ListTagsForResourceInput) (*configservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *configservice.ListTagsForResourceInput, ...request.Option) (*configservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*configservice.ListTagsForResourceInput) (*request.Request, *configservice.ListTagsForResourceOutput)
+
+	ListTagsForResourcePages(*configservice.ListTagsForResourceInput, func(*configservice.ListTagsForResourceOutput, bool) bool) error
+	ListTagsForResourcePagesWithContext(aws.Context, *configservice.ListTagsForResourceInput, func(*configservice.ListTagsForResourceOutput, bool) bool, ...request.Option) error
 
 	PutAggregationAuthorization(*configservice.PutAggregationAuthorizationInput) (*configservice.PutAggregationAuthorizationOutput, error)
 	PutAggregationAuthorizationWithContext(aws.Context, *configservice.PutAggregationAuthorizationInput, ...request.Option) (*configservice.PutAggregationAuthorizationOutput, error)
@@ -394,6 +490,9 @@ type ConfigServiceAPI interface {
 	SelectResourceConfig(*configservice.SelectResourceConfigInput) (*configservice.SelectResourceConfigOutput, error)
 	SelectResourceConfigWithContext(aws.Context, *configservice.SelectResourceConfigInput, ...request.Option) (*configservice.SelectResourceConfigOutput, error)
 	SelectResourceConfigRequest(*configservice.SelectResourceConfigInput) (*request.Request, *configservice.SelectResourceConfigOutput)
+
+	SelectResourceConfigPages(*configservice.SelectResourceConfigInput, func(*configservice.SelectResourceConfigOutput, bool) bool) error
+	SelectResourceConfigPagesWithContext(aws.Context, *configservice.SelectResourceConfigInput, func(*configservice.SelectResourceConfigOutput, bool) bool, ...request.Option) error
 
 	StartConfigRulesEvaluation(*configservice.StartConfigRulesEvaluationInput) (*configservice.StartConfigRulesEvaluationOutput, error)
 	StartConfigRulesEvaluationWithContext(aws.Context, *configservice.StartConfigRulesEvaluationInput, ...request.Option) (*configservice.StartConfigRulesEvaluationOutput, error)

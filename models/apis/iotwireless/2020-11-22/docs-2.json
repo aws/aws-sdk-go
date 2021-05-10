@@ -98,7 +98,7 @@
       "refs": {
         "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the resource for which you want to list tags.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the resource to add tags to.</p>",
-        "TooManyTagsException$ResourceName": null,
+        "TooManyTagsException$ResourceName": "<p>Name of the resource that exceeds maximum number of tags allowed.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The ARN of the resource to remove tags from.</p>"
       }
     },
@@ -834,7 +834,21 @@
     "JoinEui": {
       "base": null,
       "refs": {
+        "JoinEuiRange$member": null,
         "OtaaV1_1$JoinEui": "<p>The JoinEUI value.</p>"
+      }
+    },
+    "JoinEuiFilters": {
+      "base": "<p>A list of JoinEuiRange used by LoRa gateways to filter LoRa frames.</p>",
+      "refs": {
+        "LoRaWANGateway$JoinEuiFilters": null,
+        "UpdateWirelessGatewayRequest$JoinEuiFilters": null
+      }
+    },
+    "JoinEuiRange": {
+      "base": "<p>A pair of join EUI describing a range [BegEui, EndEui], both ends are inclusive.</p>",
+      "refs": {
+        "JoinEuiFilters$member": null
       }
     },
     "ListDestinationsRequest": {
@@ -1081,6 +1095,19 @@
         "LoRaWANGatewayVersion$Model": "<p>The model number of the wireless gateway.</p>"
       }
     },
+    "NetId": {
+      "base": "<p>LoRaWAN network ID.</p>",
+      "refs": {
+        "NetIdFilters$member": null
+      }
+    },
+    "NetIdFilters": {
+      "base": "<p>A list of NetId values that are used by LoRa gateways to filter the uplink frames.</p>",
+      "refs": {
+        "LoRaWANGateway$NetIdFilters": null,
+        "UpdateWirelessGatewayRequest$NetIdFilters": null
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -1228,8 +1255,8 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "ConflictException$ResourceId": null,
-        "ResourceNotFoundException$ResourceId": null
+        "ConflictException$ResourceId": "<p>Id of the resource in the conflicting operation.</p>",
+        "ResourceNotFoundException$ResourceId": "<p>Id of the not found resource.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1240,8 +1267,8 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "ConflictException$ResourceType": null,
-        "ResourceNotFoundException$ResourceType": null
+        "ConflictException$ResourceType": "<p>Type of the resource in the conflicting operation.</p>",
+        "ResourceNotFoundException$ResourceType": "<p>Type of the font found resource.</p>"
       }
     },
     "Result": {
@@ -1439,6 +1466,18 @@
       "base": null,
       "refs": {
         "LoRaWANGatewayVersion$Station": "<p>The basic station version of the wireless gateway.</p>"
+      }
+    },
+    "SubBand": {
+      "base": "<p>A subset of supported frequency channels in a certain RFRegion.</p>",
+      "refs": {
+        "SubBands$member": null
+      }
+    },
+    "SubBands": {
+      "base": "<p>A list of integer indicating which sub bands are supported by LoRa gateway.</p>",
+      "refs": {
+        "LoRaWANGateway$SubBands": null
       }
     },
     "Supports32BitFCnt": {

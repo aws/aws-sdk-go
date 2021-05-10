@@ -1834,6 +1834,12 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesRequest(input *D
 		Name:       opDescribeAggregateComplianceByConfigRules,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1904,6 +1910,58 @@ func (c *ConfigService) DescribeAggregateComplianceByConfigRulesWithContext(ctx 
 	return out, req.Send()
 }
 
+// DescribeAggregateComplianceByConfigRulesPages iterates over the pages of a DescribeAggregateComplianceByConfigRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeAggregateComplianceByConfigRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeAggregateComplianceByConfigRules operation.
+//    pageNum := 0
+//    err := client.DescribeAggregateComplianceByConfigRulesPages(params,
+//        func(page *configservice.DescribeAggregateComplianceByConfigRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeAggregateComplianceByConfigRulesPages(input *DescribeAggregateComplianceByConfigRulesInput, fn func(*DescribeAggregateComplianceByConfigRulesOutput, bool) bool) error {
+	return c.DescribeAggregateComplianceByConfigRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeAggregateComplianceByConfigRulesPagesWithContext same as DescribeAggregateComplianceByConfigRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeAggregateComplianceByConfigRulesPagesWithContext(ctx aws.Context, input *DescribeAggregateComplianceByConfigRulesInput, fn func(*DescribeAggregateComplianceByConfigRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeAggregateComplianceByConfigRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeAggregateComplianceByConfigRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAggregateComplianceByConfigRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeAggregateComplianceByConformancePacks = "DescribeAggregateComplianceByConformancePacks"
 
 // DescribeAggregateComplianceByConformancePacksRequest generates a "aws/request.Request" representing the
@@ -1935,6 +1993,12 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksRequest(inp
 		Name:       opDescribeAggregateComplianceByConformancePacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2008,6 +2072,58 @@ func (c *ConfigService) DescribeAggregateComplianceByConformancePacksWithContext
 	return out, req.Send()
 }
 
+// DescribeAggregateComplianceByConformancePacksPages iterates over the pages of a DescribeAggregateComplianceByConformancePacks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeAggregateComplianceByConformancePacks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeAggregateComplianceByConformancePacks operation.
+//    pageNum := 0
+//    err := client.DescribeAggregateComplianceByConformancePacksPages(params,
+//        func(page *configservice.DescribeAggregateComplianceByConformancePacksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeAggregateComplianceByConformancePacksPages(input *DescribeAggregateComplianceByConformancePacksInput, fn func(*DescribeAggregateComplianceByConformancePacksOutput, bool) bool) error {
+	return c.DescribeAggregateComplianceByConformancePacksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeAggregateComplianceByConformancePacksPagesWithContext same as DescribeAggregateComplianceByConformancePacksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeAggregateComplianceByConformancePacksPagesWithContext(ctx aws.Context, input *DescribeAggregateComplianceByConformancePacksInput, fn func(*DescribeAggregateComplianceByConformancePacksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeAggregateComplianceByConformancePacksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeAggregateComplianceByConformancePacksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAggregateComplianceByConformancePacksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeAggregationAuthorizations = "DescribeAggregationAuthorizations"
 
 // DescribeAggregationAuthorizationsRequest generates a "aws/request.Request" representing the
@@ -2039,6 +2155,12 @@ func (c *ConfigService) DescribeAggregationAuthorizationsRequest(input *Describe
 		Name:       opDescribeAggregationAuthorizations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2096,6 +2218,58 @@ func (c *ConfigService) DescribeAggregationAuthorizationsWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+// DescribeAggregationAuthorizationsPages iterates over the pages of a DescribeAggregationAuthorizations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeAggregationAuthorizations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeAggregationAuthorizations operation.
+//    pageNum := 0
+//    err := client.DescribeAggregationAuthorizationsPages(params,
+//        func(page *configservice.DescribeAggregationAuthorizationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeAggregationAuthorizationsPages(input *DescribeAggregationAuthorizationsInput, fn func(*DescribeAggregationAuthorizationsOutput, bool) bool) error {
+	return c.DescribeAggregationAuthorizationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeAggregationAuthorizationsPagesWithContext same as DescribeAggregationAuthorizationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeAggregationAuthorizationsPagesWithContext(ctx aws.Context, input *DescribeAggregationAuthorizationsInput, fn func(*DescribeAggregationAuthorizationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeAggregationAuthorizationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeAggregationAuthorizationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeAggregationAuthorizationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeComplianceByConfigRule = "DescribeComplianceByConfigRule"
 
 // DescribeComplianceByConfigRuleRequest generates a "aws/request.Request" representing the
@@ -2127,6 +2301,12 @@ func (c *ConfigService) DescribeComplianceByConfigRuleRequest(input *DescribeCom
 		Name:       opDescribeComplianceByConfigRule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2206,6 +2386,58 @@ func (c *ConfigService) DescribeComplianceByConfigRuleWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+// DescribeComplianceByConfigRulePages iterates over the pages of a DescribeComplianceByConfigRule operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeComplianceByConfigRule method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeComplianceByConfigRule operation.
+//    pageNum := 0
+//    err := client.DescribeComplianceByConfigRulePages(params,
+//        func(page *configservice.DescribeComplianceByConfigRuleOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeComplianceByConfigRulePages(input *DescribeComplianceByConfigRuleInput, fn func(*DescribeComplianceByConfigRuleOutput, bool) bool) error {
+	return c.DescribeComplianceByConfigRulePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeComplianceByConfigRulePagesWithContext same as DescribeComplianceByConfigRulePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeComplianceByConfigRulePagesWithContext(ctx aws.Context, input *DescribeComplianceByConfigRuleInput, fn func(*DescribeComplianceByConfigRuleOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeComplianceByConfigRuleInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeComplianceByConfigRuleRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeComplianceByConfigRuleOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeComplianceByResource = "DescribeComplianceByResource"
 
 // DescribeComplianceByResourceRequest generates a "aws/request.Request" representing the
@@ -2237,6 +2469,12 @@ func (c *ConfigService) DescribeComplianceByResourceRequest(input *DescribeCompl
 		Name:       opDescribeComplianceByResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2314,6 +2552,58 @@ func (c *ConfigService) DescribeComplianceByResourceWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+// DescribeComplianceByResourcePages iterates over the pages of a DescribeComplianceByResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeComplianceByResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeComplianceByResource operation.
+//    pageNum := 0
+//    err := client.DescribeComplianceByResourcePages(params,
+//        func(page *configservice.DescribeComplianceByResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeComplianceByResourcePages(input *DescribeComplianceByResourceInput, fn func(*DescribeComplianceByResourceOutput, bool) bool) error {
+	return c.DescribeComplianceByResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeComplianceByResourcePagesWithContext same as DescribeComplianceByResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeComplianceByResourcePagesWithContext(ctx aws.Context, input *DescribeComplianceByResourceInput, fn func(*DescribeComplianceByResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeComplianceByResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeComplianceByResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeComplianceByResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConfigRuleEvaluationStatus = "DescribeConfigRuleEvaluationStatus"
 
 // DescribeConfigRuleEvaluationStatusRequest generates a "aws/request.Request" representing the
@@ -2345,6 +2635,12 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusRequest(input *Describ
 		Name:       opDescribeConfigRuleEvaluationStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2405,6 +2701,58 @@ func (c *ConfigService) DescribeConfigRuleEvaluationStatusWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+// DescribeConfigRuleEvaluationStatusPages iterates over the pages of a DescribeConfigRuleEvaluationStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConfigRuleEvaluationStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConfigRuleEvaluationStatus operation.
+//    pageNum := 0
+//    err := client.DescribeConfigRuleEvaluationStatusPages(params,
+//        func(page *configservice.DescribeConfigRuleEvaluationStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConfigRuleEvaluationStatusPages(input *DescribeConfigRuleEvaluationStatusInput, fn func(*DescribeConfigRuleEvaluationStatusOutput, bool) bool) error {
+	return c.DescribeConfigRuleEvaluationStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConfigRuleEvaluationStatusPagesWithContext same as DescribeConfigRuleEvaluationStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConfigRuleEvaluationStatusPagesWithContext(ctx aws.Context, input *DescribeConfigRuleEvaluationStatusInput, fn func(*DescribeConfigRuleEvaluationStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConfigRuleEvaluationStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConfigRuleEvaluationStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConfigRuleEvaluationStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConfigRules = "DescribeConfigRules"
 
 // DescribeConfigRulesRequest generates a "aws/request.Request" representing the
@@ -2436,6 +2784,12 @@ func (c *ConfigService) DescribeConfigRulesRequest(input *DescribeConfigRulesInp
 		Name:       opDescribeConfigRules,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2489,6 +2843,58 @@ func (c *ConfigService) DescribeConfigRulesWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+// DescribeConfigRulesPages iterates over the pages of a DescribeConfigRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConfigRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConfigRules operation.
+//    pageNum := 0
+//    err := client.DescribeConfigRulesPages(params,
+//        func(page *configservice.DescribeConfigRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConfigRulesPages(input *DescribeConfigRulesInput, fn func(*DescribeConfigRulesOutput, bool) bool) error {
+	return c.DescribeConfigRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConfigRulesPagesWithContext same as DescribeConfigRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConfigRulesPagesWithContext(ctx aws.Context, input *DescribeConfigRulesInput, fn func(*DescribeConfigRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConfigRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConfigRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConfigRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConfigurationAggregatorSourcesStatus = "DescribeConfigurationAggregatorSourcesStatus"
 
 // DescribeConfigurationAggregatorSourcesStatusRequest generates a "aws/request.Request" representing the
@@ -2520,6 +2926,12 @@ func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusRequest(inpu
 		Name:       opDescribeConfigurationAggregatorSourcesStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2582,6 +2994,58 @@ func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusWithContext(
 	return out, req.Send()
 }
 
+// DescribeConfigurationAggregatorSourcesStatusPages iterates over the pages of a DescribeConfigurationAggregatorSourcesStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConfigurationAggregatorSourcesStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConfigurationAggregatorSourcesStatus operation.
+//    pageNum := 0
+//    err := client.DescribeConfigurationAggregatorSourcesStatusPages(params,
+//        func(page *configservice.DescribeConfigurationAggregatorSourcesStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusPages(input *DescribeConfigurationAggregatorSourcesStatusInput, fn func(*DescribeConfigurationAggregatorSourcesStatusOutput, bool) bool) error {
+	return c.DescribeConfigurationAggregatorSourcesStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConfigurationAggregatorSourcesStatusPagesWithContext same as DescribeConfigurationAggregatorSourcesStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConfigurationAggregatorSourcesStatusPagesWithContext(ctx aws.Context, input *DescribeConfigurationAggregatorSourcesStatusInput, fn func(*DescribeConfigurationAggregatorSourcesStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConfigurationAggregatorSourcesStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConfigurationAggregatorSourcesStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConfigurationAggregatorSourcesStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConfigurationAggregators = "DescribeConfigurationAggregators"
 
 // DescribeConfigurationAggregatorsRequest generates a "aws/request.Request" representing the
@@ -2613,6 +3077,12 @@ func (c *ConfigService) DescribeConfigurationAggregatorsRequest(input *DescribeC
 		Name:       opDescribeConfigurationAggregators,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2672,6 +3142,58 @@ func (c *ConfigService) DescribeConfigurationAggregatorsWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeConfigurationAggregatorsPages iterates over the pages of a DescribeConfigurationAggregators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConfigurationAggregators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConfigurationAggregators operation.
+//    pageNum := 0
+//    err := client.DescribeConfigurationAggregatorsPages(params,
+//        func(page *configservice.DescribeConfigurationAggregatorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConfigurationAggregatorsPages(input *DescribeConfigurationAggregatorsInput, fn func(*DescribeConfigurationAggregatorsOutput, bool) bool) error {
+	return c.DescribeConfigurationAggregatorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConfigurationAggregatorsPagesWithContext same as DescribeConfigurationAggregatorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConfigurationAggregatorsPagesWithContext(ctx aws.Context, input *DescribeConfigurationAggregatorsInput, fn func(*DescribeConfigurationAggregatorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConfigurationAggregatorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConfigurationAggregatorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConfigurationAggregatorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStatus"
@@ -2873,6 +3395,12 @@ func (c *ConfigService) DescribeConformancePackComplianceRequest(input *Describe
 		Name:       opDescribeConformancePackCompliance,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2937,6 +3465,58 @@ func (c *ConfigService) DescribeConformancePackComplianceWithContext(ctx aws.Con
 	return out, req.Send()
 }
 
+// DescribeConformancePackCompliancePages iterates over the pages of a DescribeConformancePackCompliance operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConformancePackCompliance method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConformancePackCompliance operation.
+//    pageNum := 0
+//    err := client.DescribeConformancePackCompliancePages(params,
+//        func(page *configservice.DescribeConformancePackComplianceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConformancePackCompliancePages(input *DescribeConformancePackComplianceInput, fn func(*DescribeConformancePackComplianceOutput, bool) bool) error {
+	return c.DescribeConformancePackCompliancePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConformancePackCompliancePagesWithContext same as DescribeConformancePackCompliancePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConformancePackCompliancePagesWithContext(ctx aws.Context, input *DescribeConformancePackComplianceInput, fn func(*DescribeConformancePackComplianceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConformancePackComplianceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConformancePackComplianceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConformancePackComplianceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConformancePackStatus = "DescribeConformancePackStatus"
 
 // DescribeConformancePackStatusRequest generates a "aws/request.Request" representing the
@@ -2968,6 +3548,12 @@ func (c *ConfigService) DescribeConformancePackStatusRequest(input *DescribeConf
 		Name:       opDescribeConformancePackStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3026,6 +3612,58 @@ func (c *ConfigService) DescribeConformancePackStatusWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+// DescribeConformancePackStatusPages iterates over the pages of a DescribeConformancePackStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConformancePackStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConformancePackStatus operation.
+//    pageNum := 0
+//    err := client.DescribeConformancePackStatusPages(params,
+//        func(page *configservice.DescribeConformancePackStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConformancePackStatusPages(input *DescribeConformancePackStatusInput, fn func(*DescribeConformancePackStatusOutput, bool) bool) error {
+	return c.DescribeConformancePackStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConformancePackStatusPagesWithContext same as DescribeConformancePackStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConformancePackStatusPagesWithContext(ctx aws.Context, input *DescribeConformancePackStatusInput, fn func(*DescribeConformancePackStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConformancePackStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConformancePackStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConformancePackStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeConformancePacks = "DescribeConformancePacks"
 
 // DescribeConformancePacksRequest generates a "aws/request.Request" representing the
@@ -3057,6 +3695,12 @@ func (c *ConfigService) DescribeConformancePacksRequest(input *DescribeConforman
 		Name:       opDescribeConformancePacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3114,6 +3758,58 @@ func (c *ConfigService) DescribeConformancePacksWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeConformancePacksPages iterates over the pages of a DescribeConformancePacks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeConformancePacks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeConformancePacks operation.
+//    pageNum := 0
+//    err := client.DescribeConformancePacksPages(params,
+//        func(page *configservice.DescribeConformancePacksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeConformancePacksPages(input *DescribeConformancePacksInput, fn func(*DescribeConformancePacksOutput, bool) bool) error {
+	return c.DescribeConformancePacksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeConformancePacksPagesWithContext same as DescribeConformancePacksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeConformancePacksPagesWithContext(ctx aws.Context, input *DescribeConformancePacksInput, fn func(*DescribeConformancePacksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeConformancePacksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeConformancePacksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeConformancePacksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
@@ -3313,6 +4009,12 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesRequest(input *Des
 		Name:       opDescribeOrganizationConfigRuleStatuses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3400,6 +4102,58 @@ func (c *ConfigService) DescribeOrganizationConfigRuleStatusesWithContext(ctx aw
 	return out, req.Send()
 }
 
+// DescribeOrganizationConfigRuleStatusesPages iterates over the pages of a DescribeOrganizationConfigRuleStatuses operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationConfigRuleStatuses method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrganizationConfigRuleStatuses operation.
+//    pageNum := 0
+//    err := client.DescribeOrganizationConfigRuleStatusesPages(params,
+//        func(page *configservice.DescribeOrganizationConfigRuleStatusesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeOrganizationConfigRuleStatusesPages(input *DescribeOrganizationConfigRuleStatusesInput, fn func(*DescribeOrganizationConfigRuleStatusesOutput, bool) bool) error {
+	return c.DescribeOrganizationConfigRuleStatusesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationConfigRuleStatusesPagesWithContext same as DescribeOrganizationConfigRuleStatusesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeOrganizationConfigRuleStatusesPagesWithContext(ctx aws.Context, input *DescribeOrganizationConfigRuleStatusesInput, fn func(*DescribeOrganizationConfigRuleStatusesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationConfigRuleStatusesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationConfigRuleStatusesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationConfigRuleStatusesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeOrganizationConfigRules = "DescribeOrganizationConfigRules"
 
 // DescribeOrganizationConfigRulesRequest generates a "aws/request.Request" representing the
@@ -3431,6 +4185,12 @@ func (c *ConfigService) DescribeOrganizationConfigRulesRequest(input *DescribeOr
 		Name:       opDescribeOrganizationConfigRules,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3514,6 +4274,58 @@ func (c *ConfigService) DescribeOrganizationConfigRulesWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+// DescribeOrganizationConfigRulesPages iterates over the pages of a DescribeOrganizationConfigRules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationConfigRules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrganizationConfigRules operation.
+//    pageNum := 0
+//    err := client.DescribeOrganizationConfigRulesPages(params,
+//        func(page *configservice.DescribeOrganizationConfigRulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeOrganizationConfigRulesPages(input *DescribeOrganizationConfigRulesInput, fn func(*DescribeOrganizationConfigRulesOutput, bool) bool) error {
+	return c.DescribeOrganizationConfigRulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationConfigRulesPagesWithContext same as DescribeOrganizationConfigRulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeOrganizationConfigRulesPagesWithContext(ctx aws.Context, input *DescribeOrganizationConfigRulesInput, fn func(*DescribeOrganizationConfigRulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationConfigRulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationConfigRulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationConfigRulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeOrganizationConformancePackStatuses = "DescribeOrganizationConformancePackStatuses"
 
 // DescribeOrganizationConformancePackStatusesRequest generates a "aws/request.Request" representing the
@@ -3545,6 +4357,12 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesRequest(input
 		Name:       opDescribeOrganizationConformancePackStatuses,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3636,6 +4454,58 @@ func (c *ConfigService) DescribeOrganizationConformancePackStatusesWithContext(c
 	return out, req.Send()
 }
 
+// DescribeOrganizationConformancePackStatusesPages iterates over the pages of a DescribeOrganizationConformancePackStatuses operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationConformancePackStatuses method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrganizationConformancePackStatuses operation.
+//    pageNum := 0
+//    err := client.DescribeOrganizationConformancePackStatusesPages(params,
+//        func(page *configservice.DescribeOrganizationConformancePackStatusesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeOrganizationConformancePackStatusesPages(input *DescribeOrganizationConformancePackStatusesInput, fn func(*DescribeOrganizationConformancePackStatusesOutput, bool) bool) error {
+	return c.DescribeOrganizationConformancePackStatusesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationConformancePackStatusesPagesWithContext same as DescribeOrganizationConformancePackStatusesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeOrganizationConformancePackStatusesPagesWithContext(ctx aws.Context, input *DescribeOrganizationConformancePackStatusesInput, fn func(*DescribeOrganizationConformancePackStatusesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationConformancePackStatusesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationConformancePackStatusesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationConformancePackStatusesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeOrganizationConformancePacks = "DescribeOrganizationConformancePacks"
 
 // DescribeOrganizationConformancePacksRequest generates a "aws/request.Request" representing the
@@ -3667,6 +4537,12 @@ func (c *ConfigService) DescribeOrganizationConformancePacksRequest(input *Descr
 		Name:       opDescribeOrganizationConformancePacks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3755,6 +4631,58 @@ func (c *ConfigService) DescribeOrganizationConformancePacksWithContext(ctx aws.
 	return out, req.Send()
 }
 
+// DescribeOrganizationConformancePacksPages iterates over the pages of a DescribeOrganizationConformancePacks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeOrganizationConformancePacks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeOrganizationConformancePacks operation.
+//    pageNum := 0
+//    err := client.DescribeOrganizationConformancePacksPages(params,
+//        func(page *configservice.DescribeOrganizationConformancePacksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeOrganizationConformancePacksPages(input *DescribeOrganizationConformancePacksInput, fn func(*DescribeOrganizationConformancePacksOutput, bool) bool) error {
+	return c.DescribeOrganizationConformancePacksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeOrganizationConformancePacksPagesWithContext same as DescribeOrganizationConformancePacksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeOrganizationConformancePacksPagesWithContext(ctx aws.Context, input *DescribeOrganizationConformancePacksInput, fn func(*DescribeOrganizationConformancePacksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeOrganizationConformancePacksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeOrganizationConformancePacksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeOrganizationConformancePacksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribePendingAggregationRequests = "DescribePendingAggregationRequests"
 
 // DescribePendingAggregationRequestsRequest generates a "aws/request.Request" representing the
@@ -3786,6 +4714,12 @@ func (c *ConfigService) DescribePendingAggregationRequestsRequest(input *Describ
 		Name:       opDescribePendingAggregationRequests,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3840,6 +4774,58 @@ func (c *ConfigService) DescribePendingAggregationRequestsWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribePendingAggregationRequestsPages iterates over the pages of a DescribePendingAggregationRequests operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribePendingAggregationRequests method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribePendingAggregationRequests operation.
+//    pageNum := 0
+//    err := client.DescribePendingAggregationRequestsPages(params,
+//        func(page *configservice.DescribePendingAggregationRequestsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribePendingAggregationRequestsPages(input *DescribePendingAggregationRequestsInput, fn func(*DescribePendingAggregationRequestsOutput, bool) bool) error {
+	return c.DescribePendingAggregationRequestsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribePendingAggregationRequestsPagesWithContext same as DescribePendingAggregationRequestsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribePendingAggregationRequestsPagesWithContext(ctx aws.Context, input *DescribePendingAggregationRequestsInput, fn func(*DescribePendingAggregationRequestsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribePendingAggregationRequestsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribePendingAggregationRequestsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribePendingAggregationRequestsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeRemediationConfigurations = "DescribeRemediationConfigurations"
@@ -4249,6 +5235,12 @@ func (c *ConfigService) DescribeRetentionConfigurationsRequest(input *DescribeRe
 		Name:       opDescribeRetentionConfigurations,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4310,6 +5302,58 @@ func (c *ConfigService) DescribeRetentionConfigurationsWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+// DescribeRetentionConfigurationsPages iterates over the pages of a DescribeRetentionConfigurations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeRetentionConfigurations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeRetentionConfigurations operation.
+//    pageNum := 0
+//    err := client.DescribeRetentionConfigurationsPages(params,
+//        func(page *configservice.DescribeRetentionConfigurationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) DescribeRetentionConfigurationsPages(input *DescribeRetentionConfigurationsInput, fn func(*DescribeRetentionConfigurationsOutput, bool) bool) error {
+	return c.DescribeRetentionConfigurationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeRetentionConfigurationsPagesWithContext same as DescribeRetentionConfigurationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) DescribeRetentionConfigurationsPagesWithContext(ctx aws.Context, input *DescribeRetentionConfigurationsInput, fn func(*DescribeRetentionConfigurationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeRetentionConfigurationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeRetentionConfigurationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeRetentionConfigurationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetAggregateComplianceDetailsByConfigRule = "GetAggregateComplianceDetailsByConfigRule"
 
 // GetAggregateComplianceDetailsByConfigRuleRequest generates a "aws/request.Request" representing the
@@ -4341,6 +5385,12 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleRequest(input *
 		Name:       opGetAggregateComplianceDetailsByConfigRule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4413,6 +5463,58 @@ func (c *ConfigService) GetAggregateComplianceDetailsByConfigRuleWithContext(ctx
 	return out, req.Send()
 }
 
+// GetAggregateComplianceDetailsByConfigRulePages iterates over the pages of a GetAggregateComplianceDetailsByConfigRule operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetAggregateComplianceDetailsByConfigRule method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetAggregateComplianceDetailsByConfigRule operation.
+//    pageNum := 0
+//    err := client.GetAggregateComplianceDetailsByConfigRulePages(params,
+//        func(page *configservice.GetAggregateComplianceDetailsByConfigRuleOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetAggregateComplianceDetailsByConfigRulePages(input *GetAggregateComplianceDetailsByConfigRuleInput, fn func(*GetAggregateComplianceDetailsByConfigRuleOutput, bool) bool) error {
+	return c.GetAggregateComplianceDetailsByConfigRulePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetAggregateComplianceDetailsByConfigRulePagesWithContext same as GetAggregateComplianceDetailsByConfigRulePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetAggregateComplianceDetailsByConfigRulePagesWithContext(ctx aws.Context, input *GetAggregateComplianceDetailsByConfigRuleInput, fn func(*GetAggregateComplianceDetailsByConfigRuleOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetAggregateComplianceDetailsByConfigRuleInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAggregateComplianceDetailsByConfigRuleRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetAggregateComplianceDetailsByConfigRuleOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetAggregateConfigRuleComplianceSummary = "GetAggregateConfigRuleComplianceSummary"
 
 // GetAggregateConfigRuleComplianceSummaryRequest generates a "aws/request.Request" representing the
@@ -4444,6 +5546,12 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryRequest(input *Ge
 		Name:       opGetAggregateConfigRuleComplianceSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4514,6 +5622,58 @@ func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryWithContext(ctx a
 	return out, req.Send()
 }
 
+// GetAggregateConfigRuleComplianceSummaryPages iterates over the pages of a GetAggregateConfigRuleComplianceSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetAggregateConfigRuleComplianceSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetAggregateConfigRuleComplianceSummary operation.
+//    pageNum := 0
+//    err := client.GetAggregateConfigRuleComplianceSummaryPages(params,
+//        func(page *configservice.GetAggregateConfigRuleComplianceSummaryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryPages(input *GetAggregateConfigRuleComplianceSummaryInput, fn func(*GetAggregateConfigRuleComplianceSummaryOutput, bool) bool) error {
+	return c.GetAggregateConfigRuleComplianceSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetAggregateConfigRuleComplianceSummaryPagesWithContext same as GetAggregateConfigRuleComplianceSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetAggregateConfigRuleComplianceSummaryPagesWithContext(ctx aws.Context, input *GetAggregateConfigRuleComplianceSummaryInput, fn func(*GetAggregateConfigRuleComplianceSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetAggregateConfigRuleComplianceSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAggregateConfigRuleComplianceSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetAggregateConfigRuleComplianceSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetAggregateConformancePackComplianceSummary = "GetAggregateConformancePackComplianceSummary"
 
 // GetAggregateConformancePackComplianceSummaryRequest generates a "aws/request.Request" representing the
@@ -4545,6 +5705,12 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryRequest(inpu
 		Name:       opGetAggregateConformancePackComplianceSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4616,6 +5782,58 @@ func (c *ConfigService) GetAggregateConformancePackComplianceSummaryWithContext(
 	return out, req.Send()
 }
 
+// GetAggregateConformancePackComplianceSummaryPages iterates over the pages of a GetAggregateConformancePackComplianceSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetAggregateConformancePackComplianceSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetAggregateConformancePackComplianceSummary operation.
+//    pageNum := 0
+//    err := client.GetAggregateConformancePackComplianceSummaryPages(params,
+//        func(page *configservice.GetAggregateConformancePackComplianceSummaryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetAggregateConformancePackComplianceSummaryPages(input *GetAggregateConformancePackComplianceSummaryInput, fn func(*GetAggregateConformancePackComplianceSummaryOutput, bool) bool) error {
+	return c.GetAggregateConformancePackComplianceSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetAggregateConformancePackComplianceSummaryPagesWithContext same as GetAggregateConformancePackComplianceSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetAggregateConformancePackComplianceSummaryPagesWithContext(ctx aws.Context, input *GetAggregateConformancePackComplianceSummaryInput, fn func(*GetAggregateConformancePackComplianceSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetAggregateConformancePackComplianceSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAggregateConformancePackComplianceSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetAggregateConformancePackComplianceSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetAggregateDiscoveredResourceCounts = "GetAggregateDiscoveredResourceCounts"
 
 // GetAggregateDiscoveredResourceCountsRequest generates a "aws/request.Request" representing the
@@ -4647,6 +5865,12 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsRequest(input *GetAg
 		Name:       opGetAggregateDiscoveredResourceCounts,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4719,6 +5943,58 @@ func (c *ConfigService) GetAggregateDiscoveredResourceCountsWithContext(ctx aws.
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetAggregateDiscoveredResourceCountsPages iterates over the pages of a GetAggregateDiscoveredResourceCounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetAggregateDiscoveredResourceCounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetAggregateDiscoveredResourceCounts operation.
+//    pageNum := 0
+//    err := client.GetAggregateDiscoveredResourceCountsPages(params,
+//        func(page *configservice.GetAggregateDiscoveredResourceCountsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetAggregateDiscoveredResourceCountsPages(input *GetAggregateDiscoveredResourceCountsInput, fn func(*GetAggregateDiscoveredResourceCountsOutput, bool) bool) error {
+	return c.GetAggregateDiscoveredResourceCountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetAggregateDiscoveredResourceCountsPagesWithContext same as GetAggregateDiscoveredResourceCountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetAggregateDiscoveredResourceCountsPagesWithContext(ctx aws.Context, input *GetAggregateDiscoveredResourceCountsInput, fn func(*GetAggregateDiscoveredResourceCountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetAggregateDiscoveredResourceCountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetAggregateDiscoveredResourceCountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetAggregateDiscoveredResourceCountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetAggregateResourceConfig = "GetAggregateResourceConfig"
@@ -4849,6 +6125,12 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleRequest(input *GetCompli
 		Name:       opGetComplianceDetailsByConfigRule,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4908,6 +6190,58 @@ func (c *ConfigService) GetComplianceDetailsByConfigRuleWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+// GetComplianceDetailsByConfigRulePages iterates over the pages of a GetComplianceDetailsByConfigRule operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetComplianceDetailsByConfigRule method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetComplianceDetailsByConfigRule operation.
+//    pageNum := 0
+//    err := client.GetComplianceDetailsByConfigRulePages(params,
+//        func(page *configservice.GetComplianceDetailsByConfigRuleOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetComplianceDetailsByConfigRulePages(input *GetComplianceDetailsByConfigRuleInput, fn func(*GetComplianceDetailsByConfigRuleOutput, bool) bool) error {
+	return c.GetComplianceDetailsByConfigRulePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetComplianceDetailsByConfigRulePagesWithContext same as GetComplianceDetailsByConfigRulePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetComplianceDetailsByConfigRulePagesWithContext(ctx aws.Context, input *GetComplianceDetailsByConfigRuleInput, fn func(*GetComplianceDetailsByConfigRuleOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetComplianceDetailsByConfigRuleInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetComplianceDetailsByConfigRuleRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetComplianceDetailsByConfigRuleOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetComplianceDetailsByResource = "GetComplianceDetailsByResource"
 
 // GetComplianceDetailsByResourceRequest generates a "aws/request.Request" representing the
@@ -4939,6 +6273,12 @@ func (c *ConfigService) GetComplianceDetailsByResourceRequest(input *GetComplian
 		Name:       opGetComplianceDetailsByResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4988,6 +6328,58 @@ func (c *ConfigService) GetComplianceDetailsByResourceWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetComplianceDetailsByResourcePages iterates over the pages of a GetComplianceDetailsByResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetComplianceDetailsByResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetComplianceDetailsByResource operation.
+//    pageNum := 0
+//    err := client.GetComplianceDetailsByResourcePages(params,
+//        func(page *configservice.GetComplianceDetailsByResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetComplianceDetailsByResourcePages(input *GetComplianceDetailsByResourceInput, fn func(*GetComplianceDetailsByResourceOutput, bool) bool) error {
+	return c.GetComplianceDetailsByResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetComplianceDetailsByResourcePagesWithContext same as GetComplianceDetailsByResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetComplianceDetailsByResourcePagesWithContext(ctx aws.Context, input *GetComplianceDetailsByResourceInput, fn func(*GetComplianceDetailsByResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetComplianceDetailsByResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetComplianceDetailsByResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetComplianceDetailsByResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetComplianceSummaryByConfigRule = "GetComplianceSummaryByConfigRule"
@@ -5178,6 +6570,12 @@ func (c *ConfigService) GetConformancePackComplianceDetailsRequest(input *GetCon
 		Name:       opGetConformancePackComplianceDetails,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5241,6 +6639,58 @@ func (c *ConfigService) GetConformancePackComplianceDetailsWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+// GetConformancePackComplianceDetailsPages iterates over the pages of a GetConformancePackComplianceDetails operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetConformancePackComplianceDetails method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetConformancePackComplianceDetails operation.
+//    pageNum := 0
+//    err := client.GetConformancePackComplianceDetailsPages(params,
+//        func(page *configservice.GetConformancePackComplianceDetailsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetConformancePackComplianceDetailsPages(input *GetConformancePackComplianceDetailsInput, fn func(*GetConformancePackComplianceDetailsOutput, bool) bool) error {
+	return c.GetConformancePackComplianceDetailsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetConformancePackComplianceDetailsPagesWithContext same as GetConformancePackComplianceDetailsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetConformancePackComplianceDetailsPagesWithContext(ctx aws.Context, input *GetConformancePackComplianceDetailsInput, fn func(*GetConformancePackComplianceDetailsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetConformancePackComplianceDetailsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetConformancePackComplianceDetailsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetConformancePackComplianceDetailsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetConformancePackComplianceSummary = "GetConformancePackComplianceSummary"
 
 // GetConformancePackComplianceSummaryRequest generates a "aws/request.Request" representing the
@@ -5272,6 +6722,12 @@ func (c *ConfigService) GetConformancePackComplianceSummaryRequest(input *GetCon
 		Name:       opGetConformancePackComplianceSummary,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5328,6 +6784,58 @@ func (c *ConfigService) GetConformancePackComplianceSummaryWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+// GetConformancePackComplianceSummaryPages iterates over the pages of a GetConformancePackComplianceSummary operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetConformancePackComplianceSummary method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetConformancePackComplianceSummary operation.
+//    pageNum := 0
+//    err := client.GetConformancePackComplianceSummaryPages(params,
+//        func(page *configservice.GetConformancePackComplianceSummaryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetConformancePackComplianceSummaryPages(input *GetConformancePackComplianceSummaryInput, fn func(*GetConformancePackComplianceSummaryOutput, bool) bool) error {
+	return c.GetConformancePackComplianceSummaryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetConformancePackComplianceSummaryPagesWithContext same as GetConformancePackComplianceSummaryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetConformancePackComplianceSummaryPagesWithContext(ctx aws.Context, input *GetConformancePackComplianceSummaryInput, fn func(*GetConformancePackComplianceSummaryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetConformancePackComplianceSummaryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetConformancePackComplianceSummaryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetConformancePackComplianceSummaryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetDiscoveredResourceCounts = "GetDiscoveredResourceCounts"
 
 // GetDiscoveredResourceCountsRequest generates a "aws/request.Request" representing the
@@ -5359,6 +6867,12 @@ func (c *ConfigService) GetDiscoveredResourceCountsRequest(input *GetDiscoveredR
 		Name:       opGetDiscoveredResourceCounts,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5455,6 +6969,58 @@ func (c *ConfigService) GetDiscoveredResourceCountsWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// GetDiscoveredResourceCountsPages iterates over the pages of a GetDiscoveredResourceCounts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetDiscoveredResourceCounts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetDiscoveredResourceCounts operation.
+//    pageNum := 0
+//    err := client.GetDiscoveredResourceCountsPages(params,
+//        func(page *configservice.GetDiscoveredResourceCountsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetDiscoveredResourceCountsPages(input *GetDiscoveredResourceCountsInput, fn func(*GetDiscoveredResourceCountsOutput, bool) bool) error {
+	return c.GetDiscoveredResourceCountsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetDiscoveredResourceCountsPagesWithContext same as GetDiscoveredResourceCountsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetDiscoveredResourceCountsPagesWithContext(ctx aws.Context, input *GetDiscoveredResourceCountsInput, fn func(*GetDiscoveredResourceCountsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetDiscoveredResourceCountsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetDiscoveredResourceCountsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetDiscoveredResourceCountsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetOrganizationConfigRuleDetailedStatus = "GetOrganizationConfigRuleDetailedStatus"
 
 // GetOrganizationConfigRuleDetailedStatusRequest generates a "aws/request.Request" representing the
@@ -5486,6 +7052,12 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusRequest(input *Ge
 		Name:       opGetOrganizationConfigRuleDetailedStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5565,6 +7137,58 @@ func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusWithContext(ctx a
 	return out, req.Send()
 }
 
+// GetOrganizationConfigRuleDetailedStatusPages iterates over the pages of a GetOrganizationConfigRuleDetailedStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetOrganizationConfigRuleDetailedStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetOrganizationConfigRuleDetailedStatus operation.
+//    pageNum := 0
+//    err := client.GetOrganizationConfigRuleDetailedStatusPages(params,
+//        func(page *configservice.GetOrganizationConfigRuleDetailedStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusPages(input *GetOrganizationConfigRuleDetailedStatusInput, fn func(*GetOrganizationConfigRuleDetailedStatusOutput, bool) bool) error {
+	return c.GetOrganizationConfigRuleDetailedStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetOrganizationConfigRuleDetailedStatusPagesWithContext same as GetOrganizationConfigRuleDetailedStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetOrganizationConfigRuleDetailedStatusPagesWithContext(ctx aws.Context, input *GetOrganizationConfigRuleDetailedStatusInput, fn func(*GetOrganizationConfigRuleDetailedStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetOrganizationConfigRuleDetailedStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetOrganizationConfigRuleDetailedStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetOrganizationConfigRuleDetailedStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetOrganizationConformancePackDetailedStatus = "GetOrganizationConformancePackDetailedStatus"
 
 // GetOrganizationConformancePackDetailedStatusRequest generates a "aws/request.Request" representing the
@@ -5596,6 +7220,12 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusRequest(inpu
 		Name:       opGetOrganizationConformancePackDetailedStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -5677,6 +7307,58 @@ func (c *ConfigService) GetOrganizationConformancePackDetailedStatusWithContext(
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetOrganizationConformancePackDetailedStatusPages iterates over the pages of a GetOrganizationConformancePackDetailedStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetOrganizationConformancePackDetailedStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetOrganizationConformancePackDetailedStatus operation.
+//    pageNum := 0
+//    err := client.GetOrganizationConformancePackDetailedStatusPages(params,
+//        func(page *configservice.GetOrganizationConformancePackDetailedStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) GetOrganizationConformancePackDetailedStatusPages(input *GetOrganizationConformancePackDetailedStatusInput, fn func(*GetOrganizationConformancePackDetailedStatusOutput, bool) bool) error {
+	return c.GetOrganizationConformancePackDetailedStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetOrganizationConformancePackDetailedStatusPagesWithContext same as GetOrganizationConformancePackDetailedStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) GetOrganizationConformancePackDetailedStatusPagesWithContext(ctx aws.Context, input *GetOrganizationConformancePackDetailedStatusInput, fn func(*GetOrganizationConformancePackDetailedStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetOrganizationConformancePackDetailedStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetOrganizationConformancePackDetailedStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetOrganizationConformancePackDetailedStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetResourceConfigHistory = "GetResourceConfigHistory"
@@ -5976,6 +7658,12 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesRequest(input *ListAggre
 		Name:       opListAggregateDiscoveredResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6051,6 +7739,58 @@ func (c *ConfigService) ListAggregateDiscoveredResourcesWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+// ListAggregateDiscoveredResourcesPages iterates over the pages of a ListAggregateDiscoveredResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAggregateDiscoveredResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAggregateDiscoveredResources operation.
+//    pageNum := 0
+//    err := client.ListAggregateDiscoveredResourcesPages(params,
+//        func(page *configservice.ListAggregateDiscoveredResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) ListAggregateDiscoveredResourcesPages(input *ListAggregateDiscoveredResourcesInput, fn func(*ListAggregateDiscoveredResourcesOutput, bool) bool) error {
+	return c.ListAggregateDiscoveredResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAggregateDiscoveredResourcesPagesWithContext same as ListAggregateDiscoveredResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListAggregateDiscoveredResourcesPagesWithContext(ctx aws.Context, input *ListAggregateDiscoveredResourcesInput, fn func(*ListAggregateDiscoveredResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAggregateDiscoveredResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAggregateDiscoveredResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAggregateDiscoveredResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDiscoveredResources = "ListDiscoveredResources"
 
 // ListDiscoveredResourcesRequest generates a "aws/request.Request" representing the
@@ -6082,6 +7822,12 @@ func (c *ConfigService) ListDiscoveredResourcesRequest(input *ListDiscoveredReso
 		Name:       opListDiscoveredResources,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6160,6 +7906,58 @@ func (c *ConfigService) ListDiscoveredResourcesWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListDiscoveredResourcesPages iterates over the pages of a ListDiscoveredResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDiscoveredResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDiscoveredResources operation.
+//    pageNum := 0
+//    err := client.ListDiscoveredResourcesPages(params,
+//        func(page *configservice.ListDiscoveredResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) ListDiscoveredResourcesPages(input *ListDiscoveredResourcesInput, fn func(*ListDiscoveredResourcesOutput, bool) bool) error {
+	return c.ListDiscoveredResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDiscoveredResourcesPagesWithContext same as ListDiscoveredResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListDiscoveredResourcesPagesWithContext(ctx aws.Context, input *ListDiscoveredResourcesInput, fn func(*ListDiscoveredResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDiscoveredResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDiscoveredResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDiscoveredResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListStoredQueries = "ListStoredQueries"
@@ -6343,6 +8141,12 @@ func (c *ConfigService) ListTagsForResourceRequest(input *ListTagsForResourceInp
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6407,6 +8211,58 @@ func (c *ConfigService) ListTagsForResourceWithContext(ctx aws.Context, input *L
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
+//    pageNum := 0
+//    err := client.ListTagsForResourcePages(params,
+//        func(page *configservice.ListTagsForResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opPutAggregationAuthorization = "PutAggregationAuthorization"
@@ -8286,7 +10142,7 @@ func (c *ConfigService) SelectAggregateResourceConfigRequest(input *SelectAggreg
 		Paginator: &request.Paginator{
 			InputTokens:     []string{"NextToken"},
 			OutputTokens:    []string{"NextToken"},
-			LimitToken:      "MaxResults",
+			LimitToken:      "Limit",
 			TruncationToken: "",
 		},
 	}
@@ -8436,6 +10292,12 @@ func (c *ConfigService) SelectResourceConfigRequest(input *SelectResourceConfigI
 		Name:       opSelectResourceConfig,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "Limit",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -8493,6 +10355,58 @@ func (c *ConfigService) SelectResourceConfigWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// SelectResourceConfigPages iterates over the pages of a SelectResourceConfig operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SelectResourceConfig method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SelectResourceConfig operation.
+//    pageNum := 0
+//    err := client.SelectResourceConfigPages(params,
+//        func(page *configservice.SelectResourceConfigOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ConfigService) SelectResourceConfigPages(input *SelectResourceConfigInput, fn func(*SelectResourceConfigOutput, bool) bool) error {
+	return c.SelectResourceConfigPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SelectResourceConfigPagesWithContext same as SelectResourceConfigPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ConfigService) SelectResourceConfigPagesWithContext(ctx aws.Context, input *SelectResourceConfigInput, fn func(*SelectResourceConfigOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SelectResourceConfigInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SelectResourceConfigRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SelectResourceConfigOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opStartConfigRulesEvaluation = "StartConfigRulesEvaluation"

@@ -1867,6 +1867,18 @@
       "type":"string",
       "pattern":"[a-fA-F0-9]{16}"
     },
+    "JoinEuiFilters":{
+      "type":"list",
+      "member":{"shape":"JoinEuiRange"},
+      "max":3,
+      "min":0
+    },
+    "JoinEuiRange":{
+      "type":"list",
+      "member":{"shape":"JoinEui"},
+      "max":2,
+      "min":2
+    },
     "ListDestinationsRequest":{
       "type":"structure",
       "members":{
@@ -2114,7 +2126,10 @@
       "type":"structure",
       "members":{
         "GatewayEui":{"shape":"GatewayEui"},
-        "RfRegion":{"shape":"RfRegion"}
+        "RfRegion":{"shape":"RfRegion"},
+        "JoinEuiFilters":{"shape":"JoinEuiFilters"},
+        "NetIdFilters":{"shape":"NetIdFilters"},
+        "SubBands":{"shape":"SubBands"}
       }
     },
     "LoRaWANGatewayCurrentVersion":{
@@ -2250,6 +2265,16 @@
       "type":"string",
       "max":4096,
       "min":1
+    },
+    "NetId":{
+      "type":"string",
+      "pattern":"[a-fA-F0-9]{6}"
+    },
+    "NetIdFilters":{
+      "type":"list",
+      "member":{"shape":"NetId"},
+      "max":10,
+      "min":0
     },
     "NextToken":{
       "type":"string",
@@ -2523,6 +2548,17 @@
       "max":4096,
       "min":1
     },
+    "SubBand":{
+      "type":"integer",
+      "max":8,
+      "min":1
+    },
+    "SubBands":{
+      "type":"list",
+      "member":{"shape":"SubBand"},
+      "max":8,
+      "min":0
+    },
     "Supports32BitFCnt":{"type":"boolean"},
     "SupportsClassB":{"type":"boolean"},
     "SupportsClassC":{"type":"boolean"},
@@ -2750,7 +2786,9 @@
           "locationName":"Id"
         },
         "Name":{"shape":"WirelessGatewayName"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "JoinEuiFilters":{"shape":"JoinEuiFilters"},
+        "NetIdFilters":{"shape":"NetIdFilters"}
       }
     },
     "UpdateWirelessGatewayResponse":{

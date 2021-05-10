@@ -64,6 +64,10 @@ type SSMAPI interface {
 	AddTagsToResourceWithContext(aws.Context, *ssm.AddTagsToResourceInput, ...request.Option) (*ssm.AddTagsToResourceOutput, error)
 	AddTagsToResourceRequest(*ssm.AddTagsToResourceInput) (*request.Request, *ssm.AddTagsToResourceOutput)
 
+	AssociateOpsItemRelatedItem(*ssm.AssociateOpsItemRelatedItemInput) (*ssm.AssociateOpsItemRelatedItemOutput, error)
+	AssociateOpsItemRelatedItemWithContext(aws.Context, *ssm.AssociateOpsItemRelatedItemInput, ...request.Option) (*ssm.AssociateOpsItemRelatedItemOutput, error)
+	AssociateOpsItemRelatedItemRequest(*ssm.AssociateOpsItemRelatedItemInput) (*request.Request, *ssm.AssociateOpsItemRelatedItemOutput)
+
 	CancelCommand(*ssm.CancelCommandInput) (*ssm.CancelCommandOutput, error)
 	CancelCommandWithContext(aws.Context, *ssm.CancelCommandInput, ...request.Option) (*ssm.CancelCommandOutput, error)
 	CancelCommandRequest(*ssm.CancelCommandInput) (*request.Request, *ssm.CancelCommandOutput)
@@ -376,6 +380,10 @@ type SSMAPI interface {
 	DescribeSessionsPages(*ssm.DescribeSessionsInput, func(*ssm.DescribeSessionsOutput, bool) bool) error
 	DescribeSessionsPagesWithContext(aws.Context, *ssm.DescribeSessionsInput, func(*ssm.DescribeSessionsOutput, bool) bool, ...request.Option) error
 
+	DisassociateOpsItemRelatedItem(*ssm.DisassociateOpsItemRelatedItemInput) (*ssm.DisassociateOpsItemRelatedItemOutput, error)
+	DisassociateOpsItemRelatedItemWithContext(aws.Context, *ssm.DisassociateOpsItemRelatedItemInput, ...request.Option) (*ssm.DisassociateOpsItemRelatedItemOutput, error)
+	DisassociateOpsItemRelatedItemRequest(*ssm.DisassociateOpsItemRelatedItemInput) (*request.Request, *ssm.DisassociateOpsItemRelatedItemOutput)
+
 	GetAutomationExecution(*ssm.GetAutomationExecutionInput) (*ssm.GetAutomationExecutionOutput, error)
 	GetAutomationExecutionWithContext(aws.Context, *ssm.GetAutomationExecutionInput, ...request.Option) (*ssm.GetAutomationExecutionOutput, error)
 	GetAutomationExecutionRequest(*ssm.GetAutomationExecutionInput) (*request.Request, *ssm.GetAutomationExecutionOutput)
@@ -561,6 +569,13 @@ type SSMAPI interface {
 
 	ListOpsItemEventsPages(*ssm.ListOpsItemEventsInput, func(*ssm.ListOpsItemEventsOutput, bool) bool) error
 	ListOpsItemEventsPagesWithContext(aws.Context, *ssm.ListOpsItemEventsInput, func(*ssm.ListOpsItemEventsOutput, bool) bool, ...request.Option) error
+
+	ListOpsItemRelatedItems(*ssm.ListOpsItemRelatedItemsInput) (*ssm.ListOpsItemRelatedItemsOutput, error)
+	ListOpsItemRelatedItemsWithContext(aws.Context, *ssm.ListOpsItemRelatedItemsInput, ...request.Option) (*ssm.ListOpsItemRelatedItemsOutput, error)
+	ListOpsItemRelatedItemsRequest(*ssm.ListOpsItemRelatedItemsInput) (*request.Request, *ssm.ListOpsItemRelatedItemsOutput)
+
+	ListOpsItemRelatedItemsPages(*ssm.ListOpsItemRelatedItemsInput, func(*ssm.ListOpsItemRelatedItemsOutput, bool) bool) error
+	ListOpsItemRelatedItemsPagesWithContext(aws.Context, *ssm.ListOpsItemRelatedItemsInput, func(*ssm.ListOpsItemRelatedItemsOutput, bool) bool, ...request.Option) error
 
 	ListOpsMetadata(*ssm.ListOpsMetadataInput) (*ssm.ListOpsMetadataOutput, error)
 	ListOpsMetadataWithContext(aws.Context, *ssm.ListOpsMetadataInput, ...request.Option) (*ssm.ListOpsMetadataOutput, error)

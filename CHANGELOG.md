@@ -1,3 +1,19 @@
+Release v1.38.37 (2021-05-10)
+===
+
+### Service Client Updates
+* `service/codeartifact`: Updates service documentation
+* `service/config`: Updates service paginators
+* `service/ecs`: Updates service documentation
+  * This release contains updates for Amazon ECS.
+* `service/eks`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added support for Kantar SNAP File Audio Watermarking with a Kantar Watermarking account, and Display Definition Segment(DDS) segment data controls for DVB-Sub caption outputs.
+* `service/ssm`: Updates service API, documentation, and paginators
+  * This release adds new APIs to associate, disassociate and list related items in SSM OpsCenter; and this release adds DisplayName as a version-level attribute for SSM Documents and introduces two new document types: ProblemAnalysis, ProblemAnalysisTemplate.
+
 Release v1.38.36 (2021-05-07)
 ===
 

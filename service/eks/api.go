@@ -3281,8 +3281,7 @@ func (c *EKS) UpdateClusterConfigRequest(input *UpdateClusterConfigInput) (req *
 // see Amazon EKS Cluster Endpoint Access Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 // in the Amazon EKS User Guide .
 //
-// At this time, you can not update the subnets or security group IDs for an
-// existing cluster.
+// You can't update the subnets or security group IDs for an existing cluster.
 //
 // Cluster updates are asynchronous, and they should finish within a few minutes.
 // During an update, the cluster status moves to UPDATING (this status transition
@@ -3715,10 +3714,10 @@ type Addon struct {
 	// The status of the add-on.
 	Status *string `locationName:"status" type:"string" enum:"AddonStatus"`
 
-	// The metadata that you apply to the cluster to assist with categorization
-	// and organization. Each tag consists of a key and an optional value, both
-	// of which you define. Cluster tags do not propagate to any other resources
-	// associated with the cluster.
+	// The metadata that you apply to the add-on to assist with categorization and
+	// organization. Each tag consists of a key and an optional value, both of which
+	// you define. Add-on tags do not propagate to any other resources associated
+	// with the cluster.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -5092,9 +5091,7 @@ type CreateNodegroupInput struct {
 	ScalingConfig *NodegroupScalingConfig `locationName:"scalingConfig" type:"structure"`
 
 	// The subnets to use for the Auto Scaling group that is created for your node
-	// group. These subnets must have the tag key kubernetes.io/cluster/CLUSTER_NAME
-	// with a value of shared, where CLUSTER_NAME is replaced with the name of your
-	// cluster. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html)
+	// group. If you specify launchTemplate, then don't specify SubnetId (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html)
 	// in your launch template, or the node group deployment will fail. For more
 	// information about using launch templates with Amazon EKS, see Launch template
 	// support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html)
@@ -5108,6 +5105,9 @@ type CreateNodegroupInput struct {
 	// you define. Node group tags do not propagate to any other resources associated
 	// with the node group, such as the Amazon EC2 instances or subnets.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
+
+	// The Kubernetes taints to be applied to the nodes in the node group.
+	Taints []*Taint `locationName:"taints" type:"list"`
 
 	// The Kubernetes version to use for your managed nodes. By default, the Kubernetes
 	// version of the cluster is used, and this is the only accepted specified value.
@@ -5153,6 +5153,16 @@ func (s *CreateNodegroupInput) Validate() error {
 	if s.ScalingConfig != nil {
 		if err := s.ScalingConfig.Validate(); err != nil {
 			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Taints != nil {
+		for i, v := range s.Taints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Taints", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -5249,6 +5259,12 @@ func (s *CreateNodegroupInput) SetSubnets(v []*string) *CreateNodegroupInput {
 // SetTags sets the Tags field's value.
 func (s *CreateNodegroupInput) SetTags(v map[string]*string) *CreateNodegroupInput {
 	s.Tags = v
+	return s
+}
+
+// SetTaints sets the Taints field's value.
+func (s *CreateNodegroupInput) SetTaints(v []*Taint) *CreateNodegroupInput {
+	s.Taints = v
 	return s
 }
 
@@ -6286,8 +6302,8 @@ func (s *DisassociateIdentityProviderConfigOutput) SetUpdate(v *Update) *Disasso
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// AWS Key Management Service (AWS KMS) customer master key (CMK). Either the
-	// ARN or the alias can be used.
+	// AWS Key Management Service (AWS KMS) key. Either the ARN or the alias can
+	// be used.
 	Provider *Provider `locationName:"provider" type:"structure"`
 
 	// Specifies the resources to be encrypted. The only supported value is "secrets".
@@ -7841,6 +7857,12 @@ type Nodegroup struct {
 	// with the node group, such as the Amazon EC2 instances or subnets.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
+	// The Kubernetes taints to be applied to the nodes in the node group when they
+	// are created. Effect is one of NoSchedule, PreferNoSchedule, or NoExecute.
+	// Kubernetes taints can be used together with tolerations to control how workloads
+	// are scheduled to your nodes.
+	Taints []*Taint `locationName:"taints" type:"list"`
+
 	// The Kubernetes version of the managed node group.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -7975,6 +7997,12 @@ func (s *Nodegroup) SetTags(v map[string]*string) *Nodegroup {
 	return s
 }
 
+// SetTaints sets the Taints field's value.
+func (s *Nodegroup) SetTaints(v []*Taint) *Nodegroup {
+	s.Taints = v
+	return s
+}
+
 // SetVersion sets the Version field's value.
 func (s *Nodegroup) SetVersion(v string) *Nodegroup {
 	s.Version = &v
@@ -8041,8 +8069,9 @@ func (s *NodegroupResources) SetRemoteAccessSecurityGroup(v string) *NodegroupRe
 }
 
 // An object representing the scaling configuration details for the Auto Scaling
-// group that is associated with your node group. If you specify a value for
-// any property, then you must specify values for all of the properties.
+// group that is associated with your node group. When creating a node group,
+// you must specify all or none of the properties. When updating a node group,
+// you can specify any or none of the properties.
 type NodegroupScalingConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8451,16 +8480,15 @@ func (s *OidcIdentityProviderConfigRequest) SetUsernamePrefix(v string) *OidcIde
 	return s
 }
 
-// Identifies the AWS Key Management Service (AWS KMS) customer master key (CMK)
-// used to encrypt the secrets.
+// Identifies the AWS Key Management Service (AWS KMS) key used to encrypt the
+// secrets.
 type Provider struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Name (ARN) or alias of the customer master key (CMK). The
-	// CMK must be symmetric, created in the same region as the cluster, and if
-	// the CMK was created in a different account, the user must have access to
-	// the CMK. For more information, see Allowing Users in Other Accounts to Use
-	// a CMK (https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)
+	// Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric,
+	// created in the same region as the cluster, and if the KMS key was created
+	// in a different account, the user must have access to the KMS key. For more
+	// information, see Allowing Users in Other Accounts to Use a KMS key (https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)
 	// in the AWS Key Management Service Developer Guide.
 	KeyArn *string `locationName:"keyArn" type:"string"`
 }
@@ -8909,6 +8937,61 @@ func (s TagResourceOutput) String() string {
 // GoString returns the string representation
 func (s TagResourceOutput) GoString() string {
 	return s.String()
+}
+
+// A property that allows a node to repel a set of pods.
+type Taint struct {
+	_ struct{} `type:"structure"`
+
+	// The effect of the taint.
+	Effect *string `locationName:"effect" type:"string" enum:"TaintEffect"`
+
+	// The key of the taint.
+	Key *string `locationName:"key" min:"1" type:"string"`
+
+	// The value of the taint.
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation
+func (s Taint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Taint) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Taint) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Taint"}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEffect sets the Effect field's value.
+func (s *Taint) SetEffect(v string) *Taint {
+	s.Effect = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *Taint) SetKey(v string) *Taint {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Taint) SetValue(v string) *Taint {
+	s.Value = &v
+	return s
 }
 
 // At least one of your specified cluster subnets is in an Availability Zone
@@ -9501,6 +9584,10 @@ type UpdateNodegroupConfigInput struct {
 
 	// The scaling configuration details for the Auto Scaling group after the update.
 	ScalingConfig *NodegroupScalingConfig `locationName:"scalingConfig" type:"structure"`
+
+	// The Kubernetes taints to be applied to the nodes in the node group after
+	// the update.
+	Taints *UpdateTaintsPayload `locationName:"taints" type:"structure"`
 }
 
 // String returns the string representation
@@ -9531,6 +9618,11 @@ func (s *UpdateNodegroupConfigInput) Validate() error {
 	if s.ScalingConfig != nil {
 		if err := s.ScalingConfig.Validate(); err != nil {
 			invalidParams.AddNested("ScalingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Taints != nil {
+		if err := s.Taints.Validate(); err != nil {
+			invalidParams.AddNested("Taints", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -9567,6 +9659,12 @@ func (s *UpdateNodegroupConfigInput) SetNodegroupName(v string) *UpdateNodegroup
 // SetScalingConfig sets the ScalingConfig field's value.
 func (s *UpdateNodegroupConfigInput) SetScalingConfig(v *NodegroupScalingConfig) *UpdateNodegroupConfigInput {
 	s.ScalingConfig = v
+	return s
+}
+
+// SetTaints sets the Taints field's value.
+func (s *UpdateNodegroupConfigInput) SetTaints(v *UpdateTaintsPayload) *UpdateNodegroupConfigInput {
+	s.Taints = v
 	return s
 }
 
@@ -9771,6 +9869,69 @@ func (s *UpdateParam) SetType(v string) *UpdateParam {
 // SetValue sets the Value field's value.
 func (s *UpdateParam) SetValue(v string) *UpdateParam {
 	s.Value = &v
+	return s
+}
+
+// An object representing the details of an update to a taints payload.
+type UpdateTaintsPayload struct {
+	_ struct{} `type:"structure"`
+
+	// Kubernetes taints to be added or updated.
+	AddOrUpdateTaints []*Taint `locationName:"addOrUpdateTaints" type:"list"`
+
+	// Kubernetes taints to be removed.
+	RemoveTaints []*Taint `locationName:"removeTaints" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateTaintsPayload) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTaintsPayload) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTaintsPayload) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTaintsPayload"}
+	if s.AddOrUpdateTaints != nil {
+		for i, v := range s.AddOrUpdateTaints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AddOrUpdateTaints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RemoveTaints != nil {
+		for i, v := range s.RemoveTaints {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RemoveTaints", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAddOrUpdateTaints sets the AddOrUpdateTaints field's value.
+func (s *UpdateTaintsPayload) SetAddOrUpdateTaints(v []*Taint) *UpdateTaintsPayload {
+	s.AddOrUpdateTaints = v
+	return s
+}
+
+// SetRemoveTaints sets the RemoveTaints field's value.
+func (s *UpdateTaintsPayload) SetRemoveTaints(v []*Taint) *UpdateTaintsPayload {
+	s.RemoveTaints = v
 	return s
 }
 
@@ -10379,6 +10540,26 @@ func ResolveConflicts_Values() []string {
 }
 
 const (
+	// TaintEffectNoSchedule is a TaintEffect enum value
+	TaintEffectNoSchedule = "NO_SCHEDULE"
+
+	// TaintEffectNoExecute is a TaintEffect enum value
+	TaintEffectNoExecute = "NO_EXECUTE"
+
+	// TaintEffectPreferNoSchedule is a TaintEffect enum value
+	TaintEffectPreferNoSchedule = "PREFER_NO_SCHEDULE"
+)
+
+// TaintEffect_Values returns all elements of the TaintEffect enum
+func TaintEffect_Values() []string {
+	return []string{
+		TaintEffectNoSchedule,
+		TaintEffectNoExecute,
+		TaintEffectPreferNoSchedule,
+	}
+}
+
+const (
 	// UpdateParamTypeVersion is a UpdateParamType enum value
 	UpdateParamTypeVersion = "Version"
 
@@ -10402,6 +10583,12 @@ const (
 
 	// UpdateParamTypeLabelsToRemove is a UpdateParamType enum value
 	UpdateParamTypeLabelsToRemove = "LabelsToRemove"
+
+	// UpdateParamTypeTaintsToAdd is a UpdateParamType enum value
+	UpdateParamTypeTaintsToAdd = "TaintsToAdd"
+
+	// UpdateParamTypeTaintsToRemove is a UpdateParamType enum value
+	UpdateParamTypeTaintsToRemove = "TaintsToRemove"
 
 	// UpdateParamTypeMaxSize is a UpdateParamType enum value
 	UpdateParamTypeMaxSize = "MaxSize"
@@ -10448,6 +10635,8 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeDesiredSize,
 		UpdateParamTypeLabelsToAdd,
 		UpdateParamTypeLabelsToRemove,
+		UpdateParamTypeTaintsToAdd,
+		UpdateParamTypeTaintsToRemove,
 		UpdateParamTypeMaxSize,
 		UpdateParamTypeMinSize,
 		UpdateParamTypeReleaseVersion,

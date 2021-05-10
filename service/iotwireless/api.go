@@ -5466,8 +5466,10 @@ type ConflictException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// Id of the resource in the conflicting operation.
 	ResourceId *string `type:"string"`
 
+	// Type of the resource in the conflicting operation.
 	ResourceType *string `type:"string"`
 }
 
@@ -9351,8 +9353,18 @@ type LoRaWANGateway struct {
 	// The gateway's EUI value.
 	GatewayEui *string `type:"string"`
 
+	// A list of JoinEuiRange used by LoRa gateways to filter LoRa frames.
+	JoinEuiFilters [][]*string `type:"list"`
+
+	// A list of NetId values that are used by LoRa gateways to filter the uplink
+	// frames.
+	NetIdFilters []*string `type:"list"`
+
 	// The frequency band (RFRegion) value.
 	RfRegion *string `type:"string"`
+
+	// A list of integer indicating which sub bands are supported by LoRa gateway.
+	SubBands []*int64 `type:"list"`
 }
 
 // String returns the string representation
@@ -9371,9 +9383,27 @@ func (s *LoRaWANGateway) SetGatewayEui(v string) *LoRaWANGateway {
 	return s
 }
 
+// SetJoinEuiFilters sets the JoinEuiFilters field's value.
+func (s *LoRaWANGateway) SetJoinEuiFilters(v [][]*string) *LoRaWANGateway {
+	s.JoinEuiFilters = v
+	return s
+}
+
+// SetNetIdFilters sets the NetIdFilters field's value.
+func (s *LoRaWANGateway) SetNetIdFilters(v []*string) *LoRaWANGateway {
+	s.NetIdFilters = v
+	return s
+}
+
 // SetRfRegion sets the RfRegion field's value.
 func (s *LoRaWANGateway) SetRfRegion(v string) *LoRaWANGateway {
 	s.RfRegion = &v
+	return s
+}
+
+// SetSubBands sets the SubBands field's value.
+func (s *LoRaWANGateway) SetSubBands(v []*int64) *LoRaWANGateway {
+	s.SubBands = v
 	return s
 }
 
@@ -10000,8 +10030,10 @@ type ResourceNotFoundException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// Id of the not found resource.
 	ResourceId *string `type:"string"`
 
+	// Type of the font found resource.
 	ResourceType *string `type:"string"`
 }
 
@@ -10851,6 +10883,7 @@ type TooManyTagsException struct {
 
 	Message_ *string `locationName:"Message" type:"string"`
 
+	// Name of the resource that exceeds maximum number of tags allowed.
 	ResourceName *string `min:"1" type:"string"`
 }
 
@@ -11255,8 +11288,15 @@ type UpdateWirelessGatewayInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
+	// A list of JoinEuiRange used by LoRa gateways to filter LoRa frames.
+	JoinEuiFilters [][]*string `type:"list"`
+
 	// The new name of the resource.
 	Name *string `type:"string"`
+
+	// A list of NetId values that are used by LoRa gateways to filter the uplink
+	// frames.
+	NetIdFilters []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -11297,9 +11337,21 @@ func (s *UpdateWirelessGatewayInput) SetId(v string) *UpdateWirelessGatewayInput
 	return s
 }
 
+// SetJoinEuiFilters sets the JoinEuiFilters field's value.
+func (s *UpdateWirelessGatewayInput) SetJoinEuiFilters(v [][]*string) *UpdateWirelessGatewayInput {
+	s.JoinEuiFilters = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateWirelessGatewayInput) SetName(v string) *UpdateWirelessGatewayInput {
 	s.Name = &v
+	return s
+}
+
+// SetNetIdFilters sets the NetIdFilters field's value.
+func (s *UpdateWirelessGatewayInput) SetNetIdFilters(v []*string) *UpdateWirelessGatewayInput {
+	s.NetIdFilters = v
 	return s
 }
 
