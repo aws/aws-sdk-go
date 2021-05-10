@@ -132,6 +132,10 @@ type KinesisAnalyticsV2API interface {
 	DescribeApplicationSnapshotWithContext(aws.Context, *kinesisanalyticsv2.DescribeApplicationSnapshotInput, ...request.Option) (*kinesisanalyticsv2.DescribeApplicationSnapshotOutput, error)
 	DescribeApplicationSnapshotRequest(*kinesisanalyticsv2.DescribeApplicationSnapshotInput) (*request.Request, *kinesisanalyticsv2.DescribeApplicationSnapshotOutput)
 
+	DescribeApplicationVersion(*kinesisanalyticsv2.DescribeApplicationVersionInput) (*kinesisanalyticsv2.DescribeApplicationVersionOutput, error)
+	DescribeApplicationVersionWithContext(aws.Context, *kinesisanalyticsv2.DescribeApplicationVersionInput, ...request.Option) (*kinesisanalyticsv2.DescribeApplicationVersionOutput, error)
+	DescribeApplicationVersionRequest(*kinesisanalyticsv2.DescribeApplicationVersionInput) (*request.Request, *kinesisanalyticsv2.DescribeApplicationVersionOutput)
+
 	DiscoverInputSchema(*kinesisanalyticsv2.DiscoverInputSchemaInput) (*kinesisanalyticsv2.DiscoverInputSchemaOutput, error)
 	DiscoverInputSchemaWithContext(aws.Context, *kinesisanalyticsv2.DiscoverInputSchemaInput, ...request.Option) (*kinesisanalyticsv2.DiscoverInputSchemaOutput, error)
 	DiscoverInputSchemaRequest(*kinesisanalyticsv2.DiscoverInputSchemaInput) (*request.Request, *kinesisanalyticsv2.DiscoverInputSchemaOutput)
@@ -139,6 +143,10 @@ type KinesisAnalyticsV2API interface {
 	ListApplicationSnapshots(*kinesisanalyticsv2.ListApplicationSnapshotsInput) (*kinesisanalyticsv2.ListApplicationSnapshotsOutput, error)
 	ListApplicationSnapshotsWithContext(aws.Context, *kinesisanalyticsv2.ListApplicationSnapshotsInput, ...request.Option) (*kinesisanalyticsv2.ListApplicationSnapshotsOutput, error)
 	ListApplicationSnapshotsRequest(*kinesisanalyticsv2.ListApplicationSnapshotsInput) (*request.Request, *kinesisanalyticsv2.ListApplicationSnapshotsOutput)
+
+	ListApplicationVersions(*kinesisanalyticsv2.ListApplicationVersionsInput) (*kinesisanalyticsv2.ListApplicationVersionsOutput, error)
+	ListApplicationVersionsWithContext(aws.Context, *kinesisanalyticsv2.ListApplicationVersionsInput, ...request.Option) (*kinesisanalyticsv2.ListApplicationVersionsOutput, error)
+	ListApplicationVersionsRequest(*kinesisanalyticsv2.ListApplicationVersionsInput) (*request.Request, *kinesisanalyticsv2.ListApplicationVersionsOutput)
 
 	ListApplications(*kinesisanalyticsv2.ListApplicationsInput) (*kinesisanalyticsv2.ListApplicationsOutput, error)
 	ListApplicationsWithContext(aws.Context, *kinesisanalyticsv2.ListApplicationsInput, ...request.Option) (*kinesisanalyticsv2.ListApplicationsOutput, error)

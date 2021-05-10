@@ -1763,6 +1763,97 @@ func (c *KinesisAnalyticsV2) DescribeApplicationSnapshotWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+const opDescribeApplicationVersion = "DescribeApplicationVersion"
+
+// DescribeApplicationVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeApplicationVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeApplicationVersion for more information on using the DescribeApplicationVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeApplicationVersionRequest method.
+//    req, resp := client.DescribeApplicationVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/DescribeApplicationVersion
+func (c *KinesisAnalyticsV2) DescribeApplicationVersionRequest(input *DescribeApplicationVersionInput) (req *request.Request, output *DescribeApplicationVersionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeApplicationVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeApplicationVersionInput{}
+	}
+
+	output = &DescribeApplicationVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeApplicationVersion API operation for Amazon Kinesis Analytics.
+//
+// Provides a detailed description of a specified version of the application.
+// To see a list of all the versions of an application, invoke the ListApplicationVersions
+// operation.
+//
+// This operation is supported only for Amazon Kinesis Data Analytics for Apache
+// Flink.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation DescribeApplicationVersion for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   The specified input parameter value is not valid.
+//
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/DescribeApplicationVersion
+func (c *KinesisAnalyticsV2) DescribeApplicationVersion(input *DescribeApplicationVersionInput) (*DescribeApplicationVersionOutput, error) {
+	req, out := c.DescribeApplicationVersionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeApplicationVersionWithContext is the same as DescribeApplicationVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeApplicationVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) DescribeApplicationVersionWithContext(ctx aws.Context, input *DescribeApplicationVersionInput, opts ...request.Option) (*DescribeApplicationVersionOutput, error) {
+	req, out := c.DescribeApplicationVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDiscoverInputSchema = "DiscoverInputSchema"
 
 // DiscoverInputSchemaRequest generates a "aws/request.Request" representing the
@@ -1945,6 +2036,100 @@ func (c *KinesisAnalyticsV2) ListApplicationSnapshots(input *ListApplicationSnap
 // for more information on using Contexts.
 func (c *KinesisAnalyticsV2) ListApplicationSnapshotsWithContext(ctx aws.Context, input *ListApplicationSnapshotsInput, opts ...request.Option) (*ListApplicationSnapshotsOutput, error) {
 	req, out := c.ListApplicationSnapshotsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListApplicationVersions = "ListApplicationVersions"
+
+// ListApplicationVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListApplicationVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListApplicationVersions for more information on using the ListApplicationVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListApplicationVersionsRequest method.
+//    req, resp := client.ListApplicationVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/ListApplicationVersions
+func (c *KinesisAnalyticsV2) ListApplicationVersionsRequest(input *ListApplicationVersionsInput) (req *request.Request, output *ListApplicationVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListApplicationVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListApplicationVersionsInput{}
+	}
+
+	output = &ListApplicationVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListApplicationVersions API operation for Amazon Kinesis Analytics.
+//
+// Lists all the versions for the specified application, including versions
+// that were rolled back. The response also includes a summary of the configuration
+// associated with each version.
+//
+// To get the complete description of a specific application version, invoke
+// the DescribeApplicationVersion operation.
+//
+// This operation is supported only for Amazon Kinesis Data Analytics for Apache
+// Flink.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation ListApplicationVersions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidArgumentException
+//   The specified input parameter value is not valid.
+//
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * UnsupportedOperationException
+//   The request was rejected because a specified parameter is not supported or
+//   a specified resource is not valid for this operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/ListApplicationVersions
+func (c *KinesisAnalyticsV2) ListApplicationVersions(input *ListApplicationVersionsInput) (*ListApplicationVersionsOutput, error) {
+	req, out := c.ListApplicationVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListApplicationVersionsWithContext is the same as ListApplicationVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListApplicationVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) ListApplicationVersionsWithContext(ctx aws.Context, input *ListApplicationVersionsInput, opts ...request.Option) (*ListApplicationVersionsOutput, error) {
+	req, out := c.ListApplicationVersionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2775,9 +2960,27 @@ func (c *KinesisAnalyticsV2) UpdateApplicationMaintenanceConfigurationRequest(in
 
 // UpdateApplicationMaintenanceConfiguration API operation for Amazon Kinesis Analytics.
 //
-// Updates the configuration for the automatic maintenance that Kinesis Data
-// Analytics performs on the application. For information about automatic application
-// maintenance, see Kinesis Data Analytics for Apache Flink Maintenance (https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html).
+// Updates the maintenance configuration of the Kinesis Data Analytics application.
+//
+// You can invoke this operation on an application that is in one of the two
+// following states: READY or RUNNING. If you invoke it when the application
+// is in a state other than these two states, it throws a ResourceInUseException.
+// The service makes use of the updated configuration the next time it schedules
+// maintenance for the application. If you invoke this operation after the service
+// schedules maintenance, the service will apply the configuration update the
+// next time it schedules maintenance for the application. This means that you
+// might not see the maintenance configuration update applied to the maintenance
+// process that follows a successful invocation of this operation, but to the
+// following maintenance process instead.
+//
+// To see the current maintenance configuration of your application, invoke
+// the DescribeApplication operation.
+//
+// For information about application maintenance, see Kinesis Data Analytics
+// for Apache Flink Maintenance (https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html).
+//
+// This operation is supported only for Amazon Kinesis Data Analytics for Apache
+// Flink.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4096,7 +4299,7 @@ type ApplicationDetail struct {
 	// The description of the application.
 	ApplicationDescription *string `type:"string"`
 
-	// Describes the time window for automatic application maintenance.
+	// The details of the maintenance configuration for the application.
 	ApplicationMaintenanceConfigurationDescription *ApplicationMaintenanceConfigurationDescription `type:"structure"`
 
 	// The name of the application.
@@ -4118,6 +4321,9 @@ type ApplicationDetail struct {
 	// If you reverted the application using RollbackApplication, the application
 	// version when RollbackApplication was called.
 	ApplicationVersionRolledBackFrom *int64 `min:"1" type:"long"`
+
+	// The version to which you want to roll back the application.
+	ApplicationVersionRolledBackTo *int64 `min:"1" type:"long"`
 
 	// The previous application version before the latest application update. RollbackApplication
 	// reverts the application to this version.
@@ -4203,6 +4409,12 @@ func (s *ApplicationDetail) SetApplicationVersionRolledBackFrom(v int64) *Applic
 	return s
 }
 
+// SetApplicationVersionRolledBackTo sets the ApplicationVersionRolledBackTo field's value.
+func (s *ApplicationDetail) SetApplicationVersionRolledBackTo(v int64) *ApplicationDetail {
+	s.ApplicationVersionRolledBackTo = &v
+	return s
+}
+
 // SetApplicationVersionUpdatedFrom sets the ApplicationVersionUpdatedFrom field's value.
 func (s *ApplicationDetail) SetApplicationVersionUpdatedFrom(v int64) *ApplicationDetail {
 	s.ApplicationVersionUpdatedFrom = &v
@@ -4245,16 +4457,16 @@ func (s *ApplicationDetail) SetServiceExecutionRole(v string) *ApplicationDetail
 	return s
 }
 
-// Describes the time window for automatic application maintenance.
+// The details of the maintenance configuration for the application.
 type ApplicationMaintenanceConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
-	// The end time for the automatic maintenance window.
+	// The end time for the maintenance window.
 	//
 	// ApplicationMaintenanceWindowEndTime is a required field
 	ApplicationMaintenanceWindowEndTime *string `min:"5" type:"string" required:"true"`
 
-	// The start time for the automatic maintenance window.
+	// The start time for the maintenance window.
 	//
 	// ApplicationMaintenanceWindowStartTime is a required field
 	ApplicationMaintenanceWindowStartTime *string `min:"5" type:"string" required:"true"`
@@ -4282,11 +4494,11 @@ func (s *ApplicationMaintenanceConfigurationDescription) SetApplicationMaintenan
 	return s
 }
 
-// Describes the updated time window for automatic application maintenance.
+// Describes the updated maintenance configuration for the application.
 type ApplicationMaintenanceConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The updated start time for the automatic maintenance window.
+	// The updated start time for the maintenance window.
 	//
 	// ApplicationMaintenanceWindowStartTimeUpdate is a required field
 	ApplicationMaintenanceWindowStartTimeUpdate *string `min:"5" type:"string" required:"true"`
@@ -4557,6 +4769,44 @@ func (s *ApplicationSummary) SetApplicationVersionId(v int64) *ApplicationSummar
 // SetRuntimeEnvironment sets the RuntimeEnvironment field's value.
 func (s *ApplicationSummary) SetRuntimeEnvironment(v string) *ApplicationSummary {
 	s.RuntimeEnvironment = &v
+	return s
+}
+
+// The summary of the application version.
+type ApplicationVersionSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the application.
+	//
+	// ApplicationStatus is a required field
+	ApplicationStatus *string `type:"string" required:"true" enum:"ApplicationStatus"`
+
+	// The ID of the application version. Kinesis Data Analytics updates the ApplicationVersionId
+	// each time you update the application.
+	//
+	// ApplicationVersionId is a required field
+	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s ApplicationVersionSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplicationVersionSummary) GoString() string {
+	return s.String()
+}
+
+// SetApplicationStatus sets the ApplicationStatus field's value.
+func (s *ApplicationVersionSummary) SetApplicationStatus(v string) *ApplicationVersionSummary {
+	s.ApplicationStatus = &v
+	return s
+}
+
+// SetApplicationVersionId sets the ApplicationVersionId field's value.
+func (s *ApplicationVersionSummary) SetApplicationVersionId(v int64) *ApplicationVersionSummary {
+	s.ApplicationVersionId = &v
 	return s
 }
 
@@ -6558,6 +6808,88 @@ func (s DescribeApplicationSnapshotOutput) GoString() string {
 // SetSnapshotDetails sets the SnapshotDetails field's value.
 func (s *DescribeApplicationSnapshotOutput) SetSnapshotDetails(v *SnapshotDetails) *DescribeApplicationSnapshotOutput {
 	s.SnapshotDetails = v
+	return s
+}
+
+type DescribeApplicationVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application for which you want to get the version description.
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the application version for which you want to get the description.
+	//
+	// ApplicationVersionId is a required field
+	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeApplicationVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeApplicationVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeApplicationVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeApplicationVersionInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.ApplicationVersionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationVersionId"))
+	}
+	if s.ApplicationVersionId != nil && *s.ApplicationVersionId < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ApplicationVersionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *DescribeApplicationVersionInput) SetApplicationName(v string) *DescribeApplicationVersionInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetApplicationVersionId sets the ApplicationVersionId field's value.
+func (s *DescribeApplicationVersionInput) SetApplicationVersionId(v int64) *DescribeApplicationVersionInput {
+	s.ApplicationVersionId = &v
+	return s
+}
+
+type DescribeApplicationVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the application, including the application Amazon Resource Name
+	// (ARN), status, latest version, and input and output configurations.
+	ApplicationVersionDetail *ApplicationDetail `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeApplicationVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeApplicationVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationVersionDetail sets the ApplicationVersionDetail field's value.
+func (s *DescribeApplicationVersionOutput) SetApplicationVersionDetail(v *ApplicationDetail) *DescribeApplicationVersionOutput {
+	s.ApplicationVersionDetail = v
 	return s
 }
 
@@ -8942,6 +9274,113 @@ func (s *ListApplicationSnapshotsOutput) SetNextToken(v string) *ListApplication
 // SetSnapshotSummaries sets the SnapshotSummaries field's value.
 func (s *ListApplicationSnapshotsOutput) SetSnapshotSummaries(v []*SnapshotDetails) *ListApplicationSnapshotsOutput {
 	s.SnapshotSummaries = v
+	return s
+}
+
+type ListApplicationVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application for which you want to list all versions.
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum number of versions to list in this invocation of the operation.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// If a previous invocation of this operation returned a pagination token, pass
+	// it into this value to retrieve the next set of results. For more information
+	// about pagination, see Using the AWS Command Line Interface's Pagination Options
+	// (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListApplicationVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApplicationVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListApplicationVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListApplicationVersionsInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *ListApplicationVersionsInput) SetApplicationName(v string) *ListApplicationVersionsInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListApplicationVersionsInput) SetLimit(v int64) *ListApplicationVersionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationVersionsInput) SetNextToken(v string) *ListApplicationVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListApplicationVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the application versions and the associated configuration summaries.
+	// The list includes application versions that were rolled back.
+	//
+	// To get the complete description of a specific application version, invoke
+	// the DescribeApplicationVersion operation.
+	ApplicationVersionSummaries []*ApplicationVersionSummary `type:"list"`
+
+	// The pagination token for the next set of results, or null if there are no
+	// additional results. To retrieve the next set of items, pass this token into
+	// a subsequent invocation of this operation. For more information about pagination,
+	// see Using the AWS Command Line Interface's Pagination Options (https://docs.aws.amazon.com/cli/latest/userguide/pagination.html).
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListApplicationVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListApplicationVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetApplicationVersionSummaries sets the ApplicationVersionSummaries field's value.
+func (s *ListApplicationVersionsOutput) SetApplicationVersionSummaries(v []*ApplicationVersionSummary) *ListApplicationVersionsOutput {
+	s.ApplicationVersionSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListApplicationVersionsOutput) SetNextToken(v string) *ListApplicationVersionsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -12240,7 +12679,7 @@ type UpdateApplicationMaintenanceConfigurationInput struct {
 	ApplicationMaintenanceConfigurationUpdate *ApplicationMaintenanceConfigurationUpdate `type:"structure" required:"true"`
 
 	// The name of the application for which you want to update the maintenance
-	// time window.
+	// configuration.
 	//
 	// ApplicationName is a required field
 	ApplicationName *string `min:"1" type:"string" required:"true"`
@@ -12589,6 +13028,9 @@ const (
 
 	// ApplicationStatusRollingBack is a ApplicationStatus enum value
 	ApplicationStatusRollingBack = "ROLLING_BACK"
+
+	// ApplicationStatusRolledBack is a ApplicationStatus enum value
+	ApplicationStatusRolledBack = "ROLLED_BACK"
 )
 
 // ApplicationStatus_Values returns all elements of the ApplicationStatus enum
@@ -12604,6 +13046,7 @@ func ApplicationStatus_Values() []string {
 		ApplicationStatusForceStopping,
 		ApplicationStatusMaintenance,
 		ApplicationStatusRollingBack,
+		ApplicationStatusRolledBack,
 	}
 }
 

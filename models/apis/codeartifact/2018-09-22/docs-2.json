@@ -11,11 +11,11 @@
     "DeletePackageVersions": "<p> Deletes one or more versions of a package. A deleted package version cannot be restored in your repository. If you want to remove a package version from your repository and be able to restore it later, set its status to <code>Archived</code>. Archived packages cannot be downloaded from a repository and don't show up with list package APIs (for example, <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\">ListackageVersions</a>), but you can restore them using <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html\">UpdatePackageVersionsStatus</a>. </p>",
     "DeleteRepository": "<p> Deletes a repository. </p>",
     "DeleteRepositoryPermissionsPolicy": "<p> Deletes the resource policy that is set on a repository. After a resource policy is deleted, the permissions allowed and denied by the deleted policy are removed. The effect of deleting a resource policy might not be immediate. </p> <important> <p> Use <code>DeleteRepositoryPermissionsPolicy</code> with caution. After a policy is deleted, AWS users, roles, and accounts lose permissions to perform the repository actions granted by the deleted policy. </p> </important>",
-    "DescribeDomain": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainDescription.html\"> <code>DomainDescription</code> </a> object that contains information about the requested domain. </p>",
-    "DescribePackageVersion": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html\"> <code>PackageVersionDescription</code> </a> object that contains information about the requested package version. </p>",
+    "DescribeDomain": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DomainDescription.html\">DomainDescription</a> object that contains information about the requested domain. </p>",
+    "DescribePackageVersion": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html\">PackageVersionDescription</a> object that contains information about the requested package version. </p>",
     "DescribeRepository": "<p> Returns a <code>RepositoryDescription</code> object that contains detailed information about the requested repository. </p>",
     "DisassociateExternalConnection": "<p> Removes an existing external connection from a repository. </p>",
-    "DisposePackageVersions": "<p> Deletes the assets in package versions and sets the package versions' status to <code>Disposed</code>. A disposed package version cannot be restored in your repository because its assets are deleted. </p> <p> To view all disposed package versions in a repository, use <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\"> <code>ListPackageVersions</code> </a> and set the <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html#API_ListPackageVersions_RequestSyntax\"> <code>status</code> </a> parameter to <code>Disposed</code>. </p> <p> To view information about a disposed package version, use <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html\"> <code>DescribePackageVersion</code> </a>.. </p>",
+    "DisposePackageVersions": "<p> Deletes the assets in package versions and sets the package versions' status to <code>Disposed</code>. A disposed package version cannot be restored in your repository because its assets are deleted. </p> <p> To view all disposed package versions in a repository, use <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\">ListPackageVersions</a> and set the <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html#API_ListPackageVersions_RequestSyntax\">status</a> parameter to <code>Disposed</code>. </p> <p> To view information about a disposed package version, use <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html\">DescribePackageVersion</a>. </p>",
     "GetAuthorizationToken": "<p> Generates a temporary authorization token for accessing repositories in the domain. This API requires the <code>codeartifact:GetAuthorizationToken</code> and <code>sts:GetServiceBearerToken</code> permissions. For more information about authorization tokens, see <a href=\"https://docs.aws.amazon.com/codeartifact/latest/ug/tokens-authentication.html\">AWS CodeArtifact authentication and tokens</a>. </p> <note> <p>CodeArtifact authorization tokens are valid for a period of 12 hours when created with the <code>login</code> command. You can call <code>login</code> periodically to refresh the token. When you create an authorization token with the <code>GetAuthorizationToken</code> API, you can set a custom authorization period, up to a maximum of 12 hours, with the <code>durationSeconds</code> parameter.</p> <p>The authorization period begins after <code>login</code> or <code>GetAuthorizationToken</code> is called. If <code>login</code> or <code>GetAuthorizationToken</code> is called while assuming a role, the token lifetime is independent of the maximum session duration of the role. For example, if you call <code>sts assume-role</code> and specify a session duration of 15 minutes, then generate a CodeArtifact authorization token, the token will be valid for the full authorization period even though this is longer than the 15-minute session duration.</p> <p>See <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html\">Using IAM Roles</a> for more information on controlling session duration. </p> </note>",
     "GetDomainPermissionsPolicy": "<p> Returns the resource policy attached to the specified domain. </p> <note> <p> The policy is a resource-based policy, not an identity-based policy. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html\">Identity-based policies and resource-based policies </a> in the <i>AWS Identity and Access Management User Guide</i>. </p> </note>",
     "GetPackageVersionAsset": "<p> Returns an asset (or file) that is in a package. For example, for a Maven package version, use <code>GetPackageVersionAsset</code> to download a <code>JAR</code> file, a <code>POM</code> file, or any other assets in the package version. </p>",
@@ -23,12 +23,12 @@
     "GetRepositoryEndpoint": "<p> Returns the endpoint of a repository for a specific package format. A repository has one endpoint for each package format: </p> <ul> <li> <p> <code>npm</code> </p> </li> <li> <p> <code>pypi</code> </p> </li> <li> <p> <code>maven</code> </p> </li> </ul>",
     "GetRepositoryPermissionsPolicy": "<p> Returns the resource policy that is set on a repository. </p>",
     "ListDomains": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionDescription.html\">DomainSummary</a> objects for all domains owned by the AWS account that makes this call. Each returned <code>DomainSummary</code> object contains information about a domain. </p>",
-    "ListPackageVersionAssets": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html\"> <code>AssetSummary</code> </a> objects for assets in a package version. </p>",
-    "ListPackageVersionDependencies": "<p> Returns the direct dependencies for a package version. The dependencies are returned as <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html\"> <code>PackageDependency</code> </a> objects. CodeArtifact extracts the dependencies for a package version from the metadata file for the package format (for example, the <code>package.json</code> file for npm packages and the <code>pom.xml</code> file for Maven). Any package version dependencies that are not listed in the configuration file are not returned. </p>",
-    "ListPackageVersions": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\"> <code>PackageVersionSummary</code> </a> objects for package versions in a repository that match the request parameters. </p>",
-    "ListPackages": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html\"> <code>PackageSummary</code> </a> objects for packages in a repository that match the request parameters. </p>",
-    "ListRepositories": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\"> <code>RepositorySummary</code> </a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified AWS account and that matches the input parameters. </p>",
-    "ListRepositoriesInDomain": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\"> <code>RepositorySummary</code> </a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified domain and that matches the input parameters. </p>",
+    "ListPackageVersionAssets": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html\">AssetSummary</a> objects for assets in a package version. </p>",
+    "ListPackageVersionDependencies": "<p> Returns the direct dependencies for a package version. The dependencies are returned as <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html\">PackageDependency</a> objects. CodeArtifact extracts the dependencies for a package version from the metadata file for the package format (for example, the <code>package.json</code> file for npm packages and the <code>pom.xml</code> file for Maven). Any package version dependencies that are not listed in the configuration file are not returned. </p>",
+    "ListPackageVersions": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\">PackageVersionSummary</a> objects for package versions in a repository that match the request parameters. </p>",
+    "ListPackages": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html\">PackageSummary</a> objects for packages in a repository that match the request parameters. </p>",
+    "ListRepositories": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\">RepositorySummary</a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified AWS account and that matches the input parameters. </p>",
+    "ListRepositoriesInDomain": "<p> Returns a list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\">RepositorySummary</a> objects. Each <code>RepositorySummary</code> contains information about a repository in the specified domain and that matches the input parameters. </p>",
     "ListTagsForResource": "<p>Gets information about AWS tags for a specified Amazon Resource Name (ARN) in AWS CodeArtifact.</p>",
     "PutDomainPermissionsPolicy": "<p> Sets a resource policy on a domain that specifies permissions to access it. </p> <p> When you call <code>PutDomainPermissionsPolicy</code>, the resource policy on the domain is ignored when evaluting permissions. This ensures that the owner of a domain cannot lock themselves out of the domain, which would prevent them from being able to update the resource policy. </p>",
     "PutRepositoryPermissionsPolicy": "<p> Sets the resource policy on a repository that specifies permissions to access it. </p> <p> When you call <code>PutRepositoryPermissionsPolicy</code>, the resource policy on the repository is ignored when evaluting permissions. This ensures that the owner of a repository cannot lock themselves out of the repository, which would prevent them from being able to update the resource policy. </p>",
@@ -129,7 +129,7 @@
     "AssetSummaryList": {
       "base": null,
       "refs": {
-        "ListPackageVersionAssetsResult$assets": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html\"> <code>AssetSummary</code> </a> objects. </p>"
+        "ListPackageVersionAssetsResult$assets": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_AssetSummary.html\">AssetSummary</a> objects. </p>"
       }
     },
     "AssociateExternalConnectionRequest": {
@@ -353,7 +353,7 @@
       }
     },
     "DomainSummary": {
-      "base": "<p> Information about a domain, including its name, Amazon Resource Name (ARN), and status. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html\"> <code>ListDomains</code> </a> operation returns a list of <code>DomainSummary</code> objects. </p>",
+      "base": "<p> Information about a domain, including its name, Amazon Resource Name (ARN), and status. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListDomains.html\">ListDomains</a> operation returns a list of <code>DomainSummary</code> objects. </p>",
       "refs": {
         "DomainSummaryList$member": null
       }
@@ -616,7 +616,7 @@
     "PackageDependencyList": {
       "base": null,
       "refs": {
-        "ListPackageVersionDependenciesResult$dependencies": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html\"> <code>PackageDependency</code> </a> objects. </p>"
+        "ListPackageVersionDependenciesResult$dependencies": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageDependency.html\">PackageDependency</a> objects. </p>"
       }
     },
     "PackageFormat": {
@@ -690,7 +690,7 @@
       }
     },
     "PackageSummary": {
-      "base": "<p> Details about a package, including its format, namespace, and name. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html\"> <code>ListPackages</code> </a> operation returns a list of <code>PackageSummary</code> objects. </p>",
+      "base": "<p> Details about a package, including its format, namespace, and name. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackages.html\">ListPackages</a> operation returns a list of <code>PackageSummary</code> objects. </p>",
       "refs": {
         "PackageSummaryList$member": null
       }
@@ -698,7 +698,7 @@
     "PackageSummaryList": {
       "base": null,
       "refs": {
-        "ListPackagesResult$packages": "<p> The list of returned <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html\"> <code>PackageSummary</code> </a> objects. </p>"
+        "ListPackagesResult$packages": "<p> The list of returned <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageSummary.html\">PackageSummary</a> objects. </p>"
       }
     },
     "PackageVersion": {
@@ -799,7 +799,7 @@
       }
     },
     "PackageVersionSummary": {
-      "base": "<p> Details about a package version, including its status, version, and revision. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\"> <code>ListPackageVersions</code> </a> operation returns a list of <code>PackageVersionSummary</code> objects. </p>",
+      "base": "<p> Details about a package version, including its status, version, and revision. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html\">ListPackageVersions</a> operation returns a list of <code>PackageVersionSummary</code> objects. </p>",
       "refs": {
         "PackageVersionSummaryList$member": null
       }
@@ -807,7 +807,7 @@
     "PackageVersionSummaryList": {
       "base": null,
       "refs": {
-        "ListPackageVersionsResult$versions": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\"> <code>PackageVersionSummary</code> </a> objects. </p>"
+        "ListPackageVersionsResult$versions": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_PackageVersionSummary.html\">PackageVersionSummary</a> objects. </p>"
       }
     },
     "PaginationToken": {
@@ -924,7 +924,7 @@
       }
     },
     "RepositorySummary": {
-      "base": "<p> Details about a repository, including its Amazon Resource Name (ARN), description, and domain information. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositories.html\"> <code>ListRepositories</code> </a> operation returns a list of <code>RepositorySummary</code> objects. </p>",
+      "base": "<p> Details about a repository, including its Amazon Resource Name (ARN), description, and domain information. The <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListRepositories.html\">ListRepositories</a> operation returns a list of <code>RepositorySummary</code> objects. </p>",
       "refs": {
         "RepositorySummaryList$member": null
       }
@@ -933,7 +933,7 @@
       "base": null,
       "refs": {
         "ListRepositoriesInDomainResult$repositories": "<p> The returned list of repositories. </p>",
-        "ListRepositoriesResult$repositories": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\"> <code>RepositorySummary</code> </a> objects. </p>"
+        "ListRepositoriesResult$repositories": "<p> The returned list of <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_RepositorySummary.html\">RepositorySummary</a> objects. </p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1107,7 +1107,7 @@
       }
     },
     "UpstreamRepository": {
-      "base": "<p> Information about an upstream repository. A list of <code>UpstreamRepository</code> objects is an input parameter to <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html\"> <code>CreateRepository</code> </a> and <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html\"> <code>UpdateRepository</code> </a>. </p>",
+      "base": "<p> Information about an upstream repository. A list of <code>UpstreamRepository</code> objects is an input parameter to <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_CreateRepository.html\">CreateRepository</a> and <a href=\"https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdateRepository.html\">UpdateRepository</a>. </p>",
       "refs": {
         "UpstreamRepositoryList$member": null
       }

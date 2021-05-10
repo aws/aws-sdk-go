@@ -129,6 +129,101 @@ func (c *SSM) AddTagsToResourceWithContext(ctx aws.Context, input *AddTagsToReso
 	return out, req.Send()
 }
 
+const opAssociateOpsItemRelatedItem = "AssociateOpsItemRelatedItem"
+
+// AssociateOpsItemRelatedItemRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateOpsItemRelatedItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateOpsItemRelatedItem for more information on using the AssociateOpsItemRelatedItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateOpsItemRelatedItemRequest method.
+//    req, resp := client.AssociateOpsItemRelatedItemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/AssociateOpsItemRelatedItem
+func (c *SSM) AssociateOpsItemRelatedItemRequest(input *AssociateOpsItemRelatedItemInput) (req *request.Request, output *AssociateOpsItemRelatedItemOutput) {
+	op := &request.Operation{
+		Name:       opAssociateOpsItemRelatedItem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateOpsItemRelatedItemInput{}
+	}
+
+	output = &AssociateOpsItemRelatedItemOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateOpsItemRelatedItem API operation for Amazon Simple Systems Manager (SSM).
+//
+// Associates a related resource to a Systems Manager OpsCenter OpsItem. For
+// example, you can associate an Incident Manager incident or analysis with
+// an OpsItem. Incident Manager is a capability of AWS Systems Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation AssociateOpsItemRelatedItem for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   An error occurred on the server side.
+//
+//   * OpsItemNotFoundException
+//   The specified OpsItem ID doesn't exist. Verify the ID and try again.
+//
+//   * OpsItemLimitExceededException
+//   The request caused OpsItems to exceed one or more quotas. For information
+//   about OpsItem quotas, see What are the resource limits for OpsCenter? (https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-learn-more.html#OpsCenter-learn-more-limits).
+//
+//   * OpsItemInvalidParameterException
+//   A specified parameter argument isn't valid. Verify the available arguments
+//   and try again.
+//
+//   * OpsItemRelatedItemAlreadyExistsException
+//   The Amazon Resource Name (ARN) is already associated with the OpsItem.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/AssociateOpsItemRelatedItem
+func (c *SSM) AssociateOpsItemRelatedItem(input *AssociateOpsItemRelatedItemInput) (*AssociateOpsItemRelatedItemOutput, error) {
+	req, out := c.AssociateOpsItemRelatedItemRequest(input)
+	return out, req.Send()
+}
+
+// AssociateOpsItemRelatedItemWithContext is the same as AssociateOpsItemRelatedItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateOpsItemRelatedItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) AssociateOpsItemRelatedItemWithContext(ctx aws.Context, input *AssociateOpsItemRelatedItemInput, opts ...request.Option) (*AssociateOpsItemRelatedItemOutput, error) {
+	req, out := c.AssociateOpsItemRelatedItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelCommand = "CancelCommand"
 
 // CancelCommandRequest generates a "aws/request.Request" representing the
@@ -7015,6 +7110,99 @@ func (c *SSM) DescribeSessionsPagesWithContext(ctx aws.Context, input *DescribeS
 	return p.Err()
 }
 
+const opDisassociateOpsItemRelatedItem = "DisassociateOpsItemRelatedItem"
+
+// DisassociateOpsItemRelatedItemRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateOpsItemRelatedItem operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateOpsItemRelatedItem for more information on using the DisassociateOpsItemRelatedItem
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateOpsItemRelatedItemRequest method.
+//    req, resp := client.DisassociateOpsItemRelatedItemRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DisassociateOpsItemRelatedItem
+func (c *SSM) DisassociateOpsItemRelatedItemRequest(input *DisassociateOpsItemRelatedItemInput) (req *request.Request, output *DisassociateOpsItemRelatedItemOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateOpsItemRelatedItem,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateOpsItemRelatedItemInput{}
+	}
+
+	output = &DisassociateOpsItemRelatedItemOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateOpsItemRelatedItem API operation for Amazon Simple Systems Manager (SSM).
+//
+// Deletes the association between an OpsItem and a related resource. For example,
+// this API action can delete an Incident Manager incident from an OpsItem.
+// Incident Manager is a capability of AWS Systems Manager.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation DisassociateOpsItemRelatedItem for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   An error occurred on the server side.
+//
+//   * OpsItemRelatedItemAssociationNotFoundException
+//   The association was not found using the parameters you specified in the call.
+//   Verify the information and try again.
+//
+//   * OpsItemNotFoundException
+//   The specified OpsItem ID doesn't exist. Verify the ID and try again.
+//
+//   * OpsItemInvalidParameterException
+//   A specified parameter argument isn't valid. Verify the available arguments
+//   and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/DisassociateOpsItemRelatedItem
+func (c *SSM) DisassociateOpsItemRelatedItem(input *DisassociateOpsItemRelatedItemInput) (*DisassociateOpsItemRelatedItemOutput, error) {
+	req, out := c.DisassociateOpsItemRelatedItemRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateOpsItemRelatedItemWithContext is the same as DisassociateOpsItemRelatedItem with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateOpsItemRelatedItem for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) DisassociateOpsItemRelatedItemWithContext(ctx aws.Context, input *DisassociateOpsItemRelatedItemInput, opts ...request.Option) (*DisassociateOpsItemRelatedItemOutput, error) {
+	req, out := c.DisassociateOpsItemRelatedItemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAutomationExecution = "GetAutomationExecution"
 
 // GetAutomationExecutionRequest generates a "aws/request.Request" representing the
@@ -11110,6 +11298,147 @@ func (c *SSM) ListOpsItemEventsPagesWithContext(ctx aws.Context, input *ListOpsI
 
 	for p.Next() {
 		if !fn(p.Page().(*ListOpsItemEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListOpsItemRelatedItems = "ListOpsItemRelatedItems"
+
+// ListOpsItemRelatedItemsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOpsItemRelatedItems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOpsItemRelatedItems for more information on using the ListOpsItemRelatedItems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOpsItemRelatedItemsRequest method.
+//    req, resp := client.ListOpsItemRelatedItemsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListOpsItemRelatedItems
+func (c *SSM) ListOpsItemRelatedItemsRequest(input *ListOpsItemRelatedItemsInput) (req *request.Request, output *ListOpsItemRelatedItemsOutput) {
+	op := &request.Operation{
+		Name:       opListOpsItemRelatedItems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOpsItemRelatedItemsInput{}
+	}
+
+	output = &ListOpsItemRelatedItemsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOpsItemRelatedItems API operation for Amazon Simple Systems Manager (SSM).
+//
+// Lists all related-item resources associated with an OpsItem.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Systems Manager (SSM)'s
+// API operation ListOpsItemRelatedItems for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   An error occurred on the server side.
+//
+//   * OpsItemInvalidParameterException
+//   A specified parameter argument isn't valid. Verify the available arguments
+//   and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06/ListOpsItemRelatedItems
+func (c *SSM) ListOpsItemRelatedItems(input *ListOpsItemRelatedItemsInput) (*ListOpsItemRelatedItemsOutput, error) {
+	req, out := c.ListOpsItemRelatedItemsRequest(input)
+	return out, req.Send()
+}
+
+// ListOpsItemRelatedItemsWithContext is the same as ListOpsItemRelatedItems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOpsItemRelatedItems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) ListOpsItemRelatedItemsWithContext(ctx aws.Context, input *ListOpsItemRelatedItemsInput, opts ...request.Option) (*ListOpsItemRelatedItemsOutput, error) {
+	req, out := c.ListOpsItemRelatedItemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOpsItemRelatedItemsPages iterates over the pages of a ListOpsItemRelatedItems operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOpsItemRelatedItems method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOpsItemRelatedItems operation.
+//    pageNum := 0
+//    err := client.ListOpsItemRelatedItemsPages(params,
+//        func(page *ssm.ListOpsItemRelatedItemsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SSM) ListOpsItemRelatedItemsPages(input *ListOpsItemRelatedItemsInput, fn func(*ListOpsItemRelatedItemsOutput, bool) bool) error {
+	return c.ListOpsItemRelatedItemsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOpsItemRelatedItemsPagesWithContext same as ListOpsItemRelatedItemsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SSM) ListOpsItemRelatedItemsPagesWithContext(ctx aws.Context, input *ListOpsItemRelatedItemsInput, fn func(*ListOpsItemRelatedItemsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOpsItemRelatedItemsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOpsItemRelatedItemsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOpsItemRelatedItemsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -15461,6 +15790,118 @@ func (s *AlreadyExistsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type AssociateOpsItemRelatedItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The type of association that you want to create between an OpsItem and a
+	// resource. OpsCenter supports IsParentOf and RelatesTo association types.
+	//
+	// AssociationType is a required field
+	AssociationType *string `type:"string" required:"true"`
+
+	// The ID of the OpsItem to which you want to associate a resource as a related
+	// item.
+	//
+	// OpsItemId is a required field
+	OpsItemId *string `type:"string" required:"true"`
+
+	// The type of resource that you want to associate with an OpsItem. OpsCenter
+	// supports the following types:
+	//
+	// AWS::SSMIncidents::IncidentRecord: an Incident Manager incident. Incident
+	// Manager is a capability of AWS Systems Manager.
+	//
+	// AWS::SSM::Document: a Systems Manager (SSM) document.
+	//
+	// ResourceType is a required field
+	ResourceType *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS resource that you want to associate
+	// with the OpsItem.
+	//
+	// ResourceUri is a required field
+	ResourceUri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateOpsItemRelatedItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateOpsItemRelatedItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateOpsItemRelatedItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateOpsItemRelatedItemInput"}
+	if s.AssociationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationType"))
+	}
+	if s.OpsItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OpsItemId"))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *AssociateOpsItemRelatedItemInput) SetAssociationType(v string) *AssociateOpsItemRelatedItemInput {
+	s.AssociationType = &v
+	return s
+}
+
+// SetOpsItemId sets the OpsItemId field's value.
+func (s *AssociateOpsItemRelatedItemInput) SetOpsItemId(v string) *AssociateOpsItemRelatedItemInput {
+	s.OpsItemId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AssociateOpsItemRelatedItemInput) SetResourceType(v string) *AssociateOpsItemRelatedItemInput {
+	s.ResourceType = &v
+	return s
+}
+
+// SetResourceUri sets the ResourceUri field's value.
+func (s *AssociateOpsItemRelatedItemInput) SetResourceUri(v string) *AssociateOpsItemRelatedItemInput {
+	s.ResourceUri = &v
+	return s
+}
+
+type AssociateOpsItemRelatedItemOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The association ID.
+	AssociationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateOpsItemRelatedItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateOpsItemRelatedItemOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *AssociateOpsItemRelatedItemOutput) SetAssociationId(v string) *AssociateOpsItemRelatedItemOutput {
+	s.AssociationId = &v
+	return s
 }
 
 // You must disassociate a document from all instances before you can delete
@@ -20412,6 +20853,11 @@ type CreateDocumentInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
+	// An optional field where you can specify a friendly name for the Systems Manager
+	// document. This value can differ for each version of the document. You can
+	// update this value at a later time using the UpdateDocument action.
+	DisplayName *string `type:"string"`
+
 	// Specify the document format for the request. The document format can be JSON,
 	// YAML, or TEXT. JSON is the default format.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
@@ -20541,6 +20987,12 @@ func (s *CreateDocumentInput) SetAttachments(v []*AttachmentsSource) *CreateDocu
 // SetContent sets the Content field's value.
 func (s *CreateDocumentInput) SetContent(v string) *CreateDocumentInput {
 	s.Content = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateDocumentInput) SetDisplayName(v string) *CreateDocumentInput {
+	s.DisplayName = &v
 	return s
 }
 
@@ -23266,8 +23718,8 @@ type DescribeAutomationStepExecutionsInput struct {
 	// a previous call.)
 	NextToken *string `type:"string"`
 
-	// A boolean that indicates whether to list step executions in reverse order
-	// by start time. The default value is 'false'.
+	// Indicates whether to list step executions in reverse order by start time.
+	// The default value is 'false'.
 	ReverseOrder *bool `type:"boolean"`
 }
 
@@ -26381,6 +26833,74 @@ func (s *DescribeSessionsOutput) SetSessions(v []*Session) *DescribeSessionsOutp
 	return s
 }
 
+type DisassociateOpsItemRelatedItemInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the association for which you want to delete an association between
+	// the OpsItem and a related resource.
+	//
+	// AssociationId is a required field
+	AssociationId *string `type:"string" required:"true"`
+
+	// The ID of the OpsItem for which you want to delete an association between
+	// the OpsItem and a related resource.
+	//
+	// OpsItemId is a required field
+	OpsItemId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateOpsItemRelatedItemInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateOpsItemRelatedItemInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateOpsItemRelatedItemInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateOpsItemRelatedItemInput"}
+	if s.AssociationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AssociationId"))
+	}
+	if s.OpsItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OpsItemId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *DisassociateOpsItemRelatedItemInput) SetAssociationId(v string) *DisassociateOpsItemRelatedItemInput {
+	s.AssociationId = &v
+	return s
+}
+
+// SetOpsItemId sets the OpsItemId field's value.
+func (s *DisassociateOpsItemRelatedItemInput) SetOpsItemId(v string) *DisassociateOpsItemRelatedItemInput {
+	s.OpsItemId = &v
+	return s
+}
+
+type DisassociateOpsItemRelatedItemOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateOpsItemRelatedItemOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateOpsItemRelatedItemOutput) GoString() string {
+	return s.String()
+}
+
 // The specified document already exists.
 type DocumentAlreadyExists struct {
 	_            struct{}                  `type:"structure"`
@@ -26502,6 +27022,10 @@ type DocumentDescription struct {
 	// A description of the document.
 	Description *string `type:"string"`
 
+	// The friendly name of the Systems Manager document. This value can differ
+	// for each version of the document. If you want to update this value, see UpdateDocument.
+	DisplayName *string `type:"string"`
+
 	// The document format, either JSON or YAML.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
@@ -26620,6 +27144,12 @@ func (s *DocumentDescription) SetDefaultVersion(v string) *DocumentDescription {
 // SetDescription sets the Description field's value.
 func (s *DocumentDescription) SetDescription(v string) *DocumentDescription {
 	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DocumentDescription) SetDisplayName(v string) *DocumentDescription {
+	s.DisplayName = &v
 	return s
 }
 
@@ -26812,6 +27342,14 @@ type DocumentIdentifier struct {
 	// The user in your organization who created the document.
 	Author *string `type:"string"`
 
+	// The date the Systems Manager document was created.
+	CreatedDate *time.Time `type:"timestamp"`
+
+	// An optional field where you can specify a friendly name for the Systems Manager
+	// document. This value can differ for each version of the document. If you
+	// want to update this value, see UpdateDocument.
+	DisplayName *string `type:"string"`
+
 	// The document format, either JSON or YAML.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
@@ -26868,6 +27406,18 @@ func (s DocumentIdentifier) GoString() string {
 // SetAuthor sets the Author field's value.
 func (s *DocumentIdentifier) SetAuthor(v string) *DocumentIdentifier {
 	s.Author = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *DocumentIdentifier) SetCreatedDate(v time.Time) *DocumentIdentifier {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DocumentIdentifier) SetDisplayName(v string) *DocumentIdentifier {
+	s.DisplayName = &v
 	return s
 }
 
@@ -27481,6 +28031,10 @@ type DocumentVersionInfo struct {
 	// The date the document was created.
 	CreatedDate *time.Time `type:"timestamp"`
 
+	// The friendly name of the Systems Manager document. This value can differ
+	// for each version of the document. If you want to update this value, see UpdateDocument.
+	DisplayName *string `type:"string"`
+
 	// The document format, either JSON or YAML.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
@@ -27525,6 +28079,12 @@ func (s DocumentVersionInfo) GoString() string {
 // SetCreatedDate sets the CreatedDate field's value.
 func (s *DocumentVersionInfo) SetCreatedDate(v time.Time) *DocumentVersionInfo {
 	s.CreatedDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DocumentVersionInfo) SetDisplayName(v string) *DocumentVersionInfo {
+	s.DisplayName = &v
 	return s
 }
 
@@ -28858,6 +29418,13 @@ type GetDocumentOutput struct {
 	// The contents of the Systems Manager document.
 	Content *string `min:"1" type:"string"`
 
+	// The date the Systems Manager document was created.
+	CreatedDate *time.Time `type:"timestamp"`
+
+	// The friendly name of the Systems Manager document. This value can differ
+	// for each version of the document. If you want to update this value, see UpdateDocument.
+	DisplayName *string `type:"string"`
+
 	// The document format, either JSON or YAML.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
 
@@ -28920,6 +29487,18 @@ func (s *GetDocumentOutput) SetAttachmentsContent(v []*AttachmentContent) *GetDo
 // SetContent sets the Content field's value.
 func (s *GetDocumentOutput) SetContent(v string) *GetDocumentOutput {
 	s.Content = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *GetDocumentOutput) SetCreatedDate(v time.Time) *GetDocumentOutput {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *GetDocumentOutput) SetDisplayName(v string) *GetDocumentOutput {
+	s.DisplayName = &v
 	return s
 }
 
@@ -37519,6 +38098,116 @@ func (s *ListOpsItemEventsOutput) SetSummaries(v []*OpsItemEventSummary) *ListOp
 	return s
 }
 
+type ListOpsItemRelatedItemsInput struct {
+	_ struct{} `type:"structure"`
+
+	// One or more OpsItem filters. Use a filter to return a more specific list
+	// of results.
+	Filters []*OpsItemRelatedItemsFilter `type:"list"`
+
+	// The maximum number of items to return for this call. The call also returns
+	// a token that you can specify in a subsequent call to get the next set of
+	// results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of items to return. (You received this token from
+	// a previous call.)
+	NextToken *string `type:"string"`
+
+	// The ID of the OpsItem for which you want to list all related-item resources.
+	OpsItemId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListOpsItemRelatedItemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOpsItemRelatedItemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOpsItemRelatedItemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOpsItemRelatedItemsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListOpsItemRelatedItemsInput) SetFilters(v []*OpsItemRelatedItemsFilter) *ListOpsItemRelatedItemsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOpsItemRelatedItemsInput) SetMaxResults(v int64) *ListOpsItemRelatedItemsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOpsItemRelatedItemsInput) SetNextToken(v string) *ListOpsItemRelatedItemsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOpsItemId sets the OpsItemId field's value.
+func (s *ListOpsItemRelatedItemsInput) SetOpsItemId(v string) *ListOpsItemRelatedItemsInput {
+	s.OpsItemId = &v
+	return s
+}
+
+type ListOpsItemRelatedItemsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of items to return. Use this token to get the
+	// next set of results.
+	NextToken *string `type:"string"`
+
+	// A list of related-item resources for the specified OpsItem.
+	Summaries []*OpsItemRelatedItemSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListOpsItemRelatedItemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOpsItemRelatedItemsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOpsItemRelatedItemsOutput) SetNextToken(v string) *ListOpsItemRelatedItemsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSummaries sets the Summaries field's value.
+func (s *ListOpsItemRelatedItemsOutput) SetSummaries(v []*OpsItemRelatedItemSummary) *ListOpsItemRelatedItemsOutput {
+	s.Summaries = v
+	return s
+}
+
 type ListOpsMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -40099,7 +40788,8 @@ func (s *OpsItemEventFilter) SetValues(v []*string) *OpsItemEventFilter {
 	return s
 }
 
-// Summary information about an OpsItem event.
+// Summary information about an OpsItem event or that associated an OpsItem
+// with a related item.
 type OpsItemEventSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -40469,6 +41159,287 @@ func (s OpsItemNotification) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *OpsItemNotification) SetArn(v string) *OpsItemNotification {
 	s.Arn = &v
+	return s
+}
+
+// The Amazon Resource Name (ARN) is already associated with the OpsItem.
+type OpsItemRelatedItemAlreadyExistsException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	OpsItemId *string `type:"string"`
+
+	ResourceUri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OpsItemRelatedItemAlreadyExistsException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OpsItemRelatedItemAlreadyExistsException) GoString() string {
+	return s.String()
+}
+
+func newErrorOpsItemRelatedItemAlreadyExistsException(v protocol.ResponseMetadata) error {
+	return &OpsItemRelatedItemAlreadyExistsException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OpsItemRelatedItemAlreadyExistsException) Code() string {
+	return "OpsItemRelatedItemAlreadyExistsException"
+}
+
+// Message returns the exception's message.
+func (s *OpsItemRelatedItemAlreadyExistsException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OpsItemRelatedItemAlreadyExistsException) OrigErr() error {
+	return nil
+}
+
+func (s *OpsItemRelatedItemAlreadyExistsException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OpsItemRelatedItemAlreadyExistsException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OpsItemRelatedItemAlreadyExistsException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The association was not found using the parameters you specified in the call.
+// Verify the information and try again.
+type OpsItemRelatedItemAssociationNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s OpsItemRelatedItemAssociationNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OpsItemRelatedItemAssociationNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorOpsItemRelatedItemAssociationNotFoundException(v protocol.ResponseMetadata) error {
+	return &OpsItemRelatedItemAssociationNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *OpsItemRelatedItemAssociationNotFoundException) Code() string {
+	return "OpsItemRelatedItemAssociationNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *OpsItemRelatedItemAssociationNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *OpsItemRelatedItemAssociationNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *OpsItemRelatedItemAssociationNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *OpsItemRelatedItemAssociationNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *OpsItemRelatedItemAssociationNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Summary information about related-item resources for an OpsItem.
+type OpsItemRelatedItemSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The association ID.
+	AssociationId *string `type:"string"`
+
+	// The association type.
+	AssociationType *string `type:"string"`
+
+	// Information about the user or resource that created an OpsItem event.
+	CreatedBy *OpsItemIdentity `type:"structure"`
+
+	// The time the related-item association was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// Information about the user or resource that created an OpsItem event.
+	LastModifiedBy *OpsItemIdentity `type:"structure"`
+
+	// The time the related-item association was last updated.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The OpsItem ID.
+	OpsItemId *string `type:"string"`
+
+	// The resource type.
+	ResourceType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the related-item resource.
+	ResourceUri *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OpsItemRelatedItemSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OpsItemRelatedItemSummary) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *OpsItemRelatedItemSummary) SetAssociationId(v string) *OpsItemRelatedItemSummary {
+	s.AssociationId = &v
+	return s
+}
+
+// SetAssociationType sets the AssociationType field's value.
+func (s *OpsItemRelatedItemSummary) SetAssociationType(v string) *OpsItemRelatedItemSummary {
+	s.AssociationType = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *OpsItemRelatedItemSummary) SetCreatedBy(v *OpsItemIdentity) *OpsItemRelatedItemSummary {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *OpsItemRelatedItemSummary) SetCreatedTime(v time.Time) *OpsItemRelatedItemSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetLastModifiedBy sets the LastModifiedBy field's value.
+func (s *OpsItemRelatedItemSummary) SetLastModifiedBy(v *OpsItemIdentity) *OpsItemRelatedItemSummary {
+	s.LastModifiedBy = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *OpsItemRelatedItemSummary) SetLastModifiedTime(v time.Time) *OpsItemRelatedItemSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetOpsItemId sets the OpsItemId field's value.
+func (s *OpsItemRelatedItemSummary) SetOpsItemId(v string) *OpsItemRelatedItemSummary {
+	s.OpsItemId = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *OpsItemRelatedItemSummary) SetResourceType(v string) *OpsItemRelatedItemSummary {
+	s.ResourceType = &v
+	return s
+}
+
+// SetResourceUri sets the ResourceUri field's value.
+func (s *OpsItemRelatedItemSummary) SetResourceUri(v string) *OpsItemRelatedItemSummary {
+	s.ResourceUri = &v
+	return s
+}
+
+// Describes a filter for a specific list of related-item resources.
+type OpsItemRelatedItemsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter key. Supported values include ResourceUri, ResourceType,
+	// or AssociationId.
+	//
+	// Key is a required field
+	Key *string `type:"string" required:"true" enum:"OpsItemRelatedItemsFilterKey"`
+
+	// The operator used by the filter call. The only supported operator is EQUAL.
+	//
+	// Operator is a required field
+	Operator *string `type:"string" required:"true" enum:"OpsItemRelatedItemsFilterOperator"`
+
+	// The values for the filter.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s OpsItemRelatedItemsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OpsItemRelatedItemsFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpsItemRelatedItemsFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpsItemRelatedItemsFilter"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *OpsItemRelatedItemsFilter) SetKey(v string) *OpsItemRelatedItemsFilter {
+	s.Key = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *OpsItemRelatedItemsFilter) SetOperator(v string) *OpsItemRelatedItemsFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *OpsItemRelatedItemsFilter) SetValues(v []*string) *OpsItemRelatedItemsFilter {
+	s.Values = v
 	return s
 }
 
@@ -49658,6 +50629,12 @@ type UpdateDocumentInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
+	// The friendly name of the Systems Manager document that you want to update.
+	// This value can differ for each version of the document. If you do not specify
+	// a value for this parameter in your request, the existing value is applied
+	// to the new document version.
+	DisplayName *string `type:"string"`
+
 	// Specify the document format for the new document version. Systems Manager
 	// supports JSON and YAML documents. JSON is the default format.
 	DocumentFormat *string `type:"string" enum:"DocumentFormat"`
@@ -49667,7 +50644,7 @@ type UpdateDocumentInput struct {
 	// the version number of the latest version or use the $LATEST variable.
 	DocumentVersion *string `type:"string"`
 
-	// The name of the document that you want to update.
+	// The name of the Systems Manager document that you want to update.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -49729,6 +50706,12 @@ func (s *UpdateDocumentInput) SetAttachments(v []*AttachmentsSource) *UpdateDocu
 // SetContent sets the Content field's value.
 func (s *UpdateDocumentInput) SetContent(v string) *UpdateDocumentInput {
 	s.Content = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateDocumentInput) SetDisplayName(v string) *UpdateDocumentInput {
+	s.DisplayName = &v
 	return s
 }
 
@@ -52546,6 +53529,12 @@ const (
 
 	// DocumentTypeAutomationChangeTemplate is a DocumentType enum value
 	DocumentTypeAutomationChangeTemplate = "Automation.ChangeTemplate"
+
+	// DocumentTypeProblemAnalysis is a DocumentType enum value
+	DocumentTypeProblemAnalysis = "ProblemAnalysis"
+
+	// DocumentTypeProblemAnalysisTemplate is a DocumentType enum value
+	DocumentTypeProblemAnalysisTemplate = "ProblemAnalysisTemplate"
 )
 
 // DocumentType_Values returns all elements of the DocumentType enum
@@ -52561,6 +53550,8 @@ func DocumentType_Values() []string {
 		DocumentTypeDeploymentStrategy,
 		DocumentTypeChangeCalendar,
 		DocumentTypeAutomationChangeTemplate,
+		DocumentTypeProblemAnalysis,
+		DocumentTypeProblemAnalysisTemplate,
 	}
 }
 
@@ -53145,6 +54136,38 @@ func OpsItemFilterOperator_Values() []string {
 		OpsItemFilterOperatorContains,
 		OpsItemFilterOperatorGreaterThan,
 		OpsItemFilterOperatorLessThan,
+	}
+}
+
+const (
+	// OpsItemRelatedItemsFilterKeyResourceType is a OpsItemRelatedItemsFilterKey enum value
+	OpsItemRelatedItemsFilterKeyResourceType = "ResourceType"
+
+	// OpsItemRelatedItemsFilterKeyAssociationId is a OpsItemRelatedItemsFilterKey enum value
+	OpsItemRelatedItemsFilterKeyAssociationId = "AssociationId"
+
+	// OpsItemRelatedItemsFilterKeyResourceUri is a OpsItemRelatedItemsFilterKey enum value
+	OpsItemRelatedItemsFilterKeyResourceUri = "ResourceUri"
+)
+
+// OpsItemRelatedItemsFilterKey_Values returns all elements of the OpsItemRelatedItemsFilterKey enum
+func OpsItemRelatedItemsFilterKey_Values() []string {
+	return []string{
+		OpsItemRelatedItemsFilterKeyResourceType,
+		OpsItemRelatedItemsFilterKeyAssociationId,
+		OpsItemRelatedItemsFilterKeyResourceUri,
+	}
+}
+
+const (
+	// OpsItemRelatedItemsFilterOperatorEqual is a OpsItemRelatedItemsFilterOperator enum value
+	OpsItemRelatedItemsFilterOperatorEqual = "Equal"
+)
+
+// OpsItemRelatedItemsFilterOperator_Values returns all elements of the OpsItemRelatedItemsFilterOperator enum
+func OpsItemRelatedItemsFilterOperator_Values() []string {
+	return []string{
+		OpsItemRelatedItemsFilterOperatorEqual,
 	}
 }
 

@@ -7919,6 +7919,44 @@ type DvbSubDestinationSettings struct {
 	// All burn-in and DVB-Sub font settings must match.
 	BackgroundOpacity *int64 `locationName:"backgroundOpacity" type:"integer"`
 
+	// Specify how MediaConvert handles the display definition segment (DDS). Keep
+	// the default, None (NONE), to exclude the DDS from this set of captions. Choose
+	// No display window (NO_DISPLAY_WINDOW) to have MediaConvert include the DDS
+	// but not include display window data. In this case, MediaConvert writes that
+	// information to the page composition segment (PCS) instead. Choose Specify
+	// (SPECIFIED) to have MediaConvert set up the display window based on the values
+	// that you specify in related job settings. For video resolutions that are
+	// 576 pixels or smaller in height, MediaConvert doesn't include the DDS, regardless
+	// of the value you choose for DDS handling (ddsHandling). In this case, it
+	// doesn't write the display window data to the PCS either. Related settings:
+	// Use the settings DDS x-coordinate (ddsXCoordinate) and DDS y-coordinate (ddsYCoordinate)
+	// to specify the offset between the top left corner of the display window and
+	// the top left corner of the video frame. All burn-in and DVB-Sub font settings
+	// must match.
+	DdsHandling *string `locationName:"ddsHandling" type:"string" enum:"DvbddsHandling"`
+
+	// Use this setting, along with DDS y-coordinate (ddsYCoordinate), to specify
+	// the upper left corner of the display definition segment (DDS) display window.
+	// With this setting, specify the distance, in pixels, between the left side
+	// of the frame and the left side of the DDS display window. Keep the default
+	// value, 0, to have MediaConvert automatically choose this offset. Related
+	// setting: When you use this setting, you must set DDS handling (ddsHandling)
+	// to a value other than None (NONE). MediaConvert uses these values to determine
+	// whether to write page position data to the DDS or to the page composition
+	// segment (PCS). All burn-in and DVB-Sub font settings must match.
+	DdsXCoordinate *int64 `locationName:"ddsXCoordinate" type:"integer"`
+
+	// Use this setting, along with DDS x-coordinate (ddsXCoordinate), to specify
+	// the upper left corner of the display definition segment (DDS) display window.
+	// With this setting, specify the distance, in pixels, between the top of the
+	// frame and the top of the DDS display window. Keep the default value, 0, to
+	// have MediaConvert automatically choose this offset. Related setting: When
+	// you use this setting, you must set DDS handling (ddsHandling) to a value
+	// other than None (NONE). MediaConvert uses these values to determine whether
+	// to write page position data to the DDS or to the page composition segment
+	// (PCS). All burn-in and DVB-Sub font settings must match.
+	DdsYCoordinate *int64 `locationName:"ddsYCoordinate" type:"integer"`
+
 	// Specifies the color of the burned-in captions. This option is not valid for
 	// source captions that are STL, 608/embedded or teletext. These source settings
 	// are already pre-defined by the caption stream. All burn-in and DVB-Sub font
@@ -7943,6 +7981,12 @@ type DvbSubDestinationSettings struct {
 	// automatic font size selection. All burn-in and DVB-Sub font settings must
 	// match.
 	FontSize *int64 `locationName:"fontSize" type:"integer"`
+
+	// Specify the height, in pixels, of this set of DVB-Sub captions. The default
+	// value is 576 pixels. Related setting: When you use this setting, you must
+	// set DDS handling (ddsHandling) to a value other than None (NONE). All burn-in
+	// and DVB-Sub font settings must match.
+	Height *int64 `locationName:"height" min:"1" type:"integer"`
 
 	// Specifies font outline color. This option is not valid for source captions
 	// that are either 608/embedded or teletext. These source settings are already
@@ -7987,6 +8031,12 @@ type DvbSubDestinationSettings struct {
 	// to make the text easier to read if the captions are closed caption.
 	TeletextSpacing *string `locationName:"teletextSpacing" type:"string" enum:"DvbSubtitleTeletextSpacing"`
 
+	// Specify the width, in pixels, of this set of DVB-Sub captions. The default
+	// value is 720 pixels. Related setting: When you use this setting, you must
+	// set DDS handling (ddsHandling) to a value other than None (NONE). All burn-in
+	// and DVB-Sub font settings must match.
+	Width *int64 `locationName:"width" min:"1" type:"integer"`
+
 	// Specifies the horizontal position of the caption relative to the left side
 	// of the output in pixels. A value of 10 would result in the captions starting
 	// 10 pixels from the left of the output. If no explicit x_position is provided,
@@ -8022,11 +8072,17 @@ func (s *DvbSubDestinationSettings) Validate() error {
 	if s.FontResolution != nil && *s.FontResolution < 96 {
 		invalidParams.Add(request.NewErrParamMinValue("FontResolution", 96))
 	}
+	if s.Height != nil && *s.Height < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Height", 1))
+	}
 	if s.ShadowXOffset != nil && *s.ShadowXOffset < -2.147483648e+09 {
 		invalidParams.Add(request.NewErrParamMinValue("ShadowXOffset", -2.147483648e+09))
 	}
 	if s.ShadowYOffset != nil && *s.ShadowYOffset < -2.147483648e+09 {
 		invalidParams.Add(request.NewErrParamMinValue("ShadowYOffset", -2.147483648e+09))
+	}
+	if s.Width != nil && *s.Width < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Width", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8050,6 +8106,24 @@ func (s *DvbSubDestinationSettings) SetBackgroundColor(v string) *DvbSubDestinat
 // SetBackgroundOpacity sets the BackgroundOpacity field's value.
 func (s *DvbSubDestinationSettings) SetBackgroundOpacity(v int64) *DvbSubDestinationSettings {
 	s.BackgroundOpacity = &v
+	return s
+}
+
+// SetDdsHandling sets the DdsHandling field's value.
+func (s *DvbSubDestinationSettings) SetDdsHandling(v string) *DvbSubDestinationSettings {
+	s.DdsHandling = &v
+	return s
+}
+
+// SetDdsXCoordinate sets the DdsXCoordinate field's value.
+func (s *DvbSubDestinationSettings) SetDdsXCoordinate(v int64) *DvbSubDestinationSettings {
+	s.DdsXCoordinate = &v
+	return s
+}
+
+// SetDdsYCoordinate sets the DdsYCoordinate field's value.
+func (s *DvbSubDestinationSettings) SetDdsYCoordinate(v int64) *DvbSubDestinationSettings {
+	s.DdsYCoordinate = &v
 	return s
 }
 
@@ -8080,6 +8154,12 @@ func (s *DvbSubDestinationSettings) SetFontScript(v string) *DvbSubDestinationSe
 // SetFontSize sets the FontSize field's value.
 func (s *DvbSubDestinationSettings) SetFontSize(v int64) *DvbSubDestinationSettings {
 	s.FontSize = &v
+	return s
+}
+
+// SetHeight sets the Height field's value.
+func (s *DvbSubDestinationSettings) SetHeight(v int64) *DvbSubDestinationSettings {
+	s.Height = &v
 	return s
 }
 
@@ -8128,6 +8208,12 @@ func (s *DvbSubDestinationSettings) SetSubtitlingType(v string) *DvbSubDestinati
 // SetTeletextSpacing sets the TeletextSpacing field's value.
 func (s *DvbSubDestinationSettings) SetTeletextSpacing(v string) *DvbSubDestinationSettings {
 	s.TeletextSpacing = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *DvbSubDestinationSettings) SetWidth(v int64) *DvbSubDestinationSettings {
+	s.Width = &v
 	return s
 }
 
@@ -13181,6 +13267,13 @@ type JobSettings struct {
 	// to create the output.
 	Inputs []*Input `locationName:"inputs" type:"list"`
 
+	// Use these settings only when you use Kantar watermarking. Specify the values
+	// that MediaConvert uses to generate and place Kantar watermarks in your output
+	// audio. These settings apply to every output in your job. In addition to specifying
+	// these values, you also need to store your Kantar credentials in AWS Secrets
+	// Manager. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/kantar-watermarking.html.
+	KantarWatermark *KantarWatermarkSettings `locationName:"kantarWatermark" type:"structure"`
+
 	// Overlay motion graphics on top of your video. The motion graphics that you
 	// specify here appear on all outputs in all output groups. For more information,
 	// see https://docs.aws.amazon.com/mediaconvert/latest/ug/motion-graphic-overlay.html.
@@ -13257,6 +13350,11 @@ func (s *JobSettings) Validate() error {
 			}
 		}
 	}
+	if s.KantarWatermark != nil {
+		if err := s.KantarWatermark.Validate(); err != nil {
+			invalidParams.AddNested("KantarWatermark", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.MotionImageInserter != nil {
 		if err := s.MotionImageInserter.Validate(); err != nil {
 			invalidParams.AddNested("MotionImageInserter", err.(request.ErrInvalidParams))
@@ -13305,6 +13403,12 @@ func (s *JobSettings) SetEsam(v *EsamSettings) *JobSettings {
 // SetInputs sets the Inputs field's value.
 func (s *JobSettings) SetInputs(v []*Input) *JobSettings {
 	s.Inputs = v
+	return s
+}
+
+// SetKantarWatermark sets the KantarWatermark field's value.
+func (s *JobSettings) SetKantarWatermark(v *KantarWatermarkSettings) *JobSettings {
+	s.KantarWatermark = v
 	return s
 }
 
@@ -13511,6 +13615,13 @@ type JobTemplateSettings struct {
 	// multiple inputs when referencing a job template.
 	Inputs []*InputTemplate `locationName:"inputs" type:"list"`
 
+	// Use these settings only when you use Kantar watermarking. Specify the values
+	// that MediaConvert uses to generate and place Kantar watermarks in your output
+	// audio. These settings apply to every output in your job. In addition to specifying
+	// these values, you also need to store your Kantar credentials in AWS Secrets
+	// Manager. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/kantar-watermarking.html.
+	KantarWatermark *KantarWatermarkSettings `locationName:"kantarWatermark" type:"structure"`
+
 	// Overlay motion graphics on top of your video. The motion graphics that you
 	// specify here appear on all outputs in all output groups. For more information,
 	// see https://docs.aws.amazon.com/mediaconvert/latest/ug/motion-graphic-overlay.html.
@@ -13587,6 +13698,11 @@ func (s *JobTemplateSettings) Validate() error {
 			}
 		}
 	}
+	if s.KantarWatermark != nil {
+		if err := s.KantarWatermark.Validate(); err != nil {
+			invalidParams.AddNested("KantarWatermark", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.MotionImageInserter != nil {
 		if err := s.MotionImageInserter.Validate(); err != nil {
 			invalidParams.AddNested("MotionImageInserter", err.(request.ErrInvalidParams))
@@ -13638,6 +13754,12 @@ func (s *JobTemplateSettings) SetInputs(v []*InputTemplate) *JobTemplateSettings
 	return s
 }
 
+// SetKantarWatermark sets the KantarWatermark field's value.
+func (s *JobTemplateSettings) SetKantarWatermark(v *KantarWatermarkSettings) *JobTemplateSettings {
+	s.KantarWatermark = v
+	return s
+}
+
 // SetMotionImageInserter sets the MotionImageInserter field's value.
 func (s *JobTemplateSettings) SetMotionImageInserter(v *MotionImageInserter) *JobTemplateSettings {
 	s.MotionImageInserter = v
@@ -13671,6 +13793,199 @@ func (s *JobTemplateSettings) SetTimecodeConfig(v *TimecodeConfig) *JobTemplateS
 // SetTimedMetadataInsertion sets the TimedMetadataInsertion field's value.
 func (s *JobTemplateSettings) SetTimedMetadataInsertion(v *TimedMetadataInsertion) *JobTemplateSettings {
 	s.TimedMetadataInsertion = v
+	return s
+}
+
+// Use these settings only when you use Kantar watermarking. Specify the values
+// that MediaConvert uses to generate and place Kantar watermarks in your output
+// audio. These settings apply to every output in your job. In addition to specifying
+// these values, you also need to store your Kantar credentials in AWS Secrets
+// Manager. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/kantar-watermarking.html.
+type KantarWatermarkSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Provide an audio channel name from your Kantar audio license.
+	ChannelName *string `locationName:"channelName" min:"1" type:"string"`
+
+	// Specify a unique identifier for Kantar to use for this piece of content.
+	ContentReference *string `locationName:"contentReference" min:"1" type:"string"`
+
+	// Provide the name of the AWS Secrets Manager secret where your Kantar credentials
+	// are stored. Note that your MediaConvert service role must provide access
+	// to this secret. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/granting-permissions-for-mediaconvert-to-access-secrets-manager-secret.html.
+	// For instructions on creating a secret, see https://docs.aws.amazon.com/secretsmanager/latest/userguide/tutorials_basic.html,
+	// in the AWS Secrets Manager User Guide.
+	CredentialsSecretName *string `locationName:"credentialsSecretName" min:"1" type:"string"`
+
+	// Optional. Specify an offset, in whole seconds, from the start of your output
+	// and the beginning of the watermarking. When you don't specify an offset,
+	// Kantar defaults to zero.
+	FileOffset *float64 `locationName:"fileOffset" type:"double"`
+
+	// Provide your Kantar license ID number. You should get this number from Kantar.
+	KantarLicenseId *int64 `locationName:"kantarLicenseId" type:"integer"`
+
+	// Provide the HTTPS endpoint to the Kantar server. You should get this endpoint
+	// from Kantar.
+	KantarServerUrl *string `locationName:"kantarServerUrl" type:"string"`
+
+	// Optional. Specify the Amazon S3 bucket where you want MediaConvert to store
+	// your Kantar watermark XML logs. When you don't specify a bucket, MediaConvert
+	// doesn't save these logs. Note that your MediaConvert service role must provide
+	// access to this location. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/iam-role.html
+	LogDestination *string `locationName:"logDestination" type:"string"`
+
+	// You can optionally use this field to specify the first timestamp that Kantar
+	// embeds during watermarking. Kantar suggests that you be very cautious when
+	// using this Kantar feature, and that you use it only on channels that are
+	// managed specifically for use with this feature by your Audience Measurement
+	// Operator. For more information about this feature, contact Kantar technical
+	// support.
+	Metadata3 *string `locationName:"metadata3" min:"1" type:"string"`
+
+	// Additional metadata that MediaConvert sends to Kantar. Maximum length is
+	// 50 characters.
+	Metadata4 *string `locationName:"metadata4" min:"1" type:"string"`
+
+	// Additional metadata that MediaConvert sends to Kantar. Maximum length is
+	// 50 characters.
+	Metadata5 *string `locationName:"metadata5" min:"1" type:"string"`
+
+	// Additional metadata that MediaConvert sends to Kantar. Maximum length is
+	// 50 characters.
+	Metadata6 *string `locationName:"metadata6" min:"1" type:"string"`
+
+	// Additional metadata that MediaConvert sends to Kantar. Maximum length is
+	// 50 characters.
+	Metadata7 *string `locationName:"metadata7" min:"1" type:"string"`
+
+	// Additional metadata that MediaConvert sends to Kantar. Maximum length is
+	// 50 characters.
+	Metadata8 *string `locationName:"metadata8" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s KantarWatermarkSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KantarWatermarkSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KantarWatermarkSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KantarWatermarkSettings"}
+	if s.ChannelName != nil && len(*s.ChannelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelName", 1))
+	}
+	if s.ContentReference != nil && len(*s.ContentReference) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContentReference", 1))
+	}
+	if s.CredentialsSecretName != nil && len(*s.CredentialsSecretName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CredentialsSecretName", 1))
+	}
+	if s.Metadata3 != nil && len(*s.Metadata3) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata3", 1))
+	}
+	if s.Metadata4 != nil && len(*s.Metadata4) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata4", 1))
+	}
+	if s.Metadata5 != nil && len(*s.Metadata5) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata5", 1))
+	}
+	if s.Metadata6 != nil && len(*s.Metadata6) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata6", 1))
+	}
+	if s.Metadata7 != nil && len(*s.Metadata7) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata7", 1))
+	}
+	if s.Metadata8 != nil && len(*s.Metadata8) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata8", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannelName sets the ChannelName field's value.
+func (s *KantarWatermarkSettings) SetChannelName(v string) *KantarWatermarkSettings {
+	s.ChannelName = &v
+	return s
+}
+
+// SetContentReference sets the ContentReference field's value.
+func (s *KantarWatermarkSettings) SetContentReference(v string) *KantarWatermarkSettings {
+	s.ContentReference = &v
+	return s
+}
+
+// SetCredentialsSecretName sets the CredentialsSecretName field's value.
+func (s *KantarWatermarkSettings) SetCredentialsSecretName(v string) *KantarWatermarkSettings {
+	s.CredentialsSecretName = &v
+	return s
+}
+
+// SetFileOffset sets the FileOffset field's value.
+func (s *KantarWatermarkSettings) SetFileOffset(v float64) *KantarWatermarkSettings {
+	s.FileOffset = &v
+	return s
+}
+
+// SetKantarLicenseId sets the KantarLicenseId field's value.
+func (s *KantarWatermarkSettings) SetKantarLicenseId(v int64) *KantarWatermarkSettings {
+	s.KantarLicenseId = &v
+	return s
+}
+
+// SetKantarServerUrl sets the KantarServerUrl field's value.
+func (s *KantarWatermarkSettings) SetKantarServerUrl(v string) *KantarWatermarkSettings {
+	s.KantarServerUrl = &v
+	return s
+}
+
+// SetLogDestination sets the LogDestination field's value.
+func (s *KantarWatermarkSettings) SetLogDestination(v string) *KantarWatermarkSettings {
+	s.LogDestination = &v
+	return s
+}
+
+// SetMetadata3 sets the Metadata3 field's value.
+func (s *KantarWatermarkSettings) SetMetadata3(v string) *KantarWatermarkSettings {
+	s.Metadata3 = &v
+	return s
+}
+
+// SetMetadata4 sets the Metadata4 field's value.
+func (s *KantarWatermarkSettings) SetMetadata4(v string) *KantarWatermarkSettings {
+	s.Metadata4 = &v
+	return s
+}
+
+// SetMetadata5 sets the Metadata5 field's value.
+func (s *KantarWatermarkSettings) SetMetadata5(v string) *KantarWatermarkSettings {
+	s.Metadata5 = &v
+	return s
+}
+
+// SetMetadata6 sets the Metadata6 field's value.
+func (s *KantarWatermarkSettings) SetMetadata6(v string) *KantarWatermarkSettings {
+	s.Metadata6 = &v
+	return s
+}
+
+// SetMetadata7 sets the Metadata7 field's value.
+func (s *KantarWatermarkSettings) SetMetadata7(v string) *KantarWatermarkSettings {
+	s.Metadata7 = &v
+	return s
+}
+
+// SetMetadata8 sets the Metadata8 field's value.
+func (s *KantarWatermarkSettings) SetMetadata8(v string) *KantarWatermarkSettings {
+	s.Metadata8 = &v
 	return s
 }
 
@@ -14760,6 +15075,10 @@ type M3u8Settings struct {
 	// by comma separation.
 	AudioPids []*int64 `locationName:"audioPids" type:"list"`
 
+	// Specify the maximum time, in milliseconds, between Program Clock References
+	// (PCRs) inserted into the transport stream.
+	MaxPcrInterval *int64 `locationName:"maxPcrInterval" type:"integer"`
+
 	// If INSERT, Nielsen inaudible tones for media tracking will be detected in
 	// the input audio and an equivalent ID3 tag will be inserted in the output.
 	NielsenId3 *string `locationName:"nielsenId3" type:"string" enum:"M3u8NielsenId3"`
@@ -14872,6 +15191,12 @@ func (s *M3u8Settings) SetAudioFramesPerPes(v int64) *M3u8Settings {
 // SetAudioPids sets the AudioPids field's value.
 func (s *M3u8Settings) SetAudioPids(v []*int64) *M3u8Settings {
 	s.AudioPids = v
+	return s
+}
+
+// SetMaxPcrInterval sets the MaxPcrInterval field's value.
+func (s *M3u8Settings) SetMaxPcrInterval(v int64) *M3u8Settings {
+	s.MaxPcrInterval = &v
 	return s
 }
 
@@ -20531,6 +20856,18 @@ type VideoSelector struct {
 	// if your input video has rotation metadata. The service doesn't pass through
 	// rotation metadata.
 	Rotate *string `locationName:"rotate" type:"string" enum:"InputRotate"`
+
+	// Use this setting when your input video codec is AVC-Intra. Ignore this setting
+	// for all other inputs. If the sample range metadata in your input video is
+	// accurate, or if you don't know about sample range, keep the default value,
+	// Follow (FOLLOW), for this setting. When you do, the service automatically
+	// detects your input sample range. If your input video has metadata indicating
+	// the wrong sample range, specify the accurate sample range here. When you
+	// do, MediaConvert ignores any sample range information in the input metadata.
+	// Regardless of whether MediaConvert uses the input sample range or the sample
+	// range that you specify, MediaConvert uses the sample range for transcoding
+	// and also writes it to the output metadata.
+	SampleRange *string `locationName:"sampleRange" type:"string" enum:"InputSampleRange"`
 }
 
 // String returns the string representation
@@ -20598,6 +20935,12 @@ func (s *VideoSelector) SetProgramNumber(v int64) *VideoSelector {
 // SetRotate sets the Rotate field's value.
 func (s *VideoSelector) SetRotate(v string) *VideoSelector {
 	s.Rotate = &v
+	return s
+}
+
+// SetSampleRange sets the SampleRange field's value.
+func (s *VideoSelector) SetSampleRange(v string) *VideoSelector {
+	s.SampleRange = &v
 	return s
 }
 
@@ -23808,6 +24151,40 @@ func DvbSubtitlingType_Values() []string {
 	}
 }
 
+// Specify how MediaConvert handles the display definition segment (DDS). Keep
+// the default, None (NONE), to exclude the DDS from this set of captions. Choose
+// No display window (NO_DISPLAY_WINDOW) to have MediaConvert include the DDS
+// but not include display window data. In this case, MediaConvert writes that
+// information to the page composition segment (PCS) instead. Choose Specify
+// (SPECIFIED) to have MediaConvert set up the display window based on the values
+// that you specify in related job settings. For video resolutions that are
+// 576 pixels or smaller in height, MediaConvert doesn't include the DDS, regardless
+// of the value you choose for DDS handling (ddsHandling). In this case, it
+// doesn't write the display window data to the PCS either. Related settings:
+// Use the settings DDS x-coordinate (ddsXCoordinate) and DDS y-coordinate (ddsYCoordinate)
+// to specify the offset between the top left corner of the display window and
+// the top left corner of the video frame. All burn-in and DVB-Sub font settings
+// must match.
+const (
+	// DvbddsHandlingNone is a DvbddsHandling enum value
+	DvbddsHandlingNone = "NONE"
+
+	// DvbddsHandlingSpecified is a DvbddsHandling enum value
+	DvbddsHandlingSpecified = "SPECIFIED"
+
+	// DvbddsHandlingNoDisplayWindow is a DvbddsHandling enum value
+	DvbddsHandlingNoDisplayWindow = "NO_DISPLAY_WINDOW"
+)
+
+// DvbddsHandling_Values returns all elements of the DvbddsHandling enum
+func DvbddsHandling_Values() []string {
+	return []string{
+		DvbddsHandlingNone,
+		DvbddsHandlingSpecified,
+		DvbddsHandlingNoDisplayWindow,
+	}
+}
+
 // Specify the bitstream mode for the E-AC-3 stream that the encoder emits.
 // For more information about the EAC3 bitstream mode, see ATSC A/52-2012 (Annex
 // E).
@@ -26347,6 +26724,36 @@ func InputRotate_Values() []string {
 		InputRotateDegrees180,
 		InputRotateDegrees270,
 		InputRotateAuto,
+	}
+}
+
+// Use this setting when your input video codec is AVC-Intra. Ignore this setting
+// for all other inputs. If the sample range metadata in your input video is
+// accurate, or if you don't know about sample range, keep the default value,
+// Follow (FOLLOW), for this setting. When you do, the service automatically
+// detects your input sample range. If your input video has metadata indicating
+// the wrong sample range, specify the accurate sample range here. When you
+// do, MediaConvert ignores any sample range information in the input metadata.
+// Regardless of whether MediaConvert uses the input sample range or the sample
+// range that you specify, MediaConvert uses the sample range for transcoding
+// and also writes it to the output metadata.
+const (
+	// InputSampleRangeFollow is a InputSampleRange enum value
+	InputSampleRangeFollow = "FOLLOW"
+
+	// InputSampleRangeFullRange is a InputSampleRange enum value
+	InputSampleRangeFullRange = "FULL_RANGE"
+
+	// InputSampleRangeLimitedRange is a InputSampleRange enum value
+	InputSampleRangeLimitedRange = "LIMITED_RANGE"
+)
+
+// InputSampleRange_Values returns all elements of the InputSampleRange enum
+func InputSampleRange_Values() []string {
+	return []string{
+		InputSampleRangeFollow,
+		InputSampleRangeFullRange,
+		InputSampleRangeLimitedRange,
 	}
 }
 

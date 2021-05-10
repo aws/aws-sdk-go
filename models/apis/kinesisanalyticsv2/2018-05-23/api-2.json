@@ -304,6 +304,20 @@
         {"shape":"UnsupportedOperationException"}
       ]
     },
+    "DescribeApplicationVersion":{
+      "name":"DescribeApplicationVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeApplicationVersionRequest"},
+      "output":{"shape":"DescribeApplicationVersionResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "DiscoverInputSchema":{
       "name":"DiscoverInputSchema",
       "http":{
@@ -330,6 +344,20 @@
       "output":{"shape":"ListApplicationSnapshotsResponse"},
       "errors":[
         {"shape":"InvalidArgumentException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
+    "ListApplicationVersions":{
+      "name":"ListApplicationVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListApplicationVersionsRequest"},
+      "output":{"shape":"ListApplicationVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidArgumentException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"UnsupportedOperationException"}
       ]
     },
@@ -694,7 +722,8 @@
         "ApplicationMaintenanceConfigurationDescription":{"shape":"ApplicationMaintenanceConfigurationDescription"},
         "ApplicationVersionUpdatedFrom":{"shape":"ApplicationVersionId"},
         "ApplicationVersionRolledBackFrom":{"shape":"ApplicationVersionId"},
-        "ConditionalToken":{"shape":"ConditionalToken"}
+        "ConditionalToken":{"shape":"ConditionalToken"},
+        "ApplicationVersionRolledBackTo":{"shape":"ApplicationVersionId"}
       }
     },
     "ApplicationMaintenanceConfigurationDescription":{
@@ -782,7 +811,8 @@
         "AUTOSCALING",
         "FORCE_STOPPING",
         "MAINTENANCE",
-        "ROLLING_BACK"
+        "ROLLING_BACK",
+        "ROLLED_BACK"
       ]
     },
     "ApplicationSummaries":{
@@ -810,6 +840,21 @@
       "type":"long",
       "max":999999999,
       "min":1
+    },
+    "ApplicationVersionSummaries":{
+      "type":"list",
+      "member":{"shape":"ApplicationVersionSummary"}
+    },
+    "ApplicationVersionSummary":{
+      "type":"structure",
+      "required":[
+        "ApplicationVersionId",
+        "ApplicationStatus"
+      ],
+      "members":{
+        "ApplicationVersionId":{"shape":"ApplicationVersionId"},
+        "ApplicationStatus":{"shape":"ApplicationStatus"}
+      }
     },
     "AuthorizedUrl":{
       "type":"string",
@@ -1195,6 +1240,23 @@
       "required":["SnapshotDetails"],
       "members":{
         "SnapshotDetails":{"shape":"SnapshotDetails"}
+      }
+    },
+    "DescribeApplicationVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "ApplicationVersionId"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "ApplicationVersionId":{"shape":"ApplicationVersionId"}
+      }
+    },
+    "DescribeApplicationVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationVersionDetail":{"shape":"ApplicationDetail"}
       }
     },
     "DestinationSchema":{
@@ -1603,6 +1665,27 @@
       "type":"structure",
       "members":{
         "SnapshotSummaries":{"shape":"SnapshotSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListApplicationVersionsInputLimit":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "ListApplicationVersionsRequest":{
+      "type":"structure",
+      "required":["ApplicationName"],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "Limit":{"shape":"ListApplicationVersionsInputLimit"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListApplicationVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "ApplicationVersionSummaries":{"shape":"ApplicationVersionSummaries"},
         "NextToken":{"shape":"NextToken"}
       }
     },

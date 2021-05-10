@@ -1368,7 +1368,7 @@ func (c *CodeArtifact) DisposePackageVersionsRequest(input *DisposePackageVersio
 // parameter to Disposed.
 //
 // To view information about a disposed package version, use DescribePackageVersion
-// (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html)..
+// (https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DescribePackageVersion.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

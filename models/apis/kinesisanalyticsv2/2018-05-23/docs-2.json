@@ -20,8 +20,10 @@
     "DeleteApplicationVpcConfiguration": "<p>Removes a VPC configuration from a Kinesis Data Analytics application.</p>",
     "DescribeApplication": "<p>Returns information about a specific Kinesis Data Analytics application.</p> <p>If you want to retrieve a list of all applications in your account, use the <a>ListApplications</a> operation.</p>",
     "DescribeApplicationSnapshot": "<p>Returns information about a snapshot of application state data.</p>",
+    "DescribeApplicationVersion": "<p>Provides a detailed description of a specified version of the application. To see a list of all the versions of an application, invoke the <a>ListApplicationVersions</a> operation.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>",
     "DiscoverInputSchema": "<p>Infers a schema for a SQL-based Kinesis Data Analytics application by evaluating sample records on the specified streaming source (Kinesis data stream or Kinesis Data Firehose delivery stream) or Amazon S3 object. In the response, the operation returns the inferred schema and also the sample records that the operation used to infer the schema.</p> <p> You can use the inferred schema when configuring a streaming source for your application. When you create an application using the Kinesis Data Analytics console, the console uses this operation to infer a schema and show it in the console user interface. </p>",
     "ListApplicationSnapshots": "<p>Lists information about the current application snapshots.</p>",
+    "ListApplicationVersions": "<p>Lists all the versions for the specified application, including versions that were rolled back. The response also includes a summary of the configuration associated with each version.</p> <p>To get the complete description of a specific application version, invoke the <a>DescribeApplicationVersion</a> operation.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>",
     "ListApplications": "<p>Returns a list of Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "RollbackApplication": "<p>Reverts the application to the previous running version. You can roll back an application if you suspect it is stuck in a transient status. </p> <p>You can roll back an application only if it is in the <code>UPDATING</code> or <code>AUTOSCALING</code> status.</p> <p>When you rollback an application, it loads state data from the last successful snapshot. If the application has no snapshots, Kinesis Data Analytics rejects the rollback request.</p> <p>This action is not supported for Kinesis Data Analytics for SQL applications.</p>",
@@ -30,7 +32,7 @@
     "TagResource": "<p>Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "UntagResource": "<p>Removes one or more tags from a Kinesis Data Analytics application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "UpdateApplication": "<p>Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>You cannot update the <code>RuntimeEnvironment</code> of an existing application. If you need to update an application's <code>RuntimeEnvironment</code>, you must delete the application and create it again.</p> </note>",
-    "UpdateApplicationMaintenanceConfiguration": "<p>Updates the configuration for the automatic maintenance that Kinesis Data Analytics performs on the application. For information about automatic application maintenance, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html\">Kinesis Data Analytics for Apache Flink Maintenance</a>.</p>"
+    "UpdateApplicationMaintenanceConfiguration": "<p>Updates the maintenance configuration of the Kinesis Data Analytics application. </p> <p>You can invoke this operation on an application that is in one of the two following states: <code>READY</code> or <code>RUNNING</code>. If you invoke it when the application is in a state other than these two states, it throws a <code>ResourceInUseException</code>. The service makes use of the updated configuration the next time it schedules maintenance for the application. If you invoke this operation after the service schedules maintenance, the service will apply the configuration update the next time it schedules maintenance for the application. This means that you might not see the maintenance configuration update applied to the maintenance process that follows a successful invocation of this operation, but to the following maintenance process instead.</p> <p>To see the current maintenance configuration of your application, invoke the <a>DescribeApplication</a> operation.</p> <p>For information about application maintenance, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/maintenance.html\">Kinesis Data Analytics for Apache Flink Maintenance</a>.</p> <note> <p>This operation is supported only for Amazon Kinesis Data Analytics for Apache Flink.</p> </note>"
   },
   "shapes": {
     "AddApplicationCloudWatchLoggingOptionRequest": {
@@ -141,19 +143,20 @@
       "refs": {
         "CreateApplicationResponse$ApplicationDetail": "<p>In response to your <code>CreateApplication</code> request, Kinesis Data Analytics returns a response with details of the application it created.</p>",
         "DescribeApplicationResponse$ApplicationDetail": "<p>Provides a description of the application, such as the application's Amazon Resource Name (ARN), status, and latest version.</p>",
+        "DescribeApplicationVersionResponse$ApplicationVersionDetail": null,
         "RollbackApplicationResponse$ApplicationDetail": null,
         "UpdateApplicationResponse$ApplicationDetail": "<p>Describes application updates.</p>"
       }
     },
     "ApplicationMaintenanceConfigurationDescription": {
-      "base": "<p>Describes the time window for automatic application maintenance.</p>",
+      "base": "<p>The details of the maintenance configuration for the application.</p>",
       "refs": {
-        "ApplicationDetail$ApplicationMaintenanceConfigurationDescription": "<p>Describes the time window for automatic application maintenance.</p>",
+        "ApplicationDetail$ApplicationMaintenanceConfigurationDescription": "<p>The details of the maintenance configuration for the application.</p>",
         "UpdateApplicationMaintenanceConfigurationResponse$ApplicationMaintenanceConfigurationDescription": "<p>The application maintenance configuration description after the update.</p>"
       }
     },
     "ApplicationMaintenanceConfigurationUpdate": {
-      "base": "<p>Describes the updated time window for automatic application maintenance.</p>",
+      "base": "<p>Describes the updated maintenance configuration for the application.</p>",
       "refs": {
         "UpdateApplicationMaintenanceConfigurationRequest$ApplicationMaintenanceConfigurationUpdate": "<p>Describes the application maintenance configuration update.</p>"
       }
@@ -161,14 +164,14 @@
     "ApplicationMaintenanceWindowEndTime": {
       "base": null,
       "refs": {
-        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowEndTime": "<p>The end time for the automatic maintenance window.</p>"
+        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowEndTime": "<p>The end time for the maintenance window.</p>"
       }
     },
     "ApplicationMaintenanceWindowStartTime": {
       "base": null,
       "refs": {
-        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowStartTime": "<p>The start time for the automatic maintenance window.</p>",
-        "ApplicationMaintenanceConfigurationUpdate$ApplicationMaintenanceWindowStartTimeUpdate": "<p>The updated start time for the automatic maintenance window.</p>"
+        "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowStartTime": "<p>The start time for the maintenance window.</p>",
+        "ApplicationMaintenanceConfigurationUpdate$ApplicationMaintenanceWindowStartTimeUpdate": "<p>The updated start time for the maintenance window.</p>"
       }
     },
     "ApplicationName": {
@@ -194,13 +197,15 @@
         "DeleteApplicationVpcConfigurationRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "DescribeApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "DescribeApplicationSnapshotRequest$ApplicationName": "<p>The name of an existing application.</p>",
+        "DescribeApplicationVersionRequest$ApplicationName": "<p>The name of the application for which you want to get the version description.</p>",
         "ListApplicationSnapshotsRequest$ApplicationName": "<p>The name of an existing application.</p>",
+        "ListApplicationVersionsRequest$ApplicationName": "<p>The name of the application for which you want to list all versions.</p>",
         "ListApplicationsRequest$NextToken": "<p>If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
         "ListApplicationsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. Pass this token into a subsequent command to retrieve the next set of items For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
         "RollbackApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StartApplicationRequest$ApplicationName": "<p>The name of the application.</p>",
         "StopApplicationRequest$ApplicationName": "<p>The name of the running application to stop.</p>",
-        "UpdateApplicationMaintenanceConfigurationRequest$ApplicationName": "<p>The name of the application for which you want to update the maintenance time window.</p>",
+        "UpdateApplicationMaintenanceConfigurationRequest$ApplicationName": "<p>The name of the application for which you want to update the maintenance configuration.</p>",
         "UpdateApplicationRequest$ApplicationName": "<p>The name of the application to update.</p>"
       }
     },
@@ -240,7 +245,8 @@
       "base": null,
       "refs": {
         "ApplicationDetail$ApplicationStatus": "<p>The status of the application.</p>",
-        "ApplicationSummary$ApplicationStatus": "<p>The status of the application.</p>"
+        "ApplicationSummary$ApplicationStatus": "<p>The status of the application.</p>",
+        "ApplicationVersionSummary$ApplicationStatus": "<p>The status of the application.</p>"
       }
     },
     "ApplicationSummaries": {
@@ -273,7 +279,9 @@
         "ApplicationDetail$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "ApplicationDetail$ApplicationVersionUpdatedFrom": "<p>The previous application version before the latest application update. <a>RollbackApplication</a> reverts the application to this version.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackFrom": "<p>If you reverted the application using <a>RollbackApplication</a>, the application version when <code>RollbackApplication</code> was called.</p>",
+        "ApplicationDetail$ApplicationVersionRolledBackTo": "<p>The version to which you want to roll back the application.</p>",
         "ApplicationSummary$ApplicationVersionId": "<p>Provides the current application version.</p>",
+        "ApplicationVersionSummary$ApplicationVersionId": "<p>The ID of the application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options.</p>",
         "DeleteApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
@@ -284,9 +292,22 @@
         "DeleteApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
         "DeleteApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "DeleteApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
+        "DescribeApplicationVersionRequest$ApplicationVersionId": "<p>The ID of the application version for which you want to get the description.</p>",
         "RollbackApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "SnapshotDetails$ApplicationVersionId": "<p>The current application version ID when the snapshot was created.</p>",
         "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>"
+      }
+    },
+    "ApplicationVersionSummaries": {
+      "base": null,
+      "refs": {
+        "ListApplicationVersionsResponse$ApplicationVersionSummaries": "<p>A list of the application versions and the associated configuration summaries. The list includes application versions that were rolled back.</p> <p>To get the complete description of a specific application version, invoke the <a>DescribeApplicationVersion</a> operation.</p>"
+      }
+    },
+    "ApplicationVersionSummary": {
+      "base": "<p>The summary of the application version.</p>",
+      "refs": {
+        "ApplicationVersionSummaries$member": null
       }
     },
     "AuthorizedUrl": {
@@ -584,6 +605,16 @@
       }
     },
     "DescribeApplicationSnapshotResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeApplicationVersionResponse": {
       "base": null,
       "refs": {
       }
@@ -987,6 +1018,22 @@
       "refs": {
       }
     },
+    "ListApplicationVersionsInputLimit": {
+      "base": null,
+      "refs": {
+        "ListApplicationVersionsRequest$Limit": "<p>The maximum number of versions to list in this invocation of the operation.</p>"
+      }
+    },
+    "ListApplicationVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListApplicationsInputLimit": {
       "base": null,
       "refs": {
@@ -1079,7 +1126,9 @@
       "base": null,
       "refs": {
         "ListApplicationSnapshotsRequest$NextToken": "<p>Use this parameter if you receive a <code>NextToken</code> response in a previous request that indicates that there is more output available. Set it to the value of the previous call's <code>NextToken</code> response to indicate where the output should continue from. </p>",
-        "ListApplicationSnapshotsResponse$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no additional results.</p>"
+        "ListApplicationSnapshotsResponse$NextToken": "<p>The token for the next set of results, or <code>null</code> if there are no additional results.</p>",
+        "ListApplicationVersionsRequest$NextToken": "<p>If a previous invocation of this operation returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>",
+        "ListApplicationVersionsResponse$NextToken": "<p>The pagination token for the next set of results, or <code>null</code> if there are no additional results. To retrieve the next set of items, pass this token into a subsequent invocation of this operation. For more information about pagination, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/pagination.html\">Using the AWS Command Line Interface's Pagination Options</a>.</p>"
       }
     },
     "ObjectVersion": {

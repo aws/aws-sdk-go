@@ -3150,6 +3150,18 @@
           "shape": "__integerMin0Max255",
           "locationName": "backgroundOpacity"
         },
+        "DdsHandling": {
+          "shape": "DvbddsHandling",
+          "locationName": "ddsHandling"
+        },
+        "DdsXCoordinate": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "ddsXCoordinate"
+        },
+        "DdsYCoordinate": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "ddsYCoordinate"
+        },
         "FontColor": {
           "shape": "DvbSubtitleFontColor",
           "locationName": "fontColor"
@@ -3169,6 +3181,10 @@
         "FontSize": {
           "shape": "__integerMin0Max96",
           "locationName": "fontSize"
+        },
+        "Height": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "height"
         },
         "OutlineColor": {
           "shape": "DvbSubtitleOutlineColor",
@@ -3201,6 +3217,10 @@
         "TeletextSpacing": {
           "shape": "DvbSubtitleTeletextSpacing",
           "locationName": "teletextSpacing"
+        },
+        "Width": {
+          "shape": "__integerMin1Max2147483647",
+          "locationName": "width"
         },
         "XPosition": {
           "shape": "__integerMin0Max2147483647",
@@ -3288,6 +3308,14 @@
           "locationName": "tdtInterval"
         }
       }
+    },
+    "DvbddsHandling": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "SPECIFIED",
+        "NO_DISPLAY_WINDOW"
+      ]
     },
     "Eac3AtmosBitstreamMode": {
       "type": "string",
@@ -5309,6 +5337,14 @@
         "AUTO"
       ]
     },
+    "InputSampleRange": {
+      "type": "string",
+      "enum": [
+        "FOLLOW",
+        "FULL_RANGE",
+        "LIMITED_RANGE"
+      ]
+    },
     "InputScanType": {
       "type": "string",
       "enum": [
@@ -5608,6 +5644,10 @@
           "shape": "__listOfInput",
           "locationName": "inputs"
         },
+        "KantarWatermark": {
+          "shape": "KantarWatermarkSettings",
+          "locationName": "kantarWatermark"
+        },
         "MotionImageInserter": {
           "shape": "MotionImageInserter",
           "locationName": "motionImageInserter"
@@ -5732,6 +5772,10 @@
           "shape": "__listOfInputTemplate",
           "locationName": "inputs"
         },
+        "KantarWatermark": {
+          "shape": "KantarWatermarkSettings",
+          "locationName": "kantarWatermark"
+        },
         "MotionImageInserter": {
           "shape": "MotionImageInserter",
           "locationName": "motionImageInserter"
@@ -5755,6 +5799,63 @@
         "TimedMetadataInsertion": {
           "shape": "TimedMetadataInsertion",
           "locationName": "timedMetadataInsertion"
+        }
+      }
+    },
+    "KantarWatermarkSettings": {
+      "type": "structure",
+      "members": {
+        "ChannelName": {
+          "shape": "__stringMin1Max20",
+          "locationName": "channelName"
+        },
+        "ContentReference": {
+          "shape": "__stringMin1Max50PatternAZAZ09",
+          "locationName": "contentReference"
+        },
+        "CredentialsSecretName": {
+          "shape": "__stringMin1Max512PatternAZAZ09",
+          "locationName": "credentialsSecretName"
+        },
+        "FileOffset": {
+          "shape": "__doubleMin0",
+          "locationName": "fileOffset"
+        },
+        "KantarLicenseId": {
+          "shape": "__integerMin0Max2147483647",
+          "locationName": "kantarLicenseId"
+        },
+        "KantarServerUrl": {
+          "shape": "__stringPatternHttpsKantarmediaCom",
+          "locationName": "kantarServerUrl"
+        },
+        "LogDestination": {
+          "shape": "__stringPatternS3",
+          "locationName": "logDestination"
+        },
+        "Metadata3": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata3"
+        },
+        "Metadata4": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata4"
+        },
+        "Metadata5": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata5"
+        },
+        "Metadata6": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata6"
+        },
+        "Metadata7": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata7"
+        },
+        "Metadata8": {
+          "shape": "__stringMin1Max50",
+          "locationName": "metadata8"
         }
       }
     },
@@ -6442,6 +6543,10 @@
         "AudioPids": {
           "shape": "__listOf__integerMin32Max8182",
           "locationName": "audioPids"
+        },
+        "MaxPcrInterval": {
+          "shape": "__integerMin0Max500",
+          "locationName": "maxPcrInterval"
         },
         "NielsenId3": {
           "shape": "M3u8NielsenId3",
@@ -8762,6 +8867,10 @@
         "Rotate": {
           "shape": "InputRotate",
           "locationName": "rotate"
+        },
+        "SampleRange": {
+          "shape": "InputSampleRange",
+          "locationName": "sampleRange"
         }
       }
     },
@@ -9795,6 +9904,18 @@
       "min": 1,
       "max": 50
     },
+    "__stringMin1Max50PatternAZAZ09": {
+      "type": "string",
+      "min": 1,
+      "max": 50,
+      "pattern": "^[a-zA-Z0-9_\\/_+=.@-]*$"
+    },
+    "__stringMin1Max512PatternAZAZ09": {
+      "type": "string",
+      "min": 1,
+      "max": 512,
+      "pattern": "^[a-zA-Z0-9_\\/_+=.@-]*$"
+    },
     "__stringMin24Max512PatternAZaZ0902": {
       "type": "string",
       "min": 24,
@@ -9882,6 +10003,10 @@
     "__stringPatternHttps": {
       "type": "string",
       "pattern": "^https:\\/\\/"
+    },
+    "__stringPatternHttpsKantarmediaCom": {
+      "type": "string",
+      "pattern": "^https:\\/\\/.*.kantarmedia.com$"
     },
     "__stringPatternIdentityAZaZ26AZaZ09163": {
       "type": "string",

@@ -19,9 +19,21 @@
 // more information, see Setting up AWS Systems Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up.html)
 // in the AWS Systems Manager User Guide.
 //
-// For information about other API actions you can perform on EC2 instances,
-// see the Amazon EC2 API Reference (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/).
-// For information about how to use a Query API, see Making API requests (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/making-api-requests.html).
+// Related resources
+//
+//    * For information about how to use a Query API, see Making API requests
+//    (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/making-api-requests.html).
+//
+//    * For information about other API actions you can perform on EC2 instances,
+//    see the Amazon EC2 API Reference (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/).
+//
+//    * For information about AWS AppConfig, a capability of Systems Manager,
+//    see the AWS AppConfig User Guide (https://docs.aws.amazon.com/appconfig/latest/userguide/)
+//    and the AWS AppConfig API Reference (https://docs.aws.amazon.com/appconfig/2019-10-09/APIReference/).
+//
+//    * For information about AWS Incident Manager, a capability of Systems
+//    Manager, see the AWS Incident Manager User Guide (https://docs.aws.amazon.com/incident-manager/latest/userguide/)
+//    and the AWS Incident Manager API Reference (https://docs.aws.amazon.com/incident-manager/latest/APIReference/).
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/ssm-2014-11-06 for more information on this service.
 //
