@@ -23,6 +23,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/sdktesting"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
+	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/service/sts"
 )
 
@@ -63,11 +64,31 @@ func setupCredentialsEndpoints(t *testing.T) (endpoints.Resolver, func()) {
 
 	stsServer := httptest.NewServer(http.HandlerFunc(
 		func(w http.ResponseWriter, r *http.Request) {
-			w.Write([]byte(fmt.Sprintf(
-				assumeRoleRespMsg,
-				time.Now().
-					Add(15*time.Minute).
-					Format("2006-01-02T15:04:05Z"))))
+			if err := r.ParseForm(); err != nil {
+				w.WriteHeader(500)
+				return
+			}
+
+			form := r.Form
+
+			switch form.Get("Action") {
+			case "AssumeRole":
+				w.Write([]byte(fmt.Sprintf(
+					assumeRoleRespMsg,
+					time.Now().
+						Add(15*time.Minute).
+						Format(protocol.ISO8601TimeFormat))))
+				return
+			case "AssumeRoleWithWebIdentity":
+				w.Write([]byte(fmt.Sprintf(assumeRoleWithWebIdentityResponse,
+					time.Now().
+						Add(15*time.Minute).
+						Format(protocol.ISO8601TimeFormat))))
+				return
+			default:
+				w.WriteHeader(404)
+				return
+			}
 		}))
 
 	ssoServer := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -275,6 +296,23 @@ func TestSharedConfigCredentialSource(t *testing.T) {
 				return func() {}, nil
 			},
 		},
+		{
+			name:                 "sso mixed with credential process provider",
+			profile:              "sso_mixed_credproc",
+			expectedAccessKey:    "SSO_AKID",
+			expectedSecretKey:    "SSO_SECRET_KEY",
+			expectedSessionToken: "SSO_SESSION_TOKEN",
+			init: func() (func(), error) {
+				return ssoTestSetup()
+			},
+		},
+		{
+			name:                 "sso mixed with web identity token provider",
+			profile:              "sso_mixed_webident",
+			expectedAccessKey:    "WEB_IDENTITY_AKID",
+			expectedSecretKey:    "WEB_IDENTITY_SECRET",
+			expectedSessionToken: "WEB_IDENTITY_SESSION_TOKEN",
+		},
 	}
 
 	for i, c := range cases {
@@ -401,6 +439,28 @@ const assumeRoleRespMsg = `
     <RequestId>request-id</RequestId>
   </ResponseMetadata>
 </AssumeRoleResponse>
+`
+
+var assumeRoleWithWebIdentityResponse = `<AssumeRoleWithWebIdentityResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+  <AssumeRoleWithWebIdentityResult>
+    <SubjectFromWebIdentityToken>amzn1.account.AF6RHO7KZU5XRVQJGXK6HB56KR2A</SubjectFromWebIdentityToken>
+    <Audience>client.5498841531868486423.1548@apps.example.com</Audience>
+    <AssumedRoleUser>
+      <Arn>arn:aws:sts::123456789012:assumed-role/FederatedWebIdentityRole/app1</Arn>
+      <AssumedRoleId>AROACLKWSDQRAOEXAMPLE:app1</AssumedRoleId>
+    </AssumedRoleUser>
+    <Credentials>
+      <AccessKeyId>WEB_IDENTITY_AKID</AccessKeyId>
+      <SecretAccessKey>WEB_IDENTITY_SECRET</SecretAccessKey>
+      <SessionToken>WEB_IDENTITY_SESSION_TOKEN</SessionToken>
+      <Expiration>%s</Expiration>
+    </Credentials>
+    <Provider>www.amazon.com</Provider>
+  </AssumeRoleWithWebIdentityResult>
+  <ResponseMetadata>
+    <RequestId>request-id</RequestId>
+  </ResponseMetadata>
+</AssumeRoleWithWebIdentityResponse>
 `
 
 const getRoleCredentialsResponse = `{
