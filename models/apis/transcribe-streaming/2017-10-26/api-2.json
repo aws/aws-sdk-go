@@ -112,7 +112,8 @@
         "Content":{"shape":"String"},
         "VocabularyFilterMatch":{"shape":"Boolean"},
         "Speaker":{"shape":"String"},
-        "Confidence":{"shape":"Confidence"}
+        "Confidence":{"shape":"Confidence"},
+        "Stable":{"shape":"Stable"}
       }
     },
     "ItemList":{
@@ -253,6 +254,14 @@
       "type":"integer",
       "min":2
     },
+    "PartialResultsStability":{
+      "type":"string",
+      "enum":[
+        "high",
+        "medium",
+        "low"
+      ]
+    },
     "RequestId":{"type":"string"},
     "Result":{
       "type":"structure",
@@ -294,6 +303,7 @@
         "UROLOGY"
       ]
     },
+    "Stable":{"type":"boolean"},
     "StartMedicalStreamTranscriptionRequest":{
       "type":"structure",
       "required":[
@@ -490,6 +500,16 @@
           "shape":"NumberOfChannels",
           "location":"header",
           "locationName":"x-amzn-transcribe-number-of-channels"
+        },
+        "EnablePartialResultsStabilization":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-partial-results-stabilization"
+        },
+        "PartialResultsStability":{
+          "shape":"PartialResultsStability",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-partial-results-stability"
         }
       },
       "payload":"AudioStream"
@@ -552,6 +572,16 @@
           "shape":"NumberOfChannels",
           "location":"header",
           "locationName":"x-amzn-transcribe-number-of-channels"
+        },
+        "EnablePartialResultsStabilization":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-partial-results-stabilization"
+        },
+        "PartialResultsStability":{
+          "shape":"PartialResultsStability",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-partial-results-stability"
         }
       },
       "payload":"TranscriptResultStream"

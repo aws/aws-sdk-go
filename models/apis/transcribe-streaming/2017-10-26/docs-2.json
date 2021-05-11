@@ -56,8 +56,10 @@
         "StartMedicalStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
         "StartStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your real-time stream.</p>",
         "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionRequest$EnablePartialResultsStabilization": "<p>When <code>true</code>, instructs Amazon Transcribe to present transcription results that have the partial results stabilized. Normally, any word or phrase from one partial result can change in a subsequent partial result. With partial results stabilization enabled, only the last few words of one partial result can change in another partial result.</p>",
         "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
-        "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>"
+        "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>",
+        "StartStreamTranscriptionResponse$EnablePartialResultsStabilization": "<p>Shows whether partial results stabilization has been enabled in the stream.</p>"
       }
     },
     "Confidence": {
@@ -232,6 +234,13 @@
         "StartStreamTranscriptionResponse$NumberOfChannels": "<p>The number of channels identified in the stream.</p>"
       }
     },
+    "PartialResultsStability": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$PartialResultsStability": "<p>You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy.</p>",
+        "StartStreamTranscriptionResponse$PartialResultsStability": "<p>If partial results stabilization has been enabled in the stream, shows the stability level.</p>"
+      }
+    },
     "RequestId": {
       "base": null,
       "refs": {
@@ -272,6 +281,12 @@
       "refs": {
         "StartMedicalStreamTranscriptionRequest$Specialty": "<p>The medical specialty of the clinician or provider.</p>",
         "StartMedicalStreamTranscriptionResponse$Specialty": "<p>The specialty in the medical domain.</p>"
+      }
+    },
+    "Stable": {
+      "base": null,
+      "refs": {
+        "Item$Stable": "<p>If partial result stabilization has been enabled, indicates whether the word or phrase in the item is stable. If <code>Stable</code> is <code>true</code>, the result is stable.</p>"
       }
     },
     "StartMedicalStreamTranscriptionRequest": {
