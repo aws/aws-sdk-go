@@ -1217,6 +1217,10 @@ type Item struct {
 	// real-time stream.
 	Speaker *string `type:"string"`
 
+	// If partial result stabilization has been enabled, indicates whether the word
+	// or phrase in the item is stable. If Stable is true, the result is stable.
+	Stable *bool `type:"boolean"`
+
 	// The offset from the beginning of the audio stream to the beginning of the
 	// audio that resulted in the item.
 	StartTime *float64 `type:"double"`
@@ -1263,6 +1267,12 @@ func (s *Item) SetEndTime(v float64) *Item {
 // SetSpeaker sets the Speaker field's value.
 func (s *Item) SetSpeaker(v string) *Item {
 	s.Speaker = &v
+	return s
+}
+
+// SetStable sets the Stable field's value.
+func (s *Item) SetStable(v bool) *Item {
+	s.Stable = &v
 	return s
 }
 
@@ -2378,6 +2388,13 @@ type StartStreamTranscriptionInput struct {
 	// same request. If you set both, your request returns a BadRequestException.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
+	// When true, instructs Amazon Transcribe to present transcription results that
+	// have the partial results stabilized. Normally, any word or phrase from one
+	// partial result can change in a subsequent partial result. With partial results
+	// stabilization enabled, only the last few words of one partial result can
+	// change in another partial result.
+	EnablePartialResultsStabilization *bool `location:"header" locationName:"x-amzn-transcribe-enable-partial-results-stabilization" type:"boolean"`
+
 	// Indicates the source language used in the input audio stream.
 	//
 	// LanguageCode is a required field
@@ -2396,6 +2413,12 @@ type StartStreamTranscriptionInput struct {
 
 	// The number of channels that are in your audio stream.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
+	// You can use this field to set the stability level of the transcription results.
+	// A higher stability level means that the transcription results are less likely
+	// to change. Higher stability levels can come with lower overall transcription
+	// accuracy.
+	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
 
 	// A identifier for the transcription session. Use this parameter when you want
 	// to retry a session. If you don't provide a session ID, Amazon Transcribe
@@ -2470,6 +2493,12 @@ func (s *StartStreamTranscriptionInput) SetEnableChannelIdentification(v bool) *
 	return s
 }
 
+// SetEnablePartialResultsStabilization sets the EnablePartialResultsStabilization field's value.
+func (s *StartStreamTranscriptionInput) SetEnablePartialResultsStabilization(v bool) *StartStreamTranscriptionInput {
+	s.EnablePartialResultsStabilization = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartStreamTranscriptionInput) SetLanguageCode(v string) *StartStreamTranscriptionInput {
 	s.LanguageCode = &v
@@ -2491,6 +2520,12 @@ func (s *StartStreamTranscriptionInput) SetMediaSampleRateHertz(v int64) *StartS
 // SetNumberOfChannels sets the NumberOfChannels field's value.
 func (s *StartStreamTranscriptionInput) SetNumberOfChannels(v int64) *StartStreamTranscriptionInput {
 	s.NumberOfChannels = &v
+	return s
+}
+
+// SetPartialResultsStability sets the PartialResultsStability field's value.
+func (s *StartStreamTranscriptionInput) SetPartialResultsStability(v string) *StartStreamTranscriptionInput {
+	s.PartialResultsStability = &v
 	return s
 }
 
@@ -2532,6 +2567,9 @@ type StartStreamTranscriptionOutput struct {
 	// Shows whether channel identification has been enabled in the stream.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
+	// Shows whether partial results stabilization has been enabled in the stream.
+	EnablePartialResultsStabilization *bool `location:"header" locationName:"x-amzn-transcribe-enable-partial-results-stabilization" type:"boolean"`
+
 	// The language code for the input audio stream.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
@@ -2544,6 +2582,10 @@ type StartStreamTranscriptionOutput struct {
 
 	// The number of channels identified in the stream.
 	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
+	// If partial results stabilization has been enabled in the stream, shows the
+	// stability level.
+	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
 
 	// An identifier for the streaming transcription.
 	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
@@ -2580,6 +2622,12 @@ func (s *StartStreamTranscriptionOutput) SetEnableChannelIdentification(v bool) 
 	return s
 }
 
+// SetEnablePartialResultsStabilization sets the EnablePartialResultsStabilization field's value.
+func (s *StartStreamTranscriptionOutput) SetEnablePartialResultsStabilization(v bool) *StartStreamTranscriptionOutput {
+	s.EnablePartialResultsStabilization = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartStreamTranscriptionOutput) SetLanguageCode(v string) *StartStreamTranscriptionOutput {
 	s.LanguageCode = &v
@@ -2601,6 +2649,12 @@ func (s *StartStreamTranscriptionOutput) SetMediaSampleRateHertz(v int64) *Start
 // SetNumberOfChannels sets the NumberOfChannels field's value.
 func (s *StartStreamTranscriptionOutput) SetNumberOfChannels(v int64) *StartStreamTranscriptionOutput {
 	s.NumberOfChannels = &v
+	return s
+}
+
+// SetPartialResultsStability sets the PartialResultsStability field's value.
+func (s *StartStreamTranscriptionOutput) SetPartialResultsStability(v string) *StartStreamTranscriptionOutput {
+	s.PartialResultsStability = &v
 	return s
 }
 
@@ -2988,6 +3042,26 @@ const (
 func MedicalContentIdentificationType_Values() []string {
 	return []string{
 		MedicalContentIdentificationTypePhi,
+	}
+}
+
+const (
+	// PartialResultsStabilityHigh is a PartialResultsStability enum value
+	PartialResultsStabilityHigh = "high"
+
+	// PartialResultsStabilityMedium is a PartialResultsStability enum value
+	PartialResultsStabilityMedium = "medium"
+
+	// PartialResultsStabilityLow is a PartialResultsStability enum value
+	PartialResultsStabilityLow = "low"
+)
+
+// PartialResultsStability_Values returns all elements of the PartialResultsStability enum
+func PartialResultsStability_Values() []string {
+	return []string{
+		PartialResultsStabilityHigh,
+		PartialResultsStabilityMedium,
+		PartialResultsStabilityLow,
 	}
 }
 

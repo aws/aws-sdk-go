@@ -1,3 +1,13 @@
+Release v1.38.38 (2021-05-11)
+===
+
+### Service Client Updates
+* `service/s3control`: Updates service API and documentation
+  * Documentation updates for Amazon S3-control
+* `service/ssm-contacts`: Adds new service
+* `service/ssm-incidents`: Adds new service
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.38.37 (2021-05-10)
 ===
 
