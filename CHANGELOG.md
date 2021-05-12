@@ -1,3 +1,10 @@
+Release v1.38.39 (2021-05-12)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * High Memory virtual instances are powered by Intel Sky Lake CPUs and offer up to 12TB of memory.
+
 Release v1.38.38 (2021-05-11)
 ===
 
