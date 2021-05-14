@@ -5431,6 +5431,169 @@ func (c *Macie2) PutFindingsPublicationConfigurationWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+const opSearchResources = "SearchResources"
+
+// SearchResourcesRequest generates a "aws/request.Request" representing the
+// client's request for the SearchResources operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchResources for more information on using the SearchResources
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchResourcesRequest method.
+//    req, resp := client.SearchResourcesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/SearchResources
+func (c *Macie2) SearchResourcesRequest(input *SearchResourcesInput) (req *request.Request, output *SearchResourcesOutput) {
+	op := &request.Operation{
+		Name:       opSearchResources,
+		HTTPMethod: "POST",
+		HTTPPath:   "/datasources/search-resources",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &SearchResourcesInput{}
+	}
+
+	output = &SearchResourcesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchResources API operation for Amazon Macie 2.
+//
+// Retrieves (queries) statistical data and other information about AWS resources
+// that Amazon Macie monitors and analyzes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation SearchResources for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   Provides information about an error that occurred due to a syntax error in
+//   a request.
+//
+//   * InternalServerException
+//   Provides information about an error that occurred due to an unknown internal
+//   server error, exception, or failure.
+//
+//   * ServiceQuotaExceededException
+//   Provides information about an error that occurred due to one or more service
+//   quotas for an account.
+//
+//   * AccessDeniedException
+//   Provides information about an error that occurred due to insufficient access
+//   to a specified resource.
+//
+//   * ResourceNotFoundException
+//   Provides information about an error that occurred because a specified resource
+//   wasn't found.
+//
+//   * ThrottlingException
+//   Provides information about an error that occurred because too many requests
+//   were sent during a certain amount of time.
+//
+//   * ConflictException
+//   Provides information about an error that occurred due to a versioning conflict
+//   for a specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/SearchResources
+func (c *Macie2) SearchResources(input *SearchResourcesInput) (*SearchResourcesOutput, error) {
+	req, out := c.SearchResourcesRequest(input)
+	return out, req.Send()
+}
+
+// SearchResourcesWithContext is the same as SearchResources with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchResources for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) SearchResourcesWithContext(ctx aws.Context, input *SearchResourcesInput, opts ...request.Option) (*SearchResourcesOutput, error) {
+	req, out := c.SearchResourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// SearchResourcesPages iterates over the pages of a SearchResources operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See SearchResources method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a SearchResources operation.
+//    pageNum := 0
+//    err := client.SearchResourcesPages(params,
+//        func(page *macie2.SearchResourcesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Macie2) SearchResourcesPages(input *SearchResourcesInput, fn func(*SearchResourcesOutput, bool) bool) error {
+	return c.SearchResourcesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// SearchResourcesPagesWithContext same as SearchResourcesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) SearchResourcesPagesWithContext(ctx aws.Context, input *SearchResourcesInput, fn func(*SearchResourcesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *SearchResourcesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.SearchResourcesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*SearchResourcesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -6919,7 +7082,7 @@ func (s *BucketCountByEncryptionType) SetUnknown(v int64) *BucketCountByEncrypti
 	return s
 }
 
-// Provides information about the number of S3 buckets that are and aren't shared
+// Provides information about the number of S3 buckets that are or aren't shared
 // with other AWS accounts.
 type BucketCountBySharedAccessType struct {
 	_ struct{} `type:"structure"`
@@ -6968,7 +7131,7 @@ func (s *BucketCountBySharedAccessType) SetUnknown(v int64) *BucketCountByShared
 }
 
 // Provides information about the number of S3 buckets whose bucket policies
-// do and don't require server-side encryption of objects when objects are uploaded
+// do or don't require server-side encryption of objects when objects are uploaded
 // to the buckets.
 type BucketCountPolicyAllowsUnencryptedObjectUploads struct {
 	_ struct{} `type:"structure"`
@@ -7188,7 +7351,7 @@ type BucketMetadata struct {
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
-	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
 	// If versioning is enabled for a bucket, total storage size values are based
 	// on the size of the latest version of each applicable object in the bucket.
@@ -7196,7 +7359,7 @@ type BucketMetadata struct {
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
-	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
 	// If versioning is enabled for a bucket, total storage size values are based
 	// on the size of the latest version of each applicable object in the bucket.
@@ -7837,7 +8000,11 @@ type CreateClassificationJobInput struct {
 	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// Specifies which S3 buckets contain the objects that a classification job
-	// analyzes, and the scope of that analysis.
+	// analyzes, and the scope of that analysis. The bucket specification can be
+	// static (bucketDefinitions) or dynamic (bucketCriteria). If it's static, the
+	// job analyzes objects in the same predefined set of buckets each time the
+	// job runs. If it's dynamic, the job analyzes objects in any buckets that match
+	// the specified criteria each time the job starts to run.
 	//
 	// S3JobDefinition is a required field
 	S3JobDefinition *S3JobDefinition `locationName:"s3JobDefinition" type:"structure" required:"true"`
@@ -8417,6 +8584,66 @@ func (s CreateSampleFindingsOutput) String() string {
 // GoString returns the string representation
 func (s CreateSampleFindingsOutput) GoString() string {
 	return s.String()
+}
+
+// Specifies one or more property- and tag-based conditions that define criteria
+// for including or excluding S3 buckets from a classification job.
+type CriteriaBlockForJob struct {
+	_ struct{} `type:"structure"`
+
+	And []*CriteriaForJob `locationName:"and" type:"list"`
+}
+
+// String returns the string representation
+func (s CriteriaBlockForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CriteriaBlockForJob) GoString() string {
+	return s.String()
+}
+
+// SetAnd sets the And field's value.
+func (s *CriteriaBlockForJob) SetAnd(v []*CriteriaForJob) *CriteriaBlockForJob {
+	s.And = v
+	return s
+}
+
+// Specifies a property- or tag-based condition that defines criteria for including
+// or excluding S3 buckets from a classification job.
+type CriteriaForJob struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a property-based condition that determines whether an S3 bucket
+	// is included or excluded from a classification job.
+	SimpleCriterion *SimpleCriterionForJob `locationName:"simpleCriterion" type:"structure"`
+
+	// Specifies a tag-based condition that determines whether an S3 bucket is included
+	// or excluded from a classification job.
+	TagCriterion *TagCriterionForJob `locationName:"tagCriterion" type:"structure"`
+}
+
+// String returns the string representation
+func (s CriteriaForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CriteriaForJob) GoString() string {
+	return s.String()
+}
+
+// SetSimpleCriterion sets the SimpleCriterion field's value.
+func (s *CriteriaForJob) SetSimpleCriterion(v *SimpleCriterionForJob) *CriteriaForJob {
+	s.SimpleCriterion = v
+	return s
+}
+
+// SetTagCriterion sets the TagCriterion field's value.
+func (s *CriteriaForJob) SetTagCriterion(v *TagCriterionForJob) *CriteriaForJob {
+	s.TagCriterion = v
+	return s
 }
 
 // Specifies the operator to use in a property-based condition that filters
@@ -9126,9 +9353,9 @@ type DescribeClassificationJobOutput struct {
 	JobType *string `locationName:"jobType" type:"string" enum:"JobType"`
 
 	// Specifies whether any account- or bucket-level access errors occurred when
-	// a classification job ran. For example, the job is configured to analyze data
-	// for a member account that was suspended, or the job is configured to analyze
-	// an S3 bucket that Amazon Macie isn't allowed to access.
+	// a classification job ran. For information about using logging data to investigate
+	// these errors, see Monitoring sensitive data discovery jobs (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-monitor-cw-logs.html)
+	// in the Amazon Macie User Guide.
 	LastRunErrorStatus *LastRunErrorStatus `locationName:"lastRunErrorStatus" type:"structure"`
 
 	LastRunTime *time.Time `locationName:"lastRunTime" type:"timestamp" timestampFormat:"iso8601"`
@@ -9136,7 +9363,11 @@ type DescribeClassificationJobOutput struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// Specifies which S3 buckets contain the objects that a classification job
-	// analyzes, and the scope of that analysis.
+	// analyzes, and the scope of that analysis. The bucket specification can be
+	// static (bucketDefinitions) or dynamic (bucketCriteria). If it's static, the
+	// job analyzes objects in the same predefined set of buckets each time the
+	// job runs. If it's dynamic, the job analyzes objects in any buckets that match
+	// the specified criteria each time the job starts to run.
 	S3JobDefinition *S3JobDefinition `locationName:"s3JobDefinition" type:"structure"`
 
 	SamplingPercentage *int64 `locationName:"samplingPercentage" type:"integer"`
@@ -10176,11 +10407,11 @@ type GetBucketStatisticsOutput struct {
 	BucketCountByEncryptionType *BucketCountByEncryptionType `locationName:"bucketCountByEncryptionType" type:"structure"`
 
 	// Provides information about the number of S3 buckets whose bucket policies
-	// do and don't require server-side encryption of objects when objects are uploaded
+	// do or don't require server-side encryption of objects when objects are uploaded
 	// to the buckets.
 	BucketCountByObjectEncryptionRequirement *BucketCountPolicyAllowsUnencryptedObjectUploads `locationName:"bucketCountByObjectEncryptionRequirement" type:"structure"`
 
-	// Provides information about the number of S3 buckets that are and aren't shared
+	// Provides information about the number of S3 buckets that are or aren't shared
 	// with other AWS accounts.
 	BucketCountBySharedAccessType *BucketCountBySharedAccessType `locationName:"bucketCountBySharedAccessType" type:"structure"`
 
@@ -10198,7 +10429,7 @@ type GetBucketStatisticsOutput struct {
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
-	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
 	// If versioning is enabled for a bucket, total storage size values are based
 	// on the size of the latest version of each applicable object in the bucket.
@@ -10206,7 +10437,7 @@ type GetBucketStatisticsOutput struct {
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
-	// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 	// object, this data is aggregated for all the buckets in the query results.
 	// If versioning is enabled for a bucket, total storage size values are based
 	// on the size of the latest version of each applicable object in the bucket.
@@ -11737,16 +11968,18 @@ func (s *JobScheduleFrequency) SetWeeklySchedule(v *WeeklySchedule) *JobSchedule
 }
 
 // Specifies a property- or tag-based condition that defines criteria for including
-// or excluding objects from a classification job.
+// or excluding S3 objects from a classification job.
 type JobScopeTerm struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a property-based condition that determines whether an object is
-	// included or excluded from a classification job.
+	// Specifies a property-based condition that determines whether an S3 object
+	// is included or excluded from a classification job.
 	SimpleScopeTerm *SimpleScopeTerm `locationName:"simpleScopeTerm" type:"structure"`
 
-	// Specifies a tag-based condition that determines whether an object is included
-	// or excluded from a classification job.
+	// Specifies a tag-based condition that determines whether an S3 object is included
+	// or excluded from a classification job. Tag keys and values are case sensitive.
+	// Also, Amazon Macie doesn't support use of partial values or wildcard characters
+	// in tag-based conditions.
 	TagScopeTerm *TagScopeTerm `locationName:"tagScopeTerm" type:"structure"`
 }
 
@@ -11773,8 +12006,7 @@ func (s *JobScopeTerm) SetTagScopeTerm(v *TagScopeTerm) *JobScopeTerm {
 }
 
 // Specifies one or more property- and tag-based conditions that define criteria
-// for including or excluding objects from a classification job. If you specify
-// more than one condition, Amazon Macie uses an AND operator to join the conditions.
+// for including or excluding S3 objects from a classification job.
 type JobScopingBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -11802,6 +12034,11 @@ func (s *JobScopingBlock) SetAnd(v []*JobScopeTerm) *JobScopingBlock {
 type JobSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies property- and tag-based conditions that define criteria for including
+	// or excluding S3 buckets from a classification job. Exclude conditions take
+	// precedence over include conditions.
+	BucketCriteria *S3BucketCriteriaForJob `locationName:"bucketCriteria" type:"structure"`
+
 	BucketDefinitions []*S3BucketDefinitionForJob `locationName:"bucketDefinitions" type:"list"`
 
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -11815,9 +12052,9 @@ type JobSummary struct {
 	JobType *string `locationName:"jobType" type:"string" enum:"JobType"`
 
 	// Specifies whether any account- or bucket-level access errors occurred when
-	// a classification job ran. For example, the job is configured to analyze data
-	// for a member account that was suspended, or the job is configured to analyze
-	// an S3 bucket that Amazon Macie isn't allowed to access.
+	// a classification job ran. For information about using logging data to investigate
+	// these errors, see Monitoring sensitive data discovery jobs (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-monitor-cw-logs.html)
+	// in the Amazon Macie User Guide.
 	LastRunErrorStatus *LastRunErrorStatus `locationName:"lastRunErrorStatus" type:"structure"`
 
 	Name *string `locationName:"name" type:"string"`
@@ -11840,6 +12077,12 @@ func (s JobSummary) String() string {
 // GoString returns the string representation
 func (s JobSummary) GoString() string {
 	return s.String()
+}
+
+// SetBucketCriteria sets the BucketCriteria field's value.
+func (s *JobSummary) SetBucketCriteria(v *S3BucketCriteriaForJob) *JobSummary {
+	s.BucketCriteria = v
+	return s
 }
 
 // SetBucketDefinitions sets the BucketDefinitions field's value.
@@ -11924,9 +12167,9 @@ func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
 }
 
 // Specifies whether any account- or bucket-level access errors occurred when
-// a classification job ran. For example, the job is configured to analyze data
-// for a member account that was suspended, or the job is configured to analyze
-// an S3 bucket that Amazon Macie isn't allowed to access.
+// a classification job ran. For information about using logging data to investigate
+// these errors, see Monitoring sensitive data discovery jobs (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-monitor-cw-logs.html)
+// in the Amazon Macie User Guide.
 type LastRunErrorStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -12663,6 +12906,154 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
+// Provides statistical data and other information about an S3 bucket that Amazon
+// Macie monitors and analyzes.
+type MatchingBucket struct {
+	_ struct{} `type:"structure"`
+
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	BucketName *string `locationName:"bucketName" type:"string"`
+
+	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
+
+	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
+	// Specifies whether any one-time or recurring classification jobs are configured
+	// to analyze data in an S3 bucket, and, if so, the details of the job that
+	// ran most recently.
+	JobDetails *JobDetails `locationName:"jobDetails" type:"structure"`
+
+	ObjectCount *int64 `locationName:"objectCount" type:"long"`
+
+	// Provides information about the number of objects that are in an S3 bucket
+	// and use certain types of server-side encryption, use client-side encryption,
+	// or aren't encrypted.
+	ObjectCountByEncryptionType *ObjectCountByEncryptionType `locationName:"objectCountByEncryptionType" type:"structure"`
+
+	SizeInBytes *int64 `locationName:"sizeInBytes" type:"long"`
+
+	SizeInBytesCompressed *int64 `locationName:"sizeInBytesCompressed" type:"long"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
+	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
+
+	// Provides information about the total storage size (in bytes) or number of
+	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
+	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+	// object, this data is aggregated for all the buckets in the query results.
+	// If versioning is enabled for a bucket, total storage size values are based
+	// on the size of the latest version of each applicable object in the bucket.
+	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
+}
+
+// String returns the string representation
+func (s MatchingBucket) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MatchingBucket) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MatchingBucket) SetAccountId(v string) *MatchingBucket {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *MatchingBucket) SetBucketName(v string) *MatchingBucket {
+	s.BucketName = &v
+	return s
+}
+
+// SetClassifiableObjectCount sets the ClassifiableObjectCount field's value.
+func (s *MatchingBucket) SetClassifiableObjectCount(v int64) *MatchingBucket {
+	s.ClassifiableObjectCount = &v
+	return s
+}
+
+// SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
+func (s *MatchingBucket) SetClassifiableSizeInBytes(v int64) *MatchingBucket {
+	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
+// SetJobDetails sets the JobDetails field's value.
+func (s *MatchingBucket) SetJobDetails(v *JobDetails) *MatchingBucket {
+	s.JobDetails = v
+	return s
+}
+
+// SetObjectCount sets the ObjectCount field's value.
+func (s *MatchingBucket) SetObjectCount(v int64) *MatchingBucket {
+	s.ObjectCount = &v
+	return s
+}
+
+// SetObjectCountByEncryptionType sets the ObjectCountByEncryptionType field's value.
+func (s *MatchingBucket) SetObjectCountByEncryptionType(v *ObjectCountByEncryptionType) *MatchingBucket {
+	s.ObjectCountByEncryptionType = v
+	return s
+}
+
+// SetSizeInBytes sets the SizeInBytes field's value.
+func (s *MatchingBucket) SetSizeInBytes(v int64) *MatchingBucket {
+	s.SizeInBytes = &v
+	return s
+}
+
+// SetSizeInBytesCompressed sets the SizeInBytesCompressed field's value.
+func (s *MatchingBucket) SetSizeInBytesCompressed(v int64) *MatchingBucket {
+	s.SizeInBytesCompressed = &v
+	return s
+}
+
+// SetUnclassifiableObjectCount sets the UnclassifiableObjectCount field's value.
+func (s *MatchingBucket) SetUnclassifiableObjectCount(v *ObjectLevelStatistics) *MatchingBucket {
+	s.UnclassifiableObjectCount = v
+	return s
+}
+
+// SetUnclassifiableObjectSizeInBytes sets the UnclassifiableObjectSizeInBytes field's value.
+func (s *MatchingBucket) SetUnclassifiableObjectSizeInBytes(v *ObjectLevelStatistics) *MatchingBucket {
+	s.UnclassifiableObjectSizeInBytes = v
+	return s
+}
+
+// Provides statistical data and other information about an AWS resource that
+// Amazon Macie monitors and analyzes.
+type MatchingResource struct {
+	_ struct{} `type:"structure"`
+
+	// Provides statistical data and other information about an S3 bucket that Amazon
+	// Macie monitors and analyzes.
+	MatchingBucket *MatchingBucket `locationName:"matchingBucket" type:"structure"`
+}
+
+// String returns the string representation
+func (s MatchingResource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MatchingResource) GoString() string {
+	return s.String()
+}
+
+// SetMatchingBucket sets the MatchingBucket field's value.
+func (s *MatchingResource) SetMatchingBucket(v *MatchingBucket) *MatchingResource {
+	s.MatchingBucket = v
+	return s
+}
+
 // Provides information about an account that's associated with an Amazon Macie
 // administrator account.
 type Member struct {
@@ -12838,7 +13229,7 @@ func (s *ObjectCountByEncryptionType) SetUnknown(v int64) *ObjectCountByEncrypti
 
 // Provides information about the total storage size (in bytes) or number of
 // objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
-// object, this data is for a specific bucket. In a GetBucketStatisticsResponse
+// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
 // object, this data is aggregated for all the buckets in the query results.
 // If versioning is enabled for a bucket, total storage size values are based
 // on the size of the latest version of each applicable object in the bucket.
@@ -13462,8 +13853,45 @@ func (s *S3Bucket) SetTags(v []*KeyValuePair) *S3Bucket {
 	return s
 }
 
-// Specifies which AWS account owns the S3 buckets that a classification job
-// analyzes, and the buckets to analyze for the account.
+// Specifies property- and tag-based conditions that define criteria for including
+// or excluding S3 buckets from a classification job. Exclude conditions take
+// precedence over include conditions.
+type S3BucketCriteriaForJob struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies one or more property- and tag-based conditions that define criteria
+	// for including or excluding S3 buckets from a classification job.
+	Excludes *CriteriaBlockForJob `locationName:"excludes" type:"structure"`
+
+	// Specifies one or more property- and tag-based conditions that define criteria
+	// for including or excluding S3 buckets from a classification job.
+	Includes *CriteriaBlockForJob `locationName:"includes" type:"structure"`
+}
+
+// String returns the string representation
+func (s S3BucketCriteriaForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3BucketCriteriaForJob) GoString() string {
+	return s.String()
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *S3BucketCriteriaForJob) SetExcludes(v *CriteriaBlockForJob) *S3BucketCriteriaForJob {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *S3BucketCriteriaForJob) SetIncludes(v *CriteriaBlockForJob) *S3BucketCriteriaForJob {
+	s.Includes = v
+	return s
+}
+
+// Specifies an AWS account that owns S3 buckets for a classification job to
+// analyze, and one or more specific buckets to analyze for that account.
 type S3BucketDefinitionForJob struct {
 	_ struct{} `type:"structure"`
 
@@ -13602,16 +14030,24 @@ func (s *S3Destination) SetKmsKeyArn(v string) *S3Destination {
 }
 
 // Specifies which S3 buckets contain the objects that a classification job
-// analyzes, and the scope of that analysis.
+// analyzes, and the scope of that analysis. The bucket specification can be
+// static (bucketDefinitions) or dynamic (bucketCriteria). If it's static, the
+// job analyzes objects in the same predefined set of buckets each time the
+// job runs. If it's dynamic, the job analyzes objects in any buckets that match
+// the specified criteria each time the job starts to run.
 type S3JobDefinition struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies property- and tag-based conditions that define criteria for including
+	// or excluding S3 buckets from a classification job. Exclude conditions take
+	// precedence over include conditions.
+	BucketCriteria *S3BucketCriteriaForJob `locationName:"bucketCriteria" type:"structure"`
+
 	BucketDefinitions []*S3BucketDefinitionForJob `locationName:"bucketDefinitions" type:"list"`
 
-	// Specifies one or more property- and tag-based conditions that refine the
-	// scope of a classification job. These conditions define criteria that determine
-	// which objects a job analyzes. Exclude conditions take precedence over include
-	// conditions.
+	// Specifies one or more property- and tag-based conditions that define criteria
+	// for including or excluding S3 objects from a classification job. Exclude
+	// conditions take precedence over include conditions.
 	Scoping *Scoping `locationName:"scoping" type:"structure"`
 }
 
@@ -13643,6 +14079,12 @@ func (s *S3JobDefinition) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBucketCriteria sets the BucketCriteria field's value.
+func (s *S3JobDefinition) SetBucketCriteria(v *S3BucketCriteriaForJob) *S3JobDefinition {
+	s.BucketCriteria = v
+	return s
 }
 
 // SetBucketDefinitions sets the BucketDefinitions field's value.
@@ -13774,21 +14216,18 @@ func (s *S3Object) SetVersionId(v string) *S3Object {
 	return s
 }
 
-// Specifies one or more property- and tag-based conditions that refine the
-// scope of a classification job. These conditions define criteria that determine
-// which objects a job analyzes. Exclude conditions take precedence over include
-// conditions.
+// Specifies one or more property- and tag-based conditions that define criteria
+// for including or excluding S3 objects from a classification job. Exclude
+// conditions take precedence over include conditions.
 type Scoping struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies one or more property- and tag-based conditions that define criteria
-	// for including or excluding objects from a classification job. If you specify
-	// more than one condition, Amazon Macie uses an AND operator to join the conditions.
+	// for including or excluding S3 objects from a classification job.
 	Excludes *JobScopingBlock `locationName:"excludes" type:"structure"`
 
 	// Specifies one or more property- and tag-based conditions that define criteria
-	// for including or excluding objects from a classification job. If you specify
-	// more than one condition, Amazon Macie uses an AND operator to join the conditions.
+	// for including or excluding S3 objects from a classification job.
 	Includes *JobScopingBlock `locationName:"includes" type:"structure"`
 }
 
@@ -13811,6 +14250,334 @@ func (s *Scoping) SetExcludes(v *JobScopingBlock) *Scoping {
 // SetIncludes sets the Includes field's value.
 func (s *Scoping) SetIncludes(v *JobScopingBlock) *Scoping {
 	s.Includes = v
+	return s
+}
+
+// Specifies property- and tag-based conditions that define filter criteria
+// for including or excluding S3 buckets from the query results. Exclude conditions
+// take precedence over include conditions.
+type SearchResourcesBucketCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies property- and tag-based conditions that define filter criteria
+	// for including or excluding AWS resources from the query results.
+	Excludes *SearchResourcesCriteriaBlock `locationName:"excludes" type:"structure"`
+
+	// Specifies property- and tag-based conditions that define filter criteria
+	// for including or excluding AWS resources from the query results.
+	Includes *SearchResourcesCriteriaBlock `locationName:"includes" type:"structure"`
+}
+
+// String returns the string representation
+func (s SearchResourcesBucketCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesBucketCriteria) GoString() string {
+	return s.String()
+}
+
+// SetExcludes sets the Excludes field's value.
+func (s *SearchResourcesBucketCriteria) SetExcludes(v *SearchResourcesCriteriaBlock) *SearchResourcesBucketCriteria {
+	s.Excludes = v
+	return s
+}
+
+// SetIncludes sets the Includes field's value.
+func (s *SearchResourcesBucketCriteria) SetIncludes(v *SearchResourcesCriteriaBlock) *SearchResourcesBucketCriteria {
+	s.Includes = v
+	return s
+}
+
+// Specifies a property- or tag-based filter condition for including or excluding
+// AWS resources from the query results.
+type SearchResourcesCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a property-based filter condition that determines which AWS resources
+	// are included or excluded from the query results.
+	SimpleCriterion *SearchResourcesSimpleCriterion `locationName:"simpleCriterion" type:"structure"`
+
+	// Specifies a tag-based filter condition that determines which AWS resources
+	// are included or excluded from the query results.
+	TagCriterion *SearchResourcesTagCriterion `locationName:"tagCriterion" type:"structure"`
+}
+
+// String returns the string representation
+func (s SearchResourcesCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesCriteria) GoString() string {
+	return s.String()
+}
+
+// SetSimpleCriterion sets the SimpleCriterion field's value.
+func (s *SearchResourcesCriteria) SetSimpleCriterion(v *SearchResourcesSimpleCriterion) *SearchResourcesCriteria {
+	s.SimpleCriterion = v
+	return s
+}
+
+// SetTagCriterion sets the TagCriterion field's value.
+func (s *SearchResourcesCriteria) SetTagCriterion(v *SearchResourcesTagCriterion) *SearchResourcesCriteria {
+	s.TagCriterion = v
+	return s
+}
+
+// Specifies property- and tag-based conditions that define filter criteria
+// for including or excluding AWS resources from the query results.
+type SearchResourcesCriteriaBlock struct {
+	_ struct{} `type:"structure"`
+
+	And []*SearchResourcesCriteria `locationName:"and" type:"list"`
+}
+
+// String returns the string representation
+func (s SearchResourcesCriteriaBlock) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesCriteriaBlock) GoString() string {
+	return s.String()
+}
+
+// SetAnd sets the And field's value.
+func (s *SearchResourcesCriteriaBlock) SetAnd(v []*SearchResourcesCriteria) *SearchResourcesCriteriaBlock {
+	s.And = v
+	return s
+}
+
+// Specifies criteria for filtering, sorting, and paginating the results of
+// a query for statistical data and other information about AWS resources that
+// Amazon Macie monitors and analyzes.
+type SearchResourcesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies property- and tag-based conditions that define filter criteria
+	// for including or excluding S3 buckets from the query results. Exclude conditions
+	// take precedence over include conditions.
+	BucketCriteria *SearchResourcesBucketCriteria `locationName:"bucketCriteria" type:"structure"`
+
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies criteria for sorting the results of a query for information about
+	// AWS resources that Amazon Macie monitors and analyzes.
+	SortCriteria *SearchResourcesSortCriteria `locationName:"sortCriteria" type:"structure"`
+}
+
+// String returns the string representation
+func (s SearchResourcesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesInput) GoString() string {
+	return s.String()
+}
+
+// SetBucketCriteria sets the BucketCriteria field's value.
+func (s *SearchResourcesInput) SetBucketCriteria(v *SearchResourcesBucketCriteria) *SearchResourcesInput {
+	s.BucketCriteria = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchResourcesInput) SetMaxResults(v int64) *SearchResourcesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchResourcesInput) SetNextToken(v string) *SearchResourcesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortCriteria sets the SortCriteria field's value.
+func (s *SearchResourcesInput) SetSortCriteria(v *SearchResourcesSortCriteria) *SearchResourcesInput {
+	s.SortCriteria = v
+	return s
+}
+
+// Provides the results of a query that retrieved statistical data and other
+// information about AWS resources that Amazon Macie monitors and analyzes.
+type SearchResourcesOutput struct {
+	_ struct{} `type:"structure"`
+
+	MatchingResources []*MatchingResource `locationName:"matchingResources" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s SearchResourcesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMatchingResources sets the MatchingResources field's value.
+func (s *SearchResourcesOutput) SetMatchingResources(v []*MatchingResource) *SearchResourcesOutput {
+	s.MatchingResources = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchResourcesOutput) SetNextToken(v string) *SearchResourcesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Specifies a property-based filter condition that determines which AWS resources
+// are included or excluded from the query results.
+type SearchResourcesSimpleCriterion struct {
+	_ struct{} `type:"structure"`
+
+	// The operator to use in a condition that filters the results of a query. Valid
+	// values are:
+	Comparator *string `locationName:"comparator" type:"string" enum:"SearchResourcesComparator"`
+
+	// The property to use in a condition that filters the query results. Valid
+	// values are:
+	Key *string `locationName:"key" type:"string" enum:"SearchResourcesSimpleCriterionKey"`
+
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s SearchResourcesSimpleCriterion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesSimpleCriterion) GoString() string {
+	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *SearchResourcesSimpleCriterion) SetComparator(v string) *SearchResourcesSimpleCriterion {
+	s.Comparator = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchResourcesSimpleCriterion) SetKey(v string) *SearchResourcesSimpleCriterion {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SearchResourcesSimpleCriterion) SetValues(v []*string) *SearchResourcesSimpleCriterion {
+	s.Values = v
+	return s
+}
+
+// Specifies criteria for sorting the results of a query for information about
+// AWS resources that Amazon Macie monitors and analyzes.
+type SearchResourcesSortCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// The property to sort the query results by. Valid values are:
+	AttributeName *string `locationName:"attributeName" type:"string" enum:"SearchResourcesSortAttributeName"`
+
+	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
+}
+
+// String returns the string representation
+func (s SearchResourcesSortCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesSortCriteria) GoString() string {
+	return s.String()
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *SearchResourcesSortCriteria) SetAttributeName(v string) *SearchResourcesSortCriteria {
+	s.AttributeName = &v
+	return s
+}
+
+// SetOrderBy sets the OrderBy field's value.
+func (s *SearchResourcesSortCriteria) SetOrderBy(v string) *SearchResourcesSortCriteria {
+	s.OrderBy = &v
+	return s
+}
+
+// Specifies a tag-based filter condition that determines which AWS resources
+// are included or excluded from the query results.
+type SearchResourcesTagCriterion struct {
+	_ struct{} `type:"structure"`
+
+	// The operator to use in a condition that filters the results of a query. Valid
+	// values are:
+	Comparator *string `locationName:"comparator" type:"string" enum:"SearchResourcesComparator"`
+
+	TagValues []*SearchResourcesTagCriterionPair `locationName:"tagValues" type:"list"`
+}
+
+// String returns the string representation
+func (s SearchResourcesTagCriterion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesTagCriterion) GoString() string {
+	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *SearchResourcesTagCriterion) SetComparator(v string) *SearchResourcesTagCriterion {
+	s.Comparator = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *SearchResourcesTagCriterion) SetTagValues(v []*SearchResourcesTagCriterionPair) *SearchResourcesTagCriterion {
+	s.TagValues = v
+	return s
+}
+
+// Specifies a tag key, a tag value, or a tag key and value (as a pair) to use
+// in a tag-based filter condition for a query. Tag keys and values are case
+// sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard
+// characters in tag-based filter conditions.
+type SearchResourcesTagCriterionPair struct {
+	_ struct{} `type:"structure"`
+
+	Key *string `locationName:"key" type:"string"`
+
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation
+func (s SearchResourcesTagCriterionPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchResourcesTagCriterionPair) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *SearchResourcesTagCriterionPair) SetKey(v string) *SearchResourcesTagCriterionPair {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SearchResourcesTagCriterionPair) SetValue(v string) *SearchResourcesTagCriterionPair {
+	s.Value = &v
 	return s
 }
 
@@ -14199,16 +14966,59 @@ func (s *Severity) SetScore(v int64) *Severity {
 	return s
 }
 
-// Specifies a property-based condition that determines whether an object is
-// included or excluded from a classification job.
+// Specifies a property-based condition that determines whether an S3 bucket
+// is included or excluded from a classification job.
+type SimpleCriterionForJob struct {
+	_ struct{} `type:"structure"`
+
+	// The operator to use in a condition. Valid values are:
+	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
+
+	// The property to use in a condition that determines whether an S3 bucket is
+	// included or excluded from a classification job. Valid values are:
+	Key *string `locationName:"key" type:"string" enum:"SimpleCriterionKeyForJob"`
+
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s SimpleCriterionForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SimpleCriterionForJob) GoString() string {
+	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *SimpleCriterionForJob) SetComparator(v string) *SimpleCriterionForJob {
+	s.Comparator = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *SimpleCriterionForJob) SetKey(v string) *SimpleCriterionForJob {
+	s.Key = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *SimpleCriterionForJob) SetValues(v []*string) *SimpleCriterionForJob {
+	s.Values = v
+	return s
+}
+
+// Specifies a property-based condition that determines whether an S3 object
+// is included or excluded from a classification job.
 type SimpleScopeTerm struct {
 	_ struct{} `type:"structure"`
 
 	// The operator to use in a condition. Valid values are:
 	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
 
-	// The property to use in a condition that determines which objects are analyzed
-	// by a classification job. Valid values are:
+	// The property to use in a condition that determines whether an S3 object is
+	// included or excluded from a classification job. Valid values are:
 	Key *string `locationName:"key" type:"string" enum:"ScopeFilterKey"`
 
 	Values []*string `locationName:"values" type:"list"`
@@ -14304,6 +15114,74 @@ func (s *Statistics) SetNumberOfRuns(v float64) *Statistics {
 	return s
 }
 
+// Specifies a tag-based condition that determines whether an S3 bucket is included
+// or excluded from a classification job.
+type TagCriterionForJob struct {
+	_ struct{} `type:"structure"`
+
+	// The operator to use in a condition. Valid values are:
+	Comparator *string `locationName:"comparator" type:"string" enum:"JobComparator"`
+
+	TagValues []*TagCriterionPairForJob `locationName:"tagValues" type:"list"`
+}
+
+// String returns the string representation
+func (s TagCriterionForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagCriterionForJob) GoString() string {
+	return s.String()
+}
+
+// SetComparator sets the Comparator field's value.
+func (s *TagCriterionForJob) SetComparator(v string) *TagCriterionForJob {
+	s.Comparator = &v
+	return s
+}
+
+// SetTagValues sets the TagValues field's value.
+func (s *TagCriterionForJob) SetTagValues(v []*TagCriterionPairForJob) *TagCriterionForJob {
+	s.TagValues = v
+	return s
+}
+
+// Specifies a tag key, a tag value, or a tag key and value (as a pair) to use
+// in a tag-based condition that determines whether an S3 bucket is included
+// or excluded from a classification job. Tag keys and values are case sensitive.
+// Also, Amazon Macie doesn't support use of partial values or wildcard characters
+// in tag-based conditions.
+type TagCriterionPairForJob struct {
+	_ struct{} `type:"structure"`
+
+	Key *string `locationName:"key" type:"string"`
+
+	Value *string `locationName:"value" type:"string"`
+}
+
+// String returns the string representation
+func (s TagCriterionPairForJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagCriterionPairForJob) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *TagCriterionPairForJob) SetKey(v string) *TagCriterionPairForJob {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TagCriterionPairForJob) SetValue(v string) *TagCriterionPairForJob {
+	s.Value = &v
+	return s
+}
+
 // Specifies the tags (keys and values) to associate with a classification job,
 // custom data identifier, findings filter, or member account.
 type TagResourceInput struct {
@@ -14376,8 +15254,10 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies a tag-based condition that determines whether an object is included
-// or excluded from a classification job.
+// Specifies a tag-based condition that determines whether an S3 object is included
+// or excluded from a classification job. Tag keys and values are case sensitive.
+// Also, Amazon Macie doesn't support use of partial values or wildcard characters
+// in tag-based conditions.
 type TagScopeTerm struct {
 	_ struct{} `type:"structure"`
 
@@ -14427,7 +15307,9 @@ func (s *TagScopeTerm) SetTarget(v string) *TagScopeTerm {
 }
 
 // Specifies a tag key or tag key and value pair to use in a tag-based condition
-// for a classification job.
+// that determines whether an S3 object is included or excluded from a classification
+// job. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support
+// use of partial values or wildcard characters in tag-based conditions.
 type TagValuePair struct {
 	_ struct{} `type:"structure"`
 
@@ -14718,8 +15600,8 @@ func (s UntagResourceOutput) GoString() string {
 }
 
 // Changes the status of a classification job. For more information about pausing,
-// resuming, or cancelling jobs, see Managing and monitoring sensitive data
-// discovery jobs (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html)
+// resuming, or cancelling jobs, see Managing sensitive data discovery jobs
+// (https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html)
 // in the Amazon Macie User Guide.
 type UpdateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
@@ -16151,8 +17033,8 @@ func RelationshipStatus_Values() []string {
 	}
 }
 
-// The property to use in a condition that determines which objects are analyzed
-// by a classification job. Valid values are:
+// The property to use in a condition that determines whether an S3 object is
+// included or excluded from a classification job. Valid values are:
 const (
 	// ScopeFilterKeyBucketCreationDate is a ScopeFilterKey enum value
 	ScopeFilterKeyBucketCreationDate = "BUCKET_CREATION_DATE"
@@ -16182,6 +17064,75 @@ func ScopeFilterKey_Values() []string {
 		ScopeFilterKeyObjectSize,
 		ScopeFilterKeyTag,
 		ScopeFilterKeyObjectKey,
+	}
+}
+
+// The operator to use in a condition that filters the results of a query. Valid
+// values are:
+const (
+	// SearchResourcesComparatorEq is a SearchResourcesComparator enum value
+	SearchResourcesComparatorEq = "EQ"
+
+	// SearchResourcesComparatorNe is a SearchResourcesComparator enum value
+	SearchResourcesComparatorNe = "NE"
+)
+
+// SearchResourcesComparator_Values returns all elements of the SearchResourcesComparator enum
+func SearchResourcesComparator_Values() []string {
+	return []string{
+		SearchResourcesComparatorEq,
+		SearchResourcesComparatorNe,
+	}
+}
+
+// The property to use in a condition that filters the query results. Valid
+// values are:
+const (
+	// SearchResourcesSimpleCriterionKeyAccountId is a SearchResourcesSimpleCriterionKey enum value
+	SearchResourcesSimpleCriterionKeyAccountId = "ACCOUNT_ID"
+
+	// SearchResourcesSimpleCriterionKeyS3BucketName is a SearchResourcesSimpleCriterionKey enum value
+	SearchResourcesSimpleCriterionKeyS3BucketName = "S3_BUCKET_NAME"
+
+	// SearchResourcesSimpleCriterionKeyS3BucketEffectivePermission is a SearchResourcesSimpleCriterionKey enum value
+	SearchResourcesSimpleCriterionKeyS3BucketEffectivePermission = "S3_BUCKET_EFFECTIVE_PERMISSION"
+
+	// SearchResourcesSimpleCriterionKeyS3BucketSharedAccess is a SearchResourcesSimpleCriterionKey enum value
+	SearchResourcesSimpleCriterionKeyS3BucketSharedAccess = "S3_BUCKET_SHARED_ACCESS"
+)
+
+// SearchResourcesSimpleCriterionKey_Values returns all elements of the SearchResourcesSimpleCriterionKey enum
+func SearchResourcesSimpleCriterionKey_Values() []string {
+	return []string{
+		SearchResourcesSimpleCriterionKeyAccountId,
+		SearchResourcesSimpleCriterionKeyS3BucketName,
+		SearchResourcesSimpleCriterionKeyS3BucketEffectivePermission,
+		SearchResourcesSimpleCriterionKeyS3BucketSharedAccess,
+	}
+}
+
+// The property to sort the query results by. Valid values are:
+const (
+	// SearchResourcesSortAttributeNameAccountId is a SearchResourcesSortAttributeName enum value
+	SearchResourcesSortAttributeNameAccountId = "ACCOUNT_ID"
+
+	// SearchResourcesSortAttributeNameResourceName is a SearchResourcesSortAttributeName enum value
+	SearchResourcesSortAttributeNameResourceName = "RESOURCE_NAME"
+
+	// SearchResourcesSortAttributeNameS3ClassifiableObjectCount is a SearchResourcesSortAttributeName enum value
+	SearchResourcesSortAttributeNameS3ClassifiableObjectCount = "S3_CLASSIFIABLE_OBJECT_COUNT"
+
+	// SearchResourcesSortAttributeNameS3ClassifiableSizeInBytes is a SearchResourcesSortAttributeName enum value
+	SearchResourcesSortAttributeNameS3ClassifiableSizeInBytes = "S3_CLASSIFIABLE_SIZE_IN_BYTES"
+)
+
+// SearchResourcesSortAttributeName_Values returns all elements of the SearchResourcesSortAttributeName enum
+func SearchResourcesSortAttributeName_Values() []string {
+	return []string{
+		SearchResourcesSortAttributeNameAccountId,
+		SearchResourcesSortAttributeNameResourceName,
+		SearchResourcesSortAttributeNameS3ClassifiableObjectCount,
+		SearchResourcesSortAttributeNameS3ClassifiableSizeInBytes,
 	}
 }
 
@@ -16254,6 +17205,32 @@ func SharedAccess_Values() []string {
 		SharedAccessInternal,
 		SharedAccessNotShared,
 		SharedAccessUnknown,
+	}
+}
+
+// The property to use in a condition that determines whether an S3 bucket is
+// included or excluded from a classification job. Valid values are:
+const (
+	// SimpleCriterionKeyForJobAccountId is a SimpleCriterionKeyForJob enum value
+	SimpleCriterionKeyForJobAccountId = "ACCOUNT_ID"
+
+	// SimpleCriterionKeyForJobS3BucketName is a SimpleCriterionKeyForJob enum value
+	SimpleCriterionKeyForJobS3BucketName = "S3_BUCKET_NAME"
+
+	// SimpleCriterionKeyForJobS3BucketEffectivePermission is a SimpleCriterionKeyForJob enum value
+	SimpleCriterionKeyForJobS3BucketEffectivePermission = "S3_BUCKET_EFFECTIVE_PERMISSION"
+
+	// SimpleCriterionKeyForJobS3BucketSharedAccess is a SimpleCriterionKeyForJob enum value
+	SimpleCriterionKeyForJobS3BucketSharedAccess = "S3_BUCKET_SHARED_ACCESS"
+)
+
+// SimpleCriterionKeyForJob_Values returns all elements of the SimpleCriterionKeyForJob enum
+func SimpleCriterionKeyForJob_Values() []string {
+	return []string{
+		SimpleCriterionKeyForJobAccountId,
+		SimpleCriterionKeyForJobS3BucketName,
+		SimpleCriterionKeyForJobS3BucketEffectivePermission,
+		SimpleCriterionKeyForJobS3BucketSharedAccess,
 	}
 }
 

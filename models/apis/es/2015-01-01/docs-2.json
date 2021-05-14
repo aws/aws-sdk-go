@@ -246,6 +246,7 @@
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
+        "ColdStorageOptions$Enabled": "<p>True to enable cold storage for an Elasticsearch domain.</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "DomainEndpointOptions$CustomEndpointEnabled": "<p>Specify if custom endpoint should be enabled for the Elasticsearch domain.</p>",
         "EBSOptions$EBSEnabled": "<p>Specifies whether EBS-based storage is enabled.</p>",
@@ -298,6 +299,12 @@
       "base": "<p>Status of the Cognito options for the specified Elasticsearch domain.</p>",
       "refs": {
         "ElasticsearchDomainConfig$CognitoOptions": "<p>The <code>CognitoOptions</code> for the specified domain. For more information, see <a href=\"http://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/es-cognito-auth.html\" target=\"_blank\">Amazon Cognito Authentication for Kibana</a>.</p>"
+      }
+    },
+    "ColdStorageOptions": {
+      "base": "<p>Specifies settings for cold storage.</p>",
+      "refs": {
+        "ElasticsearchClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> configuration for an Elasticsearch domain.</p>"
       }
     },
     "CommitMessage": {

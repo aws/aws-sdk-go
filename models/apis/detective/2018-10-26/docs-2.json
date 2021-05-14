@@ -45,15 +45,15 @@
     "AccountIdList": {
       "base": null,
       "refs": {
-        "DeleteMembersRequest$AccountIds": "<p>The list of AWS account identifiers for the member accounts to delete from the behavior graph.</p>",
+        "DeleteMembersRequest$AccountIds": "<p>The list of AWS account identifiers for the member accounts to delete from the behavior graph. You can delete up to 50 member accounts at a time.</p>",
         "DeleteMembersResponse$AccountIds": "<p>The list of AWS account identifiers for the member accounts that Detective successfully deleted from the behavior graph.</p>",
-        "GetMembersRequest$AccountIds": "<p>The list of AWS account identifiers for the member account for which to return member details.</p> <p>You cannot use <code>GetMembers</code> to retrieve information about member accounts that were removed from the behavior graph.</p>"
+        "GetMembersRequest$AccountIds": "<p>The list of AWS account identifiers for the member account for which to return member details. You can request details for up to 50 member accounts at a time.</p> <p>You cannot use <code>GetMembers</code> to retrieve information about member accounts that were removed from the behavior graph.</p>"
       }
     },
     "AccountList": {
       "base": null,
       "refs": {
-        "CreateMembersRequest$Accounts": "<p>The list of AWS accounts to invite to become member accounts in the behavior graph. For each invited account, the account list contains the account identifier and the AWS account root user email address.</p>"
+        "CreateMembersRequest$Accounts": "<p>The list of AWS accounts to invite to become member accounts in the behavior graph. You can invite up to 50 accounts at a time. For each invited account, the account list contains the account identifier and the AWS account root user email address.</p>"
       }
     },
     "Boolean": {
@@ -305,15 +305,15 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p>The tag keys of the tags to remove from the behavior graph.</p>"
+        "UntagResourceRequest$TagKeys": "<p>The tag keys of the tags to remove from the behavior graph. You can remove up to 50 tags at a time.</p>"
       }
     },
     "TagMap": {
       "base": null,
       "refs": {
-        "CreateGraphRequest$Tags": "<p>The tags to assign to the new behavior graph. For each tag, you provide the tag key and the tag value.</p>",
-        "ListTagsForResourceResponse$Tags": "<p>The tag values that are assigned to the behavior graph.</p>",
-        "TagResourceRequest$Tags": "<p>The tag values to assign to the behavior graph.</p>"
+        "CreateGraphRequest$Tags": "<p>The tags to assign to the new behavior graph. You can add up to 50 tags. For each tag, you provide the tag key and the tag value. Each tag key can contain up to 128 characters. Each tag value can contain up to 256 characters.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>The tag values that are assigned to the behavior graph. The request returns up to 50 tag values.</p>",
+        "TagResourceRequest$Tags": "<p>The tags to assign to the behavior graph. You can add up to 50 tags. For each tag, you provide the tag key and the tag value. Each tag key can contain up to 128 characters. Each tag value can contain up to 256 characters.</p>"
       }
     },
     "TagResourceRequest": {

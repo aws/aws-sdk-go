@@ -1,3 +1,18 @@
+Release v1.38.40 (2021-05-14)
+===
+
+### Service Client Updates
+* `service/detective`: Updates service documentation
+* `service/es`: Updates service API and documentation
+  * Adds support for cold storage.
+* `service/eventbridge`: Updates service API
+* `service/events`: Updates service API
+  * Update InputTransformer variable limit from 10 to 100 variables.
+* `service/imagebuilder`: Updates service documentation
+* `service/macie2`: Updates service API, documentation, and paginators
+* `service/securityhub`: Updates service documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.38.39 (2021-05-12)
 ===
 

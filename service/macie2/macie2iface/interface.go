@@ -275,6 +275,13 @@ type Macie2API interface {
 	PutFindingsPublicationConfigurationWithContext(aws.Context, *macie2.PutFindingsPublicationConfigurationInput, ...request.Option) (*macie2.PutFindingsPublicationConfigurationOutput, error)
 	PutFindingsPublicationConfigurationRequest(*macie2.PutFindingsPublicationConfigurationInput) (*request.Request, *macie2.PutFindingsPublicationConfigurationOutput)
 
+	SearchResources(*macie2.SearchResourcesInput) (*macie2.SearchResourcesOutput, error)
+	SearchResourcesWithContext(aws.Context, *macie2.SearchResourcesInput, ...request.Option) (*macie2.SearchResourcesOutput, error)
+	SearchResourcesRequest(*macie2.SearchResourcesInput) (*request.Request, *macie2.SearchResourcesOutput)
+
+	SearchResourcesPages(*macie2.SearchResourcesInput, func(*macie2.SearchResourcesOutput, bool) bool) error
+	SearchResourcesPagesWithContext(aws.Context, *macie2.SearchResourcesInput, func(*macie2.SearchResourcesOutput, bool) bool, ...request.Option) error
+
 	TagResource(*macie2.TagResourceInput) (*macie2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *macie2.TagResourceInput, ...request.Option) (*macie2.TagResourceOutput, error)
 	TagResourceRequest(*macie2.TagResourceInput) (*request.Request, *macie2.TagResourceOutput)

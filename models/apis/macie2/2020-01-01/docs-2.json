@@ -49,6 +49,7 @@
     "ListTagsForResource" : "<p>Retrieves the tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for storing data classification results.</p>",
     "PutFindingsPublicationConfiguration" : "<p>Updates the configuration settings for publishing findings to AWS Security Hub.</p>",
+    "SearchResources" : "<p>Retrieves (queries) statistical data and other information about AWS resources that Amazon Macie monitors and analyzes.</p>",
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "TestCustomDataIdentifier" : "<p>Tests a custom data identifier.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from a classification job, custom data identifier, findings filter, or member account.</p>",
@@ -162,15 +163,15 @@
       }
     },
     "BucketCountBySharedAccessType" : {
-      "base" : "<p>Provides information about the number of S3 buckets that are and aren't shared with other AWS accounts.</p>",
+      "base" : "<p>Provides information about the number of S3 buckets that are or aren't shared with other AWS accounts.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountBySharedAccessType" : "<p>The total number of buckets that are and aren't shared with another AWS account.</p>"
+        "GetBucketStatisticsResponse$BucketCountBySharedAccessType" : "<p>The total number of buckets that are or aren't shared with another AWS account.</p>"
       }
     },
     "BucketCountPolicyAllowsUnencryptedObjectUploads" : {
-      "base" : "<p>Provides information about the number of S3 buckets whose bucket policies do and don't require server-side encryption of objects when objects are uploaded to the buckets.</p>",
+      "base" : "<p>Provides information about the number of S3 buckets whose bucket policies do or don't require server-side encryption of objects when objects are uploaded to the buckets.</p>",
       "refs" : {
-        "GetBucketStatisticsResponse$BucketCountByObjectEncryptionRequirement" : "<p>The total number of buckets whose bucket policies do and don't require server-side encryption of objects when objects are uploaded to the buckets.</p>"
+        "GetBucketStatisticsResponse$BucketCountByObjectEncryptionRequirement" : "<p>The total number of buckets whose bucket policies do or don't require server-side encryption of objects when objects are uploaded to the buckets.</p>"
       }
     },
     "BucketCriteria" : {
@@ -313,6 +314,19 @@
     "CreateSampleFindingsRequest" : {
       "base" : "<p>Specifies the types of findings to include in a set of sample findings that Amazon Macie creates.</p>",
       "refs" : { }
+    },
+    "CriteriaBlockForJob" : {
+      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding S3 buckets from a classification job.</p>",
+      "refs" : {
+        "S3BucketCriteriaForJob$Excludes" : "<p>The property- and tag-based conditions that determine which buckets to exclude from the job.</p>",
+        "S3BucketCriteriaForJob$Includes" : "<p>The property- and tag-based conditions that determine which buckets to include in the job.</p>"
+      }
+    },
+    "CriteriaForJob" : {
+      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding S3 buckets from a classification job.</p>",
+      "refs" : {
+        "__listOfCriteriaForJob$member" : null
+      }
     },
     "Criterion" : {
       "base" : "<p>Specifies a condition that defines a property, operator, and one or more values to filter the results of a query for findings. The number of values depends on the property and operator specified by the condition. For information about defining filter conditions, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/findings-filter-basics.html\">Fundamentals of filtering findings</a> in the <i>Amazon Macie User Guide</i>.</p>",
@@ -672,27 +686,30 @@
     "IsDefinedInJob" : {
       "base" : null,
       "refs" : {
-        "JobDetails$IsDefinedInJob" : "<p>Specifies whether any one-time or recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - One or more jobs is configured to analyze data in the bucket, and at least one of those jobs has a status other than CANCELLED.</p></li> <li><p>FALSE - No jobs are configured to analyze data in the bucket, or all the jobs that are configured to analyze data in the bucket have a status of CANCELLED.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul> <p></p>"
+        "JobDetails$IsDefinedInJob" : "<p>Specifies whether any one-time or recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - The bucket is explicitly included in the bucket definition (S3BucketDefinitionForJob) for one or more jobs and at least one of those jobs has a status other than CANCELLED. Or the bucket matched the bucket criteria (S3BucketCriteriaForJob) for at least one job that previously ran.</p></li> <li><p>FALSE - The bucket isn't explicitly included in the bucket definition (S3BucketDefinitionForJob) for any jobs, all the jobs that explicitly include the bucket in their bucket definitions have a status of CANCELLED, or the bucket didn't match the bucket criteria (S3BucketCriteriaForJob) for any jobs that previously ran.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul> <p></p>"
       }
     },
     "IsMonitoredByJob" : {
       "base" : null,
       "refs" : {
-        "JobDetails$IsMonitoredByJob" : "<p>Specifies whether any recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - One or more recurring jobs is configured to analyze data in the bucket, and at least one of those jobs has a status other than CANCELLED.</p></li> <li><p>FALSE - No recurring jobs are configured to analyze data in the bucket, or all the recurring jobs that are configured to analyze data in the bucket have a status of CANCELLED.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul>"
+        "JobDetails$IsMonitoredByJob" : "<p>Specifies whether any recurring jobs are configured to analyze data in the bucket. Possible values are:</p> <ul><li><p>TRUE - The bucket is explicitly included in the bucket definition (S3BucketDefinitionForJob) for one or more recurring jobs or the bucket matches the bucket criteria (S3BucketCriteriaForJob) for one or more recurring jobs. At least one of those jobs has a status other than CANCELLED.</p></li> <li><p>FALSE - The bucket isn't explicitly included in the bucket definition (S3BucketDefinitionForJob) for any recurring jobs, the bucket doesn't match the bucket criteria (S3BucketCriteriaForJob) for any recurring jobs, or all the recurring jobs that are configured to analyze data in the bucket have a status of CANCELLED.</p></li> <li><p>UNKNOWN - An exception occurred when Amazon Macie attempted to retrieve job data for the bucket.</p></li></ul>"
       }
     },
     "JobComparator" : {
       "base" : "<p>The operator to use in a condition. Valid values are:</p>",
       "refs" : {
         "ListJobsFilterTerm$Comparator" : "<p>The operator to use to filter the results.</p>",
+        "SimpleCriterionForJob$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
         "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - EQ (equals) or NE (not equals)</p></li> <li><p>OBJECT_KEY - STARTS_WITH</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS</p></li> <li><p>OBJECT_SIZE - Any operator except CONTAINS</p></li> <li><p>TAG - EQ (equals) or NE (not equals)</p></li></ul>",
+        "TagCriterionForJob$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
         "TagScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators are EQ (equals) or NE (not equals).</p>"
       }
     },
     "JobDetails" : {
       "base" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze data in an S3 bucket, and, if so, the details of the job that ran most recently.</p>",
       "refs" : {
-        "BucketMetadata$JobDetails" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze data in the bucket, and, if so, the details of the job that ran most recently.</p>"
+        "BucketMetadata$JobDetails" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze data in the bucket, and, if so, the details of the job that ran most recently.</p>",
+        "MatchingBucket$JobDetails" : "<p>Specifies whether any one-time or recurring classification jobs are configured to analyze objects in the bucket, and, if so, the details of the job that ran most recently.</p>"
       }
     },
     "JobScheduleFrequency" : {
@@ -703,13 +720,13 @@
       }
     },
     "JobScopeTerm" : {
-      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding objects from a classification job.</p>",
+      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding S3 objects from a classification job.</p>",
       "refs" : {
         "__listOfJobScopeTerm$member" : null
       }
     },
     "JobScopingBlock" : {
-      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding objects from a classification job. If you specify more than one condition, Amazon Macie uses an AND operator to join the conditions.</p>",
+      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding S3 objects from a classification job.</p>",
       "refs" : {
         "Scoping$Excludes" : "<p>The property- or tag-based conditions that determine which objects to exclude from the analysis.</p>",
         "Scoping$Includes" : "<p>The property- or tag-based conditions that determine which objects to include in the analysis.</p>"
@@ -752,7 +769,7 @@
       }
     },
     "LastRunErrorStatus" : {
-      "base" : "<p>Specifies whether any account- or bucket-level access errors occurred when a classification job ran. For example, the job is configured to analyze data for a member account that was suspended, or the job is configured to analyze an S3 bucket that Amazon Macie isn't allowed to access.</p>",
+      "base" : "<p>Specifies whether any account- or bucket-level access errors occurred when a classification job ran. For information about using logging data to investigate these errors, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-monitor-cw-logs.html\">Monitoring sensitive data discovery jobs</a> in the <i>Amazon Macie User Guide</i>.</p>",
       "refs" : {
         "DescribeClassificationJobResponse$LastRunErrorStatus" : "<p>Specifies whether any account- or bucket-level access errors occurred when the job ran. For a recurring job, this value indicates the error status of the job's most recent run.</p>",
         "JobSummary$LastRunErrorStatus" : "<p>Specifies whether any account- or bucket-level access errors occurred when the job ran. For a recurring job, this value indicates the error status of the job's most recent run.</p>"
@@ -847,6 +864,18 @@
         "UpdateMemberSessionRequest$Status" : "<p>Specifies the new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.</p>"
       }
     },
+    "MatchingBucket" : {
+      "base" : "<p>Provides statistical data and other information about an S3 bucket that Amazon Macie monitors and analyzes.</p>",
+      "refs" : {
+        "MatchingResource$MatchingBucket" : "<p>The details of an S3 bucket that Amazon Macie monitors and analyzes.</p>"
+      }
+    },
+    "MatchingResource" : {
+      "base" : "<p>Provides statistical data and other information about an AWS resource that Amazon Macie monitors and analyzes.</p>",
+      "refs" : {
+        "__listOfMatchingResource$member" : null
+      }
+    },
     "Member" : {
       "base" : "<p>Provides information about an account that's associated with an Amazon Macie administrator account.</p>",
       "refs" : {
@@ -862,16 +891,19 @@
     "ObjectCountByEncryptionType" : {
       "base" : "<p>Provides information about the number of objects that are in an S3 bucket and use certain types of server-side encryption, use client-side encryption, or aren't encrypted.</p>",
       "refs" : {
-        "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted or use client-side encryption.</p>"
+        "BucketMetadata$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted or use client-side encryption.</p>",
+        "MatchingBucket$ObjectCountByEncryptionType" : "<p>The total number of objects that are in the bucket, grouped by server-side encryption type. This includes a grouping that reports the total number of objects that aren't encrypted or use client-side encryption.</p>"
       }
     },
     "ObjectLevelStatistics" : {
-      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results. If versioning is enabled for a bucket, total storage size values are based on the size of the latest version of each applicable object in the bucket.</p>",
+      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results. If versioning is enabled for a bucket, total storage size values are based on the size of the latest version of each applicable object in the bucket.</p>",
       "refs" : {
         "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "GetBucketStatisticsResponse$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
-        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>"
+        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
+        "MatchingBucket$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
+        "MatchingBucket$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>"
       }
     },
     "Occurrences" : {
@@ -887,6 +919,7 @@
         "BucketSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "FindingStatisticsSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "ListJobsSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
+        "SearchResourcesSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "SortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "UsageStatisticsSortBy$OrderBy" : "<p>The sort order to apply to the results, based on the value for the field specified by the key property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>"
       }
@@ -978,8 +1011,15 @@
         "ResourcesAffected$S3Bucket" : "<p>An array of objects, one for each S3 bucket that the finding applies to. Each object provides a set of metadata about an affected S3 bucket.</p>"
       }
     },
+    "S3BucketCriteriaForJob" : {
+      "base" : "<p>Specifies property- and tag-based conditions that define criteria for including or excluding S3 buckets from a classification job. Exclude conditions take precedence over include conditions.</p>",
+      "refs" : {
+        "JobSummary$BucketCriteria" : "<p>The property- and tag-based conditions that determine which S3 buckets are included or excluded from the job's analysis. Each time the job runs, the job uses these criteria to determine which buckets to analyze. A job's definition can contain a bucketCriteria object or a bucketDefinitions array, not both.</p>",
+        "S3JobDefinition$BucketCriteria" : "<p>The property- and tag-based conditions that determine which S3 buckets to include or exclude from the analysis. Each time the job runs, the job uses these criteria to determine which buckets contain objects to analyze. A job's definition can contain a bucketCriteria object or a bucketDefinitions array, not both.</p>"
+      }
+    },
     "S3BucketDefinitionForJob" : {
-      "base" : "<p>Specifies which AWS account owns the S3 buckets that a classification job analyzes, and the buckets to analyze for the account.</p>",
+      "base" : "<p>Specifies an AWS account that owns S3 buckets for a classification job to analyze, and one or more specific buckets to analyze for that account.</p>",
       "refs" : {
         "__listOfS3BucketDefinitionForJob$member" : null
       }
@@ -997,10 +1037,10 @@
       }
     },
     "S3JobDefinition" : {
-      "base" : "<p>Specifies which S3 buckets contain the objects that a classification job analyzes, and the scope of that analysis.</p>",
+      "base" : "<p>Specifies which S3 buckets contain the objects that a classification job analyzes, and the scope of that analysis. The bucket specification can be static (bucketDefinitions) or dynamic (bucketCriteria). If it's static, the job analyzes objects in the same predefined set of buckets each time the job runs. If it's dynamic, the job analyzes objects in any buckets that match the specified criteria each time the job starts to run.</p>",
       "refs" : {
         "CreateClassificationJobRequest$S3JobDefinition" : "<p>The S3 buckets that contain the objects to analyze, and the scope of that analysis.</p>",
-        "DescribeClassificationJobResponse$S3JobDefinition" : "<p>The S3 buckets that the job is configured to analyze, and the scope of that analysis.</p>"
+        "DescribeClassificationJobResponse$S3JobDefinition" : "<p>The S3 buckets that contain the objects to analyze, and the scope of that analysis.</p>"
       }
     },
     "S3Object" : {
@@ -1010,15 +1050,85 @@
       }
     },
     "ScopeFilterKey" : {
-      "base" : "<p>The property to use in a condition that determines which objects are analyzed by a classification job. Valid values are:</p>",
+      "base" : "<p>The property to use in a condition that determines whether an S3 object is included or excluded from a classification job. Valid values are:</p>",
       "refs" : {
         "SimpleScopeTerm$Key" : "<p>The object property to use in the condition.</p>"
       }
     },
     "Scoping" : {
-      "base" : "<p>Specifies one or more property- and tag-based conditions that refine the scope of a classification job. These conditions define criteria that determine which objects a job analyzes. Exclude conditions take precedence over include conditions.</p>",
+      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding S3 objects from a classification job. Exclude conditions take precedence over include conditions.</p>",
       "refs" : {
-        "S3JobDefinition$Scoping" : "<p>The property- and tag-based conditions that determine which objects to include or exclude from the analysis.</p>"
+        "S3JobDefinition$Scoping" : "<p>The property- and tag-based conditions that determine which S3 objects to include or exclude from the analysis. Each time the job runs, the job uses these criteria to determine which objects to analyze.</p>"
+      }
+    },
+    "SearchResourcesBucketCriteria" : {
+      "base" : "<p>Specifies property- and tag-based conditions that define filter criteria for including or excluding S3 buckets from the query results. Exclude conditions take precedence over include conditions.</p>",
+      "refs" : {
+        "SearchResourcesRequest$BucketCriteria" : "<p>The filter conditions that determine which S3 buckets to include or exclude from the query results.</p>"
+      }
+    },
+    "SearchResourcesComparator" : {
+      "base" : "<p>The operator to use in a condition that filters the results of a query. Valid values are:</p>",
+      "refs" : {
+        "SearchResourcesSimpleCriterion$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
+        "SearchResourcesTagCriterion$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>"
+      }
+    },
+    "SearchResourcesCriteria" : {
+      "base" : "<p>Specifies a property- or tag-based filter condition for including or excluding AWS resources from the query results.</p>",
+      "refs" : {
+        "__listOfSearchResourcesCriteria$member" : null
+      }
+    },
+    "SearchResourcesCriteriaBlock" : {
+      "base" : "<p>Specifies property- and tag-based conditions that define filter criteria for including or excluding AWS resources from the query results.</p>",
+      "refs" : {
+        "SearchResourcesBucketCriteria$Excludes" : "<p>The property- and tag-based conditions that determine which buckets to exclude from the results.</p>",
+        "SearchResourcesBucketCriteria$Includes" : "<p>The property- and tag-based conditions that determine which buckets to include in the results.</p>"
+      }
+    },
+    "SearchResourcesRequest" : {
+      "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a query for statistical data and other information about AWS resources that Amazon Macie monitors and analyzes.</p>",
+      "refs" : { }
+    },
+    "SearchResourcesResponse" : {
+      "base" : "<p>Provides the results of a query that retrieved statistical data and other information about AWS resources that Amazon Macie monitors and analyzes.</p>",
+      "refs" : { }
+    },
+    "SearchResourcesSimpleCriterion" : {
+      "base" : "<p>Specifies a property-based filter condition that determines which AWS resources are included or excluded from the query results.</p>",
+      "refs" : {
+        "SearchResourcesCriteria$SimpleCriterion" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding resources from the results.</p>"
+      }
+    },
+    "SearchResourcesSimpleCriterionKey" : {
+      "base" : "<p>The property to use in a condition that filters the query results. Valid values are:</p>",
+      "refs" : {
+        "SearchResourcesSimpleCriterion$Key" : "<p>The property to use in the condition.</p>"
+      }
+    },
+    "SearchResourcesSortAttributeName" : {
+      "base" : "<p>The property to sort the query results by. Valid values are:</p>",
+      "refs" : {
+        "SearchResourcesSortCriteria$AttributeName" : "<p>The property to sort the results by.</p>"
+      }
+    },
+    "SearchResourcesSortCriteria" : {
+      "base" : "<p>Specifies criteria for sorting the results of a query for information about AWS resources that Amazon Macie monitors and analyzes.</p>",
+      "refs" : {
+        "SearchResourcesRequest$SortCriteria" : "<p>The criteria to use to sort the results.</p>"
+      }
+    },
+    "SearchResourcesTagCriterion" : {
+      "base" : "<p>Specifies a tag-based filter condition that determines which AWS resources are included or excluded from the query results.</p>",
+      "refs" : {
+        "SearchResourcesCriteria$TagCriterion" : "<p>A tag-based condition that defines an operator and tag keys, tag values, or tag key and value pairs for including or excluding resources from the results.</p>"
+      }
+    },
+    "SearchResourcesTagCriterionPair" : {
+      "base" : "<p>Specifies a tag key, a tag value, or a tag key and value (as a pair) to use in a tag-based filter condition for a query. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard characters in tag-based filter conditions.</p>",
+      "refs" : {
+        "__listOfSearchResourcesTagCriterionPair$member" : null
       }
     },
     "SecurityHubConfiguration" : {
@@ -1100,10 +1210,22 @@
         "BucketMetadata$SharedAccess" : " <p>Specifies whether the bucket is shared with another AWS account. Possible values are:</p> <ul><li><p>EXTERNAL - The bucket is shared with an AWS account that isn't part of the same Amazon Macie organization.</p></li> <li><p>INTERNAL - The bucket is shared with an AWS account that's part of the same Amazon Macie organization.</p></li> <li><p>NOT_SHARED - The bucket isn't shared with other AWS accounts.</p></li> <li><p>UNKNOWN - Amazon Macie wasn't able to evaluate the shared access settings for the bucket.</p></li></ul>"
       }
     },
-    "SimpleScopeTerm" : {
-      "base" : "<p>Specifies a property-based condition that determines whether an object is included or excluded from a classification job.</p>",
+    "SimpleCriterionForJob" : {
+      "base" : "<p>Specifies a property-based condition that determines whether an S3 bucket is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$SimpleScopeTerm" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding an object from the job.</p>"
+        "CriteriaForJob$SimpleCriterion" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding buckets from the job.</p>"
+      }
+    },
+    "SimpleCriterionKeyForJob" : {
+      "base" : "<p>The property to use in a condition that determines whether an S3 bucket is included or excluded from a classification job. Valid values are:</p>",
+      "refs" : {
+        "SimpleCriterionForJob$Key" : "<p>The property to use in the condition.</p>"
+      }
+    },
+    "SimpleScopeTerm" : {
+      "base" : "<p>Specifies a property-based condition that determines whether an S3 object is included or excluded from a classification job.</p>",
+      "refs" : {
+        "JobScopeTerm$SimpleScopeTerm" : "<p>A property-based condition that defines a property, operator, and one or more values for including or excluding objects from the job.</p>"
       }
     },
     "SortCriteria" : {
@@ -1123,6 +1245,18 @@
       "base" : "<p>The storage class of the S3 object. Possible values are:</p>",
       "refs" : {
         "S3Object$StorageClass" : "<p>The storage class of the object.</p>"
+      }
+    },
+    "TagCriterionForJob" : {
+      "base" : "<p>Specifies a tag-based condition that determines whether an S3 bucket is included or excluded from a classification job.</p>",
+      "refs" : {
+        "CriteriaForJob$TagCriterion" : "<p>A tag-based condition that defines an operator and tag keys, tag values, or tag key and value pairs for including or excluding buckets from the job.</p>"
+      }
+    },
+    "TagCriterionPairForJob" : {
+      "base" : " <p>Specifies a tag key, a tag value, or a tag key and value (as a pair) to use in a tag-based condition that determines whether an S3 bucket is included or excluded from a classification job. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard characters in tag-based conditions.</p>",
+      "refs" : {
+        "__listOfTagCriterionPairForJob$member" : null
       }
     },
     "TagMap" : {
@@ -1151,9 +1285,9 @@
       "refs" : { }
     },
     "TagScopeTerm" : {
-      "base" : "<p>Specifies a tag-based condition that determines whether an object is included or excluded from a classification job.</p>",
+      "base" : "<p>Specifies a tag-based condition that determines whether an S3 object is included or excluded from a classification job. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard characters in tag-based conditions.</p>",
       "refs" : {
-        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and tag keys or tag key and value pairs for including or excluding an object from the job.</p>"
+        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and tag keys or tag key and value pairs for including or excluding objects from the job.</p>"
       }
     },
     "TagTarget" : {
@@ -1163,7 +1297,7 @@
       }
     },
     "TagValuePair" : {
-      "base" : "<p>Specifies a tag key or tag key and value pair to use in a tag-based condition for a classification job.</p>",
+      "base" : "<p>Specifies a tag key or tag key and value pair to use in a tag-based condition that determines whether an S3 object is included or excluded from a classification job. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard characters in tag-based conditions.</p>",
       "refs" : {
         "__listOfTagValuePair$member" : null
       }
@@ -1211,7 +1345,7 @@
       "refs" : { }
     },
     "UpdateClassificationJobRequest" : {
-      "base" : "<p>Changes the status of a classification job. For more information about pausing, resuming, or cancelling jobs, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html\">Managing and monitoring sensitive data discovery jobs</a> in the <i>Amazon Macie User Guide</i>.</p>",
+      "base" : "<p>Changes the status of a classification job. For more information about pausing, resuming, or cancelling jobs, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/discovery-jobs-manage.html\">Managing sensitive data discovery jobs</a> in the <i>Amazon Macie User Guide</i>.</p>",
       "refs" : { }
     },
     "UpdateFindingsFilterRequest" : {
@@ -1381,6 +1515,7 @@
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie doesn't run the job that month. Macie runs the job only during months that have the specified day. For example, if this value is 31 and a month has only 30 days, Macie doesn't run the job that month. To run the job every month, specify a value that's less than 29.</p>",
+        "SearchResourcesRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response. The default value is 50.</p>",
         "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
@@ -1402,6 +1537,12 @@
       "base" : null,
       "refs" : {
         "DescribeBucketsResponse$Buckets" : "<p>An array of objects, one for each bucket that meets the filter criteria specified in the request.</p>"
+      }
+    },
+    "__listOfCriteriaForJob" : {
+      "base" : null,
+      "refs" : {
+        "CriteriaBlockForJob$And" : "<p>An array of conditions, one for each condition that determines which buckets to include or exclude from the job. If you specify more than one condition, Amazon Macie uses AND logic to join the conditions.</p>"
       }
     },
     "__listOfCustomDataIdentifierSummary" : {
@@ -1443,7 +1584,7 @@
     "__listOfJobScopeTerm" : {
       "base" : null,
       "refs" : {
-        "JobScopingBlock$And" : "<p>An array of conditions, one for each condition that determines which objects to include or exclude from the job.</p>"
+        "JobScopingBlock$And" : "<p>An array of conditions, one for each condition that determines which objects to include or exclude from the job. If you specify more than one condition, Amazon Macie uses AND logic to join the conditions.</p>"
       }
     },
     "__listOfJobSummary" : {
@@ -1465,6 +1606,12 @@
         "ListJobsFilterCriteria$Includes" : "<p>An array of objects, one for each condition that determines which jobs to include in the results.</p>"
       }
     },
+    "__listOfMatchingResource" : {
+      "base" : null,
+      "refs" : {
+        "SearchResourcesResponse$MatchingResources" : "<p>An array of objects, one for each resource that meets the filter criteria specified in the request.</p>"
+      }
+    },
     "__listOfMember" : {
       "base" : null,
       "refs" : {
@@ -1474,8 +1621,26 @@
     "__listOfS3BucketDefinitionForJob" : {
       "base" : null,
       "refs" : {
-        "JobSummary$BucketDefinitions" : "<p>The S3 buckets that the job is configured to analyze.</p>",
-        "S3JobDefinition$BucketDefinitions" : "<p>An array of objects, one for each AWS account that owns buckets to analyze. Each object specifies the account ID for an account and one or more buckets to analyze for the account.</p>"
+        "JobSummary$BucketDefinitions" : "<p>An array of objects, one for each AWS account that owns specific S3 buckets for the job to analyze. Each object specifies the account ID for an account and one or more buckets to analyze for that account. A job's definition can contain a bucketDefinitions array or a bucketCriteria object, not both.</p>",
+        "S3JobDefinition$BucketDefinitions" : "<p>An array of objects, one for each AWS account that owns specific S3 buckets to analyze. Each object specifies the account ID for an account and one or more buckets to analyze for that account. A job's definition can contain a bucketDefinitions array or a bucketCriteria object, not both.</p>"
+      }
+    },
+    "__listOfSearchResourcesCriteria" : {
+      "base" : null,
+      "refs" : {
+        "SearchResourcesCriteriaBlock$And" : "<p>An array of objects, one for each property- or tag-based condition that includes or excludes resources from the query results. If you specify more than one condition, Amazon Macie uses AND logic to join the conditions.</p>"
+      }
+    },
+    "__listOfSearchResourcesTagCriterionPair" : {
+      "base" : null,
+      "refs" : {
+        "SearchResourcesTagCriterion$TagValues" : "<p>The tag keys, tag values, or tag key and value pairs to use in the condition.</p>"
+      }
+    },
+    "__listOfTagCriterionPairForJob" : {
+      "base" : null,
+      "refs" : {
+        "TagCriterionForJob$TagValues" : "<p>The tag keys, tag values, or tag key and value pairs to use in the condition.</p>"
       }
     },
     "__listOfTagValuePair" : {
@@ -1540,7 +1705,9 @@
         "ListJobsFilterTerm$Values" : "<p>An array that lists one or more values to use to filter the results.</p>",
         "ReplicationDetails$ReplicationAccounts" : "<p>An array of AWS account IDs, one for each AWS account that the bucket is configured to replicate one or more objects to.</p>",
         "S3BucketDefinitionForJob$Buckets" : "<p>An array that lists the names of the buckets.</p>",
-        "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses an OR operator to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li> <li><p>TAG - A string that represents a tag key for an object. For advanced options, use a TagScopeTerm object, instead of a SimpleScopeTerm object, to define a tag-based condition for the job.</p></li></ul> <p>Macie doesn't support use of wildcard characters in values. Also, string values are case sensitive.</p>",
+        "SearchResourcesSimpleCriterion$Values" : "<p>An array that lists one or more values to use in the condition. If you specify multiple values, Amazon Macie uses OR logic to join the values. Valid values for each supported property (key) are:</p> <ul><li><p>ACCOUNT_ID - A string that represents the unique identifier for the AWS account that owns the resource.</p></li> <li><p>S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission\">BucketPublicAccess.effectivePermission</a> property of an S3 bucket.</p></li> <li><p>S3_BUCKET_NAME - A string that represents the name of an S3 bucket.</p></li> <li><p>S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess\">BucketMetadata.sharedAccess</a> property of an S3 bucket.</p></li></ul> <p>Values are case sensitive. Also, Macie doesn't support use of partial values or wildcard characters in values.</p>",
+        "SimpleCriterionForJob$Values" : "<p>An array that lists one or more values to use in the condition. If you specify multiple values, Amazon Macie uses OR logic to join the values. Valid values for each supported property (key) are:</p> <ul><li><p>ACCOUNT_ID - A string that represents the unique identifier for the AWS account that owns the bucket.</p></li> <li><p>S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission\">BucketPublicAccess.effectivePermission</a> property of a bucket.</p></li> <li><p>S3_BUCKET_NAME - A string that represents the name of a bucket.</p></li> <li><p>S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess\">BucketMetadata.sharedAccess</a> property of a bucket.</p></li></ul> <p>Values are case sensitive. Also, Macie doesn't support use of partial values or wildcard characters in these values.</p>",
+        "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses an OR operator to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li> <li><p>TAG - A string that represents a tag key for an object. For advanced options, use a TagScopeTerm object instead of a SimpleScopeTerm object to define a tag-based condition for the job.</p></li></ul> <p>Macie doesn't support use of wildcard characters in these values. Also, string values are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3 - 90 characters. Keywords aren't case sensitive.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current estimated cost for an account.</p></li></ul>"
@@ -1572,7 +1739,7 @@
         "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
-        "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
+        "BucketMetadata$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "Cell$Column" : "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, this value correlates to the alphabetical character(s) for a column identifier. For example, 1 for column A, 2 for column B, and so on.</p>",
         "Cell$Row" : "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified" : "<p>The total size, in bytes, of the data that the finding applies to.</p>",
@@ -1589,12 +1756,17 @@
         "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of all applicable objects in the buckets.</p>",
         "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in the buckets.</p>",
         "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of the applicable objects in the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
-        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted using a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
-        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p>",
-        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3 managed key. The objects use Amazon S3 managed encryption (SSE-S3).</p>",
+        "MatchingBucket$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
+        "MatchingBucket$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p><p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "MatchingBucket$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
+        "MatchingBucket$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p><p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
+        "MatchingBucket$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p><p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted with a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted with an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p>",
+        "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted with an Amazon S3 managed key. The objects use Amazon S3 managed encryption (SSE-S3).</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
         "ObjectCountByEncryptionType$Unknown" : "<p>The total number of objects that Amazon Macie doesn't have current encryption metadata for. Macie can't provide current data about the encryption settings for these objects.</p>",
         "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects don't have a file name extension for a supported file or storage format.</p>",
@@ -1733,7 +1905,7 @@
         "IpOwner$AsnOrg" : "<p>The organization identifier that's associated with the autonomous system number (ASN) for the autonomous system that included the IP address.</p>",
         "IpOwner$Isp" : "<p>The name of the internet service provider (ISP) that owned the IP address.</p>",
         "IpOwner$Org" : "<p>The name of the organization that owned the IP address.</p>",
-        "JobDetails$LastJobId" : "<p>The unique identifier for the job that ran most recently (either the latest run of a recurring job or the only run of a one-time job) and is configured to analyze data in the bucket.</p> <p>This value is null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
+        "JobDetails$LastJobId" : "<p>The unique identifier for the job that ran most recently and is configured to analyze data in the bucket, either the latest run of a recurring job or the only run of a one-time job.</p> <p>This value is typically null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
         "JobSummary$JobId" : "<p>The unique identifier for the job.</p>",
         "JobSummary$Name" : "<p>The custom name of the job.</p>",
         "KeyValuePair$Key" : "<p>One part of a key-value pair that comprises a tag. A tag key is a general label that acts as a category for more specific tag values.</p>",
@@ -1748,6 +1920,8 @@
         "ListInvitationsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "ListMembersResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "ListOrganizationAdminAccountsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "MatchingBucket$AccountId" : "<p>The unique identifier for the AWS account that owns the bucket.</p>",
+        "MatchingBucket$BucketName" : "<p>The name of the bucket.</p>",
         "Member$AccountId" : "<p>The AWS account ID for the account.</p>",
         "Member$AdministratorAccountId" : "<p>The AWS account ID for the administrator account.</p>",
         "Member$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
@@ -1770,6 +1944,10 @@
         "S3Object$Key" : "<p>The full key (name) that's assigned to the object.</p>",
         "S3Object$Path" : "<p>The path to the object, including the full key (name).</p>",
         "S3Object$VersionId" : "<p>The identifier for the affected version of the object.</p>",
+        "SearchResourcesRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
+        "SearchResourcesResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
+        "SearchResourcesTagCriterionPair$Key" : "<p>The value for the tag key to use in the condition.</p>",
+        "SearchResourcesTagCriterionPair$Value" : "<p>The tag value to use in the condition.</p>",
         "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the AWS Key Management Service (AWS KMS) customer master key (CMK) that's used to encrypt data in the bucket or the object. If an AWS KMS CMK isn't used, this value is null.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The explanation of the error that occurred.</p>",
         "SessionIssuer$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",
@@ -1778,6 +1956,8 @@
         "SessionIssuer$Type" : "<p>The source of the temporary security credentials, such as Root, IAMUser, or Role.</p>",
         "SessionIssuer$UserName" : "<p>The name or alias of the user or role that issued the session. This value is null if the credentials were obtained from a root account that doesn't have an alias.</p>",
         "SortCriteria$AttributeName" : "<p>The name of the property to sort the results by. This value can be the name of any property that Amazon Macie defines for a finding.</p>",
+        "TagCriterionPairForJob$Key" : "<p>The value for the tag key to use in the condition.</p>",
+        "TagCriterionPairForJob$Value" : "<p>The tag value to use in the condition.</p>",
         "TagMap$member" : null,
         "TagScopeTerm$Key" : "<p>The tag key to use in the condition.</p>",
         "TagValuePair$Key" : "<p>The value for the tag key to use in the condition.</p>",
@@ -1822,7 +2002,7 @@
         "GetMemberResponse$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
         "GetMemberResponse$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the administrator account.</p>",
         "Invitation$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the invitation was sent.</p>",
-        "JobDetails$LastJobRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job (lastJobId) started. If the job is a recurring job, this value indicates when the most recent run started.</p> <p>This value is null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
+        "JobDetails$LastJobRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job (lastJobId) started. If the job is a recurring job, this value indicates when the most recent run started.</p> <p>This value is typically null if the value for the isDefinedInJob property is FALSE or UNKNOWN.</p>",
         "JobSummary$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "Member$InvitedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when an Amazon Macie membership invitation was last sent to the account. This value is null if a Macie invitation hasn't been sent to the account.</p>",
         "Member$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, of the most recent change to the status of the relationship between the account and the administrator account.</p>",
