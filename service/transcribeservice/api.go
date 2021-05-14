@@ -3531,7 +3531,8 @@ func (s *CreateVocabularyFilterOutput) SetVocabularyFilterName(v string) *Create
 type CreateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the vocabulary entries.
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see what-is-transcribe.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -3546,7 +3547,7 @@ type CreateVocabularyInput struct {
 	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an AWS account.
@@ -5621,6 +5622,12 @@ type MedicalTranscriptionJob struct {
 	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp"`
 
+	// Shows the type of content that you've configured Amazon Transcribe Medical
+	// to identify in a transcription job. If the value is PHI, you've configured
+	// the job to identify personal health information (PHI) in the transcription
+	// output.
+	ContentIdentificationType *string `type:"string" enum:"MedicalContentIdentificationType"`
+
 	// A timestamp that shows when the job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -5725,6 +5732,12 @@ func (s *MedicalTranscriptionJob) SetCompletionTime(v time.Time) *MedicalTranscr
 	return s
 }
 
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *MedicalTranscriptionJob) SetContentIdentificationType(v string) *MedicalTranscriptionJob {
+	s.ContentIdentificationType = &v
+	return s
+}
+
 // SetCreationTime sets the CreationTime field's value.
 func (s *MedicalTranscriptionJob) SetCreationTime(v time.Time) *MedicalTranscriptionJob {
 	s.CreationTime = &v
@@ -5810,6 +5823,11 @@ type MedicalTranscriptionJobSummary struct {
 	// A timestamp that shows when the job was completed.
 	CompletionTime *time.Time `type:"timestamp"`
 
+	// Shows the type of information you've configured Amazon Transcribe Medical
+	// to identify in a transcription job. If the value is PHI, you've configured
+	// the transcription job to identify personal health information (PHI).
+	ContentIdentificationType *string `type:"string" enum:"MedicalContentIdentificationType"`
+
 	// A timestamp that shows when the medical transcription job was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -5855,6 +5873,12 @@ func (s MedicalTranscriptionJobSummary) GoString() string {
 // SetCompletionTime sets the CompletionTime field's value.
 func (s *MedicalTranscriptionJobSummary) SetCompletionTime(v time.Time) *MedicalTranscriptionJobSummary {
 	s.CompletionTime = &v
+	return s
+}
+
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *MedicalTranscriptionJobSummary) SetContentIdentificationType(v string) *MedicalTranscriptionJobSummary {
+	s.ContentIdentificationType = &v
 	return s
 }
 
@@ -6261,6 +6285,11 @@ func (s *Settings) SetVocabularyName(v string) *Settings {
 type StartMedicalTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// You can configure Amazon Transcribe Medical to label content in the transcription
+	// output. If you specify PHI, Amazon Transcribe Medical labels the personal
+	// health information (PHI) that it identifies in the transcription output.
+	ContentIdentificationType *string `type:"string" enum:"MedicalContentIdentificationType"`
+
 	// The language code for the language spoken in the input media file. US English
 	// (en-US) is the valid value for medical transcription jobs. Any other value
 	// you enter for language code results in a BadRequestException error.
@@ -6431,6 +6460,12 @@ func (s *StartMedicalTranscriptionJobInput) Validate() error {
 	return nil
 }
 
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *StartMedicalTranscriptionJobInput) SetContentIdentificationType(v string) *StartMedicalTranscriptionJobInput {
+	s.ContentIdentificationType = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartMedicalTranscriptionJobInput) SetLanguageCode(v string) *StartMedicalTranscriptionJobInput {
 	s.LanguageCode = &v
@@ -6538,6 +6573,9 @@ type StartTranscriptionJobInput struct {
 	JobExecutionSettings *JobExecutionSettings `type:"structure"`
 
 	// The language code for the language used in the input media file.
+	//
+	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
+	// file must be encoded at a sample rate of 16000 Hz or higher.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// An object containing a list of languages that might be present in your collection
@@ -7475,7 +7513,8 @@ func (s *UpdateVocabularyFilterOutput) SetVocabularyFilterName(v string) *Update
 type UpdateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The language code of the vocabulary entries.
+	// The language code of the vocabulary entries. For a list of languages and
+	// their corresponding language codes, see what-is-transcribe.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -7934,6 +7973,18 @@ func MediaFormat_Values() []string {
 		MediaFormatOgg,
 		MediaFormatAmr,
 		MediaFormatWebm,
+	}
+}
+
+const (
+	// MedicalContentIdentificationTypePhi is a MedicalContentIdentificationType enum value
+	MedicalContentIdentificationTypePhi = "PHI"
+)
+
+// MedicalContentIdentificationType_Values returns all elements of the MedicalContentIdentificationType enum
+func MedicalContentIdentificationType_Values() []string {
+	return []string{
+		MedicalContentIdentificationTypePhi,
 	}
 }
 

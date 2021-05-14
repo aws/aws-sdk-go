@@ -27443,7 +27443,9 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
-	// The tags to add to the resource.
+	// The tags to add to the resource. You can add up to 50 tags at a time. The
+	// tag keys can be no longer than 128 characters. The tag values can be no longer
+	// than 256 characters.
 	//
 	// Tags is a required field
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
@@ -27590,7 +27592,8 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
-	// The tag keys associated with the tags to remove from the resource.
+	// The tag keys associated with the tags to remove from the resource. You can
+	// remove up to 50 tags at a time.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`

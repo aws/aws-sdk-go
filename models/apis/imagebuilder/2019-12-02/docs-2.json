@@ -6,7 +6,7 @@
     "CreateComponent": "<p>Creates a new component that can be used to build, validate, test, and assess your image.</p>",
     "CreateContainerRecipe": "<p>Creates a new container recipe. Container recipes define how images are configured, tested, and assessed.</p>",
     "CreateDistributionConfiguration": "<p>Creates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
-    "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration.</p>",
+    "CreateImage": "<p> Creates a new image. This request will create a new image along with all of the configured output resources defined in the distribution configuration. You must specify exactly one recipe for your image, using either a ContainerRecipeArn or an ImageRecipeArn.</p>",
     "CreateImagePipeline": "<p> Creates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p>",
     "CreateImageRecipe": "<p> Creates a new image recipe. Image recipes define how images are configured, tested, and assessed.</p>",
     "CreateInfrastructureConfiguration": "<p> Creates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>",
@@ -49,7 +49,7 @@
     "TagResource": "<p> Adds a tag to a resource.</p>",
     "UntagResource": "<p> Removes a tag from a resource.</p>",
     "UpdateDistributionConfiguration": "<p> Updates a new distribution configuration. Distribution configurations define and configure the outputs of your pipeline.</p>",
-    "UpdateImagePipeline": "<p> Updates a new image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p>",
+    "UpdateImagePipeline": "<p> Updates an image pipeline. Image pipelines enable you to automate the creation and distribution of images.</p> <note> <p>UpdateImagePipeline does not support selective updates for the pipeline. You must specify all of the required properties in the update request, not just the properties that have changed.</p> </note>",
     "UpdateInfrastructureConfiguration": "<p> Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested.</p>"
   },
   "shapes": {
@@ -1283,7 +1283,7 @@
         "CreateImagePipelineRequest$description": "<p> The description of the image pipeline.</p>",
         "CreateImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
         "CreateImageRecipeRequest$description": "<p> The description of the image recipe.</p>",
-        "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/xxxx.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.</p>",
+        "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.</p>",
         "CreateImageRecipeRequest$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "CreateImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",

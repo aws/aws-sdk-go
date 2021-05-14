@@ -510,6 +510,8 @@ func (c *Imagebuilder) CreateImageRequest(input *CreateImageInput) (req *request
 //
 // Creates a new image. This request will create a new image along with all
 // of the configured output resources defined in the distribution configuration.
+// You must specify exactly one recipe for your image, using either a ContainerRecipeArn
+// or an ImageRecipeArn.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5453,8 +5455,12 @@ func (c *Imagebuilder) UpdateImagePipelineRequest(input *UpdateImagePipelineInpu
 
 // UpdateImagePipeline API operation for EC2 Image Builder.
 //
-// Updates a new image pipeline. Image pipelines enable you to automate the
-// creation and distribution of images.
+// Updates an image pipeline. Image pipelines enable you to automate the creation
+// and distribution of images.
+//
+// UpdateImagePipeline does not support selective updates for the pipeline.
+// You must specify all of the required properties in the update request, not
+// just the properties that have changed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7787,7 +7793,7 @@ type CreateImageRecipeInput struct {
 
 	// The parent image of the image recipe. The value of the string can be the
 	// ARN of the parent image or an AMI ID. The format for the ARN follows this
-	// example: arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/xxxx.x.x.
+	// example: arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x.
 	// You can provide the specific version that you want to use, or you can use
 	// a wildcard in all of the fields. If you enter an AMI ID for the string value,
 	// you must have access to the AMI, and the AMI must be in the same Region in

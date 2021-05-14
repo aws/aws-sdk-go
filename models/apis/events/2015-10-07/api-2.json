@@ -2657,7 +2657,7 @@
       "type":"map",
       "key":{"shape":"InputTransformerPathKey"},
       "value":{"shape":"TargetInputPath"},
-      "max":10
+      "max":100
     },
     "UntagResourceRequest":{
       "type":"structure",

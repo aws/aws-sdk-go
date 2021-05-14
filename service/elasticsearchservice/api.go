@@ -5555,6 +5555,45 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 	return s
 }
 
+// Specifies settings for cold storage.
+type ColdStorageOptions struct {
+	_ struct{} `type:"structure"`
+
+	// True to enable cold storage for an Elasticsearch domain.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s ColdStorageOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColdStorageOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColdStorageOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColdStorageOptions"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ColdStorageOptions) SetEnabled(v bool) *ColdStorageOptions {
+	s.Enabled = &v
+	return s
+}
+
 // A map from an ElasticsearchVersion to a list of compatible ElasticsearchVersion
 // s to which the domain can be upgraded.
 type CompatibleVersionsMap struct {
@@ -5752,6 +5791,11 @@ func (s *CreateElasticsearchDomainInput) Validate() error {
 	if s.DomainEndpointOptions != nil {
 		if err := s.DomainEndpointOptions.Validate(); err != nil {
 			invalidParams.AddNested("DomainEndpointOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ElasticsearchClusterConfig != nil {
+		if err := s.ElasticsearchClusterConfig.Validate(); err != nil {
+			invalidParams.AddNested("ElasticsearchClusterConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.EncryptionAtRestOptions != nil {
@@ -7930,6 +7974,9 @@ func (s *EBSOptionsStatus) SetStatus(v *OptionStatus) *EBSOptionsStatus {
 type ElasticsearchClusterConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the ColdStorageOptions configuration for an Elasticsearch domain.
+	ColdStorageOptions *ColdStorageOptions `type:"structure"`
+
 	// Total number of dedicated master nodes, active and on standby, for the cluster.
 	DedicatedMasterCount *int64 `type:"integer"`
 
@@ -7975,6 +8022,27 @@ func (s ElasticsearchClusterConfig) String() string {
 // GoString returns the string representation
 func (s ElasticsearchClusterConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ElasticsearchClusterConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ElasticsearchClusterConfig"}
+	if s.ColdStorageOptions != nil {
+		if err := s.ColdStorageOptions.Validate(); err != nil {
+			invalidParams.AddNested("ColdStorageOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColdStorageOptions sets the ColdStorageOptions field's value.
+func (s *ElasticsearchClusterConfig) SetColdStorageOptions(v *ColdStorageOptions) *ElasticsearchClusterConfig {
+	s.ColdStorageOptions = v
+	return s
 }
 
 // SetDedicatedMasterCount sets the DedicatedMasterCount field's value.
@@ -11883,6 +11951,11 @@ func (s *UpdateElasticsearchDomainConfigInput) Validate() error {
 	if s.DomainEndpointOptions != nil {
 		if err := s.DomainEndpointOptions.Validate(); err != nil {
 			invalidParams.AddNested("DomainEndpointOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ElasticsearchClusterConfig != nil {
+		if err := s.ElasticsearchClusterConfig.Validate(); err != nil {
+			invalidParams.AddNested("ElasticsearchClusterConfig", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.EncryptionAtRestOptions != nil {

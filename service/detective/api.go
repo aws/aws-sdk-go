@@ -1763,8 +1763,9 @@ func (s *ConflictException) RequestID() string {
 type CreateGraphInput struct {
 	_ struct{} `type:"structure"`
 
-	// The tags to assign to the new behavior graph. For each tag, you provide the
-	// tag key and the tag value.
+	// The tags to assign to the new behavior graph. You can add up to 50 tags.
+	// For each tag, you provide the tag key and the tag value. Each tag key can
+	// contain up to 128 characters. Each tag value can contain up to 256 characters.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -1824,8 +1825,9 @@ type CreateMembersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of AWS accounts to invite to become member accounts in the behavior
-	// graph. For each invited account, the account list contains the account identifier
-	// and the AWS account root user email address.
+	// graph. You can invite up to 50 accounts at a time. For each invited account,
+	// the account list contains the account identifier and the AWS account root
+	// user email address.
 	//
 	// Accounts is a required field
 	Accounts []*Account `min:"1" type:"list" required:"true"`
@@ -2004,7 +2006,7 @@ type DeleteMembersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of AWS account identifiers for the member accounts to delete from
-	// the behavior graph.
+	// the behavior graph. You can delete up to 50 member accounts at a time.
 	//
 	// AccountIds is a required field
 	AccountIds []*string `min:"1" type:"list" required:"true"`
@@ -2149,7 +2151,8 @@ type GetMembersInput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of AWS account identifiers for the member account for which to return
-	// member details.
+	// member details. You can request details for up to 50 member accounts at a
+	// time.
 	//
 	// You cannot use GetMembers to retrieve information about member accounts that
 	// were removed from the behavior graph.
@@ -2649,7 +2652,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tag values that are assigned to the behavior graph.
+	// The tag values that are assigned to the behavior graph. The request returns
+	// up to 50 tag values.
 	Tags map[string]*string `min:"1" type:"map"`
 }
 
@@ -3110,7 +3114,9 @@ type TagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
-	// The tag values to assign to the behavior graph.
+	// The tags to assign to the behavior graph. You can add up to 50 tags. For
+	// each tag, you provide the tag key and the tag value. Each tag key can contain
+	// up to 128 characters. Each tag value can contain up to 256 characters.
 	//
 	// Tags is a required field
 	Tags map[string]*string `min:"1" type:"map" required:"true"`
@@ -3216,7 +3222,8 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
 
-	// The tag keys of the tags to remove from the behavior graph.
+	// The tag keys of the tags to remove from the behavior graph. You can remove
+	// up to 50 tags at a time.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`

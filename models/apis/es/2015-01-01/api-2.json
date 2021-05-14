@@ -895,6 +895,13 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
+    "ColdStorageOptions":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
     "CommitMessage":{
       "type":"string",
       "max":160
@@ -1536,7 +1543,8 @@
         "DedicatedMasterCount":{"shape":"IntegerClass"},
         "WarmEnabled":{"shape":"Boolean"},
         "WarmType":{"shape":"ESWarmPartitionInstanceType"},
-        "WarmCount":{"shape":"IntegerClass"}
+        "WarmCount":{"shape":"IntegerClass"},
+        "ColdStorageOptions":{"shape":"ColdStorageOptions"}
       }
     },
     "ElasticsearchClusterConfigStatus":{
