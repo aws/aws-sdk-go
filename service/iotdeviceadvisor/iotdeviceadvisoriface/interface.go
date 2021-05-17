@@ -98,16 +98,13 @@ type IoTDeviceAdvisorAPI interface {
 	ListTagsForResourceWithContext(aws.Context, *iotdeviceadvisor.ListTagsForResourceInput, ...request.Option) (*iotdeviceadvisor.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*iotdeviceadvisor.ListTagsForResourceInput) (*request.Request, *iotdeviceadvisor.ListTagsForResourceOutput)
 
-	ListTestCases(*iotdeviceadvisor.ListTestCasesInput) (*iotdeviceadvisor.ListTestCasesOutput, error)
-	ListTestCasesWithContext(aws.Context, *iotdeviceadvisor.ListTestCasesInput, ...request.Option) (*iotdeviceadvisor.ListTestCasesOutput, error)
-	ListTestCasesRequest(*iotdeviceadvisor.ListTestCasesInput) (*request.Request, *iotdeviceadvisor.ListTestCasesOutput)
-
-	ListTestCasesPages(*iotdeviceadvisor.ListTestCasesInput, func(*iotdeviceadvisor.ListTestCasesOutput, bool) bool) error
-	ListTestCasesPagesWithContext(aws.Context, *iotdeviceadvisor.ListTestCasesInput, func(*iotdeviceadvisor.ListTestCasesOutput, bool) bool, ...request.Option) error
-
 	StartSuiteRun(*iotdeviceadvisor.StartSuiteRunInput) (*iotdeviceadvisor.StartSuiteRunOutput, error)
 	StartSuiteRunWithContext(aws.Context, *iotdeviceadvisor.StartSuiteRunInput, ...request.Option) (*iotdeviceadvisor.StartSuiteRunOutput, error)
 	StartSuiteRunRequest(*iotdeviceadvisor.StartSuiteRunInput) (*request.Request, *iotdeviceadvisor.StartSuiteRunOutput)
+
+	StopSuiteRun(*iotdeviceadvisor.StopSuiteRunInput) (*iotdeviceadvisor.StopSuiteRunOutput, error)
+	StopSuiteRunWithContext(aws.Context, *iotdeviceadvisor.StopSuiteRunInput, ...request.Option) (*iotdeviceadvisor.StopSuiteRunOutput, error)
+	StopSuiteRunRequest(*iotdeviceadvisor.StopSuiteRunInput) (*request.Request, *iotdeviceadvisor.StopSuiteRunOutput)
 
 	TagResource(*iotdeviceadvisor.TagResourceInput) (*iotdeviceadvisor.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *iotdeviceadvisor.TagResourceInput, ...request.Option) (*iotdeviceadvisor.TagResourceOutput, error)

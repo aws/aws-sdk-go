@@ -12,6 +12,114 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAddFlowMediaStreams = "AddFlowMediaStreams"
+
+// AddFlowMediaStreamsRequest generates a "aws/request.Request" representing the
+// client's request for the AddFlowMediaStreams operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddFlowMediaStreams for more information on using the AddFlowMediaStreams
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddFlowMediaStreamsRequest method.
+//    req, resp := client.AddFlowMediaStreamsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowMediaStreams
+func (c *MediaConnect) AddFlowMediaStreamsRequest(input *AddFlowMediaStreamsInput) (req *request.Request, output *AddFlowMediaStreamsOutput) {
+	op := &request.Operation{
+		Name:       opAddFlowMediaStreams,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/flows/{flowArn}/mediaStreams",
+	}
+
+	if input == nil {
+		input = &AddFlowMediaStreamsInput{}
+	}
+
+	output = &AddFlowMediaStreamsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AddFlowMediaStreams API operation for AWS MediaConnect.
+//
+// Adds media streams to an existing flow. After you add a media stream to a
+// flow, you can associate it with a source and/or an output that uses the ST
+// 2110 JPEG XS or CDI protocol.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation AddFlowMediaStreams for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/AddFlowMediaStreams
+func (c *MediaConnect) AddFlowMediaStreams(input *AddFlowMediaStreamsInput) (*AddFlowMediaStreamsOutput, error) {
+	req, out := c.AddFlowMediaStreamsRequest(input)
+	return out, req.Send()
+}
+
+// AddFlowMediaStreamsWithContext is the same as AddFlowMediaStreams with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddFlowMediaStreams for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) AddFlowMediaStreamsWithContext(ctx aws.Context, input *AddFlowMediaStreamsInput, opts ...request.Option) (*AddFlowMediaStreamsOutput, error) {
+	req, out := c.AddFlowMediaStreamsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAddFlowOutputs = "AddFlowOutputs"
 
 // AddFlowOutputsRequest generates a "aws/request.Request" representing the
@@ -1793,6 +1901,113 @@ func (c *MediaConnect) PurchaseOfferingWithContext(ctx aws.Context, input *Purch
 	return out, req.Send()
 }
 
+const opRemoveFlowMediaStream = "RemoveFlowMediaStream"
+
+// RemoveFlowMediaStreamRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveFlowMediaStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveFlowMediaStream for more information on using the RemoveFlowMediaStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveFlowMediaStreamRequest method.
+//    req, resp := client.RemoveFlowMediaStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowMediaStream
+func (c *MediaConnect) RemoveFlowMediaStreamRequest(input *RemoveFlowMediaStreamInput) (req *request.Request, output *RemoveFlowMediaStreamOutput) {
+	op := &request.Operation{
+		Name:       opRemoveFlowMediaStream,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/flows/{flowArn}/mediaStreams/{mediaStreamName}",
+	}
+
+	if input == nil {
+		input = &RemoveFlowMediaStreamInput{}
+	}
+
+	output = &RemoveFlowMediaStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveFlowMediaStream API operation for AWS MediaConnect.
+//
+// Removes a media stream from a flow. This action is only available if the
+// media stream is not associated with a source or output.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation RemoveFlowMediaStream for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/RemoveFlowMediaStream
+func (c *MediaConnect) RemoveFlowMediaStream(input *RemoveFlowMediaStreamInput) (*RemoveFlowMediaStreamOutput, error) {
+	req, out := c.RemoveFlowMediaStreamRequest(input)
+	return out, req.Send()
+}
+
+// RemoveFlowMediaStreamWithContext is the same as RemoveFlowMediaStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveFlowMediaStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) RemoveFlowMediaStreamWithContext(ctx aws.Context, input *RemoveFlowMediaStreamInput, opts ...request.Option) (*RemoveFlowMediaStreamOutput, error) {
+	req, out := c.RemoveFlowMediaStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveFlowOutput = "RemoveFlowOutput"
 
 // RemoveFlowOutputRequest generates a "aws/request.Request" representing the
@@ -2839,6 +3054,112 @@ func (c *MediaConnect) UpdateFlowEntitlementWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opUpdateFlowMediaStream = "UpdateFlowMediaStream"
+
+// UpdateFlowMediaStreamRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFlowMediaStream operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFlowMediaStream for more information on using the UpdateFlowMediaStream
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFlowMediaStreamRequest method.
+//    req, resp := client.UpdateFlowMediaStreamRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/UpdateFlowMediaStream
+func (c *MediaConnect) UpdateFlowMediaStreamRequest(input *UpdateFlowMediaStreamInput) (req *request.Request, output *UpdateFlowMediaStreamOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFlowMediaStream,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/flows/{flowArn}/mediaStreams/{mediaStreamName}",
+	}
+
+	if input == nil {
+		input = &UpdateFlowMediaStreamInput{}
+	}
+
+	output = &UpdateFlowMediaStreamOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFlowMediaStream API operation for AWS MediaConnect.
+//
+// Updates an existing media stream.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation UpdateFlowMediaStream for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/UpdateFlowMediaStream
+func (c *MediaConnect) UpdateFlowMediaStream(input *UpdateFlowMediaStreamInput) (*UpdateFlowMediaStreamOutput, error) {
+	req, out := c.UpdateFlowMediaStreamRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFlowMediaStreamWithContext is the same as UpdateFlowMediaStream with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFlowMediaStream for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) UpdateFlowMediaStreamWithContext(ctx aws.Context, input *UpdateFlowMediaStreamInput, opts ...request.Option) (*UpdateFlowMediaStreamOutput, error) {
+	req, out := c.UpdateFlowMediaStreamRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateFlowOutput = "UpdateFlowOutput"
 
 // UpdateFlowOutputRequest generates a "aws/request.Request" representing the
@@ -3049,6 +3370,104 @@ func (c *MediaConnect) UpdateFlowSourceWithContext(ctx aws.Context, input *Updat
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Adds media streams to an existing flow.
+type AddFlowMediaStreamsInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// The media streams that you want to add to the flow.
+	//
+	// MediaStreams is a required field
+	MediaStreams []*AddMediaStreamRequest `locationName:"mediaStreams" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s AddFlowMediaStreamsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowMediaStreamsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddFlowMediaStreamsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddFlowMediaStreamsInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.MediaStreams == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreams"))
+	}
+	if s.MediaStreams != nil {
+		for i, v := range s.MediaStreams {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreams", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowMediaStreamsInput) SetFlowArn(v string) *AddFlowMediaStreamsInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStreams sets the MediaStreams field's value.
+func (s *AddFlowMediaStreamsInput) SetMediaStreams(v []*AddMediaStreamRequest) *AddFlowMediaStreamsInput {
+	s.MediaStreams = v
+	return s
+}
+
+// The result of a successful AddFlowMediaStreamsRequest request. The response
+// includes the details of the newly added media streams.
+type AddFlowMediaStreamsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that you added media streams to.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The media streams that you added to the flow.
+	MediaStreams []*MediaStream `locationName:"mediaStreams" type:"list"`
+}
+
+// String returns the string representation
+func (s AddFlowMediaStreamsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddFlowMediaStreamsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *AddFlowMediaStreamsOutput) SetFlowArn(v string) *AddFlowMediaStreamsOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStreams sets the MediaStreams field's value.
+func (s *AddFlowMediaStreamsOutput) SetMediaStreams(v []*MediaStream) *AddFlowMediaStreamsOutput {
+	s.MediaStreams = v
+	return s
 }
 
 // Exception raised by AWS Elemental MediaConnect. See the error message and
@@ -3403,6 +3822,112 @@ func (s *AddFlowVpcInterfacesOutput) SetVpcInterfaces(v []*VpcInterface) *AddFlo
 	return s
 }
 
+// The media stream that you want to add to the flow.
+type AddMediaStreamRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes that you want to assign to the new media stream.
+	Attributes *MediaStreamAttributesRequest `locationName:"attributes" type:"structure"`
+
+	// The sample rate (in Hz) for the stream. If the media stream type is video
+	// or ancillary data, set this value to 90000. If the media stream type is audio,
+	// set this value to either 48000 or 96000.
+	ClockRate *int64 `locationName:"clockRate" type:"integer"`
+
+	// A description that can help you quickly identify what your media stream is
+	// used for.
+	Description *string `locationName:"description" type:"string"`
+
+	// A unique identifier for the media stream.
+	//
+	// MediaStreamId is a required field
+	MediaStreamId *int64 `locationName:"mediaStreamId" type:"integer" required:"true"`
+
+	// A name that helps you distinguish one media stream from another.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+
+	// The type of media stream.
+	//
+	// MediaStreamType is a required field
+	MediaStreamType *string `locationName:"mediaStreamType" type:"string" required:"true" enum:"MediaStreamType"`
+
+	// The resolution of the video.
+	VideoFormat *string `locationName:"videoFormat" type:"string"`
+}
+
+// String returns the string representation
+func (s AddMediaStreamRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddMediaStreamRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddMediaStreamRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddMediaStreamRequest"}
+	if s.MediaStreamId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamId"))
+	}
+	if s.MediaStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamName"))
+	}
+	if s.MediaStreamType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *AddMediaStreamRequest) SetAttributes(v *MediaStreamAttributesRequest) *AddMediaStreamRequest {
+	s.Attributes = v
+	return s
+}
+
+// SetClockRate sets the ClockRate field's value.
+func (s *AddMediaStreamRequest) SetClockRate(v int64) *AddMediaStreamRequest {
+	s.ClockRate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AddMediaStreamRequest) SetDescription(v string) *AddMediaStreamRequest {
+	s.Description = &v
+	return s
+}
+
+// SetMediaStreamId sets the MediaStreamId field's value.
+func (s *AddMediaStreamRequest) SetMediaStreamId(v int64) *AddMediaStreamRequest {
+	s.MediaStreamId = &v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *AddMediaStreamRequest) SetMediaStreamName(v string) *AddMediaStreamRequest {
+	s.MediaStreamName = &v
+	return s
+}
+
+// SetMediaStreamType sets the MediaStreamType field's value.
+func (s *AddMediaStreamRequest) SetMediaStreamType(v string) *AddMediaStreamRequest {
+	s.MediaStreamType = &v
+	return s
+}
+
+// SetVideoFormat sets the VideoFormat field's value.
+func (s *AddMediaStreamRequest) SetVideoFormat(v string) *AddMediaStreamRequest {
+	s.VideoFormat = &v
+	return s
+}
+
 // The output that you want to add to this flow.
 type AddOutputRequest struct {
 	_ struct{} `type:"structure"`
@@ -3425,6 +3950,10 @@ type AddOutputRequest struct {
 
 	// The maximum latency in milliseconds for Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
+
+	// The media streams that are associated with the output, and the parameters
+	// for those associations.
+	MediaStreamOutputConfigurations []*MediaStreamOutputConfigurationRequest `locationName:"mediaStreamOutputConfigurations" type:"list"`
 
 	// The minimum latency in milliseconds for SRT-based streams. In streams that
 	// use the SRT protocol, this value that you set on your MediaConnect source
@@ -3479,6 +4008,16 @@ func (s *AddOutputRequest) Validate() error {
 			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MediaStreamOutputConfigurations != nil {
+		for i, v := range s.MediaStreamOutputConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreamOutputConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -3513,6 +4052,12 @@ func (s *AddOutputRequest) SetEncryption(v *Encryption) *AddOutputRequest {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *AddOutputRequest) SetMaxLatency(v int64) *AddOutputRequest {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMediaStreamOutputConfigurations sets the MediaStreamOutputConfigurations field's value.
+func (s *AddOutputRequest) SetMediaStreamOutputConfigurations(v []*MediaStreamOutputConfigurationRequest) *AddOutputRequest {
+	s.MediaStreamOutputConfigurations = v
 	return s
 }
 
@@ -3681,7 +4226,7 @@ func (s *CreateFlow420Exception) RequestID() string {
 }
 
 // Creates a new flow. The request must include one source. The request optionally
-// can include outputs (up to 50) and one entitlement.
+// can include outputs (up to 50) and entitlements (up to 50.)
 type CreateFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3691,6 +4236,10 @@ type CreateFlowInput struct {
 
 	// The entitlements that you want to grant on a flow.
 	Entitlements []*GrantEntitlementRequest `locationName:"entitlements" type:"list"`
+
+	// The media streams that you want to add to the flow. You can associate these
+	// media streams with sources and outputs on the flow.
+	MediaStreams []*AddMediaStreamRequest `locationName:"mediaStreams" type:"list"`
 
 	// The name of the flow.
 	//
@@ -3735,6 +4284,16 @@ func (s *CreateFlowInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entitlements", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MediaStreams != nil {
+		for i, v := range s.MediaStreams {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreams", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -3789,6 +4348,12 @@ func (s *CreateFlowInput) SetAvailabilityZone(v string) *CreateFlowInput {
 // SetEntitlements sets the Entitlements field's value.
 func (s *CreateFlowInput) SetEntitlements(v []*GrantEntitlementRequest) *CreateFlowInput {
 	s.Entitlements = v
+	return s
+}
+
+// SetMediaStreams sets the MediaStreams field's value.
+func (s *CreateFlowInput) SetMediaStreams(v []*AddMediaStreamRequest) *CreateFlowInput {
+	s.MediaStreams = v
 	return s
 }
 
@@ -4128,6 +4693,250 @@ func (s *DescribeReservationOutput) SetReservation(v *Reservation) *DescribeRese
 	return s
 }
 
+// The transport parameters that are associated with an outbound media stream.
+type DestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address where contents of the media stream will be sent.
+	//
+	// DestinationIp is a required field
+	DestinationIp *string `locationName:"destinationIp" type:"string" required:"true"`
+
+	// The port to use when the content of the media stream is distributed to the
+	// output.
+	//
+	// DestinationPort is a required field
+	DestinationPort *int64 `locationName:"destinationPort" type:"integer" required:"true"`
+
+	// The VPC interface that is used for the media stream associated with the output.
+	//
+	// Interface is a required field
+	Interface *Interface `locationName:"interface" type:"structure" required:"true"`
+
+	// The IP address that the receiver requires in order to establish a connection
+	// with the flow. This value is represented by the elastic network interface
+	// IP address of the VPC. This field applies only to outputs that use the CDI
+	// or ST 2110 JPEG XS protocol.
+	//
+	// OutboundIp is a required field
+	OutboundIp *string `locationName:"outboundIp" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestinationIp sets the DestinationIp field's value.
+func (s *DestinationConfiguration) SetDestinationIp(v string) *DestinationConfiguration {
+	s.DestinationIp = &v
+	return s
+}
+
+// SetDestinationPort sets the DestinationPort field's value.
+func (s *DestinationConfiguration) SetDestinationPort(v int64) *DestinationConfiguration {
+	s.DestinationPort = &v
+	return s
+}
+
+// SetInterface sets the Interface field's value.
+func (s *DestinationConfiguration) SetInterface(v *Interface) *DestinationConfiguration {
+	s.Interface = v
+	return s
+}
+
+// SetOutboundIp sets the OutboundIp field's value.
+func (s *DestinationConfiguration) SetOutboundIp(v string) *DestinationConfiguration {
+	s.OutboundIp = &v
+	return s
+}
+
+// The transport parameters that you want to associate with an outbound media
+// stream.
+type DestinationConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address where you want MediaConnect to send contents of the media
+	// stream.
+	//
+	// DestinationIp is a required field
+	DestinationIp *string `locationName:"destinationIp" type:"string" required:"true"`
+
+	// The port that you want MediaConnect to use when it distributes the media
+	// stream to the output.
+	//
+	// DestinationPort is a required field
+	DestinationPort *int64 `locationName:"destinationPort" type:"integer" required:"true"`
+
+	// The VPC interface that you want to use for the media stream associated with
+	// the output.
+	//
+	// Interface is a required field
+	Interface *InterfaceRequest `locationName:"interface" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DestinationConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DestinationConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DestinationConfigurationRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DestinationConfigurationRequest"}
+	if s.DestinationIp == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationIp"))
+	}
+	if s.DestinationPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationPort"))
+	}
+	if s.Interface == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interface"))
+	}
+	if s.Interface != nil {
+		if err := s.Interface.Validate(); err != nil {
+			invalidParams.AddNested("Interface", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationIp sets the DestinationIp field's value.
+func (s *DestinationConfigurationRequest) SetDestinationIp(v string) *DestinationConfigurationRequest {
+	s.DestinationIp = &v
+	return s
+}
+
+// SetDestinationPort sets the DestinationPort field's value.
+func (s *DestinationConfigurationRequest) SetDestinationPort(v int64) *DestinationConfigurationRequest {
+	s.DestinationPort = &v
+	return s
+}
+
+// SetInterface sets the Interface field's value.
+func (s *DestinationConfigurationRequest) SetInterface(v *InterfaceRequest) *DestinationConfigurationRequest {
+	s.Interface = v
+	return s
+}
+
+// A collection of parameters that determine how MediaConnect will convert the
+// content. These fields only apply to outputs on flows that have a CDI source.
+type EncodingParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A value that is used to calculate compression for an output. The bitrate
+	// of the output is calculated as follows: Output bitrate = (1 / compressionFactor)
+	// * (source bitrate) This property only applies to outputs that use the ST
+	// 2110 JPEG XS protocol, with a flow source that uses the CDI protocol. Valid
+	// values are floating point numbers in the range of 3.0 to 10.0, inclusive.
+	//
+	// CompressionFactor is a required field
+	CompressionFactor *float64 `locationName:"compressionFactor" type:"double" required:"true"`
+
+	// A setting on the encoder that drives compression settings. This property
+	// only applies to video media streams associated with outputs that use the
+	// ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol.
+	//
+	// EncoderProfile is a required field
+	EncoderProfile *string `locationName:"encoderProfile" type:"string" required:"true" enum:"EncoderProfile"`
+}
+
+// String returns the string representation
+func (s EncodingParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EncodingParameters) GoString() string {
+	return s.String()
+}
+
+// SetCompressionFactor sets the CompressionFactor field's value.
+func (s *EncodingParameters) SetCompressionFactor(v float64) *EncodingParameters {
+	s.CompressionFactor = &v
+	return s
+}
+
+// SetEncoderProfile sets the EncoderProfile field's value.
+func (s *EncodingParameters) SetEncoderProfile(v string) *EncodingParameters {
+	s.EncoderProfile = &v
+	return s
+}
+
+// A collection of parameters that determine how MediaConnect will convert the
+// content. These fields only apply to outputs on flows that have a CDI source.
+type EncodingParametersRequest struct {
+	_ struct{} `type:"structure"`
+
+	// A value that is used to calculate compression for an output. The bitrate
+	// of the output is calculated as follows: Output bitrate = (1 / compressionFactor)
+	// * (source bitrate) This property only applies to outputs that use the ST
+	// 2110 JPEG XS protocol, with a flow source that uses the CDI protocol. Valid
+	// values are floating point numbers in the range of 3.0 to 10.0, inclusive.
+	//
+	// CompressionFactor is a required field
+	CompressionFactor *float64 `locationName:"compressionFactor" type:"double" required:"true"`
+
+	// A setting on the encoder that drives compression settings. This property
+	// only applies to video media streams associated with outputs that use the
+	// ST 2110 JPEG XS protocol, if at least one source on the flow uses the CDI
+	// protocol.
+	//
+	// EncoderProfile is a required field
+	EncoderProfile *string `locationName:"encoderProfile" type:"string" required:"true" enum:"EncoderProfile"`
+}
+
+// String returns the string representation
+func (s EncodingParametersRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EncodingParametersRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EncodingParametersRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EncodingParametersRequest"}
+	if s.CompressionFactor == nil {
+		invalidParams.Add(request.NewErrParamRequired("CompressionFactor"))
+	}
+	if s.EncoderProfile == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncoderProfile"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCompressionFactor sets the CompressionFactor field's value.
+func (s *EncodingParametersRequest) SetCompressionFactor(v float64) *EncodingParametersRequest {
+	s.CompressionFactor = &v
+	return s
+}
+
+// SetEncoderProfile sets the EncoderProfile field's value.
+func (s *EncodingParametersRequest) SetEncoderProfile(v string) *EncodingParametersRequest {
+	s.EncoderProfile = &v
+	return s
+}
+
 // Information about the encryption of the flow.
 type Encryption struct {
 	_ struct{} `type:"structure"`
@@ -4401,6 +5210,11 @@ type Flow struct {
 	// FlowArn is a required field
 	FlowArn *string `locationName:"flowArn" type:"string" required:"true"`
 
+	// The media streams that are associated with the flow. After you associate
+	// a media stream with a source, you can also associate it with outputs on the
+	// flow.
+	MediaStreams []*MediaStream `locationName:"mediaStreams" type:"list"`
+
 	// The name of the flow.
 	//
 	// Name is a required field
@@ -4470,6 +5284,12 @@ func (s *Flow) SetFlowArn(v string) *Flow {
 	return s
 }
 
+// SetMediaStreams sets the MediaStreams field's value.
+func (s *Flow) SetMediaStreams(v []*MediaStream) *Flow {
+	s.MediaStreams = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Flow) SetName(v string) *Flow {
 	s.Name = &v
@@ -4509,6 +5329,166 @@ func (s *Flow) SetStatus(v string) *Flow {
 // SetVpcInterfaces sets the VpcInterfaces field's value.
 func (s *Flow) SetVpcInterfaces(v []*VpcInterface) *Flow {
 	s.VpcInterfaces = v
+	return s
+}
+
+// FMTP
+type Fmtp struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the audio channel.
+	ChannelOrder *string `locationName:"channelOrder" type:"string"`
+
+	// The format that is used for the representation of color.
+	Colorimetry *string `locationName:"colorimetry" type:"string" enum:"Colorimetry"`
+
+	// The frame rate for the video stream, in frames/second. For example: 60000/1001.
+	// If you specify a whole number, MediaConnect uses a ratio of N/1. For example,
+	// if you specify 60, MediaConnect uses 60/1 as the exactFramerate.
+	ExactFramerate *string `locationName:"exactFramerate" type:"string"`
+
+	// The pixel aspect ratio (PAR) of the video.
+	Par *string `locationName:"par" type:"string"`
+
+	// The encoding range of the video.
+	Range *string `locationName:"range" type:"string" enum:"Range"`
+
+	// The type of compression that was used to smooth the video’s appearance
+	ScanMode *string `locationName:"scanMode" type:"string" enum:"ScanMode"`
+
+	// The transfer characteristic system (TCS) that is used in the video.
+	Tcs *string `locationName:"tcs" type:"string" enum:"Tcs"`
+}
+
+// String returns the string representation
+func (s Fmtp) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Fmtp) GoString() string {
+	return s.String()
+}
+
+// SetChannelOrder sets the ChannelOrder field's value.
+func (s *Fmtp) SetChannelOrder(v string) *Fmtp {
+	s.ChannelOrder = &v
+	return s
+}
+
+// SetColorimetry sets the Colorimetry field's value.
+func (s *Fmtp) SetColorimetry(v string) *Fmtp {
+	s.Colorimetry = &v
+	return s
+}
+
+// SetExactFramerate sets the ExactFramerate field's value.
+func (s *Fmtp) SetExactFramerate(v string) *Fmtp {
+	s.ExactFramerate = &v
+	return s
+}
+
+// SetPar sets the Par field's value.
+func (s *Fmtp) SetPar(v string) *Fmtp {
+	s.Par = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *Fmtp) SetRange(v string) *Fmtp {
+	s.Range = &v
+	return s
+}
+
+// SetScanMode sets the ScanMode field's value.
+func (s *Fmtp) SetScanMode(v string) *Fmtp {
+	s.ScanMode = &v
+	return s
+}
+
+// SetTcs sets the Tcs field's value.
+func (s *Fmtp) SetTcs(v string) *Fmtp {
+	s.Tcs = &v
+	return s
+}
+
+// The settings that you want to use to define the media stream.
+type FmtpRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The format of the audio channel.
+	ChannelOrder *string `locationName:"channelOrder" type:"string"`
+
+	// The format that is used for the representation of color.
+	Colorimetry *string `locationName:"colorimetry" type:"string" enum:"Colorimetry"`
+
+	// The frame rate for the video stream, in frames/second. For example: 60000/1001.
+	// If you specify a whole number, MediaConnect uses a ratio of N/1. For example,
+	// if you specify 60, MediaConnect uses 60/1 as the exactFramerate.
+	ExactFramerate *string `locationName:"exactFramerate" type:"string"`
+
+	// The pixel aspect ratio (PAR) of the video.
+	Par *string `locationName:"par" type:"string"`
+
+	// The encoding range of the video.
+	Range *string `locationName:"range" type:"string" enum:"Range"`
+
+	// The type of compression that was used to smooth the video’s appearance.
+	ScanMode *string `locationName:"scanMode" type:"string" enum:"ScanMode"`
+
+	// The transfer characteristic system (TCS) that is used in the video.
+	Tcs *string `locationName:"tcs" type:"string" enum:"Tcs"`
+}
+
+// String returns the string representation
+func (s FmtpRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FmtpRequest) GoString() string {
+	return s.String()
+}
+
+// SetChannelOrder sets the ChannelOrder field's value.
+func (s *FmtpRequest) SetChannelOrder(v string) *FmtpRequest {
+	s.ChannelOrder = &v
+	return s
+}
+
+// SetColorimetry sets the Colorimetry field's value.
+func (s *FmtpRequest) SetColorimetry(v string) *FmtpRequest {
+	s.Colorimetry = &v
+	return s
+}
+
+// SetExactFramerate sets the ExactFramerate field's value.
+func (s *FmtpRequest) SetExactFramerate(v string) *FmtpRequest {
+	s.ExactFramerate = &v
+	return s
+}
+
+// SetPar sets the Par field's value.
+func (s *FmtpRequest) SetPar(v string) *FmtpRequest {
+	s.Par = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *FmtpRequest) SetRange(v string) *FmtpRequest {
+	s.Range = &v
+	return s
+}
+
+// SetScanMode sets the ScanMode field's value.
+func (s *FmtpRequest) SetScanMode(v string) *FmtpRequest {
+	s.ScanMode = &v
+	return s
+}
+
+// SetTcs sets the Tcs field's value.
+func (s *FmtpRequest) SetTcs(v string) *FmtpRequest {
+	s.Tcs = &v
 	return s
 }
 
@@ -4819,6 +5799,181 @@ func (s *GrantFlowEntitlementsOutput) SetEntitlements(v []*Entitlement) *GrantFl
 // SetFlowArn sets the FlowArn field's value.
 func (s *GrantFlowEntitlementsOutput) SetFlowArn(v string) *GrantFlowEntitlementsOutput {
 	s.FlowArn = &v
+	return s
+}
+
+// The transport parameters that are associated with an incoming media stream.
+type InputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The IP address that the flow listens on for incoming content for a media
+	// stream.
+	//
+	// InputIp is a required field
+	InputIp *string `locationName:"inputIp" type:"string" required:"true"`
+
+	// The port that the flow listens on for an incoming media stream.
+	//
+	// InputPort is a required field
+	InputPort *int64 `locationName:"inputPort" type:"integer" required:"true"`
+
+	// The VPC interface where the media stream comes in from.
+	//
+	// Interface is a required field
+	Interface *Interface `locationName:"interface" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s InputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetInputIp sets the InputIp field's value.
+func (s *InputConfiguration) SetInputIp(v string) *InputConfiguration {
+	s.InputIp = &v
+	return s
+}
+
+// SetInputPort sets the InputPort field's value.
+func (s *InputConfiguration) SetInputPort(v int64) *InputConfiguration {
+	s.InputPort = &v
+	return s
+}
+
+// SetInterface sets the Interface field's value.
+func (s *InputConfiguration) SetInterface(v *Interface) *InputConfiguration {
+	s.Interface = v
+	return s
+}
+
+// The transport parameters that you want to associate with an incoming media
+// stream.
+type InputConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The port that you want the flow to listen on for an incoming media stream.
+	//
+	// InputPort is a required field
+	InputPort *int64 `locationName:"inputPort" type:"integer" required:"true"`
+
+	// The VPC interface that you want to use for the incoming media stream.
+	//
+	// Interface is a required field
+	Interface *InterfaceRequest `locationName:"interface" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s InputConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputConfigurationRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputConfigurationRequest"}
+	if s.InputPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputPort"))
+	}
+	if s.Interface == nil {
+		invalidParams.Add(request.NewErrParamRequired("Interface"))
+	}
+	if s.Interface != nil {
+		if err := s.Interface.Validate(); err != nil {
+			invalidParams.AddNested("Interface", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputPort sets the InputPort field's value.
+func (s *InputConfigurationRequest) SetInputPort(v int64) *InputConfigurationRequest {
+	s.InputPort = &v
+	return s
+}
+
+// SetInterface sets the Interface field's value.
+func (s *InputConfigurationRequest) SetInterface(v *InterfaceRequest) *InputConfigurationRequest {
+	s.Interface = v
+	return s
+}
+
+// The VPC interface that is used for the media stream associated with the source
+// or output.
+type Interface struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the VPC interface.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Interface) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Interface) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Interface) SetName(v string) *Interface {
+	s.Name = &v
+	return s
+}
+
+// The VPC interface that you want to designate where the media stream is coming
+// from or going to.
+type InterfaceRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the VPC interface.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s InterfaceRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InterfaceRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InterfaceRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InterfaceRequest"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *InterfaceRequest) SetName(v string) *InterfaceRequest {
+	s.Name = &v
 	return s
 }
 
@@ -5408,6 +6563,451 @@ func (s *ListedFlow) SetStatus(v string) *ListedFlow {
 	return s
 }
 
+// A single track or stream of media that contains video, audio, or ancillary
+// data. After you add a media stream to a flow, you can associate it with sources
+// and outputs on that flow, as long as they use the CDI protocol or the ST
+// 2110 JPEG XS protocol. Each source or output can consist of one or many media
+// streams.
+type MediaStream struct {
+	_ struct{} `type:"structure"`
+
+	// Attributes that are related to the media stream.
+	Attributes *MediaStreamAttributes `locationName:"attributes" type:"structure"`
+
+	// The sample rate for the stream. This value is measured in Hz.
+	ClockRate *int64 `locationName:"clockRate" type:"integer"`
+
+	// A description that can help you quickly identify what your media stream is
+	// used for.
+	Description *string `locationName:"description" type:"string"`
+
+	// The format type number (sometimes referred to as RTP payload type) of the
+	// media stream. MediaConnect assigns this value to the media stream. For ST
+	// 2110 JPEG XS outputs, you need to provide this value to the receiver.
+	//
+	// Fmt is a required field
+	Fmt *int64 `locationName:"fmt" type:"integer" required:"true"`
+
+	// A unique identifier for the media stream.
+	//
+	// MediaStreamId is a required field
+	MediaStreamId *int64 `locationName:"mediaStreamId" type:"integer" required:"true"`
+
+	// A name that helps you distinguish one media stream from another.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+
+	// The type of media stream.
+	//
+	// MediaStreamType is a required field
+	MediaStreamType *string `locationName:"mediaStreamType" type:"string" required:"true" enum:"MediaStreamType"`
+
+	// The resolution of the video.
+	VideoFormat *string `locationName:"videoFormat" type:"string"`
+}
+
+// String returns the string representation
+func (s MediaStream) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStream) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *MediaStream) SetAttributes(v *MediaStreamAttributes) *MediaStream {
+	s.Attributes = v
+	return s
+}
+
+// SetClockRate sets the ClockRate field's value.
+func (s *MediaStream) SetClockRate(v int64) *MediaStream {
+	s.ClockRate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *MediaStream) SetDescription(v string) *MediaStream {
+	s.Description = &v
+	return s
+}
+
+// SetFmt sets the Fmt field's value.
+func (s *MediaStream) SetFmt(v int64) *MediaStream {
+	s.Fmt = &v
+	return s
+}
+
+// SetMediaStreamId sets the MediaStreamId field's value.
+func (s *MediaStream) SetMediaStreamId(v int64) *MediaStream {
+	s.MediaStreamId = &v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *MediaStream) SetMediaStreamName(v string) *MediaStream {
+	s.MediaStreamName = &v
+	return s
+}
+
+// SetMediaStreamType sets the MediaStreamType field's value.
+func (s *MediaStream) SetMediaStreamType(v string) *MediaStream {
+	s.MediaStreamType = &v
+	return s
+}
+
+// SetVideoFormat sets the VideoFormat field's value.
+func (s *MediaStream) SetVideoFormat(v string) *MediaStream {
+	s.VideoFormat = &v
+	return s
+}
+
+// Attributes that are related to the media stream.
+type MediaStreamAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// A set of parameters that define the media stream.
+	//
+	// Fmtp is a required field
+	Fmtp *Fmtp `locationName:"fmtp" type:"structure" required:"true"`
+
+	// The audio language, in a format that is recognized by the receiver.
+	Lang *string `locationName:"lang" type:"string"`
+}
+
+// String returns the string representation
+func (s MediaStreamAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamAttributes) GoString() string {
+	return s.String()
+}
+
+// SetFmtp sets the Fmtp field's value.
+func (s *MediaStreamAttributes) SetFmtp(v *Fmtp) *MediaStreamAttributes {
+	s.Fmtp = v
+	return s
+}
+
+// SetLang sets the Lang field's value.
+func (s *MediaStreamAttributes) SetLang(v string) *MediaStreamAttributes {
+	s.Lang = &v
+	return s
+}
+
+// Attributes that are related to the media stream.
+type MediaStreamAttributesRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The settings that you want to use to define the media stream.
+	Fmtp *FmtpRequest `locationName:"fmtp" type:"structure"`
+
+	// The audio language, in a format that is recognized by the receiver.
+	Lang *string `locationName:"lang" type:"string"`
+}
+
+// String returns the string representation
+func (s MediaStreamAttributesRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamAttributesRequest) GoString() string {
+	return s.String()
+}
+
+// SetFmtp sets the Fmtp field's value.
+func (s *MediaStreamAttributesRequest) SetFmtp(v *FmtpRequest) *MediaStreamAttributesRequest {
+	s.Fmtp = v
+	return s
+}
+
+// SetLang sets the Lang field's value.
+func (s *MediaStreamAttributesRequest) SetLang(v string) *MediaStreamAttributesRequest {
+	s.Lang = &v
+	return s
+}
+
+// The media stream that is associated with the output, and the parameters for
+// that association.
+type MediaStreamOutputConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The transport parameters that are associated with each outbound media stream.
+	DestinationConfigurations []*DestinationConfiguration `locationName:"destinationConfigurations" type:"list"`
+
+	// The format that was used to encode the data. For ancillary data streams,
+	// set the encoding name to smpte291. For audio streams, set the encoding name
+	// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+	// JPEG XS streams, set the encoding name to jxsv.
+	//
+	// EncodingName is a required field
+	EncodingName *string `locationName:"encodingName" type:"string" required:"true" enum:"EncodingName"`
+
+	// Encoding parameters
+	EncodingParameters *EncodingParameters `locationName:"encodingParameters" type:"structure"`
+
+	// The name of the media stream.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MediaStreamOutputConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamOutputConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestinationConfigurations sets the DestinationConfigurations field's value.
+func (s *MediaStreamOutputConfiguration) SetDestinationConfigurations(v []*DestinationConfiguration) *MediaStreamOutputConfiguration {
+	s.DestinationConfigurations = v
+	return s
+}
+
+// SetEncodingName sets the EncodingName field's value.
+func (s *MediaStreamOutputConfiguration) SetEncodingName(v string) *MediaStreamOutputConfiguration {
+	s.EncodingName = &v
+	return s
+}
+
+// SetEncodingParameters sets the EncodingParameters field's value.
+func (s *MediaStreamOutputConfiguration) SetEncodingParameters(v *EncodingParameters) *MediaStreamOutputConfiguration {
+	s.EncodingParameters = v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *MediaStreamOutputConfiguration) SetMediaStreamName(v string) *MediaStreamOutputConfiguration {
+	s.MediaStreamName = &v
+	return s
+}
+
+// The media stream that you want to associate with the output, and the parameters
+// for that association.
+type MediaStreamOutputConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The transport parameters that you want to associate with the media stream.
+	DestinationConfigurations []*DestinationConfigurationRequest `locationName:"destinationConfigurations" type:"list"`
+
+	// The format that will be used to encode the data. For ancillary data streams,
+	// set the encoding name to smpte291. For audio streams, set the encoding name
+	// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+	// JPEG XS streams, set the encoding name to jxsv.
+	//
+	// EncodingName is a required field
+	EncodingName *string `locationName:"encodingName" type:"string" required:"true" enum:"EncodingName"`
+
+	// A collection of parameters that determine how MediaConnect will convert the
+	// content. These fields only apply to outputs on flows that have a CDI source.
+	EncodingParameters *EncodingParametersRequest `locationName:"encodingParameters" type:"structure"`
+
+	// The name of the media stream that is associated with the output.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MediaStreamOutputConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamOutputConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStreamOutputConfigurationRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStreamOutputConfigurationRequest"}
+	if s.EncodingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncodingName"))
+	}
+	if s.MediaStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamName"))
+	}
+	if s.DestinationConfigurations != nil {
+		for i, v := range s.DestinationConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DestinationConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.EncodingParameters != nil {
+		if err := s.EncodingParameters.Validate(); err != nil {
+			invalidParams.AddNested("EncodingParameters", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationConfigurations sets the DestinationConfigurations field's value.
+func (s *MediaStreamOutputConfigurationRequest) SetDestinationConfigurations(v []*DestinationConfigurationRequest) *MediaStreamOutputConfigurationRequest {
+	s.DestinationConfigurations = v
+	return s
+}
+
+// SetEncodingName sets the EncodingName field's value.
+func (s *MediaStreamOutputConfigurationRequest) SetEncodingName(v string) *MediaStreamOutputConfigurationRequest {
+	s.EncodingName = &v
+	return s
+}
+
+// SetEncodingParameters sets the EncodingParameters field's value.
+func (s *MediaStreamOutputConfigurationRequest) SetEncodingParameters(v *EncodingParametersRequest) *MediaStreamOutputConfigurationRequest {
+	s.EncodingParameters = v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *MediaStreamOutputConfigurationRequest) SetMediaStreamName(v string) *MediaStreamOutputConfigurationRequest {
+	s.MediaStreamName = &v
+	return s
+}
+
+// The media stream that is associated with the source, and the parameters for
+// that association.
+type MediaStreamSourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The format that was used to encode the data. For ancillary data streams,
+	// set the encoding name to smpte291. For audio streams, set the encoding name
+	// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+	// JPEG XS streams, set the encoding name to jxsv.
+	//
+	// EncodingName is a required field
+	EncodingName *string `locationName:"encodingName" type:"string" required:"true" enum:"EncodingName"`
+
+	// The transport parameters that are associated with an incoming media stream.
+	InputConfigurations []*InputConfiguration `locationName:"inputConfigurations" type:"list"`
+
+	// The name of the media stream.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MediaStreamSourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamSourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEncodingName sets the EncodingName field's value.
+func (s *MediaStreamSourceConfiguration) SetEncodingName(v string) *MediaStreamSourceConfiguration {
+	s.EncodingName = &v
+	return s
+}
+
+// SetInputConfigurations sets the InputConfigurations field's value.
+func (s *MediaStreamSourceConfiguration) SetInputConfigurations(v []*InputConfiguration) *MediaStreamSourceConfiguration {
+	s.InputConfigurations = v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *MediaStreamSourceConfiguration) SetMediaStreamName(v string) *MediaStreamSourceConfiguration {
+	s.MediaStreamName = &v
+	return s
+}
+
+// The definition of a media stream that you want to associate with the source.
+type MediaStreamSourceConfigurationRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The format you want to use to encode the data. For ancillary data streams,
+	// set the encoding name to smpte291. For audio streams, set the encoding name
+	// to pcm. For video, 2110 streams, set the encoding name to raw. For video,
+	// JPEG XS streams, set the encoding name to jxsv.
+	//
+	// EncodingName is a required field
+	EncodingName *string `locationName:"encodingName" type:"string" required:"true" enum:"EncodingName"`
+
+	// The transport parameters that you want to associate with the media stream.
+	InputConfigurations []*InputConfigurationRequest `locationName:"inputConfigurations" type:"list"`
+
+	// The name of the media stream.
+	//
+	// MediaStreamName is a required field
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MediaStreamSourceConfigurationRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaStreamSourceConfigurationRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaStreamSourceConfigurationRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaStreamSourceConfigurationRequest"}
+	if s.EncodingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EncodingName"))
+	}
+	if s.MediaStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamName"))
+	}
+	if s.InputConfigurations != nil {
+		for i, v := range s.InputConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InputConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncodingName sets the EncodingName field's value.
+func (s *MediaStreamSourceConfigurationRequest) SetEncodingName(v string) *MediaStreamSourceConfigurationRequest {
+	s.EncodingName = &v
+	return s
+}
+
+// SetInputConfigurations sets the InputConfigurations field's value.
+func (s *MediaStreamSourceConfigurationRequest) SetInputConfigurations(v []*InputConfigurationRequest) *MediaStreamSourceConfigurationRequest {
+	s.InputConfigurations = v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *MediaStreamSourceConfigurationRequest) SetMediaStreamName(v string) *MediaStreamSourceConfigurationRequest {
+	s.MediaStreamName = &v
+	return s
+}
+
 // Messages that provide the state of the flow.
 type Messages struct {
 	_ struct{} `type:"structure"`
@@ -5632,6 +7232,9 @@ type Output struct {
 	// only for outputs that were added by creating a MediaLive input.
 	MediaLiveInputArn *string `locationName:"mediaLiveInputArn" type:"string"`
 
+	// The configuration for each media stream that is associated with the output.
+	MediaStreamOutputConfigurations []*MediaStreamOutputConfiguration `locationName:"mediaStreamOutputConfigurations" type:"list"`
+
 	// The name of the output. This value must be unique within the current flow.
 	//
 	// Name is a required field
@@ -5701,6 +7304,12 @@ func (s *Output) SetListenerAddress(v string) *Output {
 // SetMediaLiveInputArn sets the MediaLiveInputArn field's value.
 func (s *Output) SetMediaLiveInputArn(v string) *Output {
 	s.MediaLiveInputArn = &v
+	return s
+}
+
+// SetMediaStreamOutputConfigurations sets the MediaStreamOutputConfigurations field's value.
+func (s *Output) SetMediaStreamOutputConfigurations(v []*MediaStreamOutputConfiguration) *Output {
+	s.MediaStreamOutputConfigurations = v
 	return s
 }
 
@@ -5835,6 +7444,93 @@ func (s PurchaseOfferingOutput) GoString() string {
 // SetReservation sets the Reservation field's value.
 func (s *PurchaseOfferingOutput) SetReservation(v *Reservation) *PurchaseOfferingOutput {
 	s.Reservation = v
+	return s
+}
+
+type RemoveFlowMediaStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// MediaStreamName is a required field
+	MediaStreamName *string `location:"uri" locationName:"mediaStreamName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveFlowMediaStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowMediaStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveFlowMediaStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveFlowMediaStreamInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.MediaStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamName"))
+	}
+	if s.MediaStreamName != nil && len(*s.MediaStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaStreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowMediaStreamInput) SetFlowArn(v string) *RemoveFlowMediaStreamInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *RemoveFlowMediaStreamInput) SetMediaStreamName(v string) *RemoveFlowMediaStreamInput {
+	s.MediaStreamName = &v
+	return s
+}
+
+// The result of a successful RemoveFlowMediaStream request.
+type RemoveFlowMediaStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the flow.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The name of the media stream that was removed.
+	MediaStreamName *string `locationName:"mediaStreamName" type:"string"`
+}
+
+// String returns the string representation
+func (s RemoveFlowMediaStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFlowMediaStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *RemoveFlowMediaStreamOutput) SetFlowArn(v string) *RemoveFlowMediaStreamOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *RemoveFlowMediaStreamOutput) SetMediaStreamName(v string) *RemoveFlowMediaStreamOutput {
+	s.MediaStreamName = &v
 	return s
 }
 
@@ -6494,6 +8190,13 @@ type SetSourceRequest struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The size of the buffer (in milliseconds) to use to sync incoming source data.
+	MaxSyncBuffer *int64 `locationName:"maxSyncBuffer" type:"integer"`
+
+	// The media streams that are associated with the source, and the parameters
+	// for those associations.
+	MediaStreamSourceConfigurations []*MediaStreamSourceConfigurationRequest `locationName:"mediaStreamSourceConfigurations" type:"list"`
+
 	// The minimum latency in milliseconds for SRT-based streams. In streams that
 	// use the SRT protocol, this value that you set on your MediaConnect source
 	// or output represents the minimal potential latency of that connection. The
@@ -6538,6 +8241,16 @@ func (s *SetSourceRequest) Validate() error {
 			invalidParams.AddNested("Decryption", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MediaStreamSourceConfigurations != nil {
+		for i, v := range s.MediaStreamSourceConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreamSourceConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6578,6 +8291,18 @@ func (s *SetSourceRequest) SetMaxBitrate(v int64) *SetSourceRequest {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *SetSourceRequest) SetMaxLatency(v int64) *SetSourceRequest {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMaxSyncBuffer sets the MaxSyncBuffer field's value.
+func (s *SetSourceRequest) SetMaxSyncBuffer(v int64) *SetSourceRequest {
+	s.MaxSyncBuffer = &v
+	return s
+}
+
+// SetMediaStreamSourceConfigurations sets the MediaStreamSourceConfigurations field's value.
+func (s *SetSourceRequest) SetMediaStreamSourceConfigurations(v []*MediaStreamSourceConfigurationRequest) *SetSourceRequest {
+	s.MediaStreamSourceConfigurations = v
 	return s
 }
 
@@ -6642,6 +8367,10 @@ type Source struct {
 	// The port that the flow will be listening on for incoming content.
 	IngestPort *int64 `locationName:"ingestPort" type:"integer"`
 
+	// The media streams that are associated with the source, and the parameters
+	// for those associations.
+	MediaStreamSourceConfigurations []*MediaStreamSourceConfiguration `locationName:"mediaStreamSourceConfigurations" type:"list"`
+
 	// The name of the source.
 	//
 	// Name is a required field
@@ -6655,7 +8384,7 @@ type Source struct {
 	// Attributes related to the transport stream that are used in the source.
 	Transport *Transport `locationName:"transport" type:"structure"`
 
-	// The name of the VPC Interface this Source is configured with.
+	// The name of the VPC interface that is used for this source.
 	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
 
 	// The range of IP addresses that should be allowed to contribute content to
@@ -6707,6 +8436,12 @@ func (s *Source) SetIngestIp(v string) *Source {
 // SetIngestPort sets the IngestPort field's value.
 func (s *Source) SetIngestPort(v int64) *Source {
 	s.IngestPort = &v
+	return s
+}
+
+// SetMediaStreamSourceConfigurations sets the MediaStreamSourceConfigurations field's value.
+func (s *Source) SetMediaStreamSourceConfigurations(v []*MediaStreamSourceConfiguration) *Source {
+	s.MediaStreamSourceConfigurations = v
 	return s
 }
 
@@ -7028,6 +8763,9 @@ type Transport struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The size of the buffer (in milliseconds) to use to sync incoming source data.
+	MaxSyncBuffer *int64 `locationName:"maxSyncBuffer" type:"integer"`
+
 	// The minimum latency in milliseconds for SRT-based streams. In streams that
 	// use the SRT protocol, this value that you set on your MediaConnect source
 	// or output represents the minimal potential latency of that connection. The
@@ -7076,6 +8814,12 @@ func (s *Transport) SetMaxBitrate(v int64) *Transport {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *Transport) SetMaxLatency(v int64) *Transport {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMaxSyncBuffer sets the MaxSyncBuffer field's value.
+func (s *Transport) SetMaxSyncBuffer(v int64) *Transport {
+	s.MaxSyncBuffer = &v
 	return s
 }
 
@@ -7499,6 +9243,141 @@ func (s *UpdateFlowInput) SetSourceFailoverConfig(v *UpdateFailoverConfig) *Upda
 	return s
 }
 
+// Update a media stream on a flow.
+type UpdateFlowMediaStreamInput struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes that you want to assign to the media stream.
+	Attributes *MediaStreamAttributesRequest `locationName:"attributes" type:"structure"`
+
+	// The sample rate (in Hz) for the stream. If the media stream type is video
+	// or ancillary data, set this value to 90000. If the media stream type is audio,
+	// set this value to either 48000 or 96000.
+	ClockRate *int64 `locationName:"clockRate" type:"integer"`
+
+	// Description
+	Description *string `locationName:"description" type:"string"`
+
+	// FlowArn is a required field
+	FlowArn *string `location:"uri" locationName:"flowArn" type:"string" required:"true"`
+
+	// MediaStreamName is a required field
+	MediaStreamName *string `location:"uri" locationName:"mediaStreamName" type:"string" required:"true"`
+
+	// The type of media stream.
+	MediaStreamType *string `locationName:"mediaStreamType" type:"string" enum:"MediaStreamType"`
+
+	// The resolution of the video.
+	VideoFormat *string `locationName:"videoFormat" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFlowMediaStreamInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFlowMediaStreamInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFlowMediaStreamInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFlowMediaStreamInput"}
+	if s.FlowArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("FlowArn"))
+	}
+	if s.FlowArn != nil && len(*s.FlowArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FlowArn", 1))
+	}
+	if s.MediaStreamName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaStreamName"))
+	}
+	if s.MediaStreamName != nil && len(*s.MediaStreamName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaStreamName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *UpdateFlowMediaStreamInput) SetAttributes(v *MediaStreamAttributesRequest) *UpdateFlowMediaStreamInput {
+	s.Attributes = v
+	return s
+}
+
+// SetClockRate sets the ClockRate field's value.
+func (s *UpdateFlowMediaStreamInput) SetClockRate(v int64) *UpdateFlowMediaStreamInput {
+	s.ClockRate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFlowMediaStreamInput) SetDescription(v string) *UpdateFlowMediaStreamInput {
+	s.Description = &v
+	return s
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *UpdateFlowMediaStreamInput) SetFlowArn(v string) *UpdateFlowMediaStreamInput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStreamName sets the MediaStreamName field's value.
+func (s *UpdateFlowMediaStreamInput) SetMediaStreamName(v string) *UpdateFlowMediaStreamInput {
+	s.MediaStreamName = &v
+	return s
+}
+
+// SetMediaStreamType sets the MediaStreamType field's value.
+func (s *UpdateFlowMediaStreamInput) SetMediaStreamType(v string) *UpdateFlowMediaStreamInput {
+	s.MediaStreamType = &v
+	return s
+}
+
+// SetVideoFormat sets the VideoFormat field's value.
+func (s *UpdateFlowMediaStreamInput) SetVideoFormat(v string) *UpdateFlowMediaStreamInput {
+	s.VideoFormat = &v
+	return s
+}
+
+// Update response
+type UpdateFlowMediaStreamOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the flow that is associated with the media stream that you updated.
+	FlowArn *string `locationName:"flowArn" type:"string"`
+
+	// The media stream that you updated.
+	MediaStream *MediaStream `locationName:"mediaStream" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFlowMediaStreamOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFlowMediaStreamOutput) GoString() string {
+	return s.String()
+}
+
+// SetFlowArn sets the FlowArn field's value.
+func (s *UpdateFlowMediaStreamOutput) SetFlowArn(v string) *UpdateFlowMediaStreamOutput {
+	s.FlowArn = &v
+	return s
+}
+
+// SetMediaStream sets the MediaStream field's value.
+func (s *UpdateFlowMediaStreamOutput) SetMediaStream(v *MediaStream) *UpdateFlowMediaStreamOutput {
+	s.MediaStream = v
+	return s
+}
+
 // Updates an existing flow.
 type UpdateFlowOutput struct {
 	_ struct{} `type:"structure"`
@@ -7548,6 +9427,10 @@ type UpdateFlowOutputInput struct {
 
 	// The maximum latency in milliseconds for Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
+
+	// The media streams that are associated with the output, and the parameters
+	// for those associations.
+	MediaStreamOutputConfigurations []*MediaStreamOutputConfigurationRequest `locationName:"mediaStreamOutputConfigurations" type:"list"`
 
 	// The minimum latency in milliseconds for SRT-based streams. In streams that
 	// use the SRT protocol, this value that you set on your MediaConnect source
@@ -7604,6 +9487,16 @@ func (s *UpdateFlowOutputInput) Validate() error {
 	if s.OutputArn != nil && len(*s.OutputArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputArn", 1))
 	}
+	if s.MediaStreamOutputConfigurations != nil {
+		for i, v := range s.MediaStreamOutputConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreamOutputConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7644,6 +9537,12 @@ func (s *UpdateFlowOutputInput) SetFlowArn(v string) *UpdateFlowOutputInput {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *UpdateFlowOutputInput) SetMaxLatency(v int64) *UpdateFlowOutputInput {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMediaStreamOutputConfigurations sets the MediaStreamOutputConfigurations field's value.
+func (s *UpdateFlowOutputInput) SetMediaStreamOutputConfigurations(v []*MediaStreamOutputConfigurationRequest) *UpdateFlowOutputInput {
+	s.MediaStreamOutputConfigurations = v
 	return s
 }
 
@@ -7729,7 +9628,7 @@ func (s *UpdateFlowOutputOutput) SetOutput(v *Output) *UpdateFlowOutputOutput {
 	return s
 }
 
-// The settings for the updated source of the flow.
+// The updates that you want to make to an existing source of an existing flow.
 type UpdateFlowSourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7758,6 +9657,13 @@ type UpdateFlowSourceInput struct {
 	// and Zixi-based streams.
 	MaxLatency *int64 `locationName:"maxLatency" type:"integer"`
 
+	// The size of the buffer (in milliseconds) to use to sync incoming source data.
+	MaxSyncBuffer *int64 `locationName:"maxSyncBuffer" type:"integer"`
+
+	// The media streams that are associated with the source, and the parameters
+	// for those associations.
+	MediaStreamSourceConfigurations []*MediaStreamSourceConfigurationRequest `locationName:"mediaStreamSourceConfigurations" type:"list"`
+
 	// The minimum latency in milliseconds for SRT-based streams. In streams that
 	// use the SRT protocol, this value that you set on your MediaConnect source
 	// or output represents the minimal potential latency of that connection. The
@@ -7775,7 +9681,7 @@ type UpdateFlowSourceInput struct {
 	// only to Zixi-based streams.
 	StreamId *string `locationName:"streamId" type:"string"`
 
-	// The name of the VPC Interface to configure this Source with.
+	// The name of the VPC interface to use for this source.
 	VpcInterfaceName *string `locationName:"vpcInterfaceName" type:"string"`
 
 	// The range of IP addresses that should be allowed to contribute content to
@@ -7808,6 +9714,16 @@ func (s *UpdateFlowSourceInput) Validate() error {
 	}
 	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
+	}
+	if s.MediaStreamSourceConfigurations != nil {
+		for i, v := range s.MediaStreamSourceConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaStreamSourceConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -7855,6 +9771,18 @@ func (s *UpdateFlowSourceInput) SetMaxBitrate(v int64) *UpdateFlowSourceInput {
 // SetMaxLatency sets the MaxLatency field's value.
 func (s *UpdateFlowSourceInput) SetMaxLatency(v int64) *UpdateFlowSourceInput {
 	s.MaxLatency = &v
+	return s
+}
+
+// SetMaxSyncBuffer sets the MaxSyncBuffer field's value.
+func (s *UpdateFlowSourceInput) SetMaxSyncBuffer(v int64) *UpdateFlowSourceInput {
+	s.MaxSyncBuffer = &v
+	return s
+}
+
+// SetMediaStreamSourceConfigurations sets the MediaStreamSourceConfigurations field's value.
+func (s *UpdateFlowSourceInput) SetMediaStreamSourceConfigurations(v []*MediaStreamSourceConfigurationRequest) *UpdateFlowSourceInput {
+	s.MediaStreamSourceConfigurations = v
 	return s
 }
 
@@ -7942,6 +9870,11 @@ type VpcInterface struct {
 	// NetworkInterfaceIds is a required field
 	NetworkInterfaceIds []*string `locationName:"networkInterfaceIds" type:"list" required:"true"`
 
+	// The type of network interface.
+	//
+	// NetworkInterfaceType is a required field
+	NetworkInterfaceType *string `locationName:"networkInterfaceType" type:"string" required:"true" enum:"NetworkInterfaceType"`
+
 	// Role Arn MediaConnect can assumes to create ENIs in customer's account
 	//
 	// RoleArn is a required field
@@ -7977,6 +9910,12 @@ func (s *VpcInterface) SetName(v string) *VpcInterface {
 // SetNetworkInterfaceIds sets the NetworkInterfaceIds field's value.
 func (s *VpcInterface) SetNetworkInterfaceIds(v []*string) *VpcInterface {
 	s.NetworkInterfaceIds = v
+	return s
+}
+
+// SetNetworkInterfaceType sets the NetworkInterfaceType field's value.
+func (s *VpcInterface) SetNetworkInterfaceType(v string) *VpcInterface {
+	s.NetworkInterfaceType = &v
 	return s
 }
 
@@ -8032,6 +9971,10 @@ type VpcInterfaceRequest struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
+	// The type of network interface. If this value is not included in the request,
+	// MediaConnect uses ENA as the networkInterfaceType.
+	NetworkInterfaceType *string `locationName:"networkInterfaceType" type:"string" enum:"NetworkInterfaceType"`
+
 	// Role Arn MediaConnect can assumes to create ENIs in customer's account
 	//
 	// RoleArn is a required field
@@ -8086,6 +10029,12 @@ func (s *VpcInterfaceRequest) SetName(v string) *VpcInterfaceRequest {
 	return s
 }
 
+// SetNetworkInterfaceType sets the NetworkInterfaceType field's value.
+func (s *VpcInterfaceRequest) SetNetworkInterfaceType(v string) *VpcInterfaceRequest {
+	s.NetworkInterfaceType = &v
+	return s
+}
+
 // SetRoleArn sets the RoleArn field's value.
 func (s *VpcInterfaceRequest) SetRoleArn(v string) *VpcInterfaceRequest {
 	s.RoleArn = &v
@@ -8125,6 +10074,42 @@ func Algorithm_Values() []string {
 }
 
 const (
+	// ColorimetryBt601 is a Colorimetry enum value
+	ColorimetryBt601 = "BT601"
+
+	// ColorimetryBt709 is a Colorimetry enum value
+	ColorimetryBt709 = "BT709"
+
+	// ColorimetryBt2020 is a Colorimetry enum value
+	ColorimetryBt2020 = "BT2020"
+
+	// ColorimetryBt2100 is a Colorimetry enum value
+	ColorimetryBt2100 = "BT2100"
+
+	// ColorimetrySt20651 is a Colorimetry enum value
+	ColorimetrySt20651 = "ST2065-1"
+
+	// ColorimetrySt20653 is a Colorimetry enum value
+	ColorimetrySt20653 = "ST2065-3"
+
+	// ColorimetryXyz is a Colorimetry enum value
+	ColorimetryXyz = "XYZ"
+)
+
+// Colorimetry_Values returns all elements of the Colorimetry enum
+func Colorimetry_Values() []string {
+	return []string{
+		ColorimetryBt601,
+		ColorimetryBt709,
+		ColorimetryBt2020,
+		ColorimetryBt2100,
+		ColorimetrySt20651,
+		ColorimetrySt20653,
+		ColorimetryXyz,
+	}
+}
+
+const (
 	// DurationUnitsMonths is a DurationUnits enum value
 	DurationUnitsMonths = "MONTHS"
 )
@@ -8133,6 +10118,46 @@ const (
 func DurationUnits_Values() []string {
 	return []string{
 		DurationUnitsMonths,
+	}
+}
+
+const (
+	// EncoderProfileMain is a EncoderProfile enum value
+	EncoderProfileMain = "main"
+
+	// EncoderProfileHigh is a EncoderProfile enum value
+	EncoderProfileHigh = "high"
+)
+
+// EncoderProfile_Values returns all elements of the EncoderProfile enum
+func EncoderProfile_Values() []string {
+	return []string{
+		EncoderProfileMain,
+		EncoderProfileHigh,
+	}
+}
+
+const (
+	// EncodingNameJxsv is a EncodingName enum value
+	EncodingNameJxsv = "jxsv"
+
+	// EncodingNameRaw is a EncodingName enum value
+	EncodingNameRaw = "raw"
+
+	// EncodingNameSmpte291 is a EncodingName enum value
+	EncodingNameSmpte291 = "smpte291"
+
+	// EncodingNamePcm is a EncodingName enum value
+	EncodingNamePcm = "pcm"
+)
+
+// EncodingName_Values returns all elements of the EncodingName enum
+func EncodingName_Values() []string {
+	return []string{
+		EncodingNameJxsv,
+		EncodingNameRaw,
+		EncodingNameSmpte291,
+		EncodingNamePcm,
 	}
 }
 
@@ -8173,6 +10198,42 @@ func KeyType_Values() []string {
 }
 
 const (
+	// MediaStreamTypeVideo is a MediaStreamType enum value
+	MediaStreamTypeVideo = "video"
+
+	// MediaStreamTypeAudio is a MediaStreamType enum value
+	MediaStreamTypeAudio = "audio"
+
+	// MediaStreamTypeAncillaryData is a MediaStreamType enum value
+	MediaStreamTypeAncillaryData = "ancillary-data"
+)
+
+// MediaStreamType_Values returns all elements of the MediaStreamType enum
+func MediaStreamType_Values() []string {
+	return []string{
+		MediaStreamTypeVideo,
+		MediaStreamTypeAudio,
+		MediaStreamTypeAncillaryData,
+	}
+}
+
+const (
+	// NetworkInterfaceTypeEna is a NetworkInterfaceType enum value
+	NetworkInterfaceTypeEna = "ena"
+
+	// NetworkInterfaceTypeEfa is a NetworkInterfaceType enum value
+	NetworkInterfaceTypeEfa = "efa"
+)
+
+// NetworkInterfaceType_Values returns all elements of the NetworkInterfaceType enum
+func NetworkInterfaceType_Values() []string {
+	return []string{
+		NetworkInterfaceTypeEna,
+		NetworkInterfaceTypeEfa,
+	}
+}
+
+const (
 	// PriceUnitsHourly is a PriceUnits enum value
 	PriceUnitsHourly = "HOURLY"
 )
@@ -8200,6 +10261,12 @@ const (
 	// ProtocolRist is a Protocol enum value
 	ProtocolRist = "rist"
 
+	// ProtocolSt2110Jpegxs is a Protocol enum value
+	ProtocolSt2110Jpegxs = "st2110-jpegxs"
+
+	// ProtocolCdi is a Protocol enum value
+	ProtocolCdi = "cdi"
+
 	// ProtocolSrtListener is a Protocol enum value
 	ProtocolSrtListener = "srt-listener"
 )
@@ -8212,7 +10279,29 @@ func Protocol_Values() []string {
 		ProtocolRtp,
 		ProtocolZixiPull,
 		ProtocolRist,
+		ProtocolSt2110Jpegxs,
+		ProtocolCdi,
 		ProtocolSrtListener,
+	}
+}
+
+const (
+	// RangeNarrow is a Range enum value
+	RangeNarrow = "NARROW"
+
+	// RangeFull is a Range enum value
+	RangeFull = "FULL"
+
+	// RangeFullprotect is a Range enum value
+	RangeFullprotect = "FULLPROTECT"
+)
+
+// Range_Values returns all elements of the Range enum
+func Range_Values() []string {
+	return []string{
+		RangeNarrow,
+		RangeFull,
+		RangeFullprotect,
 	}
 }
 
@@ -8249,6 +10338,26 @@ const (
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeMbpsOutboundBandwidth,
+	}
+}
+
+const (
+	// ScanModeProgressive is a ScanMode enum value
+	ScanModeProgressive = "progressive"
+
+	// ScanModeInterlace is a ScanMode enum value
+	ScanModeInterlace = "interlace"
+
+	// ScanModeProgressiveSegmentedFrame is a ScanMode enum value
+	ScanModeProgressiveSegmentedFrame = "progressive-segmented-frame"
+)
+
+// ScanMode_Values returns all elements of the ScanMode enum
+func ScanMode_Values() []string {
+	return []string{
+		ScanModeProgressive,
+		ScanModeInterlace,
+		ScanModeProgressiveSegmentedFrame,
 	}
 }
 
@@ -8317,5 +10426,49 @@ func Status_Values() []string {
 		StatusStarting,
 		StatusStopping,
 		StatusError,
+	}
+}
+
+const (
+	// TcsSdr is a Tcs enum value
+	TcsSdr = "SDR"
+
+	// TcsPq is a Tcs enum value
+	TcsPq = "PQ"
+
+	// TcsHlg is a Tcs enum value
+	TcsHlg = "HLG"
+
+	// TcsLinear is a Tcs enum value
+	TcsLinear = "LINEAR"
+
+	// TcsBt2100linpq is a Tcs enum value
+	TcsBt2100linpq = "BT2100LINPQ"
+
+	// TcsBt2100linhlg is a Tcs enum value
+	TcsBt2100linhlg = "BT2100LINHLG"
+
+	// TcsSt20651 is a Tcs enum value
+	TcsSt20651 = "ST2065-1"
+
+	// TcsSt4281 is a Tcs enum value
+	TcsSt4281 = "ST428-1"
+
+	// TcsDensity is a Tcs enum value
+	TcsDensity = "DENSITY"
+)
+
+// Tcs_Values returns all elements of the Tcs enum
+func Tcs_Values() []string {
+	return []string{
+		TcsSdr,
+		TcsPq,
+		TcsHlg,
+		TcsLinear,
+		TcsBt2100linpq,
+		TcsBt2100linhlg,
+		TcsSt20651,
+		TcsSt4281,
+		TcsDensity,
 	}
 }

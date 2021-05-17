@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "API for AWS Elemental MediaConnect",
   "operations": {
+    "AddFlowMediaStreams": "Adds media streams to an existing flow. After you add a media stream to a flow, you can associate it with a source and/or an output that uses the ST 2110 JPEG XS or CDI protocol.",
     "AddFlowOutputs": "Adds outputs to an existing flow. You can create up to 50 outputs per flow.",
     "AddFlowSources": "Adds Sources to flow",
     "AddFlowVpcInterfaces": "Adds VPC interfaces to flow",
@@ -17,6 +18,7 @@
     "ListReservations": "Displays a list of all reservations that have been purchased by this account in the current AWS Region. This list includes all reservations in all states (such as active and expired).",
     "ListTagsForResource": "List all tags on an AWS Elemental MediaConnect resource",
     "PurchaseOffering": "Submits a request to purchase an offering. If you already have an active reservation, you can't purchase another offering.",
+    "RemoveFlowMediaStream": "Removes a media stream from a flow. This action is only available if the media stream is not associated with a source or output.",
     "RemoveFlowOutput": "Removes an output from an existing flow. This request can be made only on an output that does not have an entitlement associated with it. If the output has an entitlement, you must revoke the entitlement instead. When an entitlement is revoked from a flow, the service automatically removes the associated output.",
     "RemoveFlowSource": "Removes a source from an existing flow. This request can be made only if there is more than one source on the flow.",
     "RemoveFlowVpcInterface": "Removes a VPC Interface from an existing flow. This request can be made only on a VPC interface that does not have a Source or Output associated with it. If the VPC interface is referenced by a Source or Output, you must first delete or update the Source or Output to no longer reference the VPC interface.",
@@ -27,10 +29,19 @@
     "UntagResource": "Deletes specified tags from a resource.",
     "UpdateFlow": "Updates flow",
     "UpdateFlowEntitlement": "You can change an entitlement's description, subscribers, and encryption. If you change the subscribers, the service will remove the outputs that are are used by the subscribers that are removed.",
+    "UpdateFlowMediaStream": "Updates an existing media stream.",
     "UpdateFlowOutput": "Updates an existing flow output.",
     "UpdateFlowSource": "Updates the source of a flow."
   },
   "shapes": {
+    "AddFlowMediaStreamsRequest": {
+      "base": "Adds media streams to an existing flow.",
+      "refs": {}
+    },
+    "AddFlowMediaStreamsResponse": {
+      "base": "The result of a successful AddFlowMediaStreamsRequest request. The response includes the details of the newly added media streams.",
+      "refs": {}
+    },
     "AddFlowOutputs420Exception": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
@@ -59,6 +70,12 @@
       "base": "The result of a successful AddFlowVpcInterfaces request. The response includes the details of the newly added VPC interfaces.",
       "refs": {}
     },
+    "AddMediaStreamRequest": {
+      "base": "The media stream that you want to add to the flow.",
+      "refs": {
+        "__listOfAddMediaStreamRequest$member": null
+      }
+    },
     "AddOutputRequest": {
       "base": "The output that you want to add to this flow.",
       "refs": {
@@ -76,12 +93,19 @@
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
     },
+    "Colorimetry": {
+      "base": null,
+      "refs": {
+        "Fmtp$Colorimetry": "The format that is used for the representation of color.",
+        "FmtpRequest$Colorimetry": "The format that is used for the representation of color."
+      }
+    },
     "CreateFlow420Exception": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
     },
     "CreateFlowRequest": {
-      "base": "Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and one entitlement.",
+      "base": "Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and entitlements (up to 50.)",
       "refs": {}
     },
     "CreateFlowResponse": {
@@ -104,11 +128,51 @@
       "base": "The result of a successful DescribeReservation request.",
       "refs": {}
     },
+    "DestinationConfiguration": {
+      "base": "The transport parameters that are associated with an outbound media stream.",
+      "refs": {
+        "__listOfDestinationConfiguration$member": null
+      }
+    },
+    "DestinationConfigurationRequest": {
+      "base": "The transport parameters that you want to associate with an outbound media stream.",
+      "refs": {
+        "__listOfDestinationConfigurationRequest$member": null
+      }
+    },
     "DurationUnits": {
       "base": null,
       "refs": {
         "Offering$DurationUnits": "The unit of measurement for the duration of the offering.",
         "Reservation$DurationUnits": "The unit of measurement for the duration of the reservation. MediaConnect defines this value in the offering."
+      }
+    },
+    "EncoderProfile": {
+      "base": null,
+      "refs": {
+        "EncodingParameters$EncoderProfile": "A setting on the encoder that drives compression settings. This property only applies to video media streams associated with outputs that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol.",
+        "EncodingParametersRequest$EncoderProfile": "A setting on the encoder that drives compression settings. This property only applies to video media streams associated with outputs that use the ST 2110 JPEG XS protocol, if at least one source on the flow uses the CDI protocol."
+      }
+    },
+    "EncodingName": {
+      "base": null,
+      "refs": {
+        "MediaStreamOutputConfiguration$EncodingName": "The format that was used to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG XS streams, set the encoding name to jxsv.",
+        "MediaStreamOutputConfigurationRequest$EncodingName": "The format that will be used to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG XS streams, set the encoding name to jxsv.",
+        "MediaStreamSourceConfiguration$EncodingName": "The format that was used to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG XS streams, set the encoding name to jxsv.",
+        "MediaStreamSourceConfigurationRequest$EncodingName": "The format you want to use to encode the data. For ancillary data streams, set the encoding name to smpte291. For audio streams, set the encoding name to pcm. For video, 2110 streams, set the encoding name to raw. For video, JPEG XS streams, set the encoding name to jxsv."
+      }
+    },
+    "EncodingParameters": {
+      "base": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source.",
+      "refs": {
+        "MediaStreamOutputConfiguration$EncodingParameters": "Encoding parameters"
+      }
+    },
+    "EncodingParametersRequest": {
+      "base": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source.",
+      "refs": {
+        "MediaStreamOutputConfigurationRequest$EncodingParameters": "A collection of parameters that determine how MediaConnect will convert the content. These fields only apply to outputs on flows that have a CDI source."
       }
     },
     "Encryption": {
@@ -152,6 +216,18 @@
         "UpdateFlowResponse$Flow": null
       }
     },
+    "Fmtp": {
+      "base": "FMTP",
+      "refs": {
+        "MediaStreamAttributes$Fmtp": "A set of parameters that define the media stream."
+      }
+    },
+    "FmtpRequest": {
+      "base": "The settings that you want to use to define the media stream.",
+      "refs": {
+        "MediaStreamAttributesRequest$Fmtp": "The settings that you want to use to define the media stream."
+      }
+    },
     "ForbiddenException": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
@@ -173,6 +249,32 @@
     "GrantFlowEntitlementsResponse": {
       "base": "The entitlements that were just granted.",
       "refs": {}
+    },
+    "InputConfiguration": {
+      "base": "The transport parameters that are associated with an incoming media stream.",
+      "refs": {
+        "__listOfInputConfiguration$member": null
+      }
+    },
+    "InputConfigurationRequest": {
+      "base": "The transport parameters that you want to associate with an incoming media stream.",
+      "refs": {
+        "__listOfInputConfigurationRequest$member": null
+      }
+    },
+    "Interface": {
+      "base": "The VPC interface that is used for the media stream associated with the source or output.",
+      "refs": {
+        "DestinationConfiguration$Interface": "The VPC interface that is used for the media stream associated with the output.",
+        "InputConfiguration$Interface": "The VPC interface where the media stream comes in from."
+      }
+    },
+    "InterfaceRequest": {
+      "base": "The VPC interface that you want to designate where the media stream is coming from or going to.",
+      "refs": {
+        "DestinationConfigurationRequest$Interface": "The VPC interface that you want to use for the media stream associated with the output.",
+        "InputConfigurationRequest$Interface": "The VPC interface that you want to use for the incoming media stream."
+      }
     },
     "InternalServerErrorException": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
@@ -217,10 +319,69 @@
         "__listOfListedFlow$member": null
       }
     },
+    "MediaStream": {
+      "base": "A single track or stream of media that contains video, audio, or ancillary data. After you add a media stream to a flow, you can associate it with sources and outputs on that flow, as long as they use the CDI protocol or the ST 2110 JPEG XS protocol. Each source or output can consist of one or many media streams.",
+      "refs": {
+        "UpdateFlowMediaStreamResponse$MediaStream": "The media stream that you updated.",
+        "__listOfMediaStream$member": null
+      }
+    },
+    "MediaStreamAttributes": {
+      "base": "Attributes that are related to the media stream.",
+      "refs": {
+        "MediaStream$Attributes": "Attributes that are related to the media stream."
+      }
+    },
+    "MediaStreamAttributesRequest": {
+      "base": "Attributes that are related to the media stream.",
+      "refs": {
+        "AddMediaStreamRequest$Attributes": "The attributes that you want to assign to the new media stream.",
+        "UpdateFlowMediaStreamRequest$Attributes": "The attributes that you want to assign to the media stream."
+      }
+    },
+    "MediaStreamOutputConfiguration": {
+      "base": "The media stream that is associated with the output, and the parameters for that association.",
+      "refs": {
+        "__listOfMediaStreamOutputConfiguration$member": null
+      }
+    },
+    "MediaStreamOutputConfigurationRequest": {
+      "base": "The media stream that you want to associate with the output, and the parameters for that association.",
+      "refs": {
+        "__listOfMediaStreamOutputConfigurationRequest$member": null
+      }
+    },
+    "MediaStreamSourceConfiguration": {
+      "base": "The media stream that is associated with the source, and the parameters for that association.",
+      "refs": {
+        "__listOfMediaStreamSourceConfiguration$member": null
+      }
+    },
+    "MediaStreamSourceConfigurationRequest": {
+      "base": "The definition of a media stream that you want to associate with the source.",
+      "refs": {
+        "__listOfMediaStreamSourceConfigurationRequest$member": null
+      }
+    },
+    "MediaStreamType": {
+      "base": null,
+      "refs": {
+        "AddMediaStreamRequest$MediaStreamType": "The type of media stream.",
+        "MediaStream$MediaStreamType": "The type of media stream.",
+        "UpdateFlowMediaStreamRequest$MediaStreamType": "The type of media stream."
+      }
+    },
     "Messages": {
       "base": "Messages that provide the state of the flow.",
       "refs": {
         "DescribeFlowResponse$Messages": null
+      }
+    },
+    "NetworkInterfaceType": {
+      "base": null,
+      "refs": {
+        "VpcInterface$NetworkInterfaceType": "The type of network interface.",
+        "VpcInterfaceRequest$NetworkInterfaceType": "The type of network interface. If this value is not included in the request, MediaConnect uses ENA as the networkInterfaceType."
       }
     },
     "NotFoundException": {
@@ -264,6 +425,17 @@
     },
     "PurchaseOfferingResponse": {
       "base": "The result of a successful PurchaseOffering request.",
+      "refs": {}
+    },
+    "Range": {
+      "base": null,
+      "refs": {
+        "Fmtp$Range": "The encoding range of the video.",
+        "FmtpRequest$Range": "The encoding range of the video."
+      }
+    },
+    "RemoveFlowMediaStreamResponse": {
+      "base": "The result of a successful RemoveFlowMediaStream request.",
       "refs": {}
     },
     "RemoveFlowOutputResponse": {
@@ -312,6 +484,13 @@
     "RevokeFlowEntitlementResponse": {
       "base": "The result of a successful RevokeFlowEntitlement request. The response includes the ARN of the flow that was updated and the ARN of the entitlement that was revoked.",
       "refs": {}
+    },
+    "ScanMode": {
+      "base": null,
+      "refs": {
+        "Fmtp$ScanMode": "The type of compression that was used to smooth the video\u2019s appearance",
+        "FmtpRequest$ScanMode": "The type of compression that was used to smooth the video\u2019s appearance."
+      }
     },
     "ServiceUnavailableException": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
@@ -367,6 +546,13 @@
       "base": "The tags to add to the resource. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
       "refs": {}
     },
+    "Tcs": {
+      "base": null,
+      "refs": {
+        "Fmtp$Tcs": "The transfer characteristic system (TCS) that is used in the video.",
+        "FmtpRequest$Tcs": "The transfer characteristic system (TCS) that is used in the video."
+      }
+    },
     "TooManyRequestsException": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
@@ -400,6 +586,14 @@
       "base": "The result of a successful UpdateFlowEntitlement request. The response includes the ARN of the flow that was updated and the updated entitlement configuration.",
       "refs": {}
     },
+    "UpdateFlowMediaStreamRequest": {
+      "base": "Update a media stream on a flow.",
+      "refs": {}
+    },
+    "UpdateFlowMediaStreamResponse": {
+      "base": "Update response",
+      "refs": {}
+    },
     "UpdateFlowOutputRequest": {
       "base": "The updates that you want to make to an existing output of an existing flow.",
       "refs": {}
@@ -417,7 +611,7 @@
       "refs": {}
     },
     "UpdateFlowSourceRequest": {
-      "base": "The settings for the updated source of the flow.",
+      "base": "The updates that you want to make to an existing source of an existing flow.",
       "refs": {}
     },
     "UpdateFlowSourceResponse": {
@@ -444,25 +638,45 @@
         "__listOfVpcInterfaceRequest$member": null
       }
     },
+    "__double": {
+      "base": null,
+      "refs": {
+        "EncodingParameters$CompressionFactor": "A value that is used to calculate compression for an output. The bitrate of the output is calculated as follows: Output bitrate = (1 / compressionFactor) * (source bitrate) This property only applies to outputs that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol. Valid values are floating point numbers in the range of 3.0 to 10.0, inclusive.",
+        "EncodingParametersRequest$CompressionFactor": "A value that is used to calculate compression for an output. The bitrate of the output is calculated as follows: Output bitrate = (1 / compressionFactor) * (source bitrate) This property only applies to outputs that use the ST 2110 JPEG XS protocol, with a flow source that uses the CDI protocol. Valid values are floating point numbers in the range of 3.0 to 10.0, inclusive."
+      }
+    },
     "__integer": {
       "base": null,
       "refs": {
+        "AddMediaStreamRequest$ClockRate": "The sample rate (in Hz) for the stream. If the media stream type is video or ancillary data, set this value to 90000. If the media stream type is audio, set this value to either 48000 or 96000.",
+        "AddMediaStreamRequest$MediaStreamId": "A unique identifier for the media stream.",
         "AddOutputRequest$Port": "The port to use when content is distributed to this output.",
+        "DestinationConfiguration$DestinationPort": "The port to use when the content of the media stream is distributed to the output.",
+        "DestinationConfigurationRequest$DestinationPort": "The port that you want MediaConnect to use when it distributes the media stream to the output.",
         "Entitlement$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "FailoverConfig$RecoveryWindow": "Search window time to look for dash-7 packets",
         "GrantEntitlementRequest$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
+        "InputConfiguration$InputPort": "The port that the flow listens on for an incoming media stream.",
+        "InputConfigurationRequest$InputPort": "The port that you want the flow to listen on for an incoming media stream.",
         "ListedEntitlement$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
+        "MediaStream$ClockRate": "The sample rate for the stream. This value is measured in Hz.",
+        "MediaStream$Fmt": "The format type number (sometimes referred to as RTP payload type) of the media stream. MediaConnect assigns this value to the media stream. For ST 2110 JPEG XS outputs, you need to provide this value to the receiver.",
+        "MediaStream$MediaStreamId": "A unique identifier for the media stream.",
         "Offering$Duration": "The length of time that your reservation would be active.",
         "Output$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "Output$Port": "The port to use when content is distributed to this output.",
         "Reservation$Duration": "The length of time that this reservation is active. MediaConnect defines this value in the offering.",
         "ResourceSpecification$ReservedBitrate": "The amount of outbound bandwidth that is discounted in the offering.",
         "SetSourceRequest$IngestPort": "The port that the flow will be listening on for incoming content.",
+        "SetSourceRequest$MaxSyncBuffer": "The size of the buffer (in milliseconds) to use to sync incoming source data.",
         "Source$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "Source$IngestPort": "The port that the flow will be listening on for incoming content.",
+        "Transport$MaxSyncBuffer": "The size of the buffer (in milliseconds) to use to sync incoming source data.",
         "UpdateFailoverConfig$RecoveryWindow": "Recovery window time to look for dash-7 packets",
+        "UpdateFlowMediaStreamRequest$ClockRate": "The sample rate (in Hz) for the stream. If the media stream type is video or ancillary data, set this value to 90000. If the media stream type is audio, set this value to either 48000 or 96000.",
         "UpdateFlowOutputRequest$Port": "The port to use when content is distributed to this output.",
         "UpdateFlowSourceRequest$IngestPort": "The port that the flow will be listening on for incoming content.",
+        "UpdateFlowSourceRequest$MaxSyncBuffer": "The size of the buffer (in milliseconds) to use to sync incoming source data.",
         "AddOutputRequest$MaxLatency": "The maximum latency in milliseconds for Zixi-based streams.",
         "AddOutputRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
         "AddOutputRequest$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
@@ -478,7 +692,15 @@
         "UpdateFlowOutputRequest$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
         "UpdateFlowSourceRequest$MaxBitrate": "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.",
         "UpdateFlowSourceRequest$MaxLatency": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.",
-        "UpdateFlowSourceRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency."
+        "UpdateFlowSourceRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "__listOf__integer$member": null
+      }
+    },
+    "__listOfAddMediaStreamRequest": {
+      "base": null,
+      "refs": {
+        "AddFlowMediaStreamsRequest$MediaStreams": "The media streams that you want to add to the flow.",
+        "CreateFlowRequest$MediaStreams": "The media streams that you want to add to the flow. You can associate these media streams with sources and outputs on the flow."
       }
     },
     "__listOfAddOutputRequest": {
@@ -486,6 +708,18 @@
       "refs": {
         "AddFlowOutputsRequest$Outputs": "A list of outputs that you want to add.",
         "CreateFlowRequest$Outputs": "The outputs that you want to add to this flow."
+      }
+    },
+    "__listOfDestinationConfiguration": {
+      "base": null,
+      "refs": {
+        "MediaStreamOutputConfiguration$DestinationConfigurations": "The transport parameters that are associated with each outbound media stream."
+      }
+    },
+    "__listOfDestinationConfigurationRequest": {
+      "base": null,
+      "refs": {
+        "MediaStreamOutputConfigurationRequest$DestinationConfigurations": "The transport parameters that you want to associate with the media stream."
       }
     },
     "__listOfEntitlement": {
@@ -502,6 +736,18 @@
         "GrantFlowEntitlementsRequest$Entitlements": "The list of entitlements that you want to grant."
       }
     },
+    "__listOfInputConfiguration": {
+      "base": null,
+      "refs": {
+        "MediaStreamSourceConfiguration$InputConfigurations": "The transport parameters that are associated with an incoming media stream."
+      }
+    },
+    "__listOfInputConfigurationRequest": {
+      "base": null,
+      "refs": {
+        "MediaStreamSourceConfigurationRequest$InputConfigurations": "The transport parameters that you want to associate with the media stream."
+      }
+    },
     "__listOfListedEntitlement": {
       "base": null,
       "refs": {
@@ -512,6 +758,39 @@
       "base": null,
       "refs": {
         "ListFlowsResponse$Flows": "A list of flow summaries."
+      }
+    },
+    "__listOfMediaStream": {
+      "base": null,
+      "refs": {
+        "AddFlowMediaStreamsResponse$MediaStreams": "The media streams that you added to the flow.",
+        "Flow$MediaStreams": "The media streams that are associated with the flow. After you associate a media stream with a source, you can also associate it with outputs on the flow."
+      }
+    },
+    "__listOfMediaStreamOutputConfiguration": {
+      "base": null,
+      "refs": {
+        "Output$MediaStreamOutputConfigurations": "The configuration for each media stream that is associated with the output."
+      }
+    },
+    "__listOfMediaStreamOutputConfigurationRequest": {
+      "base": null,
+      "refs": {
+        "AddOutputRequest$MediaStreamOutputConfigurations": "The media streams that are associated with the output, and the parameters for those associations.",
+        "UpdateFlowOutputRequest$MediaStreamOutputConfigurations": "The media streams that are associated with the output, and the parameters for those associations."
+      }
+    },
+    "__listOfMediaStreamSourceConfiguration": {
+      "base": null,
+      "refs": {
+        "Source$MediaStreamSourceConfigurations": "The media streams that are associated with the source, and the parameters for those associations."
+      }
+    },
+    "__listOfMediaStreamSourceConfigurationRequest": {
+      "base": null,
+      "refs": {
+        "SetSourceRequest$MediaStreamSourceConfigurations": "The media streams that are associated with the source, and the parameters for those associations.",
+        "UpdateFlowSourceRequest$MediaStreamSourceConfigurations": "The media streams that are associated with the source, and the parameters for those associations."
       }
     },
     "__listOfOffering": {
@@ -591,9 +870,13 @@
     "__string": {
       "base": null,
       "refs": {
+        "AddFlowMediaStreamsResponse$FlowArn": "The ARN of the flow that you added media streams to.",
         "AddFlowOutputsResponse$FlowArn": "The ARN of the flow that these outputs were added to.",
         "AddFlowSourcesResponse$FlowArn": "The ARN of the flow that these sources were added to.",
         "AddFlowVpcInterfacesResponse$FlowArn": "The ARN of the flow that these VPC interfaces were added to.",
+        "AddMediaStreamRequest$Description": "A description that can help you quickly identify what your media stream is used for.",
+        "AddMediaStreamRequest$MediaStreamName": "A name that helps you distinguish one media stream from another.",
+        "AddMediaStreamRequest$VideoFormat": "The resolution of the video.",
         "AddOutputRequest$Description": "A description of the output. This description appears only on the AWS Elemental MediaConnect console and will not be seen by the end user.",
         "AddOutputRequest$Destination": "The IP address from which video will be sent to output destinations.",
         "AddOutputRequest$Name": "The name of the output. This value must be unique within the current flow.",
@@ -602,6 +885,9 @@
         "CreateFlowRequest$AvailabilityZone": "The Availability Zone that you want to create the flow in. These options are limited to the Availability Zones within the current AWS Region.",
         "CreateFlowRequest$Name": "The name of the flow.",
         "DeleteFlowResponse$FlowArn": "The ARN of the flow that was deleted.",
+        "DestinationConfiguration$DestinationIp": "The IP address where contents of the media stream will be sent.",
+        "DestinationConfiguration$OutboundIp": "The IP address that the receiver requires in order to establish a connection with the flow. This value is represented by the elastic network interface IP address of the VPC. This field applies only to outputs that use the CDI or ST 2110 JPEG XS protocol.",
+        "DestinationConfigurationRequest$DestinationIp": "The IP address where you want MediaConnect to send contents of the media stream.",
         "Encryption$ConstantInitializationVector": "A 128-bit, 16-byte hex value represented by a 32-character string, to be used with the key for encrypting content. This parameter is not valid for static key encryption.",
         "Encryption$DeviceId": "The value of one of the devices that you configured with your digital rights management (DRM) platform key provider. This parameter is required for SPEKE encryption and is not valid for static key encryption.",
         "Encryption$Region": "The AWS Region that the API Gateway proxy endpoint was created in. This parameter is required for SPEKE encryption and is not valid for static key encryption.",
@@ -617,9 +903,18 @@
         "Flow$EgressIp": "The IP address from which video will be sent to output destinations.",
         "Flow$FlowArn": "The Amazon Resource Name (ARN), a unique identifier for any AWS resource, of the flow.",
         "Flow$Name": "The name of the flow.",
+        "Fmtp$ChannelOrder": "The format of the audio channel.",
+        "Fmtp$ExactFramerate": "The frame rate for the video stream, in frames/second. For example: 60000/1001. If you specify a whole number, MediaConnect uses a ratio of N/1. For example, if you specify 60, MediaConnect uses 60/1 as the exactFramerate.",
+        "Fmtp$Par": "The pixel aspect ratio (PAR) of the video.",
+        "FmtpRequest$ChannelOrder": "The format of the audio channel.",
+        "FmtpRequest$ExactFramerate": "The frame rate for the video stream, in frames/second. For example: 60000/1001. If you specify a whole number, MediaConnect uses a ratio of N/1. For example, if you specify 60, MediaConnect uses 60/1 as the exactFramerate.",
+        "FmtpRequest$Par": "The pixel aspect ratio (PAR) of the video.",
         "GrantEntitlementRequest$Description": "A description of the entitlement. This description appears only on the AWS Elemental MediaConnect console and will not be seen by the subscriber or end user.",
         "GrantEntitlementRequest$Name": "The name of the entitlement. This value must be unique within the current flow.",
         "GrantFlowEntitlementsResponse$FlowArn": "The ARN of the flow that these entitlements were granted to.",
+        "InputConfiguration$InputIp": "The IP address that the flow listens on for incoming content for a media stream.",
+        "Interface$Name": "The name of the VPC interface.",
+        "InterfaceRequest$Name": "The name of the VPC interface.",
         "ListEntitlementsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListEntitlements request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListEntitlements request a second time and specify the NextToken value.",
         "ListFlowsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListFlows request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListFlows request a second time and specify the NextToken value.",
         "ListOfferingsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListOfferings request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListOfferings request a second time and specify the NextToken value.",
@@ -630,6 +925,15 @@
         "ListedFlow$Description": "A description of the flow.",
         "ListedFlow$FlowArn": "The ARN of the flow.",
         "ListedFlow$Name": "The name of the flow.",
+        "MediaStream$Description": "A description that can help you quickly identify what your media stream is used for.",
+        "MediaStream$MediaStreamName": "A name that helps you distinguish one media stream from another.",
+        "MediaStream$VideoFormat": "The resolution of the video.",
+        "MediaStreamAttributes$Lang": "The audio language, in a format that is recognized by the receiver.",
+        "MediaStreamAttributesRequest$Lang": "The audio language, in a format that is recognized by the receiver.",
+        "MediaStreamOutputConfiguration$MediaStreamName": "The name of the media stream.",
+        "MediaStreamOutputConfigurationRequest$MediaStreamName": "The name of the media stream that is associated with the output.",
+        "MediaStreamSourceConfiguration$MediaStreamName": "The name of the media stream.",
+        "MediaStreamSourceConfigurationRequest$MediaStreamName": "The name of the media stream.",
         "Offering$CurrencyCode": "The type of currency that is used for billing. The currencyCode used for all reservations is US dollars.",
         "Offering$OfferingArn": "The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.",
         "Offering$OfferingDescription": "A description of the offering.",
@@ -637,12 +941,14 @@
         "Output$Description": "A description of the output.",
         "Output$Destination": "The address where you want to send the output.",
         "Output$EntitlementArn": "The ARN of the entitlement on the originator''s flow. This value is relevant only on entitled flows.",
-        "Output$ListenerAddress" : "The IP address that the receiver requires in order to establish a connection with the flow. For public networking, the ListenerAddress is represented by the elastic IP address of the flow. For private networking, the ListenerAddress is represented by the elastic network interface IP address of the VPC. This field applies only to outputs that use the Zixi pull or SRT listener protocol.",
+        "Output$ListenerAddress": "The IP address that the receiver requires in order to establish a connection with the flow. For public networking, the ListenerAddress is represented by the elastic IP address of the flow. For private networking, the ListenerAddress is represented by the elastic network interface IP address of the VPC. This field applies only to outputs that use the Zixi pull or SRT listener protocol.",
         "Output$MediaLiveInputArn": "The input ARN of the AWS Elemental MediaLive channel. This parameter is relevant only for outputs that were added by creating a MediaLive input.",
         "Output$Name": "The name of the output. This value must be unique within the current flow.",
         "Output$OutputArn": "The ARN of the output.",
         "PurchaseOfferingRequest$ReservationName": "The name that you want to use for the reservation.",
         "PurchaseOfferingRequest$Start": "The date and time that you want the reservation to begin, in Coordinated Universal Time (UTC). You can specify any date and time between 12:00am on the first day of the current month to the current time on today's date, inclusive. Specify the start in a 24-hour notation. Use the following format: YYYY-MM-DDTHH:mm:SSZ, where T and Z are literal characters. For example, to specify 11:30pm on March 5, 2020, enter 2020-03-05T23:30:00Z.",
+        "RemoveFlowMediaStreamResponse$FlowArn": "The Amazon Resource Name (ARN) of the flow.",
+        "RemoveFlowMediaStreamResponse$MediaStreamName": "The name of the media stream that was removed.",
         "RemoveFlowOutputResponse$FlowArn": "The ARN of the flow that is associated with the output you removed.",
         "RemoveFlowOutputResponse$OutputArn": "The ARN of the output that was removed.",
         "RemoveFlowSourceResponse$FlowArn": "The ARN of the flow that is associated with the source you removed.",
@@ -671,7 +977,7 @@
         "Source$IngestIp": "The IP address that the flow will be listening on for incoming content.",
         "Source$Name": "The name of the source.",
         "Source$SourceArn": "The ARN of the source.",
-        "Source$VpcInterfaceName": "The name of the VPC Interface this Source is configured with.",
+        "Source$VpcInterfaceName": "The name of the VPC interface that is used for this source.",
         "Source$WhitelistCidr": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.",
         "StartFlowResponse$FlowArn": "The ARN of the flow that you started.",
         "StopFlowResponse$FlowArn": "The ARN of the flow that you stopped.",
@@ -686,6 +992,9 @@
         "UpdateEncryption$Url": "The URL from the API Gateway proxy that you set up to talk to your key server. This parameter is required for SPEKE encryption and is not valid for static key encryption.",
         "UpdateFlowEntitlementRequest$Description": "A description of the entitlement. This description appears only on the AWS Elemental MediaConnect console and will not be seen by the subscriber or end user.",
         "UpdateFlowEntitlementResponse$FlowArn": "The ARN of the flow that this entitlement was granted on.",
+        "UpdateFlowMediaStreamRequest$Description": "Description",
+        "UpdateFlowMediaStreamRequest$VideoFormat": "The resolution of the video.",
+        "UpdateFlowMediaStreamResponse$FlowArn": "The ARN of the flow that is associated with the media stream that you updated.",
         "UpdateFlowOutputRequest$Description": "A description of the output. This description appears only on the AWS Elemental MediaConnect console and will not be seen by the end user.",
         "UpdateFlowOutputRequest$Destination": "The IP address where you want to send the output.",
         "UpdateFlowOutputRequest$RemoteId": "The remote ID for the Zixi-pull stream.",
@@ -694,7 +1003,7 @@
         "UpdateFlowSourceRequest$Description": "A description for the source. This value is not used or seen outside of the current AWS Elemental MediaConnect account.",
         "UpdateFlowSourceRequest$EntitlementArn": "The ARN of the entitlement that allows you to subscribe to this flow. The entitlement is set by the flow originator, and the ARN is generated as part of the originator's flow.",
         "UpdateFlowSourceRequest$StreamId": "The stream ID that you want to use for this transport. This parameter applies only to Zixi-based streams.",
-        "UpdateFlowSourceRequest$VpcInterfaceName": "The name of the VPC Interface to configure this Source with.",
+        "UpdateFlowSourceRequest$VpcInterfaceName": "The name of the VPC interface to use for this source.",
         "UpdateFlowSourceRequest$WhitelistCidr": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.",
         "UpdateFlowSourceResponse$FlowArn": "The ARN of the flow that you want to update.",
         "VpcInterface$Name": "Immutable and has to be a unique against other VpcInterfaces in this Flow",

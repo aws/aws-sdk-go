@@ -9445,7 +9445,7 @@ type CreateCacheClusterInput struct {
 	// For clusters running Redis, this value must be 1. For clusters running Memcached,
 	// this value must be between 1 and 40.
 	//
-	// If you need more than 20 nodes for your Memcached cluster, please fill out
+	// If you need more than 40 nodes for your Memcached cluster, please fill out
 	// the ElastiCache Limit Increase Request form at http://aws.amazon.com/contact-us/elasticache-node-limit-request/
 	// (http://aws.amazon.com/contact-us/elasticache-node-limit-request/).
 	NumCacheNodes *int64 `type:"integer"`
@@ -10502,7 +10502,7 @@ type CreateReplicationGroupInput struct {
 	// an AuthToken, and a CacheSubnetGroup.
 	TransitEncryptionEnabled *bool `type:"boolean"`
 
-	// The list of user groups to associate with the replication group.
+	// The user group to associate with the replication group.
 	UserGroupIds []*string `min:"1" type:"list"`
 }
 
@@ -16252,11 +16252,11 @@ type ModifyReplicationGroupInput struct {
 	// groups.
 	SnapshottingClusterId *string `type:"string"`
 
-	// A list of user group IDs.
+	// The user group you are associating with the replication group.
 	UserGroupIdsToAdd []*string `type:"list"`
 
-	// A list of users groups to remove, meaning the users in the group no longer
-	// can access thereplication group.
+	// The user group to remove, meaning the users in the group no longer can access
+	// the replication group.
 	UserGroupIdsToRemove []*string `type:"list"`
 }
 

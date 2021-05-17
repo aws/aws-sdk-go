@@ -1116,7 +1116,7 @@
         "Authentication$PasswordCount": "<p>The number of passwords belonging to the user. The maximum is two.</p>",
         "CacheCluster$NumCacheNodes": "<p>The number of cache nodes in the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p>",
         "CacheCluster$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <important> <p> If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.</p> </important>",
-        "CreateCacheClusterMessage$NumCacheNodes": "<p>The initial number of cache nodes that the cluster has.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p> <p>If you need more than 20 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at <a href=\"http://aws.amazon.com/contact-us/elasticache-node-limit-request/\">http://aws.amazon.com/contact-us/elasticache-node-limit-request/</a>.</p>",
+        "CreateCacheClusterMessage$NumCacheNodes": "<p>The initial number of cache nodes that the cluster has.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.</p> <p>If you need more than 40 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at <a href=\"http://aws.amazon.com/contact-us/elasticache-node-limit-request/\">http://aws.amazon.com/contact-us/elasticache-node-limit-request/</a>.</p>",
         "CreateCacheClusterMessage$Port": "<p>The port number on which each of the cache nodes accepts connections.</p>",
         "CreateCacheClusterMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot taken today is retained for 5 days before being deleted.</p> <note> <p>This parameter is only valid if the <code>Engine</code> parameter is <code>redis</code>.</p> </note> <p>Default: 0 (i.e., automatic backups are disabled for this cache cluster).</p>",
         "CreateReplicationGroupMessage$NumCacheClusters": "<p>The number of clusters this replication group initially has.</p> <p>This parameter is not used if there is more than one node group (shard). You should use <code>ReplicasPerNodeGroup</code> instead.</p> <p>If <code>AutomaticFailoverEnabled</code> is <code>true</code>, the value of this parameter must be at least 2. If <code>AutomaticFailoverEnabled</code> is <code>false</code> you can omit this parameter (it will default to 1), or you can explicitly set it to a value between 2 and 6.</p> <p>The maximum permitted value for <code>NumCacheClusters</code> is 6 (1 primary plus 5 replicas).</p>",
@@ -2590,8 +2590,8 @@
     "UserGroupIdList": {
       "base": null,
       "refs": {
-        "ModifyReplicationGroupMessage$UserGroupIdsToAdd": "<p>A list of user group IDs.</p>",
-        "ModifyReplicationGroupMessage$UserGroupIdsToRemove": "<p>A list of users groups to remove, meaning the users in the group no longer can access thereplication group.</p>",
+        "ModifyReplicationGroupMessage$UserGroupIdsToAdd": "<p>The user group you are associating with the replication group.</p>",
+        "ModifyReplicationGroupMessage$UserGroupIdsToRemove": "<p>The user group to remove, meaning the users in the group no longer can access the replication group.</p>",
         "ReplicationGroup$UserGroupIds": "<p>The list of user group IDs that have access to the replication group.</p>",
         "User$UserGroupIds": "<p>Returns a list of the user group IDs the user belongs to.</p>",
         "UserGroupsUpdateStatus$UserGroupIdsToAdd": "<p>The list of user group IDs to add.</p>",
@@ -2601,7 +2601,7 @@
     "UserGroupIdListInput": {
       "base": null,
       "refs": {
-        "CreateReplicationGroupMessage$UserGroupIds": "<p>The list of user groups to associate with the replication group.</p>"
+        "CreateReplicationGroupMessage$UserGroupIds": "<p>The user group to associate with the replication group.</p>"
       }
     },
     "UserGroupList": {
