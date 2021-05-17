@@ -60,6 +60,8 @@ func (c *AugmentedAIRuntime) DeleteHumanLoopRequest(input *DeleteHumanLoopInput)
 //
 // Deletes the specified human loop for a flow definition.
 //
+// If the human loop was deleted, this operation will return a ResourceNotFoundException.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -72,7 +74,9 @@ func (c *AugmentedAIRuntime) DeleteHumanLoopRequest(input *DeleteHumanLoopInput)
 //   The request isn't valid. Check the syntax and try again.
 //
 //   * ResourceNotFoundException
-//   We couldn't find the requested resource.
+//   We couldn't find the requested resource. Check that your resources exists
+//   and were created in the same AWS Region as your request, and try your request
+//   again.
 //
 //   * ThrottlingException
 //   You exceeded the maximum number of requests.
@@ -147,7 +151,8 @@ func (c *AugmentedAIRuntime) DescribeHumanLoopRequest(input *DescribeHumanLoopIn
 
 // DescribeHumanLoop API operation for Amazon Augmented AI Runtime.
 //
-// Returns information about the specified human loop.
+// Returns information about the specified human loop. If the human loop was
+// deleted, this operation will return a ResourceNotFoundException error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -161,7 +166,9 @@ func (c *AugmentedAIRuntime) DescribeHumanLoopRequest(input *DescribeHumanLoopIn
 //   The request isn't valid. Check the syntax and try again.
 //
 //   * ResourceNotFoundException
-//   We couldn't find the requested resource.
+//   We couldn't find the requested resource. Check that your resources exists
+//   and were created in the same AWS Region as your request, and try your request
+//   again.
 //
 //   * ThrottlingException
 //   You exceeded the maximum number of requests.
@@ -257,7 +264,9 @@ func (c *AugmentedAIRuntime) ListHumanLoopsRequest(input *ListHumanLoopsInput) (
 //   The request isn't valid. Check the syntax and try again.
 //
 //   * ResourceNotFoundException
-//   We couldn't find the requested resource.
+//   We couldn't find the requested resource. Check that your resources exists
+//   and were created in the same AWS Region as your request, and try your request
+//   again.
 //
 //   * ThrottlingException
 //   You exceeded the maximum number of requests.
@@ -401,8 +410,14 @@ func (c *AugmentedAIRuntime) StartHumanLoopRequest(input *StartHumanLoopInput) (
 //   You exceeded the maximum number of requests.
 //
 //   * ServiceQuotaExceededException
-//   You exceeded your service quota. Delete some resources or request an increase
-//   in your service quota.
+//   You exceeded your service quota. Service quotas, also referred to as limits,
+//   are the maximum number of service resources or operations for your AWS account.
+//   For a list of Amazon A2I service quotes, see Amazon Augmented AI Service
+//   Quotes (https://docs.aws.amazon.com/general/latest/gr/a2i.html). Delete some
+//   resources or request an increase in your service quota. You can request a
+//   quota increase using Service Quotas or the AWS Support Center. To request
+//   an increase, see AWS Service Quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+//   in the AWS General Reference.
 //
 //   * InternalServerException
 //   We couldn't process your request because of an issue with the server. Try
@@ -494,7 +509,9 @@ func (c *AugmentedAIRuntime) StopHumanLoopRequest(input *StopHumanLoopInput) (re
 //   The request isn't valid. Check the syntax and try again.
 //
 //   * ResourceNotFoundException
-//   We couldn't find the requested resource.
+//   We couldn't find the requested resource. Check that your resources exists
+//   and were created in the same AWS Region as your request, and try your request
+//   again.
 //
 //   * ThrottlingException
 //   You exceeded the maximum number of requests.
@@ -688,6 +705,8 @@ type DescribeHumanLoopOutput struct {
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// A failure code that identifies the type of failure.
+	//
+	// Possible values: ValidationError, Expired, InternalError
 	FailureCode *string `type:"string"`
 
 	// The reason why a human loop failed. The failure reason is returned when the
@@ -1132,7 +1151,9 @@ func (s *ListHumanLoopsOutput) SetNextToken(v string) *ListHumanLoopsOutput {
 	return s
 }
 
-// We couldn't find the requested resource.
+// We couldn't find the requested resource. Check that your resources exists
+// and were created in the same AWS Region as your request, and try your request
+// again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -1188,8 +1209,14 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You exceeded your service quota. Delete some resources or request an increase
-// in your service quota.
+// You exceeded your service quota. Service quotas, also referred to as limits,
+// are the maximum number of service resources or operations for your AWS account.
+// For a list of Amazon A2I service quotes, see Amazon Augmented AI Service
+// Quotes (https://docs.aws.amazon.com/general/latest/gr/a2i.html). Delete some
+// resources or request an increase in your service quota. You can request a
+// quota increase using Service Quotas or the AWS Support Center. To request
+// an increase, see AWS Service Quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// in the AWS General Reference.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

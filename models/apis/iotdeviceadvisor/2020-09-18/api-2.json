@@ -121,18 +121,6 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
-    "ListTestCases":{
-      "name":"ListTestCases",
-      "http":{
-        "method":"GET",
-        "requestUri":"/testCases"
-      },
-      "input":{"shape":"ListTestCasesRequest"},
-      "output":{"shape":"ListTestCasesResponse"},
-      "errors":[
-        {"shape":"InternalServerException"}
-      ]
-    },
     "StartSuiteRun":{
       "name":"StartSuiteRun",
       "http":{
@@ -145,6 +133,20 @@
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"ConflictException"}
+      ]
+    },
+    "StopSuiteRun":{
+      "name":"StopSuiteRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/suiteDefinitions/{suiteDefinitionId}/suiteRuns/{suiteRunId}/stop"
+      },
+      "input":{"shape":"StopSuiteRunRequest"},
+      "output":{"shape":"StopSuiteRunResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "TagResource":{
@@ -195,8 +197,6 @@
       "max":2048,
       "min":20
     },
-    "CategoryName":{"type":"string"},
-    "ConfigString":{"type":"string"},
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -435,35 +435,6 @@
         "tags":{"shape":"TagMap"}
       }
     },
-    "ListTestCasesRequest":{
-      "type":"structure",
-      "members":{
-        "intendedForQualification":{
-          "shape":"IntendedForQualificationBoolean",
-          "location":"querystring",
-          "locationName":"intendedForQualification"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
-        },
-        "nextToken":{
-          "shape":"Token",
-          "location":"querystring",
-          "locationName":"nextToken"
-        }
-      }
-    },
-    "ListTestCasesResponse":{
-      "type":"structure",
-      "members":{
-        "categories":{"shape":"TestCategory"},
-        "rootGroupConfiguration":{"shape":"TestConfiguration"},
-        "groupConfiguration":{"shape":"TestConfiguration"},
-        "nextToken":{"shape":"Token"}
-      }
-    },
     "LogUrl":{"type":"string"},
     "MaxResults":{
       "type":"integer",
@@ -525,9 +496,35 @@
         "CANCELED",
         "PENDING",
         "RUNNING",
+        "STOPPING",
+        "STOPPED",
         "PASS_WITH_WARNINGS",
         "ERROR"
       ]
+    },
+    "StopSuiteRunRequest":{
+      "type":"structure",
+      "required":[
+        "suiteDefinitionId",
+        "suiteRunId"
+      ],
+      "members":{
+        "suiteDefinitionId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"suiteDefinitionId"
+        },
+        "suiteRunId":{
+          "shape":"UUID",
+          "location":"uri",
+          "locationName":"suiteRunId"
+        }
+      }
+    },
+    "StopSuiteRunResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "String128":{
       "type":"string",
@@ -577,7 +574,6 @@
       "type":"structure",
       "members":{
         "primaryDevice":{"shape":"DeviceUnderTest"},
-        "secondaryDevice":{"shape":"DeviceUnderTest"},
         "selectedTestList":{"shape":"SelectedTestList"}
       }
     },
@@ -609,6 +605,8 @@
         "CANCELED",
         "PENDING",
         "RUNNING",
+        "STOPPING",
+        "STOPPED",
         "PASS_WITH_WARNINGS",
         "ERROR"
       ]
@@ -650,34 +648,7 @@
       "members":{
       }
     },
-    "TestCase":{
-      "type":"structure",
-      "members":{
-        "name":{"shape":"TestCaseName"},
-        "configuration":{"shape":"TestConfiguration"},
-        "test":{"shape":"TestCaseDefinition"}
-      }
-    },
-    "TestCaseCategory":{
-      "type":"structure",
-      "members":{
-        "name":{"shape":"CategoryName"},
-        "tests":{"shape":"TestCaseList"}
-      }
-    },
-    "TestCaseDefinition":{
-      "type":"structure",
-      "members":{
-        "id":{"shape":"TestCaseName"},
-        "testCaseVersion":{"shape":"TestCaseVersion"}
-      }
-    },
     "TestCaseDefinitionName":{"type":"string"},
-    "TestCaseList":{
-      "type":"list",
-      "member":{"shape":"TestCase"}
-    },
-    "TestCaseName":{"type":"string"},
     "TestCaseRun":{
       "type":"structure",
       "members":{
@@ -696,16 +667,6 @@
       "type":"list",
       "member":{"shape":"TestCaseRun"}
     },
-    "TestCaseVersion":{"type":"string"},
-    "TestCategory":{
-      "type":"list",
-      "member":{"shape":"TestCaseCategory"}
-    },
-    "TestConfiguration":{
-      "type":"map",
-      "key":{"shape":"ConfigString"},
-      "value":{"shape":"ConfigString"}
-    },
     "TestResult":{
       "type":"structure",
       "members":{
@@ -720,7 +681,7 @@
     "UUID":{
       "type":"string",
       "max":36,
-      "min":36
+      "min":12
     },
     "UntagResourceRequest":{
       "type":"structure",

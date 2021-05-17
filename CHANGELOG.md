@@ -1,3 +1,16 @@
+Release v1.38.41 (2021-05-17)
+===
+
+### Service Client Updates
+* `service/applicationcostprofiler`: Adds new service
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for elasticache
+* `service/iotdeviceadvisor`: Updates service API, documentation, and paginators
+* `service/mediaconnect`: Updates service API and documentation
+* `service/neptune`: Updates service API, documentation, and paginators
+  * Neptune support for CopyTagsToSnapshots
+* `service/sagemaker-a2i-runtime`: Updates service documentation
+
 Release v1.38.40 (2021-05-14)
 ===
 

@@ -163,9 +163,15 @@ type NeptuneAPI interface {
 	DescribeDBClusterParameterGroupsWithContext(aws.Context, *neptune.DescribeDBClusterParameterGroupsInput, ...request.Option) (*neptune.DescribeDBClusterParameterGroupsOutput, error)
 	DescribeDBClusterParameterGroupsRequest(*neptune.DescribeDBClusterParameterGroupsInput) (*request.Request, *neptune.DescribeDBClusterParameterGroupsOutput)
 
+	DescribeDBClusterParameterGroupsPages(*neptune.DescribeDBClusterParameterGroupsInput, func(*neptune.DescribeDBClusterParameterGroupsOutput, bool) bool) error
+	DescribeDBClusterParameterGroupsPagesWithContext(aws.Context, *neptune.DescribeDBClusterParameterGroupsInput, func(*neptune.DescribeDBClusterParameterGroupsOutput, bool) bool, ...request.Option) error
+
 	DescribeDBClusterParameters(*neptune.DescribeDBClusterParametersInput) (*neptune.DescribeDBClusterParametersOutput, error)
 	DescribeDBClusterParametersWithContext(aws.Context, *neptune.DescribeDBClusterParametersInput, ...request.Option) (*neptune.DescribeDBClusterParametersOutput, error)
 	DescribeDBClusterParametersRequest(*neptune.DescribeDBClusterParametersInput) (*request.Request, *neptune.DescribeDBClusterParametersOutput)
+
+	DescribeDBClusterParametersPages(*neptune.DescribeDBClusterParametersInput, func(*neptune.DescribeDBClusterParametersOutput, bool) bool) error
+	DescribeDBClusterParametersPagesWithContext(aws.Context, *neptune.DescribeDBClusterParametersInput, func(*neptune.DescribeDBClusterParametersOutput, bool) bool, ...request.Option) error
 
 	DescribeDBClusterSnapshotAttributes(*neptune.DescribeDBClusterSnapshotAttributesInput) (*neptune.DescribeDBClusterSnapshotAttributesOutput, error)
 	DescribeDBClusterSnapshotAttributesWithContext(aws.Context, *neptune.DescribeDBClusterSnapshotAttributesInput, ...request.Option) (*neptune.DescribeDBClusterSnapshotAttributesOutput, error)
@@ -175,9 +181,15 @@ type NeptuneAPI interface {
 	DescribeDBClusterSnapshotsWithContext(aws.Context, *neptune.DescribeDBClusterSnapshotsInput, ...request.Option) (*neptune.DescribeDBClusterSnapshotsOutput, error)
 	DescribeDBClusterSnapshotsRequest(*neptune.DescribeDBClusterSnapshotsInput) (*request.Request, *neptune.DescribeDBClusterSnapshotsOutput)
 
+	DescribeDBClusterSnapshotsPages(*neptune.DescribeDBClusterSnapshotsInput, func(*neptune.DescribeDBClusterSnapshotsOutput, bool) bool) error
+	DescribeDBClusterSnapshotsPagesWithContext(aws.Context, *neptune.DescribeDBClusterSnapshotsInput, func(*neptune.DescribeDBClusterSnapshotsOutput, bool) bool, ...request.Option) error
+
 	DescribeDBClusters(*neptune.DescribeDBClustersInput) (*neptune.DescribeDBClustersOutput, error)
 	DescribeDBClustersWithContext(aws.Context, *neptune.DescribeDBClustersInput, ...request.Option) (*neptune.DescribeDBClustersOutput, error)
 	DescribeDBClustersRequest(*neptune.DescribeDBClustersInput) (*request.Request, *neptune.DescribeDBClustersOutput)
+
+	DescribeDBClustersPages(*neptune.DescribeDBClustersInput, func(*neptune.DescribeDBClustersOutput, bool) bool) error
+	DescribeDBClustersPagesWithContext(aws.Context, *neptune.DescribeDBClustersInput, func(*neptune.DescribeDBClustersOutput, bool) bool, ...request.Option) error
 
 	DescribeDBEngineVersions(*neptune.DescribeDBEngineVersionsInput) (*neptune.DescribeDBEngineVersionsOutput, error)
 	DescribeDBEngineVersionsWithContext(aws.Context, *neptune.DescribeDBEngineVersionsInput, ...request.Option) (*neptune.DescribeDBEngineVersionsOutput, error)
@@ -253,6 +265,9 @@ type NeptuneAPI interface {
 	DescribePendingMaintenanceActions(*neptune.DescribePendingMaintenanceActionsInput) (*neptune.DescribePendingMaintenanceActionsOutput, error)
 	DescribePendingMaintenanceActionsWithContext(aws.Context, *neptune.DescribePendingMaintenanceActionsInput, ...request.Option) (*neptune.DescribePendingMaintenanceActionsOutput, error)
 	DescribePendingMaintenanceActionsRequest(*neptune.DescribePendingMaintenanceActionsInput) (*request.Request, *neptune.DescribePendingMaintenanceActionsOutput)
+
+	DescribePendingMaintenanceActionsPages(*neptune.DescribePendingMaintenanceActionsInput, func(*neptune.DescribePendingMaintenanceActionsOutput, bool) bool) error
+	DescribePendingMaintenanceActionsPagesWithContext(aws.Context, *neptune.DescribePendingMaintenanceActionsInput, func(*neptune.DescribePendingMaintenanceActionsOutput, bool) bool, ...request.Option) error
 
 	DescribeValidDBInstanceModifications(*neptune.DescribeValidDBInstanceModificationsInput) (*neptune.DescribeValidDBInstanceModificationsOutput, error)
 	DescribeValidDBInstanceModificationsWithContext(aws.Context, *neptune.DescribeValidDBInstanceModificationsInput, ...request.Option) (*neptune.DescribeValidDBInstanceModificationsOutput, error)
