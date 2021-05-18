@@ -140,3 +140,10 @@ source_profile = multiple_assume_role_with_credential_source
 [profile source_sso_and_assume]
 role_arn = source_sso_and_assume_arn
 source_profile = sso_and_assume
+
+[profile sso_mixed_credproc]
+sso_account_id = 012345678901
+sso_region = us-west-2
+sso_role_name = TestRole
+sso_start_url = https://127.0.0.1/start
+credential_process = /path/to/process

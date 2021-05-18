@@ -261,7 +261,38 @@ func TestLoadSharedConfig(t *testing.T) {
 		{
 			Filenames: []string{testConfigFilename},
 			Profile:   "source_sso_and_assume",
-			Err:       fmt.Errorf("only one credential type may be specified per profile"),
+			Expected: sharedConfig{
+				Profile:           "source_sso_and_assume",
+				RoleARN:           "source_sso_and_assume_arn",
+				SourceProfileName: "sso_and_assume",
+				SourceProfile: &sharedConfig{
+					Profile:           "sso_and_assume",
+					RoleARN:           "sso_with_assume_role_arn",
+					SourceProfileName: "multiple_assume_role_with_credential_source",
+					SourceProfile: &sharedConfig{
+						Profile:           "multiple_assume_role_with_credential_source",
+						RoleARN:           "multiple_assume_role_with_credential_source_role_arn",
+						SourceProfileName: "assume_role_with_credential_source",
+						SourceProfile: &sharedConfig{
+							Profile:          "assume_role_with_credential_source",
+							RoleARN:          "assume_role_with_credential_source_role_arn",
+							CredentialSource: credSourceEc2Metadata,
+						},
+					},
+				},
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "sso_mixed_credproc",
+			Expected: sharedConfig{
+				Profile:           "sso_mixed_credproc",
+				SSOAccountID:      "012345678901",
+				SSORegion:         "us-west-2",
+				SSORoleName:       "TestRole",
+				SSOStartURL:       "https://127.0.0.1/start",
+				CredentialProcess: "/path/to/process",
+			},
 		},
 	}
 
