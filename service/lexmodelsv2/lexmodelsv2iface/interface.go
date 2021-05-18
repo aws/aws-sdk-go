@@ -80,6 +80,10 @@ type LexModelsV2API interface {
 	CreateBotVersionWithContext(aws.Context, *lexmodelsv2.CreateBotVersionInput, ...request.Option) (*lexmodelsv2.CreateBotVersionOutput, error)
 	CreateBotVersionRequest(*lexmodelsv2.CreateBotVersionInput) (*request.Request, *lexmodelsv2.CreateBotVersionOutput)
 
+	CreateExport(*lexmodelsv2.CreateExportInput) (*lexmodelsv2.CreateExportOutput, error)
+	CreateExportWithContext(aws.Context, *lexmodelsv2.CreateExportInput, ...request.Option) (*lexmodelsv2.CreateExportOutput, error)
+	CreateExportRequest(*lexmodelsv2.CreateExportInput) (*request.Request, *lexmodelsv2.CreateExportOutput)
+
 	CreateIntent(*lexmodelsv2.CreateIntentInput) (*lexmodelsv2.CreateIntentOutput, error)
 	CreateIntentWithContext(aws.Context, *lexmodelsv2.CreateIntentInput, ...request.Option) (*lexmodelsv2.CreateIntentOutput, error)
 	CreateIntentRequest(*lexmodelsv2.CreateIntentInput) (*request.Request, *lexmodelsv2.CreateIntentOutput)
@@ -91,6 +95,10 @@ type LexModelsV2API interface {
 	CreateSlotType(*lexmodelsv2.CreateSlotTypeInput) (*lexmodelsv2.CreateSlotTypeOutput, error)
 	CreateSlotTypeWithContext(aws.Context, *lexmodelsv2.CreateSlotTypeInput, ...request.Option) (*lexmodelsv2.CreateSlotTypeOutput, error)
 	CreateSlotTypeRequest(*lexmodelsv2.CreateSlotTypeInput) (*request.Request, *lexmodelsv2.CreateSlotTypeOutput)
+
+	CreateUploadUrl(*lexmodelsv2.CreateUploadUrlInput) (*lexmodelsv2.CreateUploadUrlOutput, error)
+	CreateUploadUrlWithContext(aws.Context, *lexmodelsv2.CreateUploadUrlInput, ...request.Option) (*lexmodelsv2.CreateUploadUrlOutput, error)
+	CreateUploadUrlRequest(*lexmodelsv2.CreateUploadUrlInput) (*request.Request, *lexmodelsv2.CreateUploadUrlOutput)
 
 	DeleteBot(*lexmodelsv2.DeleteBotInput) (*lexmodelsv2.DeleteBotOutput, error)
 	DeleteBotWithContext(aws.Context, *lexmodelsv2.DeleteBotInput, ...request.Option) (*lexmodelsv2.DeleteBotOutput, error)
@@ -107,6 +115,14 @@ type LexModelsV2API interface {
 	DeleteBotVersion(*lexmodelsv2.DeleteBotVersionInput) (*lexmodelsv2.DeleteBotVersionOutput, error)
 	DeleteBotVersionWithContext(aws.Context, *lexmodelsv2.DeleteBotVersionInput, ...request.Option) (*lexmodelsv2.DeleteBotVersionOutput, error)
 	DeleteBotVersionRequest(*lexmodelsv2.DeleteBotVersionInput) (*request.Request, *lexmodelsv2.DeleteBotVersionOutput)
+
+	DeleteExport(*lexmodelsv2.DeleteExportInput) (*lexmodelsv2.DeleteExportOutput, error)
+	DeleteExportWithContext(aws.Context, *lexmodelsv2.DeleteExportInput, ...request.Option) (*lexmodelsv2.DeleteExportOutput, error)
+	DeleteExportRequest(*lexmodelsv2.DeleteExportInput) (*request.Request, *lexmodelsv2.DeleteExportOutput)
+
+	DeleteImport(*lexmodelsv2.DeleteImportInput) (*lexmodelsv2.DeleteImportOutput, error)
+	DeleteImportWithContext(aws.Context, *lexmodelsv2.DeleteImportInput, ...request.Option) (*lexmodelsv2.DeleteImportOutput, error)
+	DeleteImportRequest(*lexmodelsv2.DeleteImportInput) (*request.Request, *lexmodelsv2.DeleteImportOutput)
 
 	DeleteIntent(*lexmodelsv2.DeleteIntentInput) (*lexmodelsv2.DeleteIntentOutput, error)
 	DeleteIntentWithContext(aws.Context, *lexmodelsv2.DeleteIntentInput, ...request.Option) (*lexmodelsv2.DeleteIntentOutput, error)
@@ -135,6 +151,14 @@ type LexModelsV2API interface {
 	DescribeBotVersion(*lexmodelsv2.DescribeBotVersionInput) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionWithContext(aws.Context, *lexmodelsv2.DescribeBotVersionInput, ...request.Option) (*lexmodelsv2.DescribeBotVersionOutput, error)
 	DescribeBotVersionRequest(*lexmodelsv2.DescribeBotVersionInput) (*request.Request, *lexmodelsv2.DescribeBotVersionOutput)
+
+	DescribeExport(*lexmodelsv2.DescribeExportInput) (*lexmodelsv2.DescribeExportOutput, error)
+	DescribeExportWithContext(aws.Context, *lexmodelsv2.DescribeExportInput, ...request.Option) (*lexmodelsv2.DescribeExportOutput, error)
+	DescribeExportRequest(*lexmodelsv2.DescribeExportInput) (*request.Request, *lexmodelsv2.DescribeExportOutput)
+
+	DescribeImport(*lexmodelsv2.DescribeImportInput) (*lexmodelsv2.DescribeImportOutput, error)
+	DescribeImportWithContext(aws.Context, *lexmodelsv2.DescribeImportInput, ...request.Option) (*lexmodelsv2.DescribeImportOutput, error)
+	DescribeImportRequest(*lexmodelsv2.DescribeImportInput) (*request.Request, *lexmodelsv2.DescribeImportOutput)
 
 	DescribeIntent(*lexmodelsv2.DescribeIntentInput) (*lexmodelsv2.DescribeIntentOutput, error)
 	DescribeIntentWithContext(aws.Context, *lexmodelsv2.DescribeIntentInput, ...request.Option) (*lexmodelsv2.DescribeIntentOutput, error)
@@ -190,6 +214,20 @@ type LexModelsV2API interface {
 	ListBuiltInSlotTypesPages(*lexmodelsv2.ListBuiltInSlotTypesInput, func(*lexmodelsv2.ListBuiltInSlotTypesOutput, bool) bool) error
 	ListBuiltInSlotTypesPagesWithContext(aws.Context, *lexmodelsv2.ListBuiltInSlotTypesInput, func(*lexmodelsv2.ListBuiltInSlotTypesOutput, bool) bool, ...request.Option) error
 
+	ListExports(*lexmodelsv2.ListExportsInput) (*lexmodelsv2.ListExportsOutput, error)
+	ListExportsWithContext(aws.Context, *lexmodelsv2.ListExportsInput, ...request.Option) (*lexmodelsv2.ListExportsOutput, error)
+	ListExportsRequest(*lexmodelsv2.ListExportsInput) (*request.Request, *lexmodelsv2.ListExportsOutput)
+
+	ListExportsPages(*lexmodelsv2.ListExportsInput, func(*lexmodelsv2.ListExportsOutput, bool) bool) error
+	ListExportsPagesWithContext(aws.Context, *lexmodelsv2.ListExportsInput, func(*lexmodelsv2.ListExportsOutput, bool) bool, ...request.Option) error
+
+	ListImports(*lexmodelsv2.ListImportsInput) (*lexmodelsv2.ListImportsOutput, error)
+	ListImportsWithContext(aws.Context, *lexmodelsv2.ListImportsInput, ...request.Option) (*lexmodelsv2.ListImportsOutput, error)
+	ListImportsRequest(*lexmodelsv2.ListImportsInput) (*request.Request, *lexmodelsv2.ListImportsOutput)
+
+	ListImportsPages(*lexmodelsv2.ListImportsInput, func(*lexmodelsv2.ListImportsOutput, bool) bool) error
+	ListImportsPagesWithContext(aws.Context, *lexmodelsv2.ListImportsInput, func(*lexmodelsv2.ListImportsOutput, bool) bool, ...request.Option) error
+
 	ListIntents(*lexmodelsv2.ListIntentsInput) (*lexmodelsv2.ListIntentsOutput, error)
 	ListIntentsWithContext(aws.Context, *lexmodelsv2.ListIntentsInput, ...request.Option) (*lexmodelsv2.ListIntentsOutput, error)
 	ListIntentsRequest(*lexmodelsv2.ListIntentsInput) (*request.Request, *lexmodelsv2.ListIntentsOutput)
@@ -215,6 +253,10 @@ type LexModelsV2API interface {
 	ListTagsForResourceWithContext(aws.Context, *lexmodelsv2.ListTagsForResourceInput, ...request.Option) (*lexmodelsv2.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*lexmodelsv2.ListTagsForResourceInput) (*request.Request, *lexmodelsv2.ListTagsForResourceOutput)
 
+	StartImport(*lexmodelsv2.StartImportInput) (*lexmodelsv2.StartImportOutput, error)
+	StartImportWithContext(aws.Context, *lexmodelsv2.StartImportInput, ...request.Option) (*lexmodelsv2.StartImportOutput, error)
+	StartImportRequest(*lexmodelsv2.StartImportInput) (*request.Request, *lexmodelsv2.StartImportOutput)
+
 	TagResource(*lexmodelsv2.TagResourceInput) (*lexmodelsv2.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *lexmodelsv2.TagResourceInput, ...request.Option) (*lexmodelsv2.TagResourceOutput, error)
 	TagResourceRequest(*lexmodelsv2.TagResourceInput) (*request.Request, *lexmodelsv2.TagResourceOutput)
@@ -234,6 +276,10 @@ type LexModelsV2API interface {
 	UpdateBotLocale(*lexmodelsv2.UpdateBotLocaleInput) (*lexmodelsv2.UpdateBotLocaleOutput, error)
 	UpdateBotLocaleWithContext(aws.Context, *lexmodelsv2.UpdateBotLocaleInput, ...request.Option) (*lexmodelsv2.UpdateBotLocaleOutput, error)
 	UpdateBotLocaleRequest(*lexmodelsv2.UpdateBotLocaleInput) (*request.Request, *lexmodelsv2.UpdateBotLocaleOutput)
+
+	UpdateExport(*lexmodelsv2.UpdateExportInput) (*lexmodelsv2.UpdateExportOutput, error)
+	UpdateExportWithContext(aws.Context, *lexmodelsv2.UpdateExportInput, ...request.Option) (*lexmodelsv2.UpdateExportOutput, error)
+	UpdateExportRequest(*lexmodelsv2.UpdateExportInput) (*request.Request, *lexmodelsv2.UpdateExportOutput)
 
 	UpdateIntent(*lexmodelsv2.UpdateIntentInput) (*lexmodelsv2.UpdateIntentOutput, error)
 	UpdateIntentWithContext(aws.Context, *lexmodelsv2.UpdateIntentInput, ...request.Option) (*lexmodelsv2.UpdateIntentOutput, error)

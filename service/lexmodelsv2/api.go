@@ -468,6 +468,103 @@ func (c *LexModelsV2) CreateBotVersionWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateExport = "CreateExport"
+
+// CreateExportRequest generates a "aws/request.Request" representing the
+// client's request for the CreateExport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateExport for more information on using the CreateExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateExportRequest method.
+//    req, resp := client.CreateExportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateExport
+func (c *LexModelsV2) CreateExportRequest(input *CreateExportInput) (req *request.Request, output *CreateExportOutput) {
+	op := &request.Operation{
+		Name:       opCreateExport,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/exports/",
+	}
+
+	if input == nil {
+		input = &CreateExportInput{}
+	}
+
+	output = &CreateExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateExport API operation for Amazon Lex Model Building V2.
+//
+// Creates a zip archive containing the contents of a bot or a bot locale. The
+// archive contains a directory structure that contains JSON files that define
+// the bot.
+//
+// You can create an archive that contains the complete definition of a bot,
+// or you can specify that the archive contain only the definition of a single
+// bot locale.
+//
+// For more information about exporting bots, and about the structure of the
+// export archive, see Importing and exporting bots (https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation CreateExport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateExport
+func (c *LexModelsV2) CreateExport(input *CreateExportInput) (*CreateExportOutput, error) {
+	req, out := c.CreateExportRequest(input)
+	return out, req.Send()
+}
+
+// CreateExportWithContext is the same as CreateExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) CreateExportWithContext(ctx aws.Context, input *CreateExportInput, opts ...request.Option) (*CreateExportOutput, error) {
+	req, out := c.CreateExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateIntent = "CreateIntent"
 
 // CreateIntentRequest generates a "aws/request.Request" representing the
@@ -761,6 +858,93 @@ func (c *LexModelsV2) CreateSlotType(input *CreateSlotTypeInput) (*CreateSlotTyp
 // for more information on using Contexts.
 func (c *LexModelsV2) CreateSlotTypeWithContext(ctx aws.Context, input *CreateSlotTypeInput, opts ...request.Option) (*CreateSlotTypeOutput, error) {
 	req, out := c.CreateSlotTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUploadUrl = "CreateUploadUrl"
+
+// CreateUploadUrlRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUploadUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUploadUrl for more information on using the CreateUploadUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUploadUrlRequest method.
+//    req, resp := client.CreateUploadUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateUploadUrl
+func (c *LexModelsV2) CreateUploadUrlRequest(input *CreateUploadUrlInput) (req *request.Request, output *CreateUploadUrlOutput) {
+	op := &request.Operation{
+		Name:       opCreateUploadUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/createuploadurl/",
+	}
+
+	if input == nil {
+		input = &CreateUploadUrlInput{}
+	}
+
+	output = &CreateUploadUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUploadUrl API operation for Amazon Lex Model Building V2.
+//
+// Gets a pre-signed S3 write URL that you use to upload the zip archive when
+// importing a bot or a bot locale.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation CreateUploadUrl for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateUploadUrl
+func (c *LexModelsV2) CreateUploadUrl(input *CreateUploadUrlInput) (*CreateUploadUrlOutput, error) {
+	req, out := c.CreateUploadUrlRequest(input)
+	return out, req.Send()
+}
+
+// CreateUploadUrlWithContext is the same as CreateUploadUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUploadUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) CreateUploadUrlWithContext(ctx aws.Context, input *CreateUploadUrlInput, opts ...request.Option) (*CreateUploadUrlOutput, error) {
+	req, out := c.CreateUploadUrlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1126,6 +1310,178 @@ func (c *LexModelsV2) DeleteBotVersion(input *DeleteBotVersionInput) (*DeleteBot
 // for more information on using Contexts.
 func (c *LexModelsV2) DeleteBotVersionWithContext(ctx aws.Context, input *DeleteBotVersionInput, opts ...request.Option) (*DeleteBotVersionOutput, error) {
 	req, out := c.DeleteBotVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExport = "DeleteExport"
+
+// DeleteExportRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExport for more information on using the DeleteExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteExportRequest method.
+//    req, resp := client.DeleteExportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteExport
+func (c *LexModelsV2) DeleteExportRequest(input *DeleteExportInput) (req *request.Request, output *DeleteExportOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExport,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/exports/{exportId}/",
+	}
+
+	if input == nil {
+		input = &DeleteExportInput{}
+	}
+
+	output = &DeleteExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteExport API operation for Amazon Lex Model Building V2.
+//
+// Removes a previous export and the associated files stored in an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteExport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+//   * PreconditionFailedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteExport
+func (c *LexModelsV2) DeleteExport(input *DeleteExportInput) (*DeleteExportOutput, error) {
+	req, out := c.DeleteExportRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExportWithContext is the same as DeleteExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteExportWithContext(ctx aws.Context, input *DeleteExportInput, opts ...request.Option) (*DeleteExportOutput, error) {
+	req, out := c.DeleteExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteImport = "DeleteImport"
+
+// DeleteImportRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteImport for more information on using the DeleteImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteImportRequest method.
+//    req, resp := client.DeleteImportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteImport
+func (c *LexModelsV2) DeleteImportRequest(input *DeleteImportInput) (req *request.Request, output *DeleteImportOutput) {
+	op := &request.Operation{
+		Name:       opDeleteImport,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/imports/{importId}/",
+	}
+
+	if input == nil {
+		input = &DeleteImportInput{}
+	}
+
+	output = &DeleteImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteImport API operation for Amazon Lex Model Building V2.
+//
+// Removes a previous import and the associated file stored in an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteImport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+//   * PreconditionFailedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteImport
+func (c *LexModelsV2) DeleteImport(input *DeleteImportInput) (*DeleteImportOutput, error) {
+	req, out := c.DeleteImportRequest(input)
+	return out, req.Send()
+}
+
+// DeleteImportWithContext is the same as DeleteImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteImportWithContext(ctx aws.Context, input *DeleteImportInput, opts ...request.Option) (*DeleteImportOutput, error) {
+	req, out := c.DeleteImportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1743,6 +2099,174 @@ func (c *LexModelsV2) DescribeBotVersion(input *DescribeBotVersionInput) (*Descr
 // for more information on using Contexts.
 func (c *LexModelsV2) DescribeBotVersionWithContext(ctx aws.Context, input *DescribeBotVersionInput, opts ...request.Option) (*DescribeBotVersionOutput, error) {
 	req, out := c.DescribeBotVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeExport = "DescribeExport"
+
+// DescribeExportRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeExport for more information on using the DescribeExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeExportRequest method.
+//    req, resp := client.DescribeExportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeExport
+func (c *LexModelsV2) DescribeExportRequest(input *DescribeExportInput) (req *request.Request, output *DescribeExportOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/exports/{exportId}/",
+	}
+
+	if input == nil {
+		input = &DescribeExportInput{}
+	}
+
+	output = &DescribeExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeExport API operation for Amazon Lex Model Building V2.
+//
+// Gets information about a specific export.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeExport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeExport
+func (c *LexModelsV2) DescribeExport(input *DescribeExportInput) (*DescribeExportOutput, error) {
+	req, out := c.DescribeExportRequest(input)
+	return out, req.Send()
+}
+
+// DescribeExportWithContext is the same as DescribeExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeExportWithContext(ctx aws.Context, input *DescribeExportInput, opts ...request.Option) (*DescribeExportOutput, error) {
+	req, out := c.DescribeExportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeImport = "DescribeImport"
+
+// DescribeImportRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeImport for more information on using the DescribeImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeImportRequest method.
+//    req, resp := client.DescribeImportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeImport
+func (c *LexModelsV2) DescribeImportRequest(input *DescribeImportInput) (req *request.Request, output *DescribeImportOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImport,
+		HTTPMethod: "GET",
+		HTTPPath:   "/imports/{importId}/",
+	}
+
+	if input == nil {
+		input = &DescribeImportInput{}
+	}
+
+	output = &DescribeImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeImport API operation for Amazon Lex Model Building V2.
+//
+// Gets information about a specific import.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeImport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeImport
+func (c *LexModelsV2) DescribeImport(input *DescribeImportInput) (*DescribeImportOutput, error) {
+	req, out := c.DescribeImportRequest(input)
+	return out, req.Send()
+}
+
+// DescribeImportWithContext is the same as DescribeImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeImportWithContext(ctx aws.Context, input *DescribeImportInput, opts ...request.Option) (*DescribeImportOutput, error) {
+	req, out := c.DescribeImportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2871,6 +3395,288 @@ func (c *LexModelsV2) ListBuiltInSlotTypesPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opListExports = "ListExports"
+
+// ListExportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExports for more information on using the ListExports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExportsRequest method.
+//    req, resp := client.ListExportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListExports
+func (c *LexModelsV2) ListExportsRequest(input *ListExportsInput) (req *request.Request, output *ListExportsOutput) {
+	op := &request.Operation{
+		Name:       opListExports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/exports/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExportsInput{}
+	}
+
+	output = &ListExportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExports API operation for Amazon Lex Model Building V2.
+//
+// Lists the exports for a bot or bot locale. Exports are kept in the list for
+// 7 days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListExports for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ValidationException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListExports
+func (c *LexModelsV2) ListExports(input *ListExportsInput) (*ListExportsOutput, error) {
+	req, out := c.ListExportsRequest(input)
+	return out, req.Send()
+}
+
+// ListExportsWithContext is the same as ListExports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListExportsWithContext(ctx aws.Context, input *ListExportsInput, opts ...request.Option) (*ListExportsOutput, error) {
+	req, out := c.ListExportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExportsPages iterates over the pages of a ListExports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExports operation.
+//    pageNum := 0
+//    err := client.ListExportsPages(params,
+//        func(page *lexmodelsv2.ListExportsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LexModelsV2) ListExportsPages(input *ListExportsInput, fn func(*ListExportsOutput, bool) bool) error {
+	return c.ListExportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExportsPagesWithContext same as ListExportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListExportsPagesWithContext(ctx aws.Context, input *ListExportsInput, fn func(*ListExportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImports = "ListImports"
+
+// ListImportsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImports operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImports for more information on using the ListImports
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListImportsRequest method.
+//    req, resp := client.ListImportsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListImports
+func (c *LexModelsV2) ListImportsRequest(input *ListImportsInput) (req *request.Request, output *ListImportsOutput) {
+	op := &request.Operation{
+		Name:       opListImports,
+		HTTPMethod: "POST",
+		HTTPPath:   "/imports/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImportsInput{}
+	}
+
+	output = &ListImportsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImports API operation for Amazon Lex Model Building V2.
+//
+// Lists the imports for a bot or bot locale. Imports are kept in the list for
+// 7 days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListImports for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ValidationException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListImports
+func (c *LexModelsV2) ListImports(input *ListImportsInput) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	return out, req.Send()
+}
+
+// ListImportsWithContext is the same as ListImports with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImports for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListImportsWithContext(ctx aws.Context, input *ListImportsInput, opts ...request.Option) (*ListImportsOutput, error) {
+	req, out := c.ListImportsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImportsPages iterates over the pages of a ListImports operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImports method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImports operation.
+//    pageNum := 0
+//    err := client.ListImportsPages(params,
+//        func(page *lexmodelsv2.ListImportsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LexModelsV2) ListImportsPages(input *ListImportsInput, fn func(*ListImportsOutput, bool) bool) error {
+	return c.ListImportsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImportsPagesWithContext same as ListImportsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListImportsPagesWithContext(ctx aws.Context, input *ListImportsInput, fn func(*ListImportsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImportsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImportsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImportsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIntents = "ListIntents"
 
 // ListIntentsRequest generates a "aws/request.Request" representing the
@@ -3382,6 +4188,95 @@ func (c *LexModelsV2) ListTagsForResourceWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+const opStartImport = "StartImport"
+
+// StartImportRequest generates a "aws/request.Request" representing the
+// client's request for the StartImport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartImport for more information on using the StartImport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartImportRequest method.
+//    req, resp := client.StartImportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartImport
+func (c *LexModelsV2) StartImportRequest(input *StartImportInput) (req *request.Request, output *StartImportOutput) {
+	op := &request.Operation{
+		Name:       opStartImport,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/imports/",
+	}
+
+	if input == nil {
+		input = &StartImportInput{}
+	}
+
+	output = &StartImportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartImport API operation for Amazon Lex Model Building V2.
+//
+// Starts importing a bot or bot locale from a zip archive that you uploaded
+// to an S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation StartImport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartImport
+func (c *LexModelsV2) StartImport(input *StartImportInput) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
+	return out, req.Send()
+}
+
+// StartImportWithContext is the same as StartImport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartImport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) StartImportWithContext(ctx aws.Context, input *StartImportInput, opts ...request.Option) (*StartImportOutput, error) {
+	req, out := c.StartImportRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -3812,6 +4707,94 @@ func (c *LexModelsV2) UpdateBotLocale(input *UpdateBotLocaleInput) (*UpdateBotLo
 // for more information on using Contexts.
 func (c *LexModelsV2) UpdateBotLocaleWithContext(ctx aws.Context, input *UpdateBotLocaleInput, opts ...request.Option) (*UpdateBotLocaleOutput, error) {
 	req, out := c.UpdateBotLocaleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateExport = "UpdateExport"
+
+// UpdateExportRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateExport operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateExport for more information on using the UpdateExport
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateExportRequest method.
+//    req, resp := client.UpdateExportRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateExport
+func (c *LexModelsV2) UpdateExportRequest(input *UpdateExportInput) (req *request.Request, output *UpdateExportOutput) {
+	op := &request.Operation{
+		Name:       opUpdateExport,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/exports/{exportId}/",
+	}
+
+	if input == nil {
+		input = &UpdateExportInput{}
+	}
+
+	output = &UpdateExportOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateExport API operation for Amazon Lex Model Building V2.
+//
+// Updates the password used to encrypt an export zip archive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation UpdateExport for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateExport
+func (c *LexModelsV2) UpdateExport(input *UpdateExportInput) (*UpdateExportOutput, error) {
+	req, out := c.UpdateExportRequest(input)
+	return out, req.Send()
+}
+
+// UpdateExportWithContext is the same as UpdateExport with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateExport for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) UpdateExportWithContext(ctx aws.Context, input *UpdateExportInput, opts ...request.Option) (*UpdateExportOutput, error) {
+	req, out := c.UpdateExportRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4367,6 +5350,66 @@ func (s *BotAliasSummary) SetLastUpdatedDateTime(v time.Time) *BotAliasSummary {
 	return s
 }
 
+// Provided the identity of a the bot that was exported.
+type BotExportSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bot assigned by Amazon Lex.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The version of the bot that was exported. This will be either DRAFT or the
+	// version number.
+	//
+	// BotVersion is a required field
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BotExportSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BotExportSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotExportSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotExportSpecification"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BotExportSpecification) SetBotId(v string) *BotExportSpecification {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BotExportSpecification) SetBotVersion(v string) *BotExportSpecification {
+	s.BotVersion = &v
+	return s
+}
+
 // Filters the responses returned by the ListBots operation.
 type BotFilter struct {
 	_ struct{} `type:"structure"`
@@ -4436,6 +5479,202 @@ func (s *BotFilter) SetOperator(v string) *BotFilter {
 // SetValues sets the Values field's value.
 func (s *BotFilter) SetValues(v []*string) *BotFilter {
 	s.Values = v
+	return s
+}
+
+// Provides the bot parameters required for importing a bot.
+type BotImportSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The name that Amazon Lex should use for the bot.
+	//
+	// BotName is a required field
+	BotName *string `locationName:"botName" min:"1" type:"string" required:"true"`
+
+	// A list of tags to add to the bot. You can only add tags when you import a
+	// bot. You can't use the UpdateBot operation to update tags. To update tags,
+	// use the TagResource operation.
+	BotTags map[string]*string `locationName:"botTags" type:"map"`
+
+	// By default, data stored by Amazon Lex is encrypted. The DataPrivacy structure
+	// provides settings that determine how Amazon Lex handles special cases of
+	// securing the data for your bot.
+	//
+	// DataPrivacy is a required field
+	DataPrivacy *DataPrivacy `locationName:"dataPrivacy" type:"structure" required:"true"`
+
+	// The time, in seconds, that Amazon Lex should keep information about a user's
+	// conversation with the bot.
+	//
+	// A user interaction remains active for the amount of time specified. If no
+	// conversation occurs during this time, the session expires and Amazon Lex
+	// deletes any data provided before the timeout.
+	//
+	// You can specify between 60 (1 minute) and 86,400 (24 hours) seconds.
+	IdleSessionTTLInSeconds *int64 `locationName:"idleSessionTTLInSeconds" min:"60" type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the IAM role used to build and run the
+	// bot.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"32" type:"string" required:"true"`
+
+	// A list of tags to add to the test alias for a bot. You can only add tags
+	// when you import a bot. You can't use the UpdateAlias operation to update
+	// tags. To update tags on the test alias, use the TagResource operation.
+	TestBotAliasTags map[string]*string `locationName:"testBotAliasTags" type:"map"`
+}
+
+// String returns the string representation
+func (s BotImportSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BotImportSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotImportSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotImportSpecification"}
+	if s.BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotName"))
+	}
+	if s.BotName != nil && len(*s.BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotName", 1))
+	}
+	if s.DataPrivacy == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataPrivacy"))
+	}
+	if s.IdleSessionTTLInSeconds != nil && *s.IdleSessionTTLInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("IdleSessionTTLInSeconds", 60))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 32))
+	}
+	if s.DataPrivacy != nil {
+		if err := s.DataPrivacy.Validate(); err != nil {
+			invalidParams.AddNested("DataPrivacy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotName sets the BotName field's value.
+func (s *BotImportSpecification) SetBotName(v string) *BotImportSpecification {
+	s.BotName = &v
+	return s
+}
+
+// SetBotTags sets the BotTags field's value.
+func (s *BotImportSpecification) SetBotTags(v map[string]*string) *BotImportSpecification {
+	s.BotTags = v
+	return s
+}
+
+// SetDataPrivacy sets the DataPrivacy field's value.
+func (s *BotImportSpecification) SetDataPrivacy(v *DataPrivacy) *BotImportSpecification {
+	s.DataPrivacy = v
+	return s
+}
+
+// SetIdleSessionTTLInSeconds sets the IdleSessionTTLInSeconds field's value.
+func (s *BotImportSpecification) SetIdleSessionTTLInSeconds(v int64) *BotImportSpecification {
+	s.IdleSessionTTLInSeconds = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *BotImportSpecification) SetRoleArn(v string) *BotImportSpecification {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTestBotAliasTags sets the TestBotAliasTags field's value.
+func (s *BotImportSpecification) SetTestBotAliasTags(v map[string]*string) *BotImportSpecification {
+	s.TestBotAliasTags = v
+	return s
+}
+
+// Provides the bot locale parameters required for exporting a bot locale.
+type BotLocaleExportSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bot to create the locale for.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The version of the bot to export.
+	//
+	// BotVersion is a required field
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string" required:"true"`
+
+	// The identifier of the language and locale to export. The string must match
+	// one of the locales in the bot.
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BotLocaleExportSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BotLocaleExportSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotLocaleExportSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotLocaleExportSpecification"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BotLocaleExportSpecification) SetBotId(v string) *BotLocaleExportSpecification {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BotLocaleExportSpecification) SetBotVersion(v string) *BotLocaleExportSpecification {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BotLocaleExportSpecification) SetLocaleId(v string) *BotLocaleExportSpecification {
+	s.LocaleId = &v
 	return s
 }
 
@@ -4546,6 +5785,122 @@ func (s *BotLocaleHistoryEvent) SetEvent(v string) *BotLocaleHistoryEvent {
 // SetEventDate sets the EventDate field's value.
 func (s *BotLocaleHistoryEvent) SetEventDate(v time.Time) *BotLocaleHistoryEvent {
 	s.EventDate = &v
+	return s
+}
+
+// Provides the bot locale parameters required for importing a bot locale.
+type BotLocaleImportSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the bot to import the locale to.
+	//
+	// BotId is a required field
+	BotId *string `locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The version of the bot to import the locale to. This can only be the DRAFT
+	// version of the bot.
+	//
+	// BotVersion is a required field
+	BotVersion *string `locationName:"botVersion" min:"5" type:"string" required:"true"`
+
+	// The identifier of the language and locale that the bot will be used in. The
+	// string must match one of the supported locales. All of the intents, slot
+	// types, and slots used in the bot must have the same locale. For more information,
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+
+	// Determines the threshold where Amazon Lex will insert the AMAZON.FallbackIntent,
+	// AMAZON.KendraSearchIntent, or both when returning alternative intents. AMAZON.FallbackIntent
+	// and AMAZON.KendraSearchIntent are only inserted if they are configured for
+	// the bot.
+	//
+	// For example, suppose a bot is configured with the confidence threshold of
+	// 0.80 and the AMAZON.FallbackIntent. Amazon Lex returns three alternative
+	// intents with the following confidence scores: IntentA (0.70), IntentB (0.60),
+	// IntentC (0.50). The response from the PostText operation would be:
+	//
+	//    * AMAZON.FallbackIntent
+	//
+	//    * IntentA
+	//
+	//    * IntentB
+	//
+	//    * IntentC
+	NluIntentConfidenceThreshold *float64 `locationName:"nluIntentConfidenceThreshold" type:"double"`
+
+	// Defines settings for using an Amazon Polly voice to communicate with a user.
+	VoiceSettings *VoiceSettings `locationName:"voiceSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s BotLocaleImportSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BotLocaleImportSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BotLocaleImportSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BotLocaleImportSpecification"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotVersion"))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 5))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.VoiceSettings != nil {
+		if err := s.VoiceSettings.Validate(); err != nil {
+			invalidParams.AddNested("VoiceSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *BotLocaleImportSpecification) SetBotId(v string) *BotLocaleImportSpecification {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *BotLocaleImportSpecification) SetBotVersion(v string) *BotLocaleImportSpecification {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *BotLocaleImportSpecification) SetLocaleId(v string) *BotLocaleImportSpecification {
+	s.LocaleId = &v
+	return s
+}
+
+// SetNluIntentConfidenceThreshold sets the NluIntentConfidenceThreshold field's value.
+func (s *BotLocaleImportSpecification) SetNluIntentConfidenceThreshold(v float64) *BotLocaleImportSpecification {
+	s.NluIntentConfidenceThreshold = &v
+	return s
+}
+
+// SetVoiceSettings sets the VoiceSettings field's value.
+func (s *BotLocaleImportSpecification) SetVoiceSettings(v *VoiceSettings) *BotLocaleImportSpecification {
+	s.VoiceSettings = v
 	return s
 }
 
@@ -4971,7 +6326,7 @@ type BuildBotLocaleInput struct {
 	// The identifier of the language and locale that the bot will be used in. The
 	// string must match one of the supported locales. All of the intents, slot
 	// types, and slots used in the bot must have the same locale. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -5984,7 +7339,7 @@ type CreateBotLocaleInput struct {
 	// The identifier of the language and locale that the bot will be used in. The
 	// string must match one of the supported locales. All of the intents, slot
 	// types, and slots used in the bot must have the same locale. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
@@ -6459,6 +7814,139 @@ func (s *CreateBotVersionOutput) SetDescription(v string) *CreateBotVersionOutpu
 	return s
 }
 
+type CreateExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The file format of the bot or bot locale definition files.
+	//
+	// FileFormat is a required field
+	FileFormat *string `locationName:"fileFormat" type:"string" required:"true" enum:"ImportExportFileFormat"`
+
+	// An password to use to encrypt the exported archive. Using a password is optional,
+	// but you should encrypt the archive to protect the data in transit between
+	// Amazon Lex and your local computer.
+	FilePassword *string `locationName:"filePassword" min:"1" type:"string" sensitive:"true"`
+
+	// Specifies the type of resource to export, either a bot or a bot locale. You
+	// can only specify one type of resource to export.
+	//
+	// ResourceSpecification is a required field
+	ResourceSpecification *ExportResourceSpecification `locationName:"resourceSpecification" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateExportInput"}
+	if s.FileFormat == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileFormat"))
+	}
+	if s.FilePassword != nil && len(*s.FilePassword) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilePassword", 1))
+	}
+	if s.ResourceSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceSpecification"))
+	}
+	if s.ResourceSpecification != nil {
+		if err := s.ResourceSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ResourceSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *CreateExportInput) SetFileFormat(v string) *CreateExportInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilePassword sets the FilePassword field's value.
+func (s *CreateExportInput) SetFilePassword(v string) *CreateExportInput {
+	s.FilePassword = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *CreateExportInput) SetResourceSpecification(v *ExportResourceSpecification) *CreateExportInput {
+	s.ResourceSpecification = v
+	return s
+}
+
+type CreateExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the request to export a bot was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// An identifier for a specific request to create an export.
+	ExportId *string `locationName:"exportId" min:"10" type:"string"`
+
+	// The status of the export. When the status is Completed, you can use the operation
+	// to get the pre-signed S3 URL link to your exported bot or bot locale.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+
+	// The file format used for the bot or bot locale definition files.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"ImportExportFileFormat"`
+
+	// A description of the type of resource that was exported, either a bot or
+	// a bot locale.
+	ResourceSpecification *ExportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *CreateExportOutput) SetCreationDateTime(v time.Time) *CreateExportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *CreateExportOutput) SetExportId(v string) *CreateExportOutput {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *CreateExportOutput) SetExportStatus(v string) *CreateExportOutput {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *CreateExportOutput) SetFileFormat(v string) *CreateExportOutput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *CreateExportOutput) SetResourceSpecification(v *ExportResourceSpecification) *CreateExportOutput {
+	s.ResourceSpecification = v
+	return s
+}
+
 type CreateIntentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6536,7 +8024,7 @@ type CreateIntentInput struct {
 
 	// The identifier of the language and locale where this intent is used. All
 	// of the bots, slot types, and slots used by the intent must have the same
-	// locale.
+	// locale. For more information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -6929,7 +8417,7 @@ type CreateSlotInput struct {
 	// The identifier of the language and locale that the slot will be used in.
 	// The string must match one of the supported locales. All of the bots, intents,
 	// slot types used by the slot must have the same locale. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -7219,8 +8707,7 @@ type CreateSlotTypeInput struct {
 	// The identifier of the language and locale that the slot type will be used
 	// in. The string must match one of the supported locales. All of the bots,
 	// intents, and slots used by the slot type must have the same locale. For more
-	// information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -7476,6 +8963,53 @@ func (s *CreateSlotTypeOutput) SetSlotTypeValues(v []*SlotTypeValue) *CreateSlot
 // SetValueSelectionSetting sets the ValueSelectionSetting field's value.
 func (s *CreateSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionSetting) *CreateSlotTypeOutput {
 	s.ValueSelectionSetting = v
+	return s
+}
+
+type CreateUploadUrlInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateUploadUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUploadUrlInput) GoString() string {
+	return s.String()
+}
+
+type CreateUploadUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for a unique import job. Use it when you call the operation.
+	ImportId *string `locationName:"importId" min:"10" type:"string"`
+
+	// A pre-signed S3 write URL. Upload the zip archive file that contains the
+	// definition of your bot or bot locale.
+	UploadUrl *string `locationName:"uploadUrl" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUploadUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUploadUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *CreateUploadUrlOutput) SetImportId(v string) *CreateUploadUrlOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetUploadUrl sets the UploadUrl field's value.
+func (s *CreateUploadUrlOutput) SetUploadUrl(v string) *CreateUploadUrlOutput {
+	s.UploadUrl = &v
 	return s
 }
 
@@ -7759,8 +9293,8 @@ type DeleteBotLocaleInput struct {
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"5" type:"string" required:"true"`
 
 	// The identifier of the language and locale that will be deleted. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8018,6 +9552,156 @@ func (s *DeleteBotVersionOutput) SetBotVersion(v string) *DeleteBotVersionOutput
 	return s
 }
 
+type DeleteExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the export to delete.
+	//
+	// ExportId is a required field
+	ExportId *string `location:"uri" locationName:"exportId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExportInput"}
+	if s.ExportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportId"))
+	}
+	if s.ExportId != nil && len(*s.ExportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *DeleteExportInput) SetExportId(v string) *DeleteExportInput {
+	s.ExportId = &v
+	return s
+}
+
+type DeleteExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the deleted export.
+	ExportId *string `locationName:"exportId" min:"10" type:"string"`
+
+	// The current status of the deletion. When the deletion is complete, the export
+	// will no longer be returned by the operation and calls to the with the export
+	// identifier will fail.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+}
+
+// String returns the string representation
+func (s DeleteExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *DeleteExportOutput) SetExportId(v string) *DeleteExportOutput {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *DeleteExportOutput) SetExportStatus(v string) *DeleteExportOutput {
+	s.ExportStatus = &v
+	return s
+}
+
+type DeleteImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the import to delete.
+	//
+	// ImportId is a required field
+	ImportId *string `location:"uri" locationName:"importId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteImportInput"}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *DeleteImportInput) SetImportId(v string) *DeleteImportInput {
+	s.ImportId = &v
+	return s
+}
+
+type DeleteImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the deleted import.
+	ImportId *string `locationName:"importId" min:"10" type:"string"`
+
+	// The current status of the deletion. When the deletion is complete, the import
+	// will no longer be returned by the operation and calls to the with the import
+	// identifier will fail.
+	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
+}
+
+// String returns the string representation
+func (s DeleteImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *DeleteImportOutput) SetImportId(v string) *DeleteImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *DeleteImportOutput) SetImportStatus(v string) *DeleteImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
 type DeleteIntentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8038,7 +9722,7 @@ type DeleteIntentInput struct {
 
 	// The identifier of the language and locale where the bot will be deleted.
 	// The string must match one of the supported locales. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8146,7 +9830,7 @@ type DeleteSlotInput struct {
 
 	// The identifier of the language and locale that the slot will be deleted from.
 	// The string must match one of the supported locales. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8266,7 +9950,7 @@ type DeleteSlotTypeInput struct {
 
 	// The identifier of the language and locale that the slot type will be deleted
 	// from. The string must match one of the supported locales. For more information,
-	// see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -8610,8 +10294,7 @@ type DescribeBotLocaleInput struct {
 	BotVersion *string `location:"uri" locationName:"botVersion" min:"1" type:"string" required:"true"`
 
 	// The unique identifier of the locale to describe. The string must match one
-	// of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// of the supported locales. For more information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -9092,6 +10775,277 @@ func (s *DescribeBotVersionOutput) SetRoleArn(v string) *DescribeBotVersionOutpu
 	return s
 }
 
+type DescribeExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the export to describe.
+	//
+	// ExportId is a required field
+	ExportId *string `location:"uri" locationName:"exportId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeExportInput"}
+	if s.ExportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportId"))
+	}
+	if s.ExportId != nil && len(*s.ExportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *DescribeExportInput) SetExportId(v string) *DescribeExportInput {
+	s.ExportId = &v
+	return s
+}
+
+type DescribeExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the export was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// A pre-signed S3 URL that points to the bot or bot locale archive. The URL
+	// is only available for 5 minutes after calling the DescribeExport operation.
+	DownloadUrl *string `locationName:"downloadUrl" min:"1" type:"string"`
+
+	// The unique identifier of the described export.
+	ExportId *string `locationName:"exportId" min:"10" type:"string"`
+
+	// The status of the export. When the status is Complete the export archive
+	// file is available for download.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+
+	// If the exportStatus is failed, contains one or more reasons why the export
+	// could not be completed.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
+	// The file format used in the files that describe the bot or bot locale.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"ImportExportFileFormat"`
+
+	// The last date and time that the export was updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The bot, bot ID, and optional locale ID of the exported bot or bot locale.
+	ResourceSpecification *ExportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeExportOutput) SetCreationDateTime(v time.Time) *DescribeExportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetDownloadUrl sets the DownloadUrl field's value.
+func (s *DescribeExportOutput) SetDownloadUrl(v string) *DescribeExportOutput {
+	s.DownloadUrl = &v
+	return s
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *DescribeExportOutput) SetExportId(v string) *DescribeExportOutput {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *DescribeExportOutput) SetExportStatus(v string) *DescribeExportOutput {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeExportOutput) SetFailureReasons(v []*string) *DescribeExportOutput {
+	s.FailureReasons = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *DescribeExportOutput) SetFileFormat(v string) *DescribeExportOutput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DescribeExportOutput) SetLastUpdatedDateTime(v time.Time) *DescribeExportOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *DescribeExportOutput) SetResourceSpecification(v *ExportResourceSpecification) *DescribeExportOutput {
+	s.ResourceSpecification = v
+	return s
+}
+
+type DescribeImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the import to describe.
+	//
+	// ImportId is a required field
+	ImportId *string `location:"uri" locationName:"importId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImportInput"}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *DescribeImportInput) SetImportId(v string) *DescribeImportInput {
+	s.ImportId = &v
+	return s
+}
+
+type DescribeImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the import was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// If the importStatus field is Failed, this provides one or more reasons for
+	// the failture.
+	FailureReasons []*string `locationName:"failureReasons" type:"list"`
+
+	// The unique identifier of the described import.
+	ImportId *string `locationName:"importId" min:"10" type:"string"`
+
+	// The status of the import process. When the status is Completed the resource
+	// is imported and ready for use.
+	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
+
+	// The unique identifier that Amazon Lex assigned to the resource created by
+	// the import.
+	ImportedResourceId *string `locationName:"importedResourceId" min:"5" type:"string"`
+
+	// The name of the imported resource.
+	ImportedResourceName *string `locationName:"importedResourceName" min:"1" type:"string"`
+
+	// The date and time that the import was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The strategy used when there was a name conflict between the imported resource
+	// and an existing resource. When the merge strategy is FailOnConflict existing
+	// resources are not overwritten and the import fails.
+	MergeStrategy *string `locationName:"mergeStrategy" type:"string" enum:"MergeStrategy"`
+
+	// The specifications of the imported bot or bot locale.
+	ResourceSpecification *ImportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *DescribeImportOutput) SetCreationDateTime(v time.Time) *DescribeImportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetFailureReasons sets the FailureReasons field's value.
+func (s *DescribeImportOutput) SetFailureReasons(v []*string) *DescribeImportOutput {
+	s.FailureReasons = v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *DescribeImportOutput) SetImportId(v string) *DescribeImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *DescribeImportOutput) SetImportStatus(v string) *DescribeImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetImportedResourceId sets the ImportedResourceId field's value.
+func (s *DescribeImportOutput) SetImportedResourceId(v string) *DescribeImportOutput {
+	s.ImportedResourceId = &v
+	return s
+}
+
+// SetImportedResourceName sets the ImportedResourceName field's value.
+func (s *DescribeImportOutput) SetImportedResourceName(v string) *DescribeImportOutput {
+	s.ImportedResourceName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *DescribeImportOutput) SetLastUpdatedDateTime(v time.Time) *DescribeImportOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetMergeStrategy sets the MergeStrategy field's value.
+func (s *DescribeImportOutput) SetMergeStrategy(v string) *DescribeImportOutput {
+	s.MergeStrategy = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *DescribeImportOutput) SetResourceSpecification(v *ImportResourceSpecification) *DescribeImportOutput {
+	s.ResourceSpecification = v
+	return s
+}
+
 type DescribeIntentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9112,7 +11066,7 @@ type DescribeIntentInput struct {
 
 	// The identifier of the language and locale of the intent to describe. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -9384,8 +11338,8 @@ type DescribeSlotInput struct {
 	IntentId *string `location:"uri" locationName:"intentId" min:"10" type:"string" required:"true"`
 
 	// The identifier of the language and locale of the slot to describe. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -9615,7 +11569,7 @@ type DescribeSlotTypeInput struct {
 
 	// The identifier of the language and locale of the slot type to describe. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -9849,6 +11803,257 @@ func (s *DialogCodeHookSettings) SetEnabled(v bool) *DialogCodeHookSettings {
 	return s
 }
 
+// Filtes the response form the operation
+type ExportFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field to use for filtering.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"ExportFilterName"`
+
+	// The operator to use for the filter. Specify EQ when the ListExports operation
+	// should return only resource types that equal the specified value. Specify
+	// CO when the ListExports operation should return resource types that contain
+	// the specified value.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"ExportFilterOperator"`
+
+	// The values to use to fileter the response.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ExportFilter) SetName(v string) *ExportFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *ExportFilter) SetOperator(v string) *ExportFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *ExportFilter) SetValues(v []*string) *ExportFilter {
+	s.Values = v
+	return s
+}
+
+// Provides information about the bot or bot locale that you want to export.
+// You can specify the botExportSpecification or the botLocaleExportSpecification,
+// but not both.
+type ExportResourceSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters for exporting a bot.
+	BotExportSpecification *BotExportSpecification `locationName:"botExportSpecification" type:"structure"`
+
+	// Parameters for exporting a bot locale.
+	BotLocaleExportSpecification *BotLocaleExportSpecification `locationName:"botLocaleExportSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportResourceSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportResourceSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportResourceSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportResourceSpecification"}
+	if s.BotExportSpecification != nil {
+		if err := s.BotExportSpecification.Validate(); err != nil {
+			invalidParams.AddNested("BotExportSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BotLocaleExportSpecification != nil {
+		if err := s.BotLocaleExportSpecification.Validate(); err != nil {
+			invalidParams.AddNested("BotLocaleExportSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotExportSpecification sets the BotExportSpecification field's value.
+func (s *ExportResourceSpecification) SetBotExportSpecification(v *BotExportSpecification) *ExportResourceSpecification {
+	s.BotExportSpecification = v
+	return s
+}
+
+// SetBotLocaleExportSpecification sets the BotLocaleExportSpecification field's value.
+func (s *ExportResourceSpecification) SetBotLocaleExportSpecification(v *BotLocaleExportSpecification) *ExportResourceSpecification {
+	s.BotLocaleExportSpecification = v
+	return s
+}
+
+// Provides information about sorting a list of exports.
+type ExportSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// The export field to use for sorting.
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"ExportSortAttribute"`
+
+	// The order to sort the list.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ExportSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportSortBy"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *ExportSortBy) SetAttribute(v string) *ExportSortBy {
+	s.Attribute = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *ExportSortBy) SetOrder(v string) *ExportSortBy {
+	s.Order = &v
+	return s
+}
+
+// Provides summary information about an export in an export list.
+type ExportSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the export was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The unique identifier that Amazon Lex assigned to the export.
+	ExportId *string `locationName:"exportId" min:"10" type:"string"`
+
+	// The status of the export. When the status is Completed the export is ready
+	// to download.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+
+	// The file format used in the export files.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"ImportExportFileFormat"`
+
+	// The date and time that the export was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// Information about the bot or bot locale that was exported.
+	ResourceSpecification *ExportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *ExportSummary) SetCreationDateTime(v time.Time) *ExportSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *ExportSummary) SetExportId(v string) *ExportSummary {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *ExportSummary) SetExportStatus(v string) *ExportSummary {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportSummary) SetFileFormat(v string) *ExportSummary {
+	s.FileFormat = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *ExportSummary) SetLastUpdatedDateTime(v time.Time) *ExportSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *ExportSummary) SetResourceSpecification(v *ExportResourceSpecification) *ExportSummary {
+	s.ResourceSpecification = v
+	return s
+}
+
 // Determines if a Lambda function should be invoked for a specific intent.
 type FulfillmentCodeHookSettings struct {
 	_ struct{} `type:"structure"`
@@ -9980,6 +12185,267 @@ func (s *ImageResponseCard) SetSubtitle(v string) *ImageResponseCard {
 // SetTitle sets the Title field's value.
 func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 	s.Title = &v
+	return s
+}
+
+// Filters the response from the operation.
+type ImportFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field to use for filtering.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"ImportFilterName"`
+
+	// The operator to use for the filter. Specify EQ when the ListImports operation
+	// should return only resource types that equal the specified value. Specify
+	// CO when the ListImports operation should return resource types that contain
+	// the specified value.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"ImportFilterOperator"`
+
+	// The values to use to filter the response.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ImportFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ImportFilter) SetName(v string) *ImportFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *ImportFilter) SetOperator(v string) *ImportFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *ImportFilter) SetValues(v []*string) *ImportFilter {
+	s.Values = v
+	return s
+}
+
+// Provides information about the bot or bot locale that you want to import.
+// You can sepcifiy the botImportSpecification or the botLocaleImportSpecification,
+// but not both.
+type ImportResourceSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Parameters for importing a bot.
+	BotImportSpecification *BotImportSpecification `locationName:"botImportSpecification" type:"structure"`
+
+	// Parameters for importing a bot locale.
+	BotLocaleImportSpecification *BotLocaleImportSpecification `locationName:"botLocaleImportSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportResourceSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportResourceSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportResourceSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportResourceSpecification"}
+	if s.BotImportSpecification != nil {
+		if err := s.BotImportSpecification.Validate(); err != nil {
+			invalidParams.AddNested("BotImportSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BotLocaleImportSpecification != nil {
+		if err := s.BotLocaleImportSpecification.Validate(); err != nil {
+			invalidParams.AddNested("BotLocaleImportSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotImportSpecification sets the BotImportSpecification field's value.
+func (s *ImportResourceSpecification) SetBotImportSpecification(v *BotImportSpecification) *ImportResourceSpecification {
+	s.BotImportSpecification = v
+	return s
+}
+
+// SetBotLocaleImportSpecification sets the BotLocaleImportSpecification field's value.
+func (s *ImportResourceSpecification) SetBotLocaleImportSpecification(v *BotLocaleImportSpecification) *ImportResourceSpecification {
+	s.BotLocaleImportSpecification = v
+	return s
+}
+
+// Provides information for sorting a list of imports.
+type ImportSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// The export field to use for sorting.
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"ImportSortAttribute"`
+
+	// The order to sort the list.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ImportSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportSortBy"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *ImportSortBy) SetAttribute(v string) *ImportSortBy {
+	s.Attribute = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *ImportSortBy) SetOrder(v string) *ImportSortBy {
+	s.Order = &v
+	return s
+}
+
+// Provides summary information about an import in an import list.
+type ImportSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the import was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The unique identifier that Amazon Lex assigned to the import.
+	ImportId *string `locationName:"importId" min:"10" type:"string"`
+
+	// The status of the resource. When the status is Completed the resource is
+	// ready to build.
+	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
+
+	// The unique identifier that Amazon Lex assigned to the imported resource.
+	ImportedResourceId *string `locationName:"importedResourceId" min:"5" type:"string"`
+
+	// The name that you gave the imported resource.
+	ImportedResourceName *string `locationName:"importedResourceName" min:"1" type:"string"`
+
+	// The date and time that the import was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// The strategy used to merge existing bot or bot locale definitions with the
+	// imported definition.
+	MergeStrategy *string `locationName:"mergeStrategy" type:"string" enum:"MergeStrategy"`
+}
+
+// String returns the string representation
+func (s ImportSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *ImportSummary) SetCreationDateTime(v time.Time) *ImportSummary {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *ImportSummary) SetImportId(v string) *ImportSummary {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *ImportSummary) SetImportStatus(v string) *ImportSummary {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetImportedResourceId sets the ImportedResourceId field's value.
+func (s *ImportSummary) SetImportedResourceId(v string) *ImportSummary {
+	s.ImportedResourceId = &v
+	return s
+}
+
+// SetImportedResourceName sets the ImportedResourceName field's value.
+func (s *ImportSummary) SetImportedResourceName(v string) *ImportSummary {
+	s.ImportedResourceName = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *ImportSummary) SetLastUpdatedDateTime(v time.Time) *ImportSummary {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetMergeStrategy sets the MergeStrategy field's value.
+func (s *ImportSummary) SetMergeStrategy(v string) *ImportSummary {
+	s.MergeStrategy = &v
 	return s
 }
 
@@ -11086,8 +13552,8 @@ type ListBuiltInIntentsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the language and locale of the intents to list. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -11218,7 +13684,7 @@ type ListBuiltInSlotTypesInput struct {
 
 	// The identifier of the language and locale of the slot types to list. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -11344,6 +13810,342 @@ func (s *ListBuiltInSlotTypesOutput) SetNextToken(v string) *ListBuiltInSlotType
 	return s
 }
 
+type ListExportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier that Amazon Lex assigned to the bot.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The version of the bot to list exports for.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// Provides the specification of a filter used to limit the exports in the response
+	// to only those that match the filter specification. You can only specify one
+	// filter and one string to filter on.
+	Filters []*ExportFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum number of exports to return in each page of results. If there
+	// are fewer results than the max page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListExports operation contans more results that
+	// specified in the maxResults parameter, a token is returned in the response.
+	// Use that token in the nextToken parameter to return the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Determines the field that the list of exports is sorted by. You can sort
+	// by the LastUpdatedDateTime field in ascending or descending order.
+	SortBy *ExportSortBy `locationName:"sortBy" type:"structure"`
+}
+
+// String returns the string representation
+func (s ListExportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExportsInput"}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListExportsInput) SetBotId(v string) *ListExportsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListExportsInput) SetBotVersion(v string) *ListExportsInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListExportsInput) SetFilters(v []*ExportFilter) *ListExportsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExportsInput) SetMaxResults(v int64) *ListExportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsInput) SetNextToken(v string) *ListExportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListExportsInput) SetSortBy(v *ExportSortBy) *ListExportsInput {
+	s.SortBy = v
+	return s
+}
+
+type ListExportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier assigned to the bot by Amazon Lex.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The version of the bot that was exported.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// Summary information for the exports that meet the filter criteria specified
+	// in the request. The length of the list is specified in the maxResults parameter.
+	// If there are more exports available, the nextToken field contains a token
+	// to get the next page of results.
+	ExportSummaries []*ExportSummary `locationName:"exportSummaries" type:"list"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListExports operation. If the nextToken field is present, you send
+	// the contents as the nextToken parameter of a ListExports operation request
+	// to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListExportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListExportsOutput) SetBotId(v string) *ListExportsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListExportsOutput) SetBotVersion(v string) *ListExportsOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetExportSummaries sets the ExportSummaries field's value.
+func (s *ListExportsOutput) SetExportSummaries(v []*ExportSummary) *ListExportsOutput {
+	s.ExportSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExportsOutput) SetNextToken(v string) *ListExportsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImportsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier that Amazon Lex assigned to the bot.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The version of the bot to list imports for.
+	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
+
+	// Provides the specification of a filter used to limit the bots in the response
+	// to only those that match the filter specification. You can only specify one
+	// filter and one string to filter on.
+	Filters []*ImportFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The maximum number of imports to return in each page of results. If there
+	// are fewer results than the max page size, only the actual number of results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListImports operation contains more results than
+	// specified in the maxResults parameter, a token is returned in the response.
+	// Use that token in the nextToken parameter to return the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Determines the field that the list of imports is sorted by. You can sort
+	// by the LastUpdatedDateTime field in ascending or descending order.
+	SortBy *ImportSortBy `locationName:"sortBy" type:"structure"`
+}
+
+// String returns the string representation
+func (s ListImportsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImportsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImportsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImportsInput"}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 5))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListImportsInput) SetBotId(v string) *ListImportsInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListImportsInput) SetBotVersion(v string) *ListImportsInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListImportsInput) SetFilters(v []*ImportFilter) *ListImportsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImportsInput) SetMaxResults(v int64) *ListImportsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsInput) SetNextToken(v string) *ListImportsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListImportsInput) SetSortBy(v *ImportSortBy) *ListImportsInput {
+	s.SortBy = v
+	return s
+}
+
+type ListImportsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier assigned by Amazon Lex to the bot.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The version of the bot that was imported. It will always be DRAFT.
+	BotVersion *string `locationName:"botVersion" min:"5" type:"string"`
+
+	// Summary information for the imports that meet the filter criteria specified
+	// in the request. The length of the list is specified in the maxResults parameter.
+	// If there are more imports available, the nextToken field contains a token
+	// to get the next page of results.
+	ImportSummaries []*ImportSummary `locationName:"importSummaries" type:"list"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListImports operation. If the nextToken field is present, you send
+	// the contents as the nextToken parameter of a ListImports operation request
+	// to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListImportsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImportsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListImportsOutput) SetBotId(v string) *ListImportsOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListImportsOutput) SetBotVersion(v string) *ListImportsOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetImportSummaries sets the ImportSummaries field's value.
+func (s *ListImportsOutput) SetImportSummaries(v []*ImportSummary) *ListImportsOutput {
+	s.ImportSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImportsOutput) SetNextToken(v string) *ListImportsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIntentsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11363,8 +14165,8 @@ type ListIntentsInput struct {
 	Filters []*IntentFilter `locationName:"filters" min:"1" type:"list"`
 
 	// The identifier of the language and locale of the intents to list. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -11571,7 +14373,7 @@ type ListSlotTypesInput struct {
 
 	// The identifier of the language and locale of the slot types to list. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -11782,8 +14584,8 @@ type ListSlotsInput struct {
 	IntentId *string `location:"uri" locationName:"intentId" min:"10" type:"string" required:"true"`
 
 	// The identifier of the language and locale of the slots to list. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -13737,6 +16539,159 @@ func (s *SlotValueSelectionSetting) SetResolutionStrategy(v string) *SlotValueSe
 	return s
 }
 
+type StartImportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The password used to encrypt the zip archive that contains the bot or bot
+	// locale definition. You should always encrypt the zip archive to protect it
+	// during transit between your site and Amazon Lex.
+	FilePassword *string `locationName:"filePassword" min:"1" type:"string" sensitive:"true"`
+
+	// The unique identifier for the import. It is included in the response from
+	// the operation.
+	//
+	// ImportId is a required field
+	ImportId *string `locationName:"importId" min:"10" type:"string" required:"true"`
+
+	// The strategy to use when there is a name conflict between the imported resource
+	// and an existing resource. When the merge strategy is FailOnConflict existing
+	// resources are not overwritten and the import fails.
+	//
+	// MergeStrategy is a required field
+	MergeStrategy *string `locationName:"mergeStrategy" type:"string" required:"true" enum:"MergeStrategy"`
+
+	// Parameters for creating the bot or bot locale.
+	//
+	// ResourceSpecification is a required field
+	ResourceSpecification *ImportResourceSpecification `locationName:"resourceSpecification" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartImportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartImportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartImportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartImportInput"}
+	if s.FilePassword != nil && len(*s.FilePassword) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilePassword", 1))
+	}
+	if s.ImportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImportId"))
+	}
+	if s.ImportId != nil && len(*s.ImportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ImportId", 10))
+	}
+	if s.MergeStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("MergeStrategy"))
+	}
+	if s.ResourceSpecification == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceSpecification"))
+	}
+	if s.ResourceSpecification != nil {
+		if err := s.ResourceSpecification.Validate(); err != nil {
+			invalidParams.AddNested("ResourceSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilePassword sets the FilePassword field's value.
+func (s *StartImportInput) SetFilePassword(v string) *StartImportInput {
+	s.FilePassword = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StartImportInput) SetImportId(v string) *StartImportInput {
+	s.ImportId = &v
+	return s
+}
+
+// SetMergeStrategy sets the MergeStrategy field's value.
+func (s *StartImportInput) SetMergeStrategy(v string) *StartImportInput {
+	s.MergeStrategy = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *StartImportInput) SetResourceSpecification(v *ImportResourceSpecification) *StartImportInput {
+	s.ResourceSpecification = v
+	return s
+}
+
+type StartImportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the import request was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// A unique identifier for the import.
+	ImportId *string `locationName:"importId" min:"10" type:"string"`
+
+	// The current status of the import. When the status is Complete the bot or
+	// bot alias is ready to use.
+	ImportStatus *string `locationName:"importStatus" type:"string" enum:"ImportStatus"`
+
+	// The strategy used when there was a name conflict between the imported resource
+	// and an existing resource. When the merge strategy is FailOnConflict existing
+	// resources are not overwritten and the import fails.
+	MergeStrategy *string `locationName:"mergeStrategy" type:"string" enum:"MergeStrategy"`
+
+	// The parameters used when importing the bot or bot locale.
+	ResourceSpecification *ImportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s StartImportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartImportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *StartImportOutput) SetCreationDateTime(v time.Time) *StartImportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetImportId sets the ImportId field's value.
+func (s *StartImportOutput) SetImportId(v string) *StartImportOutput {
+	s.ImportId = &v
+	return s
+}
+
+// SetImportStatus sets the ImportStatus field's value.
+func (s *StartImportOutput) SetImportStatus(v string) *StartImportOutput {
+	s.ImportStatus = &v
+	return s
+}
+
+// SetMergeStrategy sets the MergeStrategy field's value.
+func (s *StartImportOutput) SetMergeStrategy(v string) *StartImportOutput {
+	s.MergeStrategy = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *StartImportOutput) SetResourceSpecification(v *ImportResourceSpecification) *StartImportOutput {
+	s.ResourceSpecification = v
+	return s
+}
+
 // Defines the messages that Amazon Lex sends to a user to remind them that
 // the bot is waiting for a response.
 type StillWaitingResponseSpecification struct {
@@ -14552,8 +17507,8 @@ type UpdateBotLocaleInput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the language and locale to update. The string must match
-	// one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// one of the supported locales. For more information, see Supported languages
+	// (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -14867,6 +17822,129 @@ func (s *UpdateBotOutput) SetRoleArn(v string) *UpdateBotOutput {
 	return s
 }
 
+type UpdateExportInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier Amazon Lex assigned to the export.
+	//
+	// ExportId is a required field
+	ExportId *string `location:"uri" locationName:"exportId" min:"10" type:"string" required:"true"`
+
+	// The new password to use to encrypt the export zip archive.
+	FilePassword *string `locationName:"filePassword" min:"1" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateExportInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateExportInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateExportInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateExportInput"}
+	if s.ExportId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExportId"))
+	}
+	if s.ExportId != nil && len(*s.ExportId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("ExportId", 10))
+	}
+	if s.FilePassword != nil && len(*s.FilePassword) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FilePassword", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *UpdateExportInput) SetExportId(v string) *UpdateExportInput {
+	s.ExportId = &v
+	return s
+}
+
+// SetFilePassword sets the FilePassword field's value.
+func (s *UpdateExportInput) SetFilePassword(v string) *UpdateExportInput {
+	s.FilePassword = &v
+	return s
+}
+
+type UpdateExportOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the export was created.
+	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
+
+	// The unique identifier Amazon Lex assigned to the export.
+	ExportId *string `locationName:"exportId" min:"10" type:"string"`
+
+	// The status of the export. When the status is Completed the export archive
+	// is available for download.
+	ExportStatus *string `locationName:"exportStatus" type:"string" enum:"ExportStatus"`
+
+	// The file format used for the files that define the resource.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"ImportExportFileFormat"`
+
+	// The date and time that the export was last updated.
+	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
+
+	// A description of the type of resource that was exported, either a bot or
+	// a bot locale.
+	ResourceSpecification *ExportResourceSpecification `locationName:"resourceSpecification" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateExportOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateExportOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationDateTime sets the CreationDateTime field's value.
+func (s *UpdateExportOutput) SetCreationDateTime(v time.Time) *UpdateExportOutput {
+	s.CreationDateTime = &v
+	return s
+}
+
+// SetExportId sets the ExportId field's value.
+func (s *UpdateExportOutput) SetExportId(v string) *UpdateExportOutput {
+	s.ExportId = &v
+	return s
+}
+
+// SetExportStatus sets the ExportStatus field's value.
+func (s *UpdateExportOutput) SetExportStatus(v string) *UpdateExportOutput {
+	s.ExportStatus = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *UpdateExportOutput) SetFileFormat(v string) *UpdateExportOutput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *UpdateExportOutput) SetLastUpdatedDateTime(v time.Time) *UpdateExportOutput {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *UpdateExportOutput) SetResourceSpecification(v *ExportResourceSpecification) *UpdateExportOutput {
+	s.ResourceSpecification = v
+	return s
+}
+
 type UpdateIntentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14917,7 +17995,7 @@ type UpdateIntentInput struct {
 
 	// The identifier of the language and locale where this intent is used. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -15350,8 +18428,8 @@ type UpdateSlotInput struct {
 	IntentId *string `location:"uri" locationName:"intentId" min:"10" type:"string" required:"true"`
 
 	// The identifier of the language and locale that contains the slot. The string
-	// must match one of the supported locales. For more information, see https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html
-	// (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// must match one of the supported locales. For more information, see Supported
+	// languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -15660,7 +18738,7 @@ type UpdateSlotTypeInput struct {
 
 	// The identifier of the language and locale that contains the slot type. The
 	// string must match one of the supported locales. For more information, see
-	// https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html (https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html).
+	// Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
 	//
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
@@ -16218,6 +19296,9 @@ const (
 
 	// BotLocaleStatusNotBuilt is a BotLocaleStatus enum value
 	BotLocaleStatusNotBuilt = "NotBuilt"
+
+	// BotLocaleStatusImporting is a BotLocaleStatus enum value
+	BotLocaleStatusImporting = "Importing"
 )
 
 // BotLocaleStatus_Values returns all elements of the BotLocaleStatus enum
@@ -16230,6 +19311,7 @@ func BotLocaleStatus_Values() []string {
 		BotLocaleStatusFailed,
 		BotLocaleStatusDeleting,
 		BotLocaleStatusNotBuilt,
+		BotLocaleStatusImporting,
 	}
 }
 
@@ -16263,6 +19345,9 @@ const (
 
 	// BotStatusVersioning is a BotStatus enum value
 	BotStatusVersioning = "Versioning"
+
+	// BotStatusImporting is a BotStatus enum value
+	BotStatusImporting = "Importing"
 )
 
 // BotStatus_Values returns all elements of the BotStatus enum
@@ -16274,6 +19359,7 @@ func BotStatus_Values() []string {
 		BotStatusDeleting,
 		BotStatusFailed,
 		BotStatusVersioning,
+		BotStatusImporting,
 	}
 }
 
@@ -16310,6 +19396,146 @@ const (
 func BuiltInSlotTypeSortAttribute_Values() []string {
 	return []string{
 		BuiltInSlotTypeSortAttributeSlotTypeSignature,
+	}
+}
+
+const (
+	// ExportFilterNameExportResourceType is a ExportFilterName enum value
+	ExportFilterNameExportResourceType = "ExportResourceType"
+)
+
+// ExportFilterName_Values returns all elements of the ExportFilterName enum
+func ExportFilterName_Values() []string {
+	return []string{
+		ExportFilterNameExportResourceType,
+	}
+}
+
+const (
+	// ExportFilterOperatorCo is a ExportFilterOperator enum value
+	ExportFilterOperatorCo = "CO"
+
+	// ExportFilterOperatorEq is a ExportFilterOperator enum value
+	ExportFilterOperatorEq = "EQ"
+)
+
+// ExportFilterOperator_Values returns all elements of the ExportFilterOperator enum
+func ExportFilterOperator_Values() []string {
+	return []string{
+		ExportFilterOperatorCo,
+		ExportFilterOperatorEq,
+	}
+}
+
+const (
+	// ExportSortAttributeLastUpdatedDateTime is a ExportSortAttribute enum value
+	ExportSortAttributeLastUpdatedDateTime = "LastUpdatedDateTime"
+)
+
+// ExportSortAttribute_Values returns all elements of the ExportSortAttribute enum
+func ExportSortAttribute_Values() []string {
+	return []string{
+		ExportSortAttributeLastUpdatedDateTime,
+	}
+}
+
+const (
+	// ExportStatusInProgress is a ExportStatus enum value
+	ExportStatusInProgress = "InProgress"
+
+	// ExportStatusCompleted is a ExportStatus enum value
+	ExportStatusCompleted = "Completed"
+
+	// ExportStatusFailed is a ExportStatus enum value
+	ExportStatusFailed = "Failed"
+
+	// ExportStatusDeleting is a ExportStatus enum value
+	ExportStatusDeleting = "Deleting"
+)
+
+// ExportStatus_Values returns all elements of the ExportStatus enum
+func ExportStatus_Values() []string {
+	return []string{
+		ExportStatusInProgress,
+		ExportStatusCompleted,
+		ExportStatusFailed,
+		ExportStatusDeleting,
+	}
+}
+
+const (
+	// ImportExportFileFormatLexJson is a ImportExportFileFormat enum value
+	ImportExportFileFormatLexJson = "LexJson"
+)
+
+// ImportExportFileFormat_Values returns all elements of the ImportExportFileFormat enum
+func ImportExportFileFormat_Values() []string {
+	return []string{
+		ImportExportFileFormatLexJson,
+	}
+}
+
+const (
+	// ImportFilterNameImportResourceType is a ImportFilterName enum value
+	ImportFilterNameImportResourceType = "ImportResourceType"
+)
+
+// ImportFilterName_Values returns all elements of the ImportFilterName enum
+func ImportFilterName_Values() []string {
+	return []string{
+		ImportFilterNameImportResourceType,
+	}
+}
+
+const (
+	// ImportFilterOperatorCo is a ImportFilterOperator enum value
+	ImportFilterOperatorCo = "CO"
+
+	// ImportFilterOperatorEq is a ImportFilterOperator enum value
+	ImportFilterOperatorEq = "EQ"
+)
+
+// ImportFilterOperator_Values returns all elements of the ImportFilterOperator enum
+func ImportFilterOperator_Values() []string {
+	return []string{
+		ImportFilterOperatorCo,
+		ImportFilterOperatorEq,
+	}
+}
+
+const (
+	// ImportSortAttributeLastUpdatedDateTime is a ImportSortAttribute enum value
+	ImportSortAttributeLastUpdatedDateTime = "LastUpdatedDateTime"
+)
+
+// ImportSortAttribute_Values returns all elements of the ImportSortAttribute enum
+func ImportSortAttribute_Values() []string {
+	return []string{
+		ImportSortAttributeLastUpdatedDateTime,
+	}
+}
+
+const (
+	// ImportStatusInProgress is a ImportStatus enum value
+	ImportStatusInProgress = "InProgress"
+
+	// ImportStatusCompleted is a ImportStatus enum value
+	ImportStatusCompleted = "Completed"
+
+	// ImportStatusFailed is a ImportStatus enum value
+	ImportStatusFailed = "Failed"
+
+	// ImportStatusDeleting is a ImportStatus enum value
+	ImportStatusDeleting = "Deleting"
+)
+
+// ImportStatus_Values returns all elements of the ImportStatus enum
+func ImportStatus_Values() []string {
+	return []string{
+		ImportStatusInProgress,
+		ImportStatusCompleted,
+		ImportStatusFailed,
+		ImportStatusDeleting,
 	}
 }
 
@@ -16354,6 +19580,22 @@ func IntentSortAttribute_Values() []string {
 	return []string{
 		IntentSortAttributeIntentName,
 		IntentSortAttributeLastUpdatedDateTime,
+	}
+}
+
+const (
+	// MergeStrategyOverwrite is a MergeStrategy enum value
+	MergeStrategyOverwrite = "Overwrite"
+
+	// MergeStrategyFailOnConflict is a MergeStrategy enum value
+	MergeStrategyFailOnConflict = "FailOnConflict"
+)
+
+// MergeStrategy_Values returns all elements of the MergeStrategy enum
+func MergeStrategy_Values() []string {
+	return []string{
+		MergeStrategyOverwrite,
+		MergeStrategyFailOnConflict,
 	}
 }
 

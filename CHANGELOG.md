@@ -1,3 +1,20 @@
+Release v1.38.42 (2021-05-18)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API, documentation, paginators, and examples
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/iotsitewise`: Updates service documentation
+* `service/license-manager`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/personalize`: Updates service API and documentation
+* `service/support`: Updates service documentation
+  * Documentation updates for support
+
+### SDK Enhancements
+* `aws/session`: Enable SSO provider to be mixed with other credential providers ([#3905](https://github.com/aws/aws-sdk-go/pull/3905))
+  * Fixes [#3763](https://github.com/aws/aws-sdk-go/issues/3763)
+
 Release v1.38.41 (2021-05-17)
 ===
 

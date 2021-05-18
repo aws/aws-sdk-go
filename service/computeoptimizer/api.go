@@ -226,6 +226,115 @@ func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsWithContext(ctx 
 	return out, req.Send()
 }
 
+const opExportEBSVolumeRecommendations = "ExportEBSVolumeRecommendations"
+
+// ExportEBSVolumeRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportEBSVolumeRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportEBSVolumeRecommendations for more information on using the ExportEBSVolumeRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportEBSVolumeRecommendationsRequest method.
+//    req, resp := client.ExportEBSVolumeRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportEBSVolumeRecommendations
+func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsRequest(input *ExportEBSVolumeRecommendationsInput) (req *request.Request, output *ExportEBSVolumeRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportEBSVolumeRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportEBSVolumeRecommendationsInput{}
+	}
+
+	output = &ExportEBSVolumeRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportEBSVolumeRecommendations API operation for AWS Compute Optimizer.
+//
+// Exports optimization recommendations for Amazon EBS volumes.
+//
+// Recommendations are exported in a comma-separated values (.csv) file, and
+// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one Amazon EBS volume export job in progress per AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportEBSVolumeRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * LimitExceededException
+//   The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportEBSVolumeRecommendations
+func (c *ComputeOptimizer) ExportEBSVolumeRecommendations(input *ExportEBSVolumeRecommendationsInput) (*ExportEBSVolumeRecommendationsOutput, error) {
+	req, out := c.ExportEBSVolumeRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportEBSVolumeRecommendationsWithContext is the same as ExportEBSVolumeRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportEBSVolumeRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsWithContext(ctx aws.Context, input *ExportEBSVolumeRecommendationsInput, opts ...request.Option) (*ExportEBSVolumeRecommendationsOutput, error) {
+	req, out := c.ExportEBSVolumeRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opExportEC2InstanceRecommendations = "ExportEC2InstanceRecommendations"
 
 // ExportEC2InstanceRecommendationsRequest generates a "aws/request.Request" representing the
@@ -331,6 +440,115 @@ func (c *ComputeOptimizer) ExportEC2InstanceRecommendations(input *ExportEC2Inst
 // for more information on using Contexts.
 func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsWithContext(ctx aws.Context, input *ExportEC2InstanceRecommendationsInput, opts ...request.Option) (*ExportEC2InstanceRecommendationsOutput, error) {
 	req, out := c.ExportEC2InstanceRecommendationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opExportLambdaFunctionRecommendations = "ExportLambdaFunctionRecommendations"
+
+// ExportLambdaFunctionRecommendationsRequest generates a "aws/request.Request" representing the
+// client's request for the ExportLambdaFunctionRecommendations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportLambdaFunctionRecommendations for more information on using the ExportLambdaFunctionRecommendations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportLambdaFunctionRecommendationsRequest method.
+//    req, resp := client.ExportLambdaFunctionRecommendationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportLambdaFunctionRecommendations
+func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsRequest(input *ExportLambdaFunctionRecommendationsInput) (req *request.Request, output *ExportLambdaFunctionRecommendationsOutput) {
+	op := &request.Operation{
+		Name:       opExportLambdaFunctionRecommendations,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ExportLambdaFunctionRecommendationsInput{}
+	}
+
+	output = &ExportLambdaFunctionRecommendationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportLambdaFunctionRecommendations API operation for AWS Compute Optimizer.
+//
+// Exports optimization recommendations for AWS Lambda functions.
+//
+// Recommendations are exported in a comma-separated values (.csv) file, and
+// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
+// information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
+// in the Compute Optimizer User Guide.
+//
+// You can have only one Lambda function export job in progress per AWS Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation ExportLambdaFunctionRecommendations for usage and error information.
+//
+// Returned Error Types:
+//   * OptInRequiredException
+//   The account is not opted in to AWS Compute Optimizer.
+//
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   An invalid or out-of-range value was supplied for the input parameter.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) AWS access key ID or
+//   X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   * LimitExceededException
+//   The request exceeds a limit of the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/ExportLambdaFunctionRecommendations
+func (c *ComputeOptimizer) ExportLambdaFunctionRecommendations(input *ExportLambdaFunctionRecommendationsInput) (*ExportLambdaFunctionRecommendationsOutput, error) {
+	req, out := c.ExportLambdaFunctionRecommendationsRequest(input)
+	return out, req.Send()
+}
+
+// ExportLambdaFunctionRecommendationsWithContext is the same as ExportLambdaFunctionRecommendations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportLambdaFunctionRecommendations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsWithContext(ctx aws.Context, input *ExportLambdaFunctionRecommendationsInput, opts ...request.Option) (*ExportLambdaFunctionRecommendationsOutput, error) {
+	req, out := c.ExportLambdaFunctionRecommendationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1127,13 +1345,13 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 //
 // You must have the appropriate permissions to opt in to Compute Optimizer,
 // to view its recommendations, and to opt out. For more information, see Controlling
-// access with AWS Identity and Access Management (https://docs.aws.amazon.com/compute-optimizer/ug/security-iam.html)
-// in the Compute Optimizer User Guide.
+// access with AWS Identity and Access Management (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html)
+// in the AWS Compute Optimizer User Guide.
 //
 // When you opt in, Compute Optimizer automatically creates a Service-Linked
 // Role in your account to access its data. For more information, see Using
-// Service-Linked Roles for AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/ug/using-service-linked-roles.html)
-// in the Compute Optimizer User Guide.
+// Service-Linked Roles for AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/using-service-linked-roles.html)
+// in the AWS Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1709,7 +1927,11 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// accounts of the organization if your account is the management account of
 	// an organization.
 	//
-	// The member accounts must also be opted in to Compute Optimizer.
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and AWS Organizations trusted
+	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the AWS Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -1859,6 +2081,170 @@ func (s *ExportDestination) SetS3(v *S3Destination) *ExportDestination {
 	return s
 }
 
+type ExportEBSVolumeRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the AWS accounts for which to export Amazon EBS volume recommendations.
+	//
+	// If your account is the management account of an organization, use this parameter
+	// to specify the member account for which you want to export recommendations.
+	//
+	// This parameter cannot be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the include member accounts parameter, is omitted.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+
+	// The format of the export file.
+	//
+	// The only export file format currently supported is Csv.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects that describe a filter to export a more specific set
+	// of Amazon EBS volume recommendations.
+	Filters []*EBSFilter `locationName:"filters" type:"list"`
+
+	// Indicates whether to include recommendations for resources in all member
+	// accounts of the organization if your account is the management account of
+	// an organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and AWS Organizations trusted
+	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the AWS Compute Optimizer User Guide.
+	//
+	// Recommendations for member accounts of the organization are not included
+	// in the export file if this parameter is omitted.
+	//
+	// This parameter cannot be specified together with the account IDs parameter.
+	// The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the account IDs parameter, is omitted.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and key prefix for a recommendations export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer user guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportEBSVolumeRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportEBSVolumeRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportEBSVolumeRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportEBSVolumeRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetAccountIds(v []*string) *ExportEBSVolumeRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetFieldsToExport(v []*string) *ExportEBSVolumeRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetFileFormat(v string) *ExportEBSVolumeRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetFilters(v []*EBSFilter) *ExportEBSVolumeRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportEBSVolumeRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportEBSVolumeRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportEBSVolumeRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportEBSVolumeRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// Use the DescribeRecommendationExportJobs action, and specify the job ID to
+	// view the status of an export job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and object keys of a recommendations export file, and its associated
+	// metadata file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportEBSVolumeRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportEBSVolumeRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportEBSVolumeRecommendationsOutput) SetJobId(v string) *ExportEBSVolumeRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportEBSVolumeRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportEBSVolumeRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
 type ExportEC2InstanceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1894,7 +2280,11 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// accounts of the organization if your account is the management account of
 	// an organization.
 	//
-	// The member accounts must also be opted in to Compute Optimizer.
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and AWS Organizations trusted
+	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the AWS Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -2011,6 +2401,170 @@ func (s *ExportEC2InstanceRecommendationsOutput) SetJobId(v string) *ExportEC2In
 
 // SetS3Destination sets the S3Destination field's value.
 func (s *ExportEC2InstanceRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportEC2InstanceRecommendationsOutput {
+	s.S3Destination = v
+	return s
+}
+
+type ExportLambdaFunctionRecommendationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The IDs of the AWS accounts for which to export Lambda function recommendations.
+	//
+	// If your account is the management account of an organization, use this parameter
+	// to specify the member account for which you want to export recommendations.
+	//
+	// This parameter cannot be specified together with the include member accounts
+	// parameter. The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the include member accounts parameter, is omitted.
+	//
+	// You can specify multiple account IDs per request.
+	AccountIds []*string `locationName:"accountIds" type:"list"`
+
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
+	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
+
+	// The format of the export file.
+	//
+	// The only export file format currently supported is Csv.
+	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
+
+	// An array of objects that describe a filter to export a more specific set
+	// of Lambda function recommendations.
+	Filters []*LambdaFunctionRecommendationFilter `locationName:"filters" type:"list"`
+
+	// Indicates whether to include recommendations for resources in all member
+	// accounts of the organization if your account is the management account of
+	// an organization.
+	//
+	// The member accounts must also be opted in to Compute Optimizer, and trusted
+	// access for Compute Optimizer must be enabled in the organization account.
+	// For more information, see Compute Optimizer and AWS Organizations trusted
+	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the AWS Compute Optimizer User Guide.
+	//
+	// Recommendations for member accounts of the organization are not included
+	// in the export file if this parameter is omitted.
+	//
+	// This parameter cannot be specified together with the account IDs parameter.
+	// The parameters are mutually exclusive.
+	//
+	// Recommendations for member accounts are not included in the export if this
+	// parameter, or the account IDs parameter, is omitted.
+	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and key prefix for a recommendations export job.
+	//
+	// You must create the destination Amazon S3 bucket for your recommendations
+	// export before you create the export job. Compute Optimizer does not create
+	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
+	// the required permission policy to allow Compute Optimizer to write the export
+	// file to it. If you plan to specify an object prefix when you create the export
+	// job, you must include the object prefix in the policy that you add to the
+	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
+	// in the Compute Optimizer user guide.
+	//
+	// S3DestinationConfig is a required field
+	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportLambdaFunctionRecommendationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportLambdaFunctionRecommendationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportLambdaFunctionRecommendationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportLambdaFunctionRecommendationsInput"}
+	if s.S3DestinationConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3DestinationConfig"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountIds sets the AccountIds field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetAccountIds(v []*string) *ExportLambdaFunctionRecommendationsInput {
+	s.AccountIds = v
+	return s
+}
+
+// SetFieldsToExport sets the FieldsToExport field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetFieldsToExport(v []*string) *ExportLambdaFunctionRecommendationsInput {
+	s.FieldsToExport = v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetFileFormat(v string) *ExportLambdaFunctionRecommendationsInput {
+	s.FileFormat = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetFilters(v []*LambdaFunctionRecommendationFilter) *ExportLambdaFunctionRecommendationsInput {
+	s.Filters = v
+	return s
+}
+
+// SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportLambdaFunctionRecommendationsInput {
+	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetS3DestinationConfig sets the S3DestinationConfig field's value.
+func (s *ExportLambdaFunctionRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportLambdaFunctionRecommendationsInput {
+	s.S3DestinationConfig = v
+	return s
+}
+
+type ExportLambdaFunctionRecommendationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identification number of the export job.
+	//
+	// Use the DescribeRecommendationExportJobs action, and specify the job ID to
+	// view the status of an export job.
+	JobId *string `locationName:"jobId" type:"string"`
+
+	// Describes the destination Amazon Simple Storage Service (Amazon S3) bucket
+	// name and object keys of a recommendations export file, and its associated
+	// metadata file.
+	S3Destination *S3Destination `locationName:"s3Destination" type:"structure"`
+}
+
+// String returns the string representation
+func (s ExportLambdaFunctionRecommendationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportLambdaFunctionRecommendationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *ExportLambdaFunctionRecommendationsOutput) SetJobId(v string) *ExportLambdaFunctionRecommendationsOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetS3Destination sets the S3Destination field's value.
+func (s *ExportLambdaFunctionRecommendationsOutput) SetS3Destination(v *S3Destination) *ExportLambdaFunctionRecommendationsOutput {
 	s.S3Destination = v
 	return s
 }
@@ -4358,8 +4912,8 @@ type UpdateEnrollmentStatusInput struct {
 	//    * Active - Opts in your account to the Compute Optimizer service. Compute
 	//    Optimizer begins analyzing the configuration and utilization metrics of
 	//    your AWS resources after you opt in. For more information, see Metrics
-	//    analyzed by AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/ug/metrics.html)
-	//    in the Compute Optimizer User Guide.
+	//    analyzed by AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html)
+	//    in the AWS Compute Optimizer User Guide.
 	//
 	//    * Inactive - Opts out your account from the Compute Optimizer service.
 	//    Your account's recommendations and related metrics data will be deleted
@@ -5100,6 +5654,206 @@ func ExportableInstanceField_Values() []string {
 }
 
 const (
+	// ExportableLambdaFunctionFieldAccountId is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldAccountId = "AccountId"
+
+	// ExportableLambdaFunctionFieldFunctionArn is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldFunctionArn = "FunctionArn"
+
+	// ExportableLambdaFunctionFieldFunctionVersion is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldFunctionVersion = "FunctionVersion"
+
+	// ExportableLambdaFunctionFieldFinding is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldFinding = "Finding"
+
+	// ExportableLambdaFunctionFieldFindingReasonCodes is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldFindingReasonCodes = "FindingReasonCodes"
+
+	// ExportableLambdaFunctionFieldNumberOfInvocations is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldNumberOfInvocations = "NumberOfInvocations"
+
+	// ExportableLambdaFunctionFieldUtilizationMetricsDurationMaximum is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldUtilizationMetricsDurationMaximum = "UtilizationMetricsDurationMaximum"
+
+	// ExportableLambdaFunctionFieldUtilizationMetricsDurationAverage is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldUtilizationMetricsDurationAverage = "UtilizationMetricsDurationAverage"
+
+	// ExportableLambdaFunctionFieldUtilizationMetricsMemoryMaximum is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableLambdaFunctionFieldUtilizationMetricsMemoryAverage is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldUtilizationMetricsMemoryAverage = "UtilizationMetricsMemoryAverage"
+
+	// ExportableLambdaFunctionFieldLookbackPeriodInDays is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableLambdaFunctionFieldCurrentConfigurationMemorySize is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldCurrentConfigurationMemorySize = "CurrentConfigurationMemorySize"
+
+	// ExportableLambdaFunctionFieldCurrentConfigurationTimeout is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldCurrentConfigurationTimeout = "CurrentConfigurationTimeout"
+
+	// ExportableLambdaFunctionFieldCurrentCostTotal is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldCurrentCostTotal = "CurrentCostTotal"
+
+	// ExportableLambdaFunctionFieldCurrentCostAverage is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldCurrentCostAverage = "CurrentCostAverage"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsConfigurationMemorySize is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsConfigurationMemorySize = "RecommendationOptionsConfigurationMemorySize"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsCostLow is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsCostLow = "RecommendationOptionsCostLow"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsCostHigh is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsCostHigh = "RecommendationOptionsCostHigh"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationLowerBound is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationLowerBound = "RecommendationOptionsProjectedUtilizationMetricsDurationLowerBound"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationUpperBound is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationUpperBound = "RecommendationOptionsProjectedUtilizationMetricsDurationUpperBound"
+
+	// ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationExpected is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationExpected = "RecommendationOptionsProjectedUtilizationMetricsDurationExpected"
+
+	// ExportableLambdaFunctionFieldLastRefreshTimestamp is a ExportableLambdaFunctionField enum value
+	ExportableLambdaFunctionFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+)
+
+// ExportableLambdaFunctionField_Values returns all elements of the ExportableLambdaFunctionField enum
+func ExportableLambdaFunctionField_Values() []string {
+	return []string{
+		ExportableLambdaFunctionFieldAccountId,
+		ExportableLambdaFunctionFieldFunctionArn,
+		ExportableLambdaFunctionFieldFunctionVersion,
+		ExportableLambdaFunctionFieldFinding,
+		ExportableLambdaFunctionFieldFindingReasonCodes,
+		ExportableLambdaFunctionFieldNumberOfInvocations,
+		ExportableLambdaFunctionFieldUtilizationMetricsDurationMaximum,
+		ExportableLambdaFunctionFieldUtilizationMetricsDurationAverage,
+		ExportableLambdaFunctionFieldUtilizationMetricsMemoryMaximum,
+		ExportableLambdaFunctionFieldUtilizationMetricsMemoryAverage,
+		ExportableLambdaFunctionFieldLookbackPeriodInDays,
+		ExportableLambdaFunctionFieldCurrentConfigurationMemorySize,
+		ExportableLambdaFunctionFieldCurrentConfigurationTimeout,
+		ExportableLambdaFunctionFieldCurrentCostTotal,
+		ExportableLambdaFunctionFieldCurrentCostAverage,
+		ExportableLambdaFunctionFieldRecommendationOptionsConfigurationMemorySize,
+		ExportableLambdaFunctionFieldRecommendationOptionsCostLow,
+		ExportableLambdaFunctionFieldRecommendationOptionsCostHigh,
+		ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationLowerBound,
+		ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationUpperBound,
+		ExportableLambdaFunctionFieldRecommendationOptionsProjectedUtilizationMetricsDurationExpected,
+		ExportableLambdaFunctionFieldLastRefreshTimestamp,
+	}
+}
+
+const (
+	// ExportableVolumeFieldAccountId is a ExportableVolumeField enum value
+	ExportableVolumeFieldAccountId = "AccountId"
+
+	// ExportableVolumeFieldVolumeArn is a ExportableVolumeField enum value
+	ExportableVolumeFieldVolumeArn = "VolumeArn"
+
+	// ExportableVolumeFieldFinding is a ExportableVolumeField enum value
+	ExportableVolumeFieldFinding = "Finding"
+
+	// ExportableVolumeFieldUtilizationMetricsVolumeReadOpsPerSecondMaximum is a ExportableVolumeField enum value
+	ExportableVolumeFieldUtilizationMetricsVolumeReadOpsPerSecondMaximum = "UtilizationMetricsVolumeReadOpsPerSecondMaximum"
+
+	// ExportableVolumeFieldUtilizationMetricsVolumeWriteOpsPerSecondMaximum is a ExportableVolumeField enum value
+	ExportableVolumeFieldUtilizationMetricsVolumeWriteOpsPerSecondMaximum = "UtilizationMetricsVolumeWriteOpsPerSecondMaximum"
+
+	// ExportableVolumeFieldUtilizationMetricsVolumeReadBytesPerSecondMaximum is a ExportableVolumeField enum value
+	ExportableVolumeFieldUtilizationMetricsVolumeReadBytesPerSecondMaximum = "UtilizationMetricsVolumeReadBytesPerSecondMaximum"
+
+	// ExportableVolumeFieldUtilizationMetricsVolumeWriteBytesPerSecondMaximum is a ExportableVolumeField enum value
+	ExportableVolumeFieldUtilizationMetricsVolumeWriteBytesPerSecondMaximum = "UtilizationMetricsVolumeWriteBytesPerSecondMaximum"
+
+	// ExportableVolumeFieldLookbackPeriodInDays is a ExportableVolumeField enum value
+	ExportableVolumeFieldLookbackPeriodInDays = "LookbackPeriodInDays"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeType is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeType = "CurrentConfigurationVolumeType"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeBaselineIops is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeBaselineIops = "CurrentConfigurationVolumeBaselineIOPS"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeBaselineThroughput is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeBaselineThroughput = "CurrentConfigurationVolumeBaselineThroughput"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeBurstIops is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeBurstIops = "CurrentConfigurationVolumeBurstIOPS"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeBurstThroughput is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeBurstThroughput = "CurrentConfigurationVolumeBurstThroughput"
+
+	// ExportableVolumeFieldCurrentConfigurationVolumeSize is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentConfigurationVolumeSize = "CurrentConfigurationVolumeSize"
+
+	// ExportableVolumeFieldCurrentMonthlyPrice is a ExportableVolumeField enum value
+	ExportableVolumeFieldCurrentMonthlyPrice = "CurrentMonthlyPrice"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeType is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeType = "RecommendationOptionsConfigurationVolumeType"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineIops is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineIops = "RecommendationOptionsConfigurationVolumeBaselineIOPS"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineThroughput is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineThroughput = "RecommendationOptionsConfigurationVolumeBaselineThroughput"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstIops is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstIops = "RecommendationOptionsConfigurationVolumeBurstIOPS"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstThroughput is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstThroughput = "RecommendationOptionsConfigurationVolumeBurstThroughput"
+
+	// ExportableVolumeFieldRecommendationOptionsConfigurationVolumeSize is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsConfigurationVolumeSize = "RecommendationOptionsConfigurationVolumeSize"
+
+	// ExportableVolumeFieldRecommendationOptionsMonthlyPrice is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsMonthlyPrice = "RecommendationOptionsMonthlyPrice"
+
+	// ExportableVolumeFieldRecommendationOptionsPerformanceRisk is a ExportableVolumeField enum value
+	ExportableVolumeFieldRecommendationOptionsPerformanceRisk = "RecommendationOptionsPerformanceRisk"
+
+	// ExportableVolumeFieldLastRefreshTimestamp is a ExportableVolumeField enum value
+	ExportableVolumeFieldLastRefreshTimestamp = "LastRefreshTimestamp"
+)
+
+// ExportableVolumeField_Values returns all elements of the ExportableVolumeField enum
+func ExportableVolumeField_Values() []string {
+	return []string{
+		ExportableVolumeFieldAccountId,
+		ExportableVolumeFieldVolumeArn,
+		ExportableVolumeFieldFinding,
+		ExportableVolumeFieldUtilizationMetricsVolumeReadOpsPerSecondMaximum,
+		ExportableVolumeFieldUtilizationMetricsVolumeWriteOpsPerSecondMaximum,
+		ExportableVolumeFieldUtilizationMetricsVolumeReadBytesPerSecondMaximum,
+		ExportableVolumeFieldUtilizationMetricsVolumeWriteBytesPerSecondMaximum,
+		ExportableVolumeFieldLookbackPeriodInDays,
+		ExportableVolumeFieldCurrentConfigurationVolumeType,
+		ExportableVolumeFieldCurrentConfigurationVolumeBaselineIops,
+		ExportableVolumeFieldCurrentConfigurationVolumeBaselineThroughput,
+		ExportableVolumeFieldCurrentConfigurationVolumeBurstIops,
+		ExportableVolumeFieldCurrentConfigurationVolumeBurstThroughput,
+		ExportableVolumeFieldCurrentConfigurationVolumeSize,
+		ExportableVolumeFieldCurrentMonthlyPrice,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeType,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineIops,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBaselineThroughput,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstIops,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeBurstThroughput,
+		ExportableVolumeFieldRecommendationOptionsConfigurationVolumeSize,
+		ExportableVolumeFieldRecommendationOptionsMonthlyPrice,
+		ExportableVolumeFieldRecommendationOptionsPerformanceRisk,
+		ExportableVolumeFieldLastRefreshTimestamp,
+	}
+}
+
+const (
 	// FileFormatCsv is a FileFormat enum value
 	FileFormatCsv = "Csv"
 )
@@ -5409,6 +6163,12 @@ const (
 
 	// ResourceTypeAutoScalingGroup is a ResourceType enum value
 	ResourceTypeAutoScalingGroup = "AutoScalingGroup"
+
+	// ResourceTypeEbsVolume is a ResourceType enum value
+	ResourceTypeEbsVolume = "EbsVolume"
+
+	// ResourceTypeLambdaFunction is a ResourceType enum value
+	ResourceTypeLambdaFunction = "LambdaFunction"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -5416,6 +6176,8 @@ func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeEc2instance,
 		ResourceTypeAutoScalingGroup,
+		ResourceTypeEbsVolume,
+		ResourceTypeLambdaFunction,
 	}
 }
 

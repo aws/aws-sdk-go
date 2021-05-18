@@ -68,9 +68,17 @@ type ComputeOptimizerAPI interface {
 	ExportAutoScalingGroupRecommendationsWithContext(aws.Context, *computeoptimizer.ExportAutoScalingGroupRecommendationsInput, ...request.Option) (*computeoptimizer.ExportAutoScalingGroupRecommendationsOutput, error)
 	ExportAutoScalingGroupRecommendationsRequest(*computeoptimizer.ExportAutoScalingGroupRecommendationsInput) (*request.Request, *computeoptimizer.ExportAutoScalingGroupRecommendationsOutput)
 
+	ExportEBSVolumeRecommendations(*computeoptimizer.ExportEBSVolumeRecommendationsInput) (*computeoptimizer.ExportEBSVolumeRecommendationsOutput, error)
+	ExportEBSVolumeRecommendationsWithContext(aws.Context, *computeoptimizer.ExportEBSVolumeRecommendationsInput, ...request.Option) (*computeoptimizer.ExportEBSVolumeRecommendationsOutput, error)
+	ExportEBSVolumeRecommendationsRequest(*computeoptimizer.ExportEBSVolumeRecommendationsInput) (*request.Request, *computeoptimizer.ExportEBSVolumeRecommendationsOutput)
+
 	ExportEC2InstanceRecommendations(*computeoptimizer.ExportEC2InstanceRecommendationsInput) (*computeoptimizer.ExportEC2InstanceRecommendationsOutput, error)
 	ExportEC2InstanceRecommendationsWithContext(aws.Context, *computeoptimizer.ExportEC2InstanceRecommendationsInput, ...request.Option) (*computeoptimizer.ExportEC2InstanceRecommendationsOutput, error)
 	ExportEC2InstanceRecommendationsRequest(*computeoptimizer.ExportEC2InstanceRecommendationsInput) (*request.Request, *computeoptimizer.ExportEC2InstanceRecommendationsOutput)
+
+	ExportLambdaFunctionRecommendations(*computeoptimizer.ExportLambdaFunctionRecommendationsInput) (*computeoptimizer.ExportLambdaFunctionRecommendationsOutput, error)
+	ExportLambdaFunctionRecommendationsWithContext(aws.Context, *computeoptimizer.ExportLambdaFunctionRecommendationsInput, ...request.Option) (*computeoptimizer.ExportLambdaFunctionRecommendationsOutput, error)
+	ExportLambdaFunctionRecommendationsRequest(*computeoptimizer.ExportLambdaFunctionRecommendationsInput) (*request.Request, *computeoptimizer.ExportLambdaFunctionRecommendationsOutput)
 
 	GetAutoScalingGroupRecommendations(*computeoptimizer.GetAutoScalingGroupRecommendationsInput) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)
 	GetAutoScalingGroupRecommendationsWithContext(aws.Context, *computeoptimizer.GetAutoScalingGroupRecommendationsInput, ...request.Option) (*computeoptimizer.GetAutoScalingGroupRecommendationsOutput, error)

@@ -385,9 +385,9 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 //    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
 //
 // With respect to Unix epoch time, AWS IoT SiteWise accepts only TQVs that
-// have a timestamp of no more than 7 days in the past and no more than 5 minutes
+// have a timestamp of no more than 7 days in the past and no more than 10 minutes
 // in the future. AWS IoT SiteWise rejects timestamps outside of the inclusive
-// range of [-7 days, +5 minutes] and returns a TimestampOutOfRangeException
+// range of [-7 days, +10 minutes] and returns a TimestampOutOfRangeException
 // error.
 //
 // For each asset property, AWS IoT SiteWise overwrites TQVs with duplicate
@@ -3591,6 +3591,8 @@ func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesRequest(input *GetInterp
 // during a period of time. For example, you can use the this operation to return
 // the interpolated temperature values for a wind turbine every 24 hours over
 // a duration of 7 days.
+//
+// This API isn't available in China (Beijing).
 //
 // To identify an asset property, you must specify one of the following:
 //

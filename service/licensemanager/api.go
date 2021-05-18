@@ -821,6 +821,107 @@ func (c *LicenseManager) CreateLicenseConfigurationWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opCreateLicenseManagerReportGenerator = "CreateLicenseManagerReportGenerator"
+
+// CreateLicenseManagerReportGeneratorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLicenseManagerReportGenerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLicenseManagerReportGenerator for more information on using the CreateLicenseManagerReportGenerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLicenseManagerReportGeneratorRequest method.
+//    req, resp := client.CreateLicenseManagerReportGeneratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseManagerReportGenerator
+func (c *LicenseManager) CreateLicenseManagerReportGeneratorRequest(input *CreateLicenseManagerReportGeneratorInput) (req *request.Request, output *CreateLicenseManagerReportGeneratorOutput) {
+	op := &request.Operation{
+		Name:       opCreateLicenseManagerReportGenerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLicenseManagerReportGeneratorInput{}
+	}
+
+	output = &CreateLicenseManagerReportGeneratorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLicenseManagerReportGenerator API operation for AWS License Manager.
+//
+// Creates a new report generator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation CreateLicenseManagerReportGenerator for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseManagerReportGenerator
+func (c *LicenseManager) CreateLicenseManagerReportGenerator(input *CreateLicenseManagerReportGeneratorInput) (*CreateLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.CreateLicenseManagerReportGeneratorRequest(input)
+	return out, req.Send()
+}
+
+// CreateLicenseManagerReportGeneratorWithContext is the same as CreateLicenseManagerReportGenerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLicenseManagerReportGenerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) CreateLicenseManagerReportGeneratorWithContext(ctx aws.Context, input *CreateLicenseManagerReportGeneratorInput, opts ...request.Option) (*CreateLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.CreateLicenseManagerReportGeneratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLicenseVersion = "CreateLicenseVersion"
 
 // CreateLicenseVersionRequest generates a "aws/request.Request" representing the
@@ -1316,6 +1417,112 @@ func (c *LicenseManager) DeleteLicenseConfiguration(input *DeleteLicenseConfigur
 // for more information on using Contexts.
 func (c *LicenseManager) DeleteLicenseConfigurationWithContext(ctx aws.Context, input *DeleteLicenseConfigurationInput, opts ...request.Option) (*DeleteLicenseConfigurationOutput, error) {
 	req, out := c.DeleteLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLicenseManagerReportGenerator = "DeleteLicenseManagerReportGenerator"
+
+// DeleteLicenseManagerReportGeneratorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLicenseManagerReportGenerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLicenseManagerReportGenerator for more information on using the DeleteLicenseManagerReportGenerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteLicenseManagerReportGeneratorRequest method.
+//    req, resp := client.DeleteLicenseManagerReportGeneratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/DeleteLicenseManagerReportGenerator
+func (c *LicenseManager) DeleteLicenseManagerReportGeneratorRequest(input *DeleteLicenseManagerReportGeneratorInput) (req *request.Request, output *DeleteLicenseManagerReportGeneratorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLicenseManagerReportGenerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLicenseManagerReportGeneratorInput{}
+	}
+
+	output = &DeleteLicenseManagerReportGeneratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLicenseManagerReportGenerator API operation for AWS License Manager.
+//
+// Delete an existing report generator.
+//
+// This action deletes the report generator, which stops it from generating
+// future reports and cannot be reversed. However, the previous reports from
+// this generator will remain in your S3 bucket.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation DeleteLicenseManagerReportGenerator for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/DeleteLicenseManagerReportGenerator
+func (c *LicenseManager) DeleteLicenseManagerReportGenerator(input *DeleteLicenseManagerReportGeneratorInput) (*DeleteLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.DeleteLicenseManagerReportGeneratorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLicenseManagerReportGeneratorWithContext is the same as DeleteLicenseManagerReportGenerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLicenseManagerReportGenerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) DeleteLicenseManagerReportGeneratorWithContext(ctx aws.Context, input *DeleteLicenseManagerReportGeneratorInput, opts ...request.Option) (*DeleteLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.DeleteLicenseManagerReportGeneratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1896,6 +2103,107 @@ func (c *LicenseManager) GetLicenseConfigurationWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opGetLicenseManagerReportGenerator = "GetLicenseManagerReportGenerator"
+
+// GetLicenseManagerReportGeneratorRequest generates a "aws/request.Request" representing the
+// client's request for the GetLicenseManagerReportGenerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLicenseManagerReportGenerator for more information on using the GetLicenseManagerReportGenerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLicenseManagerReportGeneratorRequest method.
+//    req, resp := client.GetLicenseManagerReportGeneratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseManagerReportGenerator
+func (c *LicenseManager) GetLicenseManagerReportGeneratorRequest(input *GetLicenseManagerReportGeneratorInput) (req *request.Request, output *GetLicenseManagerReportGeneratorOutput) {
+	op := &request.Operation{
+		Name:       opGetLicenseManagerReportGenerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLicenseManagerReportGeneratorInput{}
+	}
+
+	output = &GetLicenseManagerReportGeneratorOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLicenseManagerReportGenerator API operation for AWS License Manager.
+//
+// Gets information on the specified report generator.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation GetLicenseManagerReportGenerator for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseManagerReportGenerator
+func (c *LicenseManager) GetLicenseManagerReportGenerator(input *GetLicenseManagerReportGeneratorInput) (*GetLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.GetLicenseManagerReportGeneratorRequest(input)
+	return out, req.Send()
+}
+
+// GetLicenseManagerReportGeneratorWithContext is the same as GetLicenseManagerReportGenerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLicenseManagerReportGenerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) GetLicenseManagerReportGeneratorWithContext(ctx aws.Context, input *GetLicenseManagerReportGeneratorInput, opts ...request.Option) (*GetLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.GetLicenseManagerReportGeneratorRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetLicenseUsage = "GetLicenseUsage"
 
 // GetLicenseUsageRequest generates a "aws/request.Request" representing the
@@ -2459,6 +2767,107 @@ func (c *LicenseManager) ListLicenseConfigurations(input *ListLicenseConfigurati
 // for more information on using Contexts.
 func (c *LicenseManager) ListLicenseConfigurationsWithContext(ctx aws.Context, input *ListLicenseConfigurationsInput, opts ...request.Option) (*ListLicenseConfigurationsOutput, error) {
 	req, out := c.ListLicenseConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListLicenseManagerReportGenerators = "ListLicenseManagerReportGenerators"
+
+// ListLicenseManagerReportGeneratorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListLicenseManagerReportGenerators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLicenseManagerReportGenerators for more information on using the ListLicenseManagerReportGenerators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLicenseManagerReportGeneratorsRequest method.
+//    req, resp := client.ListLicenseManagerReportGeneratorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseManagerReportGenerators
+func (c *LicenseManager) ListLicenseManagerReportGeneratorsRequest(input *ListLicenseManagerReportGeneratorsInput) (req *request.Request, output *ListLicenseManagerReportGeneratorsOutput) {
+	op := &request.Operation{
+		Name:       opListLicenseManagerReportGenerators,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListLicenseManagerReportGeneratorsInput{}
+	}
+
+	output = &ListLicenseManagerReportGeneratorsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLicenseManagerReportGenerators API operation for AWS License Manager.
+//
+// Lists the report generators for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation ListLicenseManagerReportGenerators for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseManagerReportGenerators
+func (c *LicenseManager) ListLicenseManagerReportGenerators(input *ListLicenseManagerReportGeneratorsInput) (*ListLicenseManagerReportGeneratorsOutput, error) {
+	req, out := c.ListLicenseManagerReportGeneratorsRequest(input)
+	return out, req.Send()
+}
+
+// ListLicenseManagerReportGeneratorsWithContext is the same as ListLicenseManagerReportGenerators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLicenseManagerReportGenerators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) ListLicenseManagerReportGeneratorsWithContext(ctx aws.Context, input *ListLicenseManagerReportGeneratorsInput, opts ...request.Option) (*ListLicenseManagerReportGeneratorsOutput, error) {
+	req, out := c.ListLicenseManagerReportGeneratorsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3693,6 +4102,111 @@ func (c *LicenseManager) UpdateLicenseConfiguration(input *UpdateLicenseConfigur
 // for more information on using Contexts.
 func (c *LicenseManager) UpdateLicenseConfigurationWithContext(ctx aws.Context, input *UpdateLicenseConfigurationInput, opts ...request.Option) (*UpdateLicenseConfigurationOutput, error) {
 	req, out := c.UpdateLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLicenseManagerReportGenerator = "UpdateLicenseManagerReportGenerator"
+
+// UpdateLicenseManagerReportGeneratorRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLicenseManagerReportGenerator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLicenseManagerReportGenerator for more information on using the UpdateLicenseManagerReportGenerator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLicenseManagerReportGeneratorRequest method.
+//    req, resp := client.UpdateLicenseManagerReportGeneratorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/UpdateLicenseManagerReportGenerator
+func (c *LicenseManager) UpdateLicenseManagerReportGeneratorRequest(input *UpdateLicenseManagerReportGeneratorInput) (req *request.Request, output *UpdateLicenseManagerReportGeneratorOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLicenseManagerReportGenerator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateLicenseManagerReportGeneratorInput{}
+	}
+
+	output = &UpdateLicenseManagerReportGeneratorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLicenseManagerReportGenerator API operation for AWS License Manager.
+//
+// Updates a report generator.
+//
+// After you make changes to a report generator, it will start generating new
+// reports within 60 minutes of being updated.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation UpdateLicenseManagerReportGenerator for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The AWS user account does not have permission to perform the action. Check
+//   the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/UpdateLicenseManagerReportGenerator
+func (c *LicenseManager) UpdateLicenseManagerReportGenerator(input *UpdateLicenseManagerReportGeneratorInput) (*UpdateLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.UpdateLicenseManagerReportGeneratorRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLicenseManagerReportGeneratorWithContext is the same as UpdateLicenseManagerReportGenerator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLicenseManagerReportGenerator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) UpdateLicenseManagerReportGeneratorWithContext(ctx aws.Context, input *UpdateLicenseManagerReportGeneratorInput, opts ...request.Option) (*UpdateLicenseManagerReportGeneratorOutput, error) {
+	req, out := c.UpdateLicenseManagerReportGeneratorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5435,6 +5949,160 @@ func (s *CreateLicenseInput) SetValidity(v *DatetimeRange) *CreateLicenseInput {
 	return s
 }
 
+type CreateLicenseManagerReportGeneratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	//
+	// ClientToken is a required field
+	ClientToken *string `min:"1" type:"string" required:"true"`
+
+	// Description of the report generator.
+	Description *string `type:"string"`
+
+	// Defines the type of license configuration the report generator tracks.
+	//
+	// ReportContext is a required field
+	ReportContext *ReportContext `type:"structure" required:"true"`
+
+	// Frequency by which reports are generated. Reports can be generated daily,
+	// monthly, or weekly.
+	//
+	// ReportFrequency is a required field
+	ReportFrequency *ReportFrequency `type:"structure" required:"true"`
+
+	// Name of the report generator.
+	//
+	// ReportGeneratorName is a required field
+	ReportGeneratorName *string `min:"1" type:"string" required:"true"`
+
+	// Tags to add to the report generator.
+	Tags []*Tag `type:"list"`
+
+	// Type of reports to generate. The following report types an be generated:
+	//
+	//    * License configuration report - Reports on the number and details of
+	//    consumed licenses for a license configuration.
+	//
+	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    for a license configuration.
+	//
+	// Type is a required field
+	Type []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateLicenseManagerReportGeneratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLicenseManagerReportGeneratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLicenseManagerReportGeneratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLicenseManagerReportGeneratorInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ReportContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportContext"))
+	}
+	if s.ReportFrequency == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportFrequency"))
+	}
+	if s.ReportGeneratorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportGeneratorName"))
+	}
+	if s.ReportGeneratorName != nil && len(*s.ReportGeneratorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportGeneratorName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.ReportContext != nil {
+		if err := s.ReportContext.Validate(); err != nil {
+			invalidParams.AddNested("ReportContext", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetClientToken(v string) *CreateLicenseManagerReportGeneratorInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetDescription(v string) *CreateLicenseManagerReportGeneratorInput {
+	s.Description = &v
+	return s
+}
+
+// SetReportContext sets the ReportContext field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetReportContext(v *ReportContext) *CreateLicenseManagerReportGeneratorInput {
+	s.ReportContext = v
+	return s
+}
+
+// SetReportFrequency sets the ReportFrequency field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetReportFrequency(v *ReportFrequency) *CreateLicenseManagerReportGeneratorInput {
+	s.ReportFrequency = v
+	return s
+}
+
+// SetReportGeneratorName sets the ReportGeneratorName field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetReportGeneratorName(v string) *CreateLicenseManagerReportGeneratorInput {
+	s.ReportGeneratorName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetTags(v []*Tag) *CreateLicenseManagerReportGeneratorInput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateLicenseManagerReportGeneratorInput) SetType(v []*string) *CreateLicenseManagerReportGeneratorInput {
+	s.Type = v
+	return s
+}
+
+type CreateLicenseManagerReportGeneratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the new report generator.
+	LicenseManagerReportGeneratorArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateLicenseManagerReportGeneratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateLicenseManagerReportGeneratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetLicenseManagerReportGeneratorArn sets the LicenseManagerReportGeneratorArn field's value.
+func (s *CreateLicenseManagerReportGeneratorOutput) SetLicenseManagerReportGeneratorArn(v string) *CreateLicenseManagerReportGeneratorOutput {
+	s.LicenseManagerReportGeneratorArn = &v
+	return s
+}
+
 type CreateLicenseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -6094,6 +6762,58 @@ func (s *DeleteLicenseInput) SetLicenseArn(v string) *DeleteLicenseInput {
 func (s *DeleteLicenseInput) SetSourceVersion(v string) *DeleteLicenseInput {
 	s.SourceVersion = &v
 	return s
+}
+
+type DeleteLicenseManagerReportGeneratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Number (ARN) of the report generator that will be deleted.
+	//
+	// LicenseManagerReportGeneratorArn is a required field
+	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteLicenseManagerReportGeneratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLicenseManagerReportGeneratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLicenseManagerReportGeneratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLicenseManagerReportGeneratorInput"}
+	if s.LicenseManagerReportGeneratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseManagerReportGeneratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLicenseManagerReportGeneratorArn sets the LicenseManagerReportGeneratorArn field's value.
+func (s *DeleteLicenseManagerReportGeneratorInput) SetLicenseManagerReportGeneratorArn(v string) *DeleteLicenseManagerReportGeneratorInput {
+	s.LicenseManagerReportGeneratorArn = &v
+	return s
+}
+
+type DeleteLicenseManagerReportGeneratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLicenseManagerReportGeneratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLicenseManagerReportGeneratorOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLicenseOutput struct {
@@ -7066,6 +7786,68 @@ func (s *GetLicenseInput) SetVersion(v string) *GetLicenseInput {
 	return s
 }
 
+type GetLicenseManagerReportGeneratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// mazon Resource Number (ARN) of the report generator to retrieve information
+	// on.
+	//
+	// LicenseManagerReportGeneratorArn is a required field
+	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetLicenseManagerReportGeneratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLicenseManagerReportGeneratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLicenseManagerReportGeneratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLicenseManagerReportGeneratorInput"}
+	if s.LicenseManagerReportGeneratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseManagerReportGeneratorArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLicenseManagerReportGeneratorArn sets the LicenseManagerReportGeneratorArn field's value.
+func (s *GetLicenseManagerReportGeneratorInput) SetLicenseManagerReportGeneratorArn(v string) *GetLicenseManagerReportGeneratorInput {
+	s.LicenseManagerReportGeneratorArn = &v
+	return s
+}
+
+type GetLicenseManagerReportGeneratorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A report generator that creates periodic reports on your license configurations.
+	ReportGenerator *ReportGenerator `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetLicenseManagerReportGeneratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLicenseManagerReportGeneratorOutput) GoString() string {
+	return s.String()
+}
+
+// SetReportGenerator sets the ReportGenerator field's value.
+func (s *GetLicenseManagerReportGeneratorOutput) SetReportGenerator(v *ReportGenerator) *GetLicenseManagerReportGeneratorOutput {
+	s.ReportGenerator = v
+	return s
+}
+
 type GetLicenseOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7171,7 +7953,7 @@ type GetServiceSettingsOutput struct {
 	EnableCrossAccountsDiscovery *bool `type:"boolean"`
 
 	// Amazon Resource Name (ARN) of the AWS resource share. The License Manager
-	// master account will provide member accounts with access to this share.
+	// management account provides member accounts with access to this share.
 	LicenseManagerResourceShareArn *string `type:"string"`
 
 	// Indicates whether AWS Organizations is integrated with License Manager for
@@ -8511,13 +9293,15 @@ type ListDistributedGrantsInput struct {
 
 	// Filters to scope the results. The following filters are supported:
 	//
-	//    * LicenseARN
+	//    * LicenseArn
 	//
-	//    * Status
+	//    * GrantStatus
 	//
-	//    * PrincipalARN
+	//    * GranteePrincipalARN
 	//
-	//    * ParentARN
+	//    * ProductSKU
+	//
+	//    * LicenseIssuerName
 	Filters []*Filter `type:"list"`
 
 	// Amazon Resource Names (ARNs) of the grants.
@@ -8790,6 +9574,94 @@ func (s *ListLicenseConfigurationsOutput) SetNextToken(v string) *ListLicenseCon
 	return s
 }
 
+type ListLicenseManagerReportGeneratorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to scope the results. The following filters are supported:
+	//
+	//    * LicenseConfigurationArn
+	Filters []*Filter `type:"list"`
+
+	// Maximum number of results to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListLicenseManagerReportGeneratorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLicenseManagerReportGeneratorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListLicenseManagerReportGeneratorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListLicenseManagerReportGeneratorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListLicenseManagerReportGeneratorsInput) SetFilters(v []*Filter) *ListLicenseManagerReportGeneratorsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLicenseManagerReportGeneratorsInput) SetMaxResults(v int64) *ListLicenseManagerReportGeneratorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseManagerReportGeneratorsInput) SetNextToken(v string) *ListLicenseManagerReportGeneratorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLicenseManagerReportGeneratorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// A report generator that creates periodic reports on your license configurations.
+	ReportGenerators []*ReportGenerator `type:"list"`
+}
+
+// String returns the string representation
+func (s ListLicenseManagerReportGeneratorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListLicenseManagerReportGeneratorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseManagerReportGeneratorsOutput) SetNextToken(v string) *ListLicenseManagerReportGeneratorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReportGenerators sets the ReportGenerators field's value.
+func (s *ListLicenseManagerReportGeneratorsOutput) SetReportGenerators(v []*ReportGenerator) *ListLicenseManagerReportGeneratorsOutput {
+	s.ReportGenerators = v
+	return s
+}
+
 type ListLicenseSpecificationsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8978,7 +9850,7 @@ type ListLicensesInput struct {
 	//
 	//    * ProductSKU
 	//
-	//    * KeyFingerprint
+	//    * Fingerprint
 	//
 	//    * Status
 	Filters []*Filter `type:"list"`
@@ -9077,9 +9949,15 @@ type ListReceivedGrantsInput struct {
 
 	// Filters to scope the results. The following filters are supported:
 	//
-	//    * LicenseARN
+	//    * ProductSKU
 	//
-	//    * Status
+	//    * LicenseIssuerName
+	//
+	//    * LicenseArn
+	//
+	//    * GrantStatus
+	//
+	//    * GranterAccountId
 	Filters []*Filter `type:"list"`
 
 	// Amazon Resource Names (ARNs) of the grants.
@@ -9180,9 +10058,11 @@ type ListReceivedLicensesInput struct {
 	//
 	//    * Status
 	//
-	//    * KeyFingerprint
+	//    * Fingerprint
 	//
-	//    * Issuer
+	//    * IssuerName
+	//
+	//    * Beneficiary
 	Filters []*Filter `type:"list"`
 
 	// Amazon Resource Names (ARNs) of the licenses.
@@ -9454,7 +10334,7 @@ type ListTokensInput struct {
 
 	// Filters to scope the results. The following filter is supported:
 	//
-	//    * licenseArns
+	//    * LicenseArns
 	Filters []*Filter `type:"list"`
 
 	// Maximum number of results to return in a single call.
@@ -9819,10 +10699,15 @@ func (s *OrganizationConfiguration) SetEnableIntegration(v bool) *OrganizationCo
 type ProductInformation struct {
 	_ struct{} `type:"structure"`
 
-	// Product information filters.
+	// A Product information filter consists of a ProductInformationFilterComparator
+	// which is a logical operator, a ProductInformationFilterName which specifies
+	// the type of filter being declared, and a ProductInformationFilterValue that
+	// specifies the value to filter on.
 	//
-	// The following filters and logical operators are supported when the resource
-	// type is SSM_MANAGED:
+	// Accepted values for ProductInformationFilterName are listed here along with
+	// descriptions and valid options for ProductInformationFilterComparator.
+	//
+	// The following filters and are supported when the resource type is SSM_MANAGED:
 	//
 	//    * Application Name - The name of the application. Logical operator is
 	//    EQUALS.
@@ -9836,6 +10721,15 @@ type ProductInformation struct {
 	//    * Platform Name - The name of the platform. Logical operator is EQUALS.
 	//
 	//    * Platform Type - The platform type. Logical operator is EQUALS.
+	//
+	//    * Tag:key - The key of a tag attached to an AWS resource you wish to exclude
+	//    from automated discovery. Logical operator is NOT_EQUALS. The key for
+	//    your tag must be appended to Tag: following the example: Tag:name-of-your-key.
+	//    ProductInformationFilterValue is optional if you are not using values
+	//    for the key.
+	//
+	//    * AccountId - The 12-digit ID of an AWS account you wish to exclude from
+	//    automated discovery. Logical operator is NOT_EQUALS.
 	//
 	//    * License Included - The type of license included. Logical operators are
 	//    EQUALS and NOT_EQUALS. Possible values are: sql-server-enterprise | sql-server-standard
@@ -10235,6 +11129,212 @@ func (s *RejectGrantOutput) SetVersion(v string) *RejectGrantOutput {
 	return s
 }
 
+// Details of the license configuration that this generator reports on.
+type ReportContext struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Number (ARN) of the license configuration that this generator
+	// reports on.
+	//
+	// LicenseConfigurationArns is a required field
+	LicenseConfigurationArns []*string `locationName:"licenseConfigurationArns" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ReportContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportContext"}
+	if s.LicenseConfigurationArns == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseConfigurationArns"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLicenseConfigurationArns sets the LicenseConfigurationArns field's value.
+func (s *ReportContext) SetLicenseConfigurationArns(v []*string) *ReportContext {
+	s.LicenseConfigurationArns = v
+	return s
+}
+
+// Details on how frequently reports are generated.
+type ReportFrequency struct {
+	_ struct{} `type:"structure"`
+
+	// Time period between each report. The period can be daily, weekly, or monthly.
+	Period *string `locationName:"period" type:"string" enum:"ReportFrequencyType"`
+
+	// Number of times within the frequency period that a report will be generated.
+	// Currently only 1 is supported.
+	Value *int64 `locationName:"value" type:"integer"`
+}
+
+// String returns the string representation
+func (s ReportFrequency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportFrequency) GoString() string {
+	return s.String()
+}
+
+// SetPeriod sets the Period field's value.
+func (s *ReportFrequency) SetPeriod(v string) *ReportFrequency {
+	s.Period = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ReportFrequency) SetValue(v int64) *ReportFrequency {
+	s.Value = &v
+	return s
+}
+
+// Describe the details of a report generator.
+type ReportGenerator struct {
+	_ struct{} `type:"structure"`
+
+	// Time the report was created.
+	CreateTime *string `type:"string"`
+
+	// Description of the report generator.
+	Description *string `type:"string"`
+
+	// Time the last report was generated at.
+	LastReportGenerationTime *string `type:"string"`
+
+	// Failure message for the last report generation attempt.
+	LastRunFailureReason *string `type:"string"`
+
+	// Status of the last report generation attempt.
+	LastRunStatus *string `type:"string"`
+
+	// Amazon Resource Number (ARN) of the report generator.
+	LicenseManagerReportGeneratorArn *string `type:"string"`
+
+	// License configuration type this generator reports on.
+	ReportContext *ReportContext `type:"structure"`
+
+	// The AWS account ID used to create the report generator.
+	ReportCreatorAccount *string `type:"string"`
+
+	// Details on how frequently reports are generated.
+	ReportFrequency *ReportFrequency `type:"structure"`
+
+	// Name of the report generator.
+	ReportGeneratorName *string `type:"string"`
+
+	// Type of reports that are generated.
+	ReportType []*string `type:"list"`
+
+	// Details of the S3 bucket that report generator reports are published to.
+	S3Location *S3Location `type:"structure"`
+
+	// Tags associated with the report generator.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ReportGenerator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportGenerator) GoString() string {
+	return s.String()
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ReportGenerator) SetCreateTime(v string) *ReportGenerator {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ReportGenerator) SetDescription(v string) *ReportGenerator {
+	s.Description = &v
+	return s
+}
+
+// SetLastReportGenerationTime sets the LastReportGenerationTime field's value.
+func (s *ReportGenerator) SetLastReportGenerationTime(v string) *ReportGenerator {
+	s.LastReportGenerationTime = &v
+	return s
+}
+
+// SetLastRunFailureReason sets the LastRunFailureReason field's value.
+func (s *ReportGenerator) SetLastRunFailureReason(v string) *ReportGenerator {
+	s.LastRunFailureReason = &v
+	return s
+}
+
+// SetLastRunStatus sets the LastRunStatus field's value.
+func (s *ReportGenerator) SetLastRunStatus(v string) *ReportGenerator {
+	s.LastRunStatus = &v
+	return s
+}
+
+// SetLicenseManagerReportGeneratorArn sets the LicenseManagerReportGeneratorArn field's value.
+func (s *ReportGenerator) SetLicenseManagerReportGeneratorArn(v string) *ReportGenerator {
+	s.LicenseManagerReportGeneratorArn = &v
+	return s
+}
+
+// SetReportContext sets the ReportContext field's value.
+func (s *ReportGenerator) SetReportContext(v *ReportContext) *ReportGenerator {
+	s.ReportContext = v
+	return s
+}
+
+// SetReportCreatorAccount sets the ReportCreatorAccount field's value.
+func (s *ReportGenerator) SetReportCreatorAccount(v string) *ReportGenerator {
+	s.ReportCreatorAccount = &v
+	return s
+}
+
+// SetReportFrequency sets the ReportFrequency field's value.
+func (s *ReportGenerator) SetReportFrequency(v *ReportFrequency) *ReportGenerator {
+	s.ReportFrequency = v
+	return s
+}
+
+// SetReportGeneratorName sets the ReportGeneratorName field's value.
+func (s *ReportGenerator) SetReportGeneratorName(v string) *ReportGenerator {
+	s.ReportGeneratorName = &v
+	return s
+}
+
+// SetReportType sets the ReportType field's value.
+func (s *ReportGenerator) SetReportType(v []*string) *ReportGenerator {
+	s.ReportType = v
+	return s
+}
+
+// SetS3Location sets the S3Location field's value.
+func (s *ReportGenerator) SetS3Location(v *S3Location) *ReportGenerator {
+	s.S3Location = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ReportGenerator) SetTags(v []*Tag) *ReportGenerator {
+	s.Tags = v
+	return s
+}
+
 // Details about a resource.
 type ResourceInventory struct {
 	_ struct{} `type:"structure"`
@@ -10414,6 +11514,39 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Details of the S3 bucket that report generator reports are published to.
+type S3Location struct {
+	_ struct{} `type:"structure"`
+
+	// Name of the S3 bucket reports are published to.
+	Bucket *string `locationName:"bucket" type:"string"`
+
+	// Prefix of the S3 bucket reports are published to.
+	KeyPrefix *string `locationName:"keyPrefix" type:"string"`
+}
+
+// String returns the string representation
+func (s S3Location) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Location) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3Location) SetBucket(v string) *S3Location {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPrefix sets the KeyPrefix field's value.
+func (s *S3Location) SetKeyPrefix(v string) *S3Location {
+	s.KeyPrefix = &v
+	return s
 }
 
 // The server experienced an internal error. Try again.
@@ -10903,6 +12036,157 @@ func (s UpdateLicenseConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateLicenseConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateLicenseManagerReportGeneratorInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	//
+	// ClientToken is a required field
+	ClientToken *string `min:"1" type:"string" required:"true"`
+
+	// Description of the report generator.
+	Description *string `type:"string"`
+
+	// Amazon Resource Number (ARN) of the report generator to update.
+	//
+	// LicenseManagerReportGeneratorArn is a required field
+	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
+
+	// ?
+	//
+	// ReportContext is a required field
+	ReportContext *ReportContext `type:"structure" required:"true"`
+
+	// Frequency by which reports are generated. The following options are avaiable:
+	//
+	// ??? What are the APi value options?
+	//
+	// ReportFrequency is a required field
+	ReportFrequency *ReportFrequency `type:"structure" required:"true"`
+
+	// Name of the report generator.
+	//
+	// ReportGeneratorName is a required field
+	ReportGeneratorName *string `min:"1" type:"string" required:"true"`
+
+	// Type of reports to generate. The following report types an be generated:
+	//
+	//    * License configuration report - Reports on the number and details of
+	//    consumed licenses for a license configuration.
+	//
+	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    for a license configuration.
+	//
+	// Type is a required field
+	Type []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateLicenseManagerReportGeneratorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLicenseManagerReportGeneratorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLicenseManagerReportGeneratorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLicenseManagerReportGeneratorInput"}
+	if s.ClientToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientToken"))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.LicenseManagerReportGeneratorArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseManagerReportGeneratorArn"))
+	}
+	if s.ReportContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportContext"))
+	}
+	if s.ReportFrequency == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportFrequency"))
+	}
+	if s.ReportGeneratorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportGeneratorName"))
+	}
+	if s.ReportGeneratorName != nil && len(*s.ReportGeneratorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportGeneratorName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.ReportContext != nil {
+		if err := s.ReportContext.Validate(); err != nil {
+			invalidParams.AddNested("ReportContext", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetClientToken(v string) *UpdateLicenseManagerReportGeneratorInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetDescription(v string) *UpdateLicenseManagerReportGeneratorInput {
+	s.Description = &v
+	return s
+}
+
+// SetLicenseManagerReportGeneratorArn sets the LicenseManagerReportGeneratorArn field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetLicenseManagerReportGeneratorArn(v string) *UpdateLicenseManagerReportGeneratorInput {
+	s.LicenseManagerReportGeneratorArn = &v
+	return s
+}
+
+// SetReportContext sets the ReportContext field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetReportContext(v *ReportContext) *UpdateLicenseManagerReportGeneratorInput {
+	s.ReportContext = v
+	return s
+}
+
+// SetReportFrequency sets the ReportFrequency field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetReportFrequency(v *ReportFrequency) *UpdateLicenseManagerReportGeneratorInput {
+	s.ReportFrequency = v
+	return s
+}
+
+// SetReportGeneratorName sets the ReportGeneratorName field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetReportGeneratorName(v string) *UpdateLicenseManagerReportGeneratorInput {
+	s.ReportGeneratorName = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *UpdateLicenseManagerReportGeneratorInput) SetType(v []*string) *UpdateLicenseManagerReportGeneratorInput {
+	s.Type = v
+	return s
+}
+
+type UpdateLicenseManagerReportGeneratorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLicenseManagerReportGeneratorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLicenseManagerReportGeneratorOutput) GoString() string {
 	return s.String()
 }
 
@@ -11634,6 +12918,42 @@ func RenewType_Values() []string {
 		RenewTypeNone,
 		RenewTypeWeekly,
 		RenewTypeMonthly,
+	}
+}
+
+const (
+	// ReportFrequencyTypeDay is a ReportFrequencyType enum value
+	ReportFrequencyTypeDay = "DAY"
+
+	// ReportFrequencyTypeWeek is a ReportFrequencyType enum value
+	ReportFrequencyTypeWeek = "WEEK"
+
+	// ReportFrequencyTypeMonth is a ReportFrequencyType enum value
+	ReportFrequencyTypeMonth = "MONTH"
+)
+
+// ReportFrequencyType_Values returns all elements of the ReportFrequencyType enum
+func ReportFrequencyType_Values() []string {
+	return []string{
+		ReportFrequencyTypeDay,
+		ReportFrequencyTypeWeek,
+		ReportFrequencyTypeMonth,
+	}
+}
+
+const (
+	// ReportTypeLicenseConfigurationSummaryReport is a ReportType enum value
+	ReportTypeLicenseConfigurationSummaryReport = "LicenseConfigurationSummaryReport"
+
+	// ReportTypeLicenseConfigurationUsageReport is a ReportType enum value
+	ReportTypeLicenseConfigurationUsageReport = "LicenseConfigurationUsageReport"
+)
+
+// ReportType_Values returns all elements of the ReportType enum
+func ReportType_Values() []string {
+	return []string{
+		ReportTypeLicenseConfigurationSummaryReport,
+		ReportTypeLicenseConfigurationUsageReport,
 	}
 }
 

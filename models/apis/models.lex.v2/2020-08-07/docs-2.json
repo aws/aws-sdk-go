@@ -7,13 +7,17 @@
     "CreateBotAlias": "<p>Creates an alias for the specified version of a bot. Use an alias to enable you to change the version of a bot without updating applications that use the bot.</p> <p>For example, you can create an alias called \"PROD\" that your applications use to call the Amazon Lex bot. </p>",
     "CreateBotLocale": "<p>Creates a locale in the bot. The locale contains the intents and slot types that the bot uses in conversations with users in the specified language and locale. You must add a locale to a bot before you can add intents and slot types to the bot.</p>",
     "CreateBotVersion": "<p>Creates a new version of the bot based on the <code>DRAFT</code> version. If the <code>DRAFT</code> version of this resource hasn't changed since you created the last version, Amazon Lex doesn't create a new version, it returns the last created version.</p> <p>When you create the first version of a bot, Amazon Lex sets the version to 1. Subsequent versions increment by 1.</p>",
+    "CreateExport": "<p>Creates a zip archive containing the contents of a bot or a bot locale. The archive contains a directory structure that contains JSON files that define the bot.</p> <p>You can create an archive that contains the complete definition of a bot, or you can specify that the archive contain only the definition of a single bot locale.</p> <p>For more information about exporting bots, and about the structure of the export archive, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html\"> Importing and exporting bots </a> </p>",
     "CreateIntent": "<p>Creates an intent.</p> <p>To define the interaction between the user and your bot, you define one or more intents. For example, for a pizza ordering bot you would create an <code>OrderPizza</code> intent.</p> <p>When you create an intent, you must provide a name. You can optionally provide the following:</p> <ul> <li> <p>Sample utterances. For example, \"I want to order a pizza\" and \"Can I order a pizza.\" You can't provide utterances for built-in intents.</p> </li> <li> <p>Information to be gathered. You specify slots for the information that you bot requests from the user. You can specify standard slot types, such as date and time, or custom slot types for your application.</p> </li> <li> <p>How the intent is fulfilled. You can provide a Lambda function or configure the intent to return the intent information to your client application. If you use a Lambda function, Amazon Lex invokes the function when all of the intent information is available.</p> </li> <li> <p>A confirmation prompt to send to the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent is fulfilled. For example, \"I ordered your pizza.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, \"Do you want a drink with your pizza?\"</p> </li> </ul>",
     "CreateSlot": "<p>Creates a slot in an intent. A slot is a variable needed to fulfill an intent. For example, an <code>OrderPizza</code> intent might need slots for size, crust, and number of pizzas. For each slot, you define one or more utterances that Amazon Lex uses to elicit a response from the user. </p>",
     "CreateSlotType": "<p>Creates a custom slot type</p> <p> To create a custom slot type, specify a name for the slot type and a set of enumeration values, the values that a slot of this type can assume. </p>",
+    "CreateUploadUrl": "<p>Gets a pre-signed S3 write URL that you use to upload the zip archive when importing a bot or a bot locale. </p>",
     "DeleteBot": "<p>Deletes all versions of a bot, including the <code>Draft</code> version. To delete a specific version, use the <code>DeleteBotVersion</code> operation.</p> <p>When you delete a bot, all of the resources contained in the bot are also deleted. Deleting a bot removes all locales, intents, slot, and slot types defined for the bot.</p> <p>If a bot has an alias, the <code>DeleteBot</code> operation returns a <code>ResourceInUseException</code> exception. If you want to delete the bot and the alias, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DeleteBotAlias": "<p>Deletes the specified bot alias.</p>",
     "DeleteBotLocale": "<p>Removes a locale from a bot.</p> <p>When you delete a locale, all intents, slots, and slot types defined for the locale are also deleted.</p>",
     "DeleteBotVersion": "<p>Deletes a specific version of a bot. To delete all version of a bot, use the <a>DeleteBot</a> operation.</p>",
+    "DeleteExport": "<p>Removes a previous export and the associated files stored in an S3 bucket.</p>",
+    "DeleteImport": "<p>Removes a previous import and the associated file stored in an S3 bucket.</p>",
     "DeleteIntent": "<p>Removes the specified intent.</p> <p>Deleting an intent also deletes the slots associated with the intent.</p>",
     "DeleteSlot": "<p>Deletes the specified slot from an intent.</p>",
     "DeleteSlotType": "<p>Deletes a slot type from a bot locale.</p> <p>If a slot is using the slot type, Amazon Lex throws a <code>ResourceInUseException</code> exception. To avoid the exception, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
@@ -21,6 +25,8 @@
     "DescribeBotAlias": "<p>Get information about a specific bot alias.</p>",
     "DescribeBotLocale": "<p>Describes the settings that a bot has for a specific locale. </p>",
     "DescribeBotVersion": "<p>Provides metadata about a version of a bot.</p>",
+    "DescribeExport": "<p>Gets information about a specific export.</p>",
+    "DescribeImport": "<p>Gets information about a specific import.</p>",
     "DescribeIntent": "<p>Returns metadata about an intent.</p>",
     "DescribeSlot": "<p>Gets metadata information about a slot.</p>",
     "DescribeSlotType": "<p>Gets metadata information about a slot type.</p>",
@@ -30,15 +36,19 @@
     "ListBots": "<p>Gets a list of available bots.</p>",
     "ListBuiltInIntents": "<p>Gets a list of built-in intents provided by Amazon Lex that you can use in your bot. </p> <p>To use a built-in intent as a the base for your own intent, include the built-in intent signature in the <code>parentIntentSignature</code> parameter when you call the <code>CreateIntent</code> operation. For more information, see <a>CreateIntent</a>.</p>",
     "ListBuiltInSlotTypes": "<p>Gets a list of built-in slot types that meet the specified criteria.</p>",
+    "ListExports": "<p>Lists the exports for a bot or bot locale. Exports are kept in the list for 7 days.</p>",
+    "ListImports": "<p>Lists the imports for a bot or bot locale. Imports are kept in the list for 7 days.</p>",
     "ListIntents": "<p>Get a list of intents that meet the specified criteria.</p>",
     "ListSlotTypes": "<p>Gets a list of slot types that match the specified criteria.</p>",
     "ListSlots": "<p>Gets a list of slots that match the specified criteria.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a resource. Only bots, bot aliases, and bot channels can have tags associated with them.</p>",
+    "StartImport": "<p>Starts importing a bot or bot locale from a zip archive that you uploaded to an S3 bucket.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource. If a tag key already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes tags from a bot, bot alias, or bot channel.</p>",
     "UpdateBot": "<p>Updates the configuration of an existing bot. </p>",
     "UpdateBotAlias": "<p>Updates the configuration of an existing bot alias.</p>",
     "UpdateBotLocale": "<p>Updates the settings that a bot has for a specific locale.</p>",
+    "UpdateExport": "<p>Updates the password used to encrypt an export zip archive.</p>",
     "UpdateIntent": "<p>Updates the settings for an intent.</p>",
     "UpdateSlot": "<p>Updates the settings for a slot.</p>",
     "UpdateSlotType": "<p>Updates the configuration of an existing slot type.</p>"
@@ -158,6 +168,12 @@
         "ListBotAliasesResponse$botAliasSummaries": "<p>Summary information for the bot aliases that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter of the request. If there are more aliases available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
       }
     },
+    "BotExportSpecification": {
+      "base": "<p>Provided the identity of a the bot that was exported.</p>",
+      "refs": {
+        "ExportResourceSpecification$botExportSpecification": "<p>Parameters for exporting a bot.</p>"
+      }
+    },
     "BotFilter": {
       "base": "<p>Filters the responses returned by the <code>ListBots</code> operation.</p>",
       "refs": {
@@ -180,6 +196,18 @@
       "base": null,
       "refs": {
         "ListBotsRequest$filters": "<p>Provides the specification of a filter used to limit the bots in the response to only those that match the filter specification. You can only specify one filter and one string to filter on.</p>"
+      }
+    },
+    "BotImportSpecification": {
+      "base": "<p>Provides the bot parameters required for importing a bot.</p>",
+      "refs": {
+        "ImportResourceSpecification$botImportSpecification": "<p>Parameters for importing a bot.</p>"
+      }
+    },
+    "BotLocaleExportSpecification": {
+      "base": "<p>Provides the bot locale parameters required for exporting a bot locale.</p>",
+      "refs": {
+        "ExportResourceSpecification$botLocaleExportSpecification": "<p>Parameters for exporting a bot locale.</p>"
       }
     },
     "BotLocaleFilter": {
@@ -222,6 +250,12 @@
       "base": null,
       "refs": {
         "DescribeBotLocaleResponse$botLocaleHistoryEvents": "<p>History of changes, such as when a locale is used in an alias, that have taken place for the locale.</p>"
+      }
+    },
+    "BotLocaleImportSpecification": {
+      "base": "<p>Provides the bot locale parameters required for importing a bot locale.</p>",
+      "refs": {
+        "ImportResourceSpecification$botLocaleImportSpecification": "<p>Parameters for importing a bot locale.</p>"
       }
     },
     "BotLocaleSortAttribute": {
@@ -302,6 +336,8 @@
       "refs": {
         "BotAliasHistoryEvent$botVersion": "<p>The version of the bot that was used in the event. </p>",
         "BotAliasSummary$botVersion": "<p>The version of the bot that the bot alias references.</p>",
+        "BotExportSpecification$botVersion": "<p>The version of the bot that was exported. This will be either <code>DRAFT</code> or the version number.</p>",
+        "BotLocaleExportSpecification$botVersion": "<p>The version of the bot to export.</p>",
         "BotVersionLocaleDetails$sourceBotVersion": "<p>The version of a bot used for a bot locale.</p>",
         "BotVersionSummary$botVersion": "<p>The numeric version of the bot, or <code>DRAFT</code> to indicate that this is the version of the bot that can be updated..</p>",
         "DescribeBotAliasResponse$botVersion": "<p>The version of the bot associated with the bot alias.</p>",
@@ -314,6 +350,8 @@
         "DescribeSlotTypeResponse$botVersion": "<p>The version of the bot associated with the slot type.</p>",
         "ListBotLocalesRequest$botVersion": "<p>The version of the bot to list locales for.</p>",
         "ListBotLocalesResponse$botVersion": "<p>The version of the bot.</p>",
+        "ListExportsRequest$botVersion": "<p>The version of the bot to list exports for. </p>",
+        "ListExportsResponse$botVersion": "<p>The version of the bot that was exported.</p>",
         "ListIntentsRequest$botVersion": "<p>The version of the bot that contains the intent.</p>",
         "ListIntentsResponse$botVersion": "<p>The version of the bot that contains the intent.</p>",
         "ListSlotTypesRequest$botVersion": "<p>The version of the bot that contains the slot type.</p>",
@@ -502,6 +540,7 @@
     "ConfidenceThreshold": {
       "base": null,
       "refs": {
+        "BotLocaleImportSpecification$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot. </p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the <code>PostText</code> operation would be:</p> <ul> <li> <p> <code>AMAZON.FallbackIntent</code> </p> </li> <li> <p> <code>IntentA</code> </p> </li> <li> <p> <code>IntentB</code> </p> </li> <li> <p> <code>IntentC</code> </p> </li> </ul>",
         "CreateBotLocaleRequest$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot.</p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the PostText operation would be:</p> <ul> <li> <p>AMAZON.FallbackIntent</p> </li> <li> <p>IntentA</p> </li> <li> <p>IntentB</p> </li> <li> <p>IntentC</p> </li> </ul>",
         "CreateBotLocaleResponse$nluIntentConfidenceThreshold": "<p>The specified confidence threshold for inserting the <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> intents.</p>",
         "DescribeBotLocaleResponse$nluIntentConfidenceThreshold": "<p>The confidence threshold where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> intents in the list of possible intents for an utterance.</p>",
@@ -576,6 +615,16 @@
       "refs": {
       }
     },
+    "CreateExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateIntentRequest": {
       "base": null,
       "refs": {
@@ -606,6 +655,16 @@
       "refs": {
       }
     },
+    "CreateUploadUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUploadUrlResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CustomPayload": {
       "base": "<p>A custom response string that Amazon Lex sends to your application. You define the content and structure the string.</p>",
       "refs": {
@@ -621,6 +680,7 @@
     "DataPrivacy": {
       "base": "<p>By default, data stored by Amazon Lex is encrypted. The <code>DataPrivacy</code> structure provides settings that determine how Amazon Lex handles special cases of securing the data for your bot. </p>",
       "refs": {
+        "BotImportSpecification$dataPrivacy": null,
         "CreateBotRequest$dataPrivacy": "<p>Provides information on additional privacy protections Amazon Lex should use with the bot's data.</p>",
         "CreateBotResponse$dataPrivacy": "<p>The data privacy settings specified for the bot.</p>",
         "DescribeBotResponse$dataPrivacy": "<p>Settings for managing data privacy of the bot and its conversations with users.</p>",
@@ -665,6 +725,26 @@
       }
     },
     "DeleteBotVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteImportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteImportResponse": {
       "base": null,
       "refs": {
       }
@@ -720,6 +800,26 @@
       }
     },
     "DescribeBotVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImportResponse": {
       "base": null,
       "refs": {
       }
@@ -814,6 +914,7 @@
     "DraftBotVersion": {
       "base": null,
       "refs": {
+        "BotLocaleImportSpecification$botVersion": "<p>The version of the bot to import the locale to. This can only be the <code>DRAFT</code> version of the bot.</p>",
         "BuildBotLocaleRequest$botVersion": "<p>The version of the bot to build. This can only be the draft version of the bot.</p>",
         "BuildBotLocaleResponse$botVersion": "<p>The version of the bot that was built. This is only the draft version of the bot.</p>",
         "CreateBotLocaleRequest$botVersion": "<p>The version of the bot to create the locale for. This can only be the draft version of the bot.</p>",
@@ -830,6 +931,8 @@
         "DeleteSlotRequest$botVersion": "<p>The version of the bot associated with the slot to delete.</p>",
         "DeleteSlotTypeRequest$botVersion": "<p>The version of the bot associated with the slot type.</p>",
         "DescribeIntentResponse$botVersion": "<p>The version of the bot associated with the intent.</p>",
+        "ListImportsRequest$botVersion": "<p>The version of the bot to list imports for.</p>",
+        "ListImportsResponse$botVersion": "<p>The version of the bot that was imported. It will always be <code>DRAFT</code>.</p>",
         "UpdateBotLocaleRequest$botVersion": "<p>The version of the bot that contains the locale to be updated. The version can only be the <code>DRAFT</code> version.</p>",
         "UpdateBotLocaleResponse$botVersion": "<p>The version of the bot that contains the updated locale.</p>",
         "UpdateIntentRequest$botVersion": "<p>The version of the bot that contains the intent. Must be <code>DRAFT</code>.</p>",
@@ -852,6 +955,74 @@
         "ValidationException$message": null
       }
     },
+    "ExportFilter": {
+      "base": "<p>Filtes the response form the operation</p>",
+      "refs": {
+        "ExportFilters$member": null
+      }
+    },
+    "ExportFilterName": {
+      "base": null,
+      "refs": {
+        "ExportFilter$name": "<p>The name of the field to use for filtering.</p>"
+      }
+    },
+    "ExportFilterOperator": {
+      "base": null,
+      "refs": {
+        "ExportFilter$operator": "<p>The operator to use for the filter. Specify EQ when the <code>ListExports</code> operation should return only resource types that equal the specified value. Specify CO when the <code>ListExports</code> operation should return resource types that contain the specified value.</p>"
+      }
+    },
+    "ExportFilters": {
+      "base": null,
+      "refs": {
+        "ListExportsRequest$filters": "<p>Provides the specification of a filter used to limit the exports in the response to only those that match the filter specification. You can only specify one filter and one string to filter on.</p>"
+      }
+    },
+    "ExportResourceSpecification": {
+      "base": "<p>Provides information about the bot or bot locale that you want to export. You can specify the <code>botExportSpecification</code> or the <code>botLocaleExportSpecification</code>, but not both.</p>",
+      "refs": {
+        "CreateExportRequest$resourceSpecification": "<p>Specifies the type of resource to export, either a bot or a bot locale. You can only specify one type of resource to export.</p>",
+        "CreateExportResponse$resourceSpecification": "<p>A description of the type of resource that was exported, either a bot or a bot locale.</p>",
+        "DescribeExportResponse$resourceSpecification": "<p>The bot, bot ID, and optional locale ID of the exported bot or bot locale.</p>",
+        "ExportSummary$resourceSpecification": "<p>Information about the bot or bot locale that was exported.</p>",
+        "UpdateExportResponse$resourceSpecification": "<p>A description of the type of resource that was exported, either a bot or a bot locale.</p>"
+      }
+    },
+    "ExportSortAttribute": {
+      "base": null,
+      "refs": {
+        "ExportSortBy$attribute": "<p>The export field to use for sorting.</p>"
+      }
+    },
+    "ExportSortBy": {
+      "base": "<p>Provides information about sorting a list of exports.</p>",
+      "refs": {
+        "ListExportsRequest$sortBy": "<p>Determines the field that the list of exports is sorted by. You can sort by the <code>LastUpdatedDateTime</code> field in ascending or descending order.</p>"
+      }
+    },
+    "ExportStatus": {
+      "base": null,
+      "refs": {
+        "CreateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code>, you can use the operation to get the pre-signed S3 URL link to your exported bot or bot locale.</p>",
+        "DeleteExportResponse$exportStatus": "<p>The current status of the deletion. When the deletion is complete, the export will no longer be returned by the operation and calls to the with the export identifier will fail.</p>",
+        "DescribeExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Complete</code> the export archive file is available for download.</p>",
+        "ExportSummary$exportStatus": "<p>The status of the export. When the status is <code>Completed</code> the export is ready to download.</p>",
+        "UpdateExportResponse$exportStatus": "<p>The status of the export. When the status is <code>Completed</code> the export archive is available for download.</p>"
+      }
+    },
+    "ExportSummary": {
+      "base": "<p>Provides summary information about an export in an export list. </p>",
+      "refs": {
+        "ExportSummaryList$member": null
+      }
+    },
+    "ExportSummaryList": {
+      "base": null,
+      "refs": {
+        "ListExportsResponse$exportSummaries": "<p>Summary information for the exports that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter. If there are more exports available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
+      }
+    },
     "FailureReason": {
       "base": null,
       "refs": {
@@ -863,6 +1034,8 @@
       "refs": {
         "DescribeBotLocaleResponse$failureReasons": "<p>if <code>botLocaleStatus</code> is <code>Failed</code>, Amazon Lex explains why it failed to build the bot.</p>",
         "DescribeBotVersionResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the version couldn't be built.</p>",
+        "DescribeExportResponse$failureReasons": "<p>If the <code>exportStatus</code> is failed, contains one or more reasons why the export could not be completed.</p>",
+        "DescribeImportResponse$failureReasons": "<p>If the <code>importStatus</code> field is <code>Failed</code>, this provides one or more reasons for the failture.</p>",
         "UpdateBotLocaleResponse$failureReasons": "<p>If the <code>botLocaleStatus</code> is <code>Failed</code>, the <code>failureReasons</code> field lists the errors that occurred while building the bot.</p>"
       }
     },
@@ -877,6 +1050,8 @@
       "refs": {
         "BotFilter$values": "<p>The value to use for filtering the list of bots.</p>",
         "BotLocaleFilter$values": "<p>The value to use for filtering the list of bots.</p>",
+        "ExportFilter$values": "<p>The values to use to fileter the response.</p>",
+        "ImportFilter$values": "<p>The values to use to filter the response.</p>",
         "IntentFilter$values": "<p>The value to use for the filter.</p>",
         "SlotFilter$values": "<p>The value to use to filter the response.</p>",
         "SlotTypeFilter$values": "<p>The value to use to filter the response.</p>"
@@ -895,6 +1070,9 @@
     "Id": {
       "base": null,
       "refs": {
+        "BotExportSpecification$botId": "<p>The identifier of the bot assigned by Amazon Lex.</p>",
+        "BotLocaleExportSpecification$botId": "<p>The identifier of the bot to create the locale for.</p>",
+        "BotLocaleImportSpecification$botId": "<p>The identifier of the bot to import the locale to.</p>",
         "BotSummary$botId": "<p>The unique identifier assigned to the bot. Use this ID to get detailed information about the bot with the <a>DescribeBot</a> operation.</p>",
         "BuildBotLocaleRequest$botId": "<p>The identifier of the bot to build. The identifier is returned in the response from the operation.</p>",
         "BuildBotLocaleResponse$botId": "<p>The identifier of the specified bot.</p>",
@@ -905,6 +1083,7 @@
         "CreateBotResponse$botId": "<p>A unique identifier for a particular bot. You use this to identify the bot when you call other Amazon Lex API operations.</p>",
         "CreateBotVersionRequest$botId": "<p>The identifier of the bot to create the version for.</p>",
         "CreateBotVersionResponse$botId": "<p>The bot identifier specified in the request.</p>",
+        "CreateExportResponse$exportId": "<p>An identifier for a specific request to create an export.</p>",
         "CreateIntentRequest$botId": "<p>The identifier of the bot associated with this intent.</p>",
         "CreateIntentResponse$intentId": "<p>A unique identifier for the intent.</p>",
         "CreateIntentResponse$botId": "<p>The identifier of the bot associated with the intent.</p>",
@@ -916,6 +1095,7 @@
         "CreateSlotTypeRequest$botId": "<p>The identifier of the bot associated with this slot type.</p>",
         "CreateSlotTypeResponse$slotTypeId": "<p>The unique identifier assigned to the slot type. Use this to identify the slot type in the <code>UpdateSlotType</code> and <code>DeleteSlotType</code> operations.</p>",
         "CreateSlotTypeResponse$botId": "<p>The identifier for the bot associated with the slot type.</p>",
+        "CreateUploadUrlResponse$importId": "<p>An identifier for a unique import job. Use it when you call the operation.</p>",
         "DeleteBotAliasRequest$botId": "<p>The unique identifier of the bot associated with the alias to delete.</p>",
         "DeleteBotAliasResponse$botId": "<p>The unique identifier of the bot that contains the alias to delete.</p>",
         "DeleteBotLocaleRequest$botId": "<p>The unique identifier of the bot that contains the locale.</p>",
@@ -924,6 +1104,10 @@
         "DeleteBotResponse$botId": "<p>The unique identifier of the bot that Amazon Lex is deleting.</p>",
         "DeleteBotVersionRequest$botId": "<p>The identifier of the bot that contains the version.</p>",
         "DeleteBotVersionResponse$botId": "<p>The identifier of the bot that is being deleted.</p>",
+        "DeleteExportRequest$exportId": "<p>The unique identifier of the export to delete.</p>",
+        "DeleteExportResponse$exportId": "<p>The unique identifier of the deleted export.</p>",
+        "DeleteImportRequest$importId": "<p>The unique identifier of the import to delete.</p>",
+        "DeleteImportResponse$importId": "<p>The unique identifier of the deleted import.</p>",
         "DeleteIntentRequest$intentId": "<p>The unique identifier of the intent to delete.</p>",
         "DeleteIntentRequest$botId": "<p>The identifier of the bot associated with the intent.</p>",
         "DeleteSlotRequest$slotId": "<p>The identifier of the slot to delete. </p>",
@@ -939,6 +1123,10 @@
         "DescribeBotResponse$botId": "<p>The unique identifier of the bot.</p>",
         "DescribeBotVersionRequest$botId": "<p>The identifier of the bot containing the version to return metadata for.</p>",
         "DescribeBotVersionResponse$botId": "<p>The identifier of the bot that contains the version.</p>",
+        "DescribeExportRequest$exportId": "<p>The unique identifier of the export to describe.</p>",
+        "DescribeExportResponse$exportId": "<p>The unique identifier of the described export.</p>",
+        "DescribeImportRequest$importId": "<p>The unique identifier of the import to describe.</p>",
+        "DescribeImportResponse$importId": "<p>The unique identifier of the described import.</p>",
         "DescribeIntentRequest$intentId": "<p>The identifier of the intent to describe.</p>",
         "DescribeIntentRequest$botId": "<p>The identifier of the bot associated with the intent.</p>",
         "DescribeIntentResponse$intentId": "<p>The unique identifier assigned to the intent when it was created.</p>",
@@ -953,6 +1141,8 @@
         "DescribeSlotTypeRequest$botId": "<p>The identifier of the bot associated with the slot type.</p>",
         "DescribeSlotTypeResponse$slotTypeId": "<p>The unique identifier for the slot type.</p>",
         "DescribeSlotTypeResponse$botId": "<p>The identifier of the bot associated with the slot type.</p>",
+        "ExportSummary$exportId": "<p>The unique identifier that Amazon Lex assigned to the export.</p>",
+        "ImportSummary$importId": "<p>The unique identifier that Amazon Lex assigned to the import.</p>",
         "IntentSummary$intentId": "<p>The unique identifier assigned to the intent. Use this ID to get detailed information about the intent with the <code>DescribeIntent</code> operation.</p>",
         "ListBotAliasesRequest$botId": "<p>The identifier of the bot to list aliases for.</p>",
         "ListBotAliasesResponse$botId": "<p>The identifier of the bot associated with the aliases.</p>",
@@ -960,6 +1150,10 @@
         "ListBotLocalesResponse$botId": "<p>The identifier of the bot to list locales for.</p>",
         "ListBotVersionsRequest$botId": "<p>The identifier of the bot to list versions for.</p>",
         "ListBotVersionsResponse$botId": "<p>The identifier of the bot to list versions for.</p>",
+        "ListExportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
+        "ListExportsResponse$botId": "<p>The unique identifier assigned to the bot by Amazon Lex.</p>",
+        "ListImportsRequest$botId": "<p>The unique identifier that Amazon Lex assigned to the bot.</p>",
+        "ListImportsResponse$botId": "<p>The unique identifier assigned by Amazon Lex to the bot.</p>",
         "ListIntentsRequest$botId": "<p>The unique identifier of the bot that contains the intent.</p>",
         "ListIntentsResponse$botId": "<p>The identifier of the bot that contains the intent.</p>",
         "ListSlotTypesRequest$botId": "<p>The unique identifier of the bot that contains the slot types.</p>",
@@ -971,12 +1165,16 @@
         "SlotPriority$slotId": "<p>The unique identifier of the slot.</p>",
         "SlotSummary$slotId": "<p>The unique identifier of the slot.</p>",
         "SlotTypeSummary$slotTypeId": "<p>The unique identifier assigned to the slot type.</p>",
+        "StartImportRequest$importId": "<p>The unique identifier for the import. It is included in the response from the operation.</p>",
+        "StartImportResponse$importId": "<p>A unique identifier for the import.</p>",
         "UpdateBotAliasRequest$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotAliasResponse$botId": "<p>The identifier of the bot with the updated alias.</p>",
         "UpdateBotLocaleRequest$botId": "<p>The unique identifier of the bot that contains the locale.</p>",
         "UpdateBotLocaleResponse$botId": "<p>The identifier of the bot that contains the updated locale.</p>",
         "UpdateBotRequest$botId": "<p>The unique identifier of the bot to update. This identifier is returned by the <a>CreateBot</a> operation.</p>",
         "UpdateBotResponse$botId": "<p>The unique identifier of the bot that was updated.</p>",
+        "UpdateExportRequest$exportId": "<p>The unique identifier Amazon Lex assigned to the export.</p>",
+        "UpdateExportResponse$exportId": "<p>The unique identifier Amazon Lex assigned to the export.</p>",
         "UpdateIntentRequest$intentId": "<p>The unique identifier of the intent to update.</p>",
         "UpdateIntentRequest$botId": "<p>The identifier of the bot that contains the intent.</p>",
         "UpdateIntentResponse$intentId": "<p>The identifier of the intent that was updated.</p>",
@@ -997,6 +1195,96 @@
       "base": "<p>A card that is shown to the user by a messaging platform. You define the contents of the card, the card is displayed by the platform. </p> <p>When you use a response card, the response from the user is constrained to the text associated with a button on the card.</p>",
       "refs": {
         "Message$imageResponseCard": "<p>A message that defines a response card that the client application can show to the user.</p>"
+      }
+    },
+    "ImportExportFileFormat": {
+      "base": null,
+      "refs": {
+        "CreateExportRequest$fileFormat": "<p>The file format of the bot or bot locale definition files.</p>",
+        "CreateExportResponse$fileFormat": "<p>The file format used for the bot or bot locale definition files.</p>",
+        "DescribeExportResponse$fileFormat": "<p>The file format used in the files that describe the bot or bot locale.</p>",
+        "ExportSummary$fileFormat": "<p>The file format used in the export files.</p>",
+        "UpdateExportResponse$fileFormat": "<p>The file format used for the files that define the resource.</p>"
+      }
+    },
+    "ImportExportFilePassword": {
+      "base": null,
+      "refs": {
+        "CreateExportRequest$filePassword": "<p>An password to use to encrypt the exported archive. Using a password is optional, but you should encrypt the archive to protect the data in transit between Amazon Lex and your local computer.</p>",
+        "StartImportRequest$filePassword": "<p>The password used to encrypt the zip archive that contains the bot or bot locale definition. You should always encrypt the zip archive to protect it during transit between your site and Amazon Lex.</p>",
+        "UpdateExportRequest$filePassword": "<p>The new password to use to encrypt the export zip archive.</p>"
+      }
+    },
+    "ImportFilter": {
+      "base": "<p>Filters the response from the operation.</p>",
+      "refs": {
+        "ImportFilters$member": null
+      }
+    },
+    "ImportFilterName": {
+      "base": null,
+      "refs": {
+        "ImportFilter$name": "<p>The name of the field to use for filtering.</p>"
+      }
+    },
+    "ImportFilterOperator": {
+      "base": null,
+      "refs": {
+        "ImportFilter$operator": "<p>The operator to use for the filter. Specify EQ when the <code>ListImports</code> operation should return only resource types that equal the specified value. Specify CO when the <code>ListImports</code> operation should return resource types that contain the specified value.</p>"
+      }
+    },
+    "ImportFilters": {
+      "base": null,
+      "refs": {
+        "ListImportsRequest$filters": "<p>Provides the specification of a filter used to limit the bots in the response to only those that match the filter specification. You can only specify one filter and one string to filter on.</p>"
+      }
+    },
+    "ImportResourceSpecification": {
+      "base": "<p>Provides information about the bot or bot locale that you want to import. You can sepcifiy the <code>botImportSpecification</code> or the <code>botLocaleImportSpecification</code>, but not both.</p>",
+      "refs": {
+        "DescribeImportResponse$resourceSpecification": "<p>The specifications of the imported bot or bot locale.</p>",
+        "StartImportRequest$resourceSpecification": "<p>Parameters for creating the bot or bot locale.</p>",
+        "StartImportResponse$resourceSpecification": "<p>The parameters used when importing the bot or bot locale.</p>"
+      }
+    },
+    "ImportSortAttribute": {
+      "base": null,
+      "refs": {
+        "ImportSortBy$attribute": "<p>The export field to use for sorting.</p>"
+      }
+    },
+    "ImportSortBy": {
+      "base": "<p>Provides information for sorting a list of imports.</p>",
+      "refs": {
+        "ListImportsRequest$sortBy": "<p>Determines the field that the list of imports is sorted by. You can sort by the <code>LastUpdatedDateTime</code> field in ascending or descending order.</p>"
+      }
+    },
+    "ImportStatus": {
+      "base": null,
+      "refs": {
+        "DeleteImportResponse$importStatus": "<p>The current status of the deletion. When the deletion is complete, the import will no longer be returned by the operation and calls to the with the import identifier will fail.</p>",
+        "DescribeImportResponse$importStatus": "<p>The status of the import process. When the status is <code>Completed</code> the resource is imported and ready for use.</p>",
+        "ImportSummary$importStatus": "<p>The status of the resource. When the status is <code>Completed</code> the resource is ready to build.</p>",
+        "StartImportResponse$importStatus": "<p>The current status of the import. When the status is <code>Complete</code> the bot or bot alias is ready to use.</p>"
+      }
+    },
+    "ImportSummary": {
+      "base": "<p>Provides summary information about an import in an import list.</p>",
+      "refs": {
+        "ImportSummaryList$member": null
+      }
+    },
+    "ImportSummaryList": {
+      "base": null,
+      "refs": {
+        "ListImportsResponse$importSummaries": "<p>Summary information for the imports that meet the filter criteria specified in the request. The length of the list is specified in the <code>maxResults</code> parameter. If there are more imports available, the <code>nextToken</code> field contains a token to get the next page of results.</p>"
+      }
+    },
+    "ImportedResourceId": {
+      "base": null,
+      "refs": {
+        "DescribeImportResponse$importedResourceId": "<p>The unique identifier that Amazon Lex assigned to the resource created by the import.</p>",
+        "ImportSummary$importedResourceId": "<p>The unique identifier that Amazon Lex assigned to the imported resource.</p>"
       }
     },
     "InputContext": {
@@ -1195,6 +1483,26 @@
       "refs": {
       }
     },
+    "ListExportsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExportsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImportsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListImportsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListIntentsRequest": {
       "base": null,
       "refs": {
@@ -1239,48 +1547,50 @@
       "base": null,
       "refs": {
         "BotAliasLocaleSettingsMap$key": null,
+        "BotLocaleExportSpecification$localeId": "<p>The identifier of the language and locale to export. The string must match one of the locales in the bot.</p>",
+        "BotLocaleImportSpecification$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "BotLocaleSummary$localeId": "<p>The language and locale of the bot locale.</p>",
         "BotVersionLocaleSpecification$key": null,
-        "BuildBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "BuildBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "BuildBotLocaleResponse$localeId": "<p>The language and locale specified of where the bot can be used.</p>",
-        "CreateBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "CreateBotLocaleRequest$localeId": "<p>The identifier of the language and locale that the bot will be used in. The string must match one of the supported locales. All of the intents, slot types, and slots used in the bot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "CreateBotLocaleResponse$localeId": "<p>The specified locale identifier.</p>",
-        "CreateIntentRequest$localeId": "<p>The identifier of the language and locale where this intent is used. All of the bots, slot types, and slots used by the intent must have the same locale.</p>",
+        "CreateIntentRequest$localeId": "<p>The identifier of the language and locale where this intent is used. All of the bots, slot types, and slots used by the intent must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "CreateIntentResponse$localeId": "<p>The locale that the intent is specified to use.</p>",
-        "CreateSlotRequest$localeId": "<p>The identifier of the language and locale that the slot will be used in. The string must match one of the supported locales. All of the bots, intents, slot types used by the slot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "CreateSlotRequest$localeId": "<p>The identifier of the language and locale that the slot will be used in. The string must match one of the supported locales. All of the bots, intents, slot types used by the slot must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "CreateSlotResponse$localeId": "<p>The language and local specified for the slot.</p>",
-        "CreateSlotTypeRequest$localeId": "<p>The identifier of the language and locale that the slot type will be used in. The string must match one of the supported locales. All of the bots, intents, and slots used by the slot type must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "CreateSlotTypeRequest$localeId": "<p>The identifier of the language and locale that the slot type will be used in. The string must match one of the supported locales. All of the bots, intents, and slots used by the slot type must have the same locale. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "CreateSlotTypeResponse$localeId": "<p>The specified language and local specified for the slot type.</p>",
-        "DeleteBotLocaleRequest$localeId": "<p>The identifier of the language and locale that will be deleted. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "DeleteBotLocaleRequest$localeId": "<p>The identifier of the language and locale that will be deleted. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "DeleteBotLocaleResponse$localeId": "<p>The language and locale of the deleted locale.</p>",
-        "DeleteIntentRequest$localeId": "<p>The identifier of the language and locale where the bot will be deleted. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
-        "DeleteSlotRequest$localeId": "<p>The identifier of the language and locale that the slot will be deleted from. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
-        "DeleteSlotTypeRequest$localeId": "<p>The identifier of the language and locale that the slot type will be deleted from. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
-        "DescribeBotLocaleRequest$localeId": "<p>The unique identifier of the locale to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>. </p>",
+        "DeleteIntentRequest$localeId": "<p>The identifier of the language and locale where the bot will be deleted. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
+        "DeleteSlotRequest$localeId": "<p>The identifier of the language and locale that the slot will be deleted from. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
+        "DeleteSlotTypeRequest$localeId": "<p>The identifier of the language and locale that the slot type will be deleted from. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
+        "DescribeBotLocaleRequest$localeId": "<p>The unique identifier of the locale to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>. </p>",
         "DescribeBotLocaleResponse$localeId": "<p>The unique identifier of the described locale.</p>",
-        "DescribeIntentRequest$localeId": "<p>The identifier of the language and locale of the intent to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "DescribeIntentRequest$localeId": "<p>The identifier of the language and locale of the intent to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "DescribeIntentResponse$localeId": "<p>The language and locale specified for the intent.</p>",
-        "DescribeSlotRequest$localeId": "<p>The identifier of the language and locale of the slot to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "DescribeSlotRequest$localeId": "<p>The identifier of the language and locale of the slot to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "DescribeSlotResponse$localeId": "<p>The language and locale specified for the slot.</p>",
-        "DescribeSlotTypeRequest$localeId": "<p>The identifier of the language and locale of the slot type to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "DescribeSlotTypeRequest$localeId": "<p>The identifier of the language and locale of the slot type to describe. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "DescribeSlotTypeResponse$localeId": "<p>The language and locale specified for the slot type.</p>",
-        "ListBuiltInIntentsRequest$localeId": "<p>The identifier of the language and locale of the intents to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "ListBuiltInIntentsRequest$localeId": "<p>The identifier of the language and locale of the intents to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListBuiltInIntentsResponse$localeId": "<p>The language and locale of the intents in the list.</p>",
-        "ListBuiltInSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "ListBuiltInSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListBuiltInSlotTypesResponse$localeId": "<p>The language and locale of the slot types in the list.</p>",
-        "ListIntentsRequest$localeId": "<p>The identifier of the language and locale of the intents to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "ListIntentsRequest$localeId": "<p>The identifier of the language and locale of the intents to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListIntentsResponse$localeId": "<p>The language and locale of the intents in the list.</p>",
-        "ListSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "ListSlotTypesRequest$localeId": "<p>The identifier of the language and locale of the slot types to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListSlotTypesResponse$localeId": "<p>The language and local of the slot types in the list.</p>",
-        "ListSlotsRequest$localeId": "<p>The identifier of the language and locale of the slots to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "ListSlotsRequest$localeId": "<p>The identifier of the language and locale of the slots to list. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "ListSlotsResponse$localeId": "<p>The language and locale of the slots in the list.</p>",
-        "UpdateBotLocaleRequest$localeId": "<p>The identifier of the language and locale to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "UpdateBotLocaleRequest$localeId": "<p>The identifier of the language and locale to update. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateBotLocaleResponse$localeId": "<p>The language and locale of the updated bot locale.</p>",
-        "UpdateIntentRequest$localeId": "<p>The identifier of the language and locale where this intent is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "UpdateIntentRequest$localeId": "<p>The identifier of the language and locale where this intent is used. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateIntentResponse$localeId": "<p>The updated language and locale of the intent.</p>",
-        "UpdateSlotRequest$localeId": "<p>The identifier of the language and locale that contains the slot. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "UpdateSlotRequest$localeId": "<p>The identifier of the language and locale that contains the slot. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateSlotResponse$localeId": "<p>The locale that contains the slot.</p>",
-        "UpdateSlotTypeRequest$localeId": "<p>The identifier of the language and locale that contains the slot type. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html\">https://docs.aws.amazon.com/lex/latest/dg/supported-locales.html</a>.</p>",
+        "UpdateSlotTypeRequest$localeId": "<p>The identifier of the language and locale that contains the slot type. The string must match one of the supported locales. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html\">Supported languages</a>.</p>",
         "UpdateSlotTypeResponse$localeId": "<p>The language and locale of the updated slot type.</p>"
       }
     },
@@ -1307,9 +1617,20 @@
         "ListBotLocalesRequest$maxResults": "<p>The maximum number of aliases to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotVersionsRequest$maxResults": "<p>The maximum number of versions to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListBotsRequest$maxResults": "<p>The maximum number of bots to return in each page of results. If there are fewer results than the maximum page size, only the actual number of results are returned.</p>",
+        "ListExportsRequest$maxResults": "<p>The maximum number of exports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
+        "ListImportsRequest$maxResults": "<p>The maximum number of imports to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListIntentsRequest$maxResults": "<p>The maximum number of intents to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListSlotTypesRequest$maxResults": "<p>The maximum number of slot types to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>",
         "ListSlotsRequest$maxResults": "<p>The maximum number of slots to return in each page of results. If there are fewer results than the max page size, only the actual number of results are returned.</p>"
+      }
+    },
+    "MergeStrategy": {
+      "base": null,
+      "refs": {
+        "DescribeImportResponse$mergeStrategy": "<p>The strategy used when there was a name conflict between the imported resource and an existing resource. When the merge strategy is <code>FailOnConflict</code> existing resources are not overwritten and the import fails.</p>",
+        "ImportSummary$mergeStrategy": "<p>The strategy used to merge existing bot or bot locale definitions with the imported definition.</p>",
+        "StartImportRequest$mergeStrategy": "<p>The strategy to use when there is a name conflict between the imported resource and an existing resource. When the merge strategy is <code>FailOnConflict</code> existing resources are not overwritten and the import fails.</p>",
+        "StartImportResponse$mergeStrategy": "<p>The strategy used when there was a name conflict between the imported resource and an existing resource. When the merge strategy is <code>FailOnConflict</code> existing resources are not overwritten and the import fails.</p>"
       }
     },
     "Message": {
@@ -1343,6 +1664,7 @@
       "base": null,
       "refs": {
         "BotAliasSummary$botAliasName": "<p>The name of the bot alias.</p>",
+        "BotImportSpecification$botName": "<p>The name that Amazon Lex should use for the bot.</p>",
         "BotSummary$botName": "<p>The name of the bot.</p>",
         "BotVersionSummary$botName": "<p>The name of the bot associated with the version.</p>",
         "CreateBotAliasRequest$botAliasName": "<p>The alias to create. The name must be unique for the bot.</p>",
@@ -1358,9 +1680,11 @@
         "DescribeBotAliasResponse$botAliasName": "<p>The name of the bot alias.</p>",
         "DescribeBotResponse$botName": "<p>The name of the bot.</p>",
         "DescribeBotVersionResponse$botName": "<p>The name of the bot that contains the version.</p>",
+        "DescribeImportResponse$importedResourceName": "<p>The name of the imported resource.</p>",
         "DescribeIntentResponse$intentName": "<p>The name specified for the intent.</p>",
         "DescribeSlotResponse$slotName": "<p>The name specified for the slot.</p>",
         "DescribeSlotTypeResponse$slotTypeName": "<p>The name specified for the slot type.</p>",
+        "ImportSummary$importedResourceName": "<p>The name that you gave the imported resource.</p>",
         "InputContext$name": "<p>The name of the context.</p>",
         "IntentSummary$intentName": "<p>The name of the intent.</p>",
         "OutputContext$name": "<p>The name of the output context.</p>",
@@ -1393,6 +1717,10 @@
         "ListBuiltInIntentsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInIntents</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code> operation request to get the next page of results.</p>",
         "ListBuiltInSlotTypesRequest$nextToken": "<p>If the response from the <code>ListBuiltInSlotTypes</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListBuiltInSlotTypesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInSlotTypes</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>LIstBuiltInSlotTypes</code> operation request to get the next page of results.</p>",
+        "ListExportsRequest$nextToken": "<p>If the response from the <code>ListExports</code> operation contans more results that specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
+        "ListExportsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListExports</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListExports</code> operation request to get the next page of results.</p>",
+        "ListImportsRequest$nextToken": "<p>If the response from the <code>ListImports</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
+        "ListImportsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListImports</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListImports</code> operation request to get the next page of results.</p>",
         "ListIntentsRequest$nextToken": "<p>If the response from the <code>ListIntents</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListIntentsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListIntents</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListIntents</code> operation request to get the next page of results.</p>",
         "ListSlotTypesRequest$nextToken": "<p>If the response from the <code>ListSlotTypes</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
@@ -1464,6 +1792,13 @@
       "refs": {
       }
     },
+    "PresignedS3Url": {
+      "base": null,
+      "refs": {
+        "CreateUploadUrlResponse$uploadUrl": "<p>A pre-signed S3 write URL. Upload the zip archive file that contains the definition of your bot or bot locale.</p>",
+        "DescribeExportResponse$downloadUrl": "<p>A pre-signed S3 URL that points to the bot or bot locale archive. The URL is only available for 5 minutes after calling the <code>DescribeExport</code> operation.</p>"
+      }
+    },
     "PriorityValue": {
       "base": null,
       "refs": {
@@ -1526,6 +1861,7 @@
     "RoleArn": {
       "base": null,
       "refs": {
+        "BotImportSpecification$roleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to build and run the bot.</p>",
         "CreateBotRequest$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the bot.</p>",
         "CreateBotResponse$roleArn": "<p>The IAM role specified for the bot.</p>",
         "DescribeBotResponse$roleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that has permission to access the bot.</p>",
@@ -1600,6 +1936,7 @@
     "SessionTTL": {
       "base": null,
       "refs": {
+        "BotImportSpecification$idleSessionTTLInSeconds": "<p>The time, in seconds, that Amazon Lex should keep information about a user's conversation with the bot. </p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Lex deletes any data provided before the timeout.</p> <p>You can specify between 60 (1 minute) and 86,400 (24 hours) seconds.</p>",
         "CreateBotRequest$idleSessionTTLInSeconds": "<p>The time, in seconds, that Amazon Lex should keep information about a user's conversation with the bot. </p> <p>A user interaction remains active for the amount of time specified. If no conversation occurs during this time, the session expires and Amazon Lex deletes any data provided before the timeout.</p> <p>You can specify between 60 (1 minute) and 86,400 (24 hours) seconds.</p>",
         "CreateBotResponse$idleSessionTTLInSeconds": "<p>The session idle time specified for the bot.</p>",
         "DescribeBotResponse$idleSessionTTLInSeconds": "<p>The maximum time in seconds that Amazon Lex retains the data gathered in a conversation.</p>",
@@ -1826,9 +2163,21 @@
         "BotVersionSortBy$order": "<p>The order to sort the list. You can specify ascending or descending order.</p>",
         "BuiltInIntentSortBy$order": "<p>The order to sort the list. You can specify ascending or descending order.</p>",
         "BuiltInSlotTypeSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
+        "ExportSortBy$order": "<p>The order to sort the list.</p>",
+        "ImportSortBy$order": "<p>The order to sort the list.</p>",
         "IntentSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
         "SlotSortBy$order": "<p>The order to sort the list. You can choose ascending or descending.</p>",
         "SlotTypeSortBy$order": "<p>The order to sort the list. You can say ascending or descending.</p>"
+      }
+    },
+    "StartImportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartImportResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StillWaitingResponseFrequency": {
@@ -1871,6 +2220,8 @@
     "TagMap": {
       "base": null,
       "refs": {
+        "BotImportSpecification$botTags": "<p>A list of tags to add to the bot. You can only add tags when you import a bot. You can't use the <code>UpdateBot</code> operation to update tags. To update tags, use the <code>TagResource</code> operation.</p>",
+        "BotImportSpecification$testBotAliasTags": "<p>A list of tags to add to the test alias for a bot. You can only add tags when you import a bot. You can't use the <code>UpdateAlias</code> operation to update tags. To update tags on the test alias, use the <code>TagResource</code> operation.</p>",
         "CreateBotAliasRequest$tags": "<p>A list of tags to add to the bot alias. You can only add tags when you create an alias, you can't use the <code>UpdateBotAlias</code> operation to update the tags on a bot alias. To update tags, use the <code>TagResource</code> operation.</p>",
         "CreateBotAliasResponse$tags": "<p>A list of tags associated with the bot alias.</p>",
         "CreateBotRequest$botTags": "<p>A list of tags to add to the bot. You can only add tags when you create a bot. You can't use the <code>UpdateBot</code> operation to update tags. To update tags, use the <code>TagResource</code> operation.</p>",
@@ -1937,6 +2288,7 @@
         "CreateBotLocaleResponse$creationDateTime": "<p>A timestamp specifying the date and time that the bot locale was created.</p>",
         "CreateBotResponse$creationDateTime": "<p>A timestamp indicating the date and time that the bot was created.</p>",
         "CreateBotVersionResponse$creationDateTime": "<p>A timestamp of the date and time that the version was created.</p>",
+        "CreateExportResponse$creationDateTime": "<p>The date and time that the request to export a bot was created.</p>",
         "CreateIntentResponse$creationDateTime": "<p>A timestamp of the date and time that the intent was created.</p>",
         "CreateSlotResponse$creationDateTime": "<p>The timestamp of the date and time that the slot was created.</p>",
         "CreateSlotTypeResponse$creationDateTime": "<p>A timestamp of the date and time that the slot type was created.</p>",
@@ -1948,21 +2300,32 @@
         "DescribeBotResponse$creationDateTime": "<p>A timestamp of the date and time that the bot was created.</p>",
         "DescribeBotResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot was last updated.</p>",
         "DescribeBotVersionResponse$creationDateTime": "<p>A timestamp of the date and time that the bot version was created.</p>",
+        "DescribeExportResponse$creationDateTime": "<p>The date and time that the export was created.</p>",
+        "DescribeExportResponse$lastUpdatedDateTime": "<p>The last date and time that the export was updated.</p>",
+        "DescribeImportResponse$creationDateTime": "<p>The date and time that the import was created.</p>",
+        "DescribeImportResponse$lastUpdatedDateTime": "<p>The date and time that the import was last updated.</p>",
         "DescribeIntentResponse$creationDateTime": "<p>A timestamp of the date and time that the intent was created.</p>",
         "DescribeIntentResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the intent was last updated.</p>",
         "DescribeSlotResponse$creationDateTime": "<p>A timestamp of the date and time that the slot was created.</p>",
         "DescribeSlotResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot was last updated.</p>",
         "DescribeSlotTypeResponse$creationDateTime": "<p>A timestamp of the date and time that the slot type was created.</p>",
         "DescribeSlotTypeResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>",
+        "ExportSummary$creationDateTime": "<p>The date and time that the export was created.</p>",
+        "ExportSummary$lastUpdatedDateTime": "<p>The date and time that the export was last updated.</p>",
+        "ImportSummary$creationDateTime": "<p>The date and time that the import was created.</p>",
+        "ImportSummary$lastUpdatedDateTime": "<p>The date and time that the import was last updated.</p>",
         "IntentSummary$lastUpdatedDateTime": "<p>The timestamp of the date and time that the intent was last updated.</p>",
         "SlotSummary$lastUpdatedDateTime": "<p>The timestamp of the last date and time that the slot was updated.</p>",
         "SlotTypeSummary$lastUpdatedDateTime": "<p>A timestamp of the date and time that the slot type was last updated.</p>",
+        "StartImportResponse$creationDateTime": "<p>The date and time that the import request was created.</p>",
         "UpdateBotAliasResponse$creationDateTime": "<p>A timestamp of the date and time that the bot was created.</p>",
         "UpdateBotAliasResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot was last updated.</p>",
         "UpdateBotLocaleResponse$creationDateTime": "<p>A timestamp of the date and time that the locale was created.</p>",
         "UpdateBotLocaleResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the locale was last updated.</p>",
         "UpdateBotResponse$creationDateTime": "<p>A timestamp of the date and time that the bot was created.</p>",
         "UpdateBotResponse$lastUpdatedDateTime": "<p>A timestamp of the date and time that the bot was last updated.</p>",
+        "UpdateExportResponse$creationDateTime": "<p>The date and time that the export was created.</p>",
+        "UpdateExportResponse$lastUpdatedDateTime": "<p>The date and time that the export was last updated.</p>",
         "UpdateIntentResponse$creationDateTime": "<p>A timestamp of when the intent was created.</p>",
         "UpdateIntentResponse$lastUpdatedDateTime": "<p>A timestamp of the last time that the intent was modified.</p>",
         "UpdateSlotResponse$creationDateTime": "<p>The timestamp of the date and time that the slot was created.</p>",
@@ -2007,6 +2370,16 @@
       }
     },
     "UpdateBotResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateExportRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateExportResponse": {
       "base": null,
       "refs": {
       }
@@ -2067,6 +2440,7 @@
     "VoiceSettings": {
       "base": "<p>Defines settings for using an Amazon Polly voice to communicate with a user.</p>",
       "refs": {
+        "BotLocaleImportSpecification$voiceSettings": null,
         "CreateBotLocaleRequest$voiceSettings": "<p>The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.</p>",
         "CreateBotLocaleResponse$voiceSettings": "<p>The Amazon Polly voice ID that Amazon Lex uses for voice interaction with the user.</p>",
         "DescribeBotLocaleResponse$voiceSettings": "<p>The Amazon Polly voice Amazon Lex uses for voice interaction with the user.</p>",
