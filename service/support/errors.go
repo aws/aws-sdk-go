@@ -50,7 +50,7 @@ const (
 	// ErrCodeCaseIdNotFound for service response error code
 	// "CaseIdNotFound".
 	//
-	// The requested caseId could not be located.
+	// The requested caseId couldn't be located.
 	ErrCodeCaseIdNotFound = "CaseIdNotFound"
 
 	// ErrCodeDescribeAttachmentLimitExceeded for service response error code

@@ -4,7 +4,9 @@
   "operations": {
     "DescribeRecommendationExportJobs": "<p>Describes recommendation export jobs created in the last seven days.</p> <p>Use the <code>ExportAutoScalingGroupRecommendations</code> or <code>ExportEC2InstanceRecommendations</code> actions to request an export of your recommendations. Then use the <code>DescribeRecommendationExportJobs</code> action to view your export jobs.</p>",
     "ExportAutoScalingGroupRecommendations": "<p>Exports optimization recommendations for Auto Scaling groups.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Auto Scaling group export job in progress per AWS Region.</p>",
+    "ExportEBSVolumeRecommendations": "<p>Exports optimization recommendations for Amazon EBS volumes.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon EBS volume export job in progress per AWS Region.</p>",
     "ExportEC2InstanceRecommendations": "<p>Exports optimization recommendations for Amazon EC2 instances.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon EC2 instance export job in progress per AWS Region.</p>",
+    "ExportLambdaFunctionRecommendations": "<p>Exports optimization recommendations for AWS Lambda functions.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Lambda function export job in progress per AWS Region.</p>",
     "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetEBSVolumeRecommendations": "<p>Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon EBS volumes that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
@@ -12,7 +14,7 @@
     "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the management account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
     "GetLambdaFunctionRecommendations": "<p>Returns AWS Lambda function recommendations.</p> <p>AWS Compute Optimizer generates recommendations for functions that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>It returns the number of:</p> <ul> <li> <p>Amazon EC2 instances in an account that are <code>Underprovisioned</code>, <code>Overprovisioned</code>, or <code>Optimized</code>.</p> </li> <li> <p>Auto Scaling groups in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Amazon EBS volumes in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> <li> <p>Lambda functions in an account that are <code>NotOptimized</code>, or <code>Optimized</code>.</p> </li> </ul>",
-    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in and opt out) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p> <p>You must have the appropriate permissions to opt in to Compute Optimizer, to view its recommendations, and to opt out. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/security-iam.html\">Controlling access with AWS Identity and Access Management</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>When you opt in, Compute Optimizer automatically creates a Service-Linked Role in your account to access its data. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/using-service-linked-roles.html\">Using Service-Linked Roles for AWS Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p>"
+    "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in and opt out) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a management account of an organization, this action can also be used to enroll member accounts within the organization.</p> <p>You must have the appropriate permissions to opt in to Compute Optimizer, to view its recommendations, and to opt out. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html\">Controlling access with AWS Identity and Access Management</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> <p>When you opt in, Compute Optimizer automatically creates a Service-Linked Role in your account to access its data. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/using-service-linked-roles.html\">Using Service-Linked Roles for AWS Compute Optimizer</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -35,7 +37,9 @@
       "base": null,
       "refs": {
         "ExportAutoScalingGroupRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportEBSVolumeRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export Amazon EBS volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "ExportEC2InstanceRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
+        "ExportLambdaFunctionRecommendationsRequest$accountIds": "<p>The IDs of the AWS accounts for which to export Lambda function recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.</p> <p>This parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.</p> <p>You can specify multiple account IDs per request.</p>",
         "GetAutoScalingGroupRecommendationsRequest$accountIds": "<p>The ID of the AWS account for which to return Auto Scaling group recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return Auto Scaling group recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEBSVolumeRecommendationsRequest$accountIds": "<p>The ID of the AWS account for which to return volume recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return volume recommendations.</p> <p>Only one account ID can be specified per request.</p>",
         "GetEC2InstanceRecommendationsRequest$accountIds": "<p>The ID of the AWS account for which to return instance recommendations.</p> <p>If your account is the management account of an organization, use this parameter to specify the member account for which you want to return instance recommendations.</p> <p>Only one account ID can be specified per request.</p>",
@@ -161,6 +165,7 @@
     "EBSFilters": {
       "base": null,
       "refs": {
+        "ExportEBSVolumeRecommendationsRequest$filters": "<p>An array of objects that describe a filter to export a more specific set of Amazon EBS volume recommendations.</p>",
         "GetEBSVolumeRecommendationsRequest$filters": "<p>An array of objects that describe a filter that returns a more specific list of volume recommendations.</p>"
       }
     },
@@ -218,12 +223,32 @@
         "RecommendationExportJob$destination": "<p>An object that describes the destination of the export file.</p>"
       }
     },
+    "ExportEBSVolumeRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportEBSVolumeRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ExportEC2InstanceRecommendationsRequest": {
       "base": null,
       "refs": {
       }
     },
     "ExportEC2InstanceRecommendationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportLambdaFunctionRecommendationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportLambdaFunctionRecommendationsResponse": {
       "base": null,
       "refs": {
       }
@@ -252,6 +277,30 @@
         "ExportEC2InstanceRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
+    "ExportableLambdaFunctionField": {
+      "base": null,
+      "refs": {
+        "ExportableLambdaFunctionFields$member": null
+      }
+    },
+    "ExportableLambdaFunctionFields": {
+      "base": null,
+      "refs": {
+        "ExportLambdaFunctionRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
+      }
+    },
+    "ExportableVolumeField": {
+      "base": null,
+      "refs": {
+        "ExportableVolumeFields$member": null
+      }
+    },
+    "ExportableVolumeFields": {
+      "base": null,
+      "refs": {
+        "ExportEBSVolumeRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
+      }
+    },
     "FailureReason": {
       "base": null,
       "refs": {
@@ -262,7 +311,9 @@
       "base": null,
       "refs": {
         "ExportAutoScalingGroupRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
-        "ExportEC2InstanceRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>"
+        "ExportEBSVolumeRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
+        "ExportEC2InstanceRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>",
+        "ExportLambdaFunctionRecommendationsRequest$fileFormat": "<p>The format of the export file.</p> <p>The only export file format currently supported is <code>Csv</code>.</p>"
       }
     },
     "Filter": {
@@ -427,8 +478,10 @@
     "IncludeMemberAccounts": {
       "base": null,
       "refs": {
-        "ExportAutoScalingGroupRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
-        "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportAutoScalingGroupRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportEBSVolumeRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportEC2InstanceRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
+        "ExportLambdaFunctionRecommendationsRequest$includeMemberAccounts": "<p>Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.</p> <p>The member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access\">Compute Optimizer and AWS Organizations trusted access</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> <p>Recommendations for member accounts of the organization are not included in the export file if this parameter is omitted.</p> <p>This parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.</p> <p>Recommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.</p>",
         "UpdateEnrollmentStatusRequest$includeMemberAccounts": "<p>Indicates whether to enroll member accounts of the organization if the account is the management account of an organization.</p>"
       }
     },
@@ -509,7 +562,9 @@
       "base": null,
       "refs": {
         "ExportAutoScalingGroupRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <code>DescribeRecommendationExportJobs</code> action, and specify the job ID to view the status of an export job.</p>",
+        "ExportEBSVolumeRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <code>DescribeRecommendationExportJobs</code> action, and specify the job ID to view the status of an export job.</p>",
         "ExportEC2InstanceRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <code>DescribeRecommendationExportJobs</code> action, and specify the job ID to view the status of an export job.</p>",
+        "ExportLambdaFunctionRecommendationsResponse$jobId": "<p>The identification number of the export job.</p> <p>Use the <code>DescribeRecommendationExportJobs</code> action, and specify the job ID to view the status of an export job.</p>",
         "JobIds$member": null,
         "RecommendationExportJob$jobId": "<p>The identification number of the export job.</p>"
       }
@@ -595,6 +650,7 @@
     "LambdaFunctionRecommendationFilters": {
       "base": null,
       "refs": {
+        "ExportLambdaFunctionRecommendationsRequest$filters": "<p>An array of objects that describe a filter to export a more specific set of Lambda function recommendations.</p>",
         "GetLambdaFunctionRecommendationsRequest$filters": "<p>An array of objects that describe a filter that returns a more specific list of function recommendations.</p>"
       }
     },
@@ -919,14 +975,18 @@
       "refs": {
         "ExportAutoScalingGroupRecommendationsResponse$s3Destination": "<p>An object that describes the destination Amazon S3 bucket of a recommendations export file.</p>",
         "ExportDestination$s3": "<p>An object that describes the destination Amazon Simple Storage Service (Amazon S3) bucket name and object keys of a recommendations export file, and its associated metadata file.</p>",
-        "ExportEC2InstanceRecommendationsResponse$s3Destination": "<p>An object that describes the destination Amazon S3 bucket of a recommendations export file.</p>"
+        "ExportEBSVolumeRecommendationsResponse$s3Destination": null,
+        "ExportEC2InstanceRecommendationsResponse$s3Destination": "<p>An object that describes the destination Amazon S3 bucket of a recommendations export file.</p>",
+        "ExportLambdaFunctionRecommendationsResponse$s3Destination": null
       }
     },
     "S3DestinationConfig": {
       "base": "<p>Describes the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for a recommendations export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer user guide</i>.</p>",
       "refs": {
         "ExportAutoScalingGroupRecommendationsRequest$s3DestinationConfig": "<p>An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer user guide</i>.</p>",
-        "ExportEC2InstanceRecommendationsRequest$s3DestinationConfig": "<p>An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer user guide</i>.</p>"
+        "ExportEBSVolumeRecommendationsRequest$s3DestinationConfig": null,
+        "ExportEC2InstanceRecommendationsRequest$s3DestinationConfig": "<p>An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.</p> <p>You must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html\">Amazon S3 Bucket Policy for Compute Optimizer</a> in the <i>Compute Optimizer user guide</i>.</p>",
+        "ExportLambdaFunctionRecommendationsRequest$s3DestinationConfig": null
       }
     },
     "ServiceUnavailableException": {
@@ -938,7 +998,7 @@
       "base": null,
       "refs": {
         "GetEnrollmentStatusResponse$status": "<p>The enrollment status of the account.</p>",
-        "UpdateEnrollmentStatusRequest$status": "<p>The new enrollment status of the account.</p> <p>The following status options are available:</p> <ul> <li> <p> <code>Active</code> - Opts in your account to the Compute Optimizer service. Compute Optimizer begins analyzing the configuration and utilization metrics of your AWS resources after you opt in. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/ug/metrics.html\">Metrics analyzed by AWS Compute Optimizer</a> in the <i>Compute Optimizer User Guide</i>.</p> </li> <li> <p> <code>Inactive</code> - Opts out your account from the Compute Optimizer service. Your account's recommendations and related metrics data will be deleted from Compute Optimizer after you opt out.</p> </li> </ul> <note> <p>The <code>Pending</code> and <code>Failed</code> options cannot be used to update the enrollment status of an account. They are returned in the response of a request to update the enrollment status of an account.</p> </note>",
+        "UpdateEnrollmentStatusRequest$status": "<p>The new enrollment status of the account.</p> <p>The following status options are available:</p> <ul> <li> <p> <code>Active</code> - Opts in your account to the Compute Optimizer service. Compute Optimizer begins analyzing the configuration and utilization metrics of your AWS resources after you opt in. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html\">Metrics analyzed by AWS Compute Optimizer</a> in the <i>AWS Compute Optimizer User Guide</i>.</p> </li> <li> <p> <code>Inactive</code> - Opts out your account from the Compute Optimizer service. Your account's recommendations and related metrics data will be deleted from Compute Optimizer after you opt out.</p> </li> </ul> <note> <p>The <code>Pending</code> and <code>Failed</code> options cannot be used to update the enrollment status of an account. They are returned in the response of a request to update the enrollment status of an account.</p> </note>",
         "UpdateEnrollmentStatusResponse$status": "<p>The enrollment status of the account.</p>"
       }
     },

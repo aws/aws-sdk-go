@@ -11404,6 +11404,57 @@ func (s *ListSolutionsOutput) SetSolutions(v []*SolutionSummary) *ListSolutionsO
 	return s
 }
 
+// Describes the additional objective for the solution, such as maximizing streaming
+// minutes or increasing revenue. For more information see Optimizing a solution
+// (https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html).
+type OptimizationObjective struct {
+	_ struct{} `type:"structure"`
+
+	// The numerical metadata column in an Items dataset related to the optimization
+	// objective. For example, VIDEO_LENGTH (to maximize streaming minutes), or
+	// PRICE (to maximize revenue).
+	ItemAttribute *string `locationName:"itemAttribute" min:"1" type:"string"`
+
+	// Specifies how Amazon Personalize balances the importance of your optimization
+	// objective versus relevance.
+	ObjectiveSensitivity *string `locationName:"objectiveSensitivity" type:"string" enum:"ObjectiveSensitivity"`
+}
+
+// String returns the string representation
+func (s OptimizationObjective) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OptimizationObjective) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OptimizationObjective) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OptimizationObjective"}
+	if s.ItemAttribute != nil && len(*s.ItemAttribute) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemAttribute", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemAttribute sets the ItemAttribute field's value.
+func (s *OptimizationObjective) SetItemAttribute(v string) *OptimizationObjective {
+	s.ItemAttribute = &v
+	return s
+}
+
+// SetObjectiveSensitivity sets the ObjectiveSensitivity field's value.
+func (s *OptimizationObjective) SetObjectiveSensitivity(v string) *OptimizationObjective {
+	s.ObjectiveSensitivity = &v
+	return s
+}
+
 // Provides information about a recipe. Each recipe provides an algorithm that
 // Amazon Personalize uses in model training when you use the CreateSolution
 // operation.
@@ -11955,6 +12006,11 @@ type SolutionConfig struct {
 
 	// Describes the properties for hyperparameter optimization (HPO).
 	HpoConfig *HPOConfig `locationName:"hpoConfig" type:"structure"`
+
+	// Describes the additional objective for the solution, such as maximizing streaming
+	// minutes or increasing revenue. For more information see Optimizing a solution
+	// (https://docs.aws.amazon.com/personalize/latest/dg/optimizing-solution-for-objective.html).
+	OptimizationObjective *OptimizationObjective `locationName:"optimizationObjective" type:"structure"`
 }
 
 // String returns the string representation
@@ -11973,6 +12029,11 @@ func (s *SolutionConfig) Validate() error {
 	if s.HpoConfig != nil {
 		if err := s.HpoConfig.Validate(); err != nil {
 			invalidParams.AddNested("HpoConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OptimizationObjective != nil {
+		if err := s.OptimizationObjective.Validate(); err != nil {
+			invalidParams.AddNested("OptimizationObjective", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -12009,6 +12070,12 @@ func (s *SolutionConfig) SetFeatureTransformationParameters(v map[string]*string
 // SetHpoConfig sets the HpoConfig field's value.
 func (s *SolutionConfig) SetHpoConfig(v *HPOConfig) *SolutionConfig {
 	s.HpoConfig = v
+	return s
+}
+
+// SetOptimizationObjective sets the OptimizationObjective field's value.
+func (s *SolutionConfig) SetOptimizationObjective(v *OptimizationObjective) *SolutionConfig {
+	s.OptimizationObjective = v
 	return s
 }
 
@@ -12457,6 +12524,30 @@ func IngestionMode_Values() []string {
 		IngestionModeBulk,
 		IngestionModePut,
 		IngestionModeAll,
+	}
+}
+
+const (
+	// ObjectiveSensitivityLow is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityLow = "LOW"
+
+	// ObjectiveSensitivityMedium is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityMedium = "MEDIUM"
+
+	// ObjectiveSensitivityHigh is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityHigh = "HIGH"
+
+	// ObjectiveSensitivityOff is a ObjectiveSensitivity enum value
+	ObjectiveSensitivityOff = "OFF"
+)
+
+// ObjectiveSensitivity_Values returns all elements of the ObjectiveSensitivity enum
+func ObjectiveSensitivity_Values() []string {
+	return []string{
+		ObjectiveSensitivityLow,
+		ObjectiveSensitivityMedium,
+		ObjectiveSensitivityHigh,
+		ObjectiveSensitivityOff,
 	}
 }
 

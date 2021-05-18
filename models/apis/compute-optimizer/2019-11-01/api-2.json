@@ -51,6 +51,25 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "ExportEBSVolumeRecommendations":{
+      "name":"ExportEBSVolumeRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportEBSVolumeRecommendationsRequest"},
+      "output":{"shape":"ExportEBSVolumeRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "ExportEC2InstanceRecommendations":{
       "name":"ExportEC2InstanceRecommendations",
       "http":{
@@ -59,6 +78,25 @@
       },
       "input":{"shape":"ExportEC2InstanceRecommendationsRequest"},
       "output":{"shape":"ExportEC2InstanceRecommendationsResponse"},
+      "errors":[
+        {"shape":"OptInRequiredException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
+    "ExportLambdaFunctionRecommendations":{
+      "name":"ExportLambdaFunctionRecommendations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportLambdaFunctionRecommendationsRequest"},
+      "output":{"shape":"ExportLambdaFunctionRecommendationsResponse"},
       "errors":[
         {"shape":"OptInRequiredException"},
         {"shape":"InternalServerException"},
@@ -370,6 +408,25 @@
         "s3":{"shape":"S3Destination"}
       }
     },
+    "ExportEBSVolumeRecommendationsRequest":{
+      "type":"structure",
+      "required":["s3DestinationConfig"],
+      "members":{
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"EBSFilters"},
+        "fieldsToExport":{"shape":"ExportableVolumeFields"},
+        "s3DestinationConfig":{"shape":"S3DestinationConfig"},
+        "fileFormat":{"shape":"FileFormat"},
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+      }
+    },
+    "ExportEBSVolumeRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
     "ExportEC2InstanceRecommendationsRequest":{
       "type":"structure",
       "required":["s3DestinationConfig"],
@@ -383,6 +440,25 @@
       }
     },
     "ExportEC2InstanceRecommendationsResponse":{
+      "type":"structure",
+      "members":{
+        "jobId":{"shape":"JobId"},
+        "s3Destination":{"shape":"S3Destination"}
+      }
+    },
+    "ExportLambdaFunctionRecommendationsRequest":{
+      "type":"structure",
+      "required":["s3DestinationConfig"],
+      "members":{
+        "accountIds":{"shape":"AccountIds"},
+        "filters":{"shape":"LambdaFunctionRecommendationFilters"},
+        "fieldsToExport":{"shape":"ExportableLambdaFunctionFields"},
+        "s3DestinationConfig":{"shape":"S3DestinationConfig"},
+        "fileFormat":{"shape":"FileFormat"},
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+      }
+    },
+    "ExportLambdaFunctionRecommendationsResponse":{
       "type":"structure",
       "members":{
         "jobId":{"shape":"JobId"},
@@ -476,6 +552,70 @@
     "ExportableInstanceFields":{
       "type":"list",
       "member":{"shape":"ExportableInstanceField"}
+    },
+    "ExportableLambdaFunctionField":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "FunctionArn",
+        "FunctionVersion",
+        "Finding",
+        "FindingReasonCodes",
+        "NumberOfInvocations",
+        "UtilizationMetricsDurationMaximum",
+        "UtilizationMetricsDurationAverage",
+        "UtilizationMetricsMemoryMaximum",
+        "UtilizationMetricsMemoryAverage",
+        "LookbackPeriodInDays",
+        "CurrentConfigurationMemorySize",
+        "CurrentConfigurationTimeout",
+        "CurrentCostTotal",
+        "CurrentCostAverage",
+        "RecommendationOptionsConfigurationMemorySize",
+        "RecommendationOptionsCostLow",
+        "RecommendationOptionsCostHigh",
+        "RecommendationOptionsProjectedUtilizationMetricsDurationLowerBound",
+        "RecommendationOptionsProjectedUtilizationMetricsDurationUpperBound",
+        "RecommendationOptionsProjectedUtilizationMetricsDurationExpected",
+        "LastRefreshTimestamp"
+      ]
+    },
+    "ExportableLambdaFunctionFields":{
+      "type":"list",
+      "member":{"shape":"ExportableLambdaFunctionField"}
+    },
+    "ExportableVolumeField":{
+      "type":"string",
+      "enum":[
+        "AccountId",
+        "VolumeArn",
+        "Finding",
+        "UtilizationMetricsVolumeReadOpsPerSecondMaximum",
+        "UtilizationMetricsVolumeWriteOpsPerSecondMaximum",
+        "UtilizationMetricsVolumeReadBytesPerSecondMaximum",
+        "UtilizationMetricsVolumeWriteBytesPerSecondMaximum",
+        "LookbackPeriodInDays",
+        "CurrentConfigurationVolumeType",
+        "CurrentConfigurationVolumeBaselineIOPS",
+        "CurrentConfigurationVolumeBaselineThroughput",
+        "CurrentConfigurationVolumeBurstIOPS",
+        "CurrentConfigurationVolumeBurstThroughput",
+        "CurrentConfigurationVolumeSize",
+        "CurrentMonthlyPrice",
+        "RecommendationOptionsConfigurationVolumeType",
+        "RecommendationOptionsConfigurationVolumeBaselineIOPS",
+        "RecommendationOptionsConfigurationVolumeBaselineThroughput",
+        "RecommendationOptionsConfigurationVolumeBurstIOPS",
+        "RecommendationOptionsConfigurationVolumeBurstThroughput",
+        "RecommendationOptionsConfigurationVolumeSize",
+        "RecommendationOptionsMonthlyPrice",
+        "RecommendationOptionsPerformanceRisk",
+        "LastRefreshTimestamp"
+      ]
+    },
+    "ExportableVolumeFields":{
+      "type":"list",
+      "member":{"shape":"ExportableVolumeField"}
     },
     "FailureReason":{"type":"string"},
     "FileFormat":{
@@ -1041,7 +1181,9 @@
       "type":"string",
       "enum":[
         "Ec2Instance",
-        "AutoScalingGroup"
+        "AutoScalingGroup",
+        "EbsVolume",
+        "LambdaFunction"
       ]
     },
     "S3Destination":{

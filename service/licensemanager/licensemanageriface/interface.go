@@ -92,6 +92,10 @@ type LicenseManagerAPI interface {
 	CreateLicenseConfigurationWithContext(aws.Context, *licensemanager.CreateLicenseConfigurationInput, ...request.Option) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationRequest(*licensemanager.CreateLicenseConfigurationInput) (*request.Request, *licensemanager.CreateLicenseConfigurationOutput)
 
+	CreateLicenseManagerReportGenerator(*licensemanager.CreateLicenseManagerReportGeneratorInput) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
+	CreateLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.CreateLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
+	CreateLicenseManagerReportGeneratorRequest(*licensemanager.CreateLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.CreateLicenseManagerReportGeneratorOutput)
+
 	CreateLicenseVersion(*licensemanager.CreateLicenseVersionInput) (*licensemanager.CreateLicenseVersionOutput, error)
 	CreateLicenseVersionWithContext(aws.Context, *licensemanager.CreateLicenseVersionInput, ...request.Option) (*licensemanager.CreateLicenseVersionOutput, error)
 	CreateLicenseVersionRequest(*licensemanager.CreateLicenseVersionInput) (*request.Request, *licensemanager.CreateLicenseVersionOutput)
@@ -111,6 +115,10 @@ type LicenseManagerAPI interface {
 	DeleteLicenseConfiguration(*licensemanager.DeleteLicenseConfigurationInput) (*licensemanager.DeleteLicenseConfigurationOutput, error)
 	DeleteLicenseConfigurationWithContext(aws.Context, *licensemanager.DeleteLicenseConfigurationInput, ...request.Option) (*licensemanager.DeleteLicenseConfigurationOutput, error)
 	DeleteLicenseConfigurationRequest(*licensemanager.DeleteLicenseConfigurationInput) (*request.Request, *licensemanager.DeleteLicenseConfigurationOutput)
+
+	DeleteLicenseManagerReportGenerator(*licensemanager.DeleteLicenseManagerReportGeneratorInput) (*licensemanager.DeleteLicenseManagerReportGeneratorOutput, error)
+	DeleteLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.DeleteLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.DeleteLicenseManagerReportGeneratorOutput, error)
+	DeleteLicenseManagerReportGeneratorRequest(*licensemanager.DeleteLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.DeleteLicenseManagerReportGeneratorOutput)
 
 	DeleteToken(*licensemanager.DeleteTokenInput) (*licensemanager.DeleteTokenOutput, error)
 	DeleteTokenWithContext(aws.Context, *licensemanager.DeleteTokenInput, ...request.Option) (*licensemanager.DeleteTokenOutput, error)
@@ -136,6 +144,10 @@ type LicenseManagerAPI interface {
 	GetLicenseConfigurationWithContext(aws.Context, *licensemanager.GetLicenseConfigurationInput, ...request.Option) (*licensemanager.GetLicenseConfigurationOutput, error)
 	GetLicenseConfigurationRequest(*licensemanager.GetLicenseConfigurationInput) (*request.Request, *licensemanager.GetLicenseConfigurationOutput)
 
+	GetLicenseManagerReportGenerator(*licensemanager.GetLicenseManagerReportGeneratorInput) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
+	GetLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.GetLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
+	GetLicenseManagerReportGeneratorRequest(*licensemanager.GetLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.GetLicenseManagerReportGeneratorOutput)
+
 	GetLicenseUsage(*licensemanager.GetLicenseUsageInput) (*licensemanager.GetLicenseUsageOutput, error)
 	GetLicenseUsageWithContext(aws.Context, *licensemanager.GetLicenseUsageInput, ...request.Option) (*licensemanager.GetLicenseUsageOutput, error)
 	GetLicenseUsageRequest(*licensemanager.GetLicenseUsageInput) (*request.Request, *licensemanager.GetLicenseUsageOutput)
@@ -159,6 +171,10 @@ type LicenseManagerAPI interface {
 	ListLicenseConfigurations(*licensemanager.ListLicenseConfigurationsInput) (*licensemanager.ListLicenseConfigurationsOutput, error)
 	ListLicenseConfigurationsWithContext(aws.Context, *licensemanager.ListLicenseConfigurationsInput, ...request.Option) (*licensemanager.ListLicenseConfigurationsOutput, error)
 	ListLicenseConfigurationsRequest(*licensemanager.ListLicenseConfigurationsInput) (*request.Request, *licensemanager.ListLicenseConfigurationsOutput)
+
+	ListLicenseManagerReportGenerators(*licensemanager.ListLicenseManagerReportGeneratorsInput) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)
+	ListLicenseManagerReportGeneratorsWithContext(aws.Context, *licensemanager.ListLicenseManagerReportGeneratorsInput, ...request.Option) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)
+	ListLicenseManagerReportGeneratorsRequest(*licensemanager.ListLicenseManagerReportGeneratorsInput) (*request.Request, *licensemanager.ListLicenseManagerReportGeneratorsOutput)
 
 	ListLicenseSpecificationsForResource(*licensemanager.ListLicenseSpecificationsForResourceInput) (*licensemanager.ListLicenseSpecificationsForResourceOutput, error)
 	ListLicenseSpecificationsForResourceWithContext(aws.Context, *licensemanager.ListLicenseSpecificationsForResourceInput, ...request.Option) (*licensemanager.ListLicenseSpecificationsForResourceOutput, error)
@@ -211,6 +227,10 @@ type LicenseManagerAPI interface {
 	UpdateLicenseConfiguration(*licensemanager.UpdateLicenseConfigurationInput) (*licensemanager.UpdateLicenseConfigurationOutput, error)
 	UpdateLicenseConfigurationWithContext(aws.Context, *licensemanager.UpdateLicenseConfigurationInput, ...request.Option) (*licensemanager.UpdateLicenseConfigurationOutput, error)
 	UpdateLicenseConfigurationRequest(*licensemanager.UpdateLicenseConfigurationInput) (*request.Request, *licensemanager.UpdateLicenseConfigurationOutput)
+
+	UpdateLicenseManagerReportGenerator(*licensemanager.UpdateLicenseManagerReportGeneratorInput) (*licensemanager.UpdateLicenseManagerReportGeneratorOutput, error)
+	UpdateLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.UpdateLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.UpdateLicenseManagerReportGeneratorOutput, error)
+	UpdateLicenseManagerReportGeneratorRequest(*licensemanager.UpdateLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.UpdateLicenseManagerReportGeneratorOutput)
 
 	UpdateLicenseSpecificationsForResource(*licensemanager.UpdateLicenseSpecificationsForResourceInput) (*licensemanager.UpdateLicenseSpecificationsForResourceOutput, error)
 	UpdateLicenseSpecificationsForResourceWithContext(aws.Context, *licensemanager.UpdateLicenseSpecificationsForResourceInput, ...request.Option) (*licensemanager.UpdateLicenseSpecificationsForResourceOutput, error)

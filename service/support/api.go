@@ -61,11 +61,11 @@ func (c *Support) AddAttachmentsToSetRequest(input *AddAttachmentsToSetInput) (r
 // a case or case communication. The set is available for 1 hour after it's
 // created. The expiryTime returned in the response is when the set expires.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -166,11 +166,11 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 // a set of email addresses to copy on the communication by using the ccEmailAddresses
 // parameter. The communicationBody value contains the text of the communication.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -186,7 +186,7 @@ func (c *Support) AddCommunicationToCaseRequest(input *AddCommunicationToCaseInp
 //   An internal server error occurred.
 //
 //   * CaseIdNotFound
-//   The requested caseId could not be located.
+//   The requested caseId couldn't be located.
 //
 //   * AttachmentSetIdNotFound
 //   An attachment set with the specified ID could not be found.
@@ -283,11 +283,11 @@ func (c *Support) CreateCaseRequest(input *CreateCaseInput) (req *request.Reques
 // Center (https://console.aws.amazon.com/support). Use the DescribeCases operation
 // to get the displayId.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -384,11 +384,11 @@ func (c *Support) DescribeAttachmentRequest(input *DescribeAttachmentInput) (req
 // to a case or case communication. Attachment IDs are returned in the AttachmentDetails
 // objects that are returned by the DescribeCommunications operation.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -498,11 +498,11 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 // Case data is available for 12 months after creation. If a case was created
 // more than 12 months ago, a request might return an error.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -518,7 +518,7 @@ func (c *Support) DescribeCasesRequest(input *DescribeCasesInput) (req *request.
 //   An internal server error occurred.
 //
 //   * CaseIdNotFound
-//   The requested caseId could not be located.
+//   The requested caseId couldn't be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCases
 func (c *Support) DescribeCases(input *DescribeCasesInput) (*DescribeCasesOutput, error) {
@@ -655,11 +655,11 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 // of the results. Set maxResults to the number of cases that you want to display
 // on each page, and use nextToken to specify the resumption of pagination.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -675,7 +675,7 @@ func (c *Support) DescribeCommunicationsRequest(input *DescribeCommunicationsInp
 //   An internal server error occurred.
 //
 //   * CaseIdNotFound
-//   The requested caseId could not be located.
+//   The requested caseId couldn't be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/DescribeCommunications
 func (c *Support) DescribeCommunications(input *DescribeCommunicationsInput) (*DescribeCommunicationsOutput, error) {
@@ -806,11 +806,11 @@ func (c *Support) DescribeServicesRequest(input *DescribeServicesInput) (req *re
 // service codes and categories that the DescribeServices operation returns,
 // so that you have the most recent set of service and category codes.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -891,15 +891,15 @@ func (c *Support) DescribeSeverityLevelsRequest(input *DescribeSeverityLevelsInp
 
 // DescribeSeverityLevels API operation for AWS Support.
 //
-// Returns the list of severity levels that you can assign to an AWS Support
-// case. The severity level for a case is also a field in the CaseDetails data
-// type that you include for a CreateCase request.
+// Returns the list of severity levels that you can assign to a support case.
+// The severity level for a case is also a field in the CaseDetails data type
+// that you include for a CreateCase request.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -989,11 +989,11 @@ func (c *Support) DescribeTrustedAdvisorCheckRefreshStatusesRequest(input *Descr
 // If you call this operation for these checks, you might see an InvalidParameterValue
 // error.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -1089,18 +1089,18 @@ func (c *Support) DescribeTrustedAdvisorCheckResultRequest(input *DescribeTruste
 //
 // In addition, the response contains these fields:
 //
-//    * status - The alert status of the check: "ok" (green), "warning" (yellow),
-//    "error" (red), or "not_available".
+//    * status - The alert status of the check can be ok (green), warning (yellow),
+//    error (red), or not_available.
 //
 //    * timestamp - The time of the last refresh of the check.
 //
 //    * checkId - The unique identifier for the check.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -1187,11 +1187,11 @@ func (c *Support) DescribeTrustedAdvisorCheckSummariesRequest(input *DescribeTru
 //
 // The response contains an array of TrustedAdvisorCheckSummary objects.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -1278,13 +1278,17 @@ func (c *Support) DescribeTrustedAdvisorChecksRequest(input *DescribeTrustedAdvi
 // ("ja"). The response contains a TrustedAdvisorCheckDescription object for
 // each check. You must set the AWS Region to us-east-1.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
+//
+//    * The names and descriptions for Trusted Advisor checks are subject to
+//    change. We recommend that you specify the check ID in your code to uniquely
+//    identify a check.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1372,11 +1376,11 @@ func (c *Support) RefreshTrustedAdvisorCheckRequest(input *RefreshTrustedAdvisor
 //
 // The response contains a TrustedAdvisorCheckRefreshStatus object.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -1460,11 +1464,11 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 // Resolves a support case. This operation takes a caseId and returns the initial
 // and final state of the case.
 //
-//    * You must have a Business or Enterprise support plan to use the AWS Support
+//    * You must have a Business or Enterprise Support plan to use the AWS Support
 //    API.
 //
 //    * If you call the AWS Support API from an account that does not have a
-//    Business or Enterprise support plan, the SubscriptionRequiredException
+//    Business or Enterprise Support plan, the SubscriptionRequiredException
 //    error message appears. For information about changing your support plan,
 //    see AWS Support (http://aws.amazon.com/premiumsupport/).
 //
@@ -1480,7 +1484,7 @@ func (c *Support) ResolveCaseRequest(input *ResolveCaseInput) (req *request.Requ
 //   An internal server error occurred.
 //
 //   * CaseIdNotFound
-//   The requested caseId could not be located.
+//   The requested caseId couldn't be located.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/support-2013-04-15/ResolveCase
 func (c *Support) ResolveCase(input *ResolveCaseInput) (*ResolveCaseOutput, error) {
@@ -1604,8 +1608,8 @@ type AddCommunicationToCaseInput struct {
 	// the case. Create the set by calling AddAttachmentsToSet
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
 	// The email addresses in the CC line of an email to be added to the support
@@ -2115,48 +2119,49 @@ func (s *CaseCreationLimitExceeded) RequestID() string {
 // is contained in the response from a DescribeCases request. CaseDetails contains
 // the following fields:
 //
-//    * caseId. The AWS Support case ID requested or returned in the call. The
+//    * caseId - The support case ID requested or returned in the call. The
 //    case ID is an alphanumeric string formatted as shown in this example:
 //    case-12345678910-2013-c4c1d2bf33c5cf47.
 //
-//    * categoryCode. The category of problem for the AWS Support case. Corresponds
+//    * categoryCode - The category of problem for the support case. Corresponds
 //    to the CategoryCode values returned by a call to DescribeServices.
 //
-//    * displayId. The identifier for the case on pages in the AWS Support Center.
+//    * displayId - The identifier for the case on pages in the AWS Support
+//    Center.
 //
-//    * language. The ISO 639-1 code for the language in which AWS provides
+//    * language - The ISO 639-1 code for the language in which AWS provides
 //    support. AWS Support currently supports English ("en") and Japanese ("ja").
 //    Language parameters must be passed explicitly for operations that take
 //    them.
 //
-//    * nextToken. A resumption point for pagination.
+//    * nextToken - A resumption point for pagination.
 //
-//    * recentCommunications. One or more Communication objects. Fields of these
-//    objects are attachments, body, caseId, submittedBy, and timeCreated.
+//    * recentCommunications - One or more Communication objects. Fields of
+//    these objects are attachments, body, caseId, submittedBy, and timeCreated.
 //
-//    * serviceCode. The identifier for the AWS service that corresponds to
+//    * serviceCode - The identifier for the AWS service that corresponds to
 //    the service code defined in the call to DescribeServices.
 //
-//    * severityCode. The severity code assigned to the case. Contains one of
-//    the values returned by the call to DescribeSeverityLevels. The possible
+//    * severityCode - The severity code assigned to the case. Contains one
+//    of the values returned by the call to DescribeSeverityLevels. The possible
 //    values are: low, normal, high, urgent, and critical.
 //
-//    * status. The status of the case in the AWS Support Center. Valid values:
+//    * status - The status of the case in the AWS Support Center. Valid values:
 //    opened pending-customer-action reopened resolved unassigned work-in-progress
 //
-//    * subject. The subject line of the case.
+//    * subject - The subject line of the case.
 //
-//    * submittedBy. The email address of the account that submitted the case.
+//    * submittedBy - The email address of the account that submitted the case.
 //
-//    * timeCreated. The time the case was created, in ISO-8601 format.
+//    * timeCreated - The time the case was created, in ISO-8601 format.
 type CaseDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
-	// The category of problem for the AWS Support case.
+	// The category of problem for the support case.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
 
 	// The email addresses that receive copies of communication about the case.
@@ -2292,7 +2297,7 @@ func (s *CaseDetails) SetTimeCreated(v string) *CaseDetails {
 	return s
 }
 
-// The requested caseId could not be located.
+// The requested caseId couldn't be located.
 type CaseIdNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2384,7 +2389,7 @@ func (s *Category) SetName(v string) *Category {
 	return s
 }
 
-// A communication associated with an AWS Support case. The communication consists
+// A communication associated with a support case. The communication consists
 // of the case ID, the message body, attachment information, the submitter of
 // the communication, and the date and time of the communication.
 type Communication struct {
@@ -2396,14 +2401,14 @@ type Communication struct {
 	// The text of the communication between the customer and AWS Support.
 	Body *string `locationName:"body" min:"1" type:"string"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 
 	// The identity of the account that submitted, or responded to, the support
 	// case. Customer entries include the role or IAM user as well as the email
-	// address. For example, "AdminRole (Role) <someone@example.com>. Entries from
-	// the AWS Support team display "Amazon Web Services," and do not show an email
+	// address. For example, "AdminRole (Role) <janedoe@example.com>. Entries from
+	// the AWS Support team display "Amazon Web Services," and don't show an email
 	// address.
 	SubmittedBy *string `locationName:"submittedBy" type:"string"`
 
@@ -2458,7 +2463,7 @@ type CreateCaseInput struct {
 	// using the AddAttachmentsToSet operation.
 	AttachmentSetId *string `locationName:"attachmentSetId" type:"string"`
 
-	// The category of problem for the AWS Support case. You also use the DescribeServices
+	// The category of problem for the support case. You also use the DescribeServices
 	// operation to get the category code for a service. Each AWS service defines
 	// its own set of category codes.
 	CategoryCode *string `locationName:"categoryCode" type:"string"`
@@ -2500,8 +2505,8 @@ type CreateCaseInput struct {
 	// account.
 	SeverityCode *string `locationName:"severityCode" type:"string"`
 
-	// The title of the AWS Support case. The title appears in the Subject field
-	// on the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
+	// The title of the support case. The title appears in the Subject field on
+	// the AWS Support Center Create Case (https://console.aws.amazon.com/support/home#/case/create)
 	// page.
 	//
 	// Subject is a required field
@@ -2591,13 +2596,13 @@ func (s *CreateCaseInput) SetSubject(v string) *CreateCaseInput {
 	return s
 }
 
-// The AWS Support case ID returned by a successful completion of the CreateCase
+// The support case ID returned by a successful completion of the CreateCase
 // operation.
 type CreateCaseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string in the following format: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string in the following format: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 }
 
@@ -2763,7 +2768,7 @@ type DescribeCasesInput struct {
 	DisplayId *string `locationName:"displayId" type:"string"`
 
 	// Specifies whether to include communications in the DescribeCases response.
-	// By default, communications are incuded.
+	// By default, communications are included.
 	IncludeCommunications *bool `locationName:"includeCommunications" type:"boolean"`
 
 	// Specifies whether to include resolved support cases in the DescribeCases
@@ -2905,8 +2910,8 @@ type DescribeCommunicationsInput struct {
 	// communications are available for 12 months after creation.
 	BeforeTime *string `locationName:"beforeTime" type:"string"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	//
 	// CaseId is a required field
 	CaseId *string `locationName:"caseId" type:"string" required:"true"`
@@ -3118,7 +3123,7 @@ func (s *DescribeSeverityLevelsOutput) SetSeverityLevels(v []*SeverityLevel) *De
 type DescribeTrustedAdvisorCheckRefreshStatusesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the Trusted Advisor checks to get the status of.
+	// The IDs of the Trusted Advisor checks to get the status.
 	//
 	// If you specify the check ID of a check that is automatically refreshed, you
 	// might see an InvalidParameterValue error.
@@ -3482,9 +3487,10 @@ func (s *RecentCaseCommunications) SetNextToken(v string) *RecentCaseCommunicati
 type RefreshTrustedAdvisorCheckInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier for the Trusted Advisor check to refresh. Note: Specifying
-	// the check ID of a check that is automatically refreshed causes an InvalidParameterValue
-	// error.
+	// The unique identifier for the Trusted Advisor check to refresh.
+	//
+	// Specifying the check ID of a check that is automatically refreshed causes
+	// an InvalidParameterValue error.
 	//
 	// CheckId is a required field
 	CheckId *string `locationName:"checkId" type:"string" required:"true"`
@@ -3549,8 +3555,8 @@ func (s *RefreshTrustedAdvisorCheckOutput) SetStatus(v *TrustedAdvisorCheckRefre
 type ResolveCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Support case ID requested or returned in the call. The case ID is
-	// an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
+	// The support case ID requested or returned in the call. The case ID is an
+	// alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47
 	CaseId *string `locationName:"caseId" type:"string"`
 }
 
@@ -3663,20 +3669,21 @@ type SeverityLevel struct {
 
 	// The name of the severity level that corresponds to the severity level code.
 	//
-	// The values returned by the API differ from the values that are displayed
-	// in the AWS Support Center. For example, for the code "low", the API name
-	// is "Low", but the name in the Support Center is "General guidance". These
-	// are the Support Center code/name mappings:
+	// The values returned by the API are different from the values that appear
+	// in the AWS Support Center. For example, the API uses the code low, but the
+	// name appears as General guidance in Support Center.
 	//
-	//    * low: General guidance
+	// The following are the API code names and how they appear in the console:
 	//
-	//    * normal: System impaired
+	//    * low - General guidance
 	//
-	//    * high: Production system impaired
+	//    * normal - System impaired
 	//
-	//    * urgent: Production system down
+	//    * high - Production system impaired
 	//
-	//    * critical: Business-critical system down
+	//    * urgent - Production system down
+	//
+	//    * critical - Business-critical system down
 	//
 	// For more information, see Choosing a severity (https://docs.aws.amazon.com/awssupport/latest/user/case-management.html#choosing-severity)
 	// in the AWS Support User Guide.
@@ -3823,17 +3830,17 @@ type TrustedAdvisorCheckRefreshStatus struct {
 
 	// The status of the Trusted Advisor check for which a refresh has been requested:
 	//
-	//    * none: The check is not refreshed or the non-success status exceeds the
-	//    timeout
+	//    * none - The check is not refreshed or the non-success status exceeds
+	//    the timeout
 	//
-	//    * enqueued: The check refresh requests has entered the refresh queue
+	//    * enqueued - The check refresh requests has entered the refresh queue
 	//
-	//    * processing: The check refresh request is picked up by the rule processing
+	//    * processing - The check refresh request is picked up by the rule processing
 	//    engine
 	//
-	//    * success: The check is successfully refreshed
+	//    * success - The check is successfully refreshed
 	//
-	//    * abandoned: The check refresh has failed
+	//    * abandoned - The check refresh has failed
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true"`
@@ -4091,7 +4098,7 @@ type TrustedAdvisorResourceDetail struct {
 	// Metadata is a required field
 	Metadata []*string `locationName:"metadata" type:"list" required:"true"`
 
-	// The AWS region in which the identified resource is located.
+	// The AWS Region in which the identified resource is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The unique identifier for the identified resource.

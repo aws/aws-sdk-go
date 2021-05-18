@@ -10,23 +10,27 @@
     "CreateGrantVersion": "<p>Creates a new version of the specified grant.</p>",
     "CreateLicense": "<p>Creates a license.</p>",
     "CreateLicenseConfiguration": "<p>Creates a license configuration.</p> <p>A license configuration is an abstraction of a customer license agreement that can be consumed and enforced by License Manager. Components include specifications for the license type (licensing by instance, socket, CPU, or vCPU), allowed tenancy (shared tenancy, Dedicated Instance, Dedicated Host, or all of these), license affinity to host (how long a license must be associated with a host), and the number of licenses purchased and used.</p>",
+    "CreateLicenseManagerReportGenerator": "<p>Creates a new report generator.</p>",
     "CreateLicenseVersion": "<p>Creates a new version of the specified license.</p>",
     "CreateToken": "<p>Creates a long-lived token.</p> <p>A refresh token is a JWT token used to get an access token. With an access token, you can call AssumeRoleWithWebIdentity to get role credentials that you can use to call License Manager to manage the specified license.</p>",
     "DeleteGrant": "<p>Deletes the specified grant.</p>",
     "DeleteLicense": "<p>Deletes the specified license.</p>",
     "DeleteLicenseConfiguration": "<p>Deletes the specified license configuration.</p> <p>You cannot delete a license configuration that is in use.</p>",
+    "DeleteLicenseManagerReportGenerator": "<p>Delete an existing report generator.</p> <p>This action deletes the report generator, which stops it from generating future reports and cannot be reversed. However, the previous reports from this generator will remain in your S3 bucket.</p>",
     "DeleteToken": "<p>Deletes the specified token. Must be called in the license home Region.</p>",
     "ExtendLicenseConsumption": "<p>Extends the expiration date for license consumption.</p>",
     "GetAccessToken": "<p>Gets a temporary access token to use with AssumeRoleWithWebIdentity. Access tokens are valid for one hour.</p>",
     "GetGrant": "<p>Gets detailed information about the specified grant.</p>",
     "GetLicense": "<p>Gets detailed information about the specified license.</p>",
     "GetLicenseConfiguration": "<p>Gets detailed information about the specified license configuration.</p>",
+    "GetLicenseManagerReportGenerator": "<p>Gets information on the specified report generator.</p>",
     "GetLicenseUsage": "<p>Gets detailed information about the usage of the specified license.</p>",
     "GetServiceSettings": "<p>Gets the License Manager settings for the current Region.</p>",
     "ListAssociationsForLicenseConfiguration": "<p>Lists the resource associations for the specified license configuration.</p> <p>Resource associations need not consume licenses from a license configuration. For example, an AMI or a stopped instance might not consume a license (depending on the license rules).</p>",
     "ListDistributedGrants": "<p>Lists the grants distributed for the specified license.</p>",
     "ListFailuresForLicenseConfigurationOperations": "<p>Lists the license configuration operations that failed.</p>",
     "ListLicenseConfigurations": "<p>Lists the license configurations for your account.</p>",
+    "ListLicenseManagerReportGenerators": "<p>Lists the report generators for your account.</p>",
     "ListLicenseSpecificationsForResource": "<p>Describes the license configurations for the specified resource.</p>",
     "ListLicenseVersions": "<p>Lists all versions of the specified license.</p>",
     "ListLicenses": "<p>Lists the licenses for your account.</p>",
@@ -40,6 +44,7 @@
     "TagResource": "<p>Adds the specified tags to the specified license configuration.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified license configuration.</p>",
     "UpdateLicenseConfiguration": "<p>Modifies the attributes of an existing license configuration.</p>",
+    "UpdateLicenseManagerReportGenerator": "<p>Updates a report generator.</p> <p>After you make changes to a report generator, it will start generating new reports within 60 minutes of being updated.</p>",
     "UpdateLicenseSpecificationsForResource": "<p>Adds or removes the specified license configurations for the specified AWS resource.</p> <p>You can update the license specifications of AMIs, instances, and hosts. You cannot update the license specifications for launch templates and AWS CloudFormation templates, as they send license configurations to the operation that creates the resource.</p>",
     "UpdateServiceSettings": "<p>Updates License Manager settings for the current Region.</p>"
   },
@@ -116,6 +121,7 @@
         "ListLicensesRequest$LicenseArns": "<p>Amazon Resource Names (ARNs) of the licenses.</p>",
         "ListReceivedGrantsRequest$GrantArns": "<p>Amazon Resource Names (ARNs) of the grants.</p>",
         "ListReceivedLicensesRequest$LicenseArns": "<p>Amazon Resource Names (ARNs) of the licenses.</p>",
+        "ReportContext$licenseConfigurationArns": "<p>Amazon Resource Number (ARN) of the license configuration that this generator reports on.</p>",
         "TokenData$RoleArns": "<p>Amazon Resource Names (ARN) of the roles included in the token.</p>"
       }
     },
@@ -226,6 +232,13 @@
         "CheckoutLicenseResponse$CheckoutType": "<p>Checkout type.</p>"
       }
     },
+    "ClientRequestToken": {
+      "base": null,
+      "refs": {
+        "CreateLicenseManagerReportGeneratorRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+      }
+    },
     "ClientToken": {
       "base": null,
       "refs": {
@@ -286,6 +299,16 @@
       }
     },
     "CreateLicenseConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLicenseManagerReportGeneratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateLicenseManagerReportGeneratorResponse": {
       "base": null,
       "refs": {
       }
@@ -354,6 +377,16 @@
       }
     },
     "DeleteLicenseConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLicenseManagerReportGeneratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLicenseManagerReportGeneratorResponse": {
       "base": null,
       "refs": {
       }
@@ -474,11 +507,12 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "ListDistributedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>LicenseARN</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>PrincipalARN</code> </p> </li> <li> <p> <code>ParentARN</code> </p> </li> </ul>",
-        "ListLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>Beneficiary</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>KeyFingerprint</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
-        "ListReceivedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>LicenseARN</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
-        "ListReceivedLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>KeyFingerprint</code> </p> </li> <li> <p> <code>Issuer</code> </p> </li> </ul>",
-        "ListTokensRequest$Filters": "<p>Filters to scope the results. The following filter is supported:</p> <ul> <li> <p> <code>licenseArns</code> </p> </li> </ul>"
+        "ListDistributedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>LicenseArn</code> </p> </li> <li> <p> <code>GrantStatus</code> </p> </li> <li> <p> <code>GranteePrincipalARN</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>LicenseIssuerName</code> </p> </li> </ul>",
+        "ListLicenseManagerReportGeneratorsRequest$Filters": "<p>Filters to scope the results. The following filters are supported: </p> <ul> <li> <p> <code>LicenseConfigurationArn</code> </p> </li> </ul>",
+        "ListLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>Beneficiary</code> </p> </li> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>Fingerprint</code> </p> </li> <li> <p> <code>Status</code> </p> </li> </ul>",
+        "ListReceivedGrantsRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>LicenseIssuerName</code> </p> </li> <li> <p> <code>LicenseArn</code> </p> </li> <li> <p> <code>GrantStatus</code> </p> </li> <li> <p> <code>GranterAccountId</code> </p> </li> </ul>",
+        "ListReceivedLicensesRequest$Filters": "<p>Filters to scope the results. The following filters are supported:</p> <ul> <li> <p> <code>ProductSKU</code> </p> </li> <li> <p> <code>Status</code> </p> </li> <li> <p> <code>Fingerprint</code> </p> </li> <li> <p> <code>IssuerName</code> </p> </li> <li> <p> <code>Beneficiary</code> </p> </li> </ul>",
+        "ListTokensRequest$Filters": "<p>Filters to scope the results. The following filter is supported:</p> <ul> <li> <p> <code>LicenseArns</code> </p> </li> </ul>"
       }
     },
     "FilterName": {
@@ -532,6 +566,16 @@
       }
     },
     "GetLicenseConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLicenseManagerReportGeneratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetLicenseManagerReportGeneratorResponse": {
       "base": null,
       "refs": {
       }
@@ -629,7 +673,8 @@
     "Integer": {
       "base": null,
       "refs": {
-        "CreateTokenRequest$ExpirationInDays": "<p>Token expiration, in days, counted from token creation. The default is 365 days.</p>"
+        "CreateTokenRequest$ExpirationInDays": "<p>Token expiration, in days, counted from token creation. The default is 365 days.</p>",
+        "ReportFrequency$value": "<p>Number of times within the frequency period that a report will be generated. Currently only <code>1</code> is supported.</p>"
       }
     },
     "InvalidParameterValueException": {
@@ -831,6 +876,16 @@
       "refs": {
       }
     },
+    "ListLicenseManagerReportGeneratorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListLicenseManagerReportGeneratorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListLicenseSpecificationsForResourceRequest": {
       "base": null,
       "refs": {
@@ -950,6 +1005,7 @@
       "base": null,
       "refs": {
         "ListDistributedGrantsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
+        "ListLicenseManagerReportGeneratorsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListLicenseVersionsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListLicensesRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
         "ListReceivedGrantsRequest$MaxResults": "<p>Maximum number of results to return in a single call.</p>",
@@ -1038,7 +1094,7 @@
     "ProductInformationFilterList": {
       "base": null,
       "refs": {
-        "ProductInformation$ProductInformationFilterList": "<p>Product information filters.</p> <p>The following filters and logical operators are supported when the resource type is <code>SSM_MANAGED</code>:</p> <ul> <li> <p> <code>Application Name</code> - The name of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Application Publisher</code> - The publisher of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Application Version</code> - The version of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Platform Name</code> - The name of the platform. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Platform Type</code> - The platform type. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>License Included</code> - The type of license included. Logical operators are <code>EQUALS</code> and <code>NOT_EQUALS</code>. Possible values are: <code>sql-server-enterprise</code> | <code>sql-server-standard</code> | <code>sql-server-web</code> | <code>windows-server-datacenter</code>.</p> </li> </ul> <p>The following filters and logical operators are supported when the resource type is <code>RDS</code>:</p> <ul> <li> <p> <code>Engine Edition</code> - The edition of the database engine. Logical operator is <code>EQUALS</code>. Possible values are: <code>oracle-ee</code> | <code>oracle-se</code> | <code>oracle-se1</code> | <code>oracle-se2</code>.</p> </li> <li> <p> <code>License Pack</code> - The license pack. Logical operator is <code>EQUALS</code>. Possible values are: <code>data guard</code> | <code>diagnostic pack sqlt</code> | <code>tuning pack sqlt</code> | <code>ols</code> | <code>olap</code>.</p> </li> </ul>"
+        "ProductInformation$ProductInformationFilterList": "<p>A Product information filter consists of a <code>ProductInformationFilterComparator</code> which is a logical operator, a <code>ProductInformationFilterName</code> which specifies the type of filter being declared, and a <code>ProductInformationFilterValue</code> that specifies the value to filter on. </p> <p>Accepted values for <code>ProductInformationFilterName</code> are listed here along with descriptions and valid options for <code>ProductInformationFilterComparator</code>. </p> <p>The following filters and are supported when the resource type is <code>SSM_MANAGED</code>:</p> <ul> <li> <p> <code>Application Name</code> - The name of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Application Publisher</code> - The publisher of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Application Version</code> - The version of the application. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Platform Name</code> - The name of the platform. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Platform Type</code> - The platform type. Logical operator is <code>EQUALS</code>.</p> </li> <li> <p> <code>Tag:key</code> - The key of a tag attached to an AWS resource you wish to exclude from automated discovery. Logical operator is <code>NOT_EQUALS</code>. The key for your tag must be appended to <code>Tag:</code> following the example: <code>Tag:name-of-your-key</code>. <code>ProductInformationFilterValue</code> is optional if you are not using values for the key. </p> </li> <li> <p> <code>AccountId</code> - The 12-digit ID of an AWS account you wish to exclude from automated discovery. Logical operator is <code>NOT_EQUALS</code>.</p> </li> <li> <p> <code>License Included</code> - The type of license included. Logical operators are <code>EQUALS</code> and <code>NOT_EQUALS</code>. Possible values are: <code>sql-server-enterprise</code> | <code>sql-server-standard</code> | <code>sql-server-web</code> | <code>windows-server-datacenter</code>.</p> </li> </ul> <p>The following filters and logical operators are supported when the resource type is <code>RDS</code>:</p> <ul> <li> <p> <code>Engine Edition</code> - The edition of the database engine. Logical operator is <code>EQUALS</code>. Possible values are: <code>oracle-ee</code> | <code>oracle-se</code> | <code>oracle-se1</code> | <code>oracle-se2</code>.</p> </li> <li> <p> <code>License Pack</code> - The license pack. Logical operator is <code>EQUALS</code>. Possible values are: <code>data guard</code> | <code>diagnostic pack sqlt</code> | <code>tuning pack sqlt</code> | <code>ols</code> | <code>olap</code>.</p> </li> </ul>"
       }
     },
     "ProductInformationList": {
@@ -1094,6 +1150,62 @@
         "ConsumptionConfiguration$RenewType": "<p>Renewal frequency.</p>"
       }
     },
+    "ReportContext": {
+      "base": "<p>Details of the license configuration that this generator reports on.</p>",
+      "refs": {
+        "CreateLicenseManagerReportGeneratorRequest$ReportContext": "<p>Defines the type of license configuration the report generator tracks.</p>",
+        "ReportGenerator$ReportContext": "<p>License configuration type this generator reports on.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$ReportContext": "<p>?</p>"
+      }
+    },
+    "ReportFrequency": {
+      "base": "<p>Details on how frequently reports are generated.</p>",
+      "refs": {
+        "CreateLicenseManagerReportGeneratorRequest$ReportFrequency": "<p>Frequency by which reports are generated. Reports can be generated daily, monthly, or weekly.</p>",
+        "ReportGenerator$ReportFrequency": "<p>Details on how frequently reports are generated.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$ReportFrequency": "<p>Frequency by which reports are generated. The following options are avaiable:</p> <p>??? What are the APi value options?</p>"
+      }
+    },
+    "ReportFrequencyType": {
+      "base": null,
+      "refs": {
+        "ReportFrequency$period": "<p>Time period between each report. The period can be daily, weekly, or monthly.</p>"
+      }
+    },
+    "ReportGenerator": {
+      "base": "<p>Describe the details of a report generator.</p>",
+      "refs": {
+        "GetLicenseManagerReportGeneratorResponse$ReportGenerator": "<p>A report generator that creates periodic reports on your license configurations.</p>",
+        "ReportGeneratorList$member": null
+      }
+    },
+    "ReportGeneratorList": {
+      "base": null,
+      "refs": {
+        "ListLicenseManagerReportGeneratorsResponse$ReportGenerators": "<p>A report generator that creates periodic reports on your license configurations.</p>"
+      }
+    },
+    "ReportGeneratorName": {
+      "base": null,
+      "refs": {
+        "CreateLicenseManagerReportGeneratorRequest$ReportGeneratorName": "<p>Name of the report generator.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$ReportGeneratorName": "<p>Name of the report generator.</p>"
+      }
+    },
+    "ReportType": {
+      "base": null,
+      "refs": {
+        "ReportTypeList$member": null
+      }
+    },
+    "ReportTypeList": {
+      "base": null,
+      "refs": {
+        "CreateLicenseManagerReportGeneratorRequest$Type": "<p>Type of reports to generate. The following report types an be generated:</p> <ul> <li> <p>License configuration report - Reports on the number and details of consumed licenses for a license configuration.</p> </li> <li> <p>Resource report - Reports on the tracked licenses and resource consumption for a license configuration.</p> </li> </ul>",
+        "ReportGenerator$ReportType": "<p>Type of reports that are generated.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$Type": "<p>Type of reports to generate. The following report types an be generated:</p> <ul> <li> <p>License configuration report - Reports on the number and details of consumed licenses for a license configuration.</p> </li> <li> <p>Resource report - Reports on the tracked licenses and resource consumption for a license configuration.</p> </li> </ul>"
+      }
+    },
     "ResourceInventory": {
       "base": "<p>Details about a resource.</p>",
       "refs": {
@@ -1125,6 +1237,12 @@
         "LicenseOperationFailure$ResourceType": "<p>Resource type.</p>",
         "ManagedResourceSummary$ResourceType": "<p>Type of resource associated with a license.</p>",
         "ResourceInventory$ResourceType": "<p>Type of resource.</p>"
+      }
+    },
+    "S3Location": {
+      "base": "<p>Details of the S3 bucket that report generator reports are published to.</p>",
+      "refs": {
+        "ReportGenerator$S3Location": "<p>Details of the S3 bucket that report generator reports are published to.</p>"
       }
     },
     "ServerInternalException": {
@@ -1165,6 +1283,8 @@
         "CreateLicenseConfigurationRequest$Name": "<p>Name of the license configuration.</p>",
         "CreateLicenseConfigurationRequest$Description": "<p>Description of the license configuration.</p>",
         "CreateLicenseConfigurationResponse$LicenseConfigurationArn": "<p>Amazon Resource Name (ARN) of the license configuration.</p>",
+        "CreateLicenseManagerReportGeneratorRequest$Description": "<p>Description of the report generator.</p>",
+        "CreateLicenseManagerReportGeneratorResponse$LicenseManagerReportGeneratorArn": "<p>The Amazon Resource Number (ARN) of the new report generator.</p>",
         "CreateLicenseRequest$LicenseName": "<p>License name.</p>",
         "CreateLicenseRequest$ProductName": "<p>Product name.</p>",
         "CreateLicenseRequest$ProductSKU": "<p>Product SKU.</p>",
@@ -1182,6 +1302,7 @@
         "DeleteGrantRequest$Version": "<p>Current version of the grant.</p>",
         "DeleteGrantResponse$Version": "<p>Grant version.</p>",
         "DeleteLicenseConfigurationRequest$LicenseConfigurationArn": "<p>ID of the license configuration.</p>",
+        "DeleteLicenseManagerReportGeneratorRequest$LicenseManagerReportGeneratorArn": "<p>Amazon Resource Number (ARN) of the report generator that will be deleted.</p>",
         "DeleteLicenseRequest$SourceVersion": "<p>Current version of the license.</p>",
         "DeleteTokenRequest$TokenId": "<p>Token ID.</p>",
         "Entitlement$Name": "<p>Entitlement name.</p>",
@@ -1202,10 +1323,11 @@
         "GetLicenseConfigurationResponse$Description": "<p>Description of the license configuration.</p>",
         "GetLicenseConfigurationResponse$Status": "<p>License configuration status.</p>",
         "GetLicenseConfigurationResponse$OwnerAccountId": "<p>Account ID of the owner of the license configuration.</p>",
+        "GetLicenseManagerReportGeneratorRequest$LicenseManagerReportGeneratorArn": "<p>mazon Resource Number (ARN) of the report generator to retrieve information on.</p>",
         "GetLicenseRequest$Version": "<p>License version.</p>",
         "GetServiceSettingsResponse$S3BucketArn": "<p>Regional S3 bucket path for storing reports, license trail event data, discovery data, and so on.</p>",
         "GetServiceSettingsResponse$SnsTopicArn": "<p>SNS topic configured to receive notifications from License Manager.</p>",
-        "GetServiceSettingsResponse$LicenseManagerResourceShareArn": "<p>Amazon Resource Name (ARN) of the AWS resource share. The License Manager master account will provide member accounts with access to this share.</p>",
+        "GetServiceSettingsResponse$LicenseManagerResourceShareArn": "<p>Amazon Resource Name (ARN) of the AWS resource share. The License Manager management account provides member accounts with access to this share.</p>",
         "Grant$GrantName": "<p>Grant name.</p>",
         "Grant$HomeRegion": "<p>Home Region of the grant.</p>",
         "Grant$StatusReason": "<p>Grant status reason.</p>",
@@ -1258,6 +1380,8 @@
         "ListFailuresForLicenseConfigurationOperationsResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicenseConfigurationsRequest$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicenseConfigurationsResponse$NextToken": "<p>Token for the next set of results.</p>",
+        "ListLicenseManagerReportGeneratorsRequest$NextToken": "<p>Token for the next set of results.</p>",
+        "ListLicenseManagerReportGeneratorsResponse$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicenseSpecificationsForResourceRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of a resource that has an associated license configuration.</p>",
         "ListLicenseSpecificationsForResourceRequest$NextToken": "<p>Token for the next set of results.</p>",
         "ListLicenseSpecificationsForResourceResponse$NextToken": "<p>Token for the next set of results.</p>",
@@ -1284,11 +1408,21 @@
         "ProductInformationFilter$ProductInformationFilterName": "<p>Filter name.</p>",
         "ProductInformationFilter$ProductInformationFilterComparator": "<p>Logical operator.</p>",
         "RejectGrantResponse$Version": "<p>Grant version.</p>",
+        "ReportGenerator$ReportGeneratorName": "<p>Name of the report generator.</p>",
+        "ReportGenerator$LicenseManagerReportGeneratorArn": "<p>Amazon Resource Number (ARN) of the report generator.</p>",
+        "ReportGenerator$LastRunStatus": "<p>Status of the last report generation attempt.</p>",
+        "ReportGenerator$LastRunFailureReason": "<p>Failure message for the last report generation attempt.</p>",
+        "ReportGenerator$LastReportGenerationTime": "<p>Time the last report was generated at.</p>",
+        "ReportGenerator$ReportCreatorAccount": "<p>The AWS account ID used to create the report generator.</p>",
+        "ReportGenerator$Description": "<p>Description of the report generator.</p>",
+        "ReportGenerator$CreateTime": "<p>Time the report was created.</p>",
         "ResourceInventory$ResourceId": "<p>ID of the resource.</p>",
         "ResourceInventory$ResourceArn": "<p>Amazon Resource Name (ARN) of the resource.</p>",
         "ResourceInventory$Platform": "<p>Platform of the resource.</p>",
         "ResourceInventory$PlatformVersion": "<p>Platform version of the resource in the inventory.</p>",
         "ResourceInventory$ResourceOwningAccountId": "<p>ID of the account that owns the resource.</p>",
+        "S3Location$bucket": "<p>Name of the S3 bucket reports are published to.</p>",
+        "S3Location$keyPrefix": "<p>Prefix of the S3 bucket reports are published to.</p>",
         "StringList$member": null,
         "Tag$Key": "<p>Tag key.</p>",
         "Tag$Value": "<p>Tag value.</p>",
@@ -1302,6 +1436,8 @@
         "UpdateLicenseConfigurationRequest$LicenseConfigurationArn": "<p>Amazon Resource Name (ARN) of the license configuration.</p>",
         "UpdateLicenseConfigurationRequest$Name": "<p>New name of the license configuration.</p>",
         "UpdateLicenseConfigurationRequest$Description": "<p>New description of the license configuration.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$LicenseManagerReportGeneratorArn": "<p>Amazon Resource Number (ARN) of the report generator to update.</p>",
+        "UpdateLicenseManagerReportGeneratorRequest$Description": "<p>Description of the report generator.</p>",
         "UpdateLicenseSpecificationsForResourceRequest$ResourceArn": "<p>Amazon Resource Name (ARN) of the AWS resource.</p>",
         "UpdateServiceSettingsRequest$S3BucketArn": "<p>Amazon Resource Name (ARN) of the Amazon S3 bucket where the License Manager information is stored.</p>",
         "UpdateServiceSettingsRequest$SnsTopicArn": "<p>Amazon Resource Name (ARN) of the Amazon SNS topic used for License Manager alerts.</p>"
@@ -1335,8 +1471,10 @@
       "base": null,
       "refs": {
         "CreateLicenseConfigurationRequest$Tags": "<p>Tags to add to the license configuration.</p>",
+        "CreateLicenseManagerReportGeneratorRequest$Tags": "<p>Tags to add to the report generator.</p>",
         "GetLicenseConfigurationResponse$Tags": "<p>Tags for the license configuration.</p>",
         "ListTagsForResourceResponse$Tags": "<p>Information about the tags.</p>",
+        "ReportGenerator$Tags": "<p>Tags associated with the report generator.</p>",
         "TagResourceRequest$Tags": "<p>One or more tags.</p>"
       }
     },
@@ -1397,6 +1535,16 @@
       }
     },
     "UpdateLicenseConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLicenseManagerReportGeneratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLicenseManagerReportGeneratorResponse": {
       "base": null,
       "refs": {
       }

@@ -103,6 +103,24 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateExport":{
+      "name":"CreateExport",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/exports/",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateExportRequest"},
+      "output":{"shape":"CreateExportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateIntent":{
       "name":"CreateIntent",
       "http":{
@@ -153,6 +171,23 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateUploadUrl":{
+      "name":"CreateUploadUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/createuploadurl/",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateUploadUrlRequest"},
+      "output":{"shape":"CreateUploadUrlResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
@@ -225,6 +260,40 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteExport":{
+      "name":"DeleteExport",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/exports/{exportId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteExportRequest"},
+      "output":{"shape":"DeleteExportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteImport":{
+      "name":"DeleteImport",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/imports/{importId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteImportRequest"},
+      "output":{"shape":"DeleteImportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
         {"shape":"PreconditionFailedException"},
         {"shape":"InternalServerException"}
       ]
@@ -343,6 +412,38 @@
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeExport":{
+      "name":"DescribeExport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/exports/{exportId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeExportRequest"},
+      "output":{"shape":"DescribeExportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeImport":{
+      "name":"DescribeImport",
+      "http":{
+        "method":"GET",
+        "requestUri":"/imports/{importId}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeImportRequest"},
+      "output":{"shape":"DescribeImportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
@@ -495,6 +596,36 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListExports":{
+      "name":"ListExports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/exports/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListExportsRequest"},
+      "output":{"shape":"ListExportsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListImports":{
+      "name":"ListImports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/imports/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListImportsRequest"},
+      "output":{"shape":"ListImportsResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListIntents":{
       "name":"ListIntents",
       "http":{
@@ -557,6 +688,24 @@
         {"shape":"ThrottlingException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "StartImport":{
+      "name":"StartImport",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/imports/",
+        "responseCode":202
+      },
+      "input":{"shape":"StartImportRequest"},
+      "output":{"shape":"StartImportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "TagResource":{
@@ -641,6 +790,24 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"PreconditionFailedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateExport":{
+      "name":"UpdateExport",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/exports/{exportId}/",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateExportRequest"},
+      "output":{"shape":"UpdateExportResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
@@ -798,6 +965,17 @@
       "type":"list",
       "member":{"shape":"BotAliasSummary"}
     },
+    "BotExportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"}
+      }
+    },
     "BotFilter":{
       "type":"structure",
       "required":[
@@ -827,6 +1005,35 @@
       "member":{"shape":"BotFilter"},
       "max":1,
       "min":1
+    },
+    "BotImportSpecification":{
+      "type":"structure",
+      "required":[
+        "botName",
+        "roleArn",
+        "dataPrivacy"
+      ],
+      "members":{
+        "botName":{"shape":"Name"},
+        "roleArn":{"shape":"RoleArn"},
+        "dataPrivacy":{"shape":"DataPrivacy"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "botTags":{"shape":"TagMap"},
+        "testBotAliasTags":{"shape":"TagMap"}
+      }
+    },
+    "BotLocaleExportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"}
+      }
     },
     "BotLocaleFilter":{
       "type":"structure",
@@ -874,6 +1081,21 @@
       "type":"list",
       "member":{"shape":"BotLocaleHistoryEvent"}
     },
+    "BotLocaleImportSpecification":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "botVersion",
+        "localeId"
+      ],
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "nluIntentConfidenceThreshold":{"shape":"ConfidenceThreshold"},
+        "voiceSettings":{"shape":"VoiceSettings"}
+      }
+    },
     "BotLocaleSortAttribute":{
       "type":"string",
       "enum":["BotLocaleName"]
@@ -898,7 +1120,8 @@
         "ReadyExpressTesting",
         "Failed",
         "Deleting",
-        "NotBuilt"
+        "NotBuilt",
+        "Importing"
       ]
     },
     "BotLocaleSummary":{
@@ -939,7 +1162,8 @@
         "Inactive",
         "Deleting",
         "Failed",
-        "Versioning"
+        "Versioning",
+        "Importing"
       ]
     },
     "BotSummary":{
@@ -1331,6 +1555,28 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "CreateExportRequest":{
+      "type":"structure",
+      "required":[
+        "resourceSpecification",
+        "fileFormat"
+      ],
+      "members":{
+        "resourceSpecification":{"shape":"ExportResourceSpecification"},
+        "fileFormat":{"shape":"ImportExportFileFormat"},
+        "filePassword":{"shape":"ImportExportFilePassword"}
+      }
+    },
+    "CreateExportResponse":{
+      "type":"structure",
+      "members":{
+        "exportId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ExportResourceSpecification"},
+        "fileFormat":{"shape":"ImportExportFileFormat"},
+        "exportStatus":{"shape":"ExportStatus"},
+        "creationDateTime":{"shape":"Timestamp"}
+      }
+    },
     "CreateIntentRequest":{
       "type":"structure",
       "required":[
@@ -1491,6 +1737,18 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "CreateUploadUrlRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateUploadUrlResponse":{
+      "type":"structure",
+      "members":{
+        "importId":{"shape":"Id"},
+        "uploadUrl":{"shape":"PresignedS3Url"}
+      }
+    },
     "CustomPayload":{
       "type":"structure",
       "required":["value"],
@@ -1629,6 +1887,42 @@
         "botId":{"shape":"Id"},
         "botVersion":{"shape":"NumericalBotVersion"},
         "botStatus":{"shape":"BotStatus"}
+      }
+    },
+    "DeleteExportRequest":{
+      "type":"structure",
+      "required":["exportId"],
+      "members":{
+        "exportId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"exportId"
+        }
+      }
+    },
+    "DeleteExportResponse":{
+      "type":"structure",
+      "members":{
+        "exportId":{"shape":"Id"},
+        "exportStatus":{"shape":"ExportStatus"}
+      }
+    },
+    "DeleteImportRequest":{
+      "type":"structure",
+      "required":["importId"],
+      "members":{
+        "importId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"importId"
+        }
+      }
+    },
+    "DeleteImportResponse":{
+      "type":"structure",
+      "members":{
+        "importId":{"shape":"Id"},
+        "importStatus":{"shape":"ImportStatus"}
       }
     },
     "DeleteIntentRequest":{
@@ -1875,6 +2169,55 @@
         "creationDateTime":{"shape":"Timestamp"}
       }
     },
+    "DescribeExportRequest":{
+      "type":"structure",
+      "required":["exportId"],
+      "members":{
+        "exportId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"exportId"
+        }
+      }
+    },
+    "DescribeExportResponse":{
+      "type":"structure",
+      "members":{
+        "exportId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ExportResourceSpecification"},
+        "fileFormat":{"shape":"ImportExportFileFormat"},
+        "exportStatus":{"shape":"ExportStatus"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "downloadUrl":{"shape":"PresignedS3Url"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeImportRequest":{
+      "type":"structure",
+      "required":["importId"],
+      "members":{
+        "importId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"importId"
+        }
+      }
+    },
+    "DescribeImportResponse":{
+      "type":"structure",
+      "members":{
+        "importId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ImportResourceSpecification"},
+        "importedResourceId":{"shape":"ImportedResourceId"},
+        "importedResourceName":{"shape":"Name"},
+        "mergeStrategy":{"shape":"MergeStrategy"},
+        "importStatus":{"shape":"ImportStatus"},
+        "failureReasons":{"shape":"FailureReasons"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
     "DescribeIntentRequest":{
       "type":"structure",
       "required":[
@@ -2049,6 +2392,82 @@
       "pattern":"^DRAFT$"
     },
     "ExceptionMessage":{"type":"string"},
+    "ExportFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values",
+        "operator"
+      ],
+      "members":{
+        "name":{"shape":"ExportFilterName"},
+        "values":{"shape":"FilterValues"},
+        "operator":{"shape":"ExportFilterOperator"}
+      }
+    },
+    "ExportFilterName":{
+      "type":"string",
+      "enum":["ExportResourceType"]
+    },
+    "ExportFilterOperator":{
+      "type":"string",
+      "enum":[
+        "CO",
+        "EQ"
+      ]
+    },
+    "ExportFilters":{
+      "type":"list",
+      "member":{"shape":"ExportFilter"},
+      "max":1,
+      "min":1
+    },
+    "ExportResourceSpecification":{
+      "type":"structure",
+      "members":{
+        "botExportSpecification":{"shape":"BotExportSpecification"},
+        "botLocaleExportSpecification":{"shape":"BotLocaleExportSpecification"}
+      }
+    },
+    "ExportSortAttribute":{
+      "type":"string",
+      "enum":["LastUpdatedDateTime"]
+    },
+    "ExportSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"ExportSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "ExportStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Deleting"
+      ]
+    },
+    "ExportSummary":{
+      "type":"structure",
+      "members":{
+        "exportId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ExportResourceSpecification"},
+        "fileFormat":{"shape":"ImportExportFileFormat"},
+        "exportStatus":{"shape":"ExportStatus"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "ExportSummaryList":{
+      "type":"list",
+      "member":{"shape":"ExportSummary"}
+    },
     "FailureReason":{"type":"string"},
     "FailureReasons":{
       "type":"list",
@@ -2088,6 +2507,99 @@
         "imageUrl":{"shape":"AttachmentUrl"},
         "buttons":{"shape":"ButtonsList"}
       }
+    },
+    "ImportExportFileFormat":{
+      "type":"string",
+      "enum":["LexJson"]
+    },
+    "ImportExportFilePassword":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "sensitive":true
+    },
+    "ImportFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values",
+        "operator"
+      ],
+      "members":{
+        "name":{"shape":"ImportFilterName"},
+        "values":{"shape":"FilterValues"},
+        "operator":{"shape":"ImportFilterOperator"}
+      }
+    },
+    "ImportFilterName":{
+      "type":"string",
+      "enum":["ImportResourceType"]
+    },
+    "ImportFilterOperator":{
+      "type":"string",
+      "enum":[
+        "CO",
+        "EQ"
+      ]
+    },
+    "ImportFilters":{
+      "type":"list",
+      "member":{"shape":"ImportFilter"},
+      "max":1,
+      "min":1
+    },
+    "ImportResourceSpecification":{
+      "type":"structure",
+      "members":{
+        "botImportSpecification":{"shape":"BotImportSpecification"},
+        "botLocaleImportSpecification":{"shape":"BotLocaleImportSpecification"}
+      }
+    },
+    "ImportSortAttribute":{
+      "type":"string",
+      "enum":["LastUpdatedDateTime"]
+    },
+    "ImportSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"ImportSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "ImportStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "Completed",
+        "Failed",
+        "Deleting"
+      ]
+    },
+    "ImportSummary":{
+      "type":"structure",
+      "members":{
+        "importId":{"shape":"Id"},
+        "importedResourceId":{"shape":"ImportedResourceId"},
+        "importedResourceName":{"shape":"Name"},
+        "importStatus":{"shape":"ImportStatus"},
+        "mergeStrategy":{"shape":"MergeStrategy"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "ImportSummaryList":{
+      "type":"list",
+      "member":{"shape":"ImportSummary"}
+    },
+    "ImportedResourceId":{
+      "type":"string",
+      "max":10,
+      "min":5,
+      "pattern":"^([0-9a-zA-Z_])+$"
     },
     "InputContext":{
       "type":"structure",
@@ -2367,6 +2879,46 @@
         "localeId":{"shape":"LocaleId"}
       }
     },
+    "ListExportsRequest":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "sortBy":{"shape":"ExportSortBy"},
+        "filters":{"shape":"ExportFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListExportsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"BotVersion"},
+        "exportSummaries":{"shape":"ExportSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListImportsRequest":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "sortBy":{"shape":"ImportSortBy"},
+        "filters":{"shape":"ImportFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListImportsResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botVersion":{"shape":"DraftBotVersion"},
+        "importSummaries":{"shape":"ImportSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListIntentsRequest":{
       "type":"structure",
       "required":[
@@ -2520,6 +3072,13 @@
       "max":1000,
       "min":1
     },
+    "MergeStrategy":{
+      "type":"string",
+      "enum":[
+        "Overwrite",
+        "FailOnConflict"
+      ]
+    },
     "Message":{
       "type":"structure",
       "members":{
@@ -2614,6 +3173,11 @@
       },
       "error":{"httpStatusCode":412},
       "exception":true
+    },
+    "PresignedS3Url":{
+      "type":"string",
+      "max":1024,
+      "min":1
     },
     "PriorityValue":{
       "type":"integer",
@@ -2967,6 +3531,30 @@
         "Descending"
       ]
     },
+    "StartImportRequest":{
+      "type":"structure",
+      "required":[
+        "importId",
+        "resourceSpecification",
+        "mergeStrategy"
+      ],
+      "members":{
+        "importId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ImportResourceSpecification"},
+        "mergeStrategy":{"shape":"MergeStrategy"},
+        "filePassword":{"shape":"ImportExportFilePassword"}
+      }
+    },
+    "StartImportResponse":{
+      "type":"structure",
+      "members":{
+        "importId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ImportResourceSpecification"},
+        "mergeStrategy":{"shape":"MergeStrategy"},
+        "importStatus":{"shape":"ImportStatus"},
+        "creationDateTime":{"shape":"Timestamp"}
+      }
+    },
     "StillWaitingResponseFrequency":{
       "type":"integer",
       "max":300,
@@ -3221,6 +3809,29 @@
         "dataPrivacy":{"shape":"DataPrivacy"},
         "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
         "botStatus":{"shape":"BotStatus"},
+        "creationDateTime":{"shape":"Timestamp"},
+        "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateExportRequest":{
+      "type":"structure",
+      "required":["exportId"],
+      "members":{
+        "exportId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"exportId"
+        },
+        "filePassword":{"shape":"ImportExportFilePassword"}
+      }
+    },
+    "UpdateExportResponse":{
+      "type":"structure",
+      "members":{
+        "exportId":{"shape":"Id"},
+        "resourceSpecification":{"shape":"ExportResourceSpecification"},
+        "fileFormat":{"shape":"ImportExportFileFormat"},
+        "exportStatus":{"shape":"ExportStatus"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
