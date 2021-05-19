@@ -96,21 +96,21 @@
       }
     },
     "ApplicationCodeConfiguration": {
-      "base": "<p>Describes code configuration for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes code configuration for an application.</p>",
       "refs": {
         "ApplicationConfiguration$ApplicationCodeConfiguration": "<p>The code location and type parameters for a Flink-based Kinesis Data Analytics application.</p>"
       }
     },
     "ApplicationCodeConfigurationDescription": {
-      "base": "<p>Describes code configuration for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes code configuration for an application.</p>",
       "refs": {
         "ApplicationConfigurationDescription$ApplicationCodeConfigurationDescription": "<p>The details about the application code for a Flink-based Kinesis Data Analytics application.</p>"
       }
     },
     "ApplicationCodeConfigurationUpdate": {
-      "base": "<p>Describes code configuration updates to a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes code configuration updates for an application. This is supported for a Flink-based Kinesis Data Analytics application or a SQL-based Kinesis Data Analytics application.</p>",
       "refs": {
-        "ApplicationConfigurationUpdate$ApplicationCodeConfigurationUpdate": "<p>Describes updates to a Flink-based Kinesis Data Analytics application's code configuration.</p>"
+        "ApplicationConfigurationUpdate$ApplicationCodeConfigurationUpdate": "<p>Describes updates to an application's code configuration.</p>"
       }
     },
     "ApplicationConfiguration": {
@@ -122,7 +122,7 @@
     "ApplicationConfigurationDescription": {
       "base": "<p>Describes details about the application code and starting parameters for a Kinesis Data Analytics application.</p>",
       "refs": {
-        "ApplicationDetail$ApplicationConfigurationDescription": "<p>Provides details about the application's Java, SQL, or Scala code and starting parameters.</p>"
+        "ApplicationDetail$ApplicationConfigurationDescription": "<p>Describes details about the application code and starting parameters for a Kinesis Data Analytics application.</p>"
       }
     },
     "ApplicationConfigurationUpdate": {
@@ -172,6 +172,14 @@
       "refs": {
         "ApplicationMaintenanceConfigurationDescription$ApplicationMaintenanceWindowStartTime": "<p>The start time for the maintenance window.</p>",
         "ApplicationMaintenanceConfigurationUpdate$ApplicationMaintenanceWindowStartTimeUpdate": "<p>The updated start time for the maintenance window.</p>"
+      }
+    },
+    "ApplicationMode": {
+      "base": null,
+      "refs": {
+        "ApplicationDetail$ApplicationMode": "<p>To create a Kinesis Data Analytics Studio notebook, you must set the mode to <code>INTERACTIVE</code>. However, for a Kinesis Data Analytics for Apache Flink application, the mode is optional.</p>",
+        "ApplicationSummary$ApplicationMode": "<p>For a Kinesis Data Analytics for Apache Flink application, the mode is <code>STREAMING</code>. For a Kinesis Data Analytics Studio notebook, it is <code>INTERACTIVE</code>.</p>",
+        "CreateApplicationRequest$ApplicationMode": "<p>Use the <code>STREAMING</code> mode to create a Kinesis Data Analytics Studio notebook. To create a Kinesis Data Analytics Studio notebook, use the <code>INTERACTIVE</code> mode.</p>"
       }
     },
     "ApplicationName": {
@@ -264,25 +272,25 @@
     "ApplicationVersionId": {
       "base": null,
       "refs": {
-        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the Kinesis Data Analytics application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "AddApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the Kinesis Data Analytics application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "AddApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The new version ID of the Kinesis Data Analytics application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options. </p>",
-        "AddApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the input processing configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
-        "AddApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version.</p>",
+        "AddApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the input processing configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
+        "AddApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. </p>",
         "AddApplicationInputRequest$CurrentApplicationVersionId": "<p>The current version of your application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can use the <a>DescribeApplication</a> operation to find the current application version.</p>",
         "AddApplicationInputResponse$ApplicationVersionId": "<p>Provides the current application version.</p>",
-        "AddApplicationOutputRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the output configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
+        "AddApplicationOutputRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the output configuration. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
         "AddApplicationOutputResponse$ApplicationVersionId": "<p>The updated application version ID. Kinesis Data Analytics increments this ID when the application is updated.</p>",
         "AddApplicationReferenceDataSourceRequest$CurrentApplicationVersionId": "<p>The version of the application for which you are adding the reference data source. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "AddApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated application version ID. Kinesis Data Analytics increments this ID when the application is updated.</p>",
-        "AddApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the VPC configuration. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
-        "AddApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the ApplicationVersionId each time you update the application. </p>",
+        "AddApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The version of the application to which you want to add the VPC configuration. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
+        "AddApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the ApplicationVersionId each time you update the application.</p>",
         "ApplicationDetail$ApplicationVersionId": "<p>Provides the current application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
         "ApplicationDetail$ApplicationVersionUpdatedFrom": "<p>The previous application version before the latest application update. <a>RollbackApplication</a> reverts the application to this version.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackFrom": "<p>If you reverted the application using <a>RollbackApplication</a>, the application version when <code>RollbackApplication</code> was called.</p>",
         "ApplicationDetail$ApplicationVersionRolledBackTo": "<p>The version to which you want to roll back the application.</p>",
         "ApplicationSummary$ApplicationVersionId": "<p>Provides the current application version.</p>",
         "ApplicationVersionSummary$ApplicationVersionId": "<p>The ID of the application version. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update the application.</p>",
-        "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "DeleteApplicationCloudWatchLoggingOptionRequest$CurrentApplicationVersionId": "<p>The version ID of the application. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "DeleteApplicationCloudWatchLoggingOptionResponse$ApplicationVersionId": "<p>The version ID of the application. Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you change the CloudWatch logging options.</p>",
         "DeleteApplicationInputProcessingConfigurationRequest$CurrentApplicationVersionId": "<p>The application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned. </p>",
         "DeleteApplicationInputProcessingConfigurationResponse$ApplicationVersionId": "<p>The current application version ID.</p>",
@@ -290,12 +298,12 @@
         "DeleteApplicationOutputResponse$ApplicationVersionId": "<p>The current application version ID.</p>",
         "DeleteApplicationReferenceDataSourceRequest$CurrentApplicationVersionId": "<p>The current application version. You can use the <a>DescribeApplication</a> operation to get the current application version. If the version specified is not the current version, the <code>ConcurrentModificationException</code> is returned.</p>",
         "DeleteApplicationReferenceDataSourceResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
-        "DeleteApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
+        "DeleteApplicationVpcConfigurationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "DeleteApplicationVpcConfigurationResponse$ApplicationVersionId": "<p>The updated version ID of the application.</p>",
         "DescribeApplicationVersionRequest$ApplicationVersionId": "<p>The ID of the application version for which you want to get the description.</p>",
         "RollbackApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>",
         "SnapshotDetails$ApplicationVersionId": "<p>The current application version ID when the snapshot was created.</p>",
-        "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>.</p>"
+        "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>.You can retrieve the application version ID using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>"
       }
     },
     "ApplicationVersionSummaries": {
@@ -310,10 +318,25 @@
         "ApplicationVersionSummaries$member": null
       }
     },
+    "ArtifactType": {
+      "base": null,
+      "refs": {
+        "CustomArtifactConfiguration$ArtifactType": "<p> <code>UDF</code> stands for user-defined functions. This type of artifact must be in an S3 bucket. A <code>DEPENDENCY_JAR</code> can be in either Maven or an S3 bucket.</p>",
+        "CustomArtifactConfigurationDescription$ArtifactType": "<p> <code>UDF</code> stands for user-defined functions. This type of artifact must be in an S3 bucket. A <code>DEPENDENCY_JAR</code> can be in either Maven or an S3 bucket.</p>"
+      }
+    },
     "AuthorizedUrl": {
       "base": null,
       "refs": {
         "CreateApplicationPresignedUrlResponse$AuthorizedUrl": "<p>The URL of the extension.</p>"
+      }
+    },
+    "BasePath": {
+      "base": null,
+      "refs": {
+        "S3ContentBaseLocation$BasePath": "<p>The base path for the S3 bucket.</p>",
+        "S3ContentBaseLocationDescription$BasePath": "<p>The base path for the S3 bucket.</p>",
+        "S3ContentBaseLocationUpdate$BasePathUpdate": "<p>The updated S3 bucket path.</p>"
       }
     },
     "BooleanObject": {
@@ -321,7 +344,7 @@
       "refs": {
         "ApplicationSnapshotConfiguration$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
         "ApplicationSnapshotConfigurationDescription$SnapshotsEnabled": "<p>Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
-        "ApplicationSnapshotConfigurationUpdate$SnapshotsEnabledUpdate": "<p>Describes updates to whether snapshots are enabled for a Flink-based Kinesis Data Analytics application.</p>",
+        "ApplicationSnapshotConfigurationUpdate$SnapshotsEnabledUpdate": "<p>Describes updates to whether snapshots are enabled for an application.</p>",
         "CheckpointConfiguration$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
         "CheckpointConfigurationDescription$CheckpointingEnabled": "<p>Describes whether checkpointing is enabled for a Flink-based Kinesis Data Analytics application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
         "CheckpointConfigurationUpdate$CheckpointingEnabledUpdate": "<p>Describes updates to whether checkpointing is enabled for an application.</p> <note> <p>If <code>CheckpointConfiguration.ConfigurationType</code> is <code>DEFAULT</code>, the application will use a <code>CheckpointingEnabled</code> value of <code>true</code>, even if this value is set to another value using this API or in application code.</p> </note>",
@@ -329,7 +352,7 @@
         "FlinkRunConfiguration$AllowNonRestoredState": "<p>When restoring from a snapshot, specifies whether the runtime is allowed to skip a state that cannot be mapped to the new program. This will happen if the program is updated between snapshots to remove stateful parameters, and state data in the snapshot no longer corresponds to valid application data. For more information, see <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/ops/state/savepoints.html#allowing-non-restored-state\"> Allowing Non-Restored State</a> in the <a href=\"https://ci.apache.org/projects/flink/flink-docs-release-1.8/\">Apache Flink documentation</a>.</p> <note> <p>This value defaults to <code>false</code>. If you update your application without specifying this parameter, <code>AllowNonRestoredState</code> will be set to <code>false</code>, even if it was previously set to <code>true</code>.</p> </note>",
         "ParallelismConfiguration$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
         "ParallelismConfigurationDescription$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
-        "ParallelismConfigurationUpdate$AutoScalingEnabledUpdate": "<p>Describes updates to whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
+        "ParallelismConfigurationUpdate$AutoScalingEnabledUpdate": "<p>Describes updates to whether the Kinesis Data Analytics service can increase the parallelism of a Flink-based Kinesis Data Analytics application in response to increased throughput.</p>",
         "StopApplicationRequest$Force": "<p>Set to <code>true</code> to force the application to stop. If you set <code>Force</code> to <code>true</code>, Kinesis Data Analytics stops the application without taking a snapshot. </p> <note> <p>Force-stopping your application may lead to data loss or duplication. To prevent data loss or duplicate processing of data during application restarts, we recommend you to take frequent snapshots of your application.</p> </note> <p>You can only force stop a Flink-based Kinesis Data Analytics application. You can't force stop a SQL-based Kinesis Data Analytics application.</p> <p>The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> status. </p>"
       }
     },
@@ -338,6 +361,9 @@
       "refs": {
         "S3ApplicationCodeLocationDescription$BucketARN": "<p>The Amazon Resource Name (ARN) for the S3 bucket containing the application code.</p>",
         "S3Configuration$BucketARN": "<p>The ARN of the S3 bucket that contains the data.</p>",
+        "S3ContentBaseLocation$BucketARN": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
+        "S3ContentBaseLocationDescription$BucketARN": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
+        "S3ContentBaseLocationUpdate$BucketARNUpdate": "<p>The updated Amazon Resource Name (ARN) of the S3 bucket.</p>",
         "S3ContentLocation$BucketARN": "<p>The Amazon Resource Name (ARN) for the S3 bucket containing the application code.</p>",
         "S3ContentLocationUpdate$BucketARNUpdate": "<p>The new Amazon Resource Name (ARN) for the S3 bucket containing the application code.</p>",
         "S3ReferenceDataSource$BucketARN": "<p>The Amazon Resource Name (ARN) of the S3 bucket.</p>",
@@ -349,6 +375,24 @@
       "base": "<p>For a SQL-based Kinesis Data Analytics application, provides additional mapping information when the record format uses delimiters, such as CSV. For example, the following sample records use CSV format, where the records use the <i>'\\n'</i> as the row delimiter and a comma (\",\") as the column delimiter: </p> <p> <code>\"name1\", \"address1\"</code> </p> <p> <code>\"name2\", \"address2\"</code> </p>",
       "refs": {
         "MappingParameters$CSVMappingParameters": "<p>Provides additional mapping information when the record format uses delimiters (for example, CSV).</p>"
+      }
+    },
+    "CatalogConfiguration": {
+      "base": "<p>The configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ZeppelinApplicationConfiguration$CatalogConfiguration": "<p>The AWS Glue Data Catalog that you use in queries in a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "CatalogConfigurationDescription": {
+      "base": "<p>The configuration parameters for the default AWS Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationDescription$CatalogConfigurationDescription": "<p>The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "CatalogConfigurationUpdate": {
+      "base": "<p>Updates to </p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationUpdate$CatalogConfigurationUpdate": "<p>Updates to the configuration of the AWS Glue Data Catalog that is associated with the Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "CheckpointConfiguration": {
@@ -423,7 +467,7 @@
       }
     },
     "CodeContentDescription": {
-      "base": "<p>Describes details about the application code for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes details about the code of a Kinesis Data Analytics application.</p>",
       "refs": {
         "ApplicationCodeConfigurationDescription$CodeContentDescription": "<p>Describes details about the location and format of the application code.</p>"
       }
@@ -437,7 +481,7 @@
       }
     },
     "CodeContentUpdate": {
-      "base": "<p>Describes an update to the code of a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes an update to the code of an application. Not supported for Apache Zeppelin.</p>",
       "refs": {
         "ApplicationCodeConfigurationUpdate$CodeContentUpdate": "<p>Describes updates to the code content of an application.</p>"
       }
@@ -467,12 +511,12 @@
     "ConditionalToken": {
       "base": null,
       "refs": {
-        "AddApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
-        "AddApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
+        "AddApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
+        "AddApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
         "ApplicationDetail$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates.</p>",
-        "DeleteApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
-        "DeleteApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>",
-        "UpdateApplicationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>ApplicationVersionID</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>.</p>"
+        "DeleteApplicationCloudWatchLoggingOptionRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
+        "DeleteApplicationVpcConfigurationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>",
+        "UpdateApplicationRequest$ConditionalToken": "<p>A value you use to implement strong concurrency for application updates. You must provide the <code>CurrentApplicationVersionId</code> or the <code>ConditionalToken</code>. You get the application's current <code>ConditionalToken</code> using <a>DescribeApplication</a>. For better concurrency support, use the <code>ConditionalToken</code> parameter instead of <code>CurrentApplicationVersionId</code>.</p>"
       }
     },
     "ConfigurationType": {
@@ -517,6 +561,39 @@
     "CreateApplicationSnapshotResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CustomArtifactConfiguration": {
+      "base": "<p>Specifies dependency JARs, as well as JAR files that contain user-defined functions (UDF).</p>",
+      "refs": {
+        "CustomArtifactsConfigurationList$member": null
+      }
+    },
+    "CustomArtifactConfigurationDescription": {
+      "base": "<p>Specifies a dependency JAR or a JAR of user-defined functions.</p>",
+      "refs": {
+        "CustomArtifactsConfigurationDescriptionList$member": null
+      }
+    },
+    "CustomArtifactsConfigurationDescriptionList": {
+      "base": null,
+      "refs": {
+        "ZeppelinApplicationConfigurationDescription$CustomArtifactsConfigurationDescription": "<p>Custom artifacts are dependency JARs and user-defined functions (UDF).</p>"
+      }
+    },
+    "CustomArtifactsConfigurationList": {
+      "base": null,
+      "refs": {
+        "ZeppelinApplicationConfiguration$CustomArtifactsConfiguration": "<p>Custom artifacts are dependency JARs and user-defined functions (UDF).</p>",
+        "ZeppelinApplicationConfigurationUpdate$CustomArtifactsConfigurationUpdate": "<p>Updates to the customer artifacts. Custom artifacts are dependency JAR files and user-defined functions (UDF).</p>"
+      }
+    },
+    "DatabaseARN": {
+      "base": null,
+      "refs": {
+        "GlueDataCatalogConfiguration$DatabaseARN": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "GlueDataCatalogConfigurationDescription$DatabaseARN": "<p>The Amazon Resource Name (ARN) of the database.</p>",
+        "GlueDataCatalogConfigurationUpdate$DatabaseARNUpdate": "<p>The updated Amazon Resource Name (ARN) of the database.</p>"
       }
     },
     "DeleteApplicationCloudWatchLoggingOptionRequest": {
@@ -589,6 +666,24 @@
       "refs": {
       }
     },
+    "DeployAsApplicationConfiguration": {
+      "base": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>",
+      "refs": {
+        "ZeppelinApplicationConfiguration$DeployAsApplicationConfiguration": "<p>The information required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>"
+      }
+    },
+    "DeployAsApplicationConfigurationDescription": {
+      "base": "<p>The configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state.</p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationDescription$DeployAsApplicationConfigurationDescription": "<p>The parameters required to deploy a Kinesis Data Analytics Studio notebook as an application with durable state..</p>"
+      }
+    },
+    "DeployAsApplicationConfigurationUpdate": {
+      "base": "<p>Updates to the configuration information required to deploy an Amazon Data Analytics Studio notebook as an application with durable state..</p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationUpdate$DeployAsApplicationConfigurationUpdate": null
+      }
+    },
     "DescribeApplicationRequest": {
       "base": null,
       "refs": {
@@ -644,13 +739,13 @@
       }
     },
     "EnvironmentPropertyDescriptions": {
-      "base": "<p>Describes the execution properties for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes the execution properties for an Apache Flink runtime.</p>",
       "refs": {
         "ApplicationConfigurationDescription$EnvironmentPropertyDescriptions": "<p>Describes execution properties for a Flink-based Kinesis Data Analytics application.</p>"
       }
     },
     "EnvironmentPropertyUpdates": {
-      "base": "<p>Describes updates to the execution property groups for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes updates to the execution property groups for a Flink-based Kinesis Data Analytics application or a Studio notebook.</p>",
       "refs": {
         "ApplicationConfigurationUpdate$EnvironmentPropertyUpdates": "<p>Describes updates to the environment properties for a Flink-based Kinesis Data Analytics application.</p>"
       }
@@ -686,7 +781,7 @@
       }
     },
     "FlinkApplicationConfiguration": {
-      "base": "<p>Describes configuration parameters for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes configuration parameters for a Flink-based Kinesis Data Analytics application or a Studio notebook.</p>",
       "refs": {
         "ApplicationConfiguration$FlinkApplicationConfiguration": "<p>The creation and update parameters for a Flink-based Kinesis Data Analytics application.</p>"
       }
@@ -709,6 +804,24 @@
         "RunConfiguration$FlinkRunConfiguration": "<p>Describes the starting parameters for a Flink-based Kinesis Data Analytics application.</p>",
         "RunConfigurationDescription$FlinkRunConfigurationDescription": null,
         "RunConfigurationUpdate$FlinkRunConfiguration": "<p>Describes the starting parameters for a Flink-based Kinesis Data Analytics application.</p>"
+      }
+    },
+    "GlueDataCatalogConfiguration": {
+      "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
+      "refs": {
+        "CatalogConfiguration$GlueDataCatalogConfiguration": "<p>The configuration parameters for the default AWS Glue database. You use this database for Apache Flink SQL queries and table API transforms that you write in a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "GlueDataCatalogConfigurationDescription": {
+      "base": "<p>The configuration of the Glue Data Catalog that you use for Apache Flink SQL queries and table API transforms that you write in an application.</p>",
+      "refs": {
+        "CatalogConfigurationDescription$GlueDataCatalogConfigurationDescription": "<p>The configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "GlueDataCatalogConfigurationUpdate": {
+      "base": "<p>Updates to the configuration of the Glue Data Catalog that you use for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "CatalogConfigurationUpdate$GlueDataCatalogConfigurationUpdate": "<p>Updates to the configuration parameters for the default AWS Glue database. You use this database for SQL queries that you write in a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "Id": {
@@ -1071,7 +1184,10 @@
       "refs": {
         "MonitoringConfiguration$LogLevel": "<p>Describes the verbosity of the CloudWatch Logs for an application.</p>",
         "MonitoringConfigurationDescription$LogLevel": "<p>Describes the verbosity of the CloudWatch Logs for an application.</p>",
-        "MonitoringConfigurationUpdate$LogLevelUpdate": "<p>Describes updates to the verbosity of the CloudWatch Logs for an application.</p>"
+        "MonitoringConfigurationUpdate$LogLevelUpdate": "<p>Describes updates to the verbosity of the CloudWatch Logs for an application.</p>",
+        "ZeppelinMonitoringConfiguration$LogLevel": "<p>The verbosity of the CloudWatch Logs for an application.</p>",
+        "ZeppelinMonitoringConfigurationDescription$LogLevel": "<p>Describes the verbosity of the CloudWatch Logs for an application.</p>",
+        "ZeppelinMonitoringConfigurationUpdate$LogLevelUpdate": "<p>Updates to the logging level for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "LogStreamARN": {
@@ -1086,6 +1202,31 @@
       "base": "<p>When you configure a SQL-based Kinesis Data Analytics application's input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source.</p>",
       "refs": {
         "RecordFormat$MappingParameters": "<p>When you configure application input at the time of creating or updating an application, provides additional mapping information specific to the record format (such as JSON, CSV, or record fields delimited by some delimiter) on the streaming source.</p>"
+      }
+    },
+    "MavenArtifactId": {
+      "base": null,
+      "refs": {
+        "MavenReference$ArtifactId": "<p>The artifact ID of the Maven reference.</p>"
+      }
+    },
+    "MavenGroupId": {
+      "base": null,
+      "refs": {
+        "MavenReference$GroupId": "<p>The group ID of the Maven reference.</p>"
+      }
+    },
+    "MavenReference": {
+      "base": "<p>The information required to specify a Maven reference. You can use Maven references to specify dependency JAR files.</p>",
+      "refs": {
+        "CustomArtifactConfiguration$MavenReference": "<p>The parameters required to fully specify a Maven reference.</p>",
+        "CustomArtifactConfigurationDescription$MavenReferenceDescription": "<p>The parameters that are required to specify a Maven dependency.</p>"
+      }
+    },
+    "MavenVersion": {
+      "base": null,
+      "refs": {
+        "MavenReference$Version": "<p>The version of the Maven reference.</p>"
       }
     },
     "MetricsLevel": {
@@ -1105,19 +1246,19 @@
       }
     },
     "MonitoringConfiguration": {
-      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Flink-based Kinesis Data Analytics application. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
+      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for an application. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
       "refs": {
         "FlinkApplicationConfiguration$MonitoringConfiguration": "<p>Describes configuration parameters for Amazon CloudWatch logging for an application.</p>"
       }
     },
     "MonitoringConfigurationDescription": {
-      "base": "<p>Describes configuration parameters for CloudWatch logging for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes configuration parameters for CloudWatch logging for an application.</p>",
       "refs": {
         "FlinkApplicationConfigurationDescription$MonitoringConfigurationDescription": "<p>Describes configuration parameters for Amazon CloudWatch logging for an application.</p>"
       }
     },
     "MonitoringConfigurationUpdate": {
-      "base": "<p>Describes updates to configuration parameters for Amazon CloudWatch logging for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes updates to configuration parameters for Amazon CloudWatch logging for an application.</p>",
       "refs": {
         "FlinkApplicationConfigurationUpdate$MonitoringConfigurationUpdate": "<p>Describes updates to the configuration parameters for Amazon CloudWatch logging for an application.</p>"
       }
@@ -1199,7 +1340,7 @@
       }
     },
     "ParallelismConfigurationUpdate": {
-      "base": "<p>Describes updates to parameters for how a Flink-based Kinesis Data Analytics application executes multiple tasks simultaneously.</p>",
+      "base": "<p>Describes updates to parameters for how an application executes multiple tasks simultaneously.</p>",
       "refs": {
         "FlinkApplicationConfigurationUpdate$ParallelismConfigurationUpdate": "<p>Describes updates to the parameters for how an application executes multiple tasks simultaneously.</p>"
       }
@@ -1244,7 +1385,7 @@
       }
     },
     "PropertyGroup": {
-      "base": "<p>Property key-value pairs passed into a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Property key-value pairs passed into an application.</p>",
       "refs": {
         "PropertyGroups$member": null
       }
@@ -1498,12 +1639,12 @@
       "base": null,
       "refs": {
         "ApplicationDetail$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>",
-        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>",
+        "ApplicationSummary$RuntimeEnvironment": "<p>The runtime environment for the application.</p>",
         "CreateApplicationRequest$RuntimeEnvironment": "<p>The runtime environment for the application (<code>SQL-1_0</code>, <code>FLINK-1_6</code>, <code>FLINK-1_8</code>, or <code>FLINK-1_11</code>).</p>"
       }
     },
     "S3ApplicationCodeLocationDescription": {
-      "base": "<p>Describes the location of a Flink-based Kinesis Data Analytics application's code stored in an S3 bucket.</p>",
+      "base": "<p>Describes the location of an application's code stored in an S3 bucket.</p>",
       "refs": {
         "CodeContentDescription$S3ApplicationCodeLocationDescription": "<p>The S3 bucket Amazon Resource Name (ARN), file key, and object version of the application code stored in Amazon S3.</p>"
       }
@@ -1514,14 +1655,34 @@
         "DiscoverInputSchemaRequest$S3Configuration": "<p>Specify this parameter to discover a schema from data in an Amazon S3 object.</p>"
       }
     },
-    "S3ContentLocation": {
-      "base": "<p>For a Flink-based Kinesis Data Analytics application, provides a description of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data. </p>",
+    "S3ContentBaseLocation": {
+      "base": "<p>The S3 bucket that holds the application information.</p>",
       "refs": {
-        "CodeContent$S3ContentLocation": "<p>Information about the Amazon S3 bucket containing the application code.</p>"
+        "DeployAsApplicationConfiguration$S3ContentLocation": "<p>The description of an Amazon S3 object that contains the Amazon Data Analytics application, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data. </p>"
+      }
+    },
+    "S3ContentBaseLocationDescription": {
+      "base": "<p>The description of the S3 base location that holds the application.</p>",
+      "refs": {
+        "DeployAsApplicationConfigurationDescription$S3ContentLocationDescription": "<p>The location that holds the data required to specify an Amazon Data Analytics application.</p>"
+      }
+    },
+    "S3ContentBaseLocationUpdate": {
+      "base": "<p>The information required to update the S3 base location that holds the application.</p>",
+      "refs": {
+        "DeployAsApplicationConfigurationUpdate$S3ContentLocationUpdate": "<p>Updates to the location that holds the data required to specify an Amazon Data Analytics application.</p>"
+      }
+    },
+    "S3ContentLocation": {
+      "base": "<p>For a Kinesis Data Analytics application provides a description of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the name of the Amazon S3 object that contains the data, and the version number of the Amazon S3 object that contains the data. </p>",
+      "refs": {
+        "CodeContent$S3ContentLocation": "<p>Information about the Amazon S3 bucket that contains the application code.</p>",
+        "CustomArtifactConfiguration$S3ContentLocation": null,
+        "CustomArtifactConfigurationDescription$S3ContentLocationDescription": null
       }
     },
     "S3ContentLocationUpdate": {
-      "base": "<p>Describes an update for the Amazon S3 code content location for a Flink-based Kinesis Data Analytics application.</p>",
+      "base": "<p>Describes an update for the Amazon S3 code content location for an application.</p>",
       "refs": {
         "CodeContentUpdate$S3ContentLocationUpdate": "<p>Describes an update to the location of code for an application.</p>"
       }
@@ -1827,6 +1988,42 @@
       "base": null,
       "refs": {
         "VpcConfigurationDescription$VpcId": "<p>The ID of the associated VPC.</p>"
+      }
+    },
+    "ZeppelinApplicationConfiguration": {
+      "base": "<p>The configuration of a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ApplicationConfiguration$ZeppelinApplicationConfiguration": "<p>The configuration parameters for a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "ZeppelinApplicationConfigurationDescription": {
+      "base": "<p>The configuration of a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ApplicationConfigurationDescription$ZeppelinApplicationConfigurationDescription": "<p>The configuration parameters for a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "ZeppelinApplicationConfigurationUpdate": {
+      "base": "<p>Updates to the configuration of Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ApplicationConfigurationUpdate$ZeppelinApplicationConfigurationUpdate": "<p>Updates to the configuration of a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "ZeppelinMonitoringConfiguration": {
+      "base": "<p>Describes configuration parameters for Amazon CloudWatch logging for a Kinesis Data Analytics Studio notebook. For more information about CloudWatch logging, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html\">Monitoring</a>.</p>",
+      "refs": {
+        "ZeppelinApplicationConfiguration$MonitoringConfiguration": "<p>The monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "ZeppelinMonitoringConfigurationDescription": {
+      "base": "<p>The monitoring configuration for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationDescription$MonitoringConfigurationDescription": "<p>The monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
+      }
+    },
+    "ZeppelinMonitoringConfigurationUpdate": {
+      "base": "<p>Updates to the monitoring configuration for Apache Zeppelin within a Kinesis Data Analytics Studio notebook.</p>",
+      "refs": {
+        "ZeppelinApplicationConfigurationUpdate$MonitoringConfigurationUpdate": "<p>Updates to the monitoring configuration of a Kinesis Data Analytics Studio notebook.</p>"
       }
     },
     "ZipFileContent": {

@@ -88,7 +88,7 @@ const (
 	// ErrCodeResourceAlreadyExistsException for service response error code
 	// "ResourceAlreadyExistsException".
 	//
-	// A collection with the specified ID already exists.
+	// A resource with the specified ID already exists.
 	ErrCodeResourceAlreadyExistsException = "ResourceAlreadyExistsException"
 
 	// ErrCodeResourceInUseException for service response error code
@@ -100,7 +100,7 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// The collection specified in the request cannot be found.
+	// The resource specified in the request cannot be found.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeResourceNotReadyException for service response error code
@@ -113,9 +113,8 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// The size of the collection or tag list exceeds the allowed limit. For more
-	// information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-	// Guide.
+	// The size of the collection exceeds the allowed limit. For more information,
+	// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code

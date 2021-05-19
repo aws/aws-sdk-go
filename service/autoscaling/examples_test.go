@@ -702,7 +702,7 @@ func ExampleAutoScaling_DeleteTags_shared00() {
 
 // To describe your Auto Scaling account limits
 //
-// This example describes the Auto Scaling limits for your AWS account.
+// This example describes the Amazon EC2 Auto Scaling service quotas for your account.
 func ExampleAutoScaling_DescribeAccountLimits_shared00() {
 	svc := autoscaling.New(session.New())
 	input := &autoscaling.DescribeAccountLimitsInput{}

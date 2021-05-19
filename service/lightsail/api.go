@@ -11992,7 +11992,7 @@ func (c *Lightsail) GetStaticIpRequest(input *GetStaticIpInput) (req *request.Re
 
 // GetStaticIp API operation for Amazon Lightsail.
 //
-// Returns information about a specific static IP.
+// Returns information about an Amazon Lightsail static IP.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

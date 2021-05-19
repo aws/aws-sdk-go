@@ -37,6 +37,11 @@ func (c *EKS) WaitUntilAddonActiveWithContext(ctx aws.Context, input *DescribeAd
 				Expected: "CREATE_FAILED",
 			},
 			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "addon.status",
+				Expected: "DEGRADED",
+			},
+			{
 				State:   request.SuccessWaiterState,
 				Matcher: request.PathWaiterMatch, Argument: "addon.status",
 				Expected: "ACTIVE",

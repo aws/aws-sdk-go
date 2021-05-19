@@ -397,7 +397,7 @@
           "output": {
           }
         },
-        "description": "This example describes the Auto Scaling limits for your AWS account.",
+        "description": "This example describes the Amazon EC2 Auto Scaling service quotas for your account.",
         "id": "autoscaling-describe-account-limits-1",
         "title": "To describe your Auto Scaling account limits"
       }
