@@ -7,15 +7,16 @@ branches:
     - main
 
 os:
-    - linux
-    - osx
-    # Travis doesn't work with windows and Go tip
-    #- windows
+  - linux
+  - osx
+  # Travis doesn't work with windows and Go tip
+  #- windows
 
 go:
-    - tip
+  - tip
 
-allow_failures:
+matrix:
+  allow_failures:
     - go: tip
 
 before_install:
