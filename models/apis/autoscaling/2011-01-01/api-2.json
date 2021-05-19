@@ -678,6 +678,21 @@
         {"shape":"ResourceContentionFault"}
       ]
     },
+    "GetPredictiveScalingForecast":{
+      "name":"GetPredictiveScalingForecast",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetPredictiveScalingForecastType"},
+      "output":{
+        "shape":"GetPredictiveScalingForecastAnswer",
+        "resultWrapper":"GetPredictiveScalingForecastResult"
+      },
+      "errors":[
+        {"shape":"ResourceContentionFault"}
+      ]
+    },
     "PutLifecycleHook":{
       "name":"PutLifecycleHook",
       "http":{
@@ -1038,6 +1053,7 @@
         "MinSize":{"shape":"AutoScalingGroupMinSize"},
         "MaxSize":{"shape":"AutoScalingGroupMaxSize"},
         "DesiredCapacity":{"shape":"AutoScalingGroupDesiredCapacity"},
+        "PredictedCapacity":{"shape":"AutoScalingGroupPredictedCapacity"},
         "DefaultCooldown":{"shape":"Cooldown"},
         "AvailabilityZones":{"shape":"AvailabilityZones"},
         "LoadBalancerNames":{"shape":"LoadBalancerNames"},
@@ -1076,6 +1092,7 @@
         "MaxRecords":{"shape":"MaxRecords"}
       }
     },
+    "AutoScalingGroupPredictedCapacity":{"type":"integer"},
     "AutoScalingGroupState":{
       "type":"string",
       "max":32,
@@ -1211,6 +1228,17 @@
       "required":["AutoScalingGroupName"],
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"}
+      }
+    },
+    "CapacityForecast":{
+      "type":"structure",
+      "required":[
+        "Timestamps",
+        "Values"
+      ],
+      "members":{
+        "Timestamps":{"shape":"PredictiveScalingForecastTimestamps"},
+        "Values":{"shape":"PredictiveScalingForecastValues"}
       }
     },
     "CapacityRebalanceEnabled":{"type":"boolean"},
@@ -1748,6 +1776,34 @@
       "member":{"shape":"Filter"}
     },
     "ForceDelete":{"type":"boolean"},
+    "GetPredictiveScalingForecastAnswer":{
+      "type":"structure",
+      "required":[
+        "LoadForecast",
+        "CapacityForecast",
+        "UpdateTime"
+      ],
+      "members":{
+        "LoadForecast":{"shape":"LoadForecasts"},
+        "CapacityForecast":{"shape":"CapacityForecast"},
+        "UpdateTime":{"shape":"TimestampType"}
+      }
+    },
+    "GetPredictiveScalingForecastType":{
+      "type":"structure",
+      "required":[
+        "AutoScalingGroupName",
+        "PolicyName",
+        "StartTime",
+        "EndTime"
+      ],
+      "members":{
+        "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
+        "PolicyName":{"shape":"XmlStringMaxLen255"},
+        "StartTime":{"shape":"TimestampType"},
+        "EndTime":{"shape":"TimestampType"}
+      }
+    },
     "GlobalTimeout":{"type":"integer"},
     "HealthCheckGracePeriod":{"type":"integer"},
     "HeartbeatTimeout":{"type":"integer"},
@@ -2120,6 +2176,23 @@
       "type":"list",
       "member":{"shape":"LoadBalancerTargetGroupState"}
     },
+    "LoadForecast":{
+      "type":"structure",
+      "required":[
+        "Timestamps",
+        "Values",
+        "MetricSpecification"
+      ],
+      "members":{
+        "Timestamps":{"shape":"PredictiveScalingForecastTimestamps"},
+        "Values":{"shape":"PredictiveScalingForecastValues"},
+        "MetricSpecification":{"shape":"PredictiveScalingMetricSpecification"}
+      }
+    },
+    "LoadForecasts":{
+      "type":"list",
+      "member":{"shape":"LoadForecast"}
+    },
     "MaxGroupPreparedCapacity":{
       "type":"integer",
       "min":-1
@@ -2265,6 +2338,24 @@
       "type":"list",
       "member":{"shape":"XmlStringMaxLen64"}
     },
+    "PredefinedLoadMetricType":{
+      "type":"string",
+      "enum":[
+        "ASGTotalCPUUtilization",
+        "ASGTotalNetworkIn",
+        "ASGTotalNetworkOut",
+        "ALBTargetGroupRequestCount"
+      ]
+    },
+    "PredefinedMetricPairType":{
+      "type":"string",
+      "enum":[
+        "ASGCPUUtilization",
+        "ASGNetworkIn",
+        "ASGNetworkOut",
+        "ALBRequestCount"
+      ]
+    },
     "PredefinedMetricSpecification":{
       "type":"structure",
       "required":["PredefinedMetricType"],
@@ -2272,6 +2363,95 @@
         "PredefinedMetricType":{"shape":"MetricType"},
         "ResourceLabel":{"shape":"XmlStringMaxLen1023"}
       }
+    },
+    "PredefinedScalingMetricType":{
+      "type":"string",
+      "enum":[
+        "ASGAverageCPUUtilization",
+        "ASGAverageNetworkIn",
+        "ASGAverageNetworkOut",
+        "ALBRequestCountPerTarget"
+      ]
+    },
+    "PredictiveScalingConfiguration":{
+      "type":"structure",
+      "required":["MetricSpecifications"],
+      "members":{
+        "MetricSpecifications":{"shape":"PredictiveScalingMetricSpecifications"},
+        "Mode":{"shape":"PredictiveScalingMode"},
+        "SchedulingBufferTime":{"shape":"PredictiveScalingSchedulingBufferTime"},
+        "MaxCapacityBreachBehavior":{"shape":"PredictiveScalingMaxCapacityBreachBehavior"},
+        "MaxCapacityBuffer":{"shape":"PredictiveScalingMaxCapacityBuffer"}
+      }
+    },
+    "PredictiveScalingForecastTimestamps":{
+      "type":"list",
+      "member":{"shape":"TimestampType"}
+    },
+    "PredictiveScalingForecastValues":{
+      "type":"list",
+      "member":{"shape":"MetricScale"}
+    },
+    "PredictiveScalingMaxCapacityBreachBehavior":{
+      "type":"string",
+      "enum":[
+        "HonorMaxCapacity",
+        "IncreaseMaxCapacity"
+      ]
+    },
+    "PredictiveScalingMaxCapacityBuffer":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
+    "PredictiveScalingMetricSpecification":{
+      "type":"structure",
+      "required":["TargetValue"],
+      "members":{
+        "TargetValue":{"shape":"MetricScale"},
+        "PredefinedMetricPairSpecification":{"shape":"PredictiveScalingPredefinedMetricPair"},
+        "PredefinedScalingMetricSpecification":{"shape":"PredictiveScalingPredefinedScalingMetric"},
+        "PredefinedLoadMetricSpecification":{"shape":"PredictiveScalingPredefinedLoadMetric"}
+      }
+    },
+    "PredictiveScalingMetricSpecifications":{
+      "type":"list",
+      "member":{"shape":"PredictiveScalingMetricSpecification"}
+    },
+    "PredictiveScalingMode":{
+      "type":"string",
+      "enum":[
+        "ForecastAndScale",
+        "ForecastOnly"
+      ]
+    },
+    "PredictiveScalingPredefinedLoadMetric":{
+      "type":"structure",
+      "required":["PredefinedMetricType"],
+      "members":{
+        "PredefinedMetricType":{"shape":"PredefinedLoadMetricType"},
+        "ResourceLabel":{"shape":"XmlStringMaxLen1023"}
+      }
+    },
+    "PredictiveScalingPredefinedMetricPair":{
+      "type":"structure",
+      "required":["PredefinedMetricType"],
+      "members":{
+        "PredefinedMetricType":{"shape":"PredefinedMetricPairType"},
+        "ResourceLabel":{"shape":"XmlStringMaxLen1023"}
+      }
+    },
+    "PredictiveScalingPredefinedScalingMetric":{
+      "type":"structure",
+      "required":["PredefinedMetricType"],
+      "members":{
+        "PredefinedMetricType":{"shape":"PredefinedScalingMetricType"},
+        "ResourceLabel":{"shape":"XmlStringMaxLen1023"}
+      }
+    },
+    "PredictiveScalingSchedulingBufferTime":{
+      "type":"integer",
+      "min":0
     },
     "ProcessNames":{
       "type":"list",
@@ -2351,7 +2531,8 @@
         "StepAdjustments":{"shape":"StepAdjustments"},
         "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"},
         "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"},
-        "Enabled":{"shape":"ScalingPolicyEnabled"}
+        "Enabled":{"shape":"ScalingPolicyEnabled"},
+        "PredictiveScalingConfiguration":{"shape":"PredictiveScalingConfiguration"}
       }
     },
     "PutScheduledUpdateGroupActionType":{
@@ -2503,7 +2684,8 @@
         "EstimatedInstanceWarmup":{"shape":"EstimatedInstanceWarmup"},
         "Alarms":{"shape":"Alarms"},
         "TargetTrackingConfiguration":{"shape":"TargetTrackingConfiguration"},
-        "Enabled":{"shape":"ScalingPolicyEnabled"}
+        "Enabled":{"shape":"ScalingPolicyEnabled"},
+        "PredictiveScalingConfiguration":{"shape":"PredictiveScalingConfiguration"}
       }
     },
     "ScalingPolicyEnabled":{"type":"boolean"},

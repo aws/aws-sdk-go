@@ -660,14 +660,14 @@
     },
     "ApplicationConfiguration":{
       "type":"structure",
-      "required":["ApplicationCodeConfiguration"],
       "members":{
         "SqlApplicationConfiguration":{"shape":"SqlApplicationConfiguration"},
         "FlinkApplicationConfiguration":{"shape":"FlinkApplicationConfiguration"},
         "EnvironmentProperties":{"shape":"EnvironmentProperties"},
         "ApplicationCodeConfiguration":{"shape":"ApplicationCodeConfiguration"},
         "ApplicationSnapshotConfiguration":{"shape":"ApplicationSnapshotConfiguration"},
-        "VpcConfigurations":{"shape":"VpcConfigurations"}
+        "VpcConfigurations":{"shape":"VpcConfigurations"},
+        "ZeppelinApplicationConfiguration":{"shape":"ZeppelinApplicationConfiguration"}
       }
     },
     "ApplicationConfigurationDescription":{
@@ -679,7 +679,8 @@
         "FlinkApplicationConfigurationDescription":{"shape":"FlinkApplicationConfigurationDescription"},
         "EnvironmentPropertyDescriptions":{"shape":"EnvironmentPropertyDescriptions"},
         "ApplicationSnapshotConfigurationDescription":{"shape":"ApplicationSnapshotConfigurationDescription"},
-        "VpcConfigurationDescriptions":{"shape":"VpcConfigurationDescriptions"}
+        "VpcConfigurationDescriptions":{"shape":"VpcConfigurationDescriptions"},
+        "ZeppelinApplicationConfigurationDescription":{"shape":"ZeppelinApplicationConfigurationDescription"}
       }
     },
     "ApplicationConfigurationUpdate":{
@@ -690,7 +691,8 @@
         "FlinkApplicationConfigurationUpdate":{"shape":"FlinkApplicationConfigurationUpdate"},
         "EnvironmentPropertyUpdates":{"shape":"EnvironmentPropertyUpdates"},
         "ApplicationSnapshotConfigurationUpdate":{"shape":"ApplicationSnapshotConfigurationUpdate"},
-        "VpcConfigurationUpdates":{"shape":"VpcConfigurationUpdates"}
+        "VpcConfigurationUpdates":{"shape":"VpcConfigurationUpdates"},
+        "ZeppelinApplicationConfigurationUpdate":{"shape":"ZeppelinApplicationConfigurationUpdate"}
       }
     },
     "ApplicationDescription":{
@@ -723,7 +725,8 @@
         "ApplicationVersionUpdatedFrom":{"shape":"ApplicationVersionId"},
         "ApplicationVersionRolledBackFrom":{"shape":"ApplicationVersionId"},
         "ConditionalToken":{"shape":"ConditionalToken"},
-        "ApplicationVersionRolledBackTo":{"shape":"ApplicationVersionId"}
+        "ApplicationVersionRolledBackTo":{"shape":"ApplicationVersionId"},
+        "ApplicationMode":{"shape":"ApplicationMode"}
       }
     },
     "ApplicationMaintenanceConfigurationDescription":{
@@ -755,6 +758,13 @@
       "max":5,
       "min":5,
       "pattern":"([01][0-9]|2[0-3]):[0-5][0-9]"
+    },
+    "ApplicationMode":{
+      "type":"string",
+      "enum":[
+        "STREAMING",
+        "INTERACTIVE"
+      ]
     },
     "ApplicationName":{
       "type":"string",
@@ -833,7 +843,8 @@
         "ApplicationARN":{"shape":"ResourceARN"},
         "ApplicationStatus":{"shape":"ApplicationStatus"},
         "ApplicationVersionId":{"shape":"ApplicationVersionId"},
-        "RuntimeEnvironment":{"shape":"RuntimeEnvironment"}
+        "RuntimeEnvironment":{"shape":"RuntimeEnvironment"},
+        "ApplicationMode":{"shape":"ApplicationMode"}
       }
     },
     "ApplicationVersionId":{
@@ -856,10 +867,23 @@
         "ApplicationStatus":{"shape":"ApplicationStatus"}
       }
     },
+    "ArtifactType":{
+      "type":"string",
+      "enum":[
+        "UDF",
+        "DEPENDENCY_JAR"
+      ]
+    },
     "AuthorizedUrl":{
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "BasePath":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[a-zA-Z0-9/!-_.*'()]+"
     },
     "BooleanObject":{"type":"boolean"},
     "BucketARN":{
@@ -877,6 +901,27 @@
       "members":{
         "RecordRowDelimiter":{"shape":"RecordRowDelimiter"},
         "RecordColumnDelimiter":{"shape":"RecordColumnDelimiter"}
+      }
+    },
+    "CatalogConfiguration":{
+      "type":"structure",
+      "required":["GlueDataCatalogConfiguration"],
+      "members":{
+        "GlueDataCatalogConfiguration":{"shape":"GlueDataCatalogConfiguration"}
+      }
+    },
+    "CatalogConfigurationDescription":{
+      "type":"structure",
+      "required":["GlueDataCatalogConfigurationDescription"],
+      "members":{
+        "GlueDataCatalogConfigurationDescription":{"shape":"GlueDataCatalogConfigurationDescription"}
+      }
+    },
+    "CatalogConfigurationUpdate":{
+      "type":"structure",
+      "required":["GlueDataCatalogConfigurationUpdate"],
+      "members":{
+        "GlueDataCatalogConfigurationUpdate":{"shape":"GlueDataCatalogConfigurationUpdate"}
       }
     },
     "CheckpointConfiguration":{
@@ -1048,7 +1093,8 @@
         "ServiceExecutionRole":{"shape":"RoleARN"},
         "ApplicationConfiguration":{"shape":"ApplicationConfiguration"},
         "CloudWatchLoggingOptions":{"shape":"CloudWatchLoggingOptions"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "ApplicationMode":{"shape":"ApplicationMode"}
       }
     },
     "CreateApplicationResponse":{
@@ -1073,6 +1119,39 @@
       "type":"structure",
       "members":{
       }
+    },
+    "CustomArtifactConfiguration":{
+      "type":"structure",
+      "required":["ArtifactType"],
+      "members":{
+        "ArtifactType":{"shape":"ArtifactType"},
+        "S3ContentLocation":{"shape":"S3ContentLocation"},
+        "MavenReference":{"shape":"MavenReference"}
+      }
+    },
+    "CustomArtifactConfigurationDescription":{
+      "type":"structure",
+      "members":{
+        "ArtifactType":{"shape":"ArtifactType"},
+        "S3ContentLocationDescription":{"shape":"S3ContentLocation"},
+        "MavenReferenceDescription":{"shape":"MavenReference"}
+      }
+    },
+    "CustomArtifactsConfigurationDescriptionList":{
+      "type":"list",
+      "member":{"shape":"CustomArtifactConfigurationDescription"},
+      "max":50
+    },
+    "CustomArtifactsConfigurationList":{
+      "type":"list",
+      "member":{"shape":"CustomArtifactConfiguration"},
+      "max":50
+    },
+    "DatabaseARN":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:.*"
     },
     "DeleteApplicationCloudWatchLoggingOptionRequest":{
       "type":"structure",
@@ -1209,6 +1288,27 @@
         "ApplicationVersionId":{"shape":"ApplicationVersionId"}
       }
     },
+    "DeployAsApplicationConfiguration":{
+      "type":"structure",
+      "required":["S3ContentLocation"],
+      "members":{
+        "S3ContentLocation":{"shape":"S3ContentBaseLocation"}
+      }
+    },
+    "DeployAsApplicationConfigurationDescription":{
+      "type":"structure",
+      "required":["S3ContentLocationDescription"],
+      "members":{
+        "S3ContentLocationDescription":{"shape":"S3ContentBaseLocationDescription"}
+      }
+    },
+    "DeployAsApplicationConfigurationUpdate":{
+      "type":"structure",
+      "required":["S3ContentLocationUpdate"],
+      "members":{
+        "S3ContentLocationUpdate":{"shape":"S3ContentBaseLocationUpdate"}
+      }
+    },
     "DescribeApplicationRequest":{
       "type":"structure",
       "required":["ApplicationName"],
@@ -1341,6 +1441,26 @@
       "type":"structure",
       "members":{
         "AllowNonRestoredState":{"shape":"BooleanObject"}
+      }
+    },
+    "GlueDataCatalogConfiguration":{
+      "type":"structure",
+      "required":["DatabaseARN"],
+      "members":{
+        "DatabaseARN":{"shape":"DatabaseARN"}
+      }
+    },
+    "GlueDataCatalogConfigurationDescription":{
+      "type":"structure",
+      "required":["DatabaseARN"],
+      "members":{
+        "DatabaseARN":{"shape":"DatabaseARN"}
+      }
+    },
+    "GlueDataCatalogConfigurationUpdate":{
+      "type":"structure",
+      "members":{
+        "DatabaseARNUpdate":{"shape":"DatabaseARN"}
       }
     },
     "Id":{
@@ -1749,6 +1869,37 @@
         "CSVMappingParameters":{"shape":"CSVMappingParameters"}
       }
     },
+    "MavenArtifactId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "MavenGroupId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.-]+"
+    },
+    "MavenReference":{
+      "type":"structure",
+      "required":[
+        "GroupId",
+        "ArtifactId",
+        "Version"
+      ],
+      "members":{
+        "GroupId":{"shape":"MavenGroupId"},
+        "ArtifactId":{"shape":"MavenArtifactId"},
+        "Version":{"shape":"MavenVersion"}
+      }
+    },
+    "MavenVersion":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_.-]+"
+    },
     "MetricsLevel":{
       "type":"string",
       "enum":[
@@ -2133,7 +2284,8 @@
         "SQL-1_0",
         "FLINK-1_6",
         "FLINK-1_8",
-        "FLINK-1_11"
+        "FLINK-1_11",
+        "ZEPPELIN-FLINK-1_0"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
@@ -2157,6 +2309,30 @@
       "members":{
         "BucketARN":{"shape":"BucketARN"},
         "FileKey":{"shape":"FileKey"}
+      }
+    },
+    "S3ContentBaseLocation":{
+      "type":"structure",
+      "required":["BucketARN"],
+      "members":{
+        "BucketARN":{"shape":"BucketARN"},
+        "BasePath":{"shape":"BasePath"}
+      }
+    },
+    "S3ContentBaseLocationDescription":{
+      "type":"structure",
+      "required":["BucketARN"],
+      "members":{
+        "BucketARN":{"shape":"BucketARN"},
+        "BasePath":{"shape":"BasePath"}
+      }
+    },
+    "S3ContentBaseLocationUpdate":{
+      "type":"structure",
+      "required":["BucketARNUpdate"],
+      "members":{
+        "BucketARNUpdate":{"shape":"BucketARN"},
+        "BasePathUpdate":{"shape":"BasePath"}
       }
     },
     "S3ContentLocation":{
@@ -2311,10 +2487,7 @@
     },
     "StartApplicationRequest":{
       "type":"structure",
-      "required":[
-        "ApplicationName",
-        "RunConfiguration"
-      ],
+      "required":["ApplicationName"],
       "members":{
         "ApplicationName":{"shape":"ApplicationName"},
         "RunConfiguration":{"shape":"RunConfiguration"}
@@ -2476,7 +2649,10 @@
     },
     "UrlType":{
       "type":"string",
-      "enum":["FLINK_DASHBOARD_URL"]
+      "enum":[
+        "FLINK_DASHBOARD_URL",
+        "ZEPPELIN_UI_URL"
+      ]
     },
     "VpcConfiguration":{
       "type":"structure",
@@ -2526,6 +2702,54 @@
       "member":{"shape":"VpcConfiguration"}
     },
     "VpcId":{"type":"string"},
+    "ZeppelinApplicationConfiguration":{
+      "type":"structure",
+      "members":{
+        "MonitoringConfiguration":{"shape":"ZeppelinMonitoringConfiguration"},
+        "CatalogConfiguration":{"shape":"CatalogConfiguration"},
+        "DeployAsApplicationConfiguration":{"shape":"DeployAsApplicationConfiguration"},
+        "CustomArtifactsConfiguration":{"shape":"CustomArtifactsConfigurationList"}
+      }
+    },
+    "ZeppelinApplicationConfigurationDescription":{
+      "type":"structure",
+      "required":["MonitoringConfigurationDescription"],
+      "members":{
+        "MonitoringConfigurationDescription":{"shape":"ZeppelinMonitoringConfigurationDescription"},
+        "CatalogConfigurationDescription":{"shape":"CatalogConfigurationDescription"},
+        "DeployAsApplicationConfigurationDescription":{"shape":"DeployAsApplicationConfigurationDescription"},
+        "CustomArtifactsConfigurationDescription":{"shape":"CustomArtifactsConfigurationDescriptionList"}
+      }
+    },
+    "ZeppelinApplicationConfigurationUpdate":{
+      "type":"structure",
+      "members":{
+        "MonitoringConfigurationUpdate":{"shape":"ZeppelinMonitoringConfigurationUpdate"},
+        "CatalogConfigurationUpdate":{"shape":"CatalogConfigurationUpdate"},
+        "DeployAsApplicationConfigurationUpdate":{"shape":"DeployAsApplicationConfigurationUpdate"},
+        "CustomArtifactsConfigurationUpdate":{"shape":"CustomArtifactsConfigurationList"}
+      }
+    },
+    "ZeppelinMonitoringConfiguration":{
+      "type":"structure",
+      "required":["LogLevel"],
+      "members":{
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
+    "ZeppelinMonitoringConfigurationDescription":{
+      "type":"structure",
+      "members":{
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
+    "ZeppelinMonitoringConfigurationUpdate":{
+      "type":"structure",
+      "required":["LogLevelUpdate"],
+      "members":{
+        "LogLevelUpdate":{"shape":"LogLevel"}
+      }
+    },
     "ZipFileContent":{
       "type":"blob",
       "max":52428800,

@@ -3044,13 +3044,16 @@ type AddApplicationCloudWatchLoggingOptionInput struct {
 	CloudWatchLoggingOption *CloudWatchLoggingOption `type:"structure" required:"true"`
 
 	// A value you use to implement strong concurrency for application updates.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You get
-	// the application's current ConditionalToken using DescribeApplication.
+	// You must provide the CurrentApplicationVersionId or the ConditionalToken.
+	// You get the application's current ConditionalToken using DescribeApplication.
+	// For better concurrency support, use the ConditionalToken parameter instead
+	// of CurrentApplicationVersionId.
 	ConditionalToken *string `min:"1" type:"string"`
 
 	// The version ID of the Kinesis Data Analytics application. You must provide
-	// the ApplicationVersionID or the ConditionalToken.You can retrieve the application
-	// version ID using DescribeApplication.
+	// the CurrentApplicationVersionId or the ConditionalToken.You can retrieve
+	// the application version ID using DescribeApplication. For better concurrency
+	// support, use the ConditionalToken parameter instead of CurrentApplicationVersionId.
 	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 }
 
@@ -3293,10 +3296,9 @@ type AddApplicationInputProcessingConfigurationInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The version of the application to which you want to add the input processing
-	// configuration. You must provide the ApplicationVersionID or the ConditionalToken.
-	// You can use the DescribeApplication operation to get the current application
-	// version. If the version specified is not the current version, the ConcurrentModificationException
-	// is returned.
+	// configuration. You can use the DescribeApplication operation to get the current
+	// application version. If the version specified is not the current version,
+	// the ConcurrentModificationException is returned.
 	//
 	// CurrentApplicationVersionId is a required field
 	CurrentApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
@@ -3446,9 +3448,8 @@ type AddApplicationOutputInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// The version of the application to which you want to add the output configuration.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You can
-	// use the DescribeApplication operation to get the current application version.
-	// If the version specified is not the current version, the ConcurrentModificationException
+	// You can use the DescribeApplication operation to get the current application
+	// version. If the version specified is not the current version, the ConcurrentModificationException
 	// is returned.
 	//
 	// CurrentApplicationVersionId is a required field
@@ -3700,14 +3701,17 @@ type AddApplicationVpcConfigurationInput struct {
 
 	// A value you use to implement strong concurrency for application updates.
 	// You must provide the ApplicationVersionID or the ConditionalToken. You get
-	// the application's current ConditionalToken using DescribeApplication.
+	// the application's current ConditionalToken using DescribeApplication. For
+	// better concurrency support, use the ConditionalToken parameter instead of
+	// CurrentApplicationVersionId.
 	ConditionalToken *string `min:"1" type:"string"`
 
 	// The version of the application to which you want to add the VPC configuration.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You can
-	// use the DescribeApplication operation to get the current application version.
-	// If the version specified is not the current version, the ConcurrentModificationException
-	// is returned.
+	// You must provide the CurrentApplicationVersionId or the ConditionalToken.
+	// You can use the DescribeApplication operation to get the current application
+	// version. If the version specified is not the current version, the ConcurrentModificationException
+	// is returned. For better concurrency support, use the ConditionalToken parameter
+	// instead of CurrentApplicationVersionId.
 	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// Description of the VPC to add to the application.
@@ -3822,7 +3826,7 @@ func (s *AddApplicationVpcConfigurationOutput) SetVpcConfigurationDescription(v 
 	return s
 }
 
-// Describes code configuration for a Flink-based Kinesis Data Analytics application.
+// Describes code configuration for an application.
 type ApplicationCodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -3875,7 +3879,7 @@ func (s *ApplicationCodeConfiguration) SetCodeContentType(v string) *Application
 	return s
 }
 
-// Describes code configuration for a Flink-based Kinesis Data Analytics application.
+// Describes code configuration for an application.
 type ApplicationCodeConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -3910,8 +3914,9 @@ func (s *ApplicationCodeConfigurationDescription) SetCodeContentType(v string) *
 	return s
 }
 
-// Describes code configuration updates to a Flink-based Kinesis Data Analytics
-// application.
+// Describes code configuration updates for an application. This is supported
+// for a Flink-based Kinesis Data Analytics application or a SQL-based Kinesis
+// Data Analytics application.
 type ApplicationCodeConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -3965,9 +3970,7 @@ type ApplicationConfiguration struct {
 
 	// The code location and type parameters for a Flink-based Kinesis Data Analytics
 	// application.
-	//
-	// ApplicationCodeConfiguration is a required field
-	ApplicationCodeConfiguration *ApplicationCodeConfiguration `type:"structure" required:"true"`
+	ApplicationCodeConfiguration *ApplicationCodeConfiguration `type:"structure"`
 
 	// Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics
 	// application.
@@ -3986,6 +3989,9 @@ type ApplicationConfiguration struct {
 
 	// The array of descriptions of VPC configurations available to the application.
 	VpcConfigurations []*VpcConfiguration `type:"list"`
+
+	// The configuration parameters for a Kinesis Data Analytics Studio notebook.
+	ZeppelinApplicationConfiguration *ZeppelinApplicationConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -4001,9 +4007,6 @@ func (s ApplicationConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ApplicationConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ApplicationConfiguration"}
-	if s.ApplicationCodeConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("ApplicationCodeConfiguration"))
-	}
 	if s.ApplicationCodeConfiguration != nil {
 		if err := s.ApplicationCodeConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("ApplicationCodeConfiguration", err.(request.ErrInvalidParams))
@@ -4037,6 +4040,11 @@ func (s *ApplicationConfiguration) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VpcConfigurations", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.ZeppelinApplicationConfiguration != nil {
+		if err := s.ZeppelinApplicationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ZeppelinApplicationConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4082,6 +4090,12 @@ func (s *ApplicationConfiguration) SetVpcConfigurations(v []*VpcConfiguration) *
 	return s
 }
 
+// SetZeppelinApplicationConfiguration sets the ZeppelinApplicationConfiguration field's value.
+func (s *ApplicationConfiguration) SetZeppelinApplicationConfiguration(v *ZeppelinApplicationConfiguration) *ApplicationConfiguration {
+	s.ZeppelinApplicationConfiguration = v
+	return s
+}
+
 // Describes details about the application code and starting parameters for
 // a Kinesis Data Analytics application.
 type ApplicationConfigurationDescription struct {
@@ -4110,6 +4124,9 @@ type ApplicationConfigurationDescription struct {
 
 	// The array of descriptions of VPC configurations available to the application.
 	VpcConfigurationDescriptions []*VpcConfigurationDescription `type:"list"`
+
+	// The configuration parameters for a Kinesis Data Analytics Studio notebook.
+	ZeppelinApplicationConfigurationDescription *ZeppelinApplicationConfigurationDescription `type:"structure"`
 }
 
 // String returns the string representation
@@ -4164,12 +4181,17 @@ func (s *ApplicationConfigurationDescription) SetVpcConfigurationDescriptions(v 
 	return s
 }
 
+// SetZeppelinApplicationConfigurationDescription sets the ZeppelinApplicationConfigurationDescription field's value.
+func (s *ApplicationConfigurationDescription) SetZeppelinApplicationConfigurationDescription(v *ZeppelinApplicationConfigurationDescription) *ApplicationConfigurationDescription {
+	s.ZeppelinApplicationConfigurationDescription = v
+	return s
+}
+
 // Describes updates to an application's configuration.
 type ApplicationConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// Describes updates to a Flink-based Kinesis Data Analytics application's code
-	// configuration.
+	// Describes updates to an application's code configuration.
 	ApplicationCodeConfigurationUpdate *ApplicationCodeConfigurationUpdate `type:"structure"`
 
 	// Describes whether snapshots are enabled for a Flink-based Kinesis Data Analytics
@@ -4189,6 +4211,9 @@ type ApplicationConfigurationUpdate struct {
 	// Updates to the array of descriptions of VPC configurations available to the
 	// application.
 	VpcConfigurationUpdates []*VpcConfigurationUpdate `type:"list"`
+
+	// Updates to the configuration of a Kinesis Data Analytics Studio notebook.
+	ZeppelinApplicationConfigurationUpdate *ZeppelinApplicationConfigurationUpdate `type:"structure"`
 }
 
 // String returns the string representation
@@ -4239,6 +4264,11 @@ func (s *ApplicationConfigurationUpdate) Validate() error {
 			}
 		}
 	}
+	if s.ZeppelinApplicationConfigurationUpdate != nil {
+		if err := s.ZeppelinApplicationConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("ZeppelinApplicationConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4282,6 +4312,12 @@ func (s *ApplicationConfigurationUpdate) SetVpcConfigurationUpdates(v []*VpcConf
 	return s
 }
 
+// SetZeppelinApplicationConfigurationUpdate sets the ZeppelinApplicationConfigurationUpdate field's value.
+func (s *ApplicationConfigurationUpdate) SetZeppelinApplicationConfigurationUpdate(v *ZeppelinApplicationConfigurationUpdate) *ApplicationConfigurationUpdate {
+	s.ZeppelinApplicationConfigurationUpdate = v
+	return s
+}
+
 // Describes the application, including the application Amazon Resource Name
 // (ARN), status, latest version, and input and output configurations.
 type ApplicationDetail struct {
@@ -4292,8 +4328,8 @@ type ApplicationDetail struct {
 	// ApplicationARN is a required field
 	ApplicationARN *string `min:"1" type:"string" required:"true"`
 
-	// Provides details about the application's Java, SQL, or Scala code and starting
-	// parameters.
+	// Describes details about the application code and starting parameters for
+	// a Kinesis Data Analytics application.
 	ApplicationConfigurationDescription *ApplicationConfigurationDescription `type:"structure"`
 
 	// The description of the application.
@@ -4301,6 +4337,11 @@ type ApplicationDetail struct {
 
 	// The details of the maintenance configuration for the application.
 	ApplicationMaintenanceConfigurationDescription *ApplicationMaintenanceConfigurationDescription `type:"structure"`
+
+	// To create a Kinesis Data Analytics Studio notebook, you must set the mode
+	// to INTERACTIVE. However, for a Kinesis Data Analytics for Apache Flink application,
+	// the mode is optional.
+	ApplicationMode *string `type:"string" enum:"ApplicationMode"`
 
 	// The name of the application.
 	//
@@ -4382,6 +4423,12 @@ func (s *ApplicationDetail) SetApplicationDescription(v string) *ApplicationDeta
 // SetApplicationMaintenanceConfigurationDescription sets the ApplicationMaintenanceConfigurationDescription field's value.
 func (s *ApplicationDetail) SetApplicationMaintenanceConfigurationDescription(v *ApplicationMaintenanceConfigurationDescription) *ApplicationDetail {
 	s.ApplicationMaintenanceConfigurationDescription = v
+	return s
+}
+
+// SetApplicationMode sets the ApplicationMode field's value.
+func (s *ApplicationDetail) SetApplicationMode(v string) *ApplicationDetail {
+	s.ApplicationMode = &v
 	return s
 }
 
@@ -4664,8 +4711,7 @@ func (s *ApplicationSnapshotConfigurationDescription) SetSnapshotsEnabled(v bool
 type ApplicationSnapshotConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// Describes updates to whether snapshots are enabled for a Flink-based Kinesis
-	// Data Analytics application.
+	// Describes updates to whether snapshots are enabled for an application.
 	//
 	// SnapshotsEnabledUpdate is a required field
 	SnapshotsEnabledUpdate *bool `type:"boolean" required:"true"`
@@ -4710,6 +4756,10 @@ type ApplicationSummary struct {
 	// ApplicationARN is a required field
 	ApplicationARN *string `min:"1" type:"string" required:"true"`
 
+	// For a Kinesis Data Analytics for Apache Flink application, the mode is STREAMING.
+	// For a Kinesis Data Analytics Studio notebook, it is INTERACTIVE.
+	ApplicationMode *string `type:"string" enum:"ApplicationMode"`
+
 	// The name of the application.
 	//
 	// ApplicationName is a required field
@@ -4725,8 +4775,7 @@ type ApplicationSummary struct {
 	// ApplicationVersionId is a required field
 	ApplicationVersionId *int64 `min:"1" type:"long" required:"true"`
 
-	// The runtime environment for the application (SQL-1_0, FLINK-1_6, FLINK-1_8,
-	// or FLINK-1_11).
+	// The runtime environment for the application.
 	//
 	// RuntimeEnvironment is a required field
 	RuntimeEnvironment *string `type:"string" required:"true" enum:"RuntimeEnvironment"`
@@ -4745,6 +4794,12 @@ func (s ApplicationSummary) GoString() string {
 // SetApplicationARN sets the ApplicationARN field's value.
 func (s *ApplicationSummary) SetApplicationARN(v string) *ApplicationSummary {
 	s.ApplicationARN = &v
+	return s
+}
+
+// SetApplicationMode sets the ApplicationMode field's value.
+func (s *ApplicationSummary) SetApplicationMode(v string) *ApplicationSummary {
+	s.ApplicationMode = &v
 	return s
 }
 
@@ -4875,6 +4930,130 @@ func (s *CSVMappingParameters) SetRecordColumnDelimiter(v string) *CSVMappingPar
 // SetRecordRowDelimiter sets the RecordRowDelimiter field's value.
 func (s *CSVMappingParameters) SetRecordRowDelimiter(v string) *CSVMappingParameters {
 	s.RecordRowDelimiter = &v
+	return s
+}
+
+// The configuration parameters for the default AWS Glue database. You use this
+// database for SQL queries that you write in a Kinesis Data Analytics Studio
+// notebook.
+type CatalogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration parameters for the default AWS Glue database. You use this
+	// database for Apache Flink SQL queries and table API transforms that you write
+	// in a Kinesis Data Analytics Studio notebook.
+	//
+	// GlueDataCatalogConfiguration is a required field
+	GlueDataCatalogConfiguration *GlueDataCatalogConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CatalogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CatalogConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CatalogConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CatalogConfiguration"}
+	if s.GlueDataCatalogConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlueDataCatalogConfiguration"))
+	}
+	if s.GlueDataCatalogConfiguration != nil {
+		if err := s.GlueDataCatalogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("GlueDataCatalogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlueDataCatalogConfiguration sets the GlueDataCatalogConfiguration field's value.
+func (s *CatalogConfiguration) SetGlueDataCatalogConfiguration(v *GlueDataCatalogConfiguration) *CatalogConfiguration {
+	s.GlueDataCatalogConfiguration = v
+	return s
+}
+
+// The configuration parameters for the default AWS Glue database. You use this
+// database for Apache Flink SQL queries and table API transforms that you write
+// in a Kinesis Data Analytics Studio notebook.
+type CatalogConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration parameters for the default AWS Glue database. You use this
+	// database for SQL queries that you write in a Kinesis Data Analytics Studio
+	// notebook.
+	//
+	// GlueDataCatalogConfigurationDescription is a required field
+	GlueDataCatalogConfigurationDescription *GlueDataCatalogConfigurationDescription `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CatalogConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CatalogConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetGlueDataCatalogConfigurationDescription sets the GlueDataCatalogConfigurationDescription field's value.
+func (s *CatalogConfigurationDescription) SetGlueDataCatalogConfigurationDescription(v *GlueDataCatalogConfigurationDescription) *CatalogConfigurationDescription {
+	s.GlueDataCatalogConfigurationDescription = v
+	return s
+}
+
+// Updates to
+type CatalogConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Updates to the configuration parameters for the default AWS Glue database.
+	// You use this database for SQL queries that you write in a Kinesis Data Analytics
+	// Studio notebook.
+	//
+	// GlueDataCatalogConfigurationUpdate is a required field
+	GlueDataCatalogConfigurationUpdate *GlueDataCatalogConfigurationUpdate `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CatalogConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CatalogConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CatalogConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CatalogConfigurationUpdate"}
+	if s.GlueDataCatalogConfigurationUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlueDataCatalogConfigurationUpdate"))
+	}
+	if s.GlueDataCatalogConfigurationUpdate != nil {
+		if err := s.GlueDataCatalogConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("GlueDataCatalogConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlueDataCatalogConfigurationUpdate sets the GlueDataCatalogConfigurationUpdate field's value.
+func (s *CatalogConfigurationUpdate) SetGlueDataCatalogConfigurationUpdate(v *GlueDataCatalogConfigurationUpdate) *CatalogConfigurationUpdate {
+	s.GlueDataCatalogConfigurationUpdate = v
 	return s
 }
 
@@ -5296,7 +5475,7 @@ func (s *CloudWatchLoggingOptionUpdate) SetLogStreamARNUpdate(v string) *CloudWa
 type CodeContent struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the Amazon S3 bucket containing the application code.
+	// Information about the Amazon S3 bucket that contains the application code.
 	S3ContentLocation *S3ContentLocation `type:"structure"`
 
 	// The text-format code for a Flink-based Kinesis Data Analytics application.
@@ -5351,8 +5530,7 @@ func (s *CodeContent) SetZipFileContent(v []byte) *CodeContent {
 	return s
 }
 
-// Describes details about the application code for a Flink-based Kinesis Data
-// Analytics application.
+// Describes details about the code of a Kinesis Data Analytics application.
 type CodeContentDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5405,7 +5583,8 @@ func (s *CodeContentDescription) SetTextContent(v string) *CodeContentDescriptio
 	return s
 }
 
-// Describes an update to the code of a Flink-based Kinesis Data Analytics application.
+// Describes an update to the code of an application. Not supported for Apache
+// Zeppelin.
 type CodeContentUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -5588,6 +5767,10 @@ type CreateApplicationInput struct {
 	// A summary description of the application.
 	ApplicationDescription *string `type:"string"`
 
+	// Use the STREAMING mode to create a Kinesis Data Analytics Studio notebook.
+	// To create a Kinesis Data Analytics Studio notebook, use the INTERACTIVE mode.
+	ApplicationMode *string `type:"string" enum:"ApplicationMode"`
+
 	// The name of your application (for example, sample-app).
 	//
 	// ApplicationName is a required field
@@ -5688,6 +5871,12 @@ func (s *CreateApplicationInput) SetApplicationConfiguration(v *ApplicationConfi
 // SetApplicationDescription sets the ApplicationDescription field's value.
 func (s *CreateApplicationInput) SetApplicationDescription(v string) *CreateApplicationInput {
 	s.ApplicationDescription = &v
+	return s
+}
+
+// SetApplicationMode sets the ApplicationMode field's value.
+func (s *CreateApplicationInput) SetApplicationMode(v string) *CreateApplicationInput {
+	s.ApplicationMode = &v
 	return s
 }
 
@@ -5910,6 +6099,124 @@ func (s CreateApplicationSnapshotOutput) GoString() string {
 	return s.String()
 }
 
+// Specifies dependency JARs, as well as JAR files that contain user-defined
+// functions (UDF).
+type CustomArtifactConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// UDF stands for user-defined functions. This type of artifact must be in an
+	// S3 bucket. A DEPENDENCY_JAR can be in either Maven or an S3 bucket.
+	//
+	// ArtifactType is a required field
+	ArtifactType *string `type:"string" required:"true" enum:"ArtifactType"`
+
+	// The parameters required to fully specify a Maven reference.
+	MavenReference *MavenReference `type:"structure"`
+
+	// For a Kinesis Data Analytics application provides a description of an Amazon
+	// S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the
+	// name of the Amazon S3 object that contains the data, and the version number
+	// of the Amazon S3 object that contains the data.
+	S3ContentLocation *S3ContentLocation `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomArtifactConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomArtifactConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomArtifactConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomArtifactConfiguration"}
+	if s.ArtifactType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArtifactType"))
+	}
+	if s.MavenReference != nil {
+		if err := s.MavenReference.Validate(); err != nil {
+			invalidParams.AddNested("MavenReference", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3ContentLocation != nil {
+		if err := s.S3ContentLocation.Validate(); err != nil {
+			invalidParams.AddNested("S3ContentLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArtifactType sets the ArtifactType field's value.
+func (s *CustomArtifactConfiguration) SetArtifactType(v string) *CustomArtifactConfiguration {
+	s.ArtifactType = &v
+	return s
+}
+
+// SetMavenReference sets the MavenReference field's value.
+func (s *CustomArtifactConfiguration) SetMavenReference(v *MavenReference) *CustomArtifactConfiguration {
+	s.MavenReference = v
+	return s
+}
+
+// SetS3ContentLocation sets the S3ContentLocation field's value.
+func (s *CustomArtifactConfiguration) SetS3ContentLocation(v *S3ContentLocation) *CustomArtifactConfiguration {
+	s.S3ContentLocation = v
+	return s
+}
+
+// Specifies a dependency JAR or a JAR of user-defined functions.
+type CustomArtifactConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// UDF stands for user-defined functions. This type of artifact must be in an
+	// S3 bucket. A DEPENDENCY_JAR can be in either Maven or an S3 bucket.
+	ArtifactType *string `type:"string" enum:"ArtifactType"`
+
+	// The parameters that are required to specify a Maven dependency.
+	MavenReferenceDescription *MavenReference `type:"structure"`
+
+	// For a Kinesis Data Analytics application provides a description of an Amazon
+	// S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the
+	// name of the Amazon S3 object that contains the data, and the version number
+	// of the Amazon S3 object that contains the data.
+	S3ContentLocationDescription *S3ContentLocation `type:"structure"`
+}
+
+// String returns the string representation
+func (s CustomArtifactConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomArtifactConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetArtifactType sets the ArtifactType field's value.
+func (s *CustomArtifactConfigurationDescription) SetArtifactType(v string) *CustomArtifactConfigurationDescription {
+	s.ArtifactType = &v
+	return s
+}
+
+// SetMavenReferenceDescription sets the MavenReferenceDescription field's value.
+func (s *CustomArtifactConfigurationDescription) SetMavenReferenceDescription(v *MavenReference) *CustomArtifactConfigurationDescription {
+	s.MavenReferenceDescription = v
+	return s
+}
+
+// SetS3ContentLocationDescription sets the S3ContentLocationDescription field's value.
+func (s *CustomArtifactConfigurationDescription) SetS3ContentLocationDescription(v *S3ContentLocation) *CustomArtifactConfigurationDescription {
+	s.S3ContentLocationDescription = v
+	return s
+}
+
 type DeleteApplicationCloudWatchLoggingOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5926,13 +6233,16 @@ type DeleteApplicationCloudWatchLoggingOptionInput struct {
 	CloudWatchLoggingOptionId *string `min:"1" type:"string" required:"true"`
 
 	// A value you use to implement strong concurrency for application updates.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You get
-	// the application's current ConditionalToken using DescribeApplication.
+	// You must provide the CurrentApplicationVersionId or the ConditionalToken.
+	// You get the application's current ConditionalToken using DescribeApplication.
+	// For better concurrency support, use the ConditionalToken parameter instead
+	// of CurrentApplicationVersionId.
 	ConditionalToken *string `min:"1" type:"string"`
 
-	// The version ID of the application. You must provide the ApplicationVersionID
+	// The version ID of the application. You must provide the CurrentApplicationVersionId
 	// or the ConditionalToken. You can retrieve the application version ID using
-	// DescribeApplication.
+	// DescribeApplication. For better concurrency support, use the ConditionalToken
+	// parameter instead of CurrentApplicationVersionId.
 	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 }
 
@@ -6542,13 +6852,16 @@ type DeleteApplicationVpcConfigurationInput struct {
 	ApplicationName *string `min:"1" type:"string" required:"true"`
 
 	// A value you use to implement strong concurrency for application updates.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You get
-	// the application's current ConditionalToken using DescribeApplication.
+	// You must provide the CurrentApplicationVersionId or the ConditionalToken.
+	// You get the application's current ConditionalToken using DescribeApplication.
+	// For better concurrency support, use the ConditionalToken parameter instead
+	// of CurrentApplicationVersionId.
 	ConditionalToken *string `min:"1" type:"string"`
 
-	// The current application version ID. You must provide the ApplicationVersionID
-	// or the ConditionalToken.You can retrieve the application version ID using
-	// DescribeApplication.
+	// The current application version ID. You must provide the CurrentApplicationVersionId
+	// or the ConditionalToken. You can retrieve the application version ID using
+	// DescribeApplication. For better concurrency support, use the ConditionalToken
+	// parameter instead of CurrentApplicationVersionId.
 	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// The ID of the VPC configuration to delete.
@@ -6648,6 +6961,128 @@ func (s *DeleteApplicationVpcConfigurationOutput) SetApplicationARN(v string) *D
 // SetApplicationVersionId sets the ApplicationVersionId field's value.
 func (s *DeleteApplicationVpcConfigurationOutput) SetApplicationVersionId(v int64) *DeleteApplicationVpcConfigurationOutput {
 	s.ApplicationVersionId = &v
+	return s
+}
+
+// The information required to deploy a Kinesis Data Analytics Studio notebook
+// as an application with durable state..
+type DeployAsApplicationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The description of an Amazon S3 object that contains the Amazon Data Analytics
+	// application, including the Amazon Resource Name (ARN) of the S3 bucket, the
+	// name of the Amazon S3 object that contains the data, and the version number
+	// of the Amazon S3 object that contains the data.
+	//
+	// S3ContentLocation is a required field
+	S3ContentLocation *S3ContentBaseLocation `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeployAsApplicationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeployAsApplicationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeployAsApplicationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeployAsApplicationConfiguration"}
+	if s.S3ContentLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3ContentLocation"))
+	}
+	if s.S3ContentLocation != nil {
+		if err := s.S3ContentLocation.Validate(); err != nil {
+			invalidParams.AddNested("S3ContentLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3ContentLocation sets the S3ContentLocation field's value.
+func (s *DeployAsApplicationConfiguration) SetS3ContentLocation(v *S3ContentBaseLocation) *DeployAsApplicationConfiguration {
+	s.S3ContentLocation = v
+	return s
+}
+
+// The configuration information required to deploy an Amazon Data Analytics
+// Studio notebook as an application with durable state.
+type DeployAsApplicationConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The location that holds the data required to specify an Amazon Data Analytics
+	// application.
+	//
+	// S3ContentLocationDescription is a required field
+	S3ContentLocationDescription *S3ContentBaseLocationDescription `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeployAsApplicationConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeployAsApplicationConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetS3ContentLocationDescription sets the S3ContentLocationDescription field's value.
+func (s *DeployAsApplicationConfigurationDescription) SetS3ContentLocationDescription(v *S3ContentBaseLocationDescription) *DeployAsApplicationConfigurationDescription {
+	s.S3ContentLocationDescription = v
+	return s
+}
+
+// Updates to the configuration information required to deploy an Amazon Data
+// Analytics Studio notebook as an application with durable state..
+type DeployAsApplicationConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Updates to the location that holds the data required to specify an Amazon
+	// Data Analytics application.
+	//
+	// S3ContentLocationUpdate is a required field
+	S3ContentLocationUpdate *S3ContentBaseLocationUpdate `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeployAsApplicationConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeployAsApplicationConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeployAsApplicationConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeployAsApplicationConfigurationUpdate"}
+	if s.S3ContentLocationUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3ContentLocationUpdate"))
+	}
+	if s.S3ContentLocationUpdate != nil {
+		if err := s.S3ContentLocationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("S3ContentLocationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3ContentLocationUpdate sets the S3ContentLocationUpdate field's value.
+func (s *DeployAsApplicationConfigurationUpdate) SetS3ContentLocationUpdate(v *S3ContentBaseLocationUpdate) *DeployAsApplicationConfigurationUpdate {
+	s.S3ContentLocationUpdate = v
 	return s
 }
 
@@ -7128,8 +7563,7 @@ func (s *EnvironmentProperties) SetPropertyGroups(v []*PropertyGroup) *Environme
 	return s
 }
 
-// Describes the execution properties for a Flink-based Kinesis Data Analytics
-// application.
+// Describes the execution properties for an Apache Flink runtime.
 type EnvironmentPropertyDescriptions struct {
 	_ struct{} `type:"structure"`
 
@@ -7154,7 +7588,7 @@ func (s *EnvironmentPropertyDescriptions) SetPropertyGroupDescriptions(v []*Prop
 }
 
 // Describes updates to the execution property groups for a Flink-based Kinesis
-// Data Analytics application.
+// Data Analytics application or a Studio notebook.
 type EnvironmentPropertyUpdates struct {
 	_ struct{} `type:"structure"`
 
@@ -7204,7 +7638,7 @@ func (s *EnvironmentPropertyUpdates) SetPropertyGroups(v []*PropertyGroup) *Envi
 }
 
 // Describes configuration parameters for a Flink-based Kinesis Data Analytics
-// application.
+// application or a Studio notebook.
 type FlinkApplicationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7428,6 +7862,114 @@ func (s FlinkRunConfiguration) GoString() string {
 // SetAllowNonRestoredState sets the AllowNonRestoredState field's value.
 func (s *FlinkRunConfiguration) SetAllowNonRestoredState(v bool) *FlinkRunConfiguration {
 	s.AllowNonRestoredState = &v
+	return s
+}
+
+// The configuration of the Glue Data Catalog that you use for Apache Flink
+// SQL queries and table API transforms that you write in an application.
+type GlueDataCatalogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the database.
+	//
+	// DatabaseARN is a required field
+	DatabaseARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GlueDataCatalogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlueDataCatalogConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlueDataCatalogConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlueDataCatalogConfiguration"}
+	if s.DatabaseARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseARN"))
+	}
+	if s.DatabaseARN != nil && len(*s.DatabaseARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseARN sets the DatabaseARN field's value.
+func (s *GlueDataCatalogConfiguration) SetDatabaseARN(v string) *GlueDataCatalogConfiguration {
+	s.DatabaseARN = &v
+	return s
+}
+
+// The configuration of the Glue Data Catalog that you use for Apache Flink
+// SQL queries and table API transforms that you write in an application.
+type GlueDataCatalogConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the database.
+	//
+	// DatabaseARN is a required field
+	DatabaseARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GlueDataCatalogConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlueDataCatalogConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseARN sets the DatabaseARN field's value.
+func (s *GlueDataCatalogConfigurationDescription) SetDatabaseARN(v string) *GlueDataCatalogConfigurationDescription {
+	s.DatabaseARN = &v
+	return s
+}
+
+// Updates to the configuration of the Glue Data Catalog that you use for SQL
+// queries that you write in a Kinesis Data Analytics Studio notebook.
+type GlueDataCatalogConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The updated Amazon Resource Name (ARN) of the database.
+	DatabaseARNUpdate *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GlueDataCatalogConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlueDataCatalogConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GlueDataCatalogConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GlueDataCatalogConfigurationUpdate"}
+	if s.DatabaseARNUpdate != nil && len(*s.DatabaseARNUpdate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseARNUpdate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseARNUpdate sets the DatabaseARNUpdate field's value.
+func (s *GlueDataCatalogConfigurationUpdate) SetDatabaseARNUpdate(v string) *GlueDataCatalogConfigurationUpdate {
+	s.DatabaseARNUpdate = &v
 	return s
 }
 
@@ -9593,9 +10135,85 @@ func (s *MappingParameters) SetJSONMappingParameters(v *JSONMappingParameters) *
 	return s
 }
 
-// Describes configuration parameters for Amazon CloudWatch logging for a Flink-based
-// Kinesis Data Analytics application. For more information about CloudWatch
-// logging, see Monitoring (https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html).
+// The information required to specify a Maven reference. You can use Maven
+// references to specify dependency JAR files.
+type MavenReference struct {
+	_ struct{} `type:"structure"`
+
+	// The artifact ID of the Maven reference.
+	//
+	// ArtifactId is a required field
+	ArtifactId *string `min:"1" type:"string" required:"true"`
+
+	// The group ID of the Maven reference.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+
+	// The version of the Maven reference.
+	//
+	// Version is a required field
+	Version *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MavenReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MavenReference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MavenReference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MavenReference"}
+	if s.ArtifactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArtifactId"))
+	}
+	if s.ArtifactId != nil && len(*s.ArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArtifactId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArtifactId sets the ArtifactId field's value.
+func (s *MavenReference) SetArtifactId(v string) *MavenReference {
+	s.ArtifactId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *MavenReference) SetGroupId(v string) *MavenReference {
+	s.GroupId = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *MavenReference) SetVersion(v string) *MavenReference {
+	s.Version = &v
+	return s
+}
+
+// Describes configuration parameters for Amazon CloudWatch logging for an application.
+// For more information about CloudWatch logging, see Monitoring (https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html).
 type MonitoringConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9656,8 +10274,7 @@ func (s *MonitoringConfiguration) SetMetricsLevel(v string) *MonitoringConfigura
 	return s
 }
 
-// Describes configuration parameters for CloudWatch logging for a Flink-based
-// Kinesis Data Analytics application.
+// Describes configuration parameters for CloudWatch logging for an application.
 type MonitoringConfigurationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -9701,7 +10318,7 @@ func (s *MonitoringConfigurationDescription) SetMetricsLevel(v string) *Monitori
 }
 
 // Describes updates to configuration parameters for Amazon CloudWatch logging
-// for a Flink-based Kinesis Data Analytics application.
+// for an application.
 type MonitoringConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -10210,13 +10827,14 @@ func (s *ParallelismConfigurationDescription) SetParallelismPerKPU(v int64) *Par
 	return s
 }
 
-// Describes updates to parameters for how a Flink-based Kinesis Data Analytics
-// application executes multiple tasks simultaneously.
+// Describes updates to parameters for how an application executes multiple
+// tasks simultaneously.
 type ParallelismConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
 	// Describes updates to whether the Kinesis Data Analytics service can increase
-	// the parallelism of the application in response to increased throughput.
+	// the parallelism of a Flink-based Kinesis Data Analytics application in response
+	// to increased throughput.
 	AutoScalingEnabledUpdate *bool `type:"boolean"`
 
 	// Describes updates to whether the application uses the default parallelism
@@ -10290,8 +10908,7 @@ func (s *ParallelismConfigurationUpdate) SetParallelismUpdate(v int64) *Parallel
 	return s
 }
 
-// Property key-value pairs passed into a Flink-based Kinesis Data Analytics
-// application.
+// Property key-value pairs passed into an application.
 type PropertyGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -11128,8 +11745,7 @@ func (s *RunConfigurationUpdate) SetFlinkRunConfiguration(v *FlinkRunConfigurati
 	return s
 }
 
-// Describes the location of a Flink-based Kinesis Data Analytics application's
-// code stored in an S3 bucket.
+// Describes the location of an application's code stored in an S3 bucket.
 type S3ApplicationCodeLocationDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -11237,10 +11853,153 @@ func (s *S3Configuration) SetFileKey(v string) *S3Configuration {
 	return s
 }
 
-// For a Flink-based Kinesis Data Analytics application, provides a description
-// of an Amazon S3 object, including the Amazon Resource Name (ARN) of the S3
-// bucket, the name of the Amazon S3 object that contains the data, and the
-// version number of the Amazon S3 object that contains the data.
+// The S3 bucket that holds the application information.
+type S3ContentBaseLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The base path for the S3 bucket.
+	BasePath *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the S3 bucket.
+	//
+	// BucketARN is a required field
+	BucketARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3ContentBaseLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3ContentBaseLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ContentBaseLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ContentBaseLocation"}
+	if s.BasePath != nil && len(*s.BasePath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BasePath", 1))
+	}
+	if s.BucketARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketARN"))
+	}
+	if s.BucketARN != nil && len(*s.BucketARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasePath sets the BasePath field's value.
+func (s *S3ContentBaseLocation) SetBasePath(v string) *S3ContentBaseLocation {
+	s.BasePath = &v
+	return s
+}
+
+// SetBucketARN sets the BucketARN field's value.
+func (s *S3ContentBaseLocation) SetBucketARN(v string) *S3ContentBaseLocation {
+	s.BucketARN = &v
+	return s
+}
+
+// The description of the S3 base location that holds the application.
+type S3ContentBaseLocationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The base path for the S3 bucket.
+	BasePath *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the S3 bucket.
+	//
+	// BucketARN is a required field
+	BucketARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3ContentBaseLocationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3ContentBaseLocationDescription) GoString() string {
+	return s.String()
+}
+
+// SetBasePath sets the BasePath field's value.
+func (s *S3ContentBaseLocationDescription) SetBasePath(v string) *S3ContentBaseLocationDescription {
+	s.BasePath = &v
+	return s
+}
+
+// SetBucketARN sets the BucketARN field's value.
+func (s *S3ContentBaseLocationDescription) SetBucketARN(v string) *S3ContentBaseLocationDescription {
+	s.BucketARN = &v
+	return s
+}
+
+// The information required to update the S3 base location that holds the application.
+type S3ContentBaseLocationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The updated S3 bucket path.
+	BasePathUpdate *string `min:"1" type:"string"`
+
+	// The updated Amazon Resource Name (ARN) of the S3 bucket.
+	//
+	// BucketARNUpdate is a required field
+	BucketARNUpdate *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3ContentBaseLocationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3ContentBaseLocationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3ContentBaseLocationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3ContentBaseLocationUpdate"}
+	if s.BasePathUpdate != nil && len(*s.BasePathUpdate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BasePathUpdate", 1))
+	}
+	if s.BucketARNUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketARNUpdate"))
+	}
+	if s.BucketARNUpdate != nil && len(*s.BucketARNUpdate) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketARNUpdate", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasePathUpdate sets the BasePathUpdate field's value.
+func (s *S3ContentBaseLocationUpdate) SetBasePathUpdate(v string) *S3ContentBaseLocationUpdate {
+	s.BasePathUpdate = &v
+	return s
+}
+
+// SetBucketARNUpdate sets the BucketARNUpdate field's value.
+func (s *S3ContentBaseLocationUpdate) SetBucketARNUpdate(v string) *S3ContentBaseLocationUpdate {
+	s.BucketARNUpdate = &v
+	return s
+}
+
+// For a Kinesis Data Analytics application provides a description of an Amazon
+// S3 object, including the Amazon Resource Name (ARN) of the S3 bucket, the
+// name of the Amazon S3 object that contains the data, and the version number
+// of the Amazon S3 object that contains the data.
 type S3ContentLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -11309,8 +12068,7 @@ func (s *S3ContentLocation) SetObjectVersion(v string) *S3ContentLocation {
 	return s
 }
 
-// Describes an update for the Amazon S3 code content location for a Flink-based
-// Kinesis Data Analytics application.
+// Describes an update for the Amazon S3 code content location for an application.
 type S3ContentLocationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -12011,9 +12769,7 @@ type StartApplicationInput struct {
 
 	// Identifies the run configuration (start parameters) of a Kinesis Data Analytics
 	// application.
-	//
-	// RunConfiguration is a required field
-	RunConfiguration *RunConfiguration `type:"structure" required:"true"`
+	RunConfiguration *RunConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -12034,9 +12790,6 @@ func (s *StartApplicationInput) Validate() error {
 	}
 	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
-	}
-	if s.RunConfiguration == nil {
-		invalidParams.Add(request.NewErrParamRequired("RunConfiguration"))
 	}
 	if s.RunConfiguration != nil {
 		if err := s.RunConfiguration.Validate(); err != nil {
@@ -12557,13 +13310,16 @@ type UpdateApplicationInput struct {
 	CloudWatchLoggingOptionUpdates []*CloudWatchLoggingOptionUpdate `type:"list"`
 
 	// A value you use to implement strong concurrency for application updates.
-	// You must provide the ApplicationVersionID or the ConditionalToken. You get
-	// the application's current ConditionalToken using DescribeApplication.
+	// You must provide the CurrentApplicationVersionId or the ConditionalToken.
+	// You get the application's current ConditionalToken using DescribeApplication.
+	// For better concurrency support, use the ConditionalToken parameter instead
+	// of CurrentApplicationVersionId.
 	ConditionalToken *string `min:"1" type:"string"`
 
-	// The current application version ID. You must provide the ApplicationVersionID
+	// The current application version ID. You must provide the CurrentApplicationVersionId
 	// or the ConditionalToken.You can retrieve the application version ID using
-	// DescribeApplication.
+	// DescribeApplication. For better concurrency support, use the ConditionalToken
+	// parameter instead of CurrentApplicationVersionId.
 	CurrentApplicationVersionId *int64 `min:"1" type:"long"`
 
 	// Describes updates to the application's starting parameters.
@@ -12978,6 +13734,362 @@ func (s *VpcConfigurationUpdate) SetVpcConfigurationId(v string) *VpcConfigurati
 	return s
 }
 
+// The configuration of a Kinesis Data Analytics Studio notebook.
+type ZeppelinApplicationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Glue Data Catalog that you use in queries in a Kinesis Data Analytics
+	// Studio notebook.
+	CatalogConfiguration *CatalogConfiguration `type:"structure"`
+
+	// Custom artifacts are dependency JARs and user-defined functions (UDF).
+	CustomArtifactsConfiguration []*CustomArtifactConfiguration `type:"list"`
+
+	// The information required to deploy a Kinesis Data Analytics Studio notebook
+	// as an application with durable state..
+	DeployAsApplicationConfiguration *DeployAsApplicationConfiguration `type:"structure"`
+
+	// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
+	MonitoringConfiguration *ZeppelinMonitoringConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s ZeppelinApplicationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinApplicationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZeppelinApplicationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZeppelinApplicationConfiguration"}
+	if s.CatalogConfiguration != nil {
+		if err := s.CatalogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("CatalogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomArtifactsConfiguration != nil {
+		for i, v := range s.CustomArtifactsConfiguration {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomArtifactsConfiguration", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DeployAsApplicationConfiguration != nil {
+		if err := s.DeployAsApplicationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeployAsApplicationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MonitoringConfiguration != nil {
+		if err := s.MonitoringConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MonitoringConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogConfiguration sets the CatalogConfiguration field's value.
+func (s *ZeppelinApplicationConfiguration) SetCatalogConfiguration(v *CatalogConfiguration) *ZeppelinApplicationConfiguration {
+	s.CatalogConfiguration = v
+	return s
+}
+
+// SetCustomArtifactsConfiguration sets the CustomArtifactsConfiguration field's value.
+func (s *ZeppelinApplicationConfiguration) SetCustomArtifactsConfiguration(v []*CustomArtifactConfiguration) *ZeppelinApplicationConfiguration {
+	s.CustomArtifactsConfiguration = v
+	return s
+}
+
+// SetDeployAsApplicationConfiguration sets the DeployAsApplicationConfiguration field's value.
+func (s *ZeppelinApplicationConfiguration) SetDeployAsApplicationConfiguration(v *DeployAsApplicationConfiguration) *ZeppelinApplicationConfiguration {
+	s.DeployAsApplicationConfiguration = v
+	return s
+}
+
+// SetMonitoringConfiguration sets the MonitoringConfiguration field's value.
+func (s *ZeppelinApplicationConfiguration) SetMonitoringConfiguration(v *ZeppelinMonitoringConfiguration) *ZeppelinApplicationConfiguration {
+	s.MonitoringConfiguration = v
+	return s
+}
+
+// The configuration of a Kinesis Data Analytics Studio notebook.
+type ZeppelinApplicationConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Glue Data Catalog that is associated with the Kinesis Data Analytics
+	// Studio notebook.
+	CatalogConfigurationDescription *CatalogConfigurationDescription `type:"structure"`
+
+	// Custom artifacts are dependency JARs and user-defined functions (UDF).
+	CustomArtifactsConfigurationDescription []*CustomArtifactConfigurationDescription `type:"list"`
+
+	// The parameters required to deploy a Kinesis Data Analytics Studio notebook
+	// as an application with durable state..
+	DeployAsApplicationConfigurationDescription *DeployAsApplicationConfigurationDescription `type:"structure"`
+
+	// The monitoring configuration of a Kinesis Data Analytics Studio notebook.
+	//
+	// MonitoringConfigurationDescription is a required field
+	MonitoringConfigurationDescription *ZeppelinMonitoringConfigurationDescription `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ZeppelinApplicationConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinApplicationConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetCatalogConfigurationDescription sets the CatalogConfigurationDescription field's value.
+func (s *ZeppelinApplicationConfigurationDescription) SetCatalogConfigurationDescription(v *CatalogConfigurationDescription) *ZeppelinApplicationConfigurationDescription {
+	s.CatalogConfigurationDescription = v
+	return s
+}
+
+// SetCustomArtifactsConfigurationDescription sets the CustomArtifactsConfigurationDescription field's value.
+func (s *ZeppelinApplicationConfigurationDescription) SetCustomArtifactsConfigurationDescription(v []*CustomArtifactConfigurationDescription) *ZeppelinApplicationConfigurationDescription {
+	s.CustomArtifactsConfigurationDescription = v
+	return s
+}
+
+// SetDeployAsApplicationConfigurationDescription sets the DeployAsApplicationConfigurationDescription field's value.
+func (s *ZeppelinApplicationConfigurationDescription) SetDeployAsApplicationConfigurationDescription(v *DeployAsApplicationConfigurationDescription) *ZeppelinApplicationConfigurationDescription {
+	s.DeployAsApplicationConfigurationDescription = v
+	return s
+}
+
+// SetMonitoringConfigurationDescription sets the MonitoringConfigurationDescription field's value.
+func (s *ZeppelinApplicationConfigurationDescription) SetMonitoringConfigurationDescription(v *ZeppelinMonitoringConfigurationDescription) *ZeppelinApplicationConfigurationDescription {
+	s.MonitoringConfigurationDescription = v
+	return s
+}
+
+// Updates to the configuration of Kinesis Data Analytics Studio notebook.
+type ZeppelinApplicationConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Updates to the configuration of the AWS Glue Data Catalog that is associated
+	// with the Kinesis Data Analytics Studio notebook.
+	CatalogConfigurationUpdate *CatalogConfigurationUpdate `type:"structure"`
+
+	// Updates to the customer artifacts. Custom artifacts are dependency JAR files
+	// and user-defined functions (UDF).
+	CustomArtifactsConfigurationUpdate []*CustomArtifactConfiguration `type:"list"`
+
+	// Updates to the configuration information required to deploy an Amazon Data
+	// Analytics Studio notebook as an application with durable state..
+	DeployAsApplicationConfigurationUpdate *DeployAsApplicationConfigurationUpdate `type:"structure"`
+
+	// Updates to the monitoring configuration of a Kinesis Data Analytics Studio
+	// notebook.
+	MonitoringConfigurationUpdate *ZeppelinMonitoringConfigurationUpdate `type:"structure"`
+}
+
+// String returns the string representation
+func (s ZeppelinApplicationConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinApplicationConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZeppelinApplicationConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZeppelinApplicationConfigurationUpdate"}
+	if s.CatalogConfigurationUpdate != nil {
+		if err := s.CatalogConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("CatalogConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomArtifactsConfigurationUpdate != nil {
+		for i, v := range s.CustomArtifactsConfigurationUpdate {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomArtifactsConfigurationUpdate", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DeployAsApplicationConfigurationUpdate != nil {
+		if err := s.DeployAsApplicationConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("DeployAsApplicationConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MonitoringConfigurationUpdate != nil {
+		if err := s.MonitoringConfigurationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("MonitoringConfigurationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogConfigurationUpdate sets the CatalogConfigurationUpdate field's value.
+func (s *ZeppelinApplicationConfigurationUpdate) SetCatalogConfigurationUpdate(v *CatalogConfigurationUpdate) *ZeppelinApplicationConfigurationUpdate {
+	s.CatalogConfigurationUpdate = v
+	return s
+}
+
+// SetCustomArtifactsConfigurationUpdate sets the CustomArtifactsConfigurationUpdate field's value.
+func (s *ZeppelinApplicationConfigurationUpdate) SetCustomArtifactsConfigurationUpdate(v []*CustomArtifactConfiguration) *ZeppelinApplicationConfigurationUpdate {
+	s.CustomArtifactsConfigurationUpdate = v
+	return s
+}
+
+// SetDeployAsApplicationConfigurationUpdate sets the DeployAsApplicationConfigurationUpdate field's value.
+func (s *ZeppelinApplicationConfigurationUpdate) SetDeployAsApplicationConfigurationUpdate(v *DeployAsApplicationConfigurationUpdate) *ZeppelinApplicationConfigurationUpdate {
+	s.DeployAsApplicationConfigurationUpdate = v
+	return s
+}
+
+// SetMonitoringConfigurationUpdate sets the MonitoringConfigurationUpdate field's value.
+func (s *ZeppelinApplicationConfigurationUpdate) SetMonitoringConfigurationUpdate(v *ZeppelinMonitoringConfigurationUpdate) *ZeppelinApplicationConfigurationUpdate {
+	s.MonitoringConfigurationUpdate = v
+	return s
+}
+
+// Describes configuration parameters for Amazon CloudWatch logging for a Kinesis
+// Data Analytics Studio notebook. For more information about CloudWatch logging,
+// see Monitoring (https://docs.aws.amazon.com/kinesisanalytics/latest/java/monitoring-overview.html).
+type ZeppelinMonitoringConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The verbosity of the CloudWatch Logs for an application.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s ZeppelinMonitoringConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinMonitoringConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZeppelinMonitoringConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZeppelinMonitoringConfiguration"}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *ZeppelinMonitoringConfiguration) SetLogLevel(v string) *ZeppelinMonitoringConfiguration {
+	s.LogLevel = &v
+	return s
+}
+
+// The monitoring configuration for Apache Zeppelin within a Kinesis Data Analytics
+// Studio notebook.
+type ZeppelinMonitoringConfigurationDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the verbosity of the CloudWatch Logs for an application.
+	LogLevel *string `type:"string" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s ZeppelinMonitoringConfigurationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinMonitoringConfigurationDescription) GoString() string {
+	return s.String()
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *ZeppelinMonitoringConfigurationDescription) SetLogLevel(v string) *ZeppelinMonitoringConfigurationDescription {
+	s.LogLevel = &v
+	return s
+}
+
+// Updates to the monitoring configuration for Apache Zeppelin within a Kinesis
+// Data Analytics Studio notebook.
+type ZeppelinMonitoringConfigurationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// Updates to the logging level for Apache Zeppelin within a Kinesis Data Analytics
+	// Studio notebook.
+	//
+	// LogLevelUpdate is a required field
+	LogLevelUpdate *string `type:"string" required:"true" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s ZeppelinMonitoringConfigurationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ZeppelinMonitoringConfigurationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ZeppelinMonitoringConfigurationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ZeppelinMonitoringConfigurationUpdate"}
+	if s.LogLevelUpdate == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevelUpdate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogLevelUpdate sets the LogLevelUpdate field's value.
+func (s *ZeppelinMonitoringConfigurationUpdate) SetLogLevelUpdate(v string) *ZeppelinMonitoringConfigurationUpdate {
+	s.LogLevelUpdate = &v
+	return s
+}
+
+const (
+	// ApplicationModeStreaming is a ApplicationMode enum value
+	ApplicationModeStreaming = "STREAMING"
+
+	// ApplicationModeInteractive is a ApplicationMode enum value
+	ApplicationModeInteractive = "INTERACTIVE"
+)
+
+// ApplicationMode_Values returns all elements of the ApplicationMode enum
+func ApplicationMode_Values() []string {
+	return []string{
+		ApplicationModeStreaming,
+		ApplicationModeInteractive,
+	}
+}
+
 const (
 	// ApplicationRestoreTypeSkipRestoreFromSnapshot is a ApplicationRestoreType enum value
 	ApplicationRestoreTypeSkipRestoreFromSnapshot = "SKIP_RESTORE_FROM_SNAPSHOT"
@@ -13047,6 +14159,22 @@ func ApplicationStatus_Values() []string {
 		ApplicationStatusMaintenance,
 		ApplicationStatusRollingBack,
 		ApplicationStatusRolledBack,
+	}
+}
+
+const (
+	// ArtifactTypeUdf is a ArtifactType enum value
+	ArtifactTypeUdf = "UDF"
+
+	// ArtifactTypeDependencyJar is a ArtifactType enum value
+	ArtifactTypeDependencyJar = "DEPENDENCY_JAR"
+)
+
+// ArtifactType_Values returns all elements of the ArtifactType enum
+func ArtifactType_Values() []string {
+	return []string{
+		ArtifactTypeUdf,
+		ArtifactTypeDependencyJar,
 	}
 }
 
@@ -13178,6 +14306,9 @@ const (
 
 	// RuntimeEnvironmentFlink111 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink111 = "FLINK-1_11"
+
+	// RuntimeEnvironmentZeppelinFlink10 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentZeppelinFlink10 = "ZEPPELIN-FLINK-1_0"
 )
 
 // RuntimeEnvironment_Values returns all elements of the RuntimeEnvironment enum
@@ -13187,6 +14318,7 @@ func RuntimeEnvironment_Values() []string {
 		RuntimeEnvironmentFlink16,
 		RuntimeEnvironmentFlink18,
 		RuntimeEnvironmentFlink111,
+		RuntimeEnvironmentZeppelinFlink10,
 	}
 }
 
@@ -13217,11 +14349,15 @@ func SnapshotStatus_Values() []string {
 const (
 	// UrlTypeFlinkDashboardUrl is a UrlType enum value
 	UrlTypeFlinkDashboardUrl = "FLINK_DASHBOARD_URL"
+
+	// UrlTypeZeppelinUiUrl is a UrlType enum value
+	UrlTypeZeppelinUiUrl = "ZEPPELIN_UI_URL"
 )
 
 // UrlType_Values returns all elements of the UrlType enum
 func UrlType_Values() []string {
 	return []string{
 		UrlTypeFlinkDashboardUrl,
+		UrlTypeZeppelinUiUrl,
 	}
 }

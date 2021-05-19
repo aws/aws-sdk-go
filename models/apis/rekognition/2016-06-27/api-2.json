@@ -1255,7 +1255,8 @@
         "OutputConfig":{"shape":"OutputConfig"},
         "TrainingData":{"shape":"TrainingData"},
         "TestingData":{"shape":"TestingData"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateProjectVersionResponse":{
@@ -2135,6 +2136,12 @@
         "Arn":{"shape":"KinesisVideoArn"}
       }
     },
+    "KmsKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$"
+    },
     "Label":{
       "type":"structure",
       "members":{
@@ -2478,7 +2485,8 @@
         "TrainingDataResult":{"shape":"TrainingDataResult"},
         "TestingDataResult":{"shape":"TestingDataResult"},
         "EvaluationResult":{"shape":"EvaluationResult"},
-        "ManifestSummary":{"shape":"GroundTruthManifest"}
+        "ManifestSummary":{"shape":"GroundTruthManifest"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "ProjectVersionDescriptions":{

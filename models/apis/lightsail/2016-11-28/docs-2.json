@@ -114,7 +114,7 @@
     "GetRelationalDatabaseSnapshot": "<p>Returns information about a specific database snapshot in Amazon Lightsail.</p>",
     "GetRelationalDatabaseSnapshots": "<p>Returns information about all of your database snapshots in Amazon Lightsail.</p>",
     "GetRelationalDatabases": "<p>Returns information about all of your databases in Amazon Lightsail.</p>",
-    "GetStaticIp": "<p>Returns information about a specific static IP.</p>",
+    "GetStaticIp": "<p>Returns information about an Amazon Lightsail static IP.</p>",
     "GetStaticIps": "<p>Returns information about all static IPs in the user's account.</p>",
     "ImportKeyPair": "<p>Imports a public SSH key from a specific key pair.</p>",
     "IsVpcPeered": "<p>Returns a Boolean value indicating whether your Lightsail VPC is peered.</p>",

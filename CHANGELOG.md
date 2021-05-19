@@ -1,3 +1,18 @@
+Release v1.38.43 (2021-05-19)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API, documentation, and examples
+  * With this release, customers can easily use Predictive Scaling as a policy directly through Amazon EC2 Auto Scaling configurations to proactively scale their applications ahead of predicted demand.
+* `service/eks`: Updates service waiters
+* `service/iam`: Updates service paginators
+  * Add pagination to ListUserTags operation
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Amazon Lightsail.
+* `service/rekognition`: Updates service API and documentation
+  * Amazon Rekognition Custom Labels adds support for customer managed encryption, using AWS Key Management Service, of image files copied into the service and files written back to the customer.
+
 Release v1.38.42 (2021-05-18)
 ===
 

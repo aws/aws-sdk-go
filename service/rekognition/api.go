@@ -228,7 +228,8 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 // Collection names are case-sensitive.
 //
 // This operation requires permissions to perform the rekognition:CreateCollection
-// action.
+// action. If you want to tag your collection, you also require permission to
+// perform the rekognition:TagResource operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -257,12 +258,11 @@ func (c *Rekognition) CreateCollectionRequest(input *CreateCollectionInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceAlreadyExistsException
-//   A collection with the specified ID already exists.
+//   A resource with the specified ID already exists.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection or tag list exceeds the allowed limit. For more
-//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-//   Guide.
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 func (c *Rekognition) CreateCollection(input *CreateCollectionInput) (*CreateCollectionOutput, error) {
 	req, out := c.CreateCollectionRequest(input)
@@ -461,7 +461,7 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //   The specified resource is already being used.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * LimitExceededException
 //   An Amazon Rekognition service limit was exceeded. For example, if you start
@@ -489,9 +489,8 @@ func (c *Rekognition) CreateProjectVersionRequest(input *CreateProjectVersionInp
 //   this limit, contact Amazon Rekognition.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection or tag list exceeds the allowed limit. For more
-//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-//   Guide.
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 func (c *Rekognition) CreateProjectVersion(input *CreateProjectVersionInput) (*CreateProjectVersionOutput, error) {
 	req, out := c.CreateProjectVersionRequest(input)
@@ -573,6 +572,10 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 // After you have finished analyzing a streaming video, use StopStreamProcessor
 // to stop processing. You can delete the stream processor by calling DeleteStreamProcessor.
 //
+// This operation requires permissions to perform the rekognition:CreateStreamProcessor
+// action. If you want to tag your stream processor, you also require permission
+// to perform the rekognition:TagResource operation.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -610,9 +613,8 @@ func (c *Rekognition) CreateStreamProcessorRequest(input *CreateStreamProcessorI
 //   this limit, contact Amazon Rekognition.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection or tag list exceeds the allowed limit. For more
-//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-//   Guide.
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 func (c *Rekognition) CreateStreamProcessor(input *CreateStreamProcessorInput) (*CreateStreamProcessorOutput, error) {
 	req, out := c.CreateStreamProcessorRequest(input)
@@ -710,7 +712,7 @@ func (c *Rekognition) DeleteCollectionRequest(input *DeleteCollectionInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteCollection(input *DeleteCollectionInput) (*DeleteCollectionOutput, error) {
 	req, out := c.DeleteCollectionRequest(input)
@@ -808,7 +810,7 @@ func (c *Rekognition) DeleteFacesRequest(input *DeleteFacesInput) (req *request.
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) DeleteFaces(input *DeleteFacesInput) (*DeleteFacesOutput, error) {
 	req, out := c.DeleteFacesRequest(input)
@@ -892,7 +894,7 @@ func (c *Rekognition) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 //   The specified resource is already being used.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
@@ -994,7 +996,7 @@ func (c *Rekognition) DeleteProjectVersionRequest(input *DeleteProjectVersionInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -1109,7 +1111,7 @@ func (c *Rekognition) DeleteStreamProcessorRequest(input *DeleteStreamProcessorI
 //   the API operation again.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -1215,7 +1217,7 @@ func (c *Rekognition) DescribeCollectionRequest(input *DescribeCollectionInput) 
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) DescribeCollection(input *DescribeCollectionInput) (*DescribeCollectionOutput, error) {
 	req, out := c.DescribeCollectionRequest(input)
@@ -1302,7 +1304,7 @@ func (c *Rekognition) DescribeProjectVersionsRequest(input *DescribeProjectVersi
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidPaginationTokenException
 //   Pagination token in the request is not valid.
@@ -1623,7 +1625,7 @@ func (c *Rekognition) DescribeStreamProcessorRequest(input *DescribeStreamProces
 //   the API operation again.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ProvisionedThroughputExceededException
 //   The number of requests exceeded your throughput limit. If you want to increase
@@ -1735,7 +1737,7 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceNotReadyException
 //   The requested resource isn't ready. For example, this exception occurs when
@@ -2562,7 +2564,7 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) GetCelebrityInfo(input *GetCelebrityInfoInput) (*GetCelebrityInfoOutput, error) {
 	req, out := c.GetCelebrityInfoRequest(input)
@@ -2701,7 +2703,7 @@ func (c *Rekognition) GetCelebrityRecognitionRequest(input *GetCelebrityRecognit
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -2888,7 +2890,7 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3063,7 +3065,7 @@ func (c *Rekognition) GetFaceDetectionRequest(input *GetFaceDetectionInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3248,7 +3250,7 @@ func (c *Rekognition) GetFaceSearchRequest(input *GetFaceSearchInput) (req *requ
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3432,7 +3434,7 @@ func (c *Rekognition) GetLabelDetectionRequest(input *GetLabelDetectionInput) (r
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3619,7 +3621,7 @@ func (c *Rekognition) GetPersonTrackingRequest(input *GetPersonTrackingInput) (r
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3805,7 +3807,7 @@ func (c *Rekognition) GetSegmentDetectionRequest(input *GetSegmentDetectionInput
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -3985,7 +3987,7 @@ func (c *Rekognition) GetTextDetectionRequest(input *GetTextDetectionInput) (req
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -4237,15 +4239,14 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidImageFormatException
 //   The provided image format is not supported.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection or tag list exceeds the allowed limit. For more
-//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-//   Guide.
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 func (c *Rekognition) IndexFaces(input *IndexFacesInput) (*IndexFacesOutput, error) {
 	req, out := c.IndexFacesRequest(input)
@@ -4356,7 +4357,7 @@ func (c *Rekognition) ListCollectionsRequest(input *ListCollectionsInput) (req *
 //   Pagination token in the request is not valid.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) ListCollections(input *ListCollectionsInput) (*ListCollectionsOutput, error) {
 	req, out := c.ListCollectionsRequest(input)
@@ -4517,7 +4518,7 @@ func (c *Rekognition) ListFacesRequest(input *ListFacesInput) (req *request.Requ
 //   Pagination token in the request is not valid.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) ListFaces(input *ListFacesInput) (*ListFacesOutput, error) {
 	req, out := c.ListFacesRequest(input)
@@ -4789,6 +4790,9 @@ func (c *Rekognition) ListTagsForResourceRequest(input *ListTagsForResourceInput
 // Returns a list of tags in an Amazon Rekognition collection, stream processor,
 // or Custom Labels model.
 //
+// This operation requires permissions to perform the rekognition:ListTagsForResource
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4798,7 +4802,7 @@ func (c *Rekognition) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
@@ -5062,7 +5066,7 @@ func (c *Rekognition) SearchFacesRequest(input *SearchFacesInput) (req *request.
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 func (c *Rekognition) SearchFaces(input *SearchFacesInput) (*SearchFacesOutput, error) {
 	req, out := c.SearchFacesRequest(input)
@@ -5152,6 +5156,9 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 // confidence level that the bounding box contains a face) of the face that
 // Amazon Rekognition used for the input image.
 //
+// If no faces are detected in the input image, SearchFacesByImage returns an
+// InvalidParameterException error.
+//
 // For an example, Searching for a Face Using an Image in the Amazon Rekognition
 // Developer Guide.
 //
@@ -5203,7 +5210,7 @@ func (c *Rekognition) SearchFacesByImageRequest(input *SearchFacesByImageInput) 
 //   this limit, contact Amazon Rekognition.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidImageFormatException
 //   The provided image format is not supported.
@@ -5697,7 +5704,7 @@ func (c *Rekognition) StartFaceSearchRequest(input *StartFaceSearchInput) (req *
 //   below the Amazon Rekognition service limit.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ThrottlingException
 //   Amazon Rekognition is temporarily unable to process the request. Try your
@@ -6037,7 +6044,7 @@ func (c *Rekognition) StartProjectVersionRequest(input *StartProjectVersionInput
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -6289,7 +6296,7 @@ func (c *Rekognition) StartStreamProcessorRequest(input *StartStreamProcessorInp
 //   the API operation again.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -6495,7 +6502,7 @@ func (c *Rekognition) StopProjectVersionRequest(input *StopProjectVersionInput) 
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -6607,7 +6614,7 @@ func (c *Rekognition) StopStreamProcessorRequest(input *StopStreamProcessorInput
 //   the API operation again.
 //
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * ResourceInUseException
 //   The specified resource is already being used.
@@ -6684,6 +6691,9 @@ func (c *Rekognition) TagResourceRequest(input *TagResourceInput) (req *request.
 // processor, or Custom Labels model. For more information, see Tagging AWS
 // Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 //
+// This operation requires permissions to perform the rekognition:TagResource
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6693,16 +6703,15 @@ func (c *Rekognition) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
 //   the API operation again.
 //
 //   * ServiceQuotaExceededException
-//   The size of the collection or tag list exceeds the allowed limit. For more
-//   information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-//   Guide.
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 //   * AccessDeniedException
 //   You are not authorized to perform the action.
@@ -6785,6 +6794,9 @@ func (c *Rekognition) UntagResourceRequest(input *UntagResourceInput) (req *requ
 // Removes one or more tags from an Amazon Rekognition collection, stream processor,
 // or Custom Labels model.
 //
+// This operation requires permissions to perform the rekognition:UntagResource
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6794,7 +6806,7 @@ func (c *Rekognition) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The collection specified in the request cannot be found.
+//   The resource specified in the request cannot be found.
 //
 //   * InvalidParameterException
 //   Input parameter violated a constraint. Validate your parameter before calling
@@ -7851,6 +7863,17 @@ func (s *CreateProjectOutput) SetProjectArn(v string) *CreateProjectOutput {
 type CreateProjectVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier for your AWS Key Management Service (AWS KMS) customer master
+	// key (CMK). You can supply the Amazon Resource Name (ARN) of your CMK, the
+	// ID of your CMK, or an alias for your CMK. The key is used to encrypt training
+	// and test images copied into the service for model training. Your source images
+	// are unaffected. The key is also used to encrypt training results and manifest
+	// files written to the output Amazon S3 bucket (OutputConfig).
+	//
+	// If you don't specify a value for KmsKeyId, images copied into the service
+	// are encrypted using a key that AWS owns and manages.
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// The Amazon S3 location to store the results of training.
 	//
 	// OutputConfig is a required field
@@ -7894,6 +7917,9 @@ func (s CreateProjectVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateProjectVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateProjectVersionInput"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 	if s.OutputConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
 	}
@@ -7935,6 +7961,12 @@ func (s *CreateProjectVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateProjectVersionInput) SetKmsKeyId(v string) *CreateProjectVersionInput {
+	s.KmsKeyId = &v
+	return s
 }
 
 // SetOutputConfig sets the OutputConfig field's value.
@@ -13742,6 +13774,10 @@ type ProjectVersionDescription struct {
 	// The training results. EvaluationResult is only returned if training is successful.
 	EvaluationResult *EvaluationResult `type:"structure"`
 
+	// The identifer for the AWS Key Management Service (AWS KMS) customer master
+	// key that was used to encrypt the model during training.
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// The location of the summary manifest. The summary manifest provides aggregate
 	// data validation results for the training and test datasets.
 	ManifestSummary *GroundTruthManifest `type:"structure"`
@@ -13797,6 +13833,12 @@ func (s *ProjectVersionDescription) SetCreationTimestamp(v time.Time) *ProjectVe
 // SetEvaluationResult sets the EvaluationResult field's value.
 func (s *ProjectVersionDescription) SetEvaluationResult(v *EvaluationResult) *ProjectVersionDescription {
 	s.EvaluationResult = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *ProjectVersionDescription) SetKmsKeyId(v string) *ProjectVersionDescription {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -14273,7 +14315,7 @@ func (s *RegionOfInterest) SetBoundingBox(v *BoundingBox) *RegionOfInterest {
 	return s
 }
 
-// A collection with the specified ID already exists.
+// A resource with the specified ID already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14385,7 +14427,7 @@ func (s *ResourceInUseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The collection specified in the request cannot be found.
+// The resource specified in the request cannot be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14992,9 +15034,8 @@ func (s *SegmentTypeInfo) SetType(v string) *SegmentTypeInfo {
 	return s
 }
 
-// The size of the collection or tag list exceeds the allowed limit. For more
-// information, see Limits in Amazon Rekognition in the Amazon Rekognition Developer
-// Guide.
+// The size of the collection exceeds the allowed limit. For more information,
+// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
