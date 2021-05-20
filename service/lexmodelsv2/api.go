@@ -681,6 +681,188 @@ func (c *LexModelsV2) CreateIntentWithContext(ctx aws.Context, input *CreateInte
 	return out, req.Send()
 }
 
+const opCreateResourcePolicy = "CreateResourcePolicy"
+
+// CreateResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the CreateResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateResourcePolicy for more information on using the CreateResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateResourcePolicyRequest method.
+//    req, resp := client.CreateResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicy
+func (c *LexModelsV2) CreateResourcePolicyRequest(input *CreateResourcePolicyInput) (req *request.Request, output *CreateResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opCreateResourcePolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/policy/{resourceArn}/",
+	}
+
+	if input == nil {
+		input = &CreateResourcePolicyInput{}
+	}
+
+	output = &CreateResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateResourcePolicy API operation for Amazon Lex Model Building V2.
+//
+// Creates a new resource policy with the specified policy statements.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation CreateResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * ServiceQuotaExceededException
+//
+//   * PreconditionFailedException
+//
+//   * ValidationException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicy
+func (c *LexModelsV2) CreateResourcePolicy(input *CreateResourcePolicyInput) (*CreateResourcePolicyOutput, error) {
+	req, out := c.CreateResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// CreateResourcePolicyWithContext is the same as CreateResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) CreateResourcePolicyWithContext(ctx aws.Context, input *CreateResourcePolicyInput, opts ...request.Option) (*CreateResourcePolicyOutput, error) {
+	req, out := c.CreateResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateResourcePolicyStatement = "CreateResourcePolicyStatement"
+
+// CreateResourcePolicyStatementRequest generates a "aws/request.Request" representing the
+// client's request for the CreateResourcePolicyStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateResourcePolicyStatement for more information on using the CreateResourcePolicyStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateResourcePolicyStatementRequest method.
+//    req, resp := client.CreateResourcePolicyStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicyStatement
+func (c *LexModelsV2) CreateResourcePolicyStatementRequest(input *CreateResourcePolicyStatementInput) (req *request.Request, output *CreateResourcePolicyStatementOutput) {
+	op := &request.Operation{
+		Name:       opCreateResourcePolicyStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/policy/{resourceArn}/statements/",
+	}
+
+	if input == nil {
+		input = &CreateResourcePolicyStatementInput{}
+	}
+
+	output = &CreateResourcePolicyStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateResourcePolicyStatement API operation for Amazon Lex Model Building V2.
+//
+// Adds a new resource policy statement to a bot or bot alias. If a resource
+// policy exists, the statement is added to the current resource policy. If
+// a policy doesn't exist, a new policy is created.
+//
+// You can create a resource policy statement that allows cross-account access.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation CreateResourcePolicyStatement for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * ConflictException
+//
+//   * ServiceQuotaExceededException
+//
+//   * PreconditionFailedException
+//
+//   * ValidationException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicyStatement
+func (c *LexModelsV2) CreateResourcePolicyStatement(input *CreateResourcePolicyStatementInput) (*CreateResourcePolicyStatementOutput, error) {
+	req, out := c.CreateResourcePolicyStatementRequest(input)
+	return out, req.Send()
+}
+
+// CreateResourcePolicyStatementWithContext is the same as CreateResourcePolicyStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateResourcePolicyStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) CreateResourcePolicyStatementWithContext(ctx aws.Context, input *CreateResourcePolicyStatementInput, opts ...request.Option) (*CreateResourcePolicyStatementOutput, error) {
+	req, out := c.CreateResourcePolicyStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateSlot = "CreateSlot"
 
 // CreateSlotRequest generates a "aws/request.Request" representing the
@@ -1578,6 +1760,178 @@ func (c *LexModelsV2) DeleteIntentWithContext(ctx aws.Context, input *DeleteInte
 	return out, req.Send()
 }
 
+const opDeleteResourcePolicy = "DeleteResourcePolicy"
+
+// DeleteResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteResourcePolicyRequest method.
+//    req, resp := client.DeleteResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicy
+func (c *LexModelsV2) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInput) (req *request.Request, output *DeleteResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/policy/{resourceArn}/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyInput{}
+	}
+
+	output = &DeleteResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteResourcePolicy API operation for Amazon Lex Model Building V2.
+//
+// Removes an existing policy from a bot or bot alias. If the resource doesn't
+// have a policy attached, Amazon Lex returns an exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * PreconditionFailedException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicy
+func (c *LexModelsV2) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyWithContext is the same as DeleteResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteResourcePolicyWithContext(ctx aws.Context, input *DeleteResourcePolicyInput, opts ...request.Option) (*DeleteResourcePolicyOutput, error) {
+	req, out := c.DeleteResourcePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteResourcePolicyStatement = "DeleteResourcePolicyStatement"
+
+// DeleteResourcePolicyStatementRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteResourcePolicyStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteResourcePolicyStatement for more information on using the DeleteResourcePolicyStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteResourcePolicyStatementRequest method.
+//    req, resp := client.DeleteResourcePolicyStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicyStatement
+func (c *LexModelsV2) DeleteResourcePolicyStatementRequest(input *DeleteResourcePolicyStatementInput) (req *request.Request, output *DeleteResourcePolicyStatementOutput) {
+	op := &request.Operation{
+		Name:       opDeleteResourcePolicyStatement,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/policy/{resourceArn}/statements/{statementId}/",
+	}
+
+	if input == nil {
+		input = &DeleteResourcePolicyStatementInput{}
+	}
+
+	output = &DeleteResourcePolicyStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteResourcePolicyStatement API operation for Amazon Lex Model Building V2.
+//
+// Deletes a policy statement from a resource policy. If you delete the last
+// statement from a policy, the policy is deleted. If you specify a statement
+// ID that doesn't exist in the policy, or if the bot or bot alias doesn't have
+// a policy attached, Amazon Lex returns an exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteResourcePolicyStatement for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * PreconditionFailedException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicyStatement
+func (c *LexModelsV2) DeleteResourcePolicyStatement(input *DeleteResourcePolicyStatementInput) (*DeleteResourcePolicyStatementOutput, error) {
+	req, out := c.DeleteResourcePolicyStatementRequest(input)
+	return out, req.Send()
+}
+
+// DeleteResourcePolicyStatementWithContext is the same as DeleteResourcePolicyStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteResourcePolicyStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteResourcePolicyStatementWithContext(ctx aws.Context, input *DeleteResourcePolicyStatementInput, opts ...request.Option) (*DeleteResourcePolicyStatementOutput, error) {
+	req, out := c.DeleteResourcePolicyStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteSlot = "DeleteSlot"
 
 // DeleteSlotRequest generates a "aws/request.Request" representing the
@@ -2353,6 +2707,88 @@ func (c *LexModelsV2) DescribeIntent(input *DescribeIntentInput) (*DescribeInten
 // for more information on using Contexts.
 func (c *LexModelsV2) DescribeIntentWithContext(ctx aws.Context, input *DescribeIntentInput, opts ...request.Option) (*DescribeIntentOutput, error) {
 	req, out := c.DescribeIntentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeResourcePolicy = "DescribeResourcePolicy"
+
+// DescribeResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeResourcePolicy for more information on using the DescribeResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeResourcePolicyRequest method.
+//    req, resp := client.DescribeResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeResourcePolicy
+func (c *LexModelsV2) DescribeResourcePolicyRequest(input *DescribeResourcePolicyInput) (req *request.Request, output *DescribeResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDescribeResourcePolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/policy/{resourceArn}/",
+	}
+
+	if input == nil {
+		input = &DescribeResourcePolicyInput{}
+	}
+
+	output = &DescribeResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeResourcePolicy API operation for Amazon Lex Model Building V2.
+//
+// Gets the resource policy and policy revision for a bot or bot alias.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DescribeResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeResourcePolicy
+func (c *LexModelsV2) DescribeResourcePolicy(input *DescribeResourcePolicyInput) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DescribeResourcePolicyWithContext is the same as DescribeResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DescribeResourcePolicyWithContext(ctx aws.Context, input *DescribeResourcePolicyInput, opts ...request.Option) (*DescribeResourcePolicyOutput, error) {
+	req, out := c.DescribeResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4883,6 +5319,95 @@ func (c *LexModelsV2) UpdateIntent(input *UpdateIntentInput) (*UpdateIntentOutpu
 // for more information on using Contexts.
 func (c *LexModelsV2) UpdateIntentWithContext(ctx aws.Context, input *UpdateIntentInput, opts ...request.Option) (*UpdateIntentOutput, error) {
 	req, out := c.UpdateIntentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateResourcePolicy = "UpdateResourcePolicy"
+
+// UpdateResourcePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateResourcePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateResourcePolicy for more information on using the UpdateResourcePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateResourcePolicyRequest method.
+//    req, resp := client.UpdateResourcePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateResourcePolicy
+func (c *LexModelsV2) UpdateResourcePolicyRequest(input *UpdateResourcePolicyInput) (req *request.Request, output *UpdateResourcePolicyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateResourcePolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/policy/{resourceArn}/",
+	}
+
+	if input == nil {
+		input = &UpdateResourcePolicyInput{}
+	}
+
+	output = &UpdateResourcePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateResourcePolicy API operation for Amazon Lex Model Building V2.
+//
+// Replaces the existing resource policy for a bot or bot alias with a new one.
+// If the policy doesn't exist, Amazon Lex returns an exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation UpdateResourcePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//
+//   * ServiceQuotaExceededException
+//
+//   * PreconditionFailedException
+//
+//   * ValidationException
+//
+//   * InternalServerException
+//
+//   * ThrottlingException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateResourcePolicy
+func (c *LexModelsV2) UpdateResourcePolicy(input *UpdateResourcePolicyInput) (*UpdateResourcePolicyOutput, error) {
+	req, out := c.UpdateResourcePolicyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateResourcePolicyWithContext is the same as UpdateResourcePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateResourcePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) UpdateResourcePolicyWithContext(ctx aws.Context, input *UpdateResourcePolicyInput, opts ...request.Option) (*UpdateResourcePolicyOutput, error) {
+	req, out := c.UpdateResourcePolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8393,6 +8918,289 @@ func (s *CreateIntentOutput) SetSampleUtterances(v []*SampleUtterance) *CreateIn
 	return s
 }
 
+type CreateResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A resource policy to add to the resource. The policy is a JSON structure
+	// that contains one or more statements that define the policy. The policy must
+	// follow the IAM syntax. For more information about the contents of a JSON
+	// policy document, see IAM JSON policy reference (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html).
+	//
+	// If the policy isn't valid, Amazon Lex returns a validation exception.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" min:"2" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateResourcePolicyInput"}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 2))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *CreateResourcePolicyInput) SetPolicy(v string) *CreateResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateResourcePolicyInput) SetResourceArn(v string) *CreateResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type CreateResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy was attached to.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateResourcePolicyOutput) SetResourceArn(v string) *CreateResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateResourcePolicyOutput) SetRevisionId(v string) *CreateResourcePolicyOutput {
+	s.RevisionId = &v
+	return s
+}
+
+type CreateResourcePolicyStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Lex action that this policy either allows or denies. The action
+	// must apply to the resource type of the specified ARN. For more information,
+	// see Actions, resources, and condition keys for Amazon Lex V2 (https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonlexv2.html).
+	//
+	// Action is a required field
+	Action []*string `locationName:"action" type:"list" required:"true"`
+
+	// Specifies a condition when the policy is in effect. If the principal of the
+	// policy is a service principal, you must provide two condition blocks, one
+	// with a SourceAccount global condition key and one with a SourceArn global
+	// condition key.
+	//
+	// For more information, see IAM JSON policy elements: Condition (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html).
+	Condition map[string]map[string]*string `locationName:"condition" type:"map"`
+
+	// Determines whether the statement allows or denies access to the resource.
+	//
+	// Effect is a required field
+	Effect *string `locationName:"effect" type:"string" required:"true" enum:"Effect"`
+
+	// The identifier of the revision of the policy to edit. If this revision ID
+	// doesn't match the current revision ID, Amazon Lex throws an exception.
+	//
+	// If you don't specify a revision, Amazon Lex overwrites the contents of the
+	// policy with the new values.
+	ExpectedRevisionId *string `location:"querystring" locationName:"expectedRevisionId" min:"1" type:"string"`
+
+	// An IAM principal, such as an IAM users, IAM roles, or AWS services that is
+	// allowed or denied access to a resource. For more information, see AWS JSON
+	// policy elements: Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html).
+	//
+	// Principal is a required field
+	Principal []*Principal `locationName:"principal" type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The name of the statement. The ID is the same as the Sid IAM property. The
+	// statement name must be unique within the policy. For more information, see
+	// IAM JSON policy elements: Sid (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html).
+	//
+	// StatementId is a required field
+	StatementId *string `locationName:"statementId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateResourcePolicyStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateResourcePolicyStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateResourcePolicyStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateResourcePolicyStatementInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.ExpectedRevisionId != nil && len(*s.ExpectedRevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedRevisionId", 1))
+	}
+	if s.Principal == nil {
+		invalidParams.Add(request.NewErrParamRequired("Principal"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+	if s.StatementId != nil && len(*s.StatementId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
+	}
+	if s.Principal != nil {
+		for i, v := range s.Principal {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Principal", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateResourcePolicyStatementInput) SetAction(v []*string) *CreateResourcePolicyStatementInput {
+	s.Action = v
+	return s
+}
+
+// SetCondition sets the Condition field's value.
+func (s *CreateResourcePolicyStatementInput) SetCondition(v map[string]map[string]*string) *CreateResourcePolicyStatementInput {
+	s.Condition = v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *CreateResourcePolicyStatementInput) SetEffect(v string) *CreateResourcePolicyStatementInput {
+	s.Effect = &v
+	return s
+}
+
+// SetExpectedRevisionId sets the ExpectedRevisionId field's value.
+func (s *CreateResourcePolicyStatementInput) SetExpectedRevisionId(v string) *CreateResourcePolicyStatementInput {
+	s.ExpectedRevisionId = &v
+	return s
+}
+
+// SetPrincipal sets the Principal field's value.
+func (s *CreateResourcePolicyStatementInput) SetPrincipal(v []*Principal) *CreateResourcePolicyStatementInput {
+	s.Principal = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateResourcePolicyStatementInput) SetResourceArn(v string) *CreateResourcePolicyStatementInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *CreateResourcePolicyStatementInput) SetStatementId(v string) *CreateResourcePolicyStatementInput {
+	s.StatementId = &v
+	return s
+}
+
+type CreateResourcePolicyStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateResourcePolicyStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateResourcePolicyStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateResourcePolicyStatementOutput) SetResourceArn(v string) *CreateResourcePolicyStatementOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *CreateResourcePolicyStatementOutput) SetRevisionId(v string) *CreateResourcePolicyStatementOutput {
+	s.RevisionId = &v
+	return s
+}
+
 type CreateSlotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9808,6 +10616,211 @@ func (s DeleteIntentOutput) String() string {
 // GoString returns the string representation
 func (s DeleteIntentOutput) GoString() string {
 	return s.String()
+}
+
+type DeleteResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the revision to edit. If this ID doesn't match the current
+	// revision number, Amazon Lex returns an exception
+	//
+	// If you don't specify a revision ID, Amazon Lex will delete the current policy.
+	ExpectedRevisionId *string `location:"querystring" locationName:"expectedRevisionId" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that has the resource
+	// policy attached.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyInput"}
+	if s.ExpectedRevisionId != nil && len(*s.ExpectedRevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedRevisionId", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpectedRevisionId sets the ExpectedRevisionId field's value.
+func (s *DeleteResourcePolicyInput) SetExpectedRevisionId(v string) *DeleteResourcePolicyInput {
+	s.ExpectedRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyInput) SetResourceArn(v string) *DeleteResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DeleteResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy was deleted from.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyOutput) SetResourceArn(v string) *DeleteResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *DeleteResourcePolicyOutput) SetRevisionId(v string) *DeleteResourcePolicyOutput {
+	s.RevisionId = &v
+	return s
+}
+
+type DeleteResourcePolicyStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the revision of the policy to delete the statement from.
+	// If this revision ID doesn't match the current revision ID, Amazon Lex throws
+	// an exception.
+	//
+	// If you don't specify a revision, Amazon Lex removes the current contents
+	// of the statement.
+	ExpectedRevisionId *string `location:"querystring" locationName:"expectedRevisionId" min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+
+	// The name of the statement (SID) to delete from the policy.
+	//
+	// StatementId is a required field
+	StatementId *string `location:"uri" locationName:"statementId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteResourcePolicyStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourcePolicyStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteResourcePolicyStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteResourcePolicyStatementInput"}
+	if s.ExpectedRevisionId != nil && len(*s.ExpectedRevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedRevisionId", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.StatementId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StatementId"))
+	}
+	if s.StatementId != nil && len(*s.StatementId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpectedRevisionId sets the ExpectedRevisionId field's value.
+func (s *DeleteResourcePolicyStatementInput) SetExpectedRevisionId(v string) *DeleteResourcePolicyStatementInput {
+	s.ExpectedRevisionId = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyStatementInput) SetResourceArn(v string) *DeleteResourcePolicyStatementInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetStatementId sets the StatementId field's value.
+func (s *DeleteResourcePolicyStatementInput) SetStatementId(v string) *DeleteResourcePolicyStatementInput {
+	s.StatementId = &v
+	return s
+}
+
+type DeleteResourcePolicyStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy statement was removed from.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteResourcePolicyStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteResourcePolicyStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DeleteResourcePolicyStatementOutput) SetResourceArn(v string) *DeleteResourcePolicyStatementOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *DeleteResourcePolicyStatementOutput) SetRevisionId(v string) *DeleteResourcePolicyStatementOutput {
+	s.RevisionId = &v
+	return s
 }
 
 type DeleteSlotInput struct {
@@ -11316,6 +12329,95 @@ func (s *DescribeIntentOutput) SetSampleUtterances(v []*SampleUtterance) *Descri
 // SetSlotPriorities sets the SlotPriorities field's value.
 func (s *DescribeIntentOutput) SetSlotPriorities(v []*SlotPriority) *DescribeIntentOutput {
 	s.SlotPriorities = v
+	return s
+}
+
+type DescribeResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeResourcePolicyInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeResourcePolicyInput) SetResourceArn(v string) *DescribeResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type DescribeResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON structure that contains the resource policy. For more information
+	// about the contents of a JSON policy document, see IAM JSON policy reference
+	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html).
+	Policy *string `locationName:"policy" min:"2" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *DescribeResourcePolicyOutput) SetPolicy(v string) *DescribeResourcePolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *DescribeResourcePolicyOutput) SetResourceArn(v string) *DescribeResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *DescribeResourcePolicyOutput) SetRevisionId(v string) *DescribeResourcePolicyOutput {
+	s.RevisionId = &v
 	return s
 }
 
@@ -15219,6 +16321,58 @@ func (s *PreconditionFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The IAM principal that you allowing or denying access to an Amazon Lex action.
+// You must provide a service or an arn, but not both in the same statement.
+// For more information, see AWS JSON policy elements: Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html).
+type Principal struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the principal.
+	Arn *string `locationName:"arn" min:"30" type:"string"`
+
+	// The name of the AWS service that should allowed or denied access to an Amazon
+	// Lex action.
+	Service *string `locationName:"service" min:"15" type:"string"`
+}
+
+// String returns the string representation
+func (s Principal) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Principal) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Principal) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Principal"}
+	if s.Arn != nil && len(*s.Arn) < 30 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 30))
+	}
+	if s.Service != nil && len(*s.Service) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("Service", 15))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *Principal) SetArn(v string) *Principal {
+	s.Arn = &v
+	return s
+}
+
+// SetService sets the Service field's value.
+func (s *Principal) SetService(v string) *Principal {
+	s.Service = &v
+	return s
+}
+
 // Specifies a list of message groups that Amazon Lex sends to a user to elicit
 // a response.
 type PromptSpecification struct {
@@ -18406,6 +19560,122 @@ func (s *UpdateIntentOutput) SetSlotPriorities(v []*SlotPriority) *UpdateIntentO
 	return s
 }
 
+type UpdateResourcePolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the revision of the policy to update. If this revision
+	// ID doesn't match the current revision ID, Amazon Lex throws an exception.
+	//
+	// If you don't specify a revision, Amazon Lex overwrites the contents of the
+	// policy with the new values.
+	ExpectedRevisionId *string `location:"querystring" locationName:"expectedRevisionId" min:"1" type:"string"`
+
+	// A resource policy to add to the resource. The policy is a JSON structure
+	// that contains one or more statements that define the policy. The policy must
+	// follow the IAM syntax. For more information about the contents of a JSON
+	// policy document, see IAM JSON policy reference (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html).
+	//
+	// If the policy isn't valid, Amazon Lex returns a validation exception.
+	//
+	// Policy is a required field
+	Policy *string `locationName:"policy" min:"2" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateResourcePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResourcePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateResourcePolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateResourcePolicyInput"}
+	if s.ExpectedRevisionId != nil && len(*s.ExpectedRevisionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExpectedRevisionId", 1))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+	if s.Policy != nil && len(*s.Policy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Policy", 2))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpectedRevisionId sets the ExpectedRevisionId field's value.
+func (s *UpdateResourcePolicyInput) SetExpectedRevisionId(v string) *UpdateResourcePolicyInput {
+	s.ExpectedRevisionId = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *UpdateResourcePolicyInput) SetPolicy(v string) *UpdateResourcePolicyInput {
+	s.Policy = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateResourcePolicyInput) SetResourceArn(v string) *UpdateResourcePolicyInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type UpdateResourcePolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bot or bot alias that the resource
+	// policy is attached to.
+	ResourceArn *string `locationName:"resourceArn" min:"1" type:"string"`
+
+	// The current revision of the resource policy. Use the revision ID to make
+	// sure that you are updating the most current version of a resource policy
+	// when you add a policy statement to a resource, delete a resource, or update
+	// a resource.
+	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateResourcePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateResourcePolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UpdateResourcePolicyOutput) SetResourceArn(v string) *UpdateResourcePolicyOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetRevisionId sets the RevisionId field's value.
+func (s *UpdateResourcePolicyOutput) SetRevisionId(v string) *UpdateResourcePolicyOutput {
+	s.RevisionId = &v
+	return s
+}
+
 type UpdateSlotInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19396,6 +20666,22 @@ const (
 func BuiltInSlotTypeSortAttribute_Values() []string {
 	return []string{
 		BuiltInSlotTypeSortAttributeSlotTypeSignature,
+	}
+}
+
+const (
+	// EffectAllow is a Effect enum value
+	EffectAllow = "Allow"
+
+	// EffectDeny is a Effect enum value
+	EffectDeny = "Deny"
+)
+
+// Effect_Values returns all elements of the Effect enum
+func Effect_Values() []string {
+	return []string{
+		EffectAllow,
+		EffectDeny,
 	}
 }
 

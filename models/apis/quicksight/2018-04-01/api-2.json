@@ -6371,8 +6371,16 @@
       "members":{
         "Namespace":{"shape":"Namespace"},
         "Arn":{"shape":"Arn"},
-        "PermissionPolicy":{"shape":"RowLevelPermissionPolicy"}
+        "PermissionPolicy":{"shape":"RowLevelPermissionPolicy"},
+        "FormatVersion":{"shape":"RowLevelPermissionFormatVersion"}
       }
+    },
+    "RowLevelPermissionFormatVersion":{
+      "type":"string",
+      "enum":[
+        "VERSION_1",
+        "VERSION_2"
+      ]
     },
     "RowLevelPermissionPolicy":{
       "type":"string",

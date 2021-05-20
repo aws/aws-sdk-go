@@ -27260,6 +27260,14 @@ type RowLevelPermissionDataSet struct {
 	// Arn is a required field
 	Arn *string `type:"string" required:"true"`
 
+	// The user or group rules associated with the dataset that contains permissions
+	// for RLS.
+	//
+	// By default, FormatVersion is VERSION_1. When FormatVersion is VERSION_1,
+	// UserName and GroupName are required. When FormatVersion is VERSION_2, UserARN
+	// and GroupARN are required, and Namespace must not exist.
+	FormatVersion *string `type:"string" enum:"RowLevelPermissionFormatVersion"`
+
 	// The namespace associated with the dataset that contains permissions for RLS.
 	Namespace *string `type:"string"`
 
@@ -27299,6 +27307,12 @@ func (s *RowLevelPermissionDataSet) Validate() error {
 // SetArn sets the Arn field's value.
 func (s *RowLevelPermissionDataSet) SetArn(v string) *RowLevelPermissionDataSet {
 	s.Arn = &v
+	return s
+}
+
+// SetFormatVersion sets the FormatVersion field's value.
+func (s *RowLevelPermissionDataSet) SetFormatVersion(v string) *RowLevelPermissionDataSet {
+	s.FormatVersion = &v
 	return s
 }
 
@@ -34677,6 +34691,22 @@ func ResourceStatus_Values() []string {
 		ResourceStatusUpdateSuccessful,
 		ResourceStatusUpdateFailed,
 		ResourceStatusDeleted,
+	}
+}
+
+const (
+	// RowLevelPermissionFormatVersionVersion1 is a RowLevelPermissionFormatVersion enum value
+	RowLevelPermissionFormatVersionVersion1 = "VERSION_1"
+
+	// RowLevelPermissionFormatVersionVersion2 is a RowLevelPermissionFormatVersion enum value
+	RowLevelPermissionFormatVersionVersion2 = "VERSION_2"
+)
+
+// RowLevelPermissionFormatVersion_Values returns all elements of the RowLevelPermissionFormatVersion enum
+func RowLevelPermissionFormatVersion_Values() []string {
+	return []string{
+		RowLevelPermissionFormatVersionVersion1,
+		RowLevelPermissionFormatVersionVersion2,
 	}
 }
 

@@ -1309,6 +1309,14 @@ func (c *IAM) CreateOpenIDConnectProviderRequest(input *CreateOpenIDConnectProvi
 // in a role's trust policy. Such a policy establishes a trust relationship
 // between AWS and the OIDC provider.
 //
+// If you are using an OIDC identity provider from Google, Facebook, or Amazon
+// Cognito, you don't need to create a separate IAM identity provider. These
+// OIDC identity providers are already built-in to AWS and are available for
+// your use. Instead, you can move directly to creating new roles using your
+// identity provider. To learn more, see Creating a role for web identity or
+// OpenID connect federation (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-idp_oidc.html)
+// in the IAM User Guide.
+//
 // When you create the IAM OIDC provider, you specify the following:
 //
 //    * The URL of the OIDC identity provider (IdP) to trust

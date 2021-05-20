@@ -1,3 +1,14 @@
+Release v1.38.44 (2021-05-20)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/personalize`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Add ARN based Row Level Security support to CreateDataSet/UpdateDataSet APIs.
+
 Release v1.38.43 (2021-05-19)
 ===
 

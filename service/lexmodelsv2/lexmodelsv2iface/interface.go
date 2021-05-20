@@ -88,6 +88,14 @@ type LexModelsV2API interface {
 	CreateIntentWithContext(aws.Context, *lexmodelsv2.CreateIntentInput, ...request.Option) (*lexmodelsv2.CreateIntentOutput, error)
 	CreateIntentRequest(*lexmodelsv2.CreateIntentInput) (*request.Request, *lexmodelsv2.CreateIntentOutput)
 
+	CreateResourcePolicy(*lexmodelsv2.CreateResourcePolicyInput) (*lexmodelsv2.CreateResourcePolicyOutput, error)
+	CreateResourcePolicyWithContext(aws.Context, *lexmodelsv2.CreateResourcePolicyInput, ...request.Option) (*lexmodelsv2.CreateResourcePolicyOutput, error)
+	CreateResourcePolicyRequest(*lexmodelsv2.CreateResourcePolicyInput) (*request.Request, *lexmodelsv2.CreateResourcePolicyOutput)
+
+	CreateResourcePolicyStatement(*lexmodelsv2.CreateResourcePolicyStatementInput) (*lexmodelsv2.CreateResourcePolicyStatementOutput, error)
+	CreateResourcePolicyStatementWithContext(aws.Context, *lexmodelsv2.CreateResourcePolicyStatementInput, ...request.Option) (*lexmodelsv2.CreateResourcePolicyStatementOutput, error)
+	CreateResourcePolicyStatementRequest(*lexmodelsv2.CreateResourcePolicyStatementInput) (*request.Request, *lexmodelsv2.CreateResourcePolicyStatementOutput)
+
 	CreateSlot(*lexmodelsv2.CreateSlotInput) (*lexmodelsv2.CreateSlotOutput, error)
 	CreateSlotWithContext(aws.Context, *lexmodelsv2.CreateSlotInput, ...request.Option) (*lexmodelsv2.CreateSlotOutput, error)
 	CreateSlotRequest(*lexmodelsv2.CreateSlotInput) (*request.Request, *lexmodelsv2.CreateSlotOutput)
@@ -128,6 +136,14 @@ type LexModelsV2API interface {
 	DeleteIntentWithContext(aws.Context, *lexmodelsv2.DeleteIntentInput, ...request.Option) (*lexmodelsv2.DeleteIntentOutput, error)
 	DeleteIntentRequest(*lexmodelsv2.DeleteIntentInput) (*request.Request, *lexmodelsv2.DeleteIntentOutput)
 
+	DeleteResourcePolicy(*lexmodelsv2.DeleteResourcePolicyInput) (*lexmodelsv2.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyWithContext(aws.Context, *lexmodelsv2.DeleteResourcePolicyInput, ...request.Option) (*lexmodelsv2.DeleteResourcePolicyOutput, error)
+	DeleteResourcePolicyRequest(*lexmodelsv2.DeleteResourcePolicyInput) (*request.Request, *lexmodelsv2.DeleteResourcePolicyOutput)
+
+	DeleteResourcePolicyStatement(*lexmodelsv2.DeleteResourcePolicyStatementInput) (*lexmodelsv2.DeleteResourcePolicyStatementOutput, error)
+	DeleteResourcePolicyStatementWithContext(aws.Context, *lexmodelsv2.DeleteResourcePolicyStatementInput, ...request.Option) (*lexmodelsv2.DeleteResourcePolicyStatementOutput, error)
+	DeleteResourcePolicyStatementRequest(*lexmodelsv2.DeleteResourcePolicyStatementInput) (*request.Request, *lexmodelsv2.DeleteResourcePolicyStatementOutput)
+
 	DeleteSlot(*lexmodelsv2.DeleteSlotInput) (*lexmodelsv2.DeleteSlotOutput, error)
 	DeleteSlotWithContext(aws.Context, *lexmodelsv2.DeleteSlotInput, ...request.Option) (*lexmodelsv2.DeleteSlotOutput, error)
 	DeleteSlotRequest(*lexmodelsv2.DeleteSlotInput) (*request.Request, *lexmodelsv2.DeleteSlotOutput)
@@ -163,6 +179,10 @@ type LexModelsV2API interface {
 	DescribeIntent(*lexmodelsv2.DescribeIntentInput) (*lexmodelsv2.DescribeIntentOutput, error)
 	DescribeIntentWithContext(aws.Context, *lexmodelsv2.DescribeIntentInput, ...request.Option) (*lexmodelsv2.DescribeIntentOutput, error)
 	DescribeIntentRequest(*lexmodelsv2.DescribeIntentInput) (*request.Request, *lexmodelsv2.DescribeIntentOutput)
+
+	DescribeResourcePolicy(*lexmodelsv2.DescribeResourcePolicyInput) (*lexmodelsv2.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyWithContext(aws.Context, *lexmodelsv2.DescribeResourcePolicyInput, ...request.Option) (*lexmodelsv2.DescribeResourcePolicyOutput, error)
+	DescribeResourcePolicyRequest(*lexmodelsv2.DescribeResourcePolicyInput) (*request.Request, *lexmodelsv2.DescribeResourcePolicyOutput)
 
 	DescribeSlot(*lexmodelsv2.DescribeSlotInput) (*lexmodelsv2.DescribeSlotOutput, error)
 	DescribeSlotWithContext(aws.Context, *lexmodelsv2.DescribeSlotInput, ...request.Option) (*lexmodelsv2.DescribeSlotOutput, error)
@@ -284,6 +304,10 @@ type LexModelsV2API interface {
 	UpdateIntent(*lexmodelsv2.UpdateIntentInput) (*lexmodelsv2.UpdateIntentOutput, error)
 	UpdateIntentWithContext(aws.Context, *lexmodelsv2.UpdateIntentInput, ...request.Option) (*lexmodelsv2.UpdateIntentOutput, error)
 	UpdateIntentRequest(*lexmodelsv2.UpdateIntentInput) (*request.Request, *lexmodelsv2.UpdateIntentOutput)
+
+	UpdateResourcePolicy(*lexmodelsv2.UpdateResourcePolicyInput) (*lexmodelsv2.UpdateResourcePolicyOutput, error)
+	UpdateResourcePolicyWithContext(aws.Context, *lexmodelsv2.UpdateResourcePolicyInput, ...request.Option) (*lexmodelsv2.UpdateResourcePolicyOutput, error)
+	UpdateResourcePolicyRequest(*lexmodelsv2.UpdateResourcePolicyInput) (*request.Request, *lexmodelsv2.UpdateResourcePolicyOutput)
 
 	UpdateSlot(*lexmodelsv2.UpdateSlotInput) (*lexmodelsv2.UpdateSlotOutput, error)
 	UpdateSlotWithContext(aws.Context, *lexmodelsv2.UpdateSlotInput, ...request.Option) (*lexmodelsv2.UpdateSlotOutput, error)
