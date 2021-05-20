@@ -661,6 +661,20 @@
       ],
       "idempotent":true
     },
+    "StopSolutionVersionCreation":{
+      "name":"StopSolutionVersionCreation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopSolutionVersionCreationRequest"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"}
+      ],
+      "idempotent":true
+    },
     "UpdateCampaign":{
       "name":"UpdateCampaign",
       "http":{
@@ -2150,6 +2164,13 @@
     "Status":{
       "type":"string",
       "max":256
+    },
+    "StopSolutionVersionCreationRequest":{
+      "type":"structure",
+      "required":["solutionVersionArn"],
+      "members":{
+        "solutionVersionArn":{"shape":"Arn"}
+      }
     },
     "TrackingId":{
       "type":"string",

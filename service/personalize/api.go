@@ -1216,7 +1216,17 @@ func (c *Personalize) CreateSolutionVersionRequest(input *CreateSolutionVersionI
 //
 // A solution version can be in one of the following states:
 //
-//    * CREATE PENDING > CREATE IN_PROGRESS > ACTIVE -or- CREATE FAILED
+//    * CREATE PENDING
+//
+//    * CREATE IN_PROGRESS
+//
+//    * ACTIVE
+//
+//    * CREATE FAILED
+//
+//    * CREATE STOPPING
+//
+//    * CREATE STOPPED
 //
 // To get the status of the version, call DescribeSolutionVersion. Wait until
 // the status shows as ACTIVE before calling CreateCampaign.
@@ -4870,6 +4880,104 @@ func (c *Personalize) ListSolutionsPagesWithContext(ctx aws.Context, input *List
 	}
 
 	return p.Err()
+}
+
+const opStopSolutionVersionCreation = "StopSolutionVersionCreation"
+
+// StopSolutionVersionCreationRequest generates a "aws/request.Request" representing the
+// client's request for the StopSolutionVersionCreation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopSolutionVersionCreation for more information on using the StopSolutionVersionCreation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopSolutionVersionCreationRequest method.
+//    req, resp := client.StopSolutionVersionCreationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
+func (c *Personalize) StopSolutionVersionCreationRequest(input *StopSolutionVersionCreationInput) (req *request.Request, output *StopSolutionVersionCreationOutput) {
+	op := &request.Operation{
+		Name:       opStopSolutionVersionCreation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopSolutionVersionCreationInput{}
+	}
+
+	output = &StopSolutionVersionCreationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopSolutionVersionCreation API operation for Amazon Personalize.
+//
+// Stops creating a solution version that is in a state of CREATE_PENDING or
+// CREATE IN_PROGRESS.
+//
+// Depending on the current state of the solution version, the solution version
+// state changes as follows:
+//
+//    * CREATE_PENDING > CREATE_STOPPED or
+//
+//    * CREATE_IN_PROGRESS > CREATE_STOPPING > CREATE_STOPPED
+//
+// You are billed for all of the training completed up until you stop the solution
+// version creation. You cannot resume creating a solution version once it has
+// been stopped.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize's
+// API operation StopSolutionVersionCreation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-2018-05-22/StopSolutionVersionCreation
+func (c *Personalize) StopSolutionVersionCreation(input *StopSolutionVersionCreationInput) (*StopSolutionVersionCreationOutput, error) {
+	req, out := c.StopSolutionVersionCreationRequest(input)
+	return out, req.Send()
+}
+
+// StopSolutionVersionCreationWithContext is the same as StopSolutionVersionCreation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopSolutionVersionCreation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Personalize) StopSolutionVersionCreationWithContext(ctx aws.Context, input *StopSolutionVersionCreationInput, opts ...request.Option) (*StopSolutionVersionCreationOutput, error) {
+	req, out := c.StopSolutionVersionCreationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateCampaign = "UpdateCampaign"
@@ -12199,6 +12307,10 @@ type SolutionVersion struct {
 	//    * ACTIVE
 	//
 	//    * CREATE FAILED
+	//
+	//    * CREATE STOPPING
+	//
+	//    * CREATE STOPPED
 	Status *string `locationName:"status" type:"string"`
 
 	// The time used to train the model. You are billed for the time it takes to
@@ -12388,6 +12500,58 @@ func (s *SolutionVersionSummary) SetSolutionVersionArn(v string) *SolutionVersio
 func (s *SolutionVersionSummary) SetStatus(v string) *SolutionVersionSummary {
 	s.Status = &v
 	return s
+}
+
+type StopSolutionVersionCreationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the solution version you want to stop creating.
+	//
+	// SolutionVersionArn is a required field
+	SolutionVersionArn *string `locationName:"solutionVersionArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopSolutionVersionCreationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopSolutionVersionCreationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopSolutionVersionCreationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopSolutionVersionCreationInput"}
+	if s.SolutionVersionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SolutionVersionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSolutionVersionArn sets the SolutionVersionArn field's value.
+func (s *StopSolutionVersionCreationInput) SetSolutionVersionArn(v string) *StopSolutionVersionCreationInput {
+	s.SolutionVersionArn = &v
+	return s
+}
+
+type StopSolutionVersionCreationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopSolutionVersionCreationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopSolutionVersionCreationOutput) GoString() string {
+	return s.String()
 }
 
 // If hyperparameter optimization (HPO) was performed, contains the hyperparameter

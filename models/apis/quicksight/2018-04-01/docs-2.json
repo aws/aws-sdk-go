@@ -2853,6 +2853,12 @@
         "UpdateDataSetRequest$RowLevelPermissionDataSet": "<p>The row-level security configuration for the data you want to create.</p>"
       }
     },
+    "RowLevelPermissionFormatVersion": {
+      "base": null,
+      "refs": {
+        "RowLevelPermissionDataSet$FormatVersion": "<p>The user or group rules associated with the dataset that contains permissions for RLS.</p> <p>By default, <code>FormatVersion</code> is <code>VERSION_1</code>. When <code>FormatVersion</code> is <code>VERSION_1</code>, <code>UserName</code> and <code>GroupName</code> are required. When <code>FormatVersion</code> is <code>VERSION_2</code>, <code>UserARN</code> and <code>GroupARN</code> are required, and <code>Namespace</code> must not exist.</p>"
+      }
+    },
     "RowLevelPermissionPolicy": {
       "base": null,
       "refs": {

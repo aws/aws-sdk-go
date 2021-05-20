@@ -276,6 +276,10 @@ type PersonalizeAPI interface {
 	ListSolutionsPages(*personalize.ListSolutionsInput, func(*personalize.ListSolutionsOutput, bool) bool) error
 	ListSolutionsPagesWithContext(aws.Context, *personalize.ListSolutionsInput, func(*personalize.ListSolutionsOutput, bool) bool, ...request.Option) error
 
+	StopSolutionVersionCreation(*personalize.StopSolutionVersionCreationInput) (*personalize.StopSolutionVersionCreationOutput, error)
+	StopSolutionVersionCreationWithContext(aws.Context, *personalize.StopSolutionVersionCreationInput, ...request.Option) (*personalize.StopSolutionVersionCreationOutput, error)
+	StopSolutionVersionCreationRequest(*personalize.StopSolutionVersionCreationInput) (*request.Request, *personalize.StopSolutionVersionCreationOutput)
+
 	UpdateCampaign(*personalize.UpdateCampaignInput) (*personalize.UpdateCampaignOutput, error)
 	UpdateCampaignWithContext(aws.Context, *personalize.UpdateCampaignInput, ...request.Option) (*personalize.UpdateCampaignOutput, error)
 	UpdateCampaignRequest(*personalize.UpdateCampaignInput) (*request.Request, *personalize.UpdateCampaignOutput)

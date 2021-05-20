@@ -9,6 +9,8 @@
     "CreateBotVersion": "<p>Creates a new version of the bot based on the <code>DRAFT</code> version. If the <code>DRAFT</code> version of this resource hasn't changed since you created the last version, Amazon Lex doesn't create a new version, it returns the last created version.</p> <p>When you create the first version of a bot, Amazon Lex sets the version to 1. Subsequent versions increment by 1.</p>",
     "CreateExport": "<p>Creates a zip archive containing the contents of a bot or a bot locale. The archive contains a directory structure that contains JSON files that define the bot.</p> <p>You can create an archive that contains the complete definition of a bot, or you can specify that the archive contain only the definition of a single bot locale.</p> <p>For more information about exporting bots, and about the structure of the export archive, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html\"> Importing and exporting bots </a> </p>",
     "CreateIntent": "<p>Creates an intent.</p> <p>To define the interaction between the user and your bot, you define one or more intents. For example, for a pizza ordering bot you would create an <code>OrderPizza</code> intent.</p> <p>When you create an intent, you must provide a name. You can optionally provide the following:</p> <ul> <li> <p>Sample utterances. For example, \"I want to order a pizza\" and \"Can I order a pizza.\" You can't provide utterances for built-in intents.</p> </li> <li> <p>Information to be gathered. You specify slots for the information that you bot requests from the user. You can specify standard slot types, such as date and time, or custom slot types for your application.</p> </li> <li> <p>How the intent is fulfilled. You can provide a Lambda function or configure the intent to return the intent information to your client application. If you use a Lambda function, Amazon Lex invokes the function when all of the intent information is available.</p> </li> <li> <p>A confirmation prompt to send to the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent is fulfilled. For example, \"I ordered your pizza.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, \"Do you want a drink with your pizza?\"</p> </li> </ul>",
+    "CreateResourcePolicy": "<p>Creates a new resource policy with the specified policy statements.</p>",
+    "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can create a resource policy statement that allows cross-account access.</p>",
     "CreateSlot": "<p>Creates a slot in an intent. A slot is a variable needed to fulfill an intent. For example, an <code>OrderPizza</code> intent might need slots for size, crust, and number of pizzas. For each slot, you define one or more utterances that Amazon Lex uses to elicit a response from the user. </p>",
     "CreateSlotType": "<p>Creates a custom slot type</p> <p> To create a custom slot type, specify a name for the slot type and a set of enumeration values, the values that a slot of this type can assume. </p>",
     "CreateUploadUrl": "<p>Gets a pre-signed S3 write URL that you use to upload the zip archive when importing a bot or a bot locale. </p>",
@@ -19,6 +21,8 @@
     "DeleteExport": "<p>Removes a previous export and the associated files stored in an S3 bucket.</p>",
     "DeleteImport": "<p>Removes a previous import and the associated file stored in an S3 bucket.</p>",
     "DeleteIntent": "<p>Removes the specified intent.</p> <p>Deleting an intent also deletes the slots associated with the intent.</p>",
+    "DeleteResourcePolicy": "<p>Removes an existing policy from a bot or bot alias. If the resource doesn't have a policy attached, Amazon Lex returns an exception.</p>",
+    "DeleteResourcePolicyStatement": "<p>Deletes a policy statement from a resource policy. If you delete the last statement from a policy, the policy is deleted. If you specify a statement ID that doesn't exist in the policy, or if the bot or bot alias doesn't have a policy attached, Amazon Lex returns an exception.</p>",
     "DeleteSlot": "<p>Deletes the specified slot from an intent.</p>",
     "DeleteSlotType": "<p>Deletes a slot type from a bot locale.</p> <p>If a slot is using the slot type, Amazon Lex throws a <code>ResourceInUseException</code> exception. To avoid the exception, set the <code>skipResourceInUseCheck</code> parameter to <code>true</code>.</p>",
     "DescribeBot": "<p>Provides metadata information about a bot. </p>",
@@ -28,6 +32,7 @@
     "DescribeExport": "<p>Gets information about a specific export.</p>",
     "DescribeImport": "<p>Gets information about a specific import.</p>",
     "DescribeIntent": "<p>Returns metadata about an intent.</p>",
+    "DescribeResourcePolicy": "<p>Gets the resource policy and policy revision for a bot or bot alias.</p>",
     "DescribeSlot": "<p>Gets metadata information about a slot.</p>",
     "DescribeSlotType": "<p>Gets metadata information about a slot type.</p>",
     "ListBotAliases": "<p>Gets a list of aliases for the specified bot.</p>",
@@ -50,6 +55,7 @@
     "UpdateBotLocale": "<p>Updates the settings that a bot has for a specific locale.</p>",
     "UpdateExport": "<p>Updates the password used to encrypt an export zip archive.</p>",
     "UpdateIntent": "<p>Updates the settings for an intent.</p>",
+    "UpdateResourcePolicy": "<p>Replaces the existing resource policy for a bot or bot alias with a new one. If the policy doesn't exist, Amazon Lex returns an exception.</p>",
     "UpdateSlot": "<p>Updates the settings for a slot.</p>",
     "UpdateSlotType": "<p>Updates the configuration of an existing slot type.</p>"
   },
@@ -57,9 +63,21 @@
     "AmazonResourceName": {
       "base": null,
       "refs": {
+        "CreateResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "CreateResourcePolicyResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy was attached to.</p>",
+        "CreateResourcePolicyStatementRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "CreateResourcePolicyStatementResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "DeleteResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that has the resource policy attached.</p>",
+        "DeleteResourcePolicyResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy was deleted from.</p>",
+        "DeleteResourcePolicyStatementRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "DeleteResourcePolicyStatementResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy statement was removed from.</p>",
+        "DescribeResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "DescribeResourcePolicyResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
         "ListTagsForResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource to get a list of tags for.</p>",
         "TagResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the bot, bot alias, or bot channel to tag.</p>",
-        "UntagResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource to remove the tags from.</p>"
+        "UntagResourceRequest$resourceARN": "<p>The Amazon Resource Name (ARN) of the resource to remove the tags from.</p>",
+        "UpdateResourcePolicyRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>",
+        "UpdateResourcePolicyResponse$resourceArn": "<p>The Amazon Resource Name (ARN) of the bot or bot alias that the resource policy is attached to.</p>"
       }
     },
     "AttachmentTitle": {
@@ -537,6 +555,36 @@
         "BotAliasLocaleSettings$codeHookSpecification": "<p>Specifies the Lambda function that should be used in the locale.</p>"
       }
     },
+    "ConditionKey": {
+      "base": null,
+      "refs": {
+        "ConditionKeyValueMap$key": null
+      }
+    },
+    "ConditionKeyValueMap": {
+      "base": null,
+      "refs": {
+        "ConditionMap$value": null
+      }
+    },
+    "ConditionMap": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyStatementRequest$condition": "<p>Specifies a condition when the policy is in effect. If the principal of the policy is a service principal, you must provide two condition blocks, one with a SourceAccount global condition key and one with a SourceArn global condition key.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html\">IAM JSON policy elements: Condition </a>.</p>"
+      }
+    },
+    "ConditionOperator": {
+      "base": null,
+      "refs": {
+        "ConditionMap$key": null
+      }
+    },
+    "ConditionValue": {
+      "base": null,
+      "refs": {
+        "ConditionKeyValueMap$value": null
+      }
+    },
     "ConfidenceThreshold": {
       "base": null,
       "refs": {
@@ -631,6 +679,26 @@
       }
     },
     "CreateIntentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResourcePolicyStatementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateResourcePolicyStatementResponse": {
       "base": null,
       "refs": {
       }
@@ -754,6 +822,26 @@
       "refs": {
       }
     },
+    "DeleteResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyStatementRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteResourcePolicyStatementResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteSlotRequest": {
       "base": null,
       "refs": {
@@ -830,6 +918,16 @@
       }
     },
     "DescribeIntentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeResourcePolicyResponse": {
       "base": null,
       "refs": {
       }
@@ -941,6 +1039,12 @@
         "UpdateSlotResponse$botVersion": "<p>The identifier of the slot version that contains the slot. Will always be <code>DRAFT</code>.</p>",
         "UpdateSlotTypeRequest$botVersion": "<p>The version of the bot that contains the slot type. Must be <code>DRAFT</code>.</p>",
         "UpdateSlotTypeResponse$botVersion": "<p>The version of the bot that contains the slot type. This is always <code>DRAFT</code>.</p>"
+      }
+    },
+    "Effect": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyStatementRequest$effect": "<p>Determines whether the statement allows or denies access to the resource.</p>"
       }
     },
     "ExceptionMessage": {
@@ -1673,10 +1777,12 @@
         "CreateBotResponse$botName": "<p>The name specified for the bot.</p>",
         "CreateIntentRequest$intentName": "<p>The name of the intent. Intent names must be unique in the locale that contains the intent and cannot match the name of any built-in intent.</p>",
         "CreateIntentResponse$intentName": "<p>The name specified for the intent.</p>",
+        "CreateResourcePolicyStatementRequest$statementId": "<p>The name of the statement. The ID is the same as the <code>Sid</code> IAM property. The statement name must be unique within the policy. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_sid.html\">IAM JSON policy elements: Sid</a>. </p>",
         "CreateSlotRequest$slotName": "<p>The name of the slot. Slot names must be unique within the bot that contains the slot.</p>",
         "CreateSlotResponse$slotName": "<p>The name specified for the slot.</p>",
         "CreateSlotTypeRequest$slotTypeName": "<p>The name for the slot. A slot type name must be unique within the account.</p>",
         "CreateSlotTypeResponse$slotTypeName": "<p>The name specified for the slot type.</p>",
+        "DeleteResourcePolicyStatementRequest$statementId": "<p>The name of the statement (SID) to delete from the policy.</p>",
         "DescribeBotAliasResponse$botAliasName": "<p>The name of the bot alias.</p>",
         "DescribeBotResponse$botName": "<p>The name of the bot.</p>",
         "DescribeBotVersionResponse$botName": "<p>The name of the bot that contains the version.</p>",
@@ -1758,6 +1864,18 @@
         "ObfuscationSetting$obfuscationSettingType": "<p>Value that determines whether Amazon Lex obscures slot values in conversation logs. The default is to obscure the values.</p>"
       }
     },
+    "Operation": {
+      "base": null,
+      "refs": {
+        "OperationList$member": null
+      }
+    },
+    "OperationList": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyStatementRequest$action": "<p>The Amazon Lex action that this policy either allows or denies. The action must apply to the resource type of the specified ARN. For more information, see <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonlexv2.html\"> Actions, resources, and condition keys for Amazon Lex V2</a>.</p>"
+      }
+    },
     "OutputContext": {
       "base": "<p>Describes a session context that is activated when an intent is fulfilled.</p>",
       "refs": {
@@ -1787,6 +1905,14 @@
         "PlainTextMessage$value": "<p>The message to send to the user.</p>"
       }
     },
+    "Policy": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyRequest$policy": "<p>A resource policy to add to the resource. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>. </p> <p>If the policy isn't valid, Amazon Lex returns a validation exception.</p>",
+        "DescribeResourcePolicyResponse$policy": "<p>The JSON structure that contains the resource policy. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>.</p>",
+        "UpdateResourcePolicyRequest$policy": "<p>A resource policy to add to the resource. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>. </p> <p>If the policy isn't valid, Amazon Lex returns a validation exception.</p>"
+      }
+    },
     "PreconditionFailedException": {
       "base": "<p/>",
       "refs": {
@@ -1797,6 +1923,24 @@
       "refs": {
         "CreateUploadUrlResponse$uploadUrl": "<p>A pre-signed S3 write URL. Upload the zip archive file that contains the definition of your bot or bot locale.</p>",
         "DescribeExportResponse$downloadUrl": "<p>A pre-signed S3 URL that points to the bot or bot locale archive. The URL is only available for 5 minutes after calling the <code>DescribeExport</code> operation.</p>"
+      }
+    },
+    "Principal": {
+      "base": "<p>The IAM principal that you allowing or denying access to an Amazon Lex action. You must provide a <code>service</code> or an <code>arn</code>, but not both in the same statement. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\"> AWS JSON policy elements: Principal </a>.</p>",
+      "refs": {
+        "PrincipalList$member": null
+      }
+    },
+    "PrincipalArn": {
+      "base": null,
+      "refs": {
+        "Principal$arn": "<p>The Amazon Resource Name (ARN) of the principal.</p>"
+      }
+    },
+    "PrincipalList": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyStatementRequest$principal": "<p>An IAM principal, such as an IAM users, IAM roles, or AWS services that is allowed or denied access to a resource. For more information, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html\">AWS JSON policy elements: Principal</a>.</p>"
       }
     },
     "PriorityValue": {
@@ -1856,6 +2000,21 @@
       "base": null,
       "refs": {
         "ThrottlingException$retryAfterSeconds": null
+      }
+    },
+    "RevisionId": {
+      "base": null,
+      "refs": {
+        "CreateResourcePolicyResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>",
+        "CreateResourcePolicyStatementRequest$expectedRevisionId": "<p>The identifier of the revision of the policy to edit. If this revision ID doesn't match the current revision ID, Amazon Lex throws an exception.</p> <p>If you don't specify a revision, Amazon Lex overwrites the contents of the policy with the new values.</p>",
+        "CreateResourcePolicyStatementResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>",
+        "DeleteResourcePolicyRequest$expectedRevisionId": "<p>The identifier of the revision to edit. If this ID doesn't match the current revision number, Amazon Lex returns an exception</p> <p>If you don't specify a revision ID, Amazon Lex will delete the current policy.</p>",
+        "DeleteResourcePolicyResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>",
+        "DeleteResourcePolicyStatementRequest$expectedRevisionId": "<p>The identifier of the revision of the policy to delete the statement from. If this revision ID doesn't match the current revision ID, Amazon Lex throws an exception.</p> <p>If you don't specify a revision, Amazon Lex removes the current contents of the statement. </p>",
+        "DeleteResourcePolicyStatementResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>",
+        "DescribeResourcePolicyResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>",
+        "UpdateResourcePolicyRequest$expectedRevisionId": "<p>The identifier of the revision of the policy to update. If this revision ID doesn't match the current revision ID, Amazon Lex throws an exception.</p> <p>If you don't specify a revision, Amazon Lex overwrites the contents of the policy with the new values.</p>",
+        "UpdateResourcePolicyResponse$revisionId": "<p>The current revision of the resource policy. Use the revision ID to make sure that you are updating the most current version of a resource policy when you add a policy statement to a resource, delete a resource, or update a resource.</p>"
       }
     },
     "RoleArn": {
@@ -1926,6 +2085,12 @@
         "DescribeBotAliasResponse$sentimentAnalysisSettings": null,
         "UpdateBotAliasRequest$sentimentAnalysisSettings": null,
         "UpdateBotAliasResponse$sentimentAnalysisSettings": null
+      }
+    },
+    "ServicePrincipal": {
+      "base": null,
+      "refs": {
+        "Principal$service": "<p>The name of the AWS service that should allowed or denied access to an Amazon Lex action.</p>"
       }
     },
     "ServiceQuotaExceededException": {
@@ -2390,6 +2555,16 @@
       }
     },
     "UpdateIntentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResourcePolicyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateResourcePolicyResponse": {
       "base": null,
       "refs": {
       }

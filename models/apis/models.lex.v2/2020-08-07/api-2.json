@@ -139,6 +139,43 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "CreateResourcePolicy":{
+      "name":"CreateResourcePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/{resourceArn}/",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateResourcePolicyRequest"},
+      "output":{"shape":"CreateResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "CreateResourcePolicyStatement":{
+      "name":"CreateResourcePolicyStatement",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy/{resourceArn}/statements/",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateResourcePolicyStatementRequest"},
+      "output":{"shape":"CreateResourcePolicyStatementResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateSlot":{
       "name":"CreateSlot",
       "http":{
@@ -315,6 +352,38 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy/{resourceArn}/",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "DeleteResourcePolicyStatement":{
+      "name":"DeleteResourcePolicyStatement",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy/{resourceArn}/statements/{statementId}/",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteResourcePolicyStatementRequest"},
+      "output":{"shape":"DeleteResourcePolicyStatementResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DeleteSlot":{
       "name":"DeleteSlot",
       "http":{
@@ -464,6 +533,21 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeResourcePolicy":{
+      "name":"DescribeResourcePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy/{resourceArn}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeResourcePolicyRequest"},
+      "output":{"shape":"DescribeResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DescribeSlot":{
@@ -828,6 +912,24 @@
         {"shape":"PreconditionFailedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateResourcePolicy":{
+      "name":"UpdateResourcePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/policy/{resourceArn}/",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateResourcePolicyRequest"},
+      "output":{"shape":"UpdateResourcePolicyResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdateSlot":{
@@ -1389,6 +1491,34 @@
         "lambdaCodeHook":{"shape":"LambdaCodeHook"}
       }
     },
+    "ConditionKey":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "ConditionKeyValueMap":{
+      "type":"map",
+      "key":{"shape":"ConditionKey"},
+      "value":{"shape":"ConditionValue"},
+      "max":10,
+      "min":0
+    },
+    "ConditionMap":{
+      "type":"map",
+      "key":{"shape":"ConditionOperator"},
+      "value":{"shape":"ConditionKeyValueMap"},
+      "max":10,
+      "min":0
+    },
+    "ConditionOperator":{
+      "type":"string",
+      "min":1
+    },
+    "ConditionValue":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ConfidenceThreshold":{
       "type":"double",
       "max":1,
@@ -1633,6 +1763,62 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "CreateResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "policy"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "policy":{"shape":"Policy"}
+      }
+    },
+    "CreateResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
+    "CreateResourcePolicyStatementRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "statementId",
+        "effect",
+        "principal",
+        "action"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "statementId":{"shape":"Name"},
+        "effect":{"shape":"Effect"},
+        "principal":{"shape":"PrincipalList"},
+        "action":{"shape":"OperationList"},
+        "condition":{"shape":"ConditionMap"},
+        "expectedRevisionId":{
+          "shape":"RevisionId",
+          "location":"querystring",
+          "locationName":"expectedRevisionId"
+        }
+      }
+    },
+    "CreateResourcePolicyStatementResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "revisionId":{"shape":"RevisionId"}
       }
     },
     "CreateSlotRequest":{
@@ -1956,6 +2142,60 @@
         }
       }
     },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "expectedRevisionId":{
+          "shape":"RevisionId",
+          "location":"querystring",
+          "locationName":"expectedRevisionId"
+        }
+      }
+    },
+    "DeleteResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
+    "DeleteResourcePolicyStatementRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "statementId"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "statementId":{
+          "shape":"Name",
+          "location":"uri",
+          "locationName":"statementId"
+        },
+        "expectedRevisionId":{
+          "shape":"RevisionId",
+          "location":"querystring",
+          "locationName":"expectedRevisionId"
+        }
+      }
+    },
+    "DeleteResourcePolicyStatementResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
     "DeleteSlotRequest":{
       "type":"structure",
       "required":[
@@ -2272,6 +2512,25 @@
         "lastUpdatedDateTime":{"shape":"Timestamp"}
       }
     },
+    "DescribeResourcePolicyRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "DescribeResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "policy":{"shape":"Policy"},
+        "revisionId":{"shape":"RevisionId"}
+      }
+    },
     "DescribeSlotRequest":{
       "type":"structure",
       "required":[
@@ -2390,6 +2649,13 @@
       "max":5,
       "min":5,
       "pattern":"^DRAFT$"
+    },
+    "Effect":{
+      "type":"string",
+      "enum":[
+        "Allow",
+        "Deny"
+      ]
     },
     "ExceptionMessage":{"type":"string"},
     "ExportFilter":{
@@ -3135,6 +3401,16 @@
         "DefaultObfuscation"
       ]
     },
+    "Operation":{
+      "type":"string",
+      "max":50,
+      "min":5,
+      "pattern":"lex:[a-zA-Z*]+$"
+    },
+    "OperationList":{
+      "type":"list",
+      "member":{"shape":"Operation"}
+    },
     "OutputContext":{
       "type":"structure",
       "required":[
@@ -3166,6 +3442,10 @@
       "max":1000,
       "min":1
     },
+    "Policy":{
+      "type":"string",
+      "min":2
+    },
     "PreconditionFailedException":{
       "type":"structure",
       "members":{
@@ -3178,6 +3458,23 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "Principal":{
+      "type":"structure",
+      "members":{
+        "service":{"shape":"ServicePrincipal"},
+        "arn":{"shape":"PrincipalArn"}
+      }
+    },
+    "PrincipalArn":{
+      "type":"string",
+      "max":1024,
+      "min":30,
+      "pattern":"^arn:aws:iam::[0-9]{12}:(root|(user|role)/.*)$"
+    },
+    "PrincipalList":{
+      "type":"list",
+      "member":{"shape":"Principal"}
     },
     "PriorityValue":{
       "type":"integer",
@@ -3229,6 +3526,12 @@
       }
     },
     "RetryAfterSeconds":{"type":"integer"},
+    "RevisionId":{
+      "type":"string",
+      "max":5,
+      "min":1,
+      "pattern":"^[0-9]+$"
+    },
     "RoleArn":{
       "type":"string",
       "max":2048,
@@ -3289,6 +3592,12 @@
       "members":{
         "detectSentiment":{"shape":"Boolean"}
       }
+    },
+    "ServicePrincipal":{
+      "type":"string",
+      "max":1024,
+      "min":15,
+      "pattern":"^[0-9a-zA-Z_.]+$"
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
@@ -3901,6 +4210,33 @@
         "localeId":{"shape":"LocaleId"},
         "creationDateTime":{"shape":"Timestamp"},
         "lastUpdatedDateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "policy"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"AmazonResourceName",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "policy":{"shape":"Policy"},
+        "expectedRevisionId":{
+          "shape":"RevisionId",
+          "location":"querystring",
+          "locationName":"expectedRevisionId"
+        }
+      }
+    },
+    "UpdateResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "resourceArn":{"shape":"AmazonResourceName"},
+        "revisionId":{"shape":"RevisionId"}
       }
     },
     "UpdateSlotRequest":{
