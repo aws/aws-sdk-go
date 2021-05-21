@@ -1507,10 +1507,10 @@ func (c *ForecastService) DeleteResourceTreeRequest(input *DeleteResourceTreeInp
 //
 // Amazon Forecast resources possess the following parent-child resource hierarchies:
 //
+//    * Dataset: dataset import jobs
+//
 //    * Dataset Group: predictors, predictor backtest export jobs, forecasts,
 //    forecast export jobs
-//
-//    * Dataset: dataset import jobs
 //
 //    * Predictor: predictor backtest export jobs, forecasts, forecast export
 //    jobs
@@ -10069,17 +10069,37 @@ type Statistics struct {
 	// For a numeric field, the average value in the field.
 	Avg *float64 `type:"double"`
 
-	// The number of values in the field.
+	// The number of values in the field. If the response value is -1, refer to
+	// CountLong.
 	Count *int64 `type:"integer"`
 
-	// The number of distinct values in the field.
+	// The number of distinct values in the field. If the response value is -1,
+	// refer to CountDistinctLong.
 	CountDistinct *int64 `type:"integer"`
 
-	// The number of NAN (not a number) values in the field.
+	// The number of distinct values in the field. CountDistinctLong is used instead
+	// of CountDistinct if the value is greater than 2,147,483,647.
+	CountDistinctLong *int64 `type:"long"`
+
+	// The number of values in the field. CountLong is used instead of Count if
+	// the value is greater than 2,147,483,647.
+	CountLong *int64 `type:"long"`
+
+	// The number of NAN (not a number) values in the field. If the response value
+	// is -1, refer to CountNanLong.
 	CountNan *int64 `type:"integer"`
 
-	// The number of null values in the field.
+	// The number of NAN (not a number) values in the field. CountNanLong is used
+	// instead of CountNan if the value is greater than 2,147,483,647.
+	CountNanLong *int64 `type:"long"`
+
+	// The number of null values in the field. If the response value is -1, refer
+	// to CountNullLong.
 	CountNull *int64 `type:"integer"`
+
+	// The number of null values in the field. CountNullLong is used instead of
+	// CountNull if the value is greater than 2,147,483,647.
+	CountNullLong *int64 `type:"long"`
 
 	// For a numeric field, the maximum value in the field.
 	Max *string `type:"string"`
@@ -10119,15 +10139,39 @@ func (s *Statistics) SetCountDistinct(v int64) *Statistics {
 	return s
 }
 
+// SetCountDistinctLong sets the CountDistinctLong field's value.
+func (s *Statistics) SetCountDistinctLong(v int64) *Statistics {
+	s.CountDistinctLong = &v
+	return s
+}
+
+// SetCountLong sets the CountLong field's value.
+func (s *Statistics) SetCountLong(v int64) *Statistics {
+	s.CountLong = &v
+	return s
+}
+
 // SetCountNan sets the CountNan field's value.
 func (s *Statistics) SetCountNan(v int64) *Statistics {
 	s.CountNan = &v
 	return s
 }
 
+// SetCountNanLong sets the CountNanLong field's value.
+func (s *Statistics) SetCountNanLong(v int64) *Statistics {
+	s.CountNanLong = &v
+	return s
+}
+
 // SetCountNull sets the CountNull field's value.
 func (s *Statistics) SetCountNull(v int64) *Statistics {
 	s.CountNull = &v
+	return s
+}
+
+// SetCountNullLong sets the CountNullLong field's value.
+func (s *Statistics) SetCountNullLong(v int64) *Statistics {
+	s.CountNullLong = &v
 	return s
 }
 

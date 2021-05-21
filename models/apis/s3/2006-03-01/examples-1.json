@@ -84,6 +84,23 @@
     "CreateBucket": [
       {
         "input": {
+          "Bucket": "examplebucket"
+        },
+        "output": {
+          "Location": "/examplebucket"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates a bucket.",
+        "id": "to-create-a-bucket--1472851826060",
+        "title": "To create a bucket "
+      },
+      {
+        "input": {
           "Bucket": "examplebucket",
           "CreateBucketConfiguration": {
             "LocationConstraint": "eu-west-1"
@@ -101,23 +118,6 @@
         "description": "The following example creates a bucket. The request specifies an AWS region where to create the bucket.",
         "id": "to-create-a-bucket-in-a-specific-region-1483399072992",
         "title": "To create a bucket in a specific region"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket"
-        },
-        "output": {
-          "Location": "/examplebucket"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example creates a bucket.",
-        "id": "to-create-a-bucket--1472851826060",
-        "title": "To create a bucket "
       }
     ],
     "CreateMultipartUpload": [
@@ -257,21 +257,6 @@
     "DeleteObject": [
       {
         "input": {
-          "Bucket": "ExampleBucket",
-          "Key": "HappyFace.jpg"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example deletes an object from a non-versioned bucket.",
-        "id": "to-delete-an-object-from-a-non-versioned-bucket-1481588533089",
-        "title": "To delete an object (from a non-versioned bucket)"
-      },
-      {
-        "input": {
           "Bucket": "examplebucket",
           "Key": "objectkey.jpg"
         },
@@ -286,6 +271,21 @@
         "description": "The following example deletes an object from an S3 bucket.",
         "id": "to-delete-an-object-1472850136595",
         "title": "To delete an object"
+      },
+      {
+        "input": {
+          "Bucket": "ExampleBucket",
+          "Key": "HappyFace.jpg"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example deletes an object from a non-versioned bucket.",
+        "id": "to-delete-an-object-from-a-non-versioned-bucket-1481588533089",
+        "title": "To delete an object (from a non-versioned bucket)"
       }
     ],
     "DeleteObjectTagging": [
@@ -728,32 +728,6 @@
       {
         "input": {
           "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg"
-        },
-        "output": {
-          "AcceptRanges": "bytes",
-          "ContentLength": "3191",
-          "ContentType": "image/jpeg",
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "LastModified": "Thu, 15 Dec 2016 01:19:41 GMT",
-          "Metadata": {
-          },
-          "TagCount": 2,
-          "VersionId": "null"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example retrieves an object for an S3 bucket.",
-        "id": "to-retrieve-an-object-1481827837012",
-        "title": "To retrieve an object"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket",
           "Key": "SampleFile.txt",
           "Range": "bytes=0-9"
         },
@@ -777,6 +751,32 @@
         "description": "The following example retrieves an object for an S3 bucket. The request specifies the range header to retrieve a specific byte range.",
         "id": "to-retrieve-a-byte-range-of-an-object--1481832674603",
         "title": "To retrieve a byte range of an object "
+      },
+      {
+        "input": {
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg"
+        },
+        "output": {
+          "AcceptRanges": "bytes",
+          "ContentLength": "3191",
+          "ContentType": "image/jpeg",
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "LastModified": "Thu, 15 Dec 2016 01:19:41 GMT",
+          "Metadata": {
+          },
+          "TagCount": 2,
+          "VersionId": "null"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example retrieves an object for an S3 bucket.",
+        "id": "to-retrieve-an-object-1481827837012",
+        "title": "To retrieve an object"
       }
     ],
     "GetObjectAcl": [
@@ -1567,47 +1567,6 @@
     "PutObject": [
       {
         "input": {
-          "Body": "c:\\HappyFace.jpg",
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg",
-          "Tagging": "key1=value1&key2=value2"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
-        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
-        "title": "To upload an object and specify optional tags"
-      },
-      {
-        "input": {
-          "Body": "filetoupload",
-          "Bucket": "examplebucket",
-          "Key": "objectkey"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.",
-        "id": "to-create-an-object-1483147613675",
-        "title": "To create an object."
-      },
-      {
-        "input": {
           "Body": "filetoupload",
           "Bucket": "examplebucket",
           "Key": "exampleobject",
@@ -1629,6 +1588,29 @@
         "description": "The following example creates an object. The request also specifies optional metadata. If the bucket is versioning enabled, S3 returns version ID in response.",
         "id": "to-upload-object-and-specify-user-defined-metadata-1483396974757",
         "title": "To upload object and specify user-defined metadata"
+      },
+      {
+        "input": {
+          "Body": "HappyFace.jpg",
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg",
+          "ServerSideEncryption": "AES256",
+          "StorageClass": "STANDARD_IA"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "ServerSideEncryption": "AES256",
+          "VersionId": "CG612hodqujkf8FaaNfp8U..FIhLROcp"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.",
+        "id": "to-upload-an-object-(specify-optional-headers)",
+        "title": "To upload an object (specify optional headers)"
       },
       {
         "input": {
@@ -1675,6 +1657,47 @@
       },
       {
         "input": {
+          "Body": "c:\\HappyFace.jpg",
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg",
+          "Tagging": "key1=value1&key2=value2"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
+        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
+        "title": "To upload an object and specify optional tags"
+      },
+      {
+        "input": {
+          "Body": "filetoupload",
+          "Bucket": "examplebucket",
+          "Key": "objectkey"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.",
+        "id": "to-create-an-object-1483147613675",
+        "title": "To create an object."
+      },
+      {
+        "input": {
           "ACL": "authenticated-read",
           "Body": "filetoupload",
           "Bucket": "examplebucket",
@@ -1693,29 +1716,6 @@
         "description": "The following example uploads and object. The request specifies optional canned ACL (access control list) to all READ access to authenticated users. If the bucket is versioning enabled, S3 returns version ID in response.",
         "id": "to-upload-an-object-and-specify-canned-acl-1483397779571",
         "title": "To upload an object and specify canned ACL."
-      },
-      {
-        "input": {
-          "Body": "HappyFace.jpg",
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg",
-          "ServerSideEncryption": "AES256",
-          "StorageClass": "STANDARD_IA"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "ServerSideEncryption": "AES256",
-          "VersionId": "CG612hodqujkf8FaaNfp8U..FIhLROcp"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object. The request specifies optional request headers to directs S3 to use specific storage class and use server-side encryption.",
-        "id": "to-upload-an-object-(specify-optional-headers)",
-        "title": "To upload an object (specify optional headers)"
       }
     ],
     "PutObjectAcl": [

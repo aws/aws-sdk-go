@@ -179,6 +179,19 @@
         {"shape":"AccessPointNotFound"}
       ]
     },
+    "DescribeAccountPreferences":{
+      "name":"DescribeAccountPreferences",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-02-01/account-preferences",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeAccountPreferencesRequest"},
+      "output":{"shape":"DescribeAccountPreferencesResponse"},
+      "errors":[
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeBackupPolicy":{
       "name":"DescribeBackupPolicy",
       "http":{
@@ -322,6 +335,19 @@
         {"shape":"IncorrectMountTargetState"},
         {"shape":"SecurityGroupLimitExceeded"},
         {"shape":"SecurityGroupNotFound"}
+      ]
+    },
+    "PutAccountPreferences":{
+      "name":"PutAccountPreferences",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2015-02-01/account-preferences",
+        "responseCode":200
+      },
+      "input":{"shape":"PutAccountPreferencesRequest"},
+      "output":{"shape":"PutAccountPreferencesResponse"},
+      "errors":[
+        {"shape":"InternalServerError"}
       ]
     },
     "PutBackupPolicy":{
@@ -722,6 +748,20 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "DescribeAccountPreferencesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "DescribeAccountPreferencesResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceIdPreference":{"shape":"ResourceIdPreference"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
     "DescribeBackupPolicyRequest":{
       "type":"structure",
       "required":["FileSystemId"],
@@ -1065,7 +1105,7 @@
     "KmsKeyId":{
       "type":"string",
       "max":2048,
-      "pattern":"^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(alias/[a-zA-Z0-9/_-]+))))$"
+      "pattern":"^([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}|mrk-[0-9a-f]{32}|alias/[a-zA-Z0-9/_-]+|(arn:aws[-a-z]*:kms:[a-z0-9-]+:\\d{12}:((key/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})|(key/mrk-[0-9a-f]{32})|(alias/[a-zA-Z0-9/_-]+))))$"
     },
     "LifeCycleState":{
       "type":"string",
@@ -1285,6 +1325,19 @@
       "type":"double",
       "min":1.0
     },
+    "PutAccountPreferencesRequest":{
+      "type":"structure",
+      "required":["ResourceIdType"],
+      "members":{
+        "ResourceIdType":{"shape":"ResourceIdType"}
+      }
+    },
+    "PutAccountPreferencesResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceIdPreference":{"shape":"ResourceIdPreference"}
+      }
+    },
     "PutBackupPolicyRequest":{
       "type":"structure",
       "required":[
@@ -1331,10 +1384,35 @@
         "LifecyclePolicies":{"shape":"LifecyclePolicies"}
       }
     },
+    "Resource":{
+      "type":"string",
+      "enum":[
+        "FILE_SYSTEM",
+        "MOUNT_TARGET"
+      ]
+    },
     "ResourceId":{
       "type":"string",
       "max":128,
       "pattern":"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$"
+    },
+    "ResourceIdPreference":{
+      "type":"structure",
+      "members":{
+        "ResourceIdType":{"shape":"ResourceIdType"},
+        "Resources":{"shape":"Resources"}
+      }
+    },
+    "ResourceIdType":{
+      "type":"string",
+      "enum":[
+        "LONG_ID",
+        "SHORT_ID"
+      ]
+    },
+    "Resources":{
+      "type":"list",
+      "member":{"shape":"Resource"}
     },
     "RootDirectory":{
       "type":"structure",

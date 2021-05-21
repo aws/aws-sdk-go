@@ -557,6 +557,10 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 
 // CreateTags API operation for Amazon Elastic File System.
 //
+//
+// DEPRECATED - CreateTags is deprecated and not maintained. Please use the
+// API action to create tags for EFS resources.
+//
 // Creates or overwrites tags associated with a file system. Each tag is a key-value
 // pair. If a tag key specified in the request already exists on the file system,
 // this operation overwrites its value with the value provided in the request.
@@ -1069,6 +1073,10 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 
 // DeleteTags API operation for Amazon Elastic File System.
 //
+//
+// DEPRECATED - DeleteTags is deprecated and not maintained. Please use the
+// API action to remove tags from EFS resources.
+//
 // Deletes the specified tags from a file system. If the DeleteTags request
 // includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't
 // cause an error. For more information about tags and related restrictions,
@@ -1276,6 +1284,83 @@ func (c *EFS) DescribeAccessPointsPagesWithContext(ctx aws.Context, input *Descr
 	}
 
 	return p.Err()
+}
+
+const opDescribeAccountPreferences = "DescribeAccountPreferences"
+
+// DescribeAccountPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccountPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccountPreferences for more information on using the DescribeAccountPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccountPreferencesRequest method.
+//    req, resp := client.DescribeAccountPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccountPreferences
+func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreferencesInput) (req *request.Request, output *DescribeAccountPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccountPreferences,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-02-01/account-preferences",
+	}
+
+	if input == nil {
+		input = &DescribeAccountPreferencesInput{}
+	}
+
+	output = &DescribeAccountPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccountPreferences API operation for Amazon Elastic File System.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation DescribeAccountPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Returned if an error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccountPreferences
+func (c *EFS) DescribeAccountPreferences(input *DescribeAccountPreferencesInput) (*DescribeAccountPreferencesOutput, error) {
+	req, out := c.DescribeAccountPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccountPreferencesWithContext is the same as DescribeAccountPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccountPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) DescribeAccountPreferencesWithContext(ctx aws.Context, input *DescribeAccountPreferencesInput, opts ...request.Option) (*DescribeAccountPreferencesOutput, error) {
+	req, out := c.DescribeAccountPreferencesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeBackupPolicy = "DescribeBackupPolicy"
@@ -1981,6 +2066,10 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 
 // DescribeTags API operation for Amazon Elastic File System.
 //
+//
+// DEPRECATED - The DeleteTags action is deprecated and not maintained. Please
+// use the API action to remove tags from EFS resources.
+//
 // Returns the tags associated with a file system. The order of tags returned
 // in the response of one DescribeTags call and the order of tags returned across
 // the responses of a multiple-call iteration (when using pagination) is unspecified.
@@ -2351,6 +2440,83 @@ func (c *EFS) ModifyMountTargetSecurityGroups(input *ModifyMountTargetSecurityGr
 // for more information on using Contexts.
 func (c *EFS) ModifyMountTargetSecurityGroupsWithContext(ctx aws.Context, input *ModifyMountTargetSecurityGroupsInput, opts ...request.Option) (*ModifyMountTargetSecurityGroupsOutput, error) {
 	req, out := c.ModifyMountTargetSecurityGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutAccountPreferences = "PutAccountPreferences"
+
+// PutAccountPreferencesRequest generates a "aws/request.Request" representing the
+// client's request for the PutAccountPreferences operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAccountPreferences for more information on using the PutAccountPreferences
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAccountPreferencesRequest method.
+//    req, resp := client.PutAccountPreferencesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutAccountPreferences
+func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (req *request.Request, output *PutAccountPreferencesOutput) {
+	op := &request.Operation{
+		Name:       opPutAccountPreferences,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2015-02-01/account-preferences",
+	}
+
+	if input == nil {
+		input = &PutAccountPreferencesInput{}
+	}
+
+	output = &PutAccountPreferencesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutAccountPreferences API operation for Amazon Elastic File System.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic File System's
+// API operation PutAccountPreferences for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerError
+//   Returned if an error occurred on the server side.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutAccountPreferences
+func (c *EFS) PutAccountPreferences(input *PutAccountPreferencesInput) (*PutAccountPreferencesOutput, error) {
+	req, out := c.PutAccountPreferencesRequest(input)
+	return out, req.Send()
+}
+
+// PutAccountPreferencesWithContext is the same as PutAccountPreferences with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAccountPreferences for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EFS) PutAccountPreferencesWithContext(ctx aws.Context, input *PutAccountPreferencesInput, opts ...request.Option) (*PutAccountPreferencesOutput, error) {
+	req, out := c.PutAccountPreferencesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3329,7 +3495,7 @@ type BackupPolicy struct {
 
 	// Describes the status of the file system's backup policy.
 	//
-	//    * ENABLED - EFS is automatically backing up the file system.>
+	//    * ENABLED - EFS is automatically backing up the file system.
 	//
 	//    * ENABLING - EFS is turning on automatic backups for the file system.
 	//
@@ -3684,10 +3850,10 @@ type CreateFileSystemInput struct {
 	// is used to protect the encrypted file system.
 	Encrypted *bool `type:"boolean"`
 
-	// The ID of the AWS KMS CMK to be used to protect the encrypted file system.
-	// This parameter is only required if you want to use a non-default CMK. If
-	// this parameter is not specified, the default CMK for Amazon EFS is used.
-	// This ID can be in one of the following formats:
+	// The ID of the AWS KMS CMK that you want to use to protect the encrypted file
+	// system. This parameter is only required if you want to use a non-default
+	// KMS key. If this parameter is not specified, the default CMK for Amazon EFS
+	// is used. This ID can be in one of the following formats:
 	//
 	//    * Key ID - A unique identifier of the key, for example 1234abcd-12ab-34cd-56ef-1234567890ab.
 	//
@@ -3701,8 +3867,8 @@ type CreateFileSystemInput struct {
 	// If KmsKeyId is specified, the CreateFileSystemRequest$Encrypted parameter
 	// must be set to true.
 	//
-	// EFS accepts only symmetric CMKs. You cannot use asymmetric CMKs with EFS
-	// file systems.
+	// EFS accepts only symmetric KMS keys. You cannot use asymmetric KMS keys with
+	// EFS file systems.
 	KmsKeyId *string `type:"string"`
 
 	// The performance mode of the file system. We recommend generalPurpose performance
@@ -4531,6 +4697,85 @@ func (s *DescribeAccessPointsOutput) SetAccessPoints(v []*AccessPointDescription
 // SetNextToken sets the NextToken field's value.
 func (s *DescribeAccessPointsOutput) SetNextToken(v string) *DescribeAccessPointsOutput {
 	s.NextToken = &v
+	return s
+}
+
+type DescribeAccountPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Max results used for pagination.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Token used for pagination.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeAccountPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAccountPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAccountPreferencesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeAccountPreferencesInput) SetMaxResults(v int64) *DescribeAccountPreferencesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAccountPreferencesInput) SetNextToken(v string) *DescribeAccountPreferencesInput {
+	s.NextToken = &v
+	return s
+}
+
+type DescribeAccountPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Token used for pagination.
+	NextToken *string `min:"1" type:"string"`
+
+	ResourceIdPreference *ResourceIdPreference `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAccountPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccountPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeAccountPreferencesOutput) SetNextToken(v string) *DescribeAccountPreferencesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceIdPreference sets the ResourceIdPreference field's value.
+func (s *DescribeAccountPreferencesOutput) SetResourceIdPreference(v *ResourceIdPreference) *DescribeAccountPreferencesOutput {
+	s.ResourceIdPreference = v
 	return s
 }
 
@@ -6079,8 +6324,8 @@ type ListTagsForResourceInput struct {
 	// The default value is 100.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
-	// You can use NextToken in a subsequent request to fetch the next page of access
-	// point descriptions if the response payload was paginated.
+	// (Optional) You can use NextToken in a subsequent request to fetch the next
+	// page of access point descriptions if the response payload was paginated.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
 	// Specifies the EFS resource you want to retrieve tags for. You can retrieve
@@ -6725,6 +6970,67 @@ func (s *PosixUser) SetUid(v int64) *PosixUser {
 	return s
 }
 
+type PutAccountPreferencesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
+	// resources.
+	//
+	// ResourceIdType is a required field
+	ResourceIdType *string `type:"string" required:"true" enum:"ResourceIdType"`
+}
+
+// String returns the string representation
+func (s PutAccountPreferencesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountPreferencesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAccountPreferencesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAccountPreferencesInput"}
+	if s.ResourceIdType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdType sets the ResourceIdType field's value.
+func (s *PutAccountPreferencesInput) SetResourceIdType(v string) *PutAccountPreferencesInput {
+	s.ResourceIdType = &v
+	return s
+}
+
+type PutAccountPreferencesOutput struct {
+	_ struct{} `type:"structure"`
+
+	ResourceIdPreference *ResourceIdPreference `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAccountPreferencesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAccountPreferencesOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceIdPreference sets the ResourceIdPreference field's value.
+func (s *PutAccountPreferencesOutput) SetResourceIdPreference(v *ResourceIdPreference) *PutAccountPreferencesOutput {
+	s.ResourceIdPreference = v
+	return s
+}
+
 type PutBackupPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7001,6 +7307,39 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+type ResourceIdPreference struct {
+	_ struct{} `type:"structure"`
+
+	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
+	// resources.
+	ResourceIdType *string `type:"string" enum:"ResourceIdType"`
+
+	// EFS resources to which a preference applies to.
+	Resources []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ResourceIdPreference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceIdPreference) GoString() string {
+	return s.String()
+}
+
+// SetResourceIdType sets the ResourceIdType field's value.
+func (s *ResourceIdPreference) SetResourceIdType(v string) *ResourceIdPreference {
+	s.ResourceIdType = &v
+	return s
+}
+
+// SetResources sets the Resources field's value.
+func (s *ResourceIdPreference) SetResources(v []*string) *ResourceIdPreference {
+	s.Resources = v
+	return s
+}
+
 // Specifies the directory on the Amazon EFS file system that the access point
 // provides access to. The access point exposes the specified file system path
 // as the root directory of your file system to applications using the access
@@ -7248,7 +7587,7 @@ func (s *SubnetNotFound) RequestID() string {
 
 // A tag is a key-value pair. Allowed characters are letters, white space, and
 // numbers that can be represented in UTF-8, and the following characters:+
-// - = . _ : /
+// - = . _ : /.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7312,6 +7651,8 @@ type TagResourceInput struct {
 	// ResourceId is a required field
 	ResourceId *string `location:"uri" locationName:"ResourceId" type:"string" required:"true"`
 
+	// An array of Tag objects to add. Each Tag object is a key-value pair.
+	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
 }
@@ -8016,6 +8357,41 @@ func PerformanceMode_Values() []string {
 	return []string{
 		PerformanceModeGeneralPurpose,
 		PerformanceModeMaxIo,
+	}
+}
+
+// An EFS resource, for example a file system or a mount target.
+const (
+	// ResourceFileSystem is a Resource enum value
+	ResourceFileSystem = "FILE_SYSTEM"
+
+	// ResourceMountTarget is a Resource enum value
+	ResourceMountTarget = "MOUNT_TARGET"
+)
+
+// Resource_Values returns all elements of the Resource enum
+func Resource_Values() []string {
+	return []string{
+		ResourceFileSystem,
+		ResourceMountTarget,
+	}
+}
+
+// A preference indicating a choice to use 63bit/32bit IDs for all applicable
+// resources.
+const (
+	// ResourceIdTypeLongId is a ResourceIdType enum value
+	ResourceIdTypeLongId = "LONG_ID"
+
+	// ResourceIdTypeShortId is a ResourceIdType enum value
+	ResourceIdTypeShortId = "SHORT_ID"
+)
+
+// ResourceIdType_Values returns all elements of the ResourceIdType enum
+func ResourceIdType_Values() []string {
+	return []string{
+		ResourceIdTypeLongId,
+		ResourceIdTypeShortId,
 	}
 }
 
