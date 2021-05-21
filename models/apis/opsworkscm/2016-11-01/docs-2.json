@@ -394,6 +394,7 @@
       "base": "<p>Describes a configuration management server. </p>",
       "refs": {
         "CreateServerResponse$Server": "<p>The server that is created by the request. </p>",
+        "RestoreServerResponse$Server": null,
         "Servers$member": null,
         "StartMaintenanceResponse$Server": "<p>Contains the response to a <code>StartMaintenance</code> request. </p>",
         "UpdateServerEngineAttributesResponse$Server": "<p>Contains the response to an <code>UpdateServerEngineAttributes</code> request. </p>",
@@ -442,7 +443,7 @@
     "Servers": {
       "base": null,
       "refs": {
-        "DescribeServersResponse$Servers": "<p>Contains the response to a <code>DescribeServers</code> request.</p> <p> <i>For Chef Automate servers:</i> If <code>DescribeServersResponse$Servers$EngineAttributes</code> includes CHEF_MAJOR_UPGRADE_AVAILABLE, you can upgrade the Chef Automate server to Chef Automate 2. To be eligible for upgrade, a server running Chef Automate 1 must have had at least one successful maintenance run after November 1, 2019.</p> <p> <i>For Puppet Server:</i> <code>DescribeServersResponse$Servers$EngineAttributes</code> contains PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by the Puppet API over TCP port number 8140. The CA certificate is also used to sign node certificates.</p>"
+        "DescribeServersResponse$Servers": "<p>Contains the response to a <code>DescribeServers</code> request.</p> <p> <i>For Chef Automate servers:</i> If <code>DescribeServersResponse$Servers$EngineAttributes</code> includes CHEF_MAJOR_UPGRADE_AVAILABLE, you can upgrade the Chef Automate server to Chef Automate 2. To be eligible for upgrade, a server running Chef Automate 1 must have had at least one successful maintenance run after November 1, 2019.</p> <p> <i>For Puppet servers:</i> <code>DescribeServersResponse$Servers$EngineAttributes</code> contains the following two responses:</p> <ul> <li> <p> <code>PUPPET_API_CA_CERT</code>, the PEM-encoded CA certificate that is used by the Puppet API over TCP port number 8140. The CA certificate is also used to sign node certificates.</p> </li> <li> <p> <code>PUPPET_API_CRL</code>, a certificate revocation list. The certificate revocation list is for internal maintenance purposes only. For more information about the Puppet certificate revocation list, see <a href=\"https://puppet.com/docs/puppet/5.5/man/certificate_revocation_list.html\">Man Page: puppet certificate_revocation_list</a> in the Puppet documentation.</p> </li> </ul>"
       }
     },
     "ServiceRoleArn": {
@@ -482,7 +483,7 @@
         "CreateBackupRequest$Description": "<p> A user-defined description of the backup. </p>",
         "CreateServerRequest$Engine": "<p> The configuration management engine to use. Valid values include <code>ChefAutomate</code> and <code>Puppet</code>. </p>",
         "CreateServerRequest$EngineModel": "<p> The engine model of the server. Valid values in this release include <code>Monolithic</code> for Puppet and <code>Single</code> for Chef. </p>",
-        "CreateServerRequest$EngineVersion": "<p> The major release version of the engine that you want to use. For a Chef server, the valid value for EngineVersion is currently <code>2</code>. For a Puppet server, the valid value is <code>2017</code>. </p>",
+        "CreateServerRequest$EngineVersion": "<p> The major release version of the engine that you want to use. For a Chef server, the valid value for EngineVersion is currently <code>2</code>. For a Puppet server, valid values are <code>2019</code> or <code>2017</code>. </p>",
         "CreateServerRequest$InstanceType": "<p> The Amazon EC2 instance type to use. For example, <code>m5.large</code>. </p>",
         "DescribeBackupsResponse$NextToken": "<p>This is not currently implemented for <code>DescribeBackups</code> requests.</p>",
         "DescribeEventsResponse$NextToken": "<p>NextToken is a string that is returned in some command responses. It indicates that not all entries have been returned, and that you must run at least one more request to get remaining items. To get remaining results, call <code>DescribeEvents</code> again, and assign the token from the previous results as the value of the <code>nextToken</code> parameter. If there are no more results, the response object's <code>nextToken</code> parameter value is <code>null</code>. Setting a <code>nextToken</code> value that was not returned in your previous results causes an <code>InvalidNextTokenException</code> to occur. </p>",
@@ -499,7 +500,7 @@
         "Server$Endpoint": "<p> A DNS name that can be used to access the engine. Example: <code>myserver-asdfghjkl.us-east-1.opsworks.io</code>. You cannot access the server by using the <code>Endpoint</code> value if the server has a <code>CustomDomain</code> specified. </p>",
         "Server$Engine": "<p>The engine type of the server. Valid values in this release include <code>ChefAutomate</code> and <code>Puppet</code>. </p>",
         "Server$EngineModel": "<p>The engine model of the server. Valid values in this release include <code>Monolithic</code> for Puppet and <code>Single</code> for Chef. </p>",
-        "Server$EngineVersion": "<p>The engine version of the server. For a Chef server, the valid value for EngineVersion is currently <code>2</code>. For a Puppet server, the valid value is <code>2017</code>. </p>",
+        "Server$EngineVersion": "<p>The engine version of the server. For a Chef server, the valid value for EngineVersion is currently <code>2</code>. For a Puppet server, specify either <code>2019</code> or <code>2017</code>. </p>",
         "Server$InstanceProfileArn": "<p>The instance profile ARN of the server. </p>",
         "Server$InstanceType": "<p> The instance type for the server, as specified in the CloudFormation stack. This might not be the same instance type that is shown in the EC2 console. </p>",
         "Server$KeyPair": "<p>The key pair associated with the server. </p>",

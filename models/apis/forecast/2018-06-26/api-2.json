@@ -1574,7 +1574,11 @@
         "Min":{"shape":"String"},
         "Max":{"shape":"String"},
         "Avg":{"shape":"Double"},
-        "Stddev":{"shape":"Double"}
+        "Stddev":{"shape":"Double"},
+        "CountLong":{"shape":"Long"},
+        "CountDistinctLong":{"shape":"Long"},
+        "CountNullLong":{"shape":"Long"},
+        "CountNanLong":{"shape":"Long"}
       }
     },
     "Status":{

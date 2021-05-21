@@ -1507,7 +1507,6 @@ func (c *OpsWorksCM) RestoreServerRequest(input *RestoreServerInput) (req *reque
 
 	output = &RestoreServerOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	return
 }
 
@@ -2630,7 +2629,7 @@ type CreateServerInput struct {
 
 	// The major release version of the engine that you want to use. For a Chef
 	// server, the valid value for EngineVersion is currently 2. For a Puppet server,
-	// the valid value is 2017.
+	// valid values are 2019 or 2017.
 	EngineVersion *string `type:"string"`
 
 	// The ARN of the instance profile that your Amazon EC2 instances use. Although
@@ -3463,10 +3462,18 @@ type DescribeServersOutput struct {
 	// Automate 1 must have had at least one successful maintenance run after November
 	// 1, 2019.
 	//
-	// For Puppet Server: DescribeServersResponse$Servers$EngineAttributes contains
-	// PUPPET_API_CA_CERT. This is the PEM-encoded CA certificate that is used by
-	// the Puppet API over TCP port number 8140. The CA certificate is also used
-	// to sign node certificates.
+	// For Puppet servers: DescribeServersResponse$Servers$EngineAttributes contains
+	// the following two responses:
+	//
+	//    * PUPPET_API_CA_CERT, the PEM-encoded CA certificate that is used by the
+	//    Puppet API over TCP port number 8140. The CA certificate is also used
+	//    to sign node certificates.
+	//
+	//    * PUPPET_API_CRL, a certificate revocation list. The certificate revocation
+	//    list is for internal maintenance purposes only. For more information about
+	//    the Puppet certificate revocation list, see Man Page: puppet certificate_revocation_list
+	//    (https://puppet.com/docs/puppet/5.5/man/certificate_revocation_list.html)
+	//    in the Puppet documentation.
 	Servers []*Server `type:"list"`
 }
 
@@ -4210,6 +4217,9 @@ func (s *RestoreServerInput) SetServerName(v string) *RestoreServerInput {
 
 type RestoreServerOutput struct {
 	_ struct{} `type:"structure"`
+
+	// Describes a configuration management server.
+	Server *Server `type:"structure"`
 }
 
 // String returns the string representation
@@ -4220,6 +4230,12 @@ func (s RestoreServerOutput) String() string {
 // GoString returns the string representation
 func (s RestoreServerOutput) GoString() string {
 	return s.String()
+}
+
+// SetServer sets the Server field's value.
+func (s *RestoreServerOutput) SetServer(v *Server) *RestoreServerOutput {
+	s.Server = v
+	return s
 }
 
 // Describes a configuration management server.
@@ -4288,7 +4304,8 @@ type Server struct {
 	EngineModel *string `type:"string"`
 
 	// The engine version of the server. For a Chef server, the valid value for
-	// EngineVersion is currently 2. For a Puppet server, the valid value is 2017.
+	// EngineVersion is currently 2. For a Puppet server, specify either 2019 or
+	// 2017.
 	EngineVersion *string `type:"string"`
 
 	// The instance profile ARN of the server.

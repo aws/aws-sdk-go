@@ -1,3 +1,15 @@
+Release v1.38.45 (2021-05-21)
+===
+
+### Service Client Updates
+* `service/elasticfilesystem`: Updates service API and documentation
+  * EFS now supports account preferences. Utilizing the new capability, users can customize some aspects of their experience using EFS APIs and the EFS Console. The first preference clients are able to set is whether to start using longer File System and Mount Target IDs before EFS migrates to such IDs.
+* `service/forecast`: Updates service API and documentation
+* `service/opsworkscm`: Updates service API and documentation
+  * New PUPPET_API_CRL attribute returned by DescribeServers API; new EngineVersion of 2019 available for Puppet Enterprise servers.
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3
+
 Release v1.38.44 (2021-05-20)
 ===
 
