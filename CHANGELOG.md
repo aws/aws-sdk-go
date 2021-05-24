@@ -1,3 +1,16 @@
+Release v1.38.46 (2021-05-24)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for creating and managing EC2 On-Demand Capacity Reservations on Outposts.
+* `service/logs`: Updates service API and documentation
+  * This release provides dimensions and unit support for metric filters.
+* `service/quicksight`: Updates service API and documentation
+  * Add new parameters on RegisterUser and UpdateUser APIs to assign or update external ID associated to QuickSight users federated through web identity.
+
 Release v1.38.45 (2021-05-21)
 ===
 

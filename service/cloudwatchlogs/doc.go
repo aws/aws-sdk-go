@@ -4,7 +4,7 @@
 // requests to Amazon CloudWatch Logs.
 //
 // You can use Amazon CloudWatch Logs to monitor, store, and access your log
-// files from EC2 instances, AWS CloudTrail, or other sources. You can then
+// files from EC2 instances, AWS CloudTrail, and other sources. You can then
 // retrieve the associated log data from CloudWatch Logs using the CloudWatch
 // console, CloudWatch Logs commands in the AWS CLI, CloudWatch Logs API, or
 // CloudWatch Logs SDK.

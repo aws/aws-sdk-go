@@ -6181,7 +6181,10 @@
           "locationName":"Namespace"
         },
         "UserName":{"shape":"UserName"},
-        "CustomPermissionsName":{"shape":"RoleName"}
+        "CustomPermissionsName":{"shape":"RoleName"},
+        "ExternalLoginFederationProviderType":{"shape":"String"},
+        "CustomFederationProviderUrl":{"shape":"String"},
+        "ExternalLoginId":{"shape":"String"}
       }
     },
     "RegisterUserResponse":{
@@ -7766,7 +7769,10 @@
         "Email":{"shape":"String"},
         "Role":{"shape":"UserRole"},
         "CustomPermissionsName":{"shape":"RoleName"},
-        "UnapplyCustomPermissions":{"shape":"Boolean"}
+        "UnapplyCustomPermissions":{"shape":"Boolean"},
+        "ExternalLoginFederationProviderType":{"shape":"String"},
+        "CustomFederationProviderUrl":{"shape":"String"},
+        "ExternalLoginId":{"shape":"String"}
       }
     },
     "UpdateUserResponse":{
@@ -7806,7 +7812,10 @@
         "IdentityType":{"shape":"IdentityType"},
         "Active":{"shape":"Boolean"},
         "PrincipalId":{"shape":"String"},
-        "CustomPermissionsName":{"shape":"RoleName"}
+        "CustomPermissionsName":{"shape":"RoleName"},
+        "ExternalLoginFederationProviderType":{"shape":"String"},
+        "ExternalLoginFederationProviderUrl":{"shape":"String"},
+        "ExternalLoginId":{"shape":"String"}
       }
     },
     "UserList":{

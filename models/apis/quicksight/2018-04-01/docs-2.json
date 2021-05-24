@@ -3252,6 +3252,9 @@
         "QuickSightUserNotFoundException$RequestId": "<p>The AWS request ID for this request.</p>",
         "RegisterUserRequest$Email": "<p>The email address of the user that you want to register.</p>",
         "RegisterUserRequest$IamArn": "<p>The ARN of the IAM user or role that you are registering with Amazon QuickSight. </p>",
+        "RegisterUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated AWS Identity and Access Management (IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> </ul>",
+        "RegisterUserRequest$CustomFederationProviderUrl": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>",
+        "RegisterUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
         "RegisterUserResponse$UserInvitationUrl": "<p>The URL the user visits to complete registration and provide a password. This is returned only for users with an identity type of <code>QUICKSIGHT</code>.</p>",
         "RegisterUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "ResourceExistsException$Message": null,
@@ -3300,9 +3303,15 @@
         "UpdateThemePermissionsResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateThemeResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "UpdateUserRequest$Email": "<p>The email address of the user that you want to update.</p>",
+        "UpdateUserRequest$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. The type of supported external login provider can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com. When choosing the <code>COGNITO</code> provider type, don’t use the \"CustomFederationProviderUrl\" parameter which is only needed when the external provider is custom.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider. When choosing <code>CUSTOM_OIDC</code> type, use the <code>CustomFederationProviderUrl</code> parameter to provide the custom OIDC provider URL.</p> </li> <li> <p> <code>NONE</code>: This clears all the previously saved external login information for a user. Use <code> <a>DescribeUser</a> </code> API to check the external login information.</p> </li> </ul>",
+        "UpdateUserRequest$CustomFederationProviderUrl": "<p>The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into QuickSight with an associated AWS Identity and Access Management (IAM) role. This parameter should only be used when <code>ExternalLoginFederationProviderType</code> parameter is set to <code>CUSTOM_OIDC</code>.</p>",
+        "UpdateUserRequest$ExternalLoginId": "<p>The identity ID for a user in the external login provider.</p>",
         "UpdateUserResponse$RequestId": "<p>The AWS request ID for this operation.</p>",
         "User$Email": "<p>The user's email address.</p>",
-        "User$PrincipalId": "<p>The principal ID of the user.</p>"
+        "User$PrincipalId": "<p>The principal ID of the user.</p>",
+        "User$ExternalLoginFederationProviderType": "<p>The type of supported external login provider that provides identity to let the user federate into Amazon QuickSight with an associated IAM role. The type can be one of the following.</p> <ul> <li> <p> <code>COGNITO</code>: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.</p> </li> <li> <p> <code>CUSTOM_OIDC</code>: Custom OpenID Connect (OIDC) provider.</p> </li> </ul>",
+        "User$ExternalLoginFederationProviderUrl": "<p>The URL of the external login provider.</p>",
+        "User$ExternalLoginId": "<p>The identity ID for the user in the external login provider.</p>"
       }
     },
     "StringList": {

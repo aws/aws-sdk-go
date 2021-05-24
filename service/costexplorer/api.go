@@ -4863,6 +4863,58 @@ func (s *DimensionValuesWithAttributes) SetValue(v string) *DimensionValuesWithA
 	return s
 }
 
+// The field that contains a list of disk (local storage) metrics associated
+// with the current instance.
+type DiskResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum read throughput operations per second.
+	DiskReadBytesPerSecond *string `type:"string"`
+
+	// The maximum number of read operations per second.
+	DiskReadOpsPerSecond *string `type:"string"`
+
+	// The maximum write throughput operations per second.
+	DiskWriteBytesPerSecond *string `type:"string"`
+
+	// The maximum number of write operations per second.
+	DiskWriteOpsPerSecond *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DiskResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DiskResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetDiskReadBytesPerSecond sets the DiskReadBytesPerSecond field's value.
+func (s *DiskResourceUtilization) SetDiskReadBytesPerSecond(v string) *DiskResourceUtilization {
+	s.DiskReadBytesPerSecond = &v
+	return s
+}
+
+// SetDiskReadOpsPerSecond sets the DiskReadOpsPerSecond field's value.
+func (s *DiskResourceUtilization) SetDiskReadOpsPerSecond(v string) *DiskResourceUtilization {
+	s.DiskReadOpsPerSecond = &v
+	return s
+}
+
+// SetDiskWriteBytesPerSecond sets the DiskWriteBytesPerSecond field's value.
+func (s *DiskResourceUtilization) SetDiskWriteBytesPerSecond(v string) *DiskResourceUtilization {
+	s.DiskWriteBytesPerSecond = &v
+	return s
+}
+
+// SetDiskWriteOpsPerSecond sets the DiskWriteOpsPerSecond field's value.
+func (s *DiskResourceUtilization) SetDiskWriteOpsPerSecond(v string) *DiskResourceUtilization {
+	s.DiskWriteOpsPerSecond = &v
+	return s
+}
+
 // The EBS field that contains a list of EBS metrics associated with the current
 // instance.
 type EBSResourceUtilization struct {
@@ -5104,6 +5156,10 @@ func (s *EC2ResourceDetails) SetVcpu(v string) *EC2ResourceDetails {
 type EC2ResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
+	// The field that contains a list of disk (local storage) metrics associated
+	// with the current instance.
+	DiskResourceUtilization *DiskResourceUtilization `type:"structure"`
+
 	// The EBS field that contains a list of EBS metrics associated with the current
 	// instance.
 	EBSResourceUtilization *EBSResourceUtilization `type:"structure"`
@@ -5117,6 +5173,10 @@ type EC2ResourceUtilization struct {
 	// Maximum observed or expected storage utilization of the instance (does not
 	// measure EBS storage).
 	MaxStorageUtilizationPercentage *string `type:"string"`
+
+	// The network field that contains a list of network metrics associated with
+	// the current instance.
+	NetworkResourceUtilization *NetworkResourceUtilization `type:"structure"`
 }
 
 // String returns the string representation
@@ -5127,6 +5187,12 @@ func (s EC2ResourceUtilization) String() string {
 // GoString returns the string representation
 func (s EC2ResourceUtilization) GoString() string {
 	return s.String()
+}
+
+// SetDiskResourceUtilization sets the DiskResourceUtilization field's value.
+func (s *EC2ResourceUtilization) SetDiskResourceUtilization(v *DiskResourceUtilization) *EC2ResourceUtilization {
+	s.DiskResourceUtilization = v
+	return s
 }
 
 // SetEBSResourceUtilization sets the EBSResourceUtilization field's value.
@@ -5150,6 +5216,12 @@ func (s *EC2ResourceUtilization) SetMaxMemoryUtilizationPercentage(v string) *EC
 // SetMaxStorageUtilizationPercentage sets the MaxStorageUtilizationPercentage field's value.
 func (s *EC2ResourceUtilization) SetMaxStorageUtilizationPercentage(v string) *EC2ResourceUtilization {
 	s.MaxStorageUtilizationPercentage = &v
+	return s
+}
+
+// SetNetworkResourceUtilization sets the NetworkResourceUtilization field's value.
+func (s *EC2ResourceUtilization) SetNetworkResourceUtilization(v *NetworkResourceUtilization) *EC2ResourceUtilization {
+	s.NetworkResourceUtilization = v
 	return s
 }
 
@@ -9526,6 +9598,58 @@ func (s *ModifyRecommendationDetail) SetTargetInstances(v []*TargetInstance) *Mo
 	return s
 }
 
+// The network field that contains a list of network metrics associated with
+// the current instance.
+type NetworkResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// The network ingress throughput utilization measured in Bytes per second.
+	NetworkInBytesPerSecond *string `type:"string"`
+
+	// The network outgress throughput utilization measured in Bytes per second.
+	NetworkOutBytesPerSecond *string `type:"string"`
+
+	// The network ingress packets measured in packets per second.
+	NetworkPacketsInPerSecond *string `type:"string"`
+
+	// The network outgress packets measured in packets per second.
+	NetworkPacketsOutPerSecond *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetNetworkInBytesPerSecond sets the NetworkInBytesPerSecond field's value.
+func (s *NetworkResourceUtilization) SetNetworkInBytesPerSecond(v string) *NetworkResourceUtilization {
+	s.NetworkInBytesPerSecond = &v
+	return s
+}
+
+// SetNetworkOutBytesPerSecond sets the NetworkOutBytesPerSecond field's value.
+func (s *NetworkResourceUtilization) SetNetworkOutBytesPerSecond(v string) *NetworkResourceUtilization {
+	s.NetworkOutBytesPerSecond = &v
+	return s
+}
+
+// SetNetworkPacketsInPerSecond sets the NetworkPacketsInPerSecond field's value.
+func (s *NetworkResourceUtilization) SetNetworkPacketsInPerSecond(v string) *NetworkResourceUtilization {
+	s.NetworkPacketsInPerSecond = &v
+	return s
+}
+
+// SetNetworkPacketsOutPerSecond sets the NetworkPacketsOutPerSecond field's value.
+func (s *NetworkResourceUtilization) SetNetworkPacketsOutPerSecond(v string) *NetworkResourceUtilization {
+	s.NetworkPacketsOutPerSecond = &v
+	return s
+}
+
 type ProvideAnomalyFeedbackInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10605,6 +10729,11 @@ type RightsizingRecommendation struct {
 	// Context regarding the current instance.
 	CurrentInstance *CurrentInstance `type:"structure"`
 
+	// The list of possible reasons why the recommendation is generated such as
+	// under or over utilization of specific metrics (for example, CPU, Memory,
+	// Network).
+	FindingReasonCodes []*string `type:"list"`
+
 	// Details for modification recommendations.
 	ModifyRecommendationDetail *ModifyRecommendationDetail `type:"structure"`
 
@@ -10634,6 +10763,12 @@ func (s *RightsizingRecommendation) SetAccountId(v string) *RightsizingRecommend
 // SetCurrentInstance sets the CurrentInstance field's value.
 func (s *RightsizingRecommendation) SetCurrentInstance(v *CurrentInstance) *RightsizingRecommendation {
 	s.CurrentInstance = v
+	return s
+}
+
+// SetFindingReasonCodes sets the FindingReasonCodes field's value.
+func (s *RightsizingRecommendation) SetFindingReasonCodes(v []*string) *RightsizingRecommendation {
+	s.FindingReasonCodes = v
 	return s
 }
 
@@ -11998,6 +12133,11 @@ type TargetInstance struct {
 	// Expected utilization metrics for target instance type.
 	ExpectedResourceUtilization *ResourceUtilization `type:"structure"`
 
+	// Explains the actions you might need to take in order to successfully migrate
+	// your workloads from the current instance type to the recommended instance
+	// type.
+	PlatformDifferences []*string `type:"list"`
+
 	// Details on the target instance type.
 	ResourceDetails *ResourceDetails `type:"structure"`
 }
@@ -12039,6 +12179,12 @@ func (s *TargetInstance) SetEstimatedMonthlySavings(v string) *TargetInstance {
 // SetExpectedResourceUtilization sets the ExpectedResourceUtilization field's value.
 func (s *TargetInstance) SetExpectedResourceUtilization(v *ResourceUtilization) *TargetInstance {
 	s.ExpectedResourceUtilization = v
+	return s
+}
+
+// SetPlatformDifferences sets the PlatformDifferences field's value.
+func (s *TargetInstance) SetPlatformDifferences(v []*string) *TargetInstance {
+	s.PlatformDifferences = v
 	return s
 }
 
@@ -12953,6 +13099,78 @@ func Dimension_Values() []string {
 }
 
 const (
+	// FindingReasonCodeCpuOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeCpuOverProvisioned = "CPU_OVER_PROVISIONED"
+
+	// FindingReasonCodeCpuUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeCpuUnderProvisioned = "CPU_UNDER_PROVISIONED"
+
+	// FindingReasonCodeMemoryOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeMemoryOverProvisioned = "MEMORY_OVER_PROVISIONED"
+
+	// FindingReasonCodeMemoryUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeMemoryUnderProvisioned = "MEMORY_UNDER_PROVISIONED"
+
+	// FindingReasonCodeEbsThroughputOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeEbsThroughputOverProvisioned = "EBS_THROUGHPUT_OVER_PROVISIONED"
+
+	// FindingReasonCodeEbsThroughputUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeEbsThroughputUnderProvisioned = "EBS_THROUGHPUT_UNDER_PROVISIONED"
+
+	// FindingReasonCodeEbsIopsOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeEbsIopsOverProvisioned = "EBS_IOPS_OVER_PROVISIONED"
+
+	// FindingReasonCodeEbsIopsUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeEbsIopsUnderProvisioned = "EBS_IOPS_UNDER_PROVISIONED"
+
+	// FindingReasonCodeNetworkBandwidthOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeNetworkBandwidthOverProvisioned = "NETWORK_BANDWIDTH_OVER_PROVISIONED"
+
+	// FindingReasonCodeNetworkBandwidthUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeNetworkBandwidthUnderProvisioned = "NETWORK_BANDWIDTH_UNDER_PROVISIONED"
+
+	// FindingReasonCodeNetworkPpsOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeNetworkPpsOverProvisioned = "NETWORK_PPS_OVER_PROVISIONED"
+
+	// FindingReasonCodeNetworkPpsUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeNetworkPpsUnderProvisioned = "NETWORK_PPS_UNDER_PROVISIONED"
+
+	// FindingReasonCodeDiskIopsOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeDiskIopsOverProvisioned = "DISK_IOPS_OVER_PROVISIONED"
+
+	// FindingReasonCodeDiskIopsUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeDiskIopsUnderProvisioned = "DISK_IOPS_UNDER_PROVISIONED"
+
+	// FindingReasonCodeDiskThroughputOverProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeDiskThroughputOverProvisioned = "DISK_THROUGHPUT_OVER_PROVISIONED"
+
+	// FindingReasonCodeDiskThroughputUnderProvisioned is a FindingReasonCode enum value
+	FindingReasonCodeDiskThroughputUnderProvisioned = "DISK_THROUGHPUT_UNDER_PROVISIONED"
+)
+
+// FindingReasonCode_Values returns all elements of the FindingReasonCode enum
+func FindingReasonCode_Values() []string {
+	return []string{
+		FindingReasonCodeCpuOverProvisioned,
+		FindingReasonCodeCpuUnderProvisioned,
+		FindingReasonCodeMemoryOverProvisioned,
+		FindingReasonCodeMemoryUnderProvisioned,
+		FindingReasonCodeEbsThroughputOverProvisioned,
+		FindingReasonCodeEbsThroughputUnderProvisioned,
+		FindingReasonCodeEbsIopsOverProvisioned,
+		FindingReasonCodeEbsIopsUnderProvisioned,
+		FindingReasonCodeNetworkBandwidthOverProvisioned,
+		FindingReasonCodeNetworkBandwidthUnderProvisioned,
+		FindingReasonCodeNetworkPpsOverProvisioned,
+		FindingReasonCodeNetworkPpsUnderProvisioned,
+		FindingReasonCodeDiskIopsOverProvisioned,
+		FindingReasonCodeDiskIopsUnderProvisioned,
+		FindingReasonCodeDiskThroughputOverProvisioned,
+		FindingReasonCodeDiskThroughputUnderProvisioned,
+	}
+}
+
+const (
 	// GranularityDaily is a Granularity enum value
 	GranularityDaily = "DAILY"
 
@@ -13189,6 +13407,34 @@ func PaymentOption_Values() []string {
 		PaymentOptionLightUtilization,
 		PaymentOptionMediumUtilization,
 		PaymentOptionHeavyUtilization,
+	}
+}
+
+const (
+	// PlatformDifferenceHypervisor is a PlatformDifference enum value
+	PlatformDifferenceHypervisor = "HYPERVISOR"
+
+	// PlatformDifferenceNetworkInterface is a PlatformDifference enum value
+	PlatformDifferenceNetworkInterface = "NETWORK_INTERFACE"
+
+	// PlatformDifferenceStorageInterface is a PlatformDifference enum value
+	PlatformDifferenceStorageInterface = "STORAGE_INTERFACE"
+
+	// PlatformDifferenceInstanceStoreAvailability is a PlatformDifference enum value
+	PlatformDifferenceInstanceStoreAvailability = "INSTANCE_STORE_AVAILABILITY"
+
+	// PlatformDifferenceVirtualizationType is a PlatformDifference enum value
+	PlatformDifferenceVirtualizationType = "VIRTUALIZATION_TYPE"
+)
+
+// PlatformDifference_Values returns all elements of the PlatformDifference enum
+func PlatformDifference_Values() []string {
+	return []string{
+		PlatformDifferenceHypervisor,
+		PlatformDifferenceNetworkInterface,
+		PlatformDifferenceStorageInterface,
+		PlatformDifferenceInstanceStoreAvailability,
+		PlatformDifferenceVirtualizationType,
 	}
 }
 

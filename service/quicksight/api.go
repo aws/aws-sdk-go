@@ -26450,6 +26450,12 @@ type RegisterUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
+	// The URL of the custom OpenID Connect (OIDC) provider that provides identity
+	// to let a user federate into QuickSight with an associated AWS Identity and
+	// Access Management (IAM) role. This parameter should only be used when ExternalLoginFederationProviderType
+	// parameter is set to CUSTOM_OIDC.
+	CustomFederationProviderUrl *string `type:"string"`
+
 	// (Enterprise edition only) The name of the custom permissions profile that
 	// you want to assign to this user. Customized permissions allows you to control
 	// a user's access by restricting access the following operations:
@@ -26481,6 +26487,23 @@ type RegisterUserInput struct {
 	//
 	// Email is a required field
 	Email *string `type:"string" required:"true"`
+
+	// The type of supported external login provider that provides identity to let
+	// a user federate into Amazon QuickSight with an associated AWS Identity and
+	// Access Management (IAM) role. The type of supported external login provider
+	// can be one of the following.
+	//
+	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
+	//    When choosing the COGNITO provider type, don’t use the "CustomFederationProviderUrl"
+	//    parameter which is only needed when the external provider is custom.
+	//
+	//    * CUSTOM_OIDC: Custom OpenID Connect (OIDC) provider. When choosing CUSTOM_OIDC
+	//    type, use the CustomFederationProviderUrl parameter to provide the custom
+	//    OIDC provider URL.
+	ExternalLoginFederationProviderType *string `type:"string"`
+
+	// The identity ID for a user in the external login provider.
+	ExternalLoginId *string `type:"string"`
 
 	// The ARN of the IAM user or role that you are registering with Amazon QuickSight.
 	IamArn *string `type:"string"`
@@ -26589,6 +26612,12 @@ func (s *RegisterUserInput) SetAwsAccountId(v string) *RegisterUserInput {
 	return s
 }
 
+// SetCustomFederationProviderUrl sets the CustomFederationProviderUrl field's value.
+func (s *RegisterUserInput) SetCustomFederationProviderUrl(v string) *RegisterUserInput {
+	s.CustomFederationProviderUrl = &v
+	return s
+}
+
 // SetCustomPermissionsName sets the CustomPermissionsName field's value.
 func (s *RegisterUserInput) SetCustomPermissionsName(v string) *RegisterUserInput {
 	s.CustomPermissionsName = &v
@@ -26598,6 +26627,18 @@ func (s *RegisterUserInput) SetCustomPermissionsName(v string) *RegisterUserInpu
 // SetEmail sets the Email field's value.
 func (s *RegisterUserInput) SetEmail(v string) *RegisterUserInput {
 	s.Email = &v
+	return s
+}
+
+// SetExternalLoginFederationProviderType sets the ExternalLoginFederationProviderType field's value.
+func (s *RegisterUserInput) SetExternalLoginFederationProviderType(v string) *RegisterUserInput {
+	s.ExternalLoginFederationProviderType = &v
+	return s
+}
+
+// SetExternalLoginId sets the ExternalLoginId field's value.
+func (s *RegisterUserInput) SetExternalLoginId(v string) *RegisterUserInput {
+	s.ExternalLoginId = &v
 	return s
 }
 
@@ -33290,6 +33331,12 @@ type UpdateUserInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
+	// The URL of the custom OpenID Connect (OIDC) provider that provides identity
+	// to let a user federate into QuickSight with an associated AWS Identity and
+	// Access Management (IAM) role. This parameter should only be used when ExternalLoginFederationProviderType
+	// parameter is set to CUSTOM_OIDC.
+	CustomFederationProviderUrl *string `type:"string"`
+
 	// (Enterprise edition only) The name of the custom permissions profile that
 	// you want to assign to this user. Customized permissions allows you to control
 	// a user's access by restricting access the following operations:
@@ -33319,6 +33366,26 @@ type UpdateUserInput struct {
 	//
 	// Email is a required field
 	Email *string `type:"string" required:"true"`
+
+	// The type of supported external login provider that provides identity to let
+	// a user federate into QuickSight with an associated AWS Identity and Access
+	// Management (IAM) role. The type of supported external login provider can
+	// be one of the following.
+	//
+	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
+	//    When choosing the COGNITO provider type, don’t use the "CustomFederationProviderUrl"
+	//    parameter which is only needed when the external provider is custom.
+	//
+	//    * CUSTOM_OIDC: Custom OpenID Connect (OIDC) provider. When choosing CUSTOM_OIDC
+	//    type, use the CustomFederationProviderUrl parameter to provide the custom
+	//    OIDC provider URL.
+	//
+	//    * NONE: This clears all the previously saved external login information
+	//    for a user. Use DescribeUser API to check the external login information.
+	ExternalLoginFederationProviderType *string `type:"string"`
+
+	// The identity ID for a user in the external login provider.
+	ExternalLoginId *string `type:"string"`
 
 	// The namespace. Currently, you should set this to default.
 	//
@@ -33407,6 +33474,12 @@ func (s *UpdateUserInput) SetAwsAccountId(v string) *UpdateUserInput {
 	return s
 }
 
+// SetCustomFederationProviderUrl sets the CustomFederationProviderUrl field's value.
+func (s *UpdateUserInput) SetCustomFederationProviderUrl(v string) *UpdateUserInput {
+	s.CustomFederationProviderUrl = &v
+	return s
+}
+
 // SetCustomPermissionsName sets the CustomPermissionsName field's value.
 func (s *UpdateUserInput) SetCustomPermissionsName(v string) *UpdateUserInput {
 	s.CustomPermissionsName = &v
@@ -33416,6 +33489,18 @@ func (s *UpdateUserInput) SetCustomPermissionsName(v string) *UpdateUserInput {
 // SetEmail sets the Email field's value.
 func (s *UpdateUserInput) SetEmail(v string) *UpdateUserInput {
 	s.Email = &v
+	return s
+}
+
+// SetExternalLoginFederationProviderType sets the ExternalLoginFederationProviderType field's value.
+func (s *UpdateUserInput) SetExternalLoginFederationProviderType(v string) *UpdateUserInput {
+	s.ExternalLoginFederationProviderType = &v
+	return s
+}
+
+// SetExternalLoginId sets the ExternalLoginId field's value.
+func (s *UpdateUserInput) SetExternalLoginId(v string) *UpdateUserInput {
+	s.ExternalLoginId = &v
 	return s
 }
 
@@ -33578,6 +33663,21 @@ type User struct {
 	// The user's email address.
 	Email *string `type:"string"`
 
+	// The type of supported external login provider that provides identity to let
+	// the user federate into Amazon QuickSight with an associated IAM role. The
+	// type can be one of the following.
+	//
+	//    * COGNITO: Amazon Cognito. The provider URL is cognito-identity.amazonaws.com.
+	//
+	//    * CUSTOM_OIDC: Custom OpenID Connect (OIDC) provider.
+	ExternalLoginFederationProviderType *string `type:"string"`
+
+	// The URL of the external login provider.
+	ExternalLoginFederationProviderUrl *string `type:"string"`
+
+	// The identity ID for the user in the external login provider.
+	ExternalLoginId *string `type:"string"`
+
 	// The type of identity authentication used by the user.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
@@ -33635,6 +33735,24 @@ func (s *User) SetCustomPermissionsName(v string) *User {
 // SetEmail sets the Email field's value.
 func (s *User) SetEmail(v string) *User {
 	s.Email = &v
+	return s
+}
+
+// SetExternalLoginFederationProviderType sets the ExternalLoginFederationProviderType field's value.
+func (s *User) SetExternalLoginFederationProviderType(v string) *User {
+	s.ExternalLoginFederationProviderType = &v
+	return s
+}
+
+// SetExternalLoginFederationProviderUrl sets the ExternalLoginFederationProviderUrl field's value.
+func (s *User) SetExternalLoginFederationProviderUrl(v string) *User {
+	s.ExternalLoginFederationProviderUrl = &v
+	return s
+}
+
+// SetExternalLoginId sets the ExternalLoginId field's value.
+func (s *User) SetExternalLoginId(v string) *User {
+	s.ExternalLoginId = &v
 	return s
 }
 
