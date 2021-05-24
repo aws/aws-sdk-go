@@ -3251,6 +3251,11 @@ func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicy
 // that is used to authorize claims to register a subscription filter against
 // a given destination.
 //
+// If multiple AWS accounts are sending logs to this destination, each sender
+// account must be listed separately in the policy. The policy does not support
+// specifying * as the Principal or the use of the aws:PrincipalOrgId global
+// key.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3471,6 +3476,22 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 //
 // The maximum number of metric filters that can be associated with a log group
 // is 100.
+//
+// When you create a metric filter, you can also optionally assign a unit and
+// dimensions to the metric that is created.
+//
+// Metrics extracted from log events are charged as custom metrics. To prevent
+// unexpected high charges, do not specify high-cardinality fields such as IPAddress
+// or requestID as dimensions. Each different value found for a dimension is
+// treated as a separate metric and accrues charges as a separate custom metric.
+//
+// To help prevent accidental high charges, Amazon disables a metric filter
+// if it generates 1000 different name/value pairs for the dimensions that you
+// have specified within a certain amount of time.
+//
+// You can also set up a billing alarm to alert you if your charges are higher
+// than expected. For more information, see Creating a Billing Alarm to Monitor
+// Your Estimated AWS Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3858,10 +3879,9 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //    * An AWS Lambda function that belongs to the same account as the subscription
 //    filter, for same-account delivery.
 //
-// There can only be one subscription filter associated with a log group. If
-// you are updating an existing filter, you must specify the correct name in
-// filterName. Otherwise, the call fails because you cannot associate a second
-// filter with a log group.
+// Each log group can have up to two subscription filters associated with it.
+// If you are updating an existing filter, you must specify the correct name
+// in filterName.
 //
 // To perform a PutSubscriptionFilter operation, you must also have the iam:PassRole
 // permission.
@@ -4516,9 +4536,9 @@ type CreateExportTaskInput struct {
 	// The name of the export task.
 	TaskName *string `locationName:"taskName" min:"1" type:"string"`
 
-	// The end time of the range for the request, expressed as the number of milliseconds
-	// after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time
-	// are not exported.
+	// The end time of the range for the request, expreswatchlogsdocused as the
+	// number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp
+	// later than this time are not exported.
 	//
 	// To is a required field
 	To *int64 `locationName:"to" type:"long" required:"true"`
@@ -5655,9 +5675,9 @@ type DescribeLogStreamsInput struct {
 	// If you order the results by event time, you cannot specify the logStreamNamePrefix
 	// parameter.
 	//
-	// lastEventTimeStamp represents the time of the most recent log event in the
+	// lastEventTimestamp represents the time of the most recent log event in the
 	// log stream in CloudWatch Logs. This number is expressed as the number of
-	// milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTimeStamp updates on
+	// milliseconds after Jan 1, 1970 00:00:00 UTC. lastEventTimestamp updates on
 	// an eventual consistency basis. It typically updates in less than an hour
 	// from ingestion, but in rare situations might take longer.
 	OrderBy *string `locationName:"orderBy" type:"string" enum:"OrderBy"`
@@ -6640,9 +6660,6 @@ type FilterLogEventsInput struct {
 	// The start of the time range, expressed as the number of milliseconds after
 	// Jan 1, 1970 00:00:00 UTC. Events with a timestamp before this time are not
 	// returned.
-	//
-	// If you omit startTime and endTime the most recent log events are retrieved,
-	// to up 1 MB or 10,000 log events.
 	StartTime *int64 `locationName:"startTime" type:"long"`
 }
 
@@ -7022,9 +7039,9 @@ type GetLogGroupFieldsInput struct {
 	// LogGroupName is a required field
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
-	// The time to set as the center of the query. If you specify time, the 8 minutes
-	// before and 8 minutes after this time are searched. If you omit time, the
-	// past 15 minutes are queried.
+	// The time to set as the center of the query. If you specify time, the 15 minutes
+	// before this time are queries. If you omit time the 8 minutes before and 8
+	// minutes after this time are searched.
 	//
 	// The time value is specified as epoch time, the number of seconds since January
 	// 1, 1970, 00:00:00 UTC.
@@ -7998,6 +8015,23 @@ type MetricTransformation struct {
 	// This value can be null.
 	DefaultValue *float64 `locationName:"defaultValue" type:"double"`
 
+	// The fields to use as dimensions for the metric. One metric filter can include
+	// as many as three dimensions.
+	//
+	// Metrics extracted from log events are charged as custom metrics. To prevent
+	// unexpected high charges, do not specify high-cardinality fields such as IPAddress
+	// or requestID as dimensions. Each different value found for a dimension is
+	// treated as a separate metric and accrues charges as a separate custom metric.
+	//
+	// To help prevent accidental high charges, Amazon disables a metric filter
+	// if it generates 1000 different name/value pairs for the dimensions that you
+	// have specified within a certain amount of time.
+	//
+	// You can also set up a billing alarm to alert you if your charges are higher
+	// than expected. For more information, see Creating a Billing Alarm to Monitor
+	// Your Estimated AWS Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
+	Dimensions map[string]*string `locationName:"dimensions" type:"map"`
+
 	// The name of the CloudWatch metric.
 	//
 	// MetricName is a required field
@@ -8015,6 +8049,9 @@ type MetricTransformation struct {
 	//
 	// MetricValue is a required field
 	MetricValue *string `locationName:"metricValue" type:"string" required:"true"`
+
+	// The unit to assign to the metric. If you omit this, the unit is set as None.
+	Unit *string `locationName:"unit" type:"string" enum:"StandardUnit"`
 }
 
 // String returns the string representation
@@ -8052,6 +8089,12 @@ func (s *MetricTransformation) SetDefaultValue(v float64) *MetricTransformation 
 	return s
 }
 
+// SetDimensions sets the Dimensions field's value.
+func (s *MetricTransformation) SetDimensions(v map[string]*string) *MetricTransformation {
+	s.Dimensions = v
+	return s
+}
+
 // SetMetricName sets the MetricName field's value.
 func (s *MetricTransformation) SetMetricName(v string) *MetricTransformation {
 	s.MetricName = &v
@@ -8067,6 +8110,12 @@ func (s *MetricTransformation) SetMetricNamespace(v string) *MetricTransformatio
 // SetMetricValue sets the MetricValue field's value.
 func (s *MetricTransformation) SetMetricValue(v string) *MetricTransformation {
 	s.MetricValue = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *MetricTransformation) SetUnit(v string) *MetricTransformation {
+	s.Unit = &v
 	return s
 }
 
@@ -8863,7 +8912,10 @@ type PutSubscriptionFilterInput struct {
 	//    filter, for same-account delivery.
 	//
 	//    * A logical destination (specified using an ARN) belonging to a different
-	//    account, for cross-account delivery.
+	//    account, for cross-account delivery. If you are setting up a cross-account
+	//    subscription, the destination must have an IAM policy associated with
+	//    it that allows the sender to send logs to the destination. For more information,
+	//    see PutDestinationPolicy (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutDestinationPolicy.html).
 	//
 	//    * An Amazon Kinesis Firehose delivery stream belonging to the same account
 	//    as the subscription filter, for same-account delivery.
@@ -8881,9 +8933,8 @@ type PutSubscriptionFilterInput struct {
 	Distribution *string `locationName:"distribution" type:"string" enum:"Distribution"`
 
 	// A name for the subscription filter. If you are updating an existing filter,
-	// you must specify the correct name in filterName. Otherwise, the call fails
-	// because you cannot associate a second filter with a log group. To find the
-	// name of the filter currently associated with a log group, use DescribeSubscriptionFilters
+	// you must specify the correct name in filterName. To find the name of the
+	// filter currently associated with a log group, use DescribeSubscriptionFilters
 	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DescribeSubscriptionFilters.html).
 	//
 	// FilterName is a required field
@@ -10199,6 +10250,12 @@ const (
 
 	// QueryStatusCancelled is a QueryStatus enum value
 	QueryStatusCancelled = "Cancelled"
+
+	// QueryStatusTimeout is a QueryStatus enum value
+	QueryStatusTimeout = "Timeout"
+
+	// QueryStatusUnknown is a QueryStatus enum value
+	QueryStatusUnknown = "Unknown"
 )
 
 // QueryStatus_Values returns all elements of the QueryStatus enum
@@ -10209,5 +10266,123 @@ func QueryStatus_Values() []string {
 		QueryStatusComplete,
 		QueryStatusFailed,
 		QueryStatusCancelled,
+		QueryStatusTimeout,
+		QueryStatusUnknown,
+	}
+}
+
+const (
+	// StandardUnitSeconds is a StandardUnit enum value
+	StandardUnitSeconds = "Seconds"
+
+	// StandardUnitMicroseconds is a StandardUnit enum value
+	StandardUnitMicroseconds = "Microseconds"
+
+	// StandardUnitMilliseconds is a StandardUnit enum value
+	StandardUnitMilliseconds = "Milliseconds"
+
+	// StandardUnitBytes is a StandardUnit enum value
+	StandardUnitBytes = "Bytes"
+
+	// StandardUnitKilobytes is a StandardUnit enum value
+	StandardUnitKilobytes = "Kilobytes"
+
+	// StandardUnitMegabytes is a StandardUnit enum value
+	StandardUnitMegabytes = "Megabytes"
+
+	// StandardUnitGigabytes is a StandardUnit enum value
+	StandardUnitGigabytes = "Gigabytes"
+
+	// StandardUnitTerabytes is a StandardUnit enum value
+	StandardUnitTerabytes = "Terabytes"
+
+	// StandardUnitBits is a StandardUnit enum value
+	StandardUnitBits = "Bits"
+
+	// StandardUnitKilobits is a StandardUnit enum value
+	StandardUnitKilobits = "Kilobits"
+
+	// StandardUnitMegabits is a StandardUnit enum value
+	StandardUnitMegabits = "Megabits"
+
+	// StandardUnitGigabits is a StandardUnit enum value
+	StandardUnitGigabits = "Gigabits"
+
+	// StandardUnitTerabits is a StandardUnit enum value
+	StandardUnitTerabits = "Terabits"
+
+	// StandardUnitPercent is a StandardUnit enum value
+	StandardUnitPercent = "Percent"
+
+	// StandardUnitCount is a StandardUnit enum value
+	StandardUnitCount = "Count"
+
+	// StandardUnitBytesSecond is a StandardUnit enum value
+	StandardUnitBytesSecond = "Bytes/Second"
+
+	// StandardUnitKilobytesSecond is a StandardUnit enum value
+	StandardUnitKilobytesSecond = "Kilobytes/Second"
+
+	// StandardUnitMegabytesSecond is a StandardUnit enum value
+	StandardUnitMegabytesSecond = "Megabytes/Second"
+
+	// StandardUnitGigabytesSecond is a StandardUnit enum value
+	StandardUnitGigabytesSecond = "Gigabytes/Second"
+
+	// StandardUnitTerabytesSecond is a StandardUnit enum value
+	StandardUnitTerabytesSecond = "Terabytes/Second"
+
+	// StandardUnitBitsSecond is a StandardUnit enum value
+	StandardUnitBitsSecond = "Bits/Second"
+
+	// StandardUnitKilobitsSecond is a StandardUnit enum value
+	StandardUnitKilobitsSecond = "Kilobits/Second"
+
+	// StandardUnitMegabitsSecond is a StandardUnit enum value
+	StandardUnitMegabitsSecond = "Megabits/Second"
+
+	// StandardUnitGigabitsSecond is a StandardUnit enum value
+	StandardUnitGigabitsSecond = "Gigabits/Second"
+
+	// StandardUnitTerabitsSecond is a StandardUnit enum value
+	StandardUnitTerabitsSecond = "Terabits/Second"
+
+	// StandardUnitCountSecond is a StandardUnit enum value
+	StandardUnitCountSecond = "Count/Second"
+
+	// StandardUnitNone is a StandardUnit enum value
+	StandardUnitNone = "None"
+)
+
+// StandardUnit_Values returns all elements of the StandardUnit enum
+func StandardUnit_Values() []string {
+	return []string{
+		StandardUnitSeconds,
+		StandardUnitMicroseconds,
+		StandardUnitMilliseconds,
+		StandardUnitBytes,
+		StandardUnitKilobytes,
+		StandardUnitMegabytes,
+		StandardUnitGigabytes,
+		StandardUnitTerabytes,
+		StandardUnitBits,
+		StandardUnitKilobits,
+		StandardUnitMegabits,
+		StandardUnitGigabits,
+		StandardUnitTerabits,
+		StandardUnitPercent,
+		StandardUnitCount,
+		StandardUnitBytesSecond,
+		StandardUnitKilobytesSecond,
+		StandardUnitMegabytesSecond,
+		StandardUnitGigabytesSecond,
+		StandardUnitTerabytesSecond,
+		StandardUnitBitsSecond,
+		StandardUnitKilobitsSecond,
+		StandardUnitMegabitsSecond,
+		StandardUnitGigabitsSecond,
+		StandardUnitTerabitsSecond,
+		StandardUnitCountSecond,
+		StandardUnitNone,
 	}
 }

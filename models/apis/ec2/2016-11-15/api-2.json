@@ -5022,17 +5022,17 @@
     "AssociateSubnetCidrBlockRequest":{
       "type":"structure",
       "required":[
-        "SubnetId",
-        "Ipv6CidrBlock"
+        "Ipv6CidrBlock",
+        "SubnetId"
       ],
       "members":{
-        "SubnetId":{
-          "shape":"SubnetId",
-          "locationName":"subnetId"
-        },
         "Ipv6CidrBlock":{
           "shape":"String",
           "locationName":"ipv6CidrBlock"
+        },
+        "SubnetId":{
+          "shape":"SubnetId",
+          "locationName":"subnetId"
         }
       }
     },
@@ -6233,6 +6233,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "OutpostArn":{
+          "shape":"OutpostArn",
+          "locationName":"outpostArn"
         }
       }
     },
@@ -7353,7 +7357,8 @@
         "EndDateType":{"shape":"EndDateType"},
         "InstanceMatchCriteria":{"shape":"InstanceMatchCriteria"},
         "TagSpecifications":{"shape":"TagSpecificationList"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "OutpostArn":{"shape":"OutpostArn"}
       }
     },
     "CreateCapacityReservationResult":{
@@ -8595,8 +8600,8 @@
     "CreateSubnetRequest":{
       "type":"structure",
       "required":[
-        "VpcId",
-        "CidrBlock"
+        "CidrBlock",
+        "VpcId"
       ],
       "members":{
         "TagSpecifications":{
@@ -8605,14 +8610,14 @@
         },
         "AvailabilityZone":{"shape":"String"},
         "AvailabilityZoneId":{"shape":"String"},
+        "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "OutpostArn":{"shape":"String"},
         "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        },
-        "CidrBlock":{"shape":"String"}
+        }
       }
     },
     "CreateSubnetResult":{
@@ -24600,6 +24605,10 @@
         "add",
         "remove"
       ]
+    },
+    "OutpostArn":{
+      "type":"string",
+      "pattern":"^arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:outpost/op-[a-f0-9]{17}$"
     },
     "OwnerStringList":{
       "type":"list",

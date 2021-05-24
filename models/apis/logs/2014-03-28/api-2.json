@@ -931,6 +931,19 @@
       "type":"list",
       "member":{"shape":"Destination"}
     },
+    "Dimensions":{
+      "type":"map",
+      "key":{"shape":"DimensionsKey"},
+      "value":{"shape":"DimensionsValue"}
+    },
+    "DimensionsKey":{
+      "type":"string",
+      "max":255
+    },
+    "DimensionsValue":{
+      "type":"string",
+      "max":255
+    },
     "DisassociateKmsKeyRequest":{
       "type":"structure",
       "required":["logGroupName"],
@@ -1334,7 +1347,9 @@
         "metricName":{"shape":"MetricName"},
         "metricNamespace":{"shape":"MetricNamespace"},
         "metricValue":{"shape":"MetricValue"},
-        "defaultValue":{"shape":"DefaultValue"}
+        "defaultValue":{"shape":"DefaultValue"},
+        "dimensions":{"shape":"Dimensions"},
+        "unit":{"shape":"StandardUnit"}
       }
     },
     "MetricTransformations":{
@@ -1596,7 +1611,9 @@
         "Running",
         "Complete",
         "Failed",
-        "Cancelled"
+        "Cancelled",
+        "Timeout",
+        "Unknown"
       ]
     },
     "QueryString":{
@@ -1672,6 +1689,38 @@
       },
       "exception":true,
       "fault":true
+    },
+    "StandardUnit":{
+      "type":"string",
+      "enum":[
+        "Seconds",
+        "Microseconds",
+        "Milliseconds",
+        "Bytes",
+        "Kilobytes",
+        "Megabytes",
+        "Gigabytes",
+        "Terabytes",
+        "Bits",
+        "Kilobits",
+        "Megabits",
+        "Gigabits",
+        "Terabits",
+        "Percent",
+        "Count",
+        "Bytes/Second",
+        "Kilobytes/Second",
+        "Megabytes/Second",
+        "Gigabytes/Second",
+        "Terabytes/Second",
+        "Bits/Second",
+        "Kilobits/Second",
+        "Megabits/Second",
+        "Gigabits/Second",
+        "Terabits/Second",
+        "Count/Second",
+        "None"
+      ]
     },
     "StartFromHead":{"type":"boolean"},
     "StartQueryRequest":{

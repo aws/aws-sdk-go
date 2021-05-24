@@ -1526,7 +1526,7 @@ type AutoScalingGroupRecommendation struct {
 	// group.
 	CurrentConfiguration *AutoScalingGroupConfiguration `locationName:"currentConfiguration" type:"structure"`
 
-	// The finding classification for the Auto Scaling group.
+	// The finding classification of the Auto Scaling group.
 	//
 	// Findings for Auto Scaling groups include:
 	//
@@ -1629,10 +1629,19 @@ type AutoScalingGroupRecommendationOption struct {
 
 	// The performance risk of the Auto Scaling group configuration recommendation.
 	//
-	// Performance risk is the likelihood of the recommended instance type not meeting
-	// the performance requirement of your workload.
+	// Performance risk indicates the likelihood of the recommended instance type
+	// not meeting the resource needs of your workload. Compute Optimizer calculates
+	// an individual performance risk score for each specification of the recommended
+	// instance, including CPU, memory, EBS throughput, EBS IOPS, disk throughput,
+	// disk IOPS, network throughput, and network PPS. The performance risk of the
+	// recommended instance is calculated as the maximum performance risk score
+	// across the analyzed resource specifications.
 	//
-	// The lowest performance risk is categorized as 0, and the highest as 5.
+	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// is predicted to always provide enough hardware capability. The higher the
+	// performance risk is, the more likely you should validate whether the recommended
+	// resource meets the performance requirements of your workload before migrating
+	// your resource.
 	PerformanceRisk *float64 `locationName:"performanceRisk" type:"double"`
 
 	// An array of objects that describe the projected utilization metrics of the
@@ -1779,16 +1788,20 @@ func (s *DescribeRecommendationExportJobsOutput) SetRecommendationExportJobs(v [
 }
 
 // Describes a filter that returns a more specific list of Amazon Elastic Block
-// Store (Amazon EBS) volume recommendations.
+// Store (Amazon EBS) volume recommendations. Use this filter with the GetEBSVolumeRecommendations
+// action.
 //
-// This filter is used with the GetEBSVolumeRecommendations action.
+// You can use LambdaFunctionRecommendationFilter with the GetLambdaFunctionRecommendations
+// action, JobFilter with the DescribeRecommendationExportJobs action, and Filter
+// with the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
+// actions.
 type EBSFilter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
 	//
 	// Specify Finding to return recommendations with a specific finding classification
-	// (e.g., Optimized).
+	// (e.g., NotOptimized).
 	Name *string `locationName:"name" type:"string" enum:"EBSFilterName"`
 
 	// The value of the filter.
@@ -2570,19 +2583,25 @@ func (s *ExportLambdaFunctionRecommendationsOutput) SetS3Destination(v *S3Destin
 }
 
 // Describes a filter that returns a more specific list of recommendations.
-//
-// This filter is used with the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
+// Use this filter with the GetAutoScalingGroupRecommendations and GetEC2InstanceRecommendations
 // actions.
+//
+// You can use EBSFilter with the GetEBSVolumeRecommendations action, LambdaFunctionRecommendationFilter
+// with the GetLambdaFunctionRecommendations action, and JobFilter with the
+// DescribeRecommendationExportJobs action.
 type Filter struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the filter.
 	//
 	// Specify Finding to return recommendations with a specific finding classification
-	// (e.g., Overprovisioned).
+	// (e.g., Underprovisioned).
 	//
 	// Specify RecommendationSourceType to return recommendations of a specific
-	// resource type (e.g., AutoScalingGroup).
+	// resource type (e.g., Ec2Instance).
+	//
+	// Specify FindingReasonCodes to return recommendations with a specific finding
+	// reason code (e.g., CPUUnderprovisioned).
 	Name *string `locationName:"name" type:"string" enum:"FilterName"`
 
 	// The value of the filter.
@@ -2591,14 +2610,58 @@ type Filter struct {
 	// specify for the name parameter and the resource type that you wish to filter
 	// results for:
 	//
-	//    * Specify Optimized or NotOptimized if you specified the name parameter
+	//    * Specify Optimized or NotOptimized if you specify the name parameter
 	//    as Finding and you want to filter results for Auto Scaling groups.
 	//
-	//    * Specify Underprovisioned, Overprovisioned, or Optimized if you specified
+	//    * Specify Underprovisioned, Overprovisioned, or Optimized if you specify
 	//    the name parameter as Finding and you want to filter results for EC2 instances.
 	//
-	//    * Specify Ec2Instance or AutoScalingGroup if you specified the name parameter
+	//    * Specify Ec2Instance or AutoScalingGroup if you specify the name parameter
 	//    as RecommendationSourceType.
+	//
+	//    * Specify one of the following options if you specify the name parameter
+	//    as FindingReasonCodes: CPUOverprovisioned — The instance’s CPU configuration
+	//    can be sized down while still meeting the performance requirements of
+	//    your workload. CPUUnderprovisioned — The instance’s CPU configuration
+	//    doesn't meet the performance requirements of your workload and there is
+	//    an alternative instance type that provides better CPU performance. MemoryOverprovisioned
+	//    — The instance’s memory configuration can be sized down while still
+	//    meeting the performance requirements of your workload. MemoryUnderprovisioned
+	//    — The instance’s memory configuration doesn't meet the performance
+	//    requirements of your workload and there is an alternative instance type
+	//    that provides better memory performance. EBSThroughputOverprovisioned
+	//    — The instance’s EBS throughput configuration can be sized down while
+	//    still meeting the performance requirements of your workload. EBSThroughputUnderprovisioned
+	//    — The instance’s EBS throughput configuration doesn't meet the performance
+	//    requirements of your workload and there is an alternative instance type
+	//    that provides better EBS throughput performance. EBSIOPSOverprovisioned
+	//    — The instance’s EBS IOPS configuration can be sized down while still
+	//    meeting the performance requirements of your workload. EBSIOPSUnderprovisioned
+	//    — The instance’s EBS IOPS configuration doesn't meet the performance
+	//    requirements of your workload and there is an alternative instance type
+	//    that provides better EBS IOPS performance. NetworkBandwidthOverprovisioned
+	//    — The instance’s network bandwidth configuration can be sized down
+	//    while still meeting the performance requirements of your workload. NetworkBandwidthUnderprovisioned
+	//    — The instance’s network bandwidth configuration doesn't meet the
+	//    performance requirements of your workload and there is an alternative
+	//    instance type that provides better network bandwidth performance. This
+	//    finding reason happens when the NetworkIn or NetworkOut performance of
+	//    an instance is impacted. NetworkPPSOverprovisioned — The instance’s
+	//    network PPS (packets per second) configuration can be sized down while
+	//    still meeting the performance requirements of your workload. NetworkPPSUnderprovisioned
+	//    — The instance’s network PPS (packets per second) configuration doesn't
+	//    meet the performance requirements of your workload and there is an alternative
+	//    instance type that provides better network PPS performance. DiskIOPSOverprovisioned
+	//    — The instance’s disk IOPS configuration can be sized down while still
+	//    meeting the performance requirements of your workload. DiskIOPSUnderprovisioned
+	//    — The instance’s disk IOPS configuration doesn't meet the performance
+	//    requirements of your workload and there is an alternative instance type
+	//    that provides better disk IOPS performance. DiskThroughputOverprovisioned
+	//    — The instance’s disk throughput configuration can be sized down while
+	//    still meeting the performance requirements of your workload. DiskThroughputUnderprovisioned
+	//    — The instance’s disk throughput configuration doesn't meet the performance
+	//    requirements of your workload and there is an alternative instance type
+	//    that provides better disk throughput performance.
 	Values []*string `locationName:"values" type:"list"`
 }
 
@@ -3401,7 +3464,7 @@ type InstanceRecommendation struct {
 	// The instance type of the current instance.
 	CurrentInstanceType *string `locationName:"currentInstanceType" type:"string"`
 
-	// The finding classification for the instance.
+	// The finding classification of the instance.
 	//
 	// Findings for instances include:
 	//
@@ -3418,11 +3481,123 @@ type InstanceRecommendation struct {
 	//
 	//    * Optimized —An instance is considered optimized when all specifications
 	//    of your instance, such as CPU, memory, and network, meet the performance
-	//    requirements of your workload and is not over provisioned. An optimized
-	//    instance runs your workloads with optimal performance and infrastructure
-	//    cost. For optimized resources, AWS Compute Optimizer might recommend a
-	//    new generation instance type.
+	//    requirements of your workload and is not over provisioned. For optimized
+	//    resources, AWS Compute Optimizer might recommend a new generation instance
+	//    type.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
+
+	// The reason for the finding classification of the instance.
+	//
+	// Finding reason codes for instances include:
+	//
+	//    * CPUOverprovisioned — The instance’s CPU configuration can be sized
+	//    down while still meeting the performance requirements of your workload.
+	//    This is identified by analyzing the CPUUtilization metric of the current
+	//    instance during the look-back period.
+	//
+	//    * CPUUnderprovisioned — The instance’s CPU configuration doesn't meet
+	//    the performance requirements of your workload and there is an alternative
+	//    instance type that provides better CPU performance. This is identified
+	//    by analyzing the CPUUtilization metric of the current instance during
+	//    the look-back period.
+	//
+	//    * MemoryOverprovisioned — The instance’s memory configuration can
+	//    be sized down while still meeting the performance requirements of your
+	//    workload. This is identified by analyzing the memory utilization metric
+	//    of the current instance during the look-back period.
+	//
+	//    * MemoryUnderprovisioned — The instance’s memory configuration doesn't
+	//    meet the performance requirements of your workload and there is an alternative
+	//    instance type that provides better memory performance. This is identified
+	//    by analyzing the memory utilization metric of the current instance during
+	//    the look-back period. Memory utilization is analyzed only for resources
+	//    that have the unified CloudWatch agent installed on them. For more information,
+	//    see Enabling memory utilization with the Amazon CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent)
+	//    in the AWS Compute Optimizer User Guide. On Linux instances, Compute Optimizer
+	//    analyses the mem_used_percent metric in the CWAgent namespace, or the
+	//    legacy MemoryUtilization metric in the System/Linux namespace. On Windows
+	//    instances, Compute Optimizer analyses the Memory % Committed Bytes In
+	//    Use metric in the CWAgent namespace.
+	//
+	//    * EBSThroughputOverprovisioned — The instance’s EBS throughput configuration
+	//    can be sized down while still meeting the performance requirements of
+	//    your workload. This is identified by analyzing the VolumeReadOps and VolumeWriteOps
+	//    metrics of EBS volumes attached to the current instance during the look-back
+	//    period.
+	//
+	//    * EBSThroughputUnderprovisioned — The instance’s EBS throughput configuration
+	//    doesn't meet the performance requirements of your workload and there is
+	//    an alternative instance type that provides better EBS throughput performance.
+	//    This is identified by analyzing the VolumeReadOps and VolumeWriteOps metrics
+	//    of EBS volumes attached to the current instance during the look-back period.
+	//
+	//    * EBSIOPSOverprovisioned — The instance’s EBS IOPS configuration can
+	//    be sized down while still meeting the performance requirements of your
+	//    workload. This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes
+	//    metric of EBS volumes attached to the current instance during the look-back
+	//    period.
+	//
+	//    * EBSIOPSUnderprovisioned — The instance’s EBS IOPS configuration
+	//    doesn't meet the performance requirements of your workload and there is
+	//    an alternative instance type that provides better EBS IOPS performance.
+	//    This is identified by analyzing the VolumeReadBytes and VolumeWriteBytes
+	//    metric of EBS volumes attached to the current instance during the look-back
+	//    period.
+	//
+	//    * NetworkBandwidthOverprovisioned — The instance’s network bandwidth
+	//    configuration can be sized down while still meeting the performance requirements
+	//    of your workload. This is identified by analyzing the NetworkIn and NetworkOut
+	//    metrics of the current instance during the look-back period.
+	//
+	//    * NetworkBandwidthUnderprovisioned — The instance’s network bandwidth
+	//    configuration doesn't meet the performance requirements of your workload
+	//    and there is an alternative instance type that provides better network
+	//    bandwidth performance. This is identified by analyzing the NetworkIn and
+	//    NetworkOut metrics of the current instance during the look-back period.
+	//    This finding reason happens when the NetworkIn or NetworkOut performance
+	//    of an instance is impacted.
+	//
+	//    * NetworkPPSOverprovisioned — The instance’s network PPS (packets
+	//    per second) configuration can be sized down while still meeting the performance
+	//    requirements of your workload. This is identified by analyzing the NetworkPacketsIn
+	//    and NetworkPacketsIn metrics of the current instance during the look-back
+	//    period.
+	//
+	//    * NetworkPPSUnderprovisioned — The instance’s network PPS (packets
+	//    per second) configuration doesn't meet the performance requirements of
+	//    your workload and there is an alternative instance type that provides
+	//    better network PPS performance. This is identified by analyzing the NetworkPacketsIn
+	//    and NetworkPacketsIn metrics of the current instance during the look-back
+	//    period.
+	//
+	//    * DiskIOPSOverprovisioned — The instance’s disk IOPS configuration
+	//    can be sized down while still meeting the performance requirements of
+	//    your workload. This is identified by analyzing the DiskReadOps and DiskWriteOps
+	//    metrics of the current instance during the look-back period.
+	//
+	//    * DiskIOPSUnderprovisioned — The instance’s disk IOPS configuration
+	//    doesn't meet the performance requirements of your workload and there is
+	//    an alternative instance type that provides better disk IOPS performance.
+	//    This is identified by analyzing the DiskReadOps and DiskWriteOps metrics
+	//    of the current instance during the look-back period.
+	//
+	//    * DiskThroughputOverprovisioned — The instance’s disk throughput configuration
+	//    can be sized down while still meeting the performance requirements of
+	//    your workload. This is identified by analyzing the DiskReadBytes and DiskWriteBytes
+	//    metrics of the current instance during the look-back period.
+	//
+	//    * DiskThroughputUnderprovisioned — The instance’s disk throughput
+	//    configuration doesn't meet the performance requirements of your workload
+	//    and there is an alternative instance type that provides better disk throughput
+	//    performance. This is identified by analyzing the DiskReadBytes and DiskWriteBytes
+	//    metrics of the current instance during the look-back period.
+	//
+	// For more information about instance metrics, see List the available CloudWatch
+	// metrics for your instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/viewing_metrics_with_cloudwatch.html)
+	// in the Amazon Elastic Compute Cloud User Guide. For more information about
+	// EBS volume metrics, see Amazon CloudWatch metrics for Amazon EBS (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using_cloudwatch_ebs.html)
+	// in the Amazon Elastic Compute Cloud User Guide.
+	FindingReasonCodes []*string `locationName:"findingReasonCodes" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the current instance.
 	InstanceArn *string `locationName:"instanceArn" type:"string"`
@@ -3471,6 +3646,12 @@ func (s *InstanceRecommendation) SetCurrentInstanceType(v string) *InstanceRecom
 // SetFinding sets the Finding field's value.
 func (s *InstanceRecommendation) SetFinding(v string) *InstanceRecommendation {
 	s.Finding = &v
+	return s
+}
+
+// SetFindingReasonCodes sets the FindingReasonCodes field's value.
+func (s *InstanceRecommendation) SetFindingReasonCodes(v []*string) *InstanceRecommendation {
+	s.FindingReasonCodes = v
 	return s
 }
 
@@ -3525,11 +3706,88 @@ type InstanceRecommendationOption struct {
 
 	// The performance risk of the instance recommendation option.
 	//
-	// Performance risk is the likelihood of the recommended instance type not meeting
-	// the performance requirement of your workload.
+	// Performance risk indicates the likelihood of the recommended instance type
+	// not meeting the resource needs of your workload. Compute Optimizer calculates
+	// an individual performance risk score for each specification of the recommended
+	// instance, including CPU, memory, EBS throughput, EBS IOPS, disk throughput,
+	// disk IOPS, network throughput, and network PPS. The performance risk of the
+	// recommended instance is calculated as the maximum performance risk score
+	// across the analyzed resource specifications.
 	//
-	// The lowest performance risk is categorized as 0, and the highest as 5.
+	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// is predicted to always provide enough hardware capability. The higher the
+	// performance risk is, the more likely you should validate whether the recommendation
+	// will meet the performance requirements of your workload before migrating
+	// your resource.
 	PerformanceRisk *float64 `locationName:"performanceRisk" type:"double"`
+
+	// Describes the configuration differences between the current instance and
+	// the recommended instance type. You should consider the configuration differences
+	// before migrating your workloads from the current instance to the recommended
+	// instance type. The Change the instance type guide for Linux (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)
+	// and Change the instance type guide for Windows (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-resize.html)
+	// provide general guidance for getting started with an instance migration.
+	//
+	// Platform differences include:
+	//
+	//    * Hypervisor — The hypervisor of the recommended instance type is different
+	//    than that of the current instance. For example, the recommended instance
+	//    type uses a Nitro hypervisor and the current instance uses a Xen hypervisor.
+	//    The differences that you should consider between these hypervisors are
+	//    covered in the Nitro Hypervisor (http://aws.amazon.com/ec2/faqs/#Nitro_Hypervisor)
+	//    section of the Amazon EC2 frequently asked questions. For more information,
+	//    see Instances built on the Nitro System (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances)
+	//    in the Amazon EC2 User Guide for Linux, or Instances built on the Nitro
+	//    System (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#ec2-nitro-instances)
+	//    in the Amazon EC2 User Guide for Windows.
+	//
+	//    * NetworkInterface — The network interface of the recommended instance
+	//    type is different than that of the current instance. For example, the
+	//    recommended instance type supports enhanced networking and the current
+	//    instance might not. To enable enhanced networking for the recommended
+	//    instance type, you will need to install the Elastic Network Adapter (ENA)
+	//    driver or the Intel 82599 Virtual Function driver. For more information,
+	//    see Networking and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
+	//    and Enhanced networking on Linux (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html)
+	//    in the Amazon EC2 User Guide for Linux, or Networking and storage features
+	//    (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage)
+	//    and Enhanced networking on Windows (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/enhanced-networking.html)
+	//    in the Amazon EC2 User Guide for Windows.
+	//
+	//    * StorageInterface — The storage interface of the recommended instance
+	//    type is different than that of the current instance. For example, the
+	//    recommended instance type uses an NVMe storage interface and the current
+	//    instance does not. To access NVMe volumes for the recommended instance
+	//    type, you will need to install or upgrade the NVMe driver. For more information,
+	//    see Networking and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
+	//    and Amazon EBS and NVMe on Linux instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nvme-ebs-volumes.html)
+	//    in the Amazon EC2 User Guide for Linux, or Networking and storage features
+	//    (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage)
+	//    and Amazon EBS and NVMe on Windows instances (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/nvme-ebs-volumes.html)
+	//    in the Amazon EC2 User Guide for Windows.
+	//
+	//    * InstanceStoreAvailability — The recommended instance type does not
+	//    support instance store volumes and the current instance does. Before migrating,
+	//    you might need to back up the data on your instance store volumes if you
+	//    want to preserve them. For more information, see How do I back up an instance
+	//    store volume on my Amazon EC2 instance to Amazon EBS? (https://aws.amazon.com/premiumsupport/knowledge-center/back-up-instance-store-ebs/)
+	//    in the AWS Premium Support Knowledge Base. For more information, see Networking
+	//    and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
+	//    and Amazon EC2 instance store (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
+	//    in the Amazon EC2 User Guide for Linux, or see Networking and storage
+	//    features (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage)
+	//    and Amazon EC2 instance store (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/InstanceStorage.html)
+	//    in the Amazon EC2 User Guide for Windows.
+	//
+	//    * VirtualizationType — The recommended instance type uses the hardware
+	//    virtual machine (HVM) virtualization type and the current instance uses
+	//    the paravirtual (PV) virtualization type. For more information about the
+	//    differences between these virtualization types, see Linux AMI virtualization
+	//    types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/virtualization_types.html)
+	//    in the Amazon EC2 User Guide for Linux, or Windows AMI virtualization
+	//    types (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#virtualization-types)
+	//    in the Amazon EC2 User Guide for Windows.
+	PlatformDifferences []*string `locationName:"platformDifferences" type:"list"`
 
 	// An array of objects that describe the projected utilization metrics of the
 	// instance recommendation option.
@@ -3565,6 +3823,12 @@ func (s *InstanceRecommendationOption) SetInstanceType(v string) *InstanceRecomm
 // SetPerformanceRisk sets the PerformanceRisk field's value.
 func (s *InstanceRecommendationOption) SetPerformanceRisk(v float64) *InstanceRecommendationOption {
 	s.PerformanceRisk = &v
+	return s
+}
+
+// SetPlatformDifferences sets the PlatformDifferences field's value.
+func (s *InstanceRecommendationOption) SetPlatformDifferences(v []*string) *InstanceRecommendationOption {
+	s.PlatformDifferences = v
 	return s
 }
 
@@ -3693,9 +3957,11 @@ func (s *InvalidParameterValueException) RequestID() string {
 }
 
 // Describes a filter that returns a more specific list of recommendation export
-// jobs.
+// jobs. Use this filter with the DescribeRecommendationExportJobs action.
 //
-// This filter is used with the DescribeRecommendationExportJobs action.
+// You can use EBSFilter with the GetEBSVolumeRecommendations action, LambdaFunctionRecommendationFilter
+// with the GetLambdaFunctionRecommendations action, and Filter with the GetAutoScalingGroupRecommendations
+// and GetEC2InstanceRecommendations actions.
 type JobFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -3712,12 +3978,12 @@ type JobFilter struct {
 	// The valid values for this parameter are as follows, depending on what you
 	// specify for the name parameter:
 	//
-	//    * Specify Ec2Instance or AutoScalingGroup if you specified the name parameter
+	//    * Specify Ec2Instance or AutoScalingGroup if you specify the name parameter
 	//    as ResourceType. There is no filter for EBS volumes because volume recommendations
 	//    cannot be exported at this time.
 	//
-	//    * Specify Queued, InProgress, Complete, or Failed if you specified the
-	//    name parameter as JobStatus.
+	//    * Specify Queued, InProgress, Complete, or Failed if you specify the name
+	//    parameter as JobStatus.
 	Values []*string `locationName:"values" type:"list"`
 }
 
@@ -3841,7 +4107,7 @@ type LambdaFunctionRecommendation struct {
 	// The amount of memory, in MB, that's allocated to the current function.
 	CurrentMemorySize *int64 `locationName:"currentMemorySize" type:"integer"`
 
-	// The finding classification for the function.
+	// The finding classification of the function.
 	//
 	// Findings for functions include:
 	//
@@ -3871,7 +4137,7 @@ type LambdaFunctionRecommendation struct {
 	// Functions that have a finding classification of Optimized don't have a finding
 	// reason code.
 	//
-	// Reason codes include:
+	// Finding reason codes for functions include:
 	//
 	//    * MemoryOverprovisioned — The function is over-provisioned when its
 	//    memory configuration can be sized down while still meeting the performance
@@ -3998,7 +4264,12 @@ func (s *LambdaFunctionRecommendation) SetUtilizationMetrics(v []*LambdaFunction
 }
 
 // Describes a filter that returns a more specific list of AWS Lambda function
-// recommendations.
+// recommendations. Use this filter with the GetLambdaFunctionRecommendations
+// action.
+//
+// You can use EBSFilter with the GetEBSVolumeRecommendations action, JobFilter
+// with the DescribeRecommendationExportJobs action, and Filter with the GetAutoScalingGroupRecommendations
+// and GetEC2InstanceRecommendations actions.
 type LambdaFunctionRecommendationFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -4016,11 +4287,11 @@ type LambdaFunctionRecommendationFilter struct {
 	// The valid values for this parameter are as follows, depending on what you
 	// specify for the name parameter:
 	//
-	//    * Specify Optimized, NotOptimized, or Unavailable if you specified the
-	//    name parameter as Finding.
+	//    * Specify Optimized, NotOptimized, or Unavailable if you specify the name
+	//    parameter as Finding.
 	//
 	//    * Specify MemoryOverprovisioned, MemoryUnderprovisioned, InsufficientData,
-	//    or Inconclusive if you specified the name parameter as FindingReasonCode.
+	//    or Inconclusive if you specify the name parameter as FindingReasonCode.
 	Values []*string `locationName:"values" type:"list"`
 }
 
@@ -5034,6 +5305,46 @@ type UtilizationMetric struct {
 	//
 	//    * EBS_WRITE_BYTES_PER_SECOND - The bytes written to all EBS volumes attached
 	//    to the instance in a specified period of time. Unit: Bytes
+	//
+	//    * DISK_READ_OPS_PER_SECOND - The completed read operations from all instance
+	//    store volumes available to the instance in a specified period of time.
+	//    If there are no instance store volumes, either the value is 0 or the metric
+	//    is not reported.
+	//
+	//    * DISK_WRITE_OPS_PER_SECOND - The completed write operations from all
+	//    instance store volumes available to the instance in a specified period
+	//    of time. If there are no instance store volumes, either the value is 0
+	//    or the metric is not reported.
+	//
+	//    * DISK_READ_BYTES_PER_SECOND - The bytes read from all instance store
+	//    volumes available to the instance. This metric is used to determine the
+	//    volume of the data the application reads from the disk of the instance.
+	//    This can be used to determine the speed of the application. If there are
+	//    no instance store volumes, either the value is 0 or the metric is not
+	//    reported.
+	//
+	//    * DISK_WRITE_BYTES_PER_SECOND - The bytes written to all instance store
+	//    volumes available to the instance. This metric is used to determine the
+	//    volume of the data the application writes onto the disk of the instance.
+	//    This can be used to determine the speed of the application. If there are
+	//    no instance store volumes, either the value is 0 or the metric is not
+	//    reported.
+	//
+	//    * NETWORK_IN_BYTES_PER_SECOND - The number of bytes received by the instance
+	//    on all network interfaces. This metric identifies the volume of incoming
+	//    network traffic to a single instance.
+	//
+	//    * NETWORK_OUT_BYTES_PER_SECOND - The number of bytes sent out by the instance
+	//    on all network interfaces. This metric identifies the volume of outgoing
+	//    network traffic from a single instance.
+	//
+	//    * NETWORK_PACKETS_IN_PER_SECOND - The number of packets received by the
+	//    instance on all network interfaces. This metric identifies the volume
+	//    of incoming traffic in terms of the number of packets on a single instance.
+	//
+	//    * NETWORK_PACKETS_OUT_PER_SECOND - The number of packets sent out by the
+	//    instance on all network interfaces. This metric identifies the volume
+	//    of outgoing traffic in terms of the number of packets on a single instance.
 	Name *string `locationName:"name" type:"string" enum:"MetricName"`
 
 	// The statistic of the utilization metric.
@@ -5167,7 +5478,7 @@ type VolumeRecommendation struct {
 	// An array of objects that describe the current configuration of the volume.
 	CurrentConfiguration *VolumeConfiguration `locationName:"currentConfiguration" type:"structure"`
 
-	// The finding classification for the volume.
+	// The finding classification of the volume.
 	//
 	// Findings for volumes include:
 	//
@@ -5265,10 +5576,14 @@ type VolumeRecommendationOption struct {
 
 	// The performance risk of the volume recommendation option.
 	//
-	// Performance risk is the likelihood of the recommended volume type not meeting
+	// Performance risk is the likelihood of the recommended volume type meeting
 	// the performance requirement of your workload.
 	//
-	// The lowest performance risk is categorized as 0, and the highest as 5.
+	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// is predicted to always provide enough hardware capability. The higher the
+	// performance risk is, the more likely you should validate whether the recommendation
+	// will meet the performance requirements of your workload before migrating
+	// your resource.
 	PerformanceRisk *float64 `locationName:"performanceRisk" type:"double"`
 
 	// The rank of the volume recommendation option.
@@ -5388,6 +5703,30 @@ const (
 	// ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum = "UtilizationMetricsEbsWriteBytesPerSecondMaximum"
 
+	// ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadOpsPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadOpsPerSecondMaximum = "UtilizationMetricsDiskReadOpsPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum = "UtilizationMetricsDiskWriteOpsPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadBytesPerSecondMaximum = "UtilizationMetricsDiskReadBytesPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum = "UtilizationMetricsDiskWriteBytesPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsNetworkInBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsNetworkInBytesPerSecondMaximum = "UtilizationMetricsNetworkInBytesPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum = "UtilizationMetricsNetworkOutBytesPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum = "UtilizationMetricsNetworkPacketsInPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum = "UtilizationMetricsNetworkPacketsOutPerSecondMaximum"
+
 	// ExportableAutoScalingGroupFieldLookbackPeriodInDays is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldLookbackPeriodInDays = "LookbackPeriodInDays"
 
@@ -5483,6 +5822,14 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum,
 		ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadBytesPerSecondMaximum,
 		ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadOpsPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsDiskReadBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsNetworkInBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum,
 		ExportableAutoScalingGroupFieldLookbackPeriodInDays,
 		ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType,
 		ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity,
@@ -5526,6 +5873,9 @@ const (
 	// ExportableInstanceFieldFinding is a ExportableInstanceField enum value
 	ExportableInstanceFieldFinding = "Finding"
 
+	// ExportableInstanceFieldFindingReasonCodes is a ExportableInstanceField enum value
+	ExportableInstanceFieldFindingReasonCodes = "FindingReasonCodes"
+
 	// ExportableInstanceFieldLookbackPeriodInDays is a ExportableInstanceField enum value
 	ExportableInstanceFieldLookbackPeriodInDays = "LookbackPeriodInDays"
 
@@ -5549,6 +5899,30 @@ const (
 
 	// ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum is a ExportableInstanceField enum value
 	ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum = "UtilizationMetricsEbsWriteBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsDiskReadOpsPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsDiskReadOpsPerSecondMaximum = "UtilizationMetricsDiskReadOpsPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum = "UtilizationMetricsDiskWriteOpsPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsDiskReadBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsDiskReadBytesPerSecondMaximum = "UtilizationMetricsDiskReadBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum = "UtilizationMetricsDiskWriteBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsNetworkInBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsNetworkInBytesPerSecondMaximum = "UtilizationMetricsNetworkInBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum = "UtilizationMetricsNetworkOutBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum = "UtilizationMetricsNetworkPacketsInPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum = "UtilizationMetricsNetworkPacketsOutPerSecondMaximum"
 
 	// ExportableInstanceFieldCurrentOnDemandPrice is a ExportableInstanceField enum value
 	ExportableInstanceFieldCurrentOnDemandPrice = "CurrentOnDemandPrice"
@@ -5579,6 +5953,9 @@ const (
 
 	// ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum is a ExportableInstanceField enum value
 	ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum = "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum"
+
+	// ExportableInstanceFieldRecommendationOptionsPlatformDifferences is a ExportableInstanceField enum value
+	ExportableInstanceFieldRecommendationOptionsPlatformDifferences = "RecommendationOptionsPlatformDifferences"
 
 	// ExportableInstanceFieldRecommendationOptionsPerformanceRisk is a ExportableInstanceField enum value
 	ExportableInstanceFieldRecommendationOptionsPerformanceRisk = "RecommendationOptionsPerformanceRisk"
@@ -5621,6 +5998,7 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldInstanceArn,
 		ExportableInstanceFieldInstanceName,
 		ExportableInstanceFieldFinding,
+		ExportableInstanceFieldFindingReasonCodes,
 		ExportableInstanceFieldLookbackPeriodInDays,
 		ExportableInstanceFieldCurrentInstanceType,
 		ExportableInstanceFieldUtilizationMetricsCpuMaximum,
@@ -5629,6 +6007,14 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum,
 		ExportableInstanceFieldUtilizationMetricsEbsReadBytesPerSecondMaximum,
 		ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsDiskReadOpsPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsDiskWriteOpsPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsDiskReadBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsDiskWriteBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsNetworkInBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsNetworkOutBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsNetworkPacketsInPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsNetworkPacketsOutPerSecondMaximum,
 		ExportableInstanceFieldCurrentOnDemandPrice,
 		ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice,
 		ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
@@ -5639,6 +6025,7 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldRecommendationOptionsInstanceType,
 		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsCpuMaximum,
 		ExportableInstanceFieldRecommendationOptionsProjectedUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldRecommendationOptionsPlatformDifferences,
 		ExportableInstanceFieldRecommendationOptionsPerformanceRisk,
 		ExportableInstanceFieldRecommendationOptionsVcpus,
 		ExportableInstanceFieldRecommendationOptionsMemory,
@@ -5869,6 +6256,9 @@ const (
 	// FilterNameFinding is a FilterName enum value
 	FilterNameFinding = "Finding"
 
+	// FilterNameFindingReasonCodes is a FilterName enum value
+	FilterNameFindingReasonCodes = "FindingReasonCodes"
+
 	// FilterNameRecommendationSourceType is a FilterName enum value
 	FilterNameRecommendationSourceType = "RecommendationSourceType"
 )
@@ -5877,6 +6267,7 @@ const (
 func FilterName_Values() []string {
 	return []string{
 		FilterNameFinding,
+		FilterNameFindingReasonCodes,
 		FilterNameRecommendationSourceType,
 	}
 }
@@ -5918,6 +6309,78 @@ func FindingReasonCode_Values() []string {
 	return []string{
 		FindingReasonCodeMemoryOverprovisioned,
 		FindingReasonCodeMemoryUnderprovisioned,
+	}
+}
+
+const (
+	// InstanceRecommendationFindingReasonCodeCpuoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeCpuoverprovisioned = "CPUOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeCpuunderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeCpuunderprovisioned = "CPUUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeMemoryOverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeMemoryOverprovisioned = "MemoryOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeMemoryUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeMemoryUnderprovisioned = "MemoryUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeEbsthroughputOverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeEbsthroughputOverprovisioned = "EBSThroughputOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeEbsthroughputUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeEbsthroughputUnderprovisioned = "EBSThroughputUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeEbsiopsoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeEbsiopsoverprovisioned = "EBSIOPSOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeEbsiopsunderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeEbsiopsunderprovisioned = "EBSIOPSUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeNetworkBandwidthOverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeNetworkBandwidthOverprovisioned = "NetworkBandwidthOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeNetworkBandwidthUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeNetworkBandwidthUnderprovisioned = "NetworkBandwidthUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeNetworkPpsoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeNetworkPpsoverprovisioned = "NetworkPPSOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeNetworkPpsunderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeNetworkPpsunderprovisioned = "NetworkPPSUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeDiskIopsoverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeDiskIopsoverprovisioned = "DiskIOPSOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeDiskIopsunderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeDiskIopsunderprovisioned = "DiskIOPSUnderprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeDiskThroughputOverprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeDiskThroughputOverprovisioned = "DiskThroughputOverprovisioned"
+
+	// InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned is a InstanceRecommendationFindingReasonCode enum value
+	InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned = "DiskThroughputUnderprovisioned"
+)
+
+// InstanceRecommendationFindingReasonCode_Values returns all elements of the InstanceRecommendationFindingReasonCode enum
+func InstanceRecommendationFindingReasonCode_Values() []string {
+	return []string{
+		InstanceRecommendationFindingReasonCodeCpuoverprovisioned,
+		InstanceRecommendationFindingReasonCodeCpuunderprovisioned,
+		InstanceRecommendationFindingReasonCodeMemoryOverprovisioned,
+		InstanceRecommendationFindingReasonCodeMemoryUnderprovisioned,
+		InstanceRecommendationFindingReasonCodeEbsthroughputOverprovisioned,
+		InstanceRecommendationFindingReasonCodeEbsthroughputUnderprovisioned,
+		InstanceRecommendationFindingReasonCodeEbsiopsoverprovisioned,
+		InstanceRecommendationFindingReasonCodeEbsiopsunderprovisioned,
+		InstanceRecommendationFindingReasonCodeNetworkBandwidthOverprovisioned,
+		InstanceRecommendationFindingReasonCodeNetworkBandwidthUnderprovisioned,
+		InstanceRecommendationFindingReasonCodeNetworkPpsoverprovisioned,
+		InstanceRecommendationFindingReasonCodeNetworkPpsunderprovisioned,
+		InstanceRecommendationFindingReasonCodeDiskIopsoverprovisioned,
+		InstanceRecommendationFindingReasonCodeDiskIopsunderprovisioned,
+		InstanceRecommendationFindingReasonCodeDiskThroughputOverprovisioned,
+		InstanceRecommendationFindingReasonCodeDiskThroughputUnderprovisioned,
 	}
 }
 
@@ -6103,6 +6566,30 @@ const (
 
 	// MetricNameEbsWriteBytesPerSecond is a MetricName enum value
 	MetricNameEbsWriteBytesPerSecond = "EBS_WRITE_BYTES_PER_SECOND"
+
+	// MetricNameDiskReadOpsPerSecond is a MetricName enum value
+	MetricNameDiskReadOpsPerSecond = "DISK_READ_OPS_PER_SECOND"
+
+	// MetricNameDiskWriteOpsPerSecond is a MetricName enum value
+	MetricNameDiskWriteOpsPerSecond = "DISK_WRITE_OPS_PER_SECOND"
+
+	// MetricNameDiskReadBytesPerSecond is a MetricName enum value
+	MetricNameDiskReadBytesPerSecond = "DISK_READ_BYTES_PER_SECOND"
+
+	// MetricNameDiskWriteBytesPerSecond is a MetricName enum value
+	MetricNameDiskWriteBytesPerSecond = "DISK_WRITE_BYTES_PER_SECOND"
+
+	// MetricNameNetworkInBytesPerSecond is a MetricName enum value
+	MetricNameNetworkInBytesPerSecond = "NETWORK_IN_BYTES_PER_SECOND"
+
+	// MetricNameNetworkOutBytesPerSecond is a MetricName enum value
+	MetricNameNetworkOutBytesPerSecond = "NETWORK_OUT_BYTES_PER_SECOND"
+
+	// MetricNameNetworkPacketsInPerSecond is a MetricName enum value
+	MetricNameNetworkPacketsInPerSecond = "NETWORK_PACKETS_IN_PER_SECOND"
+
+	// MetricNameNetworkPacketsOutPerSecond is a MetricName enum value
+	MetricNameNetworkPacketsOutPerSecond = "NETWORK_PACKETS_OUT_PER_SECOND"
 )
 
 // MetricName_Values returns all elements of the MetricName enum
@@ -6114,6 +6601,14 @@ func MetricName_Values() []string {
 		MetricNameEbsWriteOpsPerSecond,
 		MetricNameEbsReadBytesPerSecond,
 		MetricNameEbsWriteBytesPerSecond,
+		MetricNameDiskReadOpsPerSecond,
+		MetricNameDiskWriteOpsPerSecond,
+		MetricNameDiskReadBytesPerSecond,
+		MetricNameDiskWriteBytesPerSecond,
+		MetricNameNetworkInBytesPerSecond,
+		MetricNameNetworkOutBytesPerSecond,
+		MetricNameNetworkPacketsInPerSecond,
+		MetricNameNetworkPacketsOutPerSecond,
 	}
 }
 
@@ -6130,6 +6625,34 @@ func MetricStatistic_Values() []string {
 	return []string{
 		MetricStatisticMaximum,
 		MetricStatisticAverage,
+	}
+}
+
+const (
+	// PlatformDifferenceHypervisor is a PlatformDifference enum value
+	PlatformDifferenceHypervisor = "Hypervisor"
+
+	// PlatformDifferenceNetworkInterface is a PlatformDifference enum value
+	PlatformDifferenceNetworkInterface = "NetworkInterface"
+
+	// PlatformDifferenceStorageInterface is a PlatformDifference enum value
+	PlatformDifferenceStorageInterface = "StorageInterface"
+
+	// PlatformDifferenceInstanceStoreAvailability is a PlatformDifference enum value
+	PlatformDifferenceInstanceStoreAvailability = "InstanceStoreAvailability"
+
+	// PlatformDifferenceVirtualizationType is a PlatformDifference enum value
+	PlatformDifferenceVirtualizationType = "VirtualizationType"
+)
+
+// PlatformDifference_Values returns all elements of the PlatformDifference enum
+func PlatformDifference_Values() []string {
+	return []string{
+		PlatformDifferenceHypervisor,
+		PlatformDifferenceNetworkInterface,
+		PlatformDifferenceStorageInterface,
+		PlatformDifferenceInstanceStoreAvailability,
+		PlatformDifferenceVirtualizationType,
 	}
 }
 
