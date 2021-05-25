@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Transfer Family.
 //    func myFunc(svc transferiface.TransferAPI) bool {
-//        // Make svc.CreateServer request
+//        // Make svc.CreateAccess request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockTransferClient struct {
 //        transferiface.TransferAPI
 //    }
-//    func (m *mockTransferClient) CreateServer(input *transfer.CreateServerInput) (*transfer.CreateServerOutput, error) {
+//    func (m *mockTransferClient) CreateAccess(input *transfer.CreateAccessInput) (*transfer.CreateAccessOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type TransferAPI interface {
+	CreateAccess(*transfer.CreateAccessInput) (*transfer.CreateAccessOutput, error)
+	CreateAccessWithContext(aws.Context, *transfer.CreateAccessInput, ...request.Option) (*transfer.CreateAccessOutput, error)
+	CreateAccessRequest(*transfer.CreateAccessInput) (*request.Request, *transfer.CreateAccessOutput)
+
 	CreateServer(*transfer.CreateServerInput) (*transfer.CreateServerOutput, error)
 	CreateServerWithContext(aws.Context, *transfer.CreateServerInput, ...request.Option) (*transfer.CreateServerOutput, error)
 	CreateServerRequest(*transfer.CreateServerInput) (*request.Request, *transfer.CreateServerOutput)
@@ -67,6 +71,10 @@ type TransferAPI interface {
 	CreateUser(*transfer.CreateUserInput) (*transfer.CreateUserOutput, error)
 	CreateUserWithContext(aws.Context, *transfer.CreateUserInput, ...request.Option) (*transfer.CreateUserOutput, error)
 	CreateUserRequest(*transfer.CreateUserInput) (*request.Request, *transfer.CreateUserOutput)
+
+	DeleteAccess(*transfer.DeleteAccessInput) (*transfer.DeleteAccessOutput, error)
+	DeleteAccessWithContext(aws.Context, *transfer.DeleteAccessInput, ...request.Option) (*transfer.DeleteAccessOutput, error)
+	DeleteAccessRequest(*transfer.DeleteAccessInput) (*request.Request, *transfer.DeleteAccessOutput)
 
 	DeleteServer(*transfer.DeleteServerInput) (*transfer.DeleteServerOutput, error)
 	DeleteServerWithContext(aws.Context, *transfer.DeleteServerInput, ...request.Option) (*transfer.DeleteServerOutput, error)
@@ -79,6 +87,10 @@ type TransferAPI interface {
 	DeleteUser(*transfer.DeleteUserInput) (*transfer.DeleteUserOutput, error)
 	DeleteUserWithContext(aws.Context, *transfer.DeleteUserInput, ...request.Option) (*transfer.DeleteUserOutput, error)
 	DeleteUserRequest(*transfer.DeleteUserInput) (*request.Request, *transfer.DeleteUserOutput)
+
+	DescribeAccess(*transfer.DescribeAccessInput) (*transfer.DescribeAccessOutput, error)
+	DescribeAccessWithContext(aws.Context, *transfer.DescribeAccessInput, ...request.Option) (*transfer.DescribeAccessOutput, error)
+	DescribeAccessRequest(*transfer.DescribeAccessInput) (*request.Request, *transfer.DescribeAccessOutput)
 
 	DescribeSecurityPolicy(*transfer.DescribeSecurityPolicyInput) (*transfer.DescribeSecurityPolicyOutput, error)
 	DescribeSecurityPolicyWithContext(aws.Context, *transfer.DescribeSecurityPolicyInput, ...request.Option) (*transfer.DescribeSecurityPolicyOutput, error)
@@ -95,6 +107,13 @@ type TransferAPI interface {
 	ImportSshPublicKey(*transfer.ImportSshPublicKeyInput) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyWithContext(aws.Context, *transfer.ImportSshPublicKeyInput, ...request.Option) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyRequest(*transfer.ImportSshPublicKeyInput) (*request.Request, *transfer.ImportSshPublicKeyOutput)
+
+	ListAccesses(*transfer.ListAccessesInput) (*transfer.ListAccessesOutput, error)
+	ListAccessesWithContext(aws.Context, *transfer.ListAccessesInput, ...request.Option) (*transfer.ListAccessesOutput, error)
+	ListAccessesRequest(*transfer.ListAccessesInput) (*request.Request, *transfer.ListAccessesOutput)
+
+	ListAccessesPages(*transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool) error
+	ListAccessesPagesWithContext(aws.Context, *transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool, ...request.Option) error
 
 	ListSecurityPolicies(*transfer.ListSecurityPoliciesInput) (*transfer.ListSecurityPoliciesOutput, error)
 	ListSecurityPoliciesWithContext(aws.Context, *transfer.ListSecurityPoliciesInput, ...request.Option) (*transfer.ListSecurityPoliciesOutput, error)
@@ -143,6 +162,10 @@ type TransferAPI interface {
 	UntagResource(*transfer.UntagResourceInput) (*transfer.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *transfer.UntagResourceInput, ...request.Option) (*transfer.UntagResourceOutput, error)
 	UntagResourceRequest(*transfer.UntagResourceInput) (*request.Request, *transfer.UntagResourceOutput)
+
+	UpdateAccess(*transfer.UpdateAccessInput) (*transfer.UpdateAccessOutput, error)
+	UpdateAccessWithContext(aws.Context, *transfer.UpdateAccessInput, ...request.Option) (*transfer.UpdateAccessOutput, error)
+	UpdateAccessRequest(*transfer.UpdateAccessInput) (*request.Request, *transfer.UpdateAccessOutput)
 
 	UpdateServer(*transfer.UpdateServerInput) (*transfer.UpdateServerOutput, error)
 	UpdateServerWithContext(aws.Context, *transfer.UpdateServerInput, ...request.Option) (*transfer.UpdateServerOutput, error)

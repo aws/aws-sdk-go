@@ -2123,8 +2123,6 @@ func (c *IoT) CreateDomainConfigurationRequest(input *CreateDomainConfigurationI
 //
 // Creates a domain configuration.
 //
-// The domain configuration feature is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2358,6 +2356,97 @@ func (c *IoT) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
 // for more information on using Contexts.
 func (c *IoT) CreateJobWithContext(ctx aws.Context, input *CreateJobInput, opts ...request.Option) (*CreateJobOutput, error) {
 	req, out := c.CreateJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateJobTemplate = "CreateJobTemplate"
+
+// CreateJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateJobTemplate for more information on using the CreateJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateJobTemplateRequest method.
+//    req, resp := client.CreateJobTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) CreateJobTemplateRequest(input *CreateJobTemplateInput) (req *request.Request, output *CreateJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateJobTemplate,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/job-templates/{jobTemplateId}",
+	}
+
+	if input == nil {
+		input = &CreateJobTemplateInput{}
+	}
+
+	output = &CreateJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateJobTemplate API operation for AWS IoT.
+//
+// Creates a job template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ConflictException
+//   A resource with the same name already exists.
+//
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) CreateJobTemplate(input *CreateJobTemplateInput) (*CreateJobTemplateOutput, error) {
+	req, out := c.CreateJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateJobTemplateWithContext is the same as CreateJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreateJobTemplateWithContext(ctx aws.Context, input *CreateJobTemplateInput, opts ...request.Option) (*CreateJobTemplateOutput, error) {
+	req, out := c.CreateJobTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4721,8 +4810,6 @@ func (c *IoT) DeleteDomainConfigurationRequest(input *DeleteDomainConfigurationI
 //
 // Deletes the specified domain configuration.
 //
-// The domain configuration feature is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5046,6 +5133,92 @@ func (c *IoT) DeleteJobExecution(input *DeleteJobExecutionInput) (*DeleteJobExec
 // for more information on using Contexts.
 func (c *IoT) DeleteJobExecutionWithContext(ctx aws.Context, input *DeleteJobExecutionInput, opts ...request.Option) (*DeleteJobExecutionOutput, error) {
 	req, out := c.DeleteJobExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteJobTemplate = "DeleteJobTemplate"
+
+// DeleteJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteJobTemplate for more information on using the DeleteJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteJobTemplateRequest method.
+//    req, resp := client.DeleteJobTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DeleteJobTemplateRequest(input *DeleteJobTemplateInput) (req *request.Request, output *DeleteJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteJobTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/job-templates/{jobTemplateId}",
+	}
+
+	if input == nil {
+		input = &DeleteJobTemplateInput{}
+	}
+
+	output = &DeleteJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteJobTemplate API operation for AWS IoT.
+//
+// Deletes the specified job template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) DeleteJobTemplate(input *DeleteJobTemplateInput) (*DeleteJobTemplateOutput, error) {
+	req, out := c.DeleteJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteJobTemplateWithContext is the same as DeleteJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeleteJobTemplateWithContext(ctx aws.Context, input *DeleteJobTemplateInput, opts ...request.Option) (*DeleteJobTemplateOutput, error) {
+	req, out := c.DeleteJobTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7887,8 +8060,6 @@ func (c *IoT) DescribeDomainConfigurationRequest(input *DescribeDomainConfigurat
 //
 // Gets summary information about a domain configuration.
 //
-// The domain configuration feature is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8356,6 +8527,91 @@ func (c *IoT) DescribeJobExecution(input *DescribeJobExecutionInput) (*DescribeJ
 // for more information on using Contexts.
 func (c *IoT) DescribeJobExecutionWithContext(ctx aws.Context, input *DescribeJobExecutionInput, opts ...request.Option) (*DescribeJobExecutionOutput, error) {
 	req, out := c.DescribeJobExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeJobTemplate = "DescribeJobTemplate"
+
+// DescribeJobTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeJobTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeJobTemplate for more information on using the DescribeJobTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeJobTemplateRequest method.
+//    req, resp := client.DescribeJobTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeJobTemplateRequest(input *DescribeJobTemplateInput) (req *request.Request, output *DescribeJobTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDescribeJobTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/job-templates/{jobTemplateId}",
+	}
+
+	if input == nil {
+		input = &DescribeJobTemplateInput{}
+	}
+
+	output = &DescribeJobTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeJobTemplate API operation for AWS IoT.
+//
+// Returns information about a job template.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeJobTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) DescribeJobTemplate(input *DescribeJobTemplateInput) (*DescribeJobTemplateOutput, error) {
+	req, out := c.DescribeJobTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DescribeJobTemplateWithContext is the same as DescribeJobTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeJobTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeJobTemplateWithContext(ctx aws.Context, input *DescribeJobTemplateInput, opts ...request.Option) (*DescribeJobTemplateOutput, error) {
+	req, out := c.DescribeJobTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13650,8 +13906,6 @@ func (c *IoT) ListDomainConfigurationsRequest(input *ListDomainConfigurationsInp
 // Gets a list of domain configurations for the user. This list is sorted alphabetically
 // by domain configuration name.
 //
-// The domain configuration feature is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14178,6 +14432,88 @@ func (c *IoT) ListJobExecutionsForThingPagesWithContext(ctx aws.Context, input *
 	}
 
 	return p.Err()
+}
+
+const opListJobTemplates = "ListJobTemplates"
+
+// ListJobTemplatesRequest generates a "aws/request.Request" representing the
+// client's request for the ListJobTemplates operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListJobTemplates for more information on using the ListJobTemplates
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListJobTemplatesRequest method.
+//    req, resp := client.ListJobTemplatesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListJobTemplatesRequest(input *ListJobTemplatesInput) (req *request.Request, output *ListJobTemplatesOutput) {
+	op := &request.Operation{
+		Name:       opListJobTemplates,
+		HTTPMethod: "GET",
+		HTTPPath:   "/job-templates",
+	}
+
+	if input == nil {
+		input = &ListJobTemplatesInput{}
+	}
+
+	output = &ListJobTemplatesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListJobTemplates API operation for AWS IoT.
+//
+// Returns a list of job templates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListJobTemplates for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) ListJobTemplates(input *ListJobTemplatesInput) (*ListJobTemplatesOutput, error) {
+	req, out := c.ListJobTemplatesRequest(input)
+	return out, req.Send()
+}
+
+// ListJobTemplatesWithContext is the same as ListJobTemplates with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListJobTemplates for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListJobTemplatesWithContext(ctx aws.Context, input *ListJobTemplatesInput, opts ...request.Option) (*ListJobTemplatesOutput, error) {
+	req, out := c.ListJobTemplatesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListJobs = "ListJobs"
@@ -21801,8 +22137,6 @@ func (c *IoT) UpdateDomainConfigurationRequest(input *UpdateDomainConfigurationI
 // Updates values stored in the domain configuration. Domain configurations
 // for default endpoints can't be updated.
 //
-// The domain configuration feature is in public preview and is subject to change.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -24430,7 +24764,7 @@ type AttachPolicyInput struct {
 	PolicyName *string `location:"uri" locationName:"policyName" min:"1" type:"string" required:"true"`
 
 	// The identity (https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html)
-	// to which the policy is attached.
+	// to which the policy is attached. For example, a thing group or a certificate.
 	//
 	// Target is a required field
 	Target *string `locationName:"target" type:"string" required:"true"`
@@ -27830,6 +28164,62 @@ func (s ConfirmTopicRuleDestinationOutput) GoString() string {
 	return s.String()
 }
 
+// A resource with the same name already exists.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // A conflicting resource update exception. This exception is thrown when two
 // pending updates cause a conflict.
 type ConflictingResourceUpdateException struct {
@@ -28986,7 +29376,11 @@ type CreateJobInput struct {
 	// A short text description of the job.
 	Description *string `locationName:"description" type:"string"`
 
-	// The job document.
+	// The job document. Required if you don't specify a value for documentSource.
+	Document *string `locationName:"document" type:"string"`
+
+	// An S3 link to the job document. Required if you don't specify a value for
+	// document.
 	//
 	// If the job document resides in an S3 bucket, you must use a placeholder link
 	// when specifying the document.
@@ -28997,9 +29391,6 @@ type CreateJobInput struct {
 	//
 	// where bucket is your bucket name and key is the object in the bucket to which
 	// you are linking.
-	Document *string `locationName:"document" type:"string"`
-
-	// An S3 link to the job document.
 	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
 
 	// Allows you to create a staged rollout of the job.
@@ -29010,6 +29401,9 @@ type CreateJobInput struct {
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
+
+	// The ARN of the job template used to create the job.
+	JobTemplateArn *string `locationName:"jobTemplateArn" min:"1" type:"string"`
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
@@ -29068,6 +29462,9 @@ func (s *CreateJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.JobTemplateArn != nil && len(*s.JobTemplateArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTemplateArn", 1))
 	}
 	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
@@ -29146,6 +29543,12 @@ func (s *CreateJobInput) SetJobId(v string) *CreateJobInput {
 	return s
 }
 
+// SetJobTemplateArn sets the JobTemplateArn field's value.
+func (s *CreateJobInput) SetJobTemplateArn(v string) *CreateJobInput {
+	s.JobTemplateArn = &v
+	return s
+}
+
 // SetNamespaceId sets the NamespaceId field's value.
 func (s *CreateJobInput) SetNamespaceId(v string) *CreateJobInput {
 	s.NamespaceId = &v
@@ -29220,6 +29623,208 @@ func (s *CreateJobOutput) SetJobArn(v string) *CreateJobOutput {
 // SetJobId sets the JobId field's value.
 func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	s.JobId = &v
+	return s
+}
+
+type CreateJobTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria that determine when and how a job abort takes place.
+	AbortConfig *AbortConfig `locationName:"abortConfig" type:"structure"`
+
+	// A description of the job document.
+	//
+	// Description is a required field
+	Description *string `locationName:"description" type:"string" required:"true"`
+
+	// The job document. Required if you don't specify a value for documentSource.
+	Document *string `locationName:"document" type:"string"`
+
+	// An S3 link to the job document to use in the template. Required if you don't
+	// specify a value for document.
+	//
+	// If the job document resides in an S3 bucket, you must use a placeholder link
+	// when specifying the document.
+	//
+	// The placeholder link is of the following form:
+	//
+	// ${aws:iot:s3-presigned-url:https://s3.amazonaws.com/bucket/key}
+	//
+	// where bucket is your bucket name and key is the object in the bucket to which
+	// you are linking.
+	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
+
+	// The ARN of the job to use as the basis for the job template.
+	JobArn *string `locationName:"jobArn" type:"string"`
+
+	// Allows you to create a staged rollout of a job.
+	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
+
+	// A unique identifier for the job template. We recommend using a UUID. Alpha-numeric
+	// characters, "-", and "_" are valid for use here.
+	//
+	// JobTemplateId is a required field
+	JobTemplateId *string `location:"uri" locationName:"jobTemplateId" min:"1" type:"string" required:"true"`
+
+	// Configuration for pre-signed S3 URLs.
+	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
+
+	// Metadata that can be used to manage the job template.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Specifies the amount of time each device has to finish its execution of the
+	// job. A timer is started when the job execution status is set to IN_PROGRESS.
+	// If the job execution status is not set to another terminal state before the
+	// timer expires, it will be automatically set to TIMED_OUT.
+	TimeoutConfig *TimeoutConfig `locationName:"timeoutConfig" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateJobTemplateInput"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.DocumentSource != nil && len(*s.DocumentSource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentSource", 1))
+	}
+	if s.JobTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobTemplateId"))
+	}
+	if s.JobTemplateId != nil && len(*s.JobTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTemplateId", 1))
+	}
+	if s.AbortConfig != nil {
+		if err := s.AbortConfig.Validate(); err != nil {
+			invalidParams.AddNested("AbortConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JobExecutionsRolloutConfig != nil {
+		if err := s.JobExecutionsRolloutConfig.Validate(); err != nil {
+			invalidParams.AddNested("JobExecutionsRolloutConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PresignedUrlConfig != nil {
+		if err := s.PresignedUrlConfig.Validate(); err != nil {
+			invalidParams.AddNested("PresignedUrlConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAbortConfig sets the AbortConfig field's value.
+func (s *CreateJobTemplateInput) SetAbortConfig(v *AbortConfig) *CreateJobTemplateInput {
+	s.AbortConfig = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateJobTemplateInput) SetDescription(v string) *CreateJobTemplateInput {
+	s.Description = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *CreateJobTemplateInput) SetDocument(v string) *CreateJobTemplateInput {
+	s.Document = &v
+	return s
+}
+
+// SetDocumentSource sets the DocumentSource field's value.
+func (s *CreateJobTemplateInput) SetDocumentSource(v string) *CreateJobTemplateInput {
+	s.DocumentSource = &v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *CreateJobTemplateInput) SetJobArn(v string) *CreateJobTemplateInput {
+	s.JobArn = &v
+	return s
+}
+
+// SetJobExecutionsRolloutConfig sets the JobExecutionsRolloutConfig field's value.
+func (s *CreateJobTemplateInput) SetJobExecutionsRolloutConfig(v *JobExecutionsRolloutConfig) *CreateJobTemplateInput {
+	s.JobExecutionsRolloutConfig = v
+	return s
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *CreateJobTemplateInput) SetJobTemplateId(v string) *CreateJobTemplateInput {
+	s.JobTemplateId = &v
+	return s
+}
+
+// SetPresignedUrlConfig sets the PresignedUrlConfig field's value.
+func (s *CreateJobTemplateInput) SetPresignedUrlConfig(v *PresignedUrlConfig) *CreateJobTemplateInput {
+	s.PresignedUrlConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateJobTemplateInput) SetTags(v []*Tag) *CreateJobTemplateInput {
+	s.Tags = v
+	return s
+}
+
+// SetTimeoutConfig sets the TimeoutConfig field's value.
+func (s *CreateJobTemplateInput) SetTimeoutConfig(v *TimeoutConfig) *CreateJobTemplateInput {
+	s.TimeoutConfig = v
+	return s
+}
+
+type CreateJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the job template.
+	JobTemplateArn *string `locationName:"jobTemplateArn" min:"1" type:"string"`
+
+	// The unique identifier of the job template.
+	JobTemplateId *string `locationName:"jobTemplateId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobTemplateArn sets the JobTemplateArn field's value.
+func (s *CreateJobTemplateOutput) SetJobTemplateArn(v string) *CreateJobTemplateOutput {
+	s.JobTemplateArn = &v
+	return s
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *CreateJobTemplateOutput) SetJobTemplateId(v string) *CreateJobTemplateOutput {
+	s.JobTemplateId = &v
 	return s
 }
 
@@ -32370,6 +32975,61 @@ func (s DeleteJobOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteJobTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the job template to delete.
+	//
+	// JobTemplateId is a required field
+	JobTemplateId *string `location:"uri" locationName:"jobTemplateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteJobTemplateInput"}
+	if s.JobTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobTemplateId"))
+	}
+	if s.JobTemplateId != nil && len(*s.JobTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *DeleteJobTemplateInput) SetJobTemplateId(v string) *DeleteJobTemplateInput {
+	s.JobTemplateId = &v
+	return s
+}
+
+type DeleteJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteMitigationActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -35110,6 +35770,154 @@ func (s *DescribeJobOutput) SetJob(v *Job) *DescribeJobOutput {
 	return s
 }
 
+type DescribeJobTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the job template.
+	//
+	// JobTemplateId is a required field
+	JobTemplateId *string `location:"uri" locationName:"jobTemplateId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeJobTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeJobTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeJobTemplateInput"}
+	if s.JobTemplateId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobTemplateId"))
+	}
+	if s.JobTemplateId != nil && len(*s.JobTemplateId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobTemplateId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *DescribeJobTemplateInput) SetJobTemplateId(v string) *DescribeJobTemplateInput {
+	s.JobTemplateId = &v
+	return s
+}
+
+type DescribeJobTemplateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The criteria that determine when and how a job abort takes place.
+	AbortConfig *AbortConfig `locationName:"abortConfig" type:"structure"`
+
+	// The time, in seconds since the epoch, when the job template was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// A description of the job template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The job document.
+	Document *string `locationName:"document" type:"string"`
+
+	// An S3 link to the job document.
+	DocumentSource *string `locationName:"documentSource" min:"1" type:"string"`
+
+	// Allows you to create a staged rollout of a job.
+	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
+
+	// The ARN of the job template.
+	JobTemplateArn *string `locationName:"jobTemplateArn" min:"1" type:"string"`
+
+	// The unique identifier of the job template.
+	JobTemplateId *string `locationName:"jobTemplateId" min:"1" type:"string"`
+
+	// Configuration for pre-signed S3 URLs.
+	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
+
+	// Specifies the amount of time each device has to finish its execution of the
+	// job. A timer is started when the job execution status is set to IN_PROGRESS.
+	// If the job execution status is not set to another terminal state before the
+	// timer expires, it will be automatically set to TIMED_OUT.
+	TimeoutConfig *TimeoutConfig `locationName:"timeoutConfig" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeJobTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeJobTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetAbortConfig sets the AbortConfig field's value.
+func (s *DescribeJobTemplateOutput) SetAbortConfig(v *AbortConfig) *DescribeJobTemplateOutput {
+	s.AbortConfig = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeJobTemplateOutput) SetCreatedAt(v time.Time) *DescribeJobTemplateOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeJobTemplateOutput) SetDescription(v string) *DescribeJobTemplateOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDocument sets the Document field's value.
+func (s *DescribeJobTemplateOutput) SetDocument(v string) *DescribeJobTemplateOutput {
+	s.Document = &v
+	return s
+}
+
+// SetDocumentSource sets the DocumentSource field's value.
+func (s *DescribeJobTemplateOutput) SetDocumentSource(v string) *DescribeJobTemplateOutput {
+	s.DocumentSource = &v
+	return s
+}
+
+// SetJobExecutionsRolloutConfig sets the JobExecutionsRolloutConfig field's value.
+func (s *DescribeJobTemplateOutput) SetJobExecutionsRolloutConfig(v *JobExecutionsRolloutConfig) *DescribeJobTemplateOutput {
+	s.JobExecutionsRolloutConfig = v
+	return s
+}
+
+// SetJobTemplateArn sets the JobTemplateArn field's value.
+func (s *DescribeJobTemplateOutput) SetJobTemplateArn(v string) *DescribeJobTemplateOutput {
+	s.JobTemplateArn = &v
+	return s
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *DescribeJobTemplateOutput) SetJobTemplateId(v string) *DescribeJobTemplateOutput {
+	s.JobTemplateId = &v
+	return s
+}
+
+// SetPresignedUrlConfig sets the PresignedUrlConfig field's value.
+func (s *DescribeJobTemplateOutput) SetPresignedUrlConfig(v *PresignedUrlConfig) *DescribeJobTemplateOutput {
+	s.PresignedUrlConfig = v
+	return s
+}
+
+// SetTimeoutConfig sets the TimeoutConfig field's value.
+func (s *DescribeJobTemplateOutput) SetTimeoutConfig(v *TimeoutConfig) *DescribeJobTemplateOutput {
+	s.TimeoutConfig = v
+	return s
+}
+
 type DescribeMitigationActionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -37136,8 +37944,6 @@ func (s DisableTopicRuleOutput) GoString() string {
 //    * Jobs
 //
 //    * CredentialProvider
-//
-// The domain configuration feature is in public preview and is subject to change.
 type DomainConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -40233,6 +41039,9 @@ type Job struct {
 	// Details about the job process.
 	JobProcessDetails *JobProcessDetails `locationName:"jobProcessDetails" type:"structure"`
 
+	// The ARN of the job template used to create the job.
+	JobTemplateArn *string `locationName:"jobTemplateArn" min:"1" type:"string"`
+
 	// The time, in seconds since the epoch, when the job was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
@@ -40341,6 +41150,12 @@ func (s *Job) SetJobId(v string) *Job {
 // SetJobProcessDetails sets the JobProcessDetails field's value.
 func (s *Job) SetJobProcessDetails(v *JobProcessDetails) *Job {
 	s.JobProcessDetails = v
+	return s
+}
+
+// SetJobTemplateArn sets the JobTemplateArn field's value.
+func (s *Job) SetJobTemplateArn(v string) *Job {
+	s.JobTemplateArn = &v
 	return s
 }
 
@@ -40910,6 +41725,57 @@ func (s *JobSummary) SetTargetSelection(v string) *JobSummary {
 // SetThingGroupId sets the ThingGroupId field's value.
 func (s *JobSummary) SetThingGroupId(v string) *JobSummary {
 	s.ThingGroupId = &v
+	return s
+}
+
+// An object that contains information about the job template.
+type JobTemplateSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time, in seconds since the epoch, when the job template was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// A description of the job template.
+	Description *string `locationName:"description" type:"string"`
+
+	// The ARN of the job template.
+	JobTemplateArn *string `locationName:"jobTemplateArn" min:"1" type:"string"`
+
+	// The unique identifier of the job template.
+	JobTemplateId *string `locationName:"jobTemplateId" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s JobTemplateSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JobTemplateSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *JobTemplateSummary) SetCreatedAt(v time.Time) *JobTemplateSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *JobTemplateSummary) SetDescription(v string) *JobTemplateSummary {
+	s.Description = &v
+	return s
+}
+
+// SetJobTemplateArn sets the JobTemplateArn field's value.
+func (s *JobTemplateSummary) SetJobTemplateArn(v string) *JobTemplateSummary {
+	s.JobTemplateArn = &v
+	return s
+}
+
+// SetJobTemplateId sets the JobTemplateId field's value.
+func (s *JobTemplateSummary) SetJobTemplateId(v string) *JobTemplateSummary {
+	s.JobTemplateId = &v
 	return s
 }
 
@@ -43329,6 +44195,84 @@ func (s *ListJobExecutionsForThingOutput) SetExecutionSummaries(v []*JobExecutio
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListJobExecutionsForThingOutput) SetNextToken(v string) *ListJobExecutionsForThingOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListJobTemplatesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in the list.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to use to return the next set of results in the list.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListJobTemplatesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListJobTemplatesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListJobTemplatesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListJobTemplatesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListJobTemplatesInput) SetMaxResults(v int64) *ListJobTemplatesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobTemplatesInput) SetNextToken(v string) *ListJobTemplatesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListJobTemplatesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects that contain information about the job templates.
+	JobTemplates []*JobTemplateSummary `locationName:"jobTemplates" type:"list"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListJobTemplatesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListJobTemplatesOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobTemplates sets the JobTemplates field's value.
+func (s *ListJobTemplatesOutput) SetJobTemplates(v []*JobTemplateSummary) *ListJobTemplatesOutput {
+	s.JobTemplates = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListJobTemplatesOutput) SetNextToken(v string) *ListJobTemplatesOutput {
 	s.NextToken = &v
 	return s
 }

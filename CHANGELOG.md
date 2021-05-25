@@ -1,3 +1,14 @@
+Release v1.38.47 (2021-05-25)
+===
+
+### Service Client Updates
+* `service/iot`: Updates service API and documentation
+  * This release includes support for a new feature: Job templates for AWS IoT Device Management Jobs. The release includes job templates as a new resource and APIs for managing job templates.
+* `service/transfer`: Updates service API, documentation, and paginators
+  * AWS Transfer Family customers can now use AWS Managed Active Directory or AD Connector to authenticate their end users, enabling seamless migration of file transfer workflows that rely on AD authentication, without changing end users' credentials or needing a custom authorizer.
+* `service/workspaces`: Updates service API and documentation
+  * Adds support for Linux device types in WorkspaceAccessProperties
+
 Release v1.38.46 (2021-05-24)
 ===
 

@@ -2298,7 +2298,8 @@
         "DeviceTypeIos":{"shape":"AccessPropertyValue"},
         "DeviceTypeAndroid":{"shape":"AccessPropertyValue"},
         "DeviceTypeChromeOs":{"shape":"AccessPropertyValue"},
-        "DeviceTypeZeroClient":{"shape":"AccessPropertyValue"}
+        "DeviceTypeZeroClient":{"shape":"AccessPropertyValue"},
+        "DeviceTypeLinux":{"shape":"AccessPropertyValue"}
       }
     },
     "WorkspaceBundle":{

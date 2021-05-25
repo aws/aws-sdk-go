@@ -6044,7 +6044,7 @@ type CreateWorkspaceBundleInput struct {
 
 	// The tags associated with the bundle.
 	//
-	// To add tags at the same time that you're creating the bundle, you must create
+	// To add tags at the same time when you're creating the bundle, you must create
 	// an IAM policy that grants your IAM user permissions to use workspaces:CreateTags.
 	Tags []*Tag `type:"list"`
 
@@ -11210,6 +11210,9 @@ type WorkspaceAccessProperties struct {
 	// Indicates whether users can use iOS devices to access their WorkSpaces.
 	DeviceTypeIos *string `type:"string" enum:"AccessPropertyValue"`
 
+	// Indicates whether users can use Linux clients to access their WorkSpaces.
+	DeviceTypeLinux *string `type:"string" enum:"AccessPropertyValue"`
+
 	// Indicates whether users can use macOS clients to access their WorkSpaces.
 	// To restrict WorkSpaces access to trusted devices (also known as managed devices)
 	// with valid certificates, specify a value of TRUST. For more information,
@@ -11254,6 +11257,12 @@ func (s *WorkspaceAccessProperties) SetDeviceTypeChromeOs(v string) *WorkspaceAc
 // SetDeviceTypeIos sets the DeviceTypeIos field's value.
 func (s *WorkspaceAccessProperties) SetDeviceTypeIos(v string) *WorkspaceAccessProperties {
 	s.DeviceTypeIos = &v
+	return s
+}
+
+// SetDeviceTypeLinux sets the DeviceTypeLinux field's value.
+func (s *WorkspaceAccessProperties) SetDeviceTypeLinux(v string) *WorkspaceAccessProperties {
+	s.DeviceTypeLinux = &v
 	return s
 }
 
