@@ -160,6 +160,10 @@ type IoTAPI interface {
 	CreateJobWithContext(aws.Context, *iot.CreateJobInput, ...request.Option) (*iot.CreateJobOutput, error)
 	CreateJobRequest(*iot.CreateJobInput) (*request.Request, *iot.CreateJobOutput)
 
+	CreateJobTemplate(*iot.CreateJobTemplateInput) (*iot.CreateJobTemplateOutput, error)
+	CreateJobTemplateWithContext(aws.Context, *iot.CreateJobTemplateInput, ...request.Option) (*iot.CreateJobTemplateOutput, error)
+	CreateJobTemplateRequest(*iot.CreateJobTemplateInput) (*request.Request, *iot.CreateJobTemplateOutput)
+
 	CreateKeysAndCertificate(*iot.CreateKeysAndCertificateInput) (*iot.CreateKeysAndCertificateOutput, error)
 	CreateKeysAndCertificateWithContext(aws.Context, *iot.CreateKeysAndCertificateInput, ...request.Option) (*iot.CreateKeysAndCertificateOutput, error)
 	CreateKeysAndCertificateRequest(*iot.CreateKeysAndCertificateInput) (*request.Request, *iot.CreateKeysAndCertificateOutput)
@@ -275,6 +279,10 @@ type IoTAPI interface {
 	DeleteJobExecution(*iot.DeleteJobExecutionInput) (*iot.DeleteJobExecutionOutput, error)
 	DeleteJobExecutionWithContext(aws.Context, *iot.DeleteJobExecutionInput, ...request.Option) (*iot.DeleteJobExecutionOutput, error)
 	DeleteJobExecutionRequest(*iot.DeleteJobExecutionInput) (*request.Request, *iot.DeleteJobExecutionOutput)
+
+	DeleteJobTemplate(*iot.DeleteJobTemplateInput) (*iot.DeleteJobTemplateOutput, error)
+	DeleteJobTemplateWithContext(aws.Context, *iot.DeleteJobTemplateInput, ...request.Option) (*iot.DeleteJobTemplateOutput, error)
+	DeleteJobTemplateRequest(*iot.DeleteJobTemplateInput) (*request.Request, *iot.DeleteJobTemplateOutput)
 
 	DeleteMitigationAction(*iot.DeleteMitigationActionInput) (*iot.DeleteMitigationActionOutput, error)
 	DeleteMitigationActionWithContext(aws.Context, *iot.DeleteMitigationActionInput, ...request.Option) (*iot.DeleteMitigationActionOutput, error)
@@ -423,6 +431,10 @@ type IoTAPI interface {
 	DescribeJobExecution(*iot.DescribeJobExecutionInput) (*iot.DescribeJobExecutionOutput, error)
 	DescribeJobExecutionWithContext(aws.Context, *iot.DescribeJobExecutionInput, ...request.Option) (*iot.DescribeJobExecutionOutput, error)
 	DescribeJobExecutionRequest(*iot.DescribeJobExecutionInput) (*request.Request, *iot.DescribeJobExecutionOutput)
+
+	DescribeJobTemplate(*iot.DescribeJobTemplateInput) (*iot.DescribeJobTemplateOutput, error)
+	DescribeJobTemplateWithContext(aws.Context, *iot.DescribeJobTemplateInput, ...request.Option) (*iot.DescribeJobTemplateOutput, error)
+	DescribeJobTemplateRequest(*iot.DescribeJobTemplateInput) (*request.Request, *iot.DescribeJobTemplateOutput)
 
 	DescribeMitigationAction(*iot.DescribeMitigationActionInput) (*iot.DescribeMitigationActionOutput, error)
 	DescribeMitigationActionWithContext(aws.Context, *iot.DescribeMitigationActionInput, ...request.Option) (*iot.DescribeMitigationActionOutput, error)
@@ -694,6 +706,10 @@ type IoTAPI interface {
 
 	ListJobExecutionsForThingPages(*iot.ListJobExecutionsForThingInput, func(*iot.ListJobExecutionsForThingOutput, bool) bool) error
 	ListJobExecutionsForThingPagesWithContext(aws.Context, *iot.ListJobExecutionsForThingInput, func(*iot.ListJobExecutionsForThingOutput, bool) bool, ...request.Option) error
+
+	ListJobTemplates(*iot.ListJobTemplatesInput) (*iot.ListJobTemplatesOutput, error)
+	ListJobTemplatesWithContext(aws.Context, *iot.ListJobTemplatesInput, ...request.Option) (*iot.ListJobTemplatesOutput, error)
+	ListJobTemplatesRequest(*iot.ListJobTemplatesInput) (*request.Request, *iot.ListJobTemplatesOutput)
 
 	ListJobs(*iot.ListJobsInput) (*iot.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *iot.ListJobsInput, ...request.Option) (*iot.ListJobsOutput, error)

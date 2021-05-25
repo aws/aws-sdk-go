@@ -13,6 +13,104 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateAccess = "CreateAccess"
+
+// CreateAccessRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAccess for more information on using the CreateAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAccessRequest method.
+//    req, resp := client.CreateAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAccess
+func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.Request, output *CreateAccessOutput) {
+	op := &request.Operation{
+		Name:       opCreateAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAccessInput{}
+	}
+
+	output = &CreateAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAccess API operation for AWS Transfer Family.
+//
+// Used by administrators to choose which groups in the directory should have
+// access to upload and download files over the enabled protocols using AWS
+// Transfer Family. For example, a Microsoft Active Directory might contain
+// 50,000 users, but only a small fraction might need the ability to transfer
+// files to the server. An administrator can use CreateAccess to limit the access
+// to the correct set of users who need this ability.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation CreateAccess for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the AWS Transfer Family service is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the AWS Transfer Family
+//   service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the AWS Transfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAccess
+func (c *Transfer) CreateAccess(input *CreateAccessInput) (*CreateAccessOutput, error) {
+	req, out := c.CreateAccessRequest(input)
+	return out, req.Send()
+}
+
+// CreateAccessWithContext is the same as CreateAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) CreateAccessWithContext(ctx aws.Context, input *CreateAccessInput, opts ...request.Option) (*CreateAccessOutput, error) {
+	req, out := c.CreateAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateServer = "CreateServer"
 
 // CreateServerRequest generates a "aws/request.Request" representing the
@@ -57,7 +155,7 @@ func (c *Transfer) CreateServerRequest(input *CreateServerInput) (req *request.R
 
 // CreateServer API operation for AWS Transfer Family.
 //
-// Instantiates an autoscaling virtual server based on the selected file transfer
+// Instantiates an auto-scaling virtual server based on the selected file transfer
 // protocol in AWS. When you make updates to your file transfer protocol-enabled
 // server or when you work with users, use the service-generated ServerId property
 // that is assigned to the newly created server.
@@ -207,6 +305,98 @@ func (c *Transfer) CreateUser(input *CreateUserInput) (*CreateUserOutput, error)
 // for more information on using Contexts.
 func (c *Transfer) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteAccess = "DeleteAccess"
+
+// DeleteAccessRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAccess for more information on using the DeleteAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAccessRequest method.
+//    req, resp := client.DeleteAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAccess
+func (c *Transfer) DeleteAccessRequest(input *DeleteAccessInput) (req *request.Request, output *DeleteAccessOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAccessInput{}
+	}
+
+	output = &DeleteAccessOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAccess API operation for AWS Transfer Family.
+//
+// Allows you to delete the access specified in the ServerID and ExternalID
+// parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteAccess for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the AWS Transfer Family service is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the AWS Transfer Family
+//   service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the AWS Transfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAccess
+func (c *Transfer) DeleteAccess(input *DeleteAccessInput) (*DeleteAccessOutput, error) {
+	req, out := c.DeleteAccessRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAccessWithContext is the same as DeleteAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteAccessWithContext(ctx aws.Context, input *DeleteAccessInput, opts ...request.Option) (*DeleteAccessOutput, error) {
+	req, out := c.DeleteAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -497,6 +687,100 @@ func (c *Transfer) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error)
 // for more information on using Contexts.
 func (c *Transfer) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAccess = "DescribeAccess"
+
+// DescribeAccessRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAccess for more information on using the DescribeAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAccessRequest method.
+//    req, resp := client.DescribeAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAccess
+func (c *Transfer) DescribeAccessRequest(input *DescribeAccessInput) (req *request.Request, output *DescribeAccessOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAccessInput{}
+	}
+
+	output = &DescribeAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAccess API operation for AWS Transfer Family.
+//
+// Describes the access that is assigned to the specific file transfer protocol-enabled
+// server, as identified by its ServerId property and its ExternalID.
+//
+// The response from this call returns the properties of the access that is
+// associated with the ServerId value that was specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeAccess for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the AWS Transfer Family service is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the AWS Transfer Family
+//   service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the AWS Transfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAccess
+func (c *Transfer) DescribeAccess(input *DescribeAccessInput) (*DescribeAccessOutput, error) {
+	req, out := c.DescribeAccessRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAccessWithContext is the same as DescribeAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeAccessWithContext(ctx aws.Context, input *DescribeAccessInput, opts ...request.Option) (*DescribeAccessOutput, error) {
+	req, out := c.DescribeAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -886,6 +1170,157 @@ func (c *Transfer) ImportSshPublicKeyWithContext(ctx aws.Context, input *ImportS
 	return out, req.Send()
 }
 
+const opListAccesses = "ListAccesses"
+
+// ListAccessesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAccesses operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAccesses for more information on using the ListAccesses
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAccessesRequest method.
+//    req, resp := client.ListAccessesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAccesses
+func (c *Transfer) ListAccessesRequest(input *ListAccessesInput) (req *request.Request, output *ListAccessesOutput) {
+	op := &request.Operation{
+		Name:       opListAccesses,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAccessesInput{}
+	}
+
+	output = &ListAccessesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAccesses API operation for AWS Transfer Family.
+//
+// Lists the details for all the accesses you have on your server.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListAccesses for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the AWS Transfer Family service is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the AWS Transfer Family
+//   service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the AWS Transfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAccesses
+func (c *Transfer) ListAccesses(input *ListAccessesInput) (*ListAccessesOutput, error) {
+	req, out := c.ListAccessesRequest(input)
+	return out, req.Send()
+}
+
+// ListAccessesWithContext is the same as ListAccesses with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAccesses for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListAccessesWithContext(ctx aws.Context, input *ListAccessesInput, opts ...request.Option) (*ListAccessesOutput, error) {
+	req, out := c.ListAccessesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAccessesPages iterates over the pages of a ListAccesses operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAccesses method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAccesses operation.
+//    pageNum := 0
+//    err := client.ListAccessesPages(params,
+//        func(page *transfer.ListAccessesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListAccessesPages(input *ListAccessesInput, fn func(*ListAccessesOutput, bool) bool) error {
+	return c.ListAccessesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAccessesPagesWithContext same as ListAccessesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListAccessesPagesWithContext(ctx aws.Context, input *ListAccessesInput, fn func(*ListAccessesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAccessesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAccessesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAccessesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListSecurityPolicies = "ListSecurityPolicies"
 
 // ListSecurityPoliciesRequest generates a "aws/request.Request" representing the
@@ -1232,8 +1667,8 @@ func (c *Transfer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 
 // ListTagsForResource API operation for AWS Transfer Family.
 //
-// Lists all of the tags associated with the Amazon Resource Number (ARN) you
-// specify. The resource can be a user, server, or role.
+// Lists all of the tags associated with the Amazon Resource Name (ARN) that
+// you specify. The resource can be a user, server, or role.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1833,11 +2268,11 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 // TestIdentityProvider API operation for AWS Transfer Family.
 //
 // If the IdentityProviderType of a file transfer protocol-enabled server is
-// API_Gateway, tests whether your API Gateway is set up successfully. We highly
-// recommend that you call this operation to test your authentication method
-// as soon as you create your server. By doing so, you can troubleshoot issues
-// with the API Gateway integration to ensure that your users can successfully
-// use the service.
+// AWS_DIRECTORY_SERVICE or API_Gateway, tests whether your identity provider
+// is set up successfully. We highly recommend that you call this operation
+// to test your authentication method as soon as you create your server. By
+// doing so, you can troubleshoot issues with the identity provider integration
+// to ensure that your users can successfully use the service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1972,6 +2407,100 @@ func (c *Transfer) UntagResource(input *UntagResourceInput) (*UntagResourceOutpu
 // for more information on using Contexts.
 func (c *Transfer) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAccess = "UpdateAccess"
+
+// UpdateAccessRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAccess for more information on using the UpdateAccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAccessRequest method.
+//    req, resp := client.UpdateAccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
+func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.Request, output *UpdateAccessOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAccessInput{}
+	}
+
+	output = &UpdateAccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAccess API operation for AWS Transfer Family.
+//
+// Allows you to update parameters for the access specified in the ServerID
+// and ExternalID parameters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation UpdateAccess for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the AWS Transfer Family service is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the AWS Transfer Family
+//   service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the AWS Transfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
+func (c *Transfer) UpdateAccess(input *UpdateAccessInput) (*UpdateAccessOutput, error) {
+	req, out := c.UpdateAccessRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAccessWithContext is the same as UpdateAccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) UpdateAccessWithContext(ctx aws.Context, input *UpdateAccessInput, opts ...request.Option) (*UpdateAccessOutput, error) {
+	req, out := c.UpdateAccessRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2299,6 +2828,259 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that is required to identify specific groups within your
+	// directory. The users of the group that you associate have access to your
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
+	//
+	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
+	// | Select SamaccountName,ObjectSid
+	//
+	// In that command, replace YourGroupName with the name of your Active Directory
+	// group.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// The landing directory (folder) for a user when they log in to the server
+	// using the client.
+	//
+	// A HomeDirectory example is /directory_name/home/mydirectory.
+	HomeDirectory *string `type:"string"`
+
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it will be displayed as is. You also must ensure
+	// that your AWS Identity and Access Management (IAM) role provides access to
+	// paths in Target. This value can only be set when HomeDirectoryType is set
+	// to LOGICAL.
+	//
+	// The following is an Entry and Target pair example.
+	//
+	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
+	// } ]
+	//
+	// In most cases, you can use this value instead of the scope-down policy to
+	// lock down your user to the designated home directory ("chroot"). To do this,
+	// you can set Entry to / and set Target to the HomeDirectory parameter value.
+	//
+	// The following is an Entry and Target pair example for chroot.
+	//
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	//
+	// If the target of a logical directory entry does not exist in Amazon S3 or
+	// Amazon EFS, the entry will be ignored. As a workaround, you can use the Amazon
+	// S3 API or EFS API to create 0-byte objects as place holders for your directory.
+	// If using the AWS CLI, use the s3api or efsapi call instead of s3 or efs so
+	// you can use the put-object operation. For example, you can use the following.
+	//
+	// aws s3api put-object --bucket bucketname --key path/to/folder/
+	//
+	// The end of the key name must end in a / for it to be considered a folder.
+	//
+	// Required: No
+	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
+
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it LOGICAL, you must provide mappings in the HomeDirectoryMappings
+	// for how you want to make Amazon S3 paths visible to your users.
+	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
+
+	// A scope-down policy for your user so that you can use the same IAM role across
+	// multiple users. This policy scopes down user access to portions of their
+	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
+	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	//
+	// This only applies when domain of ServerId is S3. Amazon EFS does not use
+	// scope down policy.
+	//
+	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
+	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
+	// policy as a JSON blob and pass it in the Policy argument.
+	//
+	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
+	//
+	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
+	// in the AWS Security Token Service API Reference.
+	Policy *string `type:"string"`
+
+	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
+	// secondary groups IDs (SecondaryGids), that controls your users' access to
+	// your Amazon EFS file systems. The POSIX permissions that are set on files
+	// and directories in your file system determine the level of access your users
+	// get when transferring files into and out of your Amazon EFS file systems.
+	PosixProfile *PosixProfile `type:"structure"`
+
+	// Specifies the IAM role that controls your users' access to your Amazon S3
+	// bucket or EFS file system. The policies attached to this role determine the
+	// level of access that you want to provide your users when transferring files
+	// into and out of your Amazon S3 bucket or EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
+	//
+	// Role is a required field
+	Role *string `min:"20" type:"string" required:"true"`
+
+	// A system-assigned unique identifier for a server instance. This is the specific
+	// server that you added your user to.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAccessInput"}
+	if s.ExternalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
+	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
+	if s.HomeDirectoryMappings != nil && len(s.HomeDirectoryMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HomeDirectoryMappings", 1))
+	}
+	if s.Role == nil {
+		invalidParams.Add(request.NewErrParamRequired("Role"))
+	}
+	if s.Role != nil && len(*s.Role) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 20))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+	if s.HomeDirectoryMappings != nil {
+		for i, v := range s.HomeDirectoryMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "HomeDirectoryMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PosixProfile != nil {
+		if err := s.PosixProfile.Validate(); err != nil {
+			invalidParams.AddNested("PosixProfile", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *CreateAccessInput) SetExternalId(v string) *CreateAccessInput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetHomeDirectory sets the HomeDirectory field's value.
+func (s *CreateAccessInput) SetHomeDirectory(v string) *CreateAccessInput {
+	s.HomeDirectory = &v
+	return s
+}
+
+// SetHomeDirectoryMappings sets the HomeDirectoryMappings field's value.
+func (s *CreateAccessInput) SetHomeDirectoryMappings(v []*HomeDirectoryMapEntry) *CreateAccessInput {
+	s.HomeDirectoryMappings = v
+	return s
+}
+
+// SetHomeDirectoryType sets the HomeDirectoryType field's value.
+func (s *CreateAccessInput) SetHomeDirectoryType(v string) *CreateAccessInput {
+	s.HomeDirectoryType = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *CreateAccessInput) SetPolicy(v string) *CreateAccessInput {
+	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *CreateAccessInput) SetPosixProfile(v *PosixProfile) *CreateAccessInput {
+	s.PosixProfile = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *CreateAccessInput) SetRole(v string) *CreateAccessInput {
+	s.Role = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *CreateAccessInput) SetServerId(v string) *CreateAccessInput {
+	s.ServerId = &v
+	return s
+}
+
+type CreateAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The external ID of the group whose users have access to your Amazon S3 or
+	// Amazon EFS resources over the enabled protocols using AWS Transfer Family.
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the server that the user is attached to.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *CreateAccessOutput) SetExternalId(v string) *CreateAccessOutput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *CreateAccessOutput) SetServerId(v string) *CreateAccessOutput {
+	s.ServerId = &v
+	return s
+}
+
 type CreateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2333,18 +3115,33 @@ type CreateServerInput struct {
 	// FQDN or IP address specified and information about the issuer.
 	Certificate *string `type:"string"`
 
+	// The domain of the storage system that is used for file transfers. There are
+	// two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon
+	// Elastic File System (Amazon EFS). The default value is S3.
+	//
+	// After the server is created, the domain cannot be changed.
 	Domain *string `type:"string" enum:"Domain"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
 	// your server. When you host your endpoint within your VPC, you can make it
-	// accessible only to resources within your VPC, or you can attach Elastic IPs
-	// and make it accessible to clients over the internet. Your VPC's default security
-	// groups are automatically assigned to your endpoint.
+	// accessible only to resources within your VPC, or you can attach Elastic IP
+	// addresses and make it accessible to clients over the internet. Your VPC's
+	// default security groups are automatically assigned to your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
-	// The type of VPC endpoint that you want your server to connect to. You can
-	// choose to connect to the public internet or a VPC endpoint. With a VPC endpoint,
-	// you can restrict access to your server and resources only within your VPC.
+	// The type of endpoint that you want your server to use. You can choose to
+	// make your server's endpoint publicly accessible (PUBLIC) or host it inside
+	// your VPC. With an endpoint that is hosted in a VPC, you can restrict access
+	// to your server and resources only within your VPC or choose to make it internet
+	// facing by attaching Elastic IP addresses directly to it.
+	//
+	// After March 31, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
+	// in your AWS account if your account hasn't already done so before March 31,
+	// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+	// in your AWS account on or before March 31, 2021, you will not be affected.
+	// After this date, use EndpointType=VPC.
+	//
+	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	//
 	// It is recommended that you use VPC as the EndpointType. With this endpoint
 	// type, you have the option to directly associate up to three Elastic IPv4
@@ -2365,17 +3162,22 @@ type CreateServerInput struct {
 	// in the AWS Transfer Family User Guide.
 	HostKey *string `type:"string" sensitive:"true"`
 
-	// Required when IdentityProviderType is set to API_GATEWAY. Accepts an array
-	// containing all of the information required to call a customer-supplied authentication
-	// API, including the API Gateway URL. Not required when IdentityProviderType
-	// is set to SERVICE_MANAGED.
+	// Required when IdentityProviderType is set to AWS_DIRECTORY_SERVICE or API_GATEWAY.
+	// Accepts an array containing all of the information required to use a directory
+	// in AWS_DIRECTORY_SERVICE or invoke a customer-supplied authentication API,
+	// including the API Gateway URL. Not required when IdentityProviderType is
+	// set to SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
 	// which allows you to store and access user credentials within the AWS Transfer
-	// Family service. Use the API_GATEWAY value to integrate with an identity provider
-	// of your choosing. The API_GATEWAY setting requires you to provide an API
-	// Gateway endpoint URL to call for authentication using the IdentityProviderDetails
+	// Family service. Use AWS_DIRECTORY_SERVICE to provide access to Active Directory
+	// groups in AWS Managed Active Directory or Microsoft Active Directory in your
+	// on-premises environment or in AWS using AD Connectors. This option also requires
+	// you to provide a Directory ID using the IdentityProviderDetails parameter.
+	// Use the API_GATEWAY value to integrate with an identity provider of your
+	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
+	// endpoint URL to call for authentication using the IdentityProviderDetails
 	// parameter.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
@@ -2399,7 +3201,7 @@ type CreateServerInput struct {
 	// to it over FTPS.
 	//
 	// If Protocol includes either FTP or FTPS, then the EndpointType must be VPC
-	// and the IdentityProviderType must be API_GATEWAY.
+	// and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
 	//
 	// If Protocol includes FTP, then AddressAllocationIds cannot be associated.
 	//
@@ -2560,30 +3362,37 @@ type CreateUserInput struct {
 	// The landing directory (folder) for a user when they log in to the server
 	// using the client.
 	//
-	// An example is your-Amazon-S3-bucket-name>/home/username .
+	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// Logical directory mappings that specify what Amazon S3 paths and keys should
-	// be visible to your user and how you want to make them visible. You will need
-	// to specify the "Entry" and "Target" pair, where Entry shows how the path
-	// is made visible and Target is the actual Amazon S3 path. If you only specify
-	// a target, it will be displayed as is. You will need to also make sure that
-	// your IAM role provides access to paths in Target. The following is an example.
+	// Logical directory mappings that specify what Amazon S3 or EFS paths and keys
+	// should be visible to your user and how you want to make them visible. You
+	// will need to specify the Entry and Target pair, where Entry shows how the
+	// path is made visible and Target is the actual Amazon S3 or EFS path. If you
+	// only specify a target, it will be displayed as is. You will need to also
+	// make sure that your IAM role provides access to paths in Target. This value
+	// can only be set when HomeDirectoryType is set to LOGICAL.
 	//
-	// '[ "/bucket2/documentation", { "Entry": "your-personal-report.pdf", "Target":
-	// "/bucket3/customized-reports/${transfer:UserName}.pdf" } ]'
+	// The following is an Entry and Target pair example.
+	//
+	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
+	// } ]
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
 	// lock your user down to the designated home directory ("chroot"). To do this,
-	// you can set Entry to '/' and set Target to the HomeDirectory parameter value.
+	// you can set Entry to / and set Target to the HomeDirectory parameter value.
 	//
-	// If the target of a logical directory entry does not exist in Amazon S3, the
-	// entry will be ignored. As a workaround, you can use the Amazon S3 API to
-	// create 0 byte objects as place holders for your directory. If using the CLI,
-	// use the s3api call instead of s3 so you can use the put-object operation.
-	// For example, you use the following: aws s3api put-object --bucket bucketname
-	// --key path/to/folder/. Make sure that the end of the key name ends in a '/'
-	// for it to be considered a folder.
+	// The following is an Entry and Target pair example for chroot.
+	//
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	//
+	// If the target of a logical directory entry does not exist in Amazon S3 or
+	// EFS, the entry will be ignored. As a workaround, you can use the Amazon S3
+	// API or EFS API to create 0 byte objects as place holders for your directory.
+	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
+	// can use the put-object operation. For example, you use the following: aws
+	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
+	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -2599,24 +3408,32 @@ type CreateUserInput struct {
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
 	//
+	// This only applies when domain of ServerId is S3. EFS does not use scope down
+	// policy.
+	//
 	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
 	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
 	// policy as a JSON blob and pass it in the Policy argument.
 	//
-	// For an example of a scope-down policy, see Creating a scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/users.html#users-policies-scope-down).
+	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 	// in the AWS Security Token Service API Reference.
 	Policy *string `type:"string"`
 
+	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),
+	// and any secondary groups IDs (SecondaryGids), that controls your users' access
+	// to your Amazon EFS file systems. The POSIX permissions that are set on files
+	// and directories in Amazon EFS determine the level of access your users get
+	// when transferring files into and out of your Amazon EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// The IAM role that controls your users' access to your Amazon S3 bucket. The
-	// policies attached to this role will determine the level of access you want
-	// to provide your users when transferring files into and out of your Amazon
-	// S3 bucket or buckets. The IAM role should also contain a trust relationship
-	// that allows the server to access your resources when servicing your users'
-	// transfer requests.
+	// Specifies the IAM role that controls your users' access to your Amazon S3
+	// bucket or EFS file system. The policies attached to this role will determine
+	// the level of access you want to provide your users when transferring files
+	// into and out of your Amazon S3 bucket or EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
 	//
 	// Role is a required field
 	Role *string `min:"20" type:"string" required:"true"`
@@ -2808,6 +3625,92 @@ func (s *CreateUserOutput) SetServerId(v string) *CreateUserOutput {
 func (s *CreateUserOutput) SetUserName(v string) *CreateUserOutput {
 	s.UserName = &v
 	return s
+}
+
+type DeleteAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that is required to identify specific groups within your
+	// directory. The users of the group that you associate have access to your
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
+	//
+	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
+	// | Select SamaccountName,ObjectSid
+	//
+	// In that command, replace YourGroupName with the name of your Active Directory
+	// group.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// A system-assigned unique identifier for a server that has this user assigned.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAccessInput"}
+	if s.ExternalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
+	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *DeleteAccessInput) SetExternalId(v string) *DeleteAccessInput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DeleteAccessInput) SetServerId(v string) *DeleteAccessInput {
+	s.ServerId = &v
+	return s
+}
+
+type DeleteAccessOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAccessOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteServerInput struct {
@@ -3026,6 +3929,114 @@ func (s DeleteUserOutput) String() string {
 // GoString returns the string representation
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that is required to identify specific groups within your
+	// directory. The users of the group you associate have access to your Amazon
+	// S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
+	//
+	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
+	// | Select SamaccountName,ObjectSid
+	//
+	// In that command, replace YourGroupName with the name of your Active Directory
+	// group.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// A system-assigned unique identifier for a server that has this access assigned.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAccessInput"}
+	if s.ExternalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
+	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *DescribeAccessInput) SetExternalId(v string) *DescribeAccessInput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DescribeAccessInput) SetServerId(v string) *DescribeAccessInput {
+	s.ServerId = &v
+	return s
+}
+
+type DescribeAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The external ID of the server that the access is attached to.
+	//
+	// Access is a required field
+	Access *DescribedAccess `type:"structure" required:"true"`
+
+	// A system-assigned unique identifier for a server that has this access assigned.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccess sets the Access field's value.
+func (s *DescribeAccessOutput) SetAccess(v *DescribedAccess) *DescribeAccessOutput {
+	s.Access = v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *DescribeAccessOutput) SetServerId(v string) *DescribeAccessOutput {
+	s.ServerId = &v
+	return s
 }
 
 type DescribeSecurityPolicyInput struct {
@@ -3254,6 +4265,125 @@ func (s *DescribeUserOutput) SetUser(v *DescribedUser) *DescribeUserOutput {
 	return s
 }
 
+// Describes the properties of the access that was specified.
+type DescribedAccess struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that might be required when you assume a role in another
+	// account. Think of the ExternalID as a group membership mechanism that uses
+	// a unique identifier (often a SID, but could be a group name or something
+	// else) as a basis. If the administrator of the account to which the role belongs
+	// provided you with an external ID, then provide that value in the ExternalId
+	// parameter. A cross-account role is usually set up to trust everyone in an
+	// account. Therefore, the administrator of the trusting account might send
+	// an external ID to the administrator of the trusted account. That way, only
+	// someone with the ID can assume the role, rather than everyone in the account.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	ExternalId *string `min:"1" type:"string"`
+
+	// Specifies the landing directory (or folder), which is the location that files
+	// are written to or read from in an Amazon S3 bucket, for the described access.
+	HomeDirectory *string `type:"string"`
+
+	// Specifies the logical directory mappings that specify what Amazon S3 or Amazon
+	// EFS paths and keys should be visible to the associated access and how you
+	// want to make them visible. You must specify the "Entry" and "Target" pair,
+	// where Entry shows how the path is made visible and Target is the actual Amazon
+	// S3 or EFS path. If you only specify a target, it will be displayed as is.
+	// You also must ensure that your AWS Identity and Access Management (IAM) role
+	// provides access to paths in Target.
+	//
+	// In most cases, you can use this value instead of the scope-down policy to
+	// lock down the associated access to the designated home directory ("chroot").
+	// To do this, you can set Entry to '/' and set Target to the HomeDirectory
+	// parameter value.
+	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
+
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it to LOGICAL, you must provide mappings in the HomeDirectoryMappings
+	// for how you want to make Amazon S3 paths visible to your users.
+	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
+
+	// A scope-down policy for your user so that you can use the same AWS Identity
+	// and Access Management (IAM) role across multiple users. This policy scopes
+	// down user access to portions of their Amazon S3 bucket. Variables that you
+	// can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory},
+	// and ${Transfer:HomeBucket}.
+	Policy *string `type:"string"`
+
+	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
+	// secondary groups IDs (SecondaryGids), that controls your users' access to
+	// your Amazon EFS file systems. The POSIX permissions that are set on files
+	// and directories in your file system determine the level of access your users
+	// get when transferring files into and out of your Amazon EFS file systems.
+	PosixProfile *PosixProfile `type:"structure"`
+
+	// The IAM role that controls access to your Amazon S3 bucket from the specified
+	// associated access. The policies attached to this role will determine the
+	// level of access that you want to provide the associated access when transferring
+	// files into and out of your Amazon S3 bucket or buckets. The IAM role should
+	// also contain a trust relationship that allows a server to access your resources
+	// when servicing transfer requests for the associated access.
+	Role *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribedAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribedAccess) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *DescribedAccess) SetExternalId(v string) *DescribedAccess {
+	s.ExternalId = &v
+	return s
+}
+
+// SetHomeDirectory sets the HomeDirectory field's value.
+func (s *DescribedAccess) SetHomeDirectory(v string) *DescribedAccess {
+	s.HomeDirectory = &v
+	return s
+}
+
+// SetHomeDirectoryMappings sets the HomeDirectoryMappings field's value.
+func (s *DescribedAccess) SetHomeDirectoryMappings(v []*HomeDirectoryMapEntry) *DescribedAccess {
+	s.HomeDirectoryMappings = v
+	return s
+}
+
+// SetHomeDirectoryType sets the HomeDirectoryType field's value.
+func (s *DescribedAccess) SetHomeDirectoryType(v string) *DescribedAccess {
+	s.HomeDirectoryType = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *DescribedAccess) SetPolicy(v string) *DescribedAccess {
+	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *DescribedAccess) SetPosixProfile(v *PosixProfile) *DescribedAccess {
+	s.PosixProfile = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *DescribedAccess) SetRole(v string) *DescribedAccess {
+	s.Role = &v
+	return s
+}
+
 // Describes the properties of a security policy that was specified. For more
 // information about security policies, see Working with security policies (https://docs.aws.amazon.com/transfer/latest/userguide/security-policies.html).
 type DescribedSecurityPolicy struct {
@@ -3345,6 +4475,7 @@ type DescribedServer struct {
 	// when Protocols is set to FTPS.
 	Certificate *string `type:"string"`
 
+	// Specifies the domain of the storage system that is used for file transfers.
 	Domain *string `type:"string" enum:"Domain"`
 
 	// Specifies the virtual private cloud (VPC) endpoint settings that you configured
@@ -3362,19 +4493,23 @@ type DescribedServer struct {
 	HostKeyFingerprint *string `type:"string"`
 
 	// Specifies information to call a customer-supplied authentication API. This
-	// field is not populated when the IdentityProviderType of a server is SERVICE_MANAGED.
+	// field is not populated when the IdentityProviderType of a server is AWS_DIRECTORY_SERVICE
+	// or SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// Specifies the mode of authentication method enabled for this service. A value
-	// of SERVICE_MANAGED means that you are using this server to store and access
-	// user credentials within the service. A value of API_GATEWAY indicates that
-	// you have integrated an API Gateway endpoint that will be invoked for authenticating
-	// your user into the service.
+	// of AWS_DIRECTORY_SERVICE means that you are providing access to Active Directory
+	// groups in AWS Managed Active Directory or Microsoft Active Directory in your
+	// on-premises environment or in AWS using AD Connectors. A value of SERVICE_MANAGED
+	// means that you are using this server to store and access user credentials
+	// within the service. A value of API_GATEWAY indicates that you have integrated
+	// an API Gateway endpoint that will be invoked for authenticating your user
+	// into the service.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the AWS Identity and Access Management (IAM) role that allows a
-	// server to turn on Amazon CloudWatch logging for Amazon S3 events. When set,
-	// user activity can be viewed in your CloudWatch logs.
+	// server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFS events.
+	// When set, user activity can be viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -3529,13 +4664,13 @@ type DescribedUser struct {
 	// An example is your-Amazon-S3-bucket-name>/home/username .
 	HomeDirectory *string `type:"string"`
 
-	// Specifies the logical directory mappings that specify what Amazon S3 paths
-	// and keys should be visible to your user and how you want to make them visible.
-	// You will need to specify the "Entry" and "Target" pair, where Entry shows
-	// how the path is made visible and Target is the actual Amazon S3 path. If
-	// you only specify a target, it will be displayed as is. You will need to also
-	// make sure that your AWS Identity and Access Management (IAM) role provides
-	// access to paths in Target.
+	// Specifies the logical directory mappings that specify what Amazon S3 or EFS
+	// paths and keys should be visible to your user and how you want to make them
+	// visible. You will need to specify the "Entry" and "Target" pair, where Entry
+	// shows how the path is made visible and Target is the actual Amazon S3 or
+	// EFS path. If you only specify a target, it will be displayed as is. You will
+	// need to also make sure that your AWS Identity and Access Management (IAM)
+	// role provides access to paths in Target.
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
 	// lock your user down to the designated home directory ("chroot"). To do this,
@@ -3544,21 +4679,27 @@ type DescribedUser struct {
 
 	// Specifies the type of landing directory (folder) you mapped for your users
 	// to see when they log into the file transfer protocol-enabled server. If you
-	// set it to PATH, the user will see the absolute Amazon S3 bucket paths as
-	// is in their file transfer protocol clients. If you set it LOGICAL, you will
-	// need to provide mappings in the HomeDirectoryMappings for how you want to
-	// make Amazon S3 paths visible to your users.
+	// set it to PATH, the user will see the absolute Amazon S3 bucket or EFS paths
+	// as is in their file transfer protocol clients. If you set it LOGICAL, you
+	// will need to provide mappings in the HomeDirectoryMappings for how you want
+	// to make Amazon S3 or EFS paths visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
 	// Specifies the name of the policy in use for the described user.
 	Policy *string `type:"string"`
 
+	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),
+	// and any secondary groups IDs (SecondaryGids), that controls your users' access
+	// to your Amazon Elastic File System (Amazon EFS) file systems. The POSIX permissions
+	// that are set on files and directories in your file system determine the level
+	// of access your users get when transferring files into and out of your Amazon
+	// EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
-	// Specifies the IAM role that controls your users' access to your Amazon S3
-	// bucket. The policies attached to this role will determine the level of access
-	// you want to provide your users when transferring files into and out of your
-	// Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship
+	// The IAM role that controls your users' access to your Amazon S3 bucket. The
+	// policies attached to this role will determine the level of access you want
+	// to provide your users when transferring files into and out of your Amazon
+	// S3 bucket or buckets. The IAM role should also contain a trust relationship
 	// that allows a server to access your resources when servicing your users'
 	// transfer requests.
 	Role *string `min:"20" type:"string"`
@@ -3651,7 +4792,15 @@ func (s *DescribedUser) SetUserName(v string) *DescribedUser {
 // your file transfer protocol-enabled server. With a VPC endpoint, you can
 // restrict access to your server and resources only within your VPC. To control
 // incoming internet traffic, invoke the UpdateServer API and attach an Elastic
-// IP to your server's endpoint.
+// IP address to your server's endpoint.
+//
+// After March 31, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
+// in your AWS account if your account hasn't already done so before March 31,
+// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+// in your AWS account on or before March 31, 2021, you will not be affected.
+// After this date, use EndpointType=VPC.
+//
+// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 type EndpointDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -3667,9 +4816,11 @@ type EndpointDetails struct {
 	//
 	// This property can only be set when EndpointType is set to VPC.
 	//
-	// You can only edit the SecurityGroupIds property in the UpdateServer API and
-	// only if you are changing the EndpointType from PUBLIC or VPC_ENDPOINT to
-	// VPC.
+	// You can edit the SecurityGroupIds property in the UpdateServer (https://docs.aws.amazon.com/transfer/latest/userguide/API_UpdateServer.html)
+	// API only if you are changing the EndpointType from PUBLIC or VPC_ENDPOINT
+	// to VPC. To change security groups associated with your server's VPC endpoint
+	// after creation, use the Amazon EC2 ModifyVpcEndpoint (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyVpcEndpoint.html)
+	// API.
 	SecurityGroupIds []*string `type:"list"`
 
 	// A list of subnet IDs that are required to host your server endpoint in your
@@ -3681,6 +4832,8 @@ type EndpointDetails struct {
 	// The ID of the VPC endpoint.
 	//
 	// This property can only be set when EndpointType is set to VPC_ENDPOINT.
+	//
+	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	VpcEndpointId *string `min:"22" type:"string"`
 
 	// The VPC ID of the VPC in which a server's endpoint will be hosted.
@@ -3801,6 +4954,10 @@ func (s *HomeDirectoryMapEntry) SetTarget(v string) *HomeDirectoryMapEntry {
 type IdentityProviderDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the AWS Directory Service directory that you want to stop
+	// sharing.
+	DirectoryId *string `min:"12" type:"string"`
+
 	// Provides the type of InvocationRole used to authenticate the user account.
 	InvocationRole *string `min:"20" type:"string"`
 
@@ -3821,6 +4978,9 @@ func (s IdentityProviderDetails) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *IdentityProviderDetails) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "IdentityProviderDetails"}
+	if s.DirectoryId != nil && len(*s.DirectoryId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("DirectoryId", 12))
+	}
 	if s.InvocationRole != nil && len(*s.InvocationRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("InvocationRole", 20))
 	}
@@ -3829,6 +4989,12 @@ func (s *IdentityProviderDetails) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *IdentityProviderDetails) SetDirectoryId(v string) *IdentityProviderDetails {
+	s.DirectoryId = &v
+	return s
 }
 
 // SetInvocationRole sets the InvocationRole field's value.
@@ -4132,6 +5298,123 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAccessesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum number of access SIDs to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When you can get additional results from the ListAccesses call, a NextToken
+	// parameter is returned in the output. You can then pass in a subsequent command
+	// to the NextToken parameter to continue listing additional accesses.
+	NextToken *string `min:"1" type:"string"`
+
+	// A system-assigned unique identifier for a server that has users assigned
+	// to it.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAccessesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAccessesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAccessesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAccessesInput) SetMaxResults(v int64) *ListAccessesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessesInput) SetNextToken(v string) *ListAccessesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListAccessesInput) SetServerId(v string) *ListAccessesInput {
+	s.ServerId = &v
+	return s
+}
+
+type ListAccessesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the accesses and their properties for the ServerId value that you
+	// specify.
+	//
+	// Accesses is a required field
+	Accesses []*ListedAccess `type:"list" required:"true"`
+
+	// When you can get additional results from the ListAccesses call, a NextToken
+	// parameter is returned in the output. You can then pass in a subsequent command
+	// to the NextToken parameter to continue listing additional accesses.
+	NextToken *string `min:"1" type:"string"`
+
+	// A system-assigned unique identifier for a server that has users assigned
+	// to it.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAccessesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAccessesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccesses sets the Accesses field's value.
+func (s *ListAccessesOutput) SetAccesses(v []*ListedAccess) *ListAccessesOutput {
+	s.Accesses = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAccessesOutput) SetNextToken(v string) *ListAccessesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *ListAccessesOutput) SetServerId(v string) *ListAccessesOutput {
+	s.ServerId = &v
+	return s
 }
 
 type ListSecurityPoliciesInput struct {
@@ -4540,6 +5823,80 @@ func (s *ListUsersOutput) SetUsers(v []*ListedUser) *ListUsersOutput {
 	return s
 }
 
+// Lists the properties for one or more specified associated accesses.
+type ListedAccess struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that might be required when you assume a role in another
+	// account. Think of the ExternalID as a group membership mechanism that uses
+	// a unique identifier (often a SID, but could be a group name or something
+	// else) as a basis. If the administrator of the account to which the role belongs
+	// provided you with an external ID, then provide that value in the ExternalId
+	// parameter. A cross-account role is usually set up to trust everyone in an
+	// account. Therefore, the administrator of the trusting account might send
+	// an external ID to the administrator of the trusted account. That way, only
+	// someone with the ID can assume the role, rather than everyone in the account.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	ExternalId *string `min:"1" type:"string"`
+
+	// Specifies the landing directory (or folder), which is the location that files
+	// are written to or read from in an Amazon S3 bucket, for the described access.
+	HomeDirectory *string `type:"string"`
+
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it to LOGICAL, you must provide mappings in the HomeDirectoryMappings
+	// for how you want to make Amazon S3 paths visible to your users.
+	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
+
+	// The AWS Identity and Access Management (IAM) role that controls access to
+	// your Amazon S3 bucket from the specified associated access. The policies
+	// attached to this role will determine the level of access that you want to
+	// provide the associated access when transferring files into and out of your
+	// Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship
+	// that allows a server to access your resources when servicing transfer requests
+	// for the associated access.
+	Role *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s ListedAccess) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListedAccess) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *ListedAccess) SetExternalId(v string) *ListedAccess {
+	s.ExternalId = &v
+	return s
+}
+
+// SetHomeDirectory sets the HomeDirectory field's value.
+func (s *ListedAccess) SetHomeDirectory(v string) *ListedAccess {
+	s.HomeDirectory = &v
+	return s
+}
+
+// SetHomeDirectoryType sets the HomeDirectoryType field's value.
+func (s *ListedAccess) SetHomeDirectoryType(v string) *ListedAccess {
+	s.HomeDirectoryType = &v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *ListedAccess) SetRole(v string) *ListedAccess {
+	s.Role = &v
+	return s
+}
+
 // Returns properties of a file transfer protocol-enabled server that was specified.
 type ListedServer struct {
 	_ struct{} `type:"structure"`
@@ -4549,6 +5906,7 @@ type ListedServer struct {
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
+	// Specifies the domain of the storage system that is used for file transfers.
 	Domain *string `type:"string" enum:"Domain"`
 
 	// Specifies the type of VPC endpoint that your server is connected to. If your
@@ -4557,9 +5915,9 @@ type ListedServer struct {
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
 	// Specifies the authentication method used to validate a user for a server
-	// that was specified. This can include Secure Shell (SSH), user name and password
-	// combinations, or your own custom authentication method. Valid values include
-	// SERVICE_MANAGED or API_GATEWAY.
+	// that was specified. This can include Secure Shell (SSH), Active Directory
+	// groups, user name and password combinations, or your own custom authentication
+	// method.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the AWS Identity and Access Management (IAM) role that allows a
@@ -4669,6 +6027,13 @@ type ListedUser struct {
 	// protocol-enabled server to act on a user's behalf. It allows the server to
 	// inherit the trust relationship that enables that user to perform file operations
 	// to their Amazon S3 bucket.
+	//
+	// The IAM role that controls your users' access to your Amazon S3 bucket for
+	// servers with Domain=S3, or your EFS file system for servers with Domain=EFS.
+	//
+	// The policies attached to this role determine the level of access you want
+	// to provide your users when transferring files into and out of your S3 buckets
+	// or EFS file systems.
 	Role *string `min:"20" type:"string"`
 
 	// Specifies the number of SSH public keys stored for the user you specified.
@@ -4725,14 +6090,24 @@ func (s *ListedUser) SetUserName(v string) *ListedUser {
 	return s
 }
 
+// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
+// secondary groups IDs (SecondaryGids), that controls your users' access to
+// your Amazon EFS file systems. The POSIX permissions that are set on files
+// and directories in your file system determine the level of access your users
+// get when transferring files into and out of your Amazon EFS file systems.
 type PosixProfile struct {
 	_ struct{} `type:"structure"`
 
+	// The POSIX group ID used for all EFS operations by this user.
+	//
 	// Gid is a required field
 	Gid *int64 `type:"long" required:"true"`
 
+	// The secondary POSIX group IDs used for all EFS operations by this user.
 	SecondaryGids []*int64 `type:"list"`
 
+	// The POSIX user ID used for all EFS operations by this user.
+	//
 	// Uid is a required field
 	Uid *int64 `type:"long" required:"true"`
 }
@@ -5553,6 +6928,254 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateAccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier that is required to identify specific groups within your
+	// directory. The users of the group that you associate have access to your
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
+	// Family. If you know the group name, you can view the SID values by running
+	// the following command using Windows PowerShell.
+	//
+	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
+	// | Select SamaccountName,ObjectSid
+	//
+	// In that command, replace YourGroupName with the name of your Active Directory
+	// group.
+	//
+	// The regex used to validate this parameter is a string of characters consisting
+	// of uppercase and lowercase alphanumeric characters with no spaces. You can
+	// also include underscores or any of the following characters: =,.@:/-
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// The landing directory (folder) for a user when they log in to the server
+	// using the client.
+	//
+	// A HomeDirectory example is /directory_name/home/mydirectory.
+	HomeDirectory *string `type:"string"`
+
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it will be displayed as is. You also must ensure
+	// that your AWS Identity and Access Management (IAM) role provides access to
+	// paths in Target. This value can only be set when HomeDirectoryType is set
+	// to LOGICAL.
+	//
+	// The following is an Entry and Target pair example.
+	//
+	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
+	// } ]
+	//
+	// In most cases, you can use this value instead of the scope-down policy to
+	// lock down your user to the designated home directory ("chroot"). To do this,
+	// you can set Entry to / and set Target to the HomeDirectory parameter value.
+	//
+	// The following is an Entry and Target pair example for chroot.
+	//
+	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	//
+	// If the target of a logical directory entry does not exist in Amazon S3 or
+	// Amazon EFS, the entry will be ignored. As a workaround, you can use the Amazon
+	// S3 API or EFS API to create 0-byte objects as place holders for your directory.
+	// If using the AWS CLI, use the s3api or efsapi call instead of s3 or efs so
+	// you can use the put-object operation. For example, you can use the following.
+	//
+	// aws s3api put-object --bucket bucketname --key path/to/folder/
+	//
+	// The end of the key name must end in a / for it to be considered a folder.
+	//
+	// Required: No
+	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
+
+	// The type of landing directory (folder) that you want your users' home directory
+	// to be when they log in to the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it LOGICAL, you must provide mappings in the HomeDirectoryMappings
+	// for how you want to make Amazon S3 paths visible to your users.
+	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
+
+	// A scope-down policy for your user so that you can use the same IAM role across
+	// multiple users. This policy scopes down user access to portions of their
+	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
+	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
+	//
+	// This only applies when domain of ServerId is S3. Amazon EFS does not use
+	// scope down policy.
+	//
+	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
+	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
+	// policy as a JSON blob and pass it in the Policy argument.
+	//
+	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
+	//
+	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
+	// in the AWS Security Token Service API Reference.
+	Policy *string `type:"string"`
+
+	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
+	// secondary groups IDs (SecondaryGids), that controls your users' access to
+	// your Amazon EFS file systems. The POSIX permissions that are set on files
+	// and directories in your file system determine the level of access your users
+	// get when transferring files into and out of your Amazon EFS file systems.
+	PosixProfile *PosixProfile `type:"structure"`
+
+	// Specifies the IAM role that controls your users' access to your Amazon S3
+	// bucket or EFS file system. The policies attached to this role determine the
+	// level of access that you want to provide your users when transferring files
+	// into and out of your Amazon S3 bucket or EFS file system. The IAM role should
+	// also contain a trust relationship that allows the server to access your resources
+	// when servicing your users' transfer requests.
+	Role *string `min:"20" type:"string"`
+
+	// A system-assigned unique identifier for a server instance. This is the specific
+	// server that you added your user to.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateAccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAccessInput"}
+	if s.ExternalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExternalId"))
+	}
+	if s.ExternalId != nil && len(*s.ExternalId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalId", 1))
+	}
+	if s.HomeDirectoryMappings != nil && len(s.HomeDirectoryMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HomeDirectoryMappings", 1))
+	}
+	if s.Role != nil && len(*s.Role) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("Role", 20))
+	}
+	if s.ServerId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerId"))
+	}
+	if s.ServerId != nil && len(*s.ServerId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerId", 19))
+	}
+	if s.HomeDirectoryMappings != nil {
+		for i, v := range s.HomeDirectoryMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "HomeDirectoryMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.PosixProfile != nil {
+		if err := s.PosixProfile.Validate(); err != nil {
+			invalidParams.AddNested("PosixProfile", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *UpdateAccessInput) SetExternalId(v string) *UpdateAccessInput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetHomeDirectory sets the HomeDirectory field's value.
+func (s *UpdateAccessInput) SetHomeDirectory(v string) *UpdateAccessInput {
+	s.HomeDirectory = &v
+	return s
+}
+
+// SetHomeDirectoryMappings sets the HomeDirectoryMappings field's value.
+func (s *UpdateAccessInput) SetHomeDirectoryMappings(v []*HomeDirectoryMapEntry) *UpdateAccessInput {
+	s.HomeDirectoryMappings = v
+	return s
+}
+
+// SetHomeDirectoryType sets the HomeDirectoryType field's value.
+func (s *UpdateAccessInput) SetHomeDirectoryType(v string) *UpdateAccessInput {
+	s.HomeDirectoryType = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *UpdateAccessInput) SetPolicy(v string) *UpdateAccessInput {
+	s.Policy = &v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *UpdateAccessInput) SetPosixProfile(v *PosixProfile) *UpdateAccessInput {
+	s.PosixProfile = v
+	return s
+}
+
+// SetRole sets the Role field's value.
+func (s *UpdateAccessInput) SetRole(v string) *UpdateAccessInput {
+	s.Role = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UpdateAccessInput) SetServerId(v string) *UpdateAccessInput {
+	s.ServerId = &v
+	return s
+}
+
+type UpdateAccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The external ID of the group whose users have access to your Amazon S3 or
+	// Amazon EFS resources over the enabled protocols using AWS Transfer Family.
+	//
+	// ExternalId is a required field
+	ExternalId *string `min:"1" type:"string" required:"true"`
+
+	// The ID of the server that the user is attached to.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateAccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetExternalId sets the ExternalId field's value.
+func (s *UpdateAccessOutput) SetExternalId(v string) *UpdateAccessOutput {
+	s.ExternalId = &v
+	return s
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UpdateAccessOutput) SetServerId(v string) *UpdateAccessOutput {
+	s.ServerId = &v
+	return s
+}
+
 type UpdateServerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5594,9 +7217,19 @@ type UpdateServerInput struct {
 	// endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
-	// The type of endpoint that you want your server to connect to. You can choose
-	// to connect to the public internet or a VPC endpoint. With a VPC endpoint,
-	// you can restrict access to your server and resources only within your VPC.
+	// The type of endpoint that you want your server to use. You can choose to
+	// make your server's endpoint publicly accessible (PUBLIC) or host it inside
+	// your VPC. With an endpoint that is hosted in a VPC, you can restrict access
+	// to your server and resources only within your VPC or choose to make it internet
+	// facing by attaching Elastic IP addresses directly to it.
+	//
+	// After March 31, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
+	// in your AWS account if your account hasn't already done so before March 31,
+	// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+	// in your AWS account on or before March 31, 2021, you will not be affected.
+	// After this date, use EndpointType=VPC.
+	//
+	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	//
 	// It is recommended that you use VPC as the EndpointType. With this endpoint
 	// type, you have the option to directly associate up to three Elastic IPv4
@@ -5621,7 +7254,8 @@ type UpdateServerInput struct {
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// Changes the AWS Identity and Access Management (IAM) role that allows Amazon
-	// S3 events to be logged in Amazon CloudWatch, turning logging on or off.
+	// S3 or Amazon EFS events to be logged in Amazon CloudWatch, turning logging
+	// on or off.
 	LoggingRole *string `type:"string"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -5640,7 +7274,7 @@ type UpdateServerInput struct {
 	// to it over FTPS.
 	//
 	// If Protocol includes either FTP or FTPS, then the EndpointType must be VPC
-	// and the IdentityProviderType must be API_GATEWAY.
+	// and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
 	//
 	// If Protocol includes FTP, then AddressAllocationIds cannot be associated.
 	//
@@ -5786,35 +7420,36 @@ type UpdateUserInput struct {
 	// An example is your-Amazon-S3-bucket-name>/home/username.
 	HomeDirectory *string `type:"string"`
 
-	// Logical directory mappings that specify what Amazon S3 paths and keys should
-	// be visible to your user and how you want to make them visible. You will need
-	// to specify the "Entry" and "Target" pair, where Entry shows how the path
-	// is made visible and Target is the actual Amazon S3 path. If you only specify
-	// a target, it will be displayed as is. You will need to also make sure that
-	// your IAM role provides access to paths in Target. The following is an example.
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You will need to specify the "Entry" and "Target" pair, where Entry shows
+	// how the path is made visible and Target is the actual Amazon S3 or Amazon
+	// EFS path. If you only specify a target, it will be displayed as is. You will
+	// need to also make sure that your IAM role provides access to paths in Target.
+	// The following is an example.
 	//
 	// '[ "/bucket2/documentation", { "Entry": "your-personal-report.pdf", "Target":
 	// "/bucket3/customized-reports/${transfer:UserName}.pdf" } ]'
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
-	// lock your user down to the designated home directory ("chroot"). To do this,
+	// lock down your user to the designated home directory ("chroot"). To do this,
 	// you can set Entry to '/' and set Target to the HomeDirectory parameter value.
 	//
-	// If the target of a logical directory entry does not exist in Amazon S3, the
-	// entry will be ignored. As a workaround, you can use the Amazon S3 API to
-	// create 0 byte objects as place holders for your directory. If using the CLI,
-	// use the s3api call instead of s3 so you can use the put-object operation.
-	// For example, you use the following: aws s3api put-object --bucket bucketname
-	// --key path/to/folder/. Make sure that the end of the key name ends in a /
-	// for it to be considered a folder.
+	// If the target of a logical directory entry does not exist in Amazon S3 or
+	// EFS, the entry will be ignored. As a workaround, you can use the Amazon S3
+	// API or EFS API to create 0-byte objects as place holders for your directory.
+	// If using the AWS CLI, use the s3api or efsapi call instead of s3 efs so you
+	// can use the put-object operation. For example, you use the following: aws
+	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
+	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
-	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
-	// clients. If you set it LOGICAL, you will need to provide mappings in the
-	// HomeDirectoryMappings for how you want to make Amazon S3 paths visible to
-	// your users.
+	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
+	// protocol clients. If you set it LOGICAL, you will need to provide mappings
+	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
 	// Allows you to supply a scope-down policy for your user so you can use the
@@ -5832,14 +7467,19 @@ type UpdateUserInput struct {
 	// in the AWS Security Token Service API Reference.
 	Policy *string `type:"string"`
 
+	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),
+	// and any secondary groups IDs (SecondaryGids), that controls your users' access
+	// to your Amazon Elastic File Systems (Amazon EFS). The POSIX permissions that
+	// are set on files and directories in your file system determines the level
+	// of access your users get when transferring files into and out of your Amazon
+	// EFS file systems.
 	PosixProfile *PosixProfile `type:"structure"`
 
 	// The IAM role that controls your users' access to your Amazon S3 bucket. The
-	// policies attached to this role will determine the level of access you want
-	// to provide your users when transferring files into and out of your Amazon
-	// S3 bucket or buckets. The IAM role should also contain a trust relationship
-	// that allows the server to access your resources when servicing your users'
-	// transfer requests.
+	// policies attached to this role determine the level of access you want to
+	// provide your users when transferring files into and out of your S3 bucket
+	// or buckets. The IAM role should also contain a trust relationship that allows
+	// the server to access your resources when servicing your users' transfer requests.
 	Role *string `min:"20" type:"string"`
 
 	// A system-assigned unique identifier for a server instance that the user account
@@ -6052,17 +7692,20 @@ func HomeDirectoryType_Values() []string {
 }
 
 // Returns information related to the type of user authentication that is in
-// use for a file transfer protocol-enabled server's users. For SERVICE_MANAGED
-// authentication, the Secure Shell (SSH) public keys are stored with a user
-// on the server instance. For API_GATEWAY authentication, your custom authentication
-// method is implemented by using an API call. The server can have only one
-// method of authentication.
+// use for a file transfer protocol-enabled server's users. For AWS_DIRECTORY_SERVICE
+// or SERVICE_MANAGED authentication, the Secure Shell (SSH) public keys are
+// stored with a user on the server instance. For API_GATEWAY authentication,
+// your custom authentication method is implemented by using an API call. The
+// server can have only one method of authentication.
 const (
 	// IdentityProviderTypeServiceManaged is a IdentityProviderType enum value
 	IdentityProviderTypeServiceManaged = "SERVICE_MANAGED"
 
 	// IdentityProviderTypeApiGateway is a IdentityProviderType enum value
 	IdentityProviderTypeApiGateway = "API_GATEWAY"
+
+	// IdentityProviderTypeAwsDirectoryService is a IdentityProviderType enum value
+	IdentityProviderTypeAwsDirectoryService = "AWS_DIRECTORY_SERVICE"
 )
 
 // IdentityProviderType_Values returns all elements of the IdentityProviderType enum
@@ -6070,6 +7713,7 @@ func IdentityProviderType_Values() []string {
 	return []string{
 		IdentityProviderTypeServiceManaged,
 		IdentityProviderTypeApiGateway,
+		IdentityProviderTypeAwsDirectoryService,
 	}
 }
 

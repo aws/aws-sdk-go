@@ -28,6 +28,12 @@ const (
 	// The certificate is invalid.
 	ErrCodeCertificateValidationException = "CertificateValidationException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// A resource with the same name already exists.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeConflictingResourceUpdateException for service response error code
 	// "ConflictingResourceUpdateException".
 	//
@@ -196,6 +202,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CertificateConflictException":         newErrorCertificateConflictException,
 	"CertificateStateException":            newErrorCertificateStateException,
 	"CertificateValidationException":       newErrorCertificateValidationException,
+	"ConflictException":                    newErrorConflictException,
 	"ConflictingResourceUpdateException":   newErrorConflictingResourceUpdateException,
 	"DeleteConflictException":              newErrorDeleteConflictException,
 	"IndexNotReadyException":               newErrorIndexNotReadyException,

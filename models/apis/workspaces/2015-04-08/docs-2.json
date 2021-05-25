@@ -77,7 +77,8 @@
         "WorkspaceAccessProperties$DeviceTypeIos": "<p>Indicates whether users can use iOS devices to access their WorkSpaces.</p>",
         "WorkspaceAccessProperties$DeviceTypeAndroid": "<p>Indicates whether users can use Android devices to access their WorkSpaces.</p>",
         "WorkspaceAccessProperties$DeviceTypeChromeOs": "<p>Indicates whether users can use Chromebooks to access their WorkSpaces.</p>",
-        "WorkspaceAccessProperties$DeviceTypeZeroClient": "<p>Indicates whether users can use zero client devices to access their WorkSpaces.</p>"
+        "WorkspaceAccessProperties$DeviceTypeZeroClient": "<p>Indicates whether users can use zero client devices to access their WorkSpaces.</p>",
+        "WorkspaceAccessProperties$DeviceTypeLinux": "<p>Indicates whether users can use Linux clients to access their WorkSpaces.</p>"
       }
     },
     "AccountModification": {
@@ -1385,7 +1386,7 @@
         "CreateConnectionAliasRequest$Tags": "<p>The tags to associate with the connection alias.</p>",
         "CreateIpGroupRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "CreateTagsRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
-        "CreateWorkspaceBundleRequest$Tags": "<p>The tags associated with the bundle.</p> <note> <p>To add tags at the same time that you're creating the bundle, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
+        "CreateWorkspaceBundleRequest$Tags": "<p>The tags associated with the bundle.</p> <note> <p>To add tags at the same time when you're creating the bundle, you must create an IAM policy that grants your IAM user permissions to use <code>workspaces:CreateTags</code>. </p> </note>",
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
         "ImportWorkspaceImageRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "RegisterWorkspaceDirectoryRequest$Tags": "<p>The tags associated with the directory.</p>",

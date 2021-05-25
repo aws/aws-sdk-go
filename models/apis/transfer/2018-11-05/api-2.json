@@ -14,6 +14,22 @@
     "uid":"transfer-2018-11-05"
   },
   "operations":{
+    "CreateAccess":{
+      "name":"CreateAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAccessRequest"},
+      "output":{"shape":"CreateAccessResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "CreateServer":{
       "name":"CreateServer",
       "http":{
@@ -44,6 +60,20 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DeleteAccess":{
+      "name":"DeleteAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAccessRequest"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
       ]
     },
@@ -84,6 +114,21 @@
         "requestUri":"/"
       },
       "input":{"shape":"DeleteUserRequest"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeAccess":{
+      "name":"DescribeAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAccessRequest"},
+      "output":{"shape":"DescribeAccessResponse"},
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
@@ -151,6 +196,22 @@
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListAccesses":{
+      "name":"ListAccesses",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAccessesRequest"},
+      "output":{"shape":"ListAccessesResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListSecurityPolicies":{
@@ -287,6 +348,22 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "UpdateAccess":{
+      "name":"UpdateAccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAccessRequest"},
+      "output":{"shape":"UpdateAccessResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "UpdateServer":{
       "name":"UpdateServer",
       "http":{
@@ -355,6 +432,35 @@
       },
       "exception":true
     },
+    "CreateAccessRequest":{
+      "type":"structure",
+      "required":[
+        "Role",
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
+        "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
+        "Role":{"shape":"Role"},
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
+    "CreateAccessResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
     "CreateServerRequest":{
       "type":"structure",
       "members":{
@@ -410,6 +516,17 @@
       }
     },
     "DateImported":{"type":"timestamp"},
+    "DeleteAccessRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
     "DeleteServerRequest":{
       "type":"structure",
       "required":["ServerId"],
@@ -439,6 +556,28 @@
       "members":{
         "ServerId":{"shape":"ServerId"},
         "UserName":{"shape":"UserName"}
+      }
+    },
+    "DescribeAccessRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
+    "DescribeAccessResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "Access"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "Access":{"shape":"DescribedAccess"}
       }
     },
     "DescribeSecurityPolicyRequest":{
@@ -491,6 +630,18 @@
         "User":{"shape":"DescribedUser"}
       }
     },
+    "DescribedAccess":{
+      "type":"structure",
+      "members":{
+        "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
+        "Role":{"shape":"Role"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
     "DescribedSecurityPolicy":{
       "type":"structure",
       "required":["SecurityPolicyName"],
@@ -540,6 +691,12 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "DirectoryId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"^d-[0-9a-f]{10}$"
+    },
     "Domain":{
       "type":"string",
       "enum":[
@@ -564,6 +721,12 @@
         "VPC",
         "VPC_ENDPOINT"
       ]
+    },
+    "ExternalId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^S-1-[\\d-]+$"
     },
     "Fips":{"type":"boolean"},
     "HomeDirectory":{
@@ -605,14 +768,16 @@
       "type":"structure",
       "members":{
         "Url":{"shape":"Url"},
-        "InvocationRole":{"shape":"Role"}
+        "InvocationRole":{"shape":"Role"},
+        "DirectoryId":{"shape":"DirectoryId"}
       }
     },
     "IdentityProviderType":{
       "type":"string",
       "enum":[
         "SERVICE_MANAGED",
-        "API_GATEWAY"
+        "API_GATEWAY",
+        "AWS_DIRECTORY_SERVICE"
       ]
     },
     "ImportSshPublicKeyRequest":{
@@ -665,6 +830,27 @@
         "Message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "ListAccessesRequest":{
+      "type":"structure",
+      "required":["ServerId"],
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "ServerId":{"shape":"ServerId"}
+      }
+    },
+    "ListAccessesResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "Accesses"
+      ],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "ServerId":{"shape":"ServerId"},
+        "Accesses":{"shape":"ListedAccesses"}
+      }
     },
     "ListSecurityPoliciesRequest":{
       "type":"structure",
@@ -733,6 +919,19 @@
         "ServerId":{"shape":"ServerId"},
         "Users":{"shape":"ListedUsers"}
       }
+    },
+    "ListedAccess":{
+      "type":"structure",
+      "members":{
+        "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "Role":{"shape":"Role"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
+    "ListedAccesses":{
+      "type":"list",
+      "member":{"shape":"ListedAccess"}
     },
     "ListedServer":{
       "type":"structure",
@@ -1067,6 +1266,34 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "TagKeys":{"shape":"TagKeys"}
+      }
+    },
+    "UpdateAccessRequest":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "HomeDirectory":{"shape":"HomeDirectory"},
+        "HomeDirectoryType":{"shape":"HomeDirectoryType"},
+        "HomeDirectoryMappings":{"shape":"HomeDirectoryMappings"},
+        "Policy":{"shape":"Policy"},
+        "PosixProfile":{"shape":"PosixProfile"},
+        "Role":{"shape":"Role"},
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
+      }
+    },
+    "UpdateAccessResponse":{
+      "type":"structure",
+      "required":[
+        "ServerId",
+        "ExternalId"
+      ],
+      "members":{
+        "ServerId":{"shape":"ServerId"},
+        "ExternalId":{"shape":"ExternalId"}
       }
     },
     "UpdateServerRequest":{

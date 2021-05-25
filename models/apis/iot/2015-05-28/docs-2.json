@@ -24,9 +24,10 @@
     "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
     "CreateCustomMetric": "<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p>",
     "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for AWS IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p>",
-    "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+    "CreateDomainConfiguration": "<p>Creates a domain configuration.</p>",
     "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
     "CreateJob": "<p>Creates a job.</p>",
+    "CreateJobTemplate": "<p>Creates a job template.</p>",
     "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device, for more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api\">Provisioning MQTT API</a>.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
     "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Only certain types of mitigation actions can be applied to specific check names. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html\">Mitigation actions</a>. Each mitigation action can apply only one type of change.</p>",
     "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
@@ -52,10 +53,11 @@
     "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
     "DeleteCustomMetric": "<note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note> <p> Deletes a Device Defender detect custom metric. </p>",
     "DeleteDimension": "<p>Removes the specified dimension from your AWS account.</p>",
-    "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+    "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p>",
     "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p>",
     "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
     "DeleteJobExecution": "<p>Deletes a job execution.</p>",
+    "DeleteJobTemplate": "<p>Deletes the specified job template.</p>",
     "DeleteMitigationAction": "<p>Deletes a defined mitigation action from your AWS account.</p>",
     "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
     "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
@@ -87,12 +89,13 @@
     "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p>",
     "DescribeDetectMitigationActionsTask": "<p> Gets information about a Device Defender ML Detect mitigation action. </p>",
     "DescribeDimension": "<p>Provides details about a dimension that is defined in your AWS account.</p>",
-    "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+    "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p>",
     "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
     "DescribeEventConfigurations": "<p>Describes event configurations.</p>",
     "DescribeIndex": "<p>Describes a search index.</p>",
     "DescribeJob": "<p>Describes a job.</p>",
     "DescribeJobExecution": "<p>Describes a job execution.</p>",
+    "DescribeJobTemplate": "<p>Returns information about a job template.</p>",
     "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p>",
     "DescribeProvisioningTemplate": "<p>Returns information about a fleet provisioning template.</p>",
     "DescribeProvisioningTemplateVersion": "<p>Returns information about a fleet provisioning template version.</p>",
@@ -141,10 +144,11 @@
     "ListDetectMitigationActionsExecutions": "<p> Lists mitigation actions executions for a Device Defender ML Detect Security Profile. </p>",
     "ListDetectMitigationActionsTasks": "<p> List of Device Defender ML Detect mitigation actions tasks. </p>",
     "ListDimensions": "<p>List the set of dimensions that are defined for your AWS account.</p>",
-    "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+    "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p>",
     "ListIndices": "<p>Lists the search indices.</p>",
     "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
     "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p>",
+    "ListJobTemplates": "<p>Returns a list of job templates.</p>",
     "ListJobs": "<p>Lists jobs.</p>",
     "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p>",
     "ListOTAUpdates": "<p>Lists OTA updates.</p>",
@@ -209,7 +213,7 @@
     "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Certificates must be in the ACTIVE state to authenticate devices that use a certificate to connect to AWS IoT.</p> <p>Within a few minutes of updating a certificate from the ACTIVE state to any other state, AWS IoT disconnects all devices that used that certificate to connect. Devices cannot use a certificate that is not in the ACTIVE state to reconnect.</p>",
     "UpdateCustomMetric": "<p>Updates a Device Defender detect custom metric. </p>",
     "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p>",
-    "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+    "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p>",
     "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p>",
     "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
     "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p>",
@@ -237,6 +241,8 @@
       "base": "<p>The criteria that determine when and how a job abort takes place.</p>",
       "refs": {
         "CreateJobRequest$abortConfig": "<p>Allows you to create criteria to abort a job.</p>",
+        "CreateJobTemplateRequest$abortConfig": null,
+        "DescribeJobTemplateResponse$abortConfig": null,
         "Job$abortConfig": "<p>Configuration for criteria to abort the job.</p>",
         "UpdateJobRequest$abortConfig": "<p>Allows you to create criteria to abort a job.</p>"
       }
@@ -1671,6 +1677,11 @@
         "ConfirmTopicRuleDestinationRequest$confirmationToken": "<p>The token used to confirm ownership or access to the topic rule confirmation URL.</p>"
       }
     },
+    "ConflictException": {
+      "base": "<p>A resource with the same name already exists.</p>",
+      "refs": {
+      }
+    },
     "ConflictingResourceUpdateException": {
       "base": "<p>A conflicting resource update exception. This exception is thrown when two pending updates cause a conflict.</p>",
       "refs": {
@@ -1789,6 +1800,16 @@
       }
     },
     "CreateJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateJobTemplateResponse": {
       "base": null,
       "refs": {
       }
@@ -2044,6 +2065,7 @@
         "CertificateValidity$notAfter": "<p>The certificate is not valid after this date.</p>",
         "CreateProvisioningClaimResponse$expiration": "<p>The provisioning claim expiration time.</p>",
         "DescribeDomainConfigurationResponse$lastStatusChangeDate": "<p>The date and time the domain configuration's status was last changed.</p>",
+        "DescribeJobTemplateResponse$createdAt": "<p>The time, in seconds since the epoch, when the job template was created.</p>",
         "DescribeProvisioningTemplateResponse$creationDate": "<p>The date when the fleet provisioning template was created.</p>",
         "DescribeProvisioningTemplateResponse$lastModifiedDate": "<p>The date when the fleet provisioning template was last modified.</p>",
         "DescribeProvisioningTemplateVersionResponse$creationDate": "<p>The date when the fleet provisioning template version was created.</p>",
@@ -2063,6 +2085,7 @@
         "JobSummary$createdAt": "<p>The time, in seconds since the epoch, when the job was created.</p>",
         "JobSummary$lastUpdatedAt": "<p>The time, in seconds since the epoch, when the job was last updated.</p>",
         "JobSummary$completedAt": "<p>The time, in seconds since the epoch, when the job completed.</p>",
+        "JobTemplateSummary$createdAt": "<p>The time, in seconds since the epoch, when the job template was created.</p>",
         "OTAUpdateInfo$creationDate": "<p>The date when the OTA update was created.</p>",
         "OTAUpdateInfo$lastModifiedDate": "<p>The date when the OTA update was last updated.</p>",
         "OTAUpdateSummary$creationDate": "<p>The date when the OTA update was created.</p>",
@@ -2223,6 +2246,11 @@
       }
     },
     "DeleteJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobTemplateRequest": {
       "base": null,
       "refs": {
       }
@@ -2607,6 +2635,16 @@
       "refs": {
       }
     },
+    "DescribeJobTemplateRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobTemplateResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeMitigationActionRequest": {
       "base": null,
       "refs": {
@@ -2953,7 +2991,7 @@
       }
     },
     "DomainConfigurationSummary": {
-      "base": "<p>The summary of a domain configuration. A domain configuration specifies custom IoT-specific information about a domain. A domain configuration can be associated with an AWS-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com), a customer managed domain, or a default endpoint.</p> <ul> <li> <p>Data</p> </li> <li> <p>Jobs</p> </li> <li> <p>CredentialProvider</p> </li> </ul> <note> <p>The domain configuration feature is in public preview and is subject to change.</p> </note>",
+      "base": "<p>The summary of a domain configuration. A domain configuration specifies custom IoT-specific information about a domain. A domain configuration can be associated with an AWS-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com), a customer managed domain, or a default endpoint.</p> <ul> <li> <p>Data</p> </li> <li> <p>Jobs</p> </li> <li> <p>CredentialProvider</p> </li> </ul>",
       "refs": {
         "DomainConfigurations$member": null
       }
@@ -3771,6 +3809,7 @@
         "AssociateTargetsWithJobResponse$jobArn": "<p>An ARN identifying the job.</p>",
         "CancelJobResponse$jobArn": "<p>The job ARN.</p>",
         "CreateJobResponse$jobArn": "<p>The job ARN.</p>",
+        "CreateJobTemplateRequest$jobArn": "<p>The ARN of the job to use as the basis for the job template.</p>",
         "Job$jobArn": "<p>An ARN identifying the job with format \"arn:aws:iot:region:account:job/jobId\".</p>",
         "JobSummary$jobArn": "<p>The job ARN.</p>"
       }
@@ -3782,22 +3821,29 @@
         "CancelJobResponse$description": "<p>A short text description of the job.</p>",
         "CreateJobRequest$description": "<p>A short text description of the job.</p>",
         "CreateJobResponse$description": "<p>The job description.</p>",
+        "CreateJobTemplateRequest$description": "<p>A description of the job document.</p>",
+        "DescribeJobTemplateResponse$description": "<p>A description of the job template.</p>",
         "Job$description": "<p>A short text description of the job.</p>",
+        "JobTemplateSummary$description": "<p>A description of the job template.</p>",
         "UpdateJobRequest$description": "<p>A short text description of the job.</p>"
       }
     },
     "JobDocument": {
       "base": null,
       "refs": {
-        "CreateJobRequest$document": "<p>The job document.</p> <note> <p>If the job document resides in an S3 bucket, you must use a placeholder link when specifying the document.</p> <p>The placeholder link is of the following form:</p> <p> <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code> </p> <p>where <i>bucket</i> is your bucket name and <i>key</i> is the object in the bucket to which you are linking.</p> </note>",
+        "CreateJobRequest$document": "<p>The job document. Required if you don't specify a value for <code>documentSource</code>.</p>",
+        "CreateJobTemplateRequest$document": "<p>The job document. Required if you don't specify a value for <code>documentSource</code>.</p>",
+        "DescribeJobTemplateResponse$document": "<p>The job document.</p>",
         "GetJobDocumentResponse$document": "<p>The job document content.</p>"
       }
     },
     "JobDocumentSource": {
       "base": null,
       "refs": {
-        "CreateJobRequest$documentSource": "<p>An S3 link to the job document.</p>",
-        "DescribeJobResponse$documentSource": "<p>An S3 link to the job document.</p>"
+        "CreateJobRequest$documentSource": "<p>An S3 link to the job document. Required if you don't specify a value for <code>document</code>.</p> <note> <p>If the job document resides in an S3 bucket, you must use a placeholder link when specifying the document.</p> <p>The placeholder link is of the following form:</p> <p> <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code> </p> <p>where <i>bucket</i> is your bucket name and <i>key</i> is the object in the bucket to which you are linking.</p> </note>",
+        "CreateJobTemplateRequest$documentSource": "<p>An S3 link to the job document to use in the template. Required if you don't specify a value for <code>document</code>.</p> <note> <p>If the job document resides in an S3 bucket, you must use a placeholder link when specifying the document.</p> <p>The placeholder link is of the following form:</p> <p> <code>${aws:iot:s3-presigned-url:https://s3.amazonaws.com/<i>bucket</i>/<i>key</i>}</code> </p> <p>where <i>bucket</i> is your bucket name and <i>key</i> is the object in the bucket to which you are linking.</p> </note>",
+        "DescribeJobResponse$documentSource": "<p>An S3 link to the job document.</p>",
+        "DescribeJobTemplateResponse$documentSource": "<p>An S3 link to the job document.</p>"
       }
     },
     "JobExecution": {
@@ -3862,6 +3908,8 @@
       "base": "<p>Allows you to create a staged rollout of a job.</p>",
       "refs": {
         "CreateJobRequest$jobExecutionsRolloutConfig": "<p>Allows you to create a staged rollout of the job.</p>",
+        "CreateJobTemplateRequest$jobExecutionsRolloutConfig": null,
+        "DescribeJobTemplateResponse$jobExecutionsRolloutConfig": null,
         "Job$jobExecutionsRolloutConfig": "<p>Allows you to create a staged rollout of a job.</p>",
         "UpdateJobRequest$jobExecutionsRolloutConfig": "<p>Allows you to create a staged rollout of the job.</p>"
       }
@@ -3923,6 +3971,39 @@
         "Job$targets": "<p>A list of IoT things and thing groups to which the job should be sent.</p>"
       }
     },
+    "JobTemplateArn": {
+      "base": null,
+      "refs": {
+        "CreateJobRequest$jobTemplateArn": "<p>The ARN of the job template used to create the job.</p>",
+        "CreateJobTemplateResponse$jobTemplateArn": "<p>The ARN of the job template.</p>",
+        "DescribeJobTemplateResponse$jobTemplateArn": "<p>The ARN of the job template.</p>",
+        "Job$jobTemplateArn": "<p>The ARN of the job template used to create the job.</p>",
+        "JobTemplateSummary$jobTemplateArn": "<p>The ARN of the job template.</p>"
+      }
+    },
+    "JobTemplateId": {
+      "base": null,
+      "refs": {
+        "CreateJobTemplateRequest$jobTemplateId": "<p>A unique identifier for the job template. We recommend using a UUID. Alpha-numeric characters, \"-\", and \"_\" are valid for use here.</p>",
+        "CreateJobTemplateResponse$jobTemplateId": "<p>The unique identifier of the job template.</p>",
+        "DeleteJobTemplateRequest$jobTemplateId": "<p>The unique identifier of the job template to delete.</p>",
+        "DescribeJobTemplateRequest$jobTemplateId": "<p>The unique identifier of the job template.</p>",
+        "DescribeJobTemplateResponse$jobTemplateId": "<p>The unique identifier of the job template.</p>",
+        "JobTemplateSummary$jobTemplateId": "<p>The unique identifier of the job template.</p>"
+      }
+    },
+    "JobTemplateSummary": {
+      "base": "<p>An object that contains information about the job template.</p>",
+      "refs": {
+        "JobTemplateSummaryList$member": null
+      }
+    },
+    "JobTemplateSummaryList": {
+      "base": null,
+      "refs": {
+        "ListJobTemplatesResponse$jobTemplates": "<p>A list of objects that contain information about the job templates.</p>"
+      }
+    },
     "JsonDocument": {
       "base": null,
       "refs": {
@@ -3977,6 +4058,7 @@
       "refs": {
         "ListJobExecutionsForJobRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListJobExecutionsForThingRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListJobTemplatesRequest$maxResults": "<p>The maximum number of results to return in the list.</p>",
         "ListJobsRequest$maxResults": "<p>The maximum number of results to return per request.</p>"
       }
     },
@@ -4195,6 +4277,16 @@
       }
     },
     "ListJobExecutionsForThingResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobTemplatesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobTemplatesResponse": {
       "base": null,
       "refs": {
       }
@@ -4937,6 +5029,8 @@
         "ListJobExecutionsForJobResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobExecutionsForThingRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobExecutionsForThingResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
+        "ListJobTemplatesRequest$nextToken": "<p>The token to use to return the next set of results in the list.</p>",
+        "ListJobTemplatesResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListJobsRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
         "ListJobsResponse$nextToken": "<p>The token for the next set of results, or <b>null</b> if there are no additional results.</p>",
         "ListMitigationActionsRequest$nextToken": "<p>The token for the next set of results.</p>",
@@ -5326,7 +5420,7 @@
     "PolicyTarget": {
       "base": null,
       "refs": {
-        "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html\">identity</a> to which the policy is attached.</p>",
+        "AttachPolicyRequest$target": "<p>The <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/security-iam.html\">identity</a> to which the policy is attached. For example, a thing group or a certificate.</p>",
         "DetachPolicyRequest$target": "<p>The target from which the policy will be detached.</p>",
         "ListAttachedPoliciesRequest$target": "<p>The group or principal for which the policies will be listed. Valid principals are CertificateArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:cert/<i>certificateId</i>), thingGroupArn (arn:aws:iot:<i>region</i>:<i>accountId</i>:thinggroup/<i>groupName</i>) and CognitoId (<i>region</i>:<i>id</i>).</p>",
         "PolicyTargets$member": null
@@ -5398,6 +5492,8 @@
       "base": "<p>Configuration for pre-signed S3 URLs.</p>",
       "refs": {
         "CreateJobRequest$presignedUrlConfig": "<p>Configuration information for pre-signed S3 URLs.</p>",
+        "CreateJobTemplateRequest$presignedUrlConfig": null,
+        "DescribeJobTemplateResponse$presignedUrlConfig": null,
         "Job$presignedUrlConfig": "<p>Configuration for pre-signed S3 URLs.</p>",
         "UpdateJobRequest$presignedUrlConfig": "<p>Configuration information for pre-signed S3 URLs.</p>"
       }
@@ -6744,6 +6840,7 @@
         "CreateDomainConfigurationRequest$tags": "<p>Metadata which can be used to manage the domain configuration.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
+        "CreateJobTemplateRequest$tags": "<p>Metadata that can be used to manage the job template.</p>",
         "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
         "CreateOTAUpdateRequest$tags": "<p>Metadata which can be used to manage updates.</p>",
         "CreatePolicyRequest$tags": "<p>Metadata which can be used to manage the policy.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
@@ -7253,6 +7350,8 @@
       "base": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
       "refs": {
         "CreateJobRequest$timeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. The timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the time expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
+        "CreateJobTemplateRequest$timeoutConfig": null,
+        "DescribeJobTemplateResponse$timeoutConfig": null,
         "Job$timeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to <code>TIMED_OUT</code>.</p>",
         "UpdateJobRequest$timeoutConfig": "<p>Specifies the amount of time each device has to finish its execution of the job. The timer is started when the job execution status is set to <code>IN_PROGRESS</code>. If the job execution status is not set to another terminal state before the time expires, it will be automatically set to <code>TIMED_OUT</code>. </p>"
       }
@@ -7953,6 +8052,7 @@
         "CertificateConflictException$message": "<p>The message for the exception.</p>",
         "CertificateStateException$message": "<p>The message for the exception.</p>",
         "CertificateValidationException$message": "<p>Additional information about the exception.</p>",
+        "ConflictException$message": null,
         "ConflictingResourceUpdateException$message": "<p>The message for the exception.</p>",
         "DeleteConflictException$message": "<p>The message for the exception.</p>",
         "IndexNotReadyException$message": "<p>The message for the exception.</p>",
