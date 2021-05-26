@@ -202,8 +202,9 @@ func validateOutpostEndpoint(req *request.Request, resource arn.Resource) error 
 	}
 
 	// resource configured with FIPS as region is not supported by outposts
-	if resReq.ResourceConfiguredForFIPS() {
-		return s3shared.NewInvalidARNWithFIPSError(resource, nil)
+	if resReq.UseFIPS() {
+		return s3shared.NewFIPSConfigurationError(resource, req.ClientInfo.PartitionID,
+			aws.StringValue(req.Config.Region), nil)
 	}
 
 	// DualStack not supported
