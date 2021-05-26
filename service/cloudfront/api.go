@@ -19869,8 +19869,8 @@ type OriginAccessIdentityConfig struct {
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// An optional comment to describe the origin access identity. The comment cannot
-	// be longer than 128 characters.
+	// A comment to describe the origin access identity. The comment cannot be longer
+	// than 128 characters.
 	//
 	// Comment is a required field
 	Comment *string `type:"string" required:"true"`

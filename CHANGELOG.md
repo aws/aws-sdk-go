@@ -1,3 +1,18 @@
+Release v1.38.48 (2021-05-26)
+===
+
+### Service Client Updates
+* `service/acm-pca`: Updates service API and documentation
+* `service/cloudfront`: Updates service documentation
+  * Documentation fix for CloudFront
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds resource ids and tagging support for VPC security group rules.
+* `service/ecs`: Updates service API and documentation
+  * The release adds support for registering External instances to your Amazon ECS clusters.
+* `service/mwaa`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+* `service/qldb`: Updates service API and documentation
+
 Release v1.38.47 (2021-05-25)
 ===
 

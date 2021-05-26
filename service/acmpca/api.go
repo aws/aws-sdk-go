@@ -3571,11 +3571,11 @@ type CreateCertificateAuthorityInput struct {
 	//
 	// Default: FIPS_140_2_LEVEL_3_OR_HIGHER
 	//
-	// Note: AWS Region ap-northeast-3 supports only FIPS_140_2_LEVEL_2_OR_HIGHER.
-	// You must explicitly specify this parameter and value when creating a CA in
-	// that Region. Specifying a different value (or no value) results in an InvalidArgsException
-	// with the message "A certificate authority cannot be created in this region
-	// with the specified security standard."
+	// Note: FIPS_140_2_LEVEL_3_OR_HIGHER is not supported in Region ap-northeast-3.
+	// When creating a CA in the ap-northeast-3, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER
+	// as the argument for KeyStorageSecurityStandard. Failure to do this results
+	// in an InvalidArgsException with the message, "A certificate authority cannot
+	// be created in this region with the specified security standard."
 	KeyStorageSecurityStandard *string `type:"string" enum:"KeyStorageSecurityStandard"`
 
 	// Contains a Boolean value that you can use to enable a certification revocation
@@ -3888,9 +3888,26 @@ type CrlConfiguration struct {
 	// for the CustomCname argument, the name of your S3 bucket is placed into the
 	// CRL Distribution Points extension of the issued certificate. You can change
 	// the name of your bucket by calling the UpdateCertificateAuthority (https://docs.aws.amazon.com/acm-pca/latest/APIReference/API_UpdateCertificateAuthority.html)
-	// action. You must specify a bucket policy that allows ACM Private CA to write
-	// the CRL to your bucket.
+	// action. You must specify a bucket policy (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#s3-policies)
+	// that allows ACM Private CA to write the CRL to your bucket.
 	S3BucketName *string `min:"3" type:"string"`
+
+	// Determines whether the CRL will be publicly readable or privately held in
+	// the CRL Amazon S3 bucket. If you choose PUBLIC_READ, the CRL will be accessible
+	// over the public internet. If you choose BUCKET_OWNER_FULL_CONTROL, only the
+	// owner of the CRL S3 bucket can access the CRL, and your PKI clients may need
+	// an alternative method of access.
+	//
+	// If no value is specified, the default is PUBLIC_READ.
+	//
+	// Note: This default can cause CA creation to fail in some circumstances. If
+	// you have have enabled the Block Public Access (BPA) feature in your S3 account,
+	// then you must specify the value of this parameter as BUCKET_OWNER_FULL_CONTROL,
+	// and not doing so results in an error. If you have disabled BPA in S3, then
+	// you can specify either BUCKET_OWNER_FULL_CONTROL or PUBLIC_READ as the value.
+	//
+	// For more information, see Blocking public access to the S3 bucket (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaCreateCa.html#s3-bpa).
+	S3ObjectAcl *string `type:"string" enum:"S3ObjectAcl"`
 }
 
 // String returns the string representation
@@ -3943,6 +3960,12 @@ func (s *CrlConfiguration) SetExpirationInDays(v int64) *CrlConfiguration {
 // SetS3BucketName sets the S3BucketName field's value.
 func (s *CrlConfiguration) SetS3BucketName(v string) *CrlConfiguration {
 	s.S3BucketName = &v
+	return s
+}
+
+// SetS3ObjectAcl sets the S3ObjectAcl field's value.
+func (s *CrlConfiguration) SetS3ObjectAcl(v string) *CrlConfiguration {
+	s.S3ObjectAcl = &v
 	return s
 }
 
@@ -8010,6 +8033,22 @@ func RevocationReason_Values() []string {
 		RevocationReasonCessationOfOperation,
 		RevocationReasonPrivilegeWithdrawn,
 		RevocationReasonAACompromise,
+	}
+}
+
+const (
+	// S3ObjectAclPublicRead is a S3ObjectAcl enum value
+	S3ObjectAclPublicRead = "PUBLIC_READ"
+
+	// S3ObjectAclBucketOwnerFullControl is a S3ObjectAcl enum value
+	S3ObjectAclBucketOwnerFullControl = "BUCKET_OWNER_FULL_CONTROL"
+)
+
+// S3ObjectAcl_Values returns all elements of the S3ObjectAcl enum
+func S3ObjectAcl_Values() []string {
+	return []string{
+		S3ObjectAclPublicRead,
+		S3ObjectAclBucketOwnerFullControl,
 	}
 }
 

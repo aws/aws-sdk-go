@@ -23,6 +23,7 @@
       "output":{"shape":"CreateOutpostOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
@@ -39,6 +40,7 @@
       "output":{"shape":"DeleteOutpostOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -54,6 +56,7 @@
       "output":{"shape":"DeleteSiteOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -172,7 +175,8 @@
     "AccountId":{
       "type":"string",
       "max":12,
-      "min":12
+      "min":12,
+      "pattern":"\\d{12}"
     },
     "Arn":{
       "type":"string",
@@ -183,13 +187,23 @@
       "type":"string",
       "max":1000,
       "min":1,
-      "pattern":"[a-z\\d-]+"
+      "pattern":"^([a-zA-Z]+-){1,3}([a-zA-Z]+)?(\\d+[a-zA-Z]?)?$"
     },
     "AvailabilityZoneId":{
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"[a-z]+[0-9]+-az[0-9]+"
+      "pattern":"^[a-zA-Z]+\\d-[a-zA-Z]+\\d$"
+    },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"},
+        "ResourceId":{"shape":"String"},
+        "ResourceType":{"shape":"ResourceType"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "CreateOutpostInput":{
       "type":"structure",
@@ -404,7 +418,8 @@
         "LifeCycleStatus":{"shape":"LifeCycleStatus"},
         "AvailabilityZone":{"shape":"AvailabilityZone"},
         "AvailabilityZoneId":{"shape":"AvailabilityZoneId"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "SiteArn":{"shape":"SiteArn"}
       }
     },
     "OutpostArn":{
@@ -416,8 +431,8 @@
     "OutpostDescription":{
       "type":"string",
       "max":1000,
-      "min":1,
-      "pattern":"^[\\S ]+$"
+      "min":0,
+      "pattern":"^[\\S ]*$"
     },
     "OutpostId":{
       "type":"string",
@@ -437,6 +452,10 @@
       "min":12,
       "pattern":"\\d{12}"
     },
+    "ResourceType":{
+      "type":"string",
+      "enum":["OUTPOST"]
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -452,12 +471,19 @@
         "AccountId":{"shape":"AccountId"},
         "Name":{"shape":"SiteName"},
         "Description":{"shape":"SiteDescription"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "SiteArn":{"shape":"SiteArn"}
       }
+    },
+    "SiteArn":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:site/(os-[a-f0-9]{17})$"
     },
     "SiteDescription":{
       "type":"string",
-      "max":1000,
+      "max":1001,
       "min":1,
       "pattern":"^[\\S ]+$"
     },
@@ -465,13 +491,19 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"os-[a-f0-9]{17}"
+      "pattern":"^(arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:site/)?(os-[a-f0-9]{17})$"
     },
     "SiteName":{
       "type":"string",
       "max":1000,
       "min":1,
       "pattern":"^[\\S ]+$"
+    },
+    "String":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^[\\S \\n]+$"
     },
     "TagKey":{
       "type":"string",
@@ -521,7 +553,7 @@
       "type":"string",
       "max":1005,
       "min":1,
-      "pattern":".*\\S.*"
+      "pattern":"^(\\d+)##(\\S+)$"
     },
     "UntagResourceRequest":{
       "type":"structure",

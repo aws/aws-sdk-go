@@ -256,6 +256,19 @@
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"}
       ]
+    },
+    "UpdateLedgerPermissionsMode":{
+      "name":"UpdateLedgerPermissionsMode",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/ledgers/{name}/permissions-mode"
+      },
+      "input":{"shape":"UpdateLedgerPermissionsModeRequest"},
+      "output":{"shape":"UpdateLedgerPermissionsModeResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -310,6 +323,7 @@
         "Arn":{"shape":"Arn"},
         "State":{"shape":"LedgerState"},
         "CreationDateTime":{"shape":"Timestamp"},
+        "PermissionsMode":{"shape":"PermissionsMode"},
         "DeletionProtection":{"shape":"DeletionProtection"}
       }
     },
@@ -394,6 +408,7 @@
         "Arn":{"shape":"Arn"},
         "State":{"shape":"LedgerState"},
         "CreationDateTime":{"shape":"Timestamp"},
+        "PermissionsMode":{"shape":"PermissionsMode"},
         "DeletionProtection":{"shape":"DeletionProtection"}
       }
     },
@@ -763,7 +778,10 @@
     "ParameterName":{"type":"string"},
     "PermissionsMode":{
       "type":"string",
-      "enum":["ALLOW_ALL"]
+      "enum":[
+        "ALLOW_ALL",
+        "STANDARD"
+      ]
     },
     "ResourceAlreadyExistsException":{
       "type":"structure",
@@ -964,6 +982,29 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateLedgerPermissionsModeRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "PermissionsMode"
+      ],
+      "members":{
+        "Name":{
+          "shape":"LedgerName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "PermissionsMode":{"shape":"PermissionsMode"}
+      }
+    },
+    "UpdateLedgerPermissionsModeResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"LedgerName"},
+        "Arn":{"shape":"Arn"},
+        "PermissionsMode":{"shape":"PermissionsMode"}
       }
     },
     "UpdateLedgerRequest":{

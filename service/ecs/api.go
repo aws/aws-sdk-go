@@ -2857,7 +2857,8 @@ func (c *ECS) ListServicesRequest(input *ListServicesInput) (req *request.Reques
 
 // ListServices API operation for Amazon EC2 Container Service.
 //
-// Lists the services that are running in a specified cluster.
+// Returns a list of services. You can filter the results by cluster, launch
+// type, and scheduling strategy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3399,9 +3400,9 @@ func (c *ECS) ListTasksRequest(input *ListTasksInput) (req *request.Request, out
 
 // ListTasks API operation for Amazon EC2 Container Service.
 //
-// Returns a list of tasks for a specified cluster. You can filter the results
-// by family name, by a particular container instance, or by the desired status
-// of the task with the family, containerInstance, and desiredStatus parameters.
+// Returns a list of tasks. You can filter the results by cluster, task definition
+// family, container instance, launch type, what IAM principal started the task,
+// or by the desired status of the task.
 //
 // Recently stopped tasks might appear in the returned results. Currently, stopped
 // tasks appear in the returned results for at least one hour.
@@ -9285,19 +9286,26 @@ type CreateServiceInput struct {
 	// come up.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
-	// The launch type on which to run your service. The accepted values are FARGATE
-	// and EC2. For more information, see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// The infrastructure on which to run your service. For more information, see
+	// Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
-	// When a value of FARGATE is specified, your tasks are launched on AWS Fargate
-	// On-Demand infrastructure. To use Fargate Spot, you must use a capacity provider
-	// strategy with the FARGATE_SPOT capacity provider.
+	// The FARGATE launch type runs your tasks on AWS Fargate On-Demand infrastructure.
 	//
-	// When a value of EC2 is specified, your tasks are launched on Amazon EC2 instances
-	// registered to your cluster.
+	// Fargate Spot infrastructure is available for use but a capacity provider
+	// strategy must be used. For more information, see AWS Fargate capacity providers
+	// (https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html)
+	// in the Amazon ECS User Guide for AWS Fargate.
 	//
-	// If a launchType is specified, the capacityProviderStrategy parameter must
-	// be omitted.
+	// The EC2 launch type runs your tasks on Amazon EC2 instances registered to
+	// your cluster.
+	//
+	// The EXTERNAL launch type runs your tasks on your on-premise server or virtual
+	// machine (VM) capacity registered to your cluster.
+	//
+	// A service can use either a launch type or a capacity provider strategy. If
+	// a launchType is specified, the capacityProviderStrategy parameter must be
+	// omitted.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
 	// A load balancer object representing the load balancers to use with your service.
@@ -13849,12 +13857,12 @@ func (s *ListContainerInstancesOutput) SetNextToken(v string) *ListContainerInst
 type ListServicesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
-	// the services to list. If you do not specify a cluster, the default cluster
-	// is assumed.
+	// The short name or full Amazon Resource Name (ARN) of the cluster to use when
+	// filtering the ListServices results. If you do not specify a cluster, the
+	// default cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// The launch type for the services to list.
+	// The launch type to use when filtering the ListServices results.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
 	// The maximum number of service results returned by ListServices in paginated
@@ -13875,7 +13883,7 @@ type ListServicesInput struct {
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The scheduling strategy for services to list.
+	// The scheduling strategy to use when filtering the ListServices results.
 	SchedulingStrategy *string `locationName:"schedulingStrategy" type:"string" enum:"SchedulingStrategy"`
 }
 
@@ -14246,17 +14254,17 @@ func (s *ListTaskDefinitionsOutput) SetTaskDefinitionArns(v []*string) *ListTask
 type ListTasksInput struct {
 	_ struct{} `type:"structure"`
 
-	// The short name or full Amazon Resource Name (ARN) of the cluster that hosts
-	// the tasks to list. If you do not specify a cluster, the default cluster is
-	// assumed.
+	// The short name or full Amazon Resource Name (ARN) of the cluster to use when
+	// filtering the ListTasks results. If you do not specify a cluster, the default
+	// cluster is assumed.
 	Cluster *string `locationName:"cluster" type:"string"`
 
-	// The container instance ID or full ARN of the container instance with which
-	// to filter the ListTasks results. Specifying a containerInstance limits the
+	// The container instance ID or full ARN of the container instance to use when
+	// filtering the ListTasks results. Specifying a containerInstance limits the
 	// results to tasks that belong to that container instance.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 
-	// The task desired status with which to filter the ListTasks results. Specifying
+	// The task desired status to use when filtering the ListTasks results. Specifying
 	// a desiredStatus of STOPPED limits the results to tasks that Amazon ECS has
 	// set the desired status to STOPPED. This can be useful for debugging tasks
 	// that are not starting properly or have died or finished. The default status
@@ -14268,11 +14276,12 @@ type ListTasksInput struct {
 	// a task to that value (only a task's lastStatus may have a value of PENDING).
 	DesiredStatus *string `locationName:"desiredStatus" type:"string" enum:"DesiredStatus"`
 
-	// The name of the family with which to filter the ListTasks results. Specifying
-	// a family limits the results to tasks that belong to that family.
+	// The name of the task definition family to use when filtering the ListTasks
+	// results. Specifying a family limits the results to tasks that belong to that
+	// family.
 	Family *string `locationName:"family" type:"string"`
 
-	// The launch type for services to list.
+	// The launch type to use when filtering the ListTasks results.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
 	// The maximum number of task results returned by ListTasks in paginated output.
@@ -14293,7 +14302,7 @@ type ListTasksInput struct {
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The name of the service with which to filter the ListTasks results. Specifying
+	// The name of the service to use when filtering the ListTasks results. Specifying
 	// a serviceName limits the results to tasks that belong to that service.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 
@@ -16952,19 +16961,25 @@ type RunTaskInput struct {
 	// is the family name of the task definition (for example, family:my-family-name).
 	Group *string `locationName:"group" type:"string"`
 
-	// The launch type on which to run your task. The accepted values are FARGATE
-	// and EC2. For more information, see Amazon ECS Launch Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// The infrastructure on which to run your standalone task. For more information,
+	// see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	//
-	// When a value of FARGATE is specified, your tasks are launched on AWS Fargate
-	// On-Demand infrastructure. To use Fargate Spot, you must use a capacity provider
-	// strategy with the FARGATE_SPOT capacity provider.
+	// The FARGATE launch type runs your tasks on AWS Fargate On-Demand infrastructure.
 	//
-	// When a value of EC2 is specified, your tasks are launched on Amazon EC2 instances
-	// registered to your cluster.
+	// Fargate Spot infrastructure is available for use but a capacity provider
+	// strategy must be used. For more information, see AWS Fargate capacity providers
+	// (https://docs.aws.amazon.com/AmazonECS/latest/userguide/fargate-capacity-providers.html)
+	// in the Amazon ECS User Guide for AWS Fargate.
 	//
-	// If a launchType is specified, the capacityProviderStrategy parameter must
-	// be omitted.
+	// The EC2 launch type runs your tasks on Amazon EC2 instances registered to
+	// your cluster.
+	//
+	// The EXTERNAL launch type runs your tasks on your on-premise server or virtual
+	// machine (VM) capacity registered to your cluster.
+	//
+	// A task can use either a launch type or a capacity provider strategy. If a
+	// launchType is specified, the capacityProviderStrategy parameter must be omitted.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
 	// The network configuration for the task. This parameter is required for task
@@ -17461,9 +17476,8 @@ type Service struct {
 	// started.
 	HealthCheckGracePeriodSeconds *int64 `locationName:"healthCheckGracePeriodSeconds" type:"integer"`
 
-	// The launch type on which your service is running. If no value is specified,
-	// it will default to EC2. Valid values include EC2 and FARGATE. For more information,
-	// see Amazon ECS Launch Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// The infrastructure on which your service is running. For more information,
+	// see Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
@@ -19203,8 +19217,8 @@ type Task struct {
 	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-lifecycle.html).
 	LastStatus *string `locationName:"lastStatus" type:"string"`
 
-	// The launch type on which your task is running. For more information, see
-	// Amazon ECS Launch Types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
+	// The infrastructure on which your task is running. For more information, see
+	// Amazon ECS launch types (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/launch_types.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	LaunchType *string `locationName:"launchType" type:"string" enum:"LaunchType"`
 
@@ -21981,6 +21995,9 @@ const (
 
 	// CompatibilityFargate is a Compatibility enum value
 	CompatibilityFargate = "FARGATE"
+
+	// CompatibilityExternal is a Compatibility enum value
+	CompatibilityExternal = "EXTERNAL"
 )
 
 // Compatibility_Values returns all elements of the Compatibility enum
@@ -21988,6 +22005,7 @@ func Compatibility_Values() []string {
 	return []string{
 		CompatibilityEc2,
 		CompatibilityFargate,
+		CompatibilityExternal,
 	}
 }
 
@@ -22277,6 +22295,9 @@ const (
 
 	// LaunchTypeFargate is a LaunchType enum value
 	LaunchTypeFargate = "FARGATE"
+
+	// LaunchTypeExternal is a LaunchType enum value
+	LaunchTypeExternal = "EXTERNAL"
 )
 
 // LaunchType_Values returns all elements of the LaunchType enum
@@ -22284,6 +22305,7 @@ func LaunchType_Values() []string {
 	return []string{
 		LaunchTypeEc2,
 		LaunchTypeFargate,
+		LaunchTypeExternal,
 	}
 }
 
