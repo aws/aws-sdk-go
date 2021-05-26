@@ -277,6 +277,7 @@
         "PluginsS3Path":{"shape":"RelativePath"},
         "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
         "RequirementsS3Path":{"shape":"RelativePath"},
+        "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
         "Tags":{"shape":"TagMap"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
@@ -364,6 +365,7 @@
         "PluginsS3Path":{"shape":"RelativePath"},
         "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
         "RequirementsS3Path":{"shape":"RelativePath"},
+        "Schedulers":{"shape":"Schedulers"},
         "ServiceRoleArn":{"shape":"IamRoleArn"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
         "Status":{"shape":"EnvironmentStatus"},
@@ -658,6 +660,11 @@
       "max":1024,
       "min":1
     },
+    "Schedulers":{
+      "type":"integer",
+      "box":true,
+      "max":5
+    },
     "SecurityGroupId":{
       "type":"string",
       "max":1024,
@@ -837,6 +844,7 @@
         "PluginsS3Path":{"shape":"RelativePath"},
         "RequirementsS3ObjectVersion":{"shape":"S3ObjectVersion"},
         "RequirementsS3Path":{"shape":"RelativePath"},
+        "Schedulers":{"shape":"Schedulers"},
         "SourceBucketArn":{"shape":"S3BucketArn"},
         "WebserverAccessMode":{"shape":"WebserverAccessMode"},
         "WeeklyMaintenanceWindowStart":{"shape":"WeeklyMaintenanceWindowStart"}

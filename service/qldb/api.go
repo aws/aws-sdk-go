@@ -1891,6 +1891,88 @@ func (c *QLDB) UpdateLedgerWithContext(ctx aws.Context, input *UpdateLedgerInput
 	return out, req.Send()
 }
 
+const opUpdateLedgerPermissionsMode = "UpdateLedgerPermissionsMode"
+
+// UpdateLedgerPermissionsModeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLedgerPermissionsMode operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLedgerPermissionsMode for more information on using the UpdateLedgerPermissionsMode
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLedgerPermissionsModeRequest method.
+//    req, resp := client.UpdateLedgerPermissionsModeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qldb-2019-01-02/UpdateLedgerPermissionsMode
+func (c *QLDB) UpdateLedgerPermissionsModeRequest(input *UpdateLedgerPermissionsModeInput) (req *request.Request, output *UpdateLedgerPermissionsModeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLedgerPermissionsMode,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/ledgers/{name}/permissions-mode",
+	}
+
+	if input == nil {
+		input = &UpdateLedgerPermissionsModeInput{}
+	}
+
+	output = &UpdateLedgerPermissionsModeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateLedgerPermissionsMode API operation for Amazon QLDB.
+//
+// Updates the permissions mode of a ledger.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QLDB's
+// API operation UpdateLedgerPermissionsMode for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more parameters in the request aren't valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/qldb-2019-01-02/UpdateLedgerPermissionsMode
+func (c *QLDB) UpdateLedgerPermissionsMode(input *UpdateLedgerPermissionsModeInput) (*UpdateLedgerPermissionsModeOutput, error) {
+	req, out := c.UpdateLedgerPermissionsModeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLedgerPermissionsModeWithContext is the same as UpdateLedgerPermissionsMode with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLedgerPermissionsMode for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QLDB) UpdateLedgerPermissionsModeWithContext(ctx aws.Context, input *UpdateLedgerPermissionsModeInput, opts ...request.Option) (*UpdateLedgerPermissionsModeOutput, error) {
+	req, out := c.UpdateLedgerPermissionsModeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 type CancelJournalKinesisStreamInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1995,7 +2077,24 @@ type CreateLedgerInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The permissions mode to assign to the ledger that you want to create.
+	// The permissions mode to assign to the ledger that you want to create. This
+	// parameter can have one of the following values:
+	//
+	//    * ALLOW_ALL: A legacy permissions mode that enables access control with
+	//    API-level granularity for ledgers. This mode allows users who have SendCommand
+	//    permissions for this ledger to run all PartiQL commands (hence, ALLOW_ALL)
+	//    on any tables in the specified ledger. This mode disregards any table-level
+	//    or command-level IAM permissions policies that you create for the ledger.
+	//
+	//    * STANDARD: (Recommended) A permissions mode that enables access control
+	//    with finer granularity for ledgers, tables, and PartiQL commands. By default,
+	//    this mode denies all user requests to run any PartiQL commands on any
+	//    tables in this ledger. To allow PartiQL commands to run, you must create
+	//    IAM permissions policies for specific table resources and PartiQL actions,
+	//    in addition to SendCommand API permissions for the ledger.
+	//
+	// We strongly recommend using the STANDARD permissions mode to maximize the
+	// security of your ledger data.
 	//
 	// PermissionsMode is a required field
 	PermissionsMode *string `type:"string" required:"true" enum:"PermissionsMode"`
@@ -2082,6 +2181,9 @@ type CreateLedgerOutput struct {
 	// The name of the ledger.
 	Name *string `min:"1" type:"string"`
 
+	// The permissions mode of the ledger that you created.
+	PermissionsMode *string `type:"string" enum:"PermissionsMode"`
+
 	// The current status of the ledger.
 	State *string `type:"string" enum:"LedgerState"`
 }
@@ -2117,6 +2219,12 @@ func (s *CreateLedgerOutput) SetDeletionProtection(v bool) *CreateLedgerOutput {
 // SetName sets the Name field's value.
 func (s *CreateLedgerOutput) SetName(v string) *CreateLedgerOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPermissionsMode sets the PermissionsMode field's value.
+func (s *CreateLedgerOutput) SetPermissionsMode(v string) *CreateLedgerOutput {
+	s.PermissionsMode = &v
 	return s
 }
 
@@ -2412,6 +2520,9 @@ type DescribeLedgerOutput struct {
 	// The name of the ledger.
 	Name *string `min:"1" type:"string"`
 
+	// The permissions mode of the ledger.
+	PermissionsMode *string `type:"string" enum:"PermissionsMode"`
+
 	// The current status of the ledger.
 	State *string `type:"string" enum:"LedgerState"`
 }
@@ -2447,6 +2558,12 @@ func (s *DescribeLedgerOutput) SetDeletionProtection(v bool) *DescribeLedgerOutp
 // SetName sets the Name field's value.
 func (s *DescribeLedgerOutput) SetName(v string) *DescribeLedgerOutput {
 	s.Name = &v
+	return s
+}
+
+// SetPermissionsMode sets the PermissionsMode field's value.
+func (s *DescribeLedgerOutput) SetPermissionsMode(v string) *DescribeLedgerOutput {
+	s.PermissionsMode = &v
 	return s
 }
 
@@ -4714,6 +4831,119 @@ func (s *UpdateLedgerOutput) SetState(v string) *UpdateLedgerOutput {
 	return s
 }
 
+type UpdateLedgerPermissionsModeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the ledger.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The permissions mode to assign to the ledger. This parameter can have one
+	// of the following values:
+	//
+	//    * ALLOW_ALL: A legacy permissions mode that enables access control with
+	//    API-level granularity for ledgers. This mode allows users who have SendCommand
+	//    permissions for this ledger to run all PartiQL commands (hence, ALLOW_ALL)
+	//    on any tables in the specified ledger. This mode disregards any table-level
+	//    or command-level IAM permissions policies that you create for the ledger.
+	//
+	//    * STANDARD: (Recommended) A permissions mode that enables access control
+	//    with finer granularity for ledgers, tables, and PartiQL commands. By default,
+	//    this mode denies all user requests to run any PartiQL commands on any
+	//    tables in this ledger. To allow PartiQL commands to run, you must create
+	//    IAM permissions policies for specific table resources and PartiQL actions,
+	//    in addition to SendCommand API permissions for the ledger.
+	//
+	// We strongly recommend using the STANDARD permissions mode to maximize the
+	// security of your ledger data.
+	//
+	// PermissionsMode is a required field
+	PermissionsMode *string `type:"string" required:"true" enum:"PermissionsMode"`
+}
+
+// String returns the string representation
+func (s UpdateLedgerPermissionsModeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLedgerPermissionsModeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLedgerPermissionsModeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLedgerPermissionsModeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.PermissionsMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("PermissionsMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateLedgerPermissionsModeInput) SetName(v string) *UpdateLedgerPermissionsModeInput {
+	s.Name = &v
+	return s
+}
+
+// SetPermissionsMode sets the PermissionsMode field's value.
+func (s *UpdateLedgerPermissionsModeInput) SetPermissionsMode(v string) *UpdateLedgerPermissionsModeInput {
+	s.PermissionsMode = &v
+	return s
+}
+
+type UpdateLedgerPermissionsModeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the ledger.
+	Arn *string `min:"20" type:"string"`
+
+	// The name of the ledger.
+	Name *string `min:"1" type:"string"`
+
+	// The current permissions mode of the ledger.
+	PermissionsMode *string `type:"string" enum:"PermissionsMode"`
+}
+
+// String returns the string representation
+func (s UpdateLedgerPermissionsModeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLedgerPermissionsModeOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateLedgerPermissionsModeOutput) SetArn(v string) *UpdateLedgerPermissionsModeOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateLedgerPermissionsModeOutput) SetName(v string) *UpdateLedgerPermissionsModeOutput {
+	s.Name = &v
+	return s
+}
+
+// SetPermissionsMode sets the PermissionsMode field's value.
+func (s *UpdateLedgerPermissionsModeOutput) SetPermissionsMode(v string) *UpdateLedgerPermissionsModeOutput {
+	s.PermissionsMode = &v
+	return s
+}
+
 // A structure that can contain a value in multiple encoding formats.
 type ValueHolder struct {
 	_ struct{} `type:"structure" sensitive:"true"`
@@ -4814,12 +5044,16 @@ func LedgerState_Values() []string {
 const (
 	// PermissionsModeAllowAll is a PermissionsMode enum value
 	PermissionsModeAllowAll = "ALLOW_ALL"
+
+	// PermissionsModeStandard is a PermissionsMode enum value
+	PermissionsModeStandard = "STANDARD"
 )
 
 // PermissionsMode_Values returns all elements of the PermissionsMode enum
 func PermissionsMode_Values() []string {
 	return []string{
 		PermissionsModeAllowAll,
+		PermissionsModeStandard,
 	}
 }
 

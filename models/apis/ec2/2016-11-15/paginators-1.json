@@ -374,6 +374,12 @@
       "output_token": "NextToken",
       "result_key": "ScheduledInstanceSet"
     },
+    "DescribeSecurityGroupRules": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "SecurityGroupRules"
+    },
     "DescribeSecurityGroups": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

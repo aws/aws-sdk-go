@@ -69,6 +69,9 @@ func (c *Outposts) CreateOutpostRequest(input *CreateOutpostInput) (req *request
 //   * ValidationException
 //   A parameter is not valid.
 //
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
 //   * NotFoundException
 //   The specified request is not valid.
 //
@@ -161,6 +164,9 @@ func (c *Outposts) DeleteOutpostRequest(input *DeleteOutpostInput) (req *request
 //   * ValidationException
 //   A parameter is not valid.
 //
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
 //   * NotFoundException
 //   The specified request is not valid.
 //
@@ -249,6 +255,9 @@ func (c *Outposts) DeleteSiteRequest(input *DeleteSiteInput) (req *request.Reque
 // Returned Error Types:
 //   * ValidationException
 //   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
 //
 //   * NotFoundException
 //   The specified request is not valid.
@@ -1056,6 +1065,68 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Updating or deleting this resource can cause an inconsistent state.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+
+	// The ID of the resource causing the conflict.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The type of the resource causing the conflict.
+	ResourceType *string `type:"string" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 type CreateOutpostInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1070,7 +1141,7 @@ type CreateOutpostInput struct {
 	AvailabilityZoneId *string `min:"1" type:"string"`
 
 	// The description of the Outpost.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The name of the Outpost.
 	//
@@ -1104,9 +1175,6 @@ func (s *CreateOutpostInput) Validate() error {
 	}
 	if s.AvailabilityZoneId != nil && len(*s.AvailabilityZoneId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneId", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -1853,7 +1921,7 @@ type Outpost struct {
 	AvailabilityZoneId *string `min:"1" type:"string"`
 
 	// The description of the Outpost.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The life cycle status.
 	LifeCycleStatus *string `type:"string"`
@@ -1869,6 +1937,9 @@ type Outpost struct {
 
 	// The AWS account ID of the Outpost owner.
 	OwnerId *string `min:"12" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the site.
+	SiteArn *string `min:"1" type:"string"`
 
 	// The ID of the site.
 	SiteId *string `min:"1" type:"string"`
@@ -1932,6 +2003,12 @@ func (s *Outpost) SetOutpostId(v string) *Outpost {
 // SetOwnerId sets the OwnerId field's value.
 func (s *Outpost) SetOwnerId(v string) *Outpost {
 	s.OwnerId = &v
+	return s
+}
+
+// SetSiteArn sets the SiteArn field's value.
+func (s *Outpost) SetSiteArn(v string) *Outpost {
+	s.SiteArn = &v
 	return s
 }
 
@@ -2016,6 +2093,9 @@ type Site struct {
 	// The name of the site.
 	Name *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the site.
+	SiteArn *string `min:"1" type:"string"`
+
 	// The ID of the site.
 	SiteId *string `min:"1" type:"string"`
 
@@ -2048,6 +2128,12 @@ func (s *Site) SetDescription(v string) *Site {
 // SetName sets the Name field's value.
 func (s *Site) SetName(v string) *Site {
 	s.Name = &v
+	return s
+}
+
+// SetSiteArn sets the SiteArn field's value.
+func (s *Site) SetSiteArn(v string) *Site {
+	s.SiteArn = &v
 	return s
 }
 
@@ -2261,4 +2347,16 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ResourceTypeOutpost is a ResourceType enum value
+	ResourceTypeOutpost = "OUTPOST"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeOutpost,
+	}
 }

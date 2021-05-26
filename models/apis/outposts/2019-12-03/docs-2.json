@@ -47,6 +47,11 @@
         "Outpost$AvailabilityZoneId": null
       }
     },
+    "ConflictException": {
+      "base": "<p>Updating or deleting this resource can cause an inconsistent state.</p>",
+      "refs": {
+      }
+    },
     "CreateOutpostInput": {
       "base": null,
       "refs": {
@@ -81,6 +86,7 @@
       "base": null,
       "refs": {
         "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
         "InternalServerException$Message": null,
         "NotFoundException$Message": null,
         "ServiceQuotaExceededException$Message": null,
@@ -224,6 +230,12 @@
         "Outpost$OwnerId": null
       }
     },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ConflictException$ResourceType": "<p>The type of the resource causing the conflict.</p>"
+      }
+    },
     "ServiceQuotaExceededException": {
       "base": "<p>You have exceeded a service quota.</p>",
       "refs": {
@@ -233,6 +245,13 @@
       "base": "<p>Information about a site.</p>",
       "refs": {
         "siteListDefinition$member": null
+      }
+    },
+    "SiteArn": {
+      "base": "<p>The Amazon Resource Name (ARN) of the site.</p>",
+      "refs": {
+        "Outpost$SiteArn": null,
+        "Site$SiteArn": null
       }
     },
     "SiteDescription": {
@@ -254,6 +273,12 @@
       "base": "<p>The name of the site.</p>",
       "refs": {
         "Site$Name": null
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ConflictException$ResourceId": "<p>The ID of the resource causing the conflict.</p>"
       }
     },
     "TagKey": {

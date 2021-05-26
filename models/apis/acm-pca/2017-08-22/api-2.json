@@ -649,7 +649,8 @@
           "box":true
         },
         "CustomCname":{"shape":"String253"},
-        "S3BucketName":{"shape":"String3To255"}
+        "S3BucketName":{"shape":"String3To255"},
+        "S3ObjectAcl":{"shape":"S3ObjectAcl"}
       }
     },
     "CsrBlob":{
@@ -1250,6 +1251,13 @@
     "S3Key":{
       "type":"string",
       "max":1024
+    },
+    "S3ObjectAcl":{
+      "type":"string",
+      "enum":[
+        "PUBLIC_READ",
+        "BUCKET_OWNER_FULL_CONTROL"
+      ]
     },
     "SigningAlgorithm":{
       "type":"string",

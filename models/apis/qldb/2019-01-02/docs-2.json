@@ -20,7 +20,8 @@
     "StreamJournalToKinesis": "<p>Creates a journal stream for a given Amazon QLDB ledger. The stream captures every document revision that is committed to the ledger's journal and delivers the data to a specified Amazon Kinesis Data Streams resource.</p>",
     "TagResource": "<p>Adds one or more tags to a specified Amazon QLDB resource.</p> <p>A resource can have up to 50 tags. If you try to create more than 50 tags for a resource, your request fails and returns an error.</p>",
     "UntagResource": "<p>Removes one or more tags from a specified Amazon QLDB resource. You can specify up to 50 tag keys to remove.</p>",
-    "UpdateLedger": "<p>Updates properties on a ledger.</p>"
+    "UpdateLedger": "<p>Updates properties on a ledger.</p>",
+    "UpdateLedgerPermissionsMode": "<p>Updates the permissions mode of a ledger.</p>"
   },
   "shapes": {
     "Arn": {
@@ -38,6 +39,7 @@
         "StreamJournalToKinesisRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that grants QLDB permissions for a journal stream to write data records to a Kinesis Data Streams resource.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) to which you want to add the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) from which you want to remove the tags. For example:</p> <p> <code>arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger</code> </p>",
+        "UpdateLedgerPermissionsModeResponse$Arn": "<p>The Amazon Resource Name (ARN) for the ledger.</p>",
         "UpdateLedgerResponse$Arn": "<p>The Amazon Resource Name (ARN) for the ledger.</p>"
       }
     },
@@ -253,6 +255,8 @@
         "ListJournalKinesisStreamsForLedgerRequest$LedgerName": "<p>The name of the ledger.</p>",
         "ListJournalS3ExportsForLedgerRequest$Name": "<p>The name of the ledger.</p>",
         "StreamJournalToKinesisRequest$LedgerName": "<p>The name of the ledger.</p>",
+        "UpdateLedgerPermissionsModeRequest$Name": "<p>The name of the ledger.</p>",
+        "UpdateLedgerPermissionsModeResponse$Name": "<p>The name of the ledger.</p>",
         "UpdateLedgerRequest$Name": "<p>The name of the ledger.</p>",
         "UpdateLedgerResponse$Name": "<p>The name of the ledger.</p>"
       }
@@ -358,7 +362,11 @@
     "PermissionsMode": {
       "base": null,
       "refs": {
-        "CreateLedgerRequest$PermissionsMode": "<p>The permissions mode to assign to the ledger that you want to create.</p>"
+        "CreateLedgerRequest$PermissionsMode": "<p>The permissions mode to assign to the ledger that you want to create. This parameter can have one of the following values:</p> <ul> <li> <p> <code>ALLOW_ALL</code>: A legacy permissions mode that enables access control with API-level granularity for ledgers.</p> <p>This mode allows users who have <code>SendCommand</code> permissions for this ledger to run all PartiQL commands (hence, <code>ALLOW_ALL</code>) on any tables in the specified ledger. This mode disregards any table-level or command-level IAM permissions policies that you create for the ledger.</p> </li> <li> <p> <code>STANDARD</code>: (<i>Recommended</i>) A permissions mode that enables access control with finer granularity for ledgers, tables, and PartiQL commands.</p> <p>By default, this mode denies all user requests to run any PartiQL commands on any tables in this ledger. To allow PartiQL commands to run, you must create IAM permissions policies for specific table resources and PartiQL actions, in addition to <code>SendCommand</code> API permissions for the ledger.</p> </li> </ul> <note> <p>We strongly recommend using the <code>STANDARD</code> permissions mode to maximize the security of your ledger data.</p> </note>",
+        "CreateLedgerResponse$PermissionsMode": "<p>The permissions mode of the ledger that you created.</p>",
+        "DescribeLedgerResponse$PermissionsMode": "<p>The permissions mode of the ledger.</p>",
+        "UpdateLedgerPermissionsModeRequest$PermissionsMode": "<p>The permissions mode to assign to the ledger. This parameter can have one of the following values:</p> <ul> <li> <p> <code>ALLOW_ALL</code>: A legacy permissions mode that enables access control with API-level granularity for ledgers.</p> <p>This mode allows users who have <code>SendCommand</code> permissions for this ledger to run all PartiQL commands (hence, <code>ALLOW_ALL</code>) on any tables in the specified ledger. This mode disregards any table-level or command-level IAM permissions policies that you create for the ledger.</p> </li> <li> <p> <code>STANDARD</code>: (<i>Recommended</i>) A permissions mode that enables access control with finer granularity for ledgers, tables, and PartiQL commands.</p> <p>By default, this mode denies all user requests to run any PartiQL commands on any tables in this ledger. To allow PartiQL commands to run, you must create IAM permissions policies for specific table resources and PartiQL actions, in addition to <code>SendCommand</code> API permissions for the ledger.</p> </li> </ul> <note> <p>We strongly recommend using the <code>STANDARD</code> permissions mode to maximize the security of your ledger data.</p> </note>",
+        "UpdateLedgerPermissionsModeResponse$PermissionsMode": "<p>The current permissions mode of the ledger.</p>"
       }
     },
     "ResourceAlreadyExistsException": {
@@ -531,6 +539,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLedgerPermissionsModeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateLedgerPermissionsModeResponse": {
       "base": null,
       "refs": {
       }

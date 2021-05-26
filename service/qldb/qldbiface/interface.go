@@ -147,6 +147,10 @@ type QLDBAPI interface {
 	UpdateLedger(*qldb.UpdateLedgerInput) (*qldb.UpdateLedgerOutput, error)
 	UpdateLedgerWithContext(aws.Context, *qldb.UpdateLedgerInput, ...request.Option) (*qldb.UpdateLedgerOutput, error)
 	UpdateLedgerRequest(*qldb.UpdateLedgerInput) (*request.Request, *qldb.UpdateLedgerOutput)
+
+	UpdateLedgerPermissionsMode(*qldb.UpdateLedgerPermissionsModeInput) (*qldb.UpdateLedgerPermissionsModeOutput, error)
+	UpdateLedgerPermissionsModeWithContext(aws.Context, *qldb.UpdateLedgerPermissionsModeInput, ...request.Option) (*qldb.UpdateLedgerPermissionsModeOutput, error)
+	UpdateLedgerPermissionsModeRequest(*qldb.UpdateLedgerPermissionsModeInput) (*request.Request, *qldb.UpdateLedgerPermissionsModeOutput)
 }
 
 var _ QLDBAPI = (*qldb.QLDB)(nil)
