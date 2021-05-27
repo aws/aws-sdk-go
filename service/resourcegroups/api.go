@@ -787,6 +787,12 @@ func (c *ResourceGroups) ListGroupResourcesRequest(input *ListGroupResourcesInpu
 //
 //    * resource-groups:ListGroupResources
 //
+//    * cloudformation:DescribeStacks
+//
+//    * cloudformation:ListStackResources
+//
+//    * tag:GetResources
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1211,6 +1217,12 @@ func (c *ResourceGroups) SearchResourcesRequest(input *SearchResourcesInput) (re
 // To run this command, you must have the following permissions:
 //
 //    * resource-groups:SearchResources
+//
+//    * cloudformation:DescribeStacks
+//
+//    * cloudformation:ListStackResources
+//
+//    * tag:GetResources
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about

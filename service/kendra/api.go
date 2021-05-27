@@ -206,6 +206,101 @@ func (c *Kendra) BatchPutDocumentWithContext(ctx aws.Context, input *BatchPutDoc
 	return out, req.Send()
 }
 
+const opClearQuerySuggestions = "ClearQuerySuggestions"
+
+// ClearQuerySuggestionsRequest generates a "aws/request.Request" representing the
+// client's request for the ClearQuerySuggestions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ClearQuerySuggestions for more information on using the ClearQuerySuggestions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ClearQuerySuggestionsRequest method.
+//    req, resp := client.ClearQuerySuggestionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ClearQuerySuggestions
+func (c *Kendra) ClearQuerySuggestionsRequest(input *ClearQuerySuggestionsInput) (req *request.Request, output *ClearQuerySuggestionsOutput) {
+	op := &request.Operation{
+		Name:       opClearQuerySuggestions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ClearQuerySuggestionsInput{}
+	}
+
+	output = &ClearQuerySuggestionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ClearQuerySuggestions API operation for AWSKendraFrontendService.
+//
+// Clears existing query suggestions from an index.
+//
+// This deletes existing suggestions only, not the queries in the query log.
+// After you clear suggestions, Amazon Kendra learns new suggestions based on
+// new queries added to the query log from the time you cleared suggestions.
+// If you do not see any new suggestions, then please allow Amazon Kendra to
+// collect enough queries to learn new suggestions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ClearQuerySuggestions for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * ConflictException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ClearQuerySuggestions
+func (c *Kendra) ClearQuerySuggestions(input *ClearQuerySuggestionsInput) (*ClearQuerySuggestionsOutput, error) {
+	req, out := c.ClearQuerySuggestionsRequest(input)
+	return out, req.Send()
+}
+
+// ClearQuerySuggestionsWithContext is the same as ClearQuerySuggestions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ClearQuerySuggestions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ClearQuerySuggestionsWithContext(ctx aws.Context, input *ClearQuerySuggestionsInput, opts ...request.Option) (*ClearQuerySuggestionsOutput, error) {
+	req, out := c.ClearQuerySuggestionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDataSource = "CreateDataSource"
 
 // CreateDataSourceRequest generates a "aws/request.Request" representing the
@@ -486,6 +581,106 @@ func (c *Kendra) CreateIndex(input *CreateIndexInput) (*CreateIndexOutput, error
 // for more information on using Contexts.
 func (c *Kendra) CreateIndexWithContext(ctx aws.Context, input *CreateIndexInput, opts ...request.Option) (*CreateIndexOutput, error) {
 	req, out := c.CreateIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateQuerySuggestionsBlockList = "CreateQuerySuggestionsBlockList"
+
+// CreateQuerySuggestionsBlockListRequest generates a "aws/request.Request" representing the
+// client's request for the CreateQuerySuggestionsBlockList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateQuerySuggestionsBlockList for more information on using the CreateQuerySuggestionsBlockList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateQuerySuggestionsBlockListRequest method.
+//    req, resp := client.CreateQuerySuggestionsBlockListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateQuerySuggestionsBlockList
+func (c *Kendra) CreateQuerySuggestionsBlockListRequest(input *CreateQuerySuggestionsBlockListInput) (req *request.Request, output *CreateQuerySuggestionsBlockListOutput) {
+	op := &request.Operation{
+		Name:       opCreateQuerySuggestionsBlockList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateQuerySuggestionsBlockListInput{}
+	}
+
+	output = &CreateQuerySuggestionsBlockListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateQuerySuggestionsBlockList API operation for AWSKendraFrontendService.
+//
+// Creates a block list to exlcude certain queries from suggestions.
+//
+// Any query that contains words or phrases specified in the block list is blocked
+// or filtered out from being shown as a suggestion.
+//
+// You need to provide the file location of your block list text file in your
+// S3 bucket. In your text file, enter each block word or phrase on a separate
+// line.
+//
+// For information on the current quota limits for block lists, see Quotas for
+// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation CreateQuerySuggestionsBlockList for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/CreateQuerySuggestionsBlockList
+func (c *Kendra) CreateQuerySuggestionsBlockList(input *CreateQuerySuggestionsBlockListInput) (*CreateQuerySuggestionsBlockListOutput, error) {
+	req, out := c.CreateQuerySuggestionsBlockListRequest(input)
+	return out, req.Send()
+}
+
+// CreateQuerySuggestionsBlockListWithContext is the same as CreateQuerySuggestionsBlockList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateQuerySuggestionsBlockList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) CreateQuerySuggestionsBlockListWithContext(ctx aws.Context, input *CreateQuerySuggestionsBlockListInput, opts ...request.Option) (*CreateQuerySuggestionsBlockListOutput, error) {
+	req, out := c.CreateQuerySuggestionsBlockListRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -854,6 +1049,99 @@ func (c *Kendra) DeleteIndexWithContext(ctx aws.Context, input *DeleteIndexInput
 	return out, req.Send()
 }
 
+const opDeleteQuerySuggestionsBlockList = "DeleteQuerySuggestionsBlockList"
+
+// DeleteQuerySuggestionsBlockListRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQuerySuggestionsBlockList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteQuerySuggestionsBlockList for more information on using the DeleteQuerySuggestionsBlockList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteQuerySuggestionsBlockListRequest method.
+//    req, resp := client.DeleteQuerySuggestionsBlockListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteQuerySuggestionsBlockList
+func (c *Kendra) DeleteQuerySuggestionsBlockListRequest(input *DeleteQuerySuggestionsBlockListInput) (req *request.Request, output *DeleteQuerySuggestionsBlockListOutput) {
+	op := &request.Operation{
+		Name:       opDeleteQuerySuggestionsBlockList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteQuerySuggestionsBlockListInput{}
+	}
+
+	output = &DeleteQuerySuggestionsBlockListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteQuerySuggestionsBlockList API operation for AWSKendraFrontendService.
+//
+// Deletes a block list used for query suggestions for an index.
+//
+// A deleted block list might not take effect right away. Amazon Kendra needs
+// to refresh the entire suggestions list to add back the queries that were
+// previously blocked.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DeleteQuerySuggestionsBlockList for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeleteQuerySuggestionsBlockList
+func (c *Kendra) DeleteQuerySuggestionsBlockList(input *DeleteQuerySuggestionsBlockListInput) (*DeleteQuerySuggestionsBlockListOutput, error) {
+	req, out := c.DeleteQuerySuggestionsBlockListRequest(input)
+	return out, req.Send()
+}
+
+// DeleteQuerySuggestionsBlockListWithContext is the same as DeleteQuerySuggestionsBlockList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteQuerySuggestionsBlockList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DeleteQuerySuggestionsBlockListWithContext(ctx aws.Context, input *DeleteQuerySuggestionsBlockListInput, opts ...request.Option) (*DeleteQuerySuggestionsBlockListOutput, error) {
+	req, out := c.DeleteQuerySuggestionsBlockListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteThesaurus = "DeleteThesaurus"
 
 // DeleteThesaurusRequest generates a "aws/request.Request" representing the
@@ -1201,6 +1489,182 @@ func (c *Kendra) DescribeIndexWithContext(ctx aws.Context, input *DescribeIndexI
 	return out, req.Send()
 }
 
+const opDescribeQuerySuggestionsBlockList = "DescribeQuerySuggestionsBlockList"
+
+// DescribeQuerySuggestionsBlockListRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeQuerySuggestionsBlockList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeQuerySuggestionsBlockList for more information on using the DescribeQuerySuggestionsBlockList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeQuerySuggestionsBlockListRequest method.
+//    req, resp := client.DescribeQuerySuggestionsBlockListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsBlockList
+func (c *Kendra) DescribeQuerySuggestionsBlockListRequest(input *DescribeQuerySuggestionsBlockListInput) (req *request.Request, output *DescribeQuerySuggestionsBlockListOutput) {
+	op := &request.Operation{
+		Name:       opDescribeQuerySuggestionsBlockList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeQuerySuggestionsBlockListInput{}
+	}
+
+	output = &DescribeQuerySuggestionsBlockListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeQuerySuggestionsBlockList API operation for AWSKendraFrontendService.
+//
+// Describes a block list used for query suggestions for an index.
+//
+// This is used to check the current settings that are applied to a block list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DescribeQuerySuggestionsBlockList for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsBlockList
+func (c *Kendra) DescribeQuerySuggestionsBlockList(input *DescribeQuerySuggestionsBlockListInput) (*DescribeQuerySuggestionsBlockListOutput, error) {
+	req, out := c.DescribeQuerySuggestionsBlockListRequest(input)
+	return out, req.Send()
+}
+
+// DescribeQuerySuggestionsBlockListWithContext is the same as DescribeQuerySuggestionsBlockList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeQuerySuggestionsBlockList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DescribeQuerySuggestionsBlockListWithContext(ctx aws.Context, input *DescribeQuerySuggestionsBlockListInput, opts ...request.Option) (*DescribeQuerySuggestionsBlockListOutput, error) {
+	req, out := c.DescribeQuerySuggestionsBlockListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeQuerySuggestionsConfig = "DescribeQuerySuggestionsConfig"
+
+// DescribeQuerySuggestionsConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeQuerySuggestionsConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeQuerySuggestionsConfig for more information on using the DescribeQuerySuggestionsConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeQuerySuggestionsConfigRequest method.
+//    req, resp := client.DescribeQuerySuggestionsConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsConfig
+func (c *Kendra) DescribeQuerySuggestionsConfigRequest(input *DescribeQuerySuggestionsConfigInput) (req *request.Request, output *DescribeQuerySuggestionsConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeQuerySuggestionsConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeQuerySuggestionsConfigInput{}
+	}
+
+	output = &DescribeQuerySuggestionsConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeQuerySuggestionsConfig API operation for AWSKendraFrontendService.
+//
+// Describes the settings of query suggestions for an index.
+//
+// This is used to check the current settings applied to query suggestions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DescribeQuerySuggestionsConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribeQuerySuggestionsConfig
+func (c *Kendra) DescribeQuerySuggestionsConfig(input *DescribeQuerySuggestionsConfigInput) (*DescribeQuerySuggestionsConfigOutput, error) {
+	req, out := c.DescribeQuerySuggestionsConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeQuerySuggestionsConfigWithContext is the same as DescribeQuerySuggestionsConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeQuerySuggestionsConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DescribeQuerySuggestionsConfigWithContext(ctx aws.Context, input *DescribeQuerySuggestionsConfigInput, opts ...request.Option) (*DescribeQuerySuggestionsConfigOutput, error) {
+	req, out := c.DescribeQuerySuggestionsConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeThesaurus = "DescribeThesaurus"
 
 // DescribeThesaurusRequest generates a "aws/request.Request" representing the
@@ -1282,6 +1746,96 @@ func (c *Kendra) DescribeThesaurus(input *DescribeThesaurusInput) (*DescribeThes
 // for more information on using Contexts.
 func (c *Kendra) DescribeThesaurusWithContext(ctx aws.Context, input *DescribeThesaurusInput, opts ...request.Option) (*DescribeThesaurusOutput, error) {
 	req, out := c.DescribeThesaurusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetQuerySuggestions = "GetQuerySuggestions"
+
+// GetQuerySuggestionsRequest generates a "aws/request.Request" representing the
+// client's request for the GetQuerySuggestions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetQuerySuggestions for more information on using the GetQuerySuggestions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetQuerySuggestionsRequest method.
+//    req, resp := client.GetQuerySuggestionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetQuerySuggestions
+func (c *Kendra) GetQuerySuggestionsRequest(input *GetQuerySuggestionsInput) (req *request.Request, output *GetQuerySuggestionsOutput) {
+	op := &request.Operation{
+		Name:       opGetQuerySuggestions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetQuerySuggestionsInput{}
+	}
+
+	output = &GetQuerySuggestionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetQuerySuggestions API operation for AWSKendraFrontendService.
+//
+// Fetches the queries that are suggested to your users.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation GetQuerySuggestions for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/GetQuerySuggestions
+func (c *Kendra) GetQuerySuggestions(input *GetQuerySuggestionsInput) (*GetQuerySuggestionsOutput, error) {
+	req, out := c.GetQuerySuggestionsRequest(input)
+	return out, req.Send()
+}
+
+// GetQuerySuggestionsWithContext is the same as GetQuerySuggestions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetQuerySuggestions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) GetQuerySuggestionsWithContext(ctx aws.Context, input *GetQuerySuggestionsInput, opts ...request.Option) (*GetQuerySuggestionsOutput, error) {
+	req, out := c.GetQuerySuggestionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1803,6 +2357,95 @@ func (c *Kendra) ListIndicesPagesWithContext(ctx aws.Context, input *ListIndices
 	}
 
 	return p.Err()
+}
+
+const opListQuerySuggestionsBlockLists = "ListQuerySuggestionsBlockLists"
+
+// ListQuerySuggestionsBlockListsRequest generates a "aws/request.Request" representing the
+// client's request for the ListQuerySuggestionsBlockLists operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListQuerySuggestionsBlockLists for more information on using the ListQuerySuggestionsBlockLists
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListQuerySuggestionsBlockListsRequest method.
+//    req, resp := client.ListQuerySuggestionsBlockListsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListQuerySuggestionsBlockLists
+func (c *Kendra) ListQuerySuggestionsBlockListsRequest(input *ListQuerySuggestionsBlockListsInput) (req *request.Request, output *ListQuerySuggestionsBlockListsOutput) {
+	op := &request.Operation{
+		Name:       opListQuerySuggestionsBlockLists,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListQuerySuggestionsBlockListsInput{}
+	}
+
+	output = &ListQuerySuggestionsBlockListsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListQuerySuggestionsBlockLists API operation for AWSKendraFrontendService.
+//
+// Lists the block lists used for query suggestions for an index.
+//
+// For information on the current quota limits for block lists, see Quotas for
+// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListQuerySuggestionsBlockLists for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListQuerySuggestionsBlockLists
+func (c *Kendra) ListQuerySuggestionsBlockLists(input *ListQuerySuggestionsBlockListsInput) (*ListQuerySuggestionsBlockListsOutput, error) {
+	req, out := c.ListQuerySuggestionsBlockListsRequest(input)
+	return out, req.Send()
+}
+
+// ListQuerySuggestionsBlockListsWithContext is the same as ListQuerySuggestionsBlockLists with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListQuerySuggestionsBlockLists for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListQuerySuggestionsBlockListsWithContext(ctx aws.Context, input *ListQuerySuggestionsBlockListsInput, opts ...request.Option) (*ListQuerySuggestionsBlockListsOutput, error) {
+	req, out := c.ListQuerySuggestionsBlockListsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -2711,6 +3354,206 @@ func (c *Kendra) UpdateIndexWithContext(ctx aws.Context, input *UpdateIndexInput
 	return out, req.Send()
 }
 
+const opUpdateQuerySuggestionsBlockList = "UpdateQuerySuggestionsBlockList"
+
+// UpdateQuerySuggestionsBlockListRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQuerySuggestionsBlockList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQuerySuggestionsBlockList for more information on using the UpdateQuerySuggestionsBlockList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQuerySuggestionsBlockListRequest method.
+//    req, resp := client.UpdateQuerySuggestionsBlockListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsBlockList
+func (c *Kendra) UpdateQuerySuggestionsBlockListRequest(input *UpdateQuerySuggestionsBlockListInput) (req *request.Request, output *UpdateQuerySuggestionsBlockListOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQuerySuggestionsBlockList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateQuerySuggestionsBlockListInput{}
+	}
+
+	output = &UpdateQuerySuggestionsBlockListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQuerySuggestionsBlockList API operation for AWSKendraFrontendService.
+//
+// Updates a block list used for query suggestions for an index.
+//
+// Updates to a block list might not take effect right away. Amazon Kendra needs
+// to refresh the entire suggestions list to apply any updates to the block
+// list. Other changes not related to the block list apply immediately.
+//
+// If a block list is updating, then you need to wait for the first update to
+// finish before submitting another update.
+//
+// Amazon Kendra supports partial updates, so you only need to provide the fields
+// you want to update.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation UpdateQuerySuggestionsBlockList for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsBlockList
+func (c *Kendra) UpdateQuerySuggestionsBlockList(input *UpdateQuerySuggestionsBlockListInput) (*UpdateQuerySuggestionsBlockListOutput, error) {
+	req, out := c.UpdateQuerySuggestionsBlockListRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQuerySuggestionsBlockListWithContext is the same as UpdateQuerySuggestionsBlockList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQuerySuggestionsBlockList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) UpdateQuerySuggestionsBlockListWithContext(ctx aws.Context, input *UpdateQuerySuggestionsBlockListInput, opts ...request.Option) (*UpdateQuerySuggestionsBlockListOutput, error) {
+	req, out := c.UpdateQuerySuggestionsBlockListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateQuerySuggestionsConfig = "UpdateQuerySuggestionsConfig"
+
+// UpdateQuerySuggestionsConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateQuerySuggestionsConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateQuerySuggestionsConfig for more information on using the UpdateQuerySuggestionsConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateQuerySuggestionsConfigRequest method.
+//    req, resp := client.UpdateQuerySuggestionsConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsConfig
+func (c *Kendra) UpdateQuerySuggestionsConfigRequest(input *UpdateQuerySuggestionsConfigInput) (req *request.Request, output *UpdateQuerySuggestionsConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateQuerySuggestionsConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateQuerySuggestionsConfigInput{}
+	}
+
+	output = &UpdateQuerySuggestionsConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateQuerySuggestionsConfig API operation for AWSKendraFrontendService.
+//
+// Updates the settings of query suggestions for an index.
+//
+// Amazon Kendra supports partial updates, so you only need to provide the fields
+// you want to update.
+//
+// If an update is currently processing (i.e. 'happening'), you need to wait
+// for the update to finish before making another update.
+//
+// Updates to query suggestions settings might not take effect right away. The
+// time for your updated settings to take effect depends on the updates made
+// and the number of search queries in your index.
+//
+// You can still enable/disable query suggestions at any time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation UpdateQuerySuggestionsConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/UpdateQuerySuggestionsConfig
+func (c *Kendra) UpdateQuerySuggestionsConfig(input *UpdateQuerySuggestionsConfigInput) (*UpdateQuerySuggestionsConfigOutput, error) {
+	req, out := c.UpdateQuerySuggestionsConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateQuerySuggestionsConfigWithContext is the same as UpdateQuerySuggestionsConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateQuerySuggestionsConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) UpdateQuerySuggestionsConfigWithContext(ctx aws.Context, input *UpdateQuerySuggestionsConfigInput, opts ...request.Option) (*UpdateQuerySuggestionsConfigOutput, error) {
+	req, out := c.UpdateQuerySuggestionsConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateThesaurus = "UpdateThesaurus"
 
 // UpdateThesaurusRequest generates a "aws/request.Request" representing the
@@ -3339,6 +4182,12 @@ type BatchPutDocumentInput struct {
 
 	// One or more documents to add to the index.
 	//
+	// Documents can include custom attributes. For example, 'DataSourceId' and
+	// 'DataSourceSyncJobId' are custom attributes that provide information on the
+	// synchronization of documents running on a data source. Note, 'DataSourceSyncJobId'
+	// could be an optional custom attribute as Amazon Kendra will use the ID of
+	// a running sync job.
+	//
 	// Documents have the following file size limits.
 	//
 	//    * 5 MB total size for inline documents
@@ -3552,6 +4401,61 @@ func (s *CapacityUnitsConfiguration) SetQueryCapacityUnits(v int64) *CapacityUni
 func (s *CapacityUnitsConfiguration) SetStorageCapacityUnits(v int64) *CapacityUnitsConfiguration {
 	s.StorageCapacityUnits = &v
 	return s
+}
+
+type ClearQuerySuggestionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index you want to clear query suggestions from.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ClearQuerySuggestionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClearQuerySuggestionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ClearQuerySuggestionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ClearQuerySuggestionsInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ClearQuerySuggestionsInput) SetIndexId(v string) *ClearQuerySuggestionsInput {
+	s.IndexId = &v
+	return s
+}
+
+type ClearQuerySuggestionsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ClearQuerySuggestionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClearQuerySuggestionsOutput) GoString() string {
+	return s.String()
 }
 
 // Gathers information about when a particular result was clicked by a user.
@@ -5178,6 +6082,181 @@ func (s *CreateIndexOutput) SetId(v string) *CreateIndexOutput {
 	return s
 }
 
+type CreateQuerySuggestionsBlockListInput struct {
+	_ struct{} `type:"structure"`
+
+	// A token that you provide to identify the request to create a query suggestions
+	// block list.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A user-friendly description for the block list.
+	//
+	// For example, the description "List of all offensive words that can appear
+	// in user queries and need to be blocked from suggestions."
+	Description *string `type:"string"`
+
+	// The identifier of the index you want to create a query suggestions block
+	// list for.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// A user friendly name for the block list.
+	//
+	// For example, the block list named 'offensive-words' includes all offensive
+	// words that could appear in user queries and need to be blocked from suggestions.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The IAM (Identity and Access Management) role used by Amazon Kendra to access
+	// the block list text file in your S3 bucket.
+	//
+	// You need permissions to the role ARN (Amazon Resource Name). The role needs
+	// S3 read permissions to your file in S3 and needs to give STS (Security Token
+	// Service) assume role permissions to Amazon Kendra.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"1" type:"string" required:"true"`
+
+	// The S3 path to your block list text file in your S3 bucket.
+	//
+	// Each block word or phrase should be on a separate line in a text file.
+	//
+	// For information on the current quota limits for block lists, see Quotas for
+	// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+	//
+	// SourceS3Path is a required field
+	SourceS3Path *S3Path `type:"structure" required:"true"`
+
+	// A tag that you can assign to a block list that categorizes the block list.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateQuerySuggestionsBlockListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQuerySuggestionsBlockListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateQuerySuggestionsBlockListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateQuerySuggestionsBlockListInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.SourceS3Path == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceS3Path"))
+	}
+	if s.SourceS3Path != nil {
+		if err := s.SourceS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SourceS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetClientToken(v string) *CreateQuerySuggestionsBlockListInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetDescription(v string) *CreateQuerySuggestionsBlockListInput {
+	s.Description = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetIndexId(v string) *CreateQuerySuggestionsBlockListInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetName(v string) *CreateQuerySuggestionsBlockListInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetRoleArn(v string) *CreateQuerySuggestionsBlockListInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetSourceS3Path(v *S3Path) *CreateQuerySuggestionsBlockListInput {
+	s.SourceS3Path = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateQuerySuggestionsBlockListInput) SetTags(v []*Tag) *CreateQuerySuggestionsBlockListInput {
+	s.Tags = v
+	return s
+}
+
+type CreateQuerySuggestionsBlockListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the created block list.
+	Id *string `min:"36" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateQuerySuggestionsBlockListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateQuerySuggestionsBlockListOutput) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *CreateQuerySuggestionsBlockListOutput) SetId(v string) *CreateQuerySuggestionsBlockListOutput {
+	s.Id = &v
+	return s
+}
+
 type CreateThesaurusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5656,8 +6735,14 @@ type DataSourceSyncJobMetricTarget struct {
 
 	// The ID of the sync job that is running on the data source.
 	//
-	// DataSourceSyncJobId is a required field
-	DataSourceSyncJobId *string `min:"1" type:"string" required:"true"`
+	// If the ID of a sync job is not provided and there is a sync job running,
+	// then the ID of this sync job is used and metrics are generated for this sync
+	// job.
+	//
+	// If the ID of a sync job is not provided and there is no sync job running,
+	// then no metrics are generated and documents are indexed/deleted at the index
+	// level without sync job metrics included.
+	DataSourceSyncJobId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -5678,9 +6763,6 @@ func (s *DataSourceSyncJobMetricTarget) Validate() error {
 	}
 	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
-	}
-	if s.DataSourceSyncJobId == nil {
-		invalidParams.Add(request.NewErrParamRequired("DataSourceSyncJobId"))
 	}
 	if s.DataSourceSyncJobId != nil && len(*s.DataSourceSyncJobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataSourceSyncJobId", 1))
@@ -6218,6 +7300,78 @@ func (s DeleteIndexOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteIndexOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteQuerySuggestionsBlockListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the block list that needs to be deleted.
+	//
+	// Id is a required field
+	Id *string `min:"36" type:"string" required:"true"`
+
+	// The identifier of the you want to delete a block list from.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteQuerySuggestionsBlockListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQuerySuggestionsBlockListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteQuerySuggestionsBlockListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteQuerySuggestionsBlockListInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteQuerySuggestionsBlockListInput) SetId(v string) *DeleteQuerySuggestionsBlockListInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DeleteQuerySuggestionsBlockListInput) SetIndexId(v string) *DeleteQuerySuggestionsBlockListInput {
+	s.IndexId = &v
+	return s
+}
+
+type DeleteQuerySuggestionsBlockListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteQuerySuggestionsBlockListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQuerySuggestionsBlockListOutput) GoString() string {
 	return s.String()
 }
 
@@ -6849,6 +8003,356 @@ func (s *DescribeIndexOutput) SetUserContextPolicy(v string) *DescribeIndexOutpu
 // SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
 func (s *DescribeIndexOutput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *DescribeIndexOutput {
 	s.UserTokenConfigurations = v
+	return s
+}
+
+type DescribeQuerySuggestionsBlockListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the block list.
+	//
+	// Id is a required field
+	Id *string `min:"36" type:"string" required:"true"`
+
+	// The identifier of the index for the block list.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeQuerySuggestionsBlockListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuerySuggestionsBlockListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeQuerySuggestionsBlockListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeQuerySuggestionsBlockListInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeQuerySuggestionsBlockListInput) SetId(v string) *DescribeQuerySuggestionsBlockListInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeQuerySuggestionsBlockListInput) SetIndexId(v string) *DescribeQuerySuggestionsBlockListInput {
+	s.IndexId = &v
+	return s
+}
+
+type DescribeQuerySuggestionsBlockListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the date-time a block list for query suggestions was last created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Shows the description for the block list.
+	Description *string `type:"string"`
+
+	// Shows the error message with details when there are issues in processing
+	// the block list.
+	ErrorMessage *string `min:"1" type:"string"`
+
+	// Shows the current size of the block list text file in S3.
+	FileSizeBytes *int64 `type:"long"`
+
+	// Shows the unique identifier of the block list.
+	Id *string `min:"36" type:"string"`
+
+	// Shows the identifier of the index for the block list.
+	IndexId *string `min:"36" type:"string"`
+
+	// Shows the current number of valid, non-empty words or phrases in the block
+	// list text file.
+	ItemCount *int64 `type:"integer"`
+
+	// Shows the name of the block list.
+	Name *string `min:"1" type:"string"`
+
+	// Shows the current IAM (Identity and Access Management) role used by Amazon
+	// Kendra to access the block list text file in S3.
+	//
+	// The role needs S3 read permissions to your file in S3 and needs to give STS
+	// (Security Token Service) assume role permissions to Amazon Kendra.
+	RoleArn *string `min:"1" type:"string"`
+
+	// Shows the current S3 path to your block list text file in your S3 bucket.
+	//
+	// Each block word or phrase should be on a separate line in a text file.
+	//
+	// For information on the current quota limits for block lists, see Quotas for
+	// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+	SourceS3Path *S3Path `type:"structure"`
+
+	// Shows whether the current status of the block list is ACTIVE or INACTIVE.
+	Status *string `type:"string" enum:"QuerySuggestionsBlockListStatus"`
+
+	// Shows the date-time a block list for query suggestions was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DescribeQuerySuggestionsBlockListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuerySuggestionsBlockListOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetCreatedAt(v time.Time) *DescribeQuerySuggestionsBlockListOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetDescription(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.Description = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetErrorMessage(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFileSizeBytes sets the FileSizeBytes field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetFileSizeBytes(v int64) *DescribeQuerySuggestionsBlockListOutput {
+	s.FileSizeBytes = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetId(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetIndexId(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.IndexId = &v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetItemCount(v int64) *DescribeQuerySuggestionsBlockListOutput {
+	s.ItemCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetName(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetRoleArn(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetSourceS3Path(v *S3Path) *DescribeQuerySuggestionsBlockListOutput {
+	s.SourceS3Path = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetStatus(v string) *DescribeQuerySuggestionsBlockListOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *DescribeQuerySuggestionsBlockListOutput) SetUpdatedAt(v time.Time) *DescribeQuerySuggestionsBlockListOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type DescribeQuerySuggestionsConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index you want to describe query suggestions settings
+	// for.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeQuerySuggestionsConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuerySuggestionsConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeQuerySuggestionsConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeQuerySuggestionsConfigInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribeQuerySuggestionsConfigInput) SetIndexId(v string) *DescribeQuerySuggestionsConfigInput {
+	s.IndexId = &v
+	return s
+}
+
+type DescribeQuerySuggestionsConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows whether Amazon Kendra uses all queries or only uses queries that include
+	// user information to generate query suggestions.
+	IncludeQueriesWithoutUserInformation *bool `type:"boolean"`
+
+	// Shows the date-time query suggestions for an index was last cleared.
+	//
+	// After you clear suggestions, Amazon Kendra learns new suggestions based on
+	// new queries added to the query log from the time you cleared suggestions.
+	// Amazon Kendra only considers re-occurences of a query from the time you cleared
+	// suggestions.
+	LastClearTime *time.Time `type:"timestamp"`
+
+	// Shows the date-time query suggestions for an index was last updated.
+	LastSuggestionsBuildTime *time.Time `type:"timestamp"`
+
+	// Shows the minimum number of unique users who must search a query in order
+	// for the query to be eligible to suggest to your users.
+	MinimumNumberOfQueryingUsers *int64 `min:"1" type:"integer"`
+
+	// Shows the minimum number of times a query must be searched in order for the
+	// query to be eligible to suggest to your users.
+	MinimumQueryCount *int64 `min:"1" type:"integer"`
+
+	// Shows whether query suggestions are currently in ENABLED mode or LEARN_ONLY
+	// mode.
+	//
+	// By default, Amazon Kendra enables query suggestions.LEARN_ONLY turns off
+	// query suggestions for your users. You can change the mode using the UpdateQuerySuggestionsConfig
+	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html)
+	// operation.
+	Mode *string `type:"string" enum:"Mode"`
+
+	// Shows how recent your queries are in your query log time window (in days).
+	QueryLogLookBackWindowInDays *int64 `type:"integer"`
+
+	// Shows whether the status of query suggestions settings is currently Active
+	// or Updating.
+	//
+	// Active means the current settings apply and Updating means your changed settings
+	// are in the process of applying.
+	Status *string `type:"string" enum:"QuerySuggestionsStatus"`
+
+	// Shows the current total count of query suggestions for an index.
+	//
+	// This count can change when you update your query suggestions settings, if
+	// you filter out certain queries from suggestions using a block list, and as
+	// the query log accumulates more queries for Amazon Kendra to learn from.
+	TotalSuggestionsCount *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeQuerySuggestionsConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeQuerySuggestionsConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetIncludeQueriesWithoutUserInformation sets the IncludeQueriesWithoutUserInformation field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetIncludeQueriesWithoutUserInformation(v bool) *DescribeQuerySuggestionsConfigOutput {
+	s.IncludeQueriesWithoutUserInformation = &v
+	return s
+}
+
+// SetLastClearTime sets the LastClearTime field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetLastClearTime(v time.Time) *DescribeQuerySuggestionsConfigOutput {
+	s.LastClearTime = &v
+	return s
+}
+
+// SetLastSuggestionsBuildTime sets the LastSuggestionsBuildTime field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetLastSuggestionsBuildTime(v time.Time) *DescribeQuerySuggestionsConfigOutput {
+	s.LastSuggestionsBuildTime = &v
+	return s
+}
+
+// SetMinimumNumberOfQueryingUsers sets the MinimumNumberOfQueryingUsers field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetMinimumNumberOfQueryingUsers(v int64) *DescribeQuerySuggestionsConfigOutput {
+	s.MinimumNumberOfQueryingUsers = &v
+	return s
+}
+
+// SetMinimumQueryCount sets the MinimumQueryCount field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetMinimumQueryCount(v int64) *DescribeQuerySuggestionsConfigOutput {
+	s.MinimumQueryCount = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetMode(v string) *DescribeQuerySuggestionsConfigOutput {
+	s.Mode = &v
+	return s
+}
+
+// SetQueryLogLookBackWindowInDays sets the QueryLogLookBackWindowInDays field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetQueryLogLookBackWindowInDays(v int64) *DescribeQuerySuggestionsConfigOutput {
+	s.QueryLogLookBackWindowInDays = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetStatus(v string) *DescribeQuerySuggestionsConfigOutput {
+	s.Status = &v
+	return s
+}
+
+// SetTotalSuggestionsCount sets the TotalSuggestionsCount field's value.
+func (s *DescribeQuerySuggestionsConfigOutput) SetTotalSuggestionsCount(v int64) *DescribeQuerySuggestionsConfigOutput {
+	s.TotalSuggestionsCount = &v
 	return s
 }
 
@@ -7702,6 +9206,109 @@ func (s *FaqSummary) SetStatus(v string) *FaqSummary {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *FaqSummary) SetUpdatedAt(v time.Time) *FaqSummary {
 	s.UpdatedAt = &v
+	return s
+}
+
+type GetQuerySuggestionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index you want to get query suggestions from.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of query suggestions you want to show to your users.
+	MaxSuggestionsCount *int64 `type:"integer"`
+
+	// The text of a user's query to generate query suggestions.
+	//
+	// A query is suggested if the query prefix matches what a user starts to type
+	// as their query.
+	//
+	// Amazon Kendra does not show any suggestions if a user types fewer than two
+	// characters or more than 60 characters. A query must also have at least one
+	// search result and contain at least one word of more than four characters.
+	//
+	// QueryText is a required field
+	QueryText *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetQuerySuggestionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetQuerySuggestionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetQuerySuggestionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetQuerySuggestionsInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.QueryText == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryText"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *GetQuerySuggestionsInput) SetIndexId(v string) *GetQuerySuggestionsInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxSuggestionsCount sets the MaxSuggestionsCount field's value.
+func (s *GetQuerySuggestionsInput) SetMaxSuggestionsCount(v int64) *GetQuerySuggestionsInput {
+	s.MaxSuggestionsCount = &v
+	return s
+}
+
+// SetQueryText sets the QueryText field's value.
+func (s *GetQuerySuggestionsInput) SetQueryText(v string) *GetQuerySuggestionsInput {
+	s.QueryText = &v
+	return s
+}
+
+type GetQuerySuggestionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for a list of query suggestions for an index.
+	QuerySuggestionsId *string `min:"1" type:"string"`
+
+	// A list of query suggestions for an index.
+	Suggestions []*Suggestion `type:"list"`
+}
+
+// String returns the string representation
+func (s GetQuerySuggestionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetQuerySuggestionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetQuerySuggestionsId sets the QuerySuggestionsId field's value.
+func (s *GetQuerySuggestionsOutput) SetQuerySuggestionsId(v string) *GetQuerySuggestionsOutput {
+	s.QuerySuggestionsId = &v
+	return s
+}
+
+// SetSuggestions sets the Suggestions field's value.
+func (s *GetQuerySuggestionsOutput) SetSuggestions(v []*Suggestion) *GetQuerySuggestionsOutput {
+	s.Suggestions = v
 	return s
 }
 
@@ -8662,6 +10269,117 @@ func (s *ListIndicesOutput) SetNextToken(v string) *ListIndicesOutput {
 	return s
 }
 
+type ListQuerySuggestionsBlockListsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the index for a list of all block lists that exist for
+	// that index.
+	//
+	// For information on the current quota limits for block lists, see Quotas for
+	// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum number of block lists to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of block lists (BlockListSummaryItems).
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListQuerySuggestionsBlockListsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQuerySuggestionsBlockListsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListQuerySuggestionsBlockListsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListQuerySuggestionsBlockListsInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListQuerySuggestionsBlockListsInput) SetIndexId(v string) *ListQuerySuggestionsBlockListsInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListQuerySuggestionsBlockListsInput) SetMaxResults(v int64) *ListQuerySuggestionsBlockListsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQuerySuggestionsBlockListsInput) SetNextToken(v string) *ListQuerySuggestionsBlockListsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListQuerySuggestionsBlockListsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary items for a block list.
+	//
+	// This includes summary items on the block list ID, block list name, when the
+	// block list was created, when the block list was last updated, and the count
+	// of block words/phrases in the block list.
+	//
+	// For information on the current quota limits for block lists, see Quotas for
+	// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+	BlockListSummaryItems []*QuerySuggestionsBlockListSummary `type:"list"`
+
+	// If the response is truncated, Amazon Kendra returns this token that you can
+	// use in the subsequent request to retrieve the next set of block lists.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListQuerySuggestionsBlockListsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListQuerySuggestionsBlockListsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlockListSummaryItems sets the BlockListSummaryItems field's value.
+func (s *ListQuerySuggestionsBlockListsOutput) SetBlockListSummaryItems(v []*QuerySuggestionsBlockListSummary) *ListQuerySuggestionsBlockListsOutput {
+	s.BlockListSummaryItems = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListQuerySuggestionsBlockListsOutput) SetNextToken(v string) *ListQuerySuggestionsBlockListsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9494,6 +11212,83 @@ func (s *QueryResultItem) SetType(v string) *QueryResultItem {
 	return s
 }
 
+// Summary information on a query suggestions block list.
+//
+// This includes information on the block list ID, block list name, when the
+// block list was created, when the block list was last updated, and the count
+// of block words/phrases in the block list.
+//
+// For information on the current quota limits for block lists, see Quotas for
+// Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
+type QuerySuggestionsBlockListSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The date-time summary information for a query suggestions block list was
+	// last created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The identifier of a block list.
+	Id *string `min:"36" type:"string"`
+
+	// The number of items in the block list file.
+	ItemCount *int64 `type:"integer"`
+
+	// The name of the block list.
+	Name *string `min:"1" type:"string"`
+
+	// The status of the block list.
+	Status *string `type:"string" enum:"QuerySuggestionsBlockListStatus"`
+
+	// The date-time the block list was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s QuerySuggestionsBlockListSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QuerySuggestionsBlockListSummary) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *QuerySuggestionsBlockListSummary) SetCreatedAt(v time.Time) *QuerySuggestionsBlockListSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *QuerySuggestionsBlockListSummary) SetId(v string) *QuerySuggestionsBlockListSummary {
+	s.Id = &v
+	return s
+}
+
+// SetItemCount sets the ItemCount field's value.
+func (s *QuerySuggestionsBlockListSummary) SetItemCount(v int64) *QuerySuggestionsBlockListSummary {
+	s.ItemCount = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *QuerySuggestionsBlockListSummary) SetName(v string) *QuerySuggestionsBlockListSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *QuerySuggestionsBlockListSummary) SetStatus(v string) *QuerySuggestionsBlockListSummary {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *QuerySuggestionsBlockListSummary) SetUpdatedAt(v time.Time) *QuerySuggestionsBlockListSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
 // Provides information for manually tuning the relevance of a field in a search.
 // When a query includes terms that match the field, the results are given a
 // boost in the response based on these tuning parameters.
@@ -9906,16 +11701,33 @@ type S3DataSourceConfiguration struct {
 	// that matches an inclusion prefix or inclusion pattern also matches an exclusion
 	// pattern, the document is not indexed.
 	//
-	// For more information about glob patterns, see glob (programming) (https://en.wikipedia.org/wiki/Glob_(programming))
-	// in Wikipedia.
+	// Some examples (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
+	// are:
+	//
+	//    * *.png , *.jpg will exclude all PNG and JPEG image files in a directory
+	//    (files with the extensions .png and .jpg).
+	//
+	//    * *internal* will exclude all files in a directory that contain 'internal'
+	//    in the file name, such as 'internal', 'internal_only', 'company_internal'.
+	//
+	//    * **/*internal* will exclude all internal-related files in a directory
+	//    and its subdirectories.
 	ExclusionPatterns []*string `type:"list"`
 
 	// A list of glob patterns for documents that should be indexed. If a document
 	// that matches an inclusion pattern also matches an exclusion pattern, the
 	// document is not indexed.
 	//
-	// For more information about glob patterns, see glob (programming) (https://en.wikipedia.org/wiki/Glob_(programming))
-	// in Wikipedia.
+	// Some examples (https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters)
+	// are:
+	//
+	//    * *.txt will include all text files in a directory (files with the extension
+	//    .txt).
+	//
+	//    * **/*.txt will include all text files in a directory and its subdirectories.
+	//
+	//    * *tax* will include all files in a directory that contain 'tax' in the
+	//    file name, such as 'tax', 'taxes', 'income_tax'.
 	InclusionPatterns []*string `type:"list"`
 
 	// A list of S3 prefixes for the documents that should be included in the index.
@@ -10065,7 +11877,7 @@ type SalesforceChatterFeedConfiguration struct {
 	DocumentDataFieldName *string `min:"1" type:"string" required:"true"`
 
 	// The name of the column in the Salesforce FeedItem table that contains the
-	// title of the document. This is typically the Title collumn.
+	// title of the document. This is typically the Title column.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
 	// Maps fields from a Salesforce chatter feed into Amazon Kendra index fields.
@@ -11870,6 +13682,134 @@ func (s SubmitFeedbackOutput) GoString() string {
 	return s.String()
 }
 
+// A single query suggestion.
+type Suggestion struct {
+	_ struct{} `type:"structure"`
+
+	// The unique UUID (universally unique identifier) of a single query suggestion.
+	Id *string `min:"1" type:"string"`
+
+	// The value for the unique UUID (universally unique identifier) of a single
+	// query suggestion.
+	//
+	// The value is the text string of a suggestion.
+	Value *SuggestionValue `type:"structure"`
+}
+
+// String returns the string representation
+func (s Suggestion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Suggestion) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *Suggestion) SetId(v string) *Suggestion {
+	s.Id = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Suggestion) SetValue(v *SuggestionValue) *Suggestion {
+	s.Value = v
+	return s
+}
+
+// The text highlights for a single query suggestion.
+type SuggestionHighlight struct {
+	_ struct{} `type:"structure"`
+
+	// The zero-based location in the response string where the highlight starts.
+	BeginOffset *int64 `type:"integer"`
+
+	// The zero-based location in the response string where the highlight ends.
+	EndOffset *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s SuggestionHighlight) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuggestionHighlight) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *SuggestionHighlight) SetBeginOffset(v int64) *SuggestionHighlight {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *SuggestionHighlight) SetEndOffset(v int64) *SuggestionHighlight {
+	s.EndOffset = &v
+	return s
+}
+
+// Provides text and information about where to highlight the query suggestion
+// text.
+type SuggestionTextWithHighlights struct {
+	_ struct{} `type:"structure"`
+
+	// The beginning and end of the query suggestion text that should be highlighted.
+	Highlights []*SuggestionHighlight `type:"list"`
+
+	// The query suggestion text to display to the user.
+	Text *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s SuggestionTextWithHighlights) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuggestionTextWithHighlights) GoString() string {
+	return s.String()
+}
+
+// SetHighlights sets the Highlights field's value.
+func (s *SuggestionTextWithHighlights) SetHighlights(v []*SuggestionHighlight) *SuggestionTextWithHighlights {
+	s.Highlights = v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *SuggestionTextWithHighlights) SetText(v string) *SuggestionTextWithHighlights {
+	s.Text = &v
+	return s
+}
+
+// The SuggestionTextWithHighlights structure information.
+type SuggestionValue struct {
+	_ struct{} `type:"structure"`
+
+	// The SuggestionTextWithHighlights structure that contains the query suggestion
+	// text and highlights.
+	Text *SuggestionTextWithHighlights `type:"structure"`
+}
+
+// String returns the string representation
+func (s SuggestionValue) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SuggestionValue) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *SuggestionValue) SetText(v *SuggestionTextWithHighlights) *SuggestionValue {
+	s.Text = v
+	return s
+}
+
 // A list of key/value pairs that identify an index, FAQ, or data source. Tag
 // keys and values can consist of Unicode letters, digits, white space, and
 // any of the following symbols: _ . : / = + - @.
@@ -12582,6 +14522,279 @@ func (s UpdateIndexOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateIndexOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQuerySuggestionsBlockListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description for a block list.
+	Description *string `type:"string"`
+
+	// The unique identifier of a block list.
+	//
+	// Id is a required field
+	Id *string `min:"36" type:"string" required:"true"`
+
+	// The identifier of the index for a block list.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The name of a block list.
+	Name *string `min:"1" type:"string"`
+
+	// The IAM (Identity and Access Management) role used to access the block list
+	// text file in S3.
+	RoleArn *string `min:"1" type:"string"`
+
+	// The S3 path where your block list text file sits in S3.
+	//
+	// If you update your block list and provide the same path to the block list
+	// text file in S3, then Amazon Kendra reloads the file to refresh the block
+	// list. Amazon Kendra does not automatically refresh your block list. You need
+	// to call the UpdateQuerySuggestionsBlockList API to refresh you block list.
+	//
+	// If you update your block list, then Amazon Kendra asynchronously refreshes
+	// all query suggestions with the latest content in the S3 file. This means
+	// changes might not take effect immediately.
+	SourceS3Path *S3Path `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQuerySuggestionsBlockListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuerySuggestionsBlockListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQuerySuggestionsBlockListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQuerySuggestionsBlockListInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 36))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.SourceS3Path != nil {
+		if err := s.SourceS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SourceS3Path", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetDescription(v string) *UpdateQuerySuggestionsBlockListInput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetId(v string) *UpdateQuerySuggestionsBlockListInput {
+	s.Id = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetIndexId(v string) *UpdateQuerySuggestionsBlockListInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetName(v string) *UpdateQuerySuggestionsBlockListInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetRoleArn(v string) *UpdateQuerySuggestionsBlockListInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetSourceS3Path sets the SourceS3Path field's value.
+func (s *UpdateQuerySuggestionsBlockListInput) SetSourceS3Path(v *S3Path) *UpdateQuerySuggestionsBlockListInput {
+	s.SourceS3Path = v
+	return s
+}
+
+type UpdateQuerySuggestionsBlockListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQuerySuggestionsBlockListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuerySuggestionsBlockListOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateQuerySuggestionsConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// TRUE to include queries without user information (i.e. all queries, irrespective
+	// of the user), otherwise FALSE to only include queries with user information.
+	//
+	// If you pass user information to Amazon Kendra along with the queries, you
+	// can set this flag to FALSE and instruct Amazon Kendra to only consider queries
+	// with user information.
+	//
+	// If you set to FALSE, Amazon Kendra only considers queries searched at least
+	// MinimumQueryCount times across MinimumNumberOfQueryingUsers unique users
+	// for suggestions.
+	//
+	// If you set to TRUE, Amazon Kendra ignores all user information and learns
+	// from all queries.
+	IncludeQueriesWithoutUserInformation *bool `type:"boolean"`
+
+	// The identifier of the index you want to update query suggestions settings
+	// for.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The minimum number of unique users who must search a query in order for the
+	// query to be eligible to suggest to your users.
+	//
+	// Increasing this number might decrease the number of suggestions. However,
+	// this ensures a query is searched by many users and is truly popular to suggest
+	// to users.
+	//
+	// How you tune this setting depends on your specific needs.
+	MinimumNumberOfQueryingUsers *int64 `min:"1" type:"integer"`
+
+	// The the minimum number of times a query must be searched in order to be eligible
+	// to suggest to your users.
+	//
+	// Decreasing this number increases the number of suggestions. However, this
+	// affects the quality of suggestions as it sets a low bar for a query to be
+	// considered popular to suggest to users.
+	//
+	// How you tune this setting depends on your specific needs.
+	MinimumQueryCount *int64 `min:"1" type:"integer"`
+
+	// Set the mode to ENABLED or LEARN_ONLY.
+	//
+	// By default, Amazon Kendra enables query suggestions. LEARN_ONLY mode allows
+	// you to turn off query suggestions. You can to update this at any time.
+	//
+	// In LEARN_ONLY mode, Amazon Kendra continues to learn from new queries to
+	// keep suggestions up to date for when you are ready to switch to ENABLED mode
+	// again.
+	Mode *string `type:"string" enum:"Mode"`
+
+	// How recent your queries are in your query log time window.
+	//
+	// The time window is the number of days from current day to past days.
+	//
+	// By default, Amazon Kendra sets this to 180.
+	QueryLogLookBackWindowInDays *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateQuerySuggestionsConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuerySuggestionsConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateQuerySuggestionsConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateQuerySuggestionsConfigInput"}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MinimumNumberOfQueryingUsers != nil && *s.MinimumNumberOfQueryingUsers < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumNumberOfQueryingUsers", 1))
+	}
+	if s.MinimumQueryCount != nil && *s.MinimumQueryCount < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinimumQueryCount", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeQueriesWithoutUserInformation sets the IncludeQueriesWithoutUserInformation field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetIncludeQueriesWithoutUserInformation(v bool) *UpdateQuerySuggestionsConfigInput {
+	s.IncludeQueriesWithoutUserInformation = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetIndexId(v string) *UpdateQuerySuggestionsConfigInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMinimumNumberOfQueryingUsers sets the MinimumNumberOfQueryingUsers field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetMinimumNumberOfQueryingUsers(v int64) *UpdateQuerySuggestionsConfigInput {
+	s.MinimumNumberOfQueryingUsers = &v
+	return s
+}
+
+// SetMinimumQueryCount sets the MinimumQueryCount field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetMinimumQueryCount(v int64) *UpdateQuerySuggestionsConfigInput {
+	s.MinimumQueryCount = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetMode(v string) *UpdateQuerySuggestionsConfigInput {
+	s.Mode = &v
+	return s
+}
+
+// SetQueryLogLookBackWindowInDays sets the QueryLogLookBackWindowInDays field's value.
+func (s *UpdateQuerySuggestionsConfigInput) SetQueryLogLookBackWindowInDays(v int64) *UpdateQuerySuggestionsConfigInput {
+	s.QueryLogLookBackWindowInDays = &v
+	return s
+}
+
+type UpdateQuerySuggestionsConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateQuerySuggestionsConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateQuerySuggestionsConfigOutput) GoString() string {
 	return s.String()
 }
 
@@ -13382,6 +15595,22 @@ func KeyLocation_Values() []string {
 }
 
 const (
+	// ModeEnabled is a Mode enum value
+	ModeEnabled = "ENABLED"
+
+	// ModeLearnOnly is a Mode enum value
+	ModeLearnOnly = "LEARN_ONLY"
+)
+
+// Mode_Values returns all elements of the Mode enum
+func Mode_Values() []string {
+	return []string{
+		ModeEnabled,
+		ModeLearnOnly,
+	}
+}
+
+const (
 	// OrderAscending is a Order enum value
 	OrderAscending = "ASCENDING"
 
@@ -13446,6 +15675,54 @@ func QueryResultType_Values() []string {
 		QueryResultTypeDocument,
 		QueryResultTypeQuestionAnswer,
 		QueryResultTypeAnswer,
+	}
+}
+
+const (
+	// QuerySuggestionsBlockListStatusActive is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusActive = "ACTIVE"
+
+	// QuerySuggestionsBlockListStatusCreating is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusCreating = "CREATING"
+
+	// QuerySuggestionsBlockListStatusDeleting is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusDeleting = "DELETING"
+
+	// QuerySuggestionsBlockListStatusUpdating is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusUpdating = "UPDATING"
+
+	// QuerySuggestionsBlockListStatusActiveButUpdateFailed is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusActiveButUpdateFailed = "ACTIVE_BUT_UPDATE_FAILED"
+
+	// QuerySuggestionsBlockListStatusFailed is a QuerySuggestionsBlockListStatus enum value
+	QuerySuggestionsBlockListStatusFailed = "FAILED"
+)
+
+// QuerySuggestionsBlockListStatus_Values returns all elements of the QuerySuggestionsBlockListStatus enum
+func QuerySuggestionsBlockListStatus_Values() []string {
+	return []string{
+		QuerySuggestionsBlockListStatusActive,
+		QuerySuggestionsBlockListStatusCreating,
+		QuerySuggestionsBlockListStatusDeleting,
+		QuerySuggestionsBlockListStatusUpdating,
+		QuerySuggestionsBlockListStatusActiveButUpdateFailed,
+		QuerySuggestionsBlockListStatusFailed,
+	}
+}
+
+const (
+	// QuerySuggestionsStatusActive is a QuerySuggestionsStatus enum value
+	QuerySuggestionsStatusActive = "ACTIVE"
+
+	// QuerySuggestionsStatusUpdating is a QuerySuggestionsStatus enum value
+	QuerySuggestionsStatusUpdating = "UPDATING"
+)
+
+// QuerySuggestionsStatus_Values returns all elements of the QuerySuggestionsStatus enum
+func QuerySuggestionsStatus_Values() []string {
+	return []string{
+		QuerySuggestionsStatusActive,
+		QuerySuggestionsStatusUpdating,
 	}
 }
 

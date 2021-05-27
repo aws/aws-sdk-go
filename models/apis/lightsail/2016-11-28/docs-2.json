@@ -1370,7 +1370,7 @@
     "DomainEntryType": {
       "base": null,
       "refs": {
-        "DomainEntry$type": "<p>The type of domain entry, such as address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The following domain entry types can be used:</p> <ul> <li> <p> <code>A</code> </p> </li> <li> <p> <code>CNAME</code> </p> </li> <li> <p> <code>MX</code> </p> </li> <li> <p> <code>NS</code> </p> </li> <li> <p> <code>SOA</code> </p> </li> <li> <p> <code>SRV</code> </p> </li> <li> <p> <code>TXT</code> </p> </li> </ul>"
+        "DomainEntry$type": "<p>The type of domain entry, such as address for IPv4 (A), address for IPv6 (AAAA), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The following domain entry types can be used:</p> <ul> <li> <p> <code>A</code> </p> </li> <li> <p> <code>AAA</code> </p> </li> <li> <p> <code>CNAME</code> </p> </li> <li> <p> <code>MX</code> </p> </li> <li> <p> <code>NS</code> </p> </li> <li> <p> <code>SOA</code> </p> </li> <li> <p> <code>SRV</code> </p> </li> <li> <p> <code>TXT</code> </p> </li> </ul>"
       }
     },
     "DomainList": {
@@ -1386,7 +1386,7 @@
         "CertificateSummary$domainName": "<p>The domain name of the certificate.</p>",
         "CreateCertificateRequest$domainName": "<p>The domain name (e.g., <code>example.com</code>) for the certificate.</p>",
         "CreateDomainEntryRequest$domainName": "<p>The domain name (e.g., <code>example.com</code>) for which you want to create the domain entry.</p>",
-        "CreateDomainRequest$domainName": "<p>The domain name to manage (e.g., <code>example.com</code>).</p> <note> <p>You cannot register a new domain name using Lightsail. You must register a domain name using Amazon Route 53 or another domain name registrar. If you have already registered your domain, you can enter its name in this parameter to manage the DNS records for that domain.</p> </note>",
+        "CreateDomainRequest$domainName": "<p>The domain name to manage (e.g., <code>example.com</code>).</p> <note> <p>You cannot register a new domain name using Lightsail. You must register a domain name using Amazon Route 53 or another domain name registrar. If you have already registered your domain, you can enter its name in this parameter to manage the DNS records for that domain using Lightsail.</p> </note>",
         "CreateLoadBalancerRequest$certificateDomainName": "<p>The domain name with which your certificate is associated (e.g., <code>example.com</code>).</p> <p>If you specify <code>certificateDomainName</code>, then <code>certificateName</code> is required (and vice-versa).</p>",
         "CreateLoadBalancerTlsCertificateRequest$certificateDomainName": "<p>The domain name (e.g., <code>example.com</code>) for your SSL/TLS certificate.</p>",
         "DeleteDomainEntryRequest$domainName": "<p>The name of the domain entry to delete.</p>",
@@ -3973,7 +3973,7 @@
         "DistributionBundle$bundleId": "<p>The ID of the bundle.</p>",
         "DistributionBundle$name": "<p>The name of the distribution bundle.</p>",
         "Domain$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
-        "DomainEntry$target": "<p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p> <p>For Lightsail load balancers, the value looks like <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>. Be sure to also set <code>isAlias</code> to <code>true</code> when setting up an A record for a load balancer.</p>",
+        "DomainEntry$target": "<p>The target IP address (e.g., <code>192.0.2.0</code>), or AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p> <p>For Lightsail load balancers, the value looks like <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>. For Lightsail distributions, the value looks like <code>exampled1182ne.cloudfront.net</code>. For Lightsail container services, the value looks like <code>container-service-1.example23scljs.us-west-2.cs.amazonlightsail.com</code>. Be sure to also set <code>isAlias</code> to <code>true</code> when setting up an A record for a Lightsail load balancer, distribution, or container service.</p>",
         "DomainEntryOptions$value": null,
         "EndpointRequest$containerName": "<p>The name of the container for the endpoint.</p>",
         "Environment$key": null,

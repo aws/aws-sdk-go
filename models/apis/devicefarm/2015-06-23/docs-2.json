@@ -1493,6 +1493,14 @@
         "ListNetworkProfilesResult$networkProfiles": "<p>A list of the available network profiles.</p>"
       }
     },
+    "NonEmptyString": {
+      "base": null,
+      "refs": {
+        "SecurityGroupIds$member": null,
+        "SubnetIds$member": null,
+        "TestGridVpcConfig$vpcId": "<p>The ID of the Amazon VPC.</p>"
+      }
+    },
     "NotEligibleException": {
       "base": "<p>Exception gets thrown when a user is not eligible to perform the specified transaction.</p>",
       "refs": {
@@ -1864,6 +1872,25 @@
         "ScheduleRunRequest$test": "<p>Information about the test for the run to be scheduled.</p>"
       }
     },
+    "SecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "TestGridVpcConfig$securityGroupIds": "<p>A list of VPC security group IDs in your Amazon VPC.</p>"
+      }
+    },
+    "SensitiveString": {
+      "base": null,
+      "refs": {
+        "CreateTestGridUrlResult$url": "<p>A signed URL, expiring in <a>CreateTestGridUrlRequest$expiresInSeconds</a> seconds, to be passed to a <code>RemoteWebDriver</code>. </p>",
+        "TestGridSessionArtifact$url": "<p>A semi-stable URL to the content of the object.</p>"
+      }
+    },
+    "SensitiveURL": {
+      "base": null,
+      "refs": {
+        "Upload$url": "<p>The presigned Amazon S3 URL that was used to store a file using a PUT request.</p>"
+      }
+    },
     "ServiceAccountException": {
       "base": "<p>There was a problem with the service account.</p>",
       "refs": {
@@ -1929,7 +1956,6 @@
         "Artifact$extension": "<p>The artifact's file extension.</p>",
         "CPU$frequency": "<p>The CPU's frequency.</p>",
         "CPU$architecture": "<p>The CPU's architecture (for example, x86 or ARM).</p>",
-        "CreateTestGridUrlResult$url": "<p>A signed URL, expiring in <a>CreateTestGridUrlRequest$expiresInSeconds</a> seconds, to be passed to a <code>RemoteWebDriver</code>. </p>",
         "Device$manufacturer": "<p>The device's manufacturer name.</p>",
         "Device$model": "<p>The device's model name.</p>",
         "Device$modelId": "<p>The device's model ID.</p>",
@@ -1961,9 +1987,14 @@
         "TestGridSessionAction$statusCode": "<p>HTTP status code returned to the browser when the action was taken.</p>",
         "TestGridSessionAction$requestMethod": "<p>HTTP method that the browser used to make the request.</p>",
         "TestGridSessionArtifact$filename": "<p>The file name of the artifact.</p>",
-        "TestGridSessionArtifact$url": "<p>A semi-stable URL to the content of the object.</p>",
         "TestParameters$key": null,
         "TestParameters$value": null
+      }
+    },
+    "SubnetIds": {
+      "base": null,
+      "refs": {
+        "TestGridVpcConfig$subnetIds": "<p>A list of VPC subnet IDs in your Amazon VPC.</p>"
       }
     },
     "Suite": {
@@ -2115,6 +2146,14 @@
         "CreateTestGridUrlRequest$expiresInSeconds": "<p>Lifetime, in seconds, of the URL.</p>"
       }
     },
+    "TestGridVpcConfig": {
+      "base": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+      "refs": {
+        "CreateTestGridProjectRequest$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "TestGridProject$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>",
+        "UpdateTestGridProjectRequest$vpcConfig": "<p>The VPC security groups and subnets that are attached to a project.</p>"
+      }
+    },
     "TestParameters": {
       "base": null,
       "refs": {
@@ -2159,8 +2198,7 @@
       "base": null,
       "refs": {
         "Artifact$url": "<p>The presigned Amazon S3 URL that can be used with a GET request to download the artifact's file.</p>",
-        "Sample$url": "<p>The presigned Amazon S3 URL that can be used with a GET request to download the sample's file.</p>",
-        "Upload$url": "<p>The presigned Amazon S3 URL that was used to store a file using a PUT request.</p>"
+        "Sample$url": "<p>The presigned Amazon S3 URL that can be used with a GET request to download the sample's file.</p>"
       }
     },
     "UniqueProblem": {

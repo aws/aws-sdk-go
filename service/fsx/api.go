@@ -275,8 +275,8 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 // a Region, the backup copy is created in the same Region where the request
 // is sent from (in-Region copy).
 //
-// For more information on creating backup copies, see Copying backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/copy-backups.html)
-// in the Amazon FSx for Windows User Guide and Copying backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/copy-backups.html)
+// For more information on creating backup copies, see Copying backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#copy-backups)
+// in the Amazon FSx for Windows User Guide and Copying backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html#copy-backups)
 // in the Amazon FSx for Lustre User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2200,6 +2200,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //    * AutomaticBackupRetentionDays
 //
 //    * DailyAutomaticBackupStartTime
+//
+//    * DataCompressionType
 //
 //    * StorageCapacity
 //
@@ -4225,6 +4227,17 @@ type CreateFileSystemLustreConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
+	// Sets the data compression configuration for the file system. DataCompressionType
+	// can have the following values:
+	//
+	//    * NONE - (Default) Data compression is turned off when the file system
+	//    is created.
+	//
+	//    * LZ4 - Data compression is turned on with the LZ4 algorithm.
+	//
+	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html).
+	DataCompressionType *string `type:"string" enum:"DataCompressionType"`
+
 	// Choose SCRATCH_1 and SCRATCH_2 deployment types when you need temporary storage
 	// and shorter-term processing of data. The SCRATCH_2 deployment type provides
 	// in-transit encryption of data and higher burst throughput capacity than SCRATCH_1.
@@ -4361,6 +4374,12 @@ func (s *CreateFileSystemLustreConfiguration) SetCopyTagsToBackups(v bool) *Crea
 // SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
 func (s *CreateFileSystemLustreConfiguration) SetDailyAutomaticBackupStartTime(v string) *CreateFileSystemLustreConfiguration {
 	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *CreateFileSystemLustreConfiguration) SetDataCompressionType(v string) *CreateFileSystemLustreConfiguration {
+	s.DataCompressionType = &v
 	return s
 }
 
@@ -7276,6 +7295,16 @@ type LustreFileSystemConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
+	// The data compression configuration for the file system. DataCompressionType
+	// can have the following values:
+	//
+	//    * NONE - Data compression is turned off for the file system.
+	//
+	//    * LZ4 - Data compression is turned on with the LZ4 algorithm.
+	//
+	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html).
+	DataCompressionType *string `type:"string" enum:"DataCompressionType"`
+
 	// The data repository configuration object for Lustre file systems returned
 	// in the response of the CreateFileSystem operation.
 	DataRepositoryConfiguration *DataRepositoryConfiguration `type:"structure"`
@@ -7349,6 +7378,12 @@ func (s *LustreFileSystemConfiguration) SetCopyTagsToBackups(v bool) *LustreFile
 // SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
 func (s *LustreFileSystemConfiguration) SetDailyAutomaticBackupStartTime(v string) *LustreFileSystemConfiguration {
 	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *LustreFileSystemConfiguration) SetDataCompressionType(v string) *LustreFileSystemConfiguration {
+	s.DataCompressionType = &v
 	return s
 }
 
@@ -8467,6 +8502,19 @@ type UpdateFileSystemLustreConfiguration struct {
 	// 05:00 specifies 5 AM daily.
 	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
 
+	// Sets the data compression configuration for the file system. DataCompressionType
+	// can have the following values:
+	//
+	//    * NONE - Data compression is turned off for the file system.
+	//
+	//    * LZ4 - Data compression is turned on with the LZ4 algorithm.
+	//
+	// If you don't use DataCompressionType, the file system retains its current
+	// data compression configuration.
+	//
+	// For more information, see Lustre data compression (https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-compression.html).
+	DataCompressionType *string `type:"string" enum:"DataCompressionType"`
+
 	// (Optional) The preferred start time to perform weekly maintenance, formatted
 	// d:HH:MM in the UTC time zone. d is the weekday number, from 1 through 7,
 	// beginning with Monday and ending with Sunday.
@@ -8514,6 +8562,12 @@ func (s *UpdateFileSystemLustreConfiguration) SetAutomaticBackupRetentionDays(v 
 // SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
 func (s *UpdateFileSystemLustreConfiguration) SetDailyAutomaticBackupStartTime(v string) *UpdateFileSystemLustreConfiguration {
 	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDataCompressionType sets the DataCompressionType field's value.
+func (s *UpdateFileSystemLustreConfiguration) SetDataCompressionType(v string) *UpdateFileSystemLustreConfiguration {
+	s.DataCompressionType = &v
 	return s
 }
 
@@ -9030,6 +9084,22 @@ func BackupType_Values() []string {
 		BackupTypeAutomatic,
 		BackupTypeUserInitiated,
 		BackupTypeAwsBackup,
+	}
+}
+
+const (
+	// DataCompressionTypeNone is a DataCompressionType enum value
+	DataCompressionTypeNone = "NONE"
+
+	// DataCompressionTypeLz4 is a DataCompressionType enum value
+	DataCompressionTypeLz4 = "LZ4"
+)
+
+// DataCompressionType_Values returns all elements of the DataCompressionType enum
+func DataCompressionType_Values() []string {
+	return []string{
+		DataCompressionTypeNone,
+		DataCompressionTypeLz4,
 	}
 }
 

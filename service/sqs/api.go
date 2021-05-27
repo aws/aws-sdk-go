@@ -2660,12 +2660,12 @@ type CreateQueueInput struct {
 	//    a standard queue. You can provide this attribute only during queue creation.
 	//    You can't change it for an existing queue. When you set this attribute,
 	//    you must also provide the MessageGroupId for your messages explicitly.
-	//    For more information, see FIFO Queue Logic (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic)
+	//    For more information, see FIFO queue logic (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html)
 	//    in the Amazon Simple Queue Service Developer Guide.
 	//
 	//    * ContentBasedDeduplication – Enables content-based deduplication. Valid
-	//    values are true and false. For more information, see Exactly-Once Processing
-	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
+	//    values are true and false. For more information, see Exactly-once processing
+	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html)
 	//    in the Amazon Simple Queue Service Developer Guide. Note the following:
 	//    Every message must have a unique MessageDeduplicationId. You may provide
 	//    a MessageDeduplicationId explicitly. If you aren't able to provide a MessageDeduplicationId
@@ -2682,15 +2682,7 @@ type CreateQueueInput struct {
 	//    as the one generated for the first MessageDeduplicationId, the two messages
 	//    are treated as duplicates and only one copy of the message is delivered.
 	//
-	// Preview: High throughput for FIFO queues
-	//
-	// High throughput for Amazon SQS FIFO queues is in preview release and is subject
-	// to change. This feature provides a high number of transactions per second
-	// (TPS) for messages in FIFO queues. For information on throughput quotas,
-	// see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
-	// in the Amazon Simple Queue Service Developer Guide.
-	//
-	// This preview includes two new attributes:
+	// The following attributes apply only to high throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html):
 	//
 	//    * DeduplicationScope – Specifies whether message deduplication occurs
 	//    at the message group or queue level. Valid values are messageGroup and
@@ -2708,21 +2700,10 @@ type CreateQueueInput struct {
 	//    * Set FifoThroughputLimit to perMessageGroupId.
 	//
 	// If you set these attributes to anything other than the values shown for enabling
-	// high throughput, standard throughput is in effect and deduplication occurs
+	// high throughput, normal throughput is in effect and deduplication occurs
 	// as specified.
 	//
-	// This preview is available in the following AWS Regions:
-	//
-	//    * US East (Ohio); us-east-2
-	//
-	//    * US East (N. Virginia); us-east-1
-	//
-	//    * US West (Oregon); us-west-2
-	//
-	//    * Europe (Ireland); eu-west-1
-	//
-	// For more information about high throughput for FIFO queues, see Preview:
-	// High throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html)
+	// For information on throughput quotas, see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 	// in the Amazon Simple Queue Service Developer Guide.
 	Attributes map[string]*string `locationName:"Attribute" locationNameKey:"Name" locationNameValue:"Value" type:"map" flattened:"true"`
 
@@ -3226,25 +3207,17 @@ type GetQueueAttributesInput struct {
 	// The following attributes apply only to FIFO (first-in-first-out) queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html):
 	//
 	//    * FifoQueue – Returns information about whether the queue is FIFO. For
-	//    more information, see FIFO Queue Logic (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-understanding-logic)
+	//    more information, see FIFO queue logic (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-understanding-logic.html)
 	//    in the Amazon Simple Queue Service Developer Guide. To determine whether
 	//    a queue is FIFO (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html),
 	//    you can check whether QueueName ends with the .fifo suffix.
 	//
 	//    * ContentBasedDeduplication – Returns whether content-based deduplication
-	//    is enabled for the queue. For more information, see Exactly-Once Processing
-	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
+	//    is enabled for the queue. For more information, see Exactly-once processing
+	//    (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html)
 	//    in the Amazon Simple Queue Service Developer Guide.
 	//
-	// Preview: High throughput for FIFO queues
-	//
-	// High throughput for Amazon SQS FIFO queues is in preview release and is subject
-	// to change. This feature provides a high number of transactions per second
-	// (TPS) for messages in FIFO queues. For information on throughput quotas,
-	// see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
-	// in the Amazon Simple Queue Service Developer Guide.
-	//
-	// This preview includes two new attributes:
+	// The following attributes apply only to high throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html):
 	//
 	//    * DeduplicationScope – Specifies whether message deduplication occurs
 	//    at the message group or queue level. Valid values are messageGroup and
@@ -3262,21 +3235,10 @@ type GetQueueAttributesInput struct {
 	//    * Set FifoThroughputLimit to perMessageGroupId.
 	//
 	// If you set these attributes to anything other than the values shown for enabling
-	// high throughput, standard throughput is in effect and deduplication occurs
+	// high throughput, normal throughput is in effect and deduplication occurs
 	// as specified.
 	//
-	// This preview is available in the following AWS Regions:
-	//
-	//    * US East (Ohio); us-east-2
-	//
-	//    * US East (N. Virginia); us-east-1
-	//
-	//    * US West (Oregon); us-west-2
-	//
-	//    * Europe (Ireland); eu-west-1
-	//
-	// For more information about high throughput for FIFO queues, see Preview:
-	// High throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html)
+	// For information on throughput quotas, see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 	// in the Amazon Simple Queue Service Developer Guide.
 	AttributeNames []*string `locationNameList:"AttributeName" type:"list" flattened:"true"`
 
@@ -4435,7 +4397,7 @@ type SendMessageBatchRequestEntry struct {
 	// The token used for deduplication of messages within a 5-minute minimum deduplication
 	// interval. If a message with a particular MessageDeduplicationId is sent successfully,
 	// subsequent messages with the same MessageDeduplicationId are accepted successfully
-	// but aren't delivered. For more information, see Exactly-Once Processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
+	// but aren't delivered. For more information, see Exactly-once processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html)
 	// in the Amazon Simple Queue Service Developer Guide.
 	//
 	//    * Every message must have a unique MessageDeduplicationId, You may provide
@@ -4727,8 +4689,8 @@ type SendMessageInput struct {
 	// The token used for deduplication of sent messages. If a message with a particular
 	// MessageDeduplicationId is sent successfully, any messages sent with the same
 	// MessageDeduplicationId are accepted successfully but aren't delivered during
-	// the 5-minute deduplication interval. For more information, see Exactly-Once
-	// Processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
+	// the 5-minute deduplication interval. For more information, see Exactly-once
+	// processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html)
 	// in the Amazon Simple Queue Service Developer Guide.
 	//
 	//    * Every message must have a unique MessageDeduplicationId, You may provide
@@ -5047,7 +5009,7 @@ type SetQueueAttributesInput struct {
 	// (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html):
 	//
 	//    * ContentBasedDeduplication – Enables content-based deduplication. For
-	//    more information, see Exactly-Once Processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues.html#FIFO-queues-exactly-once-processing)
+	//    more information, see Exactly-once processing (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/FIFO-queues-exactly-once-processing.html)
 	//    in the Amazon Simple Queue Service Developer Guide. Note the following:
 	//    Every message must have a unique MessageDeduplicationId. You may provide
 	//    a MessageDeduplicationId explicitly. If you aren't able to provide a MessageDeduplicationId
@@ -5064,15 +5026,7 @@ type SetQueueAttributesInput struct {
 	//    as the one generated for the first MessageDeduplicationId, the two messages
 	//    are treated as duplicates and only one copy of the message is delivered.
 	//
-	// Preview: High throughput for FIFO queues
-	//
-	// High throughput for Amazon SQS FIFO queues is in preview release and is subject
-	// to change. This feature provides a high number of transactions per second
-	// (TPS) for messages in FIFO queues. For information on throughput quotas,
-	// see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
-	// in the Amazon Simple Queue Service Developer Guide.
-	//
-	// This preview includes two new attributes:
+	// The following attributes apply only to high throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html):
 	//
 	//    * DeduplicationScope – Specifies whether message deduplication occurs
 	//    at the message group or queue level. Valid values are messageGroup and
@@ -5090,21 +5044,10 @@ type SetQueueAttributesInput struct {
 	//    * Set FifoThroughputLimit to perMessageGroupId.
 	//
 	// If you set these attributes to anything other than the values shown for enabling
-	// high throughput, standard throughput is in effect and deduplication occurs
+	// high throughput, normal throughput is in effect and deduplication occurs
 	// as specified.
 	//
-	// This preview is available in the following AWS Regions:
-	//
-	//    * US East (Ohio); us-east-2
-	//
-	//    * US East (N. Virginia); us-east-1
-	//
-	//    * US West (Oregon); us-west-2
-	//
-	//    * Europe (Ireland); eu-west-1
-	//
-	// For more information about high throughput for FIFO queues, see Preview:
-	// High throughput for FIFO queues (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/high-throughput-fifo.html)
+	// For information on throughput quotas, see Quotas related to messages (https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html)
 	// in the Amazon Simple Queue Service Developer Guide.
 	//
 	// Attributes is a required field

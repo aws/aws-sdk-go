@@ -11,7 +11,7 @@ const (
 	// ErrCodeInternalFailureException for service response error code
 	// "InternalFailureException".
 	//
-	// An internal failure occured.
+	// An internal failure occurred.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeInvalidRequestException for service response error code

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS IoT Events Data.
 //    func myFunc(svc ioteventsdataiface.IoTEventsDataAPI) bool {
-//        // Make svc.BatchPutMessage request
+//        // Make svc.BatchAcknowledgeAlarm request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockIoTEventsDataClient struct {
 //        ioteventsdataiface.IoTEventsDataAPI
 //    }
-//    func (m *mockIoTEventsDataClient) BatchPutMessage(input *ioteventsdata.BatchPutMessageInput) (*ioteventsdata.BatchPutMessageOutput, error) {
+//    func (m *mockIoTEventsDataClient) BatchAcknowledgeAlarm(input *ioteventsdata.BatchAcknowledgeAlarmInput) (*ioteventsdata.BatchAcknowledgeAlarmOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,17 +60,45 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type IoTEventsDataAPI interface {
+	BatchAcknowledgeAlarm(*ioteventsdata.BatchAcknowledgeAlarmInput) (*ioteventsdata.BatchAcknowledgeAlarmOutput, error)
+	BatchAcknowledgeAlarmWithContext(aws.Context, *ioteventsdata.BatchAcknowledgeAlarmInput, ...request.Option) (*ioteventsdata.BatchAcknowledgeAlarmOutput, error)
+	BatchAcknowledgeAlarmRequest(*ioteventsdata.BatchAcknowledgeAlarmInput) (*request.Request, *ioteventsdata.BatchAcknowledgeAlarmOutput)
+
+	BatchDisableAlarm(*ioteventsdata.BatchDisableAlarmInput) (*ioteventsdata.BatchDisableAlarmOutput, error)
+	BatchDisableAlarmWithContext(aws.Context, *ioteventsdata.BatchDisableAlarmInput, ...request.Option) (*ioteventsdata.BatchDisableAlarmOutput, error)
+	BatchDisableAlarmRequest(*ioteventsdata.BatchDisableAlarmInput) (*request.Request, *ioteventsdata.BatchDisableAlarmOutput)
+
+	BatchEnableAlarm(*ioteventsdata.BatchEnableAlarmInput) (*ioteventsdata.BatchEnableAlarmOutput, error)
+	BatchEnableAlarmWithContext(aws.Context, *ioteventsdata.BatchEnableAlarmInput, ...request.Option) (*ioteventsdata.BatchEnableAlarmOutput, error)
+	BatchEnableAlarmRequest(*ioteventsdata.BatchEnableAlarmInput) (*request.Request, *ioteventsdata.BatchEnableAlarmOutput)
+
 	BatchPutMessage(*ioteventsdata.BatchPutMessageInput) (*ioteventsdata.BatchPutMessageOutput, error)
 	BatchPutMessageWithContext(aws.Context, *ioteventsdata.BatchPutMessageInput, ...request.Option) (*ioteventsdata.BatchPutMessageOutput, error)
 	BatchPutMessageRequest(*ioteventsdata.BatchPutMessageInput) (*request.Request, *ioteventsdata.BatchPutMessageOutput)
+
+	BatchResetAlarm(*ioteventsdata.BatchResetAlarmInput) (*ioteventsdata.BatchResetAlarmOutput, error)
+	BatchResetAlarmWithContext(aws.Context, *ioteventsdata.BatchResetAlarmInput, ...request.Option) (*ioteventsdata.BatchResetAlarmOutput, error)
+	BatchResetAlarmRequest(*ioteventsdata.BatchResetAlarmInput) (*request.Request, *ioteventsdata.BatchResetAlarmOutput)
+
+	BatchSnoozeAlarm(*ioteventsdata.BatchSnoozeAlarmInput) (*ioteventsdata.BatchSnoozeAlarmOutput, error)
+	BatchSnoozeAlarmWithContext(aws.Context, *ioteventsdata.BatchSnoozeAlarmInput, ...request.Option) (*ioteventsdata.BatchSnoozeAlarmOutput, error)
+	BatchSnoozeAlarmRequest(*ioteventsdata.BatchSnoozeAlarmInput) (*request.Request, *ioteventsdata.BatchSnoozeAlarmOutput)
 
 	BatchUpdateDetector(*ioteventsdata.BatchUpdateDetectorInput) (*ioteventsdata.BatchUpdateDetectorOutput, error)
 	BatchUpdateDetectorWithContext(aws.Context, *ioteventsdata.BatchUpdateDetectorInput, ...request.Option) (*ioteventsdata.BatchUpdateDetectorOutput, error)
 	BatchUpdateDetectorRequest(*ioteventsdata.BatchUpdateDetectorInput) (*request.Request, *ioteventsdata.BatchUpdateDetectorOutput)
 
+	DescribeAlarm(*ioteventsdata.DescribeAlarmInput) (*ioteventsdata.DescribeAlarmOutput, error)
+	DescribeAlarmWithContext(aws.Context, *ioteventsdata.DescribeAlarmInput, ...request.Option) (*ioteventsdata.DescribeAlarmOutput, error)
+	DescribeAlarmRequest(*ioteventsdata.DescribeAlarmInput) (*request.Request, *ioteventsdata.DescribeAlarmOutput)
+
 	DescribeDetector(*ioteventsdata.DescribeDetectorInput) (*ioteventsdata.DescribeDetectorOutput, error)
 	DescribeDetectorWithContext(aws.Context, *ioteventsdata.DescribeDetectorInput, ...request.Option) (*ioteventsdata.DescribeDetectorOutput, error)
 	DescribeDetectorRequest(*ioteventsdata.DescribeDetectorInput) (*request.Request, *ioteventsdata.DescribeDetectorOutput)
+
+	ListAlarms(*ioteventsdata.ListAlarmsInput) (*ioteventsdata.ListAlarmsOutput, error)
+	ListAlarmsWithContext(aws.Context, *ioteventsdata.ListAlarmsInput, ...request.Option) (*ioteventsdata.ListAlarmsOutput, error)
+	ListAlarmsRequest(*ioteventsdata.ListAlarmsInput) (*request.Request, *ioteventsdata.ListAlarmsOutput)
 
 	ListDetectors(*ioteventsdata.ListDetectorsInput) (*ioteventsdata.ListDetectorsOutput, error)
 	ListDetectorsWithContext(aws.Context, *ioteventsdata.ListDetectorsInput, ...request.Option) (*ioteventsdata.ListDetectorsOutput, error)

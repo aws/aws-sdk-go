@@ -512,6 +512,12 @@ func (c *DeviceFarm) CreateTestGridProjectRequest(input *CreateTestGridProjectIn
 // API operation CreateTestGridProject for usage and error information.
 //
 // Returned Error Types:
+//   * ArgumentException
+//   An invalid argument was specified.
+//
+//   * LimitExceededException
+//   A limit was exceeded.
+//
 //   * InternalServiceException
 //   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
 //   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
@@ -7705,6 +7711,9 @@ func (c *DeviceFarm) UpdateTestGridProjectRequest(input *UpdateTestGridProjectIn
 //   * ArgumentException
 //   An invalid argument was specified.
 //
+//   * LimitExceededException
+//   A limit was exceeded.
+//
 //   * InternalServiceException
 //   An internal exception was raised in the service. Contact aws-devicefarm-support@amazon.com
 //   (mailto:aws-devicefarm-support@amazon.com) if you see this error.
@@ -9081,6 +9090,9 @@ type CreateTestGridProjectInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -9105,6 +9117,11 @@ func (s *CreateTestGridProjectInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9121,6 +9138,12 @@ func (s *CreateTestGridProjectInput) SetDescription(v string) *CreateTestGridPro
 // SetName sets the Name field's value.
 func (s *CreateTestGridProjectInput) SetName(v string) *CreateTestGridProjectInput {
 	s.Name = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *CreateTestGridProjectInput) SetVpcConfig(v *TestGridVpcConfig) *CreateTestGridProjectInput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -9214,7 +9237,7 @@ type CreateTestGridUrlOutput struct {
 
 	// A signed URL, expiring in CreateTestGridUrlRequest$expiresInSeconds seconds,
 	// to be passed to a RemoteWebDriver.
-	Url *string `locationName:"url" type:"string"`
+	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -10389,11 +10412,15 @@ type DeviceFilter struct {
 	// The fleet type. Valid values are PUBLIC or PRIVATE.
 	//
 	// Supported operators: EQUALS
-	Attribute *string `locationName:"attribute" type:"string" enum:"DeviceFilterAttribute"`
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"DeviceFilterAttribute"`
 
 	// Specifies how Device Farm compares the filter's attribute to the value. See
 	// the attribute descriptions.
-	Operator *string `locationName:"operator" type:"string" enum:"RuleOperator"`
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"RuleOperator"`
 
 	// An array of one or more filter values used in a device filter.
 	//
@@ -10414,7 +10441,9 @@ type DeviceFilter struct {
 	//    * The FORM_FACTOR attribute can be set to PHONE or TABLET.
 	//
 	//    * The FLEET_TYPE attribute can be set to PUBLIC or PRIVATE.
-	Values []*string `locationName:"values" type:"list"`
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -10425,6 +10454,25 @@ func (s DeviceFilter) String() string {
 // GoString returns the string representation
 func (s DeviceFilter) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeviceFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeviceFilter"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAttribute sets the Attribute field's value.
@@ -10752,6 +10800,16 @@ func (s *DeviceSelectionConfiguration) Validate() error {
 	}
 	if s.MaxDevices == nil {
 		invalidParams.Add(request.NewErrParamRequired("MaxDevices"))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -13198,6 +13256,16 @@ func (s *ListDevicesInput) Validate() error {
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15850,13 +15918,17 @@ type PurchaseOfferingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the offering.
-	OfferingId *string `locationName:"offeringId" min:"32" type:"string"`
+	//
+	// OfferingId is a required field
+	OfferingId *string `locationName:"offeringId" min:"32" type:"string" required:"true"`
 
 	// The ID of the offering promotion to be applied to the purchase.
 	OfferingPromotionId *string `locationName:"offeringPromotionId" min:"4" type:"string"`
 
 	// The number of device slots to purchase in an offering request.
-	Quantity *int64 `locationName:"quantity" type:"integer"`
+	//
+	// Quantity is a required field
+	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -15872,11 +15944,17 @@ func (s PurchaseOfferingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PurchaseOfferingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PurchaseOfferingInput"}
+	if s.OfferingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OfferingId"))
+	}
 	if s.OfferingId != nil && len(*s.OfferingId) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("OfferingId", 32))
 	}
 	if s.OfferingPromotionId != nil && len(*s.OfferingPromotionId) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("OfferingPromotionId", 4))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -16286,10 +16364,14 @@ type RenewOfferingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of a request to renew an offering.
-	OfferingId *string `locationName:"offeringId" min:"32" type:"string"`
+	//
+	// OfferingId is a required field
+	OfferingId *string `locationName:"offeringId" min:"32" type:"string" required:"true"`
 
 	// The quantity requested in an offering renewal.
-	Quantity *int64 `locationName:"quantity" type:"integer"`
+	//
+	// Quantity is a required field
+	Quantity *int64 `locationName:"quantity" type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -16305,8 +16387,14 @@ func (s RenewOfferingInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RenewOfferingInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RenewOfferingInput"}
+	if s.OfferingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OfferingId"))
+	}
 	if s.OfferingId != nil && len(*s.OfferingId) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("OfferingId", 32))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -18366,6 +18454,9 @@ type TestGridProject struct {
 
 	// A human-readable name for the project.
 	Name *string `locationName:"name" type:"string"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -18399,6 +18490,12 @@ func (s *TestGridProject) SetDescription(v string) *TestGridProject {
 // SetName sets the Name field's value.
 func (s *TestGridProject) SetName(v string) *TestGridProject {
 	s.Name = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *TestGridProject) SetVpcConfig(v *TestGridVpcConfig) *TestGridProject {
+	s.VpcConfig = v
 	return s
 }
 
@@ -18547,7 +18644,7 @@ type TestGridSessionArtifact struct {
 	Type *string `locationName:"type" type:"string" enum:"TestGridSessionArtifactType"`
 
 	// A semi-stable URL to the content of the object.
-	Url *string `locationName:"url" type:"string"`
+	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation
@@ -18575,6 +18672,82 @@ func (s *TestGridSessionArtifact) SetType(v string) *TestGridSessionArtifact {
 // SetUrl sets the Url field's value.
 func (s *TestGridSessionArtifact) SetUrl(v string) *TestGridSessionArtifact {
 	s.Url = &v
+	return s
+}
+
+// The VPC security groups and subnets that are attached to a project.
+type TestGridVpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A list of VPC security group IDs in your Amazon VPC.
+	//
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `locationName:"securityGroupIds" min:"1" type:"list" required:"true"`
+
+	// A list of VPC subnet IDs in your Amazon VPC.
+	//
+	// SubnetIds is a required field
+	SubnetIds []*string `locationName:"subnetIds" min:"1" type:"list" required:"true"`
+
+	// The ID of the Amazon VPC.
+	//
+	// VpcId is a required field
+	VpcId *string `locationName:"vpcId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s TestGridVpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TestGridVpcConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TestGridVpcConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TestGridVpcConfig"}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.SubnetIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
+	}
+	if s.SubnetIds != nil && len(s.SubnetIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SubnetIds", 1))
+	}
+	if s.VpcId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VpcId"))
+	}
+	if s.VpcId != nil && len(*s.VpcId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VpcId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *TestGridVpcConfig) SetSecurityGroupIds(v []*string) *TestGridVpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *TestGridVpcConfig) SetSubnetIds(v []*string) *TestGridVpcConfig {
+	s.SubnetIds = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *TestGridVpcConfig) SetVpcId(v string) *TestGridVpcConfig {
+	s.VpcId = &v
 	return s
 }
 
@@ -19370,6 +19543,9 @@ type UpdateTestGridProjectInput struct {
 	//
 	// ProjectArn is a required field
 	ProjectArn *string `locationName:"projectArn" min:"32" type:"string" required:"true"`
+
+	// The VPC security groups and subnets that are attached to a project.
+	VpcConfig *TestGridVpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -19397,6 +19573,11 @@ func (s *UpdateTestGridProjectInput) Validate() error {
 	if s.ProjectArn != nil && len(*s.ProjectArn) < 32 {
 		invalidParams.Add(request.NewErrParamMinLen("ProjectArn", 32))
 	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19419,6 +19600,12 @@ func (s *UpdateTestGridProjectInput) SetName(v string) *UpdateTestGridProjectInp
 // SetProjectArn sets the ProjectArn field's value.
 func (s *UpdateTestGridProjectInput) SetProjectArn(v string) *UpdateTestGridProjectInput {
 	s.ProjectArn = &v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *UpdateTestGridProjectInput) SetVpcConfig(v *TestGridVpcConfig) *UpdateTestGridProjectInput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -19756,7 +19943,7 @@ type Upload struct {
 	Type *string `locationName:"type" type:"string" enum:"UploadType"`
 
 	// The presigned Amazon S3 URL that was used to store a file using a PUT request.
-	Url *string `locationName:"url" type:"string"`
+	Url *string `locationName:"url" type:"string" sensitive:"true"`
 }
 
 // String returns the string representation

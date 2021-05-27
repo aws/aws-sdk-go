@@ -2,27 +2,46 @@
   "version": "2.0",
   "service": "<p>AWS IoT Events monitors your equipment or device fleets for failures or changes in operation, and triggers actions when such events occur. You can use AWS IoT Events API operations to create, read, update, and delete inputs and detector models, and to list their versions.</p>",
   "operations": {
+    "CreateAlarmModel": "<p>Creates an alarm model to monitor an AWS IoT Events input attribute. You can use the alarm to get notified when the value is outside a specified range. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/create-alarms.html\">Create an alarm model</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
     "CreateDetectorModel": "<p>Creates a detector model.</p>",
     "CreateInput": "<p>Creates an input.</p>",
+    "DeleteAlarmModel": "<p>Deletes an alarm model. Any alarm instances that were created based on this alarm model are also deleted. This action can't be undone.</p>",
     "DeleteDetectorModel": "<p>Deletes a detector model. Any active instances of the detector model are also deleted.</p>",
     "DeleteInput": "<p>Deletes an input.</p>",
+    "DescribeAlarmModel": "<p>Retrieves information about an alarm model. If you don't specify a value for the <code>alarmModelVersion</code> parameter, the latest version is returned.</p>",
     "DescribeDetectorModel": "<p>Describes a detector model. If the <code>version</code> parameter is not specified, information about the latest version is returned.</p>",
-    "DescribeDetectorModelAnalysis": "<p>Retrieves execution information about a detector model analysis</p>",
+    "DescribeDetectorModelAnalysis": "<p>Retrieves runtime information about a detector model analysis.</p> <note> <p>After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.</p> </note>",
     "DescribeInput": "<p>Describes an input.</p>",
     "DescribeLoggingOptions": "<p>Retrieves the current settings of the AWS IoT Events logging options.</p>",
-    "GetDetectorModelAnalysisResults": "<p>Retrieves one or more analysis results of the detector model.</p>",
+    "GetDetectorModelAnalysisResults": "<p>Retrieves one or more analysis results of the detector model.</p> <note> <p>After AWS IoT Events starts analyzing your detector model, you have up to 24 hours to retrieve the analysis results.</p> </note>",
+    "ListAlarmModelVersions": "<p>Lists all the versions of an alarm model. The operation returns only the metadata associated with each alarm model version.</p>",
+    "ListAlarmModels": "<p>Lists the alarm models that you created. The operation returns only the metadata associated with each alarm model.</p>",
     "ListDetectorModelVersions": "<p>Lists all the versions of a detector model. Only the metadata associated with each detector model version is returned.</p>",
     "ListDetectorModels": "<p>Lists the detector models you have created. Only the metadata associated with each detector model is returned.</p>",
+    "ListInputRoutings": "<p> Lists one or more input routings. </p>",
     "ListInputs": "<p>Lists the inputs you have created.</p>",
     "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
     "PutLoggingOptions": "<p>Sets or updates the AWS IoT Events logging options.</p> <p>If you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. If you change the policy attached to the role you specified in the <code>roleArn</code> field (for example, to correct an invalid policy), it takes up to five minutes for that change to take effect.</p>",
-    "StartDetectorModelAnalysis": "<p>Performs an analysis of your detector model. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html\">Running detector model analyses</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
+    "StartDetectorModelAnalysis": "<p>Performs an analysis of your detector model. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html\">Troubleshooting a detector model</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
     "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
+    "UpdateAlarmModel": "<p>Updates an alarm model. Any alarms that were created based on the previous version are deleted and then created again as new data arrives.</p>",
     "UpdateDetectorModel": "<p>Updates a detector model. Detectors (instances) spawned by the previous version are deleted and then re-created as new inputs arrive.</p>",
     "UpdateInput": "<p>Updates an input.</p>"
   },
   "shapes": {
+    "AcknowledgeFlow": {
+      "base": "<p>Specifies whether to get notified for alarm state changes.</p>",
+      "refs": {
+        "AlarmCapabilities$acknowledgeFlow": "<p>Specifies whether to get notified for alarm state changes.</p>"
+      }
+    },
+    "AcknowledgeFlowEnabled": {
+      "base": null,
+      "refs": {
+        "AcknowledgeFlow$enabled": "<p>The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>TRUE</code>, you receive a notification when the alarm state changes. You must choose to acknowledge the notification before the alarm state can return to <code>NORMAL</code>. If <code>FALSE</code>, you won't receive notifications. The alarm automatically changes to the <code>NORMAL</code> state when the input property value returns to the specified range.</p>"
+      }
+    },
     "Action": {
       "base": "<p>An action to be performed when the <code>condition</code> is TRUE.</p>",
       "refs": {
@@ -36,18 +55,141 @@
         "TransitionEvent$actions": "<p>The actions to be performed.</p>"
       }
     },
+    "AlarmAction": {
+      "base": "<p>Specifies one of the following actions to receive notifications when the alarm state changes.</p>",
+      "refs": {
+        "AlarmActions$member": null
+      }
+    },
+    "AlarmActions": {
+      "base": null,
+      "refs": {
+        "AlarmEventActions$alarmActions": "<p>Specifies one or more supported actions to receive notifications when the alarm state changes.</p>"
+      }
+    },
+    "AlarmCapabilities": {
+      "base": "<p>Contains the configuration information of alarm state changes.</p>",
+      "refs": {
+        "CreateAlarmModelRequest$alarmCapabilities": "<p>Contains the configuration information of alarm state changes.</p>",
+        "DescribeAlarmModelResponse$alarmCapabilities": "<p>Contains the configuration information of alarm state changes.</p>",
+        "UpdateAlarmModelRequest$alarmCapabilities": "<p>Contains the configuration information of alarm state changes.</p>"
+      }
+    },
+    "AlarmEventActions": {
+      "base": "<p>Contains information about one or more alarm actions.</p>",
+      "refs": {
+        "CreateAlarmModelRequest$alarmEventActions": "<p>Contains information about one or more alarm actions.</p>",
+        "DescribeAlarmModelResponse$alarmEventActions": "<p>Contains information about one or more alarm actions.</p>",
+        "UpdateAlarmModelRequest$alarmEventActions": "<p>Contains information about one or more alarm actions.</p>"
+      }
+    },
+    "AlarmModelArn": {
+      "base": null,
+      "refs": {
+        "AlarmModelVersionSummary$alarmModelArn": "<p>The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
+        "CreateAlarmModelResponse$alarmModelArn": "<p>The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
+        "DescribeAlarmModelResponse$alarmModelArn": "<p>The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
+        "UpdateAlarmModelResponse$alarmModelArn": "<p>The ARN of the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>"
+      }
+    },
+    "AlarmModelDescription": {
+      "base": null,
+      "refs": {
+        "AlarmModelSummary$alarmModelDescription": "<p>The description of the alarm model.</p>",
+        "CreateAlarmModelRequest$alarmModelDescription": "<p>A description that tells you what the alarm model detects.</p>",
+        "DescribeAlarmModelResponse$alarmModelDescription": "<p>The description of the alarm model.</p>",
+        "UpdateAlarmModelRequest$alarmModelDescription": "<p>The description of the alarm model.</p>"
+      }
+    },
+    "AlarmModelName": {
+      "base": null,
+      "refs": {
+        "AlarmModelSummary$alarmModelName": "<p>The name of the alarm model.</p>",
+        "AlarmModelVersionSummary$alarmModelName": "<p>The name of the alarm model.</p>",
+        "CreateAlarmModelRequest$alarmModelName": "<p>A unique name that helps you identify the alarm model. You can't change this name after you create the alarm model.</p>",
+        "DeleteAlarmModelRequest$alarmModelName": "<p>The name of the alarm model.</p>",
+        "DescribeAlarmModelRequest$alarmModelName": "<p>The name of the alarm model.</p>",
+        "DescribeAlarmModelResponse$alarmModelName": "<p>The name of the alarm model.</p>",
+        "ListAlarmModelVersionsRequest$alarmModelName": "<p>The name of the alarm model.</p>",
+        "UpdateAlarmModelRequest$alarmModelName": "<p>The name of the alarm model.</p>"
+      }
+    },
+    "AlarmModelSummaries": {
+      "base": null,
+      "refs": {
+        "ListAlarmModelsResponse$alarmModelSummaries": "<p>A list that summarizes each alarm model.</p>"
+      }
+    },
+    "AlarmModelSummary": {
+      "base": "<p>Contains a summary of an alarm model.</p>",
+      "refs": {
+        "AlarmModelSummaries$member": null
+      }
+    },
+    "AlarmModelVersion": {
+      "base": null,
+      "refs": {
+        "AlarmModelVersionSummary$alarmModelVersion": "<p>The version of the alarm model.</p>",
+        "CreateAlarmModelResponse$alarmModelVersion": "<p>The version of the alarm model.</p>",
+        "DescribeAlarmModelRequest$alarmModelVersion": "<p>The version of the alarm model.</p>",
+        "DescribeAlarmModelResponse$alarmModelVersion": "<p>The version of the alarm model.</p>",
+        "UpdateAlarmModelResponse$alarmModelVersion": "<p>The version of the alarm model.</p>"
+      }
+    },
+    "AlarmModelVersionStatus": {
+      "base": null,
+      "refs": {
+        "AlarmModelVersionSummary$status": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>",
+        "CreateAlarmModelResponse$status": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>",
+        "DescribeAlarmModelResponse$status": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>",
+        "UpdateAlarmModelResponse$status": "<p>The status of the alarm model. The status can be one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The alarm model is active and it's ready to evaluate data.</p> </li> <li> <p> <code>ACTIVATING</code> - AWS IoT Events is activating your alarm model. Activating an alarm model can take up to a few minutes.</p> </li> <li> <p> <code>INACTIVE</code> - The alarm model is inactive, so it isn't ready to evaluate data. Check your alarm model information and update the alarm model.</p> </li> <li> <p> <code>FAILED</code> - You couldn't create or update the alarm model. Check your alarm model information and try again.</p> </li> </ul>"
+      }
+    },
+    "AlarmModelVersionSummaries": {
+      "base": null,
+      "refs": {
+        "ListAlarmModelVersionsResponse$alarmModelVersionSummaries": "<p>A list that summarizes each alarm model version.</p>"
+      }
+    },
+    "AlarmModelVersionSummary": {
+      "base": "<p>Contains a summary of an alarm model version.</p>",
+      "refs": {
+        "AlarmModelVersionSummaries$member": null
+      }
+    },
+    "AlarmNotification": {
+      "base": "<p>Contains information about one or more notification actions.</p>",
+      "refs": {
+        "CreateAlarmModelRequest$alarmNotification": "<p>Contains information about one or more notification actions.</p>",
+        "DescribeAlarmModelResponse$alarmNotification": "<p>Contains information about one or more notification actions.</p>",
+        "UpdateAlarmModelRequest$alarmNotification": "<p>Contains information about one or more notification actions.</p>"
+      }
+    },
+    "AlarmRule": {
+      "base": "<p>Defines when your alarm is invoked.</p>",
+      "refs": {
+        "CreateAlarmModelRequest$alarmRule": "<p>Defines when your alarm is invoked.</p>",
+        "DescribeAlarmModelResponse$alarmRule": "<p>Defines when your alarm is invoked.</p>",
+        "UpdateAlarmModelRequest$alarmRule": "<p>Defines when your alarm is invoked.</p>"
+      }
+    },
     "AmazonResourceName": {
       "base": null,
       "refs": {
+        "AlarmModelVersionSummary$roleArn": "<p>The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
+        "CreateAlarmModelRequest$roleArn": "<p>The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "CreateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
+        "DescribeAlarmModelResponse$roleArn": "<p>The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "DetectorModelConfiguration$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>",
         "DetectorModelVersionSummary$roleArn": "<p>The ARN of the role that grants the detector model permission to perform its tasks.</p>",
         "LambdaAction$functionArn": "<p>The ARN of the Lambda function that is executed.</p>",
         "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform logging.</p>",
+        "RoutedResource$arn": "<p> The ARN of the routed resource. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>. </p>",
         "SNSTopicPublishAction$targetArn": "<p>The ARN of the Amazon SNS target where the message is sent.</p>",
         "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
+        "UpdateAlarmModelRequest$roleArn": "<p>The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs)</a> in the <i>AWS General Reference</i>.</p>",
         "UpdateDetectorModelRequest$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Events to perform its operations.</p>"
       }
     },
@@ -74,7 +216,7 @@
     "AnalysisResultLevel": {
       "base": null,
       "refs": {
-        "AnalysisResult$level": "<p>The severity level of the analysis result. Analysis results fall into three general categories based on the severity level:</p> <ul> <li> <p> <code>INFO</code> - An information result informs you about a significant field in your detector model. This type of result usually doesn't require immediate action.</p> </li> <li> <p> <code>WARNING</code> - A warning result draws special attention to fields that are potentially damaging to your detector model. We recommend that you review warnings and take necessary actions before you use your detetor model in production environments. Otherwise, the detector model may not fully function as expected.</p> </li> <li> <p> <code>ERROR</code> - An error result notifies you about a problem found in your detector model. You must fix all errors before you can publish your detector model.</p> </li> </ul>"
+        "AnalysisResult$level": "<p>The severity level of the analysis result. Based on the severity level, analysis results fall into three general categories:</p> <ul> <li> <p> <code>INFO</code> - An information result tells you about a significant field in your detector model. This type of result usually doesn't require immediate action.</p> </li> <li> <p> <code>WARNING</code> - A warning result draws special attention to fields that might cause issues for your detector model. We recommend that you review warnings and take necessary actions before you use your detector model in production environments. Otherwise, the detector model might not work as expected.</p> </li> <li> <p> <code>ERROR</code> - An error result notifies you about a problem found in your detector model. You must fix all errors before you can publish your detector model.</p> </li> </ul>"
       }
     },
     "AnalysisResultLocation": {
@@ -104,19 +246,25 @@
     "AnalysisStatus": {
       "base": null,
       "refs": {
-        "DescribeDetectorModelAnalysisResponse$status": "<p>The status of the analysis activity. The status can be one of the following values:</p> <ul> <li> <p> <code>RUNNING</code> - AWS IoT Events is analyzing your detector model. This process can take several minutes to complete.</p> </li> <li> <p> <code>COMPLETE</code> - AWS IoT Events finished analyzing your detector model .</p> </li> <li> <p> <code>FAILED</code> - AWS IoT Events couldn't analyze your detector model. Try again later.</p> </li> </ul>"
+        "DescribeDetectorModelAnalysisResponse$status": "<p>The status of the analysis activity. The status can be one of the following values:</p> <ul> <li> <p> <code>RUNNING</code> - AWS IoT Events is analyzing your detector model. This process can take several minutes to complete.</p> </li> <li> <p> <code>COMPLETE</code> - AWS IoT Events finished analyzing your detector model.</p> </li> <li> <p> <code>FAILED</code> - AWS IoT Events couldn't analyze your detector model. Try again later.</p> </li> </ul>"
       }
     },
     "AnalysisType": {
       "base": null,
       "refs": {
-        "AnalysisResult$type": "<p>The type of the analysis result. Analyses fall into the following types based on the validators used to generate the analysis result:</p> <ul> <li> <p> <code>supported-actions</code> - You must specify AWS IoT Events supported actions that work with other AWS services in a supported AWS Region.</p> </li> <li> <p> <code>service-limits</code> - Resources or operations can't exceed service limits. Update your detector model or request a limit adjust.</p> </li> <li> <p> <code>structure</code> - The detector model must follow a structure that AWS IoT Events supports. </p> </li> <li> <p> <code>expression-syntax</code> - Your expression must follow the required syntax.</p> </li> <li> <p> <code>data-type</code> - Data types referenced in the detector model must be compatible.</p> </li> <li> <p> <code>referenced-data</code> - You must define the data referenced in your detector model before you can use the data.</p> </li> <li> <p> <code>referenced-resource</code> - Resources that the detector model uses must be available.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html\">Running detector model analyses</a> in the <i>AWS IoT Events Developer Guide</i>.</p>"
+        "AnalysisResult$type": "<p>The type of the analysis result. Analyses fall into the following types based on the validators used to generate the analysis result:</p> <ul> <li> <p> <code>supported-actions</code> - You must specify AWS IoT Events supported actions that work with other AWS services in a supported AWS Region.</p> </li> <li> <p> <code>service-limits</code> - Resources or API operations can't exceed service quotas (also known as limits). Update your detector model or request a quota increase.</p> </li> <li> <p> <code>structure</code> - The detector model must follow a structure that AWS IoT Events supports. </p> </li> <li> <p> <code>expression-syntax</code> - Your expression must follow the required syntax.</p> </li> <li> <p> <code>data-type</code> - Data types referenced in the detector model must be compatible.</p> </li> <li> <p> <code>referenced-data</code> - You must define the data referenced in your detector model before you can use the data.</p> </li> <li> <p> <code>referenced-resource</code> - Resources that the detector model uses must be available.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-analyze-api.html\">Running detector model analyses</a> in the <i>AWS IoT Events Developer Guide</i>.</p>"
       }
     },
     "AssetId": {
       "base": null,
       "refs": {
         "IotSiteWiseAction$assetId": "<p>The ID of the asset that has the specified property.</p>"
+      }
+    },
+    "AssetModelId": {
+      "base": null,
+      "refs": {
+        "IotSiteWiseAssetModelPropertyIdentifier$assetModelId": "<p> The ID of the AWS IoT SiteWise asset model. </p>"
       }
     },
     "AssetPropertyAlias": {
@@ -146,7 +294,8 @@
     "AssetPropertyId": {
       "base": null,
       "refs": {
-        "IotSiteWiseAction$propertyId": "<p>The ID of the asset property.</p>"
+        "IotSiteWiseAction$propertyId": "<p>The ID of the asset property.</p>",
+        "IotSiteWiseAssetModelPropertyIdentifier$propertyId": "<p> The ID of the AWS IoT SiteWise asset property. </p>"
       }
     },
     "AssetPropertyIntegerValue": {
@@ -207,7 +356,9 @@
       "base": null,
       "refs": {
         "Attribute$jsonPath": "<p>An expression that specifies an attribute-value pair in a JSON structure. Use this to specify an attribute from the JSON payload that is made available by the input. Inputs are derived from messages sent to AWS IoT Events (<code>BatchPutMessage</code>). Each such message contains a JSON payload. The attribute (and its paired value) specified here are available for use in the <code>condition</code> expressions used by detectors. </p> <p>Syntax: <code>&lt;field-name&gt;.&lt;field-name&gt;...</code> </p>",
+        "CreateAlarmModelRequest$key": "<p>An input attribute used as a key to create an alarm. AWS IoT Events routes <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Input.html\">inputs</a> associated with this key to the alarm.</p>",
         "CreateDetectorModelRequest$key": "<p>The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.</p>",
+        "DescribeAlarmModelResponse$key": "<p>An input attribute used as a key to create an alarm. AWS IoT Events routes <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Input.html\">inputs</a> associated with this key to the alarm.</p>",
         "DetectorModelConfiguration$key": "<p>The value used to identify a detector instance. When a device or system sends input, a new detector instance with a unique key value is created. AWS IoT Events can continue to route input to its corresponding detector instance based on this identifying information. </p> <p>This parameter uses a JSON-path expression to select the attribute-value pair in the message payload that is used for identification. To route the message to the correct detector instance, the device must send a message payload that contains the same attribute-value.</p>"
       }
     },
@@ -223,6 +374,12 @@
         "Action$clearTimer": "<p>Information needed to clear the timer.</p>"
       }
     },
+    "ComparisonOperator": {
+      "base": null,
+      "refs": {
+        "SimpleRule$comparisonOperator": "<p>The comparison operator.</p>"
+      }
+    },
     "Condition": {
       "base": null,
       "refs": {
@@ -234,6 +391,16 @@
       "base": null,
       "refs": {
         "Payload$contentExpression": "<p>The content of the payload. You can use a string expression that includes quoted strings (<code>'&lt;string&gt;'</code>), variables (<code>$variable.&lt;variable-name&gt;</code>), input values (<code>$input.&lt;input-name&gt;.&lt;path-to-datum&gt;</code>), string concatenations, and quoted strings that contain <code>${}</code> as the content. The recommended maximum size of a content expression is 1 KB.</p>"
+      }
+    },
+    "CreateAlarmModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAlarmModelResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateDetectorModelRequest": {
@@ -252,6 +419,16 @@
       }
     },
     "CreateInputResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAlarmModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAlarmModelResponse": {
       "base": null,
       "refs": {
       }
@@ -280,6 +457,16 @@
       "base": null,
       "refs": {
         "FirehoseAction$deliveryStreamName": "<p>The name of the Kinesis Data Firehose delivery stream where the data is written.</p>"
+      }
+    },
+    "DescribeAlarmModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAlarmModelResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DescribeDetectorModelAnalysisRequest": {
@@ -426,16 +613,24 @@
         "DetectorModelVersionSummaries$member": null
       }
     },
+    "DisabledOnInitialization": {
+      "base": null,
+      "refs": {
+        "InitializationConfiguration$disabledOnInitialization": "<p>The value must be <code>TRUE</code> or <code>FALSE</code>. If <code>FALSE</code>, all alarm instances created based on the alarm model are activated. The default value is <code>TRUE</code>.</p>"
+      }
+    },
     "DynamoDBAction": {
       "base": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The standard action payload contains all the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify.</p> <p>You must use expressions for all parameters in <code>DynamoDBAction</code>. The expressions accept literals, operators, functions, references, and substitution templates.</p> <p class=\"title\"> <b>Examples</b> </p> <ul> <li> <p>For literal values, the expressions must contain single quotes. For example, the value for the <code>hashKeyType</code> parameter can be <code>'STRING'</code>.</p> </li> <li> <p>For references, you must specify either variables or input values. For example, the value for the <code>hashKeyField</code> parameter can be <code>$input.GreenhouseInput.name</code>.</p> </li> <li> <p>For a substitution template, you must use <code>${}</code>, and the template must be in single quotes. A substitution template can also contain a combination of literals, operators, functions, references, and substitution templates.</p> <p>In the following example, the value for the <code>hashKeyValue</code> parameter uses a substitution template. </p> <p> <code>'${$input.GreenhouseInput.temperature * 6 / 5 + 32} in Fahrenheit'</code> </p> </li> <li> <p>For a string concatenation, you must use <code>+</code>. A string concatenation can also contain a combination of literals, operators, functions, references, and substitution templates.</p> <p>In the following example, the value for the <code>tableName</code> parameter uses a string concatenation. </p> <p> <code>'GreenhouseTemperatureTable ' + $input.GreenhouseInput.date</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <p>If the defined payload type is a string, <code>DynamoDBAction</code> writes non-JSON data to the DynamoDB table as binary data. The DynamoDB console displays the data as Base64-encoded text. The value for the <code>payloadField</code> parameter is <code>&lt;payload-field&gt;_raw</code>.</p>",
       "refs": {
-        "Action$dynamoDB": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>"
+        "Action$dynamoDB": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. One column of the DynamoDB table receives all attribute-value pairs in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>",
+        "AlarmAction$dynamoDB": null
       }
     },
     "DynamoDBv2Action": {
       "base": "<p>Defines an action to write to the Amazon DynamoDB table that you created. The default action payload contains all the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify.</p> <p>You must use expressions for all parameters in <code>DynamoDBv2Action</code>. The expressions accept literals, operators, functions, references, and substitution templates.</p> <p class=\"title\"> <b>Examples</b> </p> <ul> <li> <p>For literal values, the expressions must contain single quotes. For example, the value for the <code>tableName</code> parameter can be <code>'GreenhouseTemperatureTable'</code>.</p> </li> <li> <p>For references, you must specify either variables or input values. For example, the value for the <code>tableName</code> parameter can be <code>$variable.ddbtableName</code>.</p> </li> <li> <p>For a substitution template, you must use <code>${}</code>, and the template must be in single quotes. A substitution template can also contain a combination of literals, operators, functions, references, and substitution templates.</p> <p>In the following example, the value for the <code>contentExpression</code> parameter in <code>Payload</code> uses a substitution template. </p> <p> <code>'{\\\"sensorID\\\": \\\"${$input.GreenhouseInput.sensor_id}\\\", \\\"temperature\\\": \\\"${$input.GreenhouseInput.temperature * 9 / 5 + 32}\\\"}'</code> </p> </li> <li> <p>For a string concatenation, you must use <code>+</code>. A string concatenation can also contain a combination of literals, operators, functions, references, and substitution templates.</p> <p>In the following example, the value for the <code>tableName</code> parameter uses a string concatenation. </p> <p> <code>'GreenhouseTemperatureTable ' + $input.GreenhouseInput.date</code> </p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <p>The value for the <code>type</code> parameter in <code>Payload</code> must be <code>JSON</code>.</p>",
       "refs": {
-        "Action$dynamoDBv2": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>"
+        "Action$dynamoDBv2": "<p>Writes to the DynamoDB table that you created. The default action payload contains all attribute-value pairs that have the information about the detector model instance and the event that triggered the action. You can customize the <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_Payload.html\">payload</a>. A separate column of the DynamoDB table receives one attribute-value pair in the payload that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-event-actions.html\">Actions</a> in <i>AWS IoT Events Developer Guide</i>.</p>",
+        "AlarmAction$dynamoDBv2": null
       }
     },
     "DynamoKeyField": {
@@ -473,6 +668,36 @@
         "DynamoDBv2Action$tableName": "<p>The name of the DynamoDB table.</p>"
       }
     },
+    "EmailConfiguration": {
+      "base": "<p>Contains the configuration information of email notifications.</p>",
+      "refs": {
+        "EmailConfigurations$member": null
+      }
+    },
+    "EmailConfigurations": {
+      "base": null,
+      "refs": {
+        "NotificationAction$emailConfigurations": "<p>Contains the configuration information of email notifications.</p>"
+      }
+    },
+    "EmailContent": {
+      "base": "<p>Contains the subject and message of an email.</p>",
+      "refs": {
+        "EmailConfiguration$content": "<p>Contains the subject and message of an email.</p>"
+      }
+    },
+    "EmailRecipients": {
+      "base": "<p>Contains the information of one or more recipients who receive the emails.</p> <important> <p>You must <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html\">add the users that receive emails to your AWS SSO store</a>.</p> </important>",
+      "refs": {
+        "EmailConfiguration$recipients": "<p>Contains the information of one or more recipients who receive the emails.</p> <important> <p>You must <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html\">add the users that receive emails to your AWS SSO store</a>.</p> </important>"
+      }
+    },
+    "EmailSubject": {
+      "base": null,
+      "refs": {
+        "EmailContent$subject": "<p>The subject of the email.</p>"
+      }
+    },
     "EvaluationMethod": {
       "base": null,
       "refs": {
@@ -506,13 +731,20 @@
     "FirehoseAction": {
       "base": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream.</p>",
       "refs": {
-        "Action$firehose": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream.</p>"
+        "Action$firehose": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon Kinesis Data Firehose delivery stream.</p>",
+        "AlarmAction$firehose": null
       }
     },
     "FirehoseSeparator": {
       "base": null,
       "refs": {
         "FirehoseAction$separator": "<p>A character separator that is used to separate records written to the Kinesis Data Firehose delivery stream. Valid values are: '\\n' (newline), '\\t' (tab), '\\r\\n' (Windows newline), ',' (comma).</p>"
+      }
+    },
+    "FromEmail": {
+      "base": null,
+      "refs": {
+        "EmailConfiguration$from": "<p>The email address that sends emails.</p> <important> <p>If you use the AWS IoT Events managed AWS Lambda function to manage your emails, you must <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html\">verify the email address that sends emails in Amazon SES</a>.</p> </important>"
       }
     },
     "GetDetectorModelAnalysisResultsRequest": {
@@ -523,6 +755,18 @@
     "GetDetectorModelAnalysisResultsResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "IdentityStoreId": {
+      "base": null,
+      "refs": {
+        "SSOIdentity$identityStoreId": "<p>The ID of the AWS SSO identity store.</p>"
+      }
+    },
+    "InitializationConfiguration": {
+      "base": "<p>Specifies the default alarm state. The configuration applies to all alarms that were created based on this alarm model.</p>",
+      "refs": {
+        "AlarmCapabilities$initializationConfiguration": "<p>Specifies the default alarm state. The configuration applies to all alarms that were created based on this alarm model.</p>"
       }
     },
     "Input": {
@@ -563,6 +807,12 @@
         "UpdateInputRequest$inputDescription": "<p>A brief description of the input.</p>"
       }
     },
+    "InputIdentifier": {
+      "base": "<p> The identifer of the input. </p>",
+      "refs": {
+        "ListInputRoutingsRequest$inputIdentifier": "<p> The identifer of the routed input. </p>"
+      }
+    },
     "InputName": {
       "base": null,
       "refs": {
@@ -572,7 +822,14 @@
         "InputConfiguration$inputName": "<p>The name of the input.</p>",
         "InputSummary$inputName": "<p>The name of the input.</p>",
         "IotEventsAction$inputName": "<p>The name of the AWS IoT Events input where the data is sent.</p>",
+        "IotEventsInputIdentifier$inputName": "<p> The name of the input routed to AWS IoT Events. </p>",
         "UpdateInputRequest$inputName": "<p>The name of the input you want to update.</p>"
+      }
+    },
+    "InputProperty": {
+      "base": null,
+      "refs": {
+        "SimpleRule$inputProperty": "<p>The value on the left side of the comparison operator. You can specify an AWS IoT Events input attribute as an input property.</p>"
       }
     },
     "InputStatus": {
@@ -607,19 +864,40 @@
     "IotEventsAction": {
       "base": "<p>Sends an AWS IoT Events input, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$iotEvents": "<p>Sends AWS IoT Events input, which passes information about the detector model instance and the event that triggered the action.</p>"
+        "Action$iotEvents": "<p>Sends AWS IoT Events input, which passes information about the detector model instance and the event that triggered the action.</p>",
+        "AlarmAction$iotEvents": null
+      }
+    },
+    "IotEventsInputIdentifier": {
+      "base": "<p> The identifier of the input routed to AWS IoT Events. </p>",
+      "refs": {
+        "InputIdentifier$iotEventsInputIdentifier": "<p> The identifier of the input routed to AWS IoT Events. </p>"
       }
     },
     "IotSiteWiseAction": {
       "base": "<p>Sends information about the detector model instance and the event that triggered the action to a specified asset property in AWS IoT SiteWise.</p> <p>You must use expressions for all parameters in <code>IotSiteWiseAction</code>. The expressions accept literals, operators, functions, references, and substitutions templates.</p> <p class=\"title\"> <b>Examples</b> </p> <ul> <li> <p>For literal values, the expressions must contain single quotes. For example, the value for the <code>propertyAlias</code> parameter can be <code>'/company/windfarm/3/turbine/7/temperature'</code>.</p> </li> <li> <p>For references, you must specify either variables or input values. For example, the value for the <code>assetId</code> parameter can be <code>$input.TurbineInput.assetId1</code>.</p> </li> <li> <p>For a substitution template, you must use <code>${}</code>, and the template must be in single quotes. A substitution template can also contain a combination of literals, operators, functions, references, and substitution templates.</p> <p>In the following example, the value for the <code>propertyAlias</code> parameter uses a substitution template. </p> <p> <code>'company/windfarm/${$input.TemperatureInput.sensorData.windfarmID}/turbine/ ${$input.TemperatureInput.sensorData.turbineID}/temperature'</code> </p> </li> </ul> <p>You must specify either <code>propertyAlias</code> or both <code>assetId</code> and <code>propertyId</code> to identify the target asset property in AWS IoT SiteWise.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/iotevents-expressions.html\">Expressions</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
       "refs": {
-        "Action$iotSiteWise": "<p>Sends information about the detector model instance and the event that triggered the action to an asset property in AWS IoT SiteWise .</p>"
+        "Action$iotSiteWise": "<p>Sends information about the detector model instance and the event that triggered the action to an asset property in AWS IoT SiteWise .</p>",
+        "AlarmAction$iotSiteWise": null
+      }
+    },
+    "IotSiteWiseAssetModelPropertyIdentifier": {
+      "base": "<p> The asset model property identifer of the input routed from AWS IoT SiteWise. </p>",
+      "refs": {
+        "IotSiteWiseInputIdentifier$iotSiteWiseAssetModelPropertyIdentifier": "<p> The identifier of the AWS IoT SiteWise asset model property. </p>"
+      }
+    },
+    "IotSiteWiseInputIdentifier": {
+      "base": "<p> The identifer of the input routed from AWS IoT SiteWise. </p>",
+      "refs": {
+        "InputIdentifier$iotSiteWiseInputIdentifier": "<p> The identifer of the input routed from AWS IoT SiteWise. </p>"
       }
     },
     "IotTopicPublishAction": {
       "base": "<p>Information required to publish the MQTT message through the AWS IoT message broker.</p>",
       "refs": {
-        "Action$iotTopicPublish": "<p>Publishes an MQTT message with the given topic to the AWS IoT message broker.</p>"
+        "Action$iotTopicPublish": "<p>Publishes an MQTT message with the given topic to the AWS IoT message broker.</p>",
+        "AlarmAction$iotTopicPublish": null
       }
     },
     "KeyValue": {
@@ -631,11 +909,33 @@
     "LambdaAction": {
       "base": "<p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>",
       "refs": {
-        "Action$lambda": "<p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>"
+        "Action$lambda": "<p>Calls a Lambda function, passing in information about the detector model instance and the event that triggered the action.</p>",
+        "AlarmAction$lambda": null,
+        "NotificationTargetActions$lambdaAction": null
       }
     },
     "LimitExceededException": {
       "base": "<p>A limit was exceeded.</p>",
+      "refs": {
+      }
+    },
+    "ListAlarmModelVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAlarmModelVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAlarmModelsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAlarmModelsResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -655,6 +955,16 @@
       }
     },
     "ListDetectorModelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInputRoutingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListInputRoutingsResponse": {
       "base": null,
       "refs": {
       }
@@ -713,8 +1023,11 @@
     "MaxResults": {
       "base": null,
       "refs": {
+        "ListAlarmModelVersionsRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListAlarmModelsRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListDetectorModelVersionsRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
         "ListDetectorModelsRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>",
+        "ListInputRoutingsRequest$maxResults": "<p> The maximum number of results to be returned per request. </p>",
         "ListInputsRequest$maxResults": "<p>The maximum number of results to be returned per request.</p>"
       }
     },
@@ -723,12 +1036,43 @@
       "refs": {
         "GetDetectorModelAnalysisResultsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
         "GetDetectorModelAnalysisResultsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>",
+        "ListAlarmModelVersionsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
+        "ListAlarmModelVersionsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>",
+        "ListAlarmModelsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
+        "ListAlarmModelsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>",
         "ListDetectorModelVersionsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
         "ListDetectorModelVersionsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>",
         "ListDetectorModelsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
         "ListDetectorModelsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>",
+        "ListInputRoutingsRequest$nextToken": "<p> The token that you can use to return the next set of results. </p>",
+        "ListInputRoutingsResponse$nextToken": "<p> The token that you can use to return the next set of results, or <code>null</code> if there are no more results. </p>",
         "ListInputsRequest$nextToken": "<p>The token that you can use to return the next set of results.</p>",
         "ListInputsResponse$nextToken": "<p>The token that you can use to return the next set of results, or <code>null</code> if there are no more results.</p>"
+      }
+    },
+    "NotificationAction": {
+      "base": "<p>Contains the notification settings of an alarm model. The settings apply to all alarms that were created based on this alarm model.</p>",
+      "refs": {
+        "NotificationActions$member": null
+      }
+    },
+    "NotificationActions": {
+      "base": null,
+      "refs": {
+        "AlarmNotification$notificationActions": "<p>Contains the notification settings of an alarm model. The settings apply to all alarms that were created based on this alarm model.</p>"
+      }
+    },
+    "NotificationAdditionalMessage": {
+      "base": null,
+      "refs": {
+        "EmailContent$additionalMessage": "<p>The message that you want to send. The message can be up to 200 characters.</p>",
+        "SMSConfiguration$additionalMessage": "<p>The message that you want to send. The message can be up to 200 characters.</p>"
+      }
+    },
+    "NotificationTargetActions": {
+      "base": "<p>Specifies an AWS Lambda function to manage alarm notifications. You can create one or use the <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html\">AWS Lambda function provided by AWS IoT Events</a>.</p>",
+      "refs": {
+        "NotificationAction$action": "<p>Specifies an AWS Lambda function to manage alarm notifications. You can create one or use the <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html\">AWS Lambda function provided by AWS IoT Events</a>.</p>"
       }
     },
     "OnEnterLifecycle": {
@@ -779,6 +1123,19 @@
         "SqsAction$queueUrl": "<p>The URL of the SQS queue where the data is written.</p>"
       }
     },
+    "RecipientDetail": {
+      "base": "<p>The information that identifies the recipient.</p>",
+      "refs": {
+        "RecipientDetails$member": null
+      }
+    },
+    "RecipientDetails": {
+      "base": null,
+      "refs": {
+        "EmailRecipients$to": "<p>Specifies one or more recipients who receive the email.</p>",
+        "SMSConfiguration$recipients": "<p>Specifies one or more recipients who receive the message.</p> <important> <p>You must <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/addusers.html\">add the users that receive SMS messages to your AWS SSO store</a>.</p> </important>"
+      }
+    },
     "ResetTimerAction": {
       "base": "<p>Information required to reset the timer. The timer is reset to the previously evaluated result of the duration. The duration expression isn't reevaluated when you reset the timer.</p>",
       "refs": {
@@ -795,15 +1152,64 @@
       "refs": {
       }
     },
+    "ResourceName": {
+      "base": null,
+      "refs": {
+        "RoutedResource$name": "<p> The name of the routed resource. </p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The resource was not found.</p>",
       "refs": {
       }
     },
+    "RoutedResource": {
+      "base": "<p> Contains information about the routed resource. </p>",
+      "refs": {
+        "RoutedResources$member": null
+      }
+    },
+    "RoutedResources": {
+      "base": null,
+      "refs": {
+        "ListInputRoutingsResponse$routedResources": "<p> Summary information about the routed resources. </p>"
+      }
+    },
+    "SMSConfiguration": {
+      "base": "<p>Contains the configuration information of SMS notifications.</p>",
+      "refs": {
+        "SMSConfigurations$member": null
+      }
+    },
+    "SMSConfigurations": {
+      "base": null,
+      "refs": {
+        "NotificationAction$smsConfigurations": "<p>Contains the configuration information of SMS notifications.</p>"
+      }
+    },
+    "SMSSenderId": {
+      "base": null,
+      "refs": {
+        "SMSConfiguration$senderId": "<p>The sender ID.</p>"
+      }
+    },
     "SNSTopicPublishAction": {
       "base": "<p>Information required to publish the Amazon SNS message.</p>",
       "refs": {
-        "Action$sns": "<p>Sends an Amazon SNS message.</p>"
+        "Action$sns": "<p>Sends an Amazon SNS message.</p>",
+        "AlarmAction$sns": null
+      }
+    },
+    "SSOIdentity": {
+      "base": "<p>Contains information about your identity source in AWS Single Sign-On. For more information, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">AWS Single Sign-On User Guide</a>.</p>",
+      "refs": {
+        "RecipientDetail$ssoIdentity": "<p>The AWS Single Sign-On (AWS SSO) authentication information.</p>"
+      }
+    },
+    "SSOReferenceId": {
+      "base": null,
+      "refs": {
+        "SSOIdentity$userId": "<p>The user ID.</p>"
       }
     },
     "Seconds": {
@@ -829,10 +1235,25 @@
         "Action$setVariable": "<p>Sets a variable to a specified value.</p>"
       }
     },
+    "Severity": {
+      "base": null,
+      "refs": {
+        "CreateAlarmModelRequest$severity": "<p>A non-negative integer that reflects the severity level of the alarm.</p>",
+        "DescribeAlarmModelResponse$severity": "<p>A non-negative integer that reflects the severity level of the alarm.</p>",
+        "UpdateAlarmModelRequest$severity": "<p>A non-negative integer that reflects the severity level of the alarm.</p>"
+      }
+    },
+    "SimpleRule": {
+      "base": "<p>A rule that compares an input property value to a threshold value with a comparison operator.</p>",
+      "refs": {
+        "AlarmRule$simpleRule": "<p>A rule that compares an input property value to a threshold value with a comparison operator.</p>"
+      }
+    },
     "SqsAction": {
       "base": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>",
       "refs": {
-        "Action$sqs": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>"
+        "Action$sqs": "<p>Sends information about the detector model instance and the event that triggered the action to an Amazon SQS queue.</p>",
+        "AlarmAction$sqs": null
       }
     },
     "StartDetectorModelAnalysisRequest": {
@@ -863,6 +1284,13 @@
       "base": null,
       "refs": {
         "DetectorModelDefinition$states": "<p>Information about the states of the detector.</p>"
+      }
+    },
+    "StatusMessage": {
+      "base": null,
+      "refs": {
+        "AlarmModelVersionSummary$statusMessage": "<p> Contains information about the status of the alarm model version. </p>",
+        "DescribeAlarmModelResponse$statusMessage": "<p> Contains information about the status of the alarm model. </p>"
       }
     },
     "Tag": {
@@ -903,10 +1331,17 @@
     "Tags": {
       "base": null,
       "refs": {
+        "CreateAlarmModelRequest$tags": "<p>A list of key-value pairs that contain metadata for the alarm model. The tags help you manage the alarm model. For more information, see <a href=\"https://docs.aws.amazon.com/iotevents/latest/developerguide/tagging-iotevents.html\">Tagging your AWS IoT Events resources</a> in the <i>AWS IoT Events Developer Guide</i>.</p> <p>You can create up to 50 tags for one alarm model.</p>",
         "CreateDetectorModelRequest$tags": "<p>Metadata that can be used to manage the detector model.</p>",
         "CreateInputRequest$tags": "<p>Metadata that can be used to manage the input.</p>",
         "ListTagsForResourceResponse$tags": "<p>The list of tags assigned to the resource.</p>",
         "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
+      }
+    },
+    "Threshold": {
+      "base": null,
+      "refs": {
+        "SimpleRule$threshold": "<p>The value on the right side of the comparison operator. You can enter a number or specify an AWS IoT Events input attribute.</p>"
       }
     },
     "ThrottlingException": {
@@ -925,6 +1360,13 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "AlarmModelSummary$creationTime": "<p>The time the alarm model was created, in the Unix epoch format.</p>",
+        "AlarmModelVersionSummary$creationTime": "<p>The time the alarm model was created, in the Unix epoch format.</p>",
+        "AlarmModelVersionSummary$lastUpdateTime": "<p>The time the alarm model was last updated, in the Unix epoch format.</p>",
+        "CreateAlarmModelResponse$creationTime": "<p>The time the alarm model was created, in the Unix epoch format.</p>",
+        "CreateAlarmModelResponse$lastUpdateTime": "<p>The time the alarm model was last updated, in the Unix epoch format.</p>",
+        "DescribeAlarmModelResponse$creationTime": "<p>The time the alarm model was created, in the Unix epoch format.</p>",
+        "DescribeAlarmModelResponse$lastUpdateTime": "<p>The time the alarm model was last updated, in the Unix epoch format.</p>",
         "DetectorModelConfiguration$creationTime": "<p>The time the detector model was created.</p>",
         "DetectorModelConfiguration$lastUpdateTime": "<p>The time the detector model was last updated.</p>",
         "DetectorModelSummary$creationTime": "<p>The time the detector model was created.</p>",
@@ -933,7 +1375,9 @@
         "InputConfiguration$creationTime": "<p>The time the input was created.</p>",
         "InputConfiguration$lastUpdateTime": "<p>The last time the input was updated.</p>",
         "InputSummary$creationTime": "<p>The time the input was created.</p>",
-        "InputSummary$lastUpdateTime": "<p>The last time the input was updated.</p>"
+        "InputSummary$lastUpdateTime": "<p>The last time the input was updated.</p>",
+        "UpdateAlarmModelResponse$creationTime": "<p>The time the alarm model was created, in the Unix epoch format.</p>",
+        "UpdateAlarmModelResponse$lastUpdateTime": "<p>The time the alarm model was last updated, in the Unix epoch format.</p>"
       }
     },
     "TransitionEvent": {
@@ -959,6 +1403,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAlarmModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAlarmModelResponse": {
       "base": null,
       "refs": {
       }
