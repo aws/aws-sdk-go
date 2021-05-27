@@ -84,3 +84,71 @@ func TestRequest_FollowPUTRedirects(t *testing.T) {
 		t.Errorf("expect %d endpoint hits, got %d", e, a)
 	}
 }
+
+func TestNewRequest_JoinEndpointWithOperationPathQuery(t *testing.T) {
+	cases := map[string]struct {
+		HTTPPath    string
+		Endpoint    *string
+		ExpectQuery string
+		ExpectPath  string
+	}{
+		"no op HTTP Path": {
+			HTTPPath:    "",
+			Endpoint:    aws.String("https://foo.bar.aws/foo?bar=Baz"),
+			ExpectPath:  "/foo",
+			ExpectQuery: "bar=Baz",
+		},
+		"no trailing slash": {
+			HTTPPath:    "/",
+			Endpoint:    aws.String("https://foo.bar.aws"),
+			ExpectPath:  "/",
+			ExpectQuery: "",
+		},
+		"set query": {
+			HTTPPath:    "/?Foo=bar",
+			Endpoint:    aws.String("https://foo.bar.aws"),
+			ExpectPath:  "/",
+			ExpectQuery: "Foo=bar",
+		},
+		"squash query": {
+			HTTPPath:    "/?Foo=bar",
+			Endpoint:    aws.String("https://foo.bar.aws/?bar=Foo"),
+			ExpectPath:  "/",
+			ExpectQuery: "Foo=bar",
+		},
+		"trailing slash": {
+			HTTPPath:    "/",
+			Endpoint:    aws.String("https://foo.bar.aws/"),
+			ExpectPath:  "/",
+			ExpectQuery: "",
+		},
+		"trailing slash set query": {
+			HTTPPath:    "/?Foo=bar",
+			Endpoint:    aws.String("https://foo.bar.aws/"),
+			ExpectPath:  "/",
+			ExpectQuery: "Foo=bar",
+		},
+	}
+
+	for name, c := range cases {
+		t.Run(name, func(t *testing.T) {
+			client := awstesting.NewClient(&aws.Config{
+				Endpoint: c.Endpoint,
+			})
+
+			client.Handlers.Clear()
+			r := client.NewRequest(&request.Operation{
+				Name:       "FooBar",
+				HTTPMethod: "GET",
+				HTTPPath:   c.HTTPPath,
+			}, nil, nil)
+
+			if e, a := c.ExpectPath, r.HTTPRequest.URL.Path; e != a {
+				t.Errorf("expect %v path, got %v", e, a)
+			}
+			if e, a := c.ExpectQuery, r.HTTPRequest.URL.RawQuery; e != a {
+				t.Errorf("expect %v query, got %v", e, a)
+			}
+		})
+	}
+}
