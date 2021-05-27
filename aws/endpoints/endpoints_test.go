@@ -1,3 +1,6 @@
+//go:build go1.9
+// +build go1.9
+
 package endpoints
 
 import "testing"
@@ -255,12 +258,13 @@ func TestResolverFunc(t *testing.T) {
 
 func TestOptionsSet(t *testing.T) {
 	var actual Options
-	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption)
+	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption, UseDualStackEndpointOption)
 
 	expect := Options{
-		DisableSSL:     true,
-		UseDualStack:   true,
-		StrictMatching: true,
+		DisableSSL:           true,
+		UseDualStack:         true,
+		UseDualStackEndpoint: DualStackEndpointStateEnabled,
+		StrictMatching:       true,
 	}
 
 	if actual != expect {

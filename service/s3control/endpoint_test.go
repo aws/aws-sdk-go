@@ -81,37 +81,96 @@ func TestEndpoint_OutpostAccessPointARN(t *testing.T) {
 			expectedHeaderForAccountID: true,
 			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"Outpost AccessPoint with client region as FIPS": {
-			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+		"Outpost AccessPoint with client region as FIPS (deprecated)": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
-				EndpointResolver: endpoints.AwsUsGovPartition(),
-				Region:           aws.String("us-gov-east-1-fips"),
+				Region: aws.String("us-west-2-fips"),
 			},
-			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+			expectedEndpoint:           "https://s3-outposts-fips.us-west-2.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"Outpost AccessPoint with client FIPS region and cross-region ARN": {
+		"Outpost AccessPoint with client region as FIPS": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-west-2.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
+		"Outpost AccessPoint with client FIPS (deprecated) region and cross-region ARN": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("us-gov-east-1-fips"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-west-1",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"Outpost AccessPoint FIPS client region with matching ARN region": {
+		"Outpost AccessPoint with client FIPS region and cross-region ARN": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("us-gov-east-1"),
+				S3UseARNRegion:   aws.Bool(true),
+				UseFIPSEndpoint:  endpoints.FIPSEndpointStateEnabled,
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-west-1",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
+		"Outpost AccessPoint FIPS (deprecated) client region with matching ARN region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("fips-us-gov-east-1"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"Outpost AccessPoint with DualStack": {
+		"Outpost AccessPoint FIPS client region with matching ARN region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("us-gov-east-1"),
+				S3UseARNRegion:   aws.Bool(true),
+				UseFIPSEndpoint:  endpoints.FIPSEndpointStateEnabled,
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForAccountID: true,
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
+		"Outpost AccessPoint with DualStack (deprecated)": {
 			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				Region:       aws.String("us-west-2"),
 				UseDualStack: aws.Bool(true),
+			},
+			expectedErr: "ConfigurationError: client configured for S3 Dual-stack but is not supported with resource ARN",
+		},
+		"Outpost AccessPoint with DualStack": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:               aws.String("us-west-2"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
 			},
 			expectedErr: "ConfigurationError: client configured for S3 Dual-stack but is not supported with resource ARN",
 		},
@@ -235,31 +294,80 @@ func TestEndpoint_OutpostBucketARN(t *testing.T) {
 			expectedHeaderForOutpostID: "op-01234567890123456",
 			expectedHeaderForAccountID: true,
 		},
+		"Outpost Bucket FIPS (deprecated) client region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				Region: aws.String("fips-us-gov-east-1"),
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
+		},
 		"Outpost Bucket FIPS client region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
 			config: &aws.Config{
-				EndpointResolver: endpoints.AwsUsGovPartition(),
-				Region:           aws.String("fips-us-gov-east-1"),
+				Region:          aws.String("us-gov-east-1"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
 			},
-			expectedErr: "ConfigurationError: client region does not match provided ARN region",
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
+		},
+		"Outpost Bucket FIPS (deprecated) client region with match ARN region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				Region:         aws.String("fips-us-gov-east-1"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
 		},
 		"Outpost Bucket FIPS client region with match ARN region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
 			config: &aws.Config{
-				EndpointResolver: endpoints.AwsUsGovPartition(),
-				Region:           aws.String("fips-us-gov-east-1"),
-				S3UseARNRegion:   aws.Bool(true),
+				Region:          aws.String("us-gov-east-1"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+				S3UseARNRegion:  aws.Bool(true),
 			},
-			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-east-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-east-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
 		},
-		"Outpost Bucket FIPS client region with cross-region ARN": {
+		"Outpost Bucket FIPS (deprecated) client region with cross-region ARN": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("fips-us-gov-east-1"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-west-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
+		},
+		"Outpost Bucket FIPS client region with cross-region ARN": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("us-gov-east-1"),
+				UseFIPSEndpoint:  endpoints.FIPSEndpointStateEnabled,
+				S3UseARNRegion:   aws.Bool(true),
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-gov-west-1.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-gov-west-1",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedHeaderForAccountID: true,
 		},
 		"Outpost Bucket with DualStack": {
 			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:bucket:mybucket",
@@ -411,6 +519,25 @@ func TestCustomEndpoint_SpecialOperations(t *testing.T) {
 			expectedSigningRegion:      "us-west-2",
 			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
+		"CreateBucketOperation (FIPS)": {
+			bucket:    "mockBucket",
+			outpostID: "op-01234567890123456",
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			requestFn: func(svc *S3Control) *request.Request {
+				req, _ := svc.CreateBucketRequest(&CreateBucketInput{
+					Bucket:    aws.String("mockBucket"),
+					OutpostId: aws.String("op-01234567890123456"),
+				})
+				return req
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-west-2.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
 		"ListRegionalBucketsOperation": {
 			bucket:    "mockBucket",
 			outpostID: "op-01234567890123456",
@@ -425,6 +552,25 @@ func TestCustomEndpoint_SpecialOperations(t *testing.T) {
 				return req
 			},
 			expectedEndpoint:           "https://s3-outposts.us-west-2.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
+		"ListRegionalBucketsOperation (FIPS)": {
+			bucket:    "mockBucket",
+			outpostID: "op-01234567890123456",
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			requestFn: func(svc *S3Control) *request.Request {
+				req, _ := svc.ListRegionalBucketsRequest(&ListRegionalBucketsInput{
+					OutpostId: aws.String("op-01234567890123456"),
+					AccountId: aws.String("123456789012"),
+				})
+				return req
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-west-2.amazonaws.com",
 			expectedSigningName:        "s3-outposts",
 			expectedSigningRegion:      "us-west-2",
 			expectedHeaderForOutpostID: "op-01234567890123456",
@@ -456,6 +602,24 @@ func TestCustomEndpoint_SpecialOperations(t *testing.T) {
 				return req
 			},
 			expectedEndpoint:           "https://s3-outposts.us-west-2.amazonaws.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForOutpostID: "op-01234567890123456",
+		},
+		"CreateAccessPoint (FIPS) outpost bucket arn": {
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				UseFIPSEndpoint: endpoints.FIPSEndpointStateEnabled,
+			},
+			requestFn: func(svc *S3Control) *request.Request {
+				req, _ := svc.CreateAccessPointRequest(&CreateAccessPointInput{
+					AccountId: aws.String("123456789012"),
+					Bucket:    aws.String("arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:bucket:mockBucket"),
+					Name:      aws.String("mockName"),
+				})
+				return req
+			},
+			expectedEndpoint:           "https://s3-outposts-fips.us-west-2.amazonaws.com",
 			expectedSigningName:        "s3-outposts",
 			expectedSigningRegion:      "us-west-2",
 			expectedHeaderForOutpostID: "op-01234567890123456",
@@ -538,7 +702,7 @@ func TestCustomEndpointURL(t *testing.T) {
 			expectedSigningRegion:      "us-west-2",
 			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"GetAccesspoint with dualstack and custom endpoint url": {
+		"GetAccesspoint with dualstack (deprecated) and custom endpoint url": {
 			config: &aws.Config{
 				Endpoint:     aws.String("beta.example.com"),
 				Region:       aws.String("us-west-2"),
@@ -555,7 +719,24 @@ func TestCustomEndpointURL(t *testing.T) {
 			expectedSigningName:   "s3",
 			expectedSigningRegion: "us-west-2",
 		},
-		"GetAccesspoint with Outposts accesspoint ARN and dualstack": {
+		"GetAccesspoint with dualstack and custom endpoint url": {
+			config: &aws.Config{
+				Endpoint:             aws.String("beta.example.com"),
+				Region:               aws.String("us-west-2"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+			requestFn: func(c *S3Control) *request.Request {
+				req, _ := c.GetAccessPointRequest(&GetAccessPointInput{
+					AccountId: aws.String(account),
+					Name:      aws.String("apname"),
+				})
+				return req
+			},
+			expectedEndpoint:      "https://123456789012.beta.example.com",
+			expectedSigningName:   "s3",
+			expectedSigningRegion: "us-west-2",
+		},
+		"GetAccesspoint with Outposts accesspoint ARN and dualstack (deprecated)": {
 			config: &aws.Config{
 				Endpoint:     aws.String("beta.example.com"),
 				UseDualStack: aws.Bool(true),
@@ -570,11 +751,44 @@ func TestCustomEndpointURL(t *testing.T) {
 			},
 			expectedErr: "client configured for S3 Dual-stack but is not supported with resource ARN",
 		},
-		"standard CreateBucket with dualstack": {
+		"GetAccesspoint with Outposts accesspoint ARN and dualstack": {
+			config: &aws.Config{
+				Endpoint:             aws.String("beta.example.com"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+				Region:               aws.String("us-west-2"),
+			},
+			requestFn: func(c *S3Control) *request.Request {
+				req, _ := c.GetAccessPointRequest(&GetAccessPointInput{
+					AccountId: aws.String(account),
+					Name:      aws.String("arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint"),
+				})
+				return req
+			},
+			expectedErr: "client configured for S3 Dual-stack but is not supported with resource ARN",
+		},
+		"standard CreateBucket with dualstack (deprecated)": {
 			config: &aws.Config{
 				Endpoint:     aws.String("beta.example.com"),
 				UseDualStack: aws.Bool(true),
 				Region:       aws.String("us-west-2"),
+			},
+			requestFn: func(c *S3Control) *request.Request {
+				req, _ := c.CreateBucketRequest(&CreateBucketInput{
+					Bucket:    aws.String("bucketname"),
+					OutpostId: aws.String("op-1234567890123456"),
+				})
+				return req
+			},
+			expectedEndpoint:           "https://beta.example.com",
+			expectedSigningName:        "s3-outposts",
+			expectedSigningRegion:      "us-west-2",
+			expectedHeaderForOutpostID: "op-1234567890123456",
+		},
+		"standard CreateBucket with dualstack": {
+			config: &aws.Config{
+				Endpoint:             aws.String("beta.example.com"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+				Region:               aws.String("us-west-2"),
 			},
 			requestFn: func(c *S3Control) *request.Request {
 				req, _ := c.CreateBucketRequest(&CreateBucketInput{
@@ -722,4 +936,81 @@ func TestInputIsNotModified(t *testing.T) {
 	if e, a := "mybucket", *modifiedInput.Bucket; !strings.EqualFold(e, a) {
 		t.Fatalf("expected modified input bucket name to be %v, got %v", e, a)
 	}
+}
+
+func TestUseDualStackClientBehavior(t *testing.T) {
+	cases := map[string]testParams{
+		"UseDualStack unset, UseDualStackEndpoints unset": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack false, UseDualStackEndpoints unset": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				UseDualStack: aws.Bool(false),
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack true, UseDualStackEndpoints unset": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				UseDualStack: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.dualstack.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack unset, UseDualStackEndpoints disabled": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:               aws.String("us-west-2"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack unset, UseDualStackEndpoint enabled": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:               aws.String("us-west-2"),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.dualstack.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack true, UseDualStackEndpoint disabled": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:               aws.String("us-west-2"),
+				UseDualStack:         aws.Bool(true),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+		"UseDualStack false, UseDualStackEndpoint enabled": {
+			bucket: "test-bucket",
+			config: &aws.Config{
+				Region:               aws.String("us-west-2"),
+				UseDualStack:         aws.Bool(false),
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+			expectedEndpoint:      "https://123456789012.s3-control.dualstack.us-west-2.amazonaws.com",
+			expectedSigningRegion: "us-west-2",
+			expectedSigningName:   "s3",
+		},
+	}
+	runValidations(t, cases)
 }

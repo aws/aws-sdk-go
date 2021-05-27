@@ -26,6 +26,8 @@ func (r ResourceRequest) AllowCrossRegion() bool {
 }
 
 // UseFIPS returns true if request config region is FIPS
+//
+// Deprecated: FIPS pseudo-regions are deprecated and are translated to appropriate endpoint options.
 func (r ResourceRequest) UseFIPS() bool {
 	return IsFIPS(aws.StringValue(r.Request.Config.Region))
 }
@@ -54,6 +56,9 @@ func (r ResourceRequest) HasCustomEndpoint() bool {
 }
 
 // IsFIPS returns true if region is a fips region
+//
+// Deprecated: FIPS client regions will be resolved at client construction with the resolved endpoint set of ClientInfo,
+// and the appropriate UseFIPSEndpoint option set.
 func IsFIPS(clientRegion string) bool {
 	return strings.HasPrefix(clientRegion, "fips-") || strings.HasSuffix(clientRegion, "-fips")
 }

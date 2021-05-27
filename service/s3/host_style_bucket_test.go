@@ -55,8 +55,8 @@ var (
 
 	accelerateDualstack = []s3BucketTest{
 		{"abc", "https://abc.s3-accelerate.dualstack.amazonaws.com/", ""},
-		{"a.b.c", "https://s3.dualstack.mock-region.amazonaws.com/%7BBucket%7D", "InvalidParameterException"},
-		{"a$b$c", "https://s3.dualstack.mock-region.amazonaws.com/%7BBucket%7D", "InvalidParameterException"},
+		{"a.b.c", "https://s3.dualstack.us-west-2.amazonaws.com/%7BBucket%7D", "InvalidParameterException"},
+		{"a$b$c", "https://s3.dualstack.us-west-2.amazonaws.com/%7BBucket%7D", "InvalidParameterException"},
 	}
 )
 
@@ -90,6 +90,7 @@ func TestAccelerateNoSSLBucketBuild(t *testing.T) {
 
 func TestAccelerateDualstackBucketBuild(t *testing.T) {
 	s := s3.New(unit.Session, &aws.Config{
+		Region:          aws.String("us-west-2"),
 		S3UseAccelerate: aws.Bool(true),
 		UseDualStack:    aws.Bool(true),
 	})
@@ -136,7 +137,7 @@ func TestVirtualHostStyleSuite(t *testing.T) {
 		t.Fatalf("expect no error, %v", err)
 	}
 
-	cases := []struct {
+	var cases []struct {
 		Bucket                    string
 		Region                    string
 		UseDualStack              bool
@@ -145,7 +146,7 @@ func TestVirtualHostStyleSuite(t *testing.T) {
 		ConfiguredAddressingStyle string
 
 		ExpectedURI string
-	}{}
+	}
 
 	decoder := json.NewDecoder(f)
 	if err := decoder.Decode(&cases); err != nil {

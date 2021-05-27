@@ -415,6 +415,58 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
+		27: {
+			Env: map[string]string{
+				"AWS_USE_DUALSTACK_ENDPOINT": "true",
+			},
+			Config: envConfig{
+				UseDualStackEndpoint:  endpoints.DualStackEndpointStateEnabled,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		28: {
+			Env: map[string]string{
+				"AWS_USE_DUALSTACK_ENDPOINT": "false",
+			},
+			Config: envConfig{
+				UseDualStackEndpoint:  endpoints.DualStackEndpointStateDisabled,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		29: {
+			Env: map[string]string{
+				"AWS_USE_DUALSTACK_ENDPOINT": "invalid",
+			},
+			WantErr: true,
+		},
+		30: {
+			Env: map[string]string{
+				"AWS_USE_FIPS_ENDPOINT": "true",
+			},
+			Config: envConfig{
+				UseFIPSEndpoint:       endpoints.FIPSEndpointStateEnabled,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		31: {
+			Env: map[string]string{
+				"AWS_USE_FIPS_ENDPOINT": "false",
+			},
+			Config: envConfig{
+				UseFIPSEndpoint:       endpoints.FIPSEndpointStateDisabled,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		32: {
+			Env: map[string]string{
+				"AWS_USE_FIPS_ENDPOINT": "invalid",
+			},
+			WantErr: true,
+		},
 	}
 
 	for i, c := range cases {
@@ -432,11 +484,15 @@ func TestLoadEnvConfig(t *testing.T) {
 				if (err != nil) != c.WantErr {
 					t.Errorf("WantErr=%v, got err=%v", c.WantErr, err)
 					return
+				} else if c.WantErr {
+					return
 				}
 			} else {
 				cfg, err = loadEnvConfig()
 				if (err != nil) != c.WantErr {
 					t.Errorf("WantErr=%v, got err=%v", c.WantErr, err)
+					return
+				} else if c.WantErr {
 					return
 				}
 			}

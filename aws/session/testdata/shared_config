@@ -163,3 +163,27 @@ ec2_metadata_service_endpoint_mode = foobar
 [profile EC2MetadataServiceEndpointAndModeMixed]
 ec2_metadata_service_endpoint = http://endpoint.localhost
 ec2_metadata_service_endpoint_mode = IPv6
+
+[profile UseDualStackEndpointEnabled]
+region = "us-west-2"
+use_dualstack_endpoint=true
+
+[profile UseDualStackEndpointDisabled]
+region = "us-west-2"
+use_dualstack_endpoint=false
+
+[profile UseDualStackEndpointInvalid]
+region = "us-west-2"
+use_dualstack_endpoint=invalid
+
+[profile UseFIPSEndpointEnabled]
+region = "us-west-2"
+use_fips_endpoint=True
+
+[profile UseFIPSEndpointDisabled]
+region = "us-west-2"
+use_fips_endpoint=False
+
+[profile UseFIPSEndpointInvalid]
+region = "us-west-2"
+use_fips_endpoint=invalid
