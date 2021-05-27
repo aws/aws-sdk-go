@@ -128,12 +128,6 @@ func TestNewRequest_JoinEndpointWithOperationPathQuery(t *testing.T) {
 			ExpectPath:  "/",
 			ExpectQuery: "Foo=bar",
 		},
-		"trailing slash sqush query": {
-			HTTPPath:    "/?Foo=bar",
-			Endpoint:    aws.String("https://foo.bar.aws/?bar=Foo"),
-			ExpectPath:  "/",
-			ExpectQuery: "Foo=bar",
-		},
 	}
 
 	for name, c := range cases {
