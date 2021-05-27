@@ -4,22 +4,29 @@
   "operations": {
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> operation enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this operation to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using AWS CloudWatch. Any error messages related to processing the batch are sent to your AWS CloudWatch log.</p>",
+    "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p>",
     "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
     "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p>",
     "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to <code>DescribeIndex</code>. The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the <code>BatchPutDocument</code> operation or using one of the supported data sources. </p>",
+    "CreateQuerySuggestionsBlockList": "<p>Creates a block list to exlcude certain queries from suggestions.</p> <p>Any query that contains words or phrases specified in the block list is blocked or filtered out from being shown as a suggestion.</p> <p>You need to provide the file location of your block list text file in your S3 bucket. In your text file, enter each block word or phrase on a separate line.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
     "CreateThesaurus": "<p>Creates a thesaurus for an index. The thesaurus contains a list of synonyms in Solr format.</p>",
     "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeDataSource</code> operation is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
     "DeleteFaq": "<p>Removes an FAQ from an index.</p>",
     "DeleteIndex": "<p>Deletes an existing Amazon Kendra index. An exception is not thrown if the index is already being deleted. While the index is being deleted, the <code>Status</code> field returned by a call to the <code>DescribeIndex</code> operation is set to <code>DELETING</code>.</p>",
+    "DeleteQuerySuggestionsBlockList": "<p>Deletes a block list used for query suggestions for an index.</p> <p>A deleted block list might not take effect right away. Amazon Kendra needs to refresh the entire suggestions list to add back the queries that were previously blocked.</p>",
     "DeleteThesaurus": "<p>Deletes an existing Amazon Kendra thesaurus. </p>",
     "DescribeDataSource": "<p>Gets information about a Amazon Kendra data source.</p>",
     "DescribeFaq": "<p>Gets information about an FAQ list.</p>",
     "DescribeIndex": "<p>Describes an existing Amazon Kendra index</p>",
+    "DescribeQuerySuggestionsBlockList": "<p>Describes a block list used for query suggestions for an index.</p> <p>This is used to check the current settings that are applied to a block list.</p>",
+    "DescribeQuerySuggestionsConfig": "<p>Describes the settings of query suggestions for an index.</p> <p>This is used to check the current settings applied to query suggestions.</p>",
     "DescribeThesaurus": "<p>Describes an existing Amazon Kendra thesaurus.</p>",
+    "GetQuerySuggestions": "<p>Fetches the queries that are suggested to your users.</p>",
     "ListDataSourceSyncJobs": "<p>Gets statistics about synchronizing Amazon Kendra with a data source.</p>",
     "ListDataSources": "<p>Lists the data sources that you have created.</p>",
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
     "ListIndices": "<p>Lists the Amazon Kendra indexes that you have created.</p>",
+    "ListQuerySuggestionsBlockLists": "<p>Lists the block lists used for query suggestions for an index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.</p>",
     "ListThesauri": "<p>Lists the Amazon Kendra thesauri associated with an index.</p>",
     "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> operation enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results. </p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeConfig</code> parameter.</p> <p>Each query returns the 100 most relevant results. </p>",
@@ -30,6 +37,8 @@
     "UntagResource": "<p>Removes a tag from an index, FAQ, or a data source.</p>",
     "UpdateDataSource": "<p>Updates an existing Amazon Kendra data source.</p>",
     "UpdateIndex": "<p>Updates an existing Amazon Kendra index.</p>",
+    "UpdateQuerySuggestionsBlockList": "<p>Updates a block list used for query suggestions for an index.</p> <p>Updates to a block list might not take effect right away. Amazon Kendra needs to refresh the entire suggestions list to apply any updates to the block list. Other changes not related to the block list apply immediately.</p> <p>If a block list is updating, then you need to wait for the first update to finish before submitting another update.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p>",
+    "UpdateQuerySuggestionsConfig": "<p>Updates the settings of query suggestions for an index.</p> <p>Amazon Kendra supports partial updates, so you only need to provide the fields you want to update.</p> <p>If an update is currently processing (i.e. 'happening'), you need to wait for the update to finish before making another update.</p> <p>Updates to query suggestions settings might not take effect right away. The time for your updated settings to take effect depends on the updates made and the number of search queries in your index.</p> <p>You can still enable/disable query suggestions at any time.</p>",
     "UpdateThesaurus": "<p>Updates a thesaurus file associated with an index.</p>"
   },
   "shapes": {
@@ -186,6 +195,11 @@
         "JwtTokenTypeConfiguration$ClaimRegex": "<p>The regular expression that identifies the claim.</p>"
       }
     },
+    "ClearQuerySuggestionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ClickFeedback": {
       "base": "<p>Gathers information about when a particular result was clicked by a user. Your application uses the <code>SubmitFeedback</code> operation to provide click information.</p>",
       "refs": {
@@ -204,6 +218,7 @@
         "CreateDataSourceRequest$ClientToken": "<p>A token that you provide to identify the request to create a data source. Multiple calls to the <code>CreateDataSource</code> operation with the same client token will create only one data source.</p>",
         "CreateFaqRequest$ClientToken": "<p>A token that you provide to identify the request to create a FAQ. Multiple calls to the <code>CreateFaqRequest</code> operation with the same client token will create only one FAQ. </p>",
         "CreateIndexRequest$ClientToken": "<p>A token that you provide to identify the request to create an index. Multiple calls to the <code>CreateIndex</code> operation with the same client token will create only one index.</p>",
+        "CreateQuerySuggestionsBlockListRequest$ClientToken": "<p>A token that you provide to identify the request to create a query suggestions block list.</p>",
         "CreateThesaurusRequest$ClientToken": "<p>A token that you provide to identify the request to create a thesaurus. Multiple calls to the <code>CreateThesaurus</code> operation with the same client token will create only one index. </p>"
       }
     },
@@ -391,6 +406,16 @@
       "refs": {
       }
     },
+    "CreateQuerySuggestionsBlockListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateQuerySuggestionsBlockListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateThesaurusRequest": {
       "base": null,
       "refs": {
@@ -424,7 +449,7 @@
       "refs": {
         "DataSourceToIndexFieldMapping$DataSourceFieldName": "<p>The name of the column or attribute in the data source.</p>",
         "SalesforceChatterFeedConfiguration$DocumentDataFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the content to index. Typically this is the <code>Body</code> column.</p>",
-        "SalesforceChatterFeedConfiguration$DocumentTitleFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the title of the document. This is typically the <code>Title</code> collumn.</p>",
+        "SalesforceChatterFeedConfiguration$DocumentTitleFieldName": "<p>The name of the column in the Salesforce FeedItem table that contains the title of the document. This is typically the <code>Title</code> column.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$DocumentDataFieldName": "<p>The name of the field in the custom knowledge article that contains the document data to index.</p>",
         "SalesforceCustomKnowledgeArticleTypeConfiguration$DocumentTitleFieldName": "<p>The name of the field in the custom knowledge article that contains the document title.</p>",
         "SalesforceStandardKnowledgeArticleTypeConfiguration$DocumentDataFieldName": "<p>The name of the field that contains the document data to index.</p>",
@@ -464,8 +489,8 @@
         "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the pattern are included in the index. Documents that don't match the pattern are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "OneDriveConfiguration$ExclusionPatterns": "<p>List of regular expressions applied to documents. Items that match the exclusion pattern are not indexed. If you provide both an inclusion pattern and an exclusion pattern, any item that matches the exclusion pattern isn't indexed. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
-        "S3DataSourceConfiguration$InclusionPatterns": "<p>A list of glob patterns for documents that should be indexed. If a document that matches an inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>For more information about glob patterns, see <a href=\"https://en.wikipedia.org/wiki/Glob_(programming)\">glob (programming)</a> in <i>Wikipedia</i>.</p>",
-        "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix or inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>For more information about glob patterns, see <a href=\"https://en.wikipedia.org/wiki/Glob_(programming)\">glob (programming)</a> in <i>Wikipedia</i>.</p>",
+        "S3DataSourceConfiguration$InclusionPatterns": "<p>A list of glob patterns for documents that should be indexed. If a document that matches an inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.txt</i> will include all text files in a directory (files with the extension .txt).</p> </li> <li> <p> <i>**/*.txt</i> will include all text files in a directory and its subdirectories.</p> </li> <li> <p> <i>*tax*</i> will include all files in a directory that contain 'tax' in the file name, such as 'tax', 'taxes', 'income_tax'.</p> </li> </ul>",
+        "S3DataSourceConfiguration$ExclusionPatterns": "<p>A list of glob patterns for documents that should not be indexed. If a document that matches an inclusion prefix or inclusion pattern also matches an exclusion pattern, the document is not indexed.</p> <p>Some <a href=\"https://docs.aws.amazon.com/cli/latest/reference/s3/#use-of-exclude-and-include-filters\">examples</a> are:</p> <ul> <li> <p> <i>*.png , *.jpg</i> will exclude all PNG and JPEG image files in a directory (files with the extensions .png and .jpg).</p> </li> <li> <p> <i>*internal*</i> will exclude all files in a directory that contain 'internal' in the file name, such as 'internal', 'internal_only', 'company_internal'.</p> </li> <li> <p> <i>**/*internal*</i> will exclude all internal-related files in a directory and its subdirectories.</p> </li> </ul>",
         "SalesforceConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the name of the attached file.</p>",
         "SalesforceConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the name of the attached file.</p>",
         "ServiceNowKnowledgeArticleConfiguration$IncludeAttachmentFilePatterns": "<p>List of regular expressions applied to knowledge articles. Items that don't match the inclusion pattern are not indexed. The regex is applied to the field specified in the <code>PatternTargetField</code>.</p>",
@@ -525,7 +550,7 @@
     "DataSourceSyncJobId": {
       "base": null,
       "refs": {
-        "DataSourceSyncJobMetricTarget$DataSourceSyncJobId": "<p>The ID of the sync job that is running on the data source.</p>"
+        "DataSourceSyncJobMetricTarget$DataSourceSyncJobId": "<p>The ID of the sync job that is running on the data source.</p> <p>If the ID of a sync job is not provided and there is a sync job running, then the ID of this sync job is used and metrics are generated for this sync job.</p> <p>If the ID of a sync job is not provided and there is no sync job running, then no metrics are generated and documents are indexed/deleted at the index level without sync job metrics included.</p>"
       }
     },
     "DataSourceSyncJobMetricTarget": {
@@ -630,6 +655,11 @@
       "refs": {
       }
     },
+    "DeleteQuerySuggestionsBlockListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteThesaurusRequest": {
       "base": null,
       "refs": {
@@ -665,6 +695,26 @@
       "refs": {
       }
     },
+    "DescribeQuerySuggestionsBlockListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeQuerySuggestionsBlockListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeQuerySuggestionsConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeQuerySuggestionsConfigResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeThesaurusRequest": {
       "base": null,
       "refs": {
@@ -681,13 +731,16 @@
         "CreateDataSourceRequest$Description": "<p>A description for the data source.</p>",
         "CreateFaqRequest$Description": "<p>A description of the FAQ.</p>",
         "CreateIndexRequest$Description": "<p>A description for the index.</p>",
+        "CreateQuerySuggestionsBlockListRequest$Description": "<p>A user-friendly description for the block list.</p> <p>For example, the description \"List of all offensive words that can appear in user queries and need to be blocked from suggestions.\"</p>",
         "CreateThesaurusRequest$Description": "<p>The description for the new thesaurus.</p>",
         "DescribeDataSourceResponse$Description": "<p>The description of the data source.</p>",
         "DescribeFaqResponse$Description": "<p>The description of the FAQ that you provided when it was created.</p>",
         "DescribeIndexResponse$Description": "<p>The description of the index.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$Description": "<p>Shows the description for the block list.</p>",
         "DescribeThesaurusResponse$Description": "<p>The thesaurus description.</p>",
         "UpdateDataSourceRequest$Description": "<p>The new description for the data source.</p>",
         "UpdateIndexRequest$Description": "<p>A new description for the index.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$Description": "<p>The description for a block list.</p>",
         "UpdateThesaurusRequest$Description": "<p>The updated description of the thesaurus.</p>"
       }
     },
@@ -790,7 +843,7 @@
     "DocumentList": {
       "base": null,
       "refs": {
-        "BatchPutDocumentRequest$Documents": "<p>One or more documents to add to the index. </p> <p>Documents have the following file size limits.</p> <ul> <li> <p>5 MB total size for inline documents</p> </li> <li> <p>50 MB total size for files from an S3 bucket</p> </li> <li> <p>5 MB extracted text for any file</p> </li> </ul> <p>For more information about file size and transaction per second quotas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>"
+        "BatchPutDocumentRequest$Documents": "<p>One or more documents to add to the index.</p> <p>Documents can include custom attributes. For example, 'DataSourceId' and 'DataSourceSyncJobId' are custom attributes that provide information on the synchronization of documents running on a data source. Note, 'DataSourceSyncJobId' could be an optional custom attribute as Amazon Kendra will use the ID of a running sync job.</p> <p>Documents have the following file size limits.</p> <ul> <li> <p>5 MB total size for inline documents</p> </li> <li> <p>50 MB total size for files from an S3 bucket</p> </li> <li> <p>5 MB extracted text for any file</p> </li> </ul> <p>For more information about file size and transaction per second quotas, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>"
       }
     },
     "DocumentMetadataBoolean": {
@@ -862,6 +915,7 @@
         "DescribeDataSourceResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a description of the error that caused the data source to fail.</p>",
         "DescribeFaqResponse$ErrorMessage": "<p>If the <code>Status</code> field is <code>FAILED</code>, the <code>ErrorMessage</code> field contains the reason why the FAQ failed.</p>",
         "DescribeIndexResponse$ErrorMessage": "<p>When th e<code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field contains a message that explains why.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$ErrorMessage": "<p>Shows the error message with details when there are issues in processing the block list.</p>",
         "DescribeThesaurusResponse$ErrorMessage": "<p>When the <code>Status</code> field value is <code>FAILED</code>, the <code>ErrorMessage</code> field provides more information. </p>",
         "InternalServerException$Message": null,
         "ResourceAlreadyExistException$Message": null,
@@ -972,6 +1026,16 @@
         "QueryResultItem$FeedbackToken": "<p>A token that identifies a particular result from a particular query. Use this token to provide click-through feedback for the result. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/submitting-feedback.html\"> Submitting feedback </a>.</p>"
       }
     },
+    "GetQuerySuggestionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetQuerySuggestionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GoogleDriveConfiguration": {
       "base": "<p>Provides configuration information for data sources that connect to Google Drive.</p>",
       "refs": {
@@ -1044,13 +1108,16 @@
       "refs": {
         "BatchDeleteDocumentRequest$IndexId": "<p>The identifier of the index that contains the documents to delete.</p>",
         "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <code>CreateIndex</code> operation.</p>",
+        "ClearQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to clear query suggestions from.</p>",
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index that should be associated with this data source.</p>",
         "CreateFaqRequest$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "CreateIndexResponse$Id": "<p>The unique identifier of the index. Use this identifier when you query an index, set up a data source, or index a document.</p>",
+        "CreateQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index you want to create a query suggestions block list for.</p>",
         "CreateThesaurusRequest$IndexId": "<p>The unique identifier of the index for the new thesaurus. </p>",
         "DeleteDataSourceRequest$IndexId": "<p>The unique identifier of the index associated with the data source.</p>",
         "DeleteFaqRequest$IndexId": "<p>The index to remove the FAQ from.</p>",
         "DeleteIndexRequest$Id": "<p>The identifier of the index to delete.</p>",
+        "DeleteQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the you want to delete a block list from.</p>",
         "DeleteThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to delete.</p>",
         "DescribeDataSourceRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "DescribeDataSourceResponse$IndexId": "<p>The identifier of the index that contains the data source.</p>",
@@ -1058,12 +1125,17 @@
         "DescribeFaqResponse$IndexId": "<p>The identifier of the index that contains the FAQ.</p>",
         "DescribeIndexRequest$Id": "<p>The name of the index to describe.</p>",
         "DescribeIndexResponse$Id": "<p>The name of the index.</p>",
+        "DescribeQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index for the block list.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$IndexId": "<p>Shows the identifier of the index for the block list.</p>",
+        "DescribeQuerySuggestionsConfigRequest$IndexId": "<p>The identifier of the index you want to describe query suggestions settings for.</p>",
         "DescribeThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to describe.</p>",
         "DescribeThesaurusResponse$IndexId": "<p>The identifier of the index associated with the thesaurus to describe.</p>",
+        "GetQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to get query suggestions from.</p>",
         "IndexConfigurationSummary$Id": "<p>A unique identifier for the index. Use this to identify the index when you are using operations such as <code>Query</code>, <code>DescribeIndex</code>, <code>UpdateIndex</code>, and <code>DeleteIndex</code>.</p>",
         "ListDataSourceSyncJobsRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "ListDataSourcesRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
         "ListFaqsRequest$IndexId": "<p>The index that contains the FAQ lists.</p>",
+        "ListQuerySuggestionsBlockListsRequest$IndexId": "<p>The identifier of the index for a list of all block lists that exist for that index.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "ListThesauriRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to list.</p>",
         "QueryRequest$IndexId": "<p>The unique identifier of the index to search. The identifier is returned in the response from the <code>CreateIndex</code> operation.</p>",
         "StartDataSourceSyncJobRequest$IndexId": "<p>The identifier of the index that contains the data source.</p>",
@@ -1071,6 +1143,8 @@
         "SubmitFeedbackRequest$IndexId": "<p>The identifier of the index that was queried.</p>",
         "UpdateDataSourceRequest$IndexId": "<p>The identifier of the index that contains the data source to update.</p>",
         "UpdateIndexRequest$Id": "<p>The identifier of the index to update.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$IndexId": "<p>The identifier of the index for a block list.</p>",
+        "UpdateQuerySuggestionsConfigRequest$IndexId": "<p>The identifier of the index you want to update query suggestions settings for.</p>",
         "UpdateThesaurusRequest$IndexId": "<p>The identifier of the index associated with the thesaurus to update.</p>"
       }
     },
@@ -1117,12 +1191,20 @@
     "Integer": {
       "base": null,
       "refs": {
+        "DescribeQuerySuggestionsBlockListResponse$ItemCount": "<p>Shows the current number of valid, non-empty words or phrases in the block list text file.</p>",
+        "DescribeQuerySuggestionsConfigResponse$QueryLogLookBackWindowInDays": "<p>Shows how recent your queries are in your query log time window (in days).</p>",
+        "DescribeQuerySuggestionsConfigResponse$TotalSuggestionsCount": "<p>Shows the current total count of query suggestions for an index.</p> <p>This count can change when you update your query suggestions settings, if you filter out certain queries from suggestions using a block list, and as the query log accumulates more queries for Amazon Kendra to learn from.</p>",
         "DocumentAttributeValueCountPair$Count": "<p>The number of documents in the response that have the attribute value for the key.</p>",
+        "GetQuerySuggestionsRequest$MaxSuggestionsCount": "<p>The maximum number of query suggestions you want to show to your users.</p>",
         "Highlight$BeginOffset": "<p>The zero-based location in the response string where the highlight starts.</p>",
         "Highlight$EndOffset": "<p>The zero-based location in the response string where the highlight ends.</p>",
         "QueryRequest$PageNumber": "<p>Query results are returned in pages the size of the <code>PageSize</code> parameter. By default, Amazon Kendra returns the first page of results. Use this parameter to get result pages after the first one.</p>",
         "QueryRequest$PageSize": "<p>Sets the number of results that are returned in each page of results. The default page size is 10. The maximum number of results returned is 100. If you ask for more than 100 results, only 100 are returned.</p>",
-        "QueryResult$TotalNumberOfResults": "<p>The total number of items found by the search; however, you can only retrieve up to 100 items. For example, if the search found 192 items, you can only retrieve the first 100 of the items.</p>"
+        "QueryResult$TotalNumberOfResults": "<p>The total number of items found by the search; however, you can only retrieve up to 100 items. For example, if the search found 192 items, you can only retrieve the first 100 of the items.</p>",
+        "QuerySuggestionsBlockListSummary$ItemCount": "<p>The number of items in the block list file.</p>",
+        "SuggestionHighlight$BeginOffset": "<p>The zero-based location in the response string where the highlight starts.</p>",
+        "SuggestionHighlight$EndOffset": "<p>The zero-based location in the response string where the highlight ends.</p>",
+        "UpdateQuerySuggestionsConfigRequest$QueryLogLookBackWindowInDays": "<p>How recent your queries are in your query log time window.</p> <p>The time window is the number of days from current day to past days.</p> <p>By default, Amazon Kendra sets this to 180.</p>"
       }
     },
     "InternalServerException": {
@@ -1200,6 +1282,16 @@
       "refs": {
       }
     },
+    "ListQuerySuggestionsBlockListsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListQuerySuggestionsBlockListsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListTagsForResourceRequest": {
       "base": null,
       "refs": {
@@ -1223,6 +1315,7 @@
     "Long": {
       "base": null,
       "refs": {
+        "DescribeQuerySuggestionsBlockListResponse$FileSizeBytes": "<p>Shows the current size of the block list text file in S3.</p>",
         "DescribeThesaurusResponse$FileSizeBytes": "<p>The size of the thesaurus file in bytes.</p>",
         "DescribeThesaurusResponse$TermCount": "<p>The number of unique terms in the thesaurus file. For example, the synonyms <code>a,b,c</code> and <code>a=&gt;d</code>, the term count would be 4. </p>",
         "DescribeThesaurusResponse$SynonymRuleCount": "<p>The number of synonym rules in the thesaurus file.</p>",
@@ -1253,6 +1346,12 @@
         "ListIndicesRequest$MaxResults": "<p>The maximum number of data sources to return.</p>"
       }
     },
+    "MaxResultsIntegerForListQuerySuggestionsBlockLists": {
+      "base": null,
+      "refs": {
+        "ListQuerySuggestionsBlockListsRequest$MaxResults": "<p>The maximum number of block lists to return.</p>"
+      }
+    },
     "MaxResultsIntegerForListThesauriRequest": {
       "base": null,
       "refs": {
@@ -1275,6 +1374,27 @@
         "ExcludeMimeTypesList$member": null
       }
     },
+    "MinimumNumberOfQueryingUsers": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$MinimumNumberOfQueryingUsers": "<p>Shows the minimum number of unique users who must search a query in order for the query to be eligible to suggest to your users.</p>",
+        "UpdateQuerySuggestionsConfigRequest$MinimumNumberOfQueryingUsers": "<p>The minimum number of unique users who must search a query in order for the query to be eligible to suggest to your users.</p> <p>Increasing this number might decrease the number of suggestions. However, this ensures a query is searched by many users and is truly popular to suggest to users.</p> <p>How you tune this setting depends on your specific needs.</p>"
+      }
+    },
+    "MinimumQueryCount": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$MinimumQueryCount": "<p>Shows the minimum number of times a query must be searched in order for the query to be eligible to suggest to your users.</p>",
+        "UpdateQuerySuggestionsConfigRequest$MinimumQueryCount": "<p>The the minimum number of times a query must be searched in order to be eligible to suggest to your users.</p> <p>Decreasing this number increases the number of suggestions. However, this affects the quality of suggestions as it sets a low bar for a query to be considered popular to suggest to users.</p> <p>How you tune this setting depends on your specific needs.</p>"
+      }
+    },
+    "Mode": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$Mode": "<p>Shows whether query suggestions are currently in <code>ENABLED</code> mode or <code>LEARN_ONLY</code> mode.</p> <p>By default, Amazon Kendra enables query suggestions.<code>LEARN_ONLY</code> turns off query suggestions for your users. You can change the mode using the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_UpdateQuerySuggestionsConfig.html\">UpdateQuerySuggestionsConfig</a> operation.</p>",
+        "UpdateQuerySuggestionsConfigRequest$Mode": "<p>Set the mode to <code>ENABLED</code> or <code>LEARN_ONLY</code>.</p> <p>By default, Amazon Kendra enables query suggestions. <code>LEARN_ONLY</code> mode allows you to turn off query suggestions. You can to update this at any time.</p> <p>In <code>LEARN_ONLY</code> mode, Amazon Kendra continues to learn from new queries to keep suggestions up to date for when you are ready to switch to ENABLED mode again.</p>"
+      }
+    },
     "NextToken": {
       "base": null,
       "refs": {
@@ -1286,8 +1406,17 @@
         "ListFaqsResponse$NextToken": "<p>The <code>ListFaqs</code> operation returns a page of FAQs at a time. The maximum size of the page is set by the <code>MaxResults</code> parameter. If there are more jobs in the list than the page size, Amazon Kendra returns the <code>NextPage</code> token. Include the token in the next request to the <code>ListFaqs</code> operation to return the next page of FAQs.</p>",
         "ListIndicesRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes (<code>DataSourceSummaryItems</code>). </p>",
         "ListIndicesResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of indexes.</p>",
+        "ListQuerySuggestionsBlockListsRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of block lists (<code>BlockListSummaryItems</code>).</p>",
+        "ListQuerySuggestionsBlockListsResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of block lists.</p>",
         "ListThesauriRequest$NextToken": "<p>If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of thesauri (<code>ThesaurusSummaryItems</code>). </p>",
         "ListThesauriResponse$NextToken": "<p>If the response is truncated, Amazon Kendra returns this token that you can use in the subsequent request to retrieve the next set of thesauri. </p>"
+      }
+    },
+    "ObjectBoolean": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$IncludeQueriesWithoutUserInformation": "<p>Shows whether Amazon Kendra uses all queries or only uses queries that include user information to generate query suggestions.</p>",
+        "UpdateQuerySuggestionsConfigRequest$IncludeQueriesWithoutUserInformation": "<p> <code>TRUE</code> to include queries without user information (i.e. all queries, irrespective of the user), otherwise <code>FALSE</code> to only include queries with user information.</p> <p>If you pass user information to Amazon Kendra along with the queries, you can set this flag to <code>FALSE</code> and instruct Amazon Kendra to only consider queries with user information.</p> <p>If you set to <code>FALSE</code>, Amazon Kendra only considers queries searched at least <code>MinimumQueryCount</code> times across <code>MinimumNumberOfQueryingUsers</code> unique users for suggestions.</p> <p>If you set to <code>TRUE</code>, Amazon Kendra ignores all user information and learns from all queries.</p>"
       }
     },
     "OneDriveConfiguration": {
@@ -1392,6 +1521,57 @@
         "QueryResultItem$Type": "<p>The type of document. </p>"
       }
     },
+    "QuerySuggestionsBlockListId": {
+      "base": null,
+      "refs": {
+        "CreateQuerySuggestionsBlockListResponse$Id": "<p>The unique identifier of the created block list.</p>",
+        "DeleteQuerySuggestionsBlockListRequest$Id": "<p>The unique identifier of the block list that needs to be deleted.</p>",
+        "DescribeQuerySuggestionsBlockListRequest$Id": "<p>The unique identifier of the block list.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$Id": "<p>Shows the unique identifier of the block list.</p>",
+        "QuerySuggestionsBlockListSummary$Id": "<p>The identifier of a block list.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$Id": "<p>The unique identifier of a block list.</p>"
+      }
+    },
+    "QuerySuggestionsBlockListName": {
+      "base": null,
+      "refs": {
+        "CreateQuerySuggestionsBlockListRequest$Name": "<p>A user friendly name for the block list.</p> <p>For example, the block list named 'offensive-words' includes all offensive words that could appear in user queries and need to be blocked from suggestions.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$Name": "<p>Shows the name of the block list.</p>",
+        "QuerySuggestionsBlockListSummary$Name": "<p>The name of the block list.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$Name": "<p>The name of a block list.</p>"
+      }
+    },
+    "QuerySuggestionsBlockListStatus": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsBlockListResponse$Status": "<p>Shows whether the current status of the block list is <code>ACTIVE</code> or <code>INACTIVE</code>.</p>",
+        "QuerySuggestionsBlockListSummary$Status": "<p>The status of the block list.</p>"
+      }
+    },
+    "QuerySuggestionsBlockListSummary": {
+      "base": "<p>Summary information on a query suggestions block list.</p> <p>This includes information on the block list ID, block list name, when the block list was created, when the block list was last updated, and the count of block words/phrases in the block list.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
+      "refs": {
+        "QuerySuggestionsBlockListSummaryItems$member": null
+      }
+    },
+    "QuerySuggestionsBlockListSummaryItems": {
+      "base": null,
+      "refs": {
+        "ListQuerySuggestionsBlockListsResponse$BlockListSummaryItems": "<p>Summary items for a block list.</p> <p>This includes summary items on the block list ID, block list name, when the block list was created, when the block list was last updated, and the count of block words/phrases in the block list.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>"
+      }
+    },
+    "QuerySuggestionsId": {
+      "base": null,
+      "refs": {
+        "GetQuerySuggestionsResponse$QuerySuggestionsId": "<p>The unique identifier for a list of query suggestions for an index.</p>"
+      }
+    },
+    "QuerySuggestionsStatus": {
+      "base": null,
+      "refs": {
+        "DescribeQuerySuggestionsConfigResponse$Status": "<p>Shows whether the status of query suggestions settings is currently Active or Updating.</p> <p>Active means the current settings apply and Updating means your changed settings are in the process of applying.</p>"
+      }
+    },
     "QueryText": {
       "base": null,
       "refs": {
@@ -1454,7 +1634,8 @@
       "refs": {
         "ClickFeedback$ResultId": "<p>The unique identifier of the search result that was clicked.</p>",
         "QueryResultItem$Id": "<p>The unique identifier for the query result.</p>",
-        "RelevanceFeedback$ResultId": "<p>The unique identifier of the search result that the user provided relevance feedback for.</p>"
+        "RelevanceFeedback$ResultId": "<p>The unique identifier of the search result that the user provided relevance feedback for.</p>",
+        "Suggestion$Id": "<p>The unique UUID (universally unique identifier) of a single query suggestion.</p>"
       }
     },
     "RoleArn": {
@@ -1464,14 +1645,17 @@
         "CreateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the data source. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p> <p>You can't specify the <code>RoleArn</code> parameter when the <code>Type</code> parameter is set to <code>CUSTOM</code>. If you do, you receive a <code>ValidationException</code> exception.</p> <p>The <code>RoleArn</code> parameter is required for all other data sources.</p>",
         "CreateFaqRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html\">IAM Roles for Amazon Kendra</a>.</p>",
         "CreateIndexRequest$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role used when you use the <code>BatchPutDocument</code> operation to index documents from an Amazon S3 bucket.</p>",
+        "CreateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in your S3 bucket.</p> <p>You need permissions to the role ARN (Amazon Resource Name). The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
         "CreateThesaurusRequest$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "DescribeDataSourceResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that enables the data source to access its resources.</p>",
         "DescribeFaqResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that provides access to the S3 bucket containing the input files for the FAQ.</p>",
         "DescribeIndexResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission to write to your Amazon Cloudwatch logs.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$RoleArn": "<p>Shows the current IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in S3.</p> <p>The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.</p>",
         "DescribeThesaurusResponse$RoleArn": "<p>An AWS Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access thesaurus file specified in <code>SourceS3Path</code>. </p>",
         "JwtTokenTypeConfiguration$SecretManagerArn": "<p>The Amazon Resource Name (arn) of the secret.</p>",
         "UpdateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the new role to use when the data source is accessing resources on your behalf.</p>",
         "UpdateIndexRequest$RoleArn": "<p>A new IAM role that gives Amazon Kendra permission to access your Amazon CloudWatch logs.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$RoleArn": "<p>The IAM (Identity and Access Management) role used to access the block list text file in S3.</p>",
         "UpdateThesaurusRequest$RoleArn": "<p>The updated role ARN of the thesaurus.</p>"
       }
     },
@@ -1500,11 +1684,14 @@
       "base": "<p>Information required to find a specific file in an Amazon S3 bucket.</p>",
       "refs": {
         "CreateFaqRequest$S3Path": "<p>The S3 location of the FAQ input data.</p>",
+        "CreateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path to your block list text file in your S3 bucket.</p> <p>Each block word or phrase should be on a separate line in a text file.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "CreateThesaurusRequest$SourceS3Path": "<p>The thesaurus file Amazon S3 source path. </p>",
         "DescribeFaqResponse$S3Path": null,
+        "DescribeQuerySuggestionsBlockListResponse$SourceS3Path": "<p>Shows the current S3 path to your block list text file in your S3 bucket.</p> <p>Each block word or phrase should be on a separate line in a text file.</p> <p>For information on the current quota limits for block lists, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas for Amazon Kendra</a>.</p>",
         "DescribeThesaurusResponse$SourceS3Path": null,
         "Document$S3Path": null,
         "OneDriveUsers$OneDriveUserS3Path": "<p>The S3 bucket location of a file containing a list of users whose documents should be indexed.</p>",
+        "UpdateQuerySuggestionsBlockListRequest$SourceS3Path": "<p>The S3 path where your block list text file sits in S3.</p> <p>If you update your block list and provide the same path to the block list text file in S3, then Amazon Kendra reloads the file to refresh the block list. Amazon Kendra does not automatically refresh your block list. You need to call the <code>UpdateQuerySuggestionsBlockList</code> API to refresh you block list.</p> <p>If you update your block list, then Amazon Kendra asynchronously refreshes all query suggestions with the latest content in the S3 file. This means changes might not take effect immediately.</p>",
         "UpdateThesaurusRequest$SourceS3Path": null
       }
     },
@@ -1769,6 +1956,7 @@
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
         "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
+        "SuggestionTextWithHighlights$Text": "<p>The query suggestion text to display to the user.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
       }
     },
@@ -1787,6 +1975,48 @@
       "base": null,
       "refs": {
         "DataSourceVpcConfiguration$SubnetIds": "<p>A list of identifiers for subnets within your Amazon VPC. The subnets should be able to connect to each other in the VPC, and they should have outgoing access to the Internet through a NAT device.</p>"
+      }
+    },
+    "Suggestion": {
+      "base": "<p>A single query suggestion.</p>",
+      "refs": {
+        "SuggestionList$member": null
+      }
+    },
+    "SuggestionHighlight": {
+      "base": "<p>The text highlights for a single query suggestion.</p>",
+      "refs": {
+        "SuggestionHighlightList$member": null
+      }
+    },
+    "SuggestionHighlightList": {
+      "base": null,
+      "refs": {
+        "SuggestionTextWithHighlights$Highlights": "<p>The beginning and end of the query suggestion text that should be highlighted.</p>"
+      }
+    },
+    "SuggestionList": {
+      "base": null,
+      "refs": {
+        "GetQuerySuggestionsResponse$Suggestions": "<p>A list of query suggestions for an index.</p>"
+      }
+    },
+    "SuggestionQueryText": {
+      "base": null,
+      "refs": {
+        "GetQuerySuggestionsRequest$QueryText": "<p>The text of a user's query to generate query suggestions.</p> <p>A query is suggested if the query prefix matches what a user starts to type as their query.</p> <p>Amazon Kendra does not show any suggestions if a user types fewer than two characters or more than 60 characters. A query must also have at least one search result and contain at least one word of more than four characters.</p>"
+      }
+    },
+    "SuggestionTextWithHighlights": {
+      "base": "<p>Provides text and information about where to highlight the query suggestion text.</p>",
+      "refs": {
+        "SuggestionValue$Text": "<p>The <code>SuggestionTextWithHighlights</code> structure that contains the query suggestion text and highlights.</p>"
+      }
+    },
+    "SuggestionValue": {
+      "base": "<p>The <code>SuggestionTextWithHighlights</code> structure information.</p>",
+      "refs": {
+        "Suggestion$Value": "<p>The value for the unique UUID (universally unique identifier) of a single query suggestion.</p> <p>The value is the text string of a suggestion.</p>"
       }
     },
     "TableName": {
@@ -1820,6 +2050,7 @@
         "CreateDataSourceRequest$Tags": "<p>A list of key-value pairs that identify the data source. You can use the tags to identify and organize your resources and to control access to resources.</p>",
         "CreateFaqRequest$Tags": "<p>A list of key-value pairs that identify the FAQ. You can use the tags to identify and organize your resources and to control access to resources.</p>",
         "CreateIndexRequest$Tags": "<p>A list of key-value pairs that identify the index. You can use the tags to identify and organize your resources and to control access to resources.</p>",
+        "CreateQuerySuggestionsBlockListRequest$Tags": "<p>A tag that you can assign to a block list that categorizes the block list.</p>",
         "CreateThesaurusRequest$Tags": "<p>A list of key-value pairs that identify the thesaurus. You can use the tags to identify and organize your resources and to control access to resources. </p>",
         "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the index, FAQ, or data source.</p>",
         "TagResourceRequest$Tags": "<p>A list of tag keys to add to the index, FAQ, or data source. If a tag already exists, the existing value is replaced with the new value.</p>"
@@ -1925,6 +2156,10 @@
         "DescribeFaqResponse$UpdatedAt": "<p>The date and time that the FAQ was last updated.</p>",
         "DescribeIndexResponse$CreatedAt": "<p>The Unix datetime that the index was created.</p>",
         "DescribeIndexResponse$UpdatedAt": "<p>The Unix datetime that the index was last updated.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$CreatedAt": "<p>Shows the date-time a block list for query suggestions was last created.</p>",
+        "DescribeQuerySuggestionsBlockListResponse$UpdatedAt": "<p>Shows the date-time a block list for query suggestions was last updated.</p>",
+        "DescribeQuerySuggestionsConfigResponse$LastSuggestionsBuildTime": "<p>Shows the date-time query suggestions for an index was last updated.</p>",
+        "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>Shows the date-time query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
         "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
         "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
         "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p>",
@@ -1932,6 +2167,8 @@
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
         "IndexConfigurationSummary$UpdatedAt": "<p>The Unix timestamp when the index was last updated by the <code>UpdateIndex</code> operation.</p>",
+        "QuerySuggestionsBlockListSummary$CreatedAt": "<p>The date-time summary information for a query suggestions block list was last created.</p>",
+        "QuerySuggestionsBlockListSummary$UpdatedAt": "<p>The date-time the block list was last updated.</p>",
         "ThesaurusSummary$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
         "ThesaurusSummary$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
         "TimeRange$StartTime": "<p>The UNIX datetime of the beginning of the time range.</p>",
@@ -1966,6 +2203,16 @@
       }
     },
     "UpdateIndexRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQuerySuggestionsBlockListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateQuerySuggestionsConfigRequest": {
       "base": null,
       "refs": {
       }

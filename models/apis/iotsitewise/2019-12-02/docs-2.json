@@ -65,6 +65,8 @@
     "ARN": {
       "base": null,
       "refs": {
+        "Alarms$alarmRoleArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the IAM role that allows the alarm to perform actions and access AWS resources, including AWS IoT Events.</p>",
+        "Alarms$notificationLambdaArn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the AWS Lambda function that manages alarm notifications. For more information, see <a href=\"https://docs.aws.amazon.com/\">Managing alarm notifications</a> in the <i>AWS IoT Events Developer Guide</i>.</p>",
         "AssetModelSummary$arn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the asset model, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset-model/${AssetModelId}</code> </p>",
         "AssetSummary$arn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the asset, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code> </p>",
         "AssociatedAssetsSummary$arn": "<p>The <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">ARN</a> of the asset, which has the following format.</p> <p> <code>arn:${Partition}:iotsitewise:${Region}:${Account}:asset/${AssetId}</code> </p>",
@@ -145,6 +147,14 @@
       "base": "<p>Contains the (pre-calculated) aggregate values for an asset property.</p>",
       "refs": {
         "AggregatedValue$value": "<p>The value of the aggregates.</p>"
+      }
+    },
+    "Alarms": {
+      "base": "<p>Contains the configuration information of an alarm created in an AWS IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see .</p>",
+      "refs": {
+        "CreatePortalRequest$alarms": "<p>Contains the configuration information of an alarm created in an AWS IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see .</p>",
+        "DescribePortalResponse$alarms": "<p>Contains the configuration information of an alarm created in a AWS IoT SiteWise Monitor portal.</p>",
+        "UpdatePortalRequest$alarms": "<p>Contains the configuration information of an alarm created in an AWS IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see .</p>"
       }
     },
     "AmazonResourceName": {
@@ -897,8 +907,11 @@
       "base": null,
       "refs": {
         "CreatePortalRequest$portalContactEmail": "<p>The AWS administrator's contact email address.</p>",
+        "CreatePortalRequest$notificationSenderEmail": "<p>The email address that sends alarm notifications.</p> <important> <p>If you use the AWS IoT Events managed AWS Lambda function to manage your emails, you must <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html\">verify the sender email address in Amazon SES</a>.</p> </important>",
         "DescribePortalResponse$portalContactEmail": "<p>The AWS administrator's contact email address.</p>",
-        "UpdatePortalRequest$portalContactEmail": "<p>The AWS administrator's contact email address.</p>"
+        "DescribePortalResponse$notificationSenderEmail": "<p>The email address that sends alarm notifications.</p>",
+        "UpdatePortalRequest$portalContactEmail": "<p>The AWS administrator's contact email address.</p>",
+        "UpdatePortalRequest$notificationSenderEmail": "<p>The email address that sends alarm notifications.</p>"
       }
     },
     "EncryptionType": {

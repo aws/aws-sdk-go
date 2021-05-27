@@ -11,6 +11,24 @@
     "uid":"iotevents-2018-07-27"
   },
   "operations":{
+    "CreateAlarmModel":{
+      "name":"CreateAlarmModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/alarm-models"
+      },
+      "input":{"shape":"CreateAlarmModelRequest"},
+      "output":{"shape":"CreateAlarmModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "CreateDetectorModel":{
       "name":"CreateDetectorModel",
       "http":{
@@ -46,6 +64,24 @@
         {"shape":"ResourceAlreadyExistsException"}
       ]
     },
+    "DeleteAlarmModel":{
+      "name":"DeleteAlarmModel",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/alarm-models/{alarmModelName}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteAlarmModelRequest"},
+      "output":{"shape":"DeleteAlarmModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "DeleteDetectorModel":{
       "name":"DeleteDetectorModel",
       "http":{
@@ -79,6 +115,22 @@
         {"shape":"InternalFailureException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ResourceInUseException"}
+      ]
+    },
+    "DescribeAlarmModel":{
+      "name":"DescribeAlarmModel",
+      "http":{
+        "method":"GET",
+        "requestUri":"/alarm-models/{alarmModelName}"
+      },
+      "input":{"shape":"DescribeAlarmModelRequest"},
+      "output":{"shape":"DescribeAlarmModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
       ]
     },
     "DescribeDetectorModel":{
@@ -162,6 +214,37 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "ListAlarmModelVersions":{
+      "name":"ListAlarmModelVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/alarm-models/{alarmModelName}/versions"
+      },
+      "input":{"shape":"ListAlarmModelVersionsRequest"},
+      "output":{"shape":"ListAlarmModelVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListAlarmModels":{
+      "name":"ListAlarmModels",
+      "http":{
+        "method":"GET",
+        "requestUri":"/alarm-models"
+      },
+      "input":{"shape":"ListAlarmModelsRequest"},
+      "output":{"shape":"ListAlarmModelsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "ListDetectorModelVersions":{
       "name":"ListDetectorModelVersions",
       "http":{
@@ -191,6 +274,22 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"},
         {"shape":"ServiceUnavailableException"}
+      ]
+    },
+    "ListInputRoutings":{
+      "name":"ListInputRoutings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/input-routings"
+      },
+      "input":{"shape":"ListInputRoutingsRequest"},
+      "output":{"shape":"ListInputRoutingsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListInputs":{
@@ -289,6 +388,23 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateAlarmModel":{
+      "name":"UpdateAlarmModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/alarm-models/{alarmModelName}"
+      },
+      "input":{"shape":"UpdateAlarmModelRequest"},
+      "output":{"shape":"UpdateAlarmModelResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ServiceUnavailableException"}
+      ]
+    },
     "UpdateDetectorModel":{
       "name":"UpdateDetectorModel",
       "http":{
@@ -325,6 +441,17 @@
     }
   },
   "shapes":{
+    "AcknowledgeFlow":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"AcknowledgeFlowEnabled"}
+      }
+    },
+    "AcknowledgeFlowEnabled":{
+      "type":"boolean",
+      "box":true
+    },
     "Action":{
       "type":"structure",
       "members":{
@@ -346,6 +473,103 @@
     "Actions":{
       "type":"list",
       "member":{"shape":"Action"}
+    },
+    "AlarmAction":{
+      "type":"structure",
+      "members":{
+        "sns":{"shape":"SNSTopicPublishAction"},
+        "iotTopicPublish":{"shape":"IotTopicPublishAction"},
+        "lambda":{"shape":"LambdaAction"},
+        "iotEvents":{"shape":"IotEventsAction"},
+        "sqs":{"shape":"SqsAction"},
+        "firehose":{"shape":"FirehoseAction"},
+        "dynamoDB":{"shape":"DynamoDBAction"},
+        "dynamoDBv2":{"shape":"DynamoDBv2Action"},
+        "iotSiteWise":{"shape":"IotSiteWiseAction"}
+      }
+    },
+    "AlarmActions":{
+      "type":"list",
+      "member":{"shape":"AlarmAction"}
+    },
+    "AlarmCapabilities":{
+      "type":"structure",
+      "members":{
+        "initializationConfiguration":{"shape":"InitializationConfiguration"},
+        "acknowledgeFlow":{"shape":"AcknowledgeFlow"}
+      }
+    },
+    "AlarmEventActions":{
+      "type":"structure",
+      "members":{
+        "alarmActions":{"shape":"AlarmActions"}
+      }
+    },
+    "AlarmModelArn":{"type":"string"},
+    "AlarmModelDescription":{
+      "type":"string",
+      "max":128
+    },
+    "AlarmModelName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_-]+$"
+    },
+    "AlarmModelSummaries":{
+      "type":"list",
+      "member":{"shape":"AlarmModelSummary"}
+    },
+    "AlarmModelSummary":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "alarmModelDescription":{"shape":"AlarmModelDescription"},
+        "alarmModelName":{"shape":"AlarmModelName"}
+      }
+    },
+    "AlarmModelVersion":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "AlarmModelVersionStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "ACTIVATING",
+        "INACTIVE",
+        "FAILED"
+      ]
+    },
+    "AlarmModelVersionSummaries":{
+      "type":"list",
+      "member":{"shape":"AlarmModelVersionSummary"}
+    },
+    "AlarmModelVersionSummary":{
+      "type":"structure",
+      "members":{
+        "alarmModelName":{"shape":"AlarmModelName"},
+        "alarmModelArn":{"shape":"AlarmModelArn"},
+        "alarmModelVersion":{"shape":"AlarmModelVersion"},
+        "roleArn":{"shape":"AmazonResourceName"},
+        "creationTime":{"shape":"Timestamp"},
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "status":{"shape":"AlarmModelVersionStatus"},
+        "statusMessage":{"shape":"StatusMessage"}
+      }
+    },
+    "AlarmNotification":{
+      "type":"structure",
+      "members":{
+        "notificationActions":{"shape":"NotificationActions"}
+      }
+    },
+    "AlarmRule":{
+      "type":"structure",
+      "members":{
+        "simpleRule":{"shape":"SimpleRule"}
+      }
     },
     "AmazonResourceName":{
       "type":"string",
@@ -396,6 +620,7 @@
     },
     "AnalysisType":{"type":"string"},
     "AssetId":{"type":"string"},
+    "AssetModelId":{"type":"string"},
     "AssetPropertyAlias":{"type":"string"},
     "AssetPropertyBooleanValue":{"type":"string"},
     "AssetPropertyDoubleValue":{"type":"string"},
@@ -416,7 +641,6 @@
     },
     "AssetPropertyValue":{
       "type":"structure",
-      "required":["value"],
       "members":{
         "value":{"shape":"AssetPropertyVariant"},
         "timestamp":{"shape":"AssetPropertyTimestamp"},
@@ -458,6 +682,17 @@
         "timerName":{"shape":"TimerName"}
       }
     },
+    "ComparisonOperator":{
+      "type":"string",
+      "enum":[
+        "GREATER",
+        "GREATER_OR_EQUAL",
+        "LESS",
+        "LESS_OR_EQUAL",
+        "EQUAL",
+        "NOT_EQUAL"
+      ]
+    },
     "Condition":{
       "type":"string",
       "max":512
@@ -465,6 +700,36 @@
     "ContentExpression":{
       "type":"string",
       "min":1
+    },
+    "CreateAlarmModelRequest":{
+      "type":"structure",
+      "required":[
+        "alarmModelName",
+        "roleArn",
+        "alarmRule"
+      ],
+      "members":{
+        "alarmModelName":{"shape":"AlarmModelName"},
+        "alarmModelDescription":{"shape":"AlarmModelDescription"},
+        "roleArn":{"shape":"AmazonResourceName"},
+        "tags":{"shape":"Tags"},
+        "key":{"shape":"AttributeJsonPath"},
+        "severity":{"shape":"Severity"},
+        "alarmRule":{"shape":"AlarmRule"},
+        "alarmNotification":{"shape":"AlarmNotification"},
+        "alarmEventActions":{"shape":"AlarmEventActions"},
+        "alarmCapabilities":{"shape":"AlarmCapabilities"}
+      }
+    },
+    "CreateAlarmModelResponse":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "alarmModelArn":{"shape":"AlarmModelArn"},
+        "alarmModelVersion":{"shape":"AlarmModelVersion"},
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "status":{"shape":"AlarmModelVersionStatus"}
+      }
     },
     "CreateDetectorModelRequest":{
       "type":"structure",
@@ -508,6 +773,22 @@
         "inputConfiguration":{"shape":"InputConfiguration"}
       }
     },
+    "DeleteAlarmModelRequest":{
+      "type":"structure",
+      "required":["alarmModelName"],
+      "members":{
+        "alarmModelName":{
+          "shape":"AlarmModelName",
+          "location":"uri",
+          "locationName":"alarmModelName"
+        }
+      }
+    },
+    "DeleteAlarmModelResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteDetectorModelRequest":{
       "type":"structure",
       "required":["detectorModelName"],
@@ -541,6 +822,42 @@
       }
     },
     "DeliveryStreamName":{"type":"string"},
+    "DescribeAlarmModelRequest":{
+      "type":"structure",
+      "required":["alarmModelName"],
+      "members":{
+        "alarmModelName":{
+          "shape":"AlarmModelName",
+          "location":"uri",
+          "locationName":"alarmModelName"
+        },
+        "alarmModelVersion":{
+          "shape":"AlarmModelVersion",
+          "location":"querystring",
+          "locationName":"version"
+        }
+      }
+    },
+    "DescribeAlarmModelResponse":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "alarmModelArn":{"shape":"AlarmModelArn"},
+        "alarmModelVersion":{"shape":"AlarmModelVersion"},
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "status":{"shape":"AlarmModelVersionStatus"},
+        "statusMessage":{"shape":"StatusMessage"},
+        "alarmModelName":{"shape":"AlarmModelName"},
+        "alarmModelDescription":{"shape":"AlarmModelDescription"},
+        "roleArn":{"shape":"AmazonResourceName"},
+        "key":{"shape":"AttributeJsonPath"},
+        "severity":{"shape":"Severity"},
+        "alarmRule":{"shape":"AlarmRule"},
+        "alarmNotification":{"shape":"AlarmNotification"},
+        "alarmEventActions":{"shape":"AlarmEventActions"},
+        "alarmCapabilities":{"shape":"AlarmCapabilities"}
+      }
+    },
     "DescribeDetectorModelAnalysisRequest":{
       "type":"structure",
       "required":["analysisId"],
@@ -711,6 +1028,10 @@
         "evaluationMethod":{"shape":"EvaluationMethod"}
       }
     },
+    "DisabledOnInitialization":{
+      "type":"boolean",
+      "box":true
+    },
     "DynamoDBAction":{
       "type":"structure",
       "required":[
@@ -744,6 +1065,37 @@
     "DynamoKeyValue":{"type":"string"},
     "DynamoOperation":{"type":"string"},
     "DynamoTableName":{"type":"string"},
+    "EmailConfiguration":{
+      "type":"structure",
+      "required":[
+        "from",
+        "recipients"
+      ],
+      "members":{
+        "from":{"shape":"FromEmail"},
+        "content":{"shape":"EmailContent"},
+        "recipients":{"shape":"EmailRecipients"}
+      }
+    },
+    "EmailConfigurations":{
+      "type":"list",
+      "member":{"shape":"EmailConfiguration"},
+      "min":1
+    },
+    "EmailContent":{
+      "type":"structure",
+      "members":{
+        "subject":{"shape":"EmailSubject"},
+        "additionalMessage":{"shape":"NotificationAdditionalMessage"}
+      }
+    },
+    "EmailRecipients":{
+      "type":"structure",
+      "members":{
+        "to":{"shape":"RecipientDetails"}
+      }
+    },
+    "EmailSubject":{"type":"string"},
     "EvaluationMethod":{
       "type":"string",
       "enum":[
@@ -781,6 +1133,7 @@
       "type":"string",
       "pattern":"([\\n\\t])|(\\r\\n)|(,)"
     },
+    "FromEmail":{"type":"string"},
     "GetDetectorModelAnalysisResultsRequest":{
       "type":"structure",
       "required":["analysisId"],
@@ -807,6 +1160,14 @@
       "members":{
         "analysisResults":{"shape":"AnalysisResults"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "IdentityStoreId":{"type":"string"},
+    "InitializationConfiguration":{
+      "type":"structure",
+      "required":["disabledOnInitialization"],
+      "members":{
+        "disabledOnInitialization":{"shape":"DisabledOnInitialization"}
       }
     },
     "Input":{
@@ -846,11 +1207,23 @@
       "type":"string",
       "max":128
     },
+    "InputIdentifier":{
+      "type":"structure",
+      "members":{
+        "iotEventsInputIdentifier":{"shape":"IotEventsInputIdentifier"},
+        "iotSiteWiseInputIdentifier":{"shape":"IotSiteWiseInputIdentifier"}
+      }
+    },
     "InputName":{
       "type":"string",
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "InputProperty":{
+      "type":"string",
+      "max":512,
+      "min":1
     },
     "InputStatus":{
       "type":"string",
@@ -901,15 +1274,38 @@
         "payload":{"shape":"Payload"}
       }
     },
+    "IotEventsInputIdentifier":{
+      "type":"structure",
+      "required":["inputName"],
+      "members":{
+        "inputName":{"shape":"InputName"}
+      }
+    },
     "IotSiteWiseAction":{
       "type":"structure",
-      "required":["propertyValue"],
       "members":{
         "entryId":{"shape":"AssetPropertyEntryId"},
         "assetId":{"shape":"AssetId"},
         "propertyId":{"shape":"AssetPropertyId"},
         "propertyAlias":{"shape":"AssetPropertyAlias"},
         "propertyValue":{"shape":"AssetPropertyValue"}
+      }
+    },
+    "IotSiteWiseAssetModelPropertyIdentifier":{
+      "type":"structure",
+      "required":[
+        "assetModelId",
+        "propertyId"
+      ],
+      "members":{
+        "assetModelId":{"shape":"AssetModelId"},
+        "propertyId":{"shape":"AssetPropertyId"}
+      }
+    },
+    "IotSiteWiseInputIdentifier":{
+      "type":"structure",
+      "members":{
+        "iotSiteWiseAssetModelPropertyIdentifier":{"shape":"IotSiteWiseAssetModelPropertyIdentifier"}
       }
     },
     "IotTopicPublishAction":{
@@ -941,6 +1337,56 @@
       },
       "error":{"httpStatusCode":410},
       "exception":true
+    },
+    "ListAlarmModelVersionsRequest":{
+      "type":"structure",
+      "required":["alarmModelName"],
+      "members":{
+        "alarmModelName":{
+          "shape":"AlarmModelName",
+          "location":"uri",
+          "locationName":"alarmModelName"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAlarmModelVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "alarmModelVersionSummaries":{"shape":"AlarmModelVersionSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAlarmModelsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListAlarmModelsResponse":{
+      "type":"structure",
+      "members":{
+        "alarmModelSummaries":{"shape":"AlarmModelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
     },
     "ListDetectorModelVersionsRequest":{
       "type":"structure",
@@ -989,6 +1435,22 @@
       "type":"structure",
       "members":{
         "detectorModelSummaries":{"shape":"DetectorModelSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInputRoutingsRequest":{
+      "type":"structure",
+      "required":["inputIdentifier"],
+      "members":{
+        "inputIdentifier":{"shape":"InputIdentifier"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInputRoutingsResponse":{
+      "type":"structure",
+      "members":{
+        "routedResources":{"shape":"RoutedResources"},
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -1066,6 +1528,27 @@
       "min":1
     },
     "NextToken":{"type":"string"},
+    "NotificationAction":{
+      "type":"structure",
+      "required":["action"],
+      "members":{
+        "action":{"shape":"NotificationTargetActions"},
+        "smsConfigurations":{"shape":"SMSConfigurations"},
+        "emailConfigurations":{"shape":"EmailConfigurations"}
+      }
+    },
+    "NotificationActions":{
+      "type":"list",
+      "member":{"shape":"NotificationAction"},
+      "min":1
+    },
+    "NotificationAdditionalMessage":{"type":"string"},
+    "NotificationTargetActions":{
+      "type":"structure",
+      "members":{
+        "lambdaAction":{"shape":"LambdaAction"}
+      }
+    },
     "OnEnterLifecycle":{
       "type":"structure",
       "members":{
@@ -1111,6 +1594,17 @@
       }
     },
     "QueueUrl":{"type":"string"},
+    "RecipientDetail":{
+      "type":"structure",
+      "members":{
+        "ssoIdentity":{"shape":"SSOIdentity"}
+      }
+    },
+    "RecipientDetails":{
+      "type":"list",
+      "member":{"shape":"RecipientDetail"},
+      "min":1
+    },
     "ResetTimerAction":{
       "type":"structure",
       "required":["timerName"],
@@ -1136,6 +1630,7 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ResourceName":{"type":"string"},
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -1144,6 +1639,32 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "RoutedResource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceName"},
+        "arn":{"shape":"AmazonResourceName"}
+      }
+    },
+    "RoutedResources":{
+      "type":"list",
+      "member":{"shape":"RoutedResource"}
+    },
+    "SMSConfiguration":{
+      "type":"structure",
+      "required":["recipients"],
+      "members":{
+        "senderId":{"shape":"SMSSenderId"},
+        "additionalMessage":{"shape":"NotificationAdditionalMessage"},
+        "recipients":{"shape":"RecipientDetails"}
+      }
+    },
+    "SMSConfigurations":{
+      "type":"list",
+      "member":{"shape":"SMSConfiguration"},
+      "min":1
+    },
+    "SMSSenderId":{"type":"string"},
     "SNSTopicPublishAction":{
       "type":"structure",
       "required":["targetArn"],
@@ -1152,6 +1673,15 @@
         "payload":{"shape":"Payload"}
       }
     },
+    "SSOIdentity":{
+      "type":"structure",
+      "required":["identityStoreId"],
+      "members":{
+        "identityStoreId":{"shape":"IdentityStoreId"},
+        "userId":{"shape":"SSOReferenceId"}
+      }
+    },
+    "SSOReferenceId":{"type":"string"},
     "Seconds":{
       "type":"integer",
       "max":31622400,
@@ -1188,6 +1718,25 @@
       "members":{
         "variableName":{"shape":"VariableName"},
         "value":{"shape":"VariableValue"}
+      }
+    },
+    "Severity":{
+      "type":"integer",
+      "box":true,
+      "max":2147483647,
+      "min":0
+    },
+    "SimpleRule":{
+      "type":"structure",
+      "required":[
+        "inputProperty",
+        "comparisonOperator",
+        "threshold"
+      ],
+      "members":{
+        "inputProperty":{"shape":"InputProperty"},
+        "comparisonOperator":{"shape":"ComparisonOperator"},
+        "threshold":{"shape":"Threshold"}
       }
     },
     "SqsAction":{
@@ -1232,6 +1781,7 @@
       "member":{"shape":"State"},
       "min":1
     },
+    "StatusMessage":{"type":"string"},
     "Tag":{
       "type":"structure",
       "required":[
@@ -1280,6 +1830,11 @@
     "Tags":{
       "type":"list",
       "member":{"shape":"Tag"}
+    },
+    "Threshold":{
+      "type":"string",
+      "max":512,
+      "min":1
     },
     "ThrottlingException":{
       "type":"structure",
@@ -1344,6 +1899,38 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateAlarmModelRequest":{
+      "type":"structure",
+      "required":[
+        "alarmModelName",
+        "roleArn",
+        "alarmRule"
+      ],
+      "members":{
+        "alarmModelName":{
+          "shape":"AlarmModelName",
+          "location":"uri",
+          "locationName":"alarmModelName"
+        },
+        "alarmModelDescription":{"shape":"AlarmModelDescription"},
+        "roleArn":{"shape":"AmazonResourceName"},
+        "severity":{"shape":"Severity"},
+        "alarmRule":{"shape":"AlarmRule"},
+        "alarmNotification":{"shape":"AlarmNotification"},
+        "alarmEventActions":{"shape":"AlarmEventActions"},
+        "alarmCapabilities":{"shape":"AlarmCapabilities"}
+      }
+    },
+    "UpdateAlarmModelResponse":{
+      "type":"structure",
+      "members":{
+        "creationTime":{"shape":"Timestamp"},
+        "alarmModelArn":{"shape":"AlarmModelArn"},
+        "alarmModelVersion":{"shape":"AlarmModelVersion"},
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "status":{"shape":"AlarmModelVersionStatus"}
       }
     },
     "UpdateDetectorModelRequest":{

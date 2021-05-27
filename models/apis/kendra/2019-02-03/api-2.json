@@ -49,6 +49,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ClearQuerySuggestions":{
+      "name":"ClearQuerySuggestions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ClearQuerySuggestionsRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateDataSource":{
       "name":"CreateDataSource",
       "http":{
@@ -100,6 +116,24 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateQuerySuggestionsBlockList":{
+      "name":"CreateQuerySuggestionsBlockList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateQuerySuggestionsBlockListRequest"},
+      "output":{"shape":"CreateQuerySuggestionsBlockListResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
@@ -170,6 +204,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteQuerySuggestionsBlockList":{
+      "name":"DeleteQuerySuggestionsBlockList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteQuerySuggestionsBlockListRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteThesaurus":{
       "name":"DeleteThesaurus",
       "http":{
@@ -234,6 +284,38 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeQuerySuggestionsBlockList":{
+      "name":"DescribeQuerySuggestionsBlockList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeQuerySuggestionsBlockListRequest"},
+      "output":{"shape":"DescribeQuerySuggestionsBlockListResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeQuerySuggestionsConfig":{
+      "name":"DescribeQuerySuggestionsConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeQuerySuggestionsConfigRequest"},
+      "output":{"shape":"DescribeQuerySuggestionsConfigResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeThesaurus":{
       "name":"DescribeThesaurus",
       "http":{
@@ -247,6 +329,24 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetQuerySuggestions":{
+      "name":"GetQuerySuggestions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetQuerySuggestionsRequest"},
+      "output":{"shape":"GetQuerySuggestionsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -309,6 +409,22 @@
       "output":{"shape":"ListIndicesResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListQuerySuggestionsBlockLists":{
+      "name":"ListQuerySuggestionsBlockLists",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListQuerySuggestionsBlockListsRequest"},
+      "output":{"shape":"ListQuerySuggestionsBlockListsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
@@ -475,6 +591,38 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateQuerySuggestionsBlockList":{
+      "name":"UpdateQuerySuggestionsBlockList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateQuerySuggestionsBlockListRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateQuerySuggestionsConfig":{
+      "name":"UpdateQuerySuggestionsConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateQuerySuggestionsConfigRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -651,6 +799,13 @@
       "max":100,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "ClearQuerySuggestionsRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"}
+      }
     },
     "ClickFeedback":{
       "type":"structure",
@@ -990,6 +1145,33 @@
         "Id":{"shape":"IndexId"}
       }
     },
+    "CreateQuerySuggestionsBlockListRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Name",
+        "SourceS3Path",
+        "RoleArn"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Name":{"shape":"QuerySuggestionsBlockListName"},
+        "Description":{"shape":"Description"},
+        "SourceS3Path":{"shape":"S3Path"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        },
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateQuerySuggestionsBlockListResponse":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QuerySuggestionsBlockListId"}
+      }
+    },
     "CreateThesaurusRequest":{
       "type":"structure",
       "required":[
@@ -1115,10 +1297,7 @@
     },
     "DataSourceSyncJobMetricTarget":{
       "type":"structure",
-      "required":[
-        "DataSourceId",
-        "DataSourceSyncJobId"
-      ],
+      "required":["DataSourceId"],
       "members":{
         "DataSourceId":{"shape":"DataSourceId"},
         "DataSourceSyncJobId":{"shape":"DataSourceSyncJobId"}
@@ -1259,6 +1438,17 @@
         "Id":{"shape":"IndexId"}
       }
     },
+    "DeleteQuerySuggestionsBlockListRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"QuerySuggestionsBlockListId"}
+      }
+    },
     "DeleteThesaurusRequest":{
       "type":"structure",
       "required":[
@@ -1350,6 +1540,55 @@
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
         "UserContextPolicy":{"shape":"UserContextPolicy"}
+      }
+    },
+    "DescribeQuerySuggestionsBlockListRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"QuerySuggestionsBlockListId"}
+      }
+    },
+    "DescribeQuerySuggestionsBlockListResponse":{
+      "type":"structure",
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"QuerySuggestionsBlockListId"},
+        "Name":{"shape":"QuerySuggestionsBlockListName"},
+        "Description":{"shape":"Description"},
+        "Status":{"shape":"QuerySuggestionsBlockListStatus"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "SourceS3Path":{"shape":"S3Path"},
+        "ItemCount":{"shape":"Integer"},
+        "FileSizeBytes":{"shape":"Long"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "DescribeQuerySuggestionsConfigRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"}
+      }
+    },
+    "DescribeQuerySuggestionsConfigResponse":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"Mode"},
+        "Status":{"shape":"QuerySuggestionsStatus"},
+        "QueryLogLookBackWindowInDays":{"shape":"Integer"},
+        "IncludeQueriesWithoutUserInformation":{"shape":"ObjectBoolean"},
+        "MinimumNumberOfQueryingUsers":{"shape":"MinimumNumberOfQueryingUsers"},
+        "MinimumQueryCount":{"shape":"MinimumQueryCount"},
+        "LastSuggestionsBuildTime":{"shape":"Timestamp"},
+        "LastClearTime":{"shape":"Timestamp"},
+        "TotalSuggestionsCount":{"shape":"Integer"}
       }
     },
     "DescribeThesaurusRequest":{
@@ -1647,6 +1886,25 @@
       "min":1,
       "pattern":"^\\P{C}*.\\P{C}*$"
     },
+    "GetQuerySuggestionsRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "QueryText"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "QueryText":{"shape":"SuggestionQueryText"},
+        "MaxSuggestionsCount":{"shape":"Integer"}
+      }
+    },
+    "GetQuerySuggestionsResponse":{
+      "type":"structure",
+      "members":{
+        "QuerySuggestionsId":{"shape":"QuerySuggestionsId"},
+        "Suggestions":{"shape":"SuggestionList"}
+      }
+    },
     "GoogleDriveConfiguration":{
       "type":"structure",
       "required":["SecretArn"],
@@ -1894,6 +2152,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "ListQuerySuggestionsBlockListsRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListQuerySuggestionsBlockLists"}
+      }
+    },
+    "ListQuerySuggestionsBlockListsResponse":{
+      "type":"structure",
+      "members":{
+        "BlockListSummaryItems":{"shape":"QuerySuggestionsBlockListSummaryItems"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -1944,6 +2218,11 @@
       "max":100,
       "min":1
     },
+    "MaxResultsIntegerForListQuerySuggestionsBlockLists":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "MaxResultsIntegerForListThesauriRequest":{
       "type":"integer",
       "max":100,
@@ -1959,11 +2238,29 @@
       "min":1,
       "pattern":"^\\P{C}*$"
     },
+    "MinimumNumberOfQueryingUsers":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
+    "MinimumQueryCount":{
+      "type":"integer",
+      "max":10000,
+      "min":1
+    },
+    "Mode":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "LEARN_ONLY"
+      ]
+    },
     "NextToken":{
       "type":"string",
       "max":800,
       "min":1
     },
+    "ObjectBoolean":{"type":"boolean"},
     "OneDriveConfiguration":{
       "type":"structure",
       "required":[
@@ -2109,6 +2406,56 @@
         "DOCUMENT",
         "QUESTION_ANSWER",
         "ANSWER"
+      ]
+    },
+    "QuerySuggestionsBlockListId":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9-]*"
+    },
+    "QuerySuggestionsBlockListName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "QuerySuggestionsBlockListStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING",
+        "DELETING",
+        "UPDATING",
+        "ACTIVE_BUT_UPDATE_FAILED",
+        "FAILED"
+      ]
+    },
+    "QuerySuggestionsBlockListSummary":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"QuerySuggestionsBlockListId"},
+        "Name":{"shape":"QuerySuggestionsBlockListName"},
+        "Status":{"shape":"QuerySuggestionsBlockListStatus"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "UpdatedAt":{"shape":"Timestamp"},
+        "ItemCount":{"shape":"Integer"}
+      }
+    },
+    "QuerySuggestionsBlockListSummaryItems":{
+      "type":"list",
+      "member":{"shape":"QuerySuggestionsBlockListSummary"}
+    },
+    "QuerySuggestionsId":{
+      "type":"string",
+      "max":36,
+      "min":1
+    },
+    "QuerySuggestionsStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "UPDATING"
       ]
     },
     "QueryText":{
@@ -2615,6 +2962,45 @@
       "max":6,
       "min":1
     },
+    "Suggestion":{
+      "type":"structure",
+      "members":{
+        "Id":{"shape":"ResultId"},
+        "Value":{"shape":"SuggestionValue"}
+      }
+    },
+    "SuggestionHighlight":{
+      "type":"structure",
+      "members":{
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"}
+      }
+    },
+    "SuggestionHighlightList":{
+      "type":"list",
+      "member":{"shape":"SuggestionHighlight"}
+    },
+    "SuggestionList":{
+      "type":"list",
+      "member":{"shape":"Suggestion"}
+    },
+    "SuggestionQueryText":{
+      "type":"string",
+      "pattern":"^\\P{C}*$"
+    },
+    "SuggestionTextWithHighlights":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"String"},
+        "Highlights":{"shape":"SuggestionHighlightList"}
+      }
+    },
+    "SuggestionValue":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"SuggestionTextWithHighlights"}
+      }
+    },
     "TableName":{
       "type":"string",
       "max":100,
@@ -2797,6 +3183,33 @@
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
         "UserContextPolicy":{"shape":"UserContextPolicy"}
+      }
+    },
+    "UpdateQuerySuggestionsBlockListRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "Id"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Id":{"shape":"QuerySuggestionsBlockListId"},
+        "Name":{"shape":"QuerySuggestionsBlockListName"},
+        "Description":{"shape":"Description"},
+        "SourceS3Path":{"shape":"S3Path"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "UpdateQuerySuggestionsConfigRequest":{
+      "type":"structure",
+      "required":["IndexId"],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "Mode":{"shape":"Mode"},
+        "QueryLogLookBackWindowInDays":{"shape":"Integer"},
+        "IncludeQueriesWithoutUserInformation":{"shape":"ObjectBoolean"},
+        "MinimumNumberOfQueryingUsers":{"shape":"MinimumNumberOfQueryingUsers"},
+        "MinimumQueryCount":{"shape":"MinimumQueryCount"}
       }
     },
     "UpdateThesaurusRequest":{

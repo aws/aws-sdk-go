@@ -6925,6 +6925,68 @@ func (s *Aggregates) SetSum(v float64) *Aggregates {
 	return s
 }
 
+// Contains the configuration information of an alarm created in an AWS IoT
+// SiteWise Monitor portal. You can use the alarm to monitor an asset property
+// and get notified when the asset property value is outside a specified range.
+// For more information, see .
+type Alarms struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the IAM role that allows the alarm to perform actions and access AWS resources,
+	// including AWS IoT Events.
+	//
+	// AlarmRoleArn is a required field
+	AlarmRoleArn *string `locationName:"alarmRoleArn" min:"1" type:"string" required:"true"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the AWS Lambda function that manages alarm notifications. For more information,
+	// see Managing alarm notifications (https://docs.aws.amazon.com/) in the AWS
+	// IoT Events Developer Guide.
+	NotificationLambdaArn *string `locationName:"notificationLambdaArn" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Alarms) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Alarms) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Alarms) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Alarms"}
+	if s.AlarmRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AlarmRoleArn"))
+	}
+	if s.AlarmRoleArn != nil && len(*s.AlarmRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AlarmRoleArn", 1))
+	}
+	if s.NotificationLambdaArn != nil && len(*s.NotificationLambdaArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationLambdaArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlarmRoleArn sets the AlarmRoleArn field's value.
+func (s *Alarms) SetAlarmRoleArn(v string) *Alarms {
+	s.AlarmRoleArn = &v
+	return s
+}
+
+// SetNotificationLambdaArn sets the NotificationLambdaArn field's value.
+func (s *Alarms) SetNotificationLambdaArn(v string) *Alarms {
+	s.NotificationLambdaArn = &v
+	return s
+}
+
 // Contains information about a composite model in an asset. This object contains
 // the asset's properties that you define in the composite model.
 type AssetCompositeModel struct {
@@ -9679,10 +9741,22 @@ func (s *CreateGatewayOutput) SetGatewayId(v string) *CreateGatewayOutput {
 type CreatePortalInput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the configuration information of an alarm created in an AWS IoT
+	// SiteWise Monitor portal. You can use the alarm to monitor an asset property
+	// and get notified when the asset property value is outside a specified range.
+	// For more information, see .
+	Alarms *Alarms `locationName:"alarms" type:"structure"`
+
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
 	// of the request. Don't reuse this client token if a new idempotent request
 	// is required.
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The email address that sends alarm notifications.
+	//
+	// If you use the AWS IoT Events managed AWS Lambda function to manage your
+	// emails, you must verify the sender email address in Amazon SES (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html).
+	NotificationSenderEmail *string `locationName:"notificationSenderEmail" min:"1" type:"string"`
 
 	// The service to use to authenticate users to the portal. Choose from the following
 	// options:
@@ -9751,6 +9825,9 @@ func (s *CreatePortalInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
 	}
+	if s.NotificationSenderEmail != nil && len(*s.NotificationSenderEmail) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationSenderEmail", 1))
+	}
 	if s.PortalContactEmail == nil {
 		invalidParams.Add(request.NewErrParamRequired("PortalContactEmail"))
 	}
@@ -9775,6 +9852,11 @@ func (s *CreatePortalInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.Alarms != nil {
+		if err := s.Alarms.Validate(); err != nil {
+			invalidParams.AddNested("Alarms", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PortalLogoImageFile != nil {
 		if err := s.PortalLogoImageFile.Validate(); err != nil {
 			invalidParams.AddNested("PortalLogoImageFile", err.(request.ErrInvalidParams))
@@ -9787,9 +9869,21 @@ func (s *CreatePortalInput) Validate() error {
 	return nil
 }
 
+// SetAlarms sets the Alarms field's value.
+func (s *CreatePortalInput) SetAlarms(v *Alarms) *CreatePortalInput {
+	s.Alarms = v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *CreatePortalInput) SetClientToken(v string) *CreatePortalInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetNotificationSenderEmail sets the NotificationSenderEmail field's value.
+func (s *CreatePortalInput) SetNotificationSenderEmail(v string) *CreatePortalInput {
+	s.NotificationSenderEmail = &v
 	return s
 }
 
@@ -11780,6 +11874,13 @@ func (s *DescribePortalInput) SetPortalId(v string) *DescribePortalInput {
 type DescribePortalOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the configuration information of an alarm created in a AWS IoT SiteWise
+	// Monitor portal.
+	Alarms *Alarms `locationName:"alarms" type:"structure"`
+
+	// The email address that sends alarm notifications.
+	NotificationSenderEmail *string `locationName:"notificationSenderEmail" min:"1" type:"string"`
+
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the portal, which has the following format.
 	//
@@ -11858,6 +11959,18 @@ func (s DescribePortalOutput) String() string {
 // GoString returns the string representation
 func (s DescribePortalOutput) GoString() string {
 	return s.String()
+}
+
+// SetAlarms sets the Alarms field's value.
+func (s *DescribePortalOutput) SetAlarms(v *Alarms) *DescribePortalOutput {
+	s.Alarms = v
+	return s
+}
+
+// SetNotificationSenderEmail sets the NotificationSenderEmail field's value.
+func (s *DescribePortalOutput) SetNotificationSenderEmail(v string) *DescribePortalOutput {
+	s.NotificationSenderEmail = &v
+	return s
 }
 
 // SetPortalArn sets the PortalArn field's value.
@@ -17485,10 +17598,19 @@ func (s UpdateGatewayOutput) GoString() string {
 type UpdatePortalInput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the configuration information of an alarm created in an AWS IoT
+	// SiteWise Monitor portal. You can use the alarm to monitor an asset property
+	// and get notified when the asset property value is outside a specified range.
+	// For more information, see .
+	Alarms *Alarms `locationName:"alarms" type:"structure"`
+
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
 	// of the request. Don't reuse this client token if a new idempotent request
 	// is required.
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
+
+	// The email address that sends alarm notifications.
+	NotificationSenderEmail *string `locationName:"notificationSenderEmail" min:"1" type:"string"`
 
 	// The AWS administrator's contact email address.
 	//
@@ -17542,6 +17664,9 @@ func (s *UpdatePortalInput) Validate() error {
 	if s.ClientToken != nil && len(*s.ClientToken) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 36))
 	}
+	if s.NotificationSenderEmail != nil && len(*s.NotificationSenderEmail) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationSenderEmail", 1))
+	}
 	if s.PortalContactEmail == nil {
 		invalidParams.Add(request.NewErrParamRequired("PortalContactEmail"))
 	}
@@ -17569,6 +17694,11 @@ func (s *UpdatePortalInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
 	}
+	if s.Alarms != nil {
+		if err := s.Alarms.Validate(); err != nil {
+			invalidParams.AddNested("Alarms", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.PortalLogoImage != nil {
 		if err := s.PortalLogoImage.Validate(); err != nil {
 			invalidParams.AddNested("PortalLogoImage", err.(request.ErrInvalidParams))
@@ -17581,9 +17711,21 @@ func (s *UpdatePortalInput) Validate() error {
 	return nil
 }
 
+// SetAlarms sets the Alarms field's value.
+func (s *UpdatePortalInput) SetAlarms(v *Alarms) *UpdatePortalInput {
+	s.Alarms = v
+	return s
+}
+
 // SetClientToken sets the ClientToken field's value.
 func (s *UpdatePortalInput) SetClientToken(v string) *UpdatePortalInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetNotificationSenderEmail sets the NotificationSenderEmail field's value.
+func (s *UpdatePortalInput) SetNotificationSenderEmail(v string) *UpdatePortalInput {
+	s.NotificationSenderEmail = &v
 	return s
 }
 

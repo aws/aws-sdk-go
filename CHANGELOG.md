@@ -1,3 +1,21 @@
+Release v1.38.50 (2021-05-27)
+===
+
+### Service Client Updates
+* `service/devicefarm`: Updates service API and documentation
+  * Introduces support for using our desktop testing service with applications hosted within your Virtual Private Cloud (VPC).
+* `service/fsx`: Updates service API and documentation
+* `service/iotevents`: Updates service API and documentation
+* `service/iotevents-data`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now suggests popular queries in order to help guide query typing and help overall accuracy.
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+* `service/resource-groups`: Updates service documentation
+* `service/sqs`: Updates service documentation
+  * Documentation updates for Amazon SQS for General Availability of high throughput for FIFO queues.
+
 Release v1.38.49 (2021-05-27)
 ===
 

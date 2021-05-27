@@ -706,7 +706,8 @@
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
         "CopyTagsToBackups":{"shape":"Flag"},
-        "DriveCacheType":{"shape":"DriveCacheType"}
+        "DriveCacheType":{"shape":"DriveCacheType"},
+        "DataCompressionType":{"shape":"DataCompressionType"}
       }
     },
     "CreateFileSystemRequest":{
@@ -766,6 +767,13 @@
       "max":5,
       "min":5,
       "pattern":"^([01]\\d|2[0-3]):?([0-5]\\d)$"
+    },
+    "DataCompressionType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "LZ4"
+      ]
     },
     "DataRepositoryConfiguration":{
       "type":"structure",
@@ -1354,7 +1362,8 @@
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
         "CopyTagsToBackups":{"shape":"Flag"},
-        "DriveCacheType":{"shape":"DriveCacheType"}
+        "DriveCacheType":{"shape":"DriveCacheType"},
+        "DataCompressionType":{"shape":"DataCompressionType"}
       }
     },
     "LustreFileSystemMountName":{
@@ -1677,7 +1686,8 @@
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
-        "AutoImportPolicy":{"shape":"AutoImportPolicyType"}
+        "AutoImportPolicy":{"shape":"AutoImportPolicyType"},
+        "DataCompressionType":{"shape":"DataCompressionType"}
       }
     },
     "UpdateFileSystemRequest":{
