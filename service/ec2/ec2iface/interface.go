@@ -1208,13 +1208,6 @@ type EC2API interface {
 	DescribeSecurityGroupReferencesWithContext(aws.Context, *ec2.DescribeSecurityGroupReferencesInput, ...request.Option) (*ec2.DescribeSecurityGroupReferencesOutput, error)
 	DescribeSecurityGroupReferencesRequest(*ec2.DescribeSecurityGroupReferencesInput) (*request.Request, *ec2.DescribeSecurityGroupReferencesOutput)
 
-	DescribeSecurityGroupRules(*ec2.DescribeSecurityGroupRulesInput) (*ec2.DescribeSecurityGroupRulesOutput, error)
-	DescribeSecurityGroupRulesWithContext(aws.Context, *ec2.DescribeSecurityGroupRulesInput, ...request.Option) (*ec2.DescribeSecurityGroupRulesOutput, error)
-	DescribeSecurityGroupRulesRequest(*ec2.DescribeSecurityGroupRulesInput) (*request.Request, *ec2.DescribeSecurityGroupRulesOutput)
-
-	DescribeSecurityGroupRulesPages(*ec2.DescribeSecurityGroupRulesInput, func(*ec2.DescribeSecurityGroupRulesOutput, bool) bool) error
-	DescribeSecurityGroupRulesPagesWithContext(aws.Context, *ec2.DescribeSecurityGroupRulesInput, func(*ec2.DescribeSecurityGroupRulesOutput, bool) bool, ...request.Option) error
-
 	DescribeSecurityGroups(*ec2.DescribeSecurityGroupsInput) (*ec2.DescribeSecurityGroupsOutput, error)
 	DescribeSecurityGroupsWithContext(aws.Context, *ec2.DescribeSecurityGroupsInput, ...request.Option) (*ec2.DescribeSecurityGroupsOutput, error)
 	DescribeSecurityGroupsRequest(*ec2.DescribeSecurityGroupsInput) (*request.Request, *ec2.DescribeSecurityGroupsOutput)
@@ -1834,10 +1827,6 @@ type EC2API interface {
 	ModifyReservedInstances(*ec2.ModifyReservedInstancesInput) (*ec2.ModifyReservedInstancesOutput, error)
 	ModifyReservedInstancesWithContext(aws.Context, *ec2.ModifyReservedInstancesInput, ...request.Option) (*ec2.ModifyReservedInstancesOutput, error)
 	ModifyReservedInstancesRequest(*ec2.ModifyReservedInstancesInput) (*request.Request, *ec2.ModifyReservedInstancesOutput)
-
-	ModifySecurityGroupRules(*ec2.ModifySecurityGroupRulesInput) (*ec2.ModifySecurityGroupRulesOutput, error)
-	ModifySecurityGroupRulesWithContext(aws.Context, *ec2.ModifySecurityGroupRulesInput, ...request.Option) (*ec2.ModifySecurityGroupRulesOutput, error)
-	ModifySecurityGroupRulesRequest(*ec2.ModifySecurityGroupRulesInput) (*request.Request, *ec2.ModifySecurityGroupRulesOutput)
 
 	ModifySnapshotAttribute(*ec2.ModifySnapshotAttributeInput) (*ec2.ModifySnapshotAttributeOutput, error)
 	ModifySnapshotAttributeWithContext(aws.Context, *ec2.ModifySnapshotAttributeInput, ...request.Option) (*ec2.ModifySnapshotAttributeOutput, error)

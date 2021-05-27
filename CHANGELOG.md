@@ -1,3 +1,10 @@
+Release v1.38.49 (2021-05-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release removes resource ids and tagging support for VPC security group rules.
+
 Release v1.38.48 (2021-05-26)
 ===
 
