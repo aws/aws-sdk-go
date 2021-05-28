@@ -70,10 +70,8 @@ func templateMap(args ...interface{}) map[string]interface{} {
 }
 
 func valueForType(s *Shape, visited []string) string {
-	for _, v := range visited {
-		if v == s.ShapeName {
-			return "nil"
-		}
+	if isShapeVisited(visited, s.ShapeName) {
+		return "nil"
 	}
 
 	visited = append(visited, s.ShapeName)
@@ -116,8 +114,10 @@ func valueForType(s *Shape, visited []string) string {
 	case "list":
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "%s{\n", s.GoType())
-		for i := 0; i < 3; i++ {
-			fmt.Fprintf(w, "%s,\n", valueForType(s.MemberRef.Shape, visited))
+		if !isShapeVisited(visited, s.MemberRef.Shape.ShapeName) {
+			for i := 0; i < 3; i++ {
+				fmt.Fprintf(w, "%s,\n", valueForType(s.MemberRef.Shape, visited))
+			}
 		}
 		fmt.Fprintf(w, "}")
 		return w.String()
@@ -125,8 +125,10 @@ func valueForType(s *Shape, visited []string) string {
 	case "map":
 		w := bytes.NewBuffer(nil)
 		fmt.Fprintf(w, "%s{\n", s.GoType())
-		for _, k := range []string{"a", "b", "c"} {
-			fmt.Fprintf(w, "%q: %s,\n", k, valueForType(s.ValueRef.Shape, visited))
+		if !isShapeVisited(visited, s.ValueRef.Shape.ShapeName) {
+			for _, k := range []string{"a", "b", "c"} {
+				fmt.Fprintf(w, "%q: %s,\n", k, valueForType(s.ValueRef.Shape, visited))
+			}
 		}
 		fmt.Fprintf(w, "}")
 		return w.String()
@@ -134,4 +136,13 @@ func valueForType(s *Shape, visited []string) string {
 	default:
 		panic(fmt.Sprintf("valueForType does not support %s, %s", s.ShapeName, s.Type))
 	}
+}
+
+func isShapeVisited(visited []string, name string) bool {
+	for _, v := range visited {
+		if v == name {
+			return true
+		}
+	}
+	return false
 }
