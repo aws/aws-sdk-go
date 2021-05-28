@@ -496,7 +496,8 @@ func (c *DataSync) CreateLocationObjectStorageRequest(input *CreateLocationObjec
 // CreateLocationObjectStorage API operation for AWS DataSync.
 //
 // Creates an endpoint for a self-managed object storage bucket. For more information
-// about self-managed object storage locations, see create-object-location.
+// about self-managed object storage locations, see Creating a location for
+// object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1432,7 +1433,8 @@ func (c *DataSync) DescribeLocationObjectStorageRequest(input *DescribeLocationO
 // DescribeLocationObjectStorage API operation for AWS DataSync.
 //
 // Returns metadata about a self-managed object storage server location. For
-// more information about self-managed object storage locations, see create-object-location.
+// more information about self-managed object storage locations, see Creating
+// a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2899,7 +2901,7 @@ func (c *DataSync) UpdateLocationNfsRequest(input *UpdateLocationNfsInput) (req 
 //
 // Updates some of the parameters of a previously created location for Network
 // File System (NFS) access. For information about creating an NFS location,
-// see create-nfs-location.
+// see Creating a location for NFS (https://docs.aws.amazon.com/datasync/latest/userguide/create-nfs-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2984,7 +2986,7 @@ func (c *DataSync) UpdateLocationObjectStorageRequest(input *UpdateLocationObjec
 //
 // Updates some of the parameters of a previously created location for self-managed
 // object storage server access. For information about creating a self-managed
-// object storage location, see create-object-location.
+// object storage location, see Creating a location for object storage (https://docs.aws.amazon.com/datasync/latest/userguide/create-object-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3069,7 +3071,7 @@ func (c *DataSync) UpdateLocationSmbRequest(input *UpdateLocationSmbInput) (req 
 //
 // Updates some of the parameters of a previously created location for Server
 // Message Block (SMB) file system access. For information about creating an
-// SMB location, see create-smb-location.
+// SMB location, see Creating a location for SMB (https://docs.aws.amazon.com/datasync/latest/userguide/create-smb-location.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3281,7 +3283,8 @@ func (c *DataSync) UpdateTaskExecutionWithContext(ctx aws.Context, input *Update
 }
 
 // Represents a single entry in a list of agents. AgentListEntry returns an
-// array that contains a list of agents when the ListAgents operation is called.
+// array that contains a list of agents when the ListAgents (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListAgents.html)
+// operation is called.
 type AgentListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -3400,7 +3403,7 @@ type CreateAgentInput struct {
 	AgentName *string `min:"1" type:"string"`
 
 	// The ARNs of the security groups used to protect your data transfer task subnets.
-	// See CreateAgentRequest$SubnetArns.
+	// See SecurityGroupArns (https://docs.aws.amazon.com/datasync/latest/userguide/API_Ec2Config.html#DataSync-Type-Ec2Config-SecurityGroupArns).
 	SecurityGroupArns []*string `min:"1" type:"list"`
 
 	// The Amazon Resource Names (ARNs) of the subnets in which DataSync will create
@@ -3707,6 +3710,9 @@ type CreateLocationFsxWindowsInput struct {
 
 	// The user who has the permissions to access files and folders in the FSx for
 	// Windows File Server file system.
+	//
+	// For information about choosing a user name that ensures sufficient permissions
+	// to files, folders, and metadata, see user (create-fsx-location.html#FSxWuser).
 	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
@@ -4179,7 +4185,8 @@ type CreateLocationS3Input struct {
 
 	// If you are using DataSync on an AWS Outpost, specify the Amazon Resource
 	// Names (ARNs) of the DataSync agents deployed on your Outpost. For more information
-	// about launching a DataSync agent on an AWS Outpost, see outposts-agent.
+	// about launching a DataSync agent on an AWS Outpost, see Deploy your DataSync
+	// agent on AWS Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
 	AgentArns []*string `min:"1" type:"list"`
 
 	// The ARN of the Amazon S3 bucket. If the bucket is on an AWS Outpost, this
@@ -4204,7 +4211,8 @@ type CreateLocationS3Input struct {
 	//
 	// For more information about S3 storage classes, see Amazon S3 Storage Classes
 	// (http://aws.amazon.com/s3/storage-classes/). Some storage classes have behaviors
-	// that can affect your S3 storage cost. For detailed information, see using-storage-classes.
+	// that can affect your S3 storage cost. For detailed information, see Considerations
+	// when working with S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is
@@ -4380,6 +4388,9 @@ type CreateLocationSmbInput struct {
 	// The user who can mount the share, has the permissions to access files and
 	// folders in the SMB share.
 	//
+	// For information about choosing a user name that ensures sufficient permissions
+	// to files, folders, and metadata, see user (create-smb-location.html#SMBuser).
+	//
 	// User is a required field
 	User *string `type:"string" required:"true"`
 }
@@ -4535,12 +4546,13 @@ type CreateTaskInput struct {
 	//
 	// For each individual task execution, you can override these options by specifying
 	// the OverrideOptions before starting the task execution. For more information,
-	// see the operation.
+	// see the StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
+	// operation.
 	Options *Options `type:"structure"`
 
 	// Specifies a schedule used to periodically transfer files from a source to
 	// a destination location. The schedule should be specified in UTC time. For
-	// more information, see task-scheduling.
+	// more information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the source location for the task.
@@ -4887,7 +4899,7 @@ type DescribeAgentOutput struct {
 	// a VPC endpoint, the agent is not accessible over the public internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// The time that the agent last connected to DataSyc.
+	// The time that the agent last connected to DataSync.
 	LastConnectionTime *time.Time `type:"timestamp"`
 
 	// The name of the agent.
@@ -5432,7 +5444,8 @@ type DescribeLocationS3Output struct {
 
 	// If you are using DataSync on an AWS Outpost, the Amazon Resource Name (ARNs)
 	// of the EC2 agents deployed on your Outpost. For more information about launching
-	// a DataSync agent on an AWS Outpost, see outposts-agent.
+	// a DataSync agent on an AWS Outpost, see Deploy your DataSync agent on AWS
+	// Outposts (https://docs.aws.amazon.com/datasync/latest/userguide/deploy-agents.html#outposts-agent).
 	AgentArns []*string `min:"1" type:"list"`
 
 	// The time that the Amazon S3 bucket location was created.
@@ -5455,7 +5468,8 @@ type DescribeLocationS3Output struct {
 	// location is used as a task destination. For more information about S3 storage
 	// classes, see Amazon S3 Storage Classes (http://aws.amazon.com/s3/storage-classes/).
 	// Some storage classes have behaviors that can affect your S3 storage cost.
-	// For detailed information, see using-storage-classes.
+	// For detailed information, see Considerations when working with S3 storage
+	// classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes).
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 }
 
@@ -5561,7 +5575,7 @@ type DescribeLocationSmbOutput struct {
 	// The Amazon Resource Name (ARN) of the SMB location that was described.
 	LocationArn *string `type:"string"`
 
-	// The URL of the source SBM location that was described.
+	// The URL of the source SMB location that was described.
 	LocationUri *string `type:"string"`
 
 	// The mount options that are available for DataSync to use to access an SMB
@@ -5710,14 +5724,16 @@ type DescribeTaskExecutionOutput struct {
 	Includes []*FilterRule `type:"list"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
 	// operation. Behavior includes preserving metadata such as user ID (UID), group
 	// ID (GID), and file permissions, and also overwriting files in the destination,
 	// data integrity verification, and so on.
 	//
 	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// an option in StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html),
+	// the default value is used. You can override the defaults options on each
+	// task execution by specifying an overriding Options value to StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	Options *Options `type:"structure"`
 
 	// The result of the task execution.
@@ -5909,7 +5925,8 @@ type DescribeTaskOutput struct {
 	// file permissions, data integrity verification, and so on.
 	//
 	// For each individual task execution, you can override these options by specifying
-	// the overriding OverrideOptions value to operation.
+	// the overriding OverrideOptions value to StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
+	// operation.
 	Options *Options `type:"structure"`
 
 	// The schedule used to periodically transfer files from a source to a destination
@@ -6094,7 +6111,7 @@ func (s *Ec2Config) SetSubnetArn(v string) *Ec2Config {
 	return s
 }
 
-// Specifies which files, folders and objects to include or exclude when transferring
+// Specifies which files, folders, and objects to include or exclude when transferring
 // files from source to destination.
 type FilterRule struct {
 	_ struct{} `type:"structure"`
@@ -6695,7 +6712,8 @@ type LocationFilter struct {
 	Name *string `type:"string" required:"true" enum:"LocationFilterName"`
 
 	// The operator that is used to compare filter values (for example, Equals or
-	// Contains). For more about API filtering operators, see query-resources.
+	// Contains). For more about API filtering operators, see API filters for ListTasks
+	// and ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`
@@ -6755,8 +6773,8 @@ func (s *LocationFilter) SetValues(v []*string) *LocationFilter {
 }
 
 // Represents a single entry in a list of locations. LocationListEntry returns
-// an array that contains a list of locations when the ListLocations operation
-// is called.
+// an array that contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
+// operation is called.
 type LocationListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -6766,7 +6784,8 @@ type LocationListEntry struct {
 	LocationArn *string `type:"string"`
 
 	// Represents a list of URLs of a location. LocationUri returns an array that
-	// contains a list of locations when the ListLocations operation is called.
+	// contains a list of locations when the ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListLocations.html)
+	// operation is called.
 	//
 	// Format: TYPE://GLOBAL_ID/SUBDIR.
 	//
@@ -6891,14 +6910,16 @@ func (s *OnPremConfig) SetAgentArns(v []*string) *OnPremConfig {
 }
 
 // Represents the options that are available to control the behavior of a StartTaskExecution
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
 // operation. Behavior includes preserving metadata such as user ID (UID), group
 // ID (GID), and file permissions, and also overwriting files in the destination,
 // data integrity verification, and so on.
 //
 // A task has a set of default options associated with it. If you don't specify
-// an option in StartTaskExecution, the default value is used. You can override
-// the defaults options on each task execution by specifying an overriding Options
-// value to StartTaskExecution.
+// an option in StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html),
+// the default value is used. You can override the defaults options on each
+// task execution by specifying an overriding Options value to StartTaskExecution
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 type Options struct {
 	_ struct{} `type:"structure"`
 
@@ -6924,7 +6945,9 @@ type Options struct {
 	// want AWS DataSync to use a maximum of 1 MB, set this value to 1048576 (=1024*1024).
 	BytesPerSecond *int64 `type:"long"`
 
-	// The group ID (GID) of the file's owners.
+	// The POSIX group ID (GID) of the file's owners. This option should only be
+	// set for NFS, EFS, and S3 locations. For more information about what metadata
+	// is copied by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -6942,7 +6965,8 @@ type Options struct {
 	LogLevel *string `type:"string" enum:"LogLevel"`
 
 	// A value that indicates the last time that a file was modified (that is, a
-	// file was written to) before the PREPARING phase.
+	// file was written to) before the PREPARING phase. This option is required
+	// for cases when you need to run the same task more than one time.
 	//
 	// Default value: PRESERVE.
 	//
@@ -6962,12 +6986,15 @@ type Options struct {
 	// files, you can use this value to protect against overwriting those changes.
 	//
 	// Some storage classes have specific behaviors that can affect your S3 storage
-	// cost. For detailed information, see using-storage-classes in the AWS DataSync
-	// User Guide.
+	// cost. For detailed information, see Considerations when working with Amazon
+	// S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
+	// in the AWS DataSync User Guide.
 	OverwriteMode *string `type:"string" enum:"OverwriteMode"`
 
 	// A value that determines which users or groups can access a file for a specific
-	// purpose such as reading, writing, or execution of the file.
+	// purpose such as reading, writing, or execution of the file. This option should
+	// only be set for NFS, EFS, and S3 locations. For more information about what
+	// metadata is copied by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: PRESERVE.
 	//
@@ -6982,7 +7009,8 @@ type Options struct {
 	// in the source file system should be preserved. This option can affect your
 	// storage cost. If your task deletes objects, you might incur minimum storage
 	// duration charges for certain storage classes. For detailed information, see
-	// using-storage-classes in the AWS DataSync User Guide.
+	// Considerations when working with Amazon S3 storage classes in DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/create-s3-location.html#using-storage-classes)
+	// in the AWS DataSync User Guide.
 	//
 	// Default value: PRESERVE.
 	//
@@ -6992,8 +7020,9 @@ type Options struct {
 	PreserveDeletedFiles *string `type:"string" enum:"PreserveDeletedFiles"`
 
 	// A value that determines whether AWS DataSync should preserve the metadata
-	// of block and character devices in the source file system, and recreate the
-	// files with that device name and metadata on the destination.
+	// of block and character devices in the source file system, and re-create the
+	// files with that device name and metadata on the destination. DataSync does
+	// not copy the contents of such devices, only the name and metadata.
 	//
 	// AWS DataSync can't sync the actual contents of such devices, because they
 	// are nonterminal and don't return an end-of-file (EOF) marker.
@@ -7006,11 +7035,52 @@ type Options struct {
 	// currently supported for Amazon EFS.
 	PreserveDevices *string `type:"string" enum:"PreserveDevices"`
 
+	// A value that determines which components of the SMB security descriptor are
+	// copied from source to destination objects.
+	//
+	// This value is only used for transfers between SMB and Amazon FSx for Windows
+	// File Server locations, or between two Amazon FSx for Windows File Server
+	// locations. For more information about how DataSync handles metadata, see
+	// How DataSync Handles Metadata and Special Files (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html).
+	//
+	// Default value: OWNER_DACL.
+	//
+	// OWNER_DACL: For each copied object, DataSync copies the following metadata:
+	//
+	//    * Object owner.
+	//
+	//    * NTFS discretionary access control lists (DACLs), which determine whether
+	//    to grant access to an object.
+	//
+	// When choosing this option, DataSync does NOT copy the NTFS system access
+	// control lists (SACLs), which are used by administrators to log attempts to
+	// access a secured object.
+	//
+	// OWNER_DACL_SACL: For each copied object, DataSync copies the following metadata:
+	//
+	//    * Object owner.
+	//
+	//    * NTFS discretionary access control lists (DACLs), which determine whether
+	//    to grant access to an object.
+	//
+	//    * NTFS system access control lists (SACLs), which are used by administrators
+	//    to log attempts to access a secured object.
+	//
+	// Copying SACLs requires granting additional permissions to the Windows user
+	// that DataSync uses to access your SMB location. For information about choosing
+	// a user that ensures sufficient permissions to files, folders, and metadata,
+	// see user (create-smb-location.html#SMBuser).
+	//
+	// NONE: None of the SMB security descriptor components are copied. Destination
+	// objects are owned by the user that was provided for accessing the destination
+	// location. DACLs and SACLs are set based on the destination server’s configuration.
+	SecurityDescriptorCopyFlags *string `type:"string" enum:"SmbSecurityDescriptorCopyFlags"`
+
 	// A value that determines whether tasks should be queued before executing the
 	// tasks. If set to ENABLED, the tasks will be queued. The default is ENABLED.
 	//
 	// If you use the same agent to run multiple tasks, you can enable the tasks
-	// to run in series. For more information, see queue-task-execution.
+	// to run in series. For more information, see Queueing task executions (https://docs.aws.amazon.com/datasync/latest/userguide/run-task.html#queue-task-execution).
 	TaskQueueing *string `type:"string" enum:"TaskQueueing"`
 
 	// A value that determines whether DataSync transfers only the data and metadata
@@ -7025,7 +7095,9 @@ type Options struct {
 	// comparing to existing content on the destination.
 	TransferMode *string `type:"string" enum:"TransferMode"`
 
-	// The user ID (UID) of the file's owner.
+	// The POSIX user ID (UID) of the file's owner. This option should only be set
+	// for NFS, EFS, and S3 locations. To learn more about what metadata is copied
+	// by DataSync, see Metadata Copied by DataSync (https://docs.aws.amazon.com/datasync/latest/userguide/special-files.html#metadata-copied).
 	//
 	// Default value: INT_VALUE. This preserves the integer value of the ID.
 	//
@@ -7036,7 +7108,7 @@ type Options struct {
 
 	// A value that determines whether a data integrity verification should be performed
 	// at the end of a task execution after all data and metadata have been transferred.
-	// For more information, see create-task
+	// For more information, see Configure task settings (https://docs.aws.amazon.com/datasync/latest/userguide/create-task.html).
 	//
 	// Default value: POINT_IN_TIME_CONSISTENT.
 	//
@@ -7128,6 +7200,12 @@ func (s *Options) SetPreserveDeletedFiles(v string) *Options {
 // SetPreserveDevices sets the PreserveDevices field's value.
 func (s *Options) SetPreserveDevices(v string) *Options {
 	s.PreserveDevices = &v
+	return s
+}
+
+// SetSecurityDescriptorCopyFlags sets the SecurityDescriptorCopyFlags field's value.
+func (s *Options) SetSecurityDescriptorCopyFlags(v string) *Options {
+	s.SecurityDescriptorCopyFlags = &v
 	return s
 }
 
@@ -7224,7 +7302,8 @@ type S3Config struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon S3 bucket to access. This bucket is used as a parameter in the
-	// CreateLocationS3 operation.
+	// CreateLocationS3 (https://docs.aws.amazon.com/datasync/latest/userguide/API_CreateLocationS3.html)
+	// operation.
 	//
 	// BucketAccessRoleArn is a required field
 	BucketAccessRoleArn *string `type:"string" required:"true"`
@@ -7298,14 +7377,16 @@ type StartTaskExecutionInput struct {
 	Includes []*FilterRule `type:"list"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
 	// operation. Behavior includes preserving metadata such as user ID (UID), group
 	// ID (GID), and file permissions, and also overwriting files in the destination,
 	// data integrity verification, and so on.
 	//
 	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// an option in StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html),
+	// the default value is used. You can override the defaults options on each
+	// task execution by specifying an overriding Options value to StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	OverrideOptions *Options `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the task to start.
@@ -7385,8 +7466,8 @@ func (s *StartTaskExecutionOutput) SetTaskExecutionArn(v string) *StartTaskExecu
 }
 
 // Represents a single entry in a list of AWS resource tags. TagListEntry returns
-// an array that contains a list of tasks when the ListTagsForResource operation
-// is called.
+// an array that contains a list of tasks when the ListTagsForResource (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTagsForResource.html)
+// operation is called.
 type TagListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -7519,7 +7600,8 @@ func (s TagResourceOutput) GoString() string {
 
 // Represents a single entry in a list of task executions. TaskExecutionListEntry
 // returns an array that contains a list of specific invocations of a task when
-// ListTaskExecutions operation is called.
+// the ListTaskExecutions (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTaskExecutions.html)
+// operation is called.
 type TaskExecutionListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -7668,7 +7750,8 @@ type TaskFilter struct {
 	Name *string `type:"string" required:"true" enum:"TaskFilterName"`
 
 	// The operator that is used to compare filter values (for example, Equals or
-	// Contains). For more about API filtering operators, see query-resources.
+	// Contains). For more about API filtering operators, see API filters for ListTasks
+	// and ListLocations (https://docs.aws.amazon.com/datasync/latest/userguide/query-resources.html).
 	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`
@@ -7728,9 +7811,9 @@ func (s *TaskFilter) SetValues(v []*string) *TaskFilter {
 }
 
 // Represents a single entry in a list of tasks. TaskListEntry returns an array
-// that contains a list of tasks when the ListTasks operation is called. A task
-// includes the source and destination file systems to sync and the options
-// to use for the tasks.
+// that contains a list of tasks when the ListTasks (https://docs.aws.amazon.com/datasync/latest/userguide/API_ListTasks.html)
+// operation is called. A task includes the source and destination file systems
+// to sync and the options to use for the tasks.
 type TaskListEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -8325,14 +8408,16 @@ type UpdateTaskExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
 	// operation. Behavior includes preserving metadata such as user ID (UID), group
 	// ID (GID), and file permissions, and also overwriting files in the destination,
 	// data integrity verification, and so on.
 	//
 	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// an option in StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html),
+	// the default value is used. You can override the defaults options on each
+	// task execution by specifying an overriding Options value to StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	//
 	// Options is a required field
 	Options *Options `type:"structure" required:"true"`
@@ -8418,21 +8503,23 @@ type UpdateTaskInput struct {
 	Name *string `min:"1" type:"string"`
 
 	// Represents the options that are available to control the behavior of a StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html)
 	// operation. Behavior includes preserving metadata such as user ID (UID), group
 	// ID (GID), and file permissions, and also overwriting files in the destination,
 	// data integrity verification, and so on.
 	//
 	// A task has a set of default options associated with it. If you don't specify
-	// an option in StartTaskExecution, the default value is used. You can override
-	// the defaults options on each task execution by specifying an overriding Options
-	// value to StartTaskExecution.
+	// an option in StartTaskExecution (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html),
+	// the default value is used. You can override the defaults options on each
+	// task execution by specifying an overriding Options value to StartTaskExecution
+	// (https://docs.aws.amazon.com/datasync/latest/userguide/API_StartTaskExecution.html).
 	Options *Options `type:"structure"`
 
 	// Specifies a schedule used to periodically transfer files from a source to
 	// a destination location. You can configure your task to execute hourly, daily,
 	// weekly or on specific days of the week. You control when in the day or hour
 	// you want the task to execute. The time you specify is UTC time. For more
-	// information, see task-scheduling.
+	// information, see Scheduling your task (https://docs.aws.amazon.com/datasync/latest/userguide/task-scheduling.html).
 	Schedule *TaskSchedule `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the resource name of the task to update.
@@ -8876,6 +8963,26 @@ func S3StorageClass_Values() []string {
 		S3StorageClassGlacier,
 		S3StorageClassDeepArchive,
 		S3StorageClassOutposts,
+	}
+}
+
+const (
+	// SmbSecurityDescriptorCopyFlagsNone is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsNone = "NONE"
+
+	// SmbSecurityDescriptorCopyFlagsOwnerDacl is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsOwnerDacl = "OWNER_DACL"
+
+	// SmbSecurityDescriptorCopyFlagsOwnerDaclSacl is a SmbSecurityDescriptorCopyFlags enum value
+	SmbSecurityDescriptorCopyFlagsOwnerDaclSacl = "OWNER_DACL_SACL"
+)
+
+// SmbSecurityDescriptorCopyFlags_Values returns all elements of the SmbSecurityDescriptorCopyFlags enum
+func SmbSecurityDescriptorCopyFlags_Values() []string {
+	return []string{
+		SmbSecurityDescriptorCopyFlagsNone,
+		SmbSecurityDescriptorCopyFlagsOwnerDacl,
+		SmbSecurityDescriptorCopyFlagsOwnerDaclSacl,
 	}
 }
 

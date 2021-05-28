@@ -1,3 +1,15 @@
+Release v1.38.51 (2021-05-28)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/location`: Updates service API, documentation, and paginators
+* `service/lookoutmetrics`: Updates service API
+
+### SDK Bugs
+* `aws/request`: Fix handling of endpoints with trailing slashes
+  * Fixes the SDK's handling of endpoint URLs that contain a trailing slash when the API operation's modeled path is suffixed. Also ensures any endpoint URL query string is squashed consistently.
+
 Release v1.38.50 (2021-05-27)
 ===
 

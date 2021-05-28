@@ -64,6 +64,10 @@ type LocationServiceAPI interface {
 	AssociateTrackerConsumerWithContext(aws.Context, *locationservice.AssociateTrackerConsumerInput, ...request.Option) (*locationservice.AssociateTrackerConsumerOutput, error)
 	AssociateTrackerConsumerRequest(*locationservice.AssociateTrackerConsumerInput) (*request.Request, *locationservice.AssociateTrackerConsumerOutput)
 
+	BatchDeleteDevicePositionHistory(*locationservice.BatchDeleteDevicePositionHistoryInput) (*locationservice.BatchDeleteDevicePositionHistoryOutput, error)
+	BatchDeleteDevicePositionHistoryWithContext(aws.Context, *locationservice.BatchDeleteDevicePositionHistoryInput, ...request.Option) (*locationservice.BatchDeleteDevicePositionHistoryOutput, error)
+	BatchDeleteDevicePositionHistoryRequest(*locationservice.BatchDeleteDevicePositionHistoryInput) (*request.Request, *locationservice.BatchDeleteDevicePositionHistoryOutput)
+
 	BatchDeleteGeofence(*locationservice.BatchDeleteGeofenceInput) (*locationservice.BatchDeleteGeofenceOutput, error)
 	BatchDeleteGeofenceWithContext(aws.Context, *locationservice.BatchDeleteGeofenceInput, ...request.Option) (*locationservice.BatchDeleteGeofenceOutput, error)
 	BatchDeleteGeofenceRequest(*locationservice.BatchDeleteGeofenceInput) (*request.Request, *locationservice.BatchDeleteGeofenceOutput)
@@ -84,6 +88,10 @@ type LocationServiceAPI interface {
 	BatchUpdateDevicePositionWithContext(aws.Context, *locationservice.BatchUpdateDevicePositionInput, ...request.Option) (*locationservice.BatchUpdateDevicePositionOutput, error)
 	BatchUpdateDevicePositionRequest(*locationservice.BatchUpdateDevicePositionInput) (*request.Request, *locationservice.BatchUpdateDevicePositionOutput)
 
+	CalculateRoute(*locationservice.CalculateRouteInput) (*locationservice.CalculateRouteOutput, error)
+	CalculateRouteWithContext(aws.Context, *locationservice.CalculateRouteInput, ...request.Option) (*locationservice.CalculateRouteOutput, error)
+	CalculateRouteRequest(*locationservice.CalculateRouteInput) (*request.Request, *locationservice.CalculateRouteOutput)
+
 	CreateGeofenceCollection(*locationservice.CreateGeofenceCollectionInput) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionWithContext(aws.Context, *locationservice.CreateGeofenceCollectionInput, ...request.Option) (*locationservice.CreateGeofenceCollectionOutput, error)
 	CreateGeofenceCollectionRequest(*locationservice.CreateGeofenceCollectionInput) (*request.Request, *locationservice.CreateGeofenceCollectionOutput)
@@ -95,6 +103,10 @@ type LocationServiceAPI interface {
 	CreatePlaceIndex(*locationservice.CreatePlaceIndexInput) (*locationservice.CreatePlaceIndexOutput, error)
 	CreatePlaceIndexWithContext(aws.Context, *locationservice.CreatePlaceIndexInput, ...request.Option) (*locationservice.CreatePlaceIndexOutput, error)
 	CreatePlaceIndexRequest(*locationservice.CreatePlaceIndexInput) (*request.Request, *locationservice.CreatePlaceIndexOutput)
+
+	CreateRouteCalculator(*locationservice.CreateRouteCalculatorInput) (*locationservice.CreateRouteCalculatorOutput, error)
+	CreateRouteCalculatorWithContext(aws.Context, *locationservice.CreateRouteCalculatorInput, ...request.Option) (*locationservice.CreateRouteCalculatorOutput, error)
+	CreateRouteCalculatorRequest(*locationservice.CreateRouteCalculatorInput) (*request.Request, *locationservice.CreateRouteCalculatorOutput)
 
 	CreateTracker(*locationservice.CreateTrackerInput) (*locationservice.CreateTrackerOutput, error)
 	CreateTrackerWithContext(aws.Context, *locationservice.CreateTrackerInput, ...request.Option) (*locationservice.CreateTrackerOutput, error)
@@ -112,6 +124,10 @@ type LocationServiceAPI interface {
 	DeletePlaceIndexWithContext(aws.Context, *locationservice.DeletePlaceIndexInput, ...request.Option) (*locationservice.DeletePlaceIndexOutput, error)
 	DeletePlaceIndexRequest(*locationservice.DeletePlaceIndexInput) (*request.Request, *locationservice.DeletePlaceIndexOutput)
 
+	DeleteRouteCalculator(*locationservice.DeleteRouteCalculatorInput) (*locationservice.DeleteRouteCalculatorOutput, error)
+	DeleteRouteCalculatorWithContext(aws.Context, *locationservice.DeleteRouteCalculatorInput, ...request.Option) (*locationservice.DeleteRouteCalculatorOutput, error)
+	DeleteRouteCalculatorRequest(*locationservice.DeleteRouteCalculatorInput) (*request.Request, *locationservice.DeleteRouteCalculatorOutput)
+
 	DeleteTracker(*locationservice.DeleteTrackerInput) (*locationservice.DeleteTrackerOutput, error)
 	DeleteTrackerWithContext(aws.Context, *locationservice.DeleteTrackerInput, ...request.Option) (*locationservice.DeleteTrackerOutput, error)
 	DeleteTrackerRequest(*locationservice.DeleteTrackerInput) (*request.Request, *locationservice.DeleteTrackerOutput)
@@ -127,6 +143,10 @@ type LocationServiceAPI interface {
 	DescribePlaceIndex(*locationservice.DescribePlaceIndexInput) (*locationservice.DescribePlaceIndexOutput, error)
 	DescribePlaceIndexWithContext(aws.Context, *locationservice.DescribePlaceIndexInput, ...request.Option) (*locationservice.DescribePlaceIndexOutput, error)
 	DescribePlaceIndexRequest(*locationservice.DescribePlaceIndexInput) (*request.Request, *locationservice.DescribePlaceIndexOutput)
+
+	DescribeRouteCalculator(*locationservice.DescribeRouteCalculatorInput) (*locationservice.DescribeRouteCalculatorOutput, error)
+	DescribeRouteCalculatorWithContext(aws.Context, *locationservice.DescribeRouteCalculatorInput, ...request.Option) (*locationservice.DescribeRouteCalculatorOutput, error)
+	DescribeRouteCalculatorRequest(*locationservice.DescribeRouteCalculatorInput) (*request.Request, *locationservice.DescribeRouteCalculatorOutput)
 
 	DescribeTracker(*locationservice.DescribeTrackerInput) (*locationservice.DescribeTrackerOutput, error)
 	DescribeTrackerWithContext(aws.Context, *locationservice.DescribeTrackerInput, ...request.Option) (*locationservice.DescribeTrackerOutput, error)
@@ -167,6 +187,13 @@ type LocationServiceAPI interface {
 	GetMapTileWithContext(aws.Context, *locationservice.GetMapTileInput, ...request.Option) (*locationservice.GetMapTileOutput, error)
 	GetMapTileRequest(*locationservice.GetMapTileInput) (*request.Request, *locationservice.GetMapTileOutput)
 
+	ListDevicePositions(*locationservice.ListDevicePositionsInput) (*locationservice.ListDevicePositionsOutput, error)
+	ListDevicePositionsWithContext(aws.Context, *locationservice.ListDevicePositionsInput, ...request.Option) (*locationservice.ListDevicePositionsOutput, error)
+	ListDevicePositionsRequest(*locationservice.ListDevicePositionsInput) (*request.Request, *locationservice.ListDevicePositionsOutput)
+
+	ListDevicePositionsPages(*locationservice.ListDevicePositionsInput, func(*locationservice.ListDevicePositionsOutput, bool) bool) error
+	ListDevicePositionsPagesWithContext(aws.Context, *locationservice.ListDevicePositionsInput, func(*locationservice.ListDevicePositionsOutput, bool) bool, ...request.Option) error
+
 	ListGeofenceCollections(*locationservice.ListGeofenceCollectionsInput) (*locationservice.ListGeofenceCollectionsOutput, error)
 	ListGeofenceCollectionsWithContext(aws.Context, *locationservice.ListGeofenceCollectionsInput, ...request.Option) (*locationservice.ListGeofenceCollectionsOutput, error)
 	ListGeofenceCollectionsRequest(*locationservice.ListGeofenceCollectionsInput) (*request.Request, *locationservice.ListGeofenceCollectionsOutput)
@@ -195,6 +222,17 @@ type LocationServiceAPI interface {
 	ListPlaceIndexesPages(*locationservice.ListPlaceIndexesInput, func(*locationservice.ListPlaceIndexesOutput, bool) bool) error
 	ListPlaceIndexesPagesWithContext(aws.Context, *locationservice.ListPlaceIndexesInput, func(*locationservice.ListPlaceIndexesOutput, bool) bool, ...request.Option) error
 
+	ListRouteCalculators(*locationservice.ListRouteCalculatorsInput) (*locationservice.ListRouteCalculatorsOutput, error)
+	ListRouteCalculatorsWithContext(aws.Context, *locationservice.ListRouteCalculatorsInput, ...request.Option) (*locationservice.ListRouteCalculatorsOutput, error)
+	ListRouteCalculatorsRequest(*locationservice.ListRouteCalculatorsInput) (*request.Request, *locationservice.ListRouteCalculatorsOutput)
+
+	ListRouteCalculatorsPages(*locationservice.ListRouteCalculatorsInput, func(*locationservice.ListRouteCalculatorsOutput, bool) bool) error
+	ListRouteCalculatorsPagesWithContext(aws.Context, *locationservice.ListRouteCalculatorsInput, func(*locationservice.ListRouteCalculatorsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*locationservice.ListTagsForResourceInput) (*locationservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *locationservice.ListTagsForResourceInput, ...request.Option) (*locationservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*locationservice.ListTagsForResourceInput) (*request.Request, *locationservice.ListTagsForResourceOutput)
+
 	ListTrackerConsumers(*locationservice.ListTrackerConsumersInput) (*locationservice.ListTrackerConsumersOutput, error)
 	ListTrackerConsumersWithContext(aws.Context, *locationservice.ListTrackerConsumersInput, ...request.Option) (*locationservice.ListTrackerConsumersOutput, error)
 	ListTrackerConsumersRequest(*locationservice.ListTrackerConsumersInput) (*request.Request, *locationservice.ListTrackerConsumersOutput)
@@ -220,6 +258,14 @@ type LocationServiceAPI interface {
 	SearchPlaceIndexForText(*locationservice.SearchPlaceIndexForTextInput) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextWithContext(aws.Context, *locationservice.SearchPlaceIndexForTextInput, ...request.Option) (*locationservice.SearchPlaceIndexForTextOutput, error)
 	SearchPlaceIndexForTextRequest(*locationservice.SearchPlaceIndexForTextInput) (*request.Request, *locationservice.SearchPlaceIndexForTextOutput)
+
+	TagResource(*locationservice.TagResourceInput) (*locationservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *locationservice.TagResourceInput, ...request.Option) (*locationservice.TagResourceOutput, error)
+	TagResourceRequest(*locationservice.TagResourceInput) (*request.Request, *locationservice.TagResourceOutput)
+
+	UntagResource(*locationservice.UntagResourceInput) (*locationservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *locationservice.UntagResourceInput, ...request.Option) (*locationservice.UntagResourceOutput, error)
+	UntagResourceRequest(*locationservice.UntagResourceInput) (*request.Request, *locationservice.UntagResourceOutput)
 }
 
 var _ LocationServiceAPI = (*locationservice.LocationService)(nil)
