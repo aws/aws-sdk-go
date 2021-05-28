@@ -118,6 +118,101 @@ func (c *LocationService) AssociateTrackerConsumerWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+const opBatchDeleteDevicePositionHistory = "BatchDeleteDevicePositionHistory"
+
+// BatchDeleteDevicePositionHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDeleteDevicePositionHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDeleteDevicePositionHistory for more information on using the BatchDeleteDevicePositionHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchDeleteDevicePositionHistoryRequest method.
+//    req, resp := client.BatchDeleteDevicePositionHistoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/BatchDeleteDevicePositionHistory
+func (c *LocationService) BatchDeleteDevicePositionHistoryRequest(input *BatchDeleteDevicePositionHistoryInput) (req *request.Request, output *BatchDeleteDevicePositionHistoryOutput) {
+	op := &request.Operation{
+		Name:       opBatchDeleteDevicePositionHistory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tracking/v0/trackers/{TrackerName}/delete-positions",
+	}
+
+	if input == nil {
+		input = &BatchDeleteDevicePositionHistoryInput{}
+	}
+
+	output = &BatchDeleteDevicePositionHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// BatchDeleteDevicePositionHistory API operation for Amazon Location Service.
+//
+// Deletes the position history of one or more devices from a tracker resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation BatchDeleteDevicePositionHistory for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/BatchDeleteDevicePositionHistory
+func (c *LocationService) BatchDeleteDevicePositionHistory(input *BatchDeleteDevicePositionHistoryInput) (*BatchDeleteDevicePositionHistoryOutput, error) {
+	req, out := c.BatchDeleteDevicePositionHistoryRequest(input)
+	return out, req.Send()
+}
+
+// BatchDeleteDevicePositionHistoryWithContext is the same as BatchDeleteDevicePositionHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDeleteDevicePositionHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) BatchDeleteDevicePositionHistoryWithContext(ctx aws.Context, input *BatchDeleteDevicePositionHistoryInput, opts ...request.Option) (*BatchDeleteDevicePositionHistoryOutput, error) {
+	req, out := c.BatchDeleteDevicePositionHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDeleteGeofence = "BatchDeleteGeofence"
 
 // BatchDeleteGeofenceRequest generates a "aws/request.Request" representing the
@@ -166,7 +261,7 @@ func (c *LocationService) BatchDeleteGeofenceRequest(input *BatchDeleteGeofenceI
 //
 // Deletes a batch of geofences from a geofence collection.
 //
-// This action deletes the resource permanently. You can't undo this action.
+// This operation deletes the resource permanently.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -457,7 +552,9 @@ func (c *LocationService) BatchPutGeofenceRequest(input *BatchPutGeofenceInput) 
 
 // BatchPutGeofence API operation for Amazon Location Service.
 //
-// A batch request for storing geofence geometries into a given geofence collection.
+// A batch request for storing geofence geometries into a given geofence collection,
+// or updates the geometry of an existing geofence if a geofence ID is included
+// in the request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -557,8 +654,8 @@ func (c *LocationService) BatchUpdateDevicePositionRequest(input *BatchUpdateDev
 // and position history.
 //
 // Only one position update is stored per sample time. Location data is sampled
-// at a fixed rate of one position per 30-second interval, and retained for
-// one year before it is deleted.
+// at a fixed rate of one position per 30-second interval and retained for 30
+// days before it's deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -602,6 +699,120 @@ func (c *LocationService) BatchUpdateDevicePosition(input *BatchUpdateDevicePosi
 // for more information on using Contexts.
 func (c *LocationService) BatchUpdateDevicePositionWithContext(ctx aws.Context, input *BatchUpdateDevicePositionInput, opts ...request.Option) (*BatchUpdateDevicePositionOutput, error) {
 	req, out := c.BatchUpdateDevicePositionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCalculateRoute = "CalculateRoute"
+
+// CalculateRouteRequest generates a "aws/request.Request" representing the
+// client's request for the CalculateRoute operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CalculateRoute for more information on using the CalculateRoute
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CalculateRouteRequest method.
+//    req, resp := client.CalculateRouteRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CalculateRoute
+func (c *LocationService) CalculateRouteRequest(input *CalculateRouteInput) (req *request.Request, output *CalculateRouteOutput) {
+	op := &request.Operation{
+		Name:       opCalculateRoute,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routes/v0/calculators/{CalculatorName}/calculate/route",
+	}
+
+	if input == nil {
+		input = &CalculateRouteInput{}
+	}
+
+	output = &CalculateRouteOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CalculateRoute API operation for Amazon Location Service.
+//
+// Calculates a route (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html)
+// given the following required parameters: DeparturePostiton and DestinationPosition.
+// Requires that you first create aroute calculator resource (https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html)
+//
+// By default, a request that doesn't specify a departure time uses the best
+// time of day to travel with the best traffic conditions when calculating the
+// route.
+//
+// Additional options include:
+//
+//    * Specifying a departure time (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time)
+//    using either DepartureTime or DepartureNow. This calculates a route based
+//    on predictive traffic data at the given time. You can't specify both DepartureTime
+//    and DepartureNow in a single request. Specifying both parameters returns
+//    an error message.
+//
+//    * Specifying a travel mode (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode)
+//    using TravelMode. This lets you specify additional route preference such
+//    as CarModeOptions if traveling by Car, or TruckModeOptions if traveling
+//    by Truck.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation CalculateRoute for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CalculateRoute
+func (c *LocationService) CalculateRoute(input *CalculateRouteInput) (*CalculateRouteOutput, error) {
+	req, out := c.CalculateRouteRequest(input)
+	return out, req.Send()
+}
+
+// CalculateRouteWithContext is the same as CalculateRoute with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CalculateRoute for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) CalculateRouteWithContext(ctx aws.Context, input *CalculateRouteInput, opts ...request.Option) (*CalculateRouteOutput, error) {
+	req, out := c.CalculateRouteRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -751,11 +962,6 @@ func (c *LocationService) CreateMapRequest(input *CreateMapInput) (req *request.
 // Creates a map resource in your AWS account, which provides map tiles of different
 // styles sourced from global location data providers.
 //
-// By using Maps, you agree that AWS may transmit your API queries to your selected
-// third party provider for processing, which may be outside the AWS region
-// you are currently using. For more information, see the AWS Service Terms
-// (https://aws.amazon.com/service-terms/) for Amazon Location Service.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -849,16 +1055,8 @@ func (c *LocationService) CreatePlaceIndexRequest(input *CreatePlaceIndexInput) 
 
 // CreatePlaceIndex API operation for Amazon Location Service.
 //
-// Creates a Place index resource in your AWS account, which supports Places
-// functions with geospatial data sourced from your chosen data provider.
-//
-// By using Places, you agree that AWS may transmit your API queries to your
-// selected third party provider for processing, which may be outside the AWS
-// region you are currently using.
-//
-// Because of licensing limitations, you may not use HERE to store results for
-// locations in Japan. For more information, see the AWS Service Terms (https://aws.amazon.com/service-terms/)
-// for Amazon Location Service.
+// Creates a place index resource in your AWS account, which supports functions
+// with geospatial data sourced from your chosen data provider.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -902,6 +1100,105 @@ func (c *LocationService) CreatePlaceIndex(input *CreatePlaceIndexInput) (*Creat
 // for more information on using Contexts.
 func (c *LocationService) CreatePlaceIndexWithContext(ctx aws.Context, input *CreatePlaceIndexInput, opts ...request.Option) (*CreatePlaceIndexOutput, error) {
 	req, out := c.CreatePlaceIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRouteCalculator = "CreateRouteCalculator"
+
+// CreateRouteCalculatorRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRouteCalculator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRouteCalculator for more information on using the CreateRouteCalculator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRouteCalculatorRequest method.
+//    req, resp := client.CreateRouteCalculatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CreateRouteCalculator
+func (c *LocationService) CreateRouteCalculatorRequest(input *CreateRouteCalculatorInput) (req *request.Request, output *CreateRouteCalculatorOutput) {
+	op := &request.Operation{
+		Name:       opCreateRouteCalculator,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routes/v0/calculators",
+	}
+
+	if input == nil {
+		input = &CreateRouteCalculatorInput{}
+	}
+
+	output = &CreateRouteCalculatorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreateRouteCalculator API operation for Amazon Location Service.
+//
+// Creates a route calculator resource in your AWS account.
+//
+// You can send requests to a route calculator resource to estimate travel time,
+// distance, and get directions. A route calculator sources traffic and road
+// network data from your chosen data provider.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation CreateRouteCalculator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ConflictException
+//   The request was unsuccessful due to a conflict.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/CreateRouteCalculator
+func (c *LocationService) CreateRouteCalculator(input *CreateRouteCalculatorInput) (*CreateRouteCalculatorOutput, error) {
+	req, out := c.CreateRouteCalculatorRequest(input)
+	return out, req.Send()
+}
+
+// CreateRouteCalculatorWithContext is the same as CreateRouteCalculator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRouteCalculator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) CreateRouteCalculatorWithContext(ctx aws.Context, input *CreateRouteCalculatorInput, opts ...request.Option) (*CreateRouteCalculatorOutput, error) {
+	req, out := c.CreateRouteCalculatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1052,9 +1349,8 @@ func (c *LocationService) DeleteGeofenceCollectionRequest(input *DeleteGeofenceC
 //
 // Deletes a geofence collection from your AWS account.
 //
-// This action deletes the resource permanently. You can't undo this action.
-// If the geofence collection is the target of a tracker resource, the devices
-// will no longer be monitored.
+// This operation deletes the resource permanently. If the geofence collection
+// is the target of a tracker resource, the devices will no longer be monitored.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1152,8 +1448,8 @@ func (c *LocationService) DeleteMapRequest(input *DeleteMapInput) (req *request.
 //
 // Deletes a map resource from your AWS account.
 //
-// This action deletes the resource permanently. You cannot undo this action.
-// If the map is being used in an application, the map may not render.
+// This operation deletes the resource permanently. If the map is being used
+// in an application, the map may not render.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1249,9 +1545,9 @@ func (c *LocationService) DeletePlaceIndexRequest(input *DeletePlaceIndexInput) 
 
 // DeletePlaceIndex API operation for Amazon Location Service.
 //
-// Deletes a Place index resource from your AWS account.
+// Deletes a place index resource from your AWS account.
 //
-// This action deletes the resource permanently. You cannot undo this action.
+// This operation deletes the resource permanently.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1295,6 +1591,104 @@ func (c *LocationService) DeletePlaceIndex(input *DeletePlaceIndexInput) (*Delet
 // for more information on using Contexts.
 func (c *LocationService) DeletePlaceIndexWithContext(ctx aws.Context, input *DeletePlaceIndexInput, opts ...request.Option) (*DeletePlaceIndexOutput, error) {
 	req, out := c.DeletePlaceIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRouteCalculator = "DeleteRouteCalculator"
+
+// DeleteRouteCalculatorRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRouteCalculator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRouteCalculator for more information on using the DeleteRouteCalculator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRouteCalculatorRequest method.
+//    req, resp := client.DeleteRouteCalculatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/DeleteRouteCalculator
+func (c *LocationService) DeleteRouteCalculatorRequest(input *DeleteRouteCalculatorInput) (req *request.Request, output *DeleteRouteCalculatorOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRouteCalculator,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/routes/v0/calculators/{CalculatorName}",
+	}
+
+	if input == nil {
+		input = &DeleteRouteCalculatorInput{}
+	}
+
+	output = &DeleteRouteCalculatorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteRouteCalculator API operation for Amazon Location Service.
+//
+// Deletes a route calculator resource from your AWS account.
+//
+// This operation deletes the resource permanently.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation DeleteRouteCalculator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/DeleteRouteCalculator
+func (c *LocationService) DeleteRouteCalculator(input *DeleteRouteCalculatorInput) (*DeleteRouteCalculatorOutput, error) {
+	req, out := c.DeleteRouteCalculatorRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRouteCalculatorWithContext is the same as DeleteRouteCalculator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRouteCalculator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) DeleteRouteCalculatorWithContext(ctx aws.Context, input *DeleteRouteCalculatorInput, opts ...request.Option) (*DeleteRouteCalculatorOutput, error) {
+	req, out := c.DeleteRouteCalculatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1349,9 +1743,9 @@ func (c *LocationService) DeleteTrackerRequest(input *DeleteTrackerInput) (req *
 //
 // Deletes a tracker resource from your AWS account.
 //
-// This action deletes the resource permanently. You can't undo this action.
-// If the tracker resource is in use, you may encounter an error. Make sure
-// that the target resource is not a dependency for your applications.
+// This operation deletes the resource permanently. If the tracker resource
+// is in use, you may encounter an error. Make sure that the target resource
+// isn't a dependency for your applications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1636,7 +2030,7 @@ func (c *LocationService) DescribePlaceIndexRequest(input *DescribePlaceIndexInp
 
 // DescribePlaceIndex API operation for Amazon Location Service.
 //
-// Retrieves the Place index resource details.
+// Retrieves the place index resource details.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1680,6 +2074,101 @@ func (c *LocationService) DescribePlaceIndex(input *DescribePlaceIndexInput) (*D
 // for more information on using Contexts.
 func (c *LocationService) DescribePlaceIndexWithContext(ctx aws.Context, input *DescribePlaceIndexInput, opts ...request.Option) (*DescribePlaceIndexOutput, error) {
 	req, out := c.DescribePlaceIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRouteCalculator = "DescribeRouteCalculator"
+
+// DescribeRouteCalculatorRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRouteCalculator operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRouteCalculator for more information on using the DescribeRouteCalculator
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRouteCalculatorRequest method.
+//    req, resp := client.DescribeRouteCalculatorRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/DescribeRouteCalculator
+func (c *LocationService) DescribeRouteCalculatorRequest(input *DescribeRouteCalculatorInput) (req *request.Request, output *DescribeRouteCalculatorOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRouteCalculator,
+		HTTPMethod: "GET",
+		HTTPPath:   "/routes/v0/calculators/{CalculatorName}",
+	}
+
+	if input == nil {
+		input = &DescribeRouteCalculatorInput{}
+	}
+
+	output = &DescribeRouteCalculatorOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DescribeRouteCalculator API operation for Amazon Location Service.
+//
+// Retrieves the route calculator resource details.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation DescribeRouteCalculator for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/DescribeRouteCalculator
+func (c *LocationService) DescribeRouteCalculator(input *DescribeRouteCalculatorInput) (*DescribeRouteCalculatorOutput, error) {
+	req, out := c.DescribeRouteCalculatorRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRouteCalculatorWithContext is the same as DescribeRouteCalculator with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRouteCalculator for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) DescribeRouteCalculatorWithContext(ctx aws.Context, input *DescribeRouteCalculatorInput, opts ...request.Option) (*DescribeRouteCalculatorOutput, error) {
+	req, out := c.DescribeRouteCalculatorRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1927,7 +2416,7 @@ func (c *LocationService) GetDevicePositionRequest(input *GetDevicePositionInput
 //
 // Retrieves a device's most recent position according to its sample time.
 //
-// Device positions are deleted after one year.
+// Device positions are deleted after 30 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2031,7 +2520,7 @@ func (c *LocationService) GetDevicePositionHistoryRequest(input *GetDevicePositi
 // Retrieves the device position history from a tracker resource within a specified
 // range of time.
 //
-// Device positions are deleted after 1 year.
+// Device positions are deleted after 30 days.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2565,7 +3054,7 @@ func (c *LocationService) GetMapTileRequest(input *GetMapTileInput) (req *reques
 // GetMapTile API operation for Amazon Location Service.
 //
 // Retrieves a vector data tile from the map resource. Map tiles are used by
-// clients to render a map. They are addressed using a grid arrangement with
+// clients to render a map. they're addressed using a grid arrangement with
 // an X coordinate, Y coordinate, and Z (zoom) level.
 //
 // The origin (0, 0) is the top left of the map. Increasing the zoom level by
@@ -2618,6 +3107,156 @@ func (c *LocationService) GetMapTileWithContext(ctx aws.Context, input *GetMapTi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListDevicePositions = "ListDevicePositions"
+
+// ListDevicePositionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDevicePositions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDevicePositions for more information on using the ListDevicePositions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDevicePositionsRequest method.
+//    req, resp := client.ListDevicePositionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListDevicePositions
+func (c *LocationService) ListDevicePositionsRequest(input *ListDevicePositionsInput) (req *request.Request, output *ListDevicePositionsOutput) {
+	op := &request.Operation{
+		Name:       opListDevicePositions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tracking/v0/trackers/{TrackerName}/list-positions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDevicePositionsInput{}
+	}
+
+	output = &ListDevicePositionsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("tracking.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListDevicePositions API operation for Amazon Location Service.
+//
+// Lists the latest device positions for requested devices.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation ListDevicePositions for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListDevicePositions
+func (c *LocationService) ListDevicePositions(input *ListDevicePositionsInput) (*ListDevicePositionsOutput, error) {
+	req, out := c.ListDevicePositionsRequest(input)
+	return out, req.Send()
+}
+
+// ListDevicePositionsWithContext is the same as ListDevicePositions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDevicePositions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ListDevicePositionsWithContext(ctx aws.Context, input *ListDevicePositionsInput, opts ...request.Option) (*ListDevicePositionsOutput, error) {
+	req, out := c.ListDevicePositionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDevicePositionsPages iterates over the pages of a ListDevicePositions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDevicePositions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDevicePositions operation.
+//    pageNum := 0
+//    err := client.ListDevicePositionsPages(params,
+//        func(page *locationservice.ListDevicePositionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LocationService) ListDevicePositionsPages(input *ListDevicePositionsInput, fn func(*ListDevicePositionsOutput, bool) bool) error {
+	return c.ListDevicePositionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDevicePositionsPagesWithContext same as ListDevicePositionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ListDevicePositionsPagesWithContext(ctx aws.Context, input *ListDevicePositionsInput, fn func(*ListDevicePositionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDevicePositionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDevicePositionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDevicePositionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListGeofenceCollections = "ListGeofenceCollections"
@@ -3125,7 +3764,7 @@ func (c *LocationService) ListPlaceIndexesRequest(input *ListPlaceIndexesInput) 
 
 // ListPlaceIndexes API operation for Amazon Location Service.
 //
-// Lists Place index resources in your AWS account.
+// Lists place index resources in your AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3221,6 +3860,251 @@ func (c *LocationService) ListPlaceIndexesPagesWithContext(ctx aws.Context, inpu
 	}
 
 	return p.Err()
+}
+
+const opListRouteCalculators = "ListRouteCalculators"
+
+// ListRouteCalculatorsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRouteCalculators operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRouteCalculators for more information on using the ListRouteCalculators
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRouteCalculatorsRequest method.
+//    req, resp := client.ListRouteCalculatorsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListRouteCalculators
+func (c *LocationService) ListRouteCalculatorsRequest(input *ListRouteCalculatorsInput) (req *request.Request, output *ListRouteCalculatorsOutput) {
+	op := &request.Operation{
+		Name:       opListRouteCalculators,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routes/v0/list-calculators",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRouteCalculatorsInput{}
+	}
+
+	output = &ListRouteCalculatorsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("routes.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListRouteCalculators API operation for Amazon Location Service.
+//
+// Lists route calculator resources in your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation ListRouteCalculators for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListRouteCalculators
+func (c *LocationService) ListRouteCalculators(input *ListRouteCalculatorsInput) (*ListRouteCalculatorsOutput, error) {
+	req, out := c.ListRouteCalculatorsRequest(input)
+	return out, req.Send()
+}
+
+// ListRouteCalculatorsWithContext is the same as ListRouteCalculators with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRouteCalculators for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ListRouteCalculatorsWithContext(ctx aws.Context, input *ListRouteCalculatorsInput, opts ...request.Option) (*ListRouteCalculatorsOutput, error) {
+	req, out := c.ListRouteCalculatorsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRouteCalculatorsPages iterates over the pages of a ListRouteCalculators operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRouteCalculators method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRouteCalculators operation.
+//    pageNum := 0
+//    err := client.ListRouteCalculatorsPages(params,
+//        func(page *locationservice.ListRouteCalculatorsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LocationService) ListRouteCalculatorsPages(input *ListRouteCalculatorsInput, fn func(*ListRouteCalculatorsOutput, bool) bool) error {
+	return c.ListRouteCalculatorsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRouteCalculatorsPagesWithContext same as ListRouteCalculatorsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ListRouteCalculatorsPagesWithContext(ctx aws.Context, input *ListRouteCalculatorsInput, fn func(*ListRouteCalculatorsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRouteCalculatorsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRouteCalculatorsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRouteCalculatorsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListTagsForResource
+func (c *LocationService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{ResourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Location Service.
+//
+// Returns the tags for the specified Amazon Location Service resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/ListTagsForResource
+func (c *LocationService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListTrackerConsumers = "ListTrackerConsumers"
@@ -3674,14 +4558,6 @@ func (c *LocationService) SearchPlaceIndexForPositionRequest(input *SearchPlaceI
 // Reverse geocodes a given coordinate and returns a legible address. Allows
 // you to search for Places or points of interest near a given position.
 //
-// By using Places, you agree that AWS may transmit your API queries to your
-// selected third party provider for processing, which may be outside the AWS
-// region you are currently using.
-//
-// Because of licensing limitations, you may not use HERE to store results for
-// locations in Japan. For more information, see the AWS Service Terms (https://aws.amazon.com/service-terms/)
-// for Amazon Location Service.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3785,16 +4661,6 @@ func (c *LocationService) SearchPlaceIndexForTextRequest(input *SearchPlaceIndex
 // results within a bounding box using FilterBBox. Providing both parameters
 // simultaneously returns an error.
 //
-// By using Places, you agree that AWS may transmit your API queries to your
-// selected third party provider for processing, which may be outside the AWS
-// region you are currently using.
-//
-// Also, when using HERE as your data provider, you may not (a) use HERE Places
-// for Asset Management, or (b) select the Storage option for the IntendedUse
-// parameter when requesting Places in Japan. For more information, see the
-// AWS Service Terms (https://aws.amazon.com/service-terms/) for Amazon Location
-// Service.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3837,6 +4703,211 @@ func (c *LocationService) SearchPlaceIndexForText(input *SearchPlaceIndexForText
 // for more information on using Contexts.
 func (c *LocationService) SearchPlaceIndexForTextWithContext(ctx aws.Context, input *SearchPlaceIndexForTextInput, opts ...request.Option) (*SearchPlaceIndexForTextOutput, error) {
 	req, out := c.SearchPlaceIndexForTextRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/TagResource
+func (c *LocationService) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{ResourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// TagResource API operation for Amazon Location Service.
+//
+// Assigns one or more tags (key-value pairs) to the specified Amazon Location
+// Service resource.
+//
+//    <p>Tags can help you organize and categorize your resources. You can also
+//    use them to scope user permissions, by granting a user permission to access
+//    or change only resources with certain tag values.</p> <p>Tags don't have
+//    any semantic meaning to AWS and are interpreted strictly as strings of
+//    characters.</p> <p>You can use the <code>TagResource</code> action with
+//    an Amazon Location Service resource that already has tags. If you specify
+//    a new tag key for the resource, this tag is appended to the tags already
+//    associated with the resource. If you specify a tag key that is already
+//    associated with the resource, the new tag value that you specify replaces
+//    the previous value for that tag. </p> <p>You can associate as many as
+//    50 tags with a resource.</p>
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/TagResource
+func (c *LocationService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/UntagResource
+func (c *LocationService) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{ResourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("metadata.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Location Service.
+//
+// Removes one or more tags from the specified Amazon Location Service resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Location Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   The request has failed to process because of an unknown server error, exception,
+//   or failure.
+//
+//   * ResourceNotFoundException
+//   The resource that you've entered was not found in your AWS account.
+//
+//   * AccessDeniedException
+//   The request was denied due to insufficient access or permission. Check with
+//   an administrator to verify your permissions.
+//
+//   * ValidationException
+//   The input failed to meet the constraints specified by the AWS service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/location-2020-11-19/UntagResource
+func (c *LocationService) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LocationService) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3906,7 +4977,7 @@ type AssociateTrackerConsumerInput struct {
 	// to tracker resource. Used when you need to specify a resource across all
 	// AWS.
 	//
-	//    * Format example: arn:partition:service:region:account-id:resource-type:resource-id
+	//    * Format example: arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer
 	//
 	// ConsumerArn is a required field
 	ConsumerArn *string `type:"string" required:"true"`
@@ -3970,6 +5041,128 @@ func (s AssociateTrackerConsumerOutput) String() string {
 // GoString returns the string representation
 func (s AssociateTrackerConsumerOutput) GoString() string {
 	return s.String()
+}
+
+// Contains the tracker resource details.
+type BatchDeleteDevicePositionHistoryError struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the device for this position.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// Contains the batch request error details associated with the request.
+	//
+	// Error is a required field
+	Error *BatchItemError `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDeleteDevicePositionHistoryError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDeleteDevicePositionHistoryError) GoString() string {
+	return s.String()
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *BatchDeleteDevicePositionHistoryError) SetDeviceId(v string) *BatchDeleteDevicePositionHistoryError {
+	s.DeviceId = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *BatchDeleteDevicePositionHistoryError) SetError(v *BatchItemError) *BatchDeleteDevicePositionHistoryError {
+	s.Error = v
+	return s
+}
+
+type BatchDeleteDevicePositionHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// Devices whose position history you want to delete.
+	//
+	//    * For example, for two devices: “DeviceIds” : [DeviceId1,DeviceId2]
+	//
+	// DeviceIds is a required field
+	DeviceIds []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the tracker resource to delete the device position history from.
+	//
+	// TrackerName is a required field
+	TrackerName *string `location:"uri" locationName:"TrackerName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDeleteDevicePositionHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDeleteDevicePositionHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDeleteDevicePositionHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDeleteDevicePositionHistoryInput"}
+	if s.DeviceIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceIds"))
+	}
+	if s.DeviceIds != nil && len(s.DeviceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceIds", 1))
+	}
+	if s.TrackerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrackerName"))
+	}
+	if s.TrackerName != nil && len(*s.TrackerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrackerName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceIds sets the DeviceIds field's value.
+func (s *BatchDeleteDevicePositionHistoryInput) SetDeviceIds(v []*string) *BatchDeleteDevicePositionHistoryInput {
+	s.DeviceIds = v
+	return s
+}
+
+// SetTrackerName sets the TrackerName field's value.
+func (s *BatchDeleteDevicePositionHistoryInput) SetTrackerName(v string) *BatchDeleteDevicePositionHistoryInput {
+	s.TrackerName = &v
+	return s
+}
+
+type BatchDeleteDevicePositionHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains error details for each device history that failed to delete.
+	//
+	// Errors is a required field
+	Errors []*BatchDeleteDevicePositionHistoryError `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchDeleteDevicePositionHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDeleteDevicePositionHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchDeleteDevicePositionHistoryOutput) SetErrors(v []*BatchDeleteDevicePositionHistoryError) *BatchDeleteDevicePositionHistoryOutput {
+	s.Errors = v
+	return s
 }
 
 // Contains error details for each geofence that failed to delete from the geofence
@@ -4809,6 +6002,481 @@ func (s *BatchUpdateDevicePositionOutput) SetErrors(v []*BatchUpdateDevicePositi
 	return s
 }
 
+// Contains details about additional route preferences for requests that specify
+// TravelMode as Car.
+type CalculateRouteCarModeOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Avoids ferries when calculating routes.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	AvoidFerries *bool `type:"boolean"`
+
+	// Avoids tolls when calculating routes.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	AvoidTolls *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s CalculateRouteCarModeOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CalculateRouteCarModeOptions) GoString() string {
+	return s.String()
+}
+
+// SetAvoidFerries sets the AvoidFerries field's value.
+func (s *CalculateRouteCarModeOptions) SetAvoidFerries(v bool) *CalculateRouteCarModeOptions {
+	s.AvoidFerries = &v
+	return s
+}
+
+// SetAvoidTolls sets the AvoidTolls field's value.
+func (s *CalculateRouteCarModeOptions) SetAvoidTolls(v bool) *CalculateRouteCarModeOptions {
+	s.AvoidTolls = &v
+	return s
+}
+
+type CalculateRouteInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource that you want to use to calculate
+	// a route.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `location:"uri" locationName:"CalculatorName" min:"1" type:"string" required:"true"`
+
+	// Specifies route preferences when traveling by Car, such as avoiding routes
+	// that use ferries or tolls.
+	//
+	// Requirements: TravelMode must be specified as Car.
+	CarModeOptions *CalculateRouteCarModeOptions `type:"structure"`
+
+	// Sets the time of departure as the current time. Uses the current time to
+	// calculate a route. Otherwise, the best time of day to travel with the best
+	// traffic conditions is used to calculate the route.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	DepartNow *bool `type:"boolean"`
+
+	// The start position for the route. Defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
+	// format: [longitude, latitude].
+	//
+	//    * For example, [-123.115, 49.285]
+	//
+	// If you specify a departure that's not located on a road, Amazon Location
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	//
+	// Valid Values: [-180 to 180,-90 to 90]
+	//
+	// DeparturePosition is a required field
+	DeparturePosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Specifies the desired time of departure. Uses the given time to calculate
+	// a route. Otherwise, the best time of day to travel with the best traffic
+	// conditions is used to calculate the route.
+	//
+	// Setting a departure time in the past returns a 400 ValidationException error.
+	//
+	//    * In ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	//    format: YYYY-MM-DDThh:mm:ss.sssZ. For example, 2020–07-2T12:15:20.000Z+01:00
+	DepartureTime *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The finish position for the route. Defined in WGS 84 (https://earth-info.nga.mil/GandG/wgs84/index.html)
+	// format: [longitude, latitude].
+	//
+	//    * For example, [-122.339, 47.615]
+	//
+	// If you specify a destination that's not located on a road, Amazon Location
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	//
+	// Valid Values: [-180 to 180,-90 to 90]
+	//
+	// DestinationPosition is a required field
+	DestinationPosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Set the unit system to specify the distance.
+	//
+	// Default Value: Kilometers
+	DistanceUnit *string `type:"string" enum:"DistanceUnit"`
+
+	// Set to include the geometry details in the result for each path between a
+	// pair of positions.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	IncludeLegGeometry *bool `type:"boolean"`
+
+	// Specifies the mode of transport when calculating a route. Used in estimating
+	// the speed of travel and road compatibility.
+	//
+	// The TravelMode you specify determines how you specify route preferences:
+	//
+	//    * If traveling by Car use the CarModeOptions parameter.
+	//
+	//    * If traveling by Truck use the TruckModeOptions parameter.
+	//
+	// Default Value: Car
+	TravelMode *string `type:"string" enum:"TravelMode"`
+
+	// Specifies route preferences when traveling by Truck, such as avoiding routes
+	// that use ferries or tolls, and truck specifications to consider when choosing
+	// an optimal road.
+	//
+	// Requirements: TravelMode must be specified as Truck.
+	TruckModeOptions *CalculateRouteTruckModeOptions `type:"structure"`
+
+	// Specifies an ordered list of up to 23 intermediate positions to include along
+	// a route between the departure position and destination position.
+	//
+	//    * For example, from the DeparturePosition [-123.115, 49.285], the route
+	//    follows the order that the waypoint positions are given [[-122.757, 49.0021],[-122.349,
+	//    47.620]]
+	//
+	// If you specify a waypoint position that's not located on a road, Amazon Location
+	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	//
+	// Specifying more than 23 waypoints returns a 400 ValidationException error.
+	//
+	// Valid Values: [-180 to 180,-90 to 90]
+	WaypointPositions [][]*float64 `type:"list"`
+}
+
+// String returns the string representation
+func (s CalculateRouteInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CalculateRouteInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CalculateRouteInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CalculateRouteInput"}
+	if s.CalculatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatorName"))
+	}
+	if s.CalculatorName != nil && len(*s.CalculatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatorName", 1))
+	}
+	if s.DeparturePosition == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeparturePosition"))
+	}
+	if s.DeparturePosition != nil && len(s.DeparturePosition) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("DeparturePosition", 2))
+	}
+	if s.DestinationPosition == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationPosition"))
+	}
+	if s.DestinationPosition != nil && len(s.DestinationPosition) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationPosition", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *CalculateRouteInput) SetCalculatorName(v string) *CalculateRouteInput {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetCarModeOptions sets the CarModeOptions field's value.
+func (s *CalculateRouteInput) SetCarModeOptions(v *CalculateRouteCarModeOptions) *CalculateRouteInput {
+	s.CarModeOptions = v
+	return s
+}
+
+// SetDepartNow sets the DepartNow field's value.
+func (s *CalculateRouteInput) SetDepartNow(v bool) *CalculateRouteInput {
+	s.DepartNow = &v
+	return s
+}
+
+// SetDeparturePosition sets the DeparturePosition field's value.
+func (s *CalculateRouteInput) SetDeparturePosition(v []*float64) *CalculateRouteInput {
+	s.DeparturePosition = v
+	return s
+}
+
+// SetDepartureTime sets the DepartureTime field's value.
+func (s *CalculateRouteInput) SetDepartureTime(v time.Time) *CalculateRouteInput {
+	s.DepartureTime = &v
+	return s
+}
+
+// SetDestinationPosition sets the DestinationPosition field's value.
+func (s *CalculateRouteInput) SetDestinationPosition(v []*float64) *CalculateRouteInput {
+	s.DestinationPosition = v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *CalculateRouteInput) SetDistanceUnit(v string) *CalculateRouteInput {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetIncludeLegGeometry sets the IncludeLegGeometry field's value.
+func (s *CalculateRouteInput) SetIncludeLegGeometry(v bool) *CalculateRouteInput {
+	s.IncludeLegGeometry = &v
+	return s
+}
+
+// SetTravelMode sets the TravelMode field's value.
+func (s *CalculateRouteInput) SetTravelMode(v string) *CalculateRouteInput {
+	s.TravelMode = &v
+	return s
+}
+
+// SetTruckModeOptions sets the TruckModeOptions field's value.
+func (s *CalculateRouteInput) SetTruckModeOptions(v *CalculateRouteTruckModeOptions) *CalculateRouteInput {
+	s.TruckModeOptions = v
+	return s
+}
+
+// SetWaypointPositions sets the WaypointPositions field's value.
+func (s *CalculateRouteInput) SetWaypointPositions(v [][]*float64) *CalculateRouteInput {
+	s.WaypointPositions = v
+	return s
+}
+
+// Returns the result of the route calculation. Metadata includes legs and route
+// summary.
+type CalculateRouteOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains details about each path between a pair of positions included along
+	// a route such as: StartPosition, EndPosition, Distance, DurationSeconds, Geometry,
+	// and Steps. The number of legs returned corresponds to one less than the total
+	// number of positions in the request.
+	//
+	// For example, a route with a departure position and destination position returns
+	// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road):
+	//
+	//    * The StartPosition is the departure position.
+	//
+	//    * The EndPosition is the destination position.
+	//
+	// A route with a waypoint between the departure and destination position returns
+	// two legs with the positions snapped to a nearby road.:
+	//
+	//    * Leg 1: The StartPosition is the departure position . The EndPosition
+	//    is the waypoint positon.
+	//
+	//    * Leg 2: The StartPosition is the waypoint position. The EndPosition is
+	//    the destination position.
+	//
+	// Legs is a required field
+	Legs []*Leg `type:"list" required:"true"`
+
+	// Contains information about the whole route, such as: RouteBBox, DataSource,
+	// Distance, DistanceUnit, and DurationSeconds
+	//
+	// Summary is a required field
+	Summary *CalculateRouteSummary `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CalculateRouteOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CalculateRouteOutput) GoString() string {
+	return s.String()
+}
+
+// SetLegs sets the Legs field's value.
+func (s *CalculateRouteOutput) SetLegs(v []*Leg) *CalculateRouteOutput {
+	s.Legs = v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *CalculateRouteOutput) SetSummary(v *CalculateRouteSummary) *CalculateRouteOutput {
+	s.Summary = v
+	return s
+}
+
+// A summary of the calculated route.
+type CalculateRouteSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The data provider of traffic and road network data used to calculate the
+	// route. Indicates one of the available providers:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// The total distance covered by the route. The sum of the distance travelled
+	// between every stop on the route.
+	//
+	// The route distance can't be greater than 250 km. If the route exceeds 250
+	// km, the response returns a 400 RoutesValidationException error.
+	//
+	// Distance is a required field
+	Distance *float64 `type:"double" required:"true"`
+
+	// The unit of measurement for the distance.
+	//
+	// DistanceUnit is a required field
+	DistanceUnit *string `type:"string" required:"true" enum:"DistanceUnit"`
+
+	// The total travel time for the route measured in seconds. The sum of the travel
+	// time between every stop on the route.
+	//
+	// DurationSeconds is a required field
+	DurationSeconds *float64 `type:"double" required:"true"`
+
+	// Specifies a geographical box surrounding a route. Used to zoom into a route
+	// when displaying it in a map. For example, [min x, min y, max x, max y]
+	//
+	// The first 2 bbox parameters describe the lower southwest corner:
+	//
+	//    * The first bbox position is the X coordinate or longitude of the lower
+	//    southwest corner.
+	//
+	//    * The second bbox position is the Y coordinate or latitude of the lower
+	//    southwest corner.
+	//
+	// The next 2 bbox parameters describe the upper northeast corner:
+	//
+	//    * The third bbox position is the X coordinate, or longitude of the upper
+	//    northeast corner.
+	//
+	//    * The fourth bbox position is the Y coordinate, or longitude of the upper
+	//    northeast corner.
+	//
+	// RouteBBox is a required field
+	RouteBBox []*float64 `min:"4" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CalculateRouteSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CalculateRouteSummary) GoString() string {
+	return s.String()
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *CalculateRouteSummary) SetDataSource(v string) *CalculateRouteSummary {
+	s.DataSource = &v
+	return s
+}
+
+// SetDistance sets the Distance field's value.
+func (s *CalculateRouteSummary) SetDistance(v float64) *CalculateRouteSummary {
+	s.Distance = &v
+	return s
+}
+
+// SetDistanceUnit sets the DistanceUnit field's value.
+func (s *CalculateRouteSummary) SetDistanceUnit(v string) *CalculateRouteSummary {
+	s.DistanceUnit = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *CalculateRouteSummary) SetDurationSeconds(v float64) *CalculateRouteSummary {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetRouteBBox sets the RouteBBox field's value.
+func (s *CalculateRouteSummary) SetRouteBBox(v []*float64) *CalculateRouteSummary {
+	s.RouteBBox = v
+	return s
+}
+
+// Contains details about additional route preferences for requests that specify
+// TravelMode as Truck.
+type CalculateRouteTruckModeOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Avoids ferries when calculating routes.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	AvoidFerries *bool `type:"boolean"`
+
+	// Avoids ferries when calculating routes.
+	//
+	// Default Value: false
+	//
+	// Valid Values: false | true
+	AvoidTolls *bool `type:"boolean"`
+
+	// Specifies the truck's dimension specifications including length, height,
+	// width, and unit of measurement. Used to avoid roads that can't support the
+	// truck's dimensions.
+	Dimensions *TruckDimensions `type:"structure"`
+
+	// Specifies the truck's weight specifications including total weight and unit
+	// of measurement. Used to avoid roads that can't support the truck's weight.
+	Weight *TruckWeight `type:"structure"`
+}
+
+// String returns the string representation
+func (s CalculateRouteTruckModeOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CalculateRouteTruckModeOptions) GoString() string {
+	return s.String()
+}
+
+// SetAvoidFerries sets the AvoidFerries field's value.
+func (s *CalculateRouteTruckModeOptions) SetAvoidFerries(v bool) *CalculateRouteTruckModeOptions {
+	s.AvoidFerries = &v
+	return s
+}
+
+// SetAvoidTolls sets the AvoidTolls field's value.
+func (s *CalculateRouteTruckModeOptions) SetAvoidTolls(v bool) *CalculateRouteTruckModeOptions {
+	s.AvoidTolls = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *CalculateRouteTruckModeOptions) SetDimensions(v *TruckDimensions) *CalculateRouteTruckModeOptions {
+	s.Dimensions = v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *CalculateRouteTruckModeOptions) SetWeight(v *TruckWeight) *CalculateRouteTruckModeOptions {
+	s.Weight = v
+	return s
+}
+
 // The request was unsuccessful due to a conflict.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -4872,8 +6540,8 @@ type CreateGeofenceCollectionInput struct {
 	//
 	// Requirements:
 	//
-	//    * Contain only alphanumeric characters (A–Z, a–z, 0-9), hyphens (-),
-	//    periods (.), and underscores (_).
+	//    * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
+	//    (-), periods (.), and underscores (_).
 	//
 	//    * Must be a unique geofence collection name.
 	//
@@ -4885,7 +6553,11 @@ type CreateGeofenceCollectionInput struct {
 	// An optional description for the geofence collection.
 	Description *string `type:"string"`
 
-	// Specifies the pricing plan for your geofence collection.
+	// A key identifier for an AWS KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
+	// Enter a key ID, key ARN, alias name, or alias ARN.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// Specifies the pricing plan for the geofence collection.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -4893,16 +6565,41 @@ type CreateGeofenceCollectionInput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// Specifies the plan data source. Required if the Mobile Asset Tracking (MAT)
-	// or the Mobile Asset Management (MAM) pricing plan is selected.
+	// Specifies the data provider for the geofence collection.
 	//
-	// Billing is determined by the resource usage, the associated pricing plan,
-	// and the data source that was specified. For more information about each pricing
-	// plan option and restrictions, see the Amazon Location Service pricing page
-	// (https://aws.amazon.com/location/pricing/).
+	//    * Required value for the following pricing plans: MobileAssetTracking
+	//    | MobileAssetManagement
+	//
+	// For more information about Data Providers (https://aws.amazon.com/location/data-providers/),
+	// and Pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
+	// Location Service product page.
+	//
+	// Amazon Location Service only uses PricingPlanDataSource to calculate billing
+	// for your geofence collection. Your data won't be shared with the data provider,
+	// and will remain in your AWS account or Region unless you move it.
 	//
 	// Valid Values: Esri | Here
 	PricingPlanDataSource *string `type:"string"`
+
+	// Applies one or more tags to the geofence collection. A tag is a key-value
+	// pair helps manage, identify, search, and filter your resources by labelling
+	// them.
+	//
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource
+	//
+	//    * Each resource tag must be unique with a maximum of one value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -4923,6 +6620,9 @@ func (s *CreateGeofenceCollectionInput) Validate() error {
 	}
 	if s.CollectionName != nil && len(*s.CollectionName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("CollectionName", 1))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
 	}
 	if s.PricingPlan == nil {
 		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
@@ -4946,6 +6646,12 @@ func (s *CreateGeofenceCollectionInput) SetDescription(v string) *CreateGeofence
 	return s
 }
 
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateGeofenceCollectionInput) SetKmsKeyId(v string) *CreateGeofenceCollectionInput {
+	s.KmsKeyId = &v
+	return s
+}
+
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *CreateGeofenceCollectionInput) SetPricingPlan(v string) *CreateGeofenceCollectionInput {
 	s.PricingPlan = &v
@@ -4958,11 +6664,19 @@ func (s *CreateGeofenceCollectionInput) SetPricingPlanDataSource(v string) *Crea
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateGeofenceCollectionInput) SetTags(v map[string]*string) *CreateGeofenceCollectionInput {
+	s.Tags = v
+	return s
+}
+
 type CreateGeofenceCollectionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the geofence collection resource. Used
 	// when you need to specify a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection
 	//
 	// CollectionArn is a required field
 	CollectionArn *string `type:"string" required:"true"`
@@ -5039,6 +6753,25 @@ type CreateMapInput struct {
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Applies one or more tags to the map resource. A tag is a key-value pair helps
+	// manage, identify, search, and filter your resources by labelling them.
+	//
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource
+	//
+	//    * Each resource tag must be unique with a maximum of one value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -5102,6 +6835,12 @@ func (s *CreateMapInput) SetPricingPlan(v string) *CreateMapInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateMapInput) SetTags(v map[string]*string) *CreateMapInput {
+	s.Tags = v
+	return s
+}
+
 type CreateMapOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -5114,7 +6853,7 @@ type CreateMapOutput struct {
 	// The Amazon Resource Name (ARN) for the map resource. Used when you need to
 	// specify a resource across all AWS.
 	//
-	//    * Format example: arn:partition:service:region:account-id:resource-type:resource-id
+	//    * Format example: arn:aws:geo:region:account-id:maps/ExampleMap
 	//
 	// MapArn is a required field
 	MapArn *string `type:"string" required:"true"`
@@ -5165,7 +6904,10 @@ type CreatePlaceIndexInput struct {
 	//
 	//    * Esri
 	//
-	//    * Here
+	//    * Here Place index resources using HERE as a data provider can't be used
+	//    to store (https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html)
+	//    results for locations in Japan. For more information, see the AWS Service
+	//    Terms (https://aws.amazon.com/service-terms/) for Amazon Location Service.
 	//
 	// For additional details on data providers, see the Amazon Location Service
 	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
@@ -5176,30 +6918,50 @@ type CreatePlaceIndexInput struct {
 	// Specifies the data storage option for requesting Places.
 	DataSourceConfiguration *DataSourceConfiguration `type:"structure"`
 
-	// The optional description for the Place index resource.
+	// The optional description for the place index resource.
 	Description *string `type:"string"`
 
-	// The name of the Place index resource.
+	// The name of the place index resource.
 	//
 	// Requirements:
 	//
-	//    * Contain only alphanumeric characters (A-Z, a-z, 0-9) , hyphens (-),
-	//    periods (.), and underscores (_).
+	//    * Contain only alphanumeric characters (A–Z, a–z, 0–9), hyphens
+	//    (-), periods (.), and underscores (_).
 	//
-	//    * Must be a unique Place index resource name.
+	//    * Must be a unique place index resource name.
 	//
 	//    * No spaces allowed. For example, ExamplePlaceIndex.
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// Specifies the pricing plan for your Place index resource.
+	// Specifies the pricing plan for your place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Applies one or more tags to the place index resource. A tag is a key-value
+	// pair helps manage, identify, search, and filter your resources by labelling
+	// them.
+	//
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource
+	//
+	//    * Each resource tag must be unique with a maximum of one value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation
@@ -5264,22 +7026,30 @@ func (s *CreatePlaceIndexInput) SetPricingPlan(v string) *CreatePlaceIndexInput 
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreatePlaceIndexInput) SetTags(v map[string]*string) *CreatePlaceIndexInput {
+	s.Tags = v
+	return s
+}
+
 type CreatePlaceIndexOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the Place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	// The timestamp for when the place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// CreateTime is a required field
 	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
-	// The Amazon Resource Name (ARN) for the Place index resource. Used when you
-	// need to specify a resource across all AWS.
+	// The Amazon Resource Name (ARN) for the place index resource. Used to specify
+	// a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex
 	//
 	// IndexArn is a required field
 	IndexArn *string `type:"string" required:"true"`
 
-	// The name for the Place index resource.
+	// The name for the place index resource.
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
@@ -5313,13 +7083,198 @@ func (s *CreatePlaceIndexOutput) SetIndexName(v string) *CreatePlaceIndexOutput 
 	return s
 }
 
+type CreateRouteCalculatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource.
+	//
+	// Requirements:
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9) , hyphens (-),
+	//    periods (.), and underscores (_).
+	//
+	//    * Must be a unique Route calculator resource name.
+	//
+	//    * No spaces allowed. For example, ExampleRouteCalculator.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the data provider of traffic and road network data.
+	//
+	// This field is case-sensitive. Enter the valid values as shown. For example,
+	// entering HERE returns an error.
+	//
+	// Valid Values: Esri | Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// The optional description for the route calculator resource.
+	Description *string `type:"string"`
+
+	// Specifies the pricing plan for your route calculator resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Applies one or more tags to the route calculator resource. A tag is a key-value
+	// pair helps manage, identify, search, and filter your resources by labelling
+	// them.
+	//
+	//    * For example: { "tag1" : "value1", "tag2" : "value2"}
+	//
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource
+	//
+	//    * Each resource tag must be unique with a maximum of one value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s CreateRouteCalculatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteCalculatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRouteCalculatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRouteCalculatorInput"}
+	if s.CalculatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatorName"))
+	}
+	if s.CalculatorName != nil && len(*s.CalculatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatorName", 1))
+	}
+	if s.DataSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSource"))
+	}
+	if s.PricingPlan == nil {
+		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *CreateRouteCalculatorInput) SetCalculatorName(v string) *CreateRouteCalculatorInput {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *CreateRouteCalculatorInput) SetDataSource(v string) *CreateRouteCalculatorInput {
+	s.DataSource = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateRouteCalculatorInput) SetDescription(v string) *CreateRouteCalculatorInput {
+	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *CreateRouteCalculatorInput) SetPricingPlan(v string) *CreateRouteCalculatorInput {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRouteCalculatorInput) SetTags(v map[string]*string) *CreateRouteCalculatorInput {
+	s.Tags = v
+	return s
+}
+
+type CreateRouteCalculatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the route calculator resource. Use the
+	// ARN when you specify a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:route-calculator/ExampleCalculator
+	//
+	// CalculatorArn is a required field
+	CalculatorArn *string `type:"string" required:"true"`
+
+	// The name of the route calculator resource.
+	//
+	//    * For example, ExampleRouteCalculator.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `min:"1" type:"string" required:"true"`
+
+	// The timestamp when the route calculator resource was created in ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	//    * For example, 2020–07-2T12:15:20.000Z+01:00
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateRouteCalculatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRouteCalculatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculatorArn sets the CalculatorArn field's value.
+func (s *CreateRouteCalculatorOutput) SetCalculatorArn(v string) *CreateRouteCalculatorOutput {
+	s.CalculatorArn = &v
+	return s
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *CreateRouteCalculatorOutput) SetCalculatorName(v string) *CreateRouteCalculatorOutput {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CreateRouteCalculatorOutput) SetCreateTime(v time.Time) *CreateRouteCalculatorOutput {
+	s.CreateTime = &v
+	return s
+}
+
 type CreateTrackerInput struct {
 	_ struct{} `type:"structure"`
 
 	// An optional description for the tracker resource.
 	Description *string `type:"string"`
 
-	// Specifies the pricing plan for your tracker resource.
+	// A key identifier for an AWS KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html).
+	// Enter a key ID, key ARN, alias name, or alias ARN.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// Specifies the pricing plan for the tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -5327,16 +7282,40 @@ type CreateTrackerInput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// Specifies the plan data source. Required if the Mobile Asset Tracking (MAT)
-	// or the Mobile Asset Management (MAM) pricing plan is selected.
+	// Specifies the data provider for the tracker resource.
 	//
-	// Billing is determined by the resource usage, the associated pricing plan,
-	// and data source that was specified. For more information about each pricing
-	// plan option and restrictions, see the Amazon Location Service pricing page
-	// (https://aws.amazon.com/location/pricing/).
+	//    * Required value for the following pricing plans: MobileAssetTracking
+	//    | MobileAssetManagement
+	//
+	// For more information about Data Providers (https://aws.amazon.com/location/data-providers/),
+	// and Pricing plans (https://aws.amazon.com/location/pricing/), see the Amazon
+	// Location Service product page.
+	//
+	// Amazon Location Service only uses PricingPlanDataSource to calculate billing
+	// for your tracker resource. Your data will not be shared with the data provider,
+	// and will remain in your AWS account or Region unless you move it.
 	//
 	// Valid Values: Esri | Here
 	PricingPlanDataSource *string `type:"string"`
+
+	// Applies one or more tags to the tracker resource. A tag is a key-value pair
+	// helps manage, identify, search, and filter your resources by labelling them.
+	//
+	// Format: "key" : "value"
+	//
+	// Restrictions:
+	//
+	//    * Maximum 50 tags per resource
+	//
+	//    * Each resource tag must be unique with a maximum of one value.
+	//
+	//    * Maximum key length: 128 Unicode characters in UTF-8
+	//
+	//    * Maximum value length: 256 Unicode characters in UTF-8
+	//
+	//    * Can use alphanumeric characters (A–Z, a–z, 0–9), and the following
+	//    characters: + - = . _ : / @.
+	Tags map[string]*string `type:"map"`
 
 	// The name for the tracker resource.
 	//
@@ -5366,6 +7345,9 @@ func (s CreateTrackerInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateTrackerInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateTrackerInput"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
 	if s.PricingPlan == nil {
 		invalidParams.Add(request.NewErrParamRequired("PricingPlan"))
 	}
@@ -5388,6 +7370,12 @@ func (s *CreateTrackerInput) SetDescription(v string) *CreateTrackerInput {
 	return s
 }
 
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateTrackerInput) SetKmsKeyId(v string) *CreateTrackerInput {
+	s.KmsKeyId = &v
+	return s
+}
+
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *CreateTrackerInput) SetPricingPlan(v string) *CreateTrackerInput {
 	s.PricingPlan = &v
@@ -5397,6 +7385,12 @@ func (s *CreateTrackerInput) SetPricingPlan(v string) *CreateTrackerInput {
 // SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
 func (s *CreateTrackerInput) SetPricingPlanDataSource(v string) *CreateTrackerInput {
 	s.PricingPlanDataSource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTrackerInput) SetTags(v map[string]*string) *CreateTrackerInput {
+	s.Tags = v
 	return s
 }
 
@@ -5417,6 +7411,8 @@ type CreateTrackerOutput struct {
 
 	// The Amazon Resource Name (ARN) for the tracker resource. Used when you need
 	// to specify a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:tracker/ExampleTracker
 	//
 	// TrackerArn is a required field
 	TrackerArn *string `type:"string" required:"true"`
@@ -5456,16 +7452,6 @@ func (s *CreateTrackerOutput) SetTrackerName(v string) *CreateTrackerOutput {
 }
 
 // Specifies the data storage option chosen for requesting Places.
-//
-// By using Places, you agree that AWS may transmit your API queries to your
-// selected third party provider for processing, which may be outside the AWS
-// region you are currently using.
-//
-// Also, when using HERE as your data provider, you may not (a) use HERE Places
-// for Asset Management, or (b) select the Storage option for the IntendedUse
-// parameter when requesting Places in Japan. For more information, see the
-// AWS Service Terms (https://aws.amazon.com/service-terms/) for Amazon Location
-// Service.
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -5476,6 +7462,9 @@ type DataSourceConfiguration struct {
 	//    * SingleUse specifies that the results won't be stored.
 	//
 	//    * Storage specifies that the result can be cached or stored in a database.
+	//    Place index resources using HERE as a data provider can't be configured
+	//    to store results for locations in Japan when choosing Storage for the
+	//    IntendedUse parameter.
 	//
 	// Default value: SingleUse
 	IntendedUse *string `type:"string" enum:"IntendedUse"`
@@ -5610,7 +7599,7 @@ func (s DeleteMapOutput) GoString() string {
 type DeletePlaceIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Place index resource to be deleted.
+	// The name of the place index resource to be deleted.
 	//
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
@@ -5659,6 +7648,61 @@ func (s DeletePlaceIndexOutput) String() string {
 
 // GoString returns the string representation
 func (s DeletePlaceIndexOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteRouteCalculatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource to be deleted.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `location:"uri" locationName:"CalculatorName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteRouteCalculatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteCalculatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRouteCalculatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRouteCalculatorInput"}
+	if s.CalculatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatorName"))
+	}
+	if s.CalculatorName != nil && len(*s.CalculatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *DeleteRouteCalculatorInput) SetCalculatorName(v string) *DeleteRouteCalculatorInput {
+	s.CalculatorName = &v
+	return s
+}
+
+type DeleteRouteCalculatorOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteRouteCalculatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteRouteCalculatorOutput) GoString() string {
 	return s.String()
 }
 
@@ -5764,6 +7808,8 @@ type DescribeGeofenceCollectionOutput struct {
 	// The Amazon Resource Name (ARN) for the geofence collection resource. Used
 	// when you need to specify a resource across all AWS.
 	//
+	//    * Format example: arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection
+	//
 	// CollectionArn is a required field
 	CollectionArn *string `type:"string" required:"true"`
 
@@ -5783,6 +7829,10 @@ type DescribeGeofenceCollectionOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// A key identifier for an AWS KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)
+	// assigned to the Amazon Location resource
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// The pricing plan selected for the specified geofence collection.
 	//
 	// For additional details and restrictions on each pricing plan option, see
@@ -5791,9 +7841,11 @@ type DescribeGeofenceCollectionOutput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The data source selected for the geofence collection and associated pricing
-	// plan.
+	// The specified data provider for the geofence collection.
 	PricingPlanDataSource *string `type:"string"`
+
+	// Displays the key, value pairs of tags associated with this resource.
+	Tags map[string]*string `type:"map"`
 
 	// The timestamp for when the geofence collection was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ
@@ -5836,6 +7888,12 @@ func (s *DescribeGeofenceCollectionOutput) SetDescription(v string) *DescribeGeo
 	return s
 }
 
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DescribeGeofenceCollectionOutput) SetKmsKeyId(v string) *DescribeGeofenceCollectionOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *DescribeGeofenceCollectionOutput) SetPricingPlan(v string) *DescribeGeofenceCollectionOutput {
 	s.PricingPlan = &v
@@ -5845,6 +7903,12 @@ func (s *DescribeGeofenceCollectionOutput) SetPricingPlan(v string) *DescribeGeo
 // SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
 func (s *DescribeGeofenceCollectionOutput) SetPricingPlanDataSource(v string) *DescribeGeofenceCollectionOutput {
 	s.PricingPlanDataSource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeGeofenceCollectionOutput) SetTags(v map[string]*string) *DescribeGeofenceCollectionOutput {
+	s.Tags = v
 	return s
 }
 
@@ -5922,6 +7986,8 @@ type DescribeMapOutput struct {
 	// The Amazon Resource Name (ARN) for the map resource. Used when you need to
 	// specify a resource across all AWS.
 	//
+	//    * Format example: arn:aws:geo:region:account-id:maps/ExampleMap
+	//
 	// MapArn is a required field
 	MapArn *string `type:"string" required:"true"`
 
@@ -5938,6 +8004,9 @@ type DescribeMapOutput struct {
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Tags associated with the map resource.
+	Tags map[string]*string `type:"map"`
 
 	// The timestamp for when the map resource was last update in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
@@ -5998,6 +8067,12 @@ func (s *DescribeMapOutput) SetPricingPlan(v string) *DescribeMapOutput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *DescribeMapOutput) SetTags(v map[string]*string) *DescribeMapOutput {
+	s.Tags = v
+	return s
+}
+
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *DescribeMapOutput) SetUpdateTime(v time.Time) *DescribeMapOutput {
 	s.UpdateTime = &v
@@ -6007,7 +8082,7 @@ func (s *DescribeMapOutput) SetUpdateTime(v time.Time) *DescribeMapOutput {
 type DescribePlaceIndexInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Place index resource.
+	// The name of the place index resource.
 	//
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
@@ -6048,7 +8123,7 @@ func (s *DescribePlaceIndexInput) SetIndexName(v string) *DescribePlaceIndexInpu
 type DescribePlaceIndexOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the Place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	// The timestamp for when the place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// CreateTime is a required field
@@ -6071,23 +8146,25 @@ type DescribePlaceIndexOutput struct {
 	// DataSourceConfiguration is a required field
 	DataSourceConfiguration *DataSourceConfiguration `type:"structure" required:"true"`
 
-	// The optional description for the Place index resource.
+	// The optional description for the place index resource.
 	//
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) for the Place index resource. Used when you
-	// need to specify a resource across all AWS.
+	// The Amazon Resource Name (ARN) for the place index resource. Used to specify
+	// a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex
 	//
 	// IndexArn is a required field
 	IndexArn *string `type:"string" required:"true"`
 
-	// The name of the Place index resource being described.
+	// The name of the place index resource being described.
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan selected for the specified Place index resource.
+	// The pricing plan selected for the specified place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -6095,7 +8172,10 @@ type DescribePlaceIndexOutput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The timestamp for when the Place index resource was last updated in ISO 8601
+	// Tags associated with place index resource.
+	Tags map[string]*string `type:"map"`
+
+	// The timestamp for when the place index resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// UpdateTime is a required field
@@ -6154,8 +8234,175 @@ func (s *DescribePlaceIndexOutput) SetPricingPlan(v string) *DescribePlaceIndexO
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *DescribePlaceIndexOutput) SetTags(v map[string]*string) *DescribePlaceIndexOutput {
+	s.Tags = v
+	return s
+}
+
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *DescribePlaceIndexOutput) SetUpdateTime(v time.Time) *DescribePlaceIndexOutput {
+	s.UpdateTime = &v
+	return s
+}
+
+type DescribeRouteCalculatorInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `location:"uri" locationName:"CalculatorName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeRouteCalculatorInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRouteCalculatorInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRouteCalculatorInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRouteCalculatorInput"}
+	if s.CalculatorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CalculatorName"))
+	}
+	if s.CalculatorName != nil && len(*s.CalculatorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CalculatorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *DescribeRouteCalculatorInput) SetCalculatorName(v string) *DescribeRouteCalculatorInput {
+	s.CalculatorName = &v
+	return s
+}
+
+type DescribeRouteCalculatorOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the Route calculator resource. Use the
+	// ARN when you specify a resource across AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:route-calculator/ExampleCalculator
+	//
+	// CalculatorArn is a required field
+	CalculatorArn *string `type:"string" required:"true"`
+
+	// The name of the route calculator resource being described.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `min:"1" type:"string" required:"true"`
+
+	// The timestamp when the route calculator resource was created in ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	//    * For example, 2020–07-2T12:15:20.000Z+01:00
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The data provider of traffic and road network data. Indicates one of the
+	// available providers:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// The optional description of the route calculator resource.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// The pricing plan selected for the specified route calculator resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// Tags associated with route calculator resource.
+	Tags map[string]*string `type:"map"`
+
+	// The timestamp when the route calculator resource was last updated in ISO
+	// 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	//    * For example, 2020–07-2T12:15:20.000Z+01:00
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeRouteCalculatorOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRouteCalculatorOutput) GoString() string {
+	return s.String()
+}
+
+// SetCalculatorArn sets the CalculatorArn field's value.
+func (s *DescribeRouteCalculatorOutput) SetCalculatorArn(v string) *DescribeRouteCalculatorOutput {
+	s.CalculatorArn = &v
+	return s
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *DescribeRouteCalculatorOutput) SetCalculatorName(v string) *DescribeRouteCalculatorOutput {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *DescribeRouteCalculatorOutput) SetCreateTime(v time.Time) *DescribeRouteCalculatorOutput {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *DescribeRouteCalculatorOutput) SetDataSource(v string) *DescribeRouteCalculatorOutput {
+	s.DataSource = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeRouteCalculatorOutput) SetDescription(v string) *DescribeRouteCalculatorOutput {
+	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *DescribeRouteCalculatorOutput) SetPricingPlan(v string) *DescribeRouteCalculatorOutput {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeRouteCalculatorOutput) SetTags(v map[string]*string) *DescribeRouteCalculatorOutput {
+	s.Tags = v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *DescribeRouteCalculatorOutput) SetUpdateTime(v time.Time) *DescribeRouteCalculatorOutput {
 	s.UpdateTime = &v
 	return s
 }
@@ -6215,6 +8462,10 @@ type DescribeTrackerOutput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
+	// A key identifier for an AWS KMS customer managed key (https://docs.aws.amazon.com/kms/latest/developerguide/create-keys.html)
+	// assigned to the Amazon Location resource.
+	KmsKeyId *string `min:"1" type:"string"`
+
 	// The pricing plan selected for the specified tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
@@ -6223,12 +8474,16 @@ type DescribeTrackerOutput struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The data source selected for the tracker resource and associated pricing
-	// plan.
+	// The specified data provider for the tracker resource.
 	PricingPlanDataSource *string `type:"string"`
+
+	// The tags associated with the tracker resource.
+	Tags map[string]*string `type:"map"`
 
 	// The Amazon Resource Name (ARN) for the tracker resource. Used when you need
 	// to specify a resource across all AWS.
+	//
+	//    * Format example: arn:aws:geo:region:account-id:tracker/ExampleTracker
 	//
 	// TrackerArn is a required field
 	TrackerArn *string `type:"string" required:"true"`
@@ -6267,6 +8522,12 @@ func (s *DescribeTrackerOutput) SetDescription(v string) *DescribeTrackerOutput 
 	return s
 }
 
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DescribeTrackerOutput) SetKmsKeyId(v string) *DescribeTrackerOutput {
+	s.KmsKeyId = &v
+	return s
+}
+
 // SetPricingPlan sets the PricingPlan field's value.
 func (s *DescribeTrackerOutput) SetPricingPlan(v string) *DescribeTrackerOutput {
 	s.PricingPlan = &v
@@ -6276,6 +8537,12 @@ func (s *DescribeTrackerOutput) SetPricingPlan(v string) *DescribeTrackerOutput 
 // SetPricingPlanDataSource sets the PricingPlanDataSource field's value.
 func (s *DescribeTrackerOutput) SetPricingPlanDataSource(v string) *DescribeTrackerOutput {
 	s.PricingPlanDataSource = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribeTrackerOutput) SetTags(v map[string]*string) *DescribeTrackerOutput {
+	s.Tags = v
 	return s
 }
 
@@ -6439,7 +8706,7 @@ type DisassociateTrackerConsumerInput struct {
 	// from the tracker resource. Used when you need to specify a resource across
 	// all AWS.
 	//
-	//    * Format example: arn:partition:service:region:account-id:resource-type:resource-id
+	//    * Format example: arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer
 	//
 	// ConsumerArn is a required field
 	ConsumerArn *string `location:"uri" locationName:"ConsumerArn" type:"string" required:"true"`
@@ -6510,7 +8777,7 @@ func (s DisassociateTrackerConsumerOutput) GoString() string {
 
 // Contains the geofence geometry details.
 //
-// Amazon Location does not currently support polygons with holes, multipolygons,
+// Amazon Location doesn't currently support polygons with holes, multipolygons,
 // polygons that are wound clockwise, or that cross the antimeridian.
 type GeofenceGeometry struct {
 	_ struct{} `type:"structure"`
@@ -6962,8 +9229,8 @@ type GetMapGlyphsInput struct {
 	FontStack *string `location:"uri" locationName:"FontStack" type:"string" required:"true"`
 
 	// A Unicode range of characters to download glyphs for. Each response will
-	// contain 256 characters. For example, 0-255 includes all characters from range
-	// U+0000 to 00FF. Must be aligned to multiples of 256.
+	// contain 256 characters. For example, 0–255 includes all characters from
+	// range U+0000 to 00FF. Must be aligned to multiples of 256.
 	//
 	// FontUnicodeRange is a required field
 	FontUnicodeRange *string `location:"uri" locationName:"FontUnicodeRange" type:"string" required:"true"`
@@ -7418,6 +9685,304 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains the calculated route's details for each path between a pair of positions.
+// The number of legs returned corresponds to one less than the total number
+// of positions in the request.
+//
+// For example, a route with a departure position and destination position returns
+// one leg with the positions snapped to a nearby road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road):
+//
+//    * The StartPosition is the departure position.
+//
+//    * The EndPosition is the destination position.
+//
+// A route with a waypoint between the departure and destination position returns
+// two legs with the positions snapped to a nearby road.:
+//
+//    * Leg 1: The StartPosition is the departure position . The EndPosition
+//    is the waypoint positon.
+//
+//    * Leg 2: The StartPosition is the waypoint position. The EndPosition is
+//    the destination position.
+type Leg struct {
+	_ struct{} `type:"structure"`
+
+	// The distance between the leg's StartPosition and EndPosition along a calculated
+	// route.
+	//
+	//    * The default measurement is Kilometers unless the request specifies a
+	//    DistanceUnit of Miles.
+	//
+	// Distance is a required field
+	Distance *float64 `type:"double" required:"true"`
+
+	// The estimated travel time between the leg's StartPosition and EndPosition.
+	// The travel mode and departure time that you specify in the request determines
+	// the calculated time.
+	//
+	// DurationSeconds is a required field
+	DurationSeconds *float64 `type:"double" required:"true"`
+
+	// The terminating position of the leg. Follows the format [longitude,latitude].
+	//
+	// If the EndPosition isn't located on a road, it's snapped to a nearby road
+	// (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	//
+	// EndPosition is a required field
+	EndPosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Contains the calculated route's path as a linestring geometry.
+	Geometry *LegGeometry `type:"structure"`
+
+	// The starting position of the leg. Follows the format [longitude,latitude].
+	//
+	// If the StartPosition isn't located on a road, it's snapped to a nearby road
+	// (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	//
+	// StartPosition is a required field
+	StartPosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Contains a list of steps, which represent subsections of a leg. Each step
+	// provides instructions for how to move to the next step in the leg such as
+	// the step's start position, end position, travel distance, travel duration,
+	// and geometry offset.
+	//
+	// Steps is a required field
+	Steps []*Step `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s Leg) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Leg) GoString() string {
+	return s.String()
+}
+
+// SetDistance sets the Distance field's value.
+func (s *Leg) SetDistance(v float64) *Leg {
+	s.Distance = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *Leg) SetDurationSeconds(v float64) *Leg {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetEndPosition sets the EndPosition field's value.
+func (s *Leg) SetEndPosition(v []*float64) *Leg {
+	s.EndPosition = v
+	return s
+}
+
+// SetGeometry sets the Geometry field's value.
+func (s *Leg) SetGeometry(v *LegGeometry) *Leg {
+	s.Geometry = v
+	return s
+}
+
+// SetStartPosition sets the StartPosition field's value.
+func (s *Leg) SetStartPosition(v []*float64) *Leg {
+	s.StartPosition = v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *Leg) SetSteps(v []*Step) *Leg {
+	s.Steps = v
+	return s
+}
+
+// Contains the geometry details for each path between a pair of positions.
+// Used in plotting a route leg on a map.
+type LegGeometry struct {
+	_ struct{} `type:"structure"`
+
+	// An ordered list of positions used to plot a route on a map.
+	//
+	// The first position is closest to the start position for the leg, and the
+	// last position is the closest to the end position for the leg.
+	//
+	//    * For example, [[-123.117, 49.284],[-123.115, 49.285],[-123.115, 49.285]]
+	LineString [][]*float64 `min:"2" type:"list"`
+}
+
+// String returns the string representation
+func (s LegGeometry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LegGeometry) GoString() string {
+	return s.String()
+}
+
+// SetLineString sets the LineString field's value.
+func (s *LegGeometry) SetLineString(v [][]*float64) *LegGeometry {
+	s.LineString = v
+	return s
+}
+
+type ListDevicePositionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional limit for the number of entries returned in a single call.
+	//
+	// Default value: 100
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token specifying which page of results to return in the response.
+	// If no token is provided, the default page is the first page.
+	//
+	// Default value: null
+	NextToken *string `min:"1" type:"string"`
+
+	// The tracker resource containing the requested devices.
+	//
+	// TrackerName is a required field
+	TrackerName *string `location:"uri" locationName:"TrackerName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListDevicePositionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDevicePositionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDevicePositionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDevicePositionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.TrackerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TrackerName"))
+	}
+	if s.TrackerName != nil && len(*s.TrackerName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TrackerName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDevicePositionsInput) SetMaxResults(v int64) *ListDevicePositionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicePositionsInput) SetNextToken(v string) *ListDevicePositionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTrackerName sets the TrackerName field's value.
+func (s *ListDevicePositionsInput) SetTrackerName(v string) *ListDevicePositionsInput {
+	s.TrackerName = &v
+	return s
+}
+
+type ListDevicePositionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains details about each device's last known position. These details includes
+	// the device ID, the time when the position was sampled on the device, the
+	// time that the service received the update, and the most recent coordinates.
+	//
+	// Entries is a required field
+	Entries []*ListDevicePositionsResponseEntry `type:"list" required:"true"`
+
+	// A pagination token indicating there are additional pages available. You can
+	// use the token in a following request to fetch the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListDevicePositionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDevicePositionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntries sets the Entries field's value.
+func (s *ListDevicePositionsOutput) SetEntries(v []*ListDevicePositionsResponseEntry) *ListDevicePositionsOutput {
+	s.Entries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDevicePositionsOutput) SetNextToken(v string) *ListDevicePositionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// Contains the tracker resource details.
+type ListDevicePositionsResponseEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the device for this position.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The last known device position. Empty if no positions currently stored.
+	//
+	// Position is a required field
+	Position []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// The timestamp at which the device position was determined. Uses ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	// SampleTime is a required field
+	SampleTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s ListDevicePositionsResponseEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDevicePositionsResponseEntry) GoString() string {
+	return s.String()
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *ListDevicePositionsResponseEntry) SetDeviceId(v string) *ListDevicePositionsResponseEntry {
+	s.DeviceId = &v
+	return s
+}
+
+// SetPosition sets the Position field's value.
+func (s *ListDevicePositionsResponseEntry) SetPosition(v []*float64) *ListDevicePositionsResponseEntry {
+	s.Position = v
+	return s
+}
+
+// SetSampleTime sets the SampleTime field's value.
+func (s *ListDevicePositionsResponseEntry) SetSampleTime(v time.Time) *ListDevicePositionsResponseEntry {
+	s.SampleTime = &v
+	return s
+}
+
 type ListGeofenceCollectionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7534,8 +10099,7 @@ type ListGeofenceCollectionsResponseEntry struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The data source selected for the geofence collection and associated pricing
-	// plan.
+	// The specified data provider for the geofence collection.
 	PricingPlanDataSource *string `type:"string"`
 
 	// Specifies a timestamp for when the resource was last updated in ISO 8601
@@ -7997,7 +10561,7 @@ func (s *ListPlaceIndexesInput) SetNextToken(v string) *ListPlaceIndexesInput {
 type ListPlaceIndexesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Lists the Place index resources that exist in your AWS account
+	// Lists the place index resources that exist in your AWS account
 	//
 	// Entries is a required field
 	Entries []*ListPlaceIndexesResponseEntry `type:"list" required:"true"`
@@ -8029,11 +10593,11 @@ func (s *ListPlaceIndexesOutput) SetNextToken(v string) *ListPlaceIndexesOutput 
 	return s
 }
 
-// A Place index resource listed in your AWS account.
+// A place index resource listed in your AWS account.
 type ListPlaceIndexesResponseEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when the Place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
+	// The timestamp for when the place index resource was created in ISO 8601 (https://www.iso.org/iso-8601-date-and-time-format.html)
 	// format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// CreateTime is a required field
@@ -8043,7 +10607,7 @@ type ListPlaceIndexesResponseEntry struct {
 	//
 	//    * Esri
 	//
-	//    * HERE
+	//    * Here
 	//
 	// For additional details on data providers, see the Amazon Location Service
 	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
@@ -8051,17 +10615,17 @@ type ListPlaceIndexesResponseEntry struct {
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
 
-	// The optional description for the Place index resource.
+	// The optional description for the place index resource.
 	//
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The name of the Place index resource.
+	// The name of the place index resource.
 	//
 	// IndexName is a required field
 	IndexName *string `min:"1" type:"string" required:"true"`
 
-	// The pricing plan for the specified Place index resource.
+	// The pricing plan for the specified place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
 	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
@@ -8069,7 +10633,7 @@ type ListPlaceIndexesResponseEntry struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The timestamp for when the Place index resource was last updated in ISO 8601
+	// The timestamp for when the place index resource was last updated in ISO 8601
 	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
 	//
 	// UpdateTime is a required field
@@ -8119,6 +10683,257 @@ func (s *ListPlaceIndexesResponseEntry) SetPricingPlan(v string) *ListPlaceIndex
 // SetUpdateTime sets the UpdateTime field's value.
 func (s *ListPlaceIndexesResponseEntry) SetUpdateTime(v time.Time) *ListPlaceIndexesResponseEntry {
 	s.UpdateTime = &v
+	return s
+}
+
+type ListRouteCalculatorsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional maximum number of results returned in a single call.
+	//
+	// Default Value: 100
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The pagination token specifying which page of results to return in the response.
+	// If no token is provided, the default page is the first page.
+	//
+	// Default Value: null
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRouteCalculatorsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRouteCalculatorsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRouteCalculatorsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRouteCalculatorsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRouteCalculatorsInput) SetMaxResults(v int64) *ListRouteCalculatorsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRouteCalculatorsInput) SetNextToken(v string) *ListRouteCalculatorsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRouteCalculatorsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the route calculator resources that exist in your AWS account
+	//
+	// Entries is a required field
+	Entries []*ListRouteCalculatorsResponseEntry `type:"list" required:"true"`
+
+	// A pagination token indicating there are additional pages available. You can
+	// use the token in a subsequent request to fetch the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRouteCalculatorsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRouteCalculatorsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntries sets the Entries field's value.
+func (s *ListRouteCalculatorsOutput) SetEntries(v []*ListRouteCalculatorsResponseEntry) *ListRouteCalculatorsOutput {
+	s.Entries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRouteCalculatorsOutput) SetNextToken(v string) *ListRouteCalculatorsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A route calculator resource listed in your AWS account.
+type ListRouteCalculatorsResponseEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the route calculator resource.
+	//
+	// CalculatorName is a required field
+	CalculatorName *string `min:"1" type:"string" required:"true"`
+
+	// The timestamp when the route calculator resource was created in ISO 8601
+	// (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	//    * For example, 2020–07-2T12:15:20.000Z+01:00
+	//
+	// CreateTime is a required field
+	CreateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// The data provider of traffic and road network data. Indicates one of the
+	// available providers:
+	//
+	//    * Esri
+	//
+	//    * Here
+	//
+	// For more information about data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	//
+	// DataSource is a required field
+	DataSource *string `type:"string" required:"true"`
+
+	// The optional description of the route calculator resource.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+
+	// The pricing plan for the specified route calculator resource.
+	//
+	// For additional details and restrictions on each pricing plan option, see
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
+	//
+	// PricingPlan is a required field
+	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
+
+	// The timestamp when the route calculator resource was last updated in ISO
+	// 8601 (https://www.iso.org/iso-8601-date-and-time-format.html) format: YYYY-MM-DDThh:mm:ss.sssZ.
+	//
+	//    * For example, 2020–07-2T12:15:20.000Z+01:00
+	//
+	// UpdateTime is a required field
+	UpdateTime *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation
+func (s ListRouteCalculatorsResponseEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRouteCalculatorsResponseEntry) GoString() string {
+	return s.String()
+}
+
+// SetCalculatorName sets the CalculatorName field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetCalculatorName(v string) *ListRouteCalculatorsResponseEntry {
+	s.CalculatorName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetCreateTime(v time.Time) *ListRouteCalculatorsResponseEntry {
+	s.CreateTime = &v
+	return s
+}
+
+// SetDataSource sets the DataSource field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetDataSource(v string) *ListRouteCalculatorsResponseEntry {
+	s.DataSource = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetDescription(v string) *ListRouteCalculatorsResponseEntry {
+	s.Description = &v
+	return s
+}
+
+// SetPricingPlan sets the PricingPlan field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetPricingPlan(v string) *ListRouteCalculatorsResponseEntry {
+	s.PricingPlan = &v
+	return s
+}
+
+// SetUpdateTime sets the UpdateTime field's value.
+func (s *ListRouteCalculatorsResponseEntry) SetUpdateTime(v time.Time) *ListRouteCalculatorsResponseEntry {
+	s.UpdateTime = &v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The mapping from tag key to tag value for each tag associated with the specified
+	// resource.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -8339,8 +11154,7 @@ type ListTrackersResponseEntry struct {
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
 
-	// The data source selected for the tracker resource and associated pricing
-	// plan.
+	// The specified data provider for the tracker resource.
 	PricingPlanDataSource *string `type:"string"`
 
 	// The name of the tracker resource.
@@ -8407,8 +11221,9 @@ type MapConfiguration struct {
 
 	// Specifies the map style selected from an available data provider.
 	//
-	// Valid styles: VectorEsriStreets, VectorEsriTopographic, VectorEsriNavigation,
-	// VectorEsriDarkGrayCanvas, VectorEsriLightGrayCanvas, VectorHereBerlin.
+	// Valid styles: RasterEsriImagery, VectorEsriStreets, VectorEsriTopographic,
+	// VectorEsriNavigation, VectorEsriDarkGrayCanvas, VectorEsriLightGrayCanvas,
+	// VectorHereBerlin.
 	//
 	// When using HERE as your data provider, and selecting the Style VectorHereBerlin,
 	// you may not use HERE Maps for Asset Management. See the AWS Service Terms
@@ -8779,7 +11594,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 }
 
 // Specifies a single point of interest, or Place as a result of a search query
-// obtained from a dataset configured in the Place index Resource.
+// obtained from a dataset configured in the place index resource.
 type SearchForPositionResult struct {
 	_ struct{} `type:"structure"`
 
@@ -8834,7 +11649,7 @@ func (s *SearchForTextResult) SetPlace(v *Place) *SearchForTextResult {
 type SearchPlaceIndexForPositionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Place index resource you want to use for the search.
+	// The name of the place index resource you want to use for the search.
 	//
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
@@ -9045,7 +11860,7 @@ type SearchPlaceIndexForTextInput struct {
 	//    AUS.
 	FilterCountries []*string `min:"1" type:"list"`
 
-	// The name of the Place index resource you want to use for the search.
+	// The name of the place index resource you want to use for the search.
 	//
 	// IndexName is a required field
 	IndexName *string `location:"uri" locationName:"IndexName" min:"1" type:"string" required:"true"`
@@ -9272,6 +12087,153 @@ func (s *SearchPlaceIndexForTextSummary) SetText(v string) *SearchPlaceIndexForT
 	return s
 }
 
+// Represents an element of a leg within a route. A step contains instructions
+// for how to move to the next step in the leg.
+type Step struct {
+	_ struct{} `type:"structure"`
+
+	// The travel distance between the step's StartPosition and EndPosition.
+	//
+	// Distance is a required field
+	Distance *float64 `type:"double" required:"true"`
+
+	// The estimated travel time, in seconds, from the step's StartPosition to the
+	// EndPosition. . The travel mode and departure time that you specify in the
+	// request determines the calculated time.
+	//
+	// DurationSeconds is a required field
+	DurationSeconds *float64 `type:"double" required:"true"`
+
+	// The end position of a step. If the position the last step in the leg, this
+	// position is the same as the end position of the leg.
+	//
+	// EndPosition is a required field
+	EndPosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+
+	// Represents the start position, or index, in a sequence of steps within the
+	// leg's line string geometry. For example, the index of the first step in a
+	// leg geometry is 0.
+	//
+	// Included in the response for queries that set IncludeLegGeometry to True.
+	GeometryOffset *int64 `type:"integer"`
+
+	// The starting position of a step. If the position is the first step in the
+	// leg, this position is the same as the start position of the leg.
+	//
+	// StartPosition is a required field
+	StartPosition []*float64 `min:"2" type:"list" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s Step) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Step) GoString() string {
+	return s.String()
+}
+
+// SetDistance sets the Distance field's value.
+func (s *Step) SetDistance(v float64) *Step {
+	s.Distance = &v
+	return s
+}
+
+// SetDurationSeconds sets the DurationSeconds field's value.
+func (s *Step) SetDurationSeconds(v float64) *Step {
+	s.DurationSeconds = &v
+	return s
+}
+
+// SetEndPosition sets the EndPosition field's value.
+func (s *Step) SetEndPosition(v []*float64) *Step {
+	s.EndPosition = v
+	return s
+}
+
+// SetGeometryOffset sets the GeometryOffset field's value.
+func (s *Step) SetGeometryOffset(v int64) *Step {
+	s.GeometryOffset = &v
+	return s
+}
+
+// SetStartPosition sets the StartPosition field's value.
+func (s *Step) SetStartPosition(v []*float64) *Step {
+	s.StartPosition = v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource whose tags you want to update.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
+
+	// The mapping from tag key to tag value for each tag associated with the specified
+	// resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -9326,6 +12288,179 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains details about the truck dimensions in the unit of measurement that
+// you specify. Used to filter out roads that can't support or allow the specified
+// dimensions for requests that specify TravelMode as Truck.
+type TruckDimensions struct {
+	_ struct{} `type:"structure"`
+
+	// The height of the truck.
+	//
+	//    * For example, 4.5.
+	Height *float64 `type:"double"`
+
+	// The length of the truck.
+	//
+	//    * For example, 15.5.
+	Length *float64 `type:"double"`
+
+	// Specifies the unit of measurement for the truck dimensions.
+	//
+	// Default Value: Meters
+	Unit *string `type:"string" enum:"DimensionUnit"`
+
+	// The width of the truck.
+	//
+	//    * For example, 4.5.
+	Width *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s TruckDimensions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TruckDimensions) GoString() string {
+	return s.String()
+}
+
+// SetHeight sets the Height field's value.
+func (s *TruckDimensions) SetHeight(v float64) *TruckDimensions {
+	s.Height = &v
+	return s
+}
+
+// SetLength sets the Length field's value.
+func (s *TruckDimensions) SetLength(v float64) *TruckDimensions {
+	s.Length = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *TruckDimensions) SetUnit(v string) *TruckDimensions {
+	s.Unit = &v
+	return s
+}
+
+// SetWidth sets the Width field's value.
+func (s *TruckDimensions) SetWidth(v float64) *TruckDimensions {
+	s.Width = &v
+	return s
+}
+
+// Contains details about the truck's weight specifications. Used to avoid roads
+// that can't support or allow the total weight for requests that specify TravelMode
+// as Truck.
+type TruckWeight struct {
+	_ struct{} `type:"structure"`
+
+	// The total weight of the truck.
+	//
+	//    * For example, 3500.
+	Total *float64 `type:"double"`
+
+	// The unit of measurement to use for the truck weight.
+	//
+	// Default Value: Kilograms
+	Unit *string `type:"string" enum:"VehicleWeightUnit"`
+}
+
+// String returns the string representation
+func (s TruckWeight) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TruckWeight) GoString() string {
+	return s.String()
+}
+
+// SetTotal sets the Total field's value.
+func (s *TruckWeight) SetTotal(v float64) *TruckWeight {
+	s.Total = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *TruckWeight) SetUnit(v string) *TruckWeight {
+	s.Unit = &v
+	return s
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the resource from which you want to remove
+	// tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
+
+	// The list of tag keys to remove from the resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The input failed to meet the constraints specified by the AWS service.
@@ -9465,6 +12600,38 @@ func BatchItemErrorCode_Values() []string {
 }
 
 const (
+	// DimensionUnitMeters is a DimensionUnit enum value
+	DimensionUnitMeters = "Meters"
+
+	// DimensionUnitFeet is a DimensionUnit enum value
+	DimensionUnitFeet = "Feet"
+)
+
+// DimensionUnit_Values returns all elements of the DimensionUnit enum
+func DimensionUnit_Values() []string {
+	return []string{
+		DimensionUnitMeters,
+		DimensionUnitFeet,
+	}
+}
+
+const (
+	// DistanceUnitKilometers is a DistanceUnit enum value
+	DistanceUnitKilometers = "Kilometers"
+
+	// DistanceUnitMiles is a DistanceUnit enum value
+	DistanceUnitMiles = "Miles"
+)
+
+// DistanceUnit_Values returns all elements of the DistanceUnit enum
+func DistanceUnit_Values() []string {
+	return []string{
+		DistanceUnitKilometers,
+		DistanceUnitMiles,
+	}
+}
+
+const (
 	// IntendedUseSingleUse is a IntendedUse enum value
 	IntendedUseSingleUse = "SingleUse"
 
@@ -9501,6 +12668,26 @@ func PricingPlan_Values() []string {
 }
 
 const (
+	// TravelModeCar is a TravelMode enum value
+	TravelModeCar = "Car"
+
+	// TravelModeTruck is a TravelMode enum value
+	TravelModeTruck = "Truck"
+
+	// TravelModeWalking is a TravelMode enum value
+	TravelModeWalking = "Walking"
+)
+
+// TravelMode_Values returns all elements of the TravelMode enum
+func TravelMode_Values() []string {
+	return []string{
+		TravelModeCar,
+		TravelModeTruck,
+		TravelModeWalking,
+	}
+}
+
+const (
 	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
 	ValidationExceptionReasonUnknownOperation = "UnknownOperation"
 
@@ -9525,5 +12712,21 @@ func ValidationExceptionReason_Values() []string {
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
+	}
+}
+
+const (
+	// VehicleWeightUnitKilograms is a VehicleWeightUnit enum value
+	VehicleWeightUnitKilograms = "Kilograms"
+
+	// VehicleWeightUnitPounds is a VehicleWeightUnit enum value
+	VehicleWeightUnitPounds = "Pounds"
+)
+
+// VehicleWeightUnit_Values returns all elements of the VehicleWeightUnit enum
+func VehicleWeightUnit_Values() []string {
+	return []string{
+		VehicleWeightUnitKilograms,
+		VehicleWeightUnitPounds,
 	}
 }

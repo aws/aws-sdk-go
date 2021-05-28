@@ -31,6 +31,24 @@
       ],
       "endpoint":{"hostPrefix":"tracking."}
     },
+    "BatchDeleteDevicePositionHistory":{
+      "name":"BatchDeleteDevicePositionHistory",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tracking/v0/trackers/{TrackerName}/delete-positions",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDeleteDevicePositionHistoryRequest"},
+      "output":{"shape":"BatchDeleteDevicePositionHistoryResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"tracking."}
+    },
     "BatchDeleteGeofence":{
       "name":"BatchDeleteGeofence",
       "http":{
@@ -121,6 +139,24 @@
       ],
       "endpoint":{"hostPrefix":"tracking."}
     },
+    "CalculateRoute":{
+      "name":"CalculateRoute",
+      "http":{
+        "method":"POST",
+        "requestUri":"/routes/v0/calculators/{CalculatorName}/calculate/route",
+        "responseCode":200
+      },
+      "input":{"shape":"CalculateRouteRequest"},
+      "output":{"shape":"CalculateRouteResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."}
+    },
     "CreateGeofenceCollection":{
       "name":"CreateGeofenceCollection",
       "http":{
@@ -176,6 +212,25 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"places."},
+      "idempotent":true
+    },
+    "CreateRouteCalculator":{
+      "name":"CreateRouteCalculator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/routes/v0/calculators",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateRouteCalculatorRequest"},
+      "output":{"shape":"CreateRouteCalculatorResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."},
       "idempotent":true
     },
     "CreateTracker":{
@@ -254,6 +309,25 @@
       "endpoint":{"hostPrefix":"places."},
       "idempotent":true
     },
+    "DeleteRouteCalculator":{
+      "name":"DeleteRouteCalculator",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/routes/v0/calculators/{CalculatorName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteRouteCalculatorRequest"},
+      "output":{"shape":"DeleteRouteCalculatorResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."},
+      "idempotent":true
+    },
     "DeleteTracker":{
       "name":"DeleteTracker",
       "http":{
@@ -326,6 +400,24 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"places."}
+    },
+    "DescribeRouteCalculator":{
+      "name":"DescribeRouteCalculator",
+      "http":{
+        "method":"GET",
+        "requestUri":"/routes/v0/calculators/{CalculatorName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeRouteCalculatorRequest"},
+      "output":{"shape":"DescribeRouteCalculatorResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."}
     },
     "DescribeTracker":{
       "name":"DescribeTracker",
@@ -489,6 +581,23 @@
       ],
       "endpoint":{"hostPrefix":"maps."}
     },
+    "ListDevicePositions":{
+      "name":"ListDevicePositions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tracking/v0/trackers/{TrackerName}/list-positions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListDevicePositionsRequest"},
+      "output":{"shape":"ListDevicePositionsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"tracking."}
+    },
     "ListGeofenceCollections":{
       "name":"ListGeofenceCollections",
       "http":{
@@ -557,6 +666,41 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"places."}
+    },
+    "ListRouteCalculators":{
+      "name":"ListRouteCalculators",
+      "http":{
+        "method":"POST",
+        "requestUri":"/routes/v0/list-calculators",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRouteCalculatorsRequest"},
+      "output":{"shape":"ListRouteCalculatorsResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."}
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{ResourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"metadata."}
     },
     "ListTrackerConsumers":{
       "name":"ListTrackerConsumers",
@@ -647,6 +791,43 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"places."}
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{ResourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"metadata."}
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{ResourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"metadata."},
+      "idempotent":true
     }
   },
   "shapes":{
@@ -693,6 +874,49 @@
     "AssociateTrackerConsumerResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "BatchDeleteDevicePositionHistoryError":{
+      "type":"structure",
+      "required":[
+        "DeviceId",
+        "Error"
+      ],
+      "members":{
+        "DeviceId":{"shape":"Id"},
+        "Error":{"shape":"BatchItemError"}
+      }
+    },
+    "BatchDeleteDevicePositionHistoryErrorList":{
+      "type":"list",
+      "member":{"shape":"BatchDeleteDevicePositionHistoryError"}
+    },
+    "BatchDeleteDevicePositionHistoryRequest":{
+      "type":"structure",
+      "required":[
+        "DeviceIds",
+        "TrackerName"
+      ],
+      "members":{
+        "DeviceIds":{"shape":"BatchDeleteDevicePositionHistoryRequestDeviceIdsList"},
+        "TrackerName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"TrackerName"
+        }
+      }
+    },
+    "BatchDeleteDevicePositionHistoryRequestDeviceIdsList":{
+      "type":"list",
+      "member":{"shape":"Id"},
+      "max":100,
+      "min":1
+    },
+    "BatchDeleteDevicePositionHistoryResponse":{
+      "type":"structure",
+      "required":["Errors"],
+      "members":{
+        "Errors":{"shape":"BatchDeleteDevicePositionHistoryErrorList"}
       }
     },
     "BatchDeleteGeofenceError":{
@@ -974,12 +1198,101 @@
       }
     },
     "Blob":{"type":"blob"},
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
     "BoundingBox":{
       "type":"list",
       "member":{"shape":"Double"},
-      "max":6,
+      "max":4,
       "min":4,
       "sensitive":true
+    },
+    "CalculateRouteCarModeOptions":{
+      "type":"structure",
+      "members":{
+        "AvoidFerries":{"shape":"Boolean"},
+        "AvoidTolls":{"shape":"Boolean"}
+      }
+    },
+    "CalculateRouteRequest":{
+      "type":"structure",
+      "required":[
+        "CalculatorName",
+        "DeparturePosition",
+        "DestinationPosition"
+      ],
+      "members":{
+        "CalculatorName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"CalculatorName"
+        },
+        "CarModeOptions":{"shape":"CalculateRouteCarModeOptions"},
+        "DepartNow":{"shape":"Boolean"},
+        "DeparturePosition":{"shape":"Position"},
+        "DepartureTime":{"shape":"Timestamp"},
+        "DestinationPosition":{"shape":"Position"},
+        "DistanceUnit":{"shape":"DistanceUnit"},
+        "IncludeLegGeometry":{"shape":"Boolean"},
+        "TravelMode":{"shape":"TravelMode"},
+        "TruckModeOptions":{"shape":"CalculateRouteTruckModeOptions"},
+        "WaypointPositions":{"shape":"CalculateRouteRequestWaypointPositionsList"}
+      }
+    },
+    "CalculateRouteRequestWaypointPositionsList":{
+      "type":"list",
+      "member":{"shape":"Position"},
+      "max":23,
+      "min":0
+    },
+    "CalculateRouteResponse":{
+      "type":"structure",
+      "required":[
+        "Legs",
+        "Summary"
+      ],
+      "members":{
+        "Legs":{"shape":"LegList"},
+        "Summary":{"shape":"CalculateRouteSummary"}
+      }
+    },
+    "CalculateRouteSummary":{
+      "type":"structure",
+      "required":[
+        "DataSource",
+        "Distance",
+        "DistanceUnit",
+        "DurationSeconds",
+        "RouteBBox"
+      ],
+      "members":{
+        "DataSource":{"shape":"String"},
+        "Distance":{"shape":"CalculateRouteSummaryDistanceDouble"},
+        "DistanceUnit":{"shape":"DistanceUnit"},
+        "DurationSeconds":{"shape":"CalculateRouteSummaryDurationSecondsDouble"},
+        "RouteBBox":{"shape":"BoundingBox"}
+      }
+    },
+    "CalculateRouteSummaryDistanceDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "CalculateRouteSummaryDurationSecondsDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "CalculateRouteTruckModeOptions":{
+      "type":"structure",
+      "members":{
+        "AvoidFerries":{"shape":"Boolean"},
+        "AvoidTolls":{"shape":"Boolean"},
+        "Dimensions":{"shape":"TruckDimensions"},
+        "Weight":{"shape":"TruckWeight"}
+      }
     },
     "ConflictException":{
       "type":"structure",
@@ -1015,8 +1328,10 @@
       "members":{
         "CollectionName":{"shape":"ResourceName"},
         "Description":{"shape":"ResourceDescription"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "PricingPlan":{"shape":"PricingPlan"},
-        "PricingPlanDataSource":{"shape":"String"}
+        "PricingPlanDataSource":{"shape":"String"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateGeofenceCollectionResponse":{
@@ -1043,7 +1358,8 @@
         "Configuration":{"shape":"MapConfiguration"},
         "Description":{"shape":"ResourceDescription"},
         "MapName":{"shape":"ResourceName"},
-        "PricingPlan":{"shape":"PricingPlan"}
+        "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateMapResponse":{
@@ -1071,7 +1387,8 @@
         "DataSourceConfiguration":{"shape":"DataSourceConfiguration"},
         "Description":{"shape":"ResourceDescription"},
         "IndexName":{"shape":"ResourceName"},
-        "PricingPlan":{"shape":"PricingPlan"}
+        "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreatePlaceIndexResponse":{
@@ -1087,6 +1404,34 @@
         "IndexName":{"shape":"ResourceName"}
       }
     },
+    "CreateRouteCalculatorRequest":{
+      "type":"structure",
+      "required":[
+        "CalculatorName",
+        "DataSource",
+        "PricingPlan"
+      ],
+      "members":{
+        "CalculatorName":{"shape":"ResourceName"},
+        "DataSource":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "CreateRouteCalculatorResponse":{
+      "type":"structure",
+      "required":[
+        "CalculatorArn",
+        "CalculatorName",
+        "CreateTime"
+      ],
+      "members":{
+        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorName":{"shape":"ResourceName"},
+        "CreateTime":{"shape":"Timestamp"}
+      }
+    },
     "CreateTrackerRequest":{
       "type":"structure",
       "required":[
@@ -1095,8 +1440,10 @@
       ],
       "members":{
         "Description":{"shape":"ResourceDescription"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
+        "Tags":{"shape":"TagMap"},
         "TrackerName":{"shape":"ResourceName"}
       }
     },
@@ -1167,6 +1514,22 @@
       "members":{
       }
     },
+    "DeleteRouteCalculatorRequest":{
+      "type":"structure",
+      "required":["CalculatorName"],
+      "members":{
+        "CalculatorName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"CalculatorName"
+        }
+      }
+    },
+    "DeleteRouteCalculatorResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteTrackerRequest":{
       "type":"structure",
       "required":["TrackerName"],
@@ -1209,8 +1572,10 @@
         "CollectionName":{"shape":"ResourceName"},
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
+        "Tags":{"shape":"TagMap"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1245,6 +1610,7 @@
         "MapArn":{"shape":"Arn"},
         "MapName":{"shape":"ResourceName"},
         "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1279,6 +1645,40 @@
         "IndexArn":{"shape":"Arn"},
         "IndexName":{"shape":"ResourceName"},
         "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeRouteCalculatorRequest":{
+      "type":"structure",
+      "required":["CalculatorName"],
+      "members":{
+        "CalculatorName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"CalculatorName"
+        }
+      }
+    },
+    "DescribeRouteCalculatorResponse":{
+      "type":"structure",
+      "required":[
+        "CalculatorArn",
+        "CalculatorName",
+        "CreateTime",
+        "DataSource",
+        "Description",
+        "PricingPlan",
+        "UpdateTime"
+      ],
+      "members":{
+        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorName":{"shape":"ResourceName"},
+        "CreateTime":{"shape":"Timestamp"},
+        "DataSource":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "Tags":{"shape":"TagMap"},
         "UpdateTime":{"shape":"Timestamp"}
       }
     },
@@ -1306,8 +1706,10 @@
       "members":{
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
+        "KmsKeyId":{"shape":"KmsKeyId"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
+        "Tags":{"shape":"TagMap"},
         "TrackerArn":{"shape":"Arn"},
         "TrackerName":{"shape":"ResourceName"},
         "UpdateTime":{"shape":"Timestamp"}
@@ -1344,6 +1746,13 @@
         "SampleTime":{"shape":"Timestamp"}
       }
     },
+    "DimensionUnit":{
+      "type":"string",
+      "enum":[
+        "Meters",
+        "Feet"
+      ]
+    },
     "DisassociateTrackerConsumerRequest":{
       "type":"structure",
       "required":[
@@ -1367,6 +1776,13 @@
       "type":"structure",
       "members":{
       }
+    },
+    "DistanceUnit":{
+      "type":"string",
+      "enum":[
+        "Kilometers",
+        "Miles"
+      ]
     },
     "Double":{
       "type":"double",
@@ -1658,6 +2074,54 @@
       "fault":true,
       "retryable":{"throttling":false}
     },
+    "KmsKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
+    "Leg":{
+      "type":"structure",
+      "required":[
+        "Distance",
+        "DurationSeconds",
+        "EndPosition",
+        "StartPosition",
+        "Steps"
+      ],
+      "members":{
+        "Distance":{"shape":"LegDistanceDouble"},
+        "DurationSeconds":{"shape":"LegDurationSecondsDouble"},
+        "EndPosition":{"shape":"Position"},
+        "Geometry":{"shape":"LegGeometry"},
+        "StartPosition":{"shape":"Position"},
+        "Steps":{"shape":"StepList"}
+      }
+    },
+    "LegDistanceDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "LegDurationSecondsDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "LegGeometry":{
+      "type":"structure",
+      "members":{
+        "LineString":{"shape":"LineString"}
+      }
+    },
+    "LegList":{
+      "type":"list",
+      "member":{"shape":"Leg"}
+    },
+    "LineString":{
+      "type":"list",
+      "member":{"shape":"Position"},
+      "min":2
+    },
     "LinearRing":{
       "type":"list",
       "member":{"shape":"Position"},
@@ -1667,6 +2131,50 @@
       "type":"list",
       "member":{"shape":"LinearRing"},
       "min":1
+    },
+    "ListDevicePositionsRequest":{
+      "type":"structure",
+      "required":["TrackerName"],
+      "members":{
+        "MaxResults":{"shape":"ListDevicePositionsRequestMaxResultsInteger"},
+        "NextToken":{"shape":"Token"},
+        "TrackerName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"TrackerName"
+        }
+      }
+    },
+    "ListDevicePositionsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListDevicePositionsResponse":{
+      "type":"structure",
+      "required":["Entries"],
+      "members":{
+        "Entries":{"shape":"ListDevicePositionsResponseEntryList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListDevicePositionsResponseEntry":{
+      "type":"structure",
+      "required":[
+        "DeviceId",
+        "Position",
+        "SampleTime"
+      ],
+      "members":{
+        "DeviceId":{"shape":"Id"},
+        "Position":{"shape":"Position"},
+        "SampleTime":{"shape":"Timestamp"}
+      }
+    },
+    "ListDevicePositionsResponseEntryList":{
+      "type":"list",
+      "member":{"shape":"ListDevicePositionsResponseEntry"}
     },
     "ListGeofenceCollectionsRequest":{
       "type":"structure",
@@ -1840,6 +2348,67 @@
       "type":"list",
       "member":{"shape":"ListPlaceIndexesResponseEntry"}
     },
+    "ListRouteCalculatorsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"ListRouteCalculatorsRequestMaxResultsInteger"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListRouteCalculatorsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListRouteCalculatorsResponse":{
+      "type":"structure",
+      "required":["Entries"],
+      "members":{
+        "Entries":{"shape":"ListRouteCalculatorsResponseEntryList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "ListRouteCalculatorsResponseEntry":{
+      "type":"structure",
+      "required":[
+        "CalculatorName",
+        "CreateTime",
+        "DataSource",
+        "Description",
+        "PricingPlan",
+        "UpdateTime"
+      ],
+      "members":{
+        "CalculatorName":{"shape":"ResourceName"},
+        "CreateTime":{"shape":"Timestamp"},
+        "DataSource":{"shape":"String"},
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "ListRouteCalculatorsResponseEntryList":{
+      "type":"list",
+      "member":{"shape":"ListRouteCalculatorsResponseEntry"}
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagMap"}
+      }
+    },
     "ListTrackerConsumersRequest":{
       "type":"structure",
       "required":["TrackerName"],
@@ -1921,7 +2490,7 @@
       "type":"string",
       "max":100,
       "min":1,
-      "pattern":"^[-._\\p{L}\\p{N}]+$"
+      "pattern":"^[-._\\w]+$"
     },
     "Place":{
       "type":"structure",
@@ -2132,6 +2701,41 @@
         "Text":{"shape":"SyntheticSearchPlaceIndexForTextSummaryString"}
       }
     },
+    "Step":{
+      "type":"structure",
+      "required":[
+        "Distance",
+        "DurationSeconds",
+        "EndPosition",
+        "StartPosition"
+      ],
+      "members":{
+        "Distance":{"shape":"StepDistanceDouble"},
+        "DurationSeconds":{"shape":"StepDurationSecondsDouble"},
+        "EndPosition":{"shape":"Position"},
+        "GeometryOffset":{"shape":"StepGeometryOffsetInteger"},
+        "StartPosition":{"shape":"Position"}
+      }
+    },
+    "StepDistanceDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "StepDurationSecondsDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "StepGeometryOffsetInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "StepList":{
+      "type":"list",
+      "member":{"shape":"Step"}
+    },
     "String":{"type":"string"},
     "SyntheticSearchPlaceIndexForTextRequestString":{
       "type":"string",
@@ -2142,6 +2746,51 @@
     "SyntheticSearchPlaceIndexForTextSummaryString":{
       "type":"string",
       "sensitive":true
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^(?!aws:)[a-zA-Z+-=._:/]+$"
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":1
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        },
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[A-Za-z0-9 _=@:.+-/]*$"
     },
     "ThrottlingException":{
       "type":"structure",
@@ -2167,6 +2816,74 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "TravelMode":{
+      "type":"string",
+      "enum":[
+        "Car",
+        "Truck",
+        "Walking"
+      ]
+    },
+    "TruckDimensions":{
+      "type":"structure",
+      "members":{
+        "Height":{"shape":"TruckDimensionsHeightDouble"},
+        "Length":{"shape":"TruckDimensionsLengthDouble"},
+        "Unit":{"shape":"DimensionUnit"},
+        "Width":{"shape":"TruckDimensionsWidthDouble"}
+      }
+    },
+    "TruckDimensionsHeightDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "TruckDimensionsLengthDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "TruckDimensionsWidthDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "TruckWeight":{
+      "type":"structure",
+      "members":{
+        "Total":{"shape":"TruckWeightTotalDouble"},
+        "Unit":{"shape":"VehicleWeightUnit"}
+      }
+    },
+    "TruckWeightTotalDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{
+          "shape":"Arn",
+          "location":"uri",
+          "locationName":"ResourceArn"
+        },
+        "TagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "ValidationException":{
       "type":"structure",
@@ -2224,6 +2941,13 @@
         "CannotParse",
         "FieldValidationFailed",
         "Other"
+      ]
+    },
+    "VehicleWeightUnit":{
+      "type":"string",
+      "enum":[
+        "Kilograms",
+        "Pounds"
       ]
     }
   }
