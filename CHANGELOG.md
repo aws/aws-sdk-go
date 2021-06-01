@@ -1,3 +1,16 @@
+Release v1.38.52 (2021-06-01)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Added idempotency to CreateNetworkInterface using the ClientToken parameter.
+* `service/iotwireless`: Updates service API and documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new Canadian French voice - Gabrielle. Gabrielle is available as Neural voice only.
+* `service/servicediscovery`: Updates service API and documentation
+* `service/sns`: Updates service API, documentation, and paginators
+  * This release adds SMS sandbox in Amazon SNS and the ability to view all configured origination numbers. The SMS sandbox provides a safe environment for sending SMS messages, without risking your reputation as an SMS sender.
+
 Release v1.38.51 (2021-05-28)
 ===
 

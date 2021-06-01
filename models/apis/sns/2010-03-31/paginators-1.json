@@ -5,10 +5,22 @@
       "output_token": "NextToken",
       "result_key": "Endpoints"
     },
+    "ListOriginationNumbers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PhoneNumbers"
+    },
     "ListPlatformApplications": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "result_key": "PlatformApplications"
+    },
+    "ListSMSSandboxPhoneNumbers": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PhoneNumbers"
     },
     "ListSubscriptions": {
       "input_token": "NextToken",

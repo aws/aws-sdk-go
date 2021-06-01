@@ -106,6 +106,14 @@ const (
 	// Indicates that the requested resource does not exist.
 	ErrCodeNotFoundException = "NotFound"
 
+	// ErrCodeOptedOutException for service response error code
+	// "OptedOut".
+	//
+	// Indicates that the specified phone number opted out of receiving SMS messages
+	// from your AWS account. You can't send SMS messages to phone numbers that
+	// opt out.
+	ErrCodeOptedOutException = "OptedOut"
+
 	// ErrCodePlatformApplicationDisabledException for service response error code
 	// "PlatformApplicationDisabled".
 	//
@@ -115,7 +123,8 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFound".
 	//
-	// Can't tag resource. Verify that the topic exists.
+	// Can’t perform the action on the specified resource. Make sure that the
+	// resource exists.
 	ErrCodeResourceNotFoundException = "ResourceNotFound"
 
 	// ErrCodeStaleTagException for service response error code
@@ -156,4 +165,22 @@ const (
 	//
 	// Indicates that the customer already owns the maximum allowed number of topics.
 	ErrCodeTopicLimitExceededException = "TopicLimitExceeded"
+
+	// ErrCodeUserErrorException for service response error code
+	// "UserError".
+	//
+	// Indicates that a request parameter does not comply with the associated constraints.
+	ErrCodeUserErrorException = "UserError"
+
+	// ErrCodeValidationException for service response error code
+	// "ValidationException".
+	//
+	// Indicates that a parameter in the request is invalid.
+	ErrCodeValidationException = "ValidationException"
+
+	// ErrCodeVerificationException for service response error code
+	// "VerificationException".
+	//
+	// Indicates that the one-time password (OTP) used for verification is invalid.
+	ErrCodeVerificationException = "VerificationException"
 )

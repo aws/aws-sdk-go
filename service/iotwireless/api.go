@@ -2248,6 +2248,98 @@ func (c *IoTWireless) GetDeviceProfileWithContext(ctx aws.Context, input *GetDev
 	return out, req.Send()
 }
 
+const opGetLogLevelsByResourceTypes = "GetLogLevelsByResourceTypes"
+
+// GetLogLevelsByResourceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the GetLogLevelsByResourceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLogLevelsByResourceTypes for more information on using the GetLogLevelsByResourceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLogLevelsByResourceTypesRequest method.
+//    req, resp := client.GetLogLevelsByResourceTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetLogLevelsByResourceTypes
+func (c *IoTWireless) GetLogLevelsByResourceTypesRequest(input *GetLogLevelsByResourceTypesInput) (req *request.Request, output *GetLogLevelsByResourceTypesOutput) {
+	op := &request.Operation{
+		Name:       opGetLogLevelsByResourceTypes,
+		HTTPMethod: "GET",
+		HTTPPath:   "/log-levels",
+	}
+
+	if input == nil {
+		input = &GetLogLevelsByResourceTypesInput{}
+	}
+
+	output = &GetLogLevelsByResourceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLogLevelsByResourceTypes API operation for AWS IoT Wireless.
+//
+// Returns current default log-levels, or log levels by resource types, could
+// be for wireless device log options or wireless gateway log options.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetLogLevelsByResourceTypes for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetLogLevelsByResourceTypes
+func (c *IoTWireless) GetLogLevelsByResourceTypes(input *GetLogLevelsByResourceTypesInput) (*GetLogLevelsByResourceTypesOutput, error) {
+	req, out := c.GetLogLevelsByResourceTypesRequest(input)
+	return out, req.Send()
+}
+
+// GetLogLevelsByResourceTypesWithContext is the same as GetLogLevelsByResourceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLogLevelsByResourceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetLogLevelsByResourceTypesWithContext(ctx aws.Context, input *GetLogLevelsByResourceTypesInput, opts ...request.Option) (*GetLogLevelsByResourceTypesOutput, error) {
+	req, out := c.GetLogLevelsByResourceTypesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPartnerAccount = "GetPartnerAccount"
 
 // GetPartnerAccountRequest generates a "aws/request.Request" representing the
@@ -2332,6 +2424,98 @@ func (c *IoTWireless) GetPartnerAccount(input *GetPartnerAccountInput) (*GetPart
 // for more information on using Contexts.
 func (c *IoTWireless) GetPartnerAccountWithContext(ctx aws.Context, input *GetPartnerAccountInput, opts ...request.Option) (*GetPartnerAccountOutput, error) {
 	req, out := c.GetPartnerAccountRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetResourceLogLevel = "GetResourceLogLevel"
+
+// GetResourceLogLevelRequest generates a "aws/request.Request" representing the
+// client's request for the GetResourceLogLevel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetResourceLogLevel for more information on using the GetResourceLogLevel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetResourceLogLevelRequest method.
+//    req, resp := client.GetResourceLogLevelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourceLogLevel
+func (c *IoTWireless) GetResourceLogLevelRequest(input *GetResourceLogLevelInput) (req *request.Request, output *GetResourceLogLevelOutput) {
+	op := &request.Operation{
+		Name:       opGetResourceLogLevel,
+		HTTPMethod: "GET",
+		HTTPPath:   "/log-levels/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &GetResourceLogLevelInput{}
+	}
+
+	output = &GetResourceLogLevelOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetResourceLogLevel API operation for AWS IoT Wireless.
+//
+// Fetches the log-level override if any for a given resource-ID and resource-type,
+// coulde be a wireless device or a wireless gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation GetResourceLogLevel for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/GetResourceLogLevel
+func (c *IoTWireless) GetResourceLogLevel(input *GetResourceLogLevelInput) (*GetResourceLogLevelOutput, error) {
+	req, out := c.GetResourceLogLevelRequest(input)
+	return out, req.Send()
+}
+
+// GetResourceLogLevelWithContext is the same as GetResourceLogLevel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetResourceLogLevel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) GetResourceLogLevelWithContext(ctx aws.Context, input *GetResourceLogLevelInput, opts ...request.Option) (*GetResourceLogLevelOutput, error) {
+	req, out := c.GetResourceLogLevelRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4243,6 +4427,285 @@ func (c *IoTWireless) ListWirelessGatewaysPagesWithContext(ctx aws.Context, inpu
 	return p.Err()
 }
 
+const opPutResourceLogLevel = "PutResourceLogLevel"
+
+// PutResourceLogLevelRequest generates a "aws/request.Request" representing the
+// client's request for the PutResourceLogLevel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutResourceLogLevel for more information on using the PutResourceLogLevel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutResourceLogLevelRequest method.
+//    req, resp := client.PutResourceLogLevelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutResourceLogLevel
+func (c *IoTWireless) PutResourceLogLevelRequest(input *PutResourceLogLevelInput) (req *request.Request, output *PutResourceLogLevelOutput) {
+	op := &request.Operation{
+		Name:       opPutResourceLogLevel,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/log-levels/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &PutResourceLogLevelInput{}
+	}
+
+	output = &PutResourceLogLevelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutResourceLogLevel API operation for AWS IoT Wireless.
+//
+// Sets the log-level override for a resource-ID and resource-type, could be
+// a wireless gateway or a wireless device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation PutResourceLogLevel for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/PutResourceLogLevel
+func (c *IoTWireless) PutResourceLogLevel(input *PutResourceLogLevelInput) (*PutResourceLogLevelOutput, error) {
+	req, out := c.PutResourceLogLevelRequest(input)
+	return out, req.Send()
+}
+
+// PutResourceLogLevelWithContext is the same as PutResourceLogLevel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutResourceLogLevel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) PutResourceLogLevelWithContext(ctx aws.Context, input *PutResourceLogLevelInput, opts ...request.Option) (*PutResourceLogLevelOutput, error) {
+	req, out := c.PutResourceLogLevelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opResetAllResourceLogLevels = "ResetAllResourceLogLevels"
+
+// ResetAllResourceLogLevelsRequest generates a "aws/request.Request" representing the
+// client's request for the ResetAllResourceLogLevels operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResetAllResourceLogLevels for more information on using the ResetAllResourceLogLevels
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResetAllResourceLogLevelsRequest method.
+//    req, resp := client.ResetAllResourceLogLevelsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ResetAllResourceLogLevels
+func (c *IoTWireless) ResetAllResourceLogLevelsRequest(input *ResetAllResourceLogLevelsInput) (req *request.Request, output *ResetAllResourceLogLevelsOutput) {
+	op := &request.Operation{
+		Name:       opResetAllResourceLogLevels,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/log-levels",
+	}
+
+	if input == nil {
+		input = &ResetAllResourceLogLevelsInput{}
+	}
+
+	output = &ResetAllResourceLogLevelsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ResetAllResourceLogLevels API operation for AWS IoT Wireless.
+//
+// Remove log-level overrides if any for all resources (both wireless devices
+// and wireless gateways).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ResetAllResourceLogLevels for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ResetAllResourceLogLevels
+func (c *IoTWireless) ResetAllResourceLogLevels(input *ResetAllResourceLogLevelsInput) (*ResetAllResourceLogLevelsOutput, error) {
+	req, out := c.ResetAllResourceLogLevelsRequest(input)
+	return out, req.Send()
+}
+
+// ResetAllResourceLogLevelsWithContext is the same as ResetAllResourceLogLevels with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetAllResourceLogLevels for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ResetAllResourceLogLevelsWithContext(ctx aws.Context, input *ResetAllResourceLogLevelsInput, opts ...request.Option) (*ResetAllResourceLogLevelsOutput, error) {
+	req, out := c.ResetAllResourceLogLevelsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opResetResourceLogLevel = "ResetResourceLogLevel"
+
+// ResetResourceLogLevelRequest generates a "aws/request.Request" representing the
+// client's request for the ResetResourceLogLevel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ResetResourceLogLevel for more information on using the ResetResourceLogLevel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ResetResourceLogLevelRequest method.
+//    req, resp := client.ResetResourceLogLevelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ResetResourceLogLevel
+func (c *IoTWireless) ResetResourceLogLevelRequest(input *ResetResourceLogLevelInput) (req *request.Request, output *ResetResourceLogLevelOutput) {
+	op := &request.Operation{
+		Name:       opResetResourceLogLevel,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/log-levels/{ResourceIdentifier}",
+	}
+
+	if input == nil {
+		input = &ResetResourceLogLevelInput{}
+	}
+
+	output = &ResetResourceLogLevelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ResetResourceLogLevel API operation for AWS IoT Wireless.
+//
+// Remove log-level override if any for a specific resource-ID and resource-type,
+// could be a wireless device or a wireless gateway.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation ResetResourceLogLevel for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/ResetResourceLogLevel
+func (c *IoTWireless) ResetResourceLogLevel(input *ResetResourceLogLevelInput) (*ResetResourceLogLevelOutput, error) {
+	req, out := c.ResetResourceLogLevelRequest(input)
+	return out, req.Send()
+}
+
+// ResetResourceLogLevelWithContext is the same as ResetResourceLogLevel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ResetResourceLogLevel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) ResetResourceLogLevelWithContext(ctx aws.Context, input *ResetResourceLogLevelInput, opts ...request.Option) (*ResetResourceLogLevelOutput, error) {
+	req, out := c.ResetResourceLogLevelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSendDataToWirelessDevice = "SendDataToWirelessDevice"
 
 // SendDataToWirelessDeviceRequest generates a "aws/request.Request" representing the
@@ -4693,6 +5156,103 @@ func (c *IoTWireless) UpdateDestination(input *UpdateDestinationInput) (*UpdateD
 // for more information on using Contexts.
 func (c *IoTWireless) UpdateDestinationWithContext(ctx aws.Context, input *UpdateDestinationInput, opts ...request.Option) (*UpdateDestinationOutput, error) {
 	req, out := c.UpdateDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateLogLevelsByResourceTypes = "UpdateLogLevelsByResourceTypes"
+
+// UpdateLogLevelsByResourceTypesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateLogLevelsByResourceTypes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateLogLevelsByResourceTypes for more information on using the UpdateLogLevelsByResourceTypes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateLogLevelsByResourceTypesRequest method.
+//    req, resp := client.UpdateLogLevelsByResourceTypesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateLogLevelsByResourceTypes
+func (c *IoTWireless) UpdateLogLevelsByResourceTypesRequest(input *UpdateLogLevelsByResourceTypesInput) (req *request.Request, output *UpdateLogLevelsByResourceTypesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateLogLevelsByResourceTypes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/log-levels",
+	}
+
+	if input == nil {
+		input = &UpdateLogLevelsByResourceTypesInput{}
+	}
+
+	output = &UpdateLogLevelsByResourceTypesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateLogLevelsByResourceTypes API operation for AWS IoT Wireless.
+//
+// Set default log level, or log levels by resource types, could be for wireless
+// device log options or wireless gateways log options. This is to control the
+// log messages that will be displayed in CloudWatch.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Wireless's
+// API operation UpdateLogLevelsByResourceTypes for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   User does not have permission to perform this action.
+//
+//   * ConflictException
+//   Adding, updating, or deleting the resource can cause an inconsistent state.
+//
+//   * InternalServerException
+//   An unexpected error occurred while processing a request.
+//
+//   * ResourceNotFoundException
+//   Resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied because it exceeded the allowed API request rate.
+//
+//   * ValidationException
+//   The input did not meet the specified constraints.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotwireless-2020-11-22/UpdateLogLevelsByResourceTypes
+func (c *IoTWireless) UpdateLogLevelsByResourceTypes(input *UpdateLogLevelsByResourceTypesInput) (*UpdateLogLevelsByResourceTypesOutput, error) {
+	req, out := c.UpdateLogLevelsByResourceTypesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateLogLevelsByResourceTypesWithContext is the same as UpdateLogLevelsByResourceTypes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateLogLevelsByResourceTypes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTWireless) UpdateLogLevelsByResourceTypesWithContext(ctx aws.Context, input *UpdateLogLevelsByResourceTypesInput, opts ...request.Option) (*UpdateLogLevelsByResourceTypesOutput, error) {
+	req, out := c.UpdateLogLevelsByResourceTypesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7322,6 +7882,61 @@ func (s *GetDeviceProfileOutput) SetName(v string) *GetDeviceProfileOutput {
 	return s
 }
 
+type GetLogLevelsByResourceTypesInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetLogLevelsByResourceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLogLevelsByResourceTypesInput) GoString() string {
+	return s.String()
+}
+
+type GetLogLevelsByResourceTypesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The log level for a log message.
+	DefaultLogLevel *string `type:"string" enum:"LogLevel"`
+
+	// The list of wireless device log options.
+	WirelessDeviceLogOptions []*WirelessDeviceLogOption `type:"list"`
+
+	// The list of wireless gateway log options.
+	WirelessGatewayLogOptions []*WirelessGatewayLogOption `type:"list"`
+}
+
+// String returns the string representation
+func (s GetLogLevelsByResourceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetLogLevelsByResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDefaultLogLevel sets the DefaultLogLevel field's value.
+func (s *GetLogLevelsByResourceTypesOutput) SetDefaultLogLevel(v string) *GetLogLevelsByResourceTypesOutput {
+	s.DefaultLogLevel = &v
+	return s
+}
+
+// SetWirelessDeviceLogOptions sets the WirelessDeviceLogOptions field's value.
+func (s *GetLogLevelsByResourceTypesOutput) SetWirelessDeviceLogOptions(v []*WirelessDeviceLogOption) *GetLogLevelsByResourceTypesOutput {
+	s.WirelessDeviceLogOptions = v
+	return s
+}
+
+// SetWirelessGatewayLogOptions sets the WirelessGatewayLogOptions field's value.
+func (s *GetLogLevelsByResourceTypesOutput) SetWirelessGatewayLogOptions(v []*WirelessGatewayLogOption) *GetLogLevelsByResourceTypesOutput {
+	s.WirelessGatewayLogOptions = v
+	return s
+}
+
 type GetPartnerAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7406,6 +8021,85 @@ func (s *GetPartnerAccountOutput) SetAccountLinked(v bool) *GetPartnerAccountOut
 // SetSidewalk sets the Sidewalk field's value.
 func (s *GetPartnerAccountOutput) SetSidewalk(v *SidewalkAccountInfoWithFingerprint) *GetPartnerAccountOutput {
 	s.Sidewalk = v
+	return s
+}
+
+type GetResourceLogLevelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the resource. For a Wireless Device, it is the wireless
+	// device id. For a wireless gateway, it is the wireless gateway id.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetResourceLogLevelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceLogLevelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetResourceLogLevelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetResourceLogLevelInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *GetResourceLogLevelInput) SetResourceIdentifier(v string) *GetResourceLogLevelInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetResourceLogLevelInput) SetResourceType(v string) *GetResourceLogLevelInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetResourceLogLevelOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The log level for a log message.
+	LogLevel *string `type:"string" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s GetResourceLogLevelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetResourceLogLevelOutput) GoString() string {
+	return s.String()
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *GetResourceLogLevelOutput) SetLogLevel(v string) *GetResourceLogLevelOutput {
+	s.LogLevel = &v
 	return s
 }
 
@@ -10023,6 +10717,188 @@ func (s *OtaaV11) SetNwkKey(v string) *OtaaV11 {
 	return s
 }
 
+type PutResourceLogLevelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The log level for a log message.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+
+	// The identifier of the resource. For a Wireless Device, it is the wireless
+	// device id. For a wireless gateway, it is the wireless gateway id.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutResourceLogLevelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutResourceLogLevelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutResourceLogLevelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutResourceLogLevelInput"}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *PutResourceLogLevelInput) SetLogLevel(v string) *PutResourceLogLevelInput {
+	s.LogLevel = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *PutResourceLogLevelInput) SetResourceIdentifier(v string) *PutResourceLogLevelInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *PutResourceLogLevelInput) SetResourceType(v string) *PutResourceLogLevelInput {
+	s.ResourceType = &v
+	return s
+}
+
+type PutResourceLogLevelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutResourceLogLevelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutResourceLogLevelOutput) GoString() string {
+	return s.String()
+}
+
+type ResetAllResourceLogLevelsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetAllResourceLogLevelsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResetAllResourceLogLevelsInput) GoString() string {
+	return s.String()
+}
+
+type ResetAllResourceLogLevelsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetAllResourceLogLevelsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResetAllResourceLogLevelsOutput) GoString() string {
+	return s.String()
+}
+
+type ResetResourceLogLevelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the resource. For a Wireless Device, it is the wireless
+	// device id. For a wireless gateway, it is the wireless gateway id.
+	//
+	// ResourceIdentifier is a required field
+	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
+
+	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ResetResourceLogLevelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResetResourceLogLevelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ResetResourceLogLevelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ResetResourceLogLevelInput"}
+	if s.ResourceIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceIdentifier"))
+	}
+	if s.ResourceIdentifier != nil && len(*s.ResourceIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceIdentifier", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *ResetResourceLogLevelInput) SetResourceIdentifier(v string) *ResetResourceLogLevelInput {
+	s.ResourceIdentifier = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResetResourceLogLevelInput) SetResourceType(v string) *ResetResourceLogLevelInput {
+	s.ResourceType = &v
+	return s
+}
+
+type ResetResourceLogLevelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ResetResourceLogLevelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResetResourceLogLevelOutput) GoString() string {
+	return s.String()
+}
+
 // Resource does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -11098,6 +11974,91 @@ func (s UpdateDestinationOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateLogLevelsByResourceTypesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The log level for a log message.
+	DefaultLogLevel *string `type:"string" enum:"LogLevel"`
+
+	// The list of wireless device log options.
+	WirelessDeviceLogOptions []*WirelessDeviceLogOption `type:"list"`
+
+	// The list of wireless gateway log options.
+	WirelessGatewayLogOptions []*WirelessGatewayLogOption `type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateLogLevelsByResourceTypesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLogLevelsByResourceTypesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateLogLevelsByResourceTypesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateLogLevelsByResourceTypesInput"}
+	if s.WirelessDeviceLogOptions != nil {
+		for i, v := range s.WirelessDeviceLogOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WirelessDeviceLogOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.WirelessGatewayLogOptions != nil {
+		for i, v := range s.WirelessGatewayLogOptions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "WirelessGatewayLogOptions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultLogLevel sets the DefaultLogLevel field's value.
+func (s *UpdateLogLevelsByResourceTypesInput) SetDefaultLogLevel(v string) *UpdateLogLevelsByResourceTypesInput {
+	s.DefaultLogLevel = &v
+	return s
+}
+
+// SetWirelessDeviceLogOptions sets the WirelessDeviceLogOptions field's value.
+func (s *UpdateLogLevelsByResourceTypesInput) SetWirelessDeviceLogOptions(v []*WirelessDeviceLogOption) *UpdateLogLevelsByResourceTypesInput {
+	s.WirelessDeviceLogOptions = v
+	return s
+}
+
+// SetWirelessGatewayLogOptions sets the WirelessGatewayLogOptions field's value.
+func (s *UpdateLogLevelsByResourceTypesInput) SetWirelessGatewayLogOptions(v []*WirelessGatewayLogOption) *UpdateLogLevelsByResourceTypesInput {
+	s.WirelessGatewayLogOptions = v
+	return s
+}
+
+type UpdateLogLevelsByResourceTypesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateLogLevelsByResourceTypesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateLogLevelsByResourceTypesOutput) GoString() string {
+	return s.String()
+}
+
 type UpdatePartnerAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11530,6 +12491,136 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The log option for a wireless device event. Can be used to set log level
+// for a specific wireless device event. For a LoRaWAN device, the possible
+// events for a log messsage are: Join, Rejoin, Downlink_Data, Uplink_Data.
+// For a Sidewalk device, the possible events for a log message are: Registration,
+// Downlink_Data, Uplink_Data.
+type WirelessDeviceEventLogOption struct {
+	_ struct{} `type:"structure"`
+
+	// The event for a log message, if the log message is tied to a wireless device.
+	//
+	// Event is a required field
+	Event *string `type:"string" required:"true" enum:"WirelessDeviceEvent"`
+
+	// The log level for a log message.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s WirelessDeviceEventLogOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WirelessDeviceEventLogOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WirelessDeviceEventLogOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WirelessDeviceEventLogOption"}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvent sets the Event field's value.
+func (s *WirelessDeviceEventLogOption) SetEvent(v string) *WirelessDeviceEventLogOption {
+	s.Event = &v
+	return s
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *WirelessDeviceEventLogOption) SetLogLevel(v string) *WirelessDeviceEventLogOption {
+	s.LogLevel = &v
+	return s
+}
+
+// The log option for wireless devices. Can be used to set log level for a specific
+// type of wireless device.
+type WirelessDeviceLogOption struct {
+	_ struct{} `type:"structure"`
+
+	// The list of wireless device event log options.
+	Events []*WirelessDeviceEventLogOption `type:"list"`
+
+	// The log level for a log message.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+
+	// The wireless device type.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"WirelessDeviceType"`
+}
+
+// String returns the string representation
+func (s WirelessDeviceLogOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WirelessDeviceLogOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WirelessDeviceLogOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WirelessDeviceLogOption"}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Events != nil {
+		for i, v := range s.Events {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Events", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvents sets the Events field's value.
+func (s *WirelessDeviceLogOption) SetEvents(v []*WirelessDeviceEventLogOption) *WirelessDeviceLogOption {
+	s.Events = v
+	return s
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *WirelessDeviceLogOption) SetLogLevel(v string) *WirelessDeviceLogOption {
+	s.LogLevel = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WirelessDeviceLogOption) SetType(v string) *WirelessDeviceLogOption {
+	s.Type = &v
+	return s
+}
+
 // Information about a wireless device's operation.
 type WirelessDeviceStatistics struct {
 	_ struct{} `type:"structure"`
@@ -11613,6 +12704,134 @@ func (s *WirelessDeviceStatistics) SetSidewalk(v *SidewalkListDevice) *WirelessD
 
 // SetType sets the Type field's value.
 func (s *WirelessDeviceStatistics) SetType(v string) *WirelessDeviceStatistics {
+	s.Type = &v
+	return s
+}
+
+// The log option for a wireless gateway event. Can be used to set log level
+// for a specific wireless gateway event. For a LoRaWAN gateway, the possible
+// events for a log message are: CUPS_Request, Certificate.
+type WirelessGatewayEventLogOption struct {
+	_ struct{} `type:"structure"`
+
+	// The event for a log message, if the log message is tied to a wireless gateway.
+	//
+	// Event is a required field
+	Event *string `type:"string" required:"true" enum:"WirelessGatewayEvent"`
+
+	// The log level for a log message.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+}
+
+// String returns the string representation
+func (s WirelessGatewayEventLogOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WirelessGatewayEventLogOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WirelessGatewayEventLogOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WirelessGatewayEventLogOption"}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvent sets the Event field's value.
+func (s *WirelessGatewayEventLogOption) SetEvent(v string) *WirelessGatewayEventLogOption {
+	s.Event = &v
+	return s
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *WirelessGatewayEventLogOption) SetLogLevel(v string) *WirelessGatewayEventLogOption {
+	s.LogLevel = &v
+	return s
+}
+
+// The log option for wireless gateways. Can be used to set log level for a
+// specific type of wireless gateway.
+type WirelessGatewayLogOption struct {
+	_ struct{} `type:"structure"`
+
+	// The list of wireless gateway event log options.
+	Events []*WirelessGatewayEventLogOption `type:"list"`
+
+	// The log level for a log message.
+	//
+	// LogLevel is a required field
+	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
+
+	// The wireless gateway type.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"WirelessGatewayType"`
+}
+
+// String returns the string representation
+func (s WirelessGatewayLogOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WirelessGatewayLogOption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WirelessGatewayLogOption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WirelessGatewayLogOption"}
+	if s.LogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("LogLevel"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Events != nil {
+		for i, v := range s.Events {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Events", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEvents sets the Events field's value.
+func (s *WirelessGatewayLogOption) SetEvents(v []*WirelessGatewayEventLogOption) *WirelessGatewayLogOption {
+	s.Events = v
+	return s
+}
+
+// SetLogLevel sets the LogLevel field's value.
+func (s *WirelessGatewayLogOption) SetLogLevel(v string) *WirelessGatewayLogOption {
+	s.LogLevel = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WirelessGatewayLogOption) SetType(v string) *WirelessGatewayLogOption {
 	s.Type = &v
 	return s
 }
@@ -11841,6 +13060,27 @@ func ExpressionType_Values() []string {
 	}
 }
 
+// The log level for a log message.
+const (
+	// LogLevelInfo is a LogLevel enum value
+	LogLevelInfo = "INFO"
+
+	// LogLevelError is a LogLevel enum value
+	LogLevelError = "ERROR"
+
+	// LogLevelDisabled is a LogLevel enum value
+	LogLevelDisabled = "DISABLED"
+)
+
+// LogLevel_Values returns all elements of the LogLevel enum
+func LogLevel_Values() []string {
+	return []string{
+		LogLevelInfo,
+		LogLevelError,
+		LogLevelDisabled,
+	}
+}
+
 // Sidewalk device message type.
 const (
 	// MessageTypeCustomCommandIdNotify is a MessageType enum value
@@ -11895,6 +13135,35 @@ func SigningAlg_Values() []string {
 	}
 }
 
+// The event for a log message, if the log message is tied to a wireless device.
+const (
+	// WirelessDeviceEventJoin is a WirelessDeviceEvent enum value
+	WirelessDeviceEventJoin = "Join"
+
+	// WirelessDeviceEventRejoin is a WirelessDeviceEvent enum value
+	WirelessDeviceEventRejoin = "Rejoin"
+
+	// WirelessDeviceEventUplinkData is a WirelessDeviceEvent enum value
+	WirelessDeviceEventUplinkData = "Uplink_Data"
+
+	// WirelessDeviceEventDownlinkData is a WirelessDeviceEvent enum value
+	WirelessDeviceEventDownlinkData = "Downlink_Data"
+
+	// WirelessDeviceEventRegistration is a WirelessDeviceEvent enum value
+	WirelessDeviceEventRegistration = "Registration"
+)
+
+// WirelessDeviceEvent_Values returns all elements of the WirelessDeviceEvent enum
+func WirelessDeviceEvent_Values() []string {
+	return []string{
+		WirelessDeviceEventJoin,
+		WirelessDeviceEventRejoin,
+		WirelessDeviceEventUplinkData,
+		WirelessDeviceEventDownlinkData,
+		WirelessDeviceEventRegistration,
+	}
+}
+
 const (
 	// WirelessDeviceIdTypeWirelessDeviceId is a WirelessDeviceIdType enum value
 	WirelessDeviceIdTypeWirelessDeviceId = "WirelessDeviceId"
@@ -11928,6 +13197,23 @@ func WirelessDeviceType_Values() []string {
 	return []string{
 		WirelessDeviceTypeSidewalk,
 		WirelessDeviceTypeLoRaWan,
+	}
+}
+
+// The event for a log message, if the log message is tied to a wireless gateway.
+const (
+	// WirelessGatewayEventCupsRequest is a WirelessGatewayEvent enum value
+	WirelessGatewayEventCupsRequest = "CUPS_Request"
+
+	// WirelessGatewayEventCertificate is a WirelessGatewayEvent enum value
+	WirelessGatewayEventCertificate = "Certificate"
+)
+
+// WirelessGatewayEvent_Values returns all elements of the WirelessGatewayEvent enum
+func WirelessGatewayEvent_Values() []string {
+	return []string{
+		WirelessGatewayEventCupsRequest,
+		WirelessGatewayEventCertificate,
 	}
 }
 
@@ -12008,5 +13294,18 @@ func WirelessGatewayTaskStatus_Values() []string {
 		WirelessGatewayTaskStatusSecondRetry,
 		WirelessGatewayTaskStatusCompleted,
 		WirelessGatewayTaskStatusFailed,
+	}
+}
+
+// The wireless gateway type.
+const (
+	// WirelessGatewayTypeLoRaWan is a WirelessGatewayType enum value
+	WirelessGatewayTypeLoRaWan = "LoRaWAN"
+)
+
+// WirelessGatewayType_Values returns all elements of the WirelessGatewayType enum
+func WirelessGatewayType_Values() []string {
+	return []string{
+		WirelessGatewayTypeLoRaWan,
 	}
 }

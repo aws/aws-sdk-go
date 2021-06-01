@@ -57,9 +57,9 @@ func (c *ServiceDiscovery) CreateHttpNamespaceRequest(input *CreateHttpNamespace
 
 // CreateHttpNamespace API operation for AWS Cloud Map.
 //
-// Creates an HTTP namespace. Service instances that you register using an HTTP
-// namespace can be discovered using a DiscoverInstances request but can't be
-// discovered using DNS.
+// Creates an HTTP namespace. Service instances registered using an HTTP namespace
+// can be discovered using a DiscoverInstances request but can't be discovered
+// using DNS.
 //
 // For the current quota on the number of namespaces that you can create using
 // the same AWS account, see AWS Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
@@ -161,9 +161,11 @@ func (c *ServiceDiscovery) CreatePrivateDnsNamespaceRequest(input *CreatePrivate
 // Creates a private namespace based on DNS, which is visible only inside a
 // specified Amazon VPC. The namespace defines your service naming scheme. For
 // example, if you name your namespace example.com and name your service backend,
-// the resulting DNS name for the service is backend.example.com. For the current
-// quota on the number of namespaces that you can create using the same AWS
-// account, see AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// the resulting DNS name for the service is backend.example.com. Service instances
+// that are registered using a private DNS namespace can be discovered using
+// either a DiscoverInstances request or using DNS. For the current quota on
+// the number of namespaces that you can create using the same AWS account,
+// see AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
 // in the AWS Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -262,10 +264,11 @@ func (c *ServiceDiscovery) CreatePublicDnsNamespaceRequest(input *CreatePublicDn
 // Creates a public namespace based on DNS, which is visible on the internet.
 // The namespace defines your service naming scheme. For example, if you name
 // your namespace example.com and name your service backend, the resulting DNS
-// name for the service is backend.example.com. For the current quota on the
-// number of namespaces that you can create using the same AWS account, see
-// AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
-// in the AWS Cloud Map Developer Guide.
+// name for the service is backend.example.com. You can discover instances that
+// were registered with a public DNS namespace by using either a DiscoverInstances
+// request or using DNS. For the current quota on the number of namespaces that
+// you can create using the same AWS account, see AWS Cloud Map Quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)in
+// the AWS Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -360,7 +363,8 @@ func (c *ServiceDiscovery) CreateServiceRequest(input *CreateServiceInput) (req 
 
 // CreateService API operation for AWS Cloud Map.
 //
-// Creates a service, which defines the configuration for the following entities:
+// Creates a service. This action defines the configuration for the following
+// entities:
 //
 //    * For public and private DNS namespaces, one of the following combinations
 //    of DNS records in Amazon Route 53: A AAAA A and AAAA SRV CNAME
@@ -942,7 +946,7 @@ func (c *ServiceDiscovery) GetInstancesHealthStatusRequest(input *GetInstancesHe
 // Gets the current health status (Healthy, Unhealthy, or Unknown) of one or
 // more instances that are associated with a specified service.
 //
-// There is a brief delay between when you register an instance and when the
+// There's a brief delay between when you register an instance and when the
 // health status for the instance is available.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1989,8 +1993,8 @@ func (c *ServiceDiscovery) RegisterInstanceRequest(input *RegisterInstanceInput)
 // check based on the settings in a specified service. When you submit a RegisterInstance
 // request, the following occurs:
 //
-//    * For each DNS record that you define in the service that is specified
-//    by ServiceId, a record is created or updated in the hosted zone that is
+//    * For each DNS record that you define in the service that's specified
+//    by ServiceId, a record is created or updated in the hosted zone that's
 //    associated with the corresponding namespace.
 //
 //    * If the service includes HealthCheckConfig, a health check is created
@@ -2453,7 +2457,7 @@ type CreateHttpNamespaceInput struct {
 
 	// A unique string that identifies the request and that allows failed CreateHttpNamespace
 	// requests to be retried without the risk of running the operation twice. CreatorRequestId
-	// can be any unique string, for example, a date/time stamp.
+	// can be any unique string (for example, a date/time stamp).
 	CreatorRequestId *string `type:"string" idempotencyToken:"true"`
 
 	// A description for the namespace.
@@ -2556,7 +2560,7 @@ type CreatePrivateDnsNamespaceInput struct {
 
 	// A unique string that identifies the request and that allows failed CreatePrivateDnsNamespace
 	// requests to be retried without the risk of running the operation twice. CreatorRequestId
-	// can be any unique string, for example, a date/timestamp.
+	// can be any unique string (for example, a date/timestamp).
 	CreatorRequestId *string `type:"string" idempotencyToken:"true"`
 
 	// A description for the namespace.
@@ -2675,7 +2679,7 @@ type CreatePublicDnsNamespaceInput struct {
 
 	// A unique string that identifies the request and that allows failed CreatePublicDnsNamespace
 	// requests to be retried without the risk of running the operation twice. CreatorRequestId
-	// can be any unique string, for example, a date/timestamp.
+	// can be any unique string (for example, a date/timestamp).
 	CreatorRequestId *string `type:"string" idempotencyToken:"true"`
 
 	// A description for the namespace.
@@ -2778,7 +2782,7 @@ type CreateServiceInput struct {
 
 	// A unique string that identifies the request and that allows failed CreateService
 	// requests to be retried without the risk of running the operation twice. CreatorRequestId
-	// can be any unique string, for example, a date/timestamp.
+	// can be any unique string (for example, a date/timestamp).
 	CreatorRequestId *string `type:"string" idempotencyToken:"true"`
 
 	// A description for the service.
@@ -2822,9 +2826,9 @@ type CreateServiceInput struct {
 	//
 	// When you register an instance, AWS Cloud Map creates an SRV record and assigns
 	// a name to the record by concatenating the service name and the namespace
-	// name, for example:
+	// name (for example,
 	//
-	// _exampleservice._tcp.example.com
+	// _exampleservice._tcp.example.com).
 	//
 	// For services that are accessible by DNS queries, you can't create multiple
 	// services with names that differ only by case (such as EXAMPLE and example).
@@ -2846,8 +2850,8 @@ type CreateServiceInput struct {
 	Tags []*Tag `type:"list"`
 
 	// If present, specifies that the service instances are only discoverable using
-	// the DiscoverInstances API operation. No DNS records will be registered for
-	// the service instances. The only valid value is HTTP.
+	// the DiscoverInstances API operation. No DNS records is registered for the
+	// service instances. The only valid value is HTTP.
 	Type *string `type:"string" enum:"ServiceTypeOption"`
 }
 
@@ -3227,7 +3231,26 @@ func (s *DeregisterInstanceOutput) SetOperationId(v string) *DeregisterInstanceO
 type DiscoverInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The health status of the instances that you want to discover.
+	// The health status of the instances that you want to discover. This parameter
+	// is ignored for services that don't have a health check configured, and all
+	// instances are returned.
+	//
+	// HEALTHY
+	//
+	// Returns healthy instances.
+	//
+	// UNHEALTHY
+	//
+	// Returns unhealthy instances.
+	//
+	// ALL
+	//
+	// Returns all instances.
+	//
+	// HEALTHY_OR_ELSE_ALL
+	//
+	// Returns healthy instances, unless none are reporting a healthy state. In
+	// that case, return all instances. This is also called failing open.
 	HealthStatus *string `type:"string" enum:"HealthStatusFilter"`
 
 	// The maximum number of instances that you want AWS Cloud Map to return in
@@ -3235,21 +3258,21 @@ type DiscoverInstancesInput struct {
 	// for MaxResults, AWS Cloud Map returns up to 100 instances.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The HttpName name of the namespace, found in the HttpProperties member of
-	// the Properties member of the namespace.
+	// The HttpName name of the namespace. It's found in the HttpProperties member
+	// of the Properties member of the namespace.
 	//
 	// NamespaceName is a required field
 	NamespaceName *string `type:"string" required:"true"`
 
 	// Opportunistic filters to scope the results based on custom attributes. If
 	// there are instances that match both the filters specified in both the QueryParameters
-	// parameter and this parameter, they are returned. Otherwise, these filters
-	// are ignored and only instances that match the filters specified in the QueryParameters
-	// parameter are returned.
+	// parameter and this parameter, all of these instances are returned. Otherwise,
+	// the filters are ignored, and only instances that match the filters that are
+	// specified in the QueryParameters parameter are returned.
 	OptionalParameters map[string]*string `type:"map"`
 
-	// Filters to scope the results based on custom attributes for the instance.
-	// For example, {version=v1, az=1a}. Only instances that match all the specified
+	// Filters to scope the results based on custom attributes for the instance
+	// (for example, {version=v1, az=1a}). Only instances that match all the specified
 	// key-value pairs are returned.
 	QueryParameters map[string]*string `type:"map"`
 
@@ -3685,7 +3708,7 @@ type DuplicateRequest struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The ID of the operation that is already in progress.
+	// The ID of the operation that's already in progress.
 	DuplicateOperationId *string `type:"string"`
 
 	Message_ *string `locationName:"Message" type:"string"`
@@ -4135,7 +4158,7 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 //
 // If DnsConfig includes configurations for both A and AAAA records, AWS Cloud
 // Map creates a health check that uses the IPv4 address to check the health
-// of the resource. If the endpoint that is specified by the IPv4 address is
+// of the resource. If the endpoint tthat's specified by the IPv4 address is
 // unhealthy, Route 53 considers both the A and AAAA records to be unhealthy.
 //
 // CNAME records
@@ -4146,16 +4169,17 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 //
 // Request interval
 //
-// A Route 53 health checker in each health-checking region sends a health check
-// request to an endpoint every 30 seconds. On average, your endpoint receives
-// a health check request about every two seconds. However, health checkers
-// don't coordinate with one another, so you'll sometimes see several requests
-// per second followed by a few seconds with no health checks at all.
+// A Route 53 health checker in each health-checking AWS Region sends a health
+// check request to an endpoint every 30 seconds. On average, your endpoint
+// receives a health check request about every two seconds. However, health
+// checkers don't coordinate with one another. Therefore, you might sometimes
+// see several requests in one second that's followed by a few seconds with
+// no health checks at all.
 //
 // Health checking regions
 //
-// Health checkers perform checks from all Route 53 health-checking regions.
-// For a list of the current regions, see Regions (https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-Regions).
+// Health checkers perform checks from all Route 53 health-checking Regions.
+// For a list of the current Regions, see Regions (https://docs.aws.amazon.com/Route53/latest/APIReference/API_HealthCheckConfig.html#Route53-Type-HealthCheckConfig-Regions).
 //
 // Alias records
 //
@@ -4187,9 +4211,9 @@ type HealthCheckConfig struct {
 	FailureThreshold *int64 `min:"1" type:"integer"`
 
 	// The path that you want Route 53 to request when performing health checks.
-	// The path can be any value for which your endpoint returns an HTTP status
-	// code of a 2xx or 3xx format when the endpoint is healthy, such as the file
-	// /docs/route53-health-check.html. Route 53 automatically adds the DNS name
+	// The path can be any value that your endpoint returns an HTTP status code
+	// of a 2xx or 3xx format for when the endpoint is healthy. An example file
+	// is /docs/route53-health-check.html. Route 53 automatically adds the DNS name
 	// for the service. If you don't specify a value for ResourcePath, the default
 	// value is /.
 	//
@@ -4272,14 +4296,14 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 // checker to evaluate the health of your resources, is useful in the following
 // circumstances:
 //
-//    * You can't use a health check that is defined by HealthCheckConfig because
+//    * You can't use a health check that's defined by HealthCheckConfig because
 //    the resource isn't available over the internet. For example, you can use
 //    a custom health check when the instance is in an Amazon VPC. (To check
 //    the health of resources in a VPC, the health checker must also be in the
 //    VPC.)
 //
 //    * You want to use a third-party health checker regardless of where your
-//    resources are.
+//    resources are located.
 //
 // If you specify a health check configuration, you can specify either HealthCheckCustomConfig
 // or HealthCheckConfig but not both.
@@ -4291,17 +4315,11 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 //
 // Here's how custom health checks work:
 //
-// You create a service and specify a value for FailureThreshold.
-//
-// The failure threshold indicates the number of 30-second intervals you want
-// AWS Cloud Map to wait between the time that your application sends an UpdateInstanceCustomHealthStatus
-// (https://docs.aws.amazon.com/cloud-map/latest/api/API_UpdateInstanceCustomHealthStatus.html)
-// request and the time that AWS Cloud Map stops routing internet traffic to
-// the corresponding resource.
+// You create a service.
 //
 // You register an instance.
 //
-// You configure a third-party health checker to monitor the resource that is
+// You configure a third-party health checker to monitor the resource that's
 // associated with the new instance.
 //
 // AWS Cloud Map doesn't check the health of the resource directly.
@@ -4311,7 +4329,7 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 //
 // Your application submits an UpdateInstanceCustomHealthStatus request.
 //
-// AWS Cloud Map waits for (FailureThreshold x 30) seconds.
+// AWS Cloud Map waits for 30 seconds.
 //
 // If another UpdateInstanceCustomHealthStatus request doesn't arrive during
 // that time to change the status back to healthy, AWS Cloud Map stops routing
@@ -4320,7 +4338,7 @@ type HealthCheckCustomConfig struct {
 	_ struct{} `type:"structure"`
 
 	//
-	// This parameter has been deprecated and is always set to 1. AWS Cloud Map
+	// This parameter is no longer supported and is always set to 1. AWS Cloud Map
 	// waits for approximately 30 seconds after receiving an UpdateInstanceCustomHealthStatus
 	// request before changing the status of the service instance.
 	//
@@ -4384,8 +4402,8 @@ type HttpInstanceSummary struct {
 	InstanceId *string `type:"string"`
 
 	//
-	// The HttpName name of the namespace, found in the HttpProperties member of
-	// the Properties member of the namespace.
+	// The HttpName name of the namespace. It's found in the HttpProperties member
+	// of the Properties member of the namespace.
 	NamespaceName *string `type:"string"`
 
 	// The name of the service that you specified when you registered the instance.
@@ -4473,20 +4491,20 @@ type Instance struct {
 	// AWS_ALIAS_DNS_NAME
 	//
 	// If you want AWS Cloud Map to create a Route 53 alias record that routes traffic
-	// to an Elastic Load Balancing load balancer, specify the DNS name that is
-	// associated with the load balancer. For information about how to get the DNS
-	// name, see AliasTarget->DNSName (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-DNSName)
+	// to an Elastic Load Balancing load balancer, specify the DNS name that's associated
+	// with the load balancer. For information about how to get the DNS name, see
+	// AliasTarget->DNSName (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-DNSName)
 	// in the Route 53 API Reference.
 	//
 	// Note the following:
 	//
-	//    * The configuration for the service that is specified by ServiceId must
+	//    * The configuration for the service that's specified by ServiceId must
 	//    include settings for an A record, an AAAA record, or both.
 	//
-	//    * In the service that is specified by ServiceId, the value of RoutingPolicy
+	//    * In the service that's specified by ServiceId, the value of RoutingPolicy
 	//    must be WEIGHTED.
 	//
-	//    * If the service that is specified by ServiceId includes HealthCheckConfig
+	//    * If the service that's specified by ServiceId includes HealthCheckConfig
 	//    settings, AWS Cloud Map creates the health check, but it won't associate
 	//    the health check with the alias record.
 	//
@@ -4511,7 +4529,7 @@ type Instance struct {
 	// AWS_INSTANCE_CNAME
 	//
 	// If the service configuration includes a CNAME record, the domain name that
-	// you want Route 53 to return in response to DNS queries, for example, example.com.
+	// you want Route 53 to return in response to DNS queries (for example, example.com).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an CNAME record.
@@ -4519,7 +4537,7 @@ type Instance struct {
 	// AWS_INSTANCE_IPV4
 	//
 	// If the service configuration includes an A record, the IPv4 address that
-	// you want Route 53 to return in response to DNS queries, for example, 192.0.2.44.
+	// you want Route 53 to return in response to DNS queries (for example, 192.0.2.44).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an A record. If the service includes settings for an SRV record, you
@@ -4528,7 +4546,7 @@ type Instance struct {
 	// AWS_INSTANCE_IPV6
 	//
 	// If the service configuration includes an AAAA record, the IPv6 address that
-	// you want Route 53 to return in response to DNS queries, for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345.
+	// you want Route 53 to return in response to DNS queries (for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an AAAA record. If the service includes settings for an SRV record, you
@@ -4550,21 +4568,21 @@ type Instance struct {
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CreatorRequestId string every time you submit a RegisterInstance
 	// request if you're registering additional instances for the same namespace
-	// and service. CreatorRequestId can be any unique string, for example, a date/time
-	// stamp.
+	// and service. CreatorRequestId can be any unique string (for example, a date/time
+	// stamp).
 	CreatorRequestId *string `type:"string"`
 
 	// An identifier that you want to associate with the instance. Note the following:
 	//
-	//    * If the service that is specified by ServiceId includes settings for
-	//    an SRV record, the value of InstanceId is automatically included as part
+	//    * If the service that's specified by ServiceId includes settings for an
+	//    SRV record, the value of InstanceId is automatically included as part
 	//    of the value for the SRV record. For more information, see DnsRecord >
 	//    Type (https://docs.aws.amazon.com/cloud-map/latest/api/API_DnsRecord.html#cloudmap-Type-DnsRecord-Type).
 	//
 	//    * You can use this value to update an existing instance.
 	//
-	//    * To register a new instance, you must specify a value that is unique
-	//    among instances that you register by using the same service.
+	//    * To register a new instance, you must specify a value that's unique among
+	//    instances that you register by using the same service.
 	//
 	//    * If you specify an existing InstanceId and ServiceId, AWS Cloud Map updates
 	//    the existing DNS records. If there's also an existing health check, AWS
@@ -4668,7 +4686,7 @@ type InstanceSummary struct {
 
 	// A string map that contains the following information:
 	//
-	//    * The attributes that are associate with the instance.
+	//    * The attributes that are associated with the instance.
 	//
 	//    * For each attribute, the applicable value.
 	//
@@ -4677,7 +4695,7 @@ type InstanceSummary struct {
 	// AWS_ALIAS_DNS_NAME
 	//
 	// For an alias record that routes traffic to an Elastic Load Balancing load
-	// balancer, the DNS name that is associated with the load balancer.
+	// balancer, the DNS name that's associated with the load balancer.
 	//
 	// AWS_EC2_INSTANCE_ID (HTTP namespaces only)
 	//
@@ -4695,17 +4713,17 @@ type InstanceSummary struct {
 	// AWS_INSTANCE_CNAME
 	//
 	// For a CNAME record, the domain name that Route 53 returns in response to
-	// DNS queries, for example, example.com.
+	// DNS queries (for example, example.com).
 	//
 	// AWS_INSTANCE_IPV4
 	//
 	// For an A record, the IPv4 address that Route 53 returns in response to DNS
-	// queries, for example, 192.0.2.44.
+	// queries (for example, 192.0.2.44).
 	//
 	// AWS_INSTANCE_IPV6
 	//
 	// For an AAAA record, the IPv6 address that Route 53 returns in response to
-	// DNS queries, for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345.
+	// DNS queries (for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345).
 	//
 	// AWS_INSTANCE_PORT
 	//
@@ -5638,7 +5656,7 @@ func (s *NamespaceNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A complex type that contains information that is specific to the namespace
+// A complex type that contains information that's specific to the namespace
 // type.
 type NamespaceProperties struct {
 	_ struct{} `type:"structure"`
@@ -5799,7 +5817,7 @@ type Operation struct {
 	//
 	// SUBMITTED
 	//
-	// This is the initial state immediately after you submit a request.
+	// This is the initial state that occurs immediately after you submit a request.
 	//
 	// PENDING
 	//
@@ -5814,7 +5832,7 @@ type Operation struct {
 	// The operation failed. For the failure reason, see ErrorMessage.
 	Status *string `type:"string" enum:"OperationStatus"`
 
-	// The name of the target entity that is associated with the operation:
+	// The name of the target entity that's associated with the operation:
 	//
 	// NAMESPACE
 	//
@@ -5829,7 +5847,7 @@ type Operation struct {
 	// The instance ID is returned in the ResourceId property.
 	Targets map[string]*string `type:"map"`
 
-	// The name of the operation that is associated with the specified ID.
+	// The name of the operation that's associated with the specified ID.
 	Type *string `type:"string" enum:"OperationType"`
 
 	// The date and time that the value of Status changed to the current value,
@@ -6114,19 +6132,19 @@ type RegisterInstanceInput struct {
 	//
 	// If you want AWS Cloud Map to create an Amazon Route 53 alias record that
 	// routes traffic to an Elastic Load Balancing load balancer, specify the DNS
-	// name that is associated with the load balancer. For information about how
+	// name that's associated with the load balancer. For information about how
 	// to get the DNS name, see "DNSName" in the topic AliasTarget (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html)
 	// in the Route 53 API Reference.
 	//
 	// Note the following:
 	//
-	//    * The configuration for the service that is specified by ServiceId must
+	//    * The configuration for the service that's specified by ServiceId must
 	//    include settings for an A record, an AAAA record, or both.
 	//
-	//    * In the service that is specified by ServiceId, the value of RoutingPolicy
+	//    * In the service that's specified by ServiceId, the value of RoutingPolicy
 	//    must be WEIGHTED.
 	//
-	//    * If the service that is specified by ServiceId includes HealthCheckConfig
+	//    * If the service that's specified by ServiceId includes HealthCheckConfig
 	//    settings, AWS Cloud Map will create the Route 53 health check, but it
 	//    doesn't associate the health check with the alias record.
 	//
@@ -6154,7 +6172,7 @@ type RegisterInstanceInput struct {
 	// AWS_INSTANCE_CNAME
 	//
 	// If the service configuration includes a CNAME record, the domain name that
-	// you want Route 53 to return in response to DNS queries, for example, example.com.
+	// you want Route 53 to return in response to DNS queries (for example, example.com).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an CNAME record.
@@ -6162,7 +6180,7 @@ type RegisterInstanceInput struct {
 	// AWS_INSTANCE_IPV4
 	//
 	// If the service configuration includes an A record, the IPv4 address that
-	// you want Route 53 to return in response to DNS queries, for example, 192.0.2.44.
+	// you want Route 53 to return in response to DNS queries (for example, 192.0.2.44).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an A record. If the service includes settings for an SRV record, you
@@ -6171,7 +6189,7 @@ type RegisterInstanceInput struct {
 	// AWS_INSTANCE_IPV6
 	//
 	// If the service configuration includes an AAAA record, the IPv6 address that
-	// you want Route 53 to return in response to DNS queries, for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345.
+	// you want Route 53 to return in response to DNS queries (for example, 2001:0db8:85a3:0000:0000:abcd:0001:2345).
 	//
 	// This value is required if the service specified by ServiceId includes settings
 	// for an AAAA record. If the service includes settings for an SRV record, you
@@ -6202,21 +6220,21 @@ type RegisterInstanceInput struct {
 	// requests to be retried without the risk of executing the operation twice.
 	// You must use a unique CreatorRequestId string every time you submit a RegisterInstance
 	// request if you're registering additional instances for the same namespace
-	// and service. CreatorRequestId can be any unique string, for example, a date/time
-	// stamp.
+	// and service. CreatorRequestId can be any unique string (for example, a date/time
+	// stamp).
 	CreatorRequestId *string `type:"string" idempotencyToken:"true"`
 
 	// An identifier that you want to associate with the instance. Note the following:
 	//
-	//    * If the service that is specified by ServiceId includes settings for
-	//    an SRV record, the value of InstanceId is automatically included as part
+	//    * If the service that's specified by ServiceId includes settings for an
+	//    SRV record, the value of InstanceId is automatically included as part
 	//    of the value for the SRV record. For more information, see DnsRecord >
 	//    Type (https://docs.aws.amazon.com/cloud-map/latest/api/API_DnsRecord.html#cloudmap-Type-DnsRecord-Type).
 	//
 	//    * You can use this value to update an existing instance.
 	//
-	//    * To register a new instance, you must specify a value that is unique
-	//    among instances that you register by using the same service.
+	//    * To register a new instance, you must specify a value that's unique among
+	//    instances that you register by using the same service.
 	//
 	//    * If you specify an existing InstanceId and ServiceId, AWS Cloud Map updates
 	//    the existing DNS records, if any. If there's also an existing health check,
@@ -6555,7 +6573,7 @@ type Service struct {
 
 	// A unique string that identifies the request and that allows failed requests
 	// to be retried without the risk of running the operation twice. CreatorRequestId
-	// can be any unique string, for example, a date/timestamp.
+	// can be any unique string (for example, a date/timestamp).
 	CreatorRequestId *string `type:"string"`
 
 	// The description of the service.
@@ -6585,8 +6603,8 @@ type Service struct {
 	Id *string `type:"string"`
 
 	// The number of instances that are currently associated with the service. Instances
-	// that were previously associated with the service but that have been deleted
-	// are not included in the count. The count might not reflect pending registrations
+	// that were previously associated with the service but that are deleted aren't
+	// included in the count. The count might not reflect pending registrations
 	// and deregistrations.
 	InstanceCount *int64 `type:"integer"`
 
@@ -6980,14 +6998,14 @@ type ServiceSummary struct {
 	// which requires that you use a third-party health checker to evaluate the
 	// health of your resources, is useful in the following circumstances:
 	//
-	//    * You can't use a health check that is defined by HealthCheckConfig because
+	//    * You can't use a health check that's defined by HealthCheckConfig because
 	//    the resource isn't available over the internet. For example, you can use
 	//    a custom health check when the instance is in an Amazon VPC. (To check
 	//    the health of resources in a VPC, the health checker must also be in the
 	//    VPC.)
 	//
 	//    * You want to use a third-party health checker regardless of where your
-	//    resources are.
+	//    resources are located.
 	//
 	// If you specify a health check configuration, you can specify either HealthCheckCustomConfig
 	// or HealthCheckConfig but not both.
@@ -6997,8 +7015,8 @@ type ServiceSummary struct {
 	Id *string `type:"string"`
 
 	// The number of instances that are currently associated with the service. Instances
-	// that were previously associated with the service but that have been deleted
-	// are not included in the count. The count might not reflect pending registrations
+	// that were previously associated with the service but that are deleted aren't
+	// included in the count. The count might not reflect pending registrations
 	// and deregistrations.
 	InstanceCount *int64 `type:"integer"`
 
@@ -7093,7 +7111,7 @@ func (s *ServiceSummary) SetType(v string) *ServiceSummary {
 	return s
 }
 
-// A custom key-value pair associated with a resource.
+// A custom key-value pair that's associated with a resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7102,8 +7120,9 @@ type Tag struct {
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
 
-	// The string value associated with the key of the tag. You can set the value
-	// of a tag to an empty string, but you can't set the value of a tag to null.
+	// The string value that's associated with the key of the tag. You can set the
+	// value of a tag to an empty string, but you can't set the value of a tag to
+	// null.
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`
@@ -7609,6 +7628,9 @@ const (
 
 	// HealthStatusFilterAll is a HealthStatusFilter enum value
 	HealthStatusFilterAll = "ALL"
+
+	// HealthStatusFilterHealthyOrElseAll is a HealthStatusFilter enum value
+	HealthStatusFilterHealthyOrElseAll = "HEALTHY_OR_ELSE_ALL"
 )
 
 // HealthStatusFilter_Values returns all elements of the HealthStatusFilter enum
@@ -7617,6 +7639,7 @@ func HealthStatusFilter_Values() []string {
 		HealthStatusFilterHealthy,
 		HealthStatusFilterUnhealthy,
 		HealthStatusFilterAll,
+		HealthStatusFilterHealthyOrElseAll,
 	}
 }
 
