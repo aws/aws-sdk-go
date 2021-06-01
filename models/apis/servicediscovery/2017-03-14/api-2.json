@@ -717,7 +717,8 @@
       "enum":[
         "HEALTHY",
         "UNHEALTHY",
-        "ALL"
+        "ALL",
+        "HEALTHY_OR_ELSE_ALL"
       ]
     },
     "HttpInstanceSummary":{

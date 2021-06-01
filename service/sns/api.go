@@ -4,6 +4,7 @@ package sns
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -508,6 +509,114 @@ func (c *SNS) CreatePlatformEndpointWithContext(ctx aws.Context, input *CreatePl
 	return out, req.Send()
 }
 
+const opCreateSMSSandboxPhoneNumber = "CreateSMSSandboxPhoneNumber"
+
+// CreateSMSSandboxPhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSMSSandboxPhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSMSSandboxPhoneNumber for more information on using the CreateSMSSandboxPhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSMSSandboxPhoneNumberRequest method.
+//    req, resp := client.CreateSMSSandboxPhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreateSMSSandboxPhoneNumber
+func (c *SNS) CreateSMSSandboxPhoneNumberRequest(input *CreateSMSSandboxPhoneNumberInput) (req *request.Request, output *CreateSMSSandboxPhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opCreateSMSSandboxPhoneNumber,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateSMSSandboxPhoneNumberInput{}
+	}
+
+	output = &CreateSMSSandboxPhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateSMSSandboxPhoneNumber API operation for Amazon Simple Notification Service.
+//
+// Adds a destination phone number to an AWS account in the SMS sandbox and
+// sends a one-time password (OTP) to that phone number.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation CreateSMSSandboxPhoneNumber for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameter"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeOptedOutException "OptedOut"
+//   Indicates that the specified phone number opted out of receiving SMS messages
+//   from your AWS account. You can't send SMS messages to phone numbers that
+//   opt out.
+//
+//   * ErrCodeUserErrorException "UserError"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/CreateSMSSandboxPhoneNumber
+func (c *SNS) CreateSMSSandboxPhoneNumber(input *CreateSMSSandboxPhoneNumberInput) (*CreateSMSSandboxPhoneNumberOutput, error) {
+	req, out := c.CreateSMSSandboxPhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// CreateSMSSandboxPhoneNumberWithContext is the same as CreateSMSSandboxPhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSMSSandboxPhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) CreateSMSSandboxPhoneNumberWithContext(ctx aws.Context, input *CreateSMSSandboxPhoneNumberInput, opts ...request.Option) (*CreateSMSSandboxPhoneNumberOutput, error) {
+	req, out := c.CreateSMSSandboxPhoneNumberRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateTopic = "CreateTopic"
 
 // CreateTopicRequest generates a "aws/request.Request" representing the
@@ -793,6 +902,112 @@ func (c *SNS) DeletePlatformApplication(input *DeletePlatformApplicationInput) (
 // for more information on using Contexts.
 func (c *SNS) DeletePlatformApplicationWithContext(ctx aws.Context, input *DeletePlatformApplicationInput, opts ...request.Option) (*DeletePlatformApplicationOutput, error) {
 	req, out := c.DeletePlatformApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSMSSandboxPhoneNumber = "DeleteSMSSandboxPhoneNumber"
+
+// DeleteSMSSandboxPhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSMSSandboxPhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSMSSandboxPhoneNumber for more information on using the DeleteSMSSandboxPhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSMSSandboxPhoneNumberRequest method.
+//    req, resp := client.DeleteSMSSandboxPhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/DeleteSMSSandboxPhoneNumber
+func (c *SNS) DeleteSMSSandboxPhoneNumberRequest(input *DeleteSMSSandboxPhoneNumberInput) (req *request.Request, output *DeleteSMSSandboxPhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSMSSandboxPhoneNumber,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteSMSSandboxPhoneNumberInput{}
+	}
+
+	output = &DeleteSMSSandboxPhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSMSSandboxPhoneNumber API operation for Amazon Simple Notification Service.
+//
+// Deletes an AWS account's verified or pending phone number from the SMS sandbox.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation DeleteSMSSandboxPhoneNumber for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameter"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFound"
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
+//
+//   * ErrCodeUserErrorException "UserError"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/DeleteSMSSandboxPhoneNumber
+func (c *SNS) DeleteSMSSandboxPhoneNumber(input *DeleteSMSSandboxPhoneNumberInput) (*DeleteSMSSandboxPhoneNumberOutput, error) {
+	req, out := c.DeleteSMSSandboxPhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSMSSandboxPhoneNumberWithContext is the same as DeleteSMSSandboxPhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSMSSandboxPhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) DeleteSMSSandboxPhoneNumberWithContext(ctx aws.Context, input *DeleteSMSSandboxPhoneNumberInput, opts ...request.Option) (*DeleteSMSSandboxPhoneNumberOutput, error) {
+	req, out := c.DeleteSMSSandboxPhoneNumberRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1173,6 +1388,102 @@ func (c *SNS) GetSMSAttributesWithContext(ctx aws.Context, input *GetSMSAttribut
 	return out, req.Send()
 }
 
+const opGetSMSSandboxAccountStatus = "GetSMSSandboxAccountStatus"
+
+// GetSMSSandboxAccountStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetSMSSandboxAccountStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSMSSandboxAccountStatus for more information on using the GetSMSSandboxAccountStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSMSSandboxAccountStatusRequest method.
+//    req, resp := client.GetSMSSandboxAccountStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSMSSandboxAccountStatus
+func (c *SNS) GetSMSSandboxAccountStatusRequest(input *GetSMSSandboxAccountStatusInput) (req *request.Request, output *GetSMSSandboxAccountStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetSMSSandboxAccountStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetSMSSandboxAccountStatusInput{}
+	}
+
+	output = &GetSMSSandboxAccountStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSMSSandboxAccountStatus API operation for Amazon Simple Notification Service.
+//
+// Retrieves the SMS sandbox status for the calling AWS account in the target
+// AWS Region.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation GetSMSSandboxAccountStatus for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/GetSMSSandboxAccountStatus
+func (c *SNS) GetSMSSandboxAccountStatus(input *GetSMSSandboxAccountStatusInput) (*GetSMSSandboxAccountStatusOutput, error) {
+	req, out := c.GetSMSSandboxAccountStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetSMSSandboxAccountStatusWithContext is the same as GetSMSSandboxAccountStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSMSSandboxAccountStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) GetSMSSandboxAccountStatusWithContext(ctx aws.Context, input *GetSMSSandboxAccountStatusInput, opts ...request.Option) (*GetSMSSandboxAccountStatusOutput, error) {
+	req, out := c.GetSMSSandboxAccountStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 
 // GetSubscriptionAttributesRequest generates a "aws/request.Request" representing the
@@ -1510,6 +1821,158 @@ func (c *SNS) ListEndpointsByPlatformApplicationPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opListOriginationNumbers = "ListOriginationNumbers"
+
+// ListOriginationNumbersRequest generates a "aws/request.Request" representing the
+// client's request for the ListOriginationNumbers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOriginationNumbers for more information on using the ListOriginationNumbers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOriginationNumbersRequest method.
+//    req, resp := client.ListOriginationNumbersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListOriginationNumbers
+func (c *SNS) ListOriginationNumbersRequest(input *ListOriginationNumbersInput) (req *request.Request, output *ListOriginationNumbersOutput) {
+	op := &request.Operation{
+		Name:       opListOriginationNumbers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOriginationNumbersInput{}
+	}
+
+	output = &ListOriginationNumbersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOriginationNumbers API operation for Amazon Simple Notification Service.
+//
+// Lists the calling AWS account's dedicated origination numbers and their metadata.
+// For more information about origination numbers, see Origination numbers (https://docs.aws.amazon.com/sns/latest/dg/channels-sms-originating-identities-origination-numbers.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation ListOriginationNumbers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameter"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   Indicates that a parameter in the request is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListOriginationNumbers
+func (c *SNS) ListOriginationNumbers(input *ListOriginationNumbersInput) (*ListOriginationNumbersOutput, error) {
+	req, out := c.ListOriginationNumbersRequest(input)
+	return out, req.Send()
+}
+
+// ListOriginationNumbersWithContext is the same as ListOriginationNumbers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOriginationNumbers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) ListOriginationNumbersWithContext(ctx aws.Context, input *ListOriginationNumbersInput, opts ...request.Option) (*ListOriginationNumbersOutput, error) {
+	req, out := c.ListOriginationNumbersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOriginationNumbersPages iterates over the pages of a ListOriginationNumbers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOriginationNumbers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOriginationNumbers operation.
+//    pageNum := 0
+//    err := client.ListOriginationNumbersPages(params,
+//        func(page *sns.ListOriginationNumbersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SNS) ListOriginationNumbersPages(input *ListOriginationNumbersInput, fn func(*ListOriginationNumbersOutput, bool) bool) error {
+	return c.ListOriginationNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOriginationNumbersPagesWithContext same as ListOriginationNumbersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) ListOriginationNumbersPagesWithContext(ctx aws.Context, input *ListOriginationNumbersInput, fn func(*ListOriginationNumbersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOriginationNumbersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOriginationNumbersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOriginationNumbersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListPhoneNumbersOptedOut = "ListPhoneNumbersOptedOut"
 
 // ListPhoneNumbersOptedOutRequest generates a "aws/request.Request" representing the
@@ -1752,6 +2215,167 @@ func (c *SNS) ListPlatformApplicationsPagesWithContext(ctx aws.Context, input *L
 
 	for p.Next() {
 		if !fn(p.Page().(*ListPlatformApplicationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListSMSSandboxPhoneNumbers = "ListSMSSandboxPhoneNumbers"
+
+// ListSMSSandboxPhoneNumbersRequest generates a "aws/request.Request" representing the
+// client's request for the ListSMSSandboxPhoneNumbers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSMSSandboxPhoneNumbers for more information on using the ListSMSSandboxPhoneNumbers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSMSSandboxPhoneNumbersRequest method.
+//    req, resp := client.ListSMSSandboxPhoneNumbersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSMSSandboxPhoneNumbers
+func (c *SNS) ListSMSSandboxPhoneNumbersRequest(input *ListSMSSandboxPhoneNumbersInput) (req *request.Request, output *ListSMSSandboxPhoneNumbersOutput) {
+	op := &request.Operation{
+		Name:       opListSMSSandboxPhoneNumbers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListSMSSandboxPhoneNumbersInput{}
+	}
+
+	output = &ListSMSSandboxPhoneNumbersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSMSSandboxPhoneNumbers API operation for Amazon Simple Notification Service.
+//
+// Lists the calling AWS account's current verified and pending destination
+// phone numbers in the SMS sandbox.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation ListSMSSandboxPhoneNumbers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameter"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFound"
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/ListSMSSandboxPhoneNumbers
+func (c *SNS) ListSMSSandboxPhoneNumbers(input *ListSMSSandboxPhoneNumbersInput) (*ListSMSSandboxPhoneNumbersOutput, error) {
+	req, out := c.ListSMSSandboxPhoneNumbersRequest(input)
+	return out, req.Send()
+}
+
+// ListSMSSandboxPhoneNumbersWithContext is the same as ListSMSSandboxPhoneNumbers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSMSSandboxPhoneNumbers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) ListSMSSandboxPhoneNumbersWithContext(ctx aws.Context, input *ListSMSSandboxPhoneNumbersInput, opts ...request.Option) (*ListSMSSandboxPhoneNumbersOutput, error) {
+	req, out := c.ListSMSSandboxPhoneNumbersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListSMSSandboxPhoneNumbersPages iterates over the pages of a ListSMSSandboxPhoneNumbers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListSMSSandboxPhoneNumbers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListSMSSandboxPhoneNumbers operation.
+//    pageNum := 0
+//    err := client.ListSMSSandboxPhoneNumbersPages(params,
+//        func(page *sns.ListSMSSandboxPhoneNumbersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SNS) ListSMSSandboxPhoneNumbersPages(input *ListSMSSandboxPhoneNumbersInput, fn func(*ListSMSSandboxPhoneNumbersOutput, bool) bool) error {
+	return c.ListSMSSandboxPhoneNumbersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListSMSSandboxPhoneNumbersPagesWithContext same as ListSMSSandboxPhoneNumbersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) ListSMSSandboxPhoneNumbersPagesWithContext(ctx aws.Context, input *ListSMSSandboxPhoneNumbersInput, fn func(*ListSMSSandboxPhoneNumbersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListSMSSandboxPhoneNumbersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListSMSSandboxPhoneNumbersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListSMSSandboxPhoneNumbersOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2115,7 +2739,8 @@ func (c *SNS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 // Returned Error Codes:
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
-//   Can't tag resource. Verify that the topic exists.
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
 //
 //   * ErrCodeTagPolicyException "TagPolicy"
 //   The request doesn't comply with the IAM tag policy. Correct your request
@@ -3281,7 +3906,8 @@ func (c *SNS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //
 // Returned Error Codes:
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
-//   Can't tag resource. Verify that the topic exists.
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
 //
 //   * ErrCodeTagLimitExceededException "TagLimitExceeded"
 //   Can't add more than 50 tags to a topic.
@@ -3484,7 +4110,8 @@ func (c *SNS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //
 // Returned Error Codes:
 //   * ErrCodeResourceNotFoundException "ResourceNotFound"
-//   Can't tag resource. Verify that the topic exists.
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
 //
 //   * ErrCodeTagLimitExceededException "TagLimitExceeded"
 //   Can't add more than 50 tags to a topic.
@@ -3524,6 +4151,113 @@ func (c *SNS) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, er
 // for more information on using Contexts.
 func (c *SNS) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opVerifySMSSandboxPhoneNumber = "VerifySMSSandboxPhoneNumber"
+
+// VerifySMSSandboxPhoneNumberRequest generates a "aws/request.Request" representing the
+// client's request for the VerifySMSSandboxPhoneNumber operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See VerifySMSSandboxPhoneNumber for more information on using the VerifySMSSandboxPhoneNumber
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the VerifySMSSandboxPhoneNumberRequest method.
+//    req, resp := client.VerifySMSSandboxPhoneNumberRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/VerifySMSSandboxPhoneNumber
+func (c *SNS) VerifySMSSandboxPhoneNumberRequest(input *VerifySMSSandboxPhoneNumberInput) (req *request.Request, output *VerifySMSSandboxPhoneNumberOutput) {
+	op := &request.Operation{
+		Name:       opVerifySMSSandboxPhoneNumber,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &VerifySMSSandboxPhoneNumberInput{}
+	}
+
+	output = &VerifySMSSandboxPhoneNumberOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(query.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// VerifySMSSandboxPhoneNumber API operation for Amazon Simple Notification Service.
+//
+// Verifies a destination phone number with a one-time password (OTP) for the
+// calling AWS account.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Notification Service's
+// API operation VerifySMSSandboxPhoneNumber for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeAuthorizationErrorException "AuthorizationError"
+//   Indicates that the user has been denied access to the requested resource.
+//
+//   * ErrCodeInternalErrorException "InternalError"
+//   Indicates an internal service error.
+//
+//   * ErrCodeInvalidParameterException "InvalidParameter"
+//   Indicates that a request parameter does not comply with the associated constraints.
+//
+//   * ErrCodeResourceNotFoundException "ResourceNotFound"
+//   Can’t perform the action on the specified resource. Make sure that the
+//   resource exists.
+//
+//   * ErrCodeVerificationException "VerificationException"
+//   Indicates that the one-time password (OTP) used for verification is invalid.
+//
+//   * ErrCodeThrottledException "Throttled"
+//   Indicates that the rate at which requests have been submitted for this action
+//   exceeds the limit for your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sns-2010-03-31/VerifySMSSandboxPhoneNumber
+func (c *SNS) VerifySMSSandboxPhoneNumber(input *VerifySMSSandboxPhoneNumberInput) (*VerifySMSSandboxPhoneNumberOutput, error) {
+	req, out := c.VerifySMSSandboxPhoneNumberRequest(input)
+	return out, req.Send()
+}
+
+// VerifySMSSandboxPhoneNumberWithContext is the same as VerifySMSSandboxPhoneNumber with the addition of
+// the ability to pass a context and additional request options.
+//
+// See VerifySMSSandboxPhoneNumber for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SNS) VerifySMSSandboxPhoneNumberWithContext(ctx aws.Context, input *VerifySMSSandboxPhoneNumberInput, opts ...request.Option) (*VerifySMSSandboxPhoneNumberOutput, error) {
+	req, out := c.VerifySMSSandboxPhoneNumberRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3789,7 +4523,7 @@ func (s *ConfirmSubscriptionOutput) SetSubscriptionArn(v string) *ConfirmSubscri
 type CreatePlatformApplicationInput struct {
 	_ struct{} `type:"structure"`
 
-	// For a list of attributes, see SetPlatformApplicationAttributes (https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html)
+	// For a list of attributes, see SetPlatformApplicationAttributes (https://docs.aws.amazon.com/sns/latest/api/API_SetPlatformApplicationAttributes.html).
 	//
 	// Attributes is a required field
 	Attributes map[string]*string `type:"map" required:"true"`
@@ -3982,6 +4716,69 @@ func (s *CreatePlatformEndpointOutput) SetEndpointArn(v string) *CreatePlatformE
 	return s
 }
 
+type CreateSMSSandboxPhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language to use for sending the OTP. The default value is en-US.
+	LanguageCode *string `type:"string" enum:"LanguageCodeString"`
+
+	// The destination phone number to verify. On verification, Amazon SNS adds
+	// this phone number to the list of verified phone numbers that you can send
+	// SMS messages to.
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateSMSSandboxPhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSMSSandboxPhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSMSSandboxPhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSMSSandboxPhoneNumberInput"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateSMSSandboxPhoneNumberInput) SetLanguageCode(v string) *CreateSMSSandboxPhoneNumberInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *CreateSMSSandboxPhoneNumberInput) SetPhoneNumber(v string) *CreateSMSSandboxPhoneNumberInput {
+	s.PhoneNumber = &v
+	return s
+}
+
+type CreateSMSSandboxPhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSMSSandboxPhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSMSSandboxPhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
 // Input for CreateTopic action.
 type CreateTopicInput struct {
 	_ struct{} `type:"structure"`
@@ -4001,9 +4798,9 @@ type CreateTopicInput struct {
 	//    * Policy – The policy that defines who can access your topic. By default,
 	//    only the topic owner can publish or subscribe to the topic.
 	//
-	// The following attribute applies only to server-side-encryption (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html):
+	// The following attribute applies only to server-side encryption (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html):
 	//
-	//    * KmsMasterKeyId – The ID of an AWS-managed customer master key (CMK)
+	//    * KmsMasterKeyId – The ID of an AWS managed customer master key (CMK)
 	//    for Amazon SNS or a custom CMK. For more information, see Key Terms (https://docs.aws.amazon.com/sns/latest/dg/sns-server-side-encryption.html#sse-key-terms).
 	//    For more examples, see KeyId (https://docs.aws.amazon.com/kms/latest/APIReference/API_DescribeKey.html#API_DescribeKey_RequestParameters)
 	//    in the AWS Key Management Service API Reference.
@@ -4019,7 +4816,7 @@ type CreateTopicInput struct {
 	//    action. When you set ContentBasedDeduplication to true, Amazon SNS uses
 	//    a SHA-256 hash to generate the MessageDeduplicationId using the body of
 	//    the message (but not the attributes of the message). (Optional) To override
-	//    the generated value, you can specify a value for the the MessageDeduplicationId
+	//    the generated value, you can specify a value for the MessageDeduplicationId
 	//    parameter for the Publish action.
 	Attributes map[string]*string `type:"map"`
 
@@ -4219,6 +5016,58 @@ func (s DeletePlatformApplicationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeletePlatformApplicationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSMSSandboxPhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// The destination phone number to delete.
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSMSSandboxPhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSMSSandboxPhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSMSSandboxPhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSMSSandboxPhoneNumberInput"}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *DeleteSMSSandboxPhoneNumberInput) SetPhoneNumber(v string) *DeleteSMSSandboxPhoneNumberInput {
+	s.PhoneNumber = &v
+	return s
+}
+
+type DeleteSMSSandboxPhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSMSSandboxPhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSMSSandboxPhoneNumberOutput) GoString() string {
 	return s.String()
 }
 
@@ -4513,6 +5362,45 @@ func (s *GetSMSAttributesOutput) SetAttributes(v map[string]*string) *GetSMSAttr
 	return s
 }
 
+type GetSMSSandboxAccountStatusInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSMSSandboxAccountStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSMSSandboxAccountStatusInput) GoString() string {
+	return s.String()
+}
+
+type GetSMSSandboxAccountStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the calling account is in the SMS sandbox.
+	//
+	// IsInSandbox is a required field
+	IsInSandbox *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSMSSandboxAccountStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSMSSandboxAccountStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetIsInSandbox sets the IsInSandbox field's value.
+func (s *GetSMSSandboxAccountStatusOutput) SetIsInSandbox(v bool) *GetSMSSandboxAccountStatusOutput {
+	s.IsInSandbox = &v
+	return s
+}
+
 // Input for GetSubscriptionAttributes.
 type GetSubscriptionAttributesInput struct {
 	_ struct{} `type:"structure"`
@@ -4709,7 +5597,7 @@ type GetTopicAttributesOutput struct {
 	//    action. When you set ContentBasedDeduplication to true, Amazon SNS uses
 	//    a SHA-256 hash to generate the MessageDeduplicationId using the body of
 	//    the message (but not the attributes of the message). (Optional) To override
-	//    the generated value, you can specify a value for the the MessageDeduplicationId
+	//    the generated value, you can specify a value for the MessageDeduplicationId
 	//    parameter for the Publish action.
 	Attributes map[string]*string `type:"map"`
 }
@@ -4811,6 +5699,84 @@ func (s *ListEndpointsByPlatformApplicationOutput) SetEndpoints(v []*Endpoint) *
 // SetNextToken sets the NextToken field's value.
 func (s *ListEndpointsByPlatformApplicationOutput) SetNextToken(v string) *ListEndpointsByPlatformApplicationOutput {
 	s.NextToken = &v
+	return s
+}
+
+type ListOriginationNumbersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of origination numbers to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Token that the previous ListOriginationNumbers request returns.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListOriginationNumbersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOriginationNumbersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOriginationNumbersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOriginationNumbersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOriginationNumbersInput) SetMaxResults(v int64) *ListOriginationNumbersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOriginationNumbersInput) SetNextToken(v string) *ListOriginationNumbersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListOriginationNumbersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A NextToken string is returned when you call the ListOriginationNumbers operation
+	// if additional pages of records are available.
+	NextToken *string `type:"string"`
+
+	// A list of the calling account's verified and pending origination numbers.
+	PhoneNumbers []*PhoneNumberInformation `type:"list"`
+}
+
+// String returns the string representation
+func (s ListOriginationNumbersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOriginationNumbersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOriginationNumbersOutput) SetNextToken(v string) *ListOriginationNumbersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPhoneNumbers sets the PhoneNumbers field's value.
+func (s *ListOriginationNumbersOutput) SetPhoneNumbers(v []*PhoneNumberInformation) *ListOriginationNumbersOutput {
+	s.PhoneNumbers = v
 	return s
 }
 
@@ -4931,6 +5897,86 @@ func (s *ListPlatformApplicationsOutput) SetNextToken(v string) *ListPlatformApp
 // SetPlatformApplications sets the PlatformApplications field's value.
 func (s *ListPlatformApplicationsOutput) SetPlatformApplications(v []*PlatformApplication) *ListPlatformApplicationsOutput {
 	s.PlatformApplications = v
+	return s
+}
+
+type ListSMSSandboxPhoneNumbersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of phone numbers to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Token that the previous ListSMSSandboxPhoneNumbersInput request returns.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListSMSSandboxPhoneNumbersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSMSSandboxPhoneNumbersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSMSSandboxPhoneNumbersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSMSSandboxPhoneNumbersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSMSSandboxPhoneNumbersInput) SetMaxResults(v int64) *ListSMSSandboxPhoneNumbersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSMSSandboxPhoneNumbersInput) SetNextToken(v string) *ListSMSSandboxPhoneNumbersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSMSSandboxPhoneNumbersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A NextToken string is returned when you call the ListSMSSandboxPhoneNumbersInput
+	// operation if additional pages of records are available.
+	NextToken *string `type:"string"`
+
+	// A list of the calling account's pending and verified phone numbers.
+	//
+	// PhoneNumbers is a required field
+	PhoneNumbers []*SMSSandboxPhoneNumber `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListSMSSandboxPhoneNumbersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSMSSandboxPhoneNumbersOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSMSSandboxPhoneNumbersOutput) SetNextToken(v string) *ListSMSSandboxPhoneNumbersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPhoneNumbers sets the PhoneNumbers field's value.
+func (s *ListSMSSandboxPhoneNumbersOutput) SetPhoneNumbers(v []*SMSSandboxPhoneNumber) *ListSMSSandboxPhoneNumbersOutput {
+	s.PhoneNumbers = v
 	return s
 }
 
@@ -5322,6 +6368,75 @@ func (s OptInPhoneNumberOutput) GoString() string {
 	return s.String()
 }
 
+// A list of phone numbers and their metadata.
+type PhoneNumberInformation struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the phone number was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The two-character code for the country or region, in ISO 3166-1 alpha-2 format.
+	Iso2CountryCode *string `type:"string"`
+
+	// The capabilities of each phone number.
+	NumberCapabilities []*string `type:"list"`
+
+	// The phone number.
+	PhoneNumber *string `type:"string"`
+
+	// The list of supported routes.
+	RouteType *string `type:"string" enum:"RouteType"`
+
+	// The status of the phone number.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PhoneNumberInformation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PhoneNumberInformation) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PhoneNumberInformation) SetCreatedAt(v time.Time) *PhoneNumberInformation {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetIso2CountryCode sets the Iso2CountryCode field's value.
+func (s *PhoneNumberInformation) SetIso2CountryCode(v string) *PhoneNumberInformation {
+	s.Iso2CountryCode = &v
+	return s
+}
+
+// SetNumberCapabilities sets the NumberCapabilities field's value.
+func (s *PhoneNumberInformation) SetNumberCapabilities(v []*string) *PhoneNumberInformation {
+	s.NumberCapabilities = v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *PhoneNumberInformation) SetPhoneNumber(v string) *PhoneNumberInformation {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetRouteType sets the RouteType field's value.
+func (s *PhoneNumberInformation) SetRouteType(v string) *PhoneNumberInformation {
+	s.RouteType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PhoneNumberInformation) SetStatus(v string) *PhoneNumberInformation {
+	s.Status = &v
+	return s
+}
+
 // Platform application object.
 type PlatformApplication struct {
 	_ struct{} `type:"structure"`
@@ -5668,6 +6783,48 @@ func (s RemovePermissionOutput) String() string {
 // GoString returns the string representation
 func (s RemovePermissionOutput) GoString() string {
 	return s.String()
+}
+
+// A verified or pending destination phone number in the SMS sandbox.
+//
+// When you start using Amazon SNS to send SMS messages, your AWS account is
+// in the SMS sandbox. The SMS sandbox provides a safe environment for you to
+// try Amazon SNS features without risking your reputation as an SMS sender.
+// While your account is in the SMS sandbox, you can use all of the features
+// of Amazon SNS. However, you can send SMS messages only to verified destination
+// phone numbers. For more information, including how to move out of the sandbox
+// to send messages without restrictions, see SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// in the Amazon SNS Developer Guide.
+type SMSSandboxPhoneNumber struct {
+	_ struct{} `type:"structure"`
+
+	// The destination phone number.
+	PhoneNumber *string `type:"string"`
+
+	// The destination phone number's verification status.
+	Status *string `type:"string" enum:"SMSSandboxPhoneNumberVerificationStatus"`
+}
+
+// String returns the string representation
+func (s SMSSandboxPhoneNumber) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SMSSandboxPhoneNumber) GoString() string {
+	return s.String()
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *SMSSandboxPhoneNumber) SetPhoneNumber(v string) *SMSSandboxPhoneNumber {
+	s.PhoneNumber = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SMSSandboxPhoneNumber) SetStatus(v string) *SMSSandboxPhoneNumber {
+	s.Status = &v
+	return s
 }
 
 // Input for SetEndpointAttributes action.
@@ -6119,7 +7276,7 @@ type SetTopicAttributesInput struct {
 	//    action. When you set ContentBasedDeduplication to true, Amazon SNS uses
 	//    a SHA-256 hash to generate the MessageDeduplicationId using the body of
 	//    the message (but not the attributes of the message). (Optional) To override
-	//    the generated value, you can specify a value for the the MessageDeduplicationId
+	//    the generated value, you can specify a value for the MessageDeduplicationId
 	//    parameter for the Publish action.
 	//
 	// AttributeName is a required field
@@ -6726,4 +7883,200 @@ func (s UntagResourceOutput) String() string {
 // GoString returns the string representation
 func (s UntagResourceOutput) GoString() string {
 	return s.String()
+}
+
+type VerifySMSSandboxPhoneNumberInput struct {
+	_ struct{} `type:"structure"`
+
+	// The OTP sent to the destination number from the CreateSMSSandBoxPhoneNumber
+	// call.
+	//
+	// OneTimePassword is a required field
+	OneTimePassword *string `min:"5" type:"string" required:"true"`
+
+	// The destination phone number to verify.
+	//
+	// PhoneNumber is a required field
+	PhoneNumber *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s VerifySMSSandboxPhoneNumberInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VerifySMSSandboxPhoneNumberInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VerifySMSSandboxPhoneNumberInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VerifySMSSandboxPhoneNumberInput"}
+	if s.OneTimePassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("OneTimePassword"))
+	}
+	if s.OneTimePassword != nil && len(*s.OneTimePassword) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("OneTimePassword", 5))
+	}
+	if s.PhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOneTimePassword sets the OneTimePassword field's value.
+func (s *VerifySMSSandboxPhoneNumberInput) SetOneTimePassword(v string) *VerifySMSSandboxPhoneNumberInput {
+	s.OneTimePassword = &v
+	return s
+}
+
+// SetPhoneNumber sets the PhoneNumber field's value.
+func (s *VerifySMSSandboxPhoneNumberInput) SetPhoneNumber(v string) *VerifySMSSandboxPhoneNumberInput {
+	s.PhoneNumber = &v
+	return s
+}
+
+// The destination phone number's verification status.
+type VerifySMSSandboxPhoneNumberOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s VerifySMSSandboxPhoneNumberOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VerifySMSSandboxPhoneNumberOutput) GoString() string {
+	return s.String()
+}
+
+// Supported language code for sending OTP message
+const (
+	// LanguageCodeStringEnUs is a LanguageCodeString enum value
+	LanguageCodeStringEnUs = "en-US"
+
+	// LanguageCodeStringEnGb is a LanguageCodeString enum value
+	LanguageCodeStringEnGb = "en-GB"
+
+	// LanguageCodeStringEs419 is a LanguageCodeString enum value
+	LanguageCodeStringEs419 = "es-419"
+
+	// LanguageCodeStringEsEs is a LanguageCodeString enum value
+	LanguageCodeStringEsEs = "es-ES"
+
+	// LanguageCodeStringDeDe is a LanguageCodeString enum value
+	LanguageCodeStringDeDe = "de-DE"
+
+	// LanguageCodeStringFrCa is a LanguageCodeString enum value
+	LanguageCodeStringFrCa = "fr-CA"
+
+	// LanguageCodeStringFrFr is a LanguageCodeString enum value
+	LanguageCodeStringFrFr = "fr-FR"
+
+	// LanguageCodeStringItIt is a LanguageCodeString enum value
+	LanguageCodeStringItIt = "it-IT"
+
+	// LanguageCodeStringJaJp is a LanguageCodeString enum value
+	LanguageCodeStringJaJp = "ja-JP"
+
+	// LanguageCodeStringPtBr is a LanguageCodeString enum value
+	LanguageCodeStringPtBr = "pt-BR"
+
+	// LanguageCodeStringKrKr is a LanguageCodeString enum value
+	LanguageCodeStringKrKr = "kr-KR"
+
+	// LanguageCodeStringZhCn is a LanguageCodeString enum value
+	LanguageCodeStringZhCn = "zh-CN"
+
+	// LanguageCodeStringZhTw is a LanguageCodeString enum value
+	LanguageCodeStringZhTw = "zh-TW"
+)
+
+// LanguageCodeString_Values returns all elements of the LanguageCodeString enum
+func LanguageCodeString_Values() []string {
+	return []string{
+		LanguageCodeStringEnUs,
+		LanguageCodeStringEnGb,
+		LanguageCodeStringEs419,
+		LanguageCodeStringEsEs,
+		LanguageCodeStringDeDe,
+		LanguageCodeStringFrCa,
+		LanguageCodeStringFrFr,
+		LanguageCodeStringItIt,
+		LanguageCodeStringJaJp,
+		LanguageCodeStringPtBr,
+		LanguageCodeStringKrKr,
+		LanguageCodeStringZhCn,
+		LanguageCodeStringZhTw,
+	}
+}
+
+// Enum listing out all supported number capabilities.
+const (
+	// NumberCapabilitySms is a NumberCapability enum value
+	NumberCapabilitySms = "SMS"
+
+	// NumberCapabilityMms is a NumberCapability enum value
+	NumberCapabilityMms = "MMS"
+
+	// NumberCapabilityVoice is a NumberCapability enum value
+	NumberCapabilityVoice = "VOICE"
+)
+
+// NumberCapability_Values returns all elements of the NumberCapability enum
+func NumberCapability_Values() []string {
+	return []string{
+		NumberCapabilitySms,
+		NumberCapabilityMms,
+		NumberCapabilityVoice,
+	}
+}
+
+// Enum listing out all supported route types. The following enum values are
+// supported. 1. Transactional : Non-marketing traffic 2. Promotional : Marketing
+// 3. Premium : Premium routes for OTP delivery to the carriers
+const (
+	// RouteTypeTransactional is a RouteType enum value
+	RouteTypeTransactional = "Transactional"
+
+	// RouteTypePromotional is a RouteType enum value
+	RouteTypePromotional = "Promotional"
+
+	// RouteTypePremium is a RouteType enum value
+	RouteTypePremium = "Premium"
+)
+
+// RouteType_Values returns all elements of the RouteType enum
+func RouteType_Values() []string {
+	return []string{
+		RouteTypeTransactional,
+		RouteTypePromotional,
+		RouteTypePremium,
+	}
+}
+
+// Enum listing out all supported destination phone number verification statuses.
+// The following enum values are supported. 1. PENDING : The destination phone
+// number is pending verification. 2. VERIFIED : The destination phone number
+// is verified.
+const (
+	// SMSSandboxPhoneNumberVerificationStatusPending is a SMSSandboxPhoneNumberVerificationStatus enum value
+	SMSSandboxPhoneNumberVerificationStatusPending = "Pending"
+
+	// SMSSandboxPhoneNumberVerificationStatusVerified is a SMSSandboxPhoneNumberVerificationStatus enum value
+	SMSSandboxPhoneNumberVerificationStatusVerified = "Verified"
+)
+
+// SMSSandboxPhoneNumberVerificationStatus_Values returns all elements of the SMSSandboxPhoneNumberVerificationStatus enum
+func SMSSandboxPhoneNumberVerificationStatus_Values() []string {
+	return []string{
+		SMSSandboxPhoneNumberVerificationStatusPending,
+		SMSSandboxPhoneNumberVerificationStatusVerified,
+	}
 }

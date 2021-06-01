@@ -156,9 +156,17 @@ type IoTWirelessAPI interface {
 	GetDeviceProfileWithContext(aws.Context, *iotwireless.GetDeviceProfileInput, ...request.Option) (*iotwireless.GetDeviceProfileOutput, error)
 	GetDeviceProfileRequest(*iotwireless.GetDeviceProfileInput) (*request.Request, *iotwireless.GetDeviceProfileOutput)
 
+	GetLogLevelsByResourceTypes(*iotwireless.GetLogLevelsByResourceTypesInput) (*iotwireless.GetLogLevelsByResourceTypesOutput, error)
+	GetLogLevelsByResourceTypesWithContext(aws.Context, *iotwireless.GetLogLevelsByResourceTypesInput, ...request.Option) (*iotwireless.GetLogLevelsByResourceTypesOutput, error)
+	GetLogLevelsByResourceTypesRequest(*iotwireless.GetLogLevelsByResourceTypesInput) (*request.Request, *iotwireless.GetLogLevelsByResourceTypesOutput)
+
 	GetPartnerAccount(*iotwireless.GetPartnerAccountInput) (*iotwireless.GetPartnerAccountOutput, error)
 	GetPartnerAccountWithContext(aws.Context, *iotwireless.GetPartnerAccountInput, ...request.Option) (*iotwireless.GetPartnerAccountOutput, error)
 	GetPartnerAccountRequest(*iotwireless.GetPartnerAccountInput) (*request.Request, *iotwireless.GetPartnerAccountOutput)
+
+	GetResourceLogLevel(*iotwireless.GetResourceLogLevelInput) (*iotwireless.GetResourceLogLevelOutput, error)
+	GetResourceLogLevelWithContext(aws.Context, *iotwireless.GetResourceLogLevelInput, ...request.Option) (*iotwireless.GetResourceLogLevelOutput, error)
+	GetResourceLogLevelRequest(*iotwireless.GetResourceLogLevelInput) (*request.Request, *iotwireless.GetResourceLogLevelOutput)
 
 	GetServiceEndpoint(*iotwireless.GetServiceEndpointInput) (*iotwireless.GetServiceEndpointOutput, error)
 	GetServiceEndpointWithContext(aws.Context, *iotwireless.GetServiceEndpointInput, ...request.Option) (*iotwireless.GetServiceEndpointOutput, error)
@@ -247,6 +255,18 @@ type IoTWirelessAPI interface {
 	ListWirelessGatewaysPages(*iotwireless.ListWirelessGatewaysInput, func(*iotwireless.ListWirelessGatewaysOutput, bool) bool) error
 	ListWirelessGatewaysPagesWithContext(aws.Context, *iotwireless.ListWirelessGatewaysInput, func(*iotwireless.ListWirelessGatewaysOutput, bool) bool, ...request.Option) error
 
+	PutResourceLogLevel(*iotwireless.PutResourceLogLevelInput) (*iotwireless.PutResourceLogLevelOutput, error)
+	PutResourceLogLevelWithContext(aws.Context, *iotwireless.PutResourceLogLevelInput, ...request.Option) (*iotwireless.PutResourceLogLevelOutput, error)
+	PutResourceLogLevelRequest(*iotwireless.PutResourceLogLevelInput) (*request.Request, *iotwireless.PutResourceLogLevelOutput)
+
+	ResetAllResourceLogLevels(*iotwireless.ResetAllResourceLogLevelsInput) (*iotwireless.ResetAllResourceLogLevelsOutput, error)
+	ResetAllResourceLogLevelsWithContext(aws.Context, *iotwireless.ResetAllResourceLogLevelsInput, ...request.Option) (*iotwireless.ResetAllResourceLogLevelsOutput, error)
+	ResetAllResourceLogLevelsRequest(*iotwireless.ResetAllResourceLogLevelsInput) (*request.Request, *iotwireless.ResetAllResourceLogLevelsOutput)
+
+	ResetResourceLogLevel(*iotwireless.ResetResourceLogLevelInput) (*iotwireless.ResetResourceLogLevelOutput, error)
+	ResetResourceLogLevelWithContext(aws.Context, *iotwireless.ResetResourceLogLevelInput, ...request.Option) (*iotwireless.ResetResourceLogLevelOutput, error)
+	ResetResourceLogLevelRequest(*iotwireless.ResetResourceLogLevelInput) (*request.Request, *iotwireless.ResetResourceLogLevelOutput)
+
 	SendDataToWirelessDevice(*iotwireless.SendDataToWirelessDeviceInput) (*iotwireless.SendDataToWirelessDeviceOutput, error)
 	SendDataToWirelessDeviceWithContext(aws.Context, *iotwireless.SendDataToWirelessDeviceInput, ...request.Option) (*iotwireless.SendDataToWirelessDeviceOutput, error)
 	SendDataToWirelessDeviceRequest(*iotwireless.SendDataToWirelessDeviceInput) (*request.Request, *iotwireless.SendDataToWirelessDeviceOutput)
@@ -266,6 +286,10 @@ type IoTWirelessAPI interface {
 	UpdateDestination(*iotwireless.UpdateDestinationInput) (*iotwireless.UpdateDestinationOutput, error)
 	UpdateDestinationWithContext(aws.Context, *iotwireless.UpdateDestinationInput, ...request.Option) (*iotwireless.UpdateDestinationOutput, error)
 	UpdateDestinationRequest(*iotwireless.UpdateDestinationInput) (*request.Request, *iotwireless.UpdateDestinationOutput)
+
+	UpdateLogLevelsByResourceTypes(*iotwireless.UpdateLogLevelsByResourceTypesInput) (*iotwireless.UpdateLogLevelsByResourceTypesOutput, error)
+	UpdateLogLevelsByResourceTypesWithContext(aws.Context, *iotwireless.UpdateLogLevelsByResourceTypesInput, ...request.Option) (*iotwireless.UpdateLogLevelsByResourceTypesOutput, error)
+	UpdateLogLevelsByResourceTypesRequest(*iotwireless.UpdateLogLevelsByResourceTypesInput) (*request.Request, *iotwireless.UpdateLogLevelsByResourceTypesOutput)
 
 	UpdatePartnerAccount(*iotwireless.UpdatePartnerAccountInput) (*iotwireless.UpdatePartnerAccountOutput, error)
 	UpdatePartnerAccountWithContext(aws.Context, *iotwireless.UpdatePartnerAccountInput, ...request.Option) (*iotwireless.UpdatePartnerAccountOutput, error)

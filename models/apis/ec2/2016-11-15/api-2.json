@@ -8250,6 +8250,10 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
         }
       }
     },
@@ -8259,6 +8263,10 @@
         "NetworkInterface":{
           "shape":"NetworkInterface",
           "locationName":"networkInterface"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },

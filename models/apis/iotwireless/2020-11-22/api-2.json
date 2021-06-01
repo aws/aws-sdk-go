@@ -427,6 +427,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetLogLevelsByResourceTypes":{
+      "name":"GetLogLevelsByResourceTypes",
+      "http":{
+        "method":"GET",
+        "requestUri":"/log-levels",
+        "responseCode":200
+      },
+      "input":{"shape":"GetLogLevelsByResourceTypesRequest"},
+      "output":{"shape":"GetLogLevelsByResourceTypesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetPartnerAccount":{
       "name":"GetPartnerAccount",
       "http":{
@@ -440,6 +457,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "GetResourceLogLevel":{
+      "name":"GetResourceLogLevel",
+      "http":{
+        "method":"GET",
+        "requestUri":"/log-levels/{ResourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetResourceLogLevelRequest"},
+      "output":{"shape":"GetResourceLogLevelResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetServiceEndpoint":{
@@ -724,6 +758,57 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "PutResourceLogLevel":{
+      "name":"PutResourceLogLevel",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/log-levels/{ResourceIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"PutResourceLogLevelRequest"},
+      "output":{"shape":"PutResourceLogLevelResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ResetAllResourceLogLevels":{
+      "name":"ResetAllResourceLogLevels",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/log-levels",
+        "responseCode":204
+      },
+      "input":{"shape":"ResetAllResourceLogLevelsRequest"},
+      "output":{"shape":"ResetAllResourceLogLevelsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "ResetResourceLogLevel":{
+      "name":"ResetResourceLogLevel",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/log-levels/{ResourceIdentifier}",
+        "responseCode":204
+      },
+      "input":{"shape":"ResetResourceLogLevelRequest"},
+      "output":{"shape":"ResetResourceLogLevelResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "SendDataToWirelessDevice":{
       "name":"SendDataToWirelessDevice",
       "http":{
@@ -806,6 +891,24 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"}
+      ]
+    },
+    "UpdateLogLevelsByResourceTypes":{
+      "name":"UpdateLogLevelsByResourceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/log-levels",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateLogLevelsByResourceTypesRequest"},
+      "output":{"shape":"UpdateLogLevelsByResourceTypesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
       ]
     },
     "UpdatePartnerAccount":{
@@ -1596,6 +1699,19 @@
         "LoRaWAN":{"shape":"LoRaWANDeviceProfile"}
       }
     },
+    "GetLogLevelsByResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "GetLogLevelsByResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+        "DefaultLogLevel":{"shape":"LogLevel"},
+        "WirelessGatewayLogOptions":{"shape":"WirelessGatewayLogOptionList"},
+        "WirelessDeviceLogOptions":{"shape":"WirelessDeviceLogOptionList"}
+      }
+    },
     "GetPartnerAccountRequest":{
       "type":"structure",
       "required":[
@@ -1620,6 +1736,31 @@
       "members":{
         "Sidewalk":{"shape":"SidewalkAccountInfoWithFingerprint"},
         "AccountLinked":{"shape":"AccountLinked"}
+      }
+    },
+    "GetResourceLogLevelRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "GetResourceLogLevelResponse":{
+      "type":"structure",
+      "members":{
+        "LogLevel":{"shape":"LogLevel"}
       }
     },
     "GetServiceEndpointRequest":{
@@ -2223,6 +2364,14 @@
         "UpdateVersion":{"shape":"LoRaWANGatewayVersion"}
       }
     },
+    "LogLevel":{
+      "type":"string",
+      "enum":[
+        "INFO",
+        "ERROR",
+        "DISABLED"
+      ]
+    },
     "MacVersion":{
       "type":"string",
       "max":64
@@ -2348,6 +2497,32 @@
       "max":16700000,
       "min":1000000
     },
+    "PutResourceLogLevelRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType",
+        "LogLevel"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        },
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
+    "PutResourceLogLevelResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RaAllowed":{"type":"boolean"},
     "RegParamsRevision":{
       "type":"string",
@@ -2355,7 +2530,45 @@
     },
     "ReportDevStatusBattery":{"type":"boolean"},
     "ReportDevStatusMargin":{"type":"boolean"},
+    "ResetAllResourceLogLevelsRequest":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ResetAllResourceLogLevelsResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "ResetResourceLogLevelRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceIdentifier",
+        "ResourceType"
+      ],
+      "members":{
+        "ResourceIdentifier":{
+          "shape":"ResourceIdentifier",
+          "location":"uri",
+          "locationName":"ResourceIdentifier"
+        },
+        "ResourceType":{
+          "shape":"ResourceType",
+          "location":"querystring",
+          "locationName":"resourceType"
+        }
+      }
+    },
+    "ResetResourceLogLevelResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ResourceId":{"type":"string"},
+    "ResourceIdentifier":{
+      "type":"string",
+      "max":256
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -2725,6 +2938,19 @@
       "members":{
       }
     },
+    "UpdateLogLevelsByResourceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "DefaultLogLevel":{"shape":"LogLevel"},
+        "WirelessDeviceLogOptions":{"shape":"WirelessDeviceLogOptionList"},
+        "WirelessGatewayLogOptions":{"shape":"WirelessGatewayLogOptionList"}
+      }
+    },
+    "UpdateLogLevelsByResourceTypesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdatePartnerAccountRequest":{
       "type":"structure",
       "required":[
@@ -2821,6 +3047,31 @@
       "exception":true
     },
     "WirelessDeviceArn":{"type":"string"},
+    "WirelessDeviceEvent":{
+      "type":"string",
+      "enum":[
+        "Join",
+        "Rejoin",
+        "Uplink_Data",
+        "Downlink_Data",
+        "Registration"
+      ]
+    },
+    "WirelessDeviceEventLogOption":{
+      "type":"structure",
+      "required":[
+        "Event",
+        "LogLevel"
+      ],
+      "members":{
+        "Event":{"shape":"WirelessDeviceEvent"},
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
+    "WirelessDeviceEventLogOptionList":{
+      "type":"list",
+      "member":{"shape":"WirelessDeviceEventLogOption"}
+    },
     "WirelessDeviceId":{
       "type":"string",
       "max":256
@@ -2832,6 +3083,22 @@
         "DevEui",
         "ThingName"
       ]
+    },
+    "WirelessDeviceLogOption":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "LogLevel"
+      ],
+      "members":{
+        "Type":{"shape":"WirelessDeviceType"},
+        "LogLevel":{"shape":"LogLevel"},
+        "Events":{"shape":"WirelessDeviceEventLogOptionList"}
+      }
+    },
+    "WirelessDeviceLogOptionList":{
+      "type":"list",
+      "member":{"shape":"WirelessDeviceLogOption"}
     },
     "WirelessDeviceName":{
       "type":"string",
@@ -2862,6 +3129,28 @@
       ]
     },
     "WirelessGatewayArn":{"type":"string"},
+    "WirelessGatewayEvent":{
+      "type":"string",
+      "enum":[
+        "CUPS_Request",
+        "Certificate"
+      ]
+    },
+    "WirelessGatewayEventLogOption":{
+      "type":"structure",
+      "required":[
+        "Event",
+        "LogLevel"
+      ],
+      "members":{
+        "Event":{"shape":"WirelessGatewayEvent"},
+        "LogLevel":{"shape":"LogLevel"}
+      }
+    },
+    "WirelessGatewayEventLogOptionList":{
+      "type":"list",
+      "member":{"shape":"WirelessGatewayEventLogOption"}
+    },
     "WirelessGatewayId":{
       "type":"string",
       "max":256
@@ -2873,6 +3162,22 @@
         "WirelessGatewayId",
         "ThingName"
       ]
+    },
+    "WirelessGatewayLogOption":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "LogLevel"
+      ],
+      "members":{
+        "Type":{"shape":"WirelessGatewayType"},
+        "LogLevel":{"shape":"LogLevel"},
+        "Events":{"shape":"WirelessGatewayEventLogOptionList"}
+      }
+    },
+    "WirelessGatewayLogOptionList":{
+      "type":"list",
+      "member":{"shape":"WirelessGatewayLogOption"}
     },
     "WirelessGatewayName":{
       "type":"string",
@@ -2929,6 +3234,10 @@
         "COMPLETED",
         "FAILED"
       ]
+    },
+    "WirelessGatewayType":{
+      "type":"string",
+      "enum":["LoRaWAN"]
     },
     "WirelessMetadata":{
       "type":"structure",

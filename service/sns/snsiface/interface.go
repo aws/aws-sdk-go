@@ -80,6 +80,10 @@ type SNSAPI interface {
 	CreatePlatformEndpointWithContext(aws.Context, *sns.CreatePlatformEndpointInput, ...request.Option) (*sns.CreatePlatformEndpointOutput, error)
 	CreatePlatformEndpointRequest(*sns.CreatePlatformEndpointInput) (*request.Request, *sns.CreatePlatformEndpointOutput)
 
+	CreateSMSSandboxPhoneNumber(*sns.CreateSMSSandboxPhoneNumberInput) (*sns.CreateSMSSandboxPhoneNumberOutput, error)
+	CreateSMSSandboxPhoneNumberWithContext(aws.Context, *sns.CreateSMSSandboxPhoneNumberInput, ...request.Option) (*sns.CreateSMSSandboxPhoneNumberOutput, error)
+	CreateSMSSandboxPhoneNumberRequest(*sns.CreateSMSSandboxPhoneNumberInput) (*request.Request, *sns.CreateSMSSandboxPhoneNumberOutput)
+
 	CreateTopic(*sns.CreateTopicInput) (*sns.CreateTopicOutput, error)
 	CreateTopicWithContext(aws.Context, *sns.CreateTopicInput, ...request.Option) (*sns.CreateTopicOutput, error)
 	CreateTopicRequest(*sns.CreateTopicInput) (*request.Request, *sns.CreateTopicOutput)
@@ -91,6 +95,10 @@ type SNSAPI interface {
 	DeletePlatformApplication(*sns.DeletePlatformApplicationInput) (*sns.DeletePlatformApplicationOutput, error)
 	DeletePlatformApplicationWithContext(aws.Context, *sns.DeletePlatformApplicationInput, ...request.Option) (*sns.DeletePlatformApplicationOutput, error)
 	DeletePlatformApplicationRequest(*sns.DeletePlatformApplicationInput) (*request.Request, *sns.DeletePlatformApplicationOutput)
+
+	DeleteSMSSandboxPhoneNumber(*sns.DeleteSMSSandboxPhoneNumberInput) (*sns.DeleteSMSSandboxPhoneNumberOutput, error)
+	DeleteSMSSandboxPhoneNumberWithContext(aws.Context, *sns.DeleteSMSSandboxPhoneNumberInput, ...request.Option) (*sns.DeleteSMSSandboxPhoneNumberOutput, error)
+	DeleteSMSSandboxPhoneNumberRequest(*sns.DeleteSMSSandboxPhoneNumberInput) (*request.Request, *sns.DeleteSMSSandboxPhoneNumberOutput)
 
 	DeleteTopic(*sns.DeleteTopicInput) (*sns.DeleteTopicOutput, error)
 	DeleteTopicWithContext(aws.Context, *sns.DeleteTopicInput, ...request.Option) (*sns.DeleteTopicOutput, error)
@@ -108,6 +116,10 @@ type SNSAPI interface {
 	GetSMSAttributesWithContext(aws.Context, *sns.GetSMSAttributesInput, ...request.Option) (*sns.GetSMSAttributesOutput, error)
 	GetSMSAttributesRequest(*sns.GetSMSAttributesInput) (*request.Request, *sns.GetSMSAttributesOutput)
 
+	GetSMSSandboxAccountStatus(*sns.GetSMSSandboxAccountStatusInput) (*sns.GetSMSSandboxAccountStatusOutput, error)
+	GetSMSSandboxAccountStatusWithContext(aws.Context, *sns.GetSMSSandboxAccountStatusInput, ...request.Option) (*sns.GetSMSSandboxAccountStatusOutput, error)
+	GetSMSSandboxAccountStatusRequest(*sns.GetSMSSandboxAccountStatusInput) (*request.Request, *sns.GetSMSSandboxAccountStatusOutput)
+
 	GetSubscriptionAttributes(*sns.GetSubscriptionAttributesInput) (*sns.GetSubscriptionAttributesOutput, error)
 	GetSubscriptionAttributesWithContext(aws.Context, *sns.GetSubscriptionAttributesInput, ...request.Option) (*sns.GetSubscriptionAttributesOutput, error)
 	GetSubscriptionAttributesRequest(*sns.GetSubscriptionAttributesInput) (*request.Request, *sns.GetSubscriptionAttributesOutput)
@@ -123,6 +135,13 @@ type SNSAPI interface {
 	ListEndpointsByPlatformApplicationPages(*sns.ListEndpointsByPlatformApplicationInput, func(*sns.ListEndpointsByPlatformApplicationOutput, bool) bool) error
 	ListEndpointsByPlatformApplicationPagesWithContext(aws.Context, *sns.ListEndpointsByPlatformApplicationInput, func(*sns.ListEndpointsByPlatformApplicationOutput, bool) bool, ...request.Option) error
 
+	ListOriginationNumbers(*sns.ListOriginationNumbersInput) (*sns.ListOriginationNumbersOutput, error)
+	ListOriginationNumbersWithContext(aws.Context, *sns.ListOriginationNumbersInput, ...request.Option) (*sns.ListOriginationNumbersOutput, error)
+	ListOriginationNumbersRequest(*sns.ListOriginationNumbersInput) (*request.Request, *sns.ListOriginationNumbersOutput)
+
+	ListOriginationNumbersPages(*sns.ListOriginationNumbersInput, func(*sns.ListOriginationNumbersOutput, bool) bool) error
+	ListOriginationNumbersPagesWithContext(aws.Context, *sns.ListOriginationNumbersInput, func(*sns.ListOriginationNumbersOutput, bool) bool, ...request.Option) error
+
 	ListPhoneNumbersOptedOut(*sns.ListPhoneNumbersOptedOutInput) (*sns.ListPhoneNumbersOptedOutOutput, error)
 	ListPhoneNumbersOptedOutWithContext(aws.Context, *sns.ListPhoneNumbersOptedOutInput, ...request.Option) (*sns.ListPhoneNumbersOptedOutOutput, error)
 	ListPhoneNumbersOptedOutRequest(*sns.ListPhoneNumbersOptedOutInput) (*request.Request, *sns.ListPhoneNumbersOptedOutOutput)
@@ -133,6 +152,13 @@ type SNSAPI interface {
 
 	ListPlatformApplicationsPages(*sns.ListPlatformApplicationsInput, func(*sns.ListPlatformApplicationsOutput, bool) bool) error
 	ListPlatformApplicationsPagesWithContext(aws.Context, *sns.ListPlatformApplicationsInput, func(*sns.ListPlatformApplicationsOutput, bool) bool, ...request.Option) error
+
+	ListSMSSandboxPhoneNumbers(*sns.ListSMSSandboxPhoneNumbersInput) (*sns.ListSMSSandboxPhoneNumbersOutput, error)
+	ListSMSSandboxPhoneNumbersWithContext(aws.Context, *sns.ListSMSSandboxPhoneNumbersInput, ...request.Option) (*sns.ListSMSSandboxPhoneNumbersOutput, error)
+	ListSMSSandboxPhoneNumbersRequest(*sns.ListSMSSandboxPhoneNumbersInput) (*request.Request, *sns.ListSMSSandboxPhoneNumbersOutput)
+
+	ListSMSSandboxPhoneNumbersPages(*sns.ListSMSSandboxPhoneNumbersInput, func(*sns.ListSMSSandboxPhoneNumbersOutput, bool) bool) error
+	ListSMSSandboxPhoneNumbersPagesWithContext(aws.Context, *sns.ListSMSSandboxPhoneNumbersInput, func(*sns.ListSMSSandboxPhoneNumbersOutput, bool) bool, ...request.Option) error
 
 	ListSubscriptions(*sns.ListSubscriptionsInput) (*sns.ListSubscriptionsOutput, error)
 	ListSubscriptionsWithContext(aws.Context, *sns.ListSubscriptionsInput, ...request.Option) (*sns.ListSubscriptionsOutput, error)
@@ -206,6 +232,10 @@ type SNSAPI interface {
 	UntagResource(*sns.UntagResourceInput) (*sns.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *sns.UntagResourceInput, ...request.Option) (*sns.UntagResourceOutput, error)
 	UntagResourceRequest(*sns.UntagResourceInput) (*request.Request, *sns.UntagResourceOutput)
+
+	VerifySMSSandboxPhoneNumber(*sns.VerifySMSSandboxPhoneNumberInput) (*sns.VerifySMSSandboxPhoneNumberOutput, error)
+	VerifySMSSandboxPhoneNumberWithContext(aws.Context, *sns.VerifySMSSandboxPhoneNumberInput, ...request.Option) (*sns.VerifySMSSandboxPhoneNumberOutput, error)
+	VerifySMSSandboxPhoneNumberRequest(*sns.VerifySMSSandboxPhoneNumberInput) (*request.Request, *sns.VerifySMSSandboxPhoneNumberOutput)
 }
 
 var _ SNSAPI = (*sns.SNS)(nil)
