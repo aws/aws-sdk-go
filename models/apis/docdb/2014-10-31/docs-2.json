@@ -13,12 +13,14 @@
     "CreateDBInstance": "<p>Creates a new instance.</p>",
     "CreateDBSubnetGroup": "<p>Creates a new subnet group. subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region.</p>",
     "CreateEventSubscription": "<p>Creates an Amazon DocumentDB event notification subscription. This action requires a topic Amazon Resource Name (ARN) created by using the Amazon DocumentDB console, the Amazon SNS console, or the Amazon SNS API. To obtain an ARN with Amazon SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the Amazon SNS console.</p> <p>You can specify the type of source (<code>SourceType</code>) that you want to be notified of. You can also provide a list of Amazon DocumentDB sources (<code>SourceIds</code>) that trigger the events, and you can provide a list of event categories (<code>EventCategories</code>) for events that you want to be notified of. For example, you can specify <code>SourceType = db-instance</code>, <code>SourceIds = mydbinstance1, mydbinstance2</code> and <code>EventCategories = Availability, Backup</code>.</p> <p>If you specify both the <code>SourceType</code> and <code>SourceIds</code> (such as <code>SourceType = db-instance</code> and <code>SourceIdentifier = myDBInstance1</code>), you are notified of all the <code>db-instance</code> events for the specified source. If you specify a <code>SourceType</code> but do not specify a <code>SourceIdentifier</code>, you receive notice of the events for that source type for all your Amazon DocumentDB sources. If you do not specify either the <code>SourceType</code> or the <code>SourceIdentifier</code>, you are notified of events generated from all Amazon DocumentDB sources belonging to your customer account.</p>",
+    "CreateGlobalCluster": "<p>Creates an Amazon DocumentDB global cluster that can span multiple multiple AWS Regions. The global cluster contains one primary cluster with read-write capability, and up-to give read-only secondary clusters. Global clusters uses storage-based fast replication across regions with latencies less than one second, using dedicated infrastructure with no impact to your workload’s performance.</p> <p/> <p>You can create a global cluster that is initially empty, and then add a primary and a secondary to it. Or you can specify an existing cluster during the create operation, and this cluster becomes the primary of the global cluster. </p> <note> <p>This action only applies to Amazon DocumentDB clusters.</p> </note>",
     "DeleteDBCluster": "<p>Deletes a previously provisioned cluster. When you delete a cluster, all automated backups for that cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified cluster are not deleted.</p> <p/>",
     "DeleteDBClusterParameterGroup": "<p>Deletes a specified cluster parameter group. The cluster parameter group to be deleted can't be associated with any clusters.</p>",
     "DeleteDBClusterSnapshot": "<p>Deletes a cluster snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The cluster snapshot must be in the <code>available</code> state to be deleted.</p> </note>",
     "DeleteDBInstance": "<p>Deletes a previously provisioned instance. </p>",
     "DeleteDBSubnetGroup": "<p>Deletes a subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
     "DeleteEventSubscription": "<p>Deletes an Amazon DocumentDB event notification subscription.</p>",
+    "DeleteGlobalCluster": "<p>Deletes a global cluster. The primary and secondary clusters must already be detached or deleted before attempting to delete a global cluster.</p> <note> <p>This action only applies to Amazon DocumentDB clusters.</p> </note>",
     "DescribeCertificates": "<p>Returns a list of certificate authority (CA) certificates provided by Amazon DocumentDB for this AWS account.</p>",
     "DescribeDBClusterParameterGroups": "<p>Returns a list of <code>DBClusterParameterGroup</code> descriptions. If a <code>DBClusterParameterGroupName</code> parameter is specified, the list contains only the description of the specified cluster parameter group. </p>",
     "DescribeDBClusterParameters": "<p>Returns the detailed parameter list for a particular cluster parameter group.</p>",
@@ -32,6 +34,7 @@
     "DescribeEventCategories": "<p>Displays a list of categories for all event source types, or, if specified, for a specified source type. </p>",
     "DescribeEventSubscriptions": "<p>Lists all the subscription descriptions for a customer account. The description for a subscription includes <code>SubscriptionName</code>, <code>SNSTopicARN</code>, <code>CustomerID</code>, <code>SourceType</code>, <code>SourceID</code>, <code>CreationTime</code>, and <code>Status</code>.</p> <p>If you specify a <code>SubscriptionName</code>, lists the description for that subscription.</p>",
     "DescribeEvents": "<p>Returns events related to instances, security groups, snapshots, and DB parameter groups for the past 14 days. You can obtain events specific to a particular DB instance, security group, snapshot, or parameter group by providing the name as a parameter. By default, the events of the past hour are returned.</p>",
+    "DescribeGlobalClusters": "<p>Returns information about Amazon DocumentDB global clusters. This API supports pagination.</p> <note> <p>This action only applies to Amazon DocumentDB clusters.</p> </note>",
     "DescribeOrderableDBInstanceOptions": "<p>Returns a list of orderable instance options for the specified engine.</p>",
     "DescribePendingMaintenanceActions": "<p>Returns a list of resources (for example, instances) that have at least one pending maintenance action.</p>",
     "FailoverDBCluster": "<p>Forces a failover for a cluster.</p> <p>A failover for a cluster promotes one of the Amazon DocumentDB replicas (read-only instances) in the cluster to be the primary instance (the cluster writer).</p> <p>If the primary instance fails, Amazon DocumentDB automatically fails over to an Amazon DocumentDB replica, if one exists. You can force a failover when you want to simulate a failure of a primary instance for testing.</p>",
@@ -42,7 +45,9 @@
     "ModifyDBInstance": "<p>Modifies settings for an instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.</p>",
     "ModifyDBSubnetGroup": "<p>Modifies an existing subnet group. subnet groups must contain at least one subnet in at least two Availability Zones in the AWS Region.</p>",
     "ModifyEventSubscription": "<p>Modifies an existing Amazon DocumentDB event notification subscription.</p>",
+    "ModifyGlobalCluster": "<p>Modify a setting for an Amazon DocumentDB global cluster. You can change one or more configuration parameters (for example: deletion protection), or the global cluster identifier by specifying these parameters and the new values in the request.</p> <note> <p>This action only applies to Amazon DocumentDB clusters.</p> </note>",
     "RebootDBInstance": "<p>You might need to reboot your instance, usually for maintenance reasons. For example, if you make certain changes, or if you change the cluster parameter group that is associated with the instance, you must reboot the instance for the changes to take effect. </p> <p>Rebooting an instance restarts the database engine service. Rebooting an instance results in a momentary outage, during which the instance status is set to <i>rebooting</i>. </p>",
+    "RemoveFromGlobalCluster": "<p>Detaches an Amazon DocumentDB secondary cluster from a global cluster. The cluster becomes a standalone cluster with read-write capability instead of being read-only and receiving data from a primary in a different region. </p> <note> <p>This action only applies to Amazon DocumentDB clusters.</p> </note>",
     "RemoveSourceIdentifierFromSubscription": "<p>Removes a source identifier from an existing Amazon DocumentDB event notification subscription.</p>",
     "RemoveTagsFromResource": "<p>Removes metadata tags from an Amazon DocumentDB resource.</p>",
     "ResetDBClusterParameterGroup": "<p> Modifies the parameters of a cluster parameter group to the default value. To reset specific parameters, submit a list of the following: <code>ParameterName</code> and <code>ApplyMethod</code>. To reset the entire cluster parameter group, specify the <code>DBClusterParameterGroupName</code> and <code>ResetAllParameters</code> parameters. </p> <p> When you reset the entire group, dynamic parameters are updated immediately and static parameters are set to <code>pending-reboot</code> to take effect on the next DB instance reboot.</p>",
@@ -136,6 +141,7 @@
         "DescribeDBClusterSnapshotsMessage$IncludePublic": "<p>Set to <code>true</code> to include manual cluster snapshots that are public and can be copied or restored by any AWS account, and otherwise <code>false</code>. The default is <code>false</code>.</p>",
         "DescribeDBEngineVersionsMessage$DefaultOnly": "<p>Indicates that only the default version of the specified engine or engine and major version combination is returned.</p>",
         "EventSubscription$Enabled": "<p>A Boolean value indicating whether the subscription is enabled. A value of <code>true</code> indicates that the subscription is enabled.</p>",
+        "GlobalClusterMember$IsWriter": "<p> Specifies whether the Amazon DocumentDB cluster is the primary cluster (that is, has read-write capability) for the Amazon DocumentDB global cluster with which it is associated. </p>",
         "ModifyDBClusterMessage$ApplyImmediately": "<p>A value that specifies whether the changes in this request and any pending changes are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the cluster. If this parameter is set to <code>false</code>, changes to the cluster are applied during the next maintenance window.</p> <p>The <code>ApplyImmediately</code> parameter affects only the <code>NewDBClusterIdentifier</code> and <code>MasterUserPassword</code> values. If you set this parameter value to <code>false</code>, the changes to the <code>NewDBClusterIdentifier</code> and <code>MasterUserPassword</code> values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the <code>ApplyImmediately</code> parameter.</p> <p>Default: <code>false</code> </p>",
         "ModifyDBInstanceMessage$ApplyImmediately": "<p>Specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the <code>PreferredMaintenanceWindow</code> setting for the instance. </p> <p> If this parameter is set to <code>false</code>, changes to the instance are applied during the next maintenance window. Some parameter changes can cause an outage and are applied on the next reboot.</p> <p>Default: <code>false</code> </p>",
         "OrderableDBInstanceOption$Vpc": "<p>Indicates whether an instance is in a virtual private cloud (VPC).</p>",
@@ -154,12 +160,17 @@
         "CreateDBClusterMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
         "CreateDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades are applied automatically to the instance during the maintenance window.</p> <p>Default: <code>true</code> </p>",
         "CreateEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription, set to <code>false</code> to create the subscription but not active it. </p>",
+        "CreateGlobalClusterMessage$DeletionProtection": "<p>The deletion protection setting for the new global cluster. The global cluster can't be deleted when deletion protection is enabled. </p>",
+        "CreateGlobalClusterMessage$StorageEncrypted": "<p>The storage encryption setting for the new global cluster. </p>",
         "DescribeDBEngineVersionsMessage$ListSupportedCharacterSets": "<p>If this parameter is specified and the requested engine supports the <code>CharacterSetName</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported character sets for each engine version. </p>",
         "DescribeDBEngineVersionsMessage$ListSupportedTimezones": "<p>If this parameter is specified and the requested engine supports the <code>TimeZone</code> parameter for <code>CreateDBInstance</code>, the response includes a list of supported time zones for each engine version. </p>",
         "DescribeOrderableDBInstanceOptionsMessage$Vpc": "<p>The virtual private cloud (VPC) filter value. Specify this parameter to show only the available VPC or non-VPC offerings.</p>",
+        "GlobalCluster$StorageEncrypted": "<p>The storage encryption setting for the global cluster.</p>",
+        "GlobalCluster$DeletionProtection": "<p>The deletion protection setting for the new global cluster.</p>",
         "ModifyDBClusterMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
         "ModifyDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor version upgrades are applied automatically to the instance during the maintenance window. Changing this parameter doesn't result in an outage except in the following case, and the change is asynchronously applied as soon as possible. An outage results if this parameter is set to <code>true</code> during the maintenance window, and a newer minor version is available, and Amazon DocumentDB has enabled automatic patching for that engine version. </p>",
         "ModifyEventSubscriptionMessage$Enabled": "<p> A Boolean value; set to <code>true</code> to activate the subscription. </p>",
+        "ModifyGlobalClusterMessage$DeletionProtection": "<p>Indicates if the global cluster has deletion protection enabled. The global cluster can't be deleted when deletion protection is enabled. </p>",
         "PendingModifiedValues$MultiAZ": "<p>Indicates that the Single-AZ instance is to change to a Multi-AZ deployment.</p>",
         "RebootDBInstanceMessage$ForceFailover": "<p> When <code>true</code>, the reboot is conducted through a Multi-AZ failover. </p> <p>Constraint: You can't specify <code>true</code> if the instance is not configured for Multi-AZ.</p>",
         "RestoreDBClusterFromSnapshotMessage$DeletionProtection": "<p>Specifies whether this cluster can be deleted. If <code>DeletionProtection</code> is enabled, the cluster cannot be deleted unless it is modified and <code>DeletionProtection</code> is disabled. <code>DeletionProtection</code> protects clusters from being accidentally deleted.</p>",
@@ -270,6 +281,16 @@
       }
     },
     "CreateEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateGlobalClusterMessage": {
+      "base": "<p>Represents the input to <a>CreateGlobalCluster</a>.</p>",
+      "refs": {
+      }
+    },
+    "CreateGlobalClusterResult": {
       "base": null,
       "refs": {
       }
@@ -611,6 +632,16 @@
       "refs": {
       }
     },
+    "DeleteGlobalClusterMessage": {
+      "base": "<p>Represents the input to <a>DeleteGlobalCluster</a>.</p>",
+      "refs": {
+      }
+    },
+    "DeleteGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeCertificatesMessage": {
       "base": null,
       "refs": {
@@ -683,6 +714,11 @@
     },
     "DescribeEventsMessage": {
       "base": "<p>Represents the input to <a>DescribeEvents</a>.</p>",
+      "refs": {
+      }
+    },
+    "DescribeGlobalClustersMessage": {
+      "base": null,
       "refs": {
       }
     },
@@ -811,6 +847,7 @@
         "DescribeEventCategoriesMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventSubscriptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeEventsMessage$Filters": "<p>This parameter is not currently supported.</p>",
+        "DescribeGlobalClustersMessage$Filters": "<p>A filter that specifies one or more global DB clusters to describe.</p> <p>Supported filters: <code>db-cluster-id</code> accepts cluster identifiers and cluster Amazon Resource Names (ARNs). The results list will only include information about the clusters identified by these ARNs.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribePendingMaintenanceActionsMessage$Filters": "<p>A filter that specifies one or more resources to return pending maintenance actions for.</p> <p>Supported filters:</p> <ul> <li> <p> <code>db-cluster-id</code> - Accepts cluster identifiers and cluster Amazon Resource Names (ARNs). The results list includes only pending maintenance actions for the clusters identified by these ARNs.</p> </li> <li> <p> <code>db-instance-id</code> - Accepts instance identifiers and instance ARNs. The results list includes only pending maintenance actions for the DB instances identified by these ARNs.</p> </li> </ul>",
         "ListTagsForResourceMessage$Filters": "<p>This parameter is not currently supported.</p>"
@@ -820,6 +857,67 @@
       "base": null,
       "refs": {
         "Filter$Values": "<p>One or more filter values. Filter values are case sensitive.</p>"
+      }
+    },
+    "GlobalCluster": {
+      "base": "<p>A data type representing an Amazon DocumentDB global cluster.</p>",
+      "refs": {
+        "CreateGlobalClusterResult$GlobalCluster": null,
+        "DeleteGlobalClusterResult$GlobalCluster": null,
+        "GlobalClusterList$member": null,
+        "ModifyGlobalClusterResult$GlobalCluster": null,
+        "RemoveFromGlobalClusterResult$GlobalCluster": null
+      }
+    },
+    "GlobalClusterAlreadyExistsFault": {
+      "base": "<p>The <code>GlobalClusterIdentifier</code> already exists. Choose a new global cluster identifier (unique name) to create a new global cluster. </p>",
+      "refs": {
+      }
+    },
+    "GlobalClusterIdentifier": {
+      "base": null,
+      "refs": {
+        "CreateDBClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the new global cluster.</p>",
+        "CreateGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the new global cluster.</p>",
+        "DeleteGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier of the global cluster being deleted.</p>",
+        "DescribeGlobalClustersMessage$GlobalClusterIdentifier": "<p>The user-supplied cluster identifier. If this parameter is specified, information from only the specific cluster is returned. This parameter isn't case-sensitive.</p>",
+        "GlobalCluster$GlobalClusterIdentifier": "<p>Contains a user-supplied global cluster identifier. This identifier is the unique key that identifies a global cluster. </p>",
+        "ModifyGlobalClusterMessage$GlobalClusterIdentifier": "<p>The identifier for the global cluster being modified. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing global cluster.</p> </li> </ul>",
+        "ModifyGlobalClusterMessage$NewGlobalClusterIdentifier": "<p>The new identifier for a global cluster when you modify a global cluster. This value is stored as a lowercase string.</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> <p>The first character must be a letter</p> <p>Can't end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
+        "RemoveFromGlobalClusterMessage$GlobalClusterIdentifier": "<p>The cluster identifier to detach from the Amazon DocumentDB global cluster. </p>"
+      }
+    },
+    "GlobalClusterList": {
+      "base": null,
+      "refs": {
+        "GlobalClustersMessage$GlobalClusters": "<p/>"
+      }
+    },
+    "GlobalClusterMember": {
+      "base": "<p>A data structure with information about any primary and secondary clusters associated with an Amazon DocumentDB global clusters. </p>",
+      "refs": {
+        "GlobalClusterMemberList$member": null
+      }
+    },
+    "GlobalClusterMemberList": {
+      "base": null,
+      "refs": {
+        "GlobalCluster$GlobalClusterMembers": "<p>The list of cluster IDs for secondary clusters within the global cluster. Currently limited to one item. </p>"
+      }
+    },
+    "GlobalClusterNotFoundFault": {
+      "base": "<p>The <code>GlobalClusterIdentifier</code> doesn't refer to an existing global cluster.</p>",
+      "refs": {
+      }
+    },
+    "GlobalClusterQuotaExceededFault": {
+      "base": "<p>The number of global clusters for this account is already at the maximum allowed.</p>",
+      "refs": {
+      }
+    },
+    "GlobalClustersMessage": {
+      "base": null,
+      "refs": {
       }
     },
     "InstanceQuotaExceededFault": {
@@ -873,6 +971,7 @@
         "DescribeEventSubscriptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeEventsMessage$Duration": "<p>The number of minutes to retrieve events for.</p> <p>Default: 60</p>",
         "DescribeEventsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
+        "DescribeGlobalClustersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that you can retrieve the remaining results. </p>",
         "DescribeOrderableDBInstanceOptionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribePendingMaintenanceActionsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token (marker) is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "ModifyDBClusterMessage$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained. You must specify a minimum value of 1.</p> <p>Default: 1</p> <p>Constraints:</p> <ul> <li> <p>Must be a value from 1 to 35.</p> </li> </ul>",
@@ -928,6 +1027,11 @@
     },
     "InvalidEventSubscriptionStateFault": {
       "base": "<p>Someone else might be modifying a subscription. Wait a few seconds, and try again.</p>",
+      "refs": {
+      }
+    },
+    "InvalidGlobalClusterStateFault": {
+      "base": "<p>The requested operation can't be performed while the cluster is in this state.</p>",
       "refs": {
       }
     },
@@ -1032,6 +1136,16 @@
       "refs": {
       }
     },
+    "ModifyGlobalClusterMessage": {
+      "base": "<p>Represents the input to <a>ModifyGlobalCluster</a>.</p>",
+      "refs": {
+      }
+    },
+    "ModifyGlobalClusterResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "OrderableDBInstanceOption": {
       "base": "<p>The options that are available for an instance.</p>",
       "refs": {
@@ -1099,12 +1213,34 @@
         "DBInstance$PendingModifiedValues": "<p>Specifies that changes to the instance are pending. This element is included only when changes are pending. Specific changes are identified by subelements.</p>"
       }
     },
+    "ReadReplicaIdentifierList": {
+      "base": null,
+      "refs": {
+        "DBCluster$ReadReplicaIdentifiers": "<p>Contains one or more identifiers of the secondary clusters that are associated with this cluster.</p>"
+      }
+    },
+    "ReadersArnList": {
+      "base": null,
+      "refs": {
+        "GlobalClusterMember$Readers": "<p>The Amazon Resource Name (ARN) for each read-only secondary cluster associated with the Aurora global cluster.</p>"
+      }
+    },
     "RebootDBInstanceMessage": {
       "base": "<p>Represents the input to <a>RebootDBInstance</a>.</p>",
       "refs": {
       }
     },
     "RebootDBInstanceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveFromGlobalClusterMessage": {
+      "base": "<p>Represents the input to <a>RemoveFromGlobalCluster</a>.</p>",
+      "refs": {
+      }
+    },
+    "RemoveFromGlobalClusterResult": {
       "base": null,
       "refs": {
       }
@@ -1286,6 +1422,10 @@
         "CreateEventSubscriptionMessage$SubscriptionName": "<p>The name of the subscription.</p> <p>Constraints: The name must be fewer than 255 characters.</p>",
         "CreateEventSubscriptionMessage$SnsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic created for event notification. Amazon SNS creates the ARN when you create a topic and subscribe to it.</p>",
         "CreateEventSubscriptionMessage$SourceType": "<p>The type of source that is generating the events. For example, if you want to be notified of events generated by an instance, you would set this parameter to <code>db-instance</code>. If this value is not specified, all events are returned.</p> <p>Valid values: <code>db-instance</code>, <code>db-cluster</code>, <code>db-parameter-group</code>, <code>db-security-group</code>, <code>db-snapshot</code>, <code>db-cluster-snapshot</code> </p>",
+        "CreateGlobalClusterMessage$SourceDBClusterIdentifier": "<p>The Amazon Resource Name (ARN) to use as the primary cluster of the global cluster. This parameter is optional.</p>",
+        "CreateGlobalClusterMessage$Engine": "<p>The name of the database engine to be used for this cluster.</p>",
+        "CreateGlobalClusterMessage$EngineVersion": "<p>The engine version of the global cluster.</p>",
+        "CreateGlobalClusterMessage$DatabaseName": "<p>The name for your database of up to 64 alpha-numeric characters. If you do not provide a name, Amazon DocumentDB will not create a database in the global cluster you are creating.</p>",
         "DBCluster$DBClusterIdentifier": "<p>Contains a user-supplied cluster identifier. This identifier is the unique key that identifies a cluster.</p>",
         "DBCluster$DBClusterParameterGroup": "<p>Specifies the name of the cluster parameter group for the cluster.</p>",
         "DBCluster$DBSubnetGroup": "<p>Specifies information on the subnet group that is associated with the cluster, including the name, description, and subnets in the subnet group.</p>",
@@ -1298,6 +1438,7 @@
         "DBCluster$MasterUsername": "<p>Contains the master user name for the cluster.</p>",
         "DBCluster$PreferredBackupWindow": "<p>Specifies the daily time range during which automated backups are created if automated backups are enabled, as determined by the <code>BackupRetentionPeriod</code>. </p>",
         "DBCluster$PreferredMaintenanceWindow": "<p>Specifies the weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p>",
+        "DBCluster$ReplicationSourceIdentifier": "<p>Contains the identifier of the source cluster if this cluster is a secondary cluster.</p>",
         "DBCluster$HostedZoneId": "<p>Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.</p>",
         "DBCluster$KmsKeyId": "<p>If <code>StorageEncrypted</code> is <code>true</code>, the AWS KMS key identifier for the encrypted cluster.</p>",
         "DBCluster$DbClusterResourceId": "<p>The AWS Region-unique, immutable identifier for the cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the cluster is accessed.</p>",
@@ -1374,7 +1515,7 @@
         "DescribeDBClusterSnapshotAttributesMessage$DBClusterSnapshotIdentifier": "<p>The identifier for the cluster snapshot to describe the attributes for.</p>",
         "DescribeDBClusterSnapshotsMessage$DBClusterIdentifier": "<p>The ID of the cluster to retrieve the list of cluster snapshots for. This parameter can't be used with the <code>DBClusterSnapshotIdentifier</code> parameter. This parameter is not case sensitive. </p> <p>Constraints:</p> <ul> <li> <p>If provided, must match the identifier of an existing <code>DBCluster</code>.</p> </li> </ul>",
         "DescribeDBClusterSnapshotsMessage$DBClusterSnapshotIdentifier": "<p>A specific cluster snapshot identifier to describe. This parameter can't be used with the <code>DBClusterIdentifier</code> parameter. This value is stored as a lowercase string. </p> <p>Constraints:</p> <ul> <li> <p>If provided, must match the identifier of an existing <code>DBClusterSnapshot</code>.</p> </li> <li> <p>If this identifier is for an automated snapshot, the <code>SnapshotType</code> parameter must also be specified.</p> </li> </ul>",
-        "DescribeDBClusterSnapshotsMessage$SnapshotType": "<p>The type of cluster snapshots to be returned. You can specify one of the following values:</p> <ul> <li> <p> <code>automated</code> - Return all cluster snapshots that Amazon DocumentDB has automatically created for your AWS account.</p> </li> <li> <p> <code>manual</code> - Return all cluster snapshots that you have manually created for your AWS account.</p> </li> <li> <p> <code>shared</code> - Return all manual cluster snapshots that have been shared to your AWS account.</p> </li> <li> <p> <code>public</code> - Return all cluster snapshots that have been marked as public.</p> </li> </ul> <p>If you don't specify a <code>SnapshotType</code> value, then both automated and manual cluster snapshots are returned. You can include shared cluster snapshots with these results by setting the <code>IncludeShared</code> parameter to <code>true</code>. You can include public cluster snapshots with these results by setting the <code>IncludePublic</code> parameter to <code>true</code>.</p> <p>The <code>IncludeShared</code> and <code>IncludePublic</code> parameters don't apply for <code>SnapshotType</code> values of <code>manual</code> or <code>automated</code>. The <code>IncludePublic</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>shared</code>. The <code>IncludeShared</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>public</code>.</p>",
+        "DescribeDBClusterSnapshotsMessage$SnapshotType": "<p>The type of cluster snapshots to be returned. You can specify one of the following values:</p> <ul> <li> <p> <code>automated</code> - Return all cluster snapshots that Amazon DocumentDB has automatically created for your AWS account.</p> </li> <li> <p> <code>manual</code> - Return all cluster snapshots that you have manually created for your AWS account.</p> </li> <li> <p> <code>shared</code> - Return all manual cluster snapshots that have been shared to your AWS account.</p> </li> <li> <p> <code>public</code> - Return all cluster snapshots that have been marked as public.</p> </li> </ul> <p>If you don't specify a <code>SnapshotType</code> value, then both automated and manual cluster snapshots are returned. You can include shared cluster snapshots with these results by setting the <code>IncludeShared</code> parameter to <code>true</code>. You can include public cluster snapshots with these results by setting the<code>IncludePublic</code> parameter to <code>true</code>.</p> <p>The <code>IncludeShared</code> and <code>IncludePublic</code> parameters don't apply for <code>SnapshotType</code> values of <code>manual</code> or <code>automated</code>. The <code>IncludePublic</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>shared</code>. The <code>IncludeShared</code> parameter doesn't apply when <code>SnapshotType</code> is set to <code>public</code>.</p>",
         "DescribeDBClusterSnapshotsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBClustersMessage$DBClusterIdentifier": "<p>The user-provided cluster identifier. If this parameter is specified, information from only the specific cluster is returned. This parameter isn't case sensitive.</p> <p>Constraints:</p> <ul> <li> <p>If provided, must match an existing <code>DBClusterIdentifier</code>.</p> </li> </ul>",
         "DescribeDBClustersMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
@@ -1393,6 +1534,7 @@
         "DescribeEventSubscriptionsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeEventsMessage$SourceIdentifier": "<p>The identifier of the event source for which events are returned. If not specified, then all sources are included in the response.</p> <p>Constraints:</p> <ul> <li> <p>If <code>SourceIdentifier</code> is provided, <code>SourceType</code> must also be provided.</p> </li> <li> <p>If the source type is <code>DBInstance</code>, a <code>DBInstanceIdentifier</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBSecurityGroup</code>, a <code>DBSecurityGroupName</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBParameterGroup</code>, a <code>DBParameterGroupName</code> must be provided.</p> </li> <li> <p>If the source type is <code>DBSnapshot</code>, a <code>DBSnapshotIdentifier</code> must be provided.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
         "DescribeEventsMessage$Marker": "<p>An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeGlobalClustersMessage$Marker": "<p>An optional pagination token provided by a previous <code>DescribeGlobalClusters</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$Engine": "<p>The name of the engine to retrieve instance options for.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$EngineVersion": "<p>The engine version filter value. Specify this parameter to show only the available offerings that match the specified engine version.</p>",
         "DescribeOrderableDBInstanceOptionsMessage$DBInstanceClass": "<p>The instance class filter value. Specify this parameter to show only the available offerings that match the specified instance class.</p>",
@@ -1422,6 +1564,14 @@
         "FailoverDBClusterMessage$TargetDBInstanceIdentifier": "<p>The name of the instance to promote to the primary instance.</p> <p>You must specify the instance identifier for an Amazon DocumentDB replica in the cluster. For example, <code>mydbcluster-replica1</code>.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case sensitive.</p>",
         "FilterValueList$member": null,
+        "GlobalCluster$GlobalClusterResourceId": "<p>The AWS Region-unique, immutable identifier for the global database cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS customer master key (CMK) for the cluster is accessed. </p>",
+        "GlobalCluster$GlobalClusterArn": "<p>The Amazon Resource Name (ARN) for the global cluster.</p>",
+        "GlobalCluster$Status": "<p>Specifies the current state of this global cluster.</p>",
+        "GlobalCluster$Engine": "<p>The Amazon DocumentDB database engine used by the global cluster. </p>",
+        "GlobalCluster$EngineVersion": "<p>Indicates the database engine version.</p>",
+        "GlobalCluster$DatabaseName": "<p>The default database name within the new global cluster.</p>",
+        "GlobalClusterMember$DBClusterArn": "<p>The Amazon Resource Name (ARN) for each Amazon DocumentDB cluster.</p>",
+        "GlobalClustersMessage$Marker": "<p/>",
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon DocumentDB resource with tags to be listed. This value is an Amazon Resource Name (ARN).</p>",
         "LogTypeList$member": null,
@@ -1431,7 +1581,7 @@
         "ModifyDBClusterMessage$MasterUserPassword": "<p>The password for the master database user. This password can contain any printable ASCII character except forward slash (/), double quote (\"), or the \"at\" symbol (@).</p> <p>Constraints: Must contain from 8 to 100 characters.</p>",
         "ModifyDBClusterMessage$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter. </p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. </p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "ModifyDBClusterMessage$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p>Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week. </p> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun</p> <p>Constraints: Minimum 30-minute window.</p>",
-        "ModifyDBClusterMessage$EngineVersion": "<p>The version number of the database engine to which you want to upgrade. Changing this parameter results in an outage. The change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to <code>true</code>.</p>",
+        "ModifyDBClusterMessage$EngineVersion": "<p>The version number of the database engine to which you want to upgrade. Modifying engine version is not supported on Amazon DocumentDB.</p>",
         "ModifyDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the cluster parameter group to modify.</p>",
         "ModifyDBClusterSnapshotAttributeMessage$DBClusterSnapshotIdentifier": "<p>The identifier for the cluster snapshot to modify the attributes for.</p>",
         "ModifyDBClusterSnapshotAttributeMessage$AttributeName": "<p>The name of the cluster snapshot attribute to modify.</p> <p>To manage authorization for other AWS accounts to copy or restore a manual cluster snapshot, set this value to <code>restore</code>.</p>",
@@ -1470,7 +1620,10 @@
         "PendingModifiedValues$StorageType": "<p>Specifies the storage type to be associated with the instance.</p>",
         "PendingModifiedValues$CACertificateIdentifier": "<p>Specifies the identifier of the certificate authority (CA) certificate for the DB instance.</p>",
         "PendingModifiedValues$DBSubnetGroupName": "<p>The new subnet group for the instance. </p>",
+        "ReadReplicaIdentifierList$member": null,
+        "ReadersArnList$member": null,
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing <code>DBInstance</code>.</p> </li> </ul>",
+        "RemoveFromGlobalClusterMessage$DbClusterIdentifier": "<p>The Amazon Resource Name (ARN) identifying the cluster that was detached from the Amazon DocumentDB global cluster. </p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the Amazon DocumentDB event notification subscription that you want to remove a source identifier from.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SourceIdentifier": "<p> The source identifier to be removed from the subscription, such as the instance identifier for an instance, or the name of a security group. </p>",
         "RemoveTagsFromResourceMessage$ResourceName": "<p>The Amazon DocumentDB resource that the tags are removed from. This value is an Amazon Resource Name (ARN).</p>",

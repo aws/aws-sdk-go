@@ -266,6 +266,12 @@ func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, 
 //   * ThrottlingException
 //   The throttling rate limit is met.
 //
+//   * DeviceOfflineException
+//   The specified device is currently offline.
+//
+//   * DeviceRetiredException
+//   The specified device has been retired.
+//
 //   * InternalServiceException
 //   The request processing has failed because of an unknown error, exception,
 //   or failure.
@@ -1353,6 +1359,62 @@ func (s *DeviceOfflineException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *DeviceOfflineException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// The specified device has been retired.
+type DeviceRetiredException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s DeviceRetiredException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeviceRetiredException) GoString() string {
+	return s.String()
+}
+
+func newErrorDeviceRetiredException(v protocol.ResponseMetadata) error {
+	return &DeviceRetiredException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DeviceRetiredException) Code() string {
+	return "DeviceRetiredException"
+}
+
+// Message returns the exception's message.
+func (s *DeviceRetiredException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DeviceRetiredException) OrigErr() error {
+	return nil
+}
+
+func (s *DeviceRetiredException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DeviceRetiredException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DeviceRetiredException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -2541,7 +2603,7 @@ type UntagResourceInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
 
-	// pecify the keys for the tags to remove from the resource.
+	// Specify the keys for the tags to remove from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -2680,6 +2742,9 @@ const (
 
 	// DeviceStatusOffline is a DeviceStatus enum value
 	DeviceStatusOffline = "OFFLINE"
+
+	// DeviceStatusRetired is a DeviceStatus enum value
+	DeviceStatusRetired = "RETIRED"
 )
 
 // DeviceStatus_Values returns all elements of the DeviceStatus enum
@@ -2687,6 +2752,7 @@ func DeviceStatus_Values() []string {
 	return []string{
 		DeviceStatusOnline,
 		DeviceStatusOffline,
+		DeviceStatusRetired,
 	}
 }
 

@@ -565,6 +565,12 @@ func (c *DocDB) CreateDBClusterRequest(input *CreateDBClusterInput) (req *reques
 //   Subnets in the subnet group should cover at least two Availability Zones
 //   unless there is only one Availability Zone.
 //
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+//   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateDBCluster
 func (c *DocDB) CreateDBCluster(input *CreateDBClusterInput) (*CreateDBClusterOutput, error) {
 	req, out := c.CreateDBClusterRequest(input)
@@ -1117,6 +1123,107 @@ func (c *DocDB) CreateEventSubscriptionWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+const opCreateGlobalCluster = "CreateGlobalCluster"
+
+// CreateGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the CreateGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateGlobalCluster for more information on using the CreateGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateGlobalClusterRequest method.
+//    req, resp := client.CreateGlobalClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateGlobalCluster
+func (c *DocDB) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req *request.Request, output *CreateGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opCreateGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateGlobalClusterInput{}
+	}
+
+	output = &CreateGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Creates an Amazon DocumentDB global cluster that can span multiple multiple
+// AWS Regions. The global cluster contains one primary cluster with read-write
+// capability, and up-to give read-only secondary clusters. Global clusters
+// uses storage-based fast replication across regions with latencies less than
+// one second, using dedicated infrastructure with no impact to your workload’s
+// performance.
+//
+// You can create a global cluster that is initially empty, and then add a primary
+// and a secondary to it. Or you can specify an existing cluster during the
+// create operation, and this cluster becomes the primary of the global cluster.
+//
+// This action only applies to Amazon DocumentDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation CreateGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterAlreadyExistsFault "GlobalClusterAlreadyExistsFault"
+//   The GlobalClusterIdentifier already exists. Choose a new global cluster identifier
+//   (unique name) to create a new global cluster.
+//
+//   * ErrCodeGlobalClusterQuotaExceededFault "GlobalClusterQuotaExceededFault"
+//   The number of global clusters for this account is already at the maximum
+//   allowed.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The cluster isn't in a valid state.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateGlobalCluster
+func (c *DocDB) CreateGlobalCluster(input *CreateGlobalClusterInput) (*CreateGlobalClusterOutput, error) {
+	req, out := c.CreateGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// CreateGlobalClusterWithContext is the same as CreateGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) CreateGlobalClusterWithContext(ctx aws.Context, input *CreateGlobalClusterInput, opts ...request.Option) (*CreateGlobalClusterOutput, error) {
+	req, out := c.CreateGlobalClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDBCluster = "DeleteDBCluster"
 
 // DeleteDBClusterRequest generates a "aws/request.Request" representing the
@@ -1638,6 +1745,91 @@ func (c *DocDB) DeleteEventSubscription(input *DeleteEventSubscriptionInput) (*D
 // for more information on using Contexts.
 func (c *DocDB) DeleteEventSubscriptionWithContext(ctx aws.Context, input *DeleteEventSubscriptionInput, opts ...request.Option) (*DeleteEventSubscriptionOutput, error) {
 	req, out := c.DeleteEventSubscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteGlobalCluster = "DeleteGlobalCluster"
+
+// DeleteGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteGlobalCluster for more information on using the DeleteGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteGlobalClusterRequest method.
+//    req, resp := client.DeleteGlobalClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DeleteGlobalCluster
+func (c *DocDB) DeleteGlobalClusterRequest(input *DeleteGlobalClusterInput) (req *request.Request, output *DeleteGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opDeleteGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteGlobalClusterInput{}
+	}
+
+	output = &DeleteGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Deletes a global cluster. The primary and secondary clusters must already
+// be detached or deleted before attempting to delete a global cluster.
+//
+// This action only applies to Amazon DocumentDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation DeleteGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+//   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DeleteGlobalCluster
+func (c *DocDB) DeleteGlobalCluster(input *DeleteGlobalClusterInput) (*DeleteGlobalClusterOutput, error) {
+	req, out := c.DeleteGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// DeleteGlobalClusterWithContext is the same as DeleteGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DeleteGlobalClusterWithContext(ctx aws.Context, input *DeleteGlobalClusterInput, opts ...request.Option) (*DeleteGlobalClusterOutput, error) {
+	req, out := c.DeleteGlobalClusterRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3256,6 +3448,146 @@ func (c *DocDB) DescribeEventsPagesWithContext(ctx aws.Context, input *DescribeE
 	return p.Err()
 }
 
+const opDescribeGlobalClusters = "DescribeGlobalClusters"
+
+// DescribeGlobalClustersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGlobalClusters operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeGlobalClusters for more information on using the DescribeGlobalClusters
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeGlobalClustersRequest method.
+//    req, resp := client.DescribeGlobalClustersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DescribeGlobalClusters
+func (c *DocDB) DescribeGlobalClustersRequest(input *DescribeGlobalClustersInput) (req *request.Request, output *DescribeGlobalClustersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGlobalClusters,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeGlobalClustersInput{}
+	}
+
+	output = &DescribeGlobalClustersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeGlobalClusters API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Returns information about Amazon DocumentDB global clusters. This API supports
+// pagination.
+//
+// This action only applies to Amazon DocumentDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation DescribeGlobalClusters for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/DescribeGlobalClusters
+func (c *DocDB) DescribeGlobalClusters(input *DescribeGlobalClustersInput) (*DescribeGlobalClustersOutput, error) {
+	req, out := c.DescribeGlobalClustersRequest(input)
+	return out, req.Send()
+}
+
+// DescribeGlobalClustersWithContext is the same as DescribeGlobalClusters with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGlobalClusters for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DescribeGlobalClustersWithContext(ctx aws.Context, input *DescribeGlobalClustersInput, opts ...request.Option) (*DescribeGlobalClustersOutput, error) {
+	req, out := c.DescribeGlobalClustersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeGlobalClustersPages iterates over the pages of a DescribeGlobalClusters operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeGlobalClusters method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeGlobalClusters operation.
+//    pageNum := 0
+//    err := client.DescribeGlobalClustersPages(params,
+//        func(page *docdb.DescribeGlobalClustersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DocDB) DescribeGlobalClustersPages(input *DescribeGlobalClustersInput, fn func(*DescribeGlobalClustersOutput, bool) bool) error {
+	return c.DescribeGlobalClustersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeGlobalClustersPagesWithContext same as DescribeGlobalClustersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) DescribeGlobalClustersPagesWithContext(ctx aws.Context, input *DescribeGlobalClustersInput, fn func(*DescribeGlobalClustersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeGlobalClustersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeGlobalClustersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeGlobalClustersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeOrderableDBInstanceOptions = "DescribeOrderableDBInstanceOptions"
 
 // DescribeOrderableDBInstanceOptionsRequest generates a "aws/request.Request" representing the
@@ -4327,6 +4659,93 @@ func (c *DocDB) ModifyEventSubscriptionWithContext(ctx aws.Context, input *Modif
 	return out, req.Send()
 }
 
+const opModifyGlobalCluster = "ModifyGlobalCluster"
+
+// ModifyGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyGlobalCluster for more information on using the ModifyGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyGlobalClusterRequest method.
+//    req, resp := client.ModifyGlobalClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/ModifyGlobalCluster
+func (c *DocDB) ModifyGlobalClusterRequest(input *ModifyGlobalClusterInput) (req *request.Request, output *ModifyGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opModifyGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyGlobalClusterInput{}
+	}
+
+	output = &ModifyGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Modify a setting for an Amazon DocumentDB global cluster. You can change
+// one or more configuration parameters (for example: deletion protection),
+// or the global cluster identifier by specifying these parameters and the new
+// values in the request.
+//
+// This action only applies to Amazon DocumentDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation ModifyGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+//   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/ModifyGlobalCluster
+func (c *DocDB) ModifyGlobalCluster(input *ModifyGlobalClusterInput) (*ModifyGlobalClusterOutput, error) {
+	req, out := c.ModifyGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// ModifyGlobalClusterWithContext is the same as ModifyGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) ModifyGlobalClusterWithContext(ctx aws.Context, input *ModifyGlobalClusterInput, opts ...request.Option) (*ModifyGlobalClusterOutput, error) {
+	req, out := c.ModifyGlobalClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRebootDBInstance = "RebootDBInstance"
 
 // RebootDBInstanceRequest generates a "aws/request.Request" representing the
@@ -4411,6 +4830,95 @@ func (c *DocDB) RebootDBInstance(input *RebootDBInstanceInput) (*RebootDBInstanc
 // for more information on using Contexts.
 func (c *DocDB) RebootDBInstanceWithContext(ctx aws.Context, input *RebootDBInstanceInput, opts ...request.Option) (*RebootDBInstanceOutput, error) {
 	req, out := c.RebootDBInstanceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveFromGlobalCluster = "RemoveFromGlobalCluster"
+
+// RemoveFromGlobalClusterRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveFromGlobalCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveFromGlobalCluster for more information on using the RemoveFromGlobalCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveFromGlobalClusterRequest method.
+//    req, resp := client.RemoveFromGlobalClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/RemoveFromGlobalCluster
+func (c *DocDB) RemoveFromGlobalClusterRequest(input *RemoveFromGlobalClusterInput) (req *request.Request, output *RemoveFromGlobalClusterOutput) {
+	op := &request.Operation{
+		Name:       opRemoveFromGlobalCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveFromGlobalClusterInput{}
+	}
+
+	output = &RemoveFromGlobalClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RemoveFromGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
+//
+// Detaches an Amazon DocumentDB secondary cluster from a global cluster. The
+// cluster becomes a standalone cluster with read-write capability instead of
+// being read-only and receiving data from a primary in a different region.
+//
+// This action only applies to Amazon DocumentDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon DocumentDB with MongoDB compatibility's
+// API operation RemoveFromGlobalCluster for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeGlobalClusterNotFoundFault "GlobalClusterNotFoundFault"
+//   The GlobalClusterIdentifier doesn't refer to an existing global cluster.
+//
+//   * ErrCodeInvalidGlobalClusterStateFault "InvalidGlobalClusterStateFault"
+//   The requested operation can't be performed while the cluster is in this state.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier doesn't refer to an existing cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/RemoveFromGlobalCluster
+func (c *DocDB) RemoveFromGlobalCluster(input *RemoveFromGlobalClusterInput) (*RemoveFromGlobalClusterOutput, error) {
+	req, out := c.RemoveFromGlobalClusterRequest(input)
+	return out, req.Send()
+}
+
+// RemoveFromGlobalClusterWithContext is the same as RemoveFromGlobalCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveFromGlobalCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DocDB) RemoveFromGlobalClusterWithContext(ctx aws.Context, input *RemoveFromGlobalClusterInput, opts ...request.Option) (*RemoveFromGlobalClusterOutput, error) {
+	req, out := c.RemoveFromGlobalClusterRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5918,6 +6426,9 @@ type CreateDBClusterInput struct {
 	// version.
 	EngineVersion *string `type:"string"`
 
+	// The cluster identifier of the new global cluster.
+	GlobalClusterIdentifier *string `min:"1" type:"string"`
+
 	// The AWS KMS key identifier for an encrypted cluster.
 	//
 	// The AWS KMS key identifier is the Amazon Resource Name (ARN) for the AWS
@@ -5940,9 +6451,7 @@ type CreateDBClusterInput struct {
 	// the "at" symbol (@).
 	//
 	// Constraints: Must contain from 8 to 100 characters.
-	//
-	// MasterUserPassword is a required field
-	MasterUserPassword *string `type:"string" required:"true"`
+	MasterUserPassword *string `type:"string"`
 
 	// The name of the master user for the cluster.
 	//
@@ -5953,9 +6462,7 @@ type CreateDBClusterInput struct {
 	//    * The first character must be a letter.
 	//
 	//    * Cannot be a reserved word for the chosen database engine.
-	//
-	// MasterUsername is a required field
-	MasterUsername *string `type:"string" required:"true"`
+	MasterUsername *string `type:"string"`
 
 	// The port number on which the instances in the cluster accept connections.
 	Port *int64 `type:"integer"`
@@ -6027,11 +6534,8 @@ func (s *CreateDBClusterInput) Validate() error {
 	if s.Engine == nil {
 		invalidParams.Add(request.NewErrParamRequired("Engine"))
 	}
-	if s.MasterUserPassword == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUserPassword"))
-	}
-	if s.MasterUsername == nil {
-		invalidParams.Add(request.NewErrParamRequired("MasterUsername"))
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6097,6 +6601,12 @@ func (s *CreateDBClusterInput) SetEngine(v string) *CreateDBClusterInput {
 // SetEngineVersion sets the EngineVersion field's value.
 func (s *CreateDBClusterInput) SetEngineVersion(v string) *CreateDBClusterInput {
 	s.EngineVersion = &v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *CreateDBClusterInput) SetGlobalClusterIdentifier(v string) *CreateDBClusterInput {
+	s.GlobalClusterIdentifier = &v
 	return s
 }
 
@@ -6834,6 +7344,129 @@ func (s *CreateEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 	return s
 }
 
+// Represents the input to CreateGlobalCluster.
+type CreateGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name for your database of up to 64 alpha-numeric characters. If you do
+	// not provide a name, Amazon DocumentDB will not create a database in the global
+	// cluster you are creating.
+	DatabaseName *string `type:"string"`
+
+	// The deletion protection setting for the new global cluster. The global cluster
+	// can't be deleted when deletion protection is enabled.
+	DeletionProtection *bool `type:"boolean"`
+
+	// The name of the database engine to be used for this cluster.
+	Engine *string `type:"string"`
+
+	// The engine version of the global cluster.
+	EngineVersion *string `type:"string"`
+
+	// The cluster identifier of the new global cluster.
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) to use as the primary cluster of the global
+	// cluster. This parameter is optional.
+	SourceDBClusterIdentifier *string `type:"string"`
+
+	// The storage encryption setting for the new global cluster.
+	StorageEncrypted *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s CreateGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *CreateGlobalClusterInput) SetDatabaseName(v string) *CreateGlobalClusterInput {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDeletionProtection sets the DeletionProtection field's value.
+func (s *CreateGlobalClusterInput) SetDeletionProtection(v bool) *CreateGlobalClusterInput {
+	s.DeletionProtection = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateGlobalClusterInput) SetEngine(v string) *CreateGlobalClusterInput {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *CreateGlobalClusterInput) SetEngineVersion(v string) *CreateGlobalClusterInput {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *CreateGlobalClusterInput) SetGlobalClusterIdentifier(v string) *CreateGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetSourceDBClusterIdentifier sets the SourceDBClusterIdentifier field's value.
+func (s *CreateGlobalClusterInput) SetSourceDBClusterIdentifier(v string) *CreateGlobalClusterInput {
+	s.SourceDBClusterIdentifier = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *CreateGlobalClusterInput) SetStorageEncrypted(v bool) *CreateGlobalClusterInput {
+	s.StorageEncrypted = &v
+	return s
+}
+
+type CreateGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Amazon DocumentDB global cluster.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *CreateGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *CreateGlobalClusterOutput {
+	s.GlobalCluster = v
+	return s
+}
+
 // Detailed information about a cluster.
 type DBCluster struct {
 	_ struct{} `type:"structure"`
@@ -6930,6 +7563,10 @@ type DBCluster struct {
 	// in Universal Coordinated Time (UTC).
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// Contains one or more identifiers of the secondary clusters that are associated
+	// with this cluster.
+	ReadReplicaIdentifiers []*string `locationNameList:"ReadReplicaIdentifier" type:"list"`
+
 	// The reader endpoint for the cluster. The reader endpoint for a cluster load
 	// balances connections across the Amazon DocumentDB replicas that are available
 	// in a cluster. As clients request new connections to the reader endpoint,
@@ -6942,6 +7579,10 @@ type DBCluster struct {
 	// continue sending your read workload to other Amazon DocumentDB replicas in
 	// the cluster, you can then reconnect to the reader endpoint.
 	ReaderEndpoint *string `type:"string"`
+
+	// Contains the identifier of the source cluster if this cluster is a secondary
+	// cluster.
+	ReplicationSourceIdentifier *string `type:"string"`
 
 	// Specifies the current state of this cluster.
 	Status *string `type:"string"`
@@ -7114,9 +7755,21 @@ func (s *DBCluster) SetPreferredMaintenanceWindow(v string) *DBCluster {
 	return s
 }
 
+// SetReadReplicaIdentifiers sets the ReadReplicaIdentifiers field's value.
+func (s *DBCluster) SetReadReplicaIdentifiers(v []*string) *DBCluster {
+	s.ReadReplicaIdentifiers = v
+	return s
+}
+
 // SetReaderEndpoint sets the ReaderEndpoint field's value.
 func (s *DBCluster) SetReaderEndpoint(v string) *DBCluster {
 	s.ReaderEndpoint = &v
+	return s
+}
+
+// SetReplicationSourceIdentifier sets the ReplicationSourceIdentifier field's value.
+func (s *DBCluster) SetReplicationSourceIdentifier(v string) *DBCluster {
+	s.ReplicationSourceIdentifier = &v
 	return s
 }
 
@@ -8441,6 +9094,71 @@ func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 	return s
 }
 
+// Represents the input to DeleteGlobalCluster.
+type DeleteGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier of the global cluster being deleted.
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *DeleteGlobalClusterInput) SetGlobalClusterIdentifier(v string) *DeleteGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+type DeleteGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Amazon DocumentDB global cluster.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *DeleteGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *DeleteGlobalClusterOutput {
+	s.GlobalCluster = v
+	return s
+}
+
 type DescribeCertificatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8949,7 +9667,7 @@ type DescribeDBClusterSnapshotsInput struct {
 	// If you don't specify a SnapshotType value, then both automated and manual
 	// cluster snapshots are returned. You can include shared cluster snapshots
 	// with these results by setting the IncludeShared parameter to true. You can
-	// include public cluster snapshots with these results by setting the IncludePublic
+	// include public cluster snapshots with these results by setting theIncludePublic
 	// parameter to true.
 	//
 	// The IncludeShared and IncludePublic parameters don't apply for SnapshotType
@@ -10100,6 +10818,118 @@ func (s *DescribeEventsOutput) SetMarker(v string) *DescribeEventsOutput {
 	return s
 }
 
+type DescribeGlobalClustersInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that specifies one or more global DB clusters to describe.
+	//
+	// Supported filters: db-cluster-id accepts cluster identifiers and cluster
+	// Amazon Resource Names (ARNs). The results list will only include information
+	// about the clusters identified by these ARNs.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// The user-supplied cluster identifier. If this parameter is specified, information
+	// from only the specific cluster is returned. This parameter isn't case-sensitive.
+	GlobalClusterIdentifier *string `min:"1" type:"string"`
+
+	// An optional pagination token provided by a previous DescribeGlobalClusters
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so that you can retrieve the remaining results.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeGlobalClustersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGlobalClustersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeGlobalClustersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeGlobalClustersInput"}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeGlobalClustersInput) SetFilters(v []*Filter) *DescribeGlobalClustersInput {
+	s.Filters = v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *DescribeGlobalClustersInput) SetGlobalClusterIdentifier(v string) *DescribeGlobalClustersInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeGlobalClustersInput) SetMarker(v string) *DescribeGlobalClustersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeGlobalClustersInput) SetMaxRecords(v int64) *DescribeGlobalClustersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeGlobalClustersOutput struct {
+	_ struct{} `type:"structure"`
+
+	GlobalClusters []*GlobalCluster `locationNameList:"GlobalClusterMember" type:"list"`
+
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeGlobalClustersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGlobalClustersOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalClusters sets the GlobalClusters field's value.
+func (s *DescribeGlobalClustersOutput) SetGlobalClusters(v []*GlobalCluster) *DescribeGlobalClustersOutput {
+	s.GlobalClusters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeGlobalClustersOutput) SetMarker(v string) *DescribeGlobalClustersOutput {
+	s.Marker = &v
+	return s
+}
+
 // Represents the input to DescribeOrderableDBInstanceOptions.
 type DescribeOrderableDBInstanceOptionsInput struct {
 	_ struct{} `type:"structure"`
@@ -10813,6 +11643,161 @@ func (s *Filter) SetValues(v []*string) *Filter {
 	return s
 }
 
+// A data type representing an Amazon DocumentDB global cluster.
+type GlobalCluster struct {
+	_ struct{} `type:"structure"`
+
+	// The default database name within the new global cluster.
+	DatabaseName *string `type:"string"`
+
+	// The deletion protection setting for the new global cluster.
+	DeletionProtection *bool `type:"boolean"`
+
+	// The Amazon DocumentDB database engine used by the global cluster.
+	Engine *string `type:"string"`
+
+	// Indicates the database engine version.
+	EngineVersion *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the global cluster.
+	GlobalClusterArn *string `type:"string"`
+
+	// Contains a user-supplied global cluster identifier. This identifier is the
+	// unique key that identifies a global cluster.
+	GlobalClusterIdentifier *string `min:"1" type:"string"`
+
+	// The list of cluster IDs for secondary clusters within the global cluster.
+	// Currently limited to one item.
+	GlobalClusterMembers []*GlobalClusterMember `locationNameList:"GlobalClusterMember" type:"list"`
+
+	// The AWS Region-unique, immutable identifier for the global database cluster.
+	// This identifier is found in AWS CloudTrail log entries whenever the AWS KMS
+	// customer master key (CMK) for the cluster is accessed.
+	GlobalClusterResourceId *string `type:"string"`
+
+	// Specifies the current state of this global cluster.
+	Status *string `type:"string"`
+
+	// The storage encryption setting for the global cluster.
+	StorageEncrypted *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GlobalCluster) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlobalCluster) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *GlobalCluster) SetDatabaseName(v string) *GlobalCluster {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDeletionProtection sets the DeletionProtection field's value.
+func (s *GlobalCluster) SetDeletionProtection(v bool) *GlobalCluster {
+	s.DeletionProtection = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *GlobalCluster) SetEngine(v string) *GlobalCluster {
+	s.Engine = &v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *GlobalCluster) SetEngineVersion(v string) *GlobalCluster {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetGlobalClusterArn sets the GlobalClusterArn field's value.
+func (s *GlobalCluster) SetGlobalClusterArn(v string) *GlobalCluster {
+	s.GlobalClusterArn = &v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *GlobalCluster) SetGlobalClusterIdentifier(v string) *GlobalCluster {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetGlobalClusterMembers sets the GlobalClusterMembers field's value.
+func (s *GlobalCluster) SetGlobalClusterMembers(v []*GlobalClusterMember) *GlobalCluster {
+	s.GlobalClusterMembers = v
+	return s
+}
+
+// SetGlobalClusterResourceId sets the GlobalClusterResourceId field's value.
+func (s *GlobalCluster) SetGlobalClusterResourceId(v string) *GlobalCluster {
+	s.GlobalClusterResourceId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GlobalCluster) SetStatus(v string) *GlobalCluster {
+	s.Status = &v
+	return s
+}
+
+// SetStorageEncrypted sets the StorageEncrypted field's value.
+func (s *GlobalCluster) SetStorageEncrypted(v bool) *GlobalCluster {
+	s.StorageEncrypted = &v
+	return s
+}
+
+// A data structure with information about any primary and secondary clusters
+// associated with an Amazon DocumentDB global clusters.
+type GlobalClusterMember struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for each Amazon DocumentDB cluster.
+	DBClusterArn *string `type:"string"`
+
+	// Specifies whether the Amazon DocumentDB cluster is the primary cluster (that
+	// is, has read-write capability) for the Amazon DocumentDB global cluster with
+	// which it is associated.
+	IsWriter *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) for each read-only secondary cluster associated
+	// with the Aurora global cluster.
+	Readers []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s GlobalClusterMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GlobalClusterMember) GoString() string {
+	return s.String()
+}
+
+// SetDBClusterArn sets the DBClusterArn field's value.
+func (s *GlobalClusterMember) SetDBClusterArn(v string) *GlobalClusterMember {
+	s.DBClusterArn = &v
+	return s
+}
+
+// SetIsWriter sets the IsWriter field's value.
+func (s *GlobalClusterMember) SetIsWriter(v bool) *GlobalClusterMember {
+	s.IsWriter = &v
+	return s
+}
+
+// SetReaders sets the Readers field's value.
+func (s *GlobalClusterMember) SetReaders(v []*string) *GlobalClusterMember {
+	s.Readers = v
+	return s
+}
+
 // Represents the input to ListTagsForResource.
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
@@ -10950,9 +11935,8 @@ type ModifyDBClusterInput struct {
 	// deleted.
 	DeletionProtection *bool `type:"boolean"`
 
-	// The version number of the database engine to which you want to upgrade. Changing
-	// this parameter results in an outage. The change is applied during the next
-	// maintenance window unless the ApplyImmediately parameter is set to true.
+	// The version number of the database engine to which you want to upgrade. Modifying
+	// engine version is not supported on Amazon DocumentDB.
 	EngineVersion *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -11721,6 +12705,104 @@ func (s *ModifyEventSubscriptionOutput) SetEventSubscription(v *EventSubscriptio
 	return s
 }
 
+// Represents the input to ModifyGlobalCluster.
+type ModifyGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates if the global cluster has deletion protection enabled. The global
+	// cluster can't be deleted when deletion protection is enabled.
+	DeletionProtection *bool `type:"boolean"`
+
+	// The identifier for the global cluster being modified. This parameter isn't
+	// case-sensitive.
+	//
+	// Constraints:
+	//
+	//    * Must match the identifier of an existing global cluster.
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The new identifier for a global cluster when you modify a global cluster.
+	// This value is stored as a lowercase string.
+	//
+	//    * Must contain from 1 to 63 letters, numbers, or hyphens The first character
+	//    must be a letter Can't end with a hyphen or contain two consecutive hyphens
+	//
+	// Example: my-cluster2
+	NewGlobalClusterIdentifier *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyGlobalClusterInput"}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+	if s.NewGlobalClusterIdentifier != nil && len(*s.NewGlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NewGlobalClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeletionProtection sets the DeletionProtection field's value.
+func (s *ModifyGlobalClusterInput) SetDeletionProtection(v bool) *ModifyGlobalClusterInput {
+	s.DeletionProtection = &v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *ModifyGlobalClusterInput) SetGlobalClusterIdentifier(v string) *ModifyGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+// SetNewGlobalClusterIdentifier sets the NewGlobalClusterIdentifier field's value.
+func (s *ModifyGlobalClusterInput) SetNewGlobalClusterIdentifier(v string) *ModifyGlobalClusterInput {
+	s.NewGlobalClusterIdentifier = &v
+	return s
+}
+
+type ModifyGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Amazon DocumentDB global cluster.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s ModifyGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *ModifyGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *ModifyGlobalClusterOutput {
+	s.GlobalCluster = v
+	return s
+}
+
 // The options that are available for an instance.
 type OrderableDBInstanceOption struct {
 	_ struct{} `type:"structure"`
@@ -12235,6 +13317,86 @@ func (s RebootDBInstanceOutput) GoString() string {
 // SetDBInstance sets the DBInstance field's value.
 func (s *RebootDBInstanceOutput) SetDBInstance(v *DBInstance) *RebootDBInstanceOutput {
 	s.DBInstance = v
+	return s
+}
+
+// Represents the input to RemoveFromGlobalCluster.
+type RemoveFromGlobalClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) identifying the cluster that was detached
+	// from the Amazon DocumentDB global cluster.
+	//
+	// DbClusterIdentifier is a required field
+	DbClusterIdentifier *string `type:"string" required:"true"`
+
+	// The cluster identifier to detach from the Amazon DocumentDB global cluster.
+	//
+	// GlobalClusterIdentifier is a required field
+	GlobalClusterIdentifier *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveFromGlobalClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFromGlobalClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveFromGlobalClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveFromGlobalClusterInput"}
+	if s.DbClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DbClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlobalClusterIdentifier"))
+	}
+	if s.GlobalClusterIdentifier != nil && len(*s.GlobalClusterIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlobalClusterIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDbClusterIdentifier sets the DbClusterIdentifier field's value.
+func (s *RemoveFromGlobalClusterInput) SetDbClusterIdentifier(v string) *RemoveFromGlobalClusterInput {
+	s.DbClusterIdentifier = &v
+	return s
+}
+
+// SetGlobalClusterIdentifier sets the GlobalClusterIdentifier field's value.
+func (s *RemoveFromGlobalClusterInput) SetGlobalClusterIdentifier(v string) *RemoveFromGlobalClusterInput {
+	s.GlobalClusterIdentifier = &v
+	return s
+}
+
+type RemoveFromGlobalClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A data type representing an Amazon DocumentDB global cluster.
+	GlobalCluster *GlobalCluster `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveFromGlobalClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveFromGlobalClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalCluster sets the GlobalCluster field's value.
+func (s *RemoveFromGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *RemoveFromGlobalClusterOutput {
+	s.GlobalCluster = v
 	return s
 }
 

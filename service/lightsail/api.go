@@ -23662,7 +23662,7 @@ type DomainEntry struct {
 	//
 	//    * A
 	//
-	//    * AAA
+	//    * AAAA
 	//
 	//    * CNAME
 	//
