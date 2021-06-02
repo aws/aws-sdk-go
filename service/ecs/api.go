@@ -1591,8 +1591,8 @@ func (c *ECS) DescribeContainerInstancesRequest(input *DescribeContainerInstance
 
 // DescribeContainerInstances API operation for Amazon EC2 Container Service.
 //
-// Describes Amazon Elastic Container Service container instances. Returns metadata
-// about registered and remaining resources on each container instance requested.
+// Describes one or more container instances. Returns metadata about each container
+// instance requested.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8505,7 +8505,9 @@ type ContainerInstance struct {
 	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
-	// The EC2 instance ID of the container instance.
+	// The ID of the container instance. For Amazon EC2 instances, this value is
+	// the Amazon EC2 instance ID. For external instances, this value is the AWS
+	// Systems Manager managed instance ID.
 	Ec2InstanceId *string `locationName:"ec2InstanceId" type:"string"`
 
 	// The number of tasks on the container instance that are in the PENDING status.
@@ -11141,32 +11143,16 @@ type DescribeClustersInput struct {
 	// entries. If you do not specify a cluster, the default cluster is assumed.
 	Clusters []*string `locationName:"clusters" type:"list"`
 
-	// Whether to include additional information about your clusters in the response.
-	// If this field is omitted, the attachments, statistics, and tags are not included.
+	// Whether to include additional information about the clusters in the response.
+	// If this field is omitted, this information isn't included.
 	//
 	// If ATTACHMENTS is specified, the attachments for the container instances
 	// or tasks within the cluster are included.
 	//
 	// If SETTINGS is specified, the settings for the cluster are included.
 	//
-	// If STATISTICS is specified, the following additional information, separated
-	// by launch type, is included:
-	//
-	//    * runningEC2TasksCount
-	//
-	//    * runningFargateTasksCount
-	//
-	//    * pendingEC2TasksCount
-	//
-	//    * pendingFargateTasksCount
-	//
-	//    * activeEC2ServiceCount
-	//
-	//    * activeFargateServiceCount
-	//
-	//    * drainingEC2ServiceCount
-	//
-	//    * drainingFargateServiceCount
+	// If STATISTICS is specified, the task and service count is included, separated
+	// by launch type.
 	//
 	// If TAGS is specified, the metadata tags associated with the cluster are included.
 	Include []*string `locationName:"include" type:"list"`

@@ -1,3 +1,19 @@
+Release v1.38.53 (2021-06-02)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * You can now launch EC2 instances with GP3 volumes when using Auto Scaling groups with Launch Configurations
+* `service/braket`: Updates service API and documentation
+* `service/docdb`: Updates service API, documentation, and paginators
+  * This SDK release adds support for DocDB global clusters.
+* `service/ecs`: Updates service documentation
+  * Documentation updates for Amazon ECS.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/lightsail`: Updates service documentation
+  * Documentation updates for Lightsail
+
 Release v1.38.52 (2021-06-01)
 ===
 

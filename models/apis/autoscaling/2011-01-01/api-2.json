@@ -1193,6 +1193,11 @@
       "max":20000,
       "min":100
     },
+    "BlockDeviceEbsThroughput":{
+      "type":"integer",
+      "max":1000,
+      "min":125
+    },
     "BlockDeviceEbsVolumeSize":{
       "type":"integer",
       "max":16384,
@@ -1680,7 +1685,8 @@
         "VolumeType":{"shape":"BlockDeviceEbsVolumeType"},
         "DeleteOnTermination":{"shape":"BlockDeviceEbsDeleteOnTermination"},
         "Iops":{"shape":"BlockDeviceEbsIops"},
-        "Encrypted":{"shape":"BlockDeviceEbsEncrypted"}
+        "Encrypted":{"shape":"BlockDeviceEbsEncrypted"},
+        "Throughput":{"shape":"BlockDeviceEbsThroughput"}
       }
     },
     "EbsOptimized":{"type":"boolean"},

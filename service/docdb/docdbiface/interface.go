@@ -104,6 +104,10 @@ type DocDBAPI interface {
 	CreateEventSubscriptionWithContext(aws.Context, *docdb.CreateEventSubscriptionInput, ...request.Option) (*docdb.CreateEventSubscriptionOutput, error)
 	CreateEventSubscriptionRequest(*docdb.CreateEventSubscriptionInput) (*request.Request, *docdb.CreateEventSubscriptionOutput)
 
+	CreateGlobalCluster(*docdb.CreateGlobalClusterInput) (*docdb.CreateGlobalClusterOutput, error)
+	CreateGlobalClusterWithContext(aws.Context, *docdb.CreateGlobalClusterInput, ...request.Option) (*docdb.CreateGlobalClusterOutput, error)
+	CreateGlobalClusterRequest(*docdb.CreateGlobalClusterInput) (*request.Request, *docdb.CreateGlobalClusterOutput)
+
 	DeleteDBCluster(*docdb.DeleteDBClusterInput) (*docdb.DeleteDBClusterOutput, error)
 	DeleteDBClusterWithContext(aws.Context, *docdb.DeleteDBClusterInput, ...request.Option) (*docdb.DeleteDBClusterOutput, error)
 	DeleteDBClusterRequest(*docdb.DeleteDBClusterInput) (*request.Request, *docdb.DeleteDBClusterOutput)
@@ -127,6 +131,10 @@ type DocDBAPI interface {
 	DeleteEventSubscription(*docdb.DeleteEventSubscriptionInput) (*docdb.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionWithContext(aws.Context, *docdb.DeleteEventSubscriptionInput, ...request.Option) (*docdb.DeleteEventSubscriptionOutput, error)
 	DeleteEventSubscriptionRequest(*docdb.DeleteEventSubscriptionInput) (*request.Request, *docdb.DeleteEventSubscriptionOutput)
+
+	DeleteGlobalCluster(*docdb.DeleteGlobalClusterInput) (*docdb.DeleteGlobalClusterOutput, error)
+	DeleteGlobalClusterWithContext(aws.Context, *docdb.DeleteGlobalClusterInput, ...request.Option) (*docdb.DeleteGlobalClusterOutput, error)
+	DeleteGlobalClusterRequest(*docdb.DeleteGlobalClusterInput) (*request.Request, *docdb.DeleteGlobalClusterOutput)
 
 	DescribeCertificates(*docdb.DescribeCertificatesInput) (*docdb.DescribeCertificatesOutput, error)
 	DescribeCertificatesWithContext(aws.Context, *docdb.DescribeCertificatesInput, ...request.Option) (*docdb.DescribeCertificatesOutput, error)
@@ -210,6 +218,13 @@ type DocDBAPI interface {
 	DescribeEventsPages(*docdb.DescribeEventsInput, func(*docdb.DescribeEventsOutput, bool) bool) error
 	DescribeEventsPagesWithContext(aws.Context, *docdb.DescribeEventsInput, func(*docdb.DescribeEventsOutput, bool) bool, ...request.Option) error
 
+	DescribeGlobalClusters(*docdb.DescribeGlobalClustersInput) (*docdb.DescribeGlobalClustersOutput, error)
+	DescribeGlobalClustersWithContext(aws.Context, *docdb.DescribeGlobalClustersInput, ...request.Option) (*docdb.DescribeGlobalClustersOutput, error)
+	DescribeGlobalClustersRequest(*docdb.DescribeGlobalClustersInput) (*request.Request, *docdb.DescribeGlobalClustersOutput)
+
+	DescribeGlobalClustersPages(*docdb.DescribeGlobalClustersInput, func(*docdb.DescribeGlobalClustersOutput, bool) bool) error
+	DescribeGlobalClustersPagesWithContext(aws.Context, *docdb.DescribeGlobalClustersInput, func(*docdb.DescribeGlobalClustersOutput, bool) bool, ...request.Option) error
+
 	DescribeOrderableDBInstanceOptions(*docdb.DescribeOrderableDBInstanceOptionsInput) (*docdb.DescribeOrderableDBInstanceOptionsOutput, error)
 	DescribeOrderableDBInstanceOptionsWithContext(aws.Context, *docdb.DescribeOrderableDBInstanceOptionsInput, ...request.Option) (*docdb.DescribeOrderableDBInstanceOptionsOutput, error)
 	DescribeOrderableDBInstanceOptionsRequest(*docdb.DescribeOrderableDBInstanceOptionsInput) (*request.Request, *docdb.DescribeOrderableDBInstanceOptionsOutput)
@@ -256,9 +271,17 @@ type DocDBAPI interface {
 	ModifyEventSubscriptionWithContext(aws.Context, *docdb.ModifyEventSubscriptionInput, ...request.Option) (*docdb.ModifyEventSubscriptionOutput, error)
 	ModifyEventSubscriptionRequest(*docdb.ModifyEventSubscriptionInput) (*request.Request, *docdb.ModifyEventSubscriptionOutput)
 
+	ModifyGlobalCluster(*docdb.ModifyGlobalClusterInput) (*docdb.ModifyGlobalClusterOutput, error)
+	ModifyGlobalClusterWithContext(aws.Context, *docdb.ModifyGlobalClusterInput, ...request.Option) (*docdb.ModifyGlobalClusterOutput, error)
+	ModifyGlobalClusterRequest(*docdb.ModifyGlobalClusterInput) (*request.Request, *docdb.ModifyGlobalClusterOutput)
+
 	RebootDBInstance(*docdb.RebootDBInstanceInput) (*docdb.RebootDBInstanceOutput, error)
 	RebootDBInstanceWithContext(aws.Context, *docdb.RebootDBInstanceInput, ...request.Option) (*docdb.RebootDBInstanceOutput, error)
 	RebootDBInstanceRequest(*docdb.RebootDBInstanceInput) (*request.Request, *docdb.RebootDBInstanceOutput)
+
+	RemoveFromGlobalCluster(*docdb.RemoveFromGlobalClusterInput) (*docdb.RemoveFromGlobalClusterOutput, error)
+	RemoveFromGlobalClusterWithContext(aws.Context, *docdb.RemoveFromGlobalClusterInput, ...request.Option) (*docdb.RemoveFromGlobalClusterOutput, error)
+	RemoveFromGlobalClusterRequest(*docdb.RemoveFromGlobalClusterInput) (*request.Request, *docdb.RemoveFromGlobalClusterOutput)
 
 	RemoveSourceIdentifierFromSubscription(*docdb.RemoveSourceIdentifierFromSubscriptionInput) (*docdb.RemoveSourceIdentifierFromSubscriptionOutput, error)
 	RemoveSourceIdentifierFromSubscriptionWithContext(aws.Context, *docdb.RemoveSourceIdentifierFromSubscriptionInput, ...request.Option) (*docdb.RemoveSourceIdentifierFromSubscriptionOutput, error)

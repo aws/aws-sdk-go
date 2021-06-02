@@ -19156,6 +19156,10 @@ type CreatePolicyInput struct {
 	// AWS CloudFormation always converts a YAML policy to JSON format before submitting
 	// it to IAM.
 	//
+	// To learn more about JSON policy grammar, see Grammar of the IAM JSON policy
+	// language (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_grammar.html)
+	// in the IAM User Guide.
+	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) used to validate this
 	// parameter is a string of characters consisting of the following:
 	//

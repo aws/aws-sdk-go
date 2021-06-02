@@ -26,6 +26,12 @@ const (
 	// The specified device is currently offline.
 	ErrCodeDeviceOfflineException = "DeviceOfflineException"
 
+	// ErrCodeDeviceRetiredException for service response error code
+	// "DeviceRetiredException".
+	//
+	// The specified device has been retired.
+	ErrCodeDeviceRetiredException = "DeviceRetiredException"
+
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
@@ -62,6 +68,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AccessDeniedException":         newErrorAccessDeniedException,
 	"ConflictException":             newErrorConflictException,
 	"DeviceOfflineException":        newErrorDeviceOfflineException,
+	"DeviceRetiredException":        newErrorDeviceRetiredException,
 	"InternalServiceException":      newErrorInternalServiceException,
 	"ResourceNotFoundException":     newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,

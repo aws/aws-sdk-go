@@ -89,6 +89,11 @@
       "refs": {
       }
     },
+    "DeviceRetiredException": {
+      "base": "<p>The specified device has been retired.</p>",
+      "refs": {
+      }
+    },
     "DeviceStatus": {
       "base": null,
       "refs": {
@@ -291,6 +296,7 @@
         "AccessDeniedException$message": null,
         "ConflictException$message": null,
         "DeviceOfflineException$message": null,
+        "DeviceRetiredException$message": null,
         "DeviceSummary$deviceName": "<p>The name of the device.</p>",
         "DeviceSummary$providerName": "<p>The provider of the device.</p>",
         "GetDeviceResponse$deviceName": "<p>The name of the device.</p>",
@@ -344,7 +350,7 @@
     "TagKeys": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$tagKeys": "<p>pecify the keys for the tags to remove from the resource.</p>"
+        "UntagResourceRequest$tagKeys": "<p>Specify the keys for the tags to remove from the resource.</p>"
       }
     },
     "TagResourceRequest": {
