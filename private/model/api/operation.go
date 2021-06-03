@@ -5,6 +5,9 @@ package api
 import (
 	"bytes"
 	"fmt"
+	"github.com/blinkops/blink-sdk/plugin"
+	"github.com/go-yaml/yaml"
+	"os"
 	"regexp"
 	"sort"
 	"strings"
@@ -81,6 +84,7 @@ func (o *Operation) Methods() []string {
 		o.ExportedName,
 		o.ExportedName + "Request",
 		o.ExportedName + "WithContext",
+		"Execute" + o.ExportedName,
 	}
 
 	if o.Paginator != nil {
@@ -403,6 +407,42 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}WithContext(` +
 	return out, req.Send()
 }
 
+// Execute{{ .ExportedName }} is Blink's code
+func Execute{{ .ExportedName }}(` +	`parameters map[string] interface{}) ` + `(map[string] interface{}, error) {
+	svc, ok := parameters["_Service"].(*{{ .API.StructName }})
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &{{ .InputRef.GoTypeElem }}{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.{{ .ExportedName }}Request(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+	
+	output := make(map[string] interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 {{ if .Paginator }}
 // {{ .ExportedName }}Pages iterates over the pages of a {{ .ExportedName }} operation,
 // calling the "fn" function with the response data for each page. To stop
@@ -556,6 +596,9 @@ func (d *discoverer{{ .ExportedName }}) Handler(r *request.Request) {
 func (o *Operation) GoCode() string {
 	var buf bytes.Buffer
 
+	o.API.AddImport("encoding/json")
+	o.API.AddImport("errors")
+
 	if o.API.EndpointDiscoveryOp != nil {
 		o.API.AddSDKImport("aws/crr")
 		o.API.AddImport("time")
@@ -582,7 +625,102 @@ func (o *Operation) GoCode() string {
 		}
 	}
 
+	o.GenerateAction()
+
 	return strings.TrimSpace(buf.String())
+}
+
+// GenerateAction generates Blink's plugin action yaml file contains all the operation info.
+func (o *Operation) GenerateAction() error {
+	actionParameters := make(map[string]plugin.ActionParameter)
+
+	actionParameters["awsRegion"] = plugin.ActionParameter{
+		Type:        "string",
+		Description: "AWS Region",
+		Required:    false,
+	}
+
+	inputShape := o.API.Shapes[o.InputRef.ShapeName]
+	requiredMembers := inputShape.Required
+	for _, member := range inputShape.MemberNames() {
+		memberInfo := inputShape.MemberRefs[member]
+
+		description := strings.ReplaceAll(memberInfo.Documentation, "//", "")
+		description = strings.ReplaceAll(description, "\\", "")
+		description = strings.ReplaceAll(description, "\n ", "")
+
+		actionParameters[member] = plugin.ActionParameter{
+			Type:        memberInfo.GoTypeElem(),
+			Description: strings.TrimSpace(description),
+			Required:    func(name string, requiredList []string) bool {
+				for _, req := range requiredList {
+					if req == name {
+						return true
+					}
+				}
+				return false
+			}(memberInfo.ShapeName, requiredMembers),
+		}
+	}
+
+	/*
+	outputShape := o.API.Shapes[o.OutputRef.ShapeName]
+	actionOutput := plugin.Output{
+		Name:   outputShape.ShapeName,
+		Fields: func(shape *Shape) []plugin.Field {
+			var fields []plugin.Field
+			for _, member := range shape.MemberNames() {
+				memberInfo := shape.MemberRefs[member]
+				fields = append(fields, plugin.Field{
+					Name: member,
+					Type: memberInfo.GoTypeElem(),
+				})
+			}
+			return fields
+		}(outputShape),
+	}
+	*/
+
+	description := strings.ReplaceAll(o.Documentation, "//", "")
+	description = strings.ReplaceAll(description, "\\", "")
+	description = strings.ReplaceAll(description, "\n ", "")
+
+	actionName := o.API.StructName() + "_" + o.ExportedName
+
+	opAction := plugin.Action{}
+	opAction.Name = actionName
+	opAction.Description = strings.TrimSpace(description)
+	opAction.Enabled = true
+	opAction.Parameters = actionParameters
+	// opAction.Output = &actionOutput
+	opAction.EntryPoint = "api.go"
+
+	opData, err := yaml.Marshal(&opAction)
+	if err != nil {
+		return err
+	}
+
+	_ = os.Mkdir("./actions", 0700)
+
+	fileName := "./actions/" + actionName + ".action.yaml"
+	file, err := os.Create(fileName)
+	if err != nil {
+		fmt.Printf("%s\n", fileName)
+		return err
+	}
+
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
+
+	if _, err = file.Write(opData); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 // tplInfSig defines the template for rendering an Operation's signature within an Interface definition.

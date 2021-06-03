@@ -288,6 +288,18 @@ func (a *API) importsGoCode() string {
 
 // A tplAPI is the top level template for the API
 var tplAPI = template.Must(template.New("api").Parse(`
+const (
+	defaultAWSToken  = ""
+)
+
+var (
+	ActionMap = map[string] func(map[string] interface{}) (map[string] interface{}, error) {
+		{{- range $_, $o := .OperationList }}
+			"{{ $o.ExportedName }}": Execute{{ $o.ExportedName }},
+		{{- end }}
+	}
+)
+
 {{- range $_, $o := .OperationList }}
 
 	{{ $o.GoCode }}

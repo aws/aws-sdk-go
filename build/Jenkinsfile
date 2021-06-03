@@ -1,0 +1,18 @@
+@Library('jenkins-pipeline-lib')
+import blink.jenkins.utils.*
+import blink.jenkins.*
+import blink.jenkins.ci.*
+
+node ("ci") {
+
+  def pipeline = new PluginPipeline(this)
+  pipeline.projectName = "blink-aws"
+  pipeline.mainBranchName = "main"
+  pipeline.dockerImageName = "blink-aws"
+  pipeline.dockerRegistry = Constants.PUBLIC_DOCKER_REGISTRY
+  pipeline.isMultiImage = false
+  pipeline.runUnitTests = false
+
+  pipeline.run()
+
+}

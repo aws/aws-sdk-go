@@ -1,0 +1,7 @@
+# Note: All paths should be relative to the working directory.
+plugin:
+  plugin_description_file_path: "plugin.yaml"
+  actions_folder_path: "actions"
+  provider_configuration_path: "provider_config.yaml"
+server:
+  port: "1337"
