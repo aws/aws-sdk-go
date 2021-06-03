@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>When you create a VPC using Amazon VPC, you automatically get DNS resolution within the VPC from Route 53 Resolver. By default, Resolver answers DNS queries for VPC domain names such as domain names for EC2 instances or ELB load balancers. Resolver performs recursive lookups against public name servers for all other domain names.</p> <p>You can also configure DNS resolution between your VPC and your network over a Direct Connect or VPN connection:</p> <p> <b>Forward DNS queries from resolvers on your network to Route 53 Resolver</b> </p> <p>DNS resolvers on your network can forward DNS queries to Resolver in a specified VPC. This allows your DNS resolvers to easily resolve domain names for AWS resources such as EC2 instances or records in a Route 53 private hosted zone. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver-overview-forward-network-to-vpc\">How DNS Resolvers on Your Network Forward DNS Queries to Route 53 Resolver</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p> <b>Conditionally forward queries from a VPC to resolvers on your network</b> </p> <p>You can configure Resolver to forward queries that it receives from EC2 instances in your VPCs to DNS resolvers on your network. To forward selected queries, you create Resolver rules that specify the domain names for the DNS queries that you want to forward (such as example.com), and the IP addresses of the DNS resolvers on your network that you want to forward the queries to. If a query matches multiple rules (example.com, acme.example.com), Resolver chooses the rule with the most specific match (acme.example.com) and forwards the query to the IP addresses that you specified in that rule. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver-overview-forward-vpc-to-network\">How Route 53 Resolver Forwards DNS Queries from Your VPCs to Your Network</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>Like Amazon VPC, Resolver is regional. In each region where you have VPCs, you can choose whether to forward queries from your VPCs to your network (outbound queries), from your network to your VPCs (inbound queries), or both.</p>",
+  "service": "<p>When you create a VPC using Amazon VPC, you automatically get DNS resolution within the VPC from Route 53 Resolver. By default, Resolver answers DNS queries for VPC domain names such as domain names for EC2 instances or Elastic Load Balancing load balancers. Resolver performs recursive lookups against public name servers for all other domain names.</p> <p>You can also configure DNS resolution between your VPC and your network over a Direct Connect or VPN connection:</p> <p> <b>Forward DNS queries from resolvers on your network to Route 53 Resolver</b> </p> <p>DNS resolvers on your network can forward DNS queries to Resolver in a specified VPC. This allows your DNS resolvers to easily resolve domain names for AWS resources such as EC2 instances or records in a Route 53 private hosted zone. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver-overview-forward-network-to-vpc\">How DNS Resolvers on Your Network Forward DNS Queries to Route 53 Resolver</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p> <b>Conditionally forward queries from a VPC to resolvers on your network</b> </p> <p>You can configure Resolver to forward queries that it receives from EC2 instances in your VPCs to DNS resolvers on your network. To forward selected queries, you create Resolver rules that specify the domain names for the DNS queries that you want to forward (such as example.com), and the IP addresses of the DNS resolvers on your network that you want to forward the queries to. If a query matches multiple rules (example.com, acme.example.com), Resolver chooses the rule with the most specific match (acme.example.com) and forwards the query to the IP addresses that you specified in that rule. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/resolver.html#resolver-overview-forward-vpc-to-network\">How Route 53 Resolver Forwards DNS Queries from Your VPCs to Your Network</a> in the <i>Amazon Route 53 Developer Guide</i>.</p> <p>Like Amazon VPC, Resolver is Regional. In each Region where you have VPCs, you can choose whether to forward queries from your VPCs to your network (outbound queries), from your network to your VPCs (inbound queries), or both.</p>",
   "operations": {
     "AssociateFirewallRuleGroup": "<p>Associates a <a>FirewallRuleGroup</a> with a VPC, to provide DNS filtering for the VPC. </p>",
     "AssociateResolverEndpointIpAddress": "<p>Adds IP addresses to an inbound or an outbound Resolver endpoint. If you want to add more than one IP address, submit one <code>AssociateResolverEndpointIpAddress</code> request for each IP address.</p> <p>To remove an IP address from an endpoint, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverEndpointIpAddress.html\">DisassociateResolverEndpointIpAddress</a>. </p>",
@@ -20,13 +20,13 @@
     "DeleteResolverRule": "<p>Deletes a Resolver rule. Before you can delete a Resolver rule, you must disassociate it from all the VPCs that you associated the Resolver rule with. For more information, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverRule.html\">DisassociateResolverRule</a>.</p>",
     "DisassociateFirewallRuleGroup": "<p>Disassociates a <a>FirewallRuleGroup</a> from a VPC, to remove DNS filtering from the VPC. </p>",
     "DisassociateResolverEndpointIpAddress": "<p>Removes IP addresses from an inbound or an outbound Resolver endpoint. If you want to remove more than one IP address, submit one <code>DisassociateResolverEndpointIpAddress</code> request for each IP address.</p> <p>To add an IP address to an endpoint, see <a href=\"https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverEndpointIpAddress.html\">AssociateResolverEndpointIpAddress</a>. </p>",
-    "DisassociateResolverQueryLogConfig": "<p>Disassociates a VPC from a query logging configuration.</p> <note> <p>Before you can delete a query logging configuration, you must first disassociate all VPCs from the configuration. If you used Resource Access Manager (RAM) to share a query logging configuration with other accounts, VPCs can be disassociated from the configuration in the following ways:</p> <ul> <li> <p>The accounts that you shared the configuration with can disassociate VPCs from the configuration.</p> </li> <li> <p>You can stop sharing the configuration.</p> </li> </ul> </note>",
+    "DisassociateResolverQueryLogConfig": "<p>Disassociates a VPC from a query logging configuration.</p> <note> <p>Before you can delete a query logging configuration, you must first disassociate all VPCs from the configuration. If you used AWS Resource Access Manager (AWS RAM) to share a query logging configuration with other accounts, VPCs can be disassociated from the configuration in the following ways:</p> <ul> <li> <p>The accounts that you shared the configuration with can disassociate VPCs from the configuration.</p> </li> <li> <p>You can stop sharing the configuration.</p> </li> </ul> </note>",
     "DisassociateResolverRule": "<p>Removes the association between a specified Resolver rule and a specified VPC.</p> <important> <p>If you disassociate a Resolver rule from a VPC, Resolver stops forwarding DNS queries for the domain name that you specified in the Resolver rule. </p> </important>",
-    "GetFirewallConfig": "<p>Retrieves the configuration of the firewall behavior provided by DNS Firewall for a single Amazon virtual private cloud (VPC). </p>",
+    "GetFirewallConfig": "<p>Retrieves the configuration of the firewall behavior provided by DNS Firewall for a single VPC from Amazon Virtual Private Cloud (Amazon VPC). </p>",
     "GetFirewallDomainList": "<p>Retrieves the specified firewall domain list.</p>",
     "GetFirewallRuleGroup": "<p>Retrieves the specified firewall rule group. </p>",
     "GetFirewallRuleGroupAssociation": "<p>Retrieves a firewall rule group association, which enables DNS filtering for a VPC with one rule group. A VPC can have more than one firewall rule group association, and a rule group can be associated with more than one VPC.</p>",
-    "GetFirewallRuleGroupPolicy": "<p>Returns the AWS Identity and Access Management (AWS IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using AWS Resource Access Manager (RAM). </p>",
+    "GetFirewallRuleGroupPolicy": "<p>Returns the AWS Identity and Access Management (AWS IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using AWS Resource Access Manager (AWS RAM). </p>",
     "GetResolverDnssecConfig": "<p>Gets DNSSEC validation information for a specified resource.</p>",
     "GetResolverEndpoint": "<p>Gets information about a specified Resolver endpoint, such as whether it's an inbound or an outbound Resolver endpoint, and the current status of the endpoint.</p>",
     "GetResolverQueryLogConfig": "<p>Gets information about a specified Resolver query logging configuration, such as the number of VPCs that the configuration is logging queries for and the location that logs are sent to. </p>",
@@ -50,12 +50,12 @@
     "ListResolverRuleAssociations": "<p>Lists the associations that were created between Resolver rules and VPCs using the current AWS account.</p>",
     "ListResolverRules": "<p>Lists the Resolver rules that were created using the current AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags that you associated with the specified resource.</p>",
-    "PutFirewallRuleGroupPolicy": "<p>Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing the rule group. You can use the policy to share the rule group using AWS Resource Access Manager (RAM). </p>",
+    "PutFirewallRuleGroupPolicy": "<p>Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing the rule group. You can use the policy to share the rule group using AWS Resource Access Manager (AWS RAM). </p>",
     "PutResolverQueryLogConfigPolicy": "<p>Specifies an AWS account that you want to share a query logging configuration with, the query logging configuration that you want to share, and the operations that you want the account to be able to perform on the configuration.</p>",
     "PutResolverRulePolicy": "<p>Specifies an AWS rule that you want to share with another account, the account that you want to share the rule with, and the operations that you want the account to be able to perform on the rule.</p>",
     "TagResource": "<p>Adds one or more tags to a specified resource.</p>",
     "UntagResource": "<p>Removes one or more tags from a specified resource.</p>",
-    "UpdateFirewallConfig": "<p>Updates the configuration of the firewall behavior provided by DNS Firewall for a single Amazon virtual private cloud (VPC). </p>",
+    "UpdateFirewallConfig": "<p>Updates the configuration of the firewall behavior provided by DNS Firewall for a single VPC from Amazon Virtual Private Cloud (Amazon VPC). </p>",
     "UpdateFirewallDomains": "<p>Updates the firewall domain list from an array of domain specifications. </p>",
     "UpdateFirewallRule": "<p>Updates the specified firewall rule. </p>",
     "UpdateFirewallRuleGroupAssociation": "<p>Changes the association of a <a>FirewallRuleGroup</a> with a VPC. The association enables DNS filtering for the VPC. </p>",
@@ -83,7 +83,7 @@
     "Action": {
       "base": null,
       "refs": {
-        "CreateFirewallRuleRequest$Action": "<p>The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list:</p> <ul> <li> <p> <code>ALLOW</code> - Permit the request to go through.</p> </li> <li> <p> <code>ALERT</code> - Permit the request and send metrics and log to Cloud Watch.</p> </li> <li> <p> <code>BLOCK</code> - Disallow the request. This option requires additional details in the rule's <code>BlockResponse</code>. </p> </li> </ul>",
+        "CreateFirewallRuleRequest$Action": "<p>The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list:</p> <ul> <li> <p> <code>ALLOW</code> - Permit the request to go through.</p> </li> <li> <p> <code>ALERT</code> - Permit the request and send metrics and logs to Cloud Watch.</p> </li> <li> <p> <code>BLOCK</code> - Disallow the request. This option requires additional details in the rule's <code>BlockResponse</code>. </p> </li> </ul>",
         "FirewallRule$Action": "<p>The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list:</p> <ul> <li> <p> <code>ALLOW</code> - Permit the request to go through.</p> </li> <li> <p> <code>ALERT</code> - Permit the request to go through but send an alert to the logs.</p> </li> <li> <p> <code>BLOCK</code> - Disallow the request. If this is specified, additional handling details are provided in the rule's <code>BlockResponse</code> setting. </p> </li> </ul>",
         "ListFirewallRulesRequest$Action": "<p>Optional additional filter for the rules to retrieve.</p> <p>The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list:</p> <ul> <li> <p> <code>ALLOW</code> - Permit the request to go through.</p> </li> <li> <p> <code>ALERT</code> - Permit the request to go through but send an alert to the logs.</p> </li> <li> <p> <code>BLOCK</code> - Disallow the request. If this is specified, additional handling details are provided in the rule's <code>BlockResponse</code> setting. </p> </li> </ul>",
         "UpdateFirewallRuleRequest$Action": "<p>The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list:</p> <ul> <li> <p> <code>ALLOW</code> - Permit the request to go through.</p> </li> <li> <p> <code>ALERT</code> - Permit the request to go through but send an alert to the logs.</p> </li> <li> <p> <code>BLOCK</code> - Disallow the request. This option requires additional details in the rule's <code>BlockResponse</code>. </p> </li> </ul>"
@@ -177,7 +177,7 @@
     "BlockResponse": {
       "base": null,
       "refs": {
-        "CreateFirewallRuleRequest$BlockResponse": "<p>The way that you want DNS Firewall to block the request, used with the rule aciton setting <code>BLOCK</code>. </p> <ul> <li> <p> <code>NODATA</code> - Respond indicating that the query was successful, but no response is available for it.</p> </li> <li> <p> <code>NXDOMAIN</code> - Respond indicating that the domain name that's in the query doesn't exist.</p> </li> <li> <p> <code>OVERRIDE</code> - Provide a custom override in the response. This option requires custom handling details in the rule's <code>BlockOverride*</code> settings. </p> </li> </ul> <p>This setting is required if the rule action setting is <code>BLOCK</code>.</p>",
+        "CreateFirewallRuleRequest$BlockResponse": "<p>The way that you want DNS Firewall to block the request, used with the rule action setting <code>BLOCK</code>. </p> <ul> <li> <p> <code>NODATA</code> - Respond indicating that the query was successful, but no response is available for it.</p> </li> <li> <p> <code>NXDOMAIN</code> - Respond indicating that the domain name that's in the query doesn't exist.</p> </li> <li> <p> <code>OVERRIDE</code> - Provide a custom override in the response. This option requires custom handling details in the rule's <code>BlockOverride*</code> settings. </p> </li> </ul> <p>This setting is required if the rule action setting is <code>BLOCK</code>.</p>",
         "FirewallRule$BlockResponse": "<p>The way that you want DNS Firewall to block the request. Used for the rule action setting <code>BLOCK</code>.</p> <ul> <li> <p> <code>NODATA</code> - Respond indicating that the query was successful, but no response is available for it.</p> </li> <li> <p> <code>NXDOMAIN</code> - Respond indicating that the domain name that's in the query doesn't exist.</p> </li> <li> <p> <code>OVERRIDE</code> - Provide a custom override in the response. This option requires custom handling details in the rule's <code>BlockOverride*</code> settings. </p> </li> </ul>",
         "UpdateFirewallRuleRequest$BlockResponse": "<p>The way that you want DNS Firewall to block the request. Used for the rule action setting <code>BLOCK</code>.</p> <ul> <li> <p> <code>NODATA</code> - Respond indicating that the query was successful, but no response is available for it.</p> </li> <li> <p> <code>NXDOMAIN</code> - Respond indicating that the domain name that's in the query doesn't exist.</p> </li> <li> <p> <code>OVERRIDE</code> - Provide a custom override in the response. This option requires custom handling details in the rule's <code>BlockOverride*</code> settings. </p> </li> </ul>"
       }
@@ -268,22 +268,22 @@
     "CreatorRequestId": {
       "base": null,
       "refs": {
-        "AssociateFirewallRuleGroupRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "CreateFirewallDomainListRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "CreateFirewallRuleGroupRequest$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "CreateFirewallRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "CreateResolverEndpointRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "CreateResolverQueryLogConfigRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "CreateResolverRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of executing the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
-        "FirewallDomainList$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "FirewallDomainListMetadata$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "AssociateFirewallRuleGroupRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateFirewallDomainListRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateFirewallRuleGroupRequest$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "CreateFirewallRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows you to retry failed requests without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateResolverEndpointRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateResolverQueryLogConfigRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "CreateResolverRuleRequest$CreatorRequestId": "<p>A unique string that identifies the request and that allows failed requests to be retried without the risk of running the operation twice. <code>CreatorRequestId</code> can be any unique string, for example, a date/time stamp. </p>",
+        "FirewallDomainList$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "FirewallDomainListMetadata$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
         "FirewallRule$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "FirewallRuleGroup$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "FirewallRuleGroupAssociation$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "FirewallRuleGroupMetadata$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of executing the operation twice. This can be any unique string, for example, a timestamp. </p>",
-        "ResolverEndpoint$CreatorRequestId": "<p>A unique string that identifies the request that created the Resolver endpoint. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of executing the operation twice.</p>",
-        "ResolverQueryLogConfig$CreatorRequestId": "<p>A unique string that identifies the request that created the query logging configuration. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of executing the operation twice.</p>",
-        "ResolverRule$CreatorRequestId": "<p>A unique string that you specified when you created the Resolver rule. <code>CreatorRequestId</code> identifies the request and allows failed requests to be retried without the risk of executing the operation twice. </p>"
+        "FirewallRuleGroup$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "FirewallRuleGroupAssociation$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "FirewallRuleGroupMetadata$CreatorRequestId": "<p>A unique string defined by you to identify the request. This allows you to retry failed requests without the risk of running the operation twice. This can be any unique string, for example, a timestamp. </p>",
+        "ResolverEndpoint$CreatorRequestId": "<p>A unique string that identifies the request that created the Resolver endpoint. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of running the operation twice.</p>",
+        "ResolverQueryLogConfig$CreatorRequestId": "<p>A unique string that identifies the request that created the query logging configuration. The <code>CreatorRequestId</code> allows failed requests to be retried without the risk of running the operation twice.</p>",
+        "ResolverRule$CreatorRequestId": "<p>A unique string that you specified when you created the Resolver rule. <code>CreatorRequestId</code> identifies the request and allows failed requests to be retried without the risk of running the operation twice. </p>"
       }
     },
     "DeleteFirewallDomainListRequest": {
@@ -396,7 +396,7 @@
     "DomainListFileUrl": {
       "base": null,
       "refs": {
-        "ImportFirewallDomainsRequest$DomainFileUrl": "<p>The fully qualified URL or URI of the file stored in Amazon Simple Storage Service (S3) that contains the list of domains to import.</p> <p>The file must be in an S3 bucket that's in the same Region as your DNS Firewall. The file must be a text file and must contain a single domain per line.</p>"
+        "ImportFirewallDomainsRequest$DomainFileUrl": "<p>The fully qualified URL or URI of the file stored in Amazon Simple Storage Service (Amazon S3) that contains the list of domains to import.</p> <p>The file must be in an S3 bucket that's in the same Region as your DNS Firewall. The file must be a text file and must contain a single domain per line.</p>"
       }
     },
     "DomainName": {
@@ -457,17 +457,17 @@
       }
     },
     "FirewallConfig": {
-      "base": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single Amazon virtual private cloud (VPC). </p>",
+      "base": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single VPC from Amazon Virtual Private Cloud (Amazon VPC). </p>",
       "refs": {
         "FirewallConfigList$member": null,
-        "GetFirewallConfigResponse$FirewallConfig": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single Amazon virtual private cloud (VPC). </p>",
-        "UpdateFirewallConfigResponse$FirewallConfig": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single Amazon virtual private cloud (VPC). </p>"
+        "GetFirewallConfigResponse$FirewallConfig": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single VPC from AmazonVPC. </p>",
+        "UpdateFirewallConfigResponse$FirewallConfig": "<p>Configuration of the firewall behavior provided by DNS Firewall for a single VPC. </p>"
       }
     },
     "FirewallConfigList": {
       "base": null,
       "refs": {
-        "ListFirewallConfigsResponse$FirewallConfigs": "<p>The configurations for the firewall behavior provided by DNS Firewall for Amazon virtual private clouds (VPC). </p>"
+        "ListFirewallConfigsResponse$FirewallConfigs": "<p>The configurations for the firewall behavior provided by DNS Firewall for VPCs from Amazon Virtual Private Cloud (Amazon VPC). </p>"
       }
     },
     "FirewallDomainImportOperation": {
@@ -477,7 +477,7 @@
       }
     },
     "FirewallDomainList": {
-      "base": "<p>High level information about a list of firewall domains for use in a <a>FirewallRule</a>. This is returned by <a>GetFirewallDomainList</a>.</p> <p>To retrieve the domains that are defined for this domain list, call <a>ListFirewallDomains</a>.</p>",
+      "base": "<p>High-level information about a list of firewall domains for use in a <a>FirewallRule</a>. This is returned by <a>GetFirewallDomainList</a>.</p> <p>To retrieve the domains that are defined for this domain list, call <a>ListFirewallDomains</a>.</p>",
       "refs": {
         "CreateFirewallDomainListResponse$FirewallDomainList": "<p>The domain list that you just created.</p>",
         "DeleteFirewallDomainListResponse$FirewallDomainList": "<p>The domain list that you just deleted. </p>",
@@ -493,7 +493,7 @@
     "FirewallDomainListMetadataList": {
       "base": null,
       "refs": {
-        "ListFirewallDomainListsResponse$FirewallDomainLists": "<p>A list of the domain lists that you have defined. </p> <p>This might be a parital list of the domain lists that you've defined. For information, see <code>MaxResults</code>. </p>"
+        "ListFirewallDomainListsResponse$FirewallDomainLists": "<p>A list of the domain lists that you have defined. </p> <p>This might be a partial list of the domain lists that you've defined. For information, see <code>MaxResults</code>. </p>"
       }
     },
     "FirewallDomainListStatus": {
@@ -519,7 +519,7 @@
     "FirewallDomains": {
       "base": null,
       "refs": {
-        "ListFirewallDomainsResponse$Domains": "<p>A list of the domains in the firewall domain list. </p> <p>This might be a parital list of the domains that you've defined in the domain list. For information, see <code>MaxResults</code>. </p>",
+        "ListFirewallDomainsResponse$Domains": "<p>A list of the domains in the firewall domain list. </p> <p>This might be a partial list of the domains that you've defined in the domain list. For information, see <code>MaxResults</code>. </p>",
         "UpdateFirewallDomainsRequest$Domains": "<p>A list of domains to use in the update operation.</p> <p>Each domain specification in your domain list must satisfy the following requirements: </p> <ul> <li> <p>It can optionally start with <code>*</code> (asterisk).</p> </li> <li> <p>With the exception of the optional starting asterisk, it must only contain the following characters: <code>A-Z</code>, <code>a-z</code>, <code>0-9</code>, <code>-</code> (hyphen).</p> </li> <li> <p>It must be from 1-255 characters in length. </p> </li> </ul>"
       }
     },
@@ -548,9 +548,9 @@
       }
     },
     "FirewallRuleGroupAssociation": {
-      "base": "<p>An association between a firewall rul group and a VPC, which enables DNS filtering for the VPC. </p>",
+      "base": "<p>An association between a firewall rule group and a VPC, which enables DNS filtering for the VPC. </p>",
       "refs": {
-        "AssociateFirewallRuleGroupResponse$FirewallRuleGroupAssociation": "<p>The association that you just created. The association has an Id that you can use to identify it in other requests, like update and delete.</p>",
+        "AssociateFirewallRuleGroupResponse$FirewallRuleGroupAssociation": "<p>The association that you just created. The association has an ID that you can use to identify it in other requests, like update and delete.</p>",
         "DisassociateFirewallRuleGroupResponse$FirewallRuleGroupAssociation": "<p>The firewall rule group association that you just removed. </p>",
         "FirewallRuleGroupAssociations$member": null,
         "GetFirewallRuleGroupAssociationResponse$FirewallRuleGroupAssociation": "<p>The association that you requested. </p>",
@@ -585,7 +585,7 @@
     "FirewallRuleGroupPolicy": {
       "base": null,
       "refs": {
-        "GetFirewallRuleGroupPolicyResponse$FirewallRuleGroupPolicy": "<p>The AWS Identity and Access Management (AWS IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using AWS Resource Access Manager (RAM). </p>",
+        "GetFirewallRuleGroupPolicyResponse$FirewallRuleGroupPolicy": "<p>The AWS Identity and Access Management (AWS IAM) policy for sharing the specified rule group. You can use the policy to share the rule group using AWS Resource Access Manager (AWS RAM). </p>",
         "PutFirewallRuleGroupPolicyRequest$FirewallRuleGroupPolicy": "<p>The AWS Identity and Access Management (AWS IAM) policy to attach to the rule group.</p>"
       }
     },
@@ -598,7 +598,7 @@
     "FirewallRules": {
       "base": null,
       "refs": {
-        "ListFirewallRulesResponse$FirewallRules": "<p>A list of the rules that you have defined. </p> <p>This might be a parital list of the firewall rules that you've defined. For information, see <code>MaxResults</code>. </p>"
+        "ListFirewallRulesResponse$FirewallRules": "<p>A list of the rules that you have defined. </p> <p>This might be a partial list of the firewall rules that you've defined. For information, see <code>MaxResults</code>. </p>"
       }
     },
     "GetFirewallConfigRequest": {
@@ -1078,13 +1078,13 @@
     "Priority": {
       "base": null,
       "refs": {
-        "AssociateFirewallRuleGroupRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that you associate with the specified VPC. DNS Firewall filters VPC traffic starting from rule group with the lowest numeric priority setting. </p> <p>You must specify a unique priority for each rule group that you associate with a single VPC. To make it easier to insert rule groups later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for a rule group association after you create it.</p>",
+        "AssociateFirewallRuleGroupRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that you associate with the specified VPC. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. </p> <p>You must specify a unique priority for each rule group that you associate with a single VPC. To make it easier to insert rule groups later, leave space between the numbers, for example, use 101, 200, and so on. You can change the priority setting for a rule group association after you create it.</p> <p>The allowed values for <code>Priority</code> are between 100 and 9900.</p>",
         "CreateFirewallRuleRequest$Priority": "<p>The setting that determines the processing order of the rule in the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.</p> <p>You must specify a unique priority for each rule in a rule group. To make it easier to insert rules later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for the rules in a rule group at any time.</p>",
         "FirewallRule$Priority": "<p>The priority of the rule in the rule group. This value must be unique within the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.</p>",
         "FirewallRuleGroupAssociation$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that are associated with a single VPC. DNS Firewall filters VPC traffic starting from rule group with the lowest numeric priority setting. </p>",
-        "ListFirewallRuleGroupAssociationsRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that are associated with a single VPC. DNS Firewall filters VPC traffic starting from rule group with the lowest numeric priority setting. </p>",
+        "ListFirewallRuleGroupAssociationsRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that are associated with a single VPC. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. </p>",
         "ListFirewallRulesRequest$Priority": "<p>Optional additional filter for the rules to retrieve.</p> <p>The setting that determines the processing order of the rules in a rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.</p>",
-        "UpdateFirewallRuleGroupAssociationRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that you associate with the specified VPC. DNS Firewall filters VPC traffic starting from rule group with the lowest numeric priority setting. </p> <p>You must specify a unique priority for each rule group that you associate with a single VPC. To make it easier to insert rule groups later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for a rule group association after you create it.</p>",
+        "UpdateFirewallRuleGroupAssociationRequest$Priority": "<p>The setting that determines the processing order of the rule group among the rule groups that you associate with the specified VPC. DNS Firewall filters VPC traffic starting from the rule group with the lowest numeric priority setting. </p> <p>You must specify a unique priority for each rule group that you associate with a single VPC. To make it easier to insert rule groups later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for a rule group association after you create it.</p>",
         "UpdateFirewallRuleRequest$Priority": "<p>The setting that determines the processing order of the rule in the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.</p> <p>You must specify a unique priority for each rule in a rule group. To make it easier to insert rules later, leave space between the numbers, for example, use 100, 200, and so on. You can change the priority setting for the rules in a rule group at any time.</p>"
       }
     },
@@ -1220,7 +1220,7 @@
     "ResolverQueryLogConfigName": {
       "base": null,
       "refs": {
-        "CreateResolverQueryLogConfigRequest$Name": "<p>The name that you want to give the query logging configuration</p>",
+        "CreateResolverQueryLogConfigRequest$Name": "<p>The name that you want to give the query logging configuration.</p>",
         "ResolverQueryLogConfig$Name": "<p>The name of the query logging configuration. </p>"
       }
     },
@@ -1324,7 +1324,7 @@
         "DisassociateResolverQueryLogConfigRequest$ResourceId": "<p>The ID of the Amazon VPC that you want to disassociate from a specified query logging configuration.</p>",
         "DisassociateResolverRuleRequest$VPCId": "<p>The ID of the VPC that you want to disassociate the Resolver rule from.</p>",
         "DisassociateResolverRuleRequest$ResolverRuleId": "<p>The ID of the Resolver rule that you want to disassociate from the specified VPC.</p>",
-        "FirewallConfig$Id": "<p>The Id of the firewall configuration.</p>",
+        "FirewallConfig$Id": "<p>The ID of the firewall configuration.</p>",
         "FirewallConfig$ResourceId": "<p>The ID of the VPC that this firewall configuration applies to.</p>",
         "FirewallDomainList$Id": "<p>The ID of the domain list. </p>",
         "FirewallDomainListMetadata$Id": "<p>The ID of the domain list. </p>",
@@ -1335,7 +1335,7 @@
         "FirewallRuleGroupAssociation$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group. </p>",
         "FirewallRuleGroupAssociation$VpcId": "<p>The unique identifier of the VPC that is associated with the rule group. </p>",
         "FirewallRuleGroupMetadata$Id": "<p>The ID of the rule group. </p>",
-        "GetFirewallConfigRequest$ResourceId": "<p>The ID of the Amazon virtual private cloud (VPC) that the configuration is for.</p>",
+        "GetFirewallConfigRequest$ResourceId": "<p>The ID of the VPC from Amazon VPC that the configuration is for.</p>",
         "GetFirewallDomainListRequest$FirewallDomainListId": "<p>The ID of the domain list. </p>",
         "GetFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "GetFirewallRuleGroupRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group. </p>",
@@ -1369,9 +1369,9 @@
         "ResolverRuleAssociation$VPCId": "<p>The ID of the VPC that you associated the Resolver rule with.</p>",
         "ResolverRuleConfig$ResolverEndpointId": "<p>The ID of the new outbound Resolver endpoint that you want to use to route DNS queries to the IP addresses that you specify in <code>TargetIps</code>.</p>",
         "SecurityGroupIds$member": null,
-        "UpdateFirewallConfigRequest$ResourceId": "<p>The ID of the Amazon virtual private cloud (VPC) that the configuration is for.</p>",
+        "UpdateFirewallConfigRequest$ResourceId": "<p>The ID of the VPC that the configuration is for.</p>",
         "UpdateFirewallDomainsRequest$FirewallDomainListId": "<p>The ID of the domain list whose domains you want to update. </p>",
-        "UpdateFirewallDomainsResponse$Id": "<p>The Id of the firewall domain list that DNS Firewall just updated.</p>",
+        "UpdateFirewallDomainsResponse$Id": "<p>The ID of the firewall domain list that DNS Firewall just updated.</p>",
         "UpdateFirewallRuleGroupAssociationRequest$FirewallRuleGroupAssociationId": "<p>The identifier of the <a>FirewallRuleGroupAssociation</a>. </p>",
         "UpdateFirewallRuleRequest$FirewallRuleGroupId": "<p>The unique identifier of the firewall rule group for the rule. </p>",
         "UpdateFirewallRuleRequest$FirewallDomainListId": "<p>The ID of the domain list to use in the rule. </p>",
@@ -1444,7 +1444,7 @@
         "FirewallRuleGroup$ShareStatus": "<p>Whether the rule group is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM).</p>",
         "FirewallRuleGroupMetadata$ShareStatus": "<p>Whether the rule group is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM).</p>",
         "ResolverQueryLogConfig$ShareStatus": "<p>An indication of whether the query logging configuration is shared with other AWS accounts, or was shared with the current account by another AWS account. Sharing is configured through AWS Resource Access Manager (AWS RAM).</p>",
-        "ResolverRule$ShareStatus": "<p>Whether the rules is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.</p>"
+        "ResolverRule$ShareStatus": "<p>Whether the rule is shared and, if so, whether the current account is sharing the rule with another account, or another account is sharing the rule with the current account.</p>"
       }
     },
     "SortByKey": {
@@ -1557,7 +1557,7 @@
     "TargetList": {
       "base": null,
       "refs": {
-        "CreateResolverRuleRequest$TargetIps": "<p>The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a comma.</p> <p> <code>TargetIps</code> is available only when the value of <code>Rule type</code> is <code>FORWARD</code>.</p>",
+        "CreateResolverRuleRequest$TargetIps": "<p>The IPs that you want Resolver to forward DNS queries to. You can specify only IPv4 addresses. Separate IP addresses with a space.</p> <p> <code>TargetIps</code> is available only when the value of <code>Rule type</code> is <code>FORWARD</code>.</p>",
         "ResolverRule$TargetIps": "<p>An array that contains the IP addresses and ports that an outbound endpoint forwards DNS queries to. Typically, these are the IP addresses of DNS resolvers on your network. Specify IPv4 addresses. IPv6 is not supported.</p>",
         "ResolverRuleConfig$TargetIps": "<p>For DNS queries that originate in your VPC, the new IP addresses that you want to route outbound DNS queries to.</p>"
       }

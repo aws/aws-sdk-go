@@ -181,6 +181,7 @@
         "JobReport$Enabled": "<p>Indicates whether the specified job will generate a job-completion report.</p>",
         "ObjectLambdaConfiguration$CloudWatchMetricsEnabled": "<p>A container for whether the CloudWatch metrics configuration is enabled.</p>",
         "S3CopyObjectOperation$RequesterPays": "<p/>",
+        "S3CopyObjectOperation$BucketKeyEnabled": "<p>Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption with server-side encryption using AWS KMS (SSE-KMS). Setting this header to <code>true</code> causes Amazon S3 to use an S3 Bucket Key for object encryption with SSE-KMS.</p> <p>Specifying this header with an <i>object</i> action doesn’t affect <i>bucket-level</i> settings for S3 Bucket Key.</p>",
         "S3ObjectMetadata$RequesterCharged": "<p/>",
         "S3SetObjectRetentionOperation$BypassGovernanceRetention": "<p>Indicates if the action should be applied to objects in the Batch Operations job even if they have Object Lock <code> GOVERNANCE</code> type in place.</p>"
       }
