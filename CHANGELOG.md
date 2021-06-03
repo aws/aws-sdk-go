@@ -1,3 +1,16 @@
+Release v1.38.54 (2021-06-03)
+===
+
+### Service Client Updates
+* `service/forecast`: Updates service API and documentation
+* `service/route53resolver`: Updates service documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * S3 Inventory now supports Bucket Key Status
+* `service/s3control`: Updates service API and documentation
+  * Amazon S3 Batch Operations now supports S3 Bucket Keys.
+* `service/ssm`: Updates service documentation
+  * Documentation updates for ssm to fix customer reported issue
+
 Release v1.38.53 (2021-06-02)
 ===
 

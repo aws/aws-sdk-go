@@ -120,6 +120,14 @@
         "SchemaAttribute$AttributeType": "<p>The data type of the field.</p>"
       }
     },
+    "AutoMLOverrideStrategy": {
+      "base": null,
+      "refs": {
+        "CreatePredictorRequest$AutoMLOverrideStrategy": "<p>Used to overide the default AutoML strategy, which is to optimize predictor accuracy. To apply an AutoML strategy that minimizes training time, use <code>LatencyOptimized</code>.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
+        "DescribePredictorResponse$AutoMLOverrideStrategy": "<p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
+        "GetAccuracyMetricsResponse$AutoMLOverrideStrategy": "<p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>"
+      }
+    },
     "Boolean": {
       "base": null,
       "refs": {

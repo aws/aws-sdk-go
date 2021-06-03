@@ -4232,7 +4232,8 @@
         "ObjectLockRetainUntilDate",
         "ObjectLockMode",
         "ObjectLockLegalHoldStatus",
-        "IntelligentTieringAccessTier"
+        "IntelligentTieringAccessTier",
+        "BucketKeyStatus"
       ]
     },
     "InventoryOptionalFields":{
