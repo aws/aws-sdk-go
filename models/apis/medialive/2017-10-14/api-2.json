@@ -5600,10 +5600,6 @@
           "shape": "EbuTtDFillLineGapControl",
           "locationName": "fillLineGap"
         },
-        "CopyrightHolder": {
-          "shape": "__stringMax1000",
-          "locationName": "copyrightHolder"
-        },
         "FontFamily": {
           "shape": "__string",
           "locationName": "fontFamily"
@@ -6047,6 +6043,7 @@
     "H264AdaptiveQuantization": {
       "type": "string",
       "enum": [
+        "AUTO",
         "HIGH",
         "HIGHER",
         "LOW",
@@ -6415,6 +6412,7 @@
     "H265AdaptiveQuantization": {
       "type": "string",
       "enum": [
+        "AUTO",
         "HIGH",
         "HIGHER",
         "LOW",

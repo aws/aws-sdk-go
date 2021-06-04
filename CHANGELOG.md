@@ -1,3 +1,18 @@
+Release v1.38.55 (2021-06-04)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service documentation
+  * Documentation updates for Amazon EC2 Auto Scaling
+* `service/cloudtrail`: Updates service documentation
+  * AWS CloudTrail supports data events on new service resources, including Amazon DynamoDB tables and S3 Object Lambda access points.
+* `service/medialive`: Updates service API and documentation
+  * Add support for automatically setting the H.264 adaptive quantization and GOP B-frame fields.
+* `service/pi`: Updates service API and documentation
+* `service/qldb`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Documentation updates for RDS: fixing an outdated link to the RDS documentation in DBInstance$DBInstanceStatus
+
 Release v1.38.54 (2021-06-03)
 ===
 

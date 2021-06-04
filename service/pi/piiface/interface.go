@@ -64,6 +64,10 @@ type PIAPI interface {
 	DescribeDimensionKeysWithContext(aws.Context, *pi.DescribeDimensionKeysInput, ...request.Option) (*pi.DescribeDimensionKeysOutput, error)
 	DescribeDimensionKeysRequest(*pi.DescribeDimensionKeysInput) (*request.Request, *pi.DescribeDimensionKeysOutput)
 
+	GetDimensionKeyDetails(*pi.GetDimensionKeyDetailsInput) (*pi.GetDimensionKeyDetailsOutput, error)
+	GetDimensionKeyDetailsWithContext(aws.Context, *pi.GetDimensionKeyDetailsInput, ...request.Option) (*pi.GetDimensionKeyDetailsOutput, error)
+	GetDimensionKeyDetailsRequest(*pi.GetDimensionKeyDetailsInput) (*request.Request, *pi.GetDimensionKeyDetailsOutput)
+
 	GetResourceMetrics(*pi.GetResourceMetricsInput) (*pi.GetResourceMetricsOutput, error)
 	GetResourceMetricsWithContext(aws.Context, *pi.GetResourceMetricsInput, ...request.Option) (*pi.GetResourceMetricsOutput, error)
 	GetResourceMetricsRequest(*pi.GetResourceMetricsInput) (*request.Request, *pi.GetResourceMetricsOutput)
