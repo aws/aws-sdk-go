@@ -3,6 +3,8 @@
 package servicequotas
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -11,6 +13,34 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"AssociateServiceQuotaTemplate":                 ExecuteAssociateServiceQuotaTemplate,
+		"DeleteServiceQuotaIncreaseRequestFromTemplate": ExecuteDeleteServiceQuotaIncreaseRequestFromTemplate,
+		"DisassociateServiceQuotaTemplate":              ExecuteDisassociateServiceQuotaTemplate,
+		"GetAWSDefaultServiceQuota":                     ExecuteGetAWSDefaultServiceQuota,
+		"GetAssociationForServiceQuotaTemplate":         ExecuteGetAssociationForServiceQuotaTemplate,
+		"GetRequestedServiceQuotaChange":                ExecuteGetRequestedServiceQuotaChange,
+		"GetServiceQuota":                               ExecuteGetServiceQuota,
+		"GetServiceQuotaIncreaseRequestFromTemplate":    ExecuteGetServiceQuotaIncreaseRequestFromTemplate,
+		"ListAWSDefaultServiceQuotas":                   ExecuteListAWSDefaultServiceQuotas,
+		"ListRequestedServiceQuotaChangeHistory":        ExecuteListRequestedServiceQuotaChangeHistory,
+		"ListRequestedServiceQuotaChangeHistoryByQuota": ExecuteListRequestedServiceQuotaChangeHistoryByQuota,
+		"ListServiceQuotaIncreaseRequestsInTemplate":    ExecuteListServiceQuotaIncreaseRequestsInTemplate,
+		"ListServiceQuotas":                             ExecuteListServiceQuotas,
+		"ListServices":                                  ExecuteListServices,
+		"ListTagsForResource":                           ExecuteListTagsForResource,
+		"PutServiceQuotaIncreaseRequestIntoTemplate":    ExecutePutServiceQuotaIncreaseRequestIntoTemplate,
+		"RequestServiceQuotaIncrease":                   ExecuteRequestServiceQuotaIncrease,
+		"TagResource":                                   ExecuteTagResource,
+		"UntagResource":                                 ExecuteUntagResource,
+	}
 )
 
 const opAssociateServiceQuotaTemplate = "AssociateServiceQuotaTemplate"
@@ -117,6 +147,42 @@ func (c *ServiceQuotas) AssociateServiceQuotaTemplateWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteAssociateServiceQuotaTemplate is Blink's code
+func ExecuteAssociateServiceQuotaTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &AssociateServiceQuotaTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AssociateServiceQuotaTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteServiceQuotaIncreaseRequestFromTemplate = "DeleteServiceQuotaIncreaseRequestFromTemplate"
@@ -226,6 +292,42 @@ func (c *ServiceQuotas) DeleteServiceQuotaIncreaseRequestFromTemplateWithContext
 	return out, req.Send()
 }
 
+// ExecuteDeleteServiceQuotaIncreaseRequestFromTemplate is Blink's code
+func ExecuteDeleteServiceQuotaIncreaseRequestFromTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DeleteServiceQuotaIncreaseRequestFromTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteServiceQuotaIncreaseRequestFromTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDisassociateServiceQuotaTemplate = "DisassociateServiceQuotaTemplate"
 
 // DisassociateServiceQuotaTemplateRequest generates a "aws/request.Request" representing the
@@ -332,6 +434,42 @@ func (c *ServiceQuotas) DisassociateServiceQuotaTemplateWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
+// ExecuteDisassociateServiceQuotaTemplate is Blink's code
+func ExecuteDisassociateServiceQuotaTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DisassociateServiceQuotaTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DisassociateServiceQuotaTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetAWSDefaultServiceQuota = "GetAWSDefaultServiceQuota"
 
 // GetAWSDefaultServiceQuotaRequest generates a "aws/request.Request" representing the
@@ -423,6 +561,42 @@ func (c *ServiceQuotas) GetAWSDefaultServiceQuotaWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetAWSDefaultServiceQuota is Blink's code
+func ExecuteGetAWSDefaultServiceQuota(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetAWSDefaultServiceQuotaInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetAWSDefaultServiceQuotaRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetAssociationForServiceQuotaTemplate = "GetAssociationForServiceQuotaTemplate"
@@ -527,6 +701,42 @@ func (c *ServiceQuotas) GetAssociationForServiceQuotaTemplateWithContext(ctx aws
 	return out, req.Send()
 }
 
+// ExecuteGetAssociationForServiceQuotaTemplate is Blink's code
+func ExecuteGetAssociationForServiceQuotaTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetAssociationForServiceQuotaTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetAssociationForServiceQuotaTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetRequestedServiceQuotaChange = "GetRequestedServiceQuotaChange"
 
 // GetRequestedServiceQuotaChangeRequest generates a "aws/request.Request" representing the
@@ -617,6 +827,42 @@ func (c *ServiceQuotas) GetRequestedServiceQuotaChangeWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetRequestedServiceQuotaChange is Blink's code
+func ExecuteGetRequestedServiceQuotaChange(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetRequestedServiceQuotaChangeInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetRequestedServiceQuotaChangeRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetServiceQuota = "GetServiceQuota"
@@ -711,6 +957,42 @@ func (c *ServiceQuotas) GetServiceQuotaWithContext(ctx aws.Context, input *GetSe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetServiceQuota is Blink's code
+func ExecuteGetServiceQuota(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetServiceQuotaInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceQuotaRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetServiceQuotaIncreaseRequestFromTemplate = "GetServiceQuotaIncreaseRequestFromTemplate"
@@ -819,6 +1101,42 @@ func (c *ServiceQuotas) GetServiceQuotaIncreaseRequestFromTemplateWithContext(ct
 	return out, req.Send()
 }
 
+// ExecuteGetServiceQuotaIncreaseRequestFromTemplate is Blink's code
+func ExecuteGetServiceQuotaIncreaseRequestFromTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetServiceQuotaIncreaseRequestFromTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceQuotaIncreaseRequestFromTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListAWSDefaultServiceQuotas = "ListAWSDefaultServiceQuotas"
 
 // ListAWSDefaultServiceQuotasRequest generates a "aws/request.Request" representing the
@@ -919,6 +1237,42 @@ func (c *ServiceQuotas) ListAWSDefaultServiceQuotasWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListAWSDefaultServiceQuotas is Blink's code
+func ExecuteListAWSDefaultServiceQuotas(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListAWSDefaultServiceQuotasInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListAWSDefaultServiceQuotasRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListAWSDefaultServiceQuotasPages iterates over the pages of a ListAWSDefaultServiceQuotas operation,
@@ -1074,6 +1428,42 @@ func (c *ServiceQuotas) ListRequestedServiceQuotaChangeHistoryWithContext(ctx aw
 	return out, req.Send()
 }
 
+// ExecuteListRequestedServiceQuotaChangeHistory is Blink's code
+func ExecuteListRequestedServiceQuotaChangeHistory(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListRequestedServiceQuotaChangeHistoryInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListRequestedServiceQuotaChangeHistoryRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListRequestedServiceQuotaChangeHistoryPages iterates over the pages of a ListRequestedServiceQuotaChangeHistory operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1225,6 +1615,42 @@ func (c *ServiceQuotas) ListRequestedServiceQuotaChangeHistoryByQuotaWithContext
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListRequestedServiceQuotaChangeHistoryByQuota is Blink's code
+func ExecuteListRequestedServiceQuotaChangeHistoryByQuota(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListRequestedServiceQuotaChangeHistoryByQuotaInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListRequestedServiceQuotaChangeHistoryByQuotaRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListRequestedServiceQuotaChangeHistoryByQuotaPages iterates over the pages of a ListRequestedServiceQuotaChangeHistoryByQuota operation,
@@ -1387,6 +1813,42 @@ func (c *ServiceQuotas) ListServiceQuotaIncreaseRequestsInTemplateWithContext(ct
 	return out, req.Send()
 }
 
+// ExecuteListServiceQuotaIncreaseRequestsInTemplate is Blink's code
+func ExecuteListServiceQuotaIncreaseRequestsInTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListServiceQuotaIncreaseRequestsInTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServiceQuotaIncreaseRequestsInTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListServiceQuotaIncreaseRequestsInTemplatePages iterates over the pages of a ListServiceQuotaIncreaseRequestsInTemplate operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1542,6 +2004,42 @@ func (c *ServiceQuotas) ListServiceQuotasWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
+// ExecuteListServiceQuotas is Blink's code
+func ExecuteListServiceQuotas(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListServiceQuotasInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServiceQuotasRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListServiceQuotasPages iterates over the pages of a ListServiceQuotas operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1692,6 +2190,42 @@ func (c *ServiceQuotas) ListServicesWithContext(ctx aws.Context, input *ListServ
 	return out, req.Send()
 }
 
+// ExecuteListServices is Blink's code
+func ExecuteListServices(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListServicesInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServicesRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListServicesPages iterates over the pages of a ListServices operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1836,6 +2370,42 @@ func (c *ServiceQuotas) ListTagsForResourceWithContext(ctx aws.Context, input *L
 	return out, req.Send()
 }
 
+// ExecuteListTagsForResource is Blink's code
+func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListTagsForResourceInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListTagsForResourceRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opPutServiceQuotaIncreaseRequestIntoTemplate = "PutServiceQuotaIncreaseRequestIntoTemplate"
 
 // PutServiceQuotaIncreaseRequestIntoTemplateRequest generates a "aws/request.Request" representing the
@@ -1946,6 +2516,42 @@ func (c *ServiceQuotas) PutServiceQuotaIncreaseRequestIntoTemplateWithContext(ct
 	return out, req.Send()
 }
 
+// ExecutePutServiceQuotaIncreaseRequestIntoTemplate is Blink's code
+func ExecutePutServiceQuotaIncreaseRequestIntoTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &PutServiceQuotaIncreaseRequestIntoTemplateInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.PutServiceQuotaIncreaseRequestIntoTemplateRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRequestServiceQuotaIncrease = "RequestServiceQuotaIncrease"
 
 // RequestServiceQuotaIncreaseRequest generates a "aws/request.Request" representing the
@@ -2052,6 +2658,42 @@ func (c *ServiceQuotas) RequestServiceQuotaIncreaseWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteRequestServiceQuotaIncrease is Blink's code
+func ExecuteRequestServiceQuotaIncrease(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &RequestServiceQuotaIncreaseInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RequestServiceQuotaIncreaseRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -2154,6 +2796,42 @@ func (c *ServiceQuotas) TagResourceWithContext(ctx aws.Context, input *TagResour
 	return out, req.Send()
 }
 
+// ExecuteTagResource is Blink's code
+func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &TagResourceInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.TagResourceRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -2246,6 +2924,42 @@ func (c *ServiceQuotas) UntagResourceWithContext(ctx aws.Context, input *UntagRe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUntagResource is Blink's code
+func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ServiceQuotas)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &UntagResourceInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UntagResourceRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // The action you attempted is not allowed unless Service Access with Service

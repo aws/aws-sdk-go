@@ -3,12 +3,25 @@
 package kinesisvideosignalingchannels
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"GetIceServerConfig":     ExecuteGetIceServerConfig,
+		"SendAlexaOfferToMaster": ExecuteSendAlexaOfferToMaster,
+	}
 )
 
 const opGetIceServerConfig = "GetIceServerConfig"
@@ -123,6 +136,42 @@ func (c *KinesisVideoSignalingChannels) GetIceServerConfigWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+// ExecuteGetIceServerConfig is Blink's code
+func ExecuteGetIceServerConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*KinesisVideoSignalingChannels)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetIceServerConfigInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetIceServerConfigRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opSendAlexaOfferToMaster = "SendAlexaOfferToMaster"
 
 // SendAlexaOfferToMasterRequest generates a "aws/request.Request" representing the
@@ -215,6 +264,42 @@ func (c *KinesisVideoSignalingChannels) SendAlexaOfferToMasterWithContext(ctx aw
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteSendAlexaOfferToMaster is Blink's code
+func ExecuteSendAlexaOfferToMaster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*KinesisVideoSignalingChannels)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &SendAlexaOfferToMasterInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.SendAlexaOfferToMasterRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // Your request was throttled because you have exceeded the limit of allowed

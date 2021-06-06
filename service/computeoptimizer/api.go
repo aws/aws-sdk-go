@@ -3,6 +3,8 @@
 package computeoptimizer
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -10,6 +12,28 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"DescribeRecommendationExportJobs":      ExecuteDescribeRecommendationExportJobs,
+		"ExportAutoScalingGroupRecommendations": ExecuteExportAutoScalingGroupRecommendations,
+		"ExportEBSVolumeRecommendations":        ExecuteExportEBSVolumeRecommendations,
+		"ExportEC2InstanceRecommendations":      ExecuteExportEC2InstanceRecommendations,
+		"ExportLambdaFunctionRecommendations":   ExecuteExportLambdaFunctionRecommendations,
+		"GetAutoScalingGroupRecommendations":    ExecuteGetAutoScalingGroupRecommendations,
+		"GetEBSVolumeRecommendations":           ExecuteGetEBSVolumeRecommendations,
+		"GetEC2InstanceRecommendations":         ExecuteGetEC2InstanceRecommendations,
+		"GetEC2RecommendationProjectedMetrics":  ExecuteGetEC2RecommendationProjectedMetrics,
+		"GetEnrollmentStatus":                   ExecuteGetEnrollmentStatus,
+		"GetLambdaFunctionRecommendations":      ExecuteGetLambdaFunctionRecommendations,
+		"GetRecommendationSummaries":            ExecuteGetRecommendationSummaries,
+		"UpdateEnrollmentStatus":                ExecuteUpdateEnrollmentStatus,
+	}
 )
 
 const opDescribeRecommendationExportJobs = "DescribeRecommendationExportJobs"
@@ -115,6 +139,42 @@ func (c *ComputeOptimizer) DescribeRecommendationExportJobsWithContext(ctx aws.C
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeRecommendationExportJobs is Blink's code
+func ExecuteDescribeRecommendationExportJobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DescribeRecommendationExportJobsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeRecommendationExportJobsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opExportAutoScalingGroupRecommendations = "ExportAutoScalingGroupRecommendations"
@@ -226,6 +286,42 @@ func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsWithContext(ctx 
 	return out, req.Send()
 }
 
+// ExecuteExportAutoScalingGroupRecommendations is Blink's code
+func ExecuteExportAutoScalingGroupRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ExportAutoScalingGroupRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ExportAutoScalingGroupRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opExportEBSVolumeRecommendations = "ExportEBSVolumeRecommendations"
 
 // ExportEBSVolumeRecommendationsRequest generates a "aws/request.Request" representing the
@@ -333,6 +429,42 @@ func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsWithContext(ctx aws.Con
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteExportEBSVolumeRecommendations is Blink's code
+func ExecuteExportEBSVolumeRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ExportEBSVolumeRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ExportEBSVolumeRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opExportEC2InstanceRecommendations = "ExportEC2InstanceRecommendations"
@@ -445,6 +577,42 @@ func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+// ExecuteExportEC2InstanceRecommendations is Blink's code
+func ExecuteExportEC2InstanceRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ExportEC2InstanceRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ExportEC2InstanceRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opExportLambdaFunctionRecommendations = "ExportLambdaFunctionRecommendations"
 
 // ExportLambdaFunctionRecommendationsRequest generates a "aws/request.Request" representing the
@@ -554,6 +722,42 @@ func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsWithContext(ctx aw
 	return out, req.Send()
 }
 
+// ExecuteExportLambdaFunctionRecommendations is Blink's code
+func ExecuteExportLambdaFunctionRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ExportLambdaFunctionRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ExportLambdaFunctionRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations"
 
 // GetAutoScalingGroupRecommendationsRequest generates a "aws/request.Request" representing the
@@ -658,6 +862,42 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsWithContext(ctx aws
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetAutoScalingGroupRecommendations is Blink's code
+func ExecuteGetAutoScalingGroupRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetAutoScalingGroupRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetAutoScalingGroupRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetEBSVolumeRecommendations = "GetEBSVolumeRecommendations"
@@ -766,6 +1006,42 @@ func (c *ComputeOptimizer) GetEBSVolumeRecommendationsWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+// ExecuteGetEBSVolumeRecommendations is Blink's code
+func ExecuteGetEBSVolumeRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetEBSVolumeRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEBSVolumeRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetEC2InstanceRecommendations = "GetEC2InstanceRecommendations"
 
 // GetEC2InstanceRecommendationsRequest generates a "aws/request.Request" representing the
@@ -870,6 +1146,42 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetEC2InstanceRecommendations is Blink's code
+func ExecuteGetEC2InstanceRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetEC2InstanceRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEC2InstanceRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetEC2RecommendationProjectedMetrics = "GetEC2RecommendationProjectedMetrics"
@@ -979,6 +1291,42 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsWithContext(ctx a
 	return out, req.Send()
 }
 
+// ExecuteGetEC2RecommendationProjectedMetrics is Blink's code
+func ExecuteGetEC2RecommendationProjectedMetrics(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetEC2RecommendationProjectedMetricsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEC2RecommendationProjectedMetricsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetEnrollmentStatus = "GetEnrollmentStatus"
 
 // GetEnrollmentStatusRequest generates a "aws/request.Request" representing the
@@ -1076,6 +1424,42 @@ func (c *ComputeOptimizer) GetEnrollmentStatusWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetEnrollmentStatus is Blink's code
+func ExecuteGetEnrollmentStatus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetEnrollmentStatusInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEnrollmentStatusRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetLambdaFunctionRecommendations = "GetLambdaFunctionRecommendations"
@@ -1182,6 +1566,42 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsWithContext(ctx aws.C
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetLambdaFunctionRecommendations is Blink's code
+func ExecuteGetLambdaFunctionRecommendations(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetLambdaFunctionRecommendationsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetLambdaFunctionRecommendationsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetRecommendationSummaries = "GetRecommendationSummaries"
@@ -1293,6 +1713,42 @@ func (c *ComputeOptimizer) GetRecommendationSummariesWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+// ExecuteGetRecommendationSummaries is Blink's code
+func ExecuteGetRecommendationSummaries(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &GetRecommendationSummariesInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetRecommendationSummariesRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateEnrollmentStatus = "UpdateEnrollmentStatus"
 
 // UpdateEnrollmentStatusRequest generates a "aws/request.Request" representing the
@@ -1400,6 +1856,42 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateEnrollmentStatus is Blink's code
+func ExecuteUpdateEnrollmentStatus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComputeOptimizer)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &UpdateEnrollmentStatusInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateEnrollmentStatusRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // You do not have sufficient access to perform this action.

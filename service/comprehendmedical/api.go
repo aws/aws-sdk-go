@@ -3,6 +3,8 @@
 package comprehendmedical
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -10,6 +12,36 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"DescribeEntitiesDetectionV2Job": ExecuteDescribeEntitiesDetectionV2Job,
+		"DescribeICD10CMInferenceJob":    ExecuteDescribeICD10CMInferenceJob,
+		"DescribePHIDetectionJob":        ExecuteDescribePHIDetectionJob,
+		"DescribeRxNormInferenceJob":     ExecuteDescribeRxNormInferenceJob,
+		"DetectEntities":                 ExecuteDetectEntities,
+		"DetectEntitiesV2":               ExecuteDetectEntitiesV2,
+		"DetectPHI":                      ExecuteDetectPHI,
+		"InferICD10CM":                   ExecuteInferICD10CM,
+		"InferRxNorm":                    ExecuteInferRxNorm,
+		"ListEntitiesDetectionV2Jobs":    ExecuteListEntitiesDetectionV2Jobs,
+		"ListICD10CMInferenceJobs":       ExecuteListICD10CMInferenceJobs,
+		"ListPHIDetectionJobs":           ExecuteListPHIDetectionJobs,
+		"ListRxNormInferenceJobs":        ExecuteListRxNormInferenceJobs,
+		"StartEntitiesDetectionV2Job":    ExecuteStartEntitiesDetectionV2Job,
+		"StartICD10CMInferenceJob":       ExecuteStartICD10CMInferenceJob,
+		"StartPHIDetectionJob":           ExecuteStartPHIDetectionJob,
+		"StartRxNormInferenceJob":        ExecuteStartRxNormInferenceJob,
+		"StopEntitiesDetectionV2Job":     ExecuteStopEntitiesDetectionV2Job,
+		"StopICD10CMInferenceJob":        ExecuteStopICD10CMInferenceJob,
+		"StopPHIDetectionJob":            ExecuteStopPHIDetectionJob,
+		"StopRxNormInferenceJob":         ExecuteStopRxNormInferenceJob,
+	}
 )
 
 const opDescribeEntitiesDetectionV2Job = "DescribeEntitiesDetectionV2Job"
@@ -105,6 +137,42 @@ func (c *ComprehendMedical) DescribeEntitiesDetectionV2JobWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
+// ExecuteDescribeEntitiesDetectionV2Job is Blink's code
+func ExecuteDescribeEntitiesDetectionV2Job(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DescribeEntitiesDetectionV2JobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEntitiesDetectionV2JobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeICD10CMInferenceJob = "DescribeICD10CMInferenceJob"
 
 // DescribeICD10CMInferenceJobRequest generates a "aws/request.Request" representing the
@@ -196,6 +264,42 @@ func (c *ComprehendMedical) DescribeICD10CMInferenceJobWithContext(ctx aws.Conte
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeICD10CMInferenceJob is Blink's code
+func ExecuteDescribeICD10CMInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DescribeICD10CMInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeICD10CMInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDescribePHIDetectionJob = "DescribePHIDetectionJob"
@@ -291,6 +395,42 @@ func (c *ComprehendMedical) DescribePHIDetectionJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteDescribePHIDetectionJob is Blink's code
+func ExecuteDescribePHIDetectionJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DescribePHIDetectionJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribePHIDetectionJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeRxNormInferenceJob = "DescribeRxNormInferenceJob"
 
 // DescribeRxNormInferenceJobRequest generates a "aws/request.Request" representing the
@@ -382,6 +522,42 @@ func (c *ComprehendMedical) DescribeRxNormInferenceJobWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeRxNormInferenceJob is Blink's code
+func ExecuteDescribeRxNormInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DescribeRxNormInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeRxNormInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDetectEntities = "DetectEntities"
@@ -498,6 +674,42 @@ func (c *ComprehendMedical) DetectEntitiesWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+// ExecuteDetectEntities is Blink's code
+func ExecuteDetectEntities(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DetectEntitiesInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DetectEntitiesRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDetectEntitiesV2 = "DetectEntitiesV2"
 
 // DetectEntitiesV2Request generates a "aws/request.Request" representing the
@@ -609,6 +821,42 @@ func (c *ComprehendMedical) DetectEntitiesV2WithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// ExecuteDetectEntitiesV2 is Blink's code
+func ExecuteDetectEntitiesV2(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DetectEntitiesV2Input{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DetectEntitiesV2Request(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDetectPHI = "DetectPHI"
 
 // DetectPHIRequest generates a "aws/request.Request" representing the
@@ -710,6 +958,42 @@ func (c *ComprehendMedical) DetectPHIWithContext(ctx aws.Context, input *DetectP
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDetectPHI is Blink's code
+func ExecuteDetectPHI(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &DetectPHIInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DetectPHIRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opInferICD10CM = "InferICD10CM"
@@ -815,6 +1099,42 @@ func (c *ComprehendMedical) InferICD10CMWithContext(ctx aws.Context, input *Infe
 	return out, req.Send()
 }
 
+// ExecuteInferICD10CM is Blink's code
+func ExecuteInferICD10CM(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &InferICD10CMInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.InferICD10CMRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opInferRxNorm = "InferRxNorm"
 
 // InferRxNormRequest generates a "aws/request.Request" representing the
@@ -918,6 +1238,42 @@ func (c *ComprehendMedical) InferRxNormWithContext(ctx aws.Context, input *Infer
 	return out, req.Send()
 }
 
+// ExecuteInferRxNorm is Blink's code
+func ExecuteInferRxNorm(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &InferRxNormInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.InferRxNormRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListEntitiesDetectionV2Jobs = "ListEntitiesDetectionV2Jobs"
 
 // ListEntitiesDetectionV2JobsRequest generates a "aws/request.Request" representing the
@@ -1010,6 +1366,42 @@ func (c *ComprehendMedical) ListEntitiesDetectionV2JobsWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+// ExecuteListEntitiesDetectionV2Jobs is Blink's code
+func ExecuteListEntitiesDetectionV2Jobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListEntitiesDetectionV2JobsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEntitiesDetectionV2JobsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListICD10CMInferenceJobs = "ListICD10CMInferenceJobs"
 
 // ListICD10CMInferenceJobsRequest generates a "aws/request.Request" representing the
@@ -1100,6 +1492,42 @@ func (c *ComprehendMedical) ListICD10CMInferenceJobsWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListICD10CMInferenceJobs is Blink's code
+func ExecuteListICD10CMInferenceJobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListICD10CMInferenceJobsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListICD10CMInferenceJobsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opListPHIDetectionJobs = "ListPHIDetectionJobs"
@@ -1195,6 +1623,42 @@ func (c *ComprehendMedical) ListPHIDetectionJobsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteListPHIDetectionJobs is Blink's code
+func ExecuteListPHIDetectionJobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListPHIDetectionJobsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListPHIDetectionJobsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListRxNormInferenceJobs = "ListRxNormInferenceJobs"
 
 // ListRxNormInferenceJobsRequest generates a "aws/request.Request" representing the
@@ -1285,6 +1749,42 @@ func (c *ComprehendMedical) ListRxNormInferenceJobsWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListRxNormInferenceJobs is Blink's code
+func ExecuteListRxNormInferenceJobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &ListRxNormInferenceJobsInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListRxNormInferenceJobsRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartEntitiesDetectionV2Job = "StartEntitiesDetectionV2Job"
@@ -1381,6 +1881,42 @@ func (c *ComprehendMedical) StartEntitiesDetectionV2JobWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+// ExecuteStartEntitiesDetectionV2Job is Blink's code
+func ExecuteStartEntitiesDetectionV2Job(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StartEntitiesDetectionV2JobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartEntitiesDetectionV2JobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStartICD10CMInferenceJob = "StartICD10CMInferenceJob"
 
 // StartICD10CMInferenceJobRequest generates a "aws/request.Request" representing the
@@ -1475,6 +2011,42 @@ func (c *ComprehendMedical) StartICD10CMInferenceJobWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+// ExecuteStartICD10CMInferenceJob is Blink's code
+func ExecuteStartICD10CMInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StartICD10CMInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartICD10CMInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStartPHIDetectionJob = "StartPHIDetectionJob"
 
 // StartPHIDetectionJobRequest generates a "aws/request.Request" representing the
@@ -1566,6 +2138,42 @@ func (c *ComprehendMedical) StartPHIDetectionJobWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStartPHIDetectionJob is Blink's code
+func ExecuteStartPHIDetectionJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StartPHIDetectionJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartPHIDetectionJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartRxNormInferenceJob = "StartRxNormInferenceJob"
@@ -1662,6 +2270,42 @@ func (c *ComprehendMedical) StartRxNormInferenceJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteStartRxNormInferenceJob is Blink's code
+func ExecuteStartRxNormInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StartRxNormInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartRxNormInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopEntitiesDetectionV2Job = "StopEntitiesDetectionV2Job"
 
 // StopEntitiesDetectionV2JobRequest generates a "aws/request.Request" representing the
@@ -1747,6 +2391,42 @@ func (c *ComprehendMedical) StopEntitiesDetectionV2JobWithContext(ctx aws.Contex
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStopEntitiesDetectionV2Job is Blink's code
+func ExecuteStopEntitiesDetectionV2Job(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StopEntitiesDetectionV2JobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopEntitiesDetectionV2JobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStopICD10CMInferenceJob = "StopICD10CMInferenceJob"
@@ -1836,6 +2516,42 @@ func (c *ComprehendMedical) StopICD10CMInferenceJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteStopICD10CMInferenceJob is Blink's code
+func ExecuteStopICD10CMInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StopICD10CMInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopICD10CMInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopPHIDetectionJob = "StopPHIDetectionJob"
 
 // StopPHIDetectionJobRequest generates a "aws/request.Request" representing the
@@ -1923,6 +2639,42 @@ func (c *ComprehendMedical) StopPHIDetectionJobWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ExecuteStopPHIDetectionJob is Blink's code
+func ExecuteStopPHIDetectionJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StopPHIDetectionJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopPHIDetectionJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopRxNormInferenceJob = "StopRxNormInferenceJob"
 
 // StopRxNormInferenceJobRequest generates a "aws/request.Request" representing the
@@ -2008,6 +2760,42 @@ func (c *ComprehendMedical) StopRxNormInferenceJobWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStopRxNormInferenceJob is Blink's code
+func ExecuteStopRxNormInferenceJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*ComprehendMedical)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	input := &StopRxNormInferenceJobInput{}
+	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopRxNormInferenceJobRequest(input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // An extracted segment of the text that is an attribute of an entity, or otherwise

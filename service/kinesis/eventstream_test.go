@@ -229,7 +229,7 @@ func mockSubscribeToShardReadEvents() (
 		&SubscribeToShardOutput{},
 		&SubscribeToShardEvent{
 			ChildShards: []*ChildShard{
-				{
+				&ChildShard{
 					HashKeyRange: &HashKeyRange{
 						EndingHashKey:   aws.String("string value goes here"),
 						StartingHashKey: aws.String("string value goes here"),
@@ -241,7 +241,7 @@ func mockSubscribeToShardReadEvents() (
 					},
 					ShardId: aws.String("string value goes here"),
 				},
-				{
+				&ChildShard{
 					HashKeyRange: &HashKeyRange{
 						EndingHashKey:   aws.String("string value goes here"),
 						StartingHashKey: aws.String("string value goes here"),
@@ -253,7 +253,7 @@ func mockSubscribeToShardReadEvents() (
 					},
 					ShardId: aws.String("string value goes here"),
 				},
-				{
+				&ChildShard{
 					HashKeyRange: &HashKeyRange{
 						EndingHashKey:   aws.String("string value goes here"),
 						StartingHashKey: aws.String("string value goes here"),
@@ -269,21 +269,21 @@ func mockSubscribeToShardReadEvents() (
 			ContinuationSequenceNumber: aws.String("string value goes here"),
 			MillisBehindLatest:         aws.Int64(1234),
 			Records: []*Record{
-				{
+				&Record{
 					ApproximateArrivalTimestamp: aws.Time(time.Unix(1396594860, 0).UTC()),
 					Data:                        []byte("blob value goes here"),
 					EncryptionType:              aws.String("string value goes here"),
 					PartitionKey:                aws.String("string value goes here"),
 					SequenceNumber:              aws.String("string value goes here"),
 				},
-				{
+				&Record{
 					ApproximateArrivalTimestamp: aws.Time(time.Unix(1396594860, 0).UTC()),
 					Data:                        []byte("blob value goes here"),
 					EncryptionType:              aws.String("string value goes here"),
 					PartitionKey:                aws.String("string value goes here"),
 					SequenceNumber:              aws.String("string value goes here"),
 				},
-				{
+				&Record{
 					ApproximateArrivalTimestamp: aws.Time(time.Unix(1396594860, 0).UTC()),
 					Data:                        []byte("blob value goes here"),
 					EncryptionType:              aws.String("string value goes here"),

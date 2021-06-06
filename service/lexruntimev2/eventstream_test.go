@@ -234,12 +234,12 @@ func mockStartConversationReadEvents() (
 			EventId:   aws.String("string value goes here"),
 			InputMode: aws.String("string value goes here"),
 			Interpretations: []*Interpretation{
-				{
+				&Interpretation{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": {
+							"a": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -250,7 +250,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"b": {
+							"b": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -261,7 +261,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"c": {
+							"c": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -288,12 +288,12 @@ func mockStartConversationReadEvents() (
 						},
 					},
 				},
-				{
+				&Interpretation{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": {
+							"a": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -304,7 +304,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"b": {
+							"b": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -315,7 +315,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"c": {
+							"c": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -342,12 +342,12 @@ func mockStartConversationReadEvents() (
 						},
 					},
 				},
-				{
+				&Interpretation{
 					Intent: &Intent{
 						ConfirmationState: aws.String("string value goes here"),
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
-							"a": {
+							"a": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -358,7 +358,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"b": {
+							"b": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -369,7 +369,7 @@ func mockStartConversationReadEvents() (
 									},
 								},
 							},
-							"c": {
+							"c": &Slot{
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -405,7 +405,7 @@ func mockStartConversationReadEvents() (
 			SessionId: aws.String("string value goes here"),
 			SessionState: &SessionState{
 				ActiveContexts: []*ActiveContext{
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -417,7 +417,7 @@ func mockStartConversationReadEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -429,7 +429,7 @@ func mockStartConversationReadEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -450,7 +450,7 @@ func mockStartConversationReadEvents() (
 					ConfirmationState: aws.String("string value goes here"),
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
-						"a": {
+						"a": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -461,7 +461,7 @@ func mockStartConversationReadEvents() (
 								},
 							},
 						},
-						"b": {
+						"b": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -472,7 +472,7 @@ func mockStartConversationReadEvents() (
 								},
 							},
 						},
-						"c": {
+						"c": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -502,20 +502,20 @@ func mockStartConversationReadEvents() (
 		&TextResponseEvent{
 			EventId: aws.String("string value goes here"),
 			Messages: []*Message{
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -525,20 +525,20 @@ func mockStartConversationReadEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -548,20 +548,20 @@ func mockStartConversationReadEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -925,7 +925,7 @@ func mockStartConversationWriteEvents() (
 			ResponseContentType: aws.String("string value goes here"),
 			SessionState: &SessionState{
 				ActiveContexts: []*ActiveContext{
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -937,7 +937,7 @@ func mockStartConversationWriteEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -949,7 +949,7 @@ func mockStartConversationWriteEvents() (
 							TurnsToLive:         aws.Int64(123),
 						},
 					},
-					{
+					&ActiveContext{
 						ContextAttributes: map[string]*string{
 							"a": aws.String("string value goes here"),
 							"b": aws.String("string value goes here"),
@@ -970,7 +970,7 @@ func mockStartConversationWriteEvents() (
 					ConfirmationState: aws.String("string value goes here"),
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
-						"a": {
+						"a": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -981,7 +981,7 @@ func mockStartConversationWriteEvents() (
 								},
 							},
 						},
-						"b": {
+						"b": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -992,7 +992,7 @@ func mockStartConversationWriteEvents() (
 								},
 							},
 						},
-						"c": {
+						"c": &Slot{
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -1014,20 +1014,20 @@ func mockStartConversationWriteEvents() (
 				},
 			},
 			WelcomeMessages: []*Message{
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -1037,20 +1037,20 @@ func mockStartConversationWriteEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
@@ -1060,20 +1060,20 @@ func mockStartConversationWriteEvents() (
 						Title:    aws.String("string value goes here"),
 					},
 				},
-				{
+				&Message{
 					Content:     aws.String("string value goes here"),
 					ContentType: aws.String("string value goes here"),
 					ImageResponseCard: &ImageResponseCard{
 						Buttons: []*Button{
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},
-							{
+							&Button{
 								Text:  aws.String("string value goes here"),
 								Value: aws.String("string value goes here"),
 							},

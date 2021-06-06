@@ -33,7 +33,7 @@ func ExampleDynamoDB_BatchGetItem_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.BatchGetItemInput{
 		RequestItems: map[string]*dynamodb.KeysAndAttributes{
-			"Music": {
+			"Music": &dynamodb.KeysAndAttributes{
 				Keys: []map[string]*dynamodb.AttributeValue{
 					{
 						"Artist": &dynamodb.AttributeValue{
@@ -99,17 +99,17 @@ func ExampleDynamoDB_BatchWriteItem_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.BatchWriteItemInput{
 		RequestItems: map[string][]*dynamodb.WriteRequest{
-			"Music": {
+			"Music": []*dynamodb.WriteRequest{
 				{
 					PutRequest: &dynamodb.PutRequest{
 						Item: map[string]*dynamodb.AttributeValue{
-							"AlbumTitle": {
+							"AlbumTitle": &dynamodb.AttributeValue{
 								S: aws.String("Somewhat Famous"),
 							},
-							"Artist": {
+							"Artist": &dynamodb.AttributeValue{
 								S: aws.String("No One You Know"),
 							},
-							"SongTitle": {
+							"SongTitle": &dynamodb.AttributeValue{
 								S: aws.String("Call Me Today"),
 							},
 						},
@@ -118,13 +118,13 @@ func ExampleDynamoDB_BatchWriteItem_shared00() {
 				{
 					PutRequest: &dynamodb.PutRequest{
 						Item: map[string]*dynamodb.AttributeValue{
-							"AlbumTitle": {
+							"AlbumTitle": &dynamodb.AttributeValue{
 								S: aws.String("Songs About Life"),
 							},
-							"Artist": {
+							"Artist": &dynamodb.AttributeValue{
 								S: aws.String("Acme Band"),
 							},
-							"SongTitle": {
+							"SongTitle": &dynamodb.AttributeValue{
 								S: aws.String("Happy Day"),
 							},
 						},
@@ -133,13 +133,13 @@ func ExampleDynamoDB_BatchWriteItem_shared00() {
 				{
 					PutRequest: &dynamodb.PutRequest{
 						Item: map[string]*dynamodb.AttributeValue{
-							"AlbumTitle": {
+							"AlbumTitle": &dynamodb.AttributeValue{
 								S: aws.String("Blue Sky Blues"),
 							},
-							"Artist": {
+							"Artist": &dynamodb.AttributeValue{
 								S: aws.String("No One You Know"),
 							},
-							"SongTitle": {
+							"SongTitle": &dynamodb.AttributeValue{
 								S: aws.String("Scared of My Shadow"),
 							},
 						},
@@ -241,10 +241,10 @@ func ExampleDynamoDB_DeleteItem_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.DeleteItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
-			"Artist": {
+			"Artist": &dynamodb.AttributeValue{
 				S: aws.String("No One You Know"),
 			},
-			"SongTitle": {
+			"SongTitle": &dynamodb.AttributeValue{
 				S: aws.String("Scared of My Shadow"),
 			},
 		},
@@ -385,10 +385,10 @@ func ExampleDynamoDB_GetItem_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.GetItemInput{
 		Key: map[string]*dynamodb.AttributeValue{
-			"Artist": {
+			"Artist": &dynamodb.AttributeValue{
 				S: aws.String("Acme Band"),
 			},
-			"SongTitle": {
+			"SongTitle": &dynamodb.AttributeValue{
 				S: aws.String("Happy Day"),
 			},
 		},
@@ -456,13 +456,13 @@ func ExampleDynamoDB_PutItem_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.PutItemInput{
 		Item: map[string]*dynamodb.AttributeValue{
-			"AlbumTitle": {
+			"AlbumTitle": &dynamodb.AttributeValue{
 				S: aws.String("Somewhat Famous"),
 			},
-			"Artist": {
+			"Artist": &dynamodb.AttributeValue{
 				S: aws.String("No One You Know"),
 			},
-			"SongTitle": {
+			"SongTitle": &dynamodb.AttributeValue{
 				S: aws.String("Call Me Today"),
 			},
 		},
@@ -511,7 +511,7 @@ func ExampleDynamoDB_Query_shared00() {
 	svc := dynamodb.New(session.New())
 	input := &dynamodb.QueryInput{
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":v1": {
+			":v1": &dynamodb.AttributeValue{
 				S: aws.String("No One You Know"),
 			},
 		},
@@ -559,7 +559,7 @@ func ExampleDynamoDB_Scan_shared00() {
 			"#ST": aws.String("SongTitle"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":a": {
+			":a": &dynamodb.AttributeValue{
 				S: aws.String("No One You Know"),
 			},
 		},
@@ -607,18 +607,18 @@ func ExampleDynamoDB_UpdateItem_shared00() {
 			"#Y":  aws.String("Year"),
 		},
 		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-			":t": {
+			":t": &dynamodb.AttributeValue{
 				S: aws.String("Louder Than Ever"),
 			},
-			":y": {
+			":y": &dynamodb.AttributeValue{
 				N: aws.String("2015"),
 			},
 		},
 		Key: map[string]*dynamodb.AttributeValue{
-			"Artist": {
+			"Artist": &dynamodb.AttributeValue{
 				S: aws.String("Acme Band"),
 			},
-			"SongTitle": {
+			"SongTitle": &dynamodb.AttributeValue{
 				S: aws.String("Happy Day"),
 			},
 		},
