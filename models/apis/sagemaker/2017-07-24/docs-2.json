@@ -197,6 +197,8 @@
     "RegisterDevices": "<p>Register devices.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
+    "SendPipelineExecutionStepFailure": "<p>Notifies the pipeline that the execution of a callback step failed, along with a message describing why. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
+    "SendPipelineExecutionStepSuccess": "<p>Notifies the pipeline that the execution of a callback step succeeded and provides a list of the step's output parameters. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
     "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>By default, when you successfully create a new schedule, the status of a monitoring schedule is <code>scheduled</code>.</p> </note>",
     "StartNotebookInstance": "<p>Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, Amazon SageMaker sets the notebook instance status to <code>InService</code>. A notebook instance's status must be <code>InService</code> before you can connect to your Jupyter notebook. </p>",
     "StartPipelineExecution": "<p>Starts a pipeline execution.</p>",
@@ -756,7 +758,7 @@
     "AutoGenerateEndpointName": {
       "base": null,
       "refs": {
-        "ModelDeployConfig$AutoGenerateEndpointName": "<p>Set to <code>True</code> to automatically generate an endpoint name for a one-click Autopilot model deployment; set to <code>False</code> otherwise. The default value is <code>True</code>.</p> <note> <p>If you set <code>AutoGenerateEndpointName</code> to <code>True</code>, do not specify the <code>EndpointName</code>; otherwise a 400 error is thrown.</p> </note>"
+        "ModelDeployConfig$AutoGenerateEndpointName": "<p>Set to <code>True</code> to automatically generate an endpoint name for a one-click Autopilot model deployment; set to <code>False</code> otherwise. The default value is <code>False</code>.</p> <note> <p>If you set <code>AutoGenerateEndpointName</code> to <code>True</code>, do not specify the <code>EndpointName</code>; otherwise a 400 error is thrown.</p> </note>"
       }
     },
     "AutoMLCandidate": {
@@ -927,7 +929,7 @@
     "AutoMLOutputDataConfig": {
       "base": "<p>The output data configuration.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job. Format(s) supported: CSV.</p> <p>&lt;para&gt;Specifies whether to automatically deploy the best &amp;ATP; model to an endpoint and the name of that endpoint if deployed automatically.&lt;/para&gt;</p>",
+        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job. Format(s) supported: CSV.</p>",
         "DescribeAutoMLJobResponse$OutputDataConfig": "<p>Returns the job's output data config.</p>"
       }
     },
@@ -1069,6 +1071,20 @@
       "base": "<p>Details on the cache hit of a pipeline execution step.</p>",
       "refs": {
         "PipelineExecutionStep$CacheHitResult": "<p>If this pipeline execution step was cached, details on the cache hit.</p>"
+      }
+    },
+    "CallbackStepMetadata": {
+      "base": "<p>Metadata about a callback step.</p>",
+      "refs": {
+        "PipelineExecutionStepMetadata$Callback": null
+      }
+    },
+    "CallbackToken": {
+      "base": null,
+      "refs": {
+        "CallbackStepMetadata$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>",
+        "SendPipelineExecutionStepFailureRequest$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>",
+        "SendPipelineExecutionStepSuccessRequest$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>"
       }
     },
     "CandidateArtifactLocations": {
@@ -3741,6 +3757,8 @@
         "ListTrialsRequest$TrialComponentName": "<p>A filter that returns only trials that are associated with the specified trial component.</p>",
         "Parent$TrialName": "<p>The name of the trial.</p>",
         "Parent$ExperimentName": "<p>The name of the experiment.</p>",
+        "PipelineExperimentConfig$ExperimentName": "<p>The name of the experiment.</p>",
+        "PipelineExperimentConfig$TrialName": "<p>The name of the trial.</p>",
         "Trial$TrialName": "<p>The name of the trial.</p>",
         "Trial$DisplayName": "<p>The name of the trial as displayed. If <code>DisplayName</code> isn't specified, <code>TrialName</code> is displayed.</p>",
         "Trial$ExperimentName": "<p>The name of the experiment the trial is part of.</p>",
@@ -4473,6 +4491,8 @@
       "refs": {
         "CreatePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "DeletePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
+        "SendPipelineExecutionStepFailureRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
+        "SendPipelineExecutionStepSuccessRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "StartPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "StopPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>"
       }
@@ -4830,7 +4850,7 @@
     "KernelName": {
       "base": null,
       "refs": {
-        "KernelSpec$Name": "<p>The name of the kernel.</p>"
+        "KernelSpec$Name": "<p>The name of the Jupyter kernel in the image. This value is case sensitive.</p>"
       }
     },
     "KernelSpec": {
@@ -5700,7 +5720,7 @@
     "MaxAutoMLJobRuntimeInSeconds": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum time, in seconds, an AutoML job is allowed to wait for a trial to complete. It must be equal to or greater than <code>MaxRuntimePerTrainingJobInSeconds</code>.</p>"
+        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum runtime, in seconds, an AutoML job has to complete.</p>"
       }
     },
     "MaxCandidates": {
@@ -5818,7 +5838,7 @@
     "MaxRuntimePerTrainingJobInSeconds": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxRuntimePerTrainingJobInSeconds": "<p>The maximum time, in seconds, a job is allowed to run.</p>"
+        "AutoMLJobCompletionCriteria$MaxRuntimePerTrainingJobInSeconds": "<p>The maximum time, in seconds, a training job is allowed to run as part of an AutoML job.</p>"
       }
     },
     "MaxWaitTimeInSeconds": {
@@ -7135,6 +7155,19 @@
         "TrainingJobDefinition$OutputDataConfig": "<p>the path to the S3 bucket where you want to store model artifacts. Amazon SageMaker creates subfolders for the artifacts.</p>"
       }
     },
+    "OutputParameter": {
+      "base": "<p>An output parameter of a pipeline step.</p>",
+      "refs": {
+        "OutputParameterList$member": null
+      }
+    },
+    "OutputParameterList": {
+      "base": null,
+      "refs": {
+        "CallbackStepMetadata$OutputParameters": "<p>A list of the output parameters of the callback step.</p>",
+        "SendPipelineExecutionStepSuccessRequest$OutputParameters": "<p>A list of the output parameters of the callback step.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -7293,6 +7326,8 @@
         "ListPipelineParametersForExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecution$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StartPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StopPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StopPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -7308,6 +7343,13 @@
         "PipelineExecutionSummary$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>",
         "StartPipelineExecutionRequest$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>",
         "UpdatePipelineExecutionRequest$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>"
+      }
+    },
+    "PipelineExecutionFailureReason": {
+      "base": null,
+      "refs": {
+        "DescribePipelineExecutionResponse$FailureReason": "<p>If the execution failed, a message describing why.</p>",
+        "PipelineExecution$FailureReason": "<p>If the execution failed, a message describing why.</p>"
       }
     },
     "PipelineExecutionName": {
@@ -7343,7 +7385,7 @@
     "PipelineExecutionStepMetadata": {
       "base": "<p>Metadata for a step execution.</p>",
       "refs": {
-        "PipelineExecutionStep$Metadata": "<p>The metadata for the step execution.</p>"
+        "PipelineExecutionStep$Metadata": "<p>Metadata for the step execution.</p>"
       }
     },
     "PipelineExecutionSummary": {
@@ -7356,6 +7398,13 @@
       "base": null,
       "refs": {
         "ListPipelineExecutionsResponse$PipelineExecutionSummaries": "<p>Contains a sorted list of pipeline execution summary objects matching the specified filters. Each run summary includes the Amazon Resource Name (ARN) of the pipeline execution, the run date, and the status. This list can be empty. </p>"
+      }
+    },
+    "PipelineExperimentConfig": {
+      "base": "<p>Specifies the names of the experiment and trial created by a pipeline.</p>",
+      "refs": {
+        "DescribePipelineExecutionResponse$PipelineExperimentConfig": null,
+        "PipelineExecution$PipelineExperimentConfig": null
       }
     },
     "PipelineName": {
@@ -7674,7 +7723,7 @@
       }
     },
     "ProductionVariant": {
-      "base": "<p>Identifies a model that you want to host and the resources to deploy for hosting it. If you are deploying multiple models, tell Amazon SageMaker how to distribute traffic among the models by specifying variant weights. </p>",
+      "base": "<p>Identifies a model that you want to host and the resources chosen to deploy for hosting it. If you are deploying multiple models, tell Amazon SageMaker how to distribute traffic among the models by specifying variant weights. </p>",
       "refs": {
         "ProductionVariantList$member": null
       }
@@ -8132,7 +8181,7 @@
       "base": null,
       "refs": {
         "AlgorithmValidationSpecification$ValidationRole": "<p>The IAM roles that Amazon SageMaker uses to run the training jobs.</p>",
-        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p> <p>&lt;para&gt;Specifies whether to automatically deploy the best &amp;ATP; model to an endpoint and the name of that endpoint if deployed automatically.&lt;/para&gt;</p>",
+        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p>",
         "CreateCompilationJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf. </p> <p>During model compilation, Amazon SageMaker needs your permission to:</p> <ul> <li> <p>Read input data from an S3 bucket</p> </li> <li> <p>Write model artifacts to an S3 bucket</p> </li> <li> <p>Write logs to Amazon CloudWatch Logs</p> </li> <li> <p>Publish metrics to Amazon CloudWatch</p> </li> </ul> <p>You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles.</a> </p>",
         "CreateDataQualityJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "CreateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT).</p>",
@@ -8409,6 +8458,26 @@
       "base": null,
       "refs": {
         "ShuffleConfig$Seed": "<p>Determines the shuffling order in <code>ShuffleConfig</code> value.</p>"
+      }
+    },
+    "SendPipelineExecutionStepFailureRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepFailureResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepSuccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepSuccessResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ServiceCatalogEntityId": {
@@ -8769,6 +8838,7 @@
         "CreateDomainResponse$Url": "<p>The URL to the created domain.</p>",
         "DescribeDomainResponse$Url": "<p>The domain's URL.</p>",
         "DomainDetails$Url": "<p>The domain's URL.</p>",
+        "OutputParameter$Value": "<p>The value of the output parameter.</p>",
         "Parameter$Value": "<p>The literal value for the parameter.</p>"
       }
     },
@@ -8799,6 +8869,7 @@
         "ArtifactSummary$ArtifactType": "<p>The type of the artifact.</p>",
         "AssociationSummary$SourceType": "<p>The source type.</p>",
         "AssociationSummary$DestinationType": "<p>The destination type.</p>",
+        "CallbackStepMetadata$SqsQueueUrl": "<p>The URL of the Amazon Simple Queue Service (Amazon SQS) queue used by the callback step.</p>",
         "ContextSource$SourceType": "<p>The type of the source.</p>",
         "ContextSource$SourceId": "<p>The ID of the source.</p>",
         "ContextSummary$ContextType": "<p>The type of the context.</p>",
@@ -8818,7 +8889,9 @@
         "ListContextsRequest$ContextType": "<p>A filter that returns only contexts of the specified type.</p>",
         "ListTrialComponentsRequest$SourceArn": "<p>A filter that returns only components that have the specified source Amazon Resource Name (ARN). If you specify <code>SourceArn</code>, you can't filter by <code>ExperimentName</code> or <code>TrialName</code>.</p>",
         "ModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the created model.</p>",
-        "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>"
+        "OutputParameter$Name": "<p>The name of the output parameter.</p>",
+        "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "SendPipelineExecutionStepFailureRequest$FailureReason": "<p>A message describing why the step failed.</p>"
       }
     },
     "String64": {
@@ -8884,7 +8957,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Describes a tag. </p>",
+      "base": "<p>A tag object that consists of a key and an optional value, used to manage metadata for Amazon SageMaker AWS resources.</p> <p>You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints. For more information on adding tags to Amazon SageMaker resources, see <a>AddTags</a>.</p> <p>For more information on adding metadata to your AWS resources with tagging, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a>. For advice on best practices for managing AWS resources with tagging, see <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging Best Practices: Implement an Effective AWS Resource Tagging Strategy</a>.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -8892,7 +8965,7 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The tag key.</p>",
+        "Tag$Key": "<p>The tag key. Tag keys must be unique per resource.</p>",
         "TagKeyList$member": null
       }
     },
@@ -10340,8 +10413,8 @@
       "base": null,
       "refs": {
         "ContainerDefinition$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to use to create the model.</p>",
-        "DeleteModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
-        "DescribeModelPackageInput$ModelPackageName": "<p>The name of the model package to describe.</p>"
+        "DeleteModelPackageInput$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to delete.</p> <p>When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
+        "DescribeModelPackageInput$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to describe.</p> <p>When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>"
       }
     },
     "VolumeSizeInGB": {

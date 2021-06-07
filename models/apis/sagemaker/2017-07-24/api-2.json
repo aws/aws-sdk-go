@@ -2128,6 +2128,32 @@
       "input":{"shape":"SearchRequest"},
       "output":{"shape":"SearchResponse"}
     },
+    "SendPipelineExecutionStepFailure":{
+      "name":"SendPipelineExecutionStepFailure",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendPipelineExecutionStepFailureRequest"},
+      "output":{"shape":"SendPipelineExecutionStepFailureResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
+    "SendPipelineExecutionStepSuccess":{
+      "name":"SendPipelineExecutionStepSuccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendPipelineExecutionStepSuccessRequest"},
+      "output":{"shape":"SendPipelineExecutionStepSuccessResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "StartMonitoringSchedule":{
       "name":"StartMonitoringSchedule",
       "http":{
@@ -3481,6 +3507,20 @@
       "members":{
         "SourcePipelineExecutionArn":{"shape":"PipelineExecutionArn"}
       }
+    },
+    "CallbackStepMetadata":{
+      "type":"structure",
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "SqsQueueUrl":{"shape":"String256"},
+        "OutputParameters":{"shape":"OutputParameterList"}
+      }
+    },
+    "CallbackToken":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[a-zA-Z0-9]+$"
     },
     "CandidateArtifactLocations":{
       "type":"structure",
@@ -6713,6 +6753,8 @@
         "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
         "PipelineExecutionStatus":{"shape":"PipelineExecutionStatus"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
+        "PipelineExperimentConfig":{"shape":"PipelineExperimentConfig"},
+        "FailureReason":{"shape":"PipelineExecutionFailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
@@ -11500,6 +11542,23 @@
         "S3OutputPath":{"shape":"S3Uri"}
       }
     },
+    "OutputParameter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"String256"},
+        "Value":{"shape":"String1024"}
+      }
+    },
+    "OutputParameterList":{
+      "type":"list",
+      "member":{"shape":"OutputParameter"},
+      "max":50,
+      "min":0
+    },
     "PaginationToken":{
       "type":"string",
       "max":8192,
@@ -11633,6 +11692,8 @@
         "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
         "PipelineExecutionStatus":{"shape":"PipelineExecutionStatus"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
+        "PipelineExperimentConfig":{"shape":"PipelineExperimentConfig"},
+        "FailureReason":{"shape":"PipelineExecutionFailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
@@ -11649,6 +11710,11 @@
       "type":"string",
       "max":3072,
       "min":0,
+      "pattern":".*"
+    },
+    "PipelineExecutionFailureReason":{
+      "type":"string",
+      "max":1300,
       "pattern":".*"
     },
     "PipelineExecutionName":{
@@ -11693,7 +11759,8 @@
         "TransformJob":{"shape":"TransformJobStepMetadata"},
         "Model":{"shape":"ModelStepMetadata"},
         "RegisterModel":{"shape":"RegisterModelStepMetadata"},
-        "Condition":{"shape":"ConditionStepMetadata"}
+        "Condition":{"shape":"ConditionStepMetadata"},
+        "Callback":{"shape":"CallbackStepMetadata"}
       }
     },
     "PipelineExecutionSummary":{
@@ -11711,6 +11778,13 @@
       "member":{"shape":"PipelineExecutionSummary"},
       "max":100,
       "min":0
+    },
+    "PipelineExperimentConfig":{
+      "type":"structure",
+      "members":{
+        "ExperimentName":{"shape":"ExperimentEntityName"},
+        "TrialName":{"shape":"ExperimentEntityName"}
+      }
     },
     "PipelineName":{
       "type":"string",
@@ -12917,6 +12991,42 @@
       "max":5
     },
     "Seed":{"type":"long"},
+    "SendPipelineExecutionStepFailureRequest":{
+      "type":"structure",
+      "required":["CallbackToken"],
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "FailureReason":{"shape":"String256"},
+        "ClientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendPipelineExecutionStepFailureResponse":{
+      "type":"structure",
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"}
+      }
+    },
+    "SendPipelineExecutionStepSuccessRequest":{
+      "type":"structure",
+      "required":["CallbackToken"],
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "OutputParameters":{"shape":"OutputParameterList"},
+        "ClientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendPipelineExecutionStepSuccessResponse":{
+      "type":"structure",
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"}
+      }
+    },
     "ServiceCatalogEntityId":{
       "type":"string",
       "max":100,
