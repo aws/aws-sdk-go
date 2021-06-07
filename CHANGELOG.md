@@ -1,3 +1,14 @@
+Release v1.38.56 (2021-06-07)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * Add SampleSize variable to S3Target to enable s3-sampling feature through API.
+* `service/personalize`: Updates service API
+* `service/sagemaker`: Updates service API and documentation
+  * AWS SageMaker - Releasing new APIs related to Callback steps in model building pipelines. Adds experiment integration to model building pipelines.
+
 Release v1.38.55 (2021-06-04)
 ===
 

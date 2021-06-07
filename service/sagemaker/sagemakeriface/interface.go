@@ -1002,6 +1002,14 @@ type SageMakerAPI interface {
 	SearchPages(*sagemaker.SearchInput, func(*sagemaker.SearchOutput, bool) bool) error
 	SearchPagesWithContext(aws.Context, *sagemaker.SearchInput, func(*sagemaker.SearchOutput, bool) bool, ...request.Option) error
 
+	SendPipelineExecutionStepFailure(*sagemaker.SendPipelineExecutionStepFailureInput) (*sagemaker.SendPipelineExecutionStepFailureOutput, error)
+	SendPipelineExecutionStepFailureWithContext(aws.Context, *sagemaker.SendPipelineExecutionStepFailureInput, ...request.Option) (*sagemaker.SendPipelineExecutionStepFailureOutput, error)
+	SendPipelineExecutionStepFailureRequest(*sagemaker.SendPipelineExecutionStepFailureInput) (*request.Request, *sagemaker.SendPipelineExecutionStepFailureOutput)
+
+	SendPipelineExecutionStepSuccess(*sagemaker.SendPipelineExecutionStepSuccessInput) (*sagemaker.SendPipelineExecutionStepSuccessOutput, error)
+	SendPipelineExecutionStepSuccessWithContext(aws.Context, *sagemaker.SendPipelineExecutionStepSuccessInput, ...request.Option) (*sagemaker.SendPipelineExecutionStepSuccessOutput, error)
+	SendPipelineExecutionStepSuccessRequest(*sagemaker.SendPipelineExecutionStepSuccessInput) (*request.Request, *sagemaker.SendPipelineExecutionStepSuccessOutput)
+
 	StartMonitoringSchedule(*sagemaker.StartMonitoringScheduleInput) (*sagemaker.StartMonitoringScheduleOutput, error)
 	StartMonitoringScheduleWithContext(aws.Context, *sagemaker.StartMonitoringScheduleInput, ...request.Option) (*sagemaker.StartMonitoringScheduleOutput, error)
 	StartMonitoringScheduleRequest(*sagemaker.StartMonitoringScheduleInput) (*request.Request, *sagemaker.StartMonitoringScheduleOutput)
