@@ -2181,6 +2181,8 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 // For Amazon FSx for Windows File Server file systems, you can update the following
 // properties:
 //
+//    * AuditLogConfiguration
+//
 //    * AutomaticBackupRetentionDays
 //
 //    * DailyAutomaticBackupStartTime
@@ -4489,6 +4491,11 @@ type CreateFileSystemWindowsConfiguration struct {
 	// lowercase letters, or the corresponding letters in escape codes.
 	Aliases []*string `type:"list"`
 
+	// The configuration that Amazon FSx for Windows File Server uses to audit and
+	// log user accesses of files, folders, and file shares on the Amazon FSx for
+	// Windows File Server file system.
+	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
+
 	// The number of days to retain automatic backups. The default is to retain
 	// backups for 7 days. Setting this value to 0 disables the creation of automatic
 	// backups. The maximum retention period for backups is 90 days.
@@ -4581,6 +4588,11 @@ func (s *CreateFileSystemWindowsConfiguration) Validate() error {
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
 	}
+	if s.AuditLogConfiguration != nil {
+		if err := s.AuditLogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuditLogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SelfManagedActiveDirectoryConfiguration != nil {
 		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
@@ -4602,6 +4614,12 @@ func (s *CreateFileSystemWindowsConfiguration) SetActiveDirectoryId(v string) *C
 // SetAliases sets the Aliases field's value.
 func (s *CreateFileSystemWindowsConfiguration) SetAliases(v []*string) *CreateFileSystemWindowsConfiguration {
 	s.Aliases = v
+	return s
+}
+
+// SetAuditLogConfiguration sets the AuditLogConfiguration field's value.
+func (s *CreateFileSystemWindowsConfiguration) SetAuditLogConfiguration(v *WindowsAuditLogCreateConfiguration) *CreateFileSystemWindowsConfiguration {
+	s.AuditLogConfiguration = v
 	return s
 }
 
@@ -8607,6 +8625,11 @@ func (s *UpdateFileSystemOutput) SetFileSystem(v *FileSystem) *UpdateFileSystemO
 type UpdateFileSystemWindowsConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration that Amazon FSx for Windows File Server uses to audit and
+	// log user accesses of files, folders, and file shares on the Amazon FSx for
+	// Windows File Server file system..
+	AuditLogConfiguration *WindowsAuditLogCreateConfiguration `type:"structure"`
+
 	// The number of days to retain automatic daily backups. Setting this to zero
 	// (0) disables automatic daily backups. You can retain automatic daily backups
 	// for a maximum of 90 days. For more information, see Working with Automatic
@@ -8658,6 +8681,11 @@ func (s *UpdateFileSystemWindowsConfiguration) Validate() error {
 	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
 	}
+	if s.AuditLogConfiguration != nil {
+		if err := s.AuditLogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuditLogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SelfManagedActiveDirectoryConfiguration != nil {
 		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
@@ -8668,6 +8696,12 @@ func (s *UpdateFileSystemWindowsConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAuditLogConfiguration sets the AuditLogConfiguration field's value.
+func (s *UpdateFileSystemWindowsConfiguration) SetAuditLogConfiguration(v *WindowsAuditLogCreateConfiguration) *UpdateFileSystemWindowsConfiguration {
+	s.AuditLogConfiguration = v
+	return s
 }
 
 // SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
@@ -8700,6 +8734,191 @@ func (s *UpdateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 	return s
 }
 
+// The configuration that Amazon FSx for Windows File Server uses to audit and
+// log user accesses of files, folders, and file shares on the Amazon FSx for
+// Windows File Server file system. For more information, see File access auditing
+// (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/file-access-auditing.html).
+type WindowsAuditLogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the destination of the audit logs. The
+	// destination can be any Amazon CloudWatch Logs log group ARN or Amazon Kinesis
+	// Data Firehose delivery stream ARN.
+	//
+	// The name of the Amazon CloudWatch Logs log group must begin with the /aws/fsx
+	// prefix. The name of the Amazon Kinesis Data Firehouse delivery stream must
+	// begin with the aws-fsx prefix.
+	//
+	// The destination ARN (either CloudWatch Logs log group or Kinesis Data Firehose
+	// delivery stream) must be in the same AWS partition, AWS region, and AWS account
+	// as your Amazon FSx file system.
+	AuditLogDestination *string `min:"8" type:"string"`
+
+	// Sets which attempt type is logged by Amazon FSx for file and folder accesses.
+	//
+	//    * SUCCESS_ONLY - only successful attempts to access files or folders are
+	//    logged.
+	//
+	//    * FAILURE_ONLY - only failed attempts to access files or folders are logged.
+	//
+	//    * SUCCESS_AND_FAILURE - both successful attempts and failed attempts to
+	//    access files or folders are logged.
+	//
+	//    * DISABLED - access auditing of files and folders is turned off.
+	//
+	// FileAccessAuditLogLevel is a required field
+	FileAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
+
+	// Sets which attempt type is logged by Amazon FSx for file share accesses.
+	//
+	//    * SUCCESS_ONLY - only successful attempts to access file shares are logged.
+	//
+	//    * FAILURE_ONLY - only failed attempts to access file shares are logged.
+	//
+	//    * SUCCESS_AND_FAILURE - both successful attempts and failed attempts to
+	//    access file shares are logged.
+	//
+	//    * DISABLED - access auditing of file shares is turned off.
+	//
+	// FileShareAccessAuditLogLevel is a required field
+	FileShareAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
+}
+
+// String returns the string representation
+func (s WindowsAuditLogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WindowsAuditLogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogDestination sets the AuditLogDestination field's value.
+func (s *WindowsAuditLogConfiguration) SetAuditLogDestination(v string) *WindowsAuditLogConfiguration {
+	s.AuditLogDestination = &v
+	return s
+}
+
+// SetFileAccessAuditLogLevel sets the FileAccessAuditLogLevel field's value.
+func (s *WindowsAuditLogConfiguration) SetFileAccessAuditLogLevel(v string) *WindowsAuditLogConfiguration {
+	s.FileAccessAuditLogLevel = &v
+	return s
+}
+
+// SetFileShareAccessAuditLogLevel sets the FileShareAccessAuditLogLevel field's value.
+func (s *WindowsAuditLogConfiguration) SetFileShareAccessAuditLogLevel(v string) *WindowsAuditLogConfiguration {
+	s.FileShareAccessAuditLogLevel = &v
+	return s
+}
+
+// The Windows file access auditing configuration used when creating or updating
+// an Amazon FSx for Windows File Server file system.
+type WindowsAuditLogCreateConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that specifies the destination of the audit
+	// logs.
+	//
+	// The destination can be any Amazon CloudWatch Logs log group ARN or Amazon
+	// Kinesis Data Firehose delivery stream ARN, with the following requirements:
+	//
+	//    * The destination ARN that you provide (either CloudWatch Logs log group
+	//    or Kinesis Data Firehose delivery stream) must be in the same AWS partition,
+	//    AWS region, and AWS account as your Amazon FSx file system.
+	//
+	//    * The name of the Amazon CloudWatch Logs log group must begin with the
+	//    /aws/fsx prefix. The name of the Amazon Kinesis Data Firehouse delivery
+	//    stream must begin with the aws-fsx prefix.
+	//
+	//    * If you do not provide a destination in AuditLogDestination, Amazon FSx
+	//    will create and use a log stream in the CloudWatch Logs /aws/fsx/windows
+	//    log group.
+	//
+	//    * If AuditLogDestination is provided and the resource does not exist,
+	//    the request will fail with a BadRequest error.
+	//
+	//    * If FileAccessAuditLogLevel and FileShareAccessAuditLogLevel are both
+	//    set to DISABLED, you cannot specify a destination in AuditLogDestination.
+	AuditLogDestination *string `min:"8" type:"string"`
+
+	// Sets which attempt type is logged by Amazon FSx for file and folder accesses.
+	//
+	//    * SUCCESS_ONLY - only successful attempts to access files or folders are
+	//    logged.
+	//
+	//    * FAILURE_ONLY - only failed attempts to access files or folders are logged.
+	//
+	//    * SUCCESS_AND_FAILURE - both successful attempts and failed attempts to
+	//    access files or folders are logged.
+	//
+	//    * DISABLED - access auditing of files and folders is turned off.
+	//
+	// FileAccessAuditLogLevel is a required field
+	FileAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
+
+	// Sets which attempt type is logged by Amazon FSx for file share accesses.
+	//
+	//    * SUCCESS_ONLY - only successful attempts to access file shares are logged.
+	//
+	//    * FAILURE_ONLY - only failed attempts to access file shares are logged.
+	//
+	//    * SUCCESS_AND_FAILURE - both successful attempts and failed attempts to
+	//    access file shares are logged.
+	//
+	//    * DISABLED - access auditing of file shares is turned off.
+	//
+	// FileShareAccessAuditLogLevel is a required field
+	FileShareAccessAuditLogLevel *string `type:"string" required:"true" enum:"WindowsAccessAuditLogLevel"`
+}
+
+// String returns the string representation
+func (s WindowsAuditLogCreateConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WindowsAuditLogCreateConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WindowsAuditLogCreateConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WindowsAuditLogCreateConfiguration"}
+	if s.AuditLogDestination != nil && len(*s.AuditLogDestination) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("AuditLogDestination", 8))
+	}
+	if s.FileAccessAuditLogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileAccessAuditLogLevel"))
+	}
+	if s.FileShareAccessAuditLogLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileShareAccessAuditLogLevel"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuditLogDestination sets the AuditLogDestination field's value.
+func (s *WindowsAuditLogCreateConfiguration) SetAuditLogDestination(v string) *WindowsAuditLogCreateConfiguration {
+	s.AuditLogDestination = &v
+	return s
+}
+
+// SetFileAccessAuditLogLevel sets the FileAccessAuditLogLevel field's value.
+func (s *WindowsAuditLogCreateConfiguration) SetFileAccessAuditLogLevel(v string) *WindowsAuditLogCreateConfiguration {
+	s.FileAccessAuditLogLevel = &v
+	return s
+}
+
+// SetFileShareAccessAuditLogLevel sets the FileShareAccessAuditLogLevel field's value.
+func (s *WindowsAuditLogCreateConfiguration) SetFileShareAccessAuditLogLevel(v string) *WindowsAuditLogCreateConfiguration {
+	s.FileShareAccessAuditLogLevel = &v
+	return s
+}
+
 // The configuration for this Microsoft Windows file system.
 type WindowsFileSystemConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -8718,6 +8937,11 @@ type WindowsFileSystemConfiguration struct {
 	// alias name in the request payload. For more information, see DNS aliases
 	// (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html).
 	Aliases []*Alias `type:"list"`
+
+	// The configuration that Amazon FSx for Windows File Server uses to audit and
+	// log user accesses of files, folders, and file shares on the Amazon FSx for
+	// Windows File Server file system.
+	AuditLogConfiguration *WindowsAuditLogConfiguration `type:"structure"`
 
 	// The number of days to retain automatic backups. Setting this to 0 disables
 	// automatic backups. You can retain automatic backups for a maximum of 90 days.
@@ -8818,6 +9042,12 @@ func (s *WindowsFileSystemConfiguration) SetActiveDirectoryId(v string) *Windows
 // SetAliases sets the Aliases field's value.
 func (s *WindowsFileSystemConfiguration) SetAliases(v []*Alias) *WindowsFileSystemConfiguration {
 	s.Aliases = v
+	return s
+}
+
+// SetAuditLogConfiguration sets the AuditLogConfiguration field's value.
+func (s *WindowsFileSystemConfiguration) SetAuditLogConfiguration(v *WindowsAuditLogConfiguration) *WindowsFileSystemConfiguration {
+	s.AuditLogConfiguration = v
 	return s
 }
 
@@ -9417,6 +9647,30 @@ func StorageType_Values() []string {
 	return []string{
 		StorageTypeSsd,
 		StorageTypeHdd,
+	}
+}
+
+const (
+	// WindowsAccessAuditLogLevelDisabled is a WindowsAccessAuditLogLevel enum value
+	WindowsAccessAuditLogLevelDisabled = "DISABLED"
+
+	// WindowsAccessAuditLogLevelSuccessOnly is a WindowsAccessAuditLogLevel enum value
+	WindowsAccessAuditLogLevelSuccessOnly = "SUCCESS_ONLY"
+
+	// WindowsAccessAuditLogLevelFailureOnly is a WindowsAccessAuditLogLevel enum value
+	WindowsAccessAuditLogLevelFailureOnly = "FAILURE_ONLY"
+
+	// WindowsAccessAuditLogLevelSuccessAndFailure is a WindowsAccessAuditLogLevel enum value
+	WindowsAccessAuditLogLevelSuccessAndFailure = "SUCCESS_AND_FAILURE"
+)
+
+// WindowsAccessAuditLogLevel_Values returns all elements of the WindowsAccessAuditLogLevel enum
+func WindowsAccessAuditLogLevel_Values() []string {
+	return []string{
+		WindowsAccessAuditLogLevelDisabled,
+		WindowsAccessAuditLogLevelSuccessOnly,
+		WindowsAccessAuditLogLevelFailureOnly,
+		WindowsAccessAuditLogLevelSuccessAndFailure,
 	}
 }
 

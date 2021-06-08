@@ -1,3 +1,13 @@
+Release v1.38.57 (2021-06-08)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service documentation
+* `service/fsx`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/servicecatalog`: Updates service API and documentation
+  * increase max pagesize for List/Search apis
+
 Release v1.38.56 (2021-06-07)
 ===
 
