@@ -5306,11 +5306,9 @@
     "ScopeFilterKey": {
       "type": "string",
       "enum": [
-        "BUCKET_CREATION_DATE",
         "OBJECT_EXTENSION",
         "OBJECT_LAST_MODIFIED_DATE",
         "OBJECT_SIZE",
-        "TAG",
         "OBJECT_KEY"
       ]
     },
@@ -5989,6 +5987,11 @@
         "position": {
           "shape": "__integer",
           "locationName": "position"
+        },
+        "clientToken": {
+          "shape": "__string",
+          "locationName": "clientToken",
+          "idempotencyToken": true
         }
       },
       "required": [
