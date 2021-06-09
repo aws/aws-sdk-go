@@ -1,3 +1,14 @@
+Release v1.38.58 (2021-06-09)
+===
+
+### Service Client Updates
+* `service/kendra`: Updates service API and documentation
+  * AWS Kendra now supports checking document status.
+* `service/personalize-events`: Updates service API
+* `service/proton`: Updates service API, documentation, paginators, and examples
+* `service/transfer`: Updates service documentation
+  * Documentation updates for the AWS Transfer Family service.
+
 Release v1.38.57 (2021-06-08)
 ===
 

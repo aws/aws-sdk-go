@@ -31,6 +31,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "BatchGetDocumentStatus":{
+      "name":"BatchGetDocumentStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetDocumentStatusRequest"},
+      "output":{"shape":"BatchGetDocumentStatusResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "BatchPutDocument":{
       "name":"BatchPutDocument",
       "http":{
@@ -744,6 +761,36 @@
     "BatchDeleteDocumentResponseFailedDocuments":{
       "type":"list",
       "member":{"shape":"BatchDeleteDocumentResponseFailedDocument"}
+    },
+    "BatchGetDocumentStatusRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "DocumentInfoList"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DocumentInfoList":{"shape":"DocumentInfoList"}
+      }
+    },
+    "BatchGetDocumentStatusResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"BatchGetDocumentStatusResponseErrors"},
+        "DocumentStatusList":{"shape":"DocumentStatusList"}
+      }
+    },
+    "BatchGetDocumentStatusResponseError":{
+      "type":"structure",
+      "members":{
+        "DocumentId":{"shape":"DocumentId"},
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"ErrorMessage"}
+      }
+    },
+    "BatchGetDocumentStatusResponseErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetDocumentStatusResponseError"}
     },
     "BatchPutDocumentRequest":{
       "type":"structure",
@@ -1715,6 +1762,20 @@
       "max":10,
       "min":1
     },
+    "DocumentInfo":{
+      "type":"structure",
+      "required":["DocumentId"],
+      "members":{
+        "DocumentId":{"shape":"DocumentId"},
+        "Attributes":{"shape":"DocumentAttributeList"}
+      }
+    },
+    "DocumentInfoList":{
+      "type":"list",
+      "member":{"shape":"DocumentInfo"},
+      "max":10,
+      "min":1
+    },
     "DocumentList":{
       "type":"list",
       "member":{"shape":"Document"},
@@ -1762,6 +1823,21 @@
       "member":{"shape":"DocumentRelevanceConfiguration"},
       "max":500,
       "min":0
+    },
+    "DocumentStatus":{
+      "type":"string",
+      "enum":[
+        "NOT_FOUND",
+        "PROCESSING",
+        "INDEXED",
+        "UPDATED",
+        "FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "DocumentStatusList":{
+      "type":"list",
+      "member":{"shape":"Status"}
     },
     "DocumentsMetadataConfiguration":{
       "type":"structure",
@@ -2915,6 +2991,15 @@
       "type":"structure",
       "members":{
         "ExecutionId":{"shape":"String"}
+      }
+    },
+    "Status":{
+      "type":"structure",
+      "members":{
+        "DocumentId":{"shape":"DocumentId"},
+        "DocumentStatus":{"shape":"DocumentStatus"},
+        "FailureCode":{"shape":"String"},
+        "FailureReason":{"shape":"String"}
       }
     },
     "StopDataSourceSyncJobRequest":{

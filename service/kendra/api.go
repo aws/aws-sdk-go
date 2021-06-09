@@ -106,6 +106,106 @@ func (c *Kendra) BatchDeleteDocumentWithContext(ctx aws.Context, input *BatchDel
 	return out, req.Send()
 }
 
+const opBatchGetDocumentStatus = "BatchGetDocumentStatus"
+
+// BatchGetDocumentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetDocumentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetDocumentStatus for more information on using the BatchGetDocumentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetDocumentStatusRequest method.
+//    req, resp := client.BatchGetDocumentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
+func (c *Kendra) BatchGetDocumentStatusRequest(input *BatchGetDocumentStatusInput) (req *request.Request, output *BatchGetDocumentStatusOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetDocumentStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetDocumentStatusInput{}
+	}
+
+	output = &BatchGetDocumentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetDocumentStatus API operation for AWSKendraFrontendService.
+//
+// Returns the indexing status for one or more documents submitted with the
+// BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html)
+// operation.
+//
+// When you use the BatchPutDocument operation, documents are indexed asynchronously.
+// You can use the BatchGetDocumentStatus operation to get the current status
+// of a list of documents so that you can determine if they have been successfully
+// indexed.
+//
+// You can also use the BatchGetDocumentStatus operation to check the status
+// of the BatchDeleteDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html)
+// operation. When a document is deleted from the index, Amazon Kendra returns
+// NOT_FOUND as the status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation BatchGetDocumentStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
+func (c *Kendra) BatchGetDocumentStatus(input *BatchGetDocumentStatusInput) (*BatchGetDocumentStatusOutput, error) {
+	req, out := c.BatchGetDocumentStatusRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetDocumentStatusWithContext is the same as BatchGetDocumentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetDocumentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) BatchGetDocumentStatusWithContext(ctx aws.Context, input *BatchGetDocumentStatusInput, opts ...request.Option) (*BatchGetDocumentStatusOutput, error) {
+	req, out := c.BatchGetDocumentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchPutDocument = "BatchPutDocument"
 
 // BatchPutDocumentRequest generates a "aws/request.Request" representing the
@@ -4174,6 +4274,158 @@ func (s *BatchDeleteDocumentResponseFailedDocument) SetErrorMessage(v string) *B
 // SetId sets the Id field's value.
 func (s *BatchDeleteDocumentResponseFailedDocument) SetId(v string) *BatchDeleteDocumentResponseFailedDocument {
 	s.Id = &v
+	return s
+}
+
+type BatchGetDocumentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DocumentInfo objects that identify the documents for which to get
+	// the status. You identify the documents by their document ID and optional
+	// attributes.
+	//
+	// DocumentInfoList is a required field
+	DocumentInfoList []*DocumentInfo `min:"1" type:"list" required:"true"`
+
+	// The identifier of the index to add documents to. The index ID is returned
+	// by the CreateIndex (https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html)
+	// operation.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetDocumentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetDocumentStatusInput"}
+	if s.DocumentInfoList == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentInfoList"))
+	}
+	if s.DocumentInfoList != nil && len(s.DocumentInfoList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentInfoList", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.DocumentInfoList != nil {
+		for i, v := range s.DocumentInfoList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentInfoList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentInfoList sets the DocumentInfoList field's value.
+func (s *BatchGetDocumentStatusInput) SetDocumentInfoList(v []*DocumentInfo) *BatchGetDocumentStatusInput {
+	s.DocumentInfoList = v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *BatchGetDocumentStatusInput) SetIndexId(v string) *BatchGetDocumentStatusInput {
+	s.IndexId = &v
+	return s
+}
+
+type BatchGetDocumentStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of documents. The status indicates if the document is waiting
+	// to be indexed, is in the process of indexing, has completed indexing, or
+	// failed indexing. If a document failed indexing, the status provides the reason
+	// why.
+	DocumentStatusList []*Status `type:"list"`
+
+	// A list of documents that Amazon Kendra couldn't get the status for. The list
+	// includes the ID of the document and the reason that the status couldn't be
+	// found.
+	Errors []*BatchGetDocumentStatusResponseError `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetDocumentStatusList sets the DocumentStatusList field's value.
+func (s *BatchGetDocumentStatusOutput) SetDocumentStatusList(v []*Status) *BatchGetDocumentStatusOutput {
+	s.DocumentStatusList = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetDocumentStatusOutput) SetErrors(v []*BatchGetDocumentStatusResponseError) *BatchGetDocumentStatusOutput {
+	s.Errors = v
+	return s
+}
+
+// Provides a response when the status of a document could not be retrieved.
+type BatchGetDocumentStatusResponseError struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the document whose status could not be retrieved.
+	DocumentId *string `min:"1" type:"string"`
+
+	// Indicates the source of the error.
+	ErrorCode *string `type:"string" enum:"ErrorCode"`
+
+	// States that the API could not get the status of a document. This could be
+	// because the request is not valid or there is a system error.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusResponseError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusResponseError) GoString() string {
+	return s.String()
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *BatchGetDocumentStatusResponseError) SetDocumentId(v string) *BatchGetDocumentStatusResponseError {
+	s.DocumentId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetDocumentStatusResponseError) SetErrorCode(v string) *BatchGetDocumentStatusResponseError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetDocumentStatusResponseError) SetErrorMessage(v string) *BatchGetDocumentStatusResponseError {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -8750,6 +9002,10 @@ type DocumentAttributeValue struct {
 	_ struct{} `type:"structure"`
 
 	// A date expressed as an ISO 8601 string.
+	//
+	// It is important for the time zone to be included in the ISO 8601 date-time
+	// format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format
+	// for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.
 	DateValue *time.Time `type:"timestamp"`
 
 	// A long integer value.
@@ -8841,6 +9097,84 @@ func (s *DocumentAttributeValueCountPair) SetCount(v int64) *DocumentAttributeVa
 // SetDocumentAttributeValue sets the DocumentAttributeValue field's value.
 func (s *DocumentAttributeValueCountPair) SetDocumentAttributeValue(v *DocumentAttributeValue) *DocumentAttributeValueCountPair {
 	s.DocumentAttributeValue = v
+	return s
+}
+
+// Identifies a document for which to retrieve status information
+type DocumentInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Attributes that identify a specific version of a document to check.
+	//
+	// The only valid attributes are:
+	//
+	//    * version
+	//
+	//    * datasourceId
+	//
+	//    * jobExecutionId
+	//
+	// The attributes follow these rules:
+	//
+	//    * dataSourceId and jobExecutionId must be used together.
+	//
+	//    * version is ignored if dataSourceId and jobExecutionId are not provided.
+	//
+	//    * If dataSourceId and jobExecutionId are provided, but version is not,
+	//    the version defaults to "0".
+	Attributes []*DocumentAttribute `type:"list"`
+
+	// The unique identifier of the document.
+	//
+	// DocumentId is a required field
+	DocumentId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DocumentInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentInfo"}
+	if s.DocumentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentId"))
+	}
+	if s.DocumentId != nil && len(*s.DocumentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentId", 1))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *DocumentInfo) SetAttributes(v []*DocumentAttribute) *DocumentInfo {
+	s.Attributes = v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *DocumentInfo) SetDocumentId(v string) *DocumentInfo {
+	s.DocumentId = &v
 	return s
 }
 
@@ -13497,6 +13831,62 @@ func (s *StartDataSourceSyncJobOutput) SetExecutionId(v string) *StartDataSource
 	return s
 }
 
+// Provides information about the status of documents submitted for indexing.
+type Status struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the document.
+	DocumentId *string `min:"1" type:"string"`
+
+	// The current status of a document.
+	//
+	// If the document was submitted for deletion, the status is NOT_FOUND after
+	// the document is deleted.
+	DocumentStatus *string `type:"string" enum:"DocumentStatus"`
+
+	// Indicates the source of the error.
+	FailureCode *string `min:"1" type:"string"`
+
+	// Provides detailed information about why the document couldn't be indexed.
+	// Use this information to correct the error before you resubmit the document
+	// for indexing.
+	FailureReason *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Status) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Status) GoString() string {
+	return s.String()
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *Status) SetDocumentId(v string) *Status {
+	s.DocumentId = &v
+	return s
+}
+
+// SetDocumentStatus sets the DocumentStatus field's value.
+func (s *Status) SetDocumentStatus(v string) *Status {
+	s.DocumentStatus = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *Status) SetFailureCode(v string) *Status {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Status) SetFailureReason(v string) *Status {
+	s.FailureReason = &v
+	return s
+}
+
 type StopDataSourceSyncJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15447,6 +15837,38 @@ func DocumentAttributeValueType_Values() []string {
 		DocumentAttributeValueTypeStringListValue,
 		DocumentAttributeValueTypeLongValue,
 		DocumentAttributeValueTypeDateValue,
+	}
+}
+
+const (
+	// DocumentStatusNotFound is a DocumentStatus enum value
+	DocumentStatusNotFound = "NOT_FOUND"
+
+	// DocumentStatusProcessing is a DocumentStatus enum value
+	DocumentStatusProcessing = "PROCESSING"
+
+	// DocumentStatusIndexed is a DocumentStatus enum value
+	DocumentStatusIndexed = "INDEXED"
+
+	// DocumentStatusUpdated is a DocumentStatus enum value
+	DocumentStatusUpdated = "UPDATED"
+
+	// DocumentStatusFailed is a DocumentStatus enum value
+	DocumentStatusFailed = "FAILED"
+
+	// DocumentStatusUpdateFailed is a DocumentStatus enum value
+	DocumentStatusUpdateFailed = "UPDATE_FAILED"
+)
+
+// DocumentStatus_Values returns all elements of the DocumentStatus enum
+func DocumentStatus_Values() []string {
+	return []string{
+		DocumentStatusNotFound,
+		DocumentStatusProcessing,
+		DocumentStatusIndexed,
+		DocumentStatusUpdated,
+		DocumentStatusFailed,
+		DocumentStatusUpdateFailed,
 	}
 }
 

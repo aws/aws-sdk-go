@@ -64,6 +64,10 @@ type KendraAPI interface {
 	BatchDeleteDocumentWithContext(aws.Context, *kendra.BatchDeleteDocumentInput, ...request.Option) (*kendra.BatchDeleteDocumentOutput, error)
 	BatchDeleteDocumentRequest(*kendra.BatchDeleteDocumentInput) (*request.Request, *kendra.BatchDeleteDocumentOutput)
 
+	BatchGetDocumentStatus(*kendra.BatchGetDocumentStatusInput) (*kendra.BatchGetDocumentStatusOutput, error)
+	BatchGetDocumentStatusWithContext(aws.Context, *kendra.BatchGetDocumentStatusInput, ...request.Option) (*kendra.BatchGetDocumentStatusOutput, error)
+	BatchGetDocumentStatusRequest(*kendra.BatchGetDocumentStatusInput) (*request.Request, *kendra.BatchGetDocumentStatusOutput)
+
 	BatchPutDocument(*kendra.BatchPutDocumentInput) (*kendra.BatchPutDocumentOutput, error)
 	BatchPutDocumentWithContext(aws.Context, *kendra.BatchPutDocumentInput, ...request.Option) (*kendra.BatchPutDocumentOutput, error)
 	BatchPutDocumentRequest(*kendra.BatchPutDocumentInput) (*request.Request, *kendra.BatchPutDocumentOutput)
