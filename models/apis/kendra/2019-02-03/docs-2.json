@@ -3,6 +3,7 @@
   "service": "<p>Amazon Kendra is a service for indexing large document sets.</p>",
   "operations": {
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
+    "BatchGetDocumentStatus": "<p>Returns the indexing status for one or more documents submitted with the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\"> BatchPutDocument</a> operation.</p> <p>When you use the <code>BatchPutDocument</code> operation, documents are indexed asynchronously. You can use the <code>BatchGetDocumentStatus</code> operation to get the current status of a list of documents so that you can determine if they have been successfully indexed.</p> <p>You can also use the <code>BatchGetDocumentStatus</code> operation to check the status of the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html\"> BatchDeleteDocument</a> operation. When a document is deleted from the index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> operation enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this operation to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using AWS CloudWatch. Any error messages related to processing the batch are sent to your AWS CloudWatch log.</p>",
     "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p>",
     "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
@@ -126,6 +127,28 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponse$FailedDocuments": "<p>A list of documents that could not be removed from the index. Each entry contains an error message that indicates why the document couldn't be removed from the index.</p>"
+      }
+    },
+    "BatchGetDocumentStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDocumentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDocumentStatusResponseError": {
+      "base": "<p>Provides a response when the status of a document could not be retrieved.</p>",
+      "refs": {
+        "BatchGetDocumentStatusResponseErrors$member": null
+      }
+    },
+    "BatchGetDocumentStatusResponseErrors": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusResponse$Errors": "<p>A list of documents that Amazon Kendra couldn't get the status for. The list includes the ID of the document and the reason that the status couldn't be found.</p>"
       }
     },
     "BatchPutDocumentRequest": {
@@ -783,6 +806,7 @@
       "base": null,
       "refs": {
         "Document$Attributes": "<p>Custom attributes to apply to the document. Use the custom attributes to provide additional information for searching, to provide facets for refining searches, and to provide additional information in the query response.</p>",
+        "DocumentInfo$Attributes": "<p>Attributes that identify a specific version of a document to check.</p> <p>The only valid attributes are:</p> <ul> <li> <p>version</p> </li> <li> <p>datasourceId</p> </li> <li> <p>jobExecutionId</p> </li> </ul> <p>The attributes follow these rules:</p> <ul> <li> <p> <code>dataSourceId</code> and <code>jobExecutionId</code> must be used together.</p> </li> <li> <p> <code>version</code> is ignored if <code>dataSourceId</code> and <code>jobExecutionId</code> are not provided.</p> </li> <li> <p>If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided, but <code>version</code> is not, the version defaults to \"0\".</p> </li> </ul>",
         "QueryResultItem$DocumentAttributes": "<p>An array of document attributes for the document that the query result maps to. For example, the document author (Author) or the source URI (SourceUri) of the document.</p>"
       }
     },
@@ -828,16 +852,31 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$Id": "<p>The identifier of the document that couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$DocumentId": "<p>The unique identifier of the document whose status could not be retrieved.</p>",
         "BatchPutDocumentResponseFailedDocument$Id": "<p>The unique identifier of the document.</p>",
         "Document$Id": "<p>A unique identifier of the document in the index.</p>",
         "DocumentIdList$member": null,
-        "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>"
+        "DocumentInfo$DocumentId": "<p>The unique identifier of the document.</p>",
+        "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>",
+        "Status$DocumentId": "<p>The unique identifier of the document.</p>"
       }
     },
     "DocumentIdList": {
       "base": null,
       "refs": {
         "BatchDeleteDocumentRequest$DocumentIdList": "<p>One or more identifiers for documents to delete from the index.</p>"
+      }
+    },
+    "DocumentInfo": {
+      "base": "<p>Identifies a document for which to retrieve status information</p>",
+      "refs": {
+        "DocumentInfoList$member": null
+      }
+    },
+    "DocumentInfoList": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusRequest$DocumentInfoList": "<p>A list of <code>DocumentInfo</code> objects that identify the documents for which to get the status. You identify the documents by their document ID and optional attributes.</p>"
       }
     },
     "DocumentList": {
@@ -884,6 +923,18 @@
         "QueryRequest$DocumentRelevanceOverrideConfigurations": "<p>Overrides relevance tuning configurations of fields or attributes set at the index level.</p> <p>If you use this API to override the relevance tuning configured at the index level, but there is no relevance tuning configured at the index level, then Amazon Kendra does not apply any relevance tuning.</p> <p>If there is relevance tuning configured at the index level, but you do not use this API to override any relevance tuning in the index, then Amazon Kendra uses the relevance tuning that is configured at the index level.</p> <p>If there is relevance tuning configured for fields at the index level, but you use this API to override only some of these fields, then for the fields you did not override, the importance is set to 1.</p>"
       }
     },
+    "DocumentStatus": {
+      "base": null,
+      "refs": {
+        "Status$DocumentStatus": "<p>The current status of a document.</p> <p>If the document was submitted for deletion, the status is <code>NOT_FOUND</code> after the document is deleted.</p>"
+      }
+    },
+    "DocumentStatusList": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusResponse$DocumentStatusList": "<p>The status of documents. The status indicates if the document is waiting to be indexed, is in the process of indexing, has completed indexing, or failed indexing. If a document failed indexing, the status provides the reason why.</p>"
+      }
+    },
     "DocumentsMetadataConfiguration": {
       "base": "<p>Document metadata files that contain information such as the document access control information, source URI, document author, and custom attributes. Each metadata file contains metadata about a single document.</p>",
       "refs": {
@@ -900,6 +951,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$ErrorCode": "<p>The error code for why the document couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$ErrorCode": "<p>Indicates the source of the error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorCode": "<p>The type of error that caused the document to fail to be indexed.</p>",
         "DataSourceSyncJob$ErrorCode": "<p>If the <code>Status</code> field is set to <code>FAILED</code>, the <code>ErrorCode</code> field contains a the reason that the synchronization failed.</p>"
       }
@@ -909,6 +961,7 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "BatchDeleteDocumentResponseFailedDocument$ErrorMessage": "<p>An explanation for why the document couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$ErrorMessage": "<p>States that the API could not get the status of a document. This could be because the request is not valid or there is a system error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorMessage": "<p>A description of the reason why the document could not be indexed.</p>",
         "ConflictException$Message": null,
         "DataSourceSyncJob$ErrorMessage": "<p>If the <code>Status</code> field is set to <code>ERROR</code>, the <code>ErrorMessage</code> field contains a description of the error that caused the synchronization to fail.</p>",
@@ -1107,6 +1160,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentRequest$IndexId": "<p>The identifier of the index that contains the documents to delete.</p>",
+        "BatchGetDocumentStatusRequest$IndexId": "<p>The identifier of the index to add documents to. The index ID is returned by the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html\"> CreateIndex </a> operation.</p>",
         "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <code>CreateIndex</code> operation.</p>",
         "ClearQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to clear query suggestions from.</p>",
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index that should be associated with this data source.</p>",
@@ -1935,6 +1989,12 @@
       "refs": {
       }
     },
+    "Status": {
+      "base": "<p>Provides information about the status of documents submitted for indexing.</p>",
+      "refs": {
+        "DocumentStatusList$member": null
+      }
+    },
     "StopDataSourceSyncJobRequest": {
       "base": null,
       "refs": {
@@ -1956,6 +2016,8 @@
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
         "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
+        "Status$FailureCode": "<p>Indicates the source of the error.</p>",
+        "Status$FailureReason": "<p>Provides detailed information about why the document couldn't be indexed. Use this information to correct the error before you resubmit the document for indexing.</p>",
         "SuggestionTextWithHighlights$Text": "<p>The query suggestion text to display to the user.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
       }
@@ -2162,7 +2224,7 @@
         "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>Shows the date-time query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
         "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
         "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
-        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p>",
+        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It is important for the time zone to be included in the ISO 8601 date-time format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.</p>",
         "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
