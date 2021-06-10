@@ -6607,7 +6607,12 @@
           "eu-north-1" : { },
           "eu-south-1" : { },
           "eu-west-1" : { },
-          "eu-west-2" : { },
+          "eu-west-2" : {
+	    "credentialScope" : {
+              "region" : "eu-west-2"
+            },
+             "hostname" : "sts.eu-west-2.amazonaws.com"
+	  },
           "eu-west-3" : { },
           "me-south-1" : { },
           "sa-east-1" : { },
