@@ -8615,7 +8615,8 @@
           "location":"uri",
           "locationName":"accountId"
         },
-        "Name":{"shape":"AccountName"}
+        "Name":{"shape":"AccountName"},
+        "DefaultLicense":{"shape":"License"}
       }
     },
     "UpdateAccountResponse":{

@@ -135,6 +135,9 @@ type RAMAPI interface {
 	ListPermissionsWithContext(aws.Context, *ram.ListPermissionsInput, ...request.Option) (*ram.ListPermissionsOutput, error)
 	ListPermissionsRequest(*ram.ListPermissionsInput) (*request.Request, *ram.ListPermissionsOutput)
 
+	ListPermissionsPages(*ram.ListPermissionsInput, func(*ram.ListPermissionsOutput, bool) bool) error
+	ListPermissionsPagesWithContext(aws.Context, *ram.ListPermissionsInput, func(*ram.ListPermissionsOutput, bool) bool, ...request.Option) error
+
 	ListPrincipals(*ram.ListPrincipalsInput) (*ram.ListPrincipalsOutput, error)
 	ListPrincipalsWithContext(aws.Context, *ram.ListPrincipalsInput, ...request.Option) (*ram.ListPrincipalsOutput, error)
 	ListPrincipalsRequest(*ram.ListPrincipalsInput) (*request.Request, *ram.ListPrincipalsOutput)
@@ -146,9 +149,15 @@ type RAMAPI interface {
 	ListResourceSharePermissionsWithContext(aws.Context, *ram.ListResourceSharePermissionsInput, ...request.Option) (*ram.ListResourceSharePermissionsOutput, error)
 	ListResourceSharePermissionsRequest(*ram.ListResourceSharePermissionsInput) (*request.Request, *ram.ListResourceSharePermissionsOutput)
 
+	ListResourceSharePermissionsPages(*ram.ListResourceSharePermissionsInput, func(*ram.ListResourceSharePermissionsOutput, bool) bool) error
+	ListResourceSharePermissionsPagesWithContext(aws.Context, *ram.ListResourceSharePermissionsInput, func(*ram.ListResourceSharePermissionsOutput, bool) bool, ...request.Option) error
+
 	ListResourceTypes(*ram.ListResourceTypesInput) (*ram.ListResourceTypesOutput, error)
 	ListResourceTypesWithContext(aws.Context, *ram.ListResourceTypesInput, ...request.Option) (*ram.ListResourceTypesOutput, error)
 	ListResourceTypesRequest(*ram.ListResourceTypesInput) (*request.Request, *ram.ListResourceTypesOutput)
+
+	ListResourceTypesPages(*ram.ListResourceTypesInput, func(*ram.ListResourceTypesOutput, bool) bool) error
+	ListResourceTypesPagesWithContext(aws.Context, *ram.ListResourceTypesInput, func(*ram.ListResourceTypesOutput, bool) bool, ...request.Option) error
 
 	ListResources(*ram.ListResourcesInput) (*ram.ListResourcesOutput, error)
 	ListResourcesWithContext(aws.Context, *ram.ListResourcesInput, ...request.Option) (*ram.ListResourcesOutput, error)

@@ -8682,6 +8682,9 @@ func (c *Redshift) ModifyAquaConfigurationRequest(input *ModifyAquaConfiguration
 //   * ErrCodeClusterNotFoundFault "ClusterNotFound"
 //   The ClusterIdentifier parameter does not refer to an existing cluster.
 //
+//   * ErrCodeInvalidClusterStateFault "InvalidClusterState"
+//   The specified cluster is not in the available state.
+//
 //   * ErrCodeUnsupportedOperationFault "UnsupportedOperation"
 //   The requested operation isn't supported.
 //

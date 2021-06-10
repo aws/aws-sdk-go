@@ -1,3 +1,22 @@
+Release v1.38.59 (2021-06-10)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/appmesh`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * This SDK release adds support for UpdateAccount API to allow users to update their default license on Chime account.
+* `service/cognito-idp`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds a new optional parameter connectivityType (public, private) for the CreateNatGateway API. Private NatGateway does not require customers to attach an InternetGateway to the VPC and can be used for communication with other VPCs and on-premise networks.
+* `service/managedblockchain`: Updates service API and documentation
+* `service/ram`: Updates service API, documentation, and paginators
+* `service/redshift`: Updates service API
+  * Added InvalidClusterStateFault to the ModifyAquaConfiguration API, thrown when calling the API on a non available cluster.
+* `service/sagemaker`: Updates service API and documentation
+  * Using SageMaker Edge Manager with AWS IoT Greengrass v2 simplifies accessing, maintaining, and deploying models to your devices. You can now create deployable IoT Greengrass components during edge packaging jobs. You can choose to create a device fleet with or without creating an AWS IoT role alias.
+* `service/sagemaker-featurestore-runtime`: Updates service API and documentation
+
 Release v1.38.58 (2021-06-09)
 ===
 

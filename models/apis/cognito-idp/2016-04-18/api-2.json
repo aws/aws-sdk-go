@@ -1485,6 +1485,23 @@
       ],
       "authtype":"none"
     },
+    "RevokeToken":{
+      "name":"RevokeToken",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RevokeTokenRequest"},
+      "output":{"shape":"RevokeTokenResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"UnsupportedTokenTypeException"}
+      ]
+    },
     "SetRiskConfiguration":{
       "name":"SetRiskConfiguration",
       "http":{
@@ -2977,7 +2994,8 @@
         "AllowedOAuthScopes":{"shape":"ScopeListType"},
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
-        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
       }
     },
     "CreateUserPoolClientResponse":{
@@ -4487,6 +4505,23 @@
         "AuthenticationResult":{"shape":"AuthenticationResultType"}
       }
     },
+    "RevokeTokenRequest":{
+      "type":"structure",
+      "required":[
+        "Token",
+        "ClientId"
+      ],
+      "members":{
+        "Token":{"shape":"TokenModelType"},
+        "ClientId":{"shape":"ClientIdType"},
+        "ClientSecret":{"shape":"ClientSecretType"}
+      }
+    },
+    "RevokeTokenResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "RiskConfigurationType":{
       "type":"structure",
       "members":{
@@ -4910,6 +4945,13 @@
         "CreationDate":{"shape":"DateType"}
       }
     },
+    "UnauthorizedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
+    },
     "UnexpectedLambdaException":{
       "type":"structure",
       "members":{
@@ -4918,6 +4960,20 @@
       "exception":true
     },
     "UnsupportedIdentityProviderException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
+    },
+    "UnsupportedOperationException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"MessageType"}
+      },
+      "exception":true
+    },
+    "UnsupportedTokenTypeException":{
       "type":"structure",
       "members":{
         "message":{"shape":"MessageType"}
@@ -5091,7 +5147,8 @@
         "AllowedOAuthScopes":{"shape":"ScopeListType"},
         "AllowedOAuthFlowsUserPoolClient":{"shape":"BooleanType"},
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
-        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
       }
     },
     "UpdateUserPoolClientResponse":{
@@ -5291,7 +5348,8 @@
           "box":true
         },
         "AnalyticsConfiguration":{"shape":"AnalyticsConfigurationType"},
-        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"}
+        "PreventUserExistenceErrors":{"shape":"PreventUserExistenceErrorTypes"},
+        "EnableTokenRevocation":{"shape":"WrappedBooleanType"}
       }
     },
     "UserPoolDescriptionType":{

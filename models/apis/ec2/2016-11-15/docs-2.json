@@ -66,7 +66,7 @@
     "CreateLocalGatewayRoute": "<p>Creates a static route for the specified local gateway route table.</p>",
     "CreateLocalGatewayRouteTableVpcAssociation": "<p>Associates the specified VPC with the specified local gateway route table.</p>",
     "CreateManagedPrefixList": "<p>Creates a managed prefix list. You can specify one or more entries for the prefix list. Each entry consists of a CIDR block and an optional description.</p> <p>You must specify the maximum number of entries for the prefix list. The maximum number of entries cannot be changed later.</p>",
-    "CreateNatGateway": "<p>Creates a NAT gateway in the specified public subnet. This action creates a network interface in the specified subnet with a private IP address from the IP address range of the subnet. Internet-bound traffic from a private subnet can be routed to the NAT gateway, therefore enabling instances in the private subnet to connect to the internet. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">NAT Gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "CreateNatGateway": "<p>Creates a NAT gateway in the specified subnet. This action creates a network interface in the specified subnet with a private IP address from the IP address range of the subnet. You can create either a public NAT gateway or a private NAT gateway.</p> <p>With a public NAT gateway, internet-bound traffic from a private subnet can be routed to the NAT gateway, so that instances in a private subnet can connect to the internet.</p> <p>With a private NAT gateway, private communication is routed across VPCs and on-premises networks through a transit gateway or virtual private gateway. Common use cases include running large workloads behind a small pool of allowlisted IPv4 addresses, preserving private IPv4 addresses, and communicating between overlapping networks.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html\">NAT Gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkAcl": "<p>Creates a network ACL in a VPC. Network ACLs provide an optional layer of security (in addition to security groups) for the instances in your VPC.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkAclEntry": "<p>Creates an entry (a rule) in a network ACL with the specified rule number. Each network ACL has a set of numbered ingress rules and a separate set of numbered egress rules. When determining whether a packet should be allowed in or out of a subnet associated with the ACL, we process the entries in the ACL according to the rule numbers, in ascending order. Each network ACL has a set of ingress rules and a separate set of egress rules.</p> <p>We recommend that you leave room between the rule numbers (for example, 100, 110, 120, ...), and not number them one right after the other (for example, 101, 102, 103, ...). This makes it easier to add a rule between existing ones without having to renumber the rules.</p> <p>After you add an entry, you can't modify it; you must either replace it, or create an entry and delete the old one.</p> <p>For more information about network ACLs, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html\">Network ACLs</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "CreateNetworkInsightsPath": "<p>Creates a path to analyze for reachability.</p> <p>Reachability Analyzer enables you to analyze and debug network reachability between two resources in your virtual private cloud (VPC). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/reachability/\">What is Reachability Analyzer</a>.</p>",
@@ -123,7 +123,7 @@
     "DeleteLocalGatewayRoute": "<p>Deletes the specified route from the specified local gateway route table.</p>",
     "DeleteLocalGatewayRouteTableVpcAssociation": "<p>Deletes the specified association between a VPC and local gateway route table.</p>",
     "DeleteManagedPrefixList": "<p>Deletes the specified managed prefix list. You must first remove all references to the prefix list in your resources.</p>",
-    "DeleteNatGateway": "<p>Deletes the specified NAT gateway. Deleting a NAT gateway disassociates its Elastic IP address, but does not release the address from your account. Deleting a NAT gateway does not delete any NAT gateway routes in your route tables.</p>",
+    "DeleteNatGateway": "<p>Deletes the specified NAT gateway. Deleting a public NAT gateway disassociates its Elastic IP address, but does not release the address from your account. Deleting a NAT gateway does not delete any NAT gateway routes in your route tables.</p>",
     "DeleteNetworkAcl": "<p>Deletes the specified network ACL. You can't delete the ACL if it's associated with any subnets. You can't delete the default network ACL.</p>",
     "DeleteNetworkAclEntry": "<p>Deletes the specified ingress or egress entry (rule) from the specified network ACL.</p>",
     "DeleteNetworkInsightsAnalysis": "<p>Deletes the specified network insights analysis.</p>",
@@ -663,7 +663,7 @@
         "AllocationIdList$member": null,
         "AllocationIds$member": null,
         "AssociateAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. This is required for EC2-VPC.</p>",
-        "CreateNatGatewayRequest$AllocationId": "<p>The allocation ID of an Elastic IP address to associate with the NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.</p>",
+        "CreateNatGatewayRequest$AllocationId": "<p>[Public NAT gateways only] The allocation ID of an Elastic IP address to associate with the NAT gateway. You cannot specify an Elastic IP address with a private NAT gateway. If the Elastic IP address is associated with another resource, you must first disassociate it.</p>",
         "ModifyAddressAttributeRequest$AllocationId": "<p>[EC2-VPC] The allocation ID.</p>",
         "ReleaseAddressRequest$AllocationId": "<p>[EC2-VPC] The allocation ID. Required for EC2-VPC.</p>",
         "ResetAddressAttributeRequest$AllocationId": "<p>[EC2-VPC] The allocation ID.</p>"
@@ -2754,6 +2754,13 @@
       "base": null,
       "refs": {
         "ConnectionNotification$ConnectionNotificationType": "<p>The type of notification.</p>"
+      }
+    },
+    "ConnectivityType": {
+      "base": null,
+      "refs": {
+        "CreateNatGatewayRequest$ConnectivityType": "<p>Indicates whether the NAT gateway supports public or private connectivity. The default is public connectivity.</p>",
+        "NatGateway$ConnectivityType": "<p>Indicates whether the NAT gateway supports public or private connectivity.</p>"
       }
     },
     "ContainerFormat": {
@@ -14513,10 +14520,10 @@
         "NatGateway$NatGatewayId": "<p>The ID of the NAT gateway.</p>",
         "NatGateway$SubnetId": "<p>The ID of the subnet in which the NAT gateway is located.</p>",
         "NatGateway$VpcId": "<p>The ID of the VPC in which the NAT gateway is located.</p>",
-        "NatGatewayAddress$AllocationId": "<p>The allocation ID of the Elastic IP address that's associated with the NAT gateway.</p>",
+        "NatGatewayAddress$AllocationId": "<p>[Public NAT gateway only] The allocation ID of the Elastic IP address that's associated with the NAT gateway.</p>",
         "NatGatewayAddress$NetworkInterfaceId": "<p>The ID of the network interface associated with the NAT gateway.</p>",
-        "NatGatewayAddress$PrivateIp": "<p>The private IP address associated with the Elastic IP address.</p>",
-        "NatGatewayAddress$PublicIp": "<p>The Elastic IP address associated with the NAT gateway.</p>",
+        "NatGatewayAddress$PrivateIp": "<p>The private IP address associated with the NAT gateway.</p>",
+        "NatGatewayAddress$PublicIp": "<p>[Public NAT gateway only] The Elastic IP address associated with the NAT gateway.</p>",
         "NetworkAcl$NetworkAclId": "<p>The ID of the network ACL.</p>",
         "NetworkAcl$VpcId": "<p>The ID of the VPC for the network ACL.</p>",
         "NetworkAcl$OwnerId": "<p>The ID of the AWS account that owns the network ACL.</p>",

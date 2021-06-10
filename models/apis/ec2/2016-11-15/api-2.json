@@ -7139,6 +7139,13 @@
       "type":"string",
       "enum":["Topic"]
     },
+    "ConnectivityType":{
+      "type":"string",
+      "enum":[
+        "private",
+        "public"
+      ]
+    },
     "ContainerFormat":{
       "type":"string",
       "enum":["ova"]
@@ -8038,11 +8045,9 @@
     },
     "CreateNatGatewayRequest":{
       "type":"structure",
-      "required":[
-        "SubnetId",
-        "AllocationId"
-      ],
+      "required":["SubnetId"],
       "members":{
+        "AllocationId":{"shape":"AllocationId"},
         "ClientToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -8053,7 +8058,7 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "AllocationId":{"shape":"AllocationId"}
+        "ConnectivityType":{"shape":"ConnectivityType"}
       }
     },
     "CreateNatGatewayResult":{
@@ -23795,6 +23800,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "ConnectivityType":{
+          "shape":"ConnectivityType",
+          "locationName":"connectivityType"
         }
       }
     },

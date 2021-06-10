@@ -1132,6 +1132,13 @@
       },
       "payload":"virtualService"
     },
+    "DefaultGatewayRouteRewrite":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "DeleteGatewayRouteInput":{
       "type":"structure",
       "required":[
@@ -1583,11 +1590,19 @@
       },
       "payload":"virtualService"
     },
+    "DnsResponseType":{
+      "type":"string",
+      "enum":[
+        "LOADBALANCER",
+        "ENDPOINTS"
+      ]
+    },
     "DnsServiceDiscovery":{
       "type":"structure",
       "required":["hostname"],
       "members":{
-        "hostname":{"shape":"Hostname"}
+        "hostname":{"shape":"Hostname"},
+        "responseType":{"shape":"DnsResponseType"}
       }
     },
     "Duration":{
@@ -1622,6 +1637,11 @@
         "ALLOW_ALL",
         "DROP_ALL"
       ]
+    },
+    "ExactHostName":{
+      "type":"string",
+      "max":253,
+      "min":1
     },
     "FileAccessLog":{
       "type":"structure",
@@ -1665,9 +1685,28 @@
         "virtualGatewayName":{"shape":"ResourceName"}
       }
     },
+    "GatewayRouteHostnameMatch":{
+      "type":"structure",
+      "members":{
+        "exact":{"shape":"ExactHostName"},
+        "suffix":{"shape":"SuffixHostname"}
+      }
+    },
+    "GatewayRouteHostnameRewrite":{
+      "type":"structure",
+      "members":{
+        "defaultTargetHostname":{"shape":"DefaultGatewayRouteRewrite"}
+      }
+    },
     "GatewayRouteList":{
       "type":"list",
       "member":{"shape":"GatewayRouteRef"}
+    },
+    "GatewayRoutePriority":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":0
     },
     "GatewayRouteRef":{
       "type":"structure",
@@ -1699,7 +1738,8 @@
       "members":{
         "grpcRoute":{"shape":"GrpcGatewayRoute"},
         "http2Route":{"shape":"HttpGatewayRoute"},
-        "httpRoute":{"shape":"HttpGatewayRoute"}
+        "httpRoute":{"shape":"HttpGatewayRoute"},
+        "priority":{"shape":"GatewayRoutePriority"}
       }
     },
     "GatewayRouteStatus":{
@@ -1746,14 +1786,49 @@
       "type":"structure",
       "required":["target"],
       "members":{
+        "rewrite":{"shape":"GrpcGatewayRouteRewrite"},
         "target":{"shape":"GatewayRouteTarget"}
       }
     },
     "GrpcGatewayRouteMatch":{
       "type":"structure",
       "members":{
+        "hostname":{"shape":"GatewayRouteHostnameMatch"},
+        "metadata":{"shape":"GrpcGatewayRouteMetadataList"},
         "serviceName":{"shape":"ServiceName"}
       }
+    },
+    "GrpcGatewayRouteMetadata":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "invert":{"shape":"Boolean"},
+        "match":{"shape":"GrpcMetadataMatchMethod"},
+        "name":{"shape":"HeaderName"}
+      }
+    },
+    "GrpcGatewayRouteMetadataList":{
+      "type":"list",
+      "member":{"shape":"GrpcGatewayRouteMetadata"},
+      "max":10,
+      "min":1
+    },
+    "GrpcGatewayRouteRewrite":{
+      "type":"structure",
+      "members":{
+        "hostname":{"shape":"GatewayRouteHostnameRewrite"}
+      }
+    },
+    "GrpcMetadataMatchMethod":{
+      "type":"structure",
+      "members":{
+        "exact":{"shape":"HeaderMatch"},
+        "prefix":{"shape":"HeaderMatch"},
+        "range":{"shape":"MatchRange"},
+        "regex":{"shape":"HeaderMatch"},
+        "suffix":{"shape":"HeaderMatch"}
+      },
+      "union":true
     },
     "GrpcRetryPolicy":{
       "type":"structure",
@@ -1919,14 +1994,60 @@
       "type":"structure",
       "required":["target"],
       "members":{
+        "rewrite":{"shape":"HttpGatewayRouteRewrite"},
         "target":{"shape":"GatewayRouteTarget"}
       }
     },
+    "HttpGatewayRouteHeader":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "invert":{"shape":"Boolean"},
+        "match":{"shape":"HeaderMatchMethod"},
+        "name":{"shape":"HeaderName"}
+      }
+    },
+    "HttpGatewayRouteHeaders":{
+      "type":"list",
+      "member":{"shape":"HttpGatewayRouteHeader"},
+      "max":10,
+      "min":1
+    },
     "HttpGatewayRouteMatch":{
       "type":"structure",
-      "required":["prefix"],
       "members":{
-        "prefix":{"shape":"String"}
+        "headers":{"shape":"HttpGatewayRouteHeaders"},
+        "hostname":{"shape":"GatewayRouteHostnameMatch"},
+        "method":{"shape":"HttpMethod"},
+        "path":{"shape":"HttpPathMatch"},
+        "prefix":{"shape":"String"},
+        "queryParameters":{"shape":"HttpQueryParameters"}
+      }
+    },
+    "HttpGatewayRoutePathRewrite":{
+      "type":"structure",
+      "members":{
+        "exact":{"shape":"HttpPathExact"}
+      }
+    },
+    "HttpGatewayRoutePrefix":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "HttpGatewayRoutePrefixRewrite":{
+      "type":"structure",
+      "members":{
+        "defaultPrefix":{"shape":"DefaultGatewayRouteRewrite"},
+        "value":{"shape":"HttpGatewayRoutePrefix"}
+      }
+    },
+    "HttpGatewayRouteRewrite":{
+      "type":"structure",
+      "members":{
+        "hostname":{"shape":"GatewayRouteHostnameRewrite"},
+        "path":{"shape":"HttpGatewayRoutePathRewrite"},
+        "prefix":{"shape":"HttpGatewayRoutePrefixRewrite"}
       }
     },
     "HttpMethod":{
@@ -1942,6 +2063,37 @@
         "TRACE",
         "PATCH"
       ]
+    },
+    "HttpPathExact":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "HttpPathMatch":{
+      "type":"structure",
+      "members":{
+        "exact":{"shape":"HttpPathExact"},
+        "regex":{"shape":"HttpPathRegex"}
+      }
+    },
+    "HttpPathRegex":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "HttpQueryParameter":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "match":{"shape":"QueryParameterMatch"},
+        "name":{"shape":"QueryParameterName"}
+      }
+    },
+    "HttpQueryParameters":{
+      "type":"list",
+      "member":{"shape":"HttpQueryParameter"},
+      "max":10,
+      "min":1
     },
     "HttpRetryPolicy":{
       "type":"structure",
@@ -2004,11 +2156,12 @@
     },
     "HttpRouteMatch":{
       "type":"structure",
-      "required":["prefix"],
       "members":{
         "headers":{"shape":"HttpRouteHeaders"},
         "method":{"shape":"HttpMethod"},
+        "path":{"shape":"HttpPathMatch"},
         "prefix":{"shape":"String"},
+        "queryParameters":{"shape":"HttpQueryParameters"},
         "scheme":{"shape":"HttpScheme"}
       }
     },
@@ -2633,6 +2786,13 @@
       "type":"list",
       "member":{"shape":"PortNumber"}
     },
+    "QueryParameterMatch":{
+      "type":"structure",
+      "members":{
+        "exact":{"shape":"String"}
+      }
+    },
+    "QueryParameterName":{"type":"string"},
     "ResourceInUseException":{
       "type":"structure",
       "members":{
@@ -2792,6 +2952,11 @@
       "members":{
         "match":{"shape":"SubjectAlternativeNameMatchers"}
       }
+    },
+    "SuffixHostname":{
+      "type":"string",
+      "max":253,
+      "min":1
     },
     "TagKey":{
       "type":"string",
