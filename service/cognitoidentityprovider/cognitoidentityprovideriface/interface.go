@@ -403,6 +403,10 @@ type CognitoIdentityProviderAPI interface {
 	RespondToAuthChallengeWithContext(aws.Context, *cognitoidentityprovider.RespondToAuthChallengeInput, ...request.Option) (*cognitoidentityprovider.RespondToAuthChallengeOutput, error)
 	RespondToAuthChallengeRequest(*cognitoidentityprovider.RespondToAuthChallengeInput) (*request.Request, *cognitoidentityprovider.RespondToAuthChallengeOutput)
 
+	RevokeToken(*cognitoidentityprovider.RevokeTokenInput) (*cognitoidentityprovider.RevokeTokenOutput, error)
+	RevokeTokenWithContext(aws.Context, *cognitoidentityprovider.RevokeTokenInput, ...request.Option) (*cognitoidentityprovider.RevokeTokenOutput, error)
+	RevokeTokenRequest(*cognitoidentityprovider.RevokeTokenInput) (*request.Request, *cognitoidentityprovider.RevokeTokenOutput)
+
 	SetRiskConfiguration(*cognitoidentityprovider.SetRiskConfigurationInput) (*cognitoidentityprovider.SetRiskConfigurationOutput, error)
 	SetRiskConfigurationWithContext(aws.Context, *cognitoidentityprovider.SetRiskConfigurationInput, ...request.Option) (*cognitoidentityprovider.SetRiskConfigurationOutput, error)
 	SetRiskConfigurationRequest(*cognitoidentityprovider.SetRiskConfigurationInput) (*request.Request, *cognitoidentityprovider.SetRiskConfigurationOutput)

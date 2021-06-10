@@ -1077,10 +1077,10 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // the product type or the calling name.
 //
 // For toll-free numbers, you cannot use the Amazon Chime Business Calling product
-// type. For numbers outside the US, you must use the Amazon Chime SIP Media
+// type. For numbers outside the U.S., you must use the Amazon Chime SIP Media
 // Application Dial-In product type.
 //
-// Updates to outbound calling names can take 72 hours to complete. Pending
+// Updates to outbound calling names can take up to 72 hours to complete. Pending
 // updates to outbound calling names must be complete before you can request
 // another update.
 //
@@ -2668,7 +2668,7 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 //
 // Creates an order for phone numbers to be provisioned. For toll-free numbers,
 // you cannot use the Amazon Chime Business Calling product type. For numbers
-// outside the US, you must use the Amazon Chime SIP Media Application Dial-In
+// outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In
 // product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -17819,7 +17819,7 @@ func (c *Chime) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Re
 // UpdateAccount API operation for Amazon Chime.
 //
 // Updates account details for the specified Amazon Chime account. Currently,
-// only account name updates are supported for this action.
+// only account name and default license updates are supported for this action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -38167,6 +38167,9 @@ type UpdateAccountInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
+	// The default license applied when you add users to an Amazon Chime account.
+	DefaultLicense *string `type:"string" enum:"License"`
+
 	// The new name for the specified Amazon Chime account.
 	Name *string `min:"1" type:"string"`
 }
@@ -38203,6 +38206,12 @@ func (s *UpdateAccountInput) Validate() error {
 // SetAccountId sets the AccountId field's value.
 func (s *UpdateAccountInput) SetAccountId(v string) *UpdateAccountInput {
 	s.AccountId = &v
+	return s
+}
+
+// SetDefaultLicense sets the DefaultLicense field's value.
+func (s *UpdateAccountInput) SetDefaultLicense(v string) *UpdateAccountInput {
+	s.DefaultLicense = &v
 	return s
 }
 

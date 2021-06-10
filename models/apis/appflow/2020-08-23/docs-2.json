@@ -1097,7 +1097,7 @@
         "SnowflakeDestinationProperties$object": "<p> The object specified in the Snowflake flow destination. </p>",
         "TrendmicroSourceProperties$object": "<p> The object specified in the Trend Micro flow source. </p>",
         "VeevaSourceProperties$object": "<p> The object specified in the Veeva flow source. </p>",
-        "ZendeskDestinationProperties$object": null,
+        "ZendeskDestinationProperties$object": "<p>The object specified in the Zendesk flow destination.</p>",
         "ZendeskSourceProperties$object": "<p> The object specified in the Zendesk flow source. </p>"
       }
     },
@@ -1797,9 +1797,9 @@
       }
     },
     "ZendeskDestinationProperties": {
-      "base": null,
+      "base": "<p>The properties that are applied when Zendesk is used as a destination.</p>",
       "refs": {
-        "DestinationConnectorProperties$Zendesk": null
+        "DestinationConnectorProperties$Zendesk": "<p>The properties required to query Zendesk.</p>"
       }
     },
     "ZendeskMetadata": {

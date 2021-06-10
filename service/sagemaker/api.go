@@ -28756,6 +28756,13 @@ type CreateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
+	// Whether to create an AWS IoT Role Alias during device fleet creation. The
+	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	//
+	// For example, if your device fleet is called "demo-fleet", the name of the
+	// role alias will be "SageMakerEdge-demo-fleet".
+	EnableIotRoleAlias *bool `type:"boolean"`
+
 	// The output configuration for storing sample data collected by the fleet.
 	//
 	// OutputConfig is a required field
@@ -28828,6 +28835,12 @@ func (s *CreateDeviceFleetInput) SetDescription(v string) *CreateDeviceFleetInpu
 // SetDeviceFleetName sets the DeviceFleetName field's value.
 func (s *CreateDeviceFleetInput) SetDeviceFleetName(v string) *CreateDeviceFleetInput {
 	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEnableIotRoleAlias sets the EnableIotRoleAlias field's value.
+func (s *CreateDeviceFleetInput) SetEnableIotRoleAlias(v bool) *CreateDeviceFleetInput {
+	s.EnableIotRoleAlias = &v
 	return s
 }
 
@@ -40364,6 +40377,9 @@ type DescribeEdgePackagingJobOutput struct {
 	// The output configuration for the edge packaging job.
 	OutputConfig *EdgeOutputConfig `type:"structure"`
 
+	// The output of a SageMaker Edge Manager deployable resource.
+	PresetDeploymentOutput *EdgePresetDeploymentOutput `type:"structure"`
+
 	// The CMK to use when encrypting the EBS volume the job run on.
 	ResourceKey *string `type:"string"`
 
@@ -40451,6 +40467,12 @@ func (s *DescribeEdgePackagingJobOutput) SetModelVersion(v string) *DescribeEdge
 // SetOutputConfig sets the OutputConfig field's value.
 func (s *DescribeEdgePackagingJobOutput) SetOutputConfig(v *EdgeOutputConfig) *DescribeEdgePackagingJobOutput {
 	s.OutputConfig = v
+	return s
+}
+
+// SetPresetDeploymentOutput sets the PresetDeploymentOutput field's value.
+func (s *DescribeEdgePackagingJobOutput) SetPresetDeploymentOutput(v *EdgePresetDeploymentOutput) *DescribeEdgePackagingJobOutput {
+	s.PresetDeploymentOutput = v
 	return s
 }
 
@@ -46799,6 +46821,34 @@ type EdgeOutputConfig struct {
 	// your role's account.
 	KmsKeyId *string `type:"string"`
 
+	// The configuration used to create deployment artifacts. Specify configuration
+	// options with a JSON string. The available configuration options for each
+	// type are:
+	//
+	//    * ComponentName (optional) - Name of the GreenGrass V2 component. If not
+	//    specified, the default name generated consists of "SagemakerEdgeManager"
+	//    and the name of your SageMaker Edge Manager packaging job.
+	//
+	//    * ComponentDescription (optional) - Description of the component.
+	//
+	//    * ComponentVersion (optional) - The version of the component. AWS IoT
+	//    Greengrass uses semantic versions for components. Semantic versions follow
+	//    a major.minor.patch number system. For example, version 1.0.0 represents
+	//    the first major release for a component. For more information, see the
+	//    semantic version specification (https://semver.org/).
+	//
+	//    * PlatformOS (optional) - The name of the operating system for the platform.
+	//    Supported platforms include Windows and Linux.
+	//
+	//    * PlatformArchitecture (optional) - The processor architecture for the
+	//    platform. Supported architectures Windows include: Windows32_x86, Windows64_x64.
+	//    Supported architectures for Linux include: Linux x86_64, Linux ARMV8.
+	PresetDeploymentConfig *string `type:"string"`
+
+	// The deployment type SageMaker Edge Manager will create. Currently only supports
+	// AWS IoT Greengrass Version 2 components.
+	PresetDeploymentType *string `type:"string" enum:"EdgePresetDeploymentType"`
+
 	// The Amazon Simple Storage (S3) bucker URI.
 	//
 	// S3OutputLocation is a required field
@@ -46831,6 +46881,18 @@ func (s *EdgeOutputConfig) Validate() error {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *EdgeOutputConfig) SetKmsKeyId(v string) *EdgeOutputConfig {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetPresetDeploymentConfig sets the PresetDeploymentConfig field's value.
+func (s *EdgeOutputConfig) SetPresetDeploymentConfig(v string) *EdgeOutputConfig {
+	s.PresetDeploymentConfig = &v
+	return s
+}
+
+// SetPresetDeploymentType sets the PresetDeploymentType field's value.
+func (s *EdgeOutputConfig) SetPresetDeploymentType(v string) *EdgeOutputConfig {
+	s.PresetDeploymentType = &v
 	return s
 }
 
@@ -46930,6 +46992,60 @@ func (s *EdgePackagingJobSummary) SetModelName(v string) *EdgePackagingJobSummar
 // SetModelVersion sets the ModelVersion field's value.
 func (s *EdgePackagingJobSummary) SetModelVersion(v string) *EdgePackagingJobSummary {
 	s.ModelVersion = &v
+	return s
+}
+
+// The output of a SageMaker Edge Manager deployable resource.
+type EdgePresetDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the generated deployable resource.
+	Artifact *string `min:"20" type:"string"`
+
+	// The status of the deployable resource.
+	Status *string `type:"string" enum:"EdgePresetDeploymentStatus"`
+
+	// Returns a message describing the status of the deployed resource.
+	StatusMessage *string `type:"string"`
+
+	// The deployment type created by SageMaker Edge Manager. Currently only supports
+	// AWS IoT Greengrass Version 2 components.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"EdgePresetDeploymentType"`
+}
+
+// String returns the string representation
+func (s EdgePresetDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgePresetDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetArtifact sets the Artifact field's value.
+func (s *EdgePresetDeploymentOutput) SetArtifact(v string) *EdgePresetDeploymentOutput {
+	s.Artifact = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EdgePresetDeploymentOutput) SetStatus(v string) *EdgePresetDeploymentOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *EdgePresetDeploymentOutput) SetStatusMessage(v string) *EdgePresetDeploymentOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EdgePresetDeploymentOutput) SetType(v string) *EdgePresetDeploymentOutput {
+	s.Type = &v
 	return s
 }
 
@@ -75245,6 +75361,13 @@ type UpdateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
+	// Whether to create an AWS IoT Role Alias during device fleet creation. The
+	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	//
+	// For example, if your device fleet is called "demo-fleet", the name of the
+	// role alias will be "SageMakerEdge-demo-fleet".
+	EnableIotRoleAlias *bool `type:"boolean"`
+
 	// Output configuration for storing sample data collected by the fleet.
 	//
 	// OutputConfig is a required field
@@ -75303,6 +75426,12 @@ func (s *UpdateDeviceFleetInput) SetDescription(v string) *UpdateDeviceFleetInpu
 // SetDeviceFleetName sets the DeviceFleetName field's value.
 func (s *UpdateDeviceFleetInput) SetDeviceFleetName(v string) *UpdateDeviceFleetInput {
 	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEnableIotRoleAlias sets the EnableIotRoleAlias field's value.
+func (s *UpdateDeviceFleetInput) SetEnableIotRoleAlias(v bool) *UpdateDeviceFleetInput {
+	s.EnableIotRoleAlias = &v
 	return s
 }
 
@@ -78859,6 +78988,34 @@ func EdgePackagingJobStatus_Values() []string {
 		EdgePackagingJobStatusFailed,
 		EdgePackagingJobStatusStopping,
 		EdgePackagingJobStatusStopped,
+	}
+}
+
+const (
+	// EdgePresetDeploymentStatusCompleted is a EdgePresetDeploymentStatus enum value
+	EdgePresetDeploymentStatusCompleted = "COMPLETED"
+
+	// EdgePresetDeploymentStatusFailed is a EdgePresetDeploymentStatus enum value
+	EdgePresetDeploymentStatusFailed = "FAILED"
+)
+
+// EdgePresetDeploymentStatus_Values returns all elements of the EdgePresetDeploymentStatus enum
+func EdgePresetDeploymentStatus_Values() []string {
+	return []string{
+		EdgePresetDeploymentStatusCompleted,
+		EdgePresetDeploymentStatusFailed,
+	}
+}
+
+const (
+	// EdgePresetDeploymentTypeGreengrassV2component is a EdgePresetDeploymentType enum value
+	EdgePresetDeploymentTypeGreengrassV2component = "GreengrassV2Component"
+)
+
+// EdgePresetDeploymentType_Values returns all elements of the EdgePresetDeploymentType enum
+func EdgePresetDeploymentType_Values() []string {
+	return []string{
+		EdgePresetDeploymentTypeGreengrassV2component,
 	}
 }
 

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon SageMaker Feature Store Runtime.
 //    func myFunc(svc sagemakerfeaturestoreruntimeiface.SageMakerFeatureStoreRuntimeAPI) bool {
-//        // Make svc.DeleteRecord request
+//        // Make svc.BatchGetRecord request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockSageMakerFeatureStoreRuntimeClient struct {
 //        sagemakerfeaturestoreruntimeiface.SageMakerFeatureStoreRuntimeAPI
 //    }
-//    func (m *mockSageMakerFeatureStoreRuntimeClient) DeleteRecord(input *sagemakerfeaturestoreruntime.DeleteRecordInput) (*sagemakerfeaturestoreruntime.DeleteRecordOutput, error) {
+//    func (m *mockSageMakerFeatureStoreRuntimeClient) BatchGetRecord(input *sagemakerfeaturestoreruntime.BatchGetRecordInput) (*sagemakerfeaturestoreruntime.BatchGetRecordOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type SageMakerFeatureStoreRuntimeAPI interface {
+	BatchGetRecord(*sagemakerfeaturestoreruntime.BatchGetRecordInput) (*sagemakerfeaturestoreruntime.BatchGetRecordOutput, error)
+	BatchGetRecordWithContext(aws.Context, *sagemakerfeaturestoreruntime.BatchGetRecordInput, ...request.Option) (*sagemakerfeaturestoreruntime.BatchGetRecordOutput, error)
+	BatchGetRecordRequest(*sagemakerfeaturestoreruntime.BatchGetRecordInput) (*request.Request, *sagemakerfeaturestoreruntime.BatchGetRecordOutput)
+
 	DeleteRecord(*sagemakerfeaturestoreruntime.DeleteRecordInput) (*sagemakerfeaturestoreruntime.DeleteRecordOutput, error)
 	DeleteRecordWithContext(aws.Context, *sagemakerfeaturestoreruntime.DeleteRecordInput, ...request.Option) (*sagemakerfeaturestoreruntime.DeleteRecordOutput, error)
 	DeleteRecordRequest(*sagemakerfeaturestoreruntime.DeleteRecordInput) (*request.Request, *sagemakerfeaturestoreruntime.DeleteRecordOutput)

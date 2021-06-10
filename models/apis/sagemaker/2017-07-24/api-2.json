@@ -4351,7 +4351,8 @@
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"DeviceFleetDescription"},
         "OutputConfig":{"shape":"EdgeOutputConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "EnableIotRoleAlias":{"shape":"EnableIotRoleAlias"}
       }
     },
     "CreateDomainRequest":{
@@ -6165,7 +6166,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "ModelArtifact":{"shape":"S3Uri"},
-        "ModelSignature":{"shape":"String"}
+        "ModelSignature":{"shape":"String"},
+        "PresetDeploymentOutput":{"shape":"EdgePresetDeploymentOutput"}
       }
     },
     "DescribeEndpointConfigInput":{
@@ -7366,7 +7368,9 @@
       "required":["S3OutputLocation"],
       "members":{
         "S3OutputLocation":{"shape":"S3Uri"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "PresetDeploymentType":{"shape":"EdgePresetDeploymentType"},
+        "PresetDeploymentConfig":{"shape":"String"}
       }
     },
     "EdgePackagingJobArn":{
@@ -7408,6 +7412,32 @@
         "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
+    "EdgePresetDeploymentArtifact":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
+    "EdgePresetDeploymentOutput":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"EdgePresetDeploymentType"},
+        "Artifact":{"shape":"EdgePresetDeploymentArtifact"},
+        "Status":{"shape":"EdgePresetDeploymentStatus"},
+        "StatusMessage":{"shape":"String"}
+      }
+    },
+    "EdgePresetDeploymentStatus":{
+      "type":"string",
+      "enum":[
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "EdgePresetDeploymentType":{
+      "type":"string",
+      "enum":["GreengrassV2Component"]
+    },
     "EdgeVersion":{
       "type":"string",
       "max":30,
@@ -7420,6 +7450,7 @@
       "pattern":"\\d+"
     },
     "EnableCapture":{"type":"boolean"},
+    "EnableIotRoleAlias":{"type":"boolean"},
     "EnableSagemakerServicecatalogPortfolioInput":{
       "type":"structure",
       "members":{
@@ -14421,7 +14452,8 @@
         "DeviceFleetName":{"shape":"EntityName"},
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"DeviceFleetDescription"},
-        "OutputConfig":{"shape":"EdgeOutputConfig"}
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "EnableIotRoleAlias":{"shape":"EnableIotRoleAlias"}
       }
     },
     "UpdateDevicesRequest":{

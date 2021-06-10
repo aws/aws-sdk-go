@@ -3361,6 +3361,31 @@
         "EdgePackagingJobSummaries$member": null
       }
     },
+    "EdgePresetDeploymentArtifact": {
+      "base": null,
+      "refs": {
+        "EdgePresetDeploymentOutput$Artifact": "<p>The Amazon Resource Name (ARN) of the generated deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentOutput": {
+      "base": "<p>The output of a SageMaker Edge Manager deployable resource.</p>",
+      "refs": {
+        "DescribeEdgePackagingJobResponse$PresetDeploymentOutput": "<p>The output of a SageMaker Edge Manager deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "EdgePresetDeploymentOutput$Status": "<p>The status of the deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentType": {
+      "base": null,
+      "refs": {
+        "EdgeOutputConfig$PresetDeploymentType": "<p>The deployment type SageMaker Edge Manager will create. Currently only supports AWS IoT Greengrass Version 2 components.</p>",
+        "EdgePresetDeploymentOutput$Type": "<p>The deployment type created by SageMaker Edge Manager. Currently only supports AWS IoT Greengrass Version 2 components.</p>"
+      }
+    },
     "EdgeVersion": {
       "base": null,
       "refs": {
@@ -3384,6 +3409,13 @@
       "refs": {
         "DataCaptureConfig$EnableCapture": "<p/>",
         "DataCaptureConfigSummary$EnableCapture": "<p/>"
+      }
+    },
+    "EnableIotRoleAlias": {
+      "base": null,
+      "refs": {
+        "CreateDeviceFleetRequest$EnableIotRoleAlias": "<p>Whether to create an AWS IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: \"SageMakerEdge-{DeviceFleetName}\".</p> <p>For example, if your device fleet is called \"demo-fleet\", the name of the role alias will be \"SageMakerEdge-demo-fleet\".</p>",
+        "UpdateDeviceFleetRequest$EnableIotRoleAlias": "<p>Whether to create an AWS IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: \"SageMakerEdge-{DeviceFleetName}\".</p> <p>For example, if your device fleet is called \"demo-fleet\", the name of the role alias will be \"SageMakerEdge-demo-fleet\".</p>"
       }
     },
     "EnableSagemakerServicecatalogPortfolioInput": {
@@ -8812,6 +8844,8 @@
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
         "DescribeEdgePackagingJobResponse$ModelSignature": "<p>The signature document of files in the model artifact.</p>",
+        "EdgeOutputConfig$PresetDeploymentConfig": "<p>The configuration used to create deployment artifacts. Specify configuration options with a JSON string. The available configuration options for each type are:</p> <ul> <li> <p> <code>ComponentName</code> (optional) - Name of the GreenGrass V2 component. If not specified, the default name generated consists of \"SagemakerEdgeManager\" and the name of your SageMaker Edge Manager packaging job.</p> </li> <li> <p> <code>ComponentDescription</code> (optional) - Description of the component.</p> </li> <li> <p> <code>ComponentVersion</code> (optional) - The version of the component.</p> <note> <p>AWS IoT Greengrass uses semantic versions for components. Semantic versions follow a<i> major.minor.patch</i> number system. For example, version 1.0.0 represents the first major release for a component. For more information, see the <a href=\"https://semver.org/\">semantic version specification</a>.</p> </note> </li> <li> <p> <code>PlatformOS</code> (optional) - The name of the operating system for the platform. Supported platforms include Windows and Linux.</p> </li> <li> <p> <code>PlatformArchitecture</code> (optional) - The processor architecture for the platform. </p> <p>Supported architectures Windows include: Windows32_x86, Windows64_x64.</p> <p>Supported architectures for Linux include: Linux x86_64, Linux ARMV8.</p> </li> </ul>",
+        "EdgePresetDeploymentOutput$StatusMessage": "<p>Returns a message describing the status of the deployed resource.</p>",
         "EndpointInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
         "EndpointInput$InferenceAttribute": "<p>The attribute of the input data that represents the ground truth label.</p>",
         "EndpointInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",

@@ -4996,6 +4996,13 @@ type Member struct {
 	// The unique identifier of the member.
 	Id *string `min:"1" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
+	// Service (AWS KMS) that the member uses for encryption at rest. If the value
+	// of this parameter is "AWS Owned KMS Key", the member uses an AWS owned KMS
+	// key for encryption. This parameter is inherited by the nodes that this member
+	// owns.
+	KmsKeyArn *string `type:"string"`
+
 	// Configuration properties for logging events associated with a member.
 	LogPublishingConfiguration *MemberLogPublishingConfiguration `type:"structure"`
 
@@ -5014,6 +5021,8 @@ type Member struct {
 	//    * CREATE_FAILED - The AWS account attempted to create a member and creation
 	//    failed.
 	//
+	//    * UPDATING - The member is in the process of being updated.
+	//
 	//    * DELETING - The member and all associated resources are in the process
 	//    of being deleted. Either the AWS account that owns the member deleted
 	//    it, or the member is being deleted as the result of an APPROVED PROPOSAL
@@ -5023,6 +5032,14 @@ type Member struct {
 	//    associated resources are deleted. Either the AWS account that owns the
 	//    member deleted it, or the member is being deleted as the result of an
 	//    APPROVED PROPOSAL to remove the member.
+	//
+	//    * INACCESSIBLE_ENCRYPTION_KEY - The member is impaired and might not function
+	//    as expected because it cannot access the specified customer managed key
+	//    in AWS KMS for encryption at rest. Either the KMS key was disabled or
+	//    deleted, or the grants on the key were revoked. The effect of disabling
+	//    or deleting a key, or revoking a grant is not immediate. The member resource
+	//    might take some time to find that the key is inaccessible. When a resource
+	//    is in this state, we recommend deleting and recreating the resource.
 	Status *string `type:"string" enum:"MemberStatus"`
 
 	// Tags assigned to the member. Tags consist of a key and optional value. For
@@ -5071,6 +5088,12 @@ func (s *Member) SetId(v string) *Member {
 	return s
 }
 
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *Member) SetKmsKeyArn(v string) *Member {
+	s.KmsKeyArn = &v
+	return s
+}
+
 // SetLogPublishingConfiguration sets the LogPublishingConfiguration field's value.
 func (s *Member) SetLogPublishingConfiguration(v *MemberLogPublishingConfiguration) *Member {
 	s.LogPublishingConfiguration = v
@@ -5115,6 +5138,22 @@ type MemberConfiguration struct {
 	// FrameworkConfiguration is a required field
 	FrameworkConfiguration *MemberFrameworkConfiguration `type:"structure" required:"true"`
 
+	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
+	// Service (AWS KMS) to use for encryption at rest in the member. This parameter
+	// is inherited by any nodes that this member creates.
+	//
+	// Use one of the following options to specify this parameter:
+	//
+	//    * Undefined or empty string - The member uses an AWS owned KMS key for
+	//    encryption by default.
+	//
+	//    * A valid symmetric customer managed KMS key - The member uses the specified
+	//    key for encryption. Amazon Managed Blockchain doesn't support asymmetric
+	//    keys. For more information, see Using symmetric and asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
+	//    in the AWS Key Management Service Developer Guide. The following is an
+	//    example of a KMS key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	KmsKeyArn *string `min:"1" type:"string"`
+
 	// Configuration properties for logging events associated with a member of a
 	// Managed Blockchain network.
 	LogPublishingConfiguration *MemberLogPublishingConfiguration `type:"structure"`
@@ -5150,6 +5189,9 @@ func (s *MemberConfiguration) Validate() error {
 	if s.FrameworkConfiguration == nil {
 		invalidParams.Add(request.NewErrParamRequired("FrameworkConfiguration"))
 	}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -5177,6 +5219,12 @@ func (s *MemberConfiguration) SetDescription(v string) *MemberConfiguration {
 // SetFrameworkConfiguration sets the FrameworkConfiguration field's value.
 func (s *MemberConfiguration) SetFrameworkConfiguration(v *MemberFrameworkConfiguration) *MemberConfiguration {
 	s.FrameworkConfiguration = v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *MemberConfiguration) SetKmsKeyArn(v string) *MemberConfiguration {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -5452,6 +5500,8 @@ type MemberSummary struct {
 	//    * CREATE_FAILED - The AWS account attempted to create a member and creation
 	//    failed.
 	//
+	//    * UPDATING - The member is in the process of being updated.
+	//
 	//    * DELETING - The member and all associated resources are in the process
 	//    of being deleted. Either the AWS account that owns the member deleted
 	//    it, or the member is being deleted as the result of an APPROVED PROPOSAL
@@ -5461,6 +5511,15 @@ type MemberSummary struct {
 	//    associated resources are deleted. Either the AWS account that owns the
 	//    member deleted it, or the member is being deleted as the result of an
 	//    APPROVED PROPOSAL to remove the member.
+	//
+	//    * INACCESSIBLE_ENCRYPTION_KEY - The member is impaired and might not function
+	//    as expected because it cannot access the specified customer managed key
+	//    in AWS Key Management Service (AWS KMS) for encryption at rest. Either
+	//    the KMS key was disabled or deleted, or the grants on the key were revoked.
+	//    The effect of disabling or deleting a key, or revoking a grant is not
+	//    immediate. The member resource might take some time to find that the key
+	//    is inaccessible. When a resource is in this state, we recommend deleting
+	//    and recreating the resource.
 	Status *string `type:"string" enum:"MemberStatus"`
 }
 
@@ -5943,6 +6002,15 @@ type Node struct {
 	// The instance type of the node.
 	InstanceType *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) of the customer managed key in AWS Key Management
+	// Service (AWS KMS) that the node uses for encryption at rest. If the value
+	// of this parameter is "AWS Owned KMS Key", the node uses an AWS owned KMS
+	// key for encryption. The node inherits this parameter from the member that
+	// it belongs to.
+	//
+	// Applies only to Hyperledger Fabric.
+	KmsKeyArn *string `type:"string"`
+
 	// Configuration properties for logging events associated with a peer node on
 	// a Hyperledger Fabric network on Managed Blockchain.
 	LogPublishingConfiguration *NodeLogPublishingConfiguration `type:"structure"`
@@ -5961,6 +6029,35 @@ type Node struct {
 	StateDB *string `type:"string" enum:"StateDBType"`
 
 	// The status of the node.
+	//
+	//    * CREATING - The AWS account is in the process of creating a node.
+	//
+	//    * AVAILABLE - The node has been created and can participate in the network.
+	//
+	//    * UNHEALTHY - The node is impaired and might not function as expected.
+	//    Amazon Managed Blockchain automatically finds nodes in this state and
+	//    tries to recover them. If a node is recoverable, it returns to AVAILABLE.
+	//    Otherwise, it moves to FAILED status.
+	//
+	//    * CREATE_FAILED - The AWS account attempted to create a node and creation
+	//    failed.
+	//
+	//    * UPDATING - The node is in the process of being updated.
+	//
+	//    * DELETING - The node is in the process of being deleted.
+	//
+	//    * DELETED - The node can no longer participate on the network.
+	//
+	//    * FAILED - The node is no longer functional, cannot be recovered, and
+	//    must be deleted.
+	//
+	//    * INACCESSIBLE_ENCRYPTION_KEY - The node is impaired and might not function
+	//    as expected because it cannot access the specified customer managed key
+	//    in AWS KMS for encryption at rest. Either the KMS key was disabled or
+	//    deleted, or the grants on the key were revoked. The effect of disabling
+	//    or deleting a key, or revoking a grant is not immediate. The node resource
+	//    might take some time to find that the key is inaccessible. When a resource
+	//    is in this state, we recommend deleting and recreating the resource.
 	Status *string `type:"string" enum:"NodeStatus"`
 
 	// Tags assigned to the node. Each tag consists of a key and optional value.
@@ -6015,6 +6112,12 @@ func (s *Node) SetId(v string) *Node {
 // SetInstanceType sets the InstanceType field's value.
 func (s *Node) SetInstanceType(v string) *Node {
 	s.InstanceType = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *Node) SetKmsKeyArn(v string) *Node {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -7767,6 +7870,9 @@ const (
 
 	// MemberStatusDeleted is a MemberStatus enum value
 	MemberStatusDeleted = "DELETED"
+
+	// MemberStatusInaccessibleEncryptionKey is a MemberStatus enum value
+	MemberStatusInaccessibleEncryptionKey = "INACCESSIBLE_ENCRYPTION_KEY"
 )
 
 // MemberStatus_Values returns all elements of the MemberStatus enum
@@ -7778,6 +7884,7 @@ func MemberStatus_Values() []string {
 		MemberStatusUpdating,
 		MemberStatusDeleting,
 		MemberStatusDeleted,
+		MemberStatusInaccessibleEncryptionKey,
 	}
 }
 
@@ -7833,6 +7940,9 @@ const (
 
 	// NodeStatusFailed is a NodeStatus enum value
 	NodeStatusFailed = "FAILED"
+
+	// NodeStatusInaccessibleEncryptionKey is a NodeStatus enum value
+	NodeStatusInaccessibleEncryptionKey = "INACCESSIBLE_ENCRYPTION_KEY"
 )
 
 // NodeStatus_Values returns all elements of the NodeStatus enum
@@ -7846,6 +7956,7 @@ func NodeStatus_Values() []string {
 		NodeStatusDeleting,
 		NodeStatusDeleted,
 		NodeStatusFailed,
+		NodeStatusInaccessibleEncryptionKey,
 	}
 }
 

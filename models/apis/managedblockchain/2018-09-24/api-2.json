@@ -1034,7 +1034,8 @@
         "Status":{"shape":"MemberStatus"},
         "CreationDate":{"shape":"Timestamp"},
         "Tags":{"shape":"OutputTagMap"},
-        "Arn":{"shape":"ArnString"}
+        "Arn":{"shape":"ArnString"},
+        "KmsKeyArn":{"shape":"String"}
       }
     },
     "MemberConfiguration":{
@@ -1048,7 +1049,8 @@
         "Description":{"shape":"DescriptionString"},
         "FrameworkConfiguration":{"shape":"MemberFrameworkConfiguration"},
         "LogPublishingConfiguration":{"shape":"MemberLogPublishingConfiguration"},
-        "Tags":{"shape":"InputTagMap"}
+        "Tags":{"shape":"InputTagMap"},
+        "KmsKeyArn":{"shape":"ArnString"}
       }
     },
     "MemberFabricAttributes":{
@@ -1107,7 +1109,8 @@
         "CREATE_FAILED",
         "UPDATING",
         "DELETING",
-        "DELETED"
+        "DELETED",
+        "INACCESSIBLE_ENCRYPTION_KEY"
       ]
     },
     "MemberSummary":{
@@ -1235,7 +1238,8 @@
         "Status":{"shape":"NodeStatus"},
         "CreationDate":{"shape":"Timestamp"},
         "Tags":{"shape":"OutputTagMap"},
-        "Arn":{"shape":"ArnString"}
+        "Arn":{"shape":"ArnString"},
+        "KmsKeyArn":{"shape":"String"}
       }
     },
     "NodeConfiguration":{
@@ -1298,7 +1302,8 @@
         "UPDATING",
         "DELETING",
         "DELETED",
-        "FAILED"
+        "FAILED",
+        "INACCESSIBLE_ENCRYPTION_KEY"
       ]
     },
     "NodeSummary":{

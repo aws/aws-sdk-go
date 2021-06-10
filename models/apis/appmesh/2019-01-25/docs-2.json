@@ -1,12 +1,12 @@
 {
   "version": "2.0",
-  "service": "<p>AWS App Mesh is a service mesh based on the Envoy proxy that makes it easy to monitor and control microservices. App Mesh standardizes how your microservices communicate, giving you end-to-end visibility and helping to ensure high availability for your applications.</p> <p>App Mesh gives you consistent visibility and network traffic controls for every microservice in an application. You can use App Mesh with AWS Fargate, Amazon ECS, Amazon EKS, Kubernetes on AWS, and Amazon EC2.</p> <note> <p>App Mesh supports microservice applications that use service discovery naming for their components. For more information about service discovery on Amazon ECS, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html\">Service Discovery</a> in the <i>Amazon Elastic Container Service Developer Guide</i>. Kubernetes <code>kube-dns</code> and <code>coredns</code> are supported. For more information, see <a href=\"https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/\">DNS for Services and Pods</a> in the Kubernetes documentation.</p> </note>",
+  "service": "<p>App Mesh is a service mesh based on the Envoy proxy that makes it easy to monitor and control microservices. App Mesh standardizes how your microservices communicate, giving you end-to-end visibility and helping to ensure high availability for your applications.</p> <p>App Mesh gives you consistent visibility and network traffic controls for every microservice in an application. You can use App Mesh with Amazon Web Services Fargate, Amazon ECS, Amazon EKS, Kubernetes on Amazon Web Services, and Amazon EC2.</p> <note> <p>App Mesh supports microservice applications that use service discovery naming for their components. For more information about service discovery on Amazon ECS, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service-discovery.html\">Service Discovery</a> in the <i>Amazon Elastic Container Service Developer Guide</i>. Kubernetes <code>kube-dns</code> and <code>coredns</code> are supported. For more information, see <a href=\"https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/\">DNS for Services and Pods</a> in the Kubernetes documentation.</p> </note>",
   "operations": {
     "CreateGatewayRoute": "<p>Creates a gateway route.</p> <p>A gateway route is attached to a virtual gateway and routes traffic to an existing virtual service. If a route matches a request, it can distribute traffic to a target virtual service.</p> <p>For more information about gateway routes, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/gateway-routes.html\">Gateway routes</a>.</p>",
     "CreateMesh": "<p>Creates a service mesh.</p> <p> A service mesh is a logical boundary for network traffic between services that are represented by resources within the mesh. After you create your service mesh, you can create virtual services, virtual nodes, virtual routers, and routes to distribute traffic between the applications in your mesh.</p> <p>For more information about service meshes, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/meshes.html\">Service meshes</a>.</p>",
     "CreateRoute": "<p>Creates a route that is associated with a virtual router.</p> <p> You can route several different protocols and define a retry policy for a route. Traffic can be routed to one or more virtual nodes.</p> <p>For more information about routes, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/routes.html\">Routes</a>.</p>",
     "CreateVirtualGateway": "<p>Creates a virtual gateway.</p> <p>A virtual gateway allows resources outside your mesh to communicate to resources that are inside your mesh. The virtual gateway represents an Envoy proxy running in an Amazon ECS task, in a Kubernetes service, or on an Amazon EC2 instance. Unlike a virtual node, which represents an Envoy running with an application, a virtual gateway represents Envoy deployed by itself.</p> <p>For more information about virtual gateways, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_gateways.html\">Virtual gateways</a>. </p>",
-    "CreateVirtualNode": "<p>Creates a virtual node within a service mesh.</p> <p> A virtual node acts as a logical pointer to a particular task group, such as an Amazon ECS service or a Kubernetes deployment. When you create a virtual node, you can specify the service discovery information for your task group, and whether the proxy running in a task group will communicate with other proxies using Transport Layer Security (TLS).</p> <p>You define a <code>listener</code> for any inbound traffic that your virtual node expects. Any virtual service that your virtual node expects to communicate to is specified as a <code>backend</code>.</p> <p>The response metadata for your new virtual node contains the <code>arn</code> that is associated with the virtual node. Set this value to the full ARN; for example, <code>arn:aws:appmesh:us-west-2:123456789012:myMesh/default/virtualNode/myApp</code>) as the <code>APPMESH_RESOURCE_ARN</code> environment variable for your task group's Envoy proxy container in your task definition or pod spec. This is then mapped to the <code>node.id</code> and <code>node.cluster</code> Envoy parameters.</p> <note> <p>By default, App Mesh uses the name of the resource you specified in <code>APPMESH_RESOURCE_ARN</code> when Envoy is referring to itself in metrics and traces. You can override this behavior by setting the <code>APPMESH_RESOURCE_CLUSTER</code> environment variable with your own name.</p> <p>AWS Cloud Map is not available in the eu-south-1 Region.</p> </note> <p>For more information about virtual nodes, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html\">Virtual nodes</a>. You must be using <code>1.15.0</code> or later of the Envoy image when setting these variables. For more information about App Mesh Envoy variables, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html\">Envoy image</a> in the AWS App Mesh User Guide.</p>",
+    "CreateVirtualNode": "<p>Creates a virtual node within a service mesh.</p> <p> A virtual node acts as a logical pointer to a particular task group, such as an Amazon ECS service or a Kubernetes deployment. When you create a virtual node, you can specify the service discovery information for your task group, and whether the proxy running in a task group will communicate with other proxies using Transport Layer Security (TLS).</p> <p>You define a <code>listener</code> for any inbound traffic that your virtual node expects. Any virtual service that your virtual node expects to communicate to is specified as a <code>backend</code>.</p> <p>The response metadata for your new virtual node contains the <code>arn</code> that is associated with the virtual node. Set this value to the full ARN; for example, <code>arn:aws:appmesh:us-west-2:123456789012:myMesh/default/virtualNode/myApp</code>) as the <code>APPMESH_RESOURCE_ARN</code> environment variable for your task group's Envoy proxy container in your task definition or pod spec. This is then mapped to the <code>node.id</code> and <code>node.cluster</code> Envoy parameters.</p> <note> <p>By default, App Mesh uses the name of the resource you specified in <code>APPMESH_RESOURCE_ARN</code> when Envoy is referring to itself in metrics and traces. You can override this behavior by setting the <code>APPMESH_RESOURCE_CLUSTER</code> environment variable with your own name.</p> </note> <p>For more information about virtual nodes, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html\">Virtual nodes</a>. You must be using <code>1.15.0</code> or later of the Envoy image when setting these variables. For more information aboutApp Mesh Envoy variables, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html\">Envoy image</a> in the AWS App Mesh User Guide.</p>",
     "CreateVirtualRouter": "<p>Creates a virtual router within a service mesh.</p> <p>Specify a <code>listener</code> for any inbound traffic that your virtual router receives. Create a virtual router for each protocol and port that you need to route. Virtual routers handle traffic for one or more virtual services within your mesh. After you create your virtual router, create and associate routes for your virtual router that direct incoming requests to different virtual nodes.</p> <p>For more information about virtual routers, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_routers.html\">Virtual routers</a>.</p>",
     "CreateVirtualService": "<p>Creates a virtual service within a service mesh.</p> <p>A virtual service is an abstraction of a real service that is provided by a virtual node directly or indirectly by means of a virtual router. Dependent services call your virtual service by its <code>virtualServiceName</code>, and those requests are routed to the virtual node or virtual router that is specified as the provider for the virtual service.</p> <p>For more information about virtual services, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_services.html\">Virtual services</a>.</p>",
     "DeleteGatewayRoute": "<p>Deletes an existing gateway route.</p>",
@@ -121,7 +121,7 @@
       }
     },
     "AwsCloudMapInstanceAttribute": {
-      "base": "<p>An object that represents the AWS Cloud Map attribute information for your virtual node.</p> <note> <p>AWS Cloud Map is not available in the eu-south-1 Region.</p> </note>",
+      "base": "<p>An object that represents the Cloud Map attribute information for your virtual node.</p> <note> <p>AWS Cloud Map is not available in the eu-south-1 Region.</p> </note>",
       "refs": {
         "AwsCloudMapInstanceAttributes$member": null
       }
@@ -129,13 +129,13 @@
     "AwsCloudMapInstanceAttributeKey": {
       "base": null,
       "refs": {
-        "AwsCloudMapInstanceAttribute$key": "<p>The name of an AWS Cloud Map service instance attribute key. Any AWS Cloud Map service instance that contains the specified key and value is returned.</p>"
+        "AwsCloudMapInstanceAttribute$key": "<p>The name of an Cloud Map service instance attribute key. Any Cloud Map service instance that contains the specified key and value is returned.</p>"
       }
     },
     "AwsCloudMapInstanceAttributeValue": {
       "base": null,
       "refs": {
-        "AwsCloudMapInstanceAttribute$value": "<p>The value of an AWS Cloud Map service instance attribute key. Any AWS Cloud Map service instance that contains the specified key and value is returned.</p>"
+        "AwsCloudMapInstanceAttribute$value": "<p>The value of an Cloud Map service instance attribute key. Any Cloud Map service instance that contains the specified key and value is returned.</p>"
       }
     },
     "AwsCloudMapInstanceAttributes": {
@@ -147,14 +147,14 @@
     "AwsCloudMapName": {
       "base": null,
       "refs": {
-        "AwsCloudMapServiceDiscovery$namespaceName": "<p>The name of the AWS Cloud Map namespace to use.</p>",
-        "AwsCloudMapServiceDiscovery$serviceName": "<p>The name of the AWS Cloud Map service to use.</p>"
+        "AwsCloudMapServiceDiscovery$namespaceName": "<p>The name of the Cloud Map namespace to use.</p>",
+        "AwsCloudMapServiceDiscovery$serviceName": "<p>The name of the Cloud Map service to use.</p>"
       }
     },
     "AwsCloudMapServiceDiscovery": {
-      "base": "<p>An object that represents the AWS Cloud Map service discovery information for your virtual node.</p> <note> <p>AWS Cloud Map is not available in the eu-south-1 Region.</p> </note>",
+      "base": "<p>An object that represents the Cloud Map service discovery information for your virtual node.</p> <note> <p>Cloud Map is not available in the eu-south-1 Region.</p> </note>",
       "refs": {
-        "ServiceDiscovery$awsCloudMap": "<p>Specifies any AWS Cloud Map information for the virtual node.</p>"
+        "ServiceDiscovery$awsCloudMap": "<p>Specifies any Cloud Map information for the virtual node.</p>"
       }
     },
     "Backend": {
@@ -184,7 +184,9 @@
       "base": null,
       "refs": {
         "ClientPolicyTls$enforce": "<p>Whether the policy is enforced. The default is <code>True</code>, if a value isn't specified.</p>",
+        "GrpcGatewayRouteMetadata$invert": "<p>Specify <code>True</code> to match anything except the match criteria. The default value is <code>False</code>.</p>",
         "GrpcRouteMetadata$invert": "<p>Specify <code>True</code> to match anything except the match criteria. The default value is <code>False</code>.</p>",
+        "HttpGatewayRouteHeader$invert": "<p>Specify <code>True</code> to match anything except the match criteria. The default value is <code>False</code>.</p>",
         "HttpRouteHeader$invert": "<p>Specify <code>True</code> to match anything except the match criteria. The default value is <code>False</code>.</p>",
         "VirtualGatewayClientPolicyTls$enforce": "<p>Whether the policy is enforced. The default is <code>True</code>, if a value isn't specified.</p>"
       }
@@ -289,6 +291,13 @@
       "refs": {
       }
     },
+    "DefaultGatewayRouteRewrite": {
+      "base": null,
+      "refs": {
+        "GatewayRouteHostnameRewrite$defaultTargetHostname": "<p>The default target host name to write to.</p>",
+        "HttpGatewayRoutePrefixRewrite$defaultPrefix": "<p>The default prefix used to replace the incoming route prefix when rewritten.</p>"
+      }
+    },
     "DeleteGatewayRouteInput": {
       "base": null,
       "refs": {
@@ -330,7 +339,7 @@
       }
     },
     "DeleteVirtualNodeInput": {
-      "base": "<zonbook></zonbook><xhtml></xhtml>",
+      "base": "<p>Deletes a virtual node input.</p>",
       "refs": {
       }
     },
@@ -429,6 +438,12 @@
       "refs": {
       }
     },
+    "DnsResponseType": {
+      "base": null,
+      "refs": {
+        "DnsServiceDiscovery$responseType": "<p>Specifies the DNS response type for the virtual node.</p>"
+      }
+    },
     "DnsServiceDiscovery": {
       "base": "<p>An object that represents the DNS service discovery information for your virtual node.</p>",
       "refs": {
@@ -470,7 +485,13 @@
     "EgressFilterType": {
       "base": null,
       "refs": {
-        "EgressFilter$type": "<p>The egress filter type. By default, the type is <code>DROP_ALL</code>, which allows egress only from virtual nodes to other defined resources in the service mesh (and any traffic to <code>*.amazonaws.com</code> for AWS API calls). You can set the egress filter type to <code>ALLOW_ALL</code> to allow egress to any endpoint inside or outside of the service mesh.</p>"
+        "EgressFilter$type": "<p>The egress filter type. By default, the type is <code>DROP_ALL</code>, which allows egress only from virtual nodes to other defined resources in the service mesh (and any traffic to <code>*.amazonaws.com</code> for Amazon Web Services API calls). You can set the egress filter type to <code>ALLOW_ALL</code> to allow egress to any endpoint inside or outside of the service mesh.</p>"
+      }
+    },
+    "ExactHostName": {
+      "base": null,
+      "refs": {
+        "GatewayRouteHostnameMatch$exact": "<p>The exact host name to match on.</p>"
       }
     },
     "FileAccessLog": {
@@ -506,10 +527,30 @@
         "UpdateGatewayRouteOutput$gatewayRoute": "<p>A full description of the gateway route that was updated.</p>"
       }
     },
+    "GatewayRouteHostnameMatch": {
+      "base": "<p>An object representing the gateway route host name to match.</p>",
+      "refs": {
+        "GrpcGatewayRouteMatch$hostname": "<p>The gateway route host name to be matched on.</p>",
+        "HttpGatewayRouteMatch$hostname": "<p>The host name to match on.</p>"
+      }
+    },
+    "GatewayRouteHostnameRewrite": {
+      "base": "<p>An object representing the gateway route host name to rewrite.</p>",
+      "refs": {
+        "GrpcGatewayRouteRewrite$hostname": "<p>The host name of the gateway route to rewrite.</p>",
+        "HttpGatewayRouteRewrite$hostname": "<p>The host name to rewrite.</p>"
+      }
+    },
     "GatewayRouteList": {
       "base": null,
       "refs": {
         "ListGatewayRoutesOutput$gatewayRoutes": "<p>The list of existing gateway routes for the specified service mesh and virtual gateway.</p>"
+      }
+    },
+    "GatewayRoutePriority": {
+      "base": null,
+      "refs": {
+        "GatewayRouteSpec$priority": "<p>The ordering of the gateway routes spec.</p>"
       }
     },
     "GatewayRouteRef": {
@@ -569,8 +610,32 @@
         "GrpcGatewayRoute$match": "<p>An object that represents the criteria for determining a request match.</p>"
       }
     },
+    "GrpcGatewayRouteMetadata": {
+      "base": "<p>An object representing the metadata of the gateway route.</p>",
+      "refs": {
+        "GrpcGatewayRouteMetadataList$member": null
+      }
+    },
+    "GrpcGatewayRouteMetadataList": {
+      "base": null,
+      "refs": {
+        "GrpcGatewayRouteMatch$metadata": "<p>The gateway route metadata to be matched on.</p>"
+      }
+    },
+    "GrpcGatewayRouteRewrite": {
+      "base": "<p>An object that represents the gateway route to rewrite.</p>",
+      "refs": {
+        "GrpcGatewayRouteAction$rewrite": "<p>The gateway route action to rewrite.</p>"
+      }
+    },
+    "GrpcMetadataMatchMethod": {
+      "base": "<p>An object representing the method header to be matched.</p>",
+      "refs": {
+        "GrpcGatewayRouteMetadata$match": "<p>The criteria for determining a metadata match.</p>"
+      }
+    },
     "GrpcRetryPolicy": {
-      "base": "<p>An object that represents a retry policy. Specify at least one value for at least one of the types of <code>RetryEvents</code>, a value for <code>maxRetries</code>, and a value for <code>perRetryTimeout</code>.</p>",
+      "base": "<p>An object that represents a retry policy. Specify at least one value for at least one of the types of <code>RetryEvents</code>, a value for <code>maxRetries</code>, and a value for <code>perRetryTimeout</code>. Both <code>server-error</code> and <code>gateway-error</code> under <code>httpRetryEvents</code> include the Envoy <code>reset</code> policy. For more information on the <code>reset</code> policy, see the <a href=\"https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on\">Envoy documentation</a>.</p>",
       "refs": {
         "GrpcRoute$retryPolicy": "<p>An object that represents a retry policy.</p>"
       }
@@ -627,12 +692,16 @@
       "base": "<p>An object that represents types of timeouts. </p>",
       "refs": {
         "GrpcRoute$timeout": "<p>An object that represents types of timeouts. </p>",
-        "ListenerTimeout$grpc": null
+        "ListenerTimeout$grpc": "<p>An object that represents types of timeouts. </p>"
       }
     },
     "HeaderMatch": {
       "base": null,
       "refs": {
+        "GrpcMetadataMatchMethod$exact": "<p>The exact method header to be matched on.</p>",
+        "GrpcMetadataMatchMethod$prefix": "<p>The specified beginning characters of the method header to be matched on.</p>",
+        "GrpcMetadataMatchMethod$regex": "<p>The regex used to match the method header.</p>",
+        "GrpcMetadataMatchMethod$suffix": "<p>The specified ending characters of the method header to match on.</p>",
         "GrpcRouteMetadataMatchMethod$exact": "<p>The value sent by the client must match the specified value exactly.</p>",
         "GrpcRouteMetadataMatchMethod$prefix": "<p>The value sent by the client must begin with the specified characters.</p>",
         "GrpcRouteMetadataMatchMethod$regex": "<p>The value sent by the client must include the specified characters.</p>",
@@ -646,13 +715,16 @@
     "HeaderMatchMethod": {
       "base": "<p>An object that represents the method and value to match with the header value sent in a request. Specify one match method.</p>",
       "refs": {
+        "HttpGatewayRouteHeader$match": null,
         "HttpRouteHeader$match": "<p>The <code>HeaderMatchMethod</code> object.</p>"
       }
     },
     "HeaderName": {
       "base": null,
       "refs": {
+        "GrpcGatewayRouteMetadata$name": "<p>A name for the gateway route metadata.</p>",
         "GrpcRouteMetadata$name": "<p>The name of the route.</p>",
+        "HttpGatewayRouteHeader$name": "<p>A name for the HTTP header in the gateway route that will be matched on.</p>",
         "HttpRouteHeader$name": "<p>A name for the HTTP header in the client request that will be matched on.</p>"
       }
     },
@@ -700,20 +772,90 @@
         "HttpGatewayRoute$action": "<p>An object that represents the action to take if a match is determined.</p>"
       }
     },
+    "HttpGatewayRouteHeader": {
+      "base": "<p>An object that represents the HTTP header in the gateway route.</p>",
+      "refs": {
+        "HttpGatewayRouteHeaders$member": null
+      }
+    },
+    "HttpGatewayRouteHeaders": {
+      "base": null,
+      "refs": {
+        "HttpGatewayRouteMatch$headers": "<p>The client request headers to match on.</p>"
+      }
+    },
     "HttpGatewayRouteMatch": {
       "base": "<p>An object that represents the criteria for determining a request match.</p>",
       "refs": {
         "HttpGatewayRoute$match": "<p>An object that represents the criteria for determining a request match.</p>"
       }
     },
+    "HttpGatewayRoutePathRewrite": {
+      "base": "<p>An object that represents the path to rewrite.</p>",
+      "refs": {
+        "HttpGatewayRouteRewrite$path": "<p>The path to rewrite.</p>"
+      }
+    },
+    "HttpGatewayRoutePrefix": {
+      "base": null,
+      "refs": {
+        "HttpGatewayRoutePrefixRewrite$value": "<p>The value used to replace the incoming route prefix when rewritten.</p>"
+      }
+    },
+    "HttpGatewayRoutePrefixRewrite": {
+      "base": "<p>An object representing the beginning characters of the route to rewrite.</p>",
+      "refs": {
+        "HttpGatewayRouteRewrite$prefix": "<p>The specified beginning characters to rewrite.</p>"
+      }
+    },
+    "HttpGatewayRouteRewrite": {
+      "base": "<p>An object representing the gateway route to rewrite.</p>",
+      "refs": {
+        "HttpGatewayRouteAction$rewrite": "<p>The gateway route action to rewrite.</p>"
+      }
+    },
     "HttpMethod": {
       "base": null,
       "refs": {
+        "HttpGatewayRouteMatch$method": "<p>The method to match on.</p>",
         "HttpRouteMatch$method": "<p>The client request method to match on. Specify only one.</p>"
       }
     },
+    "HttpPathExact": {
+      "base": null,
+      "refs": {
+        "HttpGatewayRoutePathRewrite$exact": "<p>The exact path to rewrite.</p>",
+        "HttpPathMatch$exact": "<p>The exact path to match on.</p>"
+      }
+    },
+    "HttpPathMatch": {
+      "base": "<p>An object representing the path to match in the request.</p>",
+      "refs": {
+        "HttpGatewayRouteMatch$path": "<p>The path to match on.</p>",
+        "HttpRouteMatch$path": "<p>The client request path to match on.</p>"
+      }
+    },
+    "HttpPathRegex": {
+      "base": null,
+      "refs": {
+        "HttpPathMatch$regex": "<p>The regex used to match the path.</p>"
+      }
+    },
+    "HttpQueryParameter": {
+      "base": "<p>An object that represents the query parameter in the request.</p>",
+      "refs": {
+        "HttpQueryParameters$member": null
+      }
+    },
+    "HttpQueryParameters": {
+      "base": null,
+      "refs": {
+        "HttpGatewayRouteMatch$queryParameters": "<p>The query parameter to match on.</p>",
+        "HttpRouteMatch$queryParameters": "<p>The client request query parameters to match on.</p>"
+      }
+    },
     "HttpRetryPolicy": {
-      "base": "<p>An object that represents a retry policy. Specify at least one value for at least one of the types of <code>RetryEvents</code>, a value for <code>maxRetries</code>, and a value for <code>perRetryTimeout</code>.</p>",
+      "base": "<p>An object that represents a retry policy. Specify at least one value for at least one of the types of <code>RetryEvents</code>, a value for <code>maxRetries</code>, and a value for <code>perRetryTimeout</code>. Both <code>server-error</code> and <code>gateway-error</code> under <code>httpRetryEvents</code> include the Envoy <code>reset</code> policy. For more information on the <code>reset</code> policy, see the <a href=\"https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on\">Envoy documentation</a>.</p>",
       "refs": {
         "HttpRoute$retryPolicy": "<p>An object that represents a retry policy.</p>"
       }
@@ -753,7 +895,7 @@
     "HttpRouteHeaders": {
       "base": null,
       "refs": {
-        "HttpRouteMatch$headers": "<p>An object that represents the client request headers to match on.</p>"
+        "HttpRouteMatch$headers": "<p>The client request headers to match on.</p>"
       }
     },
     "HttpRouteMatch": {
@@ -765,7 +907,7 @@
     "HttpScheme": {
       "base": null,
       "refs": {
-        "HttpRouteMatch$scheme": "<p>The client request scheme to match on. Specify only one.</p>"
+        "HttpRouteMatch$scheme": "<p>The client request scheme to match on. Specify only one. Applicable only for HTTP2 routes.</p>"
       }
     },
     "HttpTimeout": {
@@ -941,7 +1083,7 @@
     "ListenerTlsFileCertificate": {
       "base": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites\">Transport Layer Security (TLS)</a>.</p>",
       "refs": {
-        "ClientTlsCertificate$file": null,
+        "ClientTlsCertificate$file": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">Transport Layer Security (TLS)</a>.</p>",
         "ListenerTlsCertificate$file": "<p>A reference to an object that represents a local file certificate.</p>"
       }
     },
@@ -1000,6 +1142,7 @@
     "MatchRange": {
       "base": "<p>An object that represents the range of values to match on. The first character of the range is included in the range, though the last character is not. For example, if the range specified were 1-100, only values 1-99 would be matched.</p>",
       "refs": {
+        "GrpcMetadataMatchMethod$range": null,
         "GrpcRouteMetadataMatchMethod$range": "<p>An object that represents the range of values to match on.</p>",
         "HeaderMatchMethod$range": "<p>An object that represents the range of values to match on.</p>"
       }
@@ -1140,6 +1283,18 @@
       "refs": {
         "ClientPolicyTls$ports": "<p>One or more ports that the policy is enforced for.</p>",
         "VirtualGatewayClientPolicyTls$ports": "<p>One or more ports that the policy is enforced for.</p>"
+      }
+    },
+    "QueryParameterMatch": {
+      "base": "<p>An object representing the query parameter to match.</p>",
+      "refs": {
+        "HttpQueryParameter$match": "<p>The query parameter to match on.</p>"
+      }
+    },
+    "QueryParameterName": {
+      "base": null,
+      "refs": {
+        "HttpQueryParameter$name": "<p>A name for the query parameter that will be matched on.</p>"
       }
     },
     "ResourceInUseException": {
@@ -1374,6 +1529,7 @@
         "ListVirtualServicesInput$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListVirtualServices</code> request where <code>limit</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value.</p>",
         "ListVirtualServicesOutput$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListVirtualServices</code> request. When the results of a <code>ListVirtualServices</code> request exceed <code>limit</code>, you can use this value to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "NotFoundException$message": null,
+        "QueryParameterMatch$exact": "<p>The exact query parameter to match on.</p>",
         "ResourceInUseException$message": null,
         "ResourceMetadata$uid": "<p>The unique identifier for the resource.</p>",
         "ServiceUnavailableException$message": null,
@@ -1414,6 +1570,12 @@
         "TlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a Transport Layer Security (TLS) validation context.</p>",
         "VirtualGatewayListenerTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway listener's Transport Layer Security (TLS) validation context.</p>",
         "VirtualGatewayTlsValidationContext$subjectAlternativeNames": "<p>A reference to an object that represents the SANs for a virtual gateway's listener's Transport Layer Security (TLS) validation context.</p>"
+      }
+    },
+    "SuffixHostname": {
+      "base": null,
+      "refs": {
+        "GatewayRouteHostnameMatch$suffix": "<p>The specified ending characters of the host name to match on.</p>"
       }
     },
     "TagKey": {
@@ -1531,15 +1693,15 @@
       }
     },
     "TlsValidationContextAcmTrust": {
-      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an Certificate Manager certificate.</p>",
       "refs": {
-        "TlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
+        "TlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an Certificate Manager certificate.</p>"
       }
     },
     "TlsValidationContextFileTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
       "refs": {
-        "ListenerTlsValidationContextTrust$file": null,
+        "ListenerTlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
         "TlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>"
       }
     },
@@ -1765,9 +1927,9 @@
       }
     },
     "VirtualGatewayListenerTlsAcmCertificate": {
-      "base": "<p>An object that represents an AWS Certicate Manager (ACM) certificate.</p>",
+      "base": "<p>An object that represents an Certificate Manager certificate.</p>",
       "refs": {
-        "VirtualGatewayListenerTlsCertificate$acm": "<p>A reference to an object that represents an AWS Certicate Manager (ACM) certificate.</p>"
+        "VirtualGatewayListenerTlsCertificate$acm": "<p>A reference to an object that represents an Certificate Manager certificate.</p>"
       }
     },
     "VirtualGatewayListenerTlsCertificate": {
@@ -1779,7 +1941,7 @@
     "VirtualGatewayListenerTlsFileCertificate": {
       "base": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites\">Transport Layer Security (TLS)</a>.</p>",
       "refs": {
-        "VirtualGatewayClientTlsCertificate$file": null,
+        "VirtualGatewayClientTlsCertificate$file": "<p>An object that represents a local file certificate. The certificate must meet specific requirements and you must have proxy authorization enabled. For more information, see <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\"> Transport Layer Security (TLS) </a>.</p>",
         "VirtualGatewayListenerTlsCertificate$file": "<p>A reference to an object that represents a local file certificate.</p>"
       }
     },
@@ -1790,7 +1952,7 @@
       }
     },
     "VirtualGatewayListenerTlsSdsCertificate": {
-      "base": "<p>An object that represents the virtual gateway's listener's Secret Discovery Service certificate.The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh <a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info. </p>",
+      "base": "<p>An object that represents the virtual gateway's listener's Secret Discovery Service certificate.The proxy must be configured with a local SDS provider via a Unix Domain Socket. See App Mesh<a href=\"https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html\">TLS documentation</a> for more info. </p>",
       "refs": {
         "VirtualGatewayClientTlsCertificate$sds": "<p>A reference to an object that represents a virtual gateway's client's Secret Discovery Service certificate.</p>",
         "VirtualGatewayListenerTlsCertificate$sds": "<p>A reference to an object that represents a virtual gateway's listener's Secret Discovery Service certificate.</p>"
@@ -1873,15 +2035,15 @@
       }
     },
     "VirtualGatewayTlsValidationContextAcmTrust": {
-      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>",
+      "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for an Certificate Manager certificate.</p>",
       "refs": {
-        "VirtualGatewayTlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an AWS Certicate Manager (ACM) certificate.</p>"
+        "VirtualGatewayTlsValidationContextTrust$acm": "<p>A reference to an object that represents a Transport Layer Security (TLS) validation context trust for an Certificate Manager certificate.</p>"
       }
     },
     "VirtualGatewayTlsValidationContextFileTrust": {
       "base": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
       "refs": {
-        "VirtualGatewayListenerTlsValidationContextTrust$file": null,
+        "VirtualGatewayListenerTlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>",
         "VirtualGatewayTlsValidationContextTrust$file": "<p>An object that represents a Transport Layer Security (TLS) validation context trust for a local file.</p>"
       }
     },
