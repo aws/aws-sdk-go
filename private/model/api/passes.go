@@ -478,10 +478,17 @@ func createAPIParamShape(a *API, opName string, ref *ShapeRef, shapeName string,
 	}
 
 	if s, ok := a.Shapes[shapeName]; ok {
-		panic(fmt.Sprintf(
-			"attempting to create duplicate API parameter shape, %v, %v, %v, %v\n",
-			shapeName, opName, ref.ShapeName, s.OrigShapeName,
-		))
+		// Check if an shape ending with Input is already present
+		if strings.HasSuffix(s.ShapeName, "Input") {
+			s.Rename(s.ShapeName + "_")
+		} else if strings.HasSuffix(s.ShapeName, "Output") {
+			s.Rename(s.ShapeName + "_")
+		} else {
+			panic(fmt.Sprintf(
+				"attempting to create duplicate API parameter shape, %v, %v, %v, %v\n",
+				shapeName, opName, ref.ShapeName, s.OrigShapeName,
+			))
+		}
 	}
 
 	ref.Shape.removeRef(ref)
