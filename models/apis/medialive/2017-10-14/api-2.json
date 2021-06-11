@@ -5372,9 +5372,24 @@
         "SCALED"
       ]
     },
+    "DvbSubOcrLanguage": {
+      "type": "string",
+      "enum": [
+        "DEU",
+        "ENG",
+        "FRA",
+        "NLD",
+        "POR",
+        "SPA"
+      ]
+    },
     "DvbSubSourceSettings": {
       "type": "structure",
       "members": {
+        "OcrLanguage": {
+          "shape": "DvbSubOcrLanguage",
+          "locationName": "ocrLanguage"
+        },
         "Pid": {
           "shape": "__integerMin1",
           "locationName": "pid"
@@ -7051,6 +7066,10 @@
         "RetryInterval": {
           "shape": "__integerMin0",
           "locationName": "retryInterval"
+        },
+        "Scte35Source": {
+          "shape": "HlsScte35SourceType",
+          "locationName": "scte35Source"
         }
       }
     },
@@ -7181,6 +7200,13 @@
           "locationName": "cannedAcl"
         }
       }
+    },
+    "HlsScte35SourceType": {
+      "type": "string",
+      "enum": [
+        "MANIFEST",
+        "SEGMENTS"
+      ]
     },
     "HlsSegmentationMode": {
       "type": "string",
@@ -10575,7 +10601,9 @@
       "type": "string",
       "enum": [
         "ADVANCED_AUDIO",
-        "AUDIO_NORMALIZATION"
+        "AUDIO_NORMALIZATION",
+        "MGHD",
+        "MGUHD"
       ]
     },
     "ReservationState": {
@@ -10855,9 +10883,24 @@
       "members": {
       }
     },
+    "Scte27OcrLanguage": {
+      "type": "string",
+      "enum": [
+        "DEU",
+        "ENG",
+        "FRA",
+        "NLD",
+        "POR",
+        "SPA"
+      ]
+    },
     "Scte27SourceSettings": {
       "type": "structure",
       "members": {
+        "OcrLanguage": {
+          "shape": "Scte27OcrLanguage",
+          "locationName": "ocrLanguage"
+        },
         "Pid": {
           "shape": "__integerMin1",
           "locationName": "pid"
@@ -11766,10 +11809,6 @@
         "TargetCustomerId": {
           "shape": "__string",
           "locationName": "targetCustomerId"
-        },
-        "TargetRegion": {
-          "shape": "__string",
-          "locationName": "targetRegion"
         },
         "TransferType": {
           "shape": "InputDeviceTransferType",

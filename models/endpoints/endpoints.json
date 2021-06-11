@@ -1478,6 +1478,7 @@
             },
             "hostname" : "cognito-identity-fips.us-west-2.amazonaws.com"
           },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -1522,6 +1523,7 @@
             },
             "hostname" : "cognito-idp-fips.us-west-2.amazonaws.com"
           },
+          "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -6929,6 +6931,12 @@
             },
             "hostname" : "waf-regional.ap-northeast-2.amazonaws.com"
           },
+          "ap-northeast-3" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-3"
+            },
+            "hostname" : "waf-regional.ap-northeast-3.amazonaws.com"
+          },
           "ap-south-1" : {
             "credentialScope" : {
               "region" : "ap-south-1"
@@ -7012,6 +7020,12 @@
               "region" : "ap-northeast-2"
             },
             "hostname" : "waf-regional-fips.ap-northeast-2.amazonaws.com"
+          },
+          "fips-ap-northeast-3" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-3"
+            },
+            "hostname" : "waf-regional-fips.ap-northeast-3.amazonaws.com"
           },
           "fips-ap-south-1" : {
             "credentialScope" : {
@@ -8051,6 +8065,40 @@
               "region" : "cn-northwest-1"
             },
             "hostname" : "cn.transcribe.cn-northwest-1.amazonaws.com.cn"
+          }
+        }
+      },
+      "transfer" : {
+        "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
+        }
+      },
+      "waf-regional" : {
+        "endpoints" : {
+          "cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "waf-regional.cn-north-1.amazonaws.com.cn"
+          },
+          "cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "waf-regional.cn-northwest-1.amazonaws.com.cn"
+          },
+          "fips-cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "waf-regional-fips.cn-north-1.amazonaws.com.cn"
+          },
+          "fips-cn-northwest-1" : {
+            "credentialScope" : {
+              "region" : "cn-northwest-1"
+            },
+            "hostname" : "waf-regional-fips.cn-northwest-1.amazonaws.com.cn"
           }
         }
       },
