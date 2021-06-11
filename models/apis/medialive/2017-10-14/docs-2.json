@@ -746,6 +746,12 @@
         "DvbSubDestinationSettings$TeletextGridControl": "Controls whether a fixed grid size will be used to generate the output subtitles bitmap. Only applicable for Teletext inputs and DVB-Sub/Burn-in outputs."
       }
     },
+    "DvbSubOcrLanguage": {
+      "base": "Dvb Sub Ocr Language",
+      "refs": {
+        "DvbSubSourceSettings$OcrLanguage": "If you will configure a WebVTT caption description that references this caption selector, use this field to\nprovide the language to consider when translating the image-based source to text."
+      }
+    },
     "DvbSubSourceSettings": {
       "base": "Dvb Sub Source Settings",
       "refs": {
@@ -1502,6 +1508,12 @@
       "base": "Hls S3 Settings",
       "refs": {
         "HlsCdnSettings$HlsS3Settings": null
+      }
+    },
+    "HlsScte35SourceType": {
+      "base": "Hls Scte35 Source Type",
+      "refs": {
+        "HlsInputSettings$Scte35Source": "Identifies the source for the SCTE-35 messages that MediaLive will ingest. Messages can be ingested from the content segments (in the stream) or from tags in the playlist (the HLS manifest). MediaLive ignores SCTE-35 information in the source that is not selected."
       }
     },
     "HlsSegmentationMode": {
@@ -2661,7 +2673,7 @@
       }
     },
     "ReservationSpecialFeature": {
-      "base": "Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'",
+      "base": "Special features, 'ADVANCED_AUDIO' 'AUDIO_NORMALIZATION' 'MGHD' or 'MGUHD'",
       "refs": {
         "ReservationResourceSpecification$SpecialFeature": "Special feature, e.g. 'AUDIO_NORMALIZATION' (Channels only)"
       }
@@ -2788,6 +2800,12 @@
       "base": "Scte27 Destination Settings",
       "refs": {
         "CaptionDestinationSettings$Scte27DestinationSettings": null
+      }
+    },
+    "Scte27OcrLanguage": {
+      "base": "Scte27 Ocr Language",
+      "refs": {
+        "Scte27SourceSettings$OcrLanguage": "If you will configure a WebVTT caption description that references this caption selector, use this field to\nprovide the language to consider when translating the image-based source to text."
       }
     },
     "Scte27SourceSettings": {

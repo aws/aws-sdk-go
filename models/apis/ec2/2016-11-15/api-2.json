@@ -2616,6 +2616,15 @@
       "input":{"shape":"DisableFastSnapshotRestoresRequest"},
       "output":{"shape":"DisableFastSnapshotRestoresResult"}
     },
+    "DisableImageDeprecation":{
+      "name":"DisableImageDeprecation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableImageDeprecationRequest"},
+      "output":{"shape":"DisableImageDeprecationResult"}
+    },
     "DisableSerialConsoleAccess":{
       "name":"DisableSerialConsoleAccess",
       "http":{
@@ -2756,6 +2765,15 @@
       },
       "input":{"shape":"EnableFastSnapshotRestoresRequest"},
       "output":{"shape":"EnableFastSnapshotRestoresResult"}
+    },
+    "EnableImageDeprecation":{
+      "name":"EnableImageDeprecation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableImageDeprecationRequest"},
+      "output":{"shape":"EnableImageDeprecationResult"}
     },
     "EnableSerialConsoleAccess":{
       "name":"EnableSerialConsoleAccess",
@@ -11824,6 +11842,7 @@
           "shape":"OwnerStringList",
           "locationName":"Owner"
         },
+        "IncludeDeprecated":{"shape":"Boolean"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
@@ -14836,6 +14855,23 @@
         }
       }
     },
+    "DisableImageDeprecationRequest":{
+      "type":"structure",
+      "required":["ImageId"],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisableImageDeprecationResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "DisableSerialConsoleAccessRequest":{
       "type":"structure",
       "members":{
@@ -15781,6 +15817,27 @@
         "Unsuccessful":{
           "shape":"EnableFastSnapshotRestoreErrorSet",
           "locationName":"unsuccessful"
+        }
+      }
+    },
+    "EnableImageDeprecationRequest":{
+      "type":"structure",
+      "required":[
+        "ImageId",
+        "DeprecateAt"
+      ],
+      "members":{
+        "ImageId":{"shape":"ImageId"},
+        "DeprecateAt":{"shape":"MillisecondDateTime"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "EnableImageDeprecationResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
         }
       }
     },
@@ -18437,6 +18494,10 @@
         "BootMode":{
           "shape":"BootModeValues",
           "locationName":"bootMode"
+        },
+        "DeprecationTime":{
+          "shape":"String",
+          "locationName":"deprecationTime"
         }
       }
     },

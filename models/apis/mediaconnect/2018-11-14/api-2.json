@@ -1617,15 +1617,30 @@
     "FailoverConfig": {
       "type": "structure",
       "members": {
+        "FailoverMode": {
+          "shape": "FailoverMode",
+          "locationName": "failoverMode"
+        },
         "RecoveryWindow": {
           "shape": "__integer",
           "locationName": "recoveryWindow"
+        },
+        "SourcePriority": {
+          "shape": "SourcePriority",
+          "locationName": "sourcePriority"
         },
         "State": {
           "shape": "State",
           "locationName": "state"
         }
       }
+    },
+    "FailoverMode": {
+      "type": "string",
+      "enum": [
+        "MERGE",
+        "FAILOVER"
+      ]
     },
     "Flow": {
       "type": "structure",
@@ -2934,6 +2949,15 @@
         "Name"
       ]
     },
+    "SourcePriority": {
+      "type": "structure",
+      "members": {
+        "PrimarySource": {
+          "shape": "__string",
+          "locationName": "primarySource"
+        }
+      }
+    },
     "SourceType": {
       "type": "string",
       "enum": [
@@ -3167,9 +3191,17 @@
     "UpdateFailoverConfig": {
       "type": "structure",
       "members": {
+        "FailoverMode": {
+          "shape": "FailoverMode",
+          "locationName": "failoverMode"
+        },
         "RecoveryWindow": {
           "shape": "__integer",
           "locationName": "recoveryWindow"
+        },
+        "SourcePriority": {
+          "shape": "SourcePriority",
+          "locationName": "sourcePriority"
         },
         "State": {
           "shape": "State",

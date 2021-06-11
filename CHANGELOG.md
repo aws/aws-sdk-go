@@ -1,3 +1,13 @@
+Release v1.38.60 (2021-06-11)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Amazon EC2 adds new AMI property to flag outdated AMIs
+* `service/mediaconnect`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * AWS MediaLive now supports OCR-based conversion of DVB-Sub and SCTE-27 image-based source captions to WebVTT, and supports ingest of ad avail decorations in HLS input manifests.
+
 Release v1.38.59 (2021-06-10)
 ===
 

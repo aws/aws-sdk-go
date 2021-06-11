@@ -12710,6 +12710,11 @@ func (s *DvbSubDestinationSettings) SetYPosition(v int64) *DvbSubDestinationSett
 type DvbSubSourceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// If you will configure a WebVTT caption description that references this caption
+	// selector, use this field toprovide the language to consider when translating
+	// the image-based source to text.
+	OcrLanguage *string `locationName:"ocrLanguage" type:"string" enum:"DvbSubOcrLanguage"`
+
 	// When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source
 	// content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through,
 	// regardless of selectors.
@@ -12737,6 +12742,12 @@ func (s *DvbSubSourceSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOcrLanguage sets the OcrLanguage field's value.
+func (s *DvbSubSourceSettings) SetOcrLanguage(v string) *DvbSubSourceSettings {
+	s.OcrLanguage = &v
+	return s
 }
 
 // SetPid sets the Pid field's value.
@@ -15998,6 +16009,12 @@ type HlsInputSettings struct {
 	// The number of seconds between retries when an attempt to read a manifest
 	// or segment fails.
 	RetryInterval *int64 `locationName:"retryInterval" type:"integer"`
+
+	// Identifies the source for the SCTE-35 messages that MediaLive will ingest.
+	// Messages can be ingested from the content segments (in the stream) or from
+	// tags in the playlist (the HLS manifest). MediaLive ignores SCTE-35 information
+	// in the source that is not selected.
+	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"HlsScte35SourceType"`
 }
 
 // String returns the string representation
@@ -16031,6 +16048,12 @@ func (s *HlsInputSettings) SetRetries(v int64) *HlsInputSettings {
 // SetRetryInterval sets the RetryInterval field's value.
 func (s *HlsInputSettings) SetRetryInterval(v int64) *HlsInputSettings {
 	s.RetryInterval = &v
+	return s
+}
+
+// SetScte35Source sets the Scte35Source field's value.
+func (s *HlsInputSettings) SetScte35Source(v string) *HlsInputSettings {
+	s.Scte35Source = &v
 	return s
 }
 
@@ -23701,6 +23724,11 @@ func (s Scte27DestinationSettings) GoString() string {
 type Scte27SourceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// If you will configure a WebVTT caption description that references this caption
+	// selector, use this field toprovide the language to consider when translating
+	// the image-based source to text.
+	OcrLanguage *string `locationName:"ocrLanguage" type:"string" enum:"Scte27OcrLanguage"`
+
 	// The pid field is used in conjunction with the caption selector languageCode
 	// field as follows: - Specify PID and Language: Extracts captions from that
 	// PID; the language is "informational". - Specify PID and omit Language: Extracts
@@ -23732,6 +23760,12 @@ func (s *Scte27SourceSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOcrLanguage sets the OcrLanguage field's value.
+func (s *Scte27SourceSettings) SetOcrLanguage(v string) *Scte27SourceSettings {
+	s.OcrLanguage = &v
+	return s
 }
 
 // SetPid sets the Pid field's value.
@@ -25660,8 +25694,6 @@ type TransferringInputDeviceSummary struct {
 	// The AWS account ID for the recipient of the input device transfer.
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
-	TargetRegion *string `locationName:"targetRegion" type:"string"`
-
 	// The type (direction) of the input device transfer.
 	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
 }
@@ -25691,12 +25723,6 @@ func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInput
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
 	s.TargetCustomerId = &v
-	return s
-}
-
-// SetTargetRegion sets the TargetRegion field's value.
-func (s *TransferringInputDeviceSummary) SetTargetRegion(v string) *TransferringInputDeviceSummary {
-	s.TargetRegion = &v
 	return s
 }
 
@@ -28441,6 +28467,39 @@ func DvbSubDestinationTeletextGridControl_Values() []string {
 	}
 }
 
+// Dvb Sub Ocr Language
+const (
+	// DvbSubOcrLanguageDeu is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageDeu = "DEU"
+
+	// DvbSubOcrLanguageEng is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageEng = "ENG"
+
+	// DvbSubOcrLanguageFra is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageFra = "FRA"
+
+	// DvbSubOcrLanguageNld is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageNld = "NLD"
+
+	// DvbSubOcrLanguagePor is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguagePor = "POR"
+
+	// DvbSubOcrLanguageSpa is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageSpa = "SPA"
+)
+
+// DvbSubOcrLanguage_Values returns all elements of the DvbSubOcrLanguage enum
+func DvbSubOcrLanguage_Values() []string {
+	return []string{
+		DvbSubOcrLanguageDeu,
+		DvbSubOcrLanguageEng,
+		DvbSubOcrLanguageFra,
+		DvbSubOcrLanguageNld,
+		DvbSubOcrLanguagePor,
+		DvbSubOcrLanguageSpa,
+	}
+}
+
 // Eac3 Attenuation Control
 const (
 	// Eac3AttenuationControlAttenuate3Db is a Eac3AttenuationControl enum value
@@ -30144,6 +30203,23 @@ func HlsRedundantManifest_Values() []string {
 	}
 }
 
+// Hls Scte35 Source Type
+const (
+	// HlsScte35SourceTypeManifest is a HlsScte35SourceType enum value
+	HlsScte35SourceTypeManifest = "MANIFEST"
+
+	// HlsScte35SourceTypeSegments is a HlsScte35SourceType enum value
+	HlsScte35SourceTypeSegments = "SEGMENTS"
+)
+
+// HlsScte35SourceType_Values returns all elements of the HlsScte35SourceType enum
+func HlsScte35SourceType_Values() []string {
+	return []string{
+		HlsScte35SourceTypeManifest,
+		HlsScte35SourceTypeSegments,
+	}
+}
+
 // Hls Segmentation Mode
 const (
 	// HlsSegmentationModeUseInputSegmentation is a HlsSegmentationMode enum value
@@ -31714,13 +31790,19 @@ func ReservationResourceType_Values() []string {
 	}
 }
 
-// Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'
+// Special features, 'ADVANCED_AUDIO' 'AUDIO_NORMALIZATION' 'MGHD' or 'MGUHD'
 const (
 	// ReservationSpecialFeatureAdvancedAudio is a ReservationSpecialFeature enum value
 	ReservationSpecialFeatureAdvancedAudio = "ADVANCED_AUDIO"
 
 	// ReservationSpecialFeatureAudioNormalization is a ReservationSpecialFeature enum value
 	ReservationSpecialFeatureAudioNormalization = "AUDIO_NORMALIZATION"
+
+	// ReservationSpecialFeatureMghd is a ReservationSpecialFeature enum value
+	ReservationSpecialFeatureMghd = "MGHD"
+
+	// ReservationSpecialFeatureMguhd is a ReservationSpecialFeature enum value
+	ReservationSpecialFeatureMguhd = "MGUHD"
 )
 
 // ReservationSpecialFeature_Values returns all elements of the ReservationSpecialFeature enum
@@ -31728,6 +31810,8 @@ func ReservationSpecialFeature_Values() []string {
 	return []string{
 		ReservationSpecialFeatureAdvancedAudio,
 		ReservationSpecialFeatureAudioNormalization,
+		ReservationSpecialFeatureMghd,
+		ReservationSpecialFeatureMguhd,
 	}
 }
 
@@ -31884,6 +31968,39 @@ func Scte20Convert608To708_Values() []string {
 	return []string{
 		Scte20Convert608To708Disabled,
 		Scte20Convert608To708Upconvert,
+	}
+}
+
+// Scte27 Ocr Language
+const (
+	// Scte27OcrLanguageDeu is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageDeu = "DEU"
+
+	// Scte27OcrLanguageEng is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageEng = "ENG"
+
+	// Scte27OcrLanguageFra is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageFra = "FRA"
+
+	// Scte27OcrLanguageNld is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageNld = "NLD"
+
+	// Scte27OcrLanguagePor is a Scte27OcrLanguage enum value
+	Scte27OcrLanguagePor = "POR"
+
+	// Scte27OcrLanguageSpa is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageSpa = "SPA"
+)
+
+// Scte27OcrLanguage_Values returns all elements of the Scte27OcrLanguage enum
+func Scte27OcrLanguage_Values() []string {
+	return []string{
+		Scte27OcrLanguageDeu,
+		Scte27OcrLanguageEng,
+		Scte27OcrLanguageFra,
+		Scte27OcrLanguageNld,
+		Scte27OcrLanguagePor,
+		Scte27OcrLanguageSpa,
 	}
 }
 
