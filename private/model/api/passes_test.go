@@ -612,6 +612,78 @@ func TestCreateInputOutputShapes(t *testing.T) {
 				"FirstOpInput", "FirstOpOutput",
 			},
 		},
+		"MemberShapesWithInputAsSuffix": {
+			API: &API{
+				name:     "APIClientName",
+				Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						InputRef: ShapeRef{ShapeName: "FirstOpRequest"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpRequest": {ShapeName: "FirstOpRequest", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "APIClientName"},
+							"ooF": {ShapeName: "FirstOpInput"},
+						},
+					},
+					"APIClientName": {
+						ShapeName: "APIClientName", Type: "structure",
+					},
+					"FirstOpInput": {
+						ShapeName: "FirstOpInput", Type: "list",
+						MemberRef: ShapeRef{ShapeName: "APIClientName"},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"APIClientName_", "FirstOpInput",
+				"FirstOpInput_", "FirstOpOutput",
+			},
+		},
+		"MemberShapesWithOutputAsSuffix": {
+			API: &API{
+				name:     "APIClientName",
+				Metadata: meta,
+				Operations: map[string]*Operation{
+					"FirstOp": {Name: "FirstOp",
+						OutputRef: ShapeRef{ShapeName: "FirstOpResponse"},
+					},
+				},
+				Shapes: map[string]*Shape{
+					"FirstOpResponse": {ShapeName: "FirstOpResponse", Type: "structure",
+						MemberRefs: map[string]*ShapeRef{
+							"Foo": {ShapeName: "APIClientName"},
+							"ooF": {ShapeName: "FirstOpOutput"},
+						},
+					},
+					"APIClientName": {
+						ShapeName: "APIClientName", Type: "structure",
+					},
+					"FirstOpOutput": {
+						ShapeName: "FirstOpOutput", Type: "list",
+						MemberRef: ShapeRef{ShapeName: "APIClientName"},
+					},
+				},
+			},
+			ExpectOps: map[string]OpExpect{
+				"FirstOp": {
+					Input:  "FirstOpInput",
+					Output: "FirstOpOutput",
+				},
+			},
+			ExpectShapes: []string{
+				"APIClientName_", "FirstOpInput",
+				"FirstOpOutput", "FirstOpOutput_",
+			},
+		},
 	}
 
 	for name, c := range cases {
