@@ -1680,7 +1680,7 @@ func resolvePackageServiceByContext(packageName string, region string, ctx *plug
 	return resolvePackage(parameters)
 }
 
-func resolvePackageServiceByCredentials(packageName string, region string, awsCredentials map[string] interface{}) (interface{}, error) {
+func resolvePackageServiceByCredentials(packageName string, region string, awsCredentials map[string]interface{}) (interface{}, error) {
 	awsSession, err := createAWSSessionByCredentials(region, awsCredentials)
 	if err != nil {
 		return nil, err
@@ -1789,9 +1789,10 @@ func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.Exe
 }
 
 func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.ConnectionInstance) (*plugin.CredentialsValidationResponse, error) {
+
 	log.Debugf("Requested to test credentials: \n %v", credentialsMap)
+
 	for _, connInstance := range credentialsMap {
-		log.Debugf("Trying to resolved credentials...")
 		awsCredentials, err := connInstance.ResolveCredentials()
 		if err != nil {
 			return &plugin.CredentialsValidationResponse{
@@ -1800,15 +1801,10 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, err
 		}
 
-		awsActionParameters := map[string]interface{} {
-			"attribute":      "",
-			"dryRun":         true,
-			"instanceId":     "",
-		}
-
+		awsActionParameters := map[string]interface{}{}
 		populateDefaultParameters(awsActionParameters)
 
-		if err := appendServiceToParametersByCredentials("ec2", awsCredentials, awsActionParameters); err != nil {
+		if err := appendServiceToParametersByCredentials("sts", awsCredentials, awsActionParameters); err != nil {
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
 				RawValidationResponse: []byte(err.Error()),
@@ -1816,8 +1812,9 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 		}
 
 		log.Debugf("Executing AWS request using credentials...")
-		output, err := ec2.ExecuteDescribeInstanceAttribute(awsActionParameters)
-		if err == nil {
+
+		output, err := sts.ExecuteGetCallerIdentity(awsActionParameters)
+		if err != nil {
 			log.Debugf("failed on credentials validation, got: %v", output)
 			return &plugin.CredentialsValidationResponse{
 				AreCredentialsValid:   false,
@@ -1825,10 +1822,7 @@ func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.Connec
 			}, fmt.Errorf("failed on credentials validation, got: %v", output)
 		}
 
-		if strings.Contains(err.Error(), "Request would have succeeded") {
-			log.Debugf("Credentials are valid, continue to the next instnace")
-			continue
-		}
+		log.Debugf("Credentials are valid, continue to the next instnace")
 	}
 
 	log.Debugf("All credentials are valid...")
@@ -1843,6 +1837,7 @@ func NewAWSPlugin(rootPluginDirectory string) (*AWSPlugin, error) {
 	pluginConfig := config.GetConfig()
 
 	actionFolderPath := path.Join(rootPluginDirectory, pluginConfig.Plugin.ActionsFolderPath)
+
 	logrus.Info("Loading actions from folder: ", actionFolderPath)
 	actionsFromDisk, err := actions.LoadActionsFromDisk(actionFolderPath)
 	if err != nil {
