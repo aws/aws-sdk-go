@@ -2,6 +2,8 @@
   "version": "2.0",
   "service": "<p>AWS IoT Greengrass brings local compute, messaging, data management, sync, and ML inference capabilities to edge devices. This enables devices to collect and analyze data closer to the source of information, react autonomously to local events, and communicate securely with each other on local networks. Local devices can also communicate securely with AWS IoT Core and export IoT data to the AWS Cloud. AWS IoT Greengrass developers can use AWS Lambda functions and components to create and deploy applications to fleets of edge devices for local operation.</p> <p>AWS IoT Greengrass Version 2 provides a new major version of the AWS IoT Greengrass Core software, new APIs, and a new console. Use this API reference to learn how to use the AWS IoT Greengrass V2 API operations to manage components, manage deployments, and core devices.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/what-is-iot-greengrass.html\">What is AWS IoT Greengrass?</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.</p>",
   "operations": {
+    "BatchAssociateClientDeviceWithCoreDevice": "<p>Associate a list of client devices with a core device. Use this API operation to specify which client devices can discover a core device through cloud discovery. With cloud discovery, client devices connect to AWS IoT Greengrass to retrieve associated core devices' connectivity information and certificates. For more information, see <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-cloud-discovery.html\">Configure cloud discovery</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.</p> <note> <p>Client devices are local IoT devices that connect to and communicate with an AWS IoT Greengrass core device over MQTT. You can connect client devices to a core device to sync MQTT messages and data to AWS IoT Core and interact with client devices in AWS IoT Greengrass components. For more information, see <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/interact-with-local-iot-devices.html\">Interact with local IoT devices</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.</p> </note>",
+    "BatchDisassociateClientDeviceFromCoreDevice": "<p>Disassociate a list of client devices from a core device. After you disassociate a client device from a core device, the client device won't be able to use cloud discovery to retrieve the core device's connectivity information and certificates.</p>",
     "CancelDeployment": "<p>Cancels a deployment. This operation cancels the deployment for devices that haven't yet received it. If a device already received the deployment, this operation doesn't change anything for that device.</p>",
     "CreateComponentVersion": "<p>Creates a component. Components are software that run on AWS IoT Greengrass core devices. After you develop and test a component on your core device, you can use this operation to upload your component to AWS IoT Greengrass. Then, you can deploy the component to other core devices.</p> <p>You can use this operation to do the following:</p> <ul> <li> <p> <b>Create components from recipes</b> </p> <p>Create a component from a recipe, which is a file that defines the component's metadata, parameters, dependencies, lifecycle, artifacts, and platform capability. For more information, see <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/component-recipe-reference.html\">AWS IoT Greengrass component recipe reference</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.</p> <p>To create a component from a recipe, specify <code>inlineRecipe</code> when you call this operation.</p> </li> <li> <p> <b>Create components from Lambda functions</b> </p> <p>Create a component from an AWS Lambda function that runs on AWS IoT Greengrass. This creates a recipe and artifacts from the Lambda function's deployment package. You can use this operation to migrate Lambda functions from AWS IoT Greengrass V1 to AWS IoT Greengrass V2.</p> <p>This function only accepts Lambda functions that use the following runtimes:</p> <ul> <li> <p>Python 2.7 – <code>python2.7</code> </p> </li> <li> <p>Python 3.7 – <code>python3.7</code> </p> </li> <li> <p>Python 3.8 – <code>python3.8</code> </p> </li> <li> <p>Java 8 – <code>java8</code> </p> </li> <li> <p>Node.js 10 – <code>nodejs10.x</code> </p> </li> <li> <p>Node.js 12 – <code>nodejs12.x</code> </p> </li> </ul> <p>To create a component from a Lambda function, specify <code>lambdaFunction</code> when you call this operation.</p> </li> </ul>",
     "CreateDeployment": "<p>Creates a continuous deployment for a target, which is a AWS IoT Greengrass core device or group of core devices. When you add a new core device to a group of core devices that has a deployment, AWS IoT Greengrass deploys that group's deployment to the new device.</p> <p>You can define one deployment for each target. When you create a new deployment for a target that has an existing deployment, you replace the previous deployment. AWS IoT Greengrass applies the new deployment to the target devices.</p> <p>Every deployment has a revision number that indicates how many deployment revisions you define for a target. Use this operation to create a new revision of an existing deployment. This operation returns the revision number of the new deployment when you create it.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html\">Create deployments</a> in the <i>AWS IoT Greengrass V2 Developer Guide</i>.</p>",
@@ -12,7 +14,8 @@
     "GetComponentVersionArtifact": "<p>Gets the pre-signed URL to download a public component artifact. Core devices call this operation to identify the URL that they can use to download an artifact to install.</p>",
     "GetCoreDevice": "<p>Retrieves metadata for a AWS IoT Greengrass core device.</p>",
     "GetDeployment": "<p>Gets a deployment. Deployments define the components that run on AWS IoT Greengrass core devices.</p>",
-    "ListComponentVersions": "<p>Retrieves a paginated list of all versions for a component.</p>",
+    "ListClientDevicesAssociatedWithCoreDevice": "<p>Retrieves a paginated list of client devices that are associated with a core device.</p>",
+    "ListComponentVersions": "<p>Retrieves a paginated list of all versions for a component. Greater versions are listed first.</p>",
     "ListComponents": "<p>Retrieves a paginated list of component summaries. This list includes components that you have permission to view.</p>",
     "ListCoreDevices": "<p>Retrieves a paginated list of AWS IoT Greengrass core devices.</p>",
     "ListDeployments": "<p>Retrieves a paginated list of deployments.</p>",
@@ -26,6 +29,62 @@
   "shapes": {
     "AccessDeniedException": {
       "base": "<p>You don't have permission to perform the action.</p>",
+      "refs": {
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceEntry": {
+      "base": "<p>Contains a request to associate a client device with a core device. The <a href=\"https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html\">BatchAssociateClientDeviceWithCoreDevice</a> operation consumes a list of these requests.</p>",
+      "refs": {
+        "AssociateClientDeviceWithCoreDeviceEntryList$member": null
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceEntryList": {
+      "base": null,
+      "refs": {
+        "BatchAssociateClientDeviceWithCoreDeviceRequest$entries": "<p>The list of client devices to associate.</p>"
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceErrorEntry": {
+      "base": "<p>Contains an error that occurs from a request to associate a client device with a core device. The <a href=\"https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html\">BatchAssociateClientDeviceWithCoreDevice</a> operation returns a list of these errors.</p>",
+      "refs": {
+        "AssociateClientDeviceWithCoreDeviceErrorList$member": null
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceErrorList": {
+      "base": null,
+      "refs": {
+        "BatchAssociateClientDeviceWithCoreDeviceResponse$errorEntries": "<p>The list of any errors for the entries in the request. Each error entry contains the name of the AWS IoT thing that failed to associate.</p>"
+      }
+    },
+    "AssociatedClientDevice": {
+      "base": "<p>Contains information about a client device that is associated to a core device for cloud discovery.</p>",
+      "refs": {
+        "AssociatedClientDeviceList$member": null
+      }
+    },
+    "AssociatedClientDeviceList": {
+      "base": null,
+      "refs": {
+        "ListClientDevicesAssociatedWithCoreDeviceResponse$associatedClientDevices": "<p>A list that describes the client devices that are associated with the core device.</p>"
+      }
+    },
+    "BatchAssociateClientDeviceWithCoreDeviceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchAssociateClientDeviceWithCoreDeviceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateClientDeviceFromCoreDeviceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDisassociateClientDeviceFromCoreDeviceResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -300,6 +359,7 @@
     "DefaultMaxResults": {
       "base": null,
       "refs": {
+        "ListClientDevicesAssociatedWithCoreDeviceRequest$maxResults": "<p>The maximum number of results to be returned per paginated request.</p>",
         "ListComponentVersionsRequest$maxResults": "<p>The maximum number of results to be returned per paginated request.</p>",
         "ListComponentsRequest$maxResults": "<p>The maximum number of results to be returned per paginated request.</p>",
         "ListCoreDevicesRequest$maxResults": "<p>The maximum number of results to be returned per paginated request.</p>",
@@ -413,6 +473,30 @@
       "base": null,
       "refs": {
         "DescribeComponentResponse$description": "<p>The description of the component version.</p>"
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceEntry": {
+      "base": "<p>Contains a request to disassociate a client device from a core device. The <a href=\"https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html\">BatchDisassociateClientDeviceWithCoreDevice</a> operation consumes a list of these requests.</p>",
+      "refs": {
+        "DisassociateClientDeviceFromCoreDeviceEntryList$member": null
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceEntryList": {
+      "base": null,
+      "refs": {
+        "BatchDisassociateClientDeviceFromCoreDeviceRequest$entries": "<p>The list of client devices to disassociate.</p>"
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceErrorEntry": {
+      "base": "<p>Contains an error that occurs from a request to disassociate a client device from a core device. The <a href=\"https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html\">BatchDisassociateClientDeviceWithCoreDevice</a> operation returns a list of these errors.</p>",
+      "refs": {
+        "DisassociateClientDeviceFromCoreDeviceErrorList$member": null
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceErrorList": {
+      "base": null,
+      "refs": {
+        "BatchDisassociateClientDeviceFromCoreDeviceResponse$errorEntries": "<p>The list of errors (if any) for the entries in the request. Each error entry contains the name of the AWS IoT thing that failed to disassociate.</p>"
       }
     },
     "EffectiveDeployment": {
@@ -629,6 +713,19 @@
         "DeploymentIoTJobConfiguration$timeoutConfig": "<p>The timeout configuration for the job. This configuration defines the amount of time each device has to complete the job.</p>"
       }
     },
+    "IoTThingName": {
+      "base": null,
+      "refs": {
+        "AssociateClientDeviceWithCoreDeviceEntry$thingName": "<p>The name of the AWS IoT thing that represents the client device to associate.</p>",
+        "AssociateClientDeviceWithCoreDeviceErrorEntry$thingName": "<p>The name of the AWS IoT thing whose associate request failed.</p>",
+        "AssociatedClientDevice$thingName": "<p>The name of the AWS IoT thing that represents the associated client device.</p>",
+        "BatchAssociateClientDeviceWithCoreDeviceRequest$coreDeviceThingName": "<p>The name of the core device. This is also the name of the AWS IoT thing.</p>",
+        "BatchDisassociateClientDeviceFromCoreDeviceRequest$coreDeviceThingName": "<p>The name of the core device. This is also the name of the AWS IoT thing.</p>",
+        "DisassociateClientDeviceFromCoreDeviceEntry$thingName": "<p>The name of the AWS IoT thing that represents the client device to disassociate.</p>",
+        "DisassociateClientDeviceFromCoreDeviceErrorEntry$thingName": "<p>The name of the AWS IoT thing whose disassociate request failed.</p>",
+        "ListClientDevicesAssociatedWithCoreDeviceRequest$coreDeviceThingName": "<p>The name of the core device. This is also the name of the AWS IoT thing.</p>"
+      }
+    },
     "IsLatestForTarget": {
       "base": null,
       "refs": {
@@ -757,6 +854,16 @@
         "InstalledComponent$lifecycleStateDetails": "<p>The details about the lifecycle state of the component.</p>"
       }
     },
+    "ListClientDevicesAssociatedWithCoreDeviceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListClientDevicesAssociatedWithCoreDeviceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListComponentVersionsRequest": {
       "base": null,
       "refs": {
@@ -830,6 +937,8 @@
     "NextTokenString": {
       "base": null,
       "refs": {
+        "ListClientDevicesAssociatedWithCoreDeviceRequest$nextToken": "<p>The token to be used for the next set of paginated results.</p>",
+        "ListClientDevicesAssociatedWithCoreDeviceResponse$nextToken": "<p>The token for the next set of results, or null if there are no additional results.</p>",
         "ListComponentVersionsRequest$nextToken": "<p>The token to be used for the next set of paginated results.</p>",
         "ListComponentVersionsResponse$nextToken": "<p>The token for the next set of results, or null if there are no additional results.</p>",
         "ListComponentsRequest$nextToken": "<p>The token to be used for the next set of paginated results.</p>",
@@ -847,6 +956,8 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "AssociateClientDeviceWithCoreDeviceErrorEntry$code": "<p>The error code for the request.</p>",
+        "AssociateClientDeviceWithCoreDeviceErrorEntry$message": "<p>A message that provides additional information about the error.</p>",
         "CancelDeploymentRequest$deploymentId": "<p>The ID of the deployment.</p>",
         "CancelDeploymentResponse$message": "<p>A message that communicates if the cancel was successful.</p>",
         "CloudComponentStatus$message": "<p>A message that communicates details, such as errors, about the status of the component.</p>",
@@ -866,6 +977,8 @@
         "Deployment$revisionId": "<p>The revision number of the deployment.</p>",
         "Deployment$deploymentId": "<p>The ID of the deployment.</p>",
         "Deployment$deploymentName": "<p>The name of the deployment.</p> <p>You can create deployments without names. If you create a deployment without a name, the AWS IoT Greengrass V2 console shows the deployment name as <code>&lt;targetType&gt;:&lt;targetName&gt;</code>, where <code>targetType</code> and <code>targetName</code> are the type and name of the deployment target.</p>",
+        "DisassociateClientDeviceFromCoreDeviceErrorEntry$code": "<p>The error code for the request.</p>",
+        "DisassociateClientDeviceFromCoreDeviceErrorEntry$message": "<p>A message that provides additional information about the error.</p>",
         "GetComponentVersionArtifactRequest$artifactName": "<p>The name of the artifact.</p> <p>You can use the <a href=\"https://docs.aws.amazon.com/greengrass/v2/APIReference/API_GetComponent.html\">GetComponent</a> operation to download the component recipe, which includes the URI of the artifact. The artifact name is the section of the URI after the scheme. For example, in the artifact URI <code>greengrass:SomeArtifact.zip</code>, the artifact name is <code>SomeArtifact.zip</code>.</p>",
         "GetComponentVersionArtifactResponse$preSignedUrl": "<p>The URL of the artifact.</p>",
         "GetDeploymentRequest$deploymentId": "<p>The ID of the deployment.</p>",
@@ -1076,6 +1189,7 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "AssociatedClientDevice$associationTimestamp": "<p>The time that the client device was associated, expressed in ISO 8601 format.</p>",
         "ComponentLatestVersion$creationTimestamp": "<p>The time at which the component was created, expressed in ISO 8601 format.</p>",
         "CoreDevice$lastStatusUpdateTimestamp": "<p>The time at which the core device's status last updated, expressed in ISO 8601 format.</p>",
         "CreateComponentVersionResponse$creationTimestamp": "<p>The time at which the component was created, expressed in ISO 8601 format.</p>",

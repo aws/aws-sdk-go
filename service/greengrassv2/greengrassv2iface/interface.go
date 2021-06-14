@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS IoT Greengrass V2.
 //    func myFunc(svc greengrassv2iface.GreengrassV2API) bool {
-//        // Make svc.CancelDeployment request
+//        // Make svc.BatchAssociateClientDeviceWithCoreDevice request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockGreengrassV2Client struct {
 //        greengrassv2iface.GreengrassV2API
 //    }
-//    func (m *mockGreengrassV2Client) CancelDeployment(input *greengrassv2.CancelDeploymentInput) (*greengrassv2.CancelDeploymentOutput, error) {
+//    func (m *mockGreengrassV2Client) BatchAssociateClientDeviceWithCoreDevice(input *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type GreengrassV2API interface {
+	BatchAssociateClientDeviceWithCoreDevice(*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error)
+	BatchAssociateClientDeviceWithCoreDeviceWithContext(aws.Context, *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput, ...request.Option) (*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput, error)
+	BatchAssociateClientDeviceWithCoreDeviceRequest(*greengrassv2.BatchAssociateClientDeviceWithCoreDeviceInput) (*request.Request, *greengrassv2.BatchAssociateClientDeviceWithCoreDeviceOutput)
+
+	BatchDisassociateClientDeviceFromCoreDevice(*greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceInput) (*greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceOutput, error)
+	BatchDisassociateClientDeviceFromCoreDeviceWithContext(aws.Context, *greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceInput, ...request.Option) (*greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceOutput, error)
+	BatchDisassociateClientDeviceFromCoreDeviceRequest(*greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceInput) (*request.Request, *greengrassv2.BatchDisassociateClientDeviceFromCoreDeviceOutput)
+
 	CancelDeployment(*greengrassv2.CancelDeploymentInput) (*greengrassv2.CancelDeploymentOutput, error)
 	CancelDeploymentWithContext(aws.Context, *greengrassv2.CancelDeploymentInput, ...request.Option) (*greengrassv2.CancelDeploymentOutput, error)
 	CancelDeploymentRequest(*greengrassv2.CancelDeploymentInput) (*request.Request, *greengrassv2.CancelDeploymentOutput)
@@ -99,6 +107,13 @@ type GreengrassV2API interface {
 	GetDeployment(*greengrassv2.GetDeploymentInput) (*greengrassv2.GetDeploymentOutput, error)
 	GetDeploymentWithContext(aws.Context, *greengrassv2.GetDeploymentInput, ...request.Option) (*greengrassv2.GetDeploymentOutput, error)
 	GetDeploymentRequest(*greengrassv2.GetDeploymentInput) (*request.Request, *greengrassv2.GetDeploymentOutput)
+
+	ListClientDevicesAssociatedWithCoreDevice(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput) (*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, error)
+	ListClientDevicesAssociatedWithCoreDeviceWithContext(aws.Context, *greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput, ...request.Option) (*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, error)
+	ListClientDevicesAssociatedWithCoreDeviceRequest(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput) (*request.Request, *greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput)
+
+	ListClientDevicesAssociatedWithCoreDevicePages(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput, func(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, bool) bool) error
+	ListClientDevicesAssociatedWithCoreDevicePagesWithContext(aws.Context, *greengrassv2.ListClientDevicesAssociatedWithCoreDeviceInput, func(*greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, bool) bool, ...request.Option) error
 
 	ListComponentVersions(*greengrassv2.ListComponentVersionsInput) (*greengrassv2.ListComponentVersionsOutput, error)
 	ListComponentVersionsWithContext(aws.Context, *greengrassv2.ListComponentVersionsInput, ...request.Option) (*greengrassv2.ListComponentVersionsOutput, error)
