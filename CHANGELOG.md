@@ -1,3 +1,11 @@
+Release v1.38.61 (2021-06-14)
+===
+
+### Service Client Updates
+* `service/greengrassv2`: Updates service API, documentation, and paginators
+* `service/iotanalytics`: Updates service API and documentation
+* `service/lookoutmetrics`: Updates service API and documentation
+
 Release v1.38.60 (2021-06-11)
 ===
 
