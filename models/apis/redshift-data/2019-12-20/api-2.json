@@ -221,6 +221,7 @@
         "Error":{"shape":"String"},
         "HasResultSet":{"shape":"Boolean"},
         "Id":{"shape":"UUID"},
+        "QueryParameters":{"shape":"SqlParametersList"},
         "QueryString":{"shape":"StatementString"},
         "RedshiftPid":{"shape":"Long"},
         "RedshiftQueryId":{"shape":"Long"},
@@ -280,6 +281,7 @@
         "ClusterIdentifier":{"shape":"Location"},
         "Database":{"shape":"String"},
         "DbUser":{"shape":"String"},
+        "Parameters":{"shape":"SqlParametersList"},
         "SecretArn":{"shape":"SecretArn"},
         "Sql":{"shape":"StatementString"},
         "StatementName":{"shape":"StatementNameString"},
@@ -439,6 +441,14 @@
       "max":1000,
       "min":0
     },
+    "ParameterName":{
+      "type":"string",
+      "pattern":"^[0-9a-zA-Z_]+$"
+    },
+    "ParameterValue":{
+      "type":"string",
+      "min":1
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":[
@@ -456,6 +466,22 @@
       "member":{"shape":"String"}
     },
     "SecretArn":{"type":"string"},
+    "SqlParameter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"ParameterName"},
+        "value":{"shape":"ParameterValue"}
+      }
+    },
+    "SqlParametersList":{
+      "type":"list",
+      "member":{"shape":"SqlParameter"},
+      "min":1
+    },
     "SqlRecords":{
       "type":"list",
       "member":{"shape":"FieldList"}
@@ -466,6 +492,7 @@
       "members":{
         "CreatedAt":{"shape":"Timestamp"},
         "Id":{"shape":"UUID"},
+        "QueryParameters":{"shape":"SqlParametersList"},
         "QueryString":{"shape":"StatementString"},
         "SecretArn":{"shape":"SecretArn"},
         "StatementName":{"shape":"StatementNameString"},

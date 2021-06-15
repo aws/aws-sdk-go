@@ -1483,6 +1483,9 @@ type DescribeStatementOutput struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// The parameters for the SQL statement.
+	QueryParameters []*SqlParameter `min:"1" type:"list"`
+
 	// The SQL statement text.
 	QueryString *string `type:"string"`
 
@@ -1585,6 +1588,12 @@ func (s *DescribeStatementOutput) SetHasResultSet(v bool) *DescribeStatementOutp
 // SetId sets the Id field's value.
 func (s *DescribeStatementOutput) SetId(v string) *DescribeStatementOutput {
 	s.Id = &v
+	return s
+}
+
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *DescribeStatementOutput) SetQueryParameters(v []*SqlParameter) *DescribeStatementOutput {
+	s.QueryParameters = v
 	return s
 }
 
@@ -1890,6 +1899,9 @@ type ExecuteStatementInput struct {
 	// temporary credentials.
 	DbUser *string `type:"string"`
 
+	// The parameters for the SQL statement.
+	Parameters []*SqlParameter `min:"1" type:"list"`
+
 	// The name or ARN of the secret that enables access to the database. This parameter
 	// is required when authenticating using AWS Secrets Manager.
 	SecretArn *string `type:"string"`
@@ -1924,8 +1936,21 @@ func (s *ExecuteStatementInput) Validate() error {
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
 	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
 	if s.Sql == nil {
 		invalidParams.Add(request.NewErrParamRequired("Sql"))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -1949,6 +1974,12 @@ func (s *ExecuteStatementInput) SetDatabase(v string) *ExecuteStatementInput {
 // SetDbUser sets the DbUser field's value.
 func (s *ExecuteStatementInput) SetDbUser(v string) *ExecuteStatementInput {
 	s.DbUser = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ExecuteStatementInput) SetParameters(v []*SqlParameter) *ExecuteStatementInput {
+	s.Parameters = v
 	return s
 }
 
@@ -2930,6 +2961,64 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A parameter used in a SQL statement.
+type SqlParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the parameter.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The value of the parameter. Amazon Redshift implicitly converts to the proper
+	// data type. For more inforation, see Data types (https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html)
+	// in the Amazon Redshift Database Developer Guide.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SqlParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SqlParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SqlParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SqlParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *SqlParameter) SetName(v string) *SqlParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *SqlParameter) SetValue(v string) *SqlParameter {
+	s.Value = &v
+	return s
+}
+
 // The SQL statement to run.
 type StatementData struct {
 	_ struct{} `type:"structure"`
@@ -2942,6 +3031,9 @@ type StatementData struct {
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
+
+	// The parameters used in a SQL statement.
+	QueryParameters []*SqlParameter `min:"1" type:"list"`
 
 	// The SQL statement.
 	QueryString *string `type:"string"`
@@ -2980,6 +3072,12 @@ func (s *StatementData) SetCreatedAt(v time.Time) *StatementData {
 // SetId sets the Id field's value.
 func (s *StatementData) SetId(v string) *StatementData {
 	s.Id = &v
+	return s
+}
+
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *StatementData) SetQueryParameters(v []*SqlParameter) *StatementData {
+	s.QueryParameters = v
 	return s
 }
 
