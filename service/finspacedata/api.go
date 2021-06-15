@@ -126,17 +126,19 @@ func ExecuteCreateChangeset(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := CreateChangesetInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateChangesetInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateChangesetRequest(input)
+	req, out := svc.CreateChangesetRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -248,17 +250,19 @@ func ExecuteGetProgrammaticAccessCredentials(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := GetProgrammaticAccessCredentialsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetProgrammaticAccessCredentialsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetProgrammaticAccessCredentialsRequest(input)
+	req, out := svc.GetProgrammaticAccessCredentialsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -374,17 +378,19 @@ func ExecuteGetWorkingLocation(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := GetWorkingLocationInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetWorkingLocationInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetWorkingLocationRequest(input)
+	req, out := svc.GetWorkingLocationRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

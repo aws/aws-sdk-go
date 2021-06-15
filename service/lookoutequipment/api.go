@@ -156,17 +156,19 @@ func ExecuteCreateDataset(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := CreateDatasetInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateDatasetInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateDatasetRequest(input)
+	req, out := svc.CreateDatasetRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -299,17 +301,19 @@ func ExecuteCreateInferenceScheduler(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := CreateInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateInferenceSchedulerRequest(input)
+	req, out := svc.CreateInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -448,17 +452,19 @@ func ExecuteCreateModel(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := CreateModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateModelRequest(input)
+	req, out := svc.CreateModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -584,17 +590,19 @@ func ExecuteDeleteDataset(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteDatasetInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteDatasetInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteDatasetRequest(input)
+	req, out := svc.DeleteDatasetRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -721,17 +729,19 @@ func ExecuteDeleteInferenceScheduler(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteInferenceSchedulerRequest(input)
+	req, out := svc.DeleteInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -855,17 +865,19 @@ func ExecuteDeleteModel(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteModelRequest(input)
+	req, out := svc.DeleteModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -987,17 +999,19 @@ func ExecuteDescribeDataIngestionJob(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeDataIngestionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeDataIngestionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeDataIngestionJobRequest(input)
+	req, out := svc.DescribeDataIngestionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1119,17 +1133,19 @@ func ExecuteDescribeDataset(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeDatasetInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeDatasetInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeDatasetRequest(input)
+	req, out := svc.DescribeDatasetRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1251,17 +1267,19 @@ func ExecuteDescribeInferenceScheduler(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeInferenceSchedulerRequest(input)
+	req, out := svc.DescribeInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1383,17 +1401,19 @@ func ExecuteDescribeModel(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeModelRequest(input)
+	req, out := svc.DescribeModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1517,17 +1537,19 @@ func ExecuteListDataIngestionJobs(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := ListDataIngestionJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListDataIngestionJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListDataIngestionJobsRequest(input)
+	req, out := svc.ListDataIngestionJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1703,17 +1725,19 @@ func ExecuteListDatasets(parameters map[string]interface{}) (map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := ListDatasetsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListDatasetsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListDatasetsRequest(input)
+	req, out := svc.ListDatasetsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1893,17 +1917,19 @@ func ExecuteListInferenceExecutions(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := ListInferenceExecutionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListInferenceExecutionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListInferenceExecutionsRequest(input)
+	req, out := svc.ListInferenceExecutionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2079,17 +2105,19 @@ func ExecuteListInferenceSchedulers(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := ListInferenceSchedulersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListInferenceSchedulersInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListInferenceSchedulersRequest(input)
+	req, out := svc.ListInferenceSchedulersRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2265,17 +2293,19 @@ func ExecuteListModels(parameters map[string]interface{}) (map[string]interface{
 	}
 	delete(parameters, "_Service")
 
+	input := ListModelsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListModelsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListModelsRequest(input)
+	req, out := svc.ListModelsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2448,17 +2478,19 @@ func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagsForResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagsForResourceRequest(input)
+	req, out := svc.ListTagsForResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2587,17 +2619,19 @@ func ExecuteStartDataIngestionJob(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := StartDataIngestionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartDataIngestionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartDataIngestionJobRequest(input)
+	req, out := svc.StartDataIngestionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2722,17 +2756,19 @@ func ExecuteStartInferenceScheduler(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := StartInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartInferenceSchedulerRequest(input)
+	req, out := svc.StartInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2857,17 +2893,19 @@ func ExecuteStopInferenceScheduler(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := StopInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StopInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StopInferenceSchedulerRequest(input)
+	req, out := svc.StopInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2996,17 +3034,19 @@ func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := TagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TagResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TagResourceRequest(input)
+	req, out := svc.TagResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3129,17 +3169,19 @@ func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := UntagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UntagResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UntagResourceRequest(input)
+	req, out := svc.UntagResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3265,17 +3307,19 @@ func ExecuteUpdateInferenceScheduler(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateInferenceSchedulerInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateInferenceSchedulerInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateInferenceSchedulerRequest(input)
+	req, out := svc.UpdateInferenceSchedulerRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

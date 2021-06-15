@@ -164,17 +164,19 @@ func ExecuteCreateCertificateAuthority(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := CreateCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateCertificateAuthorityRequest(input)
+	req, out := svc.CreateCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -307,17 +309,19 @@ func ExecuteCreateCertificateAuthorityAuditReport(parameters map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := CreateCertificateAuthorityAuditReportInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateCertificateAuthorityAuditReportInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateCertificateAuthorityAuditReportRequest(input)
+	req, out := svc.CreateCertificateAuthorityAuditReportRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -462,17 +466,19 @@ func ExecuteCreatePermission(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := CreatePermissionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreatePermissionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreatePermissionRequest(input)
+	req, out := svc.CreatePermissionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -614,17 +620,19 @@ func ExecuteDeleteCertificateAuthority(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteCertificateAuthorityRequest(input)
+	req, out := svc.DeleteCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -764,17 +772,19 @@ func ExecuteDeletePermission(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DeletePermissionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeletePermissionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeletePermissionRequest(input)
+	req, out := svc.DeletePermissionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -928,17 +938,19 @@ func ExecuteDeletePolicy(parameters map[string]interface{}) (map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := DeletePolicyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeletePolicyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeletePolicyRequest(input)
+	req, out := svc.DeletePolicyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1070,17 +1082,19 @@ func ExecuteDescribeCertificateAuthority(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeCertificateAuthorityRequest(input)
+	req, out := svc.DescribeCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1198,17 +1212,19 @@ func ExecuteDescribeCertificateAuthorityAuditReport(parameters map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeCertificateAuthorityAuditReportInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeCertificateAuthorityAuditReportInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeCertificateAuthorityAuditReportRequest(input)
+	req, out := svc.DescribeCertificateAuthorityAuditReportRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1334,17 +1350,19 @@ func ExecuteGetCertificate(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := GetCertificateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetCertificateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetCertificateRequest(input)
+	req, out := svc.GetCertificateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1459,17 +1477,19 @@ func ExecuteGetCertificateAuthorityCertificate(parameters map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := GetCertificateAuthorityCertificateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetCertificateAuthorityCertificateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetCertificateAuthorityCertificateRequest(input)
+	req, out := svc.GetCertificateAuthorityCertificateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1593,17 +1613,19 @@ func ExecuteGetCertificateAuthorityCsr(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := GetCertificateAuthorityCsrInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetCertificateAuthorityCsrInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetCertificateAuthorityCsrRequest(input)
+	req, out := svc.GetCertificateAuthorityCsrRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1742,17 +1764,19 @@ func ExecuteGetPolicy(parameters map[string]interface{}) (map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := GetPolicyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetPolicyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetPolicyRequest(input)
+	req, out := svc.GetPolicyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1973,17 +1997,19 @@ func ExecuteImportCertificateAuthorityCertificate(parameters map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := ImportCertificateAuthorityCertificateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ImportCertificateAuthorityCertificateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ImportCertificateAuthorityCertificateRequest(input)
+	req, out := svc.ImportCertificateAuthorityCertificateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2112,17 +2138,19 @@ func ExecuteIssueCertificate(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := IssueCertificateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &IssueCertificateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.IssueCertificateRequest(input)
+	req, out := svc.IssueCertificateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2236,17 +2264,19 @@ func ExecuteListCertificateAuthorities(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := ListCertificateAuthoritiesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListCertificateAuthoritiesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListCertificateAuthoritiesRequest(input)
+	req, out := svc.ListCertificateAuthoritiesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2446,17 +2476,19 @@ func ExecuteListPermissions(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := ListPermissionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPermissionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPermissionsRequest(input)
+	req, out := svc.ListPermissionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2632,17 +2664,19 @@ func ExecuteListTags(parameters map[string]interface{}) (map[string]interface{},
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagsRequest(input)
+	req, out := svc.ListTagsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2849,17 +2883,19 @@ func ExecutePutPolicy(parameters map[string]interface{}) (map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := PutPolicyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &PutPolicyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.PutPolicyRequest(input)
+	req, out := svc.PutPolicyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2987,17 +3023,19 @@ func ExecuteRestoreCertificateAuthority(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := RestoreCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RestoreCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RestoreCertificateAuthorityRequest(input)
+	req, out := svc.RestoreCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3147,17 +3185,19 @@ func ExecuteRevokeCertificate(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := RevokeCertificateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RevokeCertificateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RevokeCertificateRequest(input)
+	req, out := svc.RevokeCertificateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3287,17 +3327,19 @@ func ExecuteTagCertificateAuthority(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := TagCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TagCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TagCertificateAuthorityRequest(input)
+	req, out := svc.TagCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3420,17 +3462,19 @@ func ExecuteUntagCertificateAuthority(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := UntagCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UntagCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UntagCertificateAuthorityRequest(input)
+	req, out := svc.UntagCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3562,17 +3606,19 @@ func ExecuteUpdateCertificateAuthority(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateCertificateAuthorityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateCertificateAuthorityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateCertificateAuthorityRequest(input)
+	req, out := svc.UpdateCertificateAuthorityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

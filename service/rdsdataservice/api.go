@@ -134,17 +134,19 @@ func ExecuteBatchExecuteStatement(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := BatchExecuteStatementInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &BatchExecuteStatementInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.BatchExecuteStatementRequest(input)
+	req, out := svc.BatchExecuteStatementRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -269,17 +271,19 @@ func ExecuteBeginTransaction(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := BeginTransactionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &BeginTransactionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.BeginTransactionRequest(input)
+	req, out := svc.BeginTransactionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -400,17 +404,19 @@ func ExecuteCommitTransaction(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := CommitTransactionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CommitTransactionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CommitTransactionRequest(input)
+	req, out := svc.CommitTransactionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -536,17 +542,19 @@ func ExecuteExecuteSql(parameters map[string]interface{}) (map[string]interface{
 	}
 	delete(parameters, "_Service")
 
+	input := ExecuteSqlInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExecuteSqlInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExecuteSqlRequest(input)
+	req, out := svc.ExecuteSqlRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -669,17 +677,19 @@ func ExecuteExecuteStatement(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ExecuteStatementInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExecuteStatementInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExecuteStatementRequest(input)
+	req, out := svc.ExecuteStatementRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -800,17 +810,19 @@ func ExecuteRollbackTransaction(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := RollbackTransactionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RollbackTransactionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RollbackTransactionRequest(input)
+	req, out := svc.RollbackTransactionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

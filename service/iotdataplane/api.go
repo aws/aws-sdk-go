@@ -136,17 +136,19 @@ func ExecuteDeleteThingShadow(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteThingShadowInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteThingShadowInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteThingShadowRequest(input)
+	req, out := svc.DeleteThingShadowRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -272,17 +274,19 @@ func ExecuteGetThingShadow(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := GetThingShadowInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetThingShadowInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetThingShadowRequest(input)
+	req, out := svc.GetThingShadowRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -402,17 +406,19 @@ func ExecuteListNamedShadowsForThing(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := ListNamedShadowsForThingInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListNamedShadowsForThingInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListNamedShadowsForThingRequest(input)
+	req, out := svc.ListNamedShadowsForThingRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -527,17 +533,19 @@ func ExecutePublish(parameters map[string]interface{}) (map[string]interface{}, 
 	}
 	delete(parameters, "_Service")
 
+	input := PublishInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &PublishInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.PublishRequest(input)
+	req, out := svc.PublishRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -666,17 +674,19 @@ func ExecuteUpdateThingShadow(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateThingShadowInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateThingShadowInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateThingShadowRequest(input)
+	req, out := svc.UpdateThingShadowRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

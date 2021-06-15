@@ -132,17 +132,19 @@ func ExecuteCreateHomeRegionControl(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := CreateHomeRegionControlInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateHomeRegionControlInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateHomeRegionControlRequest(input)
+	req, out := svc.CreateHomeRegionControlRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -268,17 +270,19 @@ func ExecuteDescribeHomeRegionControls(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeHomeRegionControlsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeHomeRegionControlsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeHomeRegionControlsRequest(input)
+	req, out := svc.DescribeHomeRegionControlsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -454,17 +458,19 @@ func ExecuteGetHomeRegion(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := GetHomeRegionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetHomeRegionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetHomeRegionRequest(input)
+	req, out := svc.GetHomeRegionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

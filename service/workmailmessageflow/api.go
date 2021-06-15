@@ -113,17 +113,19 @@ func ExecuteGetRawMessageContent(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := GetRawMessageContentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetRawMessageContentInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetRawMessageContentRequest(input)
+	req, out := svc.GetRawMessageContentRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -259,17 +261,19 @@ func ExecutePutRawMessageContent(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := PutRawMessageContentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &PutRawMessageContentInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.PutRawMessageContentRequest(input)
+	req, out := svc.PutRawMessageContentRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

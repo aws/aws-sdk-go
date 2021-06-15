@@ -154,17 +154,19 @@ func ExecuteCreateLanguageModel(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := CreateLanguageModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateLanguageModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateLanguageModelRequest(input)
+	req, out := svc.CreateLanguageModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -284,17 +286,19 @@ func ExecuteCreateMedicalVocabulary(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := CreateMedicalVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateMedicalVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateMedicalVocabularyRequest(input)
+	req, out := svc.CreateMedicalVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -414,17 +418,19 @@ func ExecuteCreateVocabulary(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := CreateVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateVocabularyRequest(input)
+	req, out := svc.CreateVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -544,17 +550,19 @@ func ExecuteCreateVocabularyFilter(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := CreateVocabularyFilterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateVocabularyFilterInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateVocabularyFilterRequest(input)
+	req, out := svc.CreateVocabularyFilterRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -671,17 +679,19 @@ func ExecuteDeleteLanguageModel(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteLanguageModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteLanguageModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteLanguageModelRequest(input)
+	req, out := svc.DeleteLanguageModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -799,17 +809,19 @@ func ExecuteDeleteMedicalTranscriptionJob(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteMedicalTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteMedicalTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteMedicalTranscriptionJobRequest(input)
+	req, out := svc.DeleteMedicalTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -930,17 +942,19 @@ func ExecuteDeleteMedicalVocabulary(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteMedicalVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteMedicalVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteMedicalVocabularyRequest(input)
+	req, out := svc.DeleteMedicalVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1058,17 +1072,19 @@ func ExecuteDeleteTranscriptionJob(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteTranscriptionJobRequest(input)
+	req, out := svc.DeleteTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1189,17 +1205,19 @@ func ExecuteDeleteVocabulary(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteVocabularyRequest(input)
+	req, out := svc.DeleteVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1320,17 +1338,19 @@ func ExecuteDeleteVocabularyFilter(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteVocabularyFilterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteVocabularyFilterInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteVocabularyFilterRequest(input)
+	req, out := svc.DeleteVocabularyFilterRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1456,17 +1476,19 @@ func ExecuteDescribeLanguageModel(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeLanguageModelInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeLanguageModelInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeLanguageModelRequest(input)
+	req, out := svc.DescribeLanguageModelRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1589,17 +1611,19 @@ func ExecuteGetMedicalTranscriptionJob(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := GetMedicalTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetMedicalTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetMedicalTranscriptionJobRequest(input)
+	req, out := svc.GetMedicalTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1719,17 +1743,19 @@ func ExecuteGetMedicalVocabulary(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := GetMedicalVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetMedicalVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetMedicalVocabularyRequest(input)
+	req, out := svc.GetMedicalVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1853,17 +1879,19 @@ func ExecuteGetTranscriptionJob(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := GetTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetTranscriptionJobRequest(input)
+	req, out := svc.GetTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1983,17 +2011,19 @@ func ExecuteGetVocabulary(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := GetVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetVocabularyRequest(input)
+	req, out := svc.GetVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2113,17 +2143,19 @@ func ExecuteGetVocabularyFilter(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := GetVocabularyFilterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetVocabularyFilterInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetVocabularyFilterRequest(input)
+	req, out := svc.GetVocabularyFilterRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2247,17 +2279,19 @@ func ExecuteListLanguageModels(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := ListLanguageModelsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListLanguageModelsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListLanguageModelsRequest(input)
+	req, out := svc.ListLanguageModelsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2432,17 +2466,19 @@ func ExecuteListMedicalTranscriptionJobs(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := ListMedicalTranscriptionJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListMedicalTranscriptionJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListMedicalTranscriptionJobsRequest(input)
+	req, out := svc.ListMedicalTranscriptionJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2618,17 +2654,19 @@ func ExecuteListMedicalVocabularies(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := ListMedicalVocabulariesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListMedicalVocabulariesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListMedicalVocabulariesRequest(input)
+	req, out := svc.ListMedicalVocabulariesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2802,17 +2840,19 @@ func ExecuteListTranscriptionJobs(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := ListTranscriptionJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTranscriptionJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTranscriptionJobsRequest(input)
+	req, out := svc.ListTranscriptionJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2987,17 +3027,19 @@ func ExecuteListVocabularies(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ListVocabulariesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListVocabulariesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListVocabulariesRequest(input)
+	req, out := svc.ListVocabulariesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3171,17 +3213,19 @@ func ExecuteListVocabularyFilters(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := ListVocabularyFiltersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListVocabularyFiltersInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListVocabularyFiltersRequest(input)
+	req, out := svc.ListVocabularyFiltersRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3352,17 +3396,19 @@ func ExecuteStartMedicalTranscriptionJob(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := StartMedicalTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartMedicalTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartMedicalTranscriptionJobRequest(input)
+	req, out := svc.StartMedicalTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3481,17 +3527,19 @@ func ExecuteStartTranscriptionJob(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := StartTranscriptionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartTranscriptionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartTranscriptionJobRequest(input)
+	req, out := svc.StartTranscriptionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3617,17 +3665,19 @@ func ExecuteUpdateMedicalVocabulary(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateMedicalVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateMedicalVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateMedicalVocabularyRequest(input)
+	req, out := svc.UpdateMedicalVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3752,17 +3802,19 @@ func ExecuteUpdateVocabulary(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateVocabularyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateVocabularyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateVocabularyRequest(input)
+	req, out := svc.UpdateVocabularyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3882,17 +3934,19 @@ func ExecuteUpdateVocabularyFilter(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateVocabularyFilterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateVocabularyFilterInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateVocabularyFilterRequest(input)
+	req, out := svc.UpdateVocabularyFilterRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

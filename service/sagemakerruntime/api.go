@@ -142,17 +142,19 @@ func ExecuteInvokeEndpoint(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := InvokeEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &InvokeEndpointInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.InvokeEndpointRequest(input)
+	req, out := svc.InvokeEndpointRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

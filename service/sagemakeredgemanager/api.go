@@ -114,17 +114,19 @@ func ExecuteGetDeviceRegistration(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := GetDeviceRegistrationInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetDeviceRegistrationInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetDeviceRegistrationRequest(input)
+	req, out := svc.GetDeviceRegistrationRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -231,17 +233,19 @@ func ExecuteSendHeartbeat(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := SendHeartbeatInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SendHeartbeatInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SendHeartbeatRequest(input)
+	req, out := svc.SendHeartbeatRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

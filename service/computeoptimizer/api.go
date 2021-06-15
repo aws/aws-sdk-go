@@ -149,17 +149,19 @@ func ExecuteDescribeRecommendationExportJobs(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeRecommendationExportJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeRecommendationExportJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeRecommendationExportJobsRequest(input)
+	req, out := svc.DescribeRecommendationExportJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -294,17 +296,19 @@ func ExecuteExportAutoScalingGroupRecommendations(parameters map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := ExportAutoScalingGroupRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExportAutoScalingGroupRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExportAutoScalingGroupRecommendationsRequest(input)
+	req, out := svc.ExportAutoScalingGroupRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -439,17 +443,19 @@ func ExecuteExportEBSVolumeRecommendations(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := ExportEBSVolumeRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExportEBSVolumeRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExportEBSVolumeRecommendationsRequest(input)
+	req, out := svc.ExportEBSVolumeRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -585,17 +591,19 @@ func ExecuteExportEC2InstanceRecommendations(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := ExportEC2InstanceRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExportEC2InstanceRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExportEC2InstanceRecommendationsRequest(input)
+	req, out := svc.ExportEC2InstanceRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -730,17 +738,19 @@ func ExecuteExportLambdaFunctionRecommendations(parameters map[string]interface{
 	}
 	delete(parameters, "_Service")
 
+	input := ExportLambdaFunctionRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExportLambdaFunctionRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExportLambdaFunctionRecommendationsRequest(input)
+	req, out := svc.ExportLambdaFunctionRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -872,17 +882,19 @@ func ExecuteGetAutoScalingGroupRecommendations(parameters map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := GetAutoScalingGroupRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetAutoScalingGroupRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetAutoScalingGroupRecommendationsRequest(input)
+	req, out := svc.GetAutoScalingGroupRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1014,17 +1026,19 @@ func ExecuteGetEBSVolumeRecommendations(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := GetEBSVolumeRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetEBSVolumeRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetEBSVolumeRecommendationsRequest(input)
+	req, out := svc.GetEBSVolumeRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1156,17 +1170,19 @@ func ExecuteGetEC2InstanceRecommendations(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := GetEC2InstanceRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetEC2InstanceRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetEC2InstanceRecommendationsRequest(input)
+	req, out := svc.GetEC2InstanceRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1299,17 +1315,19 @@ func ExecuteGetEC2RecommendationProjectedMetrics(parameters map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := GetEC2RecommendationProjectedMetricsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetEC2RecommendationProjectedMetricsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetEC2RecommendationProjectedMetricsRequest(input)
+	req, out := svc.GetEC2RecommendationProjectedMetricsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1434,17 +1452,19 @@ func ExecuteGetEnrollmentStatus(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := GetEnrollmentStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetEnrollmentStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetEnrollmentStatusRequest(input)
+	req, out := svc.GetEnrollmentStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1576,17 +1596,19 @@ func ExecuteGetLambdaFunctionRecommendations(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := GetLambdaFunctionRecommendationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetLambdaFunctionRecommendationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetLambdaFunctionRecommendationsRequest(input)
+	req, out := svc.GetLambdaFunctionRecommendationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1721,17 +1743,19 @@ func ExecuteGetRecommendationSummaries(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := GetRecommendationSummariesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetRecommendationSummariesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetRecommendationSummariesRequest(input)
+	req, out := svc.GetRecommendationSummariesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1866,17 +1890,19 @@ func ExecuteUpdateEnrollmentStatus(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateEnrollmentStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateEnrollmentStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateEnrollmentStatusRequest(input)
+	req, out := svc.UpdateEnrollmentStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

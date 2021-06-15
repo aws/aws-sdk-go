@@ -129,17 +129,19 @@ func ExecuteGetRoleCredentials(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := GetRoleCredentialsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetRoleCredentialsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetRoleCredentialsRequest(input)
+	req, out := svc.GetRoleCredentialsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -263,17 +265,19 @@ func ExecuteListAccountRoles(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ListAccountRolesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListAccountRolesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListAccountRolesRequest(input)
+	req, out := svc.ListAccountRolesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -452,17 +456,19 @@ func ExecuteListAccounts(parameters map[string]interface{}) (map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := ListAccountsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListAccountsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListAccountsRequest(input)
+	req, out := svc.ListAccountsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -630,17 +636,19 @@ func ExecuteLogout(parameters map[string]interface{}) (map[string]interface{}, e
 	}
 	delete(parameters, "_Service")
 
+	input := LogoutInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &LogoutInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.LogoutRequest(input)
+	req, out := svc.LogoutRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

@@ -186,17 +186,19 @@ func ExecuteAnalyzeDocument(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := AnalyzeDocumentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AnalyzeDocumentInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AnalyzeDocumentRequest(input)
+	req, out := svc.AnalyzeDocumentRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -351,17 +353,19 @@ func ExecuteDetectDocumentText(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := DetectDocumentTextInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DetectDocumentTextInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DetectDocumentTextRequest(input)
+	req, out := svc.DetectDocumentTextRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -532,17 +536,19 @@ func ExecuteGetDocumentAnalysis(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := GetDocumentAnalysisInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetDocumentAnalysisInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetDocumentAnalysisRequest(input)
+	req, out := svc.GetDocumentAnalysisRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -700,17 +706,19 @@ func ExecuteGetDocumentTextDetection(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := GetDocumentTextDetectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetDocumentTextDetectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetDocumentTextDetectionRequest(input)
+	req, out := svc.GetDocumentTextDetectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -883,17 +891,19 @@ func ExecuteStartDocumentAnalysis(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := StartDocumentAnalysisInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartDocumentAnalysisInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartDocumentAnalysisRequest(input)
+	req, out := svc.StartDocumentAnalysisRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1066,17 +1076,19 @@ func ExecuteStartDocumentTextDetection(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := StartDocumentTextDetectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartDocumentTextDetectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartDocumentTextDetectionRequest(input)
+	req, out := svc.StartDocumentTextDetectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

@@ -130,17 +130,19 @@ func ExecuteSendSSHPublicKey(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := SendSSHPublicKeyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SendSSHPublicKeyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SendSSHPublicKeyRequest(input)
+	req, out := svc.SendSSHPublicKeyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -281,17 +283,19 @@ func ExecuteSendSerialConsoleSSHPublicKey(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := SendSerialConsoleSSHPublicKeyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SendSerialConsoleSSHPublicKeyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SendSerialConsoleSSHPublicKeyRequest(input)
+	req, out := svc.SendSerialConsoleSSHPublicKeyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

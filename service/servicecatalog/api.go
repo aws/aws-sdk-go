@@ -207,17 +207,19 @@ func ExecuteAcceptPortfolioShare(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := AcceptPortfolioShareInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AcceptPortfolioShareInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AcceptPortfolioShareRequest(input)
+	req, out := svc.AcceptPortfolioShareRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -334,17 +336,19 @@ func ExecuteAssociateBudgetWithResource(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := AssociateBudgetWithResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociateBudgetWithResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociateBudgetWithResourceRequest(input)
+	req, out := svc.AssociateBudgetWithResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -458,17 +462,19 @@ func ExecuteAssociatePrincipalWithPortfolio(parameters map[string]interface{}) (
 	}
 	delete(parameters, "_Service")
 
+	input := AssociatePrincipalWithPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociatePrincipalWithPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociatePrincipalWithPortfolioRequest(input)
+	req, out := svc.AssociatePrincipalWithPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -584,17 +590,19 @@ func ExecuteAssociateProductWithPortfolio(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := AssociateProductWithPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociateProductWithPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociateProductWithPortfolioRequest(input)
+	req, out := svc.AssociateProductWithPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -708,17 +716,19 @@ func ExecuteAssociateServiceActionWithProvisioningArtifact(parameters map[string
 	}
 	delete(parameters, "_Service")
 
+	input := AssociateServiceActionWithProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociateServiceActionWithProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociateServiceActionWithProvisioningArtifactRequest(input)
+	req, out := svc.AssociateServiceActionWithProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -845,17 +855,19 @@ func ExecuteAssociateTagOptionWithResource(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := AssociateTagOptionWithResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociateTagOptionWithResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociateTagOptionWithResourceRequest(input)
+	req, out := svc.AssociateTagOptionWithResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -960,17 +972,19 @@ func ExecuteBatchAssociateServiceActionWithProvisioningArtifact(parameters map[s
 	}
 	delete(parameters, "_Service")
 
+	input := BatchAssociateServiceActionWithProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &BatchAssociateServiceActionWithProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.BatchAssociateServiceActionWithProvisioningArtifactRequest(input)
+	req, out := svc.BatchAssociateServiceActionWithProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1076,17 +1090,19 @@ func ExecuteBatchDisassociateServiceActionFromProvisioningArtifact(parameters ma
 	}
 	delete(parameters, "_Service")
 
+	input := BatchDisassociateServiceActionFromProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &BatchDisassociateServiceActionFromProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.BatchDisassociateServiceActionFromProvisioningArtifactRequest(input)
+	req, out := svc.BatchDisassociateServiceActionFromProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1201,17 +1217,19 @@ func ExecuteCopyProduct(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := CopyProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CopyProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CopyProductRequest(input)
+	req, out := svc.CopyProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1329,17 +1347,19 @@ func ExecuteCreateConstraint(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := CreateConstraintInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateConstraintInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateConstraintRequest(input)
+	req, out := svc.CreateConstraintRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1456,17 +1476,19 @@ func ExecuteCreatePortfolio(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := CreatePortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreatePortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreatePortfolioRequest(input)
+	req, out := svc.CreatePortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1603,17 +1625,19 @@ func ExecuteCreatePortfolioShare(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := CreatePortfolioShareInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreatePortfolioShareInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreatePortfolioShareRequest(input)
+	req, out := svc.CreatePortfolioShareRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1734,17 +1758,19 @@ func ExecuteCreateProduct(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := CreateProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateProductRequest(input)
+	req, out := svc.CreateProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1865,17 +1891,19 @@ func ExecuteCreateProvisionedProductPlan(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := CreateProvisionedProductPlanInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateProvisionedProductPlanInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateProvisionedProductPlanRequest(input)
+	req, out := svc.CreateProvisionedProductPlanRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1996,17 +2024,19 @@ func ExecuteCreateProvisioningArtifact(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := CreateProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateProvisioningArtifactRequest(input)
+	req, out := svc.CreateProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2116,17 +2146,19 @@ func ExecuteCreateServiceAction(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := CreateServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateServiceActionRequest(input)
+	req, out := svc.CreateServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2241,17 +2273,19 @@ func ExecuteCreateTagOption(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := CreateTagOptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateTagOptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateTagOptionRequest(input)
+	req, out := svc.CreateTagOptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2362,17 +2396,19 @@ func ExecuteDeleteConstraint(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteConstraintInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteConstraintInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteConstraintRequest(input)
+	req, out := svc.DeleteConstraintRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2495,17 +2531,19 @@ func ExecuteDeletePortfolio(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := DeletePortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeletePortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeletePortfolioRequest(input)
+	req, out := svc.DeletePortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2626,17 +2664,19 @@ func ExecuteDeletePortfolioShare(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := DeletePortfolioShareInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeletePortfolioShareInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeletePortfolioShareRequest(input)
+	req, out := svc.DeletePortfolioShareRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2759,17 +2799,19 @@ func ExecuteDeleteProduct(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteProductRequest(input)
+	req, out := svc.DeleteProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2878,17 +2920,19 @@ func ExecuteDeleteProvisionedProductPlan(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteProvisionedProductPlanInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteProvisionedProductPlanInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteProvisionedProductPlanRequest(input)
+	req, out := svc.DeleteProvisionedProductPlanRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3006,17 +3050,19 @@ func ExecuteDeleteProvisioningArtifact(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteProvisioningArtifactRequest(input)
+	req, out := svc.DeleteProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3126,17 +3172,19 @@ func ExecuteDeleteServiceAction(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteServiceActionRequest(input)
+	req, out := svc.DeleteServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3253,17 +3301,19 @@ func ExecuteDeleteTagOption(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteTagOptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteTagOptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteTagOptionRequest(input)
+	req, out := svc.DeleteTagOptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3368,17 +3418,19 @@ func ExecuteDescribeConstraint(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeConstraintInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeConstraintInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeConstraintRequest(input)
+	req, out := svc.DescribeConstraintRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3483,17 +3535,19 @@ func ExecuteDescribeCopyProductStatus(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeCopyProductStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeCopyProductStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeCopyProductStatusRequest(input)
+	req, out := svc.DescribeCopyProductStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3600,17 +3654,19 @@ func ExecuteDescribePortfolio(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := DescribePortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribePortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribePortfolioRequest(input)
+	req, out := svc.DescribePortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3723,17 +3779,19 @@ func ExecuteDescribePortfolioShareStatus(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := DescribePortfolioShareStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribePortfolioShareStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribePortfolioShareStatusRequest(input)
+	req, out := svc.DescribePortfolioShareStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3854,17 +3912,19 @@ func ExecuteDescribePortfolioShares(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := DescribePortfolioSharesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribePortfolioSharesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribePortfolioSharesRequest(input)
+	req, out := svc.DescribePortfolioSharesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4024,17 +4084,19 @@ func ExecuteDescribeProduct(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProductRequest(input)
+	req, out := svc.DescribeProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4143,17 +4205,19 @@ func ExecuteDescribeProductAsAdmin(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProductAsAdminInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProductAsAdminInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProductAsAdminRequest(input)
+	req, out := svc.DescribeProductAsAdminRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4261,17 +4325,19 @@ func ExecuteDescribeProductView(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProductViewInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProductViewInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProductViewRequest(input)
+	req, out := svc.DescribeProductViewRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4379,17 +4445,19 @@ func ExecuteDescribeProvisionedProduct(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProvisionedProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProvisionedProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProvisionedProductRequest(input)
+	req, out := svc.DescribeProvisionedProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4497,17 +4565,19 @@ func ExecuteDescribeProvisionedProductPlan(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProvisionedProductPlanInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProvisionedProductPlanInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProvisionedProductPlanRequest(input)
+	req, out := svc.DescribeProvisionedProductPlanRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4616,17 +4686,19 @@ func ExecuteDescribeProvisioningArtifact(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProvisioningArtifactRequest(input)
+	req, out := svc.DescribeProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4742,17 +4814,19 @@ func ExecuteDescribeProvisioningParameters(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeProvisioningParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeProvisioningParametersInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeProvisioningParametersRequest(input)
+	req, out := svc.DescribeProvisioningParametersRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4866,17 +4940,19 @@ func ExecuteDescribeRecord(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeRecordInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeRecordRequest(input)
+	req, out := svc.DescribeRecordRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4981,17 +5057,19 @@ func ExecuteDescribeServiceAction(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeServiceActionRequest(input)
+	req, out := svc.DescribeServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5100,17 +5178,19 @@ func ExecuteDescribeServiceActionExecutionParameters(parameters map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeServiceActionExecutionParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeServiceActionExecutionParametersInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeServiceActionExecutionParametersRequest(input)
+	req, out := svc.DescribeServiceActionExecutionParametersRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5220,17 +5300,19 @@ func ExecuteDescribeTagOption(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeTagOptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeTagOptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeTagOptionRequest(input)
+	req, out := svc.DescribeTagOptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5353,17 +5435,19 @@ func ExecuteDisableAWSOrganizationsAccess(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := DisableAWSOrganizationsAccessInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisableAWSOrganizationsAccessInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisableAWSOrganizationsAccessRequest(input)
+	req, out := svc.DisableAWSOrganizationsAccessRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5469,17 +5553,19 @@ func ExecuteDisassociateBudgetFromResource(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociateBudgetFromResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociateBudgetFromResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociateBudgetFromResourceRequest(input)
+	req, out := svc.DisassociateBudgetFromResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5588,17 +5674,19 @@ func ExecuteDisassociatePrincipalFromPortfolio(parameters map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociatePrincipalFromPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociatePrincipalFromPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociatePrincipalFromPortfolioRequest(input)
+	req, out := svc.DisassociatePrincipalFromPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5713,17 +5801,19 @@ func ExecuteDisassociateProductFromPortfolio(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociateProductFromPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociateProductFromPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociateProductFromPortfolioRequest(input)
+	req, out := svc.DisassociateProductFromPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5830,17 +5920,19 @@ func ExecuteDisassociateServiceActionFromProvisioningArtifact(parameters map[str
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociateServiceActionFromProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociateServiceActionFromProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociateServiceActionFromProvisioningArtifactRequest(input)
+	req, out := svc.DisassociateServiceActionFromProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5951,17 +6043,19 @@ func ExecuteDisassociateTagOptionFromResource(parameters map[string]interface{})
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociateTagOptionFromResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociateTagOptionFromResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociateTagOptionFromResourceRequest(input)
+	req, out := svc.DisassociateTagOptionFromResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6084,17 +6178,19 @@ func ExecuteEnableAWSOrganizationsAccess(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := EnableAWSOrganizationsAccessInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &EnableAWSOrganizationsAccessInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.EnableAWSOrganizationsAccessRequest(input)
+	req, out := svc.EnableAWSOrganizationsAccessRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6208,17 +6304,19 @@ func ExecuteExecuteProvisionedProductPlan(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := ExecuteProvisionedProductPlanInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExecuteProvisionedProductPlanInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExecuteProvisionedProductPlanRequest(input)
+	req, out := svc.ExecuteProvisionedProductPlanRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6331,17 +6429,19 @@ func ExecuteExecuteProvisionedProductServiceAction(parameters map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := ExecuteProvisionedProductServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ExecuteProvisionedProductServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ExecuteProvisionedProductServiceActionRequest(input)
+	req, out := svc.ExecuteProvisionedProductServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6451,17 +6551,19 @@ func ExecuteGetAWSOrganizationsAccessStatus(parameters map[string]interface{}) (
 	}
 	delete(parameters, "_Service")
 
+	input := GetAWSOrganizationsAccessStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetAWSOrganizationsAccessStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetAWSOrganizationsAccessStatusRequest(input)
+	req, out := svc.GetAWSOrganizationsAccessStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6577,17 +6679,19 @@ func ExecuteGetProvisionedProductOutputs(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := GetProvisionedProductOutputsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetProvisionedProductOutputsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetProvisionedProductOutputsRequest(input)
+	req, out := svc.GetProvisionedProductOutputsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6771,17 +6875,19 @@ func ExecuteImportAsProvisionedProduct(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := ImportAsProvisionedProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ImportAsProvisionedProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ImportAsProvisionedProductRequest(input)
+	req, out := svc.ImportAsProvisionedProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -6895,17 +7001,19 @@ func ExecuteListAcceptedPortfolioShares(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := ListAcceptedPortfolioSharesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListAcceptedPortfolioSharesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListAcceptedPortfolioSharesRequest(input)
+	req, out := svc.ListAcceptedPortfolioSharesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7071,17 +7179,19 @@ func ExecuteListBudgetsForResource(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := ListBudgetsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListBudgetsForResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListBudgetsForResourceRequest(input)
+	req, out := svc.ListBudgetsForResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7247,17 +7357,19 @@ func ExecuteListConstraintsForPortfolio(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := ListConstraintsForPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListConstraintsForPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListConstraintsForPortfolioRequest(input)
+	req, out := svc.ListConstraintsForPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7425,17 +7537,19 @@ func ExecuteListLaunchPaths(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := ListLaunchPathsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListLaunchPathsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListLaunchPathsRequest(input)
+	req, out := svc.ListLaunchPathsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7608,17 +7722,19 @@ func ExecuteListOrganizationPortfolioAccess(parameters map[string]interface{}) (
 	}
 	delete(parameters, "_Service")
 
+	input := ListOrganizationPortfolioAccessInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListOrganizationPortfolioAccessInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListOrganizationPortfolioAccessRequest(input)
+	req, out := svc.ListOrganizationPortfolioAccessRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7788,17 +7904,19 @@ func ExecuteListPortfolioAccess(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := ListPortfolioAccessInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPortfolioAccessInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPortfolioAccessRequest(input)
+	req, out := svc.ListPortfolioAccessRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -7961,17 +8079,19 @@ func ExecuteListPortfolios(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := ListPortfoliosInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPortfoliosInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPortfoliosRequest(input)
+	req, out := svc.ListPortfoliosRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8137,17 +8257,19 @@ func ExecuteListPortfoliosForProduct(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := ListPortfoliosForProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPortfoliosForProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPortfoliosForProductRequest(input)
+	req, out := svc.ListPortfoliosForProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8313,17 +8435,19 @@ func ExecuteListPrincipalsForPortfolio(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := ListPrincipalsForPortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPrincipalsForPortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPrincipalsForPortfolioRequest(input)
+	req, out := svc.ListPrincipalsForPortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8484,17 +8608,19 @@ func ExecuteListProvisionedProductPlans(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := ListProvisionedProductPlansInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListProvisionedProductPlansInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListProvisionedProductPlansRequest(input)
+	req, out := svc.ListProvisionedProductPlansRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8603,17 +8729,19 @@ func ExecuteListProvisioningArtifacts(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := ListProvisioningArtifactsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListProvisioningArtifactsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListProvisioningArtifactsRequest(input)
+	req, out := svc.ListProvisioningArtifactsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8728,17 +8856,19 @@ func ExecuteListProvisioningArtifactsForServiceAction(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ListProvisioningArtifactsForServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListProvisioningArtifactsForServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListProvisioningArtifactsForServiceActionRequest(input)
+	req, out := svc.ListProvisioningArtifactsForServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -8895,17 +9025,19 @@ func ExecuteListRecordHistory(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := ListRecordHistoryInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListRecordHistoryInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListRecordHistoryRequest(input)
+	req, out := svc.ListRecordHistoryRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9024,17 +9156,19 @@ func ExecuteListResourcesForTagOption(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := ListResourcesForTagOptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListResourcesForTagOptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListResourcesForTagOptionRequest(input)
+	req, out := svc.ListResourcesForTagOptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9197,17 +9331,19 @@ func ExecuteListServiceActions(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := ListServiceActionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListServiceActionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListServiceActionsRequest(input)
+	req, out := svc.ListServiceActionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9374,17 +9510,19 @@ func ExecuteListServiceActionsForProvisioningArtifact(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ListServiceActionsForProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListServiceActionsForProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListServiceActionsForProvisioningArtifactRequest(input)
+	req, out := svc.ListServiceActionsForProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9546,17 +9684,19 @@ func ExecuteListStackInstancesForProvisionedProduct(parameters map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := ListStackInstancesForProvisionedProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListStackInstancesForProvisionedProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListStackInstancesForProvisionedProductRequest(input)
+	req, out := svc.ListStackInstancesForProvisionedProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9672,17 +9812,19 @@ func ExecuteListTagOptions(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagOptionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagOptionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagOptionsRequest(input)
+	req, out := svc.ListTagOptionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9855,17 +9997,19 @@ func ExecuteProvisionProduct(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := ProvisionProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ProvisionProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ProvisionProductRequest(input)
+	req, out := svc.ProvisionProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -9971,17 +10115,19 @@ func ExecuteRejectPortfolioShare(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := RejectPortfolioShareInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RejectPortfolioShareInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RejectPortfolioShareRequest(input)
+	req, out := svc.RejectPortfolioShareRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10088,17 +10234,19 @@ func ExecuteScanProvisionedProducts(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := ScanProvisionedProductsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ScanProvisionedProductsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ScanProvisionedProductsRequest(input)
+	req, out := svc.ScanProvisionedProductsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10209,17 +10357,19 @@ func ExecuteSearchProducts(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := SearchProductsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SearchProductsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SearchProductsRequest(input)
+	req, out := svc.SearchProductsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10385,17 +10535,19 @@ func ExecuteSearchProductsAsAdmin(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := SearchProductsAsAdminInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SearchProductsAsAdminInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SearchProductsAsAdminRequest(input)
+	req, out := svc.SearchProductsAsAdminRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10558,17 +10710,19 @@ func ExecuteSearchProvisionedProducts(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := SearchProvisionedProductsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SearchProvisionedProductsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SearchProvisionedProductsRequest(input)
+	req, out := svc.SearchProvisionedProductsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10730,17 +10884,19 @@ func ExecuteTerminateProvisionedProduct(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := TerminateProvisionedProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TerminateProvisionedProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TerminateProvisionedProductRequest(input)
+	req, out := svc.TerminateProvisionedProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10848,17 +11004,19 @@ func ExecuteUpdateConstraint(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateConstraintInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateConstraintInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateConstraintRequest(input)
+	req, out := svc.UpdateConstraintRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -10978,17 +11136,19 @@ func ExecuteUpdatePortfolio(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := UpdatePortfolioInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdatePortfolioInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdatePortfolioRequest(input)
+	req, out := svc.UpdatePortfolioRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11119,17 +11279,19 @@ func ExecuteUpdatePortfolioShare(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := UpdatePortfolioShareInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdatePortfolioShareInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdatePortfolioShareRequest(input)
+	req, out := svc.UpdatePortfolioShareRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11242,17 +11404,19 @@ func ExecuteUpdateProduct(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateProductRequest(input)
+	req, out := svc.UpdateProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11367,17 +11531,19 @@ func ExecuteUpdateProvisionedProduct(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateProvisionedProductInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateProvisionedProductInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateProvisionedProductRequest(input)
+	req, out := svc.UpdateProvisionedProductRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11490,17 +11656,19 @@ func ExecuteUpdateProvisionedProductProperties(parameters map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateProvisionedProductPropertiesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateProvisionedProductPropertiesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateProvisionedProductPropertiesRequest(input)
+	req, out := svc.UpdateProvisionedProductPropertiesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11612,17 +11780,19 @@ func ExecuteUpdateProvisioningArtifact(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateProvisioningArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateProvisioningArtifactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateProvisioningArtifactRequest(input)
+	req, out := svc.UpdateProvisioningArtifactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11730,17 +11900,19 @@ func ExecuteUpdateServiceAction(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateServiceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateServiceActionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateServiceActionRequest(input)
+	req, out := svc.UpdateServiceActionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -11856,17 +12028,19 @@ func ExecuteUpdateTagOption(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateTagOptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateTagOptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateTagOptionRequest(input)
+	req, out := svc.UpdateTagOptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

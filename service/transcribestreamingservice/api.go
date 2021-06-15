@@ -172,17 +172,19 @@ func ExecuteStartMedicalStreamTranscription(parameters map[string]interface{}) (
 	}
 	delete(parameters, "_Service")
 
+	input := StartMedicalStreamTranscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartMedicalStreamTranscriptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartMedicalStreamTranscriptionRequest(input)
+	req, out := svc.StartMedicalStreamTranscriptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -597,17 +599,19 @@ func ExecuteStartStreamTranscription(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := StartStreamTranscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartStreamTranscriptionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartStreamTranscriptionRequest(input)
+	req, out := svc.StartStreamTranscriptionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

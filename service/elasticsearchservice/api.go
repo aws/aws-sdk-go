@@ -158,17 +158,19 @@ func ExecuteAcceptInboundCrossClusterSearchConnection(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := AcceptInboundCrossClusterSearchConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AcceptInboundCrossClusterSearchConnectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AcceptInboundCrossClusterSearchConnectionRequest(input)
+	req, out := svc.AcceptInboundCrossClusterSearchConnectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -286,17 +288,19 @@ func ExecuteAddTags(parameters map[string]interface{}) (map[string]interface{}, 
 	}
 	delete(parameters, "_Service")
 
+	input := AddTagsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AddTagsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AddTagsRequest(input)
+	req, out := svc.AddTagsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -419,17 +423,19 @@ func ExecuteAssociatePackage(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := AssociatePackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociatePackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociatePackageRequest(input)
+	req, out := svc.AssociatePackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -546,17 +552,19 @@ func ExecuteCancelElasticsearchServiceSoftwareUpdate(parameters map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := CancelElasticsearchServiceSoftwareUpdateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CancelElasticsearchServiceSoftwareUpdateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CancelElasticsearchServiceSoftwareUpdateRequest(input)
+	req, out := svc.CancelElasticsearchServiceSoftwareUpdateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -685,17 +693,19 @@ func ExecuteCreateElasticsearchDomain(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := CreateElasticsearchDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateElasticsearchDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateElasticsearchDomainRequest(input)
+	req, out := svc.CreateElasticsearchDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -812,17 +822,19 @@ func ExecuteCreateOutboundCrossClusterSearchConnection(parameters map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := CreateOutboundCrossClusterSearchConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreateOutboundCrossClusterSearchConnectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreateOutboundCrossClusterSearchConnectionRequest(input)
+	req, out := svc.CreateOutboundCrossClusterSearchConnectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -949,17 +961,19 @@ func ExecuteCreatePackage(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := CreatePackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CreatePackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CreatePackageRequest(input)
+	req, out := svc.CreatePackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1075,17 +1089,19 @@ func ExecuteDeleteElasticsearchDomain(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteElasticsearchDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteElasticsearchDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteElasticsearchDomainRequest(input)
+	req, out := svc.DeleteElasticsearchDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1201,17 +1217,19 @@ func ExecuteDeleteElasticsearchServiceRole(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteElasticsearchServiceRoleInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteElasticsearchServiceRoleInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteElasticsearchServiceRoleRequest(input)
+	req, out := svc.DeleteElasticsearchServiceRoleRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1319,17 +1337,19 @@ func ExecuteDeleteInboundCrossClusterSearchConnection(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteInboundCrossClusterSearchConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteInboundCrossClusterSearchConnectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteInboundCrossClusterSearchConnectionRequest(input)
+	req, out := svc.DeleteInboundCrossClusterSearchConnectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1437,17 +1457,19 @@ func ExecuteDeleteOutboundCrossClusterSearchConnection(parameters map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteOutboundCrossClusterSearchConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteOutboundCrossClusterSearchConnectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteOutboundCrossClusterSearchConnectionRequest(input)
+	req, out := svc.DeleteOutboundCrossClusterSearchConnectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1570,17 +1592,19 @@ func ExecuteDeletePackage(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := DeletePackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeletePackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeletePackageRequest(input)
+	req, out := svc.DeletePackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1702,17 +1726,19 @@ func ExecuteDescribeDomainAutoTunes(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeDomainAutoTunesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeDomainAutoTunesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeDomainAutoTunesRequest(input)
+	req, out := svc.DescribeDomainAutoTunesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1880,17 +1906,19 @@ func ExecuteDescribeElasticsearchDomain(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeElasticsearchDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeElasticsearchDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeElasticsearchDomainRequest(input)
+	req, out := svc.DescribeElasticsearchDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2007,17 +2035,19 @@ func ExecuteDescribeElasticsearchDomainConfig(parameters map[string]interface{})
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeElasticsearchDomainConfigInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeElasticsearchDomainConfigInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeElasticsearchDomainConfigRequest(input)
+	req, out := svc.DescribeElasticsearchDomainConfigRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2129,17 +2159,19 @@ func ExecuteDescribeElasticsearchDomains(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeElasticsearchDomainsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeElasticsearchDomainsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeElasticsearchDomainsRequest(input)
+	req, out := svc.DescribeElasticsearchDomainsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2264,17 +2296,19 @@ func ExecuteDescribeElasticsearchInstanceTypeLimits(parameters map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeElasticsearchInstanceTypeLimitsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeElasticsearchInstanceTypeLimitsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeElasticsearchInstanceTypeLimitsRequest(input)
+	req, out := svc.DescribeElasticsearchInstanceTypeLimitsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2388,17 +2422,19 @@ func ExecuteDescribeInboundCrossClusterSearchConnections(parameters map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeInboundCrossClusterSearchConnectionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeInboundCrossClusterSearchConnectionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeInboundCrossClusterSearchConnectionsRequest(input)
+	req, out := svc.DescribeInboundCrossClusterSearchConnectionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2563,17 +2599,19 @@ func ExecuteDescribeOutboundCrossClusterSearchConnections(parameters map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeOutboundCrossClusterSearchConnectionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeOutboundCrossClusterSearchConnectionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeOutboundCrossClusterSearchConnectionsRequest(input)
+	req, out := svc.DescribeOutboundCrossClusterSearchConnectionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2751,17 +2789,19 @@ func ExecuteDescribePackages(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DescribePackagesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribePackagesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribePackagesRequest(input)
+	req, out := svc.DescribePackagesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2935,17 +2975,19 @@ func ExecuteDescribeReservedElasticsearchInstanceOfferings(parameters map[string
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeReservedElasticsearchInstanceOfferingsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeReservedElasticsearchInstanceOfferingsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeReservedElasticsearchInstanceOfferingsRequest(input)
+	req, out := svc.DescribeReservedElasticsearchInstanceOfferingsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3119,17 +3161,19 @@ func ExecuteDescribeReservedElasticsearchInstances(parameters map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeReservedElasticsearchInstancesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeReservedElasticsearchInstancesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeReservedElasticsearchInstancesRequest(input)
+	req, out := svc.DescribeReservedElasticsearchInstancesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3304,17 +3348,19 @@ func ExecuteDissociatePackage(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := DissociatePackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DissociatePackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DissociatePackageRequest(input)
+	req, out := svc.DissociatePackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3435,17 +3481,19 @@ func ExecuteGetCompatibleElasticsearchVersions(parameters map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := GetCompatibleElasticsearchVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetCompatibleElasticsearchVersionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetCompatibleElasticsearchVersionsRequest(input)
+	req, out := svc.GetCompatibleElasticsearchVersionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3571,17 +3619,19 @@ func ExecuteGetPackageVersionHistory(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := GetPackageVersionHistoryInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetPackageVersionHistoryInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetPackageVersionHistoryRequest(input)
+	req, out := svc.GetPackageVersionHistoryRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3759,17 +3809,19 @@ func ExecuteGetUpgradeHistory(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := GetUpgradeHistoryInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetUpgradeHistoryInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetUpgradeHistoryRequest(input)
+	req, out := svc.GetUpgradeHistoryRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3941,17 +3993,19 @@ func ExecuteGetUpgradeStatus(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := GetUpgradeStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetUpgradeStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetUpgradeStatusRequest(input)
+	req, out := svc.GetUpgradeStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4058,17 +4112,19 @@ func ExecuteListDomainNames(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := ListDomainNamesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListDomainNamesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListDomainNamesRequest(input)
+	req, out := svc.ListDomainNamesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4193,17 +4249,19 @@ func ExecuteListDomainsForPackage(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := ListDomainsForPackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListDomainsForPackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListDomainsForPackageRequest(input)
+	req, out := svc.ListDomainsForPackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4376,17 +4434,19 @@ func ExecuteListElasticsearchInstanceTypes(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := ListElasticsearchInstanceTypesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListElasticsearchInstanceTypesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListElasticsearchInstanceTypesRequest(input)
+	req, out := svc.ListElasticsearchInstanceTypesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4559,17 +4619,19 @@ func ExecuteListElasticsearchVersions(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := ListElasticsearchVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListElasticsearchVersionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListElasticsearchVersionsRequest(input)
+	req, out := svc.ListElasticsearchVersionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4746,17 +4808,19 @@ func ExecuteListPackagesForDomain(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := ListPackagesForDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPackagesForDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPackagesForDomainRequest(input)
+	req, out := svc.ListPackagesForDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4923,17 +4987,19 @@ func ExecuteListTags(parameters map[string]interface{}) (map[string]interface{},
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagsRequest(input)
+	req, out := svc.ListTagsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5057,17 +5123,19 @@ func ExecutePurchaseReservedElasticsearchInstanceOffering(parameters map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := PurchaseReservedElasticsearchInstanceOfferingInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &PurchaseReservedElasticsearchInstanceOfferingInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.PurchaseReservedElasticsearchInstanceOfferingRequest(input)
+	req, out := svc.PurchaseReservedElasticsearchInstanceOfferingRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5175,17 +5243,19 @@ func ExecuteRejectInboundCrossClusterSearchConnection(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := RejectInboundCrossClusterSearchConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RejectInboundCrossClusterSearchConnectionInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RejectInboundCrossClusterSearchConnectionRequest(input)
+	req, out := svc.RejectInboundCrossClusterSearchConnectionRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5297,17 +5367,19 @@ func ExecuteRemoveTags(parameters map[string]interface{}) (map[string]interface{
 	}
 	delete(parameters, "_Service")
 
+	input := RemoveTagsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RemoveTagsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RemoveTagsRequest(input)
+	req, out := svc.RemoveTagsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5422,17 +5494,19 @@ func ExecuteStartElasticsearchServiceSoftwareUpdate(parameters map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := StartElasticsearchServiceSoftwareUpdateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartElasticsearchServiceSoftwareUpdateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartElasticsearchServiceSoftwareUpdateRequest(input)
+	req, out := svc.StartElasticsearchServiceSoftwareUpdateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5556,17 +5630,19 @@ func ExecuteUpdateElasticsearchDomainConfig(parameters map[string]interface{}) (
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateElasticsearchDomainConfigInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateElasticsearchDomainConfigInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateElasticsearchDomainConfigRequest(input)
+	req, out := svc.UpdateElasticsearchDomainConfigRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5689,17 +5765,19 @@ func ExecuteUpdatePackage(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := UpdatePackageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdatePackageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdatePackageRequest(input)
+	req, out := svc.UpdatePackageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5823,17 +5901,19 @@ func ExecuteUpgradeElasticsearchDomain(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := UpgradeElasticsearchDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpgradeElasticsearchDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpgradeElasticsearchDomainRequest(input)
+	req, out := svc.UpgradeElasticsearchDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

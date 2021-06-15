@@ -157,17 +157,19 @@ func ExecuteAssociateServiceQuotaTemplate(parameters map[string]interface{}) (ma
 	}
 	delete(parameters, "_Service")
 
+	input := AssociateServiceQuotaTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssociateServiceQuotaTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssociateServiceQuotaTemplateRequest(input)
+	req, out := svc.AssociateServiceQuotaTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -300,17 +302,19 @@ func ExecuteDeleteServiceQuotaIncreaseRequestFromTemplate(parameters map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteServiceQuotaIncreaseRequestFromTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteServiceQuotaIncreaseRequestFromTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteServiceQuotaIncreaseRequestFromTemplateRequest(input)
+	req, out := svc.DeleteServiceQuotaIncreaseRequestFromTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -442,17 +446,19 @@ func ExecuteDisassociateServiceQuotaTemplate(parameters map[string]interface{}) 
 	}
 	delete(parameters, "_Service")
 
+	input := DisassociateServiceQuotaTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisassociateServiceQuotaTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisassociateServiceQuotaTemplateRequest(input)
+	req, out := svc.DisassociateServiceQuotaTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -571,17 +577,19 @@ func ExecuteGetAWSDefaultServiceQuota(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := GetAWSDefaultServiceQuotaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetAWSDefaultServiceQuotaInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetAWSDefaultServiceQuotaRequest(input)
+	req, out := svc.GetAWSDefaultServiceQuotaRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -709,17 +717,19 @@ func ExecuteGetAssociationForServiceQuotaTemplate(parameters map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := GetAssociationForServiceQuotaTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetAssociationForServiceQuotaTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetAssociationForServiceQuotaTemplateRequest(input)
+	req, out := svc.GetAssociationForServiceQuotaTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -837,17 +847,19 @@ func ExecuteGetRequestedServiceQuotaChange(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := GetRequestedServiceQuotaChangeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetRequestedServiceQuotaChangeInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetRequestedServiceQuotaChangeRequest(input)
+	req, out := svc.GetRequestedServiceQuotaChangeRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -967,17 +979,19 @@ func ExecuteGetServiceQuota(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := GetServiceQuotaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetServiceQuotaInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetServiceQuotaRequest(input)
+	req, out := svc.GetServiceQuotaRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1109,17 +1123,19 @@ func ExecuteGetServiceQuotaIncreaseRequestFromTemplate(parameters map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := GetServiceQuotaIncreaseRequestFromTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetServiceQuotaIncreaseRequestFromTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetServiceQuotaIncreaseRequestFromTemplateRequest(input)
+	req, out := svc.GetServiceQuotaIncreaseRequestFromTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1247,17 +1263,19 @@ func ExecuteListAWSDefaultServiceQuotas(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := ListAWSDefaultServiceQuotasInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListAWSDefaultServiceQuotasInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListAWSDefaultServiceQuotasRequest(input)
+	req, out := svc.ListAWSDefaultServiceQuotasRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1436,17 +1454,19 @@ func ExecuteListRequestedServiceQuotaChangeHistory(parameters map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := ListRequestedServiceQuotaChangeHistoryInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListRequestedServiceQuotaChangeHistoryInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListRequestedServiceQuotaChangeHistoryRequest(input)
+	req, out := svc.ListRequestedServiceQuotaChangeHistoryRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1625,17 +1645,19 @@ func ExecuteListRequestedServiceQuotaChangeHistoryByQuota(parameters map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := ListRequestedServiceQuotaChangeHistoryByQuotaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListRequestedServiceQuotaChangeHistoryByQuotaInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListRequestedServiceQuotaChangeHistoryByQuotaRequest(input)
+	req, out := svc.ListRequestedServiceQuotaChangeHistoryByQuotaRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1821,17 +1843,19 @@ func ExecuteListServiceQuotaIncreaseRequestsInTemplate(parameters map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := ListServiceQuotaIncreaseRequestsInTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListServiceQuotaIncreaseRequestsInTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListServiceQuotaIncreaseRequestsInTemplateRequest(input)
+	req, out := svc.ListServiceQuotaIncreaseRequestsInTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2012,17 +2036,19 @@ func ExecuteListServiceQuotas(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := ListServiceQuotasInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListServiceQuotasInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListServiceQuotasRequest(input)
+	req, out := svc.ListServiceQuotasRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2198,17 +2224,19 @@ func ExecuteListServices(parameters map[string]interface{}) (map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := ListServicesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListServicesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListServicesRequest(input)
+	req, out := svc.ListServicesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2378,17 +2406,19 @@ func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagsForResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagsForResourceRequest(input)
+	req, out := svc.ListTagsForResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2524,17 +2554,19 @@ func ExecutePutServiceQuotaIncreaseRequestIntoTemplate(parameters map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := PutServiceQuotaIncreaseRequestIntoTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &PutServiceQuotaIncreaseRequestIntoTemplateInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.PutServiceQuotaIncreaseRequestIntoTemplateRequest(input)
+	req, out := svc.PutServiceQuotaIncreaseRequestIntoTemplateRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2666,17 +2698,19 @@ func ExecuteRequestServiceQuotaIncrease(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := RequestServiceQuotaIncreaseInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RequestServiceQuotaIncreaseInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RequestServiceQuotaIncreaseRequest(input)
+	req, out := svc.RequestServiceQuotaIncreaseRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2804,17 +2838,19 @@ func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := TagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TagResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TagResourceRequest(input)
+	req, out := svc.TagResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2934,17 +2970,19 @@ func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interfa
 	}
 	delete(parameters, "_Service")
 
+	input := UntagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UntagResourceInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UntagResourceRequest(input)
+	req, out := svc.UntagResourceRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

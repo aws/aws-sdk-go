@@ -144,17 +144,19 @@ func ExecuteGetIceServerConfig(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := GetIceServerConfigInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetIceServerConfigInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetIceServerConfigRequest(input)
+	req, out := svc.GetIceServerConfigRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -274,17 +276,19 @@ func ExecuteSendAlexaOfferToMaster(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := SendAlexaOfferToMasterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &SendAlexaOfferToMasterInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.SendAlexaOfferToMasterRequest(input)
+	req, out := svc.SendAlexaOfferToMasterRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

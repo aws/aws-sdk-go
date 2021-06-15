@@ -157,17 +157,19 @@ func ExecuteAcceptDomainTransferFromAnotherAwsAccount(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := AcceptDomainTransferFromAnotherAwsAccountInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AcceptDomainTransferFromAnotherAwsAccountInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AcceptDomainTransferFromAnotherAwsAccountRequest(input)
+	req, out := svc.AcceptDomainTransferFromAnotherAwsAccountRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -290,17 +292,19 @@ func ExecuteCancelDomainTransferToAnotherAwsAccount(parameters map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := CancelDomainTransferToAnotherAwsAccountInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CancelDomainTransferToAnotherAwsAccountInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CancelDomainTransferToAnotherAwsAccountRequest(input)
+	req, out := svc.CancelDomainTransferToAnotherAwsAccountRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -413,17 +417,19 @@ func ExecuteCheckDomainAvailability(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := CheckDomainAvailabilityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CheckDomainAvailabilityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CheckDomainAvailabilityRequest(input)
+	req, out := svc.CheckDomainAvailabilityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -534,17 +540,19 @@ func ExecuteCheckDomainTransferability(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := CheckDomainTransferabilityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &CheckDomainTransferabilityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.CheckDomainTransferabilityRequest(input)
+	req, out := svc.CheckDomainTransferabilityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -663,17 +671,19 @@ func ExecuteDeleteTagsForDomain(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := DeleteTagsForDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DeleteTagsForDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DeleteTagsForDomainRequest(input)
+	req, out := svc.DeleteTagsForDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -786,17 +796,19 @@ func ExecuteDisableDomainAutoRenew(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := DisableDomainAutoRenewInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisableDomainAutoRenewInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisableDomainAutoRenewRequest(input)
+	req, out := svc.DisableDomainAutoRenewRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -923,17 +935,19 @@ func ExecuteDisableDomainTransferLock(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := DisableDomainTransferLockInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DisableDomainTransferLockInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DisableDomainTransferLockRequest(input)
+	req, out := svc.DisableDomainTransferLockRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1057,17 +1071,19 @@ func ExecuteEnableDomainAutoRenew(parameters map[string]interface{}) (map[string
 	}
 	delete(parameters, "_Service")
 
+	input := EnableDomainAutoRenewInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &EnableDomainAutoRenewInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.EnableDomainAutoRenewRequest(input)
+	req, out := svc.EnableDomainAutoRenewRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1192,17 +1208,19 @@ func ExecuteEnableDomainTransferLock(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := EnableDomainTransferLockInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &EnableDomainTransferLockInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.EnableDomainTransferLockRequest(input)
+	req, out := svc.EnableDomainTransferLockRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1322,17 +1340,19 @@ func ExecuteGetContactReachabilityStatus(parameters map[string]interface{}) (map
 	}
 	delete(parameters, "_Service")
 
+	input := GetContactReachabilityStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetContactReachabilityStatusInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetContactReachabilityStatusRequest(input)
+	req, out := svc.GetContactReachabilityStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1445,17 +1465,19 @@ func ExecuteGetDomainDetail(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := GetDomainDetailInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetDomainDetailInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetDomainDetailRequest(input)
+	req, out := svc.GetDomainDetailRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1566,17 +1588,19 @@ func ExecuteGetDomainSuggestions(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := GetDomainSuggestionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetDomainSuggestionsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetDomainSuggestionsRequest(input)
+	req, out := svc.GetDomainSuggestionsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1684,17 +1708,19 @@ func ExecuteGetOperationDetail(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := GetOperationDetailInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetOperationDetailInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetOperationDetailRequest(input)
+	req, out := svc.GetOperationDetailRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1809,17 +1835,19 @@ func ExecuteListDomains(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := ListDomainsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListDomainsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListDomainsRequest(input)
+	req, out := svc.ListDomainsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1987,17 +2015,19 @@ func ExecuteListOperations(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := ListOperationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListOperationsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListOperationsRequest(input)
+	req, out := svc.ListOperationsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2168,17 +2198,19 @@ func ExecuteListTagsForDomain(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := ListTagsForDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListTagsForDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListTagsForDomainRequest(input)
+	req, out := svc.ListTagsForDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2328,17 +2360,19 @@ func ExecuteRegisterDomain(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := RegisterDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RegisterDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RegisterDomainRequest(input)
+	req, out := svc.RegisterDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2458,17 +2492,19 @@ func ExecuteRejectDomainTransferFromAnotherAwsAccount(parameters map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := RejectDomainTransferFromAnotherAwsAccountInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RejectDomainTransferFromAnotherAwsAccountInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RejectDomainTransferFromAnotherAwsAccountRequest(input)
+	req, out := svc.RejectDomainTransferFromAnotherAwsAccountRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2596,17 +2632,19 @@ func ExecuteRenewDomain(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := RenewDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RenewDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RenewDomainRequest(input)
+	req, out := svc.RenewDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2723,17 +2761,19 @@ func ExecuteResendContactReachabilityEmail(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := ResendContactReachabilityEmailInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ResendContactReachabilityEmailInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ResendContactReachabilityEmailRequest(input)
+	req, out := svc.ResendContactReachabilityEmailRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2845,17 +2885,19 @@ func ExecuteRetrieveDomainAuthCode(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := RetrieveDomainAuthCodeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &RetrieveDomainAuthCodeInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.RetrieveDomainAuthCodeRequest(input)
+	req, out := svc.RetrieveDomainAuthCodeRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3012,17 +3054,19 @@ func ExecuteTransferDomain(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := TransferDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TransferDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TransferDomainRequest(input)
+	req, out := svc.TransferDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3163,17 +3207,19 @@ func ExecuteTransferDomainToAnotherAwsAccount(parameters map[string]interface{})
 	}
 	delete(parameters, "_Service")
 
+	input := TransferDomainToAnotherAwsAccountInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &TransferDomainToAnotherAwsAccountInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.TransferDomainToAnotherAwsAccountRequest(input)
+	req, out := svc.TransferDomainToAnotherAwsAccountRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3301,17 +3347,19 @@ func ExecuteUpdateDomainContact(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateDomainContactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateDomainContactInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateDomainContactRequest(input)
+	req, out := svc.UpdateDomainContactRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3452,17 +3500,19 @@ func ExecuteUpdateDomainContactPrivacy(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateDomainContactPrivacyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateDomainContactPrivacyInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateDomainContactPrivacyRequest(input)
+	req, out := svc.UpdateDomainContactPrivacyRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3590,17 +3640,19 @@ func ExecuteUpdateDomainNameservers(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateDomainNameserversInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateDomainNameserversInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateDomainNameserversRequest(input)
+	req, out := svc.UpdateDomainNameserversRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3719,17 +3771,19 @@ func ExecuteUpdateTagsForDomain(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := UpdateTagsForDomainInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &UpdateTagsForDomainInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.UpdateTagsForDomainRequest(input)
+	req, out := svc.UpdateTagsForDomainRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -3838,17 +3892,19 @@ func ExecuteViewBilling(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := ViewBillingInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ViewBillingInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ViewBillingRequest(input)
+	req, out := svc.ViewBillingRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

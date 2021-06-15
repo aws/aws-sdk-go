@@ -145,17 +145,19 @@ func ExecuteDescribeEntitiesDetectionV2Job(parameters map[string]interface{}) (m
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeEntitiesDetectionV2JobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeEntitiesDetectionV2JobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeEntitiesDetectionV2JobRequest(input)
+	req, out := svc.DescribeEntitiesDetectionV2JobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -274,17 +276,19 @@ func ExecuteDescribeICD10CMInferenceJob(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeICD10CMInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeICD10CMInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeICD10CMInferenceJobRequest(input)
+	req, out := svc.DescribeICD10CMInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -403,17 +407,19 @@ func ExecuteDescribePHIDetectionJob(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := DescribePHIDetectionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribePHIDetectionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribePHIDetectionJobRequest(input)
+	req, out := svc.DescribePHIDetectionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -532,17 +538,19 @@ func ExecuteDescribeRxNormInferenceJob(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DescribeRxNormInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DescribeRxNormInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DescribeRxNormInferenceJobRequest(input)
+	req, out := svc.DescribeRxNormInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -682,17 +690,19 @@ func ExecuteDetectEntities(parameters map[string]interface{}) (map[string]interf
 	}
 	delete(parameters, "_Service")
 
+	input := DetectEntitiesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DetectEntitiesInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DetectEntitiesRequest(input)
+	req, out := svc.DetectEntitiesRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -829,17 +839,19 @@ func ExecuteDetectEntitiesV2(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := DetectEntitiesV2Input{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DetectEntitiesV2Input{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DetectEntitiesV2Request(input)
+	req, out := svc.DetectEntitiesV2Request(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -968,17 +980,19 @@ func ExecuteDetectPHI(parameters map[string]interface{}) (map[string]interface{}
 	}
 	delete(parameters, "_Service")
 
+	input := DetectPHIInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DetectPHIInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DetectPHIRequest(input)
+	req, out := svc.DetectPHIRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1107,17 +1121,19 @@ func ExecuteInferICD10CM(parameters map[string]interface{}) (map[string]interfac
 	}
 	delete(parameters, "_Service")
 
+	input := InferICD10CMInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &InferICD10CMInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.InferICD10CMRequest(input)
+	req, out := svc.InferICD10CMRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1246,17 +1262,19 @@ func ExecuteInferRxNorm(parameters map[string]interface{}) (map[string]interface
 	}
 	delete(parameters, "_Service")
 
+	input := InferRxNormInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &InferRxNormInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.InferRxNormRequest(input)
+	req, out := svc.InferRxNormRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1374,17 +1392,19 @@ func ExecuteListEntitiesDetectionV2Jobs(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := ListEntitiesDetectionV2JobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListEntitiesDetectionV2JobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListEntitiesDetectionV2JobsRequest(input)
+	req, out := svc.ListEntitiesDetectionV2JobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1502,17 +1522,19 @@ func ExecuteListICD10CMInferenceJobs(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := ListICD10CMInferenceJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListICD10CMInferenceJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListICD10CMInferenceJobsRequest(input)
+	req, out := svc.ListICD10CMInferenceJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1631,17 +1653,19 @@ func ExecuteListPHIDetectionJobs(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := ListPHIDetectionJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListPHIDetectionJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListPHIDetectionJobsRequest(input)
+	req, out := svc.ListPHIDetectionJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1759,17 +1783,19 @@ func ExecuteListRxNormInferenceJobs(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := ListRxNormInferenceJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &ListRxNormInferenceJobsInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.ListRxNormInferenceJobsRequest(input)
+	req, out := svc.ListRxNormInferenceJobsRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1889,17 +1915,19 @@ func ExecuteStartEntitiesDetectionV2Job(parameters map[string]interface{}) (map[
 	}
 	delete(parameters, "_Service")
 
+	input := StartEntitiesDetectionV2JobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartEntitiesDetectionV2JobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartEntitiesDetectionV2JobRequest(input)
+	req, out := svc.StartEntitiesDetectionV2JobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2019,17 +2047,19 @@ func ExecuteStartICD10CMInferenceJob(parameters map[string]interface{}) (map[str
 	}
 	delete(parameters, "_Service")
 
+	input := StartICD10CMInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartICD10CMInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartICD10CMInferenceJobRequest(input)
+	req, out := svc.StartICD10CMInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2148,17 +2178,19 @@ func ExecuteStartPHIDetectionJob(parameters map[string]interface{}) (map[string]
 	}
 	delete(parameters, "_Service")
 
+	input := StartPHIDetectionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartPHIDetectionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartPHIDetectionJobRequest(input)
+	req, out := svc.StartPHIDetectionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2278,17 +2310,19 @@ func ExecuteStartRxNormInferenceJob(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := StartRxNormInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StartRxNormInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StartRxNormInferenceJobRequest(input)
+	req, out := svc.StartRxNormInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2401,17 +2435,19 @@ func ExecuteStopEntitiesDetectionV2Job(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := StopEntitiesDetectionV2JobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StopEntitiesDetectionV2JobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StopEntitiesDetectionV2JobRequest(input)
+	req, out := svc.StopEntitiesDetectionV2JobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2524,17 +2560,19 @@ func ExecuteStopICD10CMInferenceJob(parameters map[string]interface{}) (map[stri
 	}
 	delete(parameters, "_Service")
 
+	input := StopICD10CMInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StopICD10CMInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StopICD10CMInferenceJobRequest(input)
+	req, out := svc.StopICD10CMInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2647,17 +2685,19 @@ func ExecuteStopPHIDetectionJob(parameters map[string]interface{}) (map[string]i
 	}
 	delete(parameters, "_Service")
 
+	input := StopPHIDetectionJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StopPHIDetectionJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StopPHIDetectionJobRequest(input)
+	req, out := svc.StopPHIDetectionJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -2770,17 +2810,19 @@ func ExecuteStopRxNormInferenceJob(parameters map[string]interface{}) (map[strin
 	}
 	delete(parameters, "_Service")
 
+	input := StopRxNormInferenceJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &StopRxNormInferenceJobInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.StopRxNormInferenceJobRequest(input)
+	req, out := svc.StopRxNormInferenceJobRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

@@ -232,17 +232,19 @@ func ExecuteAssumeRole(parameters map[string]interface{}) (map[string]interface{
 	}
 	delete(parameters, "_Service")
 
+	input := AssumeRoleInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssumeRoleInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssumeRoleRequest(input)
+	req, out := svc.AssumeRoleRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -508,17 +510,19 @@ func ExecuteAssumeRoleWithSAML(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := AssumeRoleWithSAMLInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssumeRoleWithSAMLInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssumeRoleWithSAMLRequest(input)
+	req, out := svc.AssumeRoleWithSAMLRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -803,17 +807,19 @@ func ExecuteAssumeRoleWithWebIdentity(parameters map[string]interface{}) (map[st
 	}
 	delete(parameters, "_Service")
 
+	input := AssumeRoleWithWebIdentityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &AssumeRoleWithWebIdentityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.AssumeRoleWithWebIdentityRequest(input)
+	req, out := svc.AssumeRoleWithWebIdentityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -951,17 +957,19 @@ func ExecuteDecodeAuthorizationMessage(parameters map[string]interface{}) (map[s
 	}
 	delete(parameters, "_Service")
 
+	input := DecodeAuthorizationMessageInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &DecodeAuthorizationMessageInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.DecodeAuthorizationMessageRequest(input)
+	req, out := svc.DecodeAuthorizationMessageRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1084,17 +1092,19 @@ func ExecuteGetAccessKeyInfo(parameters map[string]interface{}) (map[string]inte
 	}
 	delete(parameters, "_Service")
 
+	input := GetAccessKeyInfoInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetAccessKeyInfoInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetAccessKeyInfoRequest(input)
+	req, out := svc.GetAccessKeyInfoRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1203,17 +1213,19 @@ func ExecuteGetCallerIdentity(parameters map[string]interface{}) (map[string]int
 	}
 	delete(parameters, "_Service")
 
+	input := GetCallerIdentityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetCallerIdentityInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetCallerIdentityRequest(input)
+	req, out := svc.GetCallerIdentityRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1492,17 +1504,19 @@ func ExecuteGetFederationToken(parameters map[string]interface{}) (map[string]in
 	}
 	delete(parameters, "_Service")
 
+	input := GetFederationTokenInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetFederationTokenInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetFederationTokenRequest(input)
+	req, out := svc.GetFederationTokenRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -1659,17 +1673,19 @@ func ExecuteGetSessionToken(parameters map[string]interface{}) (map[string]inter
 	}
 	delete(parameters, "_Service")
 
+	input := GetSessionTokenInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &GetSessionTokenInput{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.GetSessionTokenRequest(input)
+	req, out := svc.GetSessionTokenRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
