@@ -817,7 +817,7 @@ func (c *LexModelsV2) CreateResourcePolicyStatementRequest(input *CreateResource
 // policy exists, the statement is added to the current resource policy. If
 // a policy doesn't exist, a new policy is created.
 //
-// You can create a resource policy statement that allows cross-account access.
+// You can't create a resource policy statement that allows cross-account access.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5192,7 +5192,11 @@ func (c *LexModelsV2) UpdateExportRequest(input *UpdateExportInput) (req *reques
 
 // UpdateExport API operation for Amazon Lex Model Building V2.
 //
-// Updates the password used to encrypt an export zip archive.
+// Updates the password used to protect an export zip archive.
+//
+// The password is not required. If you don't supply a password, Amazon Lex
+// generates a zip file that is not protected by a password. This is the archive
+// that is available at the pre-signed S3 URL provided by the operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9230,6 +9234,13 @@ type CreateSlotInput struct {
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
 
+	// Indicates whether the slot returns multiple values in one response. Multi-value
+	// slots are only available in the en-US locale. If you set this value to true
+	// in any other locale, Amazon Lex throws a ValidationException.
+	//
+	// If the multipleValuesSetting is not set, the default value is false.
+	MultipleValuesSetting *MultipleValuesSetting `locationName:"multipleValuesSetting" type:"structure"`
+
 	// Determines how slot values are used in Amazon CloudWatch logs. If the value
 	// of the obfuscationSetting parameter is DefaultObfuscation, slot values are
 	// obfuscated in the log output. If the value is None, the actual value is present
@@ -9356,6 +9367,12 @@ func (s *CreateSlotInput) SetLocaleId(v string) *CreateSlotInput {
 	return s
 }
 
+// SetMultipleValuesSetting sets the MultipleValuesSetting field's value.
+func (s *CreateSlotInput) SetMultipleValuesSetting(v *MultipleValuesSetting) *CreateSlotInput {
+	s.MultipleValuesSetting = v
+	return s
+}
+
 // SetObfuscationSetting sets the ObfuscationSetting field's value.
 func (s *CreateSlotInput) SetObfuscationSetting(v *ObfuscationSetting) *CreateSlotInput {
 	s.ObfuscationSetting = v
@@ -9400,6 +9417,9 @@ type CreateSlotOutput struct {
 
 	// The language and local specified for the slot.
 	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// Indicates whether the slot returns multiple values in one response.
+	MultipleValuesSetting *MultipleValuesSetting `locationName:"multipleValuesSetting" type:"structure"`
 
 	// Indicates whether the slot is configured to obfuscate values in Amazon CloudWatch
 	// logs.
@@ -9462,6 +9482,12 @@ func (s *CreateSlotOutput) SetIntentId(v string) *CreateSlotOutput {
 // SetLocaleId sets the LocaleId field's value.
 func (s *CreateSlotOutput) SetLocaleId(v string) *CreateSlotOutput {
 	s.LocaleId = &v
+	return s
+}
+
+// SetMultipleValuesSetting sets the MultipleValuesSetting field's value.
+func (s *CreateSlotOutput) SetMultipleValuesSetting(v *MultipleValuesSetting) *CreateSlotOutput {
+	s.MultipleValuesSetting = v
 	return s
 }
 
@@ -12556,6 +12582,11 @@ type DescribeSlotOutput struct {
 	// The language and locale specified for the slot.
 	LocaleId *string `locationName:"localeId" type:"string"`
 
+	// Indicates whether the slot accepts multiple values in a single utterance.
+	//
+	// If the multipleValuesSetting is not set, the default value is false.
+	MultipleValuesSetting *MultipleValuesSetting `locationName:"multipleValuesSetting" type:"structure"`
+
 	// Whether slot values are shown in Amazon CloudWatch logs. If the value is
 	// None, the actual value of the slot is shown in logs.
 	ObfuscationSetting *ObfuscationSetting `locationName:"obfuscationSetting" type:"structure"`
@@ -12623,6 +12654,12 @@ func (s *DescribeSlotOutput) SetLastUpdatedDateTime(v time.Time) *DescribeSlotOu
 // SetLocaleId sets the LocaleId field's value.
 func (s *DescribeSlotOutput) SetLocaleId(v string) *DescribeSlotOutput {
 	s.LocaleId = &v
+	return s
+}
+
+// SetMultipleValuesSetting sets the MultipleValuesSetting field's value.
+func (s *DescribeSlotOutput) SetMultipleValuesSetting(v *MultipleValuesSetting) *DescribeSlotOutput {
+	s.MultipleValuesSetting = v
 	return s
 }
 
@@ -16102,6 +16139,37 @@ func (s *MessageGroup) SetMessage(v *Message) *MessageGroup {
 // SetVariations sets the Variations field's value.
 func (s *MessageGroup) SetVariations(v []*Message) *MessageGroup {
 	s.Variations = v
+	return s
+}
+
+// Indicates whether a slot can return multiple values.
+type MultipleValuesSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether a slot can return multiple values. When true, the slot
+	// may return more than one value in a response. When false, the slot returns
+	// only a single value.
+	//
+	// Multi-value slots are only available in the en-US locale. If you set this
+	// value to true in any other locale, Amazon Lex throws a ValidationException.
+	//
+	// If the allowMutlipleValues is not set, the default value is false.
+	AllowMultipleValues *bool `locationName:"allowMultipleValues" type:"boolean"`
+}
+
+// String returns the string representation
+func (s MultipleValuesSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultipleValuesSetting) GoString() string {
+	return s.String()
+}
+
+// SetAllowMultipleValues sets the AllowMultipleValues field's value.
+func (s *MultipleValuesSetting) SetAllowMultipleValues(v bool) *MultipleValuesSetting {
+	s.AllowMultipleValues = &v
 	return s
 }
 
@@ -19704,6 +19772,13 @@ type UpdateSlotInput struct {
 	// LocaleId is a required field
 	LocaleId *string `location:"uri" locationName:"localeId" type:"string" required:"true"`
 
+	// Determines whether the slot accepts multiple values in one response. Multiple
+	// value slots are only available in the en-US locale. If you set this value
+	// to true in any other locale, Amazon Lex throws a ValidationException.
+	//
+	// If the multipleValuesSetting is not set, the default value is false.
+	MultipleValuesSetting *MultipleValuesSetting `locationName:"multipleValuesSetting" type:"structure"`
+
 	// New settings that determine how slot values are formatted in Amazon CloudWatch
 	// logs.
 	ObfuscationSetting *ObfuscationSetting `locationName:"obfuscationSetting" type:"structure"`
@@ -19835,6 +19910,12 @@ func (s *UpdateSlotInput) SetLocaleId(v string) *UpdateSlotInput {
 	return s
 }
 
+// SetMultipleValuesSetting sets the MultipleValuesSetting field's value.
+func (s *UpdateSlotInput) SetMultipleValuesSetting(v *MultipleValuesSetting) *UpdateSlotInput {
+	s.MultipleValuesSetting = v
+	return s
+}
+
 // SetObfuscationSetting sets the ObfuscationSetting field's value.
 func (s *UpdateSlotInput) SetObfuscationSetting(v *ObfuscationSetting) *UpdateSlotInput {
 	s.ObfuscationSetting = v
@@ -19889,6 +19970,9 @@ type UpdateSlotOutput struct {
 
 	// The locale that contains the slot.
 	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// Indicates whether the slot accepts multiple values in one response.
+	MultipleValuesSetting *MultipleValuesSetting `locationName:"multipleValuesSetting" type:"structure"`
 
 	// The updated setting that determines whether the slot value is obfuscated
 	// in the Amazon CloudWatch logs.
@@ -19957,6 +20041,12 @@ func (s *UpdateSlotOutput) SetLastUpdatedDateTime(v time.Time) *UpdateSlotOutput
 // SetLocaleId sets the LocaleId field's value.
 func (s *UpdateSlotOutput) SetLocaleId(v string) *UpdateSlotOutput {
 	s.LocaleId = &v
+	return s
+}
+
+// SetMultipleValuesSetting sets the MultipleValuesSetting field's value.
+func (s *UpdateSlotOutput) SetMultipleValuesSetting(v *MultipleValuesSetting) *UpdateSlotOutput {
+	s.MultipleValuesSetting = v
 	return s
 }
 

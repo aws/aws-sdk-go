@@ -1,3 +1,14 @@
+Release v1.38.62 (2021-06-15)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API
+  * EC2 M5n, M5dn, R5n, R5dn metal instances with 100 Gbps network performance and Elastic Fabric Adapter (EFA) for ultra low latency
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/redshift-data`: Updates service API and documentation
+* `service/runtime.lex.v2`: Updates service API and documentation
+
 Release v1.38.61 (2021-06-14)
 ===
 

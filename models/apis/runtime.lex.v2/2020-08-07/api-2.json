@@ -135,7 +135,8 @@
       "type":"structure",
       "required":[
         "name",
-        "timeToLive"
+        "timeToLive",
+        "contextAttributes"
       ],
       "members":{
         "name":{"shape":"ActiveContextName"},
@@ -532,6 +533,7 @@
     },
     "Message":{
       "type":"structure",
+      "required":["contentType"],
       "members":{
         "content":{"shape":"Text"},
         "contentType":{"shape":"MessageContentType"},
@@ -858,10 +860,19 @@
         "originatingRequestId":{"shape":"NonEmptyString"}
       }
     },
+    "Shape":{
+      "type":"string",
+      "enum":[
+        "Scalar",
+        "List"
+      ]
+    },
     "Slot":{
       "type":"structure",
       "members":{
-        "value":{"shape":"Value"}
+        "value":{"shape":"Value"},
+        "shape":{"shape":"Shape"},
+        "values":{"shape":"Values"}
       }
     },
     "Slots":{
@@ -1015,6 +1026,10 @@
         "interpretedValue":{"shape":"NonEmptyString"},
         "resolvedValues":{"shape":"StringList"}
       }
+    },
+    "Values":{
+      "type":"list",
+      "member":{"shape":"Slot"}
     }
   }
 }

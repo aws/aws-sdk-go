@@ -1857,7 +1857,8 @@
           "shape":"Id",
           "location":"uri",
           "locationName":"intentId"
-        }
+        },
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
       }
     },
     "CreateSlotResponse":{
@@ -1873,7 +1874,8 @@
         "botVersion":{"shape":"DraftBotVersion"},
         "localeId":{"shape":"LocaleId"},
         "intentId":{"shape":"Id"},
-        "creationDateTime":{"shape":"Timestamp"}
+        "creationDateTime":{"shape":"Timestamp"},
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
       }
     },
     "CreateSlotTypeRequest":{
@@ -2582,7 +2584,8 @@
         "localeId":{"shape":"LocaleId"},
         "intentId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
       }
     },
     "DescribeSlotTypeRequest":{
@@ -3373,6 +3376,12 @@
       "member":{"shape":"Message"},
       "max":2,
       "min":0
+    },
+    "MultipleValuesSetting":{
+      "type":"structure",
+      "members":{
+        "allowMultipleValues":{"shape":"Boolean"}
+      }
     },
     "Name":{
       "type":"string",
@@ -4281,7 +4290,8 @@
           "shape":"Id",
           "location":"uri",
           "locationName":"intentId"
-        }
+        },
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
       }
     },
     "UpdateSlotResponse":{
@@ -4298,7 +4308,8 @@
         "localeId":{"shape":"LocaleId"},
         "intentId":{"shape":"Id"},
         "creationDateTime":{"shape":"Timestamp"},
-        "lastUpdatedDateTime":{"shape":"Timestamp"}
+        "lastUpdatedDateTime":{"shape":"Timestamp"},
+        "multipleValuesSetting":{"shape":"MultipleValuesSetting"}
       }
     },
     "UpdateSlotTypeRequest":{
