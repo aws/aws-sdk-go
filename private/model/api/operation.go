@@ -414,18 +414,20 @@ func Execute{{ .ExportedName }}(` +	`parameters map[string] interface{}) ` + `(m
 		return nil, errors.New("failed to get AWS service")
 	}
 	delete(parameters, "_Service")
+	
+	input := {{ .InputRef.GoTypeElem }}{}
+	parameters = awsutil.UnpackParameters(parameters, input)
 
 	parametersMarshaled, err := json.Marshal(parameters)
 	if err != nil {
 		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
 	}
 
-	input := &{{ .InputRef.GoTypeElem }}{}
-	if err := json.Unmarshal(parametersMarshaled, input); err != nil {
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
 		return nil, errors.New("failed to unmarshal parameters " + err.Error())
 	}
 
-	req, out := svc.{{ .ExportedName }}Request(input)
+	req, out := svc.{{ .ExportedName }}Request(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}

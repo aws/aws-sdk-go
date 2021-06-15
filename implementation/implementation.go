@@ -1789,7 +1789,6 @@ func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.Exe
 }
 
 func (p *AWSPlugin) TestCredentials(credentialsMap map[string]connections.ConnectionInstance) (*plugin.CredentialsValidationResponse, error) {
-
 	log.Debugf("Requested to test credentials: \n %v", credentialsMap)
 
 	for _, connInstance := range credentialsMap {
