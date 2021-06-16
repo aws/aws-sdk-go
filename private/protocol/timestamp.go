@@ -112,7 +112,7 @@ func tryParse(v string, formats ...string) (time.Time, error) {
 		return t, nil
 	}
 
-	return time.Time{}, fmt.Errorf("unable to parse time string, %w", errs)
+	return time.Time{}, fmt.Errorf("unable to parse time string, %v", errs)
 }
 
 type parseErrors []parseError
