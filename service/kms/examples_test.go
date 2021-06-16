@@ -329,9 +329,9 @@ func ExampleKMS_DeleteImportedKeyMaterial_shared00() {
 	fmt.Println(result)
 }
 
-// To obtain information about a customer master key (CMK)
+// To get details about a customer master key (CMK)
 //
-// The following example returns information (metadata) about the specified CMK.
+// The following example gets metadata about a symmetric CMK.
 func ExampleKMS_DescribeKey_shared00() {
 	svc := kms.New(session.New())
 	input := &kms.DescribeKeyInput{

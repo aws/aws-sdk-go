@@ -489,13 +489,17 @@
       "members": {
         "AccessType": {
           "shape": "AccessType"
+        },
+        "SecretsManagerAccessTokenConfiguration": {
+          "shape": "SecretsManagerAccessTokenConfiguration"
         }
       },
       "type": "structure"
     },
     "AccessType": {
       "enum": [
-        "S3_SIGV4"
+        "S3_SIGV4",
+        "SECRETS_MANAGER_ACCESS_TOKEN"
       ],
       "type": "string"
     },
@@ -1863,6 +1867,20 @@
         "Arn",
         "ProgramName"
       ],
+      "type": "structure"
+    },
+    "SecretsManagerAccessTokenConfiguration": {
+      "members": {
+        "HeaderName": {
+          "shape": "__string"
+        },
+        "SecretArn": {
+          "shape": "__string"
+        },
+        "SecretStringKey": {
+          "shape": "__string"
+        }
+      },
       "type": "structure"
     },
     "SlateSource": {

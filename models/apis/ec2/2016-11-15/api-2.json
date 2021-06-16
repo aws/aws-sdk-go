@@ -200,6 +200,15 @@
       "input":{"shape":"AssociateTransitGatewayRouteTableRequest"},
       "output":{"shape":"AssociateTransitGatewayRouteTableResult"}
     },
+    "AssociateTrunkInterface":{
+      "name":"AssociateTrunkInterface",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateTrunkInterfaceRequest"},
+      "output":{"shape":"AssociateTrunkInterfaceResult"}
+    },
     "AssociateVpcCidrBlock":{
       "name":"AssociateVpcCidrBlock",
       "http":{
@@ -2403,6 +2412,15 @@
       "input":{"shape":"DescribeTransitGatewaysRequest"},
       "output":{"shape":"DescribeTransitGatewaysResult"}
     },
+    "DescribeTrunkInterfaceAssociations":{
+      "name":"DescribeTrunkInterfaceAssociations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeTrunkInterfaceAssociationsRequest"},
+      "output":{"shape":"DescribeTrunkInterfaceAssociationsResult"}
+    },
     "DescribeVolumeAttribute":{
       "name":"DescribeVolumeAttribute",
       "http":{
@@ -2738,6 +2756,15 @@
       },
       "input":{"shape":"DisassociateTransitGatewayRouteTableRequest"},
       "output":{"shape":"DisassociateTransitGatewayRouteTableResult"}
+    },
+    "DisassociateTrunkInterface":{
+      "name":"DisassociateTrunkInterface",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateTrunkInterfaceRequest"},
+      "output":{"shape":"DisassociateTrunkInterfaceResult"}
     },
     "DisassociateVpcCidrBlock":{
       "name":"DisassociateVpcCidrBlock",
@@ -5103,6 +5130,37 @@
         "Association":{
           "shape":"TransitGatewayAssociation",
           "locationName":"association"
+        }
+      }
+    },
+    "AssociateTrunkInterfaceRequest":{
+      "type":"structure",
+      "required":[
+        "BranchInterfaceId",
+        "TrunkInterfaceId"
+      ],
+      "members":{
+        "BranchInterfaceId":{"shape":"NetworkInterfaceId"},
+        "TrunkInterfaceId":{"shape":"NetworkInterfaceId"},
+        "VlanId":{"shape":"Integer"},
+        "GreKey":{"shape":"Integer"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AssociateTrunkInterfaceResult":{
+      "type":"structure",
+      "members":{
+        "InterfaceAssociation":{
+          "shape":"TrunkInterfaceAssociation",
+          "locationName":"interfaceAssociation"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },
@@ -13996,6 +14054,40 @@
         }
       }
     },
+    "DescribeTrunkInterfaceAssociationsMaxResults":{
+      "type":"integer",
+      "max":255,
+      "min":5
+    },
+    "DescribeTrunkInterfaceAssociationsRequest":{
+      "type":"structure",
+      "members":{
+        "AssociationIds":{
+          "shape":"TrunkInterfaceAssociationIdList",
+          "locationName":"AssociationId"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeTrunkInterfaceAssociationsMaxResults"}
+      }
+    },
+    "DescribeTrunkInterfaceAssociationsResult":{
+      "type":"structure",
+      "members":{
+        "InterfaceAssociations":{
+          "shape":"TrunkInterfaceAssociationList",
+          "locationName":"interfaceAssociationSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "DescribeVolumeAttributeRequest":{
       "type":"structure",
       "required":[
@@ -15100,6 +15192,31 @@
         "Association":{
           "shape":"TransitGatewayAssociation",
           "locationName":"association"
+        }
+      }
+    },
+    "DisassociateTrunkInterfaceRequest":{
+      "type":"structure",
+      "required":["AssociationId"],
+      "members":{
+        "AssociationId":{"shape":"TrunkInterfaceAssociationId"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisassociateTrunkInterfaceResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "ClientToken":{
+          "shape":"String",
+          "locationName":"clientToken"
         }
       }
     },
@@ -20822,6 +20939,13 @@
         "EIP-ASSOCIATE"
       ]
     },
+    "InterfaceProtocolType":{
+      "type":"string",
+      "enum":[
+        "VLAN",
+        "GRE"
+      ]
+    },
     "InternetGateway":{
       "type":"structure",
       "members":{
@@ -24437,7 +24561,11 @@
     },
     "NetworkInterfaceCreationType":{
       "type":"string",
-      "enum":["efa"]
+      "enum":[
+        "efa",
+        "branch",
+        "trunk"
+      ]
     },
     "NetworkInterfaceId":{"type":"string"},
     "NetworkInterfaceIdList":{
@@ -24576,7 +24704,8 @@
       "enum":[
         "interface",
         "natGateway",
-        "efa"
+        "efa",
+        "trunk"
       ]
     },
     "NetworkPerformance":{"type":"string"},
@@ -31933,6 +32062,54 @@
         "tcp",
         "udp"
       ]
+    },
+    "TrunkInterfaceAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationId":{
+          "shape":"TrunkInterfaceAssociationId",
+          "locationName":"associationId"
+        },
+        "BranchInterfaceId":{
+          "shape":"String",
+          "locationName":"branchInterfaceId"
+        },
+        "TrunkInterfaceId":{
+          "shape":"String",
+          "locationName":"trunkInterfaceId"
+        },
+        "InterfaceProtocol":{
+          "shape":"InterfaceProtocolType",
+          "locationName":"interfaceProtocol"
+        },
+        "VlanId":{
+          "shape":"Integer",
+          "locationName":"vlanId"
+        },
+        "GreKey":{
+          "shape":"Integer",
+          "locationName":"greKey"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "TrunkInterfaceAssociationId":{"type":"string"},
+    "TrunkInterfaceAssociationIdList":{
+      "type":"list",
+      "member":{
+        "shape":"TrunkInterfaceAssociationId",
+        "locationName":"item"
+      }
+    },
+    "TrunkInterfaceAssociationList":{
+      "type":"list",
+      "member":{
+        "shape":"TrunkInterfaceAssociation",
+        "locationName":"item"
+      }
     },
     "TunnelInsideIpVersion":{
       "type":"string",

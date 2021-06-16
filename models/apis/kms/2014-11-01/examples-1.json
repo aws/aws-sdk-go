@@ -171,12 +171,17 @@
             "AWSAccountId": "111122223333",
             "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
             "CreationDate": "2017-07-05T14:04:55-07:00",
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
             "Description": "",
             "Enabled": true,
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
+            ],
             "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
             "KeyManager": "CUSTOMER",
             "KeyState": "Enabled",
             "KeyUsage": "ENCRYPT_DECRYPT",
+            "MultiRegion": false,
             "Origin": "AWS_KMS"
           }
         },
@@ -188,9 +193,9 @@
             "KeyMetadata": "An object that contains information about the specified CMK."
           }
         },
-        "description": "The following example returns information (metadata) about the specified CMK.",
-        "id": "to-obtain-information-about-a-cmk-1478565820907",
-        "title": "To obtain information about a customer master key (CMK)"
+        "description": "The following example gets metadata about a symmetric CMK.",
+        "id": "get-key-details-1478565820907",
+        "title": "To get details about a customer master key (CMK)"
       }
     ],
     "DisableKey": [
