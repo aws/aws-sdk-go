@@ -1,3 +1,15 @@
+Release v1.38.63 (2021-06-16)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for VLAN-tagged network traffic over an Elastic Network Interface (ENI). This feature is in limited Preview for this release. Contact your account manager if you are interested in this feature.
+* `service/kms`: Updates service API, documentation, and examples
+  * Adds support for multi-Region keys
+* `service/mediatailor`: Updates service API and documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release enables fast cloning in Aurora Serverless. You can now clone between Aurora Serverless clusters and Aurora Provisioned clusters.
+
 Release v1.38.62 (2021-06-15)
 ===
 

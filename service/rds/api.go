@@ -10805,6 +10805,10 @@ func (c *RDS) ModifyDBClusterParameterGroupRequest(input *ModifyDBClusterParamet
 // For more information on Amazon Aurora, see What Is Amazon Aurora? (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/CHAP_AuroraOverview.html)
 // in the Amazon Aurora User Guide.
 //
+// Changes to dynamic parameters are applied immediately. Changes to static
+// parameters require a reboot without failover to the DB cluster associated
+// with the parameter group before the change can take effect.
+//
 // After you create a DB cluster parameter group, you should wait at least 5
 // minutes before creating your first DB cluster that uses that DB cluster parameter
 // group as the default parameter group. This allows Amazon RDS to fully complete
@@ -11158,6 +11162,10 @@ func (c *RDS) ModifyDBParameterGroupRequest(input *ModifyDBParameterGroupInput) 
 // Modifies the parameters of a DB parameter group. To modify more than one
 // parameter, submit a list of the following: ParameterName, ParameterValue,
 // and ApplyMethod. A maximum of 20 parameters can be modified in a single request.
+//
+// Changes to dynamic parameters are applied immediately. Changes to static
+// parameters require a reboot without failover to the DB instance associated
+// with the parameter group before the change can take effect.
 //
 // After you modify a DB parameter group, you should wait at least 5 minutes
 // before creating your first DB instance that uses that DB parameter group
@@ -18359,28 +18367,6 @@ type CreateDBClusterParameterGroupInput struct {
 	//
 	// Example: aurora-postgresql9.6
 	//
-	// To list all of the available parameter group families for a DB engine, use
-	// the following command:
-	//
-	// aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-	// --engine <engine>
-	//
-	// For example, to list all of the available parameter group families for the
-	// Aurora PostgreSQL DB engine, use the following command:
-	//
-	// aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-	// --engine aurora-postgresql
-	//
-	// The output contains duplicates.
-	//
-	// The following are the valid DB engine values:
-	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
-	//
-	//    * aurora-postgresql
-	//
 	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
 
@@ -20333,49 +20319,12 @@ type CreateDBParameterGroupInput struct {
 	// to a DB instance running a database engine and engine version compatible
 	// with that DB parameter group family.
 	//
-	// To list all of the available parameter group families for a DB engine, use
-	// the following command:
+	// To list all of the available parameter group families, use the following
+	// command:
 	//
 	// aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-	// --engine <engine>
-	//
-	// For example, to list all of the available parameter group families for the
-	// MySQL DB engine, use the following command:
-	//
-	// aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily"
-	// --engine mysql
 	//
 	// The output contains duplicates.
-	//
-	// The following are the valid DB engine values:
-	//
-	//    * aurora (for MySQL 5.6-compatible Aurora)
-	//
-	//    * aurora-mysql (for MySQL 5.7-compatible Aurora)
-	//
-	//    * aurora-postgresql
-	//
-	//    * mariadb
-	//
-	//    * mysql
-	//
-	//    * oracle-ee
-	//
-	//    * oracle-se2
-	//
-	//    * oracle-se1
-	//
-	//    * oracle-se
-	//
-	//    * postgres
-	//
-	//    * sqlserver-ee
-	//
-	//    * sqlserver-se
-	//
-	//    * sqlserver-ex
-	//
-	//    * sqlserver-web
 	//
 	// DBParameterGroupFamily is a required field
 	DBParameterGroupFamily *string `type:"string" required:"true"`
@@ -23112,8 +23061,7 @@ type DBInstance struct {
 
 	// Specifies the current state of this database.
 	//
-	// For information about DB instance statuses, see Viewing DB instance status
-	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/accessing-monitoring.html#Overview.DBInstance.Status)
+	// For information about DB instance statuses, see DB Instance Status (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Status.html)
 	// in the Amazon RDS User Guide.
 	DBInstanceStatus *string `type:"string"`
 
@@ -34698,17 +34646,6 @@ type ModifyDBClusterParameterGroupInput struct {
 
 	// A list of parameters in the DB cluster parameter group to modify.
 	//
-	// Valid Values (for the application method): immediate | pending-reboot
-	//
-	// You can use the immediate value with dynamic parameters only. You can use
-	// the pending-reboot value for both dynamic and static parameters.
-	//
-	// When the application method is immediate, changes to dynamic parameters are
-	// applied immediately to the DB clusters associated with the parameter group.
-	// When the application method is pending-reboot, changes to dynamic and static
-	// parameters are applied after a reboot without failover to the DB clusters
-	// associated with the parameter group.
-	//
 	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
 }
@@ -35791,21 +35728,16 @@ type ModifyDBParameterGroupInput struct {
 	// DBParameterGroupName is a required field
 	DBParameterGroupName *string `type:"string" required:"true"`
 
-	// An array of parameter names, values, and the application methods for the
-	// parameter update. At least one parameter name, value, and application method
-	// method must be supplied; later arguments are optional. A maximum of 20 parameters
-	// can be modified in a single request.
+	// An array of parameter names, values, and the apply method for the parameter
+	// update. At least one parameter name, value, and apply method must be supplied;
+	// later arguments are optional. A maximum of 20 parameters can be modified
+	// in a single request.
 	//
 	// Valid Values (for the application method): immediate | pending-reboot
 	//
 	// You can use the immediate value with dynamic parameters only. You can use
-	// the pending-reboot value for both dynamic and static parameters.
-	//
-	// When the application method is immediate, changes to dynamic parameters are
-	// applied immediately to the DB instances associated with the parameter group.
-	// When the application method is pending-reboot, changes to dynamic and static
-	// parameters are applied after a reboot without failover to the DB instances
-	// associated with the parameter group.
+	// the pending-reboot value for both dynamic and static parameters, and changes
+	// are applied when you reboot the DB instance without failover.
 	//
 	// Parameters is a required field
 	Parameters []*Parameter `locationNameList:"Parameter" type:"list" required:"true"`
@@ -40636,6 +40568,14 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// in the Amazon Aurora User Guide.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
+	// The engine mode of the new cluster. Specify provisioned or serverless, depending
+	// on the type of the cluster you are creating. You can create an Aurora Serverless
+	// clone from a provisioned cluster, or a provisioned clone from an Aurora Serverless
+	// cluster. To create a clone that is an Aurora Serverless cluster, the original
+	// cluster must be an Aurora Serverless cluster or an encrypted provisioned
+	// cluster.
+	EngineMode *string `type:"string"`
+
 	// The AWS KMS key identifier to use when restoring an encrypted DB cluster
 	// from an encrypted DB cluster.
 	//
@@ -40703,6 +40643,10 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// If you don't specify a RestoreType value, then the new DB cluster is restored
 	// as a full copy of the source DB cluster.
 	RestoreType *string `type:"string"`
+
+	// For DB clusters in serverless DB engine mode, the scaling properties of the
+	// DB cluster.
+	ScalingConfiguration *ScalingConfiguration `type:"structure"`
 
 	// The identifier of the source DB cluster from which to restore.
 	//
@@ -40814,6 +40758,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetEnableIAMDatabaseAuthentication(
 	return s
 }
 
+// SetEngineMode sets the EngineMode field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetEngineMode(v string) *RestoreDBClusterToPointInTimeInput {
+	s.EngineMode = &v
+	return s
+}
+
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetKmsKeyId(v string) *RestoreDBClusterToPointInTimeInput {
 	s.KmsKeyId = &v
@@ -40841,6 +40791,12 @@ func (s *RestoreDBClusterToPointInTimeInput) SetRestoreToTime(v time.Time) *Rest
 // SetRestoreType sets the RestoreType field's value.
 func (s *RestoreDBClusterToPointInTimeInput) SetRestoreType(v string) *RestoreDBClusterToPointInTimeInput {
 	s.RestoreType = &v
+	return s
+}
+
+// SetScalingConfiguration sets the ScalingConfiguration field's value.
+func (s *RestoreDBClusterToPointInTimeInput) SetScalingConfiguration(v *ScalingConfiguration) *RestoreDBClusterToPointInTimeInput {
+	s.ScalingConfiguration = v
 	return s
 }
 
@@ -42753,8 +42709,6 @@ type ScalingConfiguration struct {
 	MinCapacity *int64 `type:"integer"`
 
 	// The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
-	//
-	// Specify a value between 300 and 86,400 seconds.
 	SecondsUntilAutoPause *int64 `type:"integer"`
 
 	// The action to take when the timeout is reached, either ForceApplyCapacityChange

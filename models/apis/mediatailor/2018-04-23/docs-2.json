@@ -373,6 +373,12 @@
         "__listOfScheduleEntry$member": null
       }
     },
+    "SecretsManagerAccessTokenConfiguration": {
+      "base": "<p>AWS Secrets Manager access token configuration parameters. For information about Secrets Manager access token authentication, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-access-configuration-access-token.html\">Working with AWS Secrets Manager access token authentication</a>.</p>",
+      "refs": {
+        "AccessConfiguration$SecretsManagerAccessTokenConfiguration": "<p>AWS Secrets Manager access token configuration parameters.</p>"
+      }
+    },
     "SlateSource": {
       "base": "<p>Slate VOD source configuration.</p>",
       "refs": {
@@ -593,6 +599,9 @@
         "ScheduleEntry$ProgramName": "<p>The name of the program.</p>",
         "ScheduleEntry$SourceLocationName": "<p>The name of the source location.</p>",
         "ScheduleEntry$VodSourceName": "<p>The name of the VOD source.</p>",
+        "SecretsManagerAccessTokenConfiguration$HeaderName": "<p>The name of the HTTP header used to supply the access token in requests to the source location.</p>",
+        "SecretsManagerAccessTokenConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the access token.</p>",
+        "SecretsManagerAccessTokenConfiguration$SecretStringKey": "<p>The AWS Secrets Manager <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html\">SecretString</a> key associated with the access token. MediaTailor uses the key to look up SecretString key and value pair containing the access token.</p>",
         "SlateSource$SourceLocationName": "<p>The name of the source location where the slate VOD source is stored.</p>",
         "SlateSource$VodSourceName": "<p>The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate.</p>",
         "SourceLocation$Arn": "<p>The ARN of the SourceLocation.</p>",
