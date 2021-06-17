@@ -80,19 +80,44 @@ func TestParseTime(t *testing.T) {
 			input:          "946845296.1229999",
 			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
-		"ISO8601Test1": {
+		"ISO8601Test milliseconds": {
 			formatName:     ISO8601TimeFormatName,
 			input:          "2000-01-02T20:34:56.123Z",
 			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
-		"ISO8601Test2": {
+		"ISO8601Test nanoseconds": {
 			formatName:     ISO8601TimeFormatName,
 			input:          "2000-01-02T20:34:56.123456789Z",
 			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, .123456789e9, time.UTC),
 		},
-		"RFC822Test1": {
+		"ISO8601Test millisecond utc offset": {
+			formatName:     ISO8601TimeFormatName,
+			input:          "2000-01-02T20:34:56.123-07:00",
+			expectedOutput: time.Date(2000, time.January, 3, 3, 34, 56, .123e9, time.UTC),
+		},
+		"ISO8601Test millisecond positive utc offset": {
+			formatName:     ISO8601TimeFormatName,
+			input:          "2000-01-02T20:34:56.123+07:00",
+			expectedOutput: time.Date(2000, time.January, 2, 13, 34, 56, .123e9, time.UTC),
+		},
+		"ISO8601Test nanosecond utc offset": {
+			formatName:     ISO8601TimeFormatName,
+			input:          "2000-01-02T20:34:56.123456789-07:00",
+			expectedOutput: time.Date(2000, time.January, 3, 3, 34, 56, .123456789e9, time.UTC),
+		},
+		"RFC822Test single digit day": {
 			formatName:     RFC822TimeFormatName,
 			input:          "Sun, 2 Jan 2000 20:34:56 GMT",
+			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
+		},
+		"RFC822Test two digit day": {
+			formatName:     RFC822TimeFormatName,
+			input:          "Sun, 02 Jan 2000 20:34:56 GMT",
+			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
+		},
+		"RFC822Test two digit day year": {
+			formatName:     RFC822TimeFormatName,
+			input:          "Sun, 2 Jan 00 20:34:56 GMT",
 			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, 0, time.UTC),
 		},
 	}
