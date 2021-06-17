@@ -11966,7 +11966,13 @@
         "ml.r5.8xlarge",
         "ml.r5.12xlarge",
         "ml.r5.16xlarge",
-        "ml.r5.24xlarge"
+        "ml.r5.24xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge"
       ]
     },
     "ProcessingJob":{
@@ -13978,7 +13984,13 @@
         "ml.m5.2xlarge",
         "ml.m5.4xlarge",
         "ml.m5.12xlarge",
-        "ml.m5.24xlarge"
+        "ml.m5.24xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge"
       ]
     },
     "TransformInstanceTypes":{

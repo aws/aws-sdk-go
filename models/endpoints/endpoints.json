@@ -8,7 +8,7 @@
     "dnsSuffix" : "amazonaws.com",
     "partition" : "aws",
     "partitionName" : "AWS Standard",
-    "regionRegex" : "^(us|eu|ap|sa|ca|me|af|in)\\-\\w+\\-\\d+$",
+    "regionRegex" : "^(us|eu|ap|sa|ca|me|af)\\-\\w+\\-\\d+$",
     "regions" : {
       "af-south-1" : {
         "description" : "Africa (Cape Town)"
@@ -54,9 +54,6 @@
       },
       "eu-west-3" : {
         "description" : "Europe (Paris)"
-      },
-      "in-amazon-1" : {
-        "description" : "India (Begumpet)"
       },
       "me-south-1" : {
         "description" : "Middle East (Bahrain)"
@@ -6614,12 +6611,6 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
-          "in-amazon-1" : {
-            "credentialScope" : {
-              "region" : "ap-south-1"
-            },
-            "hostname" : "sts.ap-south-1.amazonaws.com"
-          },
           "me-south-1" : { },
           "sa-east-1" : { },
           "us-east-1" : { },

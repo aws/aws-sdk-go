@@ -60801,10 +60801,10 @@ func (s *MetricData) SetValue(v float64) *MetricData {
 	return s
 }
 
-// Specifies a metric that the training algorithm writes to stderr or stdout
-// . Amazon SageMakerhyperparameter tuning captures all defined metrics. You
-// specify one metric that a hyperparameter tuning job uses as its objective
-// metric to choose the best training job.
+// Specifies a metric that the training algorithm writes to stderr or stdout.
+// Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify
+// one metric that a hyperparameter tuning job uses as its objective metric
+// to choose the best training job.
 type MetricDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -66168,10 +66168,30 @@ type ProcessingClusterConfig struct {
 	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
 	// encrypt data on the storage volume attached to the ML compute instance(s)
 	// that run the processing job.
+	//
+	// Certain Nitro-based instances include local storage, dependent on the instance
+	// type. Local storage volumes are encrypted using a hardware module on the
+	// instance. You can't request a VolumeKmsKeyId when using an instance type
+	// with local storage.
+	//
+	// For a list of instance types that support local instance storage, see Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
+	//
+	// For more information about local instance storage encryption, see SSD Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
 	VolumeKmsKeyId *string `type:"string"`
 
 	// The size of the ML storage volume in gigabytes that you want to provision.
 	// You must specify sufficient ML storage for your scenario.
+	//
+	// Certain Nitro-based instances include local storage with a fixed total size,
+	// dependent on the instance type. When using these instances for processing,
+	// Amazon SageMaker mounts the local instance storage instead of Amazon EBS
+	// gp2 storage. You can't request a VolumeSizeInGB greater than the total size
+	// of the local instance storage.
+	//
+	// For a list of instance types that support local instance storage, including
+	// the total size per instance type, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
 	//
 	// VolumeSizeInGB is a required field
 	VolumeSizeInGB *int64 `min:"1" type:"integer" required:"true"`
@@ -73617,15 +73637,27 @@ type TransformResources struct {
 
 	// The ML compute instance type for the transform job. If you are using built-in
 	// algorithms to transform moderately sized datasets, we recommend using ml.m4.xlarge
-	// or ml.m5.large instance types.
+	// or ml.m5.largeinstance types.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TransformInstanceType"`
 
 	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
 	// encrypt model data on the storage volume attached to the ML compute instance(s)
-	// that run the batch transform job. The VolumeKmsKeyId can be any of the following
-	// formats:
+	// that run the batch transform job.
+	//
+	// Certain Nitro-based instances include local storage, dependent on the instance
+	// type. Local storage volumes are encrypted using a hardware module on the
+	// instance. You can't request a VolumeKmsKeyId when using an instance type
+	// with local storage.
+	//
+	// For a list of instance types that support local instance storage, see Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
+	//
+	// For more information about local instance storage encryption, see SSD Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
+	//
+	// The VolumeKmsKeyId can be any of the following formats:
 	//
 	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
@@ -80667,6 +80699,24 @@ const (
 
 	// ProcessingInstanceTypeMlR524xlarge is a ProcessingInstanceType enum value
 	ProcessingInstanceTypeMlR524xlarge = "ml.r5.24xlarge"
+
+	// ProcessingInstanceTypeMlG4dnXlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// ProcessingInstanceTypeMlG4dn2xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// ProcessingInstanceTypeMlG4dn4xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// ProcessingInstanceTypeMlG4dn8xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// ProcessingInstanceTypeMlG4dn12xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// ProcessingInstanceTypeMlG4dn16xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
 )
 
 // ProcessingInstanceType_Values returns all elements of the ProcessingInstanceType enum
@@ -80710,6 +80760,12 @@ func ProcessingInstanceType_Values() []string {
 		ProcessingInstanceTypeMlR512xlarge,
 		ProcessingInstanceTypeMlR516xlarge,
 		ProcessingInstanceTypeMlR524xlarge,
+		ProcessingInstanceTypeMlG4dnXlarge,
+		ProcessingInstanceTypeMlG4dn2xlarge,
+		ProcessingInstanceTypeMlG4dn4xlarge,
+		ProcessingInstanceTypeMlG4dn8xlarge,
+		ProcessingInstanceTypeMlG4dn12xlarge,
+		ProcessingInstanceTypeMlG4dn16xlarge,
 	}
 }
 
@@ -82337,6 +82393,24 @@ const (
 
 	// TransformInstanceTypeMlM524xlarge is a TransformInstanceType enum value
 	TransformInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
+
+	// TransformInstanceTypeMlG4dnXlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// TransformInstanceTypeMlG4dn2xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// TransformInstanceTypeMlG4dn4xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// TransformInstanceTypeMlG4dn8xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// TransformInstanceTypeMlG4dn12xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// TransformInstanceTypeMlG4dn16xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
 )
 
 // TransformInstanceType_Values returns all elements of the TransformInstanceType enum
@@ -82368,6 +82442,12 @@ func TransformInstanceType_Values() []string {
 		TransformInstanceTypeMlM54xlarge,
 		TransformInstanceTypeMlM512xlarge,
 		TransformInstanceTypeMlM524xlarge,
+		TransformInstanceTypeMlG4dnXlarge,
+		TransformInstanceTypeMlG4dn2xlarge,
+		TransformInstanceTypeMlG4dn4xlarge,
+		TransformInstanceTypeMlG4dn8xlarge,
+		TransformInstanceTypeMlG4dn12xlarge,
+		TransformInstanceTypeMlG4dn16xlarge,
 	}
 }
 

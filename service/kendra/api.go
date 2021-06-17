@@ -4137,6 +4137,141 @@ func (s *AttributeFilter) SetOrAllFilters(v []*AttributeFilter) *AttributeFilter
 	return s
 }
 
+// Provides the configuration information to connect to websites that require
+// user authentication.
+type AuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of configuration information that's required to connect to and crawl
+	// a website host using basic authentication credentials.
+	//
+	// The list includes the name and port number of the website host.
+	BasicAuthentication []*BasicAuthenticationConfiguration `type:"list"`
+}
+
+// String returns the string representation
+func (s AuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthenticationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthenticationConfiguration"}
+	if s.BasicAuthentication != nil {
+		for i, v := range s.BasicAuthentication {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BasicAuthentication", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasicAuthentication sets the BasicAuthentication field's value.
+func (s *AuthenticationConfiguration) SetBasicAuthentication(v []*BasicAuthenticationConfiguration) *AuthenticationConfiguration {
+	s.BasicAuthentication = v
+	return s
+}
+
+// Provides the configuration information to connect to websites that require
+// basic user authentication.
+type BasicAuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	//
+	// You use a secret if basic authentication credentials are required to connect
+	// to a website. The secret stores your credentials of user name and password.
+	//
+	// Credentials is a required field
+	Credentials *string `min:"1" type:"string" required:"true"`
+
+	// The name of the website host you want to connect to using authentication
+	// credentials.
+	//
+	// For example, the host name of https://a.example.com/page1.html is "a.example.com".
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port number of the website host you want to connect to using authentication
+	// credentials.
+	//
+	// For example, the port for https://a.example.com/page1.html is 443, the standard
+	// port for HTTPS.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s BasicAuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BasicAuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BasicAuthenticationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BasicAuthenticationConfiguration"}
+	if s.Credentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("Credentials"))
+	}
+	if s.Credentials != nil && len(*s.Credentials) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Credentials", 1))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *BasicAuthenticationConfiguration) SetCredentials(v string) *BasicAuthenticationConfiguration {
+	s.Credentials = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *BasicAuthenticationConfiguration) SetHost(v string) *BasicAuthenticationConfiguration {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *BasicAuthenticationConfiguration) SetPort(v int64) *BasicAuthenticationConfiguration {
+	s.Port = &v
+	return s
+}
+
 type BatchDeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4599,19 +4734,29 @@ func (s *BatchPutDocumentResponseFailedDocument) SetId(v string) *BatchPutDocume
 	return s
 }
 
-// Specifies capacity units configured for your index. You can add and remove
-// capacity units to tune an index to your requirements.
+// Specifies capacity units configured for your enterprise edition index. You
+// can add and remove capacity units to tune an index to your requirements.
 type CapacityUnitsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of extra query capacity for an index. Each capacity unit provides
-	// 0.5 queries per second and 40,000 queries per day.
+	// The amount of extra query capacity for an index and GetQuerySuggestions (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html)
+	// capacity.
+	//
+	// A single extra capacity unit for an index provides 0.5 queries per second
+	// or approximately 40,000 queries per day.
+	//
+	// GetQuerySuggestions capacity is 5 times the provisioned query capacity for
+	// an index. For example, the base capacity for an index is 0.5 queries per
+	// second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding
+	// another 0.5 queries per second to total 1 queries per second for an index,
+	// the GetQuerySuggestions capacity is 5 calls per second.
 	//
 	// QueryCapacityUnits is a required field
 	QueryCapacityUnits *int64 `type:"integer" required:"true"`
 
-	// The amount of extra storage capacity for an index. Each capacity unit provides
-	// 150 Gb of storage space or 500,000 documents, whichever is reached first.
+	// The amount of extra storage capacity for an index. A single capacity unit
+	// for an index provides 150 GB of storage space or 500,000 documents, whichever
+	// is reached first.
 	//
 	// StorageCapacityUnits is a required field
 	StorageCapacityUnits *int64 `type:"integer" required:"true"`
@@ -6700,6 +6845,9 @@ type DataSourceConfiguration struct {
 	// Provides information necessary to create a data source connector for a Microsoft
 	// SharePoint site.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
+
+	// Provides the configuration information required for Amazon Kendra web crawler.
+	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -6755,6 +6903,11 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("SharePointConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.WebCrawlerConfiguration != nil {
+		if err := s.WebCrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WebCrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6807,6 +6960,12 @@ func (s *DataSourceConfiguration) SetServiceNowConfiguration(v *ServiceNowConfig
 // SetSharePointConfiguration sets the SharePointConfiguration field's value.
 func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfiguration) *DataSourceConfiguration {
 	s.SharePointConfiguration = v
+	return s
+}
+
+// SetWebCrawlerConfiguration sets the WebCrawlerConfiguration field's value.
+func (s *DataSourceConfiguration) SetWebCrawlerConfiguration(v *WebCrawlerConfiguration) *DataSourceConfiguration {
+	s.WebCrawlerConfiguration = v
 	return s
 }
 
@@ -11146,6 +11305,88 @@ func (s *Principal) SetType(v string) *Principal {
 	return s
 }
 
+// Provides the configuration information for a web proxy to connect to website
+// hosts.
+type ProxyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	//
+	// The credentials are optional. You use a secret if web proxy credentials are
+	// required to connect to a website host. Amazon Kendra currently support basic
+	// authentication to connect to a web proxy server. The secret stores your credentials.
+	Credentials *string `min:"1" type:"string"`
+
+	// The name of the website host you want to connect to via a web proxy server.
+	//
+	// For example, the host name of https://a.example.com/page1.html is "a.example.com".
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port number of the website host you want to connect to via a web proxy
+	// server.
+	//
+	// For example, the port for https://a.example.com/page1.html is 443, the standard
+	// port for HTTPS.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s ProxyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProxyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProxyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProxyConfiguration"}
+	if s.Credentials != nil && len(*s.Credentials) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Credentials", 1))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *ProxyConfiguration) SetCredentials(v string) *ProxyConfiguration {
+	s.Credentials = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *ProxyConfiguration) SetHost(v string) *ProxyConfiguration {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ProxyConfiguration) SetPort(v int64) *ProxyConfiguration {
+	s.Port = &v
+	return s
+}
+
 type QueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12970,6 +13211,75 @@ func (s *Search) SetSortable(v bool) *Search {
 	return s
 }
 
+// Provides the configuration information of the seed or starting point URLs
+// to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type SeedUrlConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of seed or starting point URLs of the websites you want to crawl.
+	//
+	// The list can include a maximum of 100 seed URLs.
+	//
+	// SeedUrls is a required field
+	SeedUrls []*string `type:"list" required:"true"`
+
+	// You can choose one of the following modes:
+	//
+	//    * HOST_ONLY – crawl only the website host names. For example, if the
+	//    seed URL is "abc.example.com", then only URLs with host name "abc.example.com"
+	//    are crawled.
+	//
+	//    * SUBDOMAINS – crawl the website host names with subdomains. For example,
+	//    if the seed URL is "abc.example.com", then "a.abc.example.com" and "b.abc.example.com"
+	//    are also crawled.
+	//
+	//    * EVERYTHING – crawl the website host names with subdomains and other
+	//    domains that the webpages link to.
+	//
+	// The default mode is set to HOST_ONLY.
+	WebCrawlerMode *string `type:"string" enum:"WebCrawlerMode"`
+}
+
+// String returns the string representation
+func (s SeedUrlConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SeedUrlConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SeedUrlConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SeedUrlConfiguration"}
+	if s.SeedUrls == nil {
+		invalidParams.Add(request.NewErrParamRequired("SeedUrls"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSeedUrls sets the SeedUrls field's value.
+func (s *SeedUrlConfiguration) SetSeedUrls(v []*string) *SeedUrlConfiguration {
+	s.SeedUrls = v
+	return s
+}
+
+// SetWebCrawlerMode sets the WebCrawlerMode field's value.
+func (s *SeedUrlConfiguration) SetWebCrawlerMode(v string) *SeedUrlConfiguration {
+	s.WebCrawlerMode = &v
+	return s
+}
+
 // Provides the identifier of the AWS KMS customer master key (CMK) used to
 // encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric
 // CMKs.
@@ -13626,6 +13936,52 @@ func (s *SharePointConfiguration) SetUseChangeLog(v bool) *SharePointConfigurati
 // SetVpcConfiguration sets the VpcConfiguration field's value.
 func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *SharePointConfiguration {
 	s.VpcConfiguration = v
+	return s
+}
+
+// Provides the configuration information of the sitemap URLs to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type SiteMapsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of sitemap URLs of the websites you want to crawl.
+	//
+	// The list can include a maximum of three sitemap URLs.
+	//
+	// SiteMaps is a required field
+	SiteMaps []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s SiteMapsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SiteMapsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SiteMapsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SiteMapsConfiguration"}
+	if s.SiteMaps == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteMaps"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSiteMaps sets the SiteMaps field's value.
+func (s *SiteMapsConfiguration) SetSiteMaps(v []*string) *SiteMapsConfiguration {
+	s.SiteMaps = v
 	return s
 }
 
@@ -15307,6 +15663,75 @@ func (s UpdateThesaurusOutput) GoString() string {
 	return s.String()
 }
 
+// Provides the configuration information of the URLs to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type Urls struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the configuration of the seed or starting point URLs of the websites
+	// you want to crawl.
+	//
+	// You can choose to crawl only the website host names, or the website host
+	// names with subdomains, or the website host names with subdomains and other
+	// domains that the webpages link to.
+	//
+	// You can list up to 100 seed URLs.
+	SeedUrlConfiguration *SeedUrlConfiguration `type:"structure"`
+
+	// Provides the configuration of the sitemap URLs of the websites you want to
+	// crawl.
+	//
+	// Only URLs belonging to the same website host names are crawled. You can list
+	// up to three sitemap URLs.
+	SiteMapsConfiguration *SiteMapsConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s Urls) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Urls) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Urls) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Urls"}
+	if s.SeedUrlConfiguration != nil {
+		if err := s.SeedUrlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SeedUrlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SiteMapsConfiguration != nil {
+		if err := s.SiteMapsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SiteMapsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSeedUrlConfiguration sets the SeedUrlConfiguration field's value.
+func (s *Urls) SetSeedUrlConfiguration(v *SeedUrlConfiguration) *Urls {
+	s.SeedUrlConfiguration = v
+	return s
+}
+
+// SetSiteMapsConfiguration sets the SiteMapsConfiguration field's value.
+func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
+	s.SiteMapsConfiguration = v
+	return s
+}
+
 // Provides information about the user context for a Amazon Kendra index.
 type UserContext struct {
 	_ struct{} `type:"structure"`
@@ -15450,6 +15875,197 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Provides the configuration information required for Amazon Kendra web crawler.
+type WebCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides configuration information required to connect to websites using
+	// authentication.
+	//
+	// You can connect to websites using basic authentication of user name and password.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS. You use a secret in AWS Secrets
+	// Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// to store your authentication credentials.
+	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
+
+	// Specifies the number of levels in a website that you want to crawl.
+	//
+	// The first level begins from the website seed or starting point URL. For example,
+	// if a website has 3 levels – index level (i.e. seed in this example), sections
+	// level, and subsections level – and you are only interested in crawling
+	// information up to the sections level (i.e. levels 0-1), you can set your
+	// depth to 1.
+	//
+	// The default crawl depth is set to 2.
+	CrawlDepth *int64 `type:"integer"`
+
+	// The maximum size (in MB) of a webpage or attachment to crawl.
+	//
+	// Files larger than this size (in MB) are skipped/not crawled.
+	//
+	// The default maximum size of a webpage or attachment is set to 50 MB.
+	MaxContentSizePerPageInMegaBytes *float64 `min:"1e-06" type:"float"`
+
+	// The maximum number of URLs on a webpage to include when crawling a website.
+	// This number is per webpage.
+	//
+	// As a website’s webpages are crawled, any URLs the webpages link to are
+	// also crawled. URLs on a webpage are crawled in order of appearance.
+	//
+	// The default maximum links per page is 100.
+	MaxLinksPerPage *int64 `min:"1" type:"integer"`
+
+	// The maximum number of URLs crawled per website host per minute.
+	//
+	// A minimum of one URL is required.
+	//
+	// The default maximum number of URLs crawled per website host per minute is
+	// 300.
+	MaxUrlsPerMinuteCrawlRate *int64 `min:"1" type:"integer"`
+
+	// Provides configuration information required to connect to your internal websites
+	// via a web proxy.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS.
+	//
+	// Web proxy credentials are optional and you can use them to connect to a web
+	// proxy server that requires basic authentication. To store web proxy credentials,
+	// you use a secret in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+	ProxyConfiguration *ProxyConfiguration `type:"structure"`
+
+	// The regular expression pattern to exclude certain URLs to crawl.
+	//
+	// If there is a regular expression pattern to include certain URLs that conflicts
+	// with the exclude pattern, the exclude pattern takes precedence.
+	UrlExclusionPatterns []*string `type:"list"`
+
+	// The regular expression pattern to include certain URLs to crawl.
+	//
+	// If there is a regular expression pattern to exclude certain URLs that conflicts
+	// with the include pattern, the exclude pattern takes precedence.
+	UrlInclusionPatterns []*string `type:"list"`
+
+	// Specifies the seed or starting point URLs of the websites or the sitemap
+	// URLs of the websites you want to crawl.
+	//
+	// You can include website subdomains. You can list up to 100 seed URLs and
+	// up to three sitemap URLs.
+	//
+	// When selecting websites to index, you must adhere to the Amazon Acceptable
+	// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+	// that you must only use the Amazon Kendra web crawler to index your own webpages,
+	// or webpages that you have authorization to index.
+	//
+	// Urls is a required field
+	Urls *Urls `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s WebCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WebCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebCrawlerConfiguration"}
+	if s.MaxContentSizePerPageInMegaBytes != nil && *s.MaxContentSizePerPageInMegaBytes < 1e-06 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxContentSizePerPageInMegaBytes", 1e-06))
+	}
+	if s.MaxLinksPerPage != nil && *s.MaxLinksPerPage < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxLinksPerPage", 1))
+	}
+	if s.MaxUrlsPerMinuteCrawlRate != nil && *s.MaxUrlsPerMinuteCrawlRate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUrlsPerMinuteCrawlRate", 1))
+	}
+	if s.Urls == nil {
+		invalidParams.Add(request.NewErrParamRequired("Urls"))
+	}
+	if s.AuthenticationConfiguration != nil {
+		if err := s.AuthenticationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProxyConfiguration != nil {
+		if err := s.ProxyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProxyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Urls != nil {
+		if err := s.Urls.Validate(); err != nil {
+			invalidParams.AddNested("Urls", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *WebCrawlerConfiguration) SetAuthenticationConfiguration(v *AuthenticationConfiguration) *WebCrawlerConfiguration {
+	s.AuthenticationConfiguration = v
+	return s
+}
+
+// SetCrawlDepth sets the CrawlDepth field's value.
+func (s *WebCrawlerConfiguration) SetCrawlDepth(v int64) *WebCrawlerConfiguration {
+	s.CrawlDepth = &v
+	return s
+}
+
+// SetMaxContentSizePerPageInMegaBytes sets the MaxContentSizePerPageInMegaBytes field's value.
+func (s *WebCrawlerConfiguration) SetMaxContentSizePerPageInMegaBytes(v float64) *WebCrawlerConfiguration {
+	s.MaxContentSizePerPageInMegaBytes = &v
+	return s
+}
+
+// SetMaxLinksPerPage sets the MaxLinksPerPage field's value.
+func (s *WebCrawlerConfiguration) SetMaxLinksPerPage(v int64) *WebCrawlerConfiguration {
+	s.MaxLinksPerPage = &v
+	return s
+}
+
+// SetMaxUrlsPerMinuteCrawlRate sets the MaxUrlsPerMinuteCrawlRate field's value.
+func (s *WebCrawlerConfiguration) SetMaxUrlsPerMinuteCrawlRate(v int64) *WebCrawlerConfiguration {
+	s.MaxUrlsPerMinuteCrawlRate = &v
+	return s
+}
+
+// SetProxyConfiguration sets the ProxyConfiguration field's value.
+func (s *WebCrawlerConfiguration) SetProxyConfiguration(v *ProxyConfiguration) *WebCrawlerConfiguration {
+	s.ProxyConfiguration = v
+	return s
+}
+
+// SetUrlExclusionPatterns sets the UrlExclusionPatterns field's value.
+func (s *WebCrawlerConfiguration) SetUrlExclusionPatterns(v []*string) *WebCrawlerConfiguration {
+	s.UrlExclusionPatterns = v
+	return s
+}
+
+// SetUrlInclusionPatterns sets the UrlInclusionPatterns field's value.
+func (s *WebCrawlerConfiguration) SetUrlInclusionPatterns(v []*string) *WebCrawlerConfiguration {
+	s.UrlInclusionPatterns = v
+	return s
+}
+
+// SetUrls sets the Urls field's value.
+func (s *WebCrawlerConfiguration) SetUrls(v *Urls) *WebCrawlerConfiguration {
+	s.Urls = v
+	return s
 }
 
 const (
@@ -15775,6 +16391,9 @@ const (
 
 	// DataSourceTypeGoogledrive is a DataSourceType enum value
 	DataSourceTypeGoogledrive = "GOOGLEDRIVE"
+
+	// DataSourceTypeWebcrawler is a DataSourceType enum value
+	DataSourceTypeWebcrawler = "WEBCRAWLER"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -15789,6 +16408,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeCustom,
 		DataSourceTypeConfluence,
 		DataSourceTypeGoogledrive,
+		DataSourceTypeWebcrawler,
 	}
 }
 
@@ -16422,5 +17042,25 @@ func UserContextPolicy_Values() []string {
 	return []string{
 		UserContextPolicyAttributeFilter,
 		UserContextPolicyUserToken,
+	}
+}
+
+const (
+	// WebCrawlerModeHostOnly is a WebCrawlerMode enum value
+	WebCrawlerModeHostOnly = "HOST_ONLY"
+
+	// WebCrawlerModeSubdomains is a WebCrawlerMode enum value
+	WebCrawlerModeSubdomains = "SUBDOMAINS"
+
+	// WebCrawlerModeEverything is a WebCrawlerMode enum value
+	WebCrawlerModeEverything = "EVERYTHING"
+)
+
+// WebCrawlerMode_Values returns all elements of the WebCrawlerMode enum
+func WebCrawlerMode_Values() []string {
+	return []string{
+		WebCrawlerModeHostOnly,
+		WebCrawlerModeSubdomains,
+		WebCrawlerModeEverything,
 	}
 }
