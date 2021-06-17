@@ -69,6 +69,7 @@ const (
 	InsecureTestType
 	BadRequestTestType
 	NotFoundRequestTestType
+	InvalidTokenRequestTestType
 	ServerErrorForTokenTestType
 	pageNotFoundForTokenTestType
 	pageNotFoundWith401TestType
@@ -118,6 +119,9 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 	case NotFoundRequestTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
 		mux.HandleFunc("/", testServer.notFoundRequestGetLatestHandler)
+	case InvalidTokenRequestTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
+		mux.HandleFunc("/", testServer.unauthorizedGetLatestHandler)
 	case ServerErrorForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
 		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
@@ -287,6 +291,19 @@ func TestGetMetadata(t *testing.T) {
 			},
 			expectedError:               "404",
 			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
+		},
+		"invalid token request case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := InvalidTokenRequestTestType
+				Ts := &testServer{
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
+			},
+			expectedError:               "401",
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"},
 		},
 		"ServerErrorForTokenTestType": {
 			NewServer: func(t *testing.T) *httptest.Server {
