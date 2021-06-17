@@ -101,7 +101,7 @@
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps,name, outbound host, and encryption requirements.</p>",
     "GetVoiceConnectorEmergencyCallingConfiguration": "<p>Gets the emergency calling configuration details for the specified Amazon Chime Voice Connector.</p>",
-    "GetVoiceConnectorGroup": "<p> Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated <code>VoiceConnectorItems</code> . </p>",
+    "GetVoiceConnectorGroup": "<p> Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorProxy": "<p>Gets the proxy configuration details for the specified Amazon Chime Voice Connector.</p>",
@@ -124,7 +124,7 @@
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListMeetingTags": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
-    "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
     "ListProxySessions": "<p>Lists the proxy sessions for the specified Amazon Chime Voice Connector.</p>",
@@ -142,7 +142,7 @@
     "PutAppInstanceRetentionSettings": "<p>Sets the amount of time in days that a given <code>AppInstance</code> retains data.</p>",
     "PutAppInstanceStreamingConfigurations": "<p>The data streaming configurations of an <code>AppInstance</code>.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
-    "PutRetentionSettings": "<p> Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i> . </p> <p> To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i> . </p>",
+    "PutRetentionSettings": "<p> Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "PutSipMediaApplicationLoggingConfiguration": "<p>Updates the logging configuration for the specified SIP media application.</p>",
     "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
@@ -180,6 +180,7 @@
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
     "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
+    "UpdateSipMediaApplicationCall": "<p>Allows you to trigger a Lambda function at any time while a call is active, and replace the current actions with new actions returned by the invocation.</p>",
     "UpdateSipRule": "<p>Updates the details of the specified SIP rule.</p>",
     "UpdateUser": "<p> Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
@@ -2729,6 +2730,8 @@
         "UpdateRoomMembershipRequest$MemberId": "<p>The member ID.</p>",
         "UpdateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateRoomRequest$RoomId": "<p>The room ID.</p>",
+        "UpdateSipMediaApplicationCallRequest$SipMediaApplicationId": "<p>The ID of the SIP media application handling the call.</p>",
+        "UpdateSipMediaApplicationCallRequest$TransactionId": "<p>The ID of the call transaction.</p>",
         "UpdateSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "UpdateSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "UpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -3337,6 +3340,12 @@
         "RetentionSettings$RoomRetentionSettings": "<p>The chat room retention settings.</p>"
       }
     },
+    "SMAUpdateCallArgumentsMap": {
+      "base": null,
+      "refs": {
+        "UpdateSipMediaApplicationCallRequest$Arguments": "<p>Arguments made available to the Lambda function as part of the <code>CALL_UPDATE_REQUESTED</code> event. Can contain 0-20 key-value pairs.</p>"
+      }
+    },
     "SearchAvailablePhoneNumbersRequest": {
       "base": null,
       "refs": {
@@ -3375,6 +3384,8 @@
         "PutEventsConfigurationRequest$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows the bot to receive outgoing events.</p>",
         "PutEventsConfigurationRequest$LambdaFunctionArn": "<p>Lambda function ARN that allows the bot to receive outgoing events.</p>",
         "Room$Name": "<p>The room name.</p>",
+        "SMAUpdateCallArgumentsMap$key": null,
+        "SMAUpdateCallArgumentsMap$value": null,
         "SensitiveStringList$member": null,
         "UpdateRoomRequest$Name": "<p>The room name.</p>",
         "User$PrimaryProvisionedNumber": "<p>The primary phone number associated with the user.</p>",
@@ -3429,7 +3440,8 @@
     "SipMediaApplicationCall": {
       "base": "<p>A <code>Call</code> instance for a SIP media application.</p>",
       "refs": {
-        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": "<p>The actual call.</p>"
+        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": "<p>The actual call.</p>",
+        "UpdateSipMediaApplicationCallResponse$SipMediaApplicationCall": null
       }
     },
     "SipMediaApplicationEndpoint": {
@@ -3918,6 +3930,16 @@
       }
     },
     "UpdateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallResponse": {
       "base": null,
       "refs": {
       }

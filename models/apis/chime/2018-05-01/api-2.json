@@ -3390,6 +3390,26 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "UpdateSipMediaApplicationCall":{
+      "name":"UpdateSipMediaApplicationCall",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}/calls/{transactionId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateSipMediaApplicationCallRequest"},
+      "output":{"shape":"UpdateSipMediaApplicationCallResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "UpdateSipRule":{
       "name":"UpdateSipRule",
       "http":{
@@ -8157,6 +8177,13 @@
         "RetentionDays":{"shape":"RetentionDays"}
       }
     },
+    "SMAUpdateCallArgumentsMap":{
+      "type":"map",
+      "key":{"shape":"SensitiveString"},
+      "value":{"shape":"SensitiveString"},
+      "max":20,
+      "min":0
+    },
     "SearchAvailablePhoneNumbersRequest":{
       "type":"structure",
       "members":{
@@ -8933,6 +8960,33 @@
       "type":"structure",
       "members":{
         "Room":{"shape":"Room"}
+      }
+    },
+    "UpdateSipMediaApplicationCallRequest":{
+      "type":"structure",
+      "required":[
+        "SipMediaApplicationId",
+        "TransactionId",
+        "Arguments"
+      ],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        },
+        "TransactionId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"transactionId"
+        },
+        "Arguments":{"shape":"SMAUpdateCallArgumentsMap"}
+      }
+    },
+    "UpdateSipMediaApplicationCallResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationCall":{"shape":"SipMediaApplicationCall"}
       }
     },
     "UpdateSipMediaApplicationRequest":{

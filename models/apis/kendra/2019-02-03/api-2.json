@@ -732,6 +732,31 @@
       "type":"list",
       "member":{"shape":"AttributeFilter"}
     },
+    "AuthenticationConfiguration":{
+      "type":"structure",
+      "members":{
+        "BasicAuthentication":{"shape":"BasicAuthenticationConfigurationList"}
+      }
+    },
+    "BasicAuthenticationConfiguration":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port",
+        "Credentials"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "Credentials":{"shape":"SecretArn"}
+      }
+    },
+    "BasicAuthenticationConfigurationList":{
+      "type":"list",
+      "member":{"shape":"BasicAuthenticationConfiguration"},
+      "max":10,
+      "min":0
+    },
     "BatchDeleteDocumentRequest":{
       "type":"structure",
       "required":[
@@ -1108,6 +1133,11 @@
         "PPT"
       ]
     },
+    "CrawlDepth":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
     "CreateDataSourceRequest":{
       "type":"structure",
       "required":[
@@ -1256,7 +1286,8 @@
         "OneDriveConfiguration":{"shape":"OneDriveConfiguration"},
         "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"},
         "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"},
-        "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"}
+        "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"},
+        "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1401,7 +1432,8 @@
         "SERVICENOW",
         "CUSTOM",
         "CONFLUENCE",
-        "GOOGLEDRIVE"
+        "GOOGLEDRIVE",
+        "WEBCRAWLER"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2024,6 +2056,12 @@
         "THESAURUS_SYNONYM"
       ]
     },
+    "Host":{
+      "type":"string",
+      "max":253,
+      "min":1,
+      "pattern":"([^\\s]*)"
+    },
     "Importance":{
       "type":"integer",
       "max":10,
@@ -2274,6 +2312,16 @@
       }
     },
     "Long":{"type":"long"},
+    "MaxContentSizePerPageInMegaBytes":{
+      "type":"float",
+      "max":50,
+      "min":1.0e-06
+    },
+    "MaxLinksPerPage":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "MaxResultsIntegerForListDataSourceSyncJobsRequest":{
       "type":"integer",
       "max":10,
@@ -2302,6 +2350,11 @@
     "MaxResultsIntegerForListThesauriRequest":{
       "type":"integer",
       "max":100,
+      "min":1
+    },
+    "MaxUrlsPerMinuteCrawlRate":{
+      "type":"integer",
+      "max":300,
       "min":1
     },
     "MetricValue":{
@@ -2380,6 +2433,11 @@
         "DESCENDING"
       ]
     },
+    "Port":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
     "Principal":{
       "type":"structure",
       "required":[
@@ -2409,6 +2467,18 @@
         "USER",
         "GROUP"
       ]
+    },
+    "ProxyConfiguration":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "Credentials":{"shape":"SecretArn"}
+      }
     },
     "QueryCapacityUnit":{
       "type":"integer",
@@ -2835,6 +2905,26 @@
       "max":10,
       "min":1
     },
+    "SeedUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(https?):\\/\\/([^\\s]*)"
+    },
+    "SeedUrlConfiguration":{
+      "type":"structure",
+      "required":["SeedUrls"],
+      "members":{
+        "SeedUrls":{"shape":"SeedUrlList"},
+        "WebCrawlerMode":{"shape":"WebCrawlerMode"}
+      }
+    },
+    "SeedUrlList":{
+      "type":"list",
+      "member":{"shape":"SeedUrl"},
+      "max":100,
+      "min":0
+    },
     "ServerSideEncryptionConfiguration":{
       "type":"structure",
       "members":{
@@ -2951,6 +3041,25 @@
       "max":256,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "SiteMap":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^(https?):\\/\\/([^\\s]*)"
+    },
+    "SiteMapsConfiguration":{
+      "type":"structure",
+      "required":["SiteMaps"],
+      "members":{
+        "SiteMaps":{"shape":"SiteMapsList"}
+      }
+    },
+    "SiteMapsList":{
+      "type":"list",
+      "member":{"shape":"SiteMap"},
+      "max":3,
+      "min":0
     },
     "SortOrder":{
       "type":"string",
@@ -3318,6 +3427,13 @@
       "min":1,
       "pattern":"^(https?|ftp|file):\\/\\/([^\\s]*)"
     },
+    "Urls":{
+      "type":"structure",
+      "members":{
+        "SeedUrlConfiguration":{"shape":"SeedUrlConfiguration"},
+        "SiteMapsConfiguration":{"shape":"SiteMapsConfiguration"}
+      }
+    },
     "UserAccount":{
       "type":"string",
       "max":256,
@@ -3383,6 +3499,29 @@
       "max":200,
       "min":1,
       "pattern":"[-0-9a-zA-Z]+"
+    },
+    "WebCrawlerConfiguration":{
+      "type":"structure",
+      "required":["Urls"],
+      "members":{
+        "Urls":{"shape":"Urls"},
+        "CrawlDepth":{"shape":"CrawlDepth"},
+        "MaxLinksPerPage":{"shape":"MaxLinksPerPage"},
+        "MaxContentSizePerPageInMegaBytes":{"shape":"MaxContentSizePerPageInMegaBytes"},
+        "MaxUrlsPerMinuteCrawlRate":{"shape":"MaxUrlsPerMinuteCrawlRate"},
+        "UrlInclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "UrlExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ProxyConfiguration":{"shape":"ProxyConfiguration"},
+        "AuthenticationConfiguration":{"shape":"AuthenticationConfiguration"}
+      }
+    },
+    "WebCrawlerMode":{
+      "type":"string",
+      "enum":[
+        "HOST_ONLY",
+        "SUBDOMAINS",
+        "EVERYTHING"
+      ]
     }
   }
 }

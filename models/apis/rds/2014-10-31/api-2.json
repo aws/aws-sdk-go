@@ -2432,6 +2432,10 @@
         "async"
       ]
     },
+    "ActivityStreamModeList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "ActivityStreamStatus":{
       "type":"string",
       "enum":[
@@ -3858,7 +3862,12 @@
         "TagList":{"shape":"TagList"},
         "DBInstanceAutomatedBackupsReplications":{"shape":"DBInstanceAutomatedBackupsReplicationList"},
         "CustomerOwnedIpEnabled":{"shape":"BooleanOptional"},
-        "AwsBackupRecoveryPointArn":{"shape":"String"}
+        "AwsBackupRecoveryPointArn":{"shape":"String"},
+        "ActivityStreamStatus":{"shape":"ActivityStreamStatus"},
+        "ActivityStreamKmsKeyId":{"shape":"String"},
+        "ActivityStreamKinesisStreamName":{"shape":"String"},
+        "ActivityStreamMode":{"shape":"ActivityStreamMode"},
+        "ActivityStreamEngineNativeAuditFieldsIncluded":{"shape":"BooleanOptional"}
       },
       "wrapper":true
     },
@@ -6818,6 +6827,7 @@
         "SupportsStorageAutoscaling":{"shape":"BooleanOptional"},
         "SupportsKerberosAuthentication":{"shape":"BooleanOptional"},
         "OutpostCapable":{"shape":"Boolean"},
+        "SupportedActivityStreamModes":{"shape":"ActivityStreamModeList"},
         "SupportsGlobalDatabases":{"shape":"Boolean"}
       },
       "wrapper":true
@@ -7752,7 +7762,8 @@
         "ResourceArn":{"shape":"String"},
         "Mode":{"shape":"ActivityStreamMode"},
         "KmsKeyId":{"shape":"String"},
-        "ApplyImmediately":{"shape":"BooleanOptional"}
+        "ApplyImmediately":{"shape":"BooleanOptional"},
+        "EngineNativeAuditFieldsIncluded":{"shape":"BooleanOptional"}
       }
     },
     "StartActivityStreamResponse":{
@@ -7762,7 +7773,8 @@
         "KinesisStreamName":{"shape":"String"},
         "Status":{"shape":"ActivityStreamStatus"},
         "Mode":{"shape":"ActivityStreamMode"},
-        "ApplyImmediately":{"shape":"Boolean"}
+        "ApplyImmediately":{"shape":"Boolean"},
+        "EngineNativeAuditFieldsIncluded":{"shape":"BooleanOptional"}
       }
     },
     "StartDBClusterMessage":{

@@ -1,3 +1,20 @@
+Release v1.38.64 (2021-06-17)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * This release adds a new API UpdateSipMediaApplicationCall, to update an in-progress call for SipMediaApplication.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports the indexing of web documents for search through the web crawler.
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release enables Database Activity Streams for RDS Oracle
+* `service/sagemaker`: Updates service API and documentation
+  * Enable ml.g4dn instance types for SageMaker Batch Transform and SageMaker Processing
+
+### SDK Bugs
+* `aws/ec2metadata`: Fix client retrying 404 responses ([#3962](https://github.com/aws/aws-sdk-go/pull/3962))
+  * Fixes the EC2 IMDS client to not retry 404 HTTP errors received for operations like GetMetadata.
+
 Release v1.38.63 (2021-06-16)
 ===
 
