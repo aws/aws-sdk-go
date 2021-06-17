@@ -68,6 +68,7 @@ const (
 	SecureTestType testType = iota
 	InsecureTestType
 	BadRequestTestType
+	NotFoundRequestTestType
 	ServerErrorForTokenTestType
 	pageNotFoundForTokenTestType
 	pageNotFoundWith401TestType
@@ -114,6 +115,9 @@ func newTestServer(t *testing.T, testType testType, testServer *testServer) *htt
 	case BadRequestTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.badRequestGetTokenHandler))
 		mux.HandleFunc("/", testServer.badRequestGetLatestHandler)
+	case NotFoundRequestTestType:
+		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.secureGetTokenHandler))
+		mux.HandleFunc("/", testServer.notFoundRequestGetLatestHandler)
 	case ServerErrorForTokenTestType:
 		mux.HandleFunc("/latest/api/token", getTokenRequiredParams(t, testServer.serverErrorGetTokenHandler))
 		mux.HandleFunc("/", testServer.insecureGetLatestHandler)
@@ -188,6 +192,10 @@ func (s *testServer) badRequestGetLatestHandler(w http.ResponseWriter, r *http.R
 	s.t.Errorf("Expected no call to this handler, incorrect behavior found")
 }
 
+func (s *testServer) notFoundRequestGetLatestHandler(w http.ResponseWriter, r *http.Request) {
+	http.Error(w, "not found error", 404)
+}
+
 func (s *testServer) serverErrorGetTokenHandler(w http.ResponseWriter, r *http.Request) {
 	http.Error(w, "", 403)
 }
@@ -226,7 +234,7 @@ func TestGetMetadata(t *testing.T) {
 		NewServer                   func(t *testing.T) *httptest.Server
 		expectedData                string
 		expectedError               string
-		expectedOperationsPerformed []string
+		expectedOperationsAttempted []string
 	}{
 		"Insecure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -238,7 +246,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"Secure server success case": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -252,9 +260,9 @@ func TestGetMetadata(t *testing.T) {
 			},
 			expectedData:                "IMDSProfileForGoSDK",
 			expectedError:               "",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
-		"Bad request case": {
+		"Bad token request case": {
 			NewServer: func(t *testing.T) *httptest.Server {
 				testType := BadRequestTestType
 				Ts := &testServer{
@@ -265,7 +273,20 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedError:               "400",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetToken", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetToken"},
+		},
+		"Not found no retry request case": {
+			NewServer: func(t *testing.T) *httptest.Server {
+				testType := NotFoundRequestTestType
+				Ts := &testServer{
+					t:      t,
+					tokens: []string{"firstToken", "secondToken", "thirdToken"},
+					data:   "IMDSProfileForGoSDK",
+				}
+				return newTestServer(t, testType, Ts)
+			},
+			expectedError:               "404",
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 		"ServerErrorForTokenTestType": {
 			NewServer: func(t *testing.T) *httptest.Server {
@@ -278,7 +299,7 @@ func TestGetMetadata(t *testing.T) {
 				return newTestServer(t, testType, Ts)
 			},
 			expectedData:                "IMDSProfileForGoSDK",
-			expectedOperationsPerformed: []string{"GetToken", "GetMetadata", "GetMetadata"},
+			expectedOperationsAttempted: []string{"GetToken", "GetMetadata", "GetMetadata"},
 		},
 	}
 
@@ -293,7 +314,7 @@ func TestGetMetadata(t *testing.T) {
 			c := ec2metadata.New(unit.Session, &aws.Config{
 				Endpoint: aws.String(server.URL),
 			})
-			c.Handlers.Complete.PushBack(op.addToOperationPerformedList)
+			c.Handlers.CompleteAttempt.PushBack(op.addToOperationPerformedList)
 
 			resp, err := c.GetMetadata("some/path")
 
@@ -315,7 +336,7 @@ func TestGetMetadata(t *testing.T) {
 				t.Fatalf("expect %v, got %v", e, a)
 			}
 
-			if e, a := x.expectedOperationsPerformed, op.operationsPerformed; !reflect.DeepEqual(e, a) {
+			if e, a := x.expectedOperationsAttempted, op.operationsPerformed; !reflect.DeepEqual(e, a) {
 				t.Errorf("expect %v operations, got %v", e, a)
 			}
 
