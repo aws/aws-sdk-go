@@ -5,7 +5,7 @@ import (
 )
 
 func TestRuleCheckWhitelist(t *testing.T) {
-	w := whitelist{
+	w := allowList{
 		mapRule{
 			"Cache-Control": struct{}{},
 		},
@@ -20,7 +20,7 @@ func TestRuleCheckWhitelist(t *testing.T) {
 }
 
 func TestRuleCheckBlacklist(t *testing.T) {
-	b := blacklist{
+	b := excludeList{
 		mapRule{
 			"Cache-Control": struct{}{},
 		},
@@ -50,7 +50,7 @@ func TestRuleCheckPattern(t *testing.T) {
 
 func TestRuleComplexWhitelist(t *testing.T) {
 	w := rules{
-		whitelist{
+		allowList{
 			mapRule{
 				"Cache-Control": struct{}{},
 			},
@@ -59,7 +59,7 @@ func TestRuleComplexWhitelist(t *testing.T) {
 	}
 
 	r := rules{
-		inclusiveRules{patterns{"X-Amz-"}, blacklist{w}},
+		inclusiveRules{patterns{"X-Amz-"}, excludeList{w}},
 	}
 
 	if !r.IsValid("X-Amz-Blah") {
