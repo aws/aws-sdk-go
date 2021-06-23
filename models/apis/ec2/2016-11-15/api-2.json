@@ -25715,7 +25715,8 @@
         "PoolTagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"PoolTagSpecification"
-        }
+        },
+        "MultiRegion":{"shape":"Boolean"}
       }
     },
     "ProvisionByoipCidrResult":{

@@ -361,6 +361,12 @@
         "DescribeChannelResponse$Outputs": "<p>The channel's output properties.</p>"
       }
     },
+    "ScheduleAdBreak": {
+      "base": "<p>The schedule's ad break properties.</p>",
+      "refs": {
+        "__listOfScheduleAdBreak$member": null
+      }
+    },
     "ScheduleConfiguration": {
       "base": "<p>Schedule configuration parameters. A channel must be stopped before changes can be made to the schedule.</p>",
       "refs": {
@@ -479,6 +485,12 @@
         "ListPlaybackConfigurationsResponse$Items": "<p>Array of playback configurations. This might be all the available configurations or a subset, depending on the settings that you provide and the total number of configurations stored.</p>"
       }
     },
+    "__listOfScheduleAdBreak": {
+      "base": null,
+      "refs": {
+        "ScheduleEntry$ScheduleAdBreaks": "<p>The schedule's ad break properties.</p>"
+      }
+    },
     "__listOfScheduleEntry": {
       "base": null,
       "refs": {
@@ -501,6 +513,7 @@
       "base": null,
       "refs": {
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
+        "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",
         "ScheduleEntry$ApproximateDurationSeconds": "<p>The approximate duration of this program, in seconds.</p>"
       }
     },
@@ -594,6 +607,8 @@
         "ResponseOutputItem$ManifestName": "<p>The name of the manifest for the channel that will appear in the channel output's playback URL.</p>",
         "ResponseOutputItem$PlaybackUrl": "<p>The URL used for playback by content players.</p>",
         "ResponseOutputItem$SourceGroup": "<p>A string used to associate a package configuration source group with a channel output.</p>",
+        "ScheduleAdBreak$SourceLocationName": "<p>The name of the source location containing the VOD source used for the ad break.</p>",
+        "ScheduleAdBreak$VodSourceName": "<p>The name of the VOD source used for the ad break.</p>",
         "ScheduleEntry$Arn": "<p>The ARN of the program.</p>",
         "ScheduleEntry$ChannelName": "<p>The name of the channel that uses this schedule.</p>",
         "ScheduleEntry$ProgramName": "<p>The name of the program.</p>",
@@ -626,6 +641,7 @@
         "DescribeSourceLocationResponse$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",
         "DescribeVodSourceResponse$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
         "DescribeVodSourceResponse$LastModifiedTime": "<p>The ARN for the VOD source.</p>",
+        "ScheduleAdBreak$ApproximateStartTime": "<p>The approximate time that the ad will start playing.</p>",
         "ScheduleEntry$ApproximateStartTime": "<p>The approximate time that the program will start playing.</p>",
         "SourceLocation$CreationTime": "<p>The timestamp that indicates when the source location was created.</p>",
         "SourceLocation$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",

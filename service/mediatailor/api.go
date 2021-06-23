@@ -6559,6 +6559,58 @@ func (s *ResponseOutputItem) SetSourceGroup(v string) *ResponseOutputItem {
 	return s
 }
 
+// The schedule's ad break properties.
+type ScheduleAdBreak struct {
+	_ struct{} `type:"structure"`
+
+	// The approximate duration of the ad break, in seconds.
+	ApproximateDurationSeconds *int64 `type:"long"`
+
+	// The approximate time that the ad will start playing.
+	ApproximateStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location containing the VOD source used for the ad
+	// break.
+	SourceLocationName *string `type:"string"`
+
+	// The name of the VOD source used for the ad break.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ScheduleAdBreak) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleAdBreak) GoString() string {
+	return s.String()
+}
+
+// SetApproximateDurationSeconds sets the ApproximateDurationSeconds field's value.
+func (s *ScheduleAdBreak) SetApproximateDurationSeconds(v int64) *ScheduleAdBreak {
+	s.ApproximateDurationSeconds = &v
+	return s
+}
+
+// SetApproximateStartTime sets the ApproximateStartTime field's value.
+func (s *ScheduleAdBreak) SetApproximateStartTime(v time.Time) *ScheduleAdBreak {
+	s.ApproximateStartTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *ScheduleAdBreak) SetSourceLocationName(v string) *ScheduleAdBreak {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *ScheduleAdBreak) SetVodSourceName(v string) *ScheduleAdBreak {
+	s.VodSourceName = &v
+	return s
+}
+
 // Schedule configuration parameters. A channel must be stopped before changes
 // can be made to the schedule.
 type ScheduleConfiguration struct {
@@ -6629,6 +6681,9 @@ type ScheduleEntry struct {
 	// ProgramName is a required field
 	ProgramName *string `type:"string" required:"true"`
 
+	// The schedule's ad break properties.
+	ScheduleAdBreaks []*ScheduleAdBreak `type:"list"`
+
 	// The name of the source location.
 	//
 	// SourceLocationName is a required field
@@ -6677,6 +6732,12 @@ func (s *ScheduleEntry) SetChannelName(v string) *ScheduleEntry {
 // SetProgramName sets the ProgramName field's value.
 func (s *ScheduleEntry) SetProgramName(v string) *ScheduleEntry {
 	s.ProgramName = &v
+	return s
+}
+
+// SetScheduleAdBreaks sets the ScheduleAdBreaks field's value.
+func (s *ScheduleEntry) SetScheduleAdBreaks(v []*ScheduleAdBreak) *ScheduleEntry {
+	s.ScheduleAdBreaks = v
 	return s
 }
 

@@ -127,6 +127,12 @@ type CodeGuruReviewerAPI interface {
 	UntagResource(*codegurureviewer.UntagResourceInput) (*codegurureviewer.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *codegurureviewer.UntagResourceInput, ...request.Option) (*codegurureviewer.UntagResourceOutput, error)
 	UntagResourceRequest(*codegurureviewer.UntagResourceInput) (*request.Request, *codegurureviewer.UntagResourceOutput)
+
+	WaitUntilCodeReviewCompleted(*codegurureviewer.DescribeCodeReviewInput) error
+	WaitUntilCodeReviewCompletedWithContext(aws.Context, *codegurureviewer.DescribeCodeReviewInput, ...request.WaiterOption) error
+
+	WaitUntilRepositoryAssociationSucceeded(*codegurureviewer.DescribeRepositoryAssociationInput) error
+	WaitUntilRepositoryAssociationSucceededWithContext(aws.Context, *codegurureviewer.DescribeRepositoryAssociationInput, ...request.WaiterOption) error
 }
 
 var _ CodeGuruReviewerAPI = (*codegurureviewer.CodeGuruReviewer)(nil)

@@ -1,9 +1,9 @@
 {
   "version": "2.0",
-  "service": "<p>This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommendations to address them in your Java and Python code.</p> <p>By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the <i> <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html\">Amazon CodeGuru Reviewer User Guide</a>.</i> </p> <p> To improve the security of your CodeGuru Reviewer API calls, you can establish a private connection between your VPC and CodeGuru Reviewer by creating an <i>interface VPC endpoint</i>. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html\">CodeGuru Reviewer and interface VPC endpoints (AWS PrivateLink)</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p>",
+  "service": "<p>This section provides documentation for the Amazon CodeGuru Reviewer API operations. CodeGuru Reviewer is a service that uses program analysis and machine learning to detect potential defects that are difficult for developers to find and recommends fixes in your Java and Python code.</p> <p>By proactively detecting and providing recommendations for addressing code defects and implementing best practices, CodeGuru Reviewer improves the overall quality and maintainability of your code base during the code review stage. For more information about CodeGuru Reviewer, see the <i> <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/welcome.html\">Amazon CodeGuru Reviewer User Guide</a>.</i> </p> <p> To improve the security of your CodeGuru Reviewer API calls, you can establish a private connection between your VPC and CodeGuru Reviewer by creating an <i>interface VPC endpoint</i>. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/vpc-interface-endpoints.html\">CodeGuru Reviewer and interface VPC endpoints (AWS PrivateLink)</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>. </p>",
   "operations": {
-    "AssociateRepository": "<p> Use to associate an AWS CodeCommit repository or a repostory managed by AWS CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html\">Recommendations in Amazon CodeGuru Reviewer</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <p>If you associate a CodeCommit repository, it must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured.</p> <p>Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar Connections to connect to CodeGuru Reviewer. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-associate-repository.html\">Associate a repository</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <note> <p> You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub repository with Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-with-guru.html\">Getting started with CodeGuru Reviewer</a> in the <i>CodeGuru Reviewer User Guide.</i> </p> </note>",
-    "CreateCodeReview": "<p> Use to create a code review with a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> of <code>RepositoryAnalysis</code>. This type of code review analyzes all code under a specified branch in an associated repository. <code>PullRequest</code> code reviews are automatically triggered by a pull request so cannot be created using this method. </p>",
+    "AssociateRepository": "<p> Use to associate an AWS CodeCommit repository or a repostory managed by AWS CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a repository, CodeGuru Reviewer reviews source code changes in the repository's pull requests and provides automatic recommendations. You can view recommendations using the CodeGuru Reviewer console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html\">Recommendations in Amazon CodeGuru Reviewer</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <p>If you associate a CodeCommit or S3 repository, it must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured.</p> <p>Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar Connections to connect to CodeGuru Reviewer. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-associate-repository.html\">Associate a repository</a> in the <i>Amazon CodeGuru Reviewer User Guide.</i> </p> <note> <p> You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub repository with Amazon CodeGuru Reviewer. To associate a GitHub repository, use the console. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-with-guru.html\">Getting started with CodeGuru Reviewer</a> in the <i>CodeGuru Reviewer User Guide.</i> </p> </note>",
+    "CreateCodeReview": "<p> Use to create a code review with a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> of <code>RepositoryAnalysis</code>. This type of code review analyzes all code under a specified branch in an associated repository. <code>PullRequest</code> code reviews are automatically triggered by a pull request. </p>",
     "DescribeCodeReview": "<p> Returns the metadata associated with the code review along with its status.</p>",
     "DescribeRecommendationFeedback": "<p> Describes the customer feedback for a CodeGuru Reviewer recommendation. </p>",
     "DescribeRepositoryAssociation": "<p> Returns a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\"> <code>RepositoryAssociation</code> </a> object that contains information about the requested repository association. </p>",
@@ -21,6 +21,19 @@
     "AccessDeniedException": {
       "base": "<p>You do not have sufficient access to perform this action.</p>",
       "refs": {
+      }
+    },
+    "AnalysisType": {
+      "base": null,
+      "refs": {
+        "AnalysisTypes$member": null
+      }
+    },
+    "AnalysisTypes": {
+      "base": null,
+      "refs": {
+        "CodeReview$AnalysisTypes": "<p>They types of analysis performed during a repository analysis or a pull request review. You can specify either <code>Security</code>, <code>CodeQuality</code>, or both.</p>",
+        "CodeReviewType$AnalysisTypes": "<p>They types of analysis performed during a repository analysis or a pull request review. You can specify either <code>Security</code>, <code>CodeQuality</code>, or both.</p>"
       }
     },
     "Arn": {
@@ -67,10 +80,24 @@
         "RepositoryAssociationSummary$AssociationId": "<p> The repository association ID. </p>"
       }
     },
+    "BranchDiffSourceCodeType": {
+      "base": "<p> A type of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> that specifies a code diff between a source and destination branch in an associated repository. </p>",
+      "refs": {
+        "SourceCodeType$BranchDiff": "<p> A type of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> that specifies a source branch name and a destination branch name in an associated repository. </p>"
+      }
+    },
     "BranchName": {
       "base": null,
       "refs": {
+        "BranchDiffSourceCodeType$SourceBranchName": "<p>The source branch for a diff in an associated repository.</p>",
+        "BranchDiffSourceCodeType$DestinationBranchName": "<p>The destination branch for a diff in an associated repository.</p>",
         "RepositoryHeadSourceCodeType$BranchName": "<p> The name of the branch in an associated repository. The <code>RepositoryHeadSourceCodeType</code> specifies the tip of this branch. </p>"
+      }
+    },
+    "BuildArtifactsObjectKey": {
+      "base": null,
+      "refs": {
+        "CodeArtifacts$BuildArtifactsObjectKey": "<p>The S3 object key for a build artifacts .zip file that contains .jar or .class files. This is required for a code review with security analysis. For more information, see <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/code-review-security.html\">Create code reviews with security analysis</a> in the <i>Amazon CodeGuru Reviewer User Guide</i>.</p>"
       }
     },
     "ClientRequestToken": {
@@ -80,8 +107,14 @@
         "CreateCodeReviewRequest$ClientRequestToken": "<p> Amazon CodeGuru Reviewer uses this value to prevent the accidental creation of duplicate code reviews if there are failures and retries. </p>"
       }
     },
+    "CodeArtifacts": {
+      "base": "<p>Code artifacts are source code artifacts and build artifacts used in a repository analysis or a pull request review.</p> <ul> <li> <p>Source code artifacts are source code files in a Git repository that are compressed into a .zip file.</p> </li> <li> <p>Build artifacts are .jar or .class files that are compressed in a .zip file.</p> </li> </ul>",
+      "refs": {
+        "S3RepositoryDetails$CodeArtifacts": "<p> A <code>CodeArtifacts</code> object. The <code>CodeArtifacts</code> object includes the S3 object key for a source code .zip file and for a build artifacts .zip file that contains .jar or .class files. </p>"
+      }
+    },
     "CodeCommitRepository": {
-      "base": "<p>Information about an AWS CodeCommit repository. The CodeCommit repository must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured. </p>",
+      "base": "<p>Information about an AWS CodeCommit repository. The CodeCommit repository must be in the same AWS Region and AWS account where its CodeGuru Reviewer code reviews are configured.</p>",
       "refs": {
         "Repository$CodeCommit": "<p>Information about an AWS CodeCommit repository.</p>"
       }
@@ -112,13 +145,13 @@
       }
     },
     "CodeReviewType": {
-      "base": "<p> The type of a code review. There are two code review types: </p> <ul> <li> <p> <code>PullRequest</code> - A code review that is automatically triggered by a pull request on an associated repository. Because this type of code review is automatically generated, you cannot specify this code review type using <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p> </li> <li> <p> <code>RepositoryAnalysis</code> - A code review that analyzes all code under a specified branch in an associated repository. The associated repository is specified using its ARN in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p> </li> </ul>",
+      "base": "<p> The type of a code review. There are two code review types: </p> <ul> <li> <p> <code>PullRequest</code> - A code review that is automatically triggered by a pull request on an associated repository. </p> </li> <li> <p> <code>RepositoryAnalysis</code> - A code review that analyzes all code under a specified branch in an associated repository. The associated repository is specified using its ARN in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview\"> <code>CreateCodeReview</code> </a>. </p> </li> </ul>",
       "refs": {
         "CreateCodeReviewRequest$Type": "<p> The type of code review to create. This is specified using a <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html\"> <code>CodeReviewType</code> </a> object. You can create a code review only of type <code>RepositoryAnalysis</code>. </p>"
       }
     },
     "CommitDiffSourceCodeType": {
-      "base": "<p> A type of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> that specifies the commit diff for a pull request on an associated repository. </p>",
+      "base": "<p> A type of <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> that specifies the commit diff for a pull request on an associated repository. The <code>SourceCommit</code> and <code>DestinationCommit</code> fields are required to do a pull request code review. </p>",
       "refs": {
         "SourceCodeType$CommitDiff": "<p> A <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> that specifies a commit diff created by a pull request on an associated repository. </p>"
       }
@@ -126,8 +159,9 @@
     "CommitId": {
       "base": null,
       "refs": {
-        "CommitDiffSourceCodeType$SourceCommit": "<p> The SHA of the source commit used to generate a commit diff. </p>",
-        "CommitDiffSourceCodeType$DestinationCommit": "<p> The SHA of the destination commit used to generate a commit diff. </p>"
+        "CommitDiffSourceCodeType$SourceCommit": "<p> The SHA of the source commit used to generate a commit diff. This field is required for a pull request code review. </p>",
+        "CommitDiffSourceCodeType$DestinationCommit": "<p> The SHA of the destination commit used to generate a commit diff. This field is required for a pull request code review. </p>",
+        "CommitDiffSourceCodeType$MergeBaseCommit": "<p>The SHA of the merge base of a commit.</p>"
       }
     },
     "ConflictException": {
@@ -209,6 +243,24 @@
         "ResourceNotFoundException$Message": null,
         "ThrottlingException$Message": null,
         "ValidationException$Message": null
+      }
+    },
+    "EventInfo": {
+      "base": "<p>Information about an event. The event might be a push, pull request, scheduled request, or another type of event.</p>",
+      "refs": {
+        "RequestMetadata$EventInfo": "<p>Information about the event associated with a code review.</p>"
+      }
+    },
+    "EventName": {
+      "base": null,
+      "refs": {
+        "EventInfo$Name": "<p>The name of the event. The possible names are <code>pull_request</code>, <code>workflow_dispatch</code>, <code>schedule</code>, and <code>push</code> </p>"
+      }
+    },
+    "EventState": {
+      "base": null,
+      "refs": {
+        "EventInfo$State": "<p>The state of an event. The state might be open, closed, or another state.</p>"
       }
     },
     "FilePath": {
@@ -358,6 +410,8 @@
         "RepositoryAssociation$Name": "<p>The name of the repository.</p>",
         "RepositoryAssociationSummary$Name": "<p>The name of the repository association.</p>",
         "RepositoryNames$member": null,
+        "S3BucketRepository$Name": "<p> The name of the repository when the <code>ProviderType</code> is <code>S3Bucket</code>. </p>",
+        "S3Repository$Name": "<p> The name of the repository in the S3 bucket. </p>",
         "ThirdPartySourceRepository$Name": "<p> The name of the third party source repository. </p>"
       }
     },
@@ -388,12 +442,12 @@
     "Owner": {
       "base": null,
       "refs": {
-        "CodeReview$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository.</p>",
-        "CodeReviewSummary$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository.</p>",
+        "CodeReview$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository. For an S3 repository, it can be the username or AWS account ID.</p>",
+        "CodeReviewSummary$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository. For an S3 repository, it can be the username or AWS account ID.</p>",
         "Owners$member": null,
-        "RepositoryAssociation$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository.</p>",
-        "RepositoryAssociationSummary$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository.</p>",
-        "ThirdPartySourceRepository$Owner": "<p> The owner of the repository. For a GitHub, GitHub Enterprise, or Bitbucket repository, this is the username for the account that owns the repository. </p>"
+        "RepositoryAssociation$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository. For an S3 repository, it can be the username or AWS account ID.</p>",
+        "RepositoryAssociationSummary$Owner": "<p>The owner of the repository. For an AWS CodeCommit repository, this is the AWS account ID of the account that owns the repository. For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is the username for the account that owns the repository. For an S3 repository, it can be the username or AWS account ID.</p>",
+        "ThirdPartySourceRepository$Owner": "<p> The owner of the repository. For a GitHub, GitHub Enterprise, or Bitbucket repository, this is the username for the account that owns the repository. For an S3 repository, this can be the username or AWS account ID. </p>"
       }
     },
     "Owners": {
@@ -448,6 +502,12 @@
         "PutRecommendationFeedbackRequest$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. If you send an empty list it clears all your feedback. </p>",
         "RecommendationFeedback$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. You can send an empty list to clear off all your feedback. </p>",
         "RecommendationFeedbackSummary$Reactions": "<p> List for storing reactions. Reactions are utf-8 text code for emojis. </p>"
+      }
+    },
+    "RecommendationCategory": {
+      "base": null,
+      "refs": {
+        "RecommendationSummary$RecommendationCategory": "<p>The type of a recommendation.</p>"
       }
     },
     "RecommendationFeedback": {
@@ -556,15 +616,67 @@
         "ListCodeReviewsRequest$RepositoryNames": "<p> List of repository names for filtering that needs to be applied before displaying the result. </p>"
       }
     },
+    "RequestId": {
+      "base": null,
+      "refs": {
+        "RequestMetadata$RequestId": "<p>The ID of the request. This is required for a pull request code review.</p>"
+      }
+    },
+    "RequestMetadata": {
+      "base": "<p>Metadata that is associated with a code review. This applies to both pull request and repository analysis code reviews.</p>",
+      "refs": {
+        "SourceCodeType$RequestMetadata": "<p>Metadata that is associated with a code review. This applies to any type of code review supported by CodeGuru Reviewer. The <code>RequestMetadaa</code> field captures any event metadata. For example, it might capture metadata associated with an event trigger, such as a push or a pull request. </p>"
+      }
+    },
+    "Requester": {
+      "base": null,
+      "refs": {
+        "RequestMetadata$Requester": "<p>An identifier, such as a name or account ID, that is associated with the requester. The <code>Requester</code> is used to capture the <code>author/actor</code> name of the event request.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p> The resource specified in the request was not found. </p>",
       "refs": {
       }
     },
-    "SourceCodeType": {
-      "base": "<p> Specifies the source code that is analyzed in a code review. A code review can analyze the source code that is specified using a pull request diff or a branch in an associated repository. </p>",
+    "S3BucketName": {
+      "base": null,
       "refs": {
-        "CodeReview$SourceCodeType": "<p> The type of the source code for the code review. </p>"
+        "S3Repository$BucketName": "<p>The name of the S3 bucket used for associating a new S3 repository. It must begin with <code>codeguru-reviewer-</code>. </p>",
+        "S3RepositoryDetails$BucketName": "<p>The name of the S3 bucket used for associating a new S3 repository. It must begin with <code>codeguru-reviewer-</code>. </p>"
+      }
+    },
+    "S3BucketRepository": {
+      "base": "<p> Information about an associated repository in an S3 bucket. The associated repository contains a source code .zip file and a build artifacts .zip file that contains .jar or .class files. </p>",
+      "refs": {
+        "SourceCodeType$S3BucketRepository": "<p> Information about an associated repository in an S3 bucket that includes its name and an <code>S3RepositoryDetails</code> object. The <code>S3RepositoryDetails</code> object includes the name of an S3 bucket, an S3 key for a source code .zip file, and an S3 key for a build artifacts .zip file. <code>S3BucketRepository</code> is required in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType\"> <code>SourceCodeType</code> </a> for <code>S3BucketRepository</code> based code reviews. </p>"
+      }
+    },
+    "S3Repository": {
+      "base": "<p> Information about a repository in an S3 bucket. </p>",
+      "refs": {
+        "Repository$S3Bucket": null
+      }
+    },
+    "S3RepositoryDetails": {
+      "base": "<p> Specifies the name of an S3 bucket and a <code>CodeArtifacts</code> object that contains the S3 object keys for a source code .zip file and for a build artifacts .zip file that contains .jar or .class files. </p>",
+      "refs": {
+        "RepositoryAssociation$S3RepositoryDetails": null,
+        "S3BucketRepository$Details": "<p> An <code>S3RepositoryDetails</code> object that specifies the name of an S3 bucket and a <code>CodeArtifacts</code> object. The <code>CodeArtifacts</code> object includes the S3 object keys for a source code .zip file and for a build artifacts .zip file. </p>"
+      }
+    },
+    "SourceCodeArtifactsObjectKey": {
+      "base": null,
+      "refs": {
+        "CodeArtifacts$SourceCodeArtifactsObjectKey": "<p>The S3 object key for a source code .zip file. This is required for all code reviews.</p>"
+      }
+    },
+    "SourceCodeType": {
+      "base": "<p> Specifies the source code that is analyzed in a code review. </p>",
+      "refs": {
+        "CodeReview$SourceCodeType": "<p> The type of the source code for the code review. </p>",
+        "CodeReviewSummary$SourceCodeType": null,
+        "RepositoryAnalysis$SourceCodeType": null
       }
     },
     "StateReason": {
@@ -682,6 +794,12 @@
     "ValidationException": {
       "base": "<p>The input fails to satisfy the specified constraints.</p>",
       "refs": {
+      }
+    },
+    "VendorName": {
+      "base": null,
+      "refs": {
+        "RequestMetadata$VendorName": "<p>The name of the repository vendor used to upload code to an S3 bucket for a CI/CD code review. For example, if code and artifacts are uploaded to an S3 bucket for a CI/CD code review by GitHub scripts from a GitHub repository, then the repository association's <code>ProviderType</code> is <code>S3Bucket</code> and the CI/CD repository vendor name is GitHub. For more information, see the definition for <code>ProviderType</code> in <a href=\"https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html\">RepositoryAssociation</a>. </p>"
       }
     }
   }

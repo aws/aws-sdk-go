@@ -650,6 +650,223 @@ func (c *QuickSight) CreateDataSourceWithContext(ctx aws.Context, input *CreateD
 	return out, req.Send()
 }
 
+const opCreateFolder = "CreateFolder"
+
+// CreateFolderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFolder for more information on using the CreateFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFolderRequest method.
+//    req, resp := client.CreateFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolder
+func (c *QuickSight) CreateFolderRequest(input *CreateFolderInput) (req *request.Request, output *CreateFolderOutput) {
+	op := &request.Operation{
+		Name:       opCreateFolder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
+	}
+
+	if input == nil {
+		input = &CreateFolderInput{}
+	}
+
+	output = &CreateFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFolder API operation for Amazon QuickSight.
+//
+// Creates an empty shared folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateFolder for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolder
+func (c *QuickSight) CreateFolder(input *CreateFolderInput) (*CreateFolderOutput, error) {
+	req, out := c.CreateFolderRequest(input)
+	return out, req.Send()
+}
+
+// CreateFolderWithContext is the same as CreateFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateFolderWithContext(ctx aws.Context, input *CreateFolderInput, opts ...request.Option) (*CreateFolderOutput, error) {
+	req, out := c.CreateFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFolderMembership = "CreateFolderMembership"
+
+// CreateFolderMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFolderMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFolderMembership for more information on using the CreateFolderMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFolderMembershipRequest method.
+//    req, resp := client.CreateFolderMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolderMembership
+func (c *QuickSight) CreateFolderMembershipRequest(input *CreateFolderMembershipInput) (req *request.Request, output *CreateFolderMembershipOutput) {
+	op := &request.Operation{
+		Name:       opCreateFolderMembership,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}",
+	}
+
+	if input == nil {
+		input = &CreateFolderMembershipInput{}
+	}
+
+	output = &CreateFolderMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFolderMembership API operation for Amazon QuickSight.
+//
+// Adds an asset, such as a dashboard, analysis, or dataset into a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateFolderMembership for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolderMembership
+func (c *QuickSight) CreateFolderMembership(input *CreateFolderMembershipInput) (*CreateFolderMembershipOutput, error) {
+	req, out := c.CreateFolderMembershipRequest(input)
+	return out, req.Send()
+}
+
+// CreateFolderMembershipWithContext is the same as CreateFolderMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFolderMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateFolderMembershipWithContext(ctx aws.Context, input *CreateFolderMembershipInput, opts ...request.Option) (*CreateFolderMembershipOutput, error) {
+	req, out := c.CreateFolderMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateGroup = "CreateGroup"
 
 // CreateGroupRequest generates a "aws/request.Request" representing the
@@ -2123,6 +2340,214 @@ func (c *QuickSight) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteData
 // for more information on using Contexts.
 func (c *QuickSight) DeleteDataSourceWithContext(ctx aws.Context, input *DeleteDataSourceInput, opts ...request.Option) (*DeleteDataSourceOutput, error) {
 	req, out := c.DeleteDataSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFolder = "DeleteFolder"
+
+// DeleteFolderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFolder for more information on using the DeleteFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFolderRequest method.
+//    req, resp := client.DeleteFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolder
+func (c *QuickSight) DeleteFolderRequest(input *DeleteFolderInput) (req *request.Request, output *DeleteFolderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFolder,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
+	}
+
+	if input == nil {
+		input = &DeleteFolderInput{}
+	}
+
+	output = &DeleteFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFolder API operation for Amazon QuickSight.
+//
+// Deletes an empty folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolder
+func (c *QuickSight) DeleteFolder(input *DeleteFolderInput) (*DeleteFolderOutput, error) {
+	req, out := c.DeleteFolderRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFolderWithContext is the same as DeleteFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteFolderWithContext(ctx aws.Context, input *DeleteFolderInput, opts ...request.Option) (*DeleteFolderOutput, error) {
+	req, out := c.DeleteFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFolderMembership = "DeleteFolderMembership"
+
+// DeleteFolderMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFolderMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFolderMembership for more information on using the DeleteFolderMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFolderMembershipRequest method.
+//    req, resp := client.DeleteFolderMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolderMembership
+func (c *QuickSight) DeleteFolderMembershipRequest(input *DeleteFolderMembershipInput) (req *request.Request, output *DeleteFolderMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFolderMembership,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}",
+	}
+
+	if input == nil {
+		input = &DeleteFolderMembershipInput{}
+	}
+
+	output = &DeleteFolderMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFolderMembership API operation for Amazon QuickSight.
+//
+// Removes an asset, such as a dashboard, analysis, or dataset, from a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteFolderMembership for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolderMembership
+func (c *QuickSight) DeleteFolderMembership(input *DeleteFolderMembershipInput) (*DeleteFolderMembershipOutput, error) {
+	req, out := c.DeleteFolderMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFolderMembershipWithContext is the same as DeleteFolderMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFolderMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteFolderMembershipWithContext(ctx aws.Context, input *DeleteFolderMembershipInput, opts ...request.Option) (*DeleteFolderMembershipOutput, error) {
+	req, out := c.DeleteFolderMembershipRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4143,6 +4568,310 @@ func (c *QuickSight) DescribeDataSourcePermissions(input *DescribeDataSourcePerm
 // for more information on using Contexts.
 func (c *QuickSight) DescribeDataSourcePermissionsWithContext(ctx aws.Context, input *DescribeDataSourcePermissionsInput, opts ...request.Option) (*DescribeDataSourcePermissionsOutput, error) {
 	req, out := c.DescribeDataSourcePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFolder = "DescribeFolder"
+
+// DescribeFolderRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolder for more information on using the DescribeFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderRequest method.
+//    req, resp := client.DescribeFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolder
+func (c *QuickSight) DescribeFolderRequest(input *DescribeFolderInput) (req *request.Request, output *DescribeFolderOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolder,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
+	}
+
+	if input == nil {
+		input = &DescribeFolderInput{}
+	}
+
+	output = &DescribeFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolder API operation for Amazon QuickSight.
+//
+// Describes a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolder
+func (c *QuickSight) DescribeFolder(input *DescribeFolderInput) (*DescribeFolderOutput, error) {
+	req, out := c.DescribeFolderRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderWithContext is the same as DescribeFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderWithContext(ctx aws.Context, input *DescribeFolderInput, opts ...request.Option) (*DescribeFolderOutput, error) {
+	req, out := c.DescribeFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFolderPermissions = "DescribeFolderPermissions"
+
+// DescribeFolderPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolderPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolderPermissions for more information on using the DescribeFolderPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderPermissionsRequest method.
+//    req, resp := client.DescribeFolderPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderPermissions
+func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermissionsInput) (req *request.Request, output *DescribeFolderPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolderPermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/permissions",
+	}
+
+	if input == nil {
+		input = &DescribeFolderPermissionsInput{}
+	}
+
+	output = &DescribeFolderPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolderPermissions API operation for Amazon QuickSight.
+//
+// Describes permissions for a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolderPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderPermissions
+func (c *QuickSight) DescribeFolderPermissions(input *DescribeFolderPermissionsInput) (*DescribeFolderPermissionsOutput, error) {
+	req, out := c.DescribeFolderPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderPermissionsWithContext is the same as DescribeFolderPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolderPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderPermissionsWithContext(ctx aws.Context, input *DescribeFolderPermissionsInput, opts ...request.Option) (*DescribeFolderPermissionsOutput, error) {
+	req, out := c.DescribeFolderPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFolderResolvedPermissions = "DescribeFolderResolvedPermissions"
+
+// DescribeFolderResolvedPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolderResolvedPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolderResolvedPermissions for more information on using the DescribeFolderResolvedPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderResolvedPermissionsRequest method.
+//    req, resp := client.DescribeFolderResolvedPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderResolvedPermissions
+func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFolderResolvedPermissionsInput) (req *request.Request, output *DescribeFolderResolvedPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolderResolvedPermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/resolved-permissions",
+	}
+
+	if input == nil {
+		input = &DescribeFolderResolvedPermissionsInput{}
+	}
+
+	output = &DescribeFolderResolvedPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolderResolvedPermissions API operation for Amazon QuickSight.
+//
+// Describes the folder resolved permissions. Permissions consists of both folder
+// direct permissions and the inherited permissions from the ancestor folders.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolderResolvedPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderResolvedPermissions
+func (c *QuickSight) DescribeFolderResolvedPermissions(input *DescribeFolderResolvedPermissionsInput) (*DescribeFolderResolvedPermissionsOutput, error) {
+	req, out := c.DescribeFolderResolvedPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderResolvedPermissionsWithContext is the same as DescribeFolderResolvedPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolderResolvedPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderResolvedPermissionsWithContext(ctx aws.Context, input *DescribeFolderResolvedPermissionsInput, opts ...request.Option) (*DescribeFolderResolvedPermissionsOutput, error) {
+	req, out := c.DescribeFolderResolvedPermissionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6278,6 +7007,214 @@ func (c *QuickSight) ListDataSourcesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	return p.Err()
+}
+
+const opListFolderMembers = "ListFolderMembers"
+
+// ListFolderMembersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFolderMembers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFolderMembers for more information on using the ListFolderMembers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFolderMembersRequest method.
+//    req, resp := client.ListFolderMembersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolderMembers
+func (c *QuickSight) ListFolderMembersRequest(input *ListFolderMembersInput) (req *request.Request, output *ListFolderMembersOutput) {
+	op := &request.Operation{
+		Name:       opListFolderMembers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members",
+	}
+
+	if input == nil {
+		input = &ListFolderMembersInput{}
+	}
+
+	output = &ListFolderMembersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFolderMembers API operation for Amazon QuickSight.
+//
+// List all assets (DASHBOARD, ANALYSIS, and DATASET) in a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListFolderMembers for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolderMembers
+func (c *QuickSight) ListFolderMembers(input *ListFolderMembersInput) (*ListFolderMembersOutput, error) {
+	req, out := c.ListFolderMembersRequest(input)
+	return out, req.Send()
+}
+
+// ListFolderMembersWithContext is the same as ListFolderMembers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFolderMembers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFolderMembersWithContext(ctx aws.Context, input *ListFolderMembersInput, opts ...request.Option) (*ListFolderMembersOutput, error) {
+	req, out := c.ListFolderMembersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListFolders = "ListFolders"
+
+// ListFoldersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFolders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFolders for more information on using the ListFolders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFoldersRequest method.
+//    req, resp := client.ListFoldersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolders
+func (c *QuickSight) ListFoldersRequest(input *ListFoldersInput) (req *request.Request, output *ListFoldersOutput) {
+	op := &request.Operation{
+		Name:       opListFolders,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders",
+	}
+
+	if input == nil {
+		input = &ListFoldersInput{}
+	}
+
+	output = &ListFoldersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFolders API operation for Amazon QuickSight.
+//
+// Lists all folders in an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListFolders for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolders
+func (c *QuickSight) ListFolders(input *ListFoldersInput) (*ListFoldersOutput, error) {
+	req, out := c.ListFoldersRequest(input)
+	return out, req.Send()
+}
+
+// ListFoldersWithContext is the same as ListFolders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFolders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFoldersWithContext(ctx aws.Context, input *ListFoldersInput, opts ...request.Option) (*ListFoldersOutput, error) {
+	req, out := c.ListFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListGroupMemberships = "ListGroupMemberships"
@@ -8715,6 +9652,110 @@ func (c *QuickSight) SearchDashboardsPagesWithContext(ctx aws.Context, input *Se
 	return p.Err()
 }
 
+const opSearchFolders = "SearchFolders"
+
+// SearchFoldersRequest generates a "aws/request.Request" representing the
+// client's request for the SearchFolders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchFolders for more information on using the SearchFolders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchFoldersRequest method.
+//    req, resp := client.SearchFoldersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchFolders
+func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *request.Request, output *SearchFoldersOutput) {
+	op := &request.Operation{
+		Name:       opSearchFolders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/search/folders",
+	}
+
+	if input == nil {
+		input = &SearchFoldersInput{}
+	}
+
+	output = &SearchFoldersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchFolders API operation for Amazon QuickSight.
+//
+// Searches the subfolders in a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation SearchFolders for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchFolders
+func (c *QuickSight) SearchFolders(input *SearchFoldersInput) (*SearchFoldersOutput, error) {
+	req, out := c.SearchFoldersRequest(input)
+	return out, req.Send()
+}
+
+// SearchFoldersWithContext is the same as SearchFolders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchFolders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchFoldersWithContext(ctx aws.Context, input *SearchFoldersInput, opts ...request.Option) (*SearchFoldersOutput, error) {
+	req, out := c.SearchFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -10021,6 +11062,217 @@ func (c *QuickSight) UpdateDataSourcePermissions(input *UpdateDataSourcePermissi
 // for more information on using Contexts.
 func (c *QuickSight) UpdateDataSourcePermissionsWithContext(ctx aws.Context, input *UpdateDataSourcePermissionsInput, opts ...request.Option) (*UpdateDataSourcePermissionsOutput, error) {
 	req, out := c.UpdateDataSourcePermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFolder = "UpdateFolder"
+
+// UpdateFolderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFolder for more information on using the UpdateFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFolderRequest method.
+//    req, resp := client.UpdateFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolder
+func (c *QuickSight) UpdateFolderRequest(input *UpdateFolderInput) (req *request.Request, output *UpdateFolderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFolder,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
+	}
+
+	if input == nil {
+		input = &UpdateFolderInput{}
+	}
+
+	output = &UpdateFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFolder API operation for Amazon QuickSight.
+//
+// Updates the name of a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolder
+func (c *QuickSight) UpdateFolder(input *UpdateFolderInput) (*UpdateFolderOutput, error) {
+	req, out := c.UpdateFolderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFolderWithContext is the same as UpdateFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateFolderWithContext(ctx aws.Context, input *UpdateFolderInput, opts ...request.Option) (*UpdateFolderOutput, error) {
+	req, out := c.UpdateFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFolderPermissions = "UpdateFolderPermissions"
+
+// UpdateFolderPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFolderPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFolderPermissions for more information on using the UpdateFolderPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFolderPermissionsRequest method.
+//    req, resp := client.UpdateFolderPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolderPermissions
+func (c *QuickSight) UpdateFolderPermissionsRequest(input *UpdateFolderPermissionsInput) (req *request.Request, output *UpdateFolderPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFolderPermissions,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/permissions",
+	}
+
+	if input == nil {
+		input = &UpdateFolderPermissionsInput{}
+	}
+
+	output = &UpdateFolderPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFolderPermissions API operation for Amazon QuickSight.
+//
+// Updates permissions of a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateFolderPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolderPermissions
+func (c *QuickSight) UpdateFolderPermissions(input *UpdateFolderPermissionsInput) (*UpdateFolderPermissionsOutput, error) {
+	req, out := c.UpdateFolderPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFolderPermissionsWithContext is the same as UpdateFolderPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFolderPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateFolderPermissionsWithContext(ctx aws.Context, input *UpdateFolderPermissionsInput, opts ...request.Option) (*UpdateFolderPermissionsOutput, error) {
+	req, out := c.UpdateFolderPermissionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -13744,6 +14996,328 @@ func (s *CreateDataSourceOutput) SetRequestId(v string) *CreateDataSourceOutput 
 
 // SetStatus sets the Status field's value.
 func (s *CreateDataSourceOutput) SetStatus(v int64) *CreateDataSourceOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The type of folder. By default, folderType is SHARED.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The name of the folder.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for the parent folder.
+	//
+	// ParentFolderArn can be null. An empty parentFolderArn creates a root-level
+	// folder.
+	ParentFolderArn *string `type:"string"`
+
+	// A structure that describes the principals and the resource-level permissions
+	// of a folder.
+	//
+	// To specify no permissions, omit Permissions.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// Tags for the folder.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Permissions != nil && len(s.Permissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Permissions", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Permissions != nil {
+		for i, v := range s.Permissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Permissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateFolderInput) SetAwsAccountId(v string) *CreateFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderInput) SetFolderId(v string) *CreateFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *CreateFolderInput) SetFolderType(v string) *CreateFolderInput {
+	s.FolderType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFolderInput) SetName(v string) *CreateFolderInput {
+	s.Name = &v
+	return s
+}
+
+// SetParentFolderArn sets the ParentFolderArn field's value.
+func (s *CreateFolderInput) SetParentFolderArn(v string) *CreateFolderInput {
+	s.ParentFolderArn = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *CreateFolderInput) SetPermissions(v []*ResourcePermission) *CreateFolderInput {
+	s.Permissions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFolderMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset (the dashboard, analysis, or dataset).
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
+
+	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET.
+	//
+	// MemberType is a required field
+	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s CreateFolderMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFolderMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFolderMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.MemberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberType"))
+	}
+	if s.MemberType != nil && len(*s.MemberType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateFolderMembershipInput) SetAwsAccountId(v string) *CreateFolderMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderMembershipInput) SetFolderId(v string) *CreateFolderMembershipInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *CreateFolderMembershipInput) SetMemberId(v string) *CreateFolderMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *CreateFolderMembershipInput) SetMemberType(v string) *CreateFolderMembershipInput {
+	s.MemberType = &v
+	return s
+}
+
+type CreateFolderMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the member in the folder.
+	FolderMember *FolderMember `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of the folder membership. If succeeded, the status is SC_OK (200).
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateFolderMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderMember sets the FolderMember field's value.
+func (s *CreateFolderMembershipOutput) SetFolderMember(v *FolderMember) *CreateFolderMembershipOutput {
+	s.FolderMember = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateFolderMembershipOutput) SetRequestId(v string) *CreateFolderMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFolderMembershipOutput) SetStatus(v int64) *CreateFolderMembershipOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the newly created folder.
+	Arn *string `type:"string"`
+
+	// The folder ID for the newly created folder.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID for the newly created folder.
+	RequestId *string `type:"string"`
+
+	// The status of the newly created folder. If succeeded, the status is SC_OK
+	// (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFolderOutput) SetArn(v string) *CreateFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderOutput) SetFolderId(v string) *CreateFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateFolderOutput) SetRequestId(v string) *CreateFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFolderOutput) SetStatus(v int64) *CreateFolderOutput {
 	s.Status = &v
 	return s
 }
@@ -17619,6 +19193,239 @@ func (s *DeleteDataSourceOutput) SetStatus(v int64) *DeleteDataSourceOutput {
 	return s
 }
 
+type DeleteFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID for the folder.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteFolderInput) SetAwsAccountId(v string) *DeleteFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+type DeleteFolderMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The Folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset (the dashboard, analysis, or dataset) that you want to
+	// delete.
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
+
+	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET
+	//
+	// MemberType is a required field
+	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s DeleteFolderMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFolderMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFolderMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.MemberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberType"))
+	}
+	if s.MemberType != nil && len(*s.MemberType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteFolderMembershipInput) SetAwsAccountId(v string) *DeleteFolderMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderMembershipInput) SetFolderId(v string) *DeleteFolderMembershipInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *DeleteFolderMembershipInput) SetMemberId(v string) *DeleteFolderMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *DeleteFolderMembershipInput) SetMemberType(v string) *DeleteFolderMembershipInput {
+	s.MemberType = &v
+	return s
+}
+
+type DeleteFolderMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of deleting the asset. If succeeded, the status is SC_OK (200).
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteFolderMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteFolderMembershipOutput) SetRequestId(v string) *DeleteFolderMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteFolderMembershipOutput) SetStatus(v int64) *DeleteFolderMembershipOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the deleted folder.
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of deleting the folder. If succeeded, the status is SC_OK (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteFolderOutput) SetArn(v string) *DeleteFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderOutput) SetFolderId(v string) *DeleteFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteFolderOutput) SetRequestId(v string) *DeleteFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteFolderOutput) SetStatus(v int64) *DeleteFolderOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19915,6 +21722,339 @@ func (s *DescribeDataSourcePermissionsOutput) SetStatus(v int64) *DescribeDataSo
 	return s
 }
 
+type DescribeFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderInput) SetAwsAccountId(v string) *DescribeFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderInput) SetFolderId(v string) *DescribeFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the folder.
+	Folder *Folder `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolder sets the Folder field's value.
+func (s *DescribeFolderOutput) SetFolder(v *Folder) *DescribeFolderOutput {
+	s.Folder = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderOutput) SetRequestId(v string) *DescribeFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderOutput) SetStatus(v int64) *DescribeFolderOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeFolderPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderPermissionsInput) SetAwsAccountId(v string) *DescribeFolderPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderPermissionsInput) SetFolderId(v string) *DescribeFolderPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the folder.
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the folder.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeFolderPermissionsOutput) SetArn(v string) *DescribeFolderPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderPermissionsOutput) SetFolderId(v string) *DescribeFolderPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DescribeFolderPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeFolderPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderPermissionsOutput) SetRequestId(v string) *DescribeFolderPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderPermissionsOutput) SetStatus(v int64) *DescribeFolderPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeFolderResolvedPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderResolvedPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderResolvedPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderResolvedPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderResolvedPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetAwsAccountId(v string) *DescribeFolderResolvedPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetFolderId(v string) *DescribeFolderResolvedPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderResolvedPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the dashboard.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderResolvedPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderResolvedPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetArn(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetFolderId(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeFolderResolvedPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetRequestId(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetStatus(v int64) *DescribeFolderResolvedPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21398,6 +23538,231 @@ func (s *FilterOperation) Validate() error {
 // SetConditionExpression sets the ConditionExpression field's value.
 func (s *FilterOperation) SetConditionExpression(v string) *FilterOperation {
 	s.ConditionExpression = &v
+	return s
+}
+
+// A folder.
+type Folder struct {
+	_ struct{} `type:"structure"`
+
+	// The folder Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The time that the folder was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// An array of ancestor folder ARN strings.
+	FolderPath []*string `min:"1" type:"list"`
+
+	// The type of the folder.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The time that the folder was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// A display name for the folder.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Folder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Folder) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Folder) SetArn(v string) *Folder {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Folder) SetCreatedTime(v time.Time) *Folder {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *Folder) SetFolderId(v string) *Folder {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderPath sets the FolderPath field's value.
+func (s *Folder) SetFolderPath(v []*string) *Folder {
+	s.FolderPath = v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *Folder) SetFolderType(v string) *Folder {
+	s.FolderType = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Folder) SetLastUpdatedTime(v time.Time) *Folder {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Folder) SetName(v string) *Folder {
+	s.Name = &v
+	return s
+}
+
+// An asset in a folder, such as a dashboard, analysis, or dataset.
+type FolderMember struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset.
+	MemberId *string `min:"1" type:"string"`
+
+	// The type of the asset.
+	MemberType *string `type:"string" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s FolderMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderMember) GoString() string {
+	return s.String()
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *FolderMember) SetMemberId(v string) *FolderMember {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *FolderMember) SetMemberType(v string) *FolderMember {
+	s.MemberType = &v
+	return s
+}
+
+// Searches a folder by a filter.
+type FolderSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the value that you want to use as a filter. For example, "Name":
+	// "PARENT_FOLDER_ARN".
+	Name *string `type:"string" enum:"FolderFilterAttribute"`
+
+	// The comparison operator that you want to use as a filter. For example, "Operator":
+	// "StringEquals".
+	Operator *string `type:"string" enum:"FilterOperator"`
+
+	// The value of the named item (in this example, PARENT_FOLDER_ARN), that you
+	// want to use as a filter. For example, "Value": "arn:aws:quicksight:us-east-1:1:folder/folderId".
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FolderSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *FolderSearchFilter) SetName(v string) *FolderSearchFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *FolderSearchFilter) SetOperator(v string) *FolderSearchFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *FolderSearchFilter) SetValue(v string) *FolderSearchFilter {
+	s.Value = &v
+	return s
+}
+
+// A summary of the folder.
+type FolderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The time that the folder was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The type of folder.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The time that the folder was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The display name of the folder.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s FolderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FolderSummary) SetArn(v string) *FolderSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *FolderSummary) SetCreatedTime(v time.Time) *FolderSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *FolderSummary) SetFolderId(v string) *FolderSummary {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *FolderSummary) SetFolderType(v string) *FolderSummary {
+	s.FolderType = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *FolderSummary) SetLastUpdatedTime(v time.Time) *FolderSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FolderSummary) SetName(v string) *FolderSummary {
+	s.Name = &v
 	return s
 }
 
@@ -23327,6 +25692,249 @@ func (s *ListDataSourcesOutput) SetRequestId(v string) *ListDataSourcesOutput {
 
 // SetStatus sets the Status field's value.
 func (s *ListDataSourcesOutput) SetStatus(v int64) *ListDataSourcesOutput {
+	s.Status = &v
+	return s
+}
+
+type ListFolderMembersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFolderMembersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFolderMembersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFolderMembersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFolderMembersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListFolderMembersInput) SetAwsAccountId(v string) *ListFolderMembersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *ListFolderMembersInput) SetFolderId(v string) *ListFolderMembersInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFolderMembersInput) SetMaxResults(v int64) *ListFolderMembersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFolderMembersInput) SetNextToken(v string) *ListFolderMembersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFolderMembersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folder members (dashboards, analyses,
+	// and datasets) in the folder.
+	FolderMemberList []*MemberIdArnPair `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFolderMembersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFolderMembersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderMemberList sets the FolderMemberList field's value.
+func (s *ListFolderMembersOutput) SetFolderMemberList(v []*MemberIdArnPair) *ListFolderMembersOutput {
+	s.FolderMemberList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFolderMembersOutput) SetNextToken(v string) *ListFolderMembersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListFolderMembersOutput) SetRequestId(v string) *ListFolderMembersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListFolderMembersOutput) SetStatus(v int64) *ListFolderMembersOutput {
+	s.Status = &v
+	return s
+}
+
+type ListFoldersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFoldersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFoldersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFoldersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFoldersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListFoldersInput) SetAwsAccountId(v string) *ListFoldersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFoldersInput) SetMaxResults(v int64) *ListFoldersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFoldersInput) SetNextToken(v string) *ListFoldersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFoldersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folders in your AWS account. This structure
+	// provides basic information about the folders.
+	FolderSummaryList []*FolderSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFoldersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFoldersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderSummaryList sets the FolderSummaryList field's value.
+func (s *ListFoldersOutput) SetFolderSummaryList(v []*FolderSummary) *ListFoldersOutput {
+	s.FolderSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFoldersOutput) SetNextToken(v string) *ListFoldersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListFoldersOutput) SetRequestId(v string) *ListFoldersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListFoldersOutput) SetStatus(v int64) *ListFoldersOutput {
 	s.Status = &v
 	return s
 }
@@ -25550,6 +28158,40 @@ func (s *MariaDbParameters) SetPort(v int64) *MariaDbParameters {
 	return s
 }
 
+// An object that consists of the member Amazon Resource Name (ARN) and member
+// ID.
+type MemberIdArnPair struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the member.
+	MemberArn *string `type:"string"`
+
+	// The ID of the member.
+	MemberId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MemberIdArnPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberIdArnPair) GoString() string {
+	return s.String()
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *MemberIdArnPair) SetMemberArn(v string) *MemberIdArnPair {
+	s.MemberArn = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *MemberIdArnPair) SetMemberId(v string) *MemberIdArnPair {
+	s.MemberId = &v
+	return s
+}
+
 // MySQL parameters.
 type MySqlParameters struct {
 	_ struct{} `type:"structure"`
@@ -27414,7 +30056,7 @@ func (s *S3Parameters) SetManifestFileLocation(v *ManifestFileLocation) *S3Param
 	return s
 }
 
-// A physical table type for as S3 data source.
+// A physical table type for an S3 data source.
 type S3Source struct {
 	_ struct{} `type:"structure"`
 
@@ -27423,7 +30065,9 @@ type S3Source struct {
 	// DataSourceArn is a required field
 	DataSourceArn *string `type:"string" required:"true"`
 
-	// A physical table type for as S3 data source.
+	// A physical table type for an S3 data source.
+	//
+	// For non-JSON files, only STRING data types are supported in input columns.
 	//
 	// InputColumns is a required field
 	InputColumns []*InputColumn `min:"1" type:"list" required:"true"`
@@ -27763,6 +30407,136 @@ func (s *SearchDashboardsOutput) SetRequestId(v string) *SearchDashboardsOutput 
 
 // SetStatus sets the Status field's value.
 func (s *SearchDashboardsOutput) SetStatus(v int64) *SearchDashboardsOutput {
+	s.Status = &v
+	return s
+}
+
+type SearchFoldersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The filters to apply to the search. Currently, you can search only by the
+	// parent folder ARN. For example, "Filters": [ { "Name": "PARENT_FOLDER_ARN",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:folder/folderId"
+	// } ].
+	//
+	// Filters is a required field
+	Filters []*FolderSearchFilter `type:"list" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SearchFoldersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchFoldersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchFoldersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchFoldersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *SearchFoldersInput) SetAwsAccountId(v string) *SearchFoldersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchFoldersInput) SetFilters(v []*FolderSearchFilter) *SearchFoldersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchFoldersInput) SetMaxResults(v int64) *SearchFoldersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchFoldersInput) SetNextToken(v string) *SearchFoldersInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchFoldersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folders in your AWS account. This structure
+	// provides basic information about the folders.
+	FolderSummaryList []*FolderSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s SearchFoldersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchFoldersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderSummaryList sets the FolderSummaryList field's value.
+func (s *SearchFoldersOutput) SetFolderSummaryList(v []*FolderSummary) *SearchFoldersOutput {
+	s.FolderSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchFoldersOutput) SetNextToken(v string) *SearchFoldersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *SearchFoldersOutput) SetRequestId(v string) *SearchFoldersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchFoldersOutput) SetStatus(v int64) *SearchFoldersOutput {
 	s.Status = &v
 	return s
 }
@@ -32053,6 +34827,292 @@ func (s *UpdateDataSourcePermissionsOutput) SetStatus(v int64) *UpdateDataSource
 	return s
 }
 
+type UpdateFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The name of the folder.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateFolderInput) SetAwsAccountId(v string) *UpdateFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderInput) SetFolderId(v string) *UpdateFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFolderInput) SetName(v string) *UpdateFolderInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFolderOutput) SetArn(v string) *UpdateFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderOutput) SetFolderId(v string) *UpdateFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateFolderOutput) SetRequestId(v string) *UpdateFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFolderOutput) SetStatus(v int64) *UpdateFolderOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdateFolderPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The permissions that you want to grant on a resource.
+	GrantPermissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The permissions that you want to revoke from a resource.
+	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateFolderPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFolderPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFolderPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.GrantPermissions != nil && len(s.GrantPermissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrantPermissions", 1))
+	}
+	if s.RevokePermissions != nil && len(s.RevokePermissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevokePermissions", 1))
+	}
+	if s.GrantPermissions != nil {
+		for i, v := range s.GrantPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RevokePermissions != nil {
+		for i, v := range s.RevokePermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RevokePermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateFolderPermissionsInput) SetAwsAccountId(v string) *UpdateFolderPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderPermissionsInput) SetFolderId(v string) *UpdateFolderPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetGrantPermissions sets the GrantPermissions field's value.
+func (s *UpdateFolderPermissionsInput) SetGrantPermissions(v []*ResourcePermission) *UpdateFolderPermissionsInput {
+	s.GrantPermissions = v
+	return s
+}
+
+// SetRevokePermissions sets the RevokePermissions field's value.
+func (s *UpdateFolderPermissionsInput) SetRevokePermissions(v []*ResourcePermission) *UpdateFolderPermissionsInput {
+	s.RevokePermissions = v
+	return s
+}
+
+type UpdateFolderPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the dashboard.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFolderPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFolderPermissionsOutput) SetArn(v string) *UpdateFolderPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderPermissionsOutput) SetFolderId(v string) *UpdateFolderPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateFolderPermissionsOutput) SetPermissions(v []*ResourcePermission) *UpdateFolderPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateFolderPermissionsOutput) SetRequestId(v string) *UpdateFolderPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFolderPermissionsOutput) SetStatus(v int64) *UpdateFolderPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -34357,6 +37417,30 @@ func FilterOperator_Values() []string {
 }
 
 const (
+	// FolderFilterAttributeParentFolderArn is a FolderFilterAttribute enum value
+	FolderFilterAttributeParentFolderArn = "PARENT_FOLDER_ARN"
+)
+
+// FolderFilterAttribute_Values returns all elements of the FolderFilterAttribute enum
+func FolderFilterAttribute_Values() []string {
+	return []string{
+		FolderFilterAttributeParentFolderArn,
+	}
+}
+
+const (
+	// FolderTypeShared is a FolderType enum value
+	FolderTypeShared = "SHARED"
+)
+
+// FolderType_Values returns all elements of the FolderType enum
+func FolderType_Values() []string {
+	return []string{
+		FolderTypeShared,
+	}
+}
+
+const (
 	// GeoSpatialCountryCodeUs is a GeoSpatialCountryCode enum value
 	GeoSpatialCountryCodeUs = "US"
 )
@@ -34729,6 +37813,26 @@ func JoinType_Values() []string {
 		JoinTypeOuter,
 		JoinTypeLeft,
 		JoinTypeRight,
+	}
+}
+
+const (
+	// MemberTypeDashboard is a MemberType enum value
+	MemberTypeDashboard = "DASHBOARD"
+
+	// MemberTypeAnalysis is a MemberType enum value
+	MemberTypeAnalysis = "ANALYSIS"
+
+	// MemberTypeDataset is a MemberType enum value
+	MemberTypeDataset = "DATASET"
+)
+
+// MemberType_Values returns all elements of the MemberType enum
+func MemberType_Values() []string {
+	return []string{
+		MemberTypeDashboard,
+		MemberTypeAnalysis,
+		MemberTypeDataset,
 	}
 }
 

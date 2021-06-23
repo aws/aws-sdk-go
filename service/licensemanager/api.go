@@ -170,6 +170,9 @@ func (c *LicenseManager) CheckInLicenseRequest(input *CheckInLicenseInput) (req 
 //   * ValidationException
 //   The provided input is not valid. Try your request again.
 //
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
 //   * ResourceNotFoundException
 //   The resource cannot be found.
 //
@@ -267,6 +270,9 @@ func (c *LicenseManager) CheckoutBorrowLicenseRequest(input *CheckoutBorrowLicen
 // Returned Error Types:
 //   * ValidationException
 //   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
 //
 //   * ResourceNotFoundException
 //   The resource cannot be found.
@@ -375,6 +381,9 @@ func (c *LicenseManager) CheckoutLicenseRequest(input *CheckoutLicenseInput) (re
 // Returned Error Types:
 //   * ValidationException
 //   The provided input is not valid. Try your request again.
+//
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
 //
 //   * ResourceNotFoundException
 //   The resource cannot be found.
@@ -5473,6 +5482,8 @@ type CreateGrantVersionInput struct {
 
 	// Grant status.
 	Status *string `type:"string" enum:"GrantStatus"`
+
+	StatusReason *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5537,6 +5548,12 @@ func (s *CreateGrantVersionInput) SetSourceVersion(v string) *CreateGrantVersion
 // SetStatus sets the Status field's value.
 func (s *CreateGrantVersionInput) SetStatus(v string) *CreateGrantVersionInput {
 	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *CreateGrantVersionInput) SetStatusReason(v string) *CreateGrantVersionInput {
+	s.StatusReason = &v
 	return s
 }
 
@@ -6575,6 +6592,8 @@ type DeleteGrantInput struct {
 	// GrantArn is a required field
 	GrantArn *string `type:"string" required:"true"`
 
+	StatusReason *string `type:"string"`
+
 	// Current version of the grant.
 	//
 	// Version is a required field
@@ -6610,6 +6629,12 @@ func (s *DeleteGrantInput) Validate() error {
 // SetGrantArn sets the GrantArn field's value.
 func (s *DeleteGrantInput) SetGrantArn(v string) *DeleteGrantInput {
 	s.GrantArn = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *DeleteGrantInput) SetStatusReason(v string) *DeleteGrantInput {
+	s.StatusReason = &v
 	return s
 }
 
@@ -10968,6 +10993,8 @@ type ReceivedMetadata struct {
 
 	// Received status.
 	ReceivedStatus *string `type:"string" enum:"ReceivedStatus"`
+
+	ReceivedStatusReason *string `type:"string"`
 }
 
 // String returns the string representation
@@ -10989,6 +11016,12 @@ func (s *ReceivedMetadata) SetAllowedOperations(v []*string) *ReceivedMetadata {
 // SetReceivedStatus sets the ReceivedStatus field's value.
 func (s *ReceivedMetadata) SetReceivedStatus(v string) *ReceivedMetadata {
 	s.ReceivedStatus = &v
+	return s
+}
+
+// SetReceivedStatusReason sets the ReceivedStatusReason field's value.
+func (s *ReceivedMetadata) SetReceivedStatusReason(v string) *ReceivedMetadata {
+	s.ReceivedStatusReason = &v
 	return s
 }
 
@@ -12733,6 +12766,9 @@ const (
 
 	// GrantStatusDisabled is a GrantStatus enum value
 	GrantStatusDisabled = "DISABLED"
+
+	// GrantStatusWorkflowCompleted is a GrantStatus enum value
+	GrantStatusWorkflowCompleted = "WORKFLOW_COMPLETED"
 )
 
 // GrantStatus_Values returns all elements of the GrantStatus enum
@@ -12746,6 +12782,7 @@ func GrantStatus_Values() []string {
 		GrantStatusDeleted,
 		GrantStatusPendingDelete,
 		GrantStatusDisabled,
+		GrantStatusWorkflowCompleted,
 	}
 }
 
@@ -12886,6 +12923,9 @@ const (
 
 	// ReceivedStatusDisabled is a ReceivedStatus enum value
 	ReceivedStatusDisabled = "DISABLED"
+
+	// ReceivedStatusWorkflowCompleted is a ReceivedStatus enum value
+	ReceivedStatusWorkflowCompleted = "WORKFLOW_COMPLETED"
 )
 
 // ReceivedStatus_Values returns all elements of the ReceivedStatus enum
@@ -12898,6 +12938,7 @@ func ReceivedStatus_Values() []string {
 		ReceivedStatusFailedWorkflow,
 		ReceivedStatusDeleted,
 		ReceivedStatusDisabled,
+		ReceivedStatusWorkflowCompleted,
 	}
 }
 

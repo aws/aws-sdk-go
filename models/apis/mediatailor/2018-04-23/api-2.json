@@ -1825,6 +1825,23 @@
       },
       "type": "list"
     },
+    "ScheduleAdBreak": {
+      "members": {
+        "ApproximateDurationSeconds": {
+          "shape": "__long"
+        },
+        "ApproximateStartTime": {
+          "shape": "__timestampUnix"
+        },
+        "SourceLocationName": {
+          "shape": "__string"
+        },
+        "VodSourceName": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
+    },
     "ScheduleConfiguration": {
       "members": {
         "Transition": {
@@ -1852,6 +1869,9 @@
         },
         "ProgramName": {
           "shape": "__string"
+        },
+        "ScheduleAdBreaks": {
+          "shape": "__listOfScheduleAdBreak"
         },
         "SourceLocationName": {
           "shape": "__string"
@@ -2250,6 +2270,12 @@
     "__listOfPlaybackConfiguration": {
       "member": {
         "shape": "PlaybackConfiguration"
+      },
+      "type": "list"
+    },
+    "__listOfScheduleAdBreak": {
+      "member": {
+        "shape": "ScheduleAdBreak"
       },
       "type": "list"
     },
