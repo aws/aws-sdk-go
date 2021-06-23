@@ -142,8 +142,8 @@ func (c *DocDB) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *re
 //
 // Adds metadata tags to an Amazon DocumentDB resource. You can use these tags
 // with cost allocation reporting to track costs that are associated with Amazon
-// DocumentDB resources. or in a Condition statement in an AWS Identity and
-// Access Management (IAM) policy for Amazon DocumentDB.
+// DocumentDB resources or in a Condition statement in an Identity and Access
+// Management (IAM) policy for Amazon DocumentDB.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -404,7 +404,7 @@ func (c *DocDB) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) 
 // To copy a cluster snapshot from a shared manual cluster snapshot, SourceDBClusterSnapshotIdentifier
 // must be the Amazon Resource Name (ARN) of the shared cluster snapshot. You
 // can only copy a shared DB cluster snapshot, whether encrypted or not, in
-// the same AWS Region.
+// the same Region.
 //
 // To cancel the copy operation after it is in progress, delete the target cluster
 // snapshot identified by TargetDBClusterSnapshotIdentifier while that cluster
@@ -434,7 +434,7 @@ func (c *DocDB) CopyDBClusterSnapshotRequest(input *CopyDBClusterSnapshotInput) 
 //   The request would cause you to exceed the allowed number of snapshots.
 //
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
-//   An error occurred when accessing an AWS KMS key.
+//   An error occurred when accessing an KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CopyDBClusterSnapshot
 func (c *DocDB) CopyDBClusterSnapshot(input *CopyDBClusterSnapshotInput) (*CopyDBClusterSnapshotOutput, error) {
@@ -553,7 +553,7 @@ func (c *DocDB) CreateDBClusterRequest(input *CreateDBClusterInput) (req *reques
 //   group.
 //
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
-//   An error occurred when accessing an AWS KMS key.
+//   An error occurred when accessing an KMS key.
 //
 //   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
 //   DBClusterIdentifier doesn't refer to an existing cluster.
@@ -887,7 +887,7 @@ func (c *DocDB) CreateDBInstanceRequest(input *CreateDBInstanceInput) (req *requ
 //   on your behalf using IAM.
 //
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
-//   An error occurred when accessing an AWS KMS key.
+//   An error occurred when accessing an KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/CreateDBInstance
 func (c *DocDB) CreateDBInstance(input *CreateDBInstanceInput) (*CreateDBInstanceOutput, error) {
@@ -956,7 +956,7 @@ func (c *DocDB) CreateDBSubnetGroupRequest(input *CreateDBSubnetGroupInput) (req
 // CreateDBSubnetGroup API operation for Amazon DocumentDB with MongoDB compatibility.
 //
 // Creates a new subnet group. subnet groups must contain at least one subnet
-// in at least two Availability Zones in the AWS Region.
+// in at least two Availability Zones in the Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1168,7 +1168,7 @@ func (c *DocDB) CreateGlobalClusterRequest(input *CreateGlobalClusterInput) (req
 // CreateGlobalCluster API operation for Amazon DocumentDB with MongoDB compatibility.
 //
 // Creates an Amazon DocumentDB global cluster that can span multiple multiple
-// AWS Regions. The global cluster contains one primary cluster with read-write
+// Regions. The global cluster contains one primary cluster with read-write
 // capability, and up-to give read-only secondary clusters. Global clusters
 // uses storage-based fast replication across regions with latencies less than
 // one second, using dedicated infrastructure with no impact to your workload’s
@@ -1886,7 +1886,7 @@ func (c *DocDB) DescribeCertificatesRequest(input *DescribeCertificatesInput) (r
 // DescribeCertificates API operation for Amazon DocumentDB with MongoDB compatibility.
 //
 // Returns a list of certificate authority (CA) certificates provided by Amazon
-// DocumentDB for this AWS account.
+// DocumentDB for this account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2296,11 +2296,11 @@ func (c *DocDB) DescribeDBClusterSnapshotAttributesRequest(input *DescribeDBClus
 // Returns a list of cluster snapshot attribute names and values for a manual
 // DB cluster snapshot.
 //
-// When you share snapshots with other AWS accounts, DescribeDBClusterSnapshotAttributes
-// returns the restore attribute and a list of IDs for the AWS accounts that
-// are authorized to copy or restore the manual cluster snapshot. If all is
-// included in the list of values for the restore attribute, then the manual
-// cluster snapshot is public and can be copied or restored by all AWS accounts.
+// When you share snapshots with other accounts, DescribeDBClusterSnapshotAttributes
+// returns the restore attribute and a list of IDs for the accounts that are
+// authorized to copy or restore the manual cluster snapshot. If all is included
+// in the list of values for the restore attribute, then the manual cluster
+// snapshot is public and can be copied or restored by all accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4293,18 +4293,18 @@ func (c *DocDB) ModifyDBClusterSnapshotAttributeRequest(input *ModifyDBClusterSn
 // ModifyDBClusterSnapshotAttribute API operation for Amazon DocumentDB with MongoDB compatibility.
 //
 // Adds an attribute and values to, or removes an attribute and values from,
-// a manual DB cluster snapshot.
+// a manual cluster snapshot.
 //
-// To share a manual cluster snapshot with other AWS accounts, specify restore
-// as the AttributeName, and use the ValuesToAdd parameter to add a list of
-// IDs of the AWS accounts that are authorized to restore the manual cluster
-// snapshot. Use the value all to make the manual cluster snapshot public, which
-// means that it can be copied or restored by all AWS accounts. Do not add the
-// all value for any manual DB cluster snapshots that contain private information
-// that you don't want available to all AWS accounts. If a manual cluster snapshot
-// is encrypted, it can be shared, but only by specifying a list of authorized
-// AWS account IDs for the ValuesToAdd parameter. You can't use all as a value
-// for that parameter in this case.
+// To share a manual cluster snapshot with other accounts, specify restore as
+// the AttributeName, and use the ValuesToAdd parameter to add a list of IDs
+// of the accounts that are authorized to restore the manual cluster snapshot.
+// Use the value all to make the manual cluster snapshot public, which means
+// that it can be copied or restored by all accounts. Do not add the all value
+// for any manual cluster snapshots that contain private information that you
+// don't want available to all accounts. If a manual cluster snapshot is encrypted,
+// it can be shared, but only by specifying a list of authorized account IDs
+// for the ValuesToAdd parameter. You can't use all as a value for that parameter
+// in this case.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4514,7 +4514,7 @@ func (c *DocDB) ModifyDBSubnetGroupRequest(input *ModifyDBSubnetGroupInput) (req
 // ModifyDBSubnetGroup API operation for Amazon DocumentDB with MongoDB compatibility.
 //
 // Modifies an existing subnet group. subnet groups must contain at least one
-// subnet in at least two Availability Zones in the AWS Region.
+// subnet in at least two Availability Zones in the Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5300,7 +5300,7 @@ func (c *DocDB) RestoreDBClusterFromSnapshotRequest(input *RestoreDBClusterFromS
 //   are not all in a common virtual private cloud (VPC).
 //
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
-//   An error occurred when accessing an AWS KMS key.
+//   An error occurred when accessing an KMS key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/docdb-2014-10-31/RestoreDBClusterFromSnapshot
 func (c *DocDB) RestoreDBClusterFromSnapshot(input *RestoreDBClusterFromSnapshotInput) (*RestoreDBClusterFromSnapshotOutput, error) {
@@ -5428,7 +5428,7 @@ func (c *DocDB) RestoreDBClusterToPointInTimeRequest(input *RestoreDBClusterToPo
 //   because of changes that were made.
 //
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
-//   An error occurred when accessing an AWS KMS key.
+//   An error occurred when accessing an KMS key.
 //
 //   * ErrCodeStorageQuotaExceededFault "StorageQuotaExceeded"
 //   The request would cause you to exceed the allowed amount of storage available
@@ -5912,7 +5912,7 @@ func (s *AvailabilityZone) SetName(v string) *AvailabilityZone {
 	return s
 }
 
-// A certificate authority (CA) certificate for an AWS account.
+// A certificate authority (CA) certificate for an account.
 type Certificate struct {
 	_ struct{} `type:"structure"`
 
@@ -6040,12 +6040,12 @@ type CopyDBClusterParameterGroupInput struct {
 	//
 	//    * Must specify a valid cluster parameter group.
 	//
-	//    * If the source cluster parameter group is in the same AWS Region as the
-	//    copy, specify a valid parameter group identifier; for example, my-db-cluster-param-group,
+	//    * If the source cluster parameter group is in the same Region as the copy,
+	//    specify a valid parameter group identifier; for example, my-db-cluster-param-group,
 	//    or a valid ARN.
 	//
-	//    * If the source parameter group is in a different AWS Region than the
-	//    copy, specify a valid cluster parameter group ARN; for example, arn:aws:rds:us-east-1:123456789012:sample-cluster:sample-parameter-group.
+	//    * If the source parameter group is in a different Region than the copy,
+	//    specify a valid cluster parameter group ARN; for example, arn:aws:rds:us-east-1:123456789012:sample-cluster:sample-parameter-group.
 	//
 	// SourceDBClusterParameterGroupIdentifier is a required field
 	SourceDBClusterParameterGroupIdentifier *string `type:"string" required:"true"`
@@ -6163,40 +6163,40 @@ type CopyDBClusterSnapshotInput struct {
 	// DestinationRegion is used for presigning the request to a given region.
 	DestinationRegion *string `type:"string"`
 
-	// The AWS KMS key ID for an encrypted cluster snapshot. The AWS KMS key ID
-	// is the Amazon Resource Name (ARN), AWS KMS key identifier, or the AWS KMS
-	// key alias for the AWS KMS encryption key.
+	// The KMS key ID for an encrypted cluster snapshot. The KMS key ID is the Amazon
+	// Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS
+	// encryption key.
 	//
-	// If you copy an encrypted cluster snapshot from your AWS account, you can
-	// specify a value for KmsKeyId to encrypt the copy with a new AWS KMS encryption
-	// key. If you don't specify a value for KmsKeyId, then the copy of the cluster
-	// snapshot is encrypted with the same AWS KMS key as the source cluster snapshot.
+	// If you copy an encrypted cluster snapshot from your account, you can specify
+	// a value for KmsKeyId to encrypt the copy with a new KMS encryption key. If
+	// you don't specify a value for KmsKeyId, then the copy of the cluster snapshot
+	// is encrypted with the same KMS key as the source cluster snapshot.
 	//
-	// If you copy an encrypted cluster snapshot that is shared from another AWS
-	// account, then you must specify a value for KmsKeyId.
+	// If you copy an encrypted cluster snapshot that is shared from another account,
+	// then you must specify a value for KmsKeyId.
 	//
-	// To copy an encrypted cluster snapshot to another AWS Region, set KmsKeyId
-	// to the AWS KMS key ID that you want to use to encrypt the copy of the cluster
-	// snapshot in the destination Region. AWS KMS encryption keys are specific
-	// to the AWS Region that they are created in, and you can't use encryption
-	// keys from one AWS Region in another AWS Region.
+	// To copy an encrypted cluster snapshot to another Region, set KmsKeyId to
+	// the KMS key ID that you want to use to encrypt the copy of the cluster snapshot
+	// in the destination Region. KMS encryption keys are specific to the Region
+	// that they are created in, and you can't use encryption keys from one Region
+	// in another Region.
 	//
 	// If you copy an unencrypted cluster snapshot and specify a value for the KmsKeyId
 	// parameter, an error is returned.
 	KmsKeyId *string `type:"string"`
 
-	// The URL that contains a Signature Version 4 signed request for the CopyDBClusterSnapshot
-	// API action in the AWS Region that contains the source cluster snapshot to
-	// copy. You must use the PreSignedUrl parameter when copying a cluster snapshot
-	// from another AWS Region.
+	// The URL that contains a Signature Version 4 signed request for theCopyDBClusterSnapshot
+	// API action in the Region that contains the source cluster snapshot to copy.
+	// You must use the PreSignedUrl parameter when copying a cluster snapshot from
+	// another Region.
 	//
-	// If you are using an AWS SDK tool or the AWS CLI, you can specify SourceRegion
-	// (or --source-region for the AWS CLI) instead of specifying PreSignedUrl manually.
-	// Specifying SourceRegion autogenerates a pre-signed URL that is a valid request
-	// for the operation that can be executed in the source AWS Region.
+	// If you are using an Amazon Web Services SDK tool or the CLI, you can specify
+	// SourceRegion (or --source-region for the CLI) instead of specifying PreSignedUrl
+	// manually. Specifying SourceRegion autogenerates a pre-signed URL that is
+	// a valid request for the operation that can be executed in the source Region.
 	//
 	// The presigned URL must be a valid request for the CopyDBClusterSnapshot API
-	// action that can be executed in the source AWS Region that contains the cluster
+	// action that can be executed in the source Region that contains the cluster
 	// snapshot to be copied. The presigned URL request must contain the following
 	// parameter values:
 	//
@@ -6205,10 +6205,9 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	//    * SourceDBClusterSnapshotIdentifier - The identifier for the the encrypted
 	//    cluster snapshot to be copied. This identifier must be in the Amazon Resource
-	//    Name (ARN) format for the source AWS Region. For example, if you are copying
-	//    an encrypted cluster snapshot from the us-east-1 AWS Region, then your
-	//    SourceDBClusterSnapshotIdentifier looks something like the following:
-	//    arn:aws:rds:us-east-1:12345678012:sample-cluster:sample-cluster-snapshot.
+	//    Name (ARN) format for the source Region. For example, if you are copying
+	//    an encrypted cluster snapshot from the us-east-1 Region, then your SourceDBClusterSnapshotIdentifier
+	//    looks something like the following: arn:aws:rds:us-east-1:12345678012:sample-cluster:sample-cluster-snapshot.
 	//
 	//    * TargetDBClusterSnapshotIdentifier - The identifier for the new cluster
 	//    snapshot to be created. This parameter isn't case sensitive.
@@ -6221,10 +6220,10 @@ type CopyDBClusterSnapshotInput struct {
 	//
 	//    * Must specify a valid system snapshot in the available state.
 	//
-	//    * If the source snapshot is in the same AWS Region as the copy, specify
-	//    a valid snapshot identifier.
+	//    * If the source snapshot is in the same Region as the copy, specify a
+	//    valid snapshot identifier.
 	//
-	//    * If the source snapshot is in a different AWS Region than the copy, specify
+	//    * If the source snapshot is in a different Region than the copy, specify
 	//    a valid cluster snapshot ARN.
 	//
 	// Example: my-cluster-snapshot1
@@ -6429,21 +6428,20 @@ type CreateDBClusterInput struct {
 	// The cluster identifier of the new global cluster.
 	GlobalClusterIdentifier *string `min:"1" type:"string"`
 
-	// The AWS KMS key identifier for an encrypted cluster.
+	// The KMS key identifier for an encrypted cluster.
 	//
-	// The AWS KMS key identifier is the Amazon Resource Name (ARN) for the AWS
-	// KMS encryption key. If you are creating a cluster using the same AWS account
-	// that owns the AWS KMS encryption key that is used to encrypt the new cluster,
-	// you can use the AWS KMS key alias instead of the ARN for the AWS KMS encryption
-	// key.
+	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
+	// key. If you are creating a cluster using the same account that owns the KMS
+	// encryption key that is used to encrypt the new cluster, you can use the KMS
+	// key alias instead of the ARN for the KMS encryption key.
 	//
 	// If an encryption key is not specified in KmsKeyId:
 	//
 	//    * If the StorageEncrypted parameter is true, Amazon DocumentDB uses your
 	//    default encryption key.
 	//
-	// AWS KMS creates the default encryption key for your AWS account. Your AWS
-	// account has a different default encryption key for each AWS Region.
+	// KMS creates the default encryption key for your account. Your account has
+	// a different default encryption key for each Regions.
 	KmsKeyId *string `type:"string"`
 
 	// The password for the master database user. This password can contain any
@@ -6474,7 +6472,7 @@ type CreateDBClusterInput struct {
 	// backups are enabled using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region.
+	// of time for each Region.
 	//
 	// Constraints:
 	//
@@ -6493,7 +6491,7 @@ type CreateDBClusterInput struct {
 	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region, occurring on a random day of the week.
+	// of time for each Region, occurring on a random day of the week.
 	//
 	// Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -6911,16 +6909,15 @@ func (s *CreateDBClusterSnapshotOutput) SetDBClusterSnapshot(v *DBClusterSnapsho
 type CreateDBInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates that minor engine upgrades are applied automatically to the instance
-	// during the maintenance window.
+	// This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB does
+	// not perform minor version upgrades regardless of the value set.
 	//
-	// Default: true
+	// Default: false
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// The Amazon EC2 Availability Zone that the instance is created in.
 	//
-	// Default: A random, system-chosen Availability Zone in the endpoint's AWS
-	// Region.
+	// Default: A random, system-chosen Availability Zone in the endpoint's Region.
 	//
 	// Example: us-east-1d
 	AvailabilityZone *string `type:"string"`
@@ -6963,7 +6960,7 @@ type CreateDBInstanceInput struct {
 	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region, occurring on a random day of the week.
+	// of time for each Region, occurring on a random day of the week.
 	//
 	// Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -7239,7 +7236,7 @@ type CreateEventSubscriptionInput struct {
 	// to db-instance. If this value is not specified, all events are returned.
 	//
 	// Valid values: db-instance, db-cluster, db-parameter-group, db-security-group,
-	// db-snapshot, db-cluster-snapshot
+	// db-cluster-snapshot
 	SourceType *string `type:"string"`
 
 	// The name of the subscription.
@@ -7471,9 +7468,10 @@ func (s *CreateGlobalClusterOutput) SetGlobalCluster(v *GlobalCluster) *CreateGl
 type DBCluster struct {
 	_ struct{} `type:"structure"`
 
-	// Provides a list of the AWS Identity and Access Management (IAM) roles that
-	// are associated with the cluster. IAM roles that are associated with a cluster
-	// grant permission for the cluster to access other AWS services on your behalf.
+	// Provides a list of the Identity and Access Management (IAM) roles that are
+	// associated with the cluster. (IAM) roles that are associated with a cluster
+	// grant permission for the cluster to access other Amazon Web Services services
+	// on your behalf.
 	AssociatedRoles []*DBClusterRole `locationNameList:"DBClusterRole" type:"list"`
 
 	// Provides the list of Amazon EC2 Availability Zones that instances in the
@@ -7504,9 +7502,9 @@ type DBCluster struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *string `type:"string"`
 
-	// The AWS Region-unique, immutable identifier for the cluster. This identifier
-	// is found in AWS CloudTrail log entries whenever the AWS KMS key for the cluster
-	// is accessed.
+	// The Region-unique, immutable identifier for the cluster. This identifier
+	// is found in CloudTrail log entries whenever the KMS key for the cluster is
+	// accessed.
 	DbClusterResourceId *string `type:"string"`
 
 	// Specifies whether this cluster can be deleted. If DeletionProtection is enabled,
@@ -7535,8 +7533,7 @@ type DBCluster struct {
 	// Specifies the ID that Amazon Route 53 assigns when you create a hosted zone.
 	HostedZoneId *string `type:"string"`
 
-	// If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
-	// cluster.
+	// If StorageEncrypted is true, the KMS key identifier for the encrypted cluster.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
@@ -7898,25 +7895,26 @@ func (s *DBClusterParameterGroup) SetDescription(v string) *DBClusterParameterGr
 	return s
 }
 
-// Describes an AWS Identity and Access Management (IAM) role that is associated
+// Describes an Identity and Access Management (IAM) role that is associated
 // with a cluster.
 type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
+	// The Amazon Resource Name (ARN) of the IAMrole that is associated with the
 	// DB cluster.
 	RoleArn *string `type:"string"`
 
-	// Describes the state of association between the IAM role and the cluster.
-	// The Status property returns one of the following values:
+	// Describes the state of association between the IAMrole and the cluster. The
+	// Status property returns one of the following values:
 	//
-	//    * ACTIVE - The IAM role ARN is associated with the cluster and can be
-	//    used to access other AWS services on your behalf.
+	//    * ACTIVE - The IAMrole ARN is associated with the cluster and can be used
+	//    to access other Amazon Web Services services on your behalf.
 	//
-	//    * PENDING - The IAM role ARN is being associated with the DB cluster.
+	//    * PENDING - The IAMrole ARN is being associated with the cluster.
 	//
-	//    * INVALID - The IAM role ARN is associated with the cluster, but the cluster
-	//    cannot assume the IAM role to access other AWS services on your behalf.
+	//    * INVALID - The IAMrole ARN is associated with the cluster, but the cluster
+	//    cannot assume the IAMrole to access other Amazon Web Services services
+	//    on your behalf.
 	Status *string `type:"string"`
 }
 
@@ -7970,8 +7968,8 @@ type DBClusterSnapshot struct {
 	// Provides the version of the database engine for this cluster snapshot.
 	EngineVersion *string `type:"string"`
 
-	// If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
-	// cluster snapshot.
+	// If StorageEncrypted is true, the KMS key identifier for the encrypted cluster
+	// snapshot.
 	KmsKeyId *string `type:"string"`
 
 	// Provides the master user name for the cluster snapshot.
@@ -8118,23 +8116,23 @@ func (s *DBClusterSnapshot) SetVpcId(v string) *DBClusterSnapshot {
 
 // Contains the name and values of a manual cluster snapshot attribute.
 //
-// Manual cluster snapshot attributes are used to authorize other AWS accounts
-// to restore a manual cluster snapshot.
+// Manual cluster snapshot attributes are used to authorize other accounts to
+// restore a manual cluster snapshot.
 type DBClusterSnapshotAttribute struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the manual cluster snapshot attribute.
 	//
-	// The attribute named restore refers to the list of AWS accounts that have
-	// permission to copy or restore the manual cluster snapshot.
+	// The attribute named restore refers to the list of accounts that have permission
+	// to copy or restore the manual cluster snapshot.
 	AttributeName *string `type:"string"`
 
 	// The values for the manual cluster snapshot attribute.
 	//
 	// If the AttributeName field is set to restore, then this element returns a
-	// list of IDs of the AWS accounts that are authorized to copy or restore the
-	// manual cluster snapshot. If a value of all is in the list, then the manual
-	// cluster snapshot is public and available for any AWS account to copy or restore.
+	// list of IDs of the accounts that are authorized to copy or restore the manual
+	// cluster snapshot. If a value of all is in the list, then the manual cluster
+	// snapshot is public and available for any account to copy or restore.
 	AttributeValues []*string `locationNameList:"AttributeValue" type:"list"`
 }
 
@@ -8288,7 +8286,9 @@ func (s *DBEngineVersion) SetValidUpgradeTarget(v []*UpgradeTarget) *DBEngineVer
 type DBInstance struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates that minor version patches are applied automatically.
+	// Does not apply. This parameter does not apply to Amazon DocumentDB. Amazon
+	// DocumentDB does not perform minor version upgrades regardless of the value
+	// set.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Specifies the name of the Availability Zone that the instance is located
@@ -8322,13 +8322,13 @@ type DBInstance struct {
 	// including the name, description, and subnets in the subnet group.
 	DBSubnetGroup *DBSubnetGroup `type:"structure"`
 
-	// The AWS Region-unique, immutable identifier for the instance. This identifier
-	// is found in AWS CloudTrail log entries whenever the AWS KMS key for the instance
+	// The Region-unique, immutable identifier for the instance. This identifier
+	// is found in CloudTrail log entries whenever the KMS key for the instance
 	// is accessed.
 	DbiResourceId *string `type:"string"`
 
-	// A list of log types that this instance is configured to export to Amazon
-	// CloudWatch Logs.
+	// A list of log types that this instance is configured to export to CloudWatch
+	// Logs.
 	EnabledCloudwatchLogsExports []*string `type:"list"`
 
 	// Specifies the connection endpoint.
@@ -8343,8 +8343,7 @@ type DBInstance struct {
 	// Provides the date and time that the instance was created.
 	InstanceCreateTime *time.Time `type:"timestamp"`
 
-	// If StorageEncrypted is true, the AWS KMS key identifier for the encrypted
-	// instance.
+	// If StorageEncrypted is true, the KMS key identifier for the encrypted instance.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies the latest time to which a database can be restored with point-in-time
@@ -9251,7 +9250,7 @@ func (s *DescribeCertificatesInput) SetMaxRecords(v int64) *DescribeCertificates
 type DescribeCertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of certificates for this AWS account.
+	// A list of certificates for this account.
 	Certificates []*Certificate `locationNameList:"Certificate" type:"list"`
 
 	// An optional pagination token provided if the number of records retrieved
@@ -9627,12 +9626,11 @@ type DescribeDBClusterSnapshotsInput struct {
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// Set to true to include manual cluster snapshots that are public and can be
-	// copied or restored by any AWS account, and otherwise false. The default is
-	// false.
+	// copied or restored by any account, and otherwise false. The default is false.
 	IncludePublic *bool `type:"boolean"`
 
-	// Set to true to include shared manual cluster snapshots from other AWS accounts
-	// that this AWS account has been given permission to copy or restore, and otherwise
+	// Set to true to include shared manual cluster snapshots from other accounts
+	// that this account has been given permission to copy or restore, and otherwise
 	// false. The default is false.
 	IncludeShared *bool `type:"boolean"`
 
@@ -9654,13 +9652,13 @@ type DescribeDBClusterSnapshotsInput struct {
 	// following values:
 	//
 	//    * automated - Return all cluster snapshots that Amazon DocumentDB has
-	//    automatically created for your AWS account.
+	//    automatically created for your account.
 	//
 	//    * manual - Return all cluster snapshots that you have manually created
-	//    for your AWS account.
+	//    for your account.
 	//
 	//    * shared - Return all manual cluster snapshots that have been shared to
-	//    your AWS account.
+	//    your account.
 	//
 	//    * public - Return all cluster snapshots that have been marked as public.
 	//
@@ -10447,7 +10445,7 @@ type DescribeEventCategoriesInput struct {
 
 	// The type of source that is generating the events.
 	//
-	// Valid values: db-instance, db-parameter-group, db-security-group, db-snapshot
+	// Valid values: db-instance, db-parameter-group, db-security-group
 	SourceType *string `type:"string"`
 }
 
@@ -11412,8 +11410,8 @@ type EventSubscription struct {
 	// The Amazon DocumentDB event notification subscription ID.
 	CustSubscriptionId *string `type:"string"`
 
-	// The AWS customer account that is associated with the Amazon DocumentDB event
-	// notification subscription.
+	// The Amazon Web Services customer account that is associated with the Amazon
+	// DocumentDB event notification subscription.
 	CustomerAwsId *string `type:"string"`
 
 	// A Boolean value indicating whether the subscription is enabled. A value of
@@ -11670,7 +11668,7 @@ type GlobalCluster struct {
 	// Currently limited to one item.
 	GlobalClusterMembers []*GlobalClusterMember `locationNameList:"GlobalClusterMember" type:"list"`
 
-	// The AWS Region-unique, immutable identifier for the global database cluster.
+	// The Region-unique, immutable identifier for the global database cluster.
 	// This identifier is found in AWS CloudTrail log entries whenever the AWS KMS
 	// customer master key (CMK) for the cluster is accessed.
 	GlobalClusterResourceId *string `type:"string"`
@@ -11971,7 +11969,7 @@ type ModifyDBClusterInput struct {
 	// backups are enabled, using the BackupRetentionPeriod parameter.
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region.
+	// of time for each Region.
 	//
 	// Constraints:
 	//
@@ -11990,7 +11988,7 @@ type ModifyDBClusterInput struct {
 	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// The default is a 30-minute window selected at random from an 8-hour block
-	// of time for each AWS Region, occurring on a random day of the week.
+	// of time for each Region, occurring on a random day of the week.
 	//
 	// Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -12219,8 +12217,8 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 
 	// The name of the cluster snapshot attribute to modify.
 	//
-	// To manage authorization for other AWS accounts to copy or restore a manual
-	// cluster snapshot, set this value to restore.
+	// To manage authorization for other accounts to copy or restore a manual cluster
+	// snapshot, set this value to restore.
 	//
 	// AttributeName is a required field
 	AttributeName *string `type:"string" required:"true"`
@@ -12233,22 +12231,22 @@ type ModifyDBClusterSnapshotAttributeInput struct {
 	// A list of cluster snapshot attributes to add to the attribute specified by
 	// AttributeName.
 	//
-	// To authorize other AWS accounts to copy or restore a manual cluster snapshot,
-	// set this list to include one or more AWS account IDs. To make the manual
-	// cluster snapshot restorable by any AWS account, set it to all. Do not add
-	// the all value for any manual cluster snapshots that contain private information
-	// that you don't want to be available to all AWS accounts.
+	// To authorize other accounts to copy or restore a manual cluster snapshot,
+	// set this list to include one or more account IDs. To make the manual cluster
+	// snapshot restorable by any account, set it to all. Do not add the all value
+	// for any manual cluster snapshots that contain private information that you
+	// don't want to be available to all accounts.
 	ValuesToAdd []*string `locationNameList:"AttributeValue" type:"list"`
 
 	// A list of cluster snapshot attributes to remove from the attribute specified
 	// by AttributeName.
 	//
-	// To remove authorization for other AWS accounts to copy or restore a manual
-	// cluster snapshot, set this list to include one or more AWS account identifiers.
-	// To remove authorization for any AWS account to copy or restore the cluster
-	// snapshot, set it to all . If you specify all, an AWS account whose account
-	// ID is explicitly added to the restore attribute can still copy or restore
-	// a manual cluster snapshot.
+	// To remove authorization for other accounts to copy or restore a manual cluster
+	// snapshot, set this list to include one or more account identifiers. To remove
+	// authorization for any account to copy or restore the cluster snapshot, set
+	// it to all . If you specify all, an account whose account ID is explicitly
+	// added to the restore attribute can still copy or restore a manual cluster
+	// snapshot.
 	ValuesToRemove []*string `locationNameList:"AttributeValue" type:"list"`
 }
 
@@ -12341,19 +12339,15 @@ type ModifyDBInstanceInput struct {
 	// Default: false
 	ApplyImmediately *bool `type:"boolean"`
 
-	// Indicates that minor version upgrades are applied automatically to the instance
-	// during the maintenance window. Changing this parameter doesn't result in
-	// an outage except in the following case, and the change is asynchronously
-	// applied as soon as possible. An outage results if this parameter is set to
-	// true during the maintenance window, and a newer minor version is available,
-	// and Amazon DocumentDB has enabled automatic patching for that engine version.
+	// This parameter does not apply to Amazon DocumentDB. Amazon DocumentDB does
+	// not perform minor version upgrades regardless of the value set.
 	AutoMinorVersionUpgrade *bool `type:"boolean"`
 
 	// Indicates the certificate that needs to be associated with the instance.
 	CACertificateIdentifier *string `type:"string"`
 
 	// The new compute and memory capacity of the instance; for example, db.r5.large.
-	// Not all instance classes are available in all AWS Regions.
+	// Not all instance classes are available in all Regions.
 	//
 	// If you modify the instance class, an outage occurs during the change. The
 	// change is applied during the next maintenance window, unless ApplyImmediately
@@ -12620,7 +12614,7 @@ type ModifyEventSubscriptionInput struct {
 	// to be notified of events generated by an instance, set this parameter to
 	// db-instance. If this value is not specified, all events are returned.
 	//
-	// Valid values: db-instance, db-parameter-group, db-security-group, db-snapshot
+	// Valid values: db-instance, db-parameter-group, db-security-group
 	SourceType *string `type:"string"`
 
 	// The name of the Amazon DocumentDB event notification subscription.
@@ -13729,21 +13723,20 @@ type RestoreDBClusterFromSnapshotInput struct {
 	// The version of the database engine to use for the new cluster.
 	EngineVersion *string `type:"string"`
 
-	// The AWS KMS key identifier to use when restoring an encrypted cluster from
-	// a DB snapshot or cluster snapshot.
+	// The KMS key identifier to use when restoring an encrypted cluster from a
+	// DB snapshot or cluster snapshot.
 	//
-	// The AWS KMS key identifier is the Amazon Resource Name (ARN) for the AWS
-	// KMS encryption key. If you are restoring a cluster with the same AWS account
-	// that owns the AWS KMS encryption key used to encrypt the new cluster, then
-	// you can use the AWS KMS key alias instead of the ARN for the AWS KMS encryption
-	// key.
+	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
+	// key. If you are restoring a cluster with the same account that owns the KMS
+	// encryption key used to encrypt the new cluster, then you can use the KMS
+	// key alias instead of the ARN for the KMS encryption key.
 	//
 	// If you do not specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the snapshot or cluster snapshot in SnapshotIdentifier is encrypted,
-	//    then the restored cluster is encrypted using the AWS KMS key that was
-	//    used to encrypt the snapshot or the cluster snapshot.
+	//    then the restored cluster is encrypted using the KMS key that was used
+	//    to encrypt the snapshot or the cluster snapshot.
 	//
 	//    * If the snapshot or the cluster snapshot in SnapshotIdentifier is not
 	//    encrypted, then the restored DB cluster is not encrypted.
@@ -13934,25 +13927,24 @@ type RestoreDBClusterToPointInTimeInput struct {
 	// Logs.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// The AWS KMS key identifier to use when restoring an encrypted cluster from
-	// an encrypted cluster.
+	// The KMS key identifier to use when restoring an encrypted cluster from an
+	// encrypted cluster.
 	//
-	// The AWS KMS key identifier is the Amazon Resource Name (ARN) for the AWS
-	// KMS encryption key. If you are restoring a cluster with the same AWS account
-	// that owns the AWS KMS encryption key used to encrypt the new cluster, then
-	// you can use the AWS KMS key alias instead of the ARN for the AWS KMS encryption
-	// key.
+	// The KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption
+	// key. If you are restoring a cluster with the same account that owns the KMS
+	// encryption key used to encrypt the new cluster, then you can use the KMS
+	// key alias instead of the ARN for the KMS encryption key.
 	//
-	// You can restore to a new cluster and encrypt the new cluster with an AWS
-	// KMS key that is different from the AWS KMS key used to encrypt the source
-	// cluster. The new DB cluster is encrypted with the AWS KMS key identified
-	// by the KmsKeyId parameter.
+	// You can restore to a new cluster and encrypt the new cluster with an KMS
+	// key that is different from the KMS key used to encrypt the source cluster.
+	// The new DB cluster is encrypted with the KMS key identified by the KmsKeyId
+	// parameter.
 	//
 	// If you do not specify a value for the KmsKeyId parameter, then the following
 	// occurs:
 	//
 	//    * If the cluster is encrypted, then the restored cluster is encrypted
-	//    using the AWS KMS key that was used to encrypt the source cluster.
+	//    using the KMS key that was used to encrypt the source cluster.
 	//
 	//    * If the cluster is not encrypted, then the restored cluster is not encrypted.
 	//

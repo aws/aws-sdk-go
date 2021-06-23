@@ -1,3 +1,26 @@
+Release v1.38.66 (2021-06-23)
+===
+
+### Service Client Updates
+* `service/cloud9`: Updates service documentation and examples
+  * Updated documentation for CreateEnvironmentEC2 to explain that because Amazon Linux AMI has ended standard support as of December 31, 2020, we recommend you choose Amazon Linux 2--which includes long term support through 2023--for new AWS Cloud9 environments.
+* `service/cloudfront`: Updates service API
+  * Amazon CloudFront adds support for a new security policy, TLSv1.2_2021.
+* `service/cloudsearch`: Updates service API and documentation
+  * This release replaces previous generation CloudSearch instances with equivalent new instances that provide better stability at the same price.
+* `service/codeguru-reviewer`: Updates service API, documentation, and waiters
+* `service/docdb`: Updates service documentation
+  * DocumentDB documentation-only edits
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for provisioning your own IP (BYOIP) range in multiple regions. This feature is in limited Preview for this release. Contact your account manager if you are interested in this feature.
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Added the following parameters to ECS targets: CapacityProviderStrategy, EnableECSManagedTags, EnableExecuteCommand, PlacementConstraints, PlacementStrategy, PropagateTags, ReferenceId, and Tags
+* `service/license-manager`: Updates service API and documentation
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/quicksight`: Updates service API and documentation
+  * Releasing new APIs for AWS QuickSight Folders
+
 Release v1.38.65 (2021-06-21)
 ===
 

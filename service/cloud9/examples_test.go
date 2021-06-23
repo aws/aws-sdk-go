@@ -200,7 +200,7 @@ func ExampleCloud9_DeleteEnvironmentMembership_shared00() {
 // DescribeEnvironmentMemberships1
 //
 // The following example gets information about all of the environment members for the
-// specified AWS Cloud9 development environment.
+// specified &AWS; Cloud9 development environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
 	svc := cloud9.New(session.New())
 	input := &cloud9.DescribeEnvironmentMembershipsInput{
@@ -241,7 +241,7 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared00() {
 
 // DescribeEnvironmentMemberships2
 //
-// The following example gets information about the owner of the specified AWS Cloud9
+// The following example gets information about the owner of the specified &AWS; Cloud9
 // development environment.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
 	svc := cloud9.New(session.New())
@@ -286,7 +286,7 @@ func ExampleCloud9_DescribeEnvironmentMemberships_shared01() {
 
 // DescribeEnvironmentMemberships3
 //
-// The following example gets AWS Cloud9 development environment membership information
+// The following example gets &AWS; Cloud9 development environment membership information
 // for the specified user.
 func ExampleCloud9_DescribeEnvironmentMemberships_shared02() {
 	svc := cloud9.New(session.New())

@@ -25265,6 +25265,9 @@ const (
 
 	// MinimumProtocolVersionTlsv122019 is a MinimumProtocolVersion enum value
 	MinimumProtocolVersionTlsv122019 = "TLSv1.2_2019"
+
+	// MinimumProtocolVersionTlsv122021 is a MinimumProtocolVersion enum value
+	MinimumProtocolVersionTlsv122021 = "TLSv1.2_2021"
 )
 
 // MinimumProtocolVersion_Values returns all elements of the MinimumProtocolVersion enum
@@ -25276,6 +25279,7 @@ func MinimumProtocolVersion_Values() []string {
 		MinimumProtocolVersionTlsv112016,
 		MinimumProtocolVersionTlsv122018,
 		MinimumProtocolVersionTlsv122019,
+		MinimumProtocolVersionTlsv122021,
 	}
 }
 

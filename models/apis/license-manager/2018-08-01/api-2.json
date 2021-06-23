@@ -40,6 +40,7 @@
       "output":{"shape":"CheckInLicenseResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"AuthorizationException"},
@@ -58,6 +59,7 @@
       "output":{"shape":"CheckoutBorrowLicenseResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"NoEntitlementsAllowedException"},
         {"shape":"EntitlementNotAllowedException"},
@@ -79,6 +81,7 @@
       "output":{"shape":"CheckoutLicenseResponse"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"NoEntitlementsAllowedException"},
         {"shape":"UnsupportedDigitalSignatureMethodException"},
@@ -966,8 +969,8 @@
     },
     "ClientToken":{
       "type":"string",
-      "max":64,
-      "pattern":"[a-zA-Z0-9]*"
+      "max":2048,
+      "pattern":"\\S+"
     },
     "ConflictException":{
       "type":"structure",
@@ -1006,7 +1009,7 @@
         "AllowedOperations"
       ],
       "members":{
-        "ClientToken":{"shape":"String"},
+        "ClientToken":{"shape":"ClientToken"},
         "GrantName":{"shape":"String"},
         "LicenseArn":{"shape":"Arn"},
         "Principals":{"shape":"PrincipalArnList"},
@@ -1029,11 +1032,12 @@
         "GrantArn"
       ],
       "members":{
-        "ClientToken":{"shape":"String"},
+        "ClientToken":{"shape":"ClientToken"},
         "GrantArn":{"shape":"Arn"},
         "GrantName":{"shape":"String"},
         "AllowedOperations":{"shape":"AllowedOperationList"},
         "Status":{"shape":"GrantStatus"},
+        "StatusReason":{"shape":"StatusReasonMessage"},
         "SourceVersion":{"shape":"String"}
       }
     },
@@ -1119,7 +1123,7 @@
         "Beneficiary":{"shape":"String"},
         "ConsumptionConfiguration":{"shape":"ConsumptionConfiguration"},
         "LicenseMetadata":{"shape":"MetadataList"},
-        "ClientToken":{"shape":"String"}
+        "ClientToken":{"shape":"ClientToken"}
       }
     },
     "CreateLicenseResponse":{
@@ -1155,7 +1159,7 @@
         "Entitlements":{"shape":"EntitlementList"},
         "ConsumptionConfiguration":{"shape":"ConsumptionConfiguration"},
         "Status":{"shape":"LicenseStatus"},
-        "ClientToken":{"shape":"String"},
+        "ClientToken":{"shape":"ClientToken"},
         "SourceVersion":{"shape":"String"}
       }
     },
@@ -1178,7 +1182,7 @@
         "RoleArns":{"shape":"ArnList"},
         "ExpirationInDays":{"shape":"Integer"},
         "TokenProperties":{"shape":"MaxSize3StringList"},
-        "ClientToken":{"shape":"IdempotencyToken"}
+        "ClientToken":{"shape":"ClientToken"}
       }
     },
     "CreateTokenResponse":{
@@ -1206,6 +1210,7 @@
       ],
       "members":{
         "GrantArn":{"shape":"Arn"},
+        "StatusReason":{"shape":"StatusReasonMessage"},
         "Version":{"shape":"String"}
       }
     },
@@ -1583,7 +1588,7 @@
         "GranteePrincipalArn":{"shape":"Arn"},
         "HomeRegion":{"shape":"String"},
         "GrantStatus":{"shape":"GrantStatus"},
-        "StatusReason":{"shape":"String"},
+        "StatusReason":{"shape":"StatusReasonMessage"},
         "Version":{"shape":"String"},
         "GrantedOperations":{"shape":"AllowedOperationList"}
       }
@@ -1602,7 +1607,8 @@
         "FAILED_WORKFLOW",
         "DELETED",
         "PENDING_DELETE",
-        "DISABLED"
+        "DISABLED",
+        "WORKFLOW_COMPLETED"
       ]
     },
     "GrantedLicense":{
@@ -1633,11 +1639,6 @@
       "type":"string",
       "max":50,
       "pattern":"^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[0-1]|0[1-9]|[1-2][0-9])T(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z|[+-](?:2[ 0-3]|[0-1][0-9]):[0-5][0-9])+$"
-    },
-    "IdempotencyToken":{
-      "type":"string",
-      "max":60,
-      "pattern":"\\S+"
     },
     "Integer":{"type":"integer"},
     "InvalidParameterValueException":{
@@ -2174,6 +2175,7 @@
       "type":"structure",
       "members":{
         "ReceivedStatus":{"shape":"ReceivedStatus"},
+        "ReceivedStatusReason":{"shape":"StatusReasonMessage"},
         "AllowedOperations":{"shape":"AllowedOperationList"}
       }
     },
@@ -2186,7 +2188,8 @@
         "ACTIVE",
         "FAILED_WORKFLOW",
         "DELETED",
-        "DISABLED"
+        "DISABLED",
+        "WORKFLOW_COMPLETED"
       ]
     },
     "RedirectException":{
@@ -2337,6 +2340,11 @@
     "SignedToken":{
       "type":"string",
       "min":4096
+    },
+    "StatusReasonMessage":{
+      "type":"string",
+      "max":400,
+      "pattern":"[\\s\\S]+"
     },
     "String":{"type":"string"},
     "StringList":{
