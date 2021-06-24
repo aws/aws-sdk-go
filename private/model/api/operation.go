@@ -5,6 +5,7 @@ package api
 import (
 	"bytes"
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/blinkops/blink-sdk/plugin"
 	"github.com/go-yaml/yaml"
 	"os"
@@ -408,7 +409,7 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}WithContext(` +
 }
 
 // Execute{{ .ExportedName }} is Blink's code
-func Execute{{ .ExportedName }}(` +	`parameters map[string] interface{}) ` + `(map[string] interface{}, error) {
+func Execute{{ .ExportedName }}(` + `parameters map[string] interface{}) ` + `(map[string] interface{}, error) {
 	svc, ok := parameters["_Service"].(*{{ .API.StructName }})
 	if !ok {
 		return nil, errors.New("failed to get AWS service")
@@ -627,7 +628,10 @@ func (o *Operation) GoCode() string {
 		}
 	}
 
-	o.GenerateAction()
+	err := o.GenerateAction()
+	if err != nil {
+		panic(err)
+	}
 
 	return strings.TrimSpace(buf.String())
 }
@@ -636,10 +640,42 @@ func (o *Operation) GoCode() string {
 func (o *Operation) GenerateAction() error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
-	actionParameters["awsRegion"] = plugin.ActionParameter{
-		Type:        "string",
-		Description: "AWS Region",
-		Required:    false,
+	awsPartition := endpoints.AwsPartition()
+	operationServiceRegions := awsPartition.Regions()
+	services := awsPartition.Services()
+
+	defaultRegion := ""
+
+	apiName := o.API.name
+	if !o.API.NoConstServiceNames {
+		apiName = o.API.Metadata.ServiceID
+	}
+
+	var operationRegions []string
+	if operationService, ok := services[strings.ToLower(apiName)]; ok {
+		operationServiceRegions = operationService.Regions()
+	} else {
+		fmt.Printf(",")
+	}
+
+	if operationServiceRegions != nil {
+		for _, region := range operationServiceRegions {
+			operationRegions = append(operationRegions, region.ID())
+		}
+	}
+
+	if len(operationRegions) > 0 && defaultRegion == "" {
+		defaultRegion = operationRegions[0]
+	}
+
+	if len(operationRegions) > 0 {
+		actionParameters["awsRegion"] = plugin.ActionParameter{
+			Type:        "dropdown",
+			Description: "AWS Region",
+			Default:     defaultRegion,
+			Required:    true,
+			Options:     operationRegions,
+		}
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]
@@ -654,7 +690,7 @@ func (o *Operation) GenerateAction() error {
 		actionParameters[member] = plugin.ActionParameter{
 			Type:        memberInfo.GoTypeElem(),
 			Description: strings.TrimSpace(description),
-			Required:    func(name string, requiredList []string) bool {
+			Required: func(name string, requiredList []string) bool {
 				for _, req := range requiredList {
 					if req == name {
 						return true
@@ -666,21 +702,21 @@ func (o *Operation) GenerateAction() error {
 	}
 
 	/*
-	outputShape := o.API.Shapes[o.OutputRef.ShapeName]
-	actionOutput := plugin.Output{
-		Name:   outputShape.ShapeName,
-		Fields: func(shape *Shape) []plugin.Field {
-			var fields []plugin.Field
-			for _, member := range shape.MemberNames() {
-				memberInfo := shape.MemberRefs[member]
-				fields = append(fields, plugin.Field{
-					Name: member,
-					Type: memberInfo.GoTypeElem(),
-				})
-			}
-			return fields
-		}(outputShape),
-	}
+		outputShape := o.API.Shapes[o.OutputRef.ShapeName]
+		actionOutput := plugin.Output{
+			Name:   outputShape.ShapeName,
+			Fields: func(shape *Shape) []plugin.Field {
+				var fields []plugin.Field
+				for _, member := range shape.MemberNames() {
+					memberInfo := shape.MemberRefs[member]
+					fields = append(fields, plugin.Field{
+						Name: member,
+						Type: memberInfo.GoTypeElem(),
+					})
+				}
+				return fields
+			}(outputShape),
+		}
 	*/
 
 	description := strings.ReplaceAll(o.Documentation, "//", "")

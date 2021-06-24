@@ -285,7 +285,6 @@ import (
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 	"path"
-	"strconv"
 	"strings"
 )
 
@@ -1862,22 +1861,6 @@ func NewAWSPlugin(rootPluginDirectory string) (*AWSPlugin, error) {
 	}, nil
 }
 
-func populateDefaultParametersConversion(rawParameters map[string]interface{}) {
-	dryRun, ok := rawParameters["DryRun"]
-	if !ok {
-		return
-	}
-
-	dryRunAsString, ok := dryRun.(string)
-	if ok {
-		dryRunAsBool, err := strconv.ParseBool(dryRunAsString)
-		if err != nil {
-			log.Debugf("failed to convert dryRun to boolean, error: %v", err)
-		}
-		rawParameters["DryRun"] = dryRunAsBool
-	}
-}
-
 func getActionParameters(request *plugin.ExecuteActionRequest) (map[string]interface{}, error) {
 	awsActionParameters := make(map[string]interface{})
 
@@ -1892,7 +1875,6 @@ func getActionParameters(request *plugin.ExecuteActionRequest) (map[string]inter
 			return nil, fmt.Errorf("failed to get unmarshalled parameters, error %v", err)
 		}
 	}
-	populateDefaultParametersConversion(awsActionParameters)
 	populateDefaultParameters(awsActionParameters)
 
 	return awsActionParameters, nil
