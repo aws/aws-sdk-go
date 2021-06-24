@@ -203,6 +203,15 @@ func WithLogLevel(l aws.LogLevelType) Option {
 	}
 }
 
+// WithRequestID is a request option that will set the RequestID of the request.
+//
+//    svc.PutObjectWithContext(ctx, params, request.WithRequestID("d1f682be-c34f-4819-9894-c74ac7f2f552"))
+func WithRequestID(requestID string) Option {
+	return func(r *Request) {
+		r.RequestID = requestID
+	}
+}
+
 // ApplyOptions will apply each option to the request calling them in the order
 // the were provided.
 func (r *Request) ApplyOptions(opts ...Option) {
