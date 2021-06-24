@@ -3023,7 +3023,8 @@
         "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
         "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
         "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
-        "DisableLocalGroups":{"shape":"Boolean"}
+        "DisableLocalGroups":{"shape":"Boolean"},
+        "SslCertificateS3Path":{"shape":"S3Path"}
       }
     },
     "SharePointUrlList":{
@@ -3034,7 +3035,11 @@
     },
     "SharePointVersion":{
       "type":"string",
-      "enum":["SHAREPOINT_ONLINE"]
+      "enum":[
+        "SHAREPOINT_2013",
+        "SHAREPOINT_2016",
+        "SHAREPOINT_ONLINE"
+      ]
     },
     "SharedDriveId":{
       "type":"string",

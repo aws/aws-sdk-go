@@ -699,14 +699,6 @@
       }
     },
     "Boolean":{"type":"boolean"},
-    "BucketOwnerAccess":{
-      "type":"string",
-      "enum":[
-        "NONE",
-        "READ_ONLY",
-        "FULL"
-      ]
-    },
     "Build":{
       "type":"structure",
       "members":{
@@ -752,8 +744,7 @@
         "md5sum":{"shape":"String"},
         "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"},
-        "artifactIdentifier":{"shape":"String"},
-        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
+        "artifactIdentifier":{"shape":"String"}
       }
     },
     "BuildArtifactsList":{
@@ -1730,8 +1721,7 @@
         "packaging":{"shape":"ArtifactPackaging"},
         "overrideArtifactName":{"shape":"WrapperBoolean"},
         "encryptionDisabled":{"shape":"WrapperBoolean"},
-        "artifactIdentifier":{"shape":"String"},
-        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
+        "artifactIdentifier":{"shape":"String"}
       }
     },
     "ProjectArtifactsList":{
@@ -2124,8 +2114,7 @@
       "members":{
         "status":{"shape":"LogsConfigStatusType"},
         "location":{"shape":"String"},
-        "encryptionDisabled":{"shape":"WrapperBoolean"},
-        "bucketOwnerAccess":{"shape":"BucketOwnerAccess"}
+        "encryptionDisabled":{"shape":"WrapperBoolean"}
       }
     },
     "S3ReportExportConfig":{

@@ -1,3 +1,23 @@
+Release v1.38.67 (2021-06-24)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Adds EventIngestionUrl field to MediaPlacement
+* `service/cloud9`: Updates service documentation and examples
+  * Minor update to AWS Cloud9 documentation to allow correct parsing of outputted text
+* `service/codebuild`: Updates service API and documentation
+  * BucketOwnerAccess is currently not supported
+* `service/connect`: Updates service API and documentation
+* `service/dax`: Updates service API and documentation
+  * Add support for encryption in transit to DAX clusters.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports SharePoint 2013 and SharePoint 2016 when using a SharePoint data source.
+* `service/securityhub`: Updates service API and documentation
+* `service/transfer`: Updates service API and documentation
+  * Customers can successfully use legacy clients with Transfer Family endpoints enabled for FTPS and FTP behind routers, firewalls, and load balancers by providing a Custom IP address used for data channel communication.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.38.66 (2021-06-23)
 ===
 

@@ -111,6 +111,11 @@ func (c *DAX) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 //   * InvalidParameterCombinationException
 //   Two or more incompatible parameters were specified.
 //
+//   * ServiceQuotaExceededException
+//   You have reached the maximum number of x509 certificates that can be created
+//   for encrypted clusters in a 30 day period. Contact AWS customer support to
+//   discuss options for continuing to create encrypted clusters.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dax-2017-04-19/CreateCluster
 func (c *DAX) CreateCluster(input *CreateClusterInput) (*CreateClusterOutput, error) {
 	req, out := c.CreateClusterRequest(input)
@@ -2017,11 +2022,15 @@ type Cluster struct {
 	// The Amazon Resource Name (ARN) that uniquely identifies the cluster.
 	ClusterArn *string `type:"string"`
 
-	// The configuration endpoint for this DAX cluster, consisting of a DNS name
-	// and a port number. Client applications can specify this endpoint, rather
-	// than an individual node endpoint, and allow the DAX client software to intelligently
-	// route requests and responses to nodes in the DAX cluster.
+	// The endpoint for this DAX cluster, consisting of a DNS name, a port number,
+	// and a URL. Applications should use the URL to configure the DAX client to
+	// find their cluster.
 	ClusterDiscoveryEndpoint *Endpoint `type:"structure"`
+
+	// The type of encryption supported by the cluster's endpoint. Values are:
+	//
+	//    * NONE for no encryption TLS for Transport Layer Security
+	ClusterEndpointEncryptionType *string `type:"string" enum:"ClusterEndpointEncryptionType"`
 
 	// The name of the DAX cluster.
 	ClusterName *string `type:"string"`
@@ -2099,6 +2108,12 @@ func (s *Cluster) SetClusterArn(v string) *Cluster {
 // SetClusterDiscoveryEndpoint sets the ClusterDiscoveryEndpoint field's value.
 func (s *Cluster) SetClusterDiscoveryEndpoint(v *Endpoint) *Cluster {
 	s.ClusterDiscoveryEndpoint = v
+	return s
+}
+
+// SetClusterEndpointEncryptionType sets the ClusterEndpointEncryptionType field's value.
+func (s *Cluster) SetClusterEndpointEncryptionType(v string) *Cluster {
+	s.ClusterEndpointEncryptionType = &v
 	return s
 }
 
@@ -2364,6 +2379,13 @@ type CreateClusterInput struct {
 	// DAX will spread the nodes across Availability Zones for the highest availability.
 	AvailabilityZones []*string `type:"list"`
 
+	// The type of encryption the cluster's endpoint should support. Values are:
+	//
+	//    * NONE for no encryption
+	//
+	//    * TLS for Transport Layer Security
+	ClusterEndpointEncryptionType *string `type:"string" enum:"ClusterEndpointEncryptionType"`
+
 	// The cluster identifier. This parameter is stored as a lowercase string.
 	//
 	// Constraints:
@@ -2499,6 +2521,12 @@ func (s *CreateClusterInput) Validate() error {
 // SetAvailabilityZones sets the AvailabilityZones field's value.
 func (s *CreateClusterInput) SetAvailabilityZones(v []*string) *CreateClusterInput {
 	s.AvailabilityZones = v
+	return s
+}
+
+// SetClusterEndpointEncryptionType sets the ClusterEndpointEncryptionType field's value.
+func (s *CreateClusterInput) SetClusterEndpointEncryptionType(v string) *CreateClusterInput {
+	s.ClusterEndpointEncryptionType = &v
 	return s
 }
 
@@ -3566,8 +3594,7 @@ func (s *DescribeSubnetGroupsOutput) SetSubnetGroups(v []*SubnetGroup) *Describe
 }
 
 // Represents the information required for client programs to connect to the
-// configuration endpoint for a DAX cluster, or to an individual node within
-// the cluster.
+// endpoint for a DAX cluster.
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -3576,6 +3603,10 @@ type Endpoint struct {
 
 	// The port number that applications should use to connect to the endpoint.
 	Port *int64 `type:"integer"`
+
+	// The URL that applications should use to connect to the endpoint. The default
+	// ports are 8111 for the "dax" protocol and 9111 for the "daxs" protocol.
+	URL *string `type:"string"`
 }
 
 // String returns the string representation
@@ -3597,6 +3628,12 @@ func (s *Endpoint) SetAddress(v string) *Endpoint {
 // SetPort sets the Port field's value.
 func (s *Endpoint) SetPort(v int64) *Endpoint {
 	s.Port = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *Endpoint) SetURL(v string) *Endpoint {
+	s.URL = &v
 	return s
 }
 
@@ -4555,7 +4592,9 @@ type NotificationConfiguration struct {
 	// The Amazon Resource Name (ARN) that identifies the topic.
 	TopicArn *string `type:"string"`
 
-	// The current state of the topic.
+	// The current state of the topic. A value of “active” means that notifications
+	// will be sent to the topic. A value of “inactive” means that notifications
+	// will not be sent to the topic.
 	TopicStatus *string `type:"string"`
 }
 
@@ -5200,6 +5239,64 @@ func (s *ServiceLinkedRoleNotFoundFault) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceLinkedRoleNotFoundFault) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// You have reached the maximum number of x509 certificates that can be created
+// for encrypted clusters in a 30 day period. Contact AWS customer support to
+// discuss options for continuing to create encrypted clusters.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -5950,7 +6047,9 @@ type UpdateClusterInput struct {
 	// The Amazon Resource Name (ARN) that identifies the topic.
 	NotificationTopicArn *string `type:"string"`
 
-	// The current state of the topic.
+	// The current state of the topic. A value of “active” means that notifications
+	// will be sent to the topic. A value of “inactive” means that notifications
+	// will not be sent to the topic.
 	NotificationTopicStatus *string `type:"string"`
 
 	// The name of a parameter group for this cluster.
@@ -6065,6 +6164,9 @@ type UpdateParameterGroupInput struct {
 
 	// An array of name-value pairs for the parameters in the group. Each element
 	// in the array represents a single parameter.
+	//
+	// record-ttl-millis and query-ttl-millis are the only supported parameter names.
+	// For more details, see Configuring TTL Settings (https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.cluster-management.html#DAX.cluster-management.custom-settings.ttl).
 	//
 	// ParameterNameValues is a required field
 	ParameterNameValues []*ParameterNameValue `type:"list" required:"true"`
@@ -6223,6 +6325,22 @@ func ChangeType_Values() []string {
 	return []string{
 		ChangeTypeImmediate,
 		ChangeTypeRequiresReboot,
+	}
+}
+
+const (
+	// ClusterEndpointEncryptionTypeNone is a ClusterEndpointEncryptionType enum value
+	ClusterEndpointEncryptionTypeNone = "NONE"
+
+	// ClusterEndpointEncryptionTypeTls is a ClusterEndpointEncryptionType enum value
+	ClusterEndpointEncryptionTypeTls = "TLS"
+)
+
+// ClusterEndpointEncryptionType_Values returns all elements of the ClusterEndpointEncryptionType enum
+func ClusterEndpointEncryptionType_Values() []string {
+	return []string{
+		ClusterEndpointEncryptionTypeNone,
+		ClusterEndpointEncryptionTypeTls,
 	}
 }
 

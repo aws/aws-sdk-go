@@ -1246,8 +1246,6 @@ func (c *Connect) CreateQuickConnectRequest(input *CreateQuickConnectInput) (req
 
 // CreateQuickConnect API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Creates a quick connect for the specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1915,8 +1913,6 @@ func (c *Connect) DeleteQuickConnectRequest(input *DeleteQuickConnectInput) (req
 }
 
 // DeleteQuickConnect API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Deletes a quick connect.
 //
@@ -2851,8 +2847,6 @@ func (c *Connect) DescribeQuickConnectRequest(input *DescribeQuickConnectInput) 
 }
 
 // DescribeQuickConnect API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Describes the quick connect.
 //
@@ -6678,8 +6672,6 @@ func (c *Connect) ListQuickConnectsRequest(input *ListQuickConnectsInput) (req *
 
 // ListQuickConnects API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Provides information about the quick connects for the specified Amazon Connect
 // instance.
 //
@@ -9923,8 +9915,6 @@ func (c *Connect) UpdateQuickConnectConfigRequest(input *UpdateQuickConnectConfi
 
 // UpdateQuickConnectConfig API operation for Amazon Connect Service.
 //
-// This API is in preview release for Amazon Connect and is subject to change.
-//
 // Updates the configuration settings for the specified quick connect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10016,8 +10006,6 @@ func (c *Connect) UpdateQuickConnectNameRequest(input *UpdateQuickConnectNameInp
 }
 
 // UpdateQuickConnectName API operation for Amazon Connect Service.
-//
-// This API is in preview release for Amazon Connect and is subject to change.
 //
 // Updates the name and description of a quick connect. The request accepts
 // the following data in JSON format. At least Name or Description must be provided.
@@ -12706,7 +12694,7 @@ type CreateQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the quick connect.
-	Description *string `type:"string"`
+	Description *string `min:"1" type:"string"`
 
 	// The identifier of the Amazon Connect instance. You can find the instanceId
 	// in the ARN of the instance.
@@ -12741,6 +12729,9 @@ func (s CreateQuickConnectInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateQuickConnectInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateQuickConnectInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
 	if s.InstanceId == nil {
 		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
 	}
@@ -20547,7 +20538,7 @@ type MediaConcurrency struct {
 	//
 	// Valid Range for VOICE: Minimum value of 1. Maximum value of 1.
 	//
-	// Valid Range for CHAT: Minimum value of 1. Maximum value of 5.
+	// Valid Range for CHAT: Minimum value of 1. Maximum value of 10.
 	//
 	// Valid Range for TASK: Minimum value of 1. Maximum value of 10.
 	//
@@ -21155,7 +21146,7 @@ type QuickConnect struct {
 	_ struct{} `type:"structure"`
 
 	// The description.
-	Description *string `type:"string"`
+	Description *string `min:"1" type:"string"`
 
 	// The name of the quick connect.
 	Name *string `min:"1" type:"string"`

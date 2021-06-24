@@ -118,6 +118,14 @@ const (
 	// The specified service linked role (SLR) was not found.
 	ErrCodeServiceLinkedRoleNotFoundFault = "ServiceLinkedRoleNotFoundFault"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// You have reached the maximum number of x509 certificates that can be created
+	// for encrypted clusters in a 30 day period. Contact AWS customer support to
+	// discuss options for continuing to create encrypted clusters.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeSubnetGroupAlreadyExistsFault for service response error code
 	// "SubnetGroupAlreadyExistsFault".
 	//
@@ -188,6 +196,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ParameterGroupNotFoundFault":          newErrorParameterGroupNotFoundFault,
 	"ParameterGroupQuotaExceededFault":     newErrorParameterGroupQuotaExceededFault,
 	"ServiceLinkedRoleNotFoundFault":       newErrorServiceLinkedRoleNotFoundFault,
+	"ServiceQuotaExceededException":        newErrorServiceQuotaExceededException,
 	"SubnetGroupAlreadyExistsFault":        newErrorSubnetGroupAlreadyExistsFault,
 	"SubnetGroupInUseFault":                newErrorSubnetGroupInUseFault,
 	"SubnetGroupNotFoundFault":             newErrorSubnetGroupNotFoundFault,

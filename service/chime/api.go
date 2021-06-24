@@ -972,7 +972,7 @@ func (c *Chime) BatchUnsuspendUserRequest(input *BatchUnsuspendUserInput) (req *
 // Amazon Chime EnterpriseLWA account. Only users on EnterpriseLWA accounts
 // can be unsuspended using this action. For more information about different
 // account types, see Managing Your Amazon Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
-// in the Amazon Chime Administration Guide.
+// in the account types, in the Amazon Chime Administration Guide.
 //
 // Previously suspended users who are unsuspended using this action are returned
 // to Registered status. Users who are not previously suspended are ignored.
@@ -9173,7 +9173,7 @@ func (c *Chime) GetRetentionSettingsRequest(input *GetRetentionSettingsInput) (r
 // Gets the retention settings for the specified Amazon Chime Enterprise account.
 // For more information about retention settings, see Managing Chat Retention
 // Policies (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html)
-// in the Amazon Chime Administration Guide .
+// in the Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11569,7 +11569,7 @@ func (c *Chime) ListAttendeesRequest(input *ListAttendeesInput) (req *request.Re
 //
 // Lists the attendees for the specified Amazon Chime SDK meeting. For more
 // information about the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide .
+// in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -33517,6 +33517,9 @@ type MediaPlacement struct {
 	// The audio host URL.
 	AudioHostUrl *string `type:"string"`
 
+	// The event ingestion URL.
+	EventIngestionUrl *string `type:"string"`
+
 	// The screen data URL.
 	ScreenDataUrl *string `type:"string"`
 
@@ -33552,6 +33555,12 @@ func (s *MediaPlacement) SetAudioFallbackUrl(v string) *MediaPlacement {
 // SetAudioHostUrl sets the AudioHostUrl field's value.
 func (s *MediaPlacement) SetAudioHostUrl(v string) *MediaPlacement {
 	s.AudioHostUrl = &v
+	return s
+}
+
+// SetEventIngestionUrl sets the EventIngestionUrl field's value.
+func (s *MediaPlacement) SetEventIngestionUrl(v string) *MediaPlacement {
+	s.EventIngestionUrl = &v
 	return s
 }
 

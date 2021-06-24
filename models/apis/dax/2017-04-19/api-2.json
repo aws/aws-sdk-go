@@ -35,7 +35,8 @@
         {"shape":"TagQuotaPerResourceExceeded"},
         {"shape":"ServiceLinkedRoleNotFoundFault"},
         {"shape":"InvalidParameterValueException"},
-        {"shape":"InvalidParameterCombinationException"}
+        {"shape":"InvalidParameterCombinationException"},
+        {"shape":"ServiceQuotaExceededException"}
       ]
     },
     "CreateParameterGroup":{
@@ -393,7 +394,8 @@
         "SecurityGroups":{"shape":"SecurityGroupMembershipList"},
         "IamRoleArn":{"shape":"String"},
         "ParameterGroup":{"shape":"ParameterGroupStatus"},
-        "SSEDescription":{"shape":"SSEDescription"}
+        "SSEDescription":{"shape":"SSEDescription"},
+        "ClusterEndpointEncryptionType":{"shape":"ClusterEndpointEncryptionType"}
       }
     },
     "ClusterAlreadyExistsFault":{
@@ -401,6 +403,13 @@
       "members":{
       },
       "exception":true
+    },
+    "ClusterEndpointEncryptionType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "TLS"
+      ]
     },
     "ClusterList":{
       "type":"list",
@@ -443,7 +452,8 @@
         "IamRoleArn":{"shape":"String"},
         "ParameterGroupName":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "SSESpecification":{"shape":"SSESpecification"}
+        "SSESpecification":{"shape":"SSESpecification"},
+        "ClusterEndpointEncryptionType":{"shape":"ClusterEndpointEncryptionType"}
       }
     },
     "CreateClusterResponse":{
@@ -641,7 +651,8 @@
       "type":"structure",
       "members":{
         "Address":{"shape":"String"},
-        "Port":{"shape":"Integer"}
+        "Port":{"shape":"Integer"},
+        "URL":{"shape":"String"}
       }
     },
     "Event":{
@@ -945,6 +956,12 @@
       "member":{"shape":"SecurityGroupMembership"}
     },
     "ServiceLinkedRoleNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
+    "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
       },

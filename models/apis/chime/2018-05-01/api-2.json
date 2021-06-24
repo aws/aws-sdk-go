@@ -7242,7 +7242,8 @@
         "ScreenSharingUrl":{"shape":"UriType"},
         "ScreenViewingUrl":{"shape":"UriType"},
         "SignalingUrl":{"shape":"UriType"},
-        "TurnControlUrl":{"shape":"UriType"}
+        "TurnControlUrl":{"shape":"UriType"},
+        "EventIngestionUrl":{"shape":"UriType"}
       }
     },
     "Meeting":{
