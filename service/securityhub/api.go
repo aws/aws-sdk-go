@@ -7212,6 +7212,10 @@ type AwsApiGatewayV2StageDetails struct {
 	// Indicates whether updates to an API automatically trigger a new deployment.
 	AutoDeploy *bool `type:"boolean"`
 
+	// The identifier of a client certificate for a stage. Supported only for WebSocket
+	// API calls.
+	ClientCertificateId *string `type:"string"`
+
 	// Indicates when the stage was created.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -7284,6 +7288,12 @@ func (s *AwsApiGatewayV2StageDetails) SetApiGatewayManaged(v bool) *AwsApiGatewa
 // SetAutoDeploy sets the AutoDeploy field's value.
 func (s *AwsApiGatewayV2StageDetails) SetAutoDeploy(v bool) *AwsApiGatewayV2StageDetails {
 	s.AutoDeploy = &v
+	return s
+}
+
+// SetClientCertificateId sets the ClientCertificateId field's value.
+func (s *AwsApiGatewayV2StageDetails) SetClientCertificateId(v string) *AwsApiGatewayV2StageDetails {
+	s.ClientCertificateId = &v
 	return s
 }
 
@@ -8594,8 +8604,8 @@ type AwsCodeBuildProjectDetails struct {
 	// The AWS Key Management Service (AWS KMS) customer master key (CMK) used to
 	// encrypt the build output artifacts.
 	//
-	// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-	// the CMK alias (using the format alias/alias-name).
+	// You can specify either the ARN of the CMK or, if available, the CMK alias
+	// (using the format alias/alias-name).
 	EncryptionKey *string `type:"string"`
 
 	// Information about the build environment for this build project.
@@ -8748,8 +8758,7 @@ func (s *AwsCodeBuildProjectEnvironment) SetType(v string) *AwsCodeBuildProjectE
 type AwsCodeBuildProjectEnvironmentRegistryCredential struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets
-	// Manager.
+	// The ARN or name of credentials created using AWS Secrets Manager.
 	//
 	// The credential can use the name of the credentials only if they exist in
 	// your current AWS Region.
@@ -9918,7 +9927,7 @@ func (s *AwsEc2EipDetails) SetPublicIpv4Pool(v string) *AwsEc2EipDetails {
 	return s
 }
 
-// The details of an Amazon EC2 instance.
+// The details of an EC2 instance.
 type AwsEc2InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -9943,6 +9952,11 @@ type AwsEc2InstanceDetails struct {
 	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	LaunchedAt *string `type:"string"`
+
+	// The identifiers of the network interfaces for the EC2 instance. The details
+	// for each network interface are in a corresponding AwsEc2NetworkInterfacesDetails
+	// object.
+	NetworkInterfaces []*AwsEc2InstanceNetworkInterfacesDetails `type:"list"`
 
 	// The identifier of the subnet that the instance was launched in.
 	SubnetId *string `type:"string"`
@@ -10000,6 +10014,12 @@ func (s *AwsEc2InstanceDetails) SetLaunchedAt(v string) *AwsEc2InstanceDetails {
 	return s
 }
 
+// SetNetworkInterfaces sets the NetworkInterfaces field's value.
+func (s *AwsEc2InstanceDetails) SetNetworkInterfaces(v []*AwsEc2InstanceNetworkInterfacesDetails) *AwsEc2InstanceDetails {
+	s.NetworkInterfaces = v
+	return s
+}
+
 // SetSubnetId sets the SubnetId field's value.
 func (s *AwsEc2InstanceDetails) SetSubnetId(v string) *AwsEc2InstanceDetails {
 	s.SubnetId = &v
@@ -10015,6 +10035,31 @@ func (s *AwsEc2InstanceDetails) SetType(v string) *AwsEc2InstanceDetails {
 // SetVpcId sets the VpcId field's value.
 func (s *AwsEc2InstanceDetails) SetVpcId(v string) *AwsEc2InstanceDetails {
 	s.VpcId = &v
+	return s
+}
+
+// Identifies a network interface for the EC2 instance.
+type AwsEc2InstanceNetworkInterfacesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the network interface. The details are in a corresponding
+	// AwsEc2NetworkInterfacesDetails object.
+	NetworkInterfaceId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2InstanceNetworkInterfacesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2InstanceNetworkInterfacesDetails) GoString() string {
+	return s.String()
+}
+
+// SetNetworkInterfaceId sets the NetworkInterfaceId field's value.
+func (s *AwsEc2InstanceNetworkInterfacesDetails) SetNetworkInterfaceId(v string) *AwsEc2InstanceNetworkInterfacesDetails {
+	s.NetworkInterfaceId = &v
 	return s
 }
 
@@ -10747,7 +10792,7 @@ type AwsEc2SecurityGroupUserIdGroupPair struct {
 	// is deleted, this value is not returned.
 	//
 	// [EC2-Classic] Required when adding or removing rules that reference a security
-	// group in another AWS.
+	// group in another VPC.
 	UserId *string `type:"string"`
 
 	// The ID of the VPC for the referenced security group, if applicable.
@@ -11124,6 +11169,2002 @@ func (s *AwsEc2VpcDetails) SetState(v string) *AwsEc2VpcDetails {
 	return s
 }
 
+// Indicates whether to enable CloudWatch Container Insights for the ECS cluster.
+type AwsEcsClusterClusterSettingsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the setting.
+	Name *string `type:"string"`
+
+	// The value of the setting.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterClusterSettingsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterClusterSettingsDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsClusterClusterSettingsDetails) SetName(v string) *AwsEcsClusterClusterSettingsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsClusterClusterSettingsDetails) SetValue(v string) *AwsEcsClusterClusterSettingsDetails {
+	s.Value = &v
+	return s
+}
+
+// The run command configuration for the cluster.
+type AwsEcsClusterConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the run command configuration for the cluster.
+	ExecuteCommandConfiguration *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetExecuteCommandConfiguration sets the ExecuteCommandConfiguration field's value.
+func (s *AwsEcsClusterConfigurationDetails) SetExecuteCommandConfiguration(v *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) *AwsEcsClusterConfigurationDetails {
+	s.ExecuteCommandConfiguration = v
+	return s
+}
+
+// Contains the run command configuration for the cluster.
+type AwsEcsClusterConfigurationExecuteCommandConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the KMS key that is used to encrypt the data between the
+	// local client and the container.
+	KmsKeyId *string `type:"string"`
+
+	// The log configuration for the results of the run command actions. Required
+	// if Logging is NONE.
+	LogConfiguration *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails `type:"structure"`
+
+	// The log setting to use for redirecting logs for run command results.
+	Logging *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) SetKmsKeyId(v string) *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) SetLogConfiguration(v *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetLogging sets the Logging field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails) SetLogging(v string) *AwsEcsClusterConfigurationExecuteCommandConfigurationDetails {
+	s.Logging = &v
+	return s
+}
+
+// The log configuration for the results of the run command actions.
+type AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to enable encryption on the CloudWatch logs.
+	CloudWatchEncryptionEnabled *bool `type:"boolean"`
+
+	// The name of the CloudWatch log group to send the logs to.
+	CloudWatchLogGroupName *string `type:"string"`
+
+	// The name of the S3 bucket to send logs to.
+	S3BucketName *string `type:"string"`
+
+	// Whether to encrypt the logs that are sent to the S3 bucket.
+	S3EncryptionEnabled *bool `type:"boolean"`
+
+	// Identifies the folder in the S3 bucket to send the logs to.
+	S3KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchEncryptionEnabled sets the CloudWatchEncryptionEnabled field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) SetCloudWatchEncryptionEnabled(v bool) *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+	s.CloudWatchEncryptionEnabled = &v
+	return s
+}
+
+// SetCloudWatchLogGroupName sets the CloudWatchLogGroupName field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) SetCloudWatchLogGroupName(v string) *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+	s.CloudWatchLogGroupName = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) SetS3BucketName(v string) *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3EncryptionEnabled sets the S3EncryptionEnabled field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) SetS3EncryptionEnabled(v bool) *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+	s.S3EncryptionEnabled = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails) SetS3KeyPrefix(v string) *AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// The default capacity provider strategy for the cluster. The default capacity
+// provider strategy is used when services or tasks are run without a specified
+// launch type or capacity provider strategy.
+type AwsEcsClusterDefaultCapacityProviderStrategyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The minimum number of tasks to run on the specified capacity provider.
+	Base *int64 `type:"integer"`
+
+	// The name of the capacity provider.
+	CapacityProvider *string `type:"string"`
+
+	// The relative percentage of the total number of tasks launched that should
+	// use the capacity provider.
+	Weight *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterDefaultCapacityProviderStrategyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterDefaultCapacityProviderStrategyDetails) GoString() string {
+	return s.String()
+}
+
+// SetBase sets the Base field's value.
+func (s *AwsEcsClusterDefaultCapacityProviderStrategyDetails) SetBase(v int64) *AwsEcsClusterDefaultCapacityProviderStrategyDetails {
+	s.Base = &v
+	return s
+}
+
+// SetCapacityProvider sets the CapacityProvider field's value.
+func (s *AwsEcsClusterDefaultCapacityProviderStrategyDetails) SetCapacityProvider(v string) *AwsEcsClusterDefaultCapacityProviderStrategyDetails {
+	s.CapacityProvider = &v
+	return s
+}
+
+// SetWeight sets the Weight field's value.
+func (s *AwsEcsClusterDefaultCapacityProviderStrategyDetails) SetWeight(v int64) *AwsEcsClusterDefaultCapacityProviderStrategyDetails {
+	s.Weight = &v
+	return s
+}
+
+// provides details about an ECS cluster.
+type AwsEcsClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The short name of one or more capacity providers to associate with the cluster.
+	CapacityProviders []*string `type:"list"`
+
+	// The setting to use to create the cluster. Specifically used to configure
+	// whether to enable CloudWatch Container Insights for the cluster.
+	ClusterSettings []*AwsEcsClusterClusterSettingsDetails `type:"list"`
+
+	// The run command configuration for the cluster.
+	Configuration *AwsEcsClusterConfigurationDetails `type:"structure"`
+
+	// The default capacity provider strategy for the cluster. The default capacity
+	// provider strategy is used when services or tasks are run without a specified
+	// launch type or capacity provider strategy.
+	DefaultCapacityProviderStrategy []*AwsEcsClusterDefaultCapacityProviderStrategyDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetCapacityProviders sets the CapacityProviders field's value.
+func (s *AwsEcsClusterDetails) SetCapacityProviders(v []*string) *AwsEcsClusterDetails {
+	s.CapacityProviders = v
+	return s
+}
+
+// SetClusterSettings sets the ClusterSettings field's value.
+func (s *AwsEcsClusterDetails) SetClusterSettings(v []*AwsEcsClusterClusterSettingsDetails) *AwsEcsClusterDetails {
+	s.ClusterSettings = v
+	return s
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *AwsEcsClusterDetails) SetConfiguration(v *AwsEcsClusterConfigurationDetails) *AwsEcsClusterDetails {
+	s.Configuration = v
+	return s
+}
+
+// SetDefaultCapacityProviderStrategy sets the DefaultCapacityProviderStrategy field's value.
+func (s *AwsEcsClusterDetails) SetDefaultCapacityProviderStrategy(v []*AwsEcsClusterDefaultCapacityProviderStrategyDetails) *AwsEcsClusterDetails {
+	s.DefaultCapacityProviderStrategy = v
+	return s
+}
+
+// A dependency that is defined for container startup and shutdown.
+type AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The dependency condition of the dependent container. Indicates the required
+	// status of the dependent container before the current container can start.
+	Condition *string `type:"string"`
+
+	// The name of the dependent container.
+	ContainerName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails) GoString() string {
+	return s.String()
+}
+
+// SetCondition sets the Condition field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails) SetCondition(v string) *AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails {
+	s.Condition = &v
+	return s
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails) SetContainerName(v string) *AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails {
+	s.ContainerName = &v
+	return s
+}
+
+// A container definition that describes a container in the task.
+type AwsEcsTaskDefinitionContainerDefinitionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The command that is passed to the container.
+	Command []*string `type:"list"`
+
+	// The number of CPU units reserved for the container.
+	Cpu *int64 `type:"integer"`
+
+	// The dependencies that are defined for container startup and shutdown.
+	DependsOn []*AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails `type:"list"`
+
+	// Whether to disable networking within the container.
+	DisableNetworking *bool `type:"boolean"`
+
+	// A list of DNS search domains that are presented to the container.
+	DnsSearchDomains []*string `type:"list"`
+
+	// A list of DNS servers that are presented to the container.
+	DnsServers []*string `type:"list"`
+
+	// A key-value map of labels to add to the container.
+	DockerLabels map[string]*string `type:"map"`
+
+	// A list of strings to provide custom labels for SELinux and AppArmor multi-level
+	// security systems.
+	DockerSecurityOptions []*string `type:"list"`
+
+	// The entry point that is passed to the container.
+	EntryPoint []*string `type:"list"`
+
+	// The environment variables to pass to a container.
+	Environment []*AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails `type:"list"`
+
+	// A list of files containing the environment variables to pass to a container.
+	EnvironmentFiles []*AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails `type:"list"`
+
+	// Whether the container is essential. All tasks must have at least one essential
+	// container.
+	Essential *bool `type:"boolean"`
+
+	// A list of hostnames and IP address mappings to append to the /etc/hosts file
+	// on the container.
+	ExtraHosts []*AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails `type:"list"`
+
+	// The FireLens configuration for the container. Specifies and configures a
+	// log router for container logs.
+	FirelensConfiguration *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails `type:"structure"`
+
+	// The container health check command and associated configuration parameters
+	// for the container.
+	HealthCheck *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails `type:"structure"`
+
+	// The hostname to use for the container.
+	Hostname *string `type:"string"`
+
+	// The image used to start the container.
+	Image *string `type:"string"`
+
+	// If set to true, then containerized applications can be deployed that require
+	// stdin or a tty to be allocated.
+	Interactive *bool `type:"boolean"`
+
+	// A list of links for the container in the form container_name:alias . Allows
+	// containers to communicate with each other without the need for port mappings.
+	Links []*string `type:"list"`
+
+	// Linux-specific modifications that are applied to the container, such as Linux
+	// kernel capabilities.
+	LinuxParameters *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails `type:"structure"`
+
+	// The log configuration specification for the container.
+	LogConfiguration *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails `type:"structure"`
+
+	// The amount (in MiB) of memory to present to the container. If the container
+	// attempts to exceed the memory specified here, the container is shut down.
+	// The total amount of memory reserved for all containers within a task must
+	// be lower than the task memory value, if one is specified.
+	Memory *int64 `type:"integer"`
+
+	// The soft limit (in MiB) of memory to reserve for the container.
+	MemoryReservation *int64 `type:"integer"`
+
+	// The mount points for the data volumes in the container.
+	MountPoints []*AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails `type:"list"`
+
+	// The name of the container.
+	Name *string `type:"string"`
+
+	// The list of port mappings for the container.
+	PortMappings []*AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails `type:"list"`
+
+	// Whether the container is given elevated privileges on the host container
+	// instance. The elevated privileges are similar to the root user.
+	Privileged *bool `type:"boolean"`
+
+	// Whether to allocate a TTY to the container.
+	PseudoTerminal *bool `type:"boolean"`
+
+	// Whether the container is given read-only access to its root file system.
+	ReadonlyRootFilesystem *bool `type:"boolean"`
+
+	// The private repository authentication credentials to use.
+	RepositoryCredentials *AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails `type:"structure"`
+
+	// The type and amount of a resource to assign to a container. The only supported
+	// resource is a GPU.
+	ResourceRequirements []*AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails `type:"list"`
+
+	// The secrets to pass to the container.
+	Secrets []*AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails `type:"list"`
+
+	// The number of seconds to wait before giving up on resolving dependencies
+	// for a container.
+	StartTimeout *int64 `type:"integer"`
+
+	// The number of seconds to wait before the container is stopped if it doesn't
+	// shut down normally on its own.
+	StopTimeout *int64 `type:"integer"`
+
+	// A list of namespaced kernel parameters to set in the container.
+	SystemControls []*AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails `type:"list"`
+
+	// A list of ulimits to set in the container.
+	Ulimits []*AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails `type:"list"`
+
+	// The user to use inside the container.
+	//
+	// The value can use one of the following formats.
+	//
+	//    * user
+	//
+	//    * user :group
+	//
+	//    * uid
+	//
+	//    * uid :gid
+	//
+	//    * user :gid
+	//
+	//    * uid :group
+	User *string `type:"string"`
+
+	// Data volumes to mount from another container.
+	VolumesFrom []*AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails `type:"list"`
+
+	// The working directory in which to run commands inside the container.
+	WorkingDirectory *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetCommand(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Command = v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetCpu(v int64) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Cpu = &v
+	return s
+}
+
+// SetDependsOn sets the DependsOn field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDependsOn(v []*AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DependsOn = v
+	return s
+}
+
+// SetDisableNetworking sets the DisableNetworking field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDisableNetworking(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DisableNetworking = &v
+	return s
+}
+
+// SetDnsSearchDomains sets the DnsSearchDomains field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDnsSearchDomains(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DnsSearchDomains = v
+	return s
+}
+
+// SetDnsServers sets the DnsServers field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDnsServers(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DnsServers = v
+	return s
+}
+
+// SetDockerLabels sets the DockerLabels field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDockerLabels(v map[string]*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DockerLabels = v
+	return s
+}
+
+// SetDockerSecurityOptions sets the DockerSecurityOptions field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetDockerSecurityOptions(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.DockerSecurityOptions = v
+	return s
+}
+
+// SetEntryPoint sets the EntryPoint field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetEntryPoint(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.EntryPoint = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetEnvironment(v []*AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Environment = v
+	return s
+}
+
+// SetEnvironmentFiles sets the EnvironmentFiles field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetEnvironmentFiles(v []*AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.EnvironmentFiles = v
+	return s
+}
+
+// SetEssential sets the Essential field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetEssential(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Essential = &v
+	return s
+}
+
+// SetExtraHosts sets the ExtraHosts field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetExtraHosts(v []*AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.ExtraHosts = v
+	return s
+}
+
+// SetFirelensConfiguration sets the FirelensConfiguration field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetFirelensConfiguration(v *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.FirelensConfiguration = v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetHealthCheck(v *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.HealthCheck = v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetHostname(v string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Hostname = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetImage(v string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Image = &v
+	return s
+}
+
+// SetInteractive sets the Interactive field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetInteractive(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Interactive = &v
+	return s
+}
+
+// SetLinks sets the Links field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetLinks(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Links = v
+	return s
+}
+
+// SetLinuxParameters sets the LinuxParameters field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetLinuxParameters(v *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.LinuxParameters = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetLogConfiguration(v *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.LogConfiguration = v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetMemory(v int64) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Memory = &v
+	return s
+}
+
+// SetMemoryReservation sets the MemoryReservation field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetMemoryReservation(v int64) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.MemoryReservation = &v
+	return s
+}
+
+// SetMountPoints sets the MountPoints field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetMountPoints(v []*AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.MountPoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetName(v string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetPortMappings sets the PortMappings field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetPortMappings(v []*AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.PortMappings = v
+	return s
+}
+
+// SetPrivileged sets the Privileged field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetPrivileged(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Privileged = &v
+	return s
+}
+
+// SetPseudoTerminal sets the PseudoTerminal field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetPseudoTerminal(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.PseudoTerminal = &v
+	return s
+}
+
+// SetReadonlyRootFilesystem sets the ReadonlyRootFilesystem field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetReadonlyRootFilesystem(v bool) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.ReadonlyRootFilesystem = &v
+	return s
+}
+
+// SetRepositoryCredentials sets the RepositoryCredentials field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetRepositoryCredentials(v *AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.RepositoryCredentials = v
+	return s
+}
+
+// SetResourceRequirements sets the ResourceRequirements field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetResourceRequirements(v []*AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.ResourceRequirements = v
+	return s
+}
+
+// SetSecrets sets the Secrets field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetSecrets(v []*AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Secrets = v
+	return s
+}
+
+// SetStartTimeout sets the StartTimeout field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetStartTimeout(v int64) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.StartTimeout = &v
+	return s
+}
+
+// SetStopTimeout sets the StopTimeout field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetStopTimeout(v int64) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.StopTimeout = &v
+	return s
+}
+
+// SetSystemControls sets the SystemControls field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetSystemControls(v []*AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.SystemControls = v
+	return s
+}
+
+// SetUlimits sets the Ulimits field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetUlimits(v []*AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.Ulimits = v
+	return s
+}
+
+// SetUser sets the User field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetUser(v string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.User = &v
+	return s
+}
+
+// SetVolumesFrom sets the VolumesFrom field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetVolumesFrom(v []*AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.VolumesFrom = v
+	return s
+}
+
+// SetWorkingDirectory sets the WorkingDirectory field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsDetails) SetWorkingDirectory(v string) *AwsEcsTaskDefinitionContainerDefinitionsDetails {
+	s.WorkingDirectory = &v
+	return s
+}
+
+// An environment variable to pass to the container.
+type AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the environment variable.
+	Name *string `type:"string"`
+
+	// The value of the environment variable.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) SetName(v string) *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails) SetValue(v string) *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails {
+	s.Value = &v
+	return s
+}
+
+// A file that contain environment variables to pass to a container.
+type AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of environment file.
+	Type *string `type:"string"`
+
+	// The ARN of the S3 object that contains the environment variable file.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails) SetType(v string) *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails) SetValue(v string) *AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails {
+	s.Value = &v
+	return s
+}
+
+// A hostname and IP address mapping to append to the /etc/hosts file on the
+// container.
+type AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The hostname to use in the /etc/hosts entry.
+	Hostname *string `type:"string"`
+
+	// The IP address to use in the /etc/hosts entry.
+	IpAddress *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails) SetHostname(v string) *AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails {
+	s.Hostname = &v
+	return s
+}
+
+// SetIpAddress sets the IpAddress field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails) SetIpAddress(v string) *AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails {
+	s.IpAddress = &v
+	return s
+}
+
+// The FireLens configuration for the container. The configuration specifies
+// and configures a log router for container logs.
+type AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The options to use to configure the log router.
+	//
+	// The valid option keys are as follows:
+	//
+	//    * enable-ecs-log-metadata. The value can be true or false.
+	//
+	//    * config-file-type. The value can be s3 or file.
+	//
+	//    * config-file-value. The value is either an S3 ARN or a file path.
+	Options map[string]*string `type:"map"`
+
+	// The log router to use.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetOptions sets the Options field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails) SetOptions(v map[string]*string) *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails {
+	s.Options = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails) SetType(v string) *AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails {
+	s.Type = &v
+	return s
+}
+
+// The container health check command and associated configuration parameters
+// for the container.
+type AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The command that the container runs to determine whether it is healthy.
+	Command []*string `type:"list"`
+
+	// The time period in seconds between each health check execution. The default
+	// value is 30 seconds.
+	Interval *int64 `type:"integer"`
+
+	// The number of times to retry a failed health check before the container is
+	// considered unhealthy. The default value is 3.
+	Retries *int64 `type:"integer"`
+
+	// The optional grace period in seconds that allows containers time to bootstrap
+	// before failed health checks count towards the maximum number of retries.
+	StartPeriod *int64 `type:"integer"`
+
+	// The time period in seconds to wait for a health check to succeed before it
+	// is considered a failure. The default value is 5.
+	Timeout *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) SetCommand(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+	s.Command = v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) SetInterval(v int64) *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+	s.Interval = &v
+	return s
+}
+
+// SetRetries sets the Retries field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) SetRetries(v int64) *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+	s.Retries = &v
+	return s
+}
+
+// SetStartPeriod sets the StartPeriod field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) SetStartPeriod(v int64) *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+	s.StartPeriod = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails) SetTimeout(v int64) *AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails {
+	s.Timeout = &v
+	return s
+}
+
+// The Linux capabilities for the container that are added to or dropped from
+// the default configuration provided by Docker.
+type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Linux capabilities for the container that are added to the default configuration
+	// provided by Docker.
+	Add []*string `type:"list"`
+
+	// The Linux capabilities for the container that are dropped from the default
+	// configuration provided by Docker.
+	Drop []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAdd sets the Add field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails) SetAdd(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails {
+	s.Add = v
+	return s
+}
+
+// SetDrop sets the Drop field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails) SetDrop(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails {
+	s.Drop = v
+	return s
+}
+
+// >Linux-specific modifications that are applied to the container, such as
+// Linux kernel capabilities.
+type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Linux capabilities for the container that are added to or dropped from
+	// the default configuration provided by Docker.
+	Capabilities *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails `type:"structure"`
+
+	// The host devices to expose to the container.
+	Devices []*AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails `type:"list"`
+
+	// Whether to run an init process inside the container that forwards signals
+	// and reaps processes.
+	InitProcessEnabled *bool `type:"boolean"`
+
+	// The total amount of swap memory (in MiB) that a container can use.
+	MaxSwap *int64 `type:"integer"`
+
+	// The value for the size (in MiB) of the /dev/shm volume.
+	SharedMemorySize *int64 `type:"integer"`
+
+	// Configures the container's memory swappiness behavior. Determines how aggressively
+	// pages are swapped. The higher the value, the more aggressive the swappiness.
+	// The default is 60.
+	Swappiness *int64 `type:"integer"`
+
+	// The container path, mount options, and size (in MiB) of the tmpfs mount.
+	Tmpfs []*AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) GoString() string {
+	return s.String()
+}
+
+// SetCapabilities sets the Capabilities field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetCapabilities(v *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.Capabilities = v
+	return s
+}
+
+// SetDevices sets the Devices field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetDevices(v []*AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.Devices = v
+	return s
+}
+
+// SetInitProcessEnabled sets the InitProcessEnabled field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetInitProcessEnabled(v bool) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.InitProcessEnabled = &v
+	return s
+}
+
+// SetMaxSwap sets the MaxSwap field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetMaxSwap(v int64) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.MaxSwap = &v
+	return s
+}
+
+// SetSharedMemorySize sets the SharedMemorySize field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetSharedMemorySize(v int64) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.SharedMemorySize = &v
+	return s
+}
+
+// SetSwappiness sets the Swappiness field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetSwappiness(v int64) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.Swappiness = &v
+	return s
+}
+
+// SetTmpfs sets the Tmpfs field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails) SetTmpfs(v []*AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails {
+	s.Tmpfs = v
+	return s
+}
+
+// A host device to expose to the container.
+type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The path inside the container at which to expose the host device.
+	ContainerPath *string `type:"string"`
+
+	// The path for the device on the host container instance.
+	HostPath *string `type:"string"`
+
+	// The explicit permissions to provide to the container for the device. By default,
+	// the container has permissions for read, write, and mknod for the device.
+	Permissions []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerPath sets the ContainerPath field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) SetContainerPath(v string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails {
+	s.ContainerPath = &v
+	return s
+}
+
+// SetHostPath sets the HostPath field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) SetHostPath(v string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails {
+	s.HostPath = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails) SetPermissions(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails {
+	s.Permissions = v
+	return s
+}
+
+// The container path, mount options, and size (in MiB) of a tmpfs mount.
+type AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The absolute file path where the tmpfs volume is to be mounted.
+	ContainerPath *string `type:"string"`
+
+	// The list of tmpfs volume mount options.
+	MountOptions []*string `type:"list"`
+
+	// The maximum size (in MiB) of the tmpfs volume.
+	Size *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerPath sets the ContainerPath field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) SetContainerPath(v string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails {
+	s.ContainerPath = &v
+	return s
+}
+
+// SetMountOptions sets the MountOptions field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) SetMountOptions(v []*string) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails {
+	s.MountOptions = v
+	return s
+}
+
+// SetSize sets the Size field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails) SetSize(v int64) *AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails {
+	s.Size = &v
+	return s
+}
+
+// The log configuration specification for the container.
+type AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The log driver to use for the container.
+	LogDriver *string `type:"string"`
+
+	// The configuration options to send to the log driver. Requires version 1.19
+	// of the Docker Remote API or greater on your container instance.
+	Options map[string]*string `type:"map"`
+
+	// The secrets to pass to the log configuration.
+	SecretOptions []*AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetLogDriver sets the LogDriver field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) SetLogDriver(v string) *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails {
+	s.LogDriver = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) SetOptions(v map[string]*string) *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails {
+	s.Options = v
+	return s
+}
+
+// SetSecretOptions sets the SecretOptions field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails) SetSecretOptions(v []*AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails) *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails {
+	s.SecretOptions = v
+	return s
+}
+
+// A secret to pass to the log configuration.
+type AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the secret.
+	Name *string `type:"string"`
+
+	// The secret to expose to the container.
+	//
+	// The value is either the full ARN of the Secrets Manager secret or the full
+	// ARN of the parameter in the Systems Manager Parameter Store.
+	ValueFrom *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails) SetName(v string) *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValueFrom sets the ValueFrom field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails) SetValueFrom(v string) *AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails {
+	s.ValueFrom = &v
+	return s
+}
+
+// A mount point for the data volumes in the container.
+type AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The path on the container to mount the host volume at.
+	ContainerPath *string `type:"string"`
+
+	// Whether the container has read-only access to the volume.
+	ReadOnly *bool `type:"boolean"`
+
+	// The name of the volume to mount. Must match the name of a volume listed in
+	// VolumeDetails for the task definition.
+	SourceVolume *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerPath sets the ContainerPath field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) SetContainerPath(v string) *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails {
+	s.ContainerPath = &v
+	return s
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) SetReadOnly(v bool) *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetSourceVolume sets the SourceVolume field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails) SetSourceVolume(v string) *AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails {
+	s.SourceVolume = &v
+	return s
+}
+
+// A port mapping for the container.
+type AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The port number on the container that is bound to the user-specified or automatically
+	// assigned host port.
+	ContainerPort *int64 `type:"integer"`
+
+	// The port number on the container instance to reserve for the container.
+	HostPort *int64 `type:"integer"`
+
+	// The protocol used for the port mapping. The default is tcp.
+	Protocol *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) SetContainerPort(v int64) *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetHostPort sets the HostPort field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) SetHostPort(v int64) *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails {
+	s.HostPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails) SetProtocol(v string) *AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails {
+	s.Protocol = &v
+	return s
+}
+
+// The private repository authentication credentials to use.
+type AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the secret that contains the private repository credentials.
+	CredentialsParameter *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCredentialsParameter sets the CredentialsParameter field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails) SetCredentialsParameter(v string) *AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails {
+	s.CredentialsParameter = &v
+	return s
+}
+
+// A resource to assign to a container.
+type AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of resource to assign to a container.
+	Type *string `type:"string"`
+
+	// The value for the specified resource type.
+	//
+	// For GPU, the value is the number of physical GPUs the Amazon ECS container
+	// agent reserves for the container.
+	//
+	// For InferenceAccelerator, the value should match the DeviceName attribute
+	// of an entry in InferenceAccelerators.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails) SetType(v string) *AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails) SetValue(v string) *AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails {
+	s.Value = &v
+	return s
+}
+
+// A secret to pass to the container.
+type AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the secret.
+	Name *string `type:"string"`
+
+	// The secret to expose to the container. The value is either the full ARN of
+	// the Secrets Manager secret or the full ARN of the parameter in the Systems
+	// Manager Parameter Store.
+	ValueFrom *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails) SetName(v string) *AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValueFrom sets the ValueFrom field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails) SetValueFrom(v string) *AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails {
+	s.ValueFrom = &v
+	return s
+}
+
+// A namespaced kernel parameter to set in the container.
+type AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The namespaced kernel parameter for which to set a value.
+	Namespace *string `type:"string"`
+
+	// The value of the parameter.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails) GoString() string {
+	return s.String()
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails) SetNamespace(v string) *AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails {
+	s.Namespace = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails) SetValue(v string) *AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails {
+	s.Value = &v
+	return s
+}
+
+// A ulimit to set in the container.
+type AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The hard limit for the ulimit type.
+	HardLimit *int64 `type:"integer"`
+
+	// The type of the ulimit.
+	Name *string `type:"string"`
+
+	// The soft limit for the ulimit type.
+	SoftLimit *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) GoString() string {
+	return s.String()
+}
+
+// SetHardLimit sets the HardLimit field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) SetHardLimit(v int64) *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails {
+	s.HardLimit = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) SetName(v string) *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetSoftLimit sets the SoftLimit field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails) SetSoftLimit(v int64) *AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails {
+	s.SoftLimit = &v
+	return s
+}
+
+// A data volume to mount from another container.
+type AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the container has read-only access to the volume.
+	ReadOnly *bool `type:"boolean"`
+
+	// The name of another container within the same task definition from which
+	// to mount volumes.
+	SourceContainer *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) GoString() string {
+	return s.String()
+}
+
+// SetReadOnly sets the ReadOnly field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) SetReadOnly(v bool) *AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails {
+	s.ReadOnly = &v
+	return s
+}
+
+// SetSourceContainer sets the SourceContainer field's value.
+func (s *AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails) SetSourceContainer(v string) *AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails {
+	s.SourceContainer = &v
+	return s
+}
+
+// details about a task definition. A task definition describes the container
+// and volume definitions of an Amazon Elastic Container Service task.
+type AwsEcsTaskDefinitionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The container definitions that describe the containers that make up the task.
+	ContainerDefinitions []*AwsEcsTaskDefinitionContainerDefinitionsDetails `type:"list"`
+
+	// The number of CPU units used by the task.
+	Cpu *string `type:"string"`
+
+	// The ARN of the task execution role that grants the container agent permission
+	// to make API calls on behalf of the container user.
+	ExecutionRoleArn *string `type:"string"`
+
+	// The name of a family that this task definition is registered to.
+	Family *string `type:"string"`
+
+	// The Elastic Inference accelerators to use for the containers in the task.
+	InferenceAccelerators []*AwsEcsTaskDefinitionInferenceAcceleratorsDetails `type:"list"`
+
+	// The IPC resource namespace to use for the containers in the task.
+	IpcMode *string `type:"string"`
+
+	// The amount (in MiB) of memory used by the task.
+	Memory *string `type:"string"`
+
+	// The Docker networking mode to use for the containers in the task.
+	NetworkMode *string `type:"string"`
+
+	// The process namespace to use for the containers in the task.
+	PidMode *string `type:"string"`
+
+	// The placement constraint objects to use for tasks.
+	PlacementConstraints []*AwsEcsTaskDefinitionPlacementConstraintsDetails `type:"list"`
+
+	// The configuration details for the App Mesh proxy.
+	ProxyConfiguration *AwsEcsTaskDefinitionProxyConfigurationDetails `type:"structure"`
+
+	// The task launch types that the task definition was validated against.
+	RequiresCompatibilities []*string `type:"list"`
+
+	// The short name or ARN of the IAM role that grants containers in the task
+	// permission to call AWS API operations on your behalf.
+	TaskRoleArn *string `type:"string"`
+
+	// The data volume definitions for the task.
+	Volumes []*AwsEcsTaskDefinitionVolumesDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerDefinitions sets the ContainerDefinitions field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetContainerDefinitions(v []*AwsEcsTaskDefinitionContainerDefinitionsDetails) *AwsEcsTaskDefinitionDetails {
+	s.ContainerDefinitions = v
+	return s
+}
+
+// SetCpu sets the Cpu field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetCpu(v string) *AwsEcsTaskDefinitionDetails {
+	s.Cpu = &v
+	return s
+}
+
+// SetExecutionRoleArn sets the ExecutionRoleArn field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetExecutionRoleArn(v string) *AwsEcsTaskDefinitionDetails {
+	s.ExecutionRoleArn = &v
+	return s
+}
+
+// SetFamily sets the Family field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetFamily(v string) *AwsEcsTaskDefinitionDetails {
+	s.Family = &v
+	return s
+}
+
+// SetInferenceAccelerators sets the InferenceAccelerators field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetInferenceAccelerators(v []*AwsEcsTaskDefinitionInferenceAcceleratorsDetails) *AwsEcsTaskDefinitionDetails {
+	s.InferenceAccelerators = v
+	return s
+}
+
+// SetIpcMode sets the IpcMode field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetIpcMode(v string) *AwsEcsTaskDefinitionDetails {
+	s.IpcMode = &v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetMemory(v string) *AwsEcsTaskDefinitionDetails {
+	s.Memory = &v
+	return s
+}
+
+// SetNetworkMode sets the NetworkMode field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetNetworkMode(v string) *AwsEcsTaskDefinitionDetails {
+	s.NetworkMode = &v
+	return s
+}
+
+// SetPidMode sets the PidMode field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetPidMode(v string) *AwsEcsTaskDefinitionDetails {
+	s.PidMode = &v
+	return s
+}
+
+// SetPlacementConstraints sets the PlacementConstraints field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetPlacementConstraints(v []*AwsEcsTaskDefinitionPlacementConstraintsDetails) *AwsEcsTaskDefinitionDetails {
+	s.PlacementConstraints = v
+	return s
+}
+
+// SetProxyConfiguration sets the ProxyConfiguration field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetProxyConfiguration(v *AwsEcsTaskDefinitionProxyConfigurationDetails) *AwsEcsTaskDefinitionDetails {
+	s.ProxyConfiguration = v
+	return s
+}
+
+// SetRequiresCompatibilities sets the RequiresCompatibilities field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetRequiresCompatibilities(v []*string) *AwsEcsTaskDefinitionDetails {
+	s.RequiresCompatibilities = v
+	return s
+}
+
+// SetTaskRoleArn sets the TaskRoleArn field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetTaskRoleArn(v string) *AwsEcsTaskDefinitionDetails {
+	s.TaskRoleArn = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *AwsEcsTaskDefinitionDetails) SetVolumes(v []*AwsEcsTaskDefinitionVolumesDetails) *AwsEcsTaskDefinitionDetails {
+	s.Volumes = v
+	return s
+}
+
+// An Elastic Inference accelerator to use for the containers in the task.
+type AwsEcsTaskDefinitionInferenceAcceleratorsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Elastic Inference accelerator device name.
+	DeviceName *string `type:"string"`
+
+	// The Elastic Inference accelerator type to use.
+	DeviceType *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionInferenceAcceleratorsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionInferenceAcceleratorsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *AwsEcsTaskDefinitionInferenceAcceleratorsDetails) SetDeviceName(v string) *AwsEcsTaskDefinitionInferenceAcceleratorsDetails {
+	s.DeviceName = &v
+	return s
+}
+
+// SetDeviceType sets the DeviceType field's value.
+func (s *AwsEcsTaskDefinitionInferenceAcceleratorsDetails) SetDeviceType(v string) *AwsEcsTaskDefinitionInferenceAcceleratorsDetails {
+	s.DeviceType = &v
+	return s
+}
+
+// A placement constraint object to use for tasks.
+type AwsEcsTaskDefinitionPlacementConstraintsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A cluster query language expression to apply to the constraint.
+	Expression *string `type:"string"`
+
+	// The type of constraint.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionPlacementConstraintsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionPlacementConstraintsDetails) GoString() string {
+	return s.String()
+}
+
+// SetExpression sets the Expression field's value.
+func (s *AwsEcsTaskDefinitionPlacementConstraintsDetails) SetExpression(v string) *AwsEcsTaskDefinitionPlacementConstraintsDetails {
+	s.Expression = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEcsTaskDefinitionPlacementConstraintsDetails) SetType(v string) *AwsEcsTaskDefinitionPlacementConstraintsDetails {
+	s.Type = &v
+	return s
+}
+
+// The configuration details for the App Mesh proxy.
+type AwsEcsTaskDefinitionProxyConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container that will serve as the App Mesh proxy.
+	ContainerName *string `type:"string"`
+
+	// The set of network configuration parameters to provide to the Container Network
+	// Interface (CNI) plugin, specified as key-value pairs.
+	ProxyConfigurationProperties []*AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails `type:"list"`
+
+	// The proxy type.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionProxyConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionProxyConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *AwsEcsTaskDefinitionProxyConfigurationDetails) SetContainerName(v string) *AwsEcsTaskDefinitionProxyConfigurationDetails {
+	s.ContainerName = &v
+	return s
+}
+
+// SetProxyConfigurationProperties sets the ProxyConfigurationProperties field's value.
+func (s *AwsEcsTaskDefinitionProxyConfigurationDetails) SetProxyConfigurationProperties(v []*AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails) *AwsEcsTaskDefinitionProxyConfigurationDetails {
+	s.ProxyConfigurationProperties = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEcsTaskDefinitionProxyConfigurationDetails) SetType(v string) *AwsEcsTaskDefinitionProxyConfigurationDetails {
+	s.Type = &v
+	return s
+}
+
+// A network configuration parameter to provide to the Container Network Interface
+// (CNI) plugin.
+type AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the property.
+	Name *string `type:"string"`
+
+	// The value of the property.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails) SetName(v string) *AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails) SetValue(v string) *AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails {
+	s.Value = &v
+	return s
+}
+
+// A data volume to mount from another container.
+type AwsEcsTaskDefinitionVolumesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a Docker volume.
+	DockerVolumeConfiguration *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails `type:"structure"`
+
+	// Information about the Amazon Elastic File System file system that is used
+	// for task storage.
+	EfsVolumeConfiguration *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails `type:"structure"`
+
+	// Information about a bind mount host volume.
+	Host *AwsEcsTaskDefinitionVolumesHostDetails `type:"structure"`
+
+	// The name of the data volume.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionVolumesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionVolumesDetails) GoString() string {
+	return s.String()
+}
+
+// SetDockerVolumeConfiguration sets the DockerVolumeConfiguration field's value.
+func (s *AwsEcsTaskDefinitionVolumesDetails) SetDockerVolumeConfiguration(v *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) *AwsEcsTaskDefinitionVolumesDetails {
+	s.DockerVolumeConfiguration = v
+	return s
+}
+
+// SetEfsVolumeConfiguration sets the EfsVolumeConfiguration field's value.
+func (s *AwsEcsTaskDefinitionVolumesDetails) SetEfsVolumeConfiguration(v *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) *AwsEcsTaskDefinitionVolumesDetails {
+	s.EfsVolumeConfiguration = v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *AwsEcsTaskDefinitionVolumesDetails) SetHost(v *AwsEcsTaskDefinitionVolumesHostDetails) *AwsEcsTaskDefinitionVolumesDetails {
+	s.Host = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEcsTaskDefinitionVolumesDetails) SetName(v string) *AwsEcsTaskDefinitionVolumesDetails {
+	s.Name = &v
+	return s
+}
+
+// Information about a Docker volume.
+type AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to create the Docker volume automatically if it does not already
+	// exist.
+	Autoprovision *bool `type:"boolean"`
+
+	// The Docker volume driver to use.
+	Driver *string `type:"string"`
+
+	// A map of Docker driver-specific options that are passed through.
+	DriverOpts map[string]*string `type:"map"`
+
+	// Custom metadata to add to the Docker volume.
+	Labels map[string]*string `type:"map"`
+
+	// The scope for the Docker volume that determines its lifecycle. Docker volumes
+	// that are scoped to a task are provisioned automatically when the task starts
+	// and destroyed when the task stops. Docker volumes that are shared persist
+	// after the task stops.
+	Scope *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetAutoprovision sets the Autoprovision field's value.
+func (s *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) SetAutoprovision(v bool) *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+	s.Autoprovision = &v
+	return s
+}
+
+// SetDriver sets the Driver field's value.
+func (s *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) SetDriver(v string) *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+	s.Driver = &v
+	return s
+}
+
+// SetDriverOpts sets the DriverOpts field's value.
+func (s *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) SetDriverOpts(v map[string]*string) *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+	s.DriverOpts = v
+	return s
+}
+
+// SetLabels sets the Labels field's value.
+func (s *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) SetLabels(v map[string]*string) *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+	s.Labels = v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails) SetScope(v string) *AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails {
+	s.Scope = &v
+	return s
+}
+
+type AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon EFS access point identifier to use.
+	AccessPointId *string `type:"string"`
+
+	// Whether to use the Amazon ECS task IAM role defined in a task definition
+	// when mounting the Amazon EFS file system.
+	Iam *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessPointId sets the AccessPointId field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails) SetAccessPointId(v string) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails {
+	s.AccessPointId = &v
+	return s
+}
+
+// SetIam sets the Iam field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails) SetIam(v string) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails {
+	s.Iam = &v
+	return s
+}
+
+// Information about the Amazon Elastic File System file system that is used
+// for task storage.
+type AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The authorization configuration details for the Amazon EFS file system.
+	AuthorizationConfig *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails `type:"structure"`
+
+	// The Amazon EFS file system identifier to use.
+	FilesystemId *string `type:"string"`
+
+	// The directory within the Amazon EFS file system to mount as the root directory
+	// inside the host.
+	RootDirectory *string `type:"string"`
+
+	// Whether to enable encryption for Amazon EFS data in transit between the Amazon
+	// ECS host and the Amazon EFS server.
+	TransitEncryption *string `type:"string"`
+
+	// The port to use when sending encrypted data between the Amazon ECS host and
+	// the Amazon EFS server.
+	TransitEncryptionPort *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizationConfig sets the AuthorizationConfig field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) SetAuthorizationConfig(v *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+	s.AuthorizationConfig = v
+	return s
+}
+
+// SetFilesystemId sets the FilesystemId field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) SetFilesystemId(v string) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+	s.FilesystemId = &v
+	return s
+}
+
+// SetRootDirectory sets the RootDirectory field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) SetRootDirectory(v string) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+	s.RootDirectory = &v
+	return s
+}
+
+// SetTransitEncryption sets the TransitEncryption field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) SetTransitEncryption(v string) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+	s.TransitEncryption = &v
+	return s
+}
+
+// SetTransitEncryptionPort sets the TransitEncryptionPort field's value.
+func (s *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails) SetTransitEncryptionPort(v int64) *AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails {
+	s.TransitEncryptionPort = &v
+	return s
+}
+
+// Information about a bind mount host volume.
+type AwsEcsTaskDefinitionVolumesHostDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The path on the host container instance that is presented to the container.
+	SourcePath *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcsTaskDefinitionVolumesHostDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcsTaskDefinitionVolumesHostDetails) GoString() string {
+	return s.String()
+}
+
+// SetSourcePath sets the SourcePath field's value.
+func (s *AwsEcsTaskDefinitionVolumesHostDetails) SetSourcePath(v string) *AwsEcsTaskDefinitionVolumesHostDetails {
+	s.SourcePath = &v
+	return s
+}
+
 // Contains details about an Elastic Beanstalk environment.
 type AwsElasticBeanstalkEnvironmentDetails struct {
 	_ struct{} `type:"structure"`
@@ -11451,8 +13492,14 @@ type AwsElasticsearchDomainDetails struct {
 	// The key-value pair that exists if the Amazon ES domain uses VPC endpoints.
 	Endpoints map[string]*string `type:"map"`
 
+	// Configures the CloudWatch Logs to publish for the Elasticsearch domain.
+	LogPublishingOptions *AwsElasticsearchDomainLogPublishingOptions `type:"structure"`
+
 	// Details about the configuration for node-to-node encryption.
 	NodeToNodeEncryptionOptions *AwsElasticsearchDomainNodeToNodeEncryptionOptions `type:"structure"`
+
+	// Information about the status of a domain relative to the latest service software.
+	ServiceSoftwareOptions *AwsElasticsearchDomainServiceSoftwareOptions `type:"structure"`
 
 	// Information that Amazon ES derives based on VPCOptions for the domain.
 	VPCOptions *AwsElasticsearchDomainVPCOptions `type:"structure"`
@@ -11516,9 +13563,21 @@ func (s *AwsElasticsearchDomainDetails) SetEndpoints(v map[string]*string) *AwsE
 	return s
 }
 
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *AwsElasticsearchDomainDetails) SetLogPublishingOptions(v *AwsElasticsearchDomainLogPublishingOptions) *AwsElasticsearchDomainDetails {
+	s.LogPublishingOptions = v
+	return s
+}
+
 // SetNodeToNodeEncryptionOptions sets the NodeToNodeEncryptionOptions field's value.
 func (s *AwsElasticsearchDomainDetails) SetNodeToNodeEncryptionOptions(v *AwsElasticsearchDomainNodeToNodeEncryptionOptions) *AwsElasticsearchDomainDetails {
 	s.NodeToNodeEncryptionOptions = v
+	return s
+}
+
+// SetServiceSoftwareOptions sets the ServiceSoftwareOptions field's value.
+func (s *AwsElasticsearchDomainDetails) SetServiceSoftwareOptions(v *AwsElasticsearchDomainServiceSoftwareOptions) *AwsElasticsearchDomainDetails {
+	s.ServiceSoftwareOptions = v
 	return s
 }
 
@@ -11602,6 +13661,72 @@ func (s *AwsElasticsearchDomainEncryptionAtRestOptions) SetKmsKeyId(v string) *A
 	return s
 }
 
+// configures the CloudWatch Logs to publish for the Elasticsearch domain.
+type AwsElasticsearchDomainLogPublishingOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Configures the Elasticsearch index logs publishing.
+	IndexSlowLogs *AwsElasticsearchDomainLogPublishingOptionsLogConfig `type:"structure"`
+
+	// Configures the Elasticsearch search slow log publishing.
+	SearchSlowLogs *AwsElasticsearchDomainLogPublishingOptionsLogConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsElasticsearchDomainLogPublishingOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticsearchDomainLogPublishingOptions) GoString() string {
+	return s.String()
+}
+
+// SetIndexSlowLogs sets the IndexSlowLogs field's value.
+func (s *AwsElasticsearchDomainLogPublishingOptions) SetIndexSlowLogs(v *AwsElasticsearchDomainLogPublishingOptionsLogConfig) *AwsElasticsearchDomainLogPublishingOptions {
+	s.IndexSlowLogs = v
+	return s
+}
+
+// SetSearchSlowLogs sets the SearchSlowLogs field's value.
+func (s *AwsElasticsearchDomainLogPublishingOptions) SetSearchSlowLogs(v *AwsElasticsearchDomainLogPublishingOptionsLogConfig) *AwsElasticsearchDomainLogPublishingOptions {
+	s.SearchSlowLogs = v
+	return s
+}
+
+// The log configuration.
+type AwsElasticsearchDomainLogPublishingOptionsLogConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CloudWatch Logs group to publish the logs to.
+	CloudWatchLogsLogGroupArn *string `type:"string"`
+
+	// Whether the log publishing is enabled.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsElasticsearchDomainLogPublishingOptionsLogConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticsearchDomainLogPublishingOptionsLogConfig) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *AwsElasticsearchDomainLogPublishingOptionsLogConfig) SetCloudWatchLogsLogGroupArn(v string) *AwsElasticsearchDomainLogPublishingOptionsLogConfig {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsElasticsearchDomainLogPublishingOptionsLogConfig) SetEnabled(v bool) *AwsElasticsearchDomainLogPublishingOptionsLogConfig {
+	s.Enabled = &v
+	return s
+}
+
 // Details about the configuration for node-to-node encryption.
 type AwsElasticsearchDomainNodeToNodeEncryptionOptions struct {
 	_ struct{} `type:"structure"`
@@ -11623,6 +13748,86 @@ func (s AwsElasticsearchDomainNodeToNodeEncryptionOptions) GoString() string {
 // SetEnabled sets the Enabled field's value.
 func (s *AwsElasticsearchDomainNodeToNodeEncryptionOptions) SetEnabled(v bool) *AwsElasticsearchDomainNodeToNodeEncryptionOptions {
 	s.Enabled = &v
+	return s
+}
+
+// Information about the state of the domain relative to the latest service
+// software.
+type AwsElasticsearchDomainServiceSoftwareOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The epoch time when the deployment window closes for required updates. After
+	// this time, Amazon Elasticsearch Service schedules the software upgrade automatically.
+	AutomatedUpdateDate *string `type:"string"`
+
+	// Whether a request to update the domain can be canceled.
+	Cancellable *bool `type:"boolean"`
+
+	// The version of the service software that is currently installed on the domain.
+	CurrentVersion *string `type:"string"`
+
+	// A more detailed description of the service software status.
+	Description *string `type:"string"`
+
+	// The most recent version of the service software.
+	NewVersion *string `type:"string"`
+
+	// Whether a service software update is available for the domain.
+	UpdateAvailable *bool `type:"boolean"`
+
+	// The status of the service software update.
+	UpdateStatus *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElasticsearchDomainServiceSoftwareOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElasticsearchDomainServiceSoftwareOptions) GoString() string {
+	return s.String()
+}
+
+// SetAutomatedUpdateDate sets the AutomatedUpdateDate field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetAutomatedUpdateDate(v string) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.AutomatedUpdateDate = &v
+	return s
+}
+
+// SetCancellable sets the Cancellable field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetCancellable(v bool) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.Cancellable = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetCurrentVersion(v string) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetDescription(v string) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.Description = &v
+	return s
+}
+
+// SetNewVersion sets the NewVersion field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetNewVersion(v string) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.NewVersion = &v
+	return s
+}
+
+// SetUpdateAvailable sets the UpdateAvailable field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetUpdateAvailable(v bool) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.UpdateAvailable = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetUpdateStatus(v string) *AwsElasticsearchDomainServiceSoftwareOptions {
+	s.UpdateStatus = &v
 	return s
 }
 
@@ -12591,7 +14796,7 @@ type AwsIamAccessKeyDetails struct {
 	// The UserName parameter has been replaced with the PrincipalName parameter
 	// because access keys can also be assigned to principals that are not IAM users.
 	//
-	// Deprecated: This field is deprecated, use PrincipalName instead.
+	// Deprecated: This filter is deprecated. Instead, use PrincipalName.
 	UserName *string `deprecated:"true" type:"string"`
 }
 
@@ -13724,7 +15929,7 @@ func (s *AwsLambdaFunctionCode) SetZipFile(v string) *AwsLambdaFunctionCode {
 type AwsLambdaFunctionDeadLetterConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.
+	// The ARN of an Amazon SQS queue or Amazon SNS topic.
 	TargetArn *string `type:"string"`
 }
 
@@ -13783,7 +15988,7 @@ type AwsLambdaFunctionDetails struct {
 	// For Lambda@Edge functions, the ARN of the master function.
 	MasterArn *string `type:"string"`
 
-	// The memory that's allocated to the function.
+	// The memory that is allocated to the function.
 	MemorySize *int64 `type:"integer"`
 
 	// The latest updated revision of the function or alias.
@@ -13959,7 +16164,7 @@ func (s *AwsLambdaFunctionEnvironment) SetVariables(v map[string]*string) *AwsLa
 	return s
 }
 
-// Error messages for environment variables that couldn't be applied.
+// Error messages for environment variables that could not be applied.
 type AwsLambdaFunctionEnvironmentError struct {
 	_ struct{} `type:"structure"`
 
@@ -13996,7 +16201,7 @@ func (s *AwsLambdaFunctionEnvironmentError) SetMessage(v string) *AwsLambdaFunct
 type AwsLambdaFunctionLayer struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the function layer.
+	// The ARN of the function layer.
 	Arn *string `type:"string"`
 
 	// The size of the layer archive in bytes.
@@ -14050,7 +16255,6 @@ func (s *AwsLambdaFunctionTracingConfig) SetMode(v string) *AwsLambdaFunctionTra
 }
 
 // The VPC security groups and subnets that are attached to a Lambda function.
-// For more information, see VPC Settings.
 type AwsLambdaFunctionVpcConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -14879,8 +17083,7 @@ type AwsRdsDbInstanceAssociatedRole struct {
 	// The name of the feature associated with the IAM)role.
 	FeatureName *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
-	// DB instance.
+	// The ARN of the IAM role that is associated with the DB instance.
 	RoleArn *string `type:"string"`
 
 	// Describes the state of the association between the IAM role and the DB instance.
@@ -17548,9 +19751,456 @@ func (s *AwsS3AccountPublicAccessBlockDetails) SetRestrictPublicBuckets(v bool) 
 	return s
 }
 
+// The lifecycle configuration for the objects in the S3 bucket.
+type AwsS3BucketBucketLifecycleConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The lifecycle rules.
+	Rules []*AwsS3BucketBucketLifecycleConfigurationRulesDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationDetails) SetRules(v []*AwsS3BucketBucketLifecycleConfigurationRulesDetails) *AwsS3BucketBucketLifecycleConfigurationDetails {
+	s.Rules = v
+	return s
+}
+
+// Information about what Amazon S3 does when a multipart upload is incomplete.
+type AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days after which Amazon S3 cancels an incomplete multipart
+	// upload.
+	DaysAfterInitiation *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails) GoString() string {
+	return s.String()
+}
+
+// SetDaysAfterInitiation sets the DaysAfterInitiation field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails) SetDaysAfterInitiation(v int64) *AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails {
+	s.DaysAfterInitiation = &v
+	return s
+}
+
+// Configuration for a lifecycle rule.
+type AwsS3BucketBucketLifecycleConfigurationRulesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// How Amazon S3 responds when a multipart upload is incomplete. Specifically,
+	// provides a number of days before Amazon S3 cancels the entire upload.
+	AbortIncompleteMultipartUpload *AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails `type:"structure"`
+
+	// The date when objects are moved or deleted.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	ExpirationDate *string `type:"string"`
+
+	// The length in days of the lifetime for objects that are subject to the rule.
+	ExpirationInDays *int64 `type:"integer"`
+
+	// Whether Amazon S3 removes a delete marker that has no noncurrent versions.
+	// If set to true, the delete marker is expired. If set to false, the policy
+	// takes no action.
+	//
+	// If you provide ExpiredObjectDeleteMarker, you cannot provide ExpirationInDays
+	// or ExpirationDate.
+	ExpiredObjectDeleteMarker *bool `type:"boolean"`
+
+	// Identifies the objects that a rule applies to.
+	Filter *AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails `type:"structure"`
+
+	// The unique identifier of the rule.
+	ID *string `type:"string"`
+
+	// The number of days that an object is noncurrent before Amazon S3 can perform
+	// the associated action.
+	NoncurrentVersionExpirationInDays *int64 `type:"integer"`
+
+	// Transition rules that describe when noncurrent objects transition to a specified
+	// storage class.
+	NoncurrentVersionTransitions []*AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails `type:"list"`
+
+	// A prefix that identifies one or more objects that the rule applies to.
+	Prefix *string `type:"string"`
+
+	// The current status of the rule. Indicates whether the rule is currently being
+	// applied.
+	Status *string `type:"string"`
+
+	// Transition rules that indicate when objects transition to a specified storage
+	// class.
+	Transitions []*AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesDetails) GoString() string {
+	return s.String()
+}
+
+// SetAbortIncompleteMultipartUpload sets the AbortIncompleteMultipartUpload field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetAbortIncompleteMultipartUpload(v *AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.AbortIncompleteMultipartUpload = v
+	return s
+}
+
+// SetExpirationDate sets the ExpirationDate field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetExpirationDate(v string) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.ExpirationDate = &v
+	return s
+}
+
+// SetExpirationInDays sets the ExpirationInDays field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetExpirationInDays(v int64) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.ExpirationInDays = &v
+	return s
+}
+
+// SetExpiredObjectDeleteMarker sets the ExpiredObjectDeleteMarker field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetExpiredObjectDeleteMarker(v bool) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.ExpiredObjectDeleteMarker = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetFilter(v *AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.Filter = v
+	return s
+}
+
+// SetID sets the ID field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetID(v string) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.ID = &v
+	return s
+}
+
+// SetNoncurrentVersionExpirationInDays sets the NoncurrentVersionExpirationInDays field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetNoncurrentVersionExpirationInDays(v int64) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.NoncurrentVersionExpirationInDays = &v
+	return s
+}
+
+// SetNoncurrentVersionTransitions sets the NoncurrentVersionTransitions field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetNoncurrentVersionTransitions(v []*AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.NoncurrentVersionTransitions = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetPrefix(v string) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.Prefix = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetStatus(v string) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.Status = &v
+	return s
+}
+
+// SetTransitions sets the Transitions field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesDetails) SetTransitions(v []*AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) *AwsS3BucketBucketLifecycleConfigurationRulesDetails {
+	s.Transitions = v
+	return s
+}
+
+// Identifies the objects that a rule applies to.
+type AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the filter.
+	Predicate *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails) GoString() string {
+	return s.String()
+}
+
+// SetPredicate sets the Predicate field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails) SetPredicate(v *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) *AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails {
+	s.Predicate = v
+	return s
+}
+
+// The configuration for the filter.
+type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The values to use for the filter.
+	Operands []*AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails `type:"list"`
+
+	// A prefix filter.
+	Prefix *string `type:"string"`
+
+	// A tag filter.
+	Tag *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails `type:"structure"`
+
+	// Whether to use AND or OR to join the operands.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) GoString() string {
+	return s.String()
+}
+
+// SetOperands sets the Operands field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) SetOperands(v []*AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
+	s.Operands = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) SetPrefix(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
+	s.Prefix = &v
+	return s
+}
+
+// SetTag sets the Tag field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) SetTag(v *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
+	s.Tag = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails) SetType(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails {
+	s.Type = &v
+	return s
+}
+
+// A value to use for the filter.
+type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Prefix text for matching objects.
+	Prefix *string `type:"string"`
+
+	// A tag that is assigned to matching objects.
+	Tag *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails `type:"structure"`
+
+	// The type of filter value.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) GoString() string {
+	return s.String()
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) SetPrefix(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails {
+	s.Prefix = &v
+	return s
+}
+
+// SetTag sets the Tag field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) SetTag(v *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails {
+	s.Tag = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails) SetType(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails {
+	s.Type = &v
+	return s
+}
+
+// A tag that is assigned to matching objects.
+type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key.
+	Key *string `type:"string"`
+
+	// The tag value.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails) SetKey(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails) SetValue(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails {
+	s.Value = &v
+	return s
+}
+
+// A tag filter.
+type AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The tag key.
+	Key *string `type:"string"`
+
+	// The tag value
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails) SetKey(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails) SetValue(v string) *AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails {
+	s.Value = &v
+	return s
+}
+
+// A transition rule that describes when noncurrent objects transition to a
+// specified storage class.
+type AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days that an object is noncurrent before Amazon S3 can perform
+	// the associated action.
+	Days *int64 `type:"integer"`
+
+	// The class of storage to change the object to after the object is noncurrent
+	// for the specified number of days.
+	StorageClass *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDays sets the Days field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails) SetDays(v int64) *AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails {
+	s.Days = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails) SetStorageClass(v string) *AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails {
+	s.StorageClass = &v
+	return s
+}
+
+// A rule for when objects transition to specific storage classes.
+type AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A date on which to transition objects to the specified storage class. If
+	// you provide Date, you cannot provide Days.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	Date *string `type:"string"`
+
+	// The number of days after which to transition the object to the specified
+	// storage class. If you provide Days, you cannot provide Date.
+	Days *int64 `type:"integer"`
+
+	// The storage class to transition the object to.
+	StorageClass *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDate sets the Date field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) SetDate(v string) *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails {
+	s.Date = &v
+	return s
+}
+
+// SetDays sets the Days field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) SetDays(v int64) *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails {
+	s.Days = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) SetStorageClass(v string) *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails {
+	s.StorageClass = &v
+	return s
+}
+
 // The details of an Amazon S3 bucket.
 type AwsS3BucketDetails struct {
 	_ struct{} `type:"structure"`
+
+	// The lifecycle configuration for objects in the S3 bucket.
+	BucketLifecycleConfiguration *AwsS3BucketBucketLifecycleConfigurationDetails `type:"structure"`
 
 	// Indicates when the S3 bucket was created.
 	//
@@ -17581,6 +20231,12 @@ func (s AwsS3BucketDetails) String() string {
 // GoString returns the string representation
 func (s AwsS3BucketDetails) GoString() string {
 	return s.String()
+}
+
+// SetBucketLifecycleConfiguration sets the BucketLifecycleConfiguration field's value.
+func (s *AwsS3BucketDetails) SetBucketLifecycleConfiguration(v *AwsS3BucketBucketLifecycleConfigurationDetails) *AwsS3BucketDetails {
+	s.BucketLifecycleConfiguration = v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -18488,7 +21144,9 @@ type AwsSecurityFindingFilters struct {
 	Id []*StringFilter `type:"list"`
 
 	// A keyword for a finding.
-	Keyword []*KeywordFilter `type:"list"`
+	//
+	// Deprecated: The Keyword property is deprecated.
+	Keyword []*KeywordFilter `deprecated:"true" type:"list"`
 
 	// An ISO8601-formatted timestamp that indicates when the security-findings
 	// provider most recently observed the potential security issue that a finding
@@ -19357,7 +22015,7 @@ func (s *AwsSecurityFindingIdentifier) SetProductArn(v string) *AwsSecurityFindi
 	return s
 }
 
-// A wrapper type for the topic's Amazon Resource Name (ARN).
+// A wrapper type for the topic's ARN.
 type AwsSnsTopicDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -19447,8 +22105,8 @@ func (s *AwsSnsTopicSubscription) SetProtocol(v string) *AwsSnsTopicSubscription
 type AwsSqsQueueDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS
-	// moves messages after the value of maxReceiveCount is exceeded.
+	// The ARN of the dead-letter queue to which Amazon SQS moves messages after
+	// the value of maxReceiveCount is exceeded.
 	DeadLetterTargetArn *string `type:"string"`
 
 	// The length of time, in seconds, for which Amazon SQS can reuse a data key
@@ -20793,12 +23451,12 @@ type CreateActionTargetInput struct {
 	// Description is a required field
 	Description *string `type:"string" required:"true"`
 
-	// The ID for the custom action target.
+	// The ID for the custom action target. Can contain up to 20 alphanumeric characters.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// The name of the custom action target.
+	// The name of the custom action target. Can contain up to 20 characters.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -26161,7 +28819,7 @@ type ResourceDetails struct {
 	// Details about an Elastic IP address.
 	AwsEc2Eip *AwsEc2EipDetails `type:"structure"`
 
-	// Details about an Amazon EC2 instance related to a finding.
+	// Details about an EC2 instance related to a finding.
 	AwsEc2Instance *AwsEc2InstanceDetails `type:"structure"`
 
 	// Details about an EC2 network access control list (ACL).
@@ -26181,6 +28839,13 @@ type ResourceDetails struct {
 
 	// Details for an EC2 VPC.
 	AwsEc2Vpc *AwsEc2VpcDetails `type:"structure"`
+
+	// Details about an ECS cluster.
+	AwsEcsCluster *AwsEcsClusterDetails `type:"structure"`
+
+	// Details about a task definition. A task definition describes the container
+	// and volume definitions of an Amazon Elastic Container Service task.
+	AwsEcsTaskDefinition *AwsEcsTaskDefinitionDetails `type:"structure"`
 
 	// Details about an Elastic Beanstalk environment.
 	AwsElasticBeanstalkEnvironment *AwsElasticBeanstalkEnvironmentDetails `type:"structure"`
@@ -26404,6 +29069,18 @@ func (s *ResourceDetails) SetAwsEc2Volume(v *AwsEc2VolumeDetails) *ResourceDetai
 // SetAwsEc2Vpc sets the AwsEc2Vpc field's value.
 func (s *ResourceDetails) SetAwsEc2Vpc(v *AwsEc2VpcDetails) *ResourceDetails {
 	s.AwsEc2Vpc = v
+	return s
+}
+
+// SetAwsEcsCluster sets the AwsEcsCluster field's value.
+func (s *ResourceDetails) SetAwsEcsCluster(v *AwsEcsClusterDetails) *ResourceDetails {
+	s.AwsEcsCluster = v
+	return s
+}
+
+// SetAwsEcsTaskDefinition sets the AwsEcsTaskDefinition field's value.
+func (s *ResourceDetails) SetAwsEcsTaskDefinition(v *AwsEcsTaskDefinitionDetails) *ResourceDetails {
+	s.AwsEcsTaskDefinition = v
 	return s
 }
 

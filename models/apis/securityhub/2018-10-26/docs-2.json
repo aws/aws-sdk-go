@@ -611,9 +611,21 @@
       }
     },
     "AwsEc2InstanceDetails": {
-      "base": "<p>The details of an Amazon EC2 instance.</p>",
+      "base": "<p>The details of an EC2 instance.</p>",
       "refs": {
-        "ResourceDetails$AwsEc2Instance": "<p>Details about an Amazon EC2 instance related to a finding.</p>"
+        "ResourceDetails$AwsEc2Instance": "<p>Details about an EC2 instance related to a finding.</p>"
+      }
+    },
+    "AwsEc2InstanceNetworkInterfacesDetails": {
+      "base": "<p>Identifies a network interface for the EC2 instance.</p>",
+      "refs": {
+        "AwsEc2InstanceNetworkInterfacesList$member": null
+      }
+    },
+    "AwsEc2InstanceNetworkInterfacesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2InstanceDetails$NetworkInterfaces": "<p>The identifiers of the network interfaces for the EC2 instance. The details for each network interface are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>"
       }
     },
     "AwsEc2NetworkAclAssociation": {
@@ -791,6 +803,354 @@
         "ResourceDetails$AwsEc2Vpc": "<p>Details for an EC2 VPC.</p>"
       }
     },
+    "AwsEcsClusterClusterSettingsDetails": {
+      "base": "<p>Indicates whether to enable CloudWatch Container Insights for the ECS cluster.</p>",
+      "refs": {
+        "AwsEcsClusterClusterSettingsList$member": null
+      }
+    },
+    "AwsEcsClusterClusterSettingsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsClusterDetails$ClusterSettings": "<p>The setting to use to create the cluster. Specifically used to configure whether to enable CloudWatch Container Insights for the cluster.</p>"
+      }
+    },
+    "AwsEcsClusterConfigurationDetails": {
+      "base": "<p>The run command configuration for the cluster.</p>",
+      "refs": {
+        "AwsEcsClusterDetails$Configuration": "<p>The run command configuration for the cluster.</p>"
+      }
+    },
+    "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails": {
+      "base": "<p>Contains the run command configuration for the cluster.</p>",
+      "refs": {
+        "AwsEcsClusterConfigurationDetails$ExecuteCommandConfiguration": "<p>Contains the run command configuration for the cluster.</p>"
+      }
+    },
+    "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails": {
+      "base": "<p>The log configuration for the results of the run command actions.</p>",
+      "refs": {
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails$LogConfiguration": "<p>The log configuration for the results of the run command actions. Required if <code>Logging</code> is <code>NONE</code>.</p>"
+      }
+    },
+    "AwsEcsClusterDefaultCapacityProviderStrategyDetails": {
+      "base": "<p>The default capacity provider strategy for the cluster. The default capacity provider strategy is used when services or tasks are run without a specified launch type or capacity provider strategy.</p>",
+      "refs": {
+        "AwsEcsClusterDefaultCapacityProviderStrategyList$member": null
+      }
+    },
+    "AwsEcsClusterDefaultCapacityProviderStrategyList": {
+      "base": null,
+      "refs": {
+        "AwsEcsClusterDetails$DefaultCapacityProviderStrategy": "<p>The default capacity provider strategy for the cluster. The default capacity provider strategy is used when services or tasks are run without a specified launch type or capacity provider strategy.</p>"
+      }
+    },
+    "AwsEcsClusterDetails": {
+      "base": "<p>provides details about an ECS cluster.</p>",
+      "refs": {
+        "ResourceDetails$AwsEcsCluster": "<p>Details about an ECS cluster.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails": {
+      "base": "<p>A dependency that is defined for container startup and shutdown.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDependsOnList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsDependsOnList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DependsOn": "<p>The dependencies that are defined for container startup and shutdown.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsDetails": {
+      "base": "<p>A container definition that describes a container in the task.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails": {
+      "base": "<p>An environment variable to pass to the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails": {
+      "base": "<p>A file that contain environment variables to pass to a container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$EnvironmentFiles": "<p>A list of files containing the environment variables to pass to a container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Environment": "<p>The environment variables to pass to a container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails": {
+      "base": "<p>A hostname and IP address mapping to append to the <b>/etc/hosts</b> file on the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsExtraHostsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsExtraHostsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$ExtraHosts": "<p>A list of hostnames and IP address mappings to append to the <b>/etc/hosts</b> file on the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails": {
+      "base": "<p>The FireLens configuration for the container. The configuration specifies and configures a log router for container logs.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$FirelensConfiguration": "<p>The FireLens configuration for the container. Specifies and configures a log router for container logs.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails": {
+      "base": "<p>The container health check command and associated configuration parameters for the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$HealthCheck": "<p>The container health check command and associated configuration parameters for the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails": {
+      "base": "<p>The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$Capabilities": "<p>The Linux capabilities for the container that are added to or dropped from the default configuration provided by Docker.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails": {
+      "base": "<p>&gt;Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$LinuxParameters": "<p>Linux-specific modifications that are applied to the container, such as Linux kernel capabilities.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails": {
+      "base": "<p>A host device to expose to the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$Devices": "<p>The host devices to expose to the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails": {
+      "base": "<p>The container path, mount options, and size (in MiB) of a tmpfs mount.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$Tmpfs": "<p>The container path, mount options, and size (in MiB) of the tmpfs mount.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionDetails$ContainerDefinitions": "<p>The container definitions that describe the containers that make up the task.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails": {
+      "base": "<p>The log configuration specification for the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$LogConfiguration": "<p>The log configuration specification for the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails": {
+      "base": "<p>A secret to pass to the log configuration.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails$SecretOptions": "<p>The secrets to pass to the log configuration.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails": {
+      "base": "<p>A mount point for the data volumes in the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsMountPointsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsMountPointsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$MountPoints": "<p>The mount points for the data volumes in the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails": {
+      "base": "<p>A port mapping for the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$PortMappings": "<p>The list of port mappings for the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails": {
+      "base": "<p>The private repository authentication credentials to use.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$RepositoryCredentials": "<p>The private repository authentication credentials to use.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails": {
+      "base": "<p>A resource to assign to a container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$ResourceRequirements": "<p>The type and amount of a resource to assign to a container. The only supported resource is a GPU.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails": {
+      "base": "<p>A secret to pass to the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsSecretsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsSecretsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Secrets": "<p>The secrets to pass to the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails": {
+      "base": "<p>A namespaced kernel parameter to set in the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsSystemControlsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsSystemControlsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$SystemControls": "<p>A list of namespaced kernel parameters to set in the container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails": {
+      "base": "<p>A ulimit to set in the container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsUlimitsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsUlimitsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Ulimits": "<p>A list of ulimits to set in the container. </p>"
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails": {
+      "base": "<p>A data volume to mount from another container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$VolumesFrom": "<p>Data volumes to mount from another container.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionDetails": {
+      "base": "<p>details about a task definition. A task definition describes the container and volume definitions of an Amazon Elastic Container Service task.</p>",
+      "refs": {
+        "ResourceDetails$AwsEcsTaskDefinition": "<p>Details about a task definition. A task definition describes the container and volume definitions of an Amazon Elastic Container Service task.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionInferenceAcceleratorsDetails": {
+      "base": "<p>An Elastic Inference accelerator to use for the containers in the task.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionInferenceAcceleratorsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionInferenceAcceleratorsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionDetails$InferenceAccelerators": "<p>The Elastic Inference accelerators to use for the containers in the task.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionPlacementConstraintsDetails": {
+      "base": "<p>A placement constraint object to use for tasks.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionPlacementConstraintsList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionPlacementConstraintsList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionDetails$PlacementConstraints": "<p>The placement constraint objects to use for tasks.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionProxyConfigurationDetails": {
+      "base": "<p>The configuration details for the App Mesh proxy.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionDetails$ProxyConfiguration": "<p>The configuration details for the App Mesh proxy.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails": {
+      "base": "<p>A network configuration parameter to provide to the Container Network Interface (CNI) plugin.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionProxyConfigurationDetails$ProxyConfigurationProperties": "<p>The set of network configuration parameters to provide to the Container Network Interface (CNI) plugin, specified as key-value pairs.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesDetails": {
+      "base": "<p>A data volume to mount from another container.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionVolumesList$member": null
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails": {
+      "base": "<p>Information about a Docker volume.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionVolumesDetails$DockerVolumeConfiguration": "<p>Information about a Docker volume.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails": {
+      "base": "<p/>",
+      "refs": {
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$AuthorizationConfig": "<p>The authorization configuration details for the Amazon EFS file system.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails": {
+      "base": "<p>Information about the Amazon Elastic File System file system that is used for task storage.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionVolumesDetails$EfsVolumeConfiguration": "<p>Information about the Amazon Elastic File System file system that is used for task storage.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesHostDetails": {
+      "base": "<p>Information about a bind mount host volume.</p>",
+      "refs": {
+        "AwsEcsTaskDefinitionVolumesDetails$Host": "<p>Information about a bind mount host volume.</p>"
+      }
+    },
+    "AwsEcsTaskDefinitionVolumesList": {
+      "base": null,
+      "refs": {
+        "AwsEcsTaskDefinitionDetails$Volumes": "<p>The data volume definitions for the task.</p>"
+      }
+    },
     "AwsElasticBeanstalkEnvironmentDetails": {
       "base": "<p>Contains details about an Elastic Beanstalk environment.</p>",
       "refs": {
@@ -845,10 +1205,29 @@
         "AwsElasticsearchDomainDetails$EncryptionAtRestOptions": "<p>Details about the configuration for encryption at rest.</p>"
       }
     },
+    "AwsElasticsearchDomainLogPublishingOptions": {
+      "base": "<p>configures the CloudWatch Logs to publish for the Elasticsearch domain.</p>",
+      "refs": {
+        "AwsElasticsearchDomainDetails$LogPublishingOptions": "<p>Configures the CloudWatch Logs to publish for the Elasticsearch domain.</p>"
+      }
+    },
+    "AwsElasticsearchDomainLogPublishingOptionsLogConfig": {
+      "base": "<p>The log configuration.</p>",
+      "refs": {
+        "AwsElasticsearchDomainLogPublishingOptions$IndexSlowLogs": "<p>Configures the Elasticsearch index logs publishing.</p>",
+        "AwsElasticsearchDomainLogPublishingOptions$SearchSlowLogs": "<p>Configures the Elasticsearch search slow log publishing.</p>"
+      }
+    },
     "AwsElasticsearchDomainNodeToNodeEncryptionOptions": {
       "base": "<p>Details about the configuration for node-to-node encryption.</p>",
       "refs": {
         "AwsElasticsearchDomainDetails$NodeToNodeEncryptionOptions": "<p>Details about the configuration for node-to-node encryption.</p>"
+      }
+    },
+    "AwsElasticsearchDomainServiceSoftwareOptions": {
+      "base": "<p>Information about the state of the domain relative to the latest service software.</p>",
+      "refs": {
+        "AwsElasticsearchDomainDetails$ServiceSoftwareOptions": "<p>Information about the status of a domain relative to the latest service software.</p>"
       }
     },
     "AwsElasticsearchDomainVPCOptions": {
@@ -1168,7 +1547,7 @@
       }
     },
     "AwsLambdaFunctionEnvironmentError": {
-      "base": "<p>Error messages for environment variables that couldn't be applied.</p>",
+      "base": "<p>Error messages for environment variables that could not be applied.</p>",
       "refs": {
         "AwsLambdaFunctionEnvironment$Error": "<p>An <code>AwsLambdaFunctionEnvironmentError</code> object.</p>"
       }
@@ -1192,7 +1571,7 @@
       }
     },
     "AwsLambdaFunctionVpcConfig": {
-      "base": "<p>The VPC security groups and subnets that are attached to a Lambda function. For more information, see VPC Settings.</p>",
+      "base": "<p>The VPC security groups and subnets that are attached to a Lambda function.</p>",
       "refs": {
         "AwsLambdaFunctionDetails$VpcConfig": "<p>The function's networking configuration.</p>"
       }
@@ -1539,6 +1918,90 @@
         "ResourceDetails$AwsS3AccountPublicAccessBlock": "<p>Details about the Amazon S3 Public Access Block configuration for an account.</p>"
       }
     },
+    "AwsS3BucketBucketLifecycleConfigurationDetails": {
+      "base": "<p>The lifecycle configuration for the objects in the S3 bucket.</p>",
+      "refs": {
+        "AwsS3BucketDetails$BucketLifecycleConfiguration": "<p>The lifecycle configuration for objects in the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails": {
+      "base": "<p>Information about what Amazon S3 does when a multipart upload is incomplete.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$AbortIncompleteMultipartUpload": "<p>How Amazon S3 responds when a multipart upload is incomplete. Specifically, provides a number of days before Amazon S3 cancels the entire upload.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesDetails": {
+      "base": "<p>Configuration for a lifecycle rule.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesList$member": null
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails": {
+      "base": "<p>Identifies the objects that a rule applies to.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Filter": "<p>Identifies the objects that a rule applies to.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails": {
+      "base": "<p>The configuration for the filter.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterDetails$Predicate": "<p>The configuration for the filter.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails": {
+      "base": "<p>A value to use for the filter.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsList$member": null
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsList": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails$Operands": "<p>The values to use for the filter.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails": {
+      "base": "<p>A tag that is assigned to matching objects.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails$Tag": "<p>A tag that is assigned to matching objects.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails": {
+      "base": "<p>A tag filter.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails$Tag": "<p>A tag filter.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesList": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationDetails$Rules": "<p>The lifecycle rules.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails": {
+      "base": "<p>A transition rule that describes when noncurrent objects transition to a specified storage class.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsList$member": null
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsList": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$NoncurrentVersionTransitions": "<p>Transition rules that describe when noncurrent objects transition to a specified storage class.</p>"
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails": {
+      "base": "<p>A rule for when objects transition to specific storage classes.</p>",
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsList$member": null
+      }
+    },
+    "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsList": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Transitions": "<p>Transition rules that indicate when objects transition to a specified storage class.</p>"
+      }
+    },
     "AwsS3BucketDetails": {
       "base": "<p>The details of an Amazon S3 bucket.</p>",
       "refs": {
@@ -1625,7 +2088,7 @@
       }
     },
     "AwsSnsTopicDetails": {
-      "base": "<p>A wrapper type for the topic's Amazon Resource Name (ARN).</p>",
+      "base": "<p>A wrapper type for the topic's ARN.</p>",
       "refs": {
         "ResourceDetails$AwsSnsTopic": "<p>Details about an SNS topic.</p>"
       }
@@ -1778,9 +2241,24 @@
         "AwsEc2SubnetDetails$MapPublicIpOnLaunch": "<p>Whether instances in this subnet receive a public IP address.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
         "AwsEc2VolumeDetails$Encrypted": "<p>Whether the volume is encrypted.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$CloudWatchEncryptionEnabled": "<p>Whether to enable encryption on the CloudWatch logs.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3EncryptionEnabled": "<p>Whether to encrypt the logs that are sent to the S3 bucket.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DisableNetworking": "<p>Whether to disable networking within the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Essential": "<p>Whether the container is essential. All tasks must have at least one essential container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Interactive": "<p>If set to true, then containerized applications can be deployed that require <code>stdin</code> or a <code>tty</code> to be allocated.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Privileged": "<p>Whether the container is given elevated privileges on the host container instance. The elevated privileges are similar to the root user.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$PseudoTerminal": "<p>Whether to allocate a TTY to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$ReadonlyRootFilesystem": "<p>Whether the container is given read-only access to its root file system.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$InitProcessEnabled": "<p>Whether to run an <code>init</code> process inside the container that forwards signals and reaps processes. </p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails$ReadOnly": "<p>Whether the container has read-only access to the volume.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails$ReadOnly": "<p>Whether the container has read-only access to the volume.</p>",
+        "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Autoprovision": "<p>Whether to create the Docker volume automatically if it does not already exist.</p>",
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$Enabled": "<p>Whether encryption at rest is enabled.</p>",
+        "AwsElasticsearchDomainLogPublishingOptionsLogConfig$Enabled": "<p>Whether the log publishing is enabled.</p>",
         "AwsElasticsearchDomainNodeToNodeEncryptionOptions$Enabled": "<p>Whether node-to-node encryption is enabled.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$Cancellable": "<p>Whether a request to update the domain can be canceled.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$UpdateAvailable": "<p>Whether a service software update is available for the domain.</p>",
         "AwsElbLoadBalancerAccessLog$Enabled": "<p>Indicates whether access logs are enabled for the load balancer.</p>",
         "AwsElbLoadBalancerConnectionDraining$Enabled": "<p>Indicates whether connection draining is enabled for the load balancer.</p>",
         "AwsElbLoadBalancerCrossZoneLoadBalancing$Enabled": "<p>Indicates whether cross-zone load balancing is enabled for the load balancer.</p>",
@@ -1820,6 +2298,7 @@
         "AwsS3AccountPublicAccessBlockDetails$BlockPublicPolicy": "<p>Indicates whether to reject calls to update the access policy for an S3 bucket or access point if the policy allows public access.</p>",
         "AwsS3AccountPublicAccessBlockDetails$IgnorePublicAcls": "<p>Indicates whether Amazon S3 ignores public ACLs that are associated with an S3 bucket.</p>",
         "AwsS3AccountPublicAccessBlockDetails$RestrictPublicBuckets": "<p>Indicates whether to restrict access to an access point or S3 bucket that has a public policy to only AWS service principals and authorized users within the S3 bucket owner's account.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ExpiredObjectDeleteMarker": "<p>Whether Amazon S3 removes a delete marker that has no noncurrent versions. If set to <code>true</code>, the delete marker is expired. If set to <code>false</code>, the policy takes no action.</p> <p>If you provide <code>ExpiredObjectDeleteMarker</code>, you cannot provide <code>ExpirationInDays</code> or <code>ExpirationDate</code>.</p>",
         "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
@@ -2254,6 +2733,11 @@
         "AwsApiGatewayCanarySettings$StageVariableOverrides": "<p>Stage variables that are overridden in the canary release deployment. The variables include new stage variables that are introduced in the canary.</p> <p>Each variable is represented as a string-to-string map between the stage variable name and the variable value.</p>",
         "AwsApiGatewayStageDetails$Variables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
         "AwsApiGatewayV2StageDetails$StageVariables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DockerLabels": "<p>A key-value map of labels to add to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails$Options": "<p>The options to use to configure the log router.</p> <p>The valid option keys are as follows:</p> <ul> <li> <p> <code>enable-ecs-log-metadata</code>. The value can be <code>true</code> or <code>false</code>.</p> </li> <li> <p> <code>config-file-type</code>. The value can be <code>s3</code> or <code>file</code>.</p> </li> <li> <p> <code>config-file-value</code>. The value is either an S3 ARN or a file path.</p> </li> </ul>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails$Options": "<p>The configuration options to send to the log driver. Requires version 1.19 of the Docker Remote API or greater on your container instance.</p>",
+        "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$DriverOpts": "<p>A map of Docker driver-specific options that are passed through.</p>",
+        "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Labels": "<p>Custom metadata to add to the Docker volume.</p>",
         "AwsElasticsearchDomainDetails$Endpoints": "<p>The key-value pair that exists if the Amazon ES domain uses VPC endpoints.</p>",
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
@@ -2435,6 +2919,26 @@
         "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
         "AwsEc2SubnetDetails$AvailableIpAddressCount": "<p>The number of available IPV4 addresses in the subnet. Does not include addresses for stopped instances.</p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
+        "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Base": "<p>The minimum number of tasks to run on the specified capacity provider.</p>",
+        "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Weight": "<p>The relative percentage of the total number of tasks launched that should use the capacity provider.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Cpu": "<p>The number of CPU units reserved for the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Memory": "<p>The amount (in MiB) of memory to present to the container. If the container attempts to exceed the memory specified here, the container is shut down. The total amount of memory reserved for all containers within a task must be lower than the task memory value, if one is specified.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$MemoryReservation": "<p>The soft limit (in MiB) of memory to reserve for the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$StartTimeout": "<p>The number of seconds to wait before giving up on resolving dependencies for a container. </p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$StopTimeout": "<p>The number of seconds to wait before the container is stopped if it doesn't shut down normally on its own.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails$Interval": "<p>The time period in seconds between each health check execution. The default value is 30 seconds.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails$Retries": "<p>The number of times to retry a failed health check before the container is considered unhealthy. The default value is 3.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails$StartPeriod": "<p>The optional grace period in seconds that allows containers time to bootstrap before failed health checks count towards the maximum number of retries.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails$Timeout": "<p>The time period in seconds to wait for a health check to succeed before it is considered a failure. The default value is 5.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$MaxSwap": "<p>The total amount of swap memory (in MiB) that a container can use.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$SharedMemorySize": "<p>The value for the size (in MiB) of the <b>/dev/shm</b> volume.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDetails$Swappiness": "<p>Configures the container's memory swappiness behavior. Determines how aggressively pages are swapped. The higher the value, the more aggressive the swappiness. The default is 60.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails$Size": "<p>The maximum size (in MiB) of the tmpfs volume.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails$ContainerPort": "<p>The port number on the container that is bound to the user-specified or automatically assigned host port.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails$HostPort": "<p>The port number on the container instance to reserve for the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails$HardLimit": "<p>The hard limit for the ulimit type.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails$SoftLimit": "<p>The soft limit for the ulimit type.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$TransitEncryptionPort": "<p>The port to use when sending encrypted data between the Amazon ECS host and the Amazon EFS server.</p>",
         "AwsElbLoadBalancerAccessLog$EmitInterval": "<p>The interval in minutes for publishing the access logs.</p> <p>You can publish access logs either every 5 minutes or every 60 minutes.</p>",
         "AwsElbLoadBalancerBackendServerDescription$InstancePort": "<p>The port on which the EC2 instance is listening.</p>",
         "AwsElbLoadBalancerConnectionDraining$Timeout": "<p>The maximum time, in seconds, to keep the existing connections open before deregistering the instances.</p>",
@@ -2448,7 +2952,7 @@
         "AwsIamPolicyDetails$AttachmentCount": "<p>The number of users, groups, and roles that the policy is attached to.</p>",
         "AwsIamPolicyDetails$PermissionsBoundaryUsageCount": "<p>The number of users and roles that use the policy to set the permissions boundary.</p>",
         "AwsIamRoleDetails$MaxSessionDuration": "<p>The maximum session duration (in seconds) that you want to set for the specified role.</p>",
-        "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that's allocated to the function.</p>",
+        "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that is allocated to the function.</p>",
         "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
         "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
         "AwsRdsDbClusterDetails$AllocatedStorage": "<p>For all database engines except Aurora, specifies the allocated storage size in gibibytes (GiB).</p>",
@@ -2483,6 +2987,11 @@
         "AwsRedshiftClusterEndpoint$Port": "<p>The port that the database engine listens on.</p>",
         "AwsRedshiftClusterPendingModifiedValues$AutomatedSnapshotRetentionPeriod": "<p>The pending or in-progress change to the automated snapshot retention period.</p>",
         "AwsRedshiftClusterPendingModifiedValues$NumberOfNodes": "<p>The pending or in-progress change to the number of nodes in the cluster.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesAbortIncompleteMultipartUploadDetails$DaysAfterInitiation": "<p>The number of days after which Amazon S3 cancels an incomplete multipart upload.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ExpirationInDays": "<p>The length in days of the lifetime for objects that are subject to the rule.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$NoncurrentVersionExpirationInDays": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails$Days": "<p>The number of days that an object is noncurrent before Amazon S3 can perform the associated action.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$Days": "<p>The number of days after which to transition the object to the specified storage class. If you provide <code>Days</code>, you cannot provide <code>Date</code>.</p>",
         "AwsSecretsManagerSecretRotationRules$AutomaticallyAfterDays": "<p>The number of days after the previous rotation to rotate the secret.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
@@ -2909,6 +3418,7 @@
         "AwsApiGatewayV2ApiDetails$ProtocolType": "<p>The API protocol for the API.</p> <p>Valid values: <code>WEBSOCKET</code> | <code>HTTP</code> </p>",
         "AwsApiGatewayV2ApiDetails$RouteSelectionExpression": "<p>The route selection expression for the API.</p> <p>For HTTP APIs, must be <code>${request.method} ${request.path}</code>. This is the default value for HTTP APIs.</p> <p>For WebSocket APIs, there is no default value.</p>",
         "AwsApiGatewayV2RouteSettings$LoggingLevel": "<p>The logging level. The logging level affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p> <p>If the logging level is <code>ERROR</code>, then the logs only include error-level entries.</p> <p>If the logging level is <code>INFO</code>, then the logs include both <code>ERROR</code> events and extra informational events.</p> <p>Valid values: <code>OFF</code> | <code>ERROR</code> | <code>INFO</code> </p>",
+        "AwsApiGatewayV2StageDetails$ClientCertificateId": "<p>The identifier of a client certificate for a stage. Supported only for WebSocket API calls.</p>",
         "AwsApiGatewayV2StageDetails$CreatedDate": "<p>Indicates when the stage was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsApiGatewayV2StageDetails$Description": "<p>The description of the stage.</p>",
         "AwsApiGatewayV2StageDetails$DeploymentId": "<p>The identifier of the deployment that the stage is associated with. </p>",
@@ -2972,13 +3482,13 @@
         "AwsCloudTrailTrailDetails$SnsTopicArn": "<p>The ARN of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$SnsTopicName": "<p>The name of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$TrailArn": "<p>The ARN of the trail.</p>",
-        "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) used to encrypt the build output artifacts.</p> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK alias (using the format alias/alias-name). </p>",
+        "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) used to encrypt the build output artifacts.</p> <p>You can specify either the ARN of the CMK or, if available, the CMK alias (using the format alias/alias-name). </p>",
         "AwsCodeBuildProjectDetails$Name": "<p>The name of the build project.</p>",
         "AwsCodeBuildProjectDetails$ServiceRole": "<p>The ARN of the IAM role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
         "AwsCodeBuildProjectEnvironment$Certificate": "<p>The certificate to use with this build project.</p>",
         "AwsCodeBuildProjectEnvironment$ImagePullCredentialsType": "<p>The type of credentials AWS CodeBuild uses to pull images in your build.</p> <p>Valid values:</p> <ul> <li> <p> <code>CODEBUILD</code> specifies that AWS CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust the AWS CodeBuild service principal.</p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that AWS CodeBuild uses your build project's service role.</p> </li> </ul> <p>When you use a cross-account or private registry image, you must use <code>SERVICE_ROLE</code> credentials. When you use an AWS CodeBuild curated image, you must use <code>CODEBUILD</code> credentials.</p>",
         "AwsCodeBuildProjectEnvironment$Type": "<p>The type of build environment to use for related builds.</p> <p>The environment type <code>ARM_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai), Asia Pacific (Tokyo), Asia Pacific (Sydney), and Europe (Frankfurt).</p> <p>The environment type <code>LINUX_CONTAINER</code> with compute type build.general1.2xlarge is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>The environment type <code>LINUX_GPU_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>Valid values: <code>WINDOWS_CONTAINER</code> | <code>LINUX_CONTAINER</code> | <code>LINUX_GPU_CONTAINER</code> | <code>ARM_CONTAINER</code> </p>",
-        "AwsCodeBuildProjectEnvironmentRegistryCredential$Credential": "<p>The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets Manager.</p> <note> <p>The credential can use the name of the credentials only if they exist in your current AWS Region. </p> </note>",
+        "AwsCodeBuildProjectEnvironmentRegistryCredential$Credential": "<p>The ARN or name of credentials created using AWS Secrets Manager.</p> <note> <p>The credential can use the name of the credentials only if they exist in your current AWS Region. </p> </note>",
         "AwsCodeBuildProjectEnvironmentRegistryCredential$CredentialProvider": "<p>The service that created the credentials to access a private Docker registry.</p> <p>The valid value,<code> SECRETS_MANAGER</code>, is for AWS Secrets Manager.</p>",
         "AwsCodeBuildProjectSource$Type": "<p>The type of repository that contains the source code to be built. Valid values are:</p> <ul> <li> <p> <code>BITBUCKET</code> - The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code> - The source code is in an AWS CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code> - The source code settings are specified in the source action of a pipeline in AWS CodePipeline.</p> </li> <li> <p> <code>GITHUB</code> - The source code is in a GitHub repository.</p> </li> <li> <p> <code>GITHUB_ENTERPRISE</code> - The source code is in a GitHub Enterprise repository.</p> </li> <li> <p> <code>NO_SOURCE</code> - The project does not have input source code.</p> </li> <li> <p> <code>S3</code> - The source code is in an S3 input bucket. </p> </li> </ul>",
         "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in AWS CodePipeline, location should not be specified. If it is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an AWS CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec file. </p> </li> </ul>",
@@ -3034,6 +3544,7 @@
         "AwsEc2InstanceDetails$VpcId": "<p>The identifier of the VPC that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$SubnetId": "<p>The identifier of the subnet that the instance was launched in.</p>",
         "AwsEc2InstanceDetails$LaunchedAt": "<p>Indicates when the instance was launched.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2InstanceNetworkInterfacesDetails$NetworkInterfaceId": "<p>The identifier of the network interface. The details are in a corresponding <code>AwsEc2NetworkInterfacesDetails</code> object.</p>",
         "AwsEc2NetworkAclAssociation$NetworkAclAssociationId": "<p>The identifier of the association between the network ACL and the subnet.</p>",
         "AwsEc2NetworkAclAssociation$NetworkAclId": "<p>The identifier of the network ACL.</p>",
         "AwsEc2NetworkAclAssociation$SubnetId": "<p>The identifier of the subnet that is associated with the network ACL.</p>",
@@ -3068,7 +3579,7 @@
         "AwsEc2SecurityGroupUserIdGroupPair$GroupId": "<p>The ID of the security group.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$GroupName": "<p>The name of the security group.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$PeeringStatus": "<p>The status of a VPC peering connection, if applicable.</p>",
-        "AwsEc2SecurityGroupUserIdGroupPair$UserId": "<p>The ID of an AWS account.</p> <p>For a referenced security group in another VPC, the account ID of the referenced security group is returned in the response. If the referenced security group is deleted, this value is not returned.</p> <p>[EC2-Classic] Required when adding or removing rules that reference a security group in another AWS. </p>",
+        "AwsEc2SecurityGroupUserIdGroupPair$UserId": "<p>The ID of an AWS account.</p> <p>For a referenced security group in another VPC, the account ID of the referenced security group is returned in the response. If the referenced security group is deleted, this value is not returned.</p> <p>[EC2-Classic] Required when adding or removing rules that reference a security group in another VPC. </p>",
         "AwsEc2SecurityGroupUserIdGroupPair$VpcId": "<p>The ID of the VPC for the referenced security group, if applicable.</p>",
         "AwsEc2SecurityGroupUserIdGroupPair$VpcPeeringConnectionId": "<p>The ID of the VPC peering connection, if applicable.</p>",
         "AwsEc2SubnetDetails$AvailabilityZone": "<p>The Availability Zone for the subnet.</p>",
@@ -3088,6 +3599,71 @@
         "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the AWS Key Management Service (AWS KMS) customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>",
         "AwsEc2VpcDetails$DhcpOptionsId": "<p>The identifier of the set of Dynamic Host Configuration Protocol (DHCP) options that are associated with the VPC. If the default options are associated with the VPC, then this is default.</p>",
         "AwsEc2VpcDetails$State": "<p>The current state of the VPC.</p>",
+        "AwsEcsClusterClusterSettingsDetails$Name": "<p>The name of the setting.</p>",
+        "AwsEcsClusterClusterSettingsDetails$Value": "<p>The value of the setting.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails$KmsKeyId": "<p>The identifier of the KMS key that is used to encrypt the data between the local client and the container.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails$Logging": "<p>The log setting to use for redirecting logs for run command results.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$CloudWatchLogGroupName": "<p>The name of the CloudWatch log group to send the logs to.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3BucketName": "<p>The name of the S3 bucket to send logs to.</p>",
+        "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3KeyPrefix": "<p>Identifies the folder in the S3 bucket to send the logs to.</p>",
+        "AwsEcsClusterDefaultCapacityProviderStrategyDetails$CapacityProvider": "<p>The name of the capacity provider.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails$Condition": "<p>The dependency condition of the dependent container. Indicates the required status of the dependent container before the current container can start.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDependsOnDetails$ContainerName": "<p>The name of the dependent container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Hostname": "<p>The hostname to use for the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Image": "<p>The image used to start the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Name": "<p>The name of the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$User": "<p>The user to use inside the container.</p> <p>The value can use one of the following formats.</p> <ul> <li> <p> <code> <i>user</i> </code> </p> </li> <li> <p> <code> <i>user</i> </code>:<code> <i>group</i> </code> </p> </li> <li> <p> <code> <i>uid</i> </code> </p> </li> <li> <p> <code> <i>uid</i> </code>:<code> <i>gid</i> </code> </p> </li> <li> <p> <code> <i>user</i> </code>:<code> <i>gid</i> </code> </p> </li> <li> <p> <code> <i>uid</i> </code>:<code> <i>group</i> </code> </p> </li> </ul>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$WorkingDirectory": "<p>The working directory in which to run commands inside the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails$Name": "<p>The name of the environment variable.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentDetails$Value": "<p>The value of the environment variable.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails$Type": "<p>The type of environment file.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsEnvironmentFilesDetails$Value": "<p>The ARN of the S3 object that contains the environment variable file.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails$Hostname": "<p>The hostname to use in the <b>/etc/hosts</b> entry.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsExtraHostsDetails$IpAddress": "<p>The IP address to use in the <b>/etc/hosts</b> entry.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsFirelensConfigurationDetails$Type": "<p>The log router to use. </p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails$ContainerPath": "<p>The path inside the container at which to expose the host device.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails$HostPath": "<p>The path for the device on the host container instance.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails$ContainerPath": "<p>The absolute file path where the tmpfs volume is to be mounted.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationDetails$LogDriver": "<p>The log driver to use for the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails$Name": "<p>The name of the secret.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLogConfigurationSecretOptionsDetails$ValueFrom": "<p>The secret to expose to the container.</p> <p>The value is either the full ARN of the Secrets Manager secret or the full ARN of the parameter in the Systems Manager Parameter Store.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails$ContainerPath": "<p>The path on the container to mount the host volume at.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails$SourceVolume": "<p>The name of the volume to mount. Must match the name of a volume listed in <code>VolumeDetails</code> for the task definition.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsPortMappingsDetails$Protocol": "<p>The protocol used for the port mapping. The default is <code>tcp</code>.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsRepositoryCredentialsDetails$CredentialsParameter": "<p>The ARN of the secret that contains the private repository credentials.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails$Type": "<p>The type of resource to assign to a container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsResourceRequirementsDetails$Value": "<p>The value for the specified resource type.</p> <p>For <code>GPU</code>, the value is the number of physical GPUs the Amazon ECS container agent reserves for the container.</p> <p>For <code>InferenceAccelerator</code>, the value should match the <code>DeviceName</code> attribute of an entry in <code>InferenceAccelerators</code>.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails$Name": "<p>The name of the secret.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsSecretsDetails$ValueFrom": "<p>The secret to expose to the container. The value is either the full ARN of the Secrets Manager secret or the full ARN of the parameter in the Systems Manager Parameter Store.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails$Namespace": "<p>The namespaced kernel parameter for which to set a value.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsSystemControlsDetails$Value": "<p>The value of the parameter.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsUlimitsDetails$Name": "<p>The type of the ulimit.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails$SourceContainer": "<p>The name of another container within the same task definition from which to mount volumes.</p>",
+        "AwsEcsTaskDefinitionDetails$Cpu": "<p>The number of CPU units used by the task.</p>",
+        "AwsEcsTaskDefinitionDetails$ExecutionRoleArn": "<p>The ARN of the task execution role that grants the container agent permission to make API calls on behalf of the container user.</p>",
+        "AwsEcsTaskDefinitionDetails$Family": "<p>The name of a family that this task definition is registered to.</p>",
+        "AwsEcsTaskDefinitionDetails$IpcMode": "<p>The IPC resource namespace to use for the containers in the task.</p>",
+        "AwsEcsTaskDefinitionDetails$Memory": "<p>The amount (in MiB) of memory used by the task.</p>",
+        "AwsEcsTaskDefinitionDetails$NetworkMode": "<p>The Docker networking mode to use for the containers in the task.</p>",
+        "AwsEcsTaskDefinitionDetails$PidMode": "<p>The process namespace to use for the containers in the task.</p>",
+        "AwsEcsTaskDefinitionDetails$TaskRoleArn": "<p>The short name or ARN of the IAM role that grants containers in the task permission to call AWS API operations on your behalf.</p>",
+        "AwsEcsTaskDefinitionInferenceAcceleratorsDetails$DeviceName": "<p>The Elastic Inference accelerator device name.</p>",
+        "AwsEcsTaskDefinitionInferenceAcceleratorsDetails$DeviceType": "<p>The Elastic Inference accelerator type to use.</p>",
+        "AwsEcsTaskDefinitionPlacementConstraintsDetails$Expression": "<p>A cluster query language expression to apply to the constraint.</p>",
+        "AwsEcsTaskDefinitionPlacementConstraintsDetails$Type": "<p>The type of constraint.</p>",
+        "AwsEcsTaskDefinitionProxyConfigurationDetails$ContainerName": "<p>The name of the container that will serve as the App Mesh proxy.</p>",
+        "AwsEcsTaskDefinitionProxyConfigurationDetails$Type": "<p>The proxy type.</p>",
+        "AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails$Name": "<p>The name of the property.</p>",
+        "AwsEcsTaskDefinitionProxyConfigurationProxyConfigurationPropertiesDetails$Value": "<p>The value of the property.</p>",
+        "AwsEcsTaskDefinitionVolumesDetails$Name": "<p>The name of the data volume.</p>",
+        "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Driver": "<p>The Docker volume driver to use.</p>",
+        "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Scope": "<p>The scope for the Docker volume that determines its lifecycle. Docker volumes that are scoped to a task are provisioned automatically when the task starts and destroyed when the task stops. Docker volumes that are shared persist after the task stops.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails$AccessPointId": "<p>The Amazon EFS access point identifier to use.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationAuthorizationConfigDetails$Iam": "<p>Whether to use the Amazon ECS task IAM role defined in a task definition when mounting the Amazon EFS file system.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$FilesystemId": "<p>The Amazon EFS file system identifier to use.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$RootDirectory": "<p>The directory within the Amazon EFS file system to mount as the root directory inside the host.</p>",
+        "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$TransitEncryption": "<p>Whether to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. </p>",
+        "AwsEcsTaskDefinitionVolumesHostDetails$SourcePath": "<p>The path on the host container instance that is presented to the container.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$ApplicationName": "<p>The name of the application that is associated with the environment.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$Cname": "<p>The URL to the CNAME for this environment.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$DateCreated": "<p>The creation date for this environment.</p>",
@@ -3117,6 +3693,12 @@
         "AwsElasticsearchDomainDetails$ElasticsearchVersion": "<p>Elasticsearch version.</p>",
         "AwsElasticsearchDomainDomainEndpointOptions$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the Elasticsearch domain.</p> <p>Valid values:</p> <ul> <li> <p> <code>Policy-Min-TLS-1-0-2019-07</code>, which supports TLSv1.0 and higher</p> </li> <li> <p> <code>Policy-Min-TLS-1-2-2019-07</code>, which only supports TLSv1.2</p> </li> </ul>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.</p>",
+        "AwsElasticsearchDomainLogPublishingOptionsLogConfig$CloudWatchLogsLogGroupArn": "<p>The ARN of the CloudWatch Logs group to publish the logs to.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, Amazon Elasticsearch Service schedules the software upgrade automatically.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$CurrentVersion": "<p>The version of the service software that is currently installed on the domain.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$Description": "<p>A more detailed description of the service software status.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$NewVersion": "<p>The most recent version of the service software.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$UpdateStatus": "<p>The status of the service software update.</p>",
         "AwsElasticsearchDomainVPCOptions$VPCId": "<p>ID for the VPC.</p>",
         "AwsElbAppCookieStickinessPolicy$CookieName": "<p>The name of the application cookie used for stickiness.</p>",
         "AwsElbAppCookieStickinessPolicy$PolicyName": "<p>The mnemonic name for the policy being created. The name must be unique within the set of policies for the load balancer.</p>",
@@ -3205,7 +3787,7 @@
         "AwsLambdaFunctionCode$S3Key": "<p>The Amazon S3 key of the deployment package.</p>",
         "AwsLambdaFunctionCode$S3ObjectVersion": "<p>For versioned objects, the version of the deployment package object to use.</p>",
         "AwsLambdaFunctionCode$ZipFile": "<p>The base64-encoded contents of the deployment package. AWS SDK and AWS CLI clients handle the encoding for you.</p>",
-        "AwsLambdaFunctionDeadLetterConfig$TargetArn": "<p>The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.</p>",
+        "AwsLambdaFunctionDeadLetterConfig$TargetArn": "<p>The ARN of an Amazon SQS queue or Amazon SNS topic.</p>",
         "AwsLambdaFunctionDetails$CodeSha256": "<p>The SHA256 hash of the function's deployment package.</p>",
         "AwsLambdaFunctionDetails$FunctionName": "<p>The name of the function.</p>",
         "AwsLambdaFunctionDetails$Handler": "<p>The function that Lambda calls to begin executing your function.</p>",
@@ -3218,7 +3800,7 @@
         "AwsLambdaFunctionDetails$Version": "<p>The version of the Lambda function.</p>",
         "AwsLambdaFunctionEnvironmentError$ErrorCode": "<p>The error code.</p>",
         "AwsLambdaFunctionEnvironmentError$Message": "<p>The error message.</p>",
-        "AwsLambdaFunctionLayer$Arn": "<p>The Amazon Resource Name (ARN) of the function layer.</p>",
+        "AwsLambdaFunctionLayer$Arn": "<p>The ARN of the function layer.</p>",
         "AwsLambdaFunctionTracingConfig$Mode": "<p>The tracing mode.</p>",
         "AwsLambdaFunctionVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -3262,7 +3844,7 @@
         "AwsRdsDbDomainMembership$Status": "<p>The status of the Active Directory Domain membership for the DB instance.</p>",
         "AwsRdsDbDomainMembership$Fqdn": "<p>The fully qualified domain name of the Active Directory domain.</p>",
         "AwsRdsDbDomainMembership$IamRoleName": "<p>The name of the IAM role to use when making API calls to the Directory Service.</p>",
-        "AwsRdsDbInstanceAssociatedRole$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB instance.</p>",
+        "AwsRdsDbInstanceAssociatedRole$RoleArn": "<p>The ARN of the IAM role that is associated with the DB instance.</p>",
         "AwsRdsDbInstanceAssociatedRole$FeatureName": "<p>The name of the feature associated with the IAM)role.</p>",
         "AwsRdsDbInstanceAssociatedRole$Status": "<p>Describes the state of the association between the IAM role and the DB instance. The <code>Status</code> property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - The IAM role ARN is associated with the DB instance and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - The IAM role ARN is being associated with the DB instance.</p> </li> <li> <p> <code>INVALID</code> - The IAM role ARN is associated with the DB instance. But the DB instance is unable to assume the IAM role in order to access other AWS services on your behalf. </p> </li> </ul>",
         "AwsRdsDbInstanceDetails$CACertificateIdentifier": "<p>The identifier of the CA certificate for this DB instance.</p>",
@@ -3396,6 +3978,21 @@
         "AwsRedshiftClusterRestoreStatus$Status": "<p>The status of the restore action.</p> <p>Valid values: <code>starting</code> | <code>restoring</code> | <code>completed</code> | <code>failed</code> </p>",
         "AwsRedshiftClusterVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
         "AwsRedshiftClusterVpcSecurityGroup$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ExpirationDate": "<p>The date when objects are moved or deleted.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$ID": "<p>The unique identifier of the rule.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Prefix": "<p>A prefix that identifies one or more objects that the rule applies to.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesDetails$Status": "<p>The current status of the rule. Indicates whether the rule is currently being applied.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails$Prefix": "<p>A prefix filter.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateDetails$Type": "<p>Whether to use <code>AND</code> or <code>OR</code> to join the operands.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails$Prefix": "<p>Prefix text for matching objects.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsDetails$Type": "<p>The type of filter value.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails$Key": "<p>The tag key.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateOperandsTagDetails$Value": "<p>The tag value.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails$Key": "<p>The tag key.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesFilterPredicateTagDetails$Value": "<p>The tag value</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesNoncurrentVersionTransitionsDetails$StorageClass": "<p>The class of storage to change the object to after the object is noncurrent for the specified number of days.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$Date": "<p>A date on which to transition objects to the specified storage class. If you provide <code>Date</code>, you cannot provide <code>Days</code>.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$StorageClass": "<p>The storage class to transition the object to.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -3432,7 +4029,7 @@
         "AwsSnsTopicSubscription$Protocol": "<p>The subscription's protocol.</p>",
         "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an AWS managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
         "AwsSqsQueueDetails$QueueName": "<p>The name of the new queue.</p>",
-        "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The Amazon Resource Name (ARN) of the dead-letter queue to which Amazon SQS moves messages after the value of <code>maxReceiveCount</code> is exceeded. </p>",
+        "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The ARN of the dead-letter queue to which Amazon SQS moves messages after the value of <code>maxReceiveCount</code> is exceeded. </p>",
         "AwsSsmComplianceSummary$Status": "<p>The current patch compliance status.</p> <p>The possible status values are:</p> <ul> <li> <p> <code>COMPLIANT</code> </p> </li> <li> <p> <code>NON_COMPLIANT</code> </p> </li> <li> <p> <code>UNSPECIFIED_DATA</code> </p> </li> </ul>",
         "AwsSsmComplianceSummary$ExecutionType": "<p>The type of execution that was used determine compliance.</p>",
         "AwsSsmComplianceSummary$ComplianceType": "<p>The type of resource for which the compliance was determined. For <code>AwsSsmPatchCompliance</code>, <code>ComplianceType</code> is <code>Patch</code>. </p>",
@@ -3462,9 +4059,9 @@
         "ContainerDetails$LaunchedAt": "<p>Indicates when the container started.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "Country$CountryCode": "<p>The 2-letter ISO 3166 country code for the country.</p>",
         "Country$CountryName": "<p>The name of the country.</p>",
-        "CreateActionTargetRequest$Name": "<p>The name of the custom action target.</p>",
+        "CreateActionTargetRequest$Name": "<p>The name of the custom action target. Can contain up to 20 characters.</p>",
         "CreateActionTargetRequest$Description": "<p>The description for the custom action target.</p>",
-        "CreateActionTargetRequest$Id": "<p>The ID for the custom action target.</p>",
+        "CreateActionTargetRequest$Id": "<p>The ID for the custom action target. Can contain up to 20 alphanumeric characters.</p>",
         "CreateActionTargetResponse$ActionTargetArn": "<p>The ARN for the custom action target.</p>",
         "CreateInsightRequest$Name": "<p>The name of the custom insight to create.</p>",
         "CreateInsightRequest$GroupByAttribute": "<p>The attribute used to group the findings for the insight. The grouping attribute identifies the type of item that the insight applies to. For example, if an insight is grouped by resource identifier, then the insight produces a list of resource identifiers.</p>",
@@ -3650,6 +4247,19 @@
         "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
         "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
         "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
+        "AwsEcsClusterDetails$CapacityProviders": "<p>The short name of one or more capacity providers to associate with the cluster.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Command": "<p>The command that is passed to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DnsSearchDomains": "<p>A list of DNS search domains that are presented to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DnsServers": "<p>A list of DNS servers that are presented to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$DockerSecurityOptions": "<p>A list of strings to provide custom labels for SELinux and AppArmor multi-level security systems.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$EntryPoint": "<p>The entry point that is passed to the container.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsDetails$Links": "<p>A list of links for the container in the form <code> <i>container_name</i>:<i>alias</i> </code>. Allows containers to communicate with each other without the need for port mappings.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsHealthCheckDetails$Command": "<p>The command that the container runs to determine whether it is healthy.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails$Add": "<p>The Linux capabilities for the container that are added to the default configuration provided by Docker.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersCapabilitiesDetails$Drop": "<p>The Linux capabilities for the container that are dropped from the default configuration provided by Docker.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails$Permissions": "<p>The explicit permissions to provide to the container for the device. By default, the container has permissions for read, write, and <code>mknod</code> for the device.</p>",
+        "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails$MountOptions": "<p>The list of tmpfs volume mount options.</p>",
+        "AwsEcsTaskDefinitionDetails$RequiresCompatibilities": "<p>The task launch types that the task definition was validated against.</p>",
         "AwsElasticsearchDomainVPCOptions$AvailabilityZones": "<p>The list of Availability Zones associated with the VPC subnets.</p>",
         "AwsElasticsearchDomainVPCOptions$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain.</p>",
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",

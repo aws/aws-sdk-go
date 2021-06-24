@@ -660,6 +660,7 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "Certificate":{"shape":"Certificate"},
+        "ProtocolDetails":{"shape":"ProtocolDetails"},
         "Domain":{"shape":"Domain"},
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
@@ -993,6 +994,10 @@
       "max":2048,
       "pattern":"^$|arn:.*role/.*"
     },
+    "PassiveIp":{
+      "type":"string",
+      "max":15
+    },
     "Policy":{
       "type":"string",
       "max":2048
@@ -1021,6 +1026,12 @@
         "FTP",
         "FTPS"
       ]
+    },
+    "ProtocolDetails":{
+      "type":"structure",
+      "members":{
+        "PassiveIp":{"shape":"PassiveIp"}
+      }
     },
     "Protocols":{
       "type":"list",
@@ -1301,6 +1312,7 @@
       "required":["ServerId"],
       "members":{
         "Certificate":{"shape":"Certificate"},
+        "ProtocolDetails":{"shape":"ProtocolDetails"},
         "EndpointDetails":{"shape":"EndpointDetails"},
         "EndpointType":{"shape":"EndpointType"},
         "HostKey":{"shape":"HostKey"},

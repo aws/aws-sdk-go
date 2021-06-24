@@ -4748,7 +4748,7 @@
     "QuickConnectDescription":{
       "type":"string",
       "max":250,
-      "min":0
+      "min":1
     },
     "QuickConnectId":{"type":"string"},
     "QuickConnectName":{
@@ -5534,6 +5534,11 @@
         "QuickConnectConfig":{"shape":"QuickConnectConfig"}
       }
     },
+    "UpdateQuickConnectDescription":{
+      "type":"string",
+      "max":250,
+      "min":0
+    },
     "UpdateQuickConnectNameRequest":{
       "type":"structure",
       "required":[
@@ -5552,7 +5557,7 @@
           "locationName":"QuickConnectId"
         },
         "Name":{"shape":"QuickConnectName"},
-        "Description":{"shape":"QuickConnectDescription"}
+        "Description":{"shape":"UpdateQuickConnectDescription"}
       }
     },
     "UpdateRoutingProfileConcurrencyRequest":{

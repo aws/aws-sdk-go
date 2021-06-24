@@ -13786,8 +13786,9 @@ type SharePointConfiguration struct {
 	InclusionPatterns []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager.
-	// The credentials should be a user/password pair. For more information, see
-	// Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
+	// The credentials should be a user/password pair. If you use SharePoint Sever,
+	// you also need to provide the sever domain name as part of the credentials.
+	// For more information, see Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
 	// For more information about AWS Secrets Manager, see What Is AWS Secrets Manager
 	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	// in the AWS Secrets Manager user guide.
@@ -13799,6 +13800,9 @@ type SharePointConfiguration struct {
 	//
 	// SharePointVersion is a required field
 	SharePointVersion *string `type:"string" required:"true" enum:"SharePointVersion"`
+
+	// Information required to find a specific file in an Amazon S3 bucket.
+	SslCertificateS3Path *S3Path `type:"structure"`
 
 	// The URLs of the Microsoft SharePoint site that contains the documents that
 	// should be indexed.
@@ -13861,6 +13865,11 @@ func (s *SharePointConfiguration) Validate() error {
 			}
 		}
 	}
+	if s.SslCertificateS3Path != nil {
+		if err := s.SslCertificateS3Path.Validate(); err != nil {
+			invalidParams.AddNested("SslCertificateS3Path", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.VpcConfiguration != nil {
 		if err := s.VpcConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
@@ -13918,6 +13927,12 @@ func (s *SharePointConfiguration) SetSecretArn(v string) *SharePointConfiguratio
 // SetSharePointVersion sets the SharePointVersion field's value.
 func (s *SharePointConfiguration) SetSharePointVersion(v string) *SharePointConfiguration {
 	s.SharePointVersion = &v
+	return s
+}
+
+// SetSslCertificateS3Path sets the SslCertificateS3Path field's value.
+func (s *SharePointConfiguration) SetSslCertificateS3Path(v *S3Path) *SharePointConfiguration {
+	s.SslCertificateS3Path = v
 	return s
 }
 
@@ -16970,6 +16985,12 @@ func ServiceNowBuildVersionType_Values() []string {
 }
 
 const (
+	// SharePointVersionSharepoint2013 is a SharePointVersion enum value
+	SharePointVersionSharepoint2013 = "SHAREPOINT_2013"
+
+	// SharePointVersionSharepoint2016 is a SharePointVersion enum value
+	SharePointVersionSharepoint2016 = "SHAREPOINT_2016"
+
 	// SharePointVersionSharepointOnline is a SharePointVersion enum value
 	SharePointVersionSharepointOnline = "SHAREPOINT_ONLINE"
 )
@@ -16977,6 +16998,8 @@ const (
 // SharePointVersion_Values returns all elements of the SharePointVersion enum
 func SharePointVersion_Values() []string {
 	return []string{
+		SharePointVersionSharepoint2013,
+		SharePointVersionSharepoint2016,
 		SharePointVersionSharepointOnline,
 	}
 }

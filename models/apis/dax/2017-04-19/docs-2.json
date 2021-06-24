@@ -63,6 +63,13 @@
       "refs": {
       }
     },
+    "ClusterEndpointEncryptionType": {
+      "base": null,
+      "refs": {
+        "Cluster$ClusterEndpointEncryptionType": "<p>The type of encryption supported by the cluster's endpoint. Values are:</p> <ul> <li> <p> <code>NONE</code> for no encryption</p> <p> <code>TLS</code> for Transport Layer Security</p> </li> </ul>",
+        "CreateClusterRequest$ClusterEndpointEncryptionType": "<p>The type of encryption the cluster's endpoint should support. Values are:</p> <ul> <li> <p> <code>NONE</code> for no encryption</p> </li> <li> <p> <code>TLS</code> for Transport Layer Security</p> </li> </ul>"
+      }
+    },
     "ClusterList": {
       "base": null,
       "refs": {
@@ -216,9 +223,9 @@
       }
     },
     "Endpoint": {
-      "base": "<p>Represents the information required for client programs to connect to the configuration endpoint for a DAX cluster, or to an individual node within the cluster.</p>",
+      "base": "<p>Represents the information required for client programs to connect to the endpoint for a DAX cluster.</p>",
       "refs": {
-        "Cluster$ClusterDiscoveryEndpoint": "<p>The configuration endpoint for this DAX cluster, consisting of a DNS name and a port number. Client applications can specify this endpoint, rather than an individual node endpoint, and allow the DAX client software to intelligently route requests and responses to nodes in the DAX cluster.</p>",
+        "Cluster$ClusterDiscoveryEndpoint": "<p>The endpoint for this DAX cluster, consisting of a DNS name, a port number, and a URL. Applications should use the URL to configure the DAX client to find their cluster.</p>",
         "Node$Endpoint": "<p>The endpoint for the node, consisting of a DNS name and a port number. Client applications can connect directly to a node endpoint, if desired (as an alternative to allowing DAX client software to intelligently route requests and responses to nodes in the DAX cluster.</p>"
       }
     },
@@ -445,7 +452,7 @@
     "ParameterNameValueList": {
       "base": null,
       "refs": {
-        "UpdateParameterGroupRequest$ParameterNameValues": "<p>An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter.</p>"
+        "UpdateParameterGroupRequest$ParameterNameValues": "<p>An array of name-value pairs for the parameters in the group. Each element in the array represents a single parameter.</p> <note> <p> <code>record-ttl-millis</code> and <code>query-ttl-millis</code> are the only supported parameter names. For more details, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DAX.cluster-management.html#DAX.cluster-management.custom-settings.ttl\">Configuring TTL Settings</a>.</p> </note>"
       }
     },
     "ParameterType": {
@@ -512,6 +519,11 @@
       "refs": {
       }
     },
+    "ServiceQuotaExceededException": {
+      "base": "<p>You have reached the maximum number of x509 certificates that can be created for encrypted clusters in a 30 day period. Contact AWS customer support to discuss options for continuing to create encrypted clusters.</p>",
+      "refs": {
+      }
+    },
     "SourceType": {
       "base": null,
       "refs": {
@@ -566,6 +578,7 @@
         "DescribeSubnetGroupsRequest$NextToken": "<p>An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by <code>MaxResults</code>.</p>",
         "DescribeSubnetGroupsResponse$NextToken": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
         "Endpoint$Address": "<p>The DNS hostname of the endpoint.</p>",
+        "Endpoint$URL": "<p>The URL that applications should use to connect to the endpoint. The default ports are 8111 for the \"dax\" protocol and 9111 for the \"daxs\" protocol.</p>",
         "Event$SourceName": "<p>The source of the event. For example, if the event occurred at the node level, the source would be the node ID.</p>",
         "Event$Message": "<p>A user-defined message associated with the event.</p>",
         "IncreaseReplicationFactorRequest$ClusterName": "<p>The name of the DAX cluster that will receive additional nodes.</p>",
@@ -581,7 +594,7 @@
         "NodeTypeSpecificValue$NodeType": "<p>A node type to which the parameter value applies.</p>",
         "NodeTypeSpecificValue$Value": "<p>The parameter value for this node type.</p>",
         "NotificationConfiguration$TopicArn": "<p>The Amazon Resource Name (ARN) that identifies the topic. </p>",
-        "NotificationConfiguration$TopicStatus": "<p>The current state of the topic.</p>",
+        "NotificationConfiguration$TopicStatus": "<p>The current state of the topic. A value of “active” means that notifications will be sent to the topic. A value of “inactive” means that notifications will not be sent to the topic.</p>",
         "Parameter$ParameterName": "<p>The name of the parameter.</p>",
         "Parameter$ParameterValue": "<p>The value for the parameter.</p>",
         "Parameter$Description": "<p>A description of the parameter</p>",
@@ -615,7 +628,7 @@
         "UpdateClusterRequest$Description": "<p>A description of the changes being made to the cluster.</p>",
         "UpdateClusterRequest$PreferredMaintenanceWindow": "<p>A range of time when maintenance of DAX cluster software will be performed. For example: <code>sun:01:00-sun:09:00</code>. Cluster maintenance normally takes less than 30 minutes, and is performed automatically within the maintenance window.</p>",
         "UpdateClusterRequest$NotificationTopicArn": "<p>The Amazon Resource Name (ARN) that identifies the topic.</p>",
-        "UpdateClusterRequest$NotificationTopicStatus": "<p>The current state of the topic.</p>",
+        "UpdateClusterRequest$NotificationTopicStatus": "<p>The current state of the topic. A value of “active” means that notifications will be sent to the topic. A value of “inactive” means that notifications will not be sent to the topic.</p>",
         "UpdateClusterRequest$ParameterGroupName": "<p>The name of a parameter group for this cluster.</p>",
         "UpdateParameterGroupRequest$ParameterGroupName": "<p>The name of the parameter group.</p>",
         "UpdateSubnetGroupRequest$SubnetGroupName": "<p>The name of the subnet group.</p>",

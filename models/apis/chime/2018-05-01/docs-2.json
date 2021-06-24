@@ -11,7 +11,7 @@
     "BatchCreateRoomMembership": "<p>Adds up to 50 members to a chat room in an Amazon Chime Enterprise account. Members can be users or bots. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
     "BatchDeletePhoneNumber": "<p> Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted. </p> <p> Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
     "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account,but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action.</p> <p> To sign out users without suspending them, use the <a>LogoutUser</a> action. </p>",
-    "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored. </p>",
+    "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\"> Managing Your Amazon Chime Accounts </a> in the account types, in the <i>Amazon Chime Administration Guide</i>. </p> <p> Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored. </p>",
     "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update the product type or the calling name.</p> <p>For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
     "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
@@ -78,7 +78,7 @@
     "DisassociatePhoneNumbersFromVoiceConnectorGroup": "<p>Disassociates the specified phone numbers from the specified Amazon Chime Voice Connector group.</p>",
     "DisassociateSigninDelegateGroupsFromAccount": "<p>Disassociates the specified sign-in delegate groups from the specified Amazon Chime account.</p>",
     "GetAccount": "<p>Retrieves details for the specified Amazon Chime account, such as account type and supported licenses.</p>",
-    "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dialout settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "GetAccountSettings": "<p>Retrieves account settings for the specified Amazon Chime account ID, such as remote control and dialout settings. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>. </p>",
     "GetAppInstanceRetentionSettings": "<p>Gets the retention settings for an <code>AppInstance</code>.</p>",
     "GetAppInstanceStreamingConfigurations": "<p>Gets the streaming settings for an <code>AppInstance</code>.</p>",
     "GetAttendee": "<p> Gets the Amazon Chime SDK attendee details for a specified meeting ID and attendee ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
@@ -92,7 +92,7 @@
     "GetPhoneNumberOrder": "<p>Retrieves details for the specified phone number order, such as the order creation timestamp, phone numbers in E.164 format, product type, and order status.</p>",
     "GetPhoneNumberSettings": "<p>Retrieves the phone number settings for the administrator's AWS account, such as the default outbound calling name.</p>",
     "GetProxySession": "<p>Gets the specified proxy session details for the specified Amazon Chime Voice Connector.</p>",
-    "GetRetentionSettings": "<p> Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i> . </p>",
+    "GetRetentionSettings": "<p> Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>. </p>",
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "GetSipMediaApplication": "<p>Retrieves the information for a SIP media application, including name, AWS Region, and endpoints.</p>",
     "GetSipMediaApplicationLoggingConfiguration": "<p>Returns the logging configuration for the specified SIP media application.</p>",
@@ -114,7 +114,7 @@
     "ListAppInstanceUsers": "<p> List all <code>AppInstanceUsers</code> created under a single <code>AppInstance</code>. </p>",
     "ListAppInstances": "<p>Lists all Amazon Chime <code>AppInstance</code>s created under a single AWS account.</p>",
     "ListAttendeeTags": "<p>Lists the tags applied to an Amazon Chime SDK attendee resource.</p>",
-    "ListAttendees": "<p> Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "ListAttendees": "<p> Lists the attendees for the specified Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>. </p>",
     "ListBots": "<p>Lists the bots associated with the administrator's Amazon Chime Enterprise account ID.</p>",
     "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
@@ -182,7 +182,7 @@
     "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
     "UpdateSipMediaApplicationCall": "<p>Allows you to trigger a Lambda function at any time while a call is active, and replace the current actions with new actions returned by the invocation.</p>",
     "UpdateSipRule": "<p>Updates the details of the specified SIP rule.</p>",
-    "UpdateUser": "<p> Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
+    "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
     "UpdateVoiceConnectorGroup": "<p>Updates details of the specified Amazon Chime Voice Connector group, such as the name and Amazon Chime Voice Connector priority ranking.</p>"
@@ -803,7 +803,7 @@
         "BatchChannelMemberships$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
         "BatchCreateChannelMembershipError$MemberArn": "<p>The ARN of the member that the service couldn't add.</p>",
         "BatchCreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
-        "BatchCreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p> <p/>",
+        "BatchCreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
         "Channel$ChannelArn": "<p>The ARN of the channel.</p>",
         "ChannelBan$ChannelArn": "<p>The ARN of the channel from which a member is being banned.</p>",
         "ChannelMembership$ChannelArn": "<p>The ARN of the member's channel.</p>",
@@ -4020,7 +4020,8 @@
         "MediaPlacement$ScreenSharingUrl": "<p>The screen sharing URL.</p>",
         "MediaPlacement$ScreenViewingUrl": "<p>The screen viewing URL.</p>",
         "MediaPlacement$SignalingUrl": "<p>The signaling URL.</p>",
-        "MediaPlacement$TurnControlUrl": "<p>The turn control URL.</p>"
+        "MediaPlacement$TurnControlUrl": "<p>The turn control URL.</p>",
+        "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL.</p>"
       }
     },
     "UrlType": {

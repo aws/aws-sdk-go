@@ -14,14 +14,14 @@
     "CreateInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Initiates an Amazon Connect instance with all the supported channels enabled. It does not attach any storage, such as Amazon Simple Storage Service (Amazon S3) or Amazon Kinesis. It also does not allow for any configurations on features, such as Contact Lens for Amazon Connect. </p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "CreateIntegrationAssociation": "<p>Create an AppIntegration association with an Amazon Connect instance.</p>",
     "CreateQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a new queue for the specified Amazon Connect instance.</p>",
-    "CreateQuickConnect": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Creates a quick connect for the specified Amazon Connect instance.</p>",
+    "CreateQuickConnect": "<p>Creates a quick connect for the specified Amazon Connect instance.</p>",
     "CreateRoutingProfile": "<p>Creates a new routing profile.</p>",
     "CreateUseCase": "<p>Creates a use case for an AppIntegration association.</p>",
     "CreateUser": "<p>Creates a user account for the specified Amazon Connect instance.</p> <p>For information about how to create user accounts using the Amazon Connect console, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html\">Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "CreateUserHierarchyGroup": "<p>Creates a new user hierarchy group.</p>",
     "DeleteInstance": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes the Amazon Connect instance.</p> <p>Amazon Connect enforces a limit on the total number of instances that you can create or delete in 30 days. If you exceed this limit, you will get an error message indicating there has been an excessive number of attempts at creating or deleting instances. You must wait 30 days before you can restart creating and deleting instances in your account.</p>",
     "DeleteIntegrationAssociation": "<p>Deletes an AppIntegration association from an Amazon Connect instance. The association must not have any use cases associated with it.</p>",
-    "DeleteQuickConnect": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Deletes a quick connect.</p>",
+    "DeleteQuickConnect": "<p>Deletes a quick connect.</p>",
     "DeleteUseCase": "<p>Deletes a use case from an AppIntegration association.</p>",
     "DeleteUser": "<p>Deletes a user account from the specified Amazon Connect instance.</p> <p>For information about what happens to a user's data when their account is deleted, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html\">Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "DeleteUserHierarchyGroup": "<p>Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.</p>",
@@ -31,7 +31,7 @@
     "DescribeInstanceAttribute": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified instance attribute.</p>",
     "DescribeInstanceStorageConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Retrieves the current storage configurations for the specified resource type, association ID, and instance ID.</p>",
     "DescribeQueue": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the specified queue.</p>",
-    "DescribeQuickConnect": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Describes the quick connect.</p>",
+    "DescribeQuickConnect": "<p>Describes the quick connect.</p>",
     "DescribeRoutingProfile": "<p>Describes the specified routing profile.</p>",
     "DescribeUser": "<p>Describes the specified user account. You can find the instance ID in the console (it’s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output.</p>",
     "DescribeUserHierarchyGroup": "<p>Describes the specified hierarchy group.</p>",
@@ -62,7 +62,7 @@
     "ListPrompts": "<p>Provides information about the prompts for the specified Amazon Connect instance.</p>",
     "ListQueueQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Lists the quick connects associated with a queue.</p>",
     "ListQueues": "<p>Provides information about the queues for the specified Amazon Connect instance.</p> <p>If you do not specify a <code>QueueTypes</code> parameter, both standard and agent queues are returned. This might cause an unexpected truncation of results if you have more than 1000 agents and you limit the number of results of the API call in code.</p> <p>For more information about queues, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html\">Queues: Standard and Agent</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
-    "ListQuickConnects": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Provides information about the quick connects for the specified Amazon Connect instance. </p>",
+    "ListQuickConnects": "<p>Provides information about the quick connects for the specified Amazon Connect instance. </p>",
     "ListRoutingProfileQueues": "<p>Lists the queues associated with a routing profile.</p>",
     "ListRoutingProfiles": "<p>Provides summary information about the routing profiles for the specified Amazon Connect instance.</p> <p>For more information about routing profiles, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html\">Routing Profiles</a> and <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html\">Create a Routing Profile</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "ListSecurityKeys": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Returns a paginated list of all security keys associated with the instance.</p>",
@@ -91,8 +91,8 @@
     "UpdateQueueName": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the name and description of a queue. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
     "UpdateQueueOutboundCallerConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the outbound caller ID name, number, and outbound whisper flow for a specified queue.</p>",
     "UpdateQueueStatus": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the status of the queue.</p>",
-    "UpdateQuickConnectConfig": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the configuration settings for the specified quick connect.</p>",
-    "UpdateQuickConnectName": "<p>This API is in preview release for Amazon Connect and is subject to change.</p> <p>Updates the name and description of a quick connect. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
+    "UpdateQuickConnectConfig": "<p>Updates the configuration settings for the specified quick connect.</p>",
+    "UpdateQuickConnectName": "<p>Updates the name and description of a quick connect. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
     "UpdateRoutingProfileConcurrency": "<p>Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile.</p>",
     "UpdateRoutingProfileDefaultOutboundQueue": "<p>Updates the default outbound queue of a routing profile.</p>",
     "UpdateRoutingProfileName": "<p>Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
@@ -370,7 +370,7 @@
     "Concurrency": {
       "base": null,
       "refs": {
-        "MediaConcurrency$Concurrency": "<p>The number of contacts an agent can have on a channel simultaneously.</p> <p>Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of 1.</p> <p>Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of 5.</p> <p>Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of 10.</p>"
+        "MediaConcurrency$Concurrency": "<p>The number of contacts an agent can have on a channel simultaneously.</p> <p>Valid Range for <code>VOICE</code>: Minimum value of 1. Maximum value of 1.</p> <p>Valid Range for <code>CHAT</code>: Minimum value of 1. Maximum value of 10.</p> <p>Valid Range for <code>TASK</code>: Minimum value of 1. Maximum value of 10.</p>"
       }
     },
     "ContactFlow": {
@@ -2190,14 +2190,13 @@
       "base": null,
       "refs": {
         "CreateQuickConnectRequest$Description": "<p>The description of the quick connect.</p>",
-        "QuickConnect$Description": "<p>The description.</p>",
-        "UpdateQuickConnectNameRequest$Description": "<p>The description of the quick connect.</p>"
+        "QuickConnect$Description": "<p>The description.</p>"
       }
     },
     "QuickConnectId": {
       "base": null,
       "refs": {
-        "CreateQuickConnectResponse$QuickConnectId": "<p>The identifier for the quick connect.</p>",
+        "CreateQuickConnectResponse$QuickConnectId": "<p>The identifier for the quick connect. </p>",
         "DeleteQuickConnectRequest$QuickConnectId": "<p>The identifier for the quick connect.</p>",
         "DescribeQuickConnectRequest$QuickConnectId": "<p>The identifier for the quick connect.</p>",
         "QuickConnect$QuickConnectId": "<p>The identifier for the quick connect.</p>",
@@ -2715,6 +2714,12 @@
     "UpdateQuickConnectConfigRequest": {
       "base": null,
       "refs": {
+      }
+    },
+    "UpdateQuickConnectDescription": {
+      "base": null,
+      "refs": {
+        "UpdateQuickConnectNameRequest$Description": "<p>The description of the quick connect.</p>"
       }
     },
     "UpdateQuickConnectNameRequest": {

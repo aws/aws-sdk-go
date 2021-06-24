@@ -58,11 +58,11 @@ func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.R
 // CreateAccess API operation for AWS Transfer Family.
 //
 // Used by administrators to choose which groups in the directory should have
-// access to upload and download files over the enabled protocols using AWS
-// Transfer Family. For example, a Microsoft Active Directory might contain
-// 50,000 users, but only a small fraction might need the ability to transfer
-// files to the server. An administrator can use CreateAccess to limit the access
-// to the correct set of users who need this ability.
+// access to upload and download files over the enabled protocols using Amazon
+// Web Services Transfer Family. For example, a Microsoft Active Directory might
+// contain 50,000 users, but only a small fraction might need the ability to
+// transfer files to the server. An administrator can use CreateAccess to limit
+// the access to the correct set of users who need this ability.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -73,11 +73,12 @@ func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -86,7 +87,7 @@ func (c *Transfer) CreateAccessRequest(input *CreateAccessInput) (req *request.R
 //   The requested resource does not exist.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateAccess
@@ -156,9 +157,9 @@ func (c *Transfer) CreateServerRequest(input *CreateServerInput) (req *request.R
 // CreateServer API operation for AWS Transfer Family.
 //
 // Instantiates an auto-scaling virtual server based on the selected file transfer
-// protocol in AWS. When you make updates to your file transfer protocol-enabled
-// server or when you work with users, use the service-generated ServerId property
-// that is assigned to the newly created server.
+// protocol in Amazon Web Services. When you make updates to your file transfer
+// protocol-enabled server or when you work with users, use the service-generated
+// ServerId property that is assigned to the newly created server.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -172,11 +173,12 @@ func (c *Transfer) CreateServerRequest(input *CreateServerInput) (req *request.R
 //   You do not have sufficient access to perform this action.
 //
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -259,9 +261,9 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 // server. You can only create and associate users with servers that have the
 // IdentityProviderType set to SERVICE_MANAGED. Using parameters for CreateUser,
 // you can specify the user name, set the home directory, store the user's public
-// key, and assign the user's AWS Identity and Access Management (IAM) role.
-// You can also optionally add a scope-down policy, and assign metadata with
-// tags that can be used to group and search for users.
+// key, and assign the user's Amazon Web Services Identity and Access Management
+// (IAM) role. You can also optionally add a scope-down policy, and assign metadata
+// with tags that can be used to group and search for users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -272,11 +274,12 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -285,7 +288,7 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 //   The requested resource does not exist.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateUser
@@ -367,17 +370,18 @@ func (c *Transfer) DeleteAccessRequest(input *DeleteAccessInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteAccess
@@ -463,17 +467,18 @@ func (c *Transfer) DeleteServerRequest(input *DeleteServerInput) (req *request.R
 //   You do not have sufficient access to perform this action.
 //
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteServer
@@ -556,17 +561,18 @@ func (c *Transfer) DeleteSshPublicKeyRequest(input *DeleteSshPublicKeyInput) (re
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -657,17 +663,18 @@ func (c *Transfer) DeleteUserRequest(input *DeleteUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteUser
@@ -751,17 +758,18 @@ func (c *Transfer) DescribeAccessRequest(input *DescribeAccessInput) (req *reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeAccess
@@ -844,17 +852,18 @@ func (c *Transfer) DescribeSecurityPolicyRequest(input *DescribeSecurityPolicyIn
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeSecurityPolicy
@@ -938,17 +947,18 @@ func (c *Transfer) DescribeServerRequest(input *DescribeServerInput) (req *reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeServer
@@ -1032,17 +1042,18 @@ func (c *Transfer) DescribeUserRequest(input *DescribeUserInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeUser
@@ -1127,11 +1138,12 @@ func (c *Transfer) ImportSshPublicKeyRequest(input *ImportSshPublicKeyInput) (re
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -1140,7 +1152,7 @@ func (c *Transfer) ImportSshPublicKeyRequest(input *ImportSshPublicKeyInput) (re
 //   The requested resource does not exist.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -1231,11 +1243,12 @@ func (c *Transfer) ListAccessesRequest(input *ListAccessesInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidNextTokenException
 //   The NextToken parameter that was passed is invalid.
@@ -1244,7 +1257,7 @@ func (c *Transfer) ListAccessesRequest(input *ListAccessesInput) (req *request.R
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListAccesses
@@ -1383,11 +1396,12 @@ func (c *Transfer) ListSecurityPoliciesRequest(input *ListSecurityPoliciesInput)
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidNextTokenException
 //   The NextToken parameter that was passed is invalid.
@@ -1520,7 +1534,7 @@ func (c *Transfer) ListServersRequest(input *ListServersInput) (req *request.Req
 // ListServers API operation for AWS Transfer Family.
 //
 // Lists the file transfer protocol-enabled servers that are associated with
-// your AWS account.
+// your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1531,11 +1545,12 @@ func (c *Transfer) ListServersRequest(input *ListServersInput) (req *request.Req
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidNextTokenException
 //   The NextToken parameter that was passed is invalid.
@@ -1679,11 +1694,12 @@ func (c *Transfer) ListTagsForResourceRequest(input *ListTagsForResourceInput) (
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidNextTokenException
 //   The NextToken parameter that was passed is invalid.
@@ -1827,11 +1843,12 @@ func (c *Transfer) ListUsersRequest(input *ListUsersInput) (req *request.Request
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidNextTokenException
 //   The NextToken parameter that was passed is invalid.
@@ -1840,7 +1857,7 @@ func (c *Transfer) ListUsersRequest(input *ListUsersInput) (req *request.Request
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListUsers
@@ -1981,17 +1998,18 @@ func (c *Transfer) StartServerRequest(input *StartServerInput) (req *request.Req
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -2089,17 +2107,18 @@ func (c *Transfer) StopServerRequest(input *StopServerInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -2188,17 +2207,18 @@ func (c *Transfer) TagResourceRequest(input *TagResourceInput) (req *request.Req
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TagResource
@@ -2283,17 +2303,18 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/TestIdentityProvider
@@ -2377,17 +2398,18 @@ func (c *Transfer) UntagResourceRequest(input *UntagResourceInput) (req *request
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UntagResource
@@ -2468,11 +2490,12 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -2481,7 +2504,7 @@ func (c *Transfer) UpdateAccessRequest(input *UpdateAccessInput) (req *request.R
 //   The requested resource does not exist.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/UpdateAccess
@@ -2567,7 +2590,8 @@ func (c *Transfer) UpdateServerRequest(input *UpdateServerInput) (req *request.R
 //   You do not have sufficient access to perform this action.
 //
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * ConflictException
 //   This exception is thrown when the UpdatServer is called for a file transfer
@@ -2575,8 +2599,8 @@ func (c *Transfer) UpdateServerRequest(input *UpdateServerInput) (req *request.R
 //   VpcEndpointID is not in the available state.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
@@ -2585,7 +2609,7 @@ func (c *Transfer) UpdateServerRequest(input *UpdateServerInput) (req *request.R
 //   The requested resource does not exist.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -2674,17 +2698,18 @@ func (c *Transfer) UpdateUserRequest(input *UpdateUserInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceUnavailableException
-//   The request has failed because the AWS Transfer Family service is not available.
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
 //
 //   * InternalServiceError
-//   This exception is thrown when an error occurs in the AWS Transfer Family
-//   service.
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
 //
 //   * InvalidRequestException
 //   This exception is thrown when the client submits a malformed request.
 //
 //   * ResourceNotFoundException
-//   This exception is thrown when a resource is not found by the AWS Transfer
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 //   Family service.
 //
 //   * ThrottlingException
@@ -2833,9 +2858,9 @@ type CreateAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -2860,10 +2885,10 @@ type CreateAccessInput struct {
 	// and keys should be visible to your user and how you want to make them visible.
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
-	// you only specify a target, it will be displayed as is. You also must ensure
-	// that your AWS Identity and Access Management (IAM) role provides access to
-	// paths in Target. This value can only be set when HomeDirectoryType is set
-	// to LOGICAL.
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -2876,17 +2901,15 @@ type CreateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// Amazon EFS, the entry will be ignored. As a workaround, you can use the Amazon
-	// S3 API or EFS API to create 0-byte objects as place holders for your directory.
-	// If using the AWS CLI, use the s3api or efsapi call instead of s3 or efs so
-	// you can use the put-object operation. For example, you can use the following.
-	//
-	// aws s3api put-object --bucket bucketname --key path/to/folder/
-	//
-	// The end of the key name must end in a / for it to be considered a folder.
+	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
+	// or EFS API to create 0 byte objects as place holders for your directory.
+	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
+	// can use the put-object operation. For example, you use the following: aws
+	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
+	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -2905,14 +2928,14 @@ type CreateAccessInput struct {
 	// This only applies when domain of ServerId is S3. Amazon EFS does not use
 	// scope-down policies.
 	//
-	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
-	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
-	// policy as a JSON blob and pass it in the Policy argument.
+	// For scope-down policies, Amazon Web Services Transfer Family stores the policy
+	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
+	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-	// in the AWS Security Token Service API Reference.
+	// in the Amazon Web Services Security Token Service API Reference.
 	Policy *string `type:"string"`
 
 	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
@@ -3047,7 +3070,8 @@ type CreateAccessOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The external ID of the group whose users have access to your Amazon S3 or
-	// Amazon EFS resources over the enabled protocols using AWS Transfer Family.
+	// Amazon EFS resources over the enabled protocols using Amazon Web Services
+	// Transfer Family.
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -3083,19 +3107,19 @@ func (s *CreateAccessOutput) SetServerId(v string) *CreateAccessOutput {
 type CreateServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Certificate Manager (ACM) certificate.
-	// Required when Protocols is set to FTPS.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Certificate Manager
+	// (ACM) certificate. Required when Protocols is set to FTPS.
 	//
 	// To request a new public certificate, see Request a public certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web Services Certificate Manager User Guide.
 	//
 	// To import an existing certificate into ACM, see Importing certificates into
 	// ACM (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web Services Certificate Manager User Guide.
 	//
 	// To request a private certificate to use FTPS through private IP addresses,
 	// see Request a private certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-private.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web Services Certificate Manager User Guide.
 	//
 	// Certificates with the following cryptographic algorithms and key sizes are
 	// supported:
@@ -3135,10 +3159,10 @@ type CreateServerInput struct {
 	// facing by attaching Elastic IP addresses directly to it.
 	//
 	// After May 19, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
-	// in your AWS account if your account hasn't already done so before May 19,
-	// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
-	// in your AWS account on or before May 19, 2021, you will not be affected.
-	// After this date, use EndpointType=VPC.
+	// in your Amazon Web Services account if your account hasn't already done so
+	// before May 19, 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+	// in your Amazon Web Services account on or before May 19, 2021, you will not
+	// be affected. After this date, use EndpointType=VPC.
 	//
 	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	//
@@ -3158,7 +3182,7 @@ type CreateServerInput struct {
 	//
 	// For more information, see Change the host key for your SFTP-enabled server
 	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
-	// in the AWS Transfer Family User Guide.
+	// in the Amazon Web Services Transfer Family User Guide.
 	HostKey *string `type:"string" sensitive:"true"`
 
 	// Required when IdentityProviderType is set to AWS_DIRECTORY_SERVICE or API_GATEWAY.
@@ -3169,19 +3193,25 @@ type CreateServerInput struct {
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
-	// which allows you to store and access user credentials within the AWS Transfer
-	// Family service. Use AWS_DIRECTORY_SERVICE to provide access to Active Directory
-	// groups in AWS Managed Active Directory or Microsoft Active Directory in your
-	// on-premises environment or in AWS using AD Connectors. This option also requires
-	// you to provide a Directory ID using the IdentityProviderDetails parameter.
+	// which allows you to store and access user credentials within the Amazon Web
+	// Services Transfer Family service.
+	//
+	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
+	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connectors.
+	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// parameter.
+	//
 	// Use the API_GATEWAY value to integrate with an identity provider of your
 	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
 	// endpoint URL to call for authentication using the IdentityProviderDetails
 	// parameter.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Allows the service to write your users' activity to your Amazon CloudWatch
-	// logs for monitoring and auditing purposes.
+	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
+	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
+	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
+	// viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -3195,9 +3225,9 @@ type CreateServerInput struct {
 	//
 	//    * FTP (File Transfer Protocol): Unencrypted file transfer
 	//
-	// If you select FTPS, you must choose a certificate stored in AWS Certificate
-	// Manager (ACM) which will be used to identify your server when clients connect
-	// to it over FTPS.
+	// If you select FTPS, you must choose a certificate stored in Amazon Web Services
+	// Certificate Manager (ACM) which is used to identify your server when clients
+	// connect to it over FTPS.
 	//
 	// If Protocol includes either FTP or FTPS, then the EndpointType must be VPC
 	// and the IdentityProviderType must be AWS_DIRECTORY_SERVICE or API_GATEWAY.
@@ -3364,13 +3394,14 @@ type CreateUserInput struct {
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// Logical directory mappings that specify what Amazon S3 or EFS paths and keys
-	// should be visible to your user and how you want to make them visible. You
-	// will need to specify the Entry and Target pair, where Entry shows how the
-	// path is made visible and Target is the actual Amazon S3 or EFS path. If you
-	// only specify a target, it will be displayed as is. You will need to also
-	// make sure that your IAM role provides access to paths in Target. This value
-	// can only be set when HomeDirectoryType is set to LOGICAL.
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -3383,11 +3414,11 @@ type CreateUserInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry will be ignored. As a workaround, you can use the Amazon S3
-	// API or EFS API to create 0 byte objects as place holders for your directory.
+	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
+	// or EFS API to create 0 byte objects as place holders for your directory.
 	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
 	// can use the put-object operation. For example, you use the following: aws
 	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
@@ -3410,14 +3441,14 @@ type CreateUserInput struct {
 	// This only applies when domain of ServerId is S3. EFS does not use scope down
 	// policy.
 	//
-	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
-	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
-	// policy as a JSON blob and pass it in the Policy argument.
+	// For scope-down policies, Amazon Web Services Transfer Family stores the policy
+	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
+	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-	// in the AWS Security Token Service API Reference.
+	// in the Amazon Web Services Security Token Service API Reference.
 	Policy *string `type:"string"`
 
 	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),
@@ -3631,9 +3662,9 @@ type DeleteAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -3935,9 +3966,9 @@ type DescribeAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -4176,8 +4207,8 @@ type DescribeUserInput struct {
 	ServerId *string `min:"19" type:"string" required:"true"`
 
 	// The name of the user assigned to one or more servers. User names are part
-	// of the sign-in credentials to use the AWS Transfer Family service and perform
-	// file transfer tasks.
+	// of the sign-in credentials to use the Amazon Web Services Transfer Family
+	// service and perform file transfer tasks.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -4270,9 +4301,9 @@ type DescribedAccess struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -4291,13 +4322,14 @@ type DescribedAccess struct {
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// Specifies the logical directory mappings that specify what Amazon S3 or Amazon
-	// EFS paths and keys should be visible to the associated access and how you
-	// want to make them visible. You must specify the "Entry" and "Target" pair,
-	// where Entry shows how the path is made visible and Target is the actual Amazon
-	// S3 or EFS path. If you only specify a target, it will be displayed as is.
-	// You also must ensure that your AWS Identity and Access Management (IAM) role
-	// provides access to paths in Target.
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
 	// lock down the associated access to the designated home directory ("chroot").
@@ -4474,15 +4506,18 @@ type DescribedServer struct {
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
-	// Specifies the ARN of the AWS Certificate Manager (ACM) certificate. Required
-	// when Protocols is set to FTPS.
+	// Specifies the ARN of the Amazon Web ServicesCertificate Manager (ACM) certificate.
+	// Required when Protocols is set to FTPS.
 	Certificate *string `type:"string"`
 
 	// Specifies the domain of the storage system that is used for file transfers.
 	Domain *string `type:"string" enum:"Domain"`
 
-	// Specifies the virtual private cloud (VPC) endpoint settings that you configured
-	// for your server.
+	// The virtual private cloud (VPC) endpoint settings that are configured for
+	// your server. When you host your endpoint within your VPC, you can make it
+	// accessible only to resources within your VPC, or you can attach Elastic IP
+	// addresses and make it accessible to clients over the internet. Your VPC's
+	// default security groups are automatically assigned to your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
 	// Defines the type of endpoint that your server is connected to. If your server
@@ -4500,20 +4535,34 @@ type DescribedServer struct {
 	// or SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Specifies the mode of authentication method enabled for this service. A value
-	// of AWS_DIRECTORY_SERVICE means that you are providing access to Active Directory
-	// groups in AWS Managed Active Directory or Microsoft Active Directory in your
-	// on-premises environment or in AWS using AD Connectors. A value of SERVICE_MANAGED
-	// means that you are using this server to store and access user credentials
-	// within the service. A value of API_GATEWAY indicates that you have integrated
-	// an API Gateway endpoint that will be invoked for authenticating your user
-	// into the service.
+	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the Amazon Web
+	// Services Transfer Family service.
+	//
+	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
+	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connectors.
+	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// parameter.
+	//
+	// Use the API_GATEWAY value to integrate with an identity provider of your
+	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
+	// endpoint URL to call for authentication using the IdentityProviderDetails
+	// parameter.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Specifies the AWS Identity and Access Management (IAM) role that allows a
-	// server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFS events.
-	// When set, user activity can be viewed in your CloudWatch logs.
+	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
+	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
+	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
+	// viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
+
+	// The protocol settings that are configured for your server.
+	//
+	// Use the PassiveIp parameter to indicate passive mode. Enter a single dotted-quad
+	// IPv4 address, such as the external IP address of a firewall, router, or load
+	// balancer.
+	ProtocolDetails *ProtocolDetails `type:"structure"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
 	// protocol client can connect to your server's endpoint. The available protocols
@@ -4616,6 +4665,12 @@ func (s *DescribedServer) SetLoggingRole(v string) *DescribedServer {
 	return s
 }
 
+// SetProtocolDetails sets the ProtocolDetails field's value.
+func (s *DescribedServer) SetProtocolDetails(v *ProtocolDetails) *DescribedServer {
+	s.ProtocolDetails = v
+	return s
+}
+
 // SetProtocols sets the Protocols field's value.
 func (s *DescribedServer) SetProtocols(v []*string) *DescribedServer {
 	s.Protocols = v
@@ -4668,13 +4723,14 @@ type DescribedUser struct {
 	// A HomeDirectory example is /bucket_name/home/mydirectory.
 	HomeDirectory *string `type:"string"`
 
-	// Specifies the logical directory mappings that specify what Amazon S3 or EFS
-	// paths and keys should be visible to your user and how you want to make them
-	// visible. You will need to specify the "Entry" and "Target" pair, where Entry
-	// shows how the path is made visible and Target is the actual Amazon S3 or
-	// EFS path. If you only specify a target, it will be displayed as is. You will
-	// need to also make sure that your AWS Identity and Access Management (IAM)
-	// role provides access to paths in Target.
+	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
+	// and keys should be visible to your user and how you want to make them visible.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
 	// lock your user down to the designated home directory ("chroot"). To do this,
@@ -4802,10 +4858,10 @@ func (s *DescribedUser) SetUserName(v string) *DescribedUser {
 // IP address to your server's endpoint.
 //
 // After May 19, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
-// in your AWS account if your account hasn't already done so before May 19,
-// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
-// in your AWS account on or before May 19, 2021, you will not be affected.
-// After this date, use EndpointType=VPC.
+// in your Amazon Web Servicesaccount if your account hasn't already done so
+// before May 19, 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+// in your Amazon Web Servicesaccount on or before May 19, 2021, you will not
+// be affected. After this date, use EndpointType=VPC.
 //
 // For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 type EndpointDetails struct {
@@ -4903,10 +4959,22 @@ func (s *EndpointDetails) SetVpcId(v string) *EndpointDetails {
 }
 
 // Represents an object that contains entries and targets for HomeDirectoryMappings.
+//
+// The following is an Entry and Target pair example for chroot.
+//
+// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+//
+// If the target of a logical directory entry does not exist in Amazon S3 or
+// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
+// or EFS API to create 0 byte objects as place holders for your directory.
+// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
+// can use the put-object operation. For example, you use the following: aws
+// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
+// the end of the key name ends in a / for it to be considered a folder.
 type HomeDirectoryMapEntry struct {
 	_ struct{} `type:"structure"`
 
-	// Represents an entry and a target for HomeDirectoryMappings.
+	// Represents an entry for HomeDirectoryMappings.
 	//
 	// Entry is a required field
 	Entry *string `type:"string" required:"true"`
@@ -4961,8 +5029,8 @@ func (s *HomeDirectoryMapEntry) SetTarget(v string) *HomeDirectoryMapEntry {
 type IdentityProviderDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS Directory Service directory that you want to stop
-	// sharing.
+	// The identifier of the Amazon Web ServicesDirectory Service directory that
+	// you want to stop sharing.
 	DirectoryId *string `min:"12" type:"string"`
 
 	// Provides the type of InvocationRole used to authenticate the user account.
@@ -5138,8 +5206,8 @@ func (s *ImportSshPublicKeyOutput) SetUserName(v string) *ImportSshPublicKeyOutp
 	return s
 }
 
-// This exception is thrown when an error occurs in the AWS Transfer Family
-// service.
+// This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+// Family service.
 type InternalServiceError struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5603,8 +5671,8 @@ type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// Requests the tags associated with a particular Amazon Resource Name (ARN).
-	// An ARN is an identifier for a specific AWS resource, such as a server, user,
-	// or role.
+	// An ARN is an identifier for a specific Amazon Web Services resource, such
+	// as a server, user, or role.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
@@ -5836,9 +5904,9 @@ type ListedAccess struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -5925,14 +5993,26 @@ type ListedServer struct {
 	// the public internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// Specifies the authentication method used to validate a user for a server
-	// that was specified. This can include Secure Shell (SSH), Active Directory
-	// groups, user name and password combinations, or your own custom authentication
-	// method.
+	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the Amazon Web
+	// Services Transfer Family service.
+	//
+	// Use AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in
+	// Amazon Web Services Managed Active Directory or Microsoft Active Directory
+	// in your on-premises environment or in Amazon Web Services using AD Connectors.
+	// This option also requires you to provide a Directory ID using the IdentityProviderDetails
+	// parameter.
+	//
+	// Use the API_GATEWAY value to integrate with an identity provider of your
+	// choosing. The API_GATEWAY setting requires you to provide an API Gateway
+	// endpoint URL to call for authentication using the IdentityProviderDetails
+	// parameter.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
-	// Specifies the AWS Identity and Access Management (IAM) role that allows a
-	// server to turn on Amazon CloudWatch logging.
+	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
+	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
+	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
+	// viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
 	// Specifies the unique system assigned identifier for the servers that were
@@ -6171,6 +6251,39 @@ func (s *PosixProfile) SetUid(v int64) *PosixProfile {
 	return s
 }
 
+// The protocol settings that are configured for your server.
+//
+// This type is only valid in the UpdateServer API.
+type ProtocolDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates passive mode, for FTP and FTPS protocols. Enter a single dotted-quad
+	// IPv4 address, such as the external IP address of a firewall, router, or load
+	// balancer. For example:
+	//
+	// aws transfer update-server --protocol-details PassiveIp=0.0.0.0
+	//
+	// Replace 0.0.0.0 in the example above with the actual IP address you want
+	// to use.
+	PassiveIp *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ProtocolDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProtocolDetails) GoString() string {
+	return s.String()
+}
+
+// SetPassiveIp sets the PassiveIp field's value.
+func (s *ProtocolDetails) SetPassiveIp(v string) *ProtocolDetails {
+	s.PassiveIp = &v
+	return s
+}
+
 // The requested resource does not exist.
 type ResourceExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -6233,7 +6346,7 @@ func (s *ResourceExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when a resource is not found by the AWS Transfer
+// This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
 // Family service.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -6296,7 +6409,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request has failed because the AWS Transfer Family service is not available.
+// The request has failed because the Amazon Web ServicesTransfer Family service
+// is not available.
 type ServiceUnavailableException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6577,8 +6691,8 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// An Amazon Resource Name (ARN) for a specific AWS resource, such as a server,
-	// user, or role.
+	// An Amazon Resource Name (ARN) for a specific Amazon Web Services resource,
+	// such as a server, user, or role.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
@@ -6871,8 +6985,8 @@ type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The value of the resource that will have the tag removed. An Amazon Resource
-	// Name (ARN) is an identifier for a specific AWS resource, such as a server,
-	// user, or role.
+	// Name (ARN) is an identifier for a specific Amazon Web Services resource,
+	// such as a server, user, or role.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
@@ -6948,9 +7062,9 @@ type UpdateAccessInput struct {
 
 	// A unique identifier that is required to identify specific groups within your
 	// directory. The users of the group that you associate have access to your
-	// Amazon S3 or Amazon EFS resources over the enabled protocols using AWS Transfer
-	// Family. If you know the group name, you can view the SID values by running
-	// the following command using Windows PowerShell.
+	// Amazon S3 or Amazon EFS resources over the enabled protocols using Amazon
+	// Web Services Transfer Family. If you know the group name, you can view the
+	// SID values by running the following command using Windows PowerShell.
 	//
 	// Get-ADGroup -Filter {samAccountName -like "YourGroupName*"} -Properties *
 	// | Select SamAccountName,ObjectSid
@@ -6975,10 +7089,10 @@ type UpdateAccessInput struct {
 	// and keys should be visible to your user and how you want to make them visible.
 	// You must specify the Entry and Target pair, where Entry shows how the path
 	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
-	// you only specify a target, it will be displayed as is. You also must ensure
-	// that your AWS Identity and Access Management (IAM) role provides access to
-	// paths in Target. This value can only be set when HomeDirectoryType is set
-	// to LOGICAL.
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
 	// The following is an Entry and Target pair example.
 	//
@@ -6991,17 +7105,15 @@ type UpdateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
-	// [ { "Entry": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// Amazon EFS, the entry will be ignored. As a workaround, you can use the Amazon
-	// S3 API or EFS API to create 0-byte objects as place holders for your directory.
-	// If using the AWS CLI, use the s3api or efsapi call instead of s3 or efs so
-	// you can use the put-object operation. For example, you can use the following.
-	//
-	// aws s3api put-object --bucket bucketname --key path/to/folder/
-	//
-	// The end of the key name must end in a / for it to be considered a folder.
+	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
+	// or EFS API to create 0 byte objects as place holders for your directory.
+	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
+	// can use the put-object operation. For example, you use the following: aws
+	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
+	// the end of the key name ends in a / for it to be considered a folder.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
@@ -7020,14 +7132,14 @@ type UpdateAccessInput struct {
 	// This only applies when domain of ServerId is S3. Amazon EFS does not use
 	// scope down policy.
 	//
-	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
-	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
-	// policy as a JSON blob and pass it in the Policy argument.
+	// For scope-down policies, Amazon Web ServicesTransfer Family stores the policy
+	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
+	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-	// in the AWS Security Token Service API Reference.
+	// in the Amazon Web ServicesSecurity Token Service API Reference.
 	Policy *string `type:"string"`
 
 	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
@@ -7157,7 +7269,8 @@ type UpdateAccessOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The external ID of the group whose users have access to your Amazon S3 or
-	// Amazon EFS resources over the enabled protocols using AWS Transfer Family.
+	// Amazon EFS resources over the enabled protocols using Amazon Web ServicesTransfer
+	// Family.
 	//
 	// ExternalId is a required field
 	ExternalId *string `min:"1" type:"string" required:"true"`
@@ -7193,19 +7306,19 @@ func (s *UpdateAccessOutput) SetServerId(v string) *UpdateAccessOutput {
 type UpdateServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Certificate Manager (ACM) certificate.
-	// Required when Protocols is set to FTPS.
+	// The Amazon Resource Name (ARN) of the Amazon Web ServicesCertificate Manager
+	// (ACM) certificate. Required when Protocols is set to FTPS.
 	//
 	// To request a new public certificate, see Request a public certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-public.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web ServicesCertificate Manager User Guide.
 	//
 	// To import an existing certificate into ACM, see Importing certificates into
 	// ACM (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web ServicesCertificate Manager User Guide.
 	//
 	// To request a private certificate to use FTPS through private IP addresses,
 	// see Request a private certificate (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-request-private.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web ServicesCertificate Manager User Guide.
 	//
 	// Certificates with the following cryptographic algorithms and key sizes are
 	// supported:
@@ -7225,10 +7338,10 @@ type UpdateServerInput struct {
 	Certificate *string `type:"string"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your server. With a VPC endpoint, you can restrict access to your server
-	// to resources only within your VPC. To control incoming internet traffic,
-	// you will need to associate one or more Elastic IP addresses with your server's
-	// endpoint.
+	// your server. When you host your endpoint within your VPC, you can make it
+	// accessible only to resources within your VPC, or you can attach Elastic IP
+	// addresses and make it accessible to clients over the internet. Your VPC's
+	// default security groups are automatically assigned to your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
 	// The type of endpoint that you want your server to use. You can choose to
@@ -7238,10 +7351,10 @@ type UpdateServerInput struct {
 	// facing by attaching Elastic IP addresses directly to it.
 	//
 	// After May 19, 2021, you won't be able to create a server using EndpointType=VPC_ENDPOINT
-	// in your AWS account if your account hasn't already done so before May 19,
-	// 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
-	// in your AWS account on or before May 19, 2021, you will not be affected.
-	// After this date, use EndpointType=VPC.
+	// in your Amazon Web Servicesaccount if your account hasn't already done so
+	// before May 19, 2021. If you have already created servers with EndpointType=VPC_ENDPOINT
+	// in your Amazon Web Servicesaccount on or before May 19, 2021, you will not
+	// be affected. After this date, use EndpointType=VPC.
 	//
 	// For more information, see https://docs.aws.amazon.com/transfer/latest/userguide/create-server-in-vpc.html#deprecate-vpc-endpoint.
 	//
@@ -7260,17 +7373,25 @@ type UpdateServerInput struct {
 	//
 	// For more information, see Change the host key for your SFTP-enabled server
 	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
-	// in the AWS Transfer Family User Guide.
+	// in the Amazon Web ServicesTransfer Family User Guide.
 	HostKey *string `type:"string" sensitive:"true"`
 
 	// An array containing all of the information required to call a customer's
 	// authentication API method.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Changes the AWS Identity and Access Management (IAM) role that allows Amazon
-	// S3 or Amazon EFS events to be logged in Amazon CloudWatch, turning logging
-	// on or off.
+	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
+	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
+	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
+	// viewed in your CloudWatch logs.
 	LoggingRole *string `type:"string"`
+
+	// The protocol settings that are configured for your server.
+	//
+	// Use the PassiveIp parameter to indicate passive mode (for FTP and FTPS protocols).
+	// Enter a single dotted-quad IPv4 address, such as the external IP address
+	// of a firewall, router, or load balancer.
+	ProtocolDetails *ProtocolDetails `type:"structure"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
 	// protocol client can connect to your server's endpoint. The available protocols
@@ -7283,7 +7404,7 @@ type UpdateServerInput struct {
 	//
 	//    * File Transfer Protocol (FTP): Unencrypted file transfer
 	//
-	// If you select FTPS, you must choose a certificate stored in AWS Certificate
+	// If you select FTPS, you must choose a certificate stored in Amazon Web ServicesCertificate
 	// Manager (ACM) which will be used to identify your server when clients connect
 	// to it over FTPS.
 	//
@@ -7381,6 +7502,12 @@ func (s *UpdateServerInput) SetLoggingRole(v string) *UpdateServerInput {
 	return s
 }
 
+// SetProtocolDetails sets the ProtocolDetails field's value.
+func (s *UpdateServerInput) SetProtocolDetails(v *ProtocolDetails) *UpdateServerInput {
+	s.ProtocolDetails = v
+	return s
+}
+
 // SetProtocols sets the Protocols field's value.
 func (s *UpdateServerInput) SetProtocols(v []*string) *UpdateServerInput {
 	s.Protocols = v
@@ -7436,23 +7563,30 @@ type UpdateUserInput struct {
 
 	// Logical directory mappings that specify what Amazon S3 or Amazon EFS paths
 	// and keys should be visible to your user and how you want to make them visible.
-	// You will need to specify the "Entry" and "Target" pair, where Entry shows
-	// how the path is made visible and Target is the actual Amazon S3 or Amazon
-	// EFS path. If you only specify a target, it will be displayed as is. You will
-	// need to also make sure that your IAM role provides access to paths in Target.
-	// The following is an example.
+	// You must specify the Entry and Target pair, where Entry shows how the path
+	// is made visible and Target is the actual Amazon S3 or Amazon EFS path. If
+	// you only specify a target, it is displayed as is. You also must ensure that
+	// your Amazon Web Services Identity and Access Management (IAM) role provides
+	// access to paths in Target. This value can only be set when HomeDirectoryType
+	// is set to LOGICAL.
 	//
-	// '[ "/bucket2/documentation", { "Entry": "your-personal-report.pdf", "Target":
-	// "/bucket3/customized-reports/${transfer:UserName}.pdf" } ]'
+	// The following is an Entry and Target pair example.
+	//
+	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
+	// } ]
 	//
 	// In most cases, you can use this value instead of the scope-down policy to
 	// lock down your user to the designated home directory ("chroot"). To do this,
 	// you can set Entry to '/' and set Target to the HomeDirectory parameter value.
 	//
+	// The following is an Entry and Target pair example for chroot.
+	//
+	// [ { "Entry:": "/", "Target": "/bucket_name/home/mydirectory" } ]
+	//
 	// If the target of a logical directory entry does not exist in Amazon S3 or
-	// EFS, the entry will be ignored. As a workaround, you can use the Amazon S3
-	// API or EFS API to create 0-byte objects as place holders for your directory.
-	// If using the AWS CLI, use the s3api or efsapi call instead of s3 efs so you
+	// EFS, the entry is ignored. As a workaround, you can use the Amazon S3 API
+	// or EFS API to create 0 byte objects as place holders for your directory.
+	// If using the CLI, use the s3api or efsapi call instead of s3 or efs so you
 	// can use the put-object operation. For example, you use the following: aws
 	// s3api put-object --bucket bucketname --key path/to/folder/. Make sure that
 	// the end of the key name ends in a / for it to be considered a folder.
@@ -7474,14 +7608,14 @@ type UpdateUserInput struct {
 	// This only applies when domain of ServerId is S3. Amazon EFS does not use
 	// scope-down policies.
 	//
-	// For scope-down policies, AWS Transfer Family stores the policy as a JSON
-	// blob, instead of the Amazon Resource Name (ARN) of the policy. You save the
-	// policy as a JSON blob and pass it in the Policy argument.
+	// For scope-down policies, Amazon Web ServicesTransfer Family stores the policy
+	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
+	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
 	// For an example of a scope-down policy, see Creating a scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/users.html#users-policies-scope-down).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
-	// in the AWS Security Token Service API Reference.
+	// in the Amazon Web Services Security Token Service API Reference.
 	Policy *string `type:"string"`
 
 	// Specifies the full POSIX identity, including user ID (Uid), group ID (Gid),

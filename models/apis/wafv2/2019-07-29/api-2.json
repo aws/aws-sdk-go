@@ -1641,15 +1641,11 @@
     },
     "GetRuleGroupRequest":{
       "type":"structure",
-      "required":[
-        "Name",
-        "Scope",
-        "Id"
-      ],
       "members":{
         "Name":{"shape":"EntityName"},
         "Scope":{"shape":"Scope"},
-        "Id":{"shape":"EntityId"}
+        "Id":{"shape":"EntityId"},
+        "ARN":{"shape":"ResourceArn"}
       }
     },
     "GetRuleGroupResponse":{
@@ -2664,7 +2660,22 @@
         "HTML_ENTITY_DECODE",
         "LOWERCASE",
         "CMD_LINE",
-        "URL_DECODE"
+        "URL_DECODE",
+        "BASE64_DECODE",
+        "HEX_DECODE",
+        "MD5",
+        "REPLACE_COMMENTS",
+        "ESCAPE_SEQ_DECODE",
+        "SQL_HEX_DECODE",
+        "CSS_DECODE",
+        "JS_DECODE",
+        "NORMALIZE_PATH",
+        "NORMALIZE_PATH_WIN",
+        "REMOVE_NULLS",
+        "REPLACE_NULLS",
+        "BASE64_DECODE_EXT",
+        "URL_DECODE_UNI",
+        "UTF8_TO_UNICODE"
       ]
     },
     "TextTransformations":{
