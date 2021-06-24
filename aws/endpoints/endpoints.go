@@ -48,12 +48,37 @@ type Options struct {
 	// This option is ignored if StrictMatching is enabled.
 	ResolveUnknownService bool
 
+	// Specifies the EC2 Instance Metadata Service default endpoint selection mode (IPv4 or IPv6)
+	EC2MetadataEndpointMode EC2IMDSEndpointMode
+
 	// STS Regional Endpoint flag helps with resolving the STS endpoint
 	STSRegionalEndpoint STSRegionalEndpoint
 
 	// S3 Regional Endpoint flag helps with resolving the S3 endpoint
 	S3UsEast1RegionalEndpoint S3UsEast1RegionalEndpoint
 }
+
+// EC2IMDSEndpointMode is an enum configuration variable describing the client endpoint mode.
+type EC2IMDSEndpointMode uint
+
+// SetFromString sets the EC2IMDSEndpointMode based on the provided string value. Unknown values will default to EC2IMDSEndpointModeUnset
+func (e *EC2IMDSEndpointMode) SetFromString(v string) {
+	switch {
+	case strings.EqualFold(v, "IPv6"):
+		*e = EC2IMDSEndpointModeIPv6
+	case strings.EqualFold(v, "IPv4"):
+		*e = EC2IMDSEndpointModeIPv4
+	default:
+		*e = EC2IMDSEndpointModeUnset
+	}
+}
+
+// Enumeration values for EC2IMDSEndpointMode
+const (
+	EC2IMDSEndpointModeUnset EC2IMDSEndpointMode = iota
+	EC2IMDSEndpointModeIPv4
+	EC2IMDSEndpointModeIPv6
+)
 
 // STSRegionalEndpoint is an enum for the states of the STS Regional Endpoint
 // options.

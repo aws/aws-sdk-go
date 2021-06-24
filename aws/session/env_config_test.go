@@ -356,6 +356,66 @@ func TestLoadEnvConfig(t *testing.T) {
 				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
 			},
 		},
+		21: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
+			},
+			Config: envConfig{
+				EC2IMDSEndpointMode:   endpoints.EC2IMDSEndpointModeIPv6,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		22: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv4",
+			},
+			Config: envConfig{
+				EC2IMDSEndpointMode:   endpoints.EC2IMDSEndpointModeIPv4,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		23: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "foobar",
+			},
+			Config: envConfig{
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		24: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://endpoint.localhost",
+			},
+			Config: envConfig{
+				EC2IMDSEndpoint:       "http://endpoint.localhost",
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		25: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT":      "http://endpoint.localhost",
+			},
+			Config: envConfig{
+				EC2IMDSEndpoint:       "http://endpoint.localhost",
+				EC2IMDSEndpointMode:   endpoints.EC2IMDSEndpointModeIPv6,
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
+		26: {
+			Env: map[string]string{
+				"AWS_EC2_METADATA_DISABLED": "false",
+			},
+			Config: envConfig{
+				SharedCredentialsFile: shareddefaults.SharedCredentialsFilename(),
+				SharedConfigFile:      shareddefaults.SharedConfigFilename(),
+			},
+		},
 	}
 
 	for i, c := range cases {

@@ -346,3 +346,49 @@ func TestPartitionForRegion_NotFound(t *testing.T) {
 		t.Errorf("expect no partition to be found, got %v", actual)
 	}
 }
+
+func TestEC2MetadataEndpoint(t *testing.T) {
+	const v4URL = "http://169.254.169.254"
+	const v6URL = "http://[fd00:ec2::254]"
+
+	cases := []struct {
+		Options  Options
+		Expected string
+	}{
+		{
+			Expected: v4URL,
+		},
+		{
+			Options: Options{
+				EC2MetadataEndpointMode: EC2IMDSEndpointModeIPv4,
+			},
+			Expected: v4URL,
+		},
+		{
+			Options: Options{
+				EC2MetadataEndpointMode: EC2IMDSEndpointModeIPv6,
+			},
+			Expected: v6URL,
+		},
+	}
+
+	for _, p := range DefaultPartitions() {
+		var region string
+		for r := range p.Regions() {
+			region = r
+			break
+		}
+
+		for _, c := range cases {
+			endpoint, err := p.EndpointFor("ec2metadata", region, func(options *Options) {
+				*options = c.Options
+			})
+			if err != nil {
+				t.Fatalf("expect no error, got %v", err)
+			}
+			if e, a := c.Expected, endpoint.URL; e != a {
+				t.Errorf("exect %v, got %v", e, a)
+			}
+		}
+	}
+}

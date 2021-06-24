@@ -294,6 +294,46 @@ func TestLoadSharedConfig(t *testing.T) {
 				CredentialProcess: "/path/to/process",
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpoint",
+			Expected: sharedConfig{
+				Profile:         "EC2MetadataServiceEndpoint",
+				EC2IMDSEndpoint: "http://endpoint.localhost",
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeIPv6",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointModeIPv6",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeIPv6,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeIPv4",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointModeIPv4",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeIPv4,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeUnknown",
+			Expected: sharedConfig{
+				Profile: "EC2MetadataServiceEndpointModeUnknown",
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointAndModeMixed",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointAndModeMixed",
+				EC2IMDSEndpoint:     "http://endpoint.localhost",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeIPv6,
+			},
+		},
 	}
 
 	for i, c := range cases {
