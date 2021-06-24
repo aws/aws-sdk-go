@@ -5,7 +5,7 @@ package api
 import (
 	"bytes"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/endpoints"
+	awsutil2 "github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/blinkops/blink-sdk/plugin"
 	"github.com/go-yaml/yaml"
 	"os"
@@ -640,10 +640,6 @@ func (o *Operation) GoCode() string {
 func (o *Operation) GenerateAction() error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
-	awsPartition := endpoints.AwsPartition()
-	operationServiceRegions := awsPartition.Regions()
-	services := awsPartition.Services()
-
 	defaultRegion := ""
 
 	apiName := o.API.name
@@ -651,22 +647,11 @@ func (o *Operation) GenerateAction() error {
 		apiName = o.API.Metadata.ServiceID
 	}
 
-	var operationRegions []string
-	if operationService, ok := services[strings.ToLower(apiName)]; ok {
-		operationServiceRegions = operationService.Regions()
-	} else {
-		fmt.Printf("|")
-	}
-
-	if operationServiceRegions != nil {
-		for _, region := range operationServiceRegions {
-			operationRegions = append(operationRegions, region.ID())
-		}
-	}
-
+	operationRegions := awsutil2.GetServiceRegions(apiName)
 	if len(operationRegions) > 0 {
-		defaultRegion = operationRegions[0]
+		operationRegions = append(operationRegions, "*")
 	}
+
 
 	if len(operationRegions) > 0 {
 		actionParameters["awsRegion"] = plugin.ActionParameter{

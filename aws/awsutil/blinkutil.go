@@ -2,6 +2,7 @@ package awsutil
 
 import (
 	"fmt"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"reflect"
 	"strconv"
 	"strings"
@@ -250,4 +251,24 @@ func UnpackParameters(parameters map[string]interface{}, shape interface{}) map[
 	}
 
 	return unpackParameters(parametersMap, shape)
+}
+
+
+func GetServiceRegions(serviceName string) []string {
+	awsPartition := endpoints.AwsPartition()
+	operationServiceRegions := awsPartition.Regions()
+	services := awsPartition.Services()
+
+	var operationRegions []string
+	if operationService, ok := services[strings.ToLower(serviceName)]; ok {
+		operationServiceRegions = operationService.Regions()
+	}
+
+	if operationServiceRegions != nil {
+		for _, region := range operationServiceRegions {
+			operationRegions = append(operationRegions, region.ID())
+		}
+	}
+
+	return operationRegions
 }

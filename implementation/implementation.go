@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/accessanalyzer"
@@ -1745,6 +1746,37 @@ func (p *AWSPlugin) GetActions() []plugin.Action {
 	return p.actions
 }
 
+func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters map[string]interface{}) (map[string]interface{}, error) {
+	if actionParameters["awsRegion"] == "*" {
+		result := make(map[string]interface{})
+		availableRegions := awsutil.GetServiceRegions(packageName)
+		for _, region := range availableRegions {
+			actionParameters["awsRegion"] = region
+			regionResult, err := executeAction(packageName, ctx, actionExecutor, actionParameters)
+			if err != nil {
+				result[region] = map[string]interface{}{
+					"error": err.Error(),
+				}
+			} else {
+				result[region] = regionResult
+			}
+		}
+		return result, nil
+	}
+
+	if err := appendServiceToParametersByContext(packageName, ctx, actionParameters); err != nil {
+		return nil, fmt.Errorf("failed to append service to parameters, error: %v", err)
+	}
+
+	log.Tracef("Received parameters for action: %v", actionParameters)
+	output, err := actionExecutor(actionParameters)
+	if err != nil {
+		return nil, err
+	}
+
+	return output, nil
+}
+
 func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.ExecuteActionRequest) (*plugin.ExecuteActionResponse, error) {
 	log.Debugf("Requested to execute action: \n %v", *request)
 
@@ -1763,12 +1795,7 @@ func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.Exe
 		return nil, fmt.Errorf("failed to get action executor, error: %v", err)
 	}
 
-	if err := appendServiceToParametersByContext(packageName, ctx, awsActionParameters); err != nil {
-		return nil, fmt.Errorf("failed to append service to parameters, error: %v", err)
-	}
-
-	log.Tracef("Received parameters for action: %v", awsActionParameters)
-	output, err := actionExecutor(awsActionParameters)
+	output, err := executeAction(packageName, ctx, actionExecutor, awsActionParameters)
 	if err != nil {
 		return nil, err
 	}
@@ -1883,7 +1910,7 @@ func getActionParameters(request *plugin.ExecuteActionRequest) (map[string]inter
 func createAWSSessionByContext(region string, context *plugin.ActionContext) (*session.Session, error) {
 	awsCredentials, err := context.GetCredentials("aws")
 	if err != nil {
-		log.Error("Failed to get AWS awsCredentials: %v", err)
+		log.Errorf("Failed to get AWS awsCredentials: %v", err)
 		return nil, err
 	}
 	return createAWSSessionByCredentials(region, awsCredentials)
