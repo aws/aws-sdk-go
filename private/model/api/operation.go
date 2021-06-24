@@ -649,9 +649,9 @@ func (o *Operation) GenerateAction() error {
 
 	operationRegions := awsutil2.GetServiceRegions(apiName)
 	if len(operationRegions) > 0 {
+		defaultRegion = operationRegions[0]
 		operationRegions = append(operationRegions, "*")
 	}
-
 
 	if len(operationRegions) > 0 {
 		actionParameters["awsRegion"] = plugin.ActionParameter{
