@@ -6823,7 +6823,8 @@
       "members":{
         "Path":{"shape":"Path"},
         "Exclusions":{"shape":"PathList"},
-        "ConnectionName":{"shape":"ConnectionName"}
+        "ConnectionName":{"shape":"ConnectionName"},
+        "SampleSize":{"shape":"NullableInteger"}
       }
     },
     "S3TargetList":{

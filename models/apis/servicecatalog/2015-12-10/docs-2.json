@@ -1583,13 +1583,10 @@
         "DescribeProvisionedProductPlanInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "DescribeRecordInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "GetProvisionedProductOutputsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "ListAcceptedPortfolioSharesInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListBudgetsForResourceInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListConstraintsForPortfolioInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListLaunchPathsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListOrganizationPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "ListPortfoliosForProductInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "ListPortfoliosInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListPrincipalsForPortfolioInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListProvisionedProductPlansInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListProvisioningArtifactsForServiceActionInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
@@ -1600,15 +1597,18 @@
         "ListStackInstancesForProvisionedProductInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ListTagOptionsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
         "ScanProvisionedProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "SearchProductsAsAdminInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "SearchProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
+        "SearchProductsAsAdminInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
       }
     },
     "PageSizeMax100": {
       "base": null,
       "refs": {
         "DescribePortfolioSharesInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
-        "ListPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
+        "ListAcceptedPortfolioSharesInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListPortfolioAccessInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListPortfoliosForProductInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "ListPortfoliosInput$PageSize": "<p>The maximum number of items to return with this call.</p>",
+        "SearchProductsInput$PageSize": "<p>The maximum number of items to return with this call.</p>"
       }
     },
     "PageToken": {

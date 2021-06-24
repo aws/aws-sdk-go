@@ -216,7 +216,7 @@ func (c *QLDB) CreateLedgerRequest(input *CreateLedgerInput) (req *request.Reque
 
 // CreateLedger API operation for Amazon QLDB.
 //
-// Creates a new ledger in your AWS account.
+// Creates a new ledger in your AWS account in the current Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -346,10 +346,8 @@ func (c *QLDB) DeleteLedgerRequest(input *DeleteLedgerInput) (req *request.Reque
 // Deletes a ledger and all of its contents. This action is irreversible.
 //
 // If deletion protection is enabled, you must first disable it before you can
-// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-// CLI). You can disable it by calling the UpdateLedger operation to set the
-// flag to false. The QLDB console disables deletion protection for you when
-// you use it to delete a ledger.
+// delete the ledger. You can disable it by calling the UpdateLedger operation
+// to set the flag to false.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -477,7 +475,11 @@ func (c *QLDB) DescribeJournalKinesisStreamRequest(input *DescribeJournalKinesis
 //
 // Returns detailed information about a given Amazon QLDB journal stream. The
 // output includes the Amazon Resource Name (ARN), stream name, current status,
-// creation time, and the parameters of your original stream creation request.
+// creation time, and the parameters of the original stream creation request.
+//
+// This action does not return any expired journal streams. For more information,
+// see Expiration for terminal streams (https://docs.aws.amazon.com/qldb/latest/developerguide/streams.create.html#streams.create.states.expiration)
+// in the Amazon QLDB Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -601,11 +603,11 @@ func (c *QLDB) DescribeJournalS3ExportRequest(input *DescribeJournalS3ExportInpu
 // DescribeJournalS3Export API operation for Amazon QLDB.
 //
 // Returns information about a journal export job, including the ledger name,
-// export ID, when it was created, current status, and its start and end time
-// export parameters.
+// export ID, creation time, current status, and the parameters of the original
+// export creation request.
 //
 // This action does not return any expired export jobs. For more information,
-// see Export Job Expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
+// see Export job expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
 // in the Amazon QLDB Developer Guide.
 //
 // If the export job with the given ExportId doesn't exist, then throws ResourceNotFoundException.
@@ -1370,6 +1372,10 @@ func (c *QLDB) ListJournalKinesisStreamsForLedgerRequest(input *ListJournalKines
 // ledger. The output of each stream descriptor includes the same details that
 // are returned by DescribeJournalKinesisStream.
 //
+// This action does not return any expired journal streams. For more information,
+// see Expiration for terminal streams (https://docs.aws.amazon.com/qldb/latest/developerguide/streams.create.html#streams.create.states.expiration)
+// in the Amazon QLDB Developer Guide.
+//
 // This action returns a maximum of MaxResults items. It is paginated so that
 // you can retrieve all the items by calling ListJournalKinesisStreamsForLedger
 // multiple times.
@@ -1560,7 +1566,7 @@ func (c *QLDB) ListJournalS3ExportsRequest(input *ListJournalS3ExportsInput) (re
 // you can retrieve all the items by calling ListJournalS3Exports multiple times.
 //
 // This action does not return any expired export jobs. For more information,
-// see Export Job Expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
+// see Export job expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
 // in the Amazon QLDB Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1738,7 +1744,7 @@ func (c *QLDB) ListJournalS3ExportsForLedgerRequest(input *ListJournalS3ExportsF
 // times.
 //
 // This action does not return any expired export jobs. For more information,
-// see Export Job Expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
+// see Export job expiration (https://docs.aws.amazon.com/qldb/latest/developerguide/export-journal.request.html#export-journal.request.expiration)
 // in the Amazon QLDB Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2690,6 +2696,11 @@ func (c *QLDB) UpdateLedgerPermissionsModeRequest(input *UpdateLedgerPermissions
 //
 // Updates the permissions mode of a ledger.
 //
+// Before you switch to the STANDARD permissions mode, you must first create
+// all required IAM policies and table tags to avoid disruption to your users.
+// To learn more, see Migrating to the standard permissions mode (https://docs.aws.amazon.com/qldb/latest/developerguide/ledger-management.basics.html#ledger-mgmt.basics.update-permissions.migrating)
+// in the Amazon QLDB Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2772,7 +2783,8 @@ type CancelJournalKinesisStreamInput struct {
 	// LedgerName is a required field
 	LedgerName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The unique ID that QLDB assigns to each QLDB journal stream.
+	// The UUID (represented in Base62-encoded text) of the QLDB journal stream
+	// to be canceled.
 	//
 	// StreamId is a required field
 	StreamId *string `location:"uri" locationName:"streamId" min:"22" type:"string" required:"true"`
@@ -2825,7 +2837,7 @@ func (s *CancelJournalKinesisStreamInput) SetStreamId(v string) *CancelJournalKi
 type CancelJournalKinesisStreamOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ID that QLDB assigns to each QLDB journal stream.
+	// The UUID (Base62-encoded text) of the canceled QLDB journal stream.
 	StreamId *string `min:"22" type:"string"`
 }
 
@@ -2852,10 +2864,8 @@ type CreateLedgerInput struct {
 	// on ledger creation, this feature is enabled (true) by default.
 	//
 	// If deletion protection is enabled, you must first disable it before you can
-	// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-	// CLI). You can disable it by calling the UpdateLedger operation to set the
-	// flag to false. The QLDB console disables deletion protection for you when
-	// you use it to delete a ledger.
+	// delete the ledger. You can disable it by calling the UpdateLedger operation
+	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
 	// The name of the ledger that you want to create. The name must be unique among
@@ -2872,17 +2882,20 @@ type CreateLedgerInput struct {
 	// parameter can have one of the following values:
 	//
 	//    * ALLOW_ALL: A legacy permissions mode that enables access control with
-	//    API-level granularity for ledgers. This mode allows users who have SendCommand
-	//    permissions for this ledger to run all PartiQL commands (hence, ALLOW_ALL)
-	//    on any tables in the specified ledger. This mode disregards any table-level
-	//    or command-level IAM permissions policies that you create for the ledger.
+	//    API-level granularity for ledgers. This mode allows users who have the
+	//    SendCommand API permission for this ledger to run all PartiQL commands
+	//    (hence, ALLOW_ALL) on any tables in the specified ledger. This mode disregards
+	//    any table-level or command-level IAM permissions policies that you create
+	//    for the ledger.
 	//
 	//    * STANDARD: (Recommended) A permissions mode that enables access control
 	//    with finer granularity for ledgers, tables, and PartiQL commands. By default,
 	//    this mode denies all user requests to run any PartiQL commands on any
 	//    tables in this ledger. To allow PartiQL commands to run, you must create
 	//    IAM permissions policies for specific table resources and PartiQL actions,
-	//    in addition to SendCommand API permissions for the ledger.
+	//    in addition to the SendCommand API permission for the ledger. For information,
+	//    see Getting started with the standard permissions mode (https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-standard-mode.html)
+	//    in the Amazon QLDB Developer Guide.
 	//
 	// We strongly recommend using the STANDARD permissions mode to maximize the
 	// security of your ledger data.
@@ -2963,10 +2976,8 @@ type CreateLedgerOutput struct {
 	// on ledger creation, this feature is enabled (true) by default.
 	//
 	// If deletion protection is enabled, you must first disable it before you can
-	// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-	// CLI). You can disable it by calling the UpdateLedger operation to set the
-	// flag to false. The QLDB console disables deletion protection for you when
-	// you use it to delete a ledger.
+	// delete the ledger. You can disable it by calling the UpdateLedger operation
+	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
 	// The name of the ledger.
@@ -3088,7 +3099,8 @@ type DescribeJournalKinesisStreamInput struct {
 	// LedgerName is a required field
 	LedgerName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The unique ID that QLDB assigns to each QLDB journal stream.
+	// The UUID (represented in Base62-encoded text) of the QLDB journal stream
+	// to describe.
 	//
 	// StreamId is a required field
 	StreamId *string `location:"uri" locationName:"streamId" min:"22" type:"string" required:"true"`
@@ -3165,7 +3177,8 @@ func (s *DescribeJournalKinesisStreamOutput) SetStream(v *JournalKinesisStreamDe
 type DescribeJournalS3ExportInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ID of the journal export job that you want to describe.
+	// The UUID (represented in Base62-encoded text) of the journal export job to
+	// describe.
 	//
 	// ExportId is a required field
 	ExportId *string `location:"uri" locationName:"exportId" min:"22" type:"string" required:"true"`
@@ -3302,10 +3315,8 @@ type DescribeLedgerOutput struct {
 	// on ledger creation, this feature is enabled (true) by default.
 	//
 	// If deletion protection is enabled, you must first disable it before you can
-	// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-	// CLI). You can disable it by calling the UpdateLedger operation to set the
-	// flag to false. The QLDB console disables deletion protection for you when
-	// you use it to delete a ledger.
+	// delete the ledger. You can disable it by calling the UpdateLedger operation
+	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
 	// The name of the ledger.
@@ -3367,11 +3378,10 @@ func (s *DescribeLedgerOutput) SetState(v string) *DescribeLedgerOutput {
 type ExportJournalToS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// The exclusive end date and time for the range of journal contents that you
-	// want to export.
+	// The exclusive end date and time for the range of journal contents to export.
 	//
 	// The ExclusiveEndTime must be in ISO 8601 date and time format and in Universal
-	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z
+	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z.
 	//
 	// The ExclusiveEndTime must be less than or equal to the current UTC date and
 	// time.
@@ -3379,11 +3389,10 @@ type ExportJournalToS3Input struct {
 	// ExclusiveEndTime is a required field
 	ExclusiveEndTime *time.Time `type:"timestamp" required:"true"`
 
-	// The inclusive start date and time for the range of journal contents that
-	// you want to export.
+	// The inclusive start date and time for the range of journal contents to export.
 	//
 	// The InclusiveStartTime must be in ISO 8601 date and time format and in Universal
-	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z
+	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z.
 	//
 	// The InclusiveStartTime must be before ExclusiveEndTime.
 	//
@@ -3495,7 +3504,8 @@ func (s *ExportJournalToS3Input) SetS3ExportConfiguration(v *S3ExportConfigurati
 type ExportJournalToS3Output struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ID that QLDB assigns to each journal export job.
+	// The UUID (represented in Base62-encoded text) that QLDB assigns to each journal
+	// export job.
 	//
 	// To describe your export request and check the status of the job, you can
 	// use ExportId to call DescribeJournalS3Export.
@@ -3526,7 +3536,7 @@ type GetBlockInput struct {
 	// The location of the block that you want to request. An address is an Amazon
 	// Ion structure that has two fields: strandId and sequenceNo.
 	//
-	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}
+	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}.
 	//
 	// BlockAddress is a required field
 	BlockAddress *ValueHolder `type:"structure" required:"true" sensitive:"true"`
@@ -3534,7 +3544,7 @@ type GetBlockInput struct {
 	// The latest block location covered by the digest for which to request a proof.
 	// An address is an Amazon Ion structure that has two fields: strandId and sequenceNo.
 	//
-	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}
+	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}.
 	DigestTipAddress *ValueHolder `type:"structure" sensitive:"true"`
 
 	// The name of the ledger.
@@ -3722,7 +3732,7 @@ type GetRevisionInput struct {
 	// The block location of the document revision to be verified. An address is
 	// an Amazon Ion structure that has two fields: strandId and sequenceNo.
 	//
-	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}
+	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:14}.
 	//
 	// BlockAddress is a required field
 	BlockAddress *ValueHolder `type:"structure" required:"true" sensitive:"true"`
@@ -3730,10 +3740,10 @@ type GetRevisionInput struct {
 	// The latest block location covered by the digest for which to request a proof.
 	// An address is an Amazon Ion structure that has two fields: strandId and sequenceNo.
 	//
-	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}
+	// For example: {strandId:"BlFTjlSXze9BIh1KOszcE3",sequenceNo:49}.
 	DigestTipAddress *ValueHolder `type:"structure" sensitive:"true"`
 
-	// The unique ID of the document to be verified.
+	// The UUID (represented in Base62-encoded text) of the document to be verified.
 	//
 	// DocumentId is a required field
 	DocumentId *string `min:"22" type:"string" required:"true"`
@@ -3909,9 +3919,9 @@ func (s *InvalidParameterException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The information about an Amazon QLDB journal stream, including the Amazon
-// Resource Name (ARN), stream name, creation time, current status, and the
-// parameters of your original stream creation request.
+// Information about an Amazon QLDB journal stream, including the Amazon Resource
+// Name (ARN), stream name, creation time, current status, and the parameters
+// of the original stream creation request.
 type JournalKinesisStreamDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -3936,7 +3946,7 @@ type JournalKinesisStreamDescription struct {
 	InclusiveStartTime *time.Time `type:"timestamp"`
 
 	// The configuration settings of the Amazon Kinesis Data Streams destination
-	// for your QLDB journal stream.
+	// for a QLDB journal stream.
 	//
 	// KinesisConfiguration is a required field
 	KinesisConfiguration *KinesisConfiguration `type:"structure" required:"true"`
@@ -3957,7 +3967,7 @@ type JournalKinesisStreamDescription struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"StreamStatus"`
 
-	// The unique ID that QLDB assigns to each QLDB journal stream.
+	// The UUID (represented in Base62-encoded text) of the QLDB journal stream.
 	//
 	// StreamId is a required field
 	StreamId *string `min:"22" type:"string" required:"true"`
@@ -4044,9 +4054,9 @@ func (s *JournalKinesisStreamDescription) SetStreamName(v string) *JournalKinesi
 	return s
 }
 
-// The information about a journal export job, including the ledger name, export
-// ID, when it was created, current status, and its start and end time export
-// parameters.
+// Information about a journal export job, including the ledger name, export
+// ID, creation time, current status, and the parameters of the original export
+// creation request.
 type JournalS3ExportDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -4063,7 +4073,7 @@ type JournalS3ExportDescription struct {
 	// ExportCreationTime is a required field
 	ExportCreationTime *time.Time `type:"timestamp" required:"true"`
 
-	// The unique ID of the journal export job.
+	// The UUID (represented in Base62-encoded text) of the journal export job.
 	//
 	// ExportId is a required field
 	ExportId *string `min:"22" type:"string" required:"true"`
@@ -4161,16 +4171,21 @@ func (s *JournalS3ExportDescription) SetStatus(v string) *JournalS3ExportDescrip
 }
 
 // The configuration settings of the Amazon Kinesis Data Streams destination
-// for your Amazon QLDB journal stream.
+// for an Amazon QLDB journal stream.
 type KinesisConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Enables QLDB to publish multiple data records in a single Kinesis Data Streams
-	// record. To learn more, see KPL Key Concepts (https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html)
+	// record, increasing the number of records sent per API call.
+	//
+	// This option is enabled by default. Record aggregation has important implications
+	// for processing records and requires de-aggregation in your stream consumer.
+	// To learn more, see KPL Key Concepts (https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-concepts.html)
+	// and Consumer De-aggregation (https://docs.aws.amazon.com/streams/latest/dev/kinesis-kpl-consumer-deaggregation.html)
 	// in the Amazon Kinesis Data Streams Developer Guide.
 	AggregationEnabled *bool `type:"boolean"`
 
-	// The Amazon Resource Name (ARN) of the Kinesis data stream resource.
+	// The Amazon Resource Name (ARN) of the Kinesis Data Streams resource.
 	//
 	// StreamArn is a required field
 	StreamArn *string `min:"20" type:"string" required:"true"`
@@ -4714,7 +4729,7 @@ func (s *ListLedgersOutput) SetNextToken(v string) *ListLedgersOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for which you want to list the tags. For example:
+	// The Amazon Resource Name (ARN) for which to list the tags. For example:
 	//
 	// arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger
 	//
@@ -5031,7 +5046,7 @@ type S3EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a symmetric customer master key (CMK)
-	// in AWS Key Management Service (AWS KMS). Amazon QLDB does not support asymmetric
+	// in AWS Key Management Service (AWS KMS). Amazon S3 does not support asymmetric
 	// CMKs.
 	//
 	// You must provide a KmsKeyArn if you specify SSE_KMS as the ObjectEncryptionType.
@@ -5189,12 +5204,12 @@ type StreamJournalToKinesisInput struct {
 	// define this parameter, the stream runs indefinitely until you cancel it.
 	//
 	// The ExclusiveEndTime must be in ISO 8601 date and time format and in Universal
-	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z
+	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z.
 	ExclusiveEndTime *time.Time `type:"timestamp"`
 
 	// The inclusive start date and time from which to start streaming journal data.
 	// This parameter must be in ISO 8601 date and time format and in Universal
-	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z
+	// Coordinated Time (UTC). For example: 2019-06-13T21:36:34Z.
 	//
 	// The InclusiveStartTime cannot be in the future and must be before ExclusiveEndTime.
 	//
@@ -5331,7 +5346,8 @@ func (s *StreamJournalToKinesisInput) SetTags(v map[string]*string) *StreamJourn
 type StreamJournalToKinesisOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ID that QLDB assigns to each QLDB journal stream.
+	// The UUID (represented in Base62-encoded text) that QLDB assigns to each QLDB
+	// journal stream.
 	StreamId *string `min:"22" type:"string"`
 }
 
@@ -5428,15 +5444,14 @@ func (s TagResourceOutput) GoString() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) from which you want to remove the tags. For
-	// example:
+	// The Amazon Resource Name (ARN) from which to remove the tags. For example:
 	//
 	// arn:aws:qldb:us-east-1:123456789012:ledger/exampleLedger
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"20" type:"string" required:"true"`
 
-	// The list of tag keys that you want to remove.
+	// The list of tag keys to remove.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
@@ -5504,10 +5519,8 @@ type UpdateLedgerInput struct {
 	// on ledger creation, this feature is enabled (true) by default.
 	//
 	// If deletion protection is enabled, you must first disable it before you can
-	// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-	// CLI). You can disable it by calling the UpdateLedger operation to set the
-	// flag to false. The QLDB console disables deletion protection for you when
-	// you use it to delete a ledger.
+	// delete the ledger. You can disable it by calling the UpdateLedger operation
+	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
 	// The name of the ledger.
@@ -5569,10 +5582,8 @@ type UpdateLedgerOutput struct {
 	// on ledger creation, this feature is enabled (true) by default.
 	//
 	// If deletion protection is enabled, you must first disable it before you can
-	// delete the ledger using the QLDB API or the AWS Command Line Interface (AWS
-	// CLI). You can disable it by calling the UpdateLedger operation to set the
-	// flag to false. The QLDB console disables deletion protection for you when
-	// you use it to delete a ledger.
+	// delete the ledger. You can disable it by calling the UpdateLedger operation
+	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
 	// The name of the ledger.
@@ -5634,17 +5645,20 @@ type UpdateLedgerPermissionsModeInput struct {
 	// of the following values:
 	//
 	//    * ALLOW_ALL: A legacy permissions mode that enables access control with
-	//    API-level granularity for ledgers. This mode allows users who have SendCommand
-	//    permissions for this ledger to run all PartiQL commands (hence, ALLOW_ALL)
-	//    on any tables in the specified ledger. This mode disregards any table-level
-	//    or command-level IAM permissions policies that you create for the ledger.
+	//    API-level granularity for ledgers. This mode allows users who have the
+	//    SendCommand API permission for this ledger to run all PartiQL commands
+	//    (hence, ALLOW_ALL) on any tables in the specified ledger. This mode disregards
+	//    any table-level or command-level IAM permissions policies that you create
+	//    for the ledger.
 	//
 	//    * STANDARD: (Recommended) A permissions mode that enables access control
 	//    with finer granularity for ledgers, tables, and PartiQL commands. By default,
 	//    this mode denies all user requests to run any PartiQL commands on any
 	//    tables in this ledger. To allow PartiQL commands to run, you must create
 	//    IAM permissions policies for specific table resources and PartiQL actions,
-	//    in addition to SendCommand API permissions for the ledger.
+	//    in addition to the SendCommand API permission for the ledger. For information,
+	//    see Getting started with the standard permissions mode (https://docs.aws.amazon.com/qldb/latest/developerguide/getting-started-standard-mode.html)
+	//    in the Amazon QLDB Developer Guide.
 	//
 	// We strongly recommend using the STANDARD permissions mode to maximize the
 	// security of your ledger data.

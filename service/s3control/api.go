@@ -14789,6 +14789,15 @@ type S3CopyObjectOperation struct {
 
 	AccessControlGrants []*S3Grant `type:"list"`
 
+	// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption
+	// with server-side encryption using AWS KMS (SSE-KMS). Setting this header
+	// to true causes Amazon S3 to use an S3 Bucket Key for object encryption with
+	// SSE-KMS.
+	//
+	// Specifying this header with an object action doesn’t affect bucket-level
+	// settings for S3 Bucket Key.
+	BucketKeyEnabled *bool `type:"boolean"`
+
 	CannedAccessControlList *string `type:"string" enum:"S3CannedAccessControlList"`
 
 	MetadataDirective *string `type:"string" enum:"S3MetadataDirective"`
@@ -14893,6 +14902,12 @@ func (s *S3CopyObjectOperation) Validate() error {
 // SetAccessControlGrants sets the AccessControlGrants field's value.
 func (s *S3CopyObjectOperation) SetAccessControlGrants(v []*S3Grant) *S3CopyObjectOperation {
 	s.AccessControlGrants = v
+	return s
+}
+
+// SetBucketKeyEnabled sets the BucketKeyEnabled field's value.
+func (s *S3CopyObjectOperation) SetBucketKeyEnabled(v bool) *S3CopyObjectOperation {
+	s.BucketKeyEnabled = &v
 	return s
 }
 

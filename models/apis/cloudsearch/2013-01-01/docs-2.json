@@ -733,6 +733,11 @@
         "UpdateServiceAccessPoliciesRequest$AccessPolicies": "<p>The access rules you want to configure. These rules replace any existing rules. </p>"
       }
     },
+    "ResourceAlreadyExistsException": {
+      "base": "<p>The request was rejected because it attempted to create a resource that already exists.</p>",
+      "refs": {
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The request was rejected because it attempted to reference a resource that does not exist.</p>",
       "refs": {

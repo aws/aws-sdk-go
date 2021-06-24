@@ -442,6 +442,61 @@ func (a *API) applyShapeNameAliases() {
 	}
 }
 
+// renameIOSuffixedShapeNames renames shapes that have `Input` or `Output`
+// as suffix in their shape names. We add `_` and the end to avoid possible
+// conflicts with the generated operation input/output types. SDK has already
+// released quite a few shapes with input, output name suffixed with Input or Output.
+// This change uses a legacy IO suffixed list and does not rename those legacy shapes.
+// We do not rename aliased shapes. We do not rename shapes that are an input or output
+// shape of an operation.
+func (a *API) renameIOSuffixedShapeNames() {
+	// map all input shapes in service enclosure
+	inputShapes := make(map[string]*Shape, len(a.Operations))
+
+	// map all output shapes in service enclosure
+	outputShapes := make(map[string]*Shape, len(a.Operations))
+
+	for _, op := range a.Operations {
+		if len(op.InputRef.ShapeName) != 0 {
+			inputShapes[op.InputRef.Shape.ShapeName] = op.InputRef.Shape
+		}
+
+		if len(op.OutputRef.ShapeName) != 0 {
+			outputShapes[op.OutputRef.Shape.ShapeName] = op.OutputRef.Shape
+		}
+	}
+
+	for name, shape := range a.Shapes {
+		// skip if this shape is already aliased
+		if shape.AliasedShapeName {
+			continue
+		}
+
+		// skip if shape name is not suffixed with `Input` or `Output`
+		if !strings.HasSuffix(name, "Input") && !strings.HasSuffix(name, "Output") {
+			continue
+		}
+
+		// skip if this shape is an input shape
+		if s, ok := inputShapes[name]; ok && s == shape {
+			continue
+		}
+
+		// skip if this shape is an output shape
+		if s, ok := outputShapes[name]; ok && s == shape {
+			continue
+		}
+
+		// skip if this shape is a legacy io suffixed shape
+		if legacyIOSuffixed.LegacyIOSuffix(a, name) {
+			continue
+		}
+
+		// rename the shape to suffix with `_`
+		shape.Rename(name + "_")
+	}
+}
+
 // createInputOutputShapes creates toplevel input/output shapes if they
 // have not been defined in the API. This normalizes all APIs to always
 // have an input and output structure in the signature.

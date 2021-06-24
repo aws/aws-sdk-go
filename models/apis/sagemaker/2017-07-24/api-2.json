@@ -2128,6 +2128,32 @@
       "input":{"shape":"SearchRequest"},
       "output":{"shape":"SearchResponse"}
     },
+    "SendPipelineExecutionStepFailure":{
+      "name":"SendPipelineExecutionStepFailure",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendPipelineExecutionStepFailureRequest"},
+      "output":{"shape":"SendPipelineExecutionStepFailureResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
+    "SendPipelineExecutionStepSuccess":{
+      "name":"SendPipelineExecutionStepSuccess",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendPipelineExecutionStepSuccessRequest"},
+      "output":{"shape":"SendPipelineExecutionStepSuccessResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
     "StartMonitoringSchedule":{
       "name":"StartMonitoringSchedule",
       "http":{
@@ -3482,6 +3508,20 @@
         "SourcePipelineExecutionArn":{"shape":"PipelineExecutionArn"}
       }
     },
+    "CallbackStepMetadata":{
+      "type":"structure",
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "SqsQueueUrl":{"shape":"String256"},
+        "OutputParameters":{"shape":"OutputParameterList"}
+      }
+    },
+    "CallbackToken":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[a-zA-Z0-9]+$"
+    },
     "CandidateArtifactLocations":{
       "type":"structure",
       "required":["Explainability"],
@@ -4311,7 +4351,8 @@
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"DeviceFleetDescription"},
         "OutputConfig":{"shape":"EdgeOutputConfig"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "EnableIotRoleAlias":{"shape":"EnableIotRoleAlias"}
       }
     },
     "CreateDomainRequest":{
@@ -6125,7 +6166,8 @@
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "ModelArtifact":{"shape":"S3Uri"},
-        "ModelSignature":{"shape":"String"}
+        "ModelSignature":{"shape":"String"},
+        "PresetDeploymentOutput":{"shape":"EdgePresetDeploymentOutput"}
       }
     },
     "DescribeEndpointConfigInput":{
@@ -6713,6 +6755,8 @@
         "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
         "PipelineExecutionStatus":{"shape":"PipelineExecutionStatus"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
+        "PipelineExperimentConfig":{"shape":"PipelineExperimentConfig"},
+        "FailureReason":{"shape":"PipelineExecutionFailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
@@ -7324,7 +7368,9 @@
       "required":["S3OutputLocation"],
       "members":{
         "S3OutputLocation":{"shape":"S3Uri"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "PresetDeploymentType":{"shape":"EdgePresetDeploymentType"},
+        "PresetDeploymentConfig":{"shape":"String"}
       }
     },
     "EdgePackagingJobArn":{
@@ -7366,6 +7412,32 @@
         "LastModifiedTime":{"shape":"Timestamp"}
       }
     },
+    "EdgePresetDeploymentArtifact":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
+    "EdgePresetDeploymentOutput":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"EdgePresetDeploymentType"},
+        "Artifact":{"shape":"EdgePresetDeploymentArtifact"},
+        "Status":{"shape":"EdgePresetDeploymentStatus"},
+        "StatusMessage":{"shape":"String"}
+      }
+    },
+    "EdgePresetDeploymentStatus":{
+      "type":"string",
+      "enum":[
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "EdgePresetDeploymentType":{
+      "type":"string",
+      "enum":["GreengrassV2Component"]
+    },
     "EdgeVersion":{
       "type":"string",
       "max":30,
@@ -7378,6 +7450,7 @@
       "pattern":"\\d+"
     },
     "EnableCapture":{"type":"boolean"},
+    "EnableIotRoleAlias":{"type":"boolean"},
     "EnableSagemakerServicecatalogPortfolioInput":{
       "type":"structure",
       "members":{
@@ -11500,6 +11573,23 @@
         "S3OutputPath":{"shape":"S3Uri"}
       }
     },
+    "OutputParameter":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"String256"},
+        "Value":{"shape":"String1024"}
+      }
+    },
+    "OutputParameterList":{
+      "type":"list",
+      "member":{"shape":"OutputParameter"},
+      "max":50,
+      "min":0
+    },
     "PaginationToken":{
       "type":"string",
       "max":8192,
@@ -11633,6 +11723,8 @@
         "PipelineExecutionDisplayName":{"shape":"PipelineExecutionName"},
         "PipelineExecutionStatus":{"shape":"PipelineExecutionStatus"},
         "PipelineExecutionDescription":{"shape":"PipelineExecutionDescription"},
+        "PipelineExperimentConfig":{"shape":"PipelineExperimentConfig"},
+        "FailureReason":{"shape":"PipelineExecutionFailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "CreatedBy":{"shape":"UserContext"},
@@ -11649,6 +11741,11 @@
       "type":"string",
       "max":3072,
       "min":0,
+      "pattern":".*"
+    },
+    "PipelineExecutionFailureReason":{
+      "type":"string",
+      "max":1300,
       "pattern":".*"
     },
     "PipelineExecutionName":{
@@ -11693,7 +11790,8 @@
         "TransformJob":{"shape":"TransformJobStepMetadata"},
         "Model":{"shape":"ModelStepMetadata"},
         "RegisterModel":{"shape":"RegisterModelStepMetadata"},
-        "Condition":{"shape":"ConditionStepMetadata"}
+        "Condition":{"shape":"ConditionStepMetadata"},
+        "Callback":{"shape":"CallbackStepMetadata"}
       }
     },
     "PipelineExecutionSummary":{
@@ -11711,6 +11809,13 @@
       "member":{"shape":"PipelineExecutionSummary"},
       "max":100,
       "min":0
+    },
+    "PipelineExperimentConfig":{
+      "type":"structure",
+      "members":{
+        "ExperimentName":{"shape":"ExperimentEntityName"},
+        "TrialName":{"shape":"ExperimentEntityName"}
+      }
     },
     "PipelineName":{
       "type":"string",
@@ -11861,7 +11966,13 @@
         "ml.r5.8xlarge",
         "ml.r5.12xlarge",
         "ml.r5.16xlarge",
-        "ml.r5.24xlarge"
+        "ml.r5.24xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge"
       ]
     },
     "ProcessingJob":{
@@ -12917,6 +13028,42 @@
       "max":5
     },
     "Seed":{"type":"long"},
+    "SendPipelineExecutionStepFailureRequest":{
+      "type":"structure",
+      "required":["CallbackToken"],
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "FailureReason":{"shape":"String256"},
+        "ClientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendPipelineExecutionStepFailureResponse":{
+      "type":"structure",
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"}
+      }
+    },
+    "SendPipelineExecutionStepSuccessRequest":{
+      "type":"structure",
+      "required":["CallbackToken"],
+      "members":{
+        "CallbackToken":{"shape":"CallbackToken"},
+        "OutputParameters":{"shape":"OutputParameterList"},
+        "ClientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "SendPipelineExecutionStepSuccessResponse":{
+      "type":"structure",
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"}
+      }
+    },
     "ServiceCatalogEntityId":{
       "type":"string",
       "max":100,
@@ -13837,7 +13984,13 @@
         "ml.m5.2xlarge",
         "ml.m5.4xlarge",
         "ml.m5.12xlarge",
-        "ml.m5.24xlarge"
+        "ml.m5.24xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge"
       ]
     },
     "TransformInstanceTypes":{
@@ -14311,7 +14464,8 @@
         "DeviceFleetName":{"shape":"EntityName"},
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"DeviceFleetDescription"},
-        "OutputConfig":{"shape":"EdgeOutputConfig"}
+        "OutputConfig":{"shape":"EdgeOutputConfig"},
+        "EnableIotRoleAlias":{"shape":"EnableIotRoleAlias"}
       }
     },
     "UpdateDevicesRequest":{

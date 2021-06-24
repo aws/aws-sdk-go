@@ -700,9 +700,9 @@
       "refs" : {
         "ListJobsFilterTerm$Comparator" : "<p>The operator to use to filter the results.</p>",
         "SimpleCriterionForJob$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
-        "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - EQ (equals) or NE (not equals)</p></li> <li><p>OBJECT_KEY - STARTS_WITH</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS</p></li> <li><p>OBJECT_SIZE - Any operator except CONTAINS</p></li> <li><p>TAG - EQ (equals) or NE (not equals)</p></li></ul>",
+        "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - EQ (equals) or NE (not equals)</p></li> <li><p>OBJECT_KEY - STARTS_WITH</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - Any operator except CONTAINS</p></li> <li><p>OBJECT_SIZE - Any operator except CONTAINS</p></li></ul>",
         "TagCriterionForJob$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) and NE (not equals).</p>",
-        "TagScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators are EQ (equals) or NE (not equals).</p>"
+        "TagScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid values are EQ (equals) or NE (not equals).</p>"
       }
     },
     "JobDetails" : {
@@ -720,7 +720,7 @@
       }
     },
     "JobScopeTerm" : {
-      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding S3 objects from a classification job.</p>",
+      "base" : "<p>Specifies a property- or tag-based condition that defines criteria for including or excluding S3 objects from a classification job. A JobScopeTerm object can contain only one simpleScopeTerm object or one tagScopeTerm object.</p>",
       "refs" : {
         "__listOfJobScopeTerm$member" : null
       }
@@ -728,8 +728,8 @@
     "JobScopingBlock" : {
       "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding S3 objects from a classification job.</p>",
       "refs" : {
-        "Scoping$Excludes" : "<p>The property- or tag-based conditions that determine which objects to exclude from the analysis.</p>",
-        "Scoping$Includes" : "<p>The property- or tag-based conditions that determine which objects to include in the analysis.</p>"
+        "Scoping$Excludes" : "<p>The property- and tag-based conditions that determine which objects to exclude from the analysis.</p>",
+        "Scoping$Includes" : "<p>The property- and tag-based conditions that determine which objects to include in the analysis.</p>"
       }
     },
     "JobStatus" : {
@@ -907,7 +907,7 @@
       }
     },
     "Occurrences" : {
-      "base" : "<p>Provides the location of 1-15 occurrences of sensitive data that was detected by managed data identifiers or a custom data identifier and produced a sensitive data finding.</p>",
+      "base" : "<p>Specifies the location of 1-15 occurrences of sensitive data that was detected by managed data identifiers or a custom data identifier and produced a sensitive data finding.</p>",
       "refs" : {
         "CustomDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that the custom data identifier detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>",
         "DefaultDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that was detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>"
@@ -933,7 +933,7 @@
     "Pages" : {
       "base" : "<p>Specifies the location of occurrences of sensitive data in an Adobe Portable Document Format file.</p>",
       "refs" : {
-        "Occurrences$Pages" : "<p>An array of objects, one for each occurrence of sensitive data in an Adobe Portable Document Format file. Each object specifies the page that contains the data, and the position of the data on that page. This value is null for all other types of files.</p>"
+        "Occurrences$Pages" : "<p>An array of objects, one for each occurrence of sensitive data in an Adobe Portable Document Format file. Each object specifies the page that contains the data. This value is null for all other types of files.</p>"
       }
     },
     "PolicyDetails" : {
@@ -955,10 +955,10 @@
       "refs" : { }
     },
     "Range" : {
-      "base" : "<p>Provides details about the location of an occurrence of sensitive data in an Adobe Portable Document Format file, Microsoft Word document, or non-binary text file.</p>",
+      "base" : "<p>Provides details about the location of an occurrence of sensitive data in a Microsoft Word document or non-binary text file.</p>",
       "refs" : {
-        "Page$LineRange" : "<p>The line that contains the data, and the position of the data on that line.</p>",
-        "Page$OffsetRange" : "<p>The position of the data on the page, relative to the beginning of the page.</p>",
+        "Page$LineRange" : " <p>Reserved for future use.</p>",
+        "Page$OffsetRange" : " <p>Reserved for future use.</p>",
         "Ranges$member" : null
       }
     },
@@ -966,7 +966,7 @@
       "base" : "<p>Provides details about the location of occurrences of sensitive data in an Adobe Portable Document Format file, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
         "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a Microsoft Word document or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of data in: unstructured sections of an otherwise structured file, such as a comment in a file; a malformed file that Amazon Macie analyzes as plain text; and, a CSV or TSV file that has any column names that contain sensitive data.</p>",
-        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the beginning of the file.</p> <p>This value is typically null. For binary text files, Amazon Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
+        "Occurrences$OffsetRanges" : " <p>Reserved for future use.</p>"
       }
     },
     "Record" : {
@@ -1285,7 +1285,7 @@
       "refs" : { }
     },
     "TagScopeTerm" : {
-      "base" : "<p>Specifies a tag-based condition that determines whether an S3 object is included or excluded from a classification job. Tag keys and values are case sensitive. Also, Amazon Macie doesn't support use of partial values or wildcard characters in tag-based conditions.</p>",
+      "base" : "<p>Specifies a tag-based condition that determines whether an S3 object is included or excluded from a classification job.</p>",
       "refs" : {
         "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and tag keys or tag key and value pairs for including or excluding objects from the job.</p>"
       }
@@ -1584,7 +1584,7 @@
     "__listOfJobScopeTerm" : {
       "base" : null,
       "refs" : {
-        "JobScopingBlock$And" : "<p>An array of conditions, one for each condition that determines which objects to include or exclude from the job. If you specify more than one condition, Amazon Macie uses AND logic to join the conditions.</p>"
+        "JobScopingBlock$And" : "<p>An array of conditions, one for each property- or tag-based condition that determines which objects to include or exclude from the job. If you specify more than one condition, Amazon Macie uses AND logic to join the conditions.</p>"
       }
     },
     "__listOfJobSummary" : {
@@ -1646,7 +1646,7 @@
     "__listOfTagValuePair" : {
       "base" : null,
       "refs" : {
-        "TagScopeTerm$TagValues" : "<p>The tag keys or tag key and value pairs to use in the condition.</p>"
+        "TagScopeTerm$TagValues" : "<p>The tag keys or tag key and value pairs to use in the condition. To specify only tag keys in a condition, specify the keys in this array and set the value for each associated tag value to an empty string.</p>"
       }
     },
     "__listOfUnprocessedAccount" : {
@@ -1707,7 +1707,7 @@
         "S3BucketDefinitionForJob$Buckets" : "<p>An array that lists the names of the buckets.</p>",
         "SearchResourcesSimpleCriterion$Values" : "<p>An array that lists one or more values to use in the condition. If you specify multiple values, Amazon Macie uses OR logic to join the values. Valid values for each supported property (key) are:</p> <ul><li><p>ACCOUNT_ID - A string that represents the unique identifier for the AWS account that owns the resource.</p></li> <li><p>S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission\">BucketPublicAccess.effectivePermission</a> property of an S3 bucket.</p></li> <li><p>S3_BUCKET_NAME - A string that represents the name of an S3 bucket.</p></li> <li><p>S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess\">BucketMetadata.sharedAccess</a> property of an S3 bucket.</p></li></ul> <p>Values are case sensitive. Also, Macie doesn't support use of partial values or wildcard characters in values.</p>",
         "SimpleCriterionForJob$Values" : "<p>An array that lists one or more values to use in the condition. If you specify multiple values, Amazon Macie uses OR logic to join the values. Valid values for each supported property (key) are:</p> <ul><li><p>ACCOUNT_ID - A string that represents the unique identifier for the AWS account that owns the bucket.</p></li> <li><p>S3_BUCKET_EFFECTIVE_PERMISSION - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketpublicaccess-effectivepermission\">BucketPublicAccess.effectivePermission</a> property of a bucket.</p></li> <li><p>S3_BUCKET_NAME - A string that represents the name of a bucket.</p></li> <li><p>S3_BUCKET_SHARED_ACCESS - A string that represents an enumerated value that Macie defines for the <a href=\"https://docs.aws.amazon.com/macie/latest/APIReference/datasources-s3.html#datasources-s3-prop-bucketmetadata-sharedaccess\">BucketMetadata.sharedAccess</a> property of a bucket.</p></li></ul> <p>Values are case sensitive. Also, Macie doesn't support use of partial values or wildcard characters in these values.</p>",
-        "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses an OR operator to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li> <li><p>TAG - A string that represents a tag key for an object. For advanced options, use a TagScopeTerm object instead of a SimpleScopeTerm object to define a tag-based condition for the job.</p></li></ul> <p>Macie doesn't support use of wildcard characters in these values. Also, string values are case sensitive.</p>",
+        "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION or OBJECT_KEY, this array can specify multiple values and Amazon Macie uses OR logic to join the values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION - A string that represents the file name extension of an object. For example: docx or pdf</p></li> <li><p>OBJECT_KEY - A string that represents the key prefix (folder name or path) of an object. For example: logs or awslogs/eventlogs. This value applies a condition to objects whose keys (names) begin with the specified value.</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE - The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE - An integer that represents the storage size (in bytes) of an object.</p></li></ul> <p>Macie doesn't support use of wildcard characters in these values. Also, string values are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3 - 90 characters. Keywords aren't case sensitive.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current estimated cost for an account.</p></li></ul>"
@@ -1760,10 +1760,10 @@
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
         "MatchingBucket$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
-        "MatchingBucket$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p><p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "MatchingBucket$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "MatchingBucket$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
-        "MatchingBucket$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p><p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
-        "MatchingBucket$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p><p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "MatchingBucket$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
+        "MatchingBucket$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted with a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
         "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted with an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS managed AWS KMS encryption (AWS-KMS) or customer managed AWS KMS encryption (SSE-KMS).</p>",
         "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted with an Amazon S3 managed key. The objects use Amazon S3 managed encryption (SSE-S3).</p>",
@@ -1773,8 +1773,8 @@
         "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
         "ObjectLevelStatistics$Total" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "Page$PageNumber" : "<p>The page number of the page that contains the data.</p>",
-        "Range$End" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the beginning of the file to the end of the sensitive data.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the beginning of the file to the end of the sensitive data.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the beginning of the page to the end of the sensitive data.</p></li></ul>",
-        "Range$Start" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the beginning of the file to the beginning of the sensitive data.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the beginning of the file to the beginning of the sensitive data.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the beginning of the page to the beginning of the sensitive data.</p></li></ul>",
+        "Range$End" : "<p>The number of lines from the beginning of the file to the end of the sensitive data.</p> ",
+        "Range$Start" : "<p>The number of lines from the beginning of the file to the beginning of the sensitive data.</p> ",
         "Range$StartColumn" : "<p>The column number for the column that contains the data, if the file contains structured data.</p>",
         "Record$RecordIndex" : "<p>The record index, starting from 0, for the record that contains the data.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
@@ -1959,7 +1959,7 @@
         "TagCriterionPairForJob$Key" : "<p>The value for the tag key to use in the condition.</p>",
         "TagCriterionPairForJob$Value" : "<p>The tag value to use in the condition.</p>",
         "TagMap$member" : null,
-        "TagScopeTerm$Key" : "<p>The tag key to use in the condition.</p>",
+        "TagScopeTerm$Key" : "<p>The object property to use in the condition. The only valid value is TAG.</p>",
         "TagValuePair$Key" : "<p>The value for the tag key to use in the condition.</p>",
         "TagValuePair$Value" : "<p>The tag value, associated with the specified tag key (key), to use in the condition. To specify only a tag key for a condition, specify the tag key for the key property and set this value to an empty string.</p>",
         "TestCustomDataIdentifierRequest$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match. The expression can contain as many as 512 characters.</p>",
@@ -1971,6 +1971,7 @@
         "UpdateFindingsFilterRequest$Name" : "<p>A custom name for the filter. The name must contain at least 3 characters and can contain as many as 64 characters.</p> <p>We strongly recommend that you avoid including any sensitive data in the name of a filter. Other users might be able to see the filter's name, depending on the actions that they're allowed to perform in Amazon Macie.</p>",
         "UpdateFindingsFilterResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the filter that was updated.</p>",
         "UpdateFindingsFilterResponse$Id" : "<p>The unique identifier for the filter that was updated.</p>",
+        "UpdateFindingsFilterRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
         "UsageByAccount$EstimatedCost" : "<p>The estimated value for the metric.</p>",
         "UsageRecord$AccountId" : "<p>The unique identifier for the AWS account that the data applies to.</p>",
         "UsageTotal$EstimatedCost" : "<p>The estimated value for the metric.</p>",

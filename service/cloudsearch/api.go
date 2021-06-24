@@ -235,6 +235,13 @@ func (c *CloudSearch) CreateDomainRequest(input *CreateDomainInput) (req *reques
 //   * ErrCodeLimitExceededException "LimitExceeded"
 //   The request was rejected because a resource limit has already been met.
 //
+//   * ErrCodeResourceAlreadyExistsException "ResourceAlreadyExists"
+//   The request was rejected because it attempted to create a resource that already
+//   exists.
+//
+//   * ErrCodeValidationException "ValidationException"
+//   The request was rejected because it has invalid parameters.
+//
 func (c *CloudSearch) CreateDomain(input *CreateDomainInput) (*CreateDomainOutput, error) {
 	req, out := c.CreateDomainRequest(input)
 	return out, req.Send()
@@ -7943,6 +7950,18 @@ const (
 
 	// PartitionInstanceTypeSearch2xlarge is a PartitionInstanceType enum value
 	PartitionInstanceTypeSearch2xlarge = "search.2xlarge"
+
+	// PartitionInstanceTypeSearchPreviousgenerationSmall is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchPreviousgenerationSmall = "search.previousgeneration.small"
+
+	// PartitionInstanceTypeSearchPreviousgenerationLarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchPreviousgenerationLarge = "search.previousgeneration.large"
+
+	// PartitionInstanceTypeSearchPreviousgenerationXlarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchPreviousgenerationXlarge = "search.previousgeneration.xlarge"
+
+	// PartitionInstanceTypeSearchPreviousgeneration2xlarge is a PartitionInstanceType enum value
+	PartitionInstanceTypeSearchPreviousgeneration2xlarge = "search.previousgeneration.2xlarge"
 )
 
 // PartitionInstanceType_Values returns all elements of the PartitionInstanceType enum
@@ -7961,6 +7980,10 @@ func PartitionInstanceType_Values() []string {
 		PartitionInstanceTypeSearchLarge,
 		PartitionInstanceTypeSearchXlarge,
 		PartitionInstanceTypeSearch2xlarge,
+		PartitionInstanceTypeSearchPreviousgenerationSmall,
+		PartitionInstanceTypeSearchPreviousgenerationLarge,
+		PartitionInstanceTypeSearchPreviousgenerationXlarge,
+		PartitionInstanceTypeSearchPreviousgeneration2xlarge,
 	}
 }
 

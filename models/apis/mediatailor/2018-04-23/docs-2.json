@@ -361,6 +361,12 @@
         "DescribeChannelResponse$Outputs": "<p>The channel's output properties.</p>"
       }
     },
+    "ScheduleAdBreak": {
+      "base": "<p>The schedule's ad break properties.</p>",
+      "refs": {
+        "__listOfScheduleAdBreak$member": null
+      }
+    },
     "ScheduleConfiguration": {
       "base": "<p>Schedule configuration parameters. A channel must be stopped before changes can be made to the schedule.</p>",
       "refs": {
@@ -371,6 +377,12 @@
       "base": "<p>The properties for a schedule.</p>",
       "refs": {
         "__listOfScheduleEntry$member": null
+      }
+    },
+    "SecretsManagerAccessTokenConfiguration": {
+      "base": "<p>AWS Secrets Manager access token configuration parameters. For information about Secrets Manager access token authentication, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-access-configuration-access-token.html\">Working with AWS Secrets Manager access token authentication</a>.</p>",
+      "refs": {
+        "AccessConfiguration$SecretsManagerAccessTokenConfiguration": "<p>AWS Secrets Manager access token configuration parameters.</p>"
       }
     },
     "SlateSource": {
@@ -473,6 +485,12 @@
         "ListPlaybackConfigurationsResponse$Items": "<p>Array of playback configurations. This might be all the available configurations or a subset, depending on the settings that you provide and the total number of configurations stored.</p>"
       }
     },
+    "__listOfScheduleAdBreak": {
+      "base": null,
+      "refs": {
+        "ScheduleEntry$ScheduleAdBreaks": "<p>The schedule's ad break properties.</p>"
+      }
+    },
     "__listOfScheduleEntry": {
       "base": null,
       "refs": {
@@ -495,6 +513,7 @@
       "base": null,
       "refs": {
         "AdBreak$OffsetMillis": "<p>How long (in milliseconds) after the beginning of the program that an ad starts. This value must fall within 100ms of a segment boundary, otherwise the ad break will be skipped.</p>",
+        "ScheduleAdBreak$ApproximateDurationSeconds": "<p>The approximate duration of the ad break, in seconds.</p>",
         "ScheduleEntry$ApproximateDurationSeconds": "<p>The approximate duration of this program, in seconds.</p>"
       }
     },
@@ -588,11 +607,16 @@
         "ResponseOutputItem$ManifestName": "<p>The name of the manifest for the channel that will appear in the channel output's playback URL.</p>",
         "ResponseOutputItem$PlaybackUrl": "<p>The URL used for playback by content players.</p>",
         "ResponseOutputItem$SourceGroup": "<p>A string used to associate a package configuration source group with a channel output.</p>",
+        "ScheduleAdBreak$SourceLocationName": "<p>The name of the source location containing the VOD source used for the ad break.</p>",
+        "ScheduleAdBreak$VodSourceName": "<p>The name of the VOD source used for the ad break.</p>",
         "ScheduleEntry$Arn": "<p>The ARN of the program.</p>",
         "ScheduleEntry$ChannelName": "<p>The name of the channel that uses this schedule.</p>",
         "ScheduleEntry$ProgramName": "<p>The name of the program.</p>",
         "ScheduleEntry$SourceLocationName": "<p>The name of the source location.</p>",
         "ScheduleEntry$VodSourceName": "<p>The name of the VOD source.</p>",
+        "SecretsManagerAccessTokenConfiguration$HeaderName": "<p>The name of the HTTP header used to supply the access token in requests to the source location.</p>",
+        "SecretsManagerAccessTokenConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains the access token.</p>",
+        "SecretsManagerAccessTokenConfiguration$SecretStringKey": "<p>The AWS Secrets Manager <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html\">SecretString</a> key associated with the access token. MediaTailor uses the key to look up SecretString key and value pair containing the access token.</p>",
         "SlateSource$SourceLocationName": "<p>The name of the source location where the slate VOD source is stored.</p>",
         "SlateSource$VodSourceName": "<p>The slate VOD source name. The VOD source must already exist in a source location before it can be used for slate.</p>",
         "SourceLocation$Arn": "<p>The ARN of the SourceLocation.</p>",
@@ -617,6 +641,7 @@
         "DescribeSourceLocationResponse$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",
         "DescribeVodSourceResponse$CreationTime": "<p>The timestamp that indicates when the VOD source was created.</p>",
         "DescribeVodSourceResponse$LastModifiedTime": "<p>The ARN for the VOD source.</p>",
+        "ScheduleAdBreak$ApproximateStartTime": "<p>The approximate time that the ad will start playing.</p>",
         "ScheduleEntry$ApproximateStartTime": "<p>The approximate time that the program will start playing.</p>",
         "SourceLocation$CreationTime": "<p>The timestamp that indicates when the source location was created.</p>",
         "SourceLocation$LastModifiedTime": "<p>The timestamp that indicates when the source location was last modified.</p>",

@@ -235,6 +235,18 @@
         "ListTablesRequest$MaxResults": "<p>The maximum number of tables to return in the response. If more tables exist than fit in one response, then <code>NextToken</code> is returned to page through the results. </p>"
       }
     },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "SqlParameter$name": "<p>The name of the parameter.</p>"
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "SqlParameter$value": "<p>The value of the parameter. Amazon Redshift implicitly converts to the proper data type. For more inforation, see <a href=\"https://docs.aws.amazon.com/redshift/latest/dg/c_Supported_data_types.html\">Data types</a> in the <i>Amazon Redshift Database Developer Guide</i>. </p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The Amazon Redshift Data API operation failed due to a missing resource. </p>",
       "refs": {
@@ -257,6 +269,20 @@
         "ListSchemasRequest$SecretArn": "<p>The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager. </p>",
         "ListTablesRequest$SecretArn": "<p>The name or ARN of the secret that enables access to the database. This parameter is required when authenticating using AWS Secrets Manager. </p>",
         "StatementData$SecretArn": "<p>The name or Amazon Resource Name (ARN) of the secret that enables access to the database. </p>"
+      }
+    },
+    "SqlParameter": {
+      "base": "<p>A parameter used in a SQL statement.</p>",
+      "refs": {
+        "SqlParametersList$member": null
+      }
+    },
+    "SqlParametersList": {
+      "base": null,
+      "refs": {
+        "DescribeStatementResponse$QueryParameters": "<p>The parameters for the SQL statement.</p>",
+        "ExecuteStatementInput$Parameters": "<p>The parameters for the SQL statement.</p>",
+        "StatementData$QueryParameters": "<p>The parameters used in a SQL statement.</p>"
       }
     },
     "SqlRecords": {

@@ -3,8 +3,6 @@
 package greengrassv2
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -15,34 +13,208 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
-const (
-	defaultAWSToken = ""
-)
+const opBatchAssociateClientDeviceWithCoreDevice = "BatchAssociateClientDeviceWithCoreDevice"
 
-var (
-	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"CancelDeployment":            ExecuteCancelDeployment,
-		"CreateComponentVersion":      ExecuteCreateComponentVersion,
-		"CreateDeployment":            ExecuteCreateDeployment,
-		"DeleteComponent":             ExecuteDeleteComponent,
-		"DeleteCoreDevice":            ExecuteDeleteCoreDevice,
-		"DescribeComponent":           ExecuteDescribeComponent,
-		"GetComponent":                ExecuteGetComponent,
-		"GetComponentVersionArtifact": ExecuteGetComponentVersionArtifact,
-		"GetCoreDevice":               ExecuteGetCoreDevice,
-		"GetDeployment":               ExecuteGetDeployment,
-		"ListComponentVersions":       ExecuteListComponentVersions,
-		"ListComponents":              ExecuteListComponents,
-		"ListCoreDevices":             ExecuteListCoreDevices,
-		"ListDeployments":             ExecuteListDeployments,
-		"ListEffectiveDeployments":    ExecuteListEffectiveDeployments,
-		"ListInstalledComponents":     ExecuteListInstalledComponents,
-		"ListTagsForResource":         ExecuteListTagsForResource,
-		"ResolveComponentCandidates":  ExecuteResolveComponentCandidates,
-		"TagResource":                 ExecuteTagResource,
-		"UntagResource":               ExecuteUntagResource,
+// BatchAssociateClientDeviceWithCoreDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the BatchAssociateClientDeviceWithCoreDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchAssociateClientDeviceWithCoreDevice for more information on using the BatchAssociateClientDeviceWithCoreDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchAssociateClientDeviceWithCoreDeviceRequest method.
+//    req, resp := client.BatchAssociateClientDeviceWithCoreDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/BatchAssociateClientDeviceWithCoreDevice
+func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceRequest(input *BatchAssociateClientDeviceWithCoreDeviceInput) (req *request.Request, output *BatchAssociateClientDeviceWithCoreDeviceOutput) {
+	op := &request.Operation{
+		Name:       opBatchAssociateClientDeviceWithCoreDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices",
 	}
-)
+
+	if input == nil {
+		input = &BatchAssociateClientDeviceWithCoreDeviceInput{}
+	}
+
+	output = &BatchAssociateClientDeviceWithCoreDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchAssociateClientDeviceWithCoreDevice API operation for AWS IoT Greengrass V2.
+//
+// Associate a list of client devices with a core device. Use this API operation
+// to specify which client devices can discover a core device through cloud
+// discovery. With cloud discovery, client devices connect to AWS IoT Greengrass
+// to retrieve associated core devices' connectivity information and certificates.
+// For more information, see Configure cloud discovery (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-cloud-discovery.html)
+// in the AWS IoT Greengrass V2 Developer Guide.
+//
+// Client devices are local IoT devices that connect to and communicate with
+// an AWS IoT Greengrass core device over MQTT. You can connect client devices
+// to a core device to sync MQTT messages and data to AWS IoT Core and interact
+// with client devices in AWS IoT Greengrass components. For more information,
+// see Interact with local IoT devices (https://docs.aws.amazon.com/greengrass/v2/developerguide/interact-with-local-iot-devices.html)
+// in the AWS IoT Greengrass V2 Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation BatchAssociateClientDeviceWithCoreDevice for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action.
+//
+//   * InternalServerException
+//   AWS IoT Greengrass can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a request rate quota. For example, you might have exceeded
+//   the amount of times that you can retrieve device or deployment status per
+//   second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/BatchAssociateClientDeviceWithCoreDevice
+func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDevice(input *BatchAssociateClientDeviceWithCoreDeviceInput) (*BatchAssociateClientDeviceWithCoreDeviceOutput, error) {
+	req, out := c.BatchAssociateClientDeviceWithCoreDeviceRequest(input)
+	return out, req.Send()
+}
+
+// BatchAssociateClientDeviceWithCoreDeviceWithContext is the same as BatchAssociateClientDeviceWithCoreDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchAssociateClientDeviceWithCoreDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceWithContext(ctx aws.Context, input *BatchAssociateClientDeviceWithCoreDeviceInput, opts ...request.Option) (*BatchAssociateClientDeviceWithCoreDeviceOutput, error) {
+	req, out := c.BatchAssociateClientDeviceWithCoreDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opBatchDisassociateClientDeviceFromCoreDevice = "BatchDisassociateClientDeviceFromCoreDevice"
+
+// BatchDisassociateClientDeviceFromCoreDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the BatchDisassociateClientDeviceFromCoreDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchDisassociateClientDeviceFromCoreDevice for more information on using the BatchDisassociateClientDeviceFromCoreDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchDisassociateClientDeviceFromCoreDeviceRequest method.
+//    req, resp := client.BatchDisassociateClientDeviceFromCoreDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/BatchDisassociateClientDeviceFromCoreDevice
+func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDeviceRequest(input *BatchDisassociateClientDeviceFromCoreDeviceInput) (req *request.Request, output *BatchDisassociateClientDeviceFromCoreDeviceOutput) {
+	op := &request.Operation{
+		Name:       opBatchDisassociateClientDeviceFromCoreDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices",
+	}
+
+	if input == nil {
+		input = &BatchDisassociateClientDeviceFromCoreDeviceInput{}
+	}
+
+	output = &BatchDisassociateClientDeviceFromCoreDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchDisassociateClientDeviceFromCoreDevice API operation for AWS IoT Greengrass V2.
+//
+// Disassociate a list of client devices from a core device. After you disassociate
+// a client device from a core device, the client device won't be able to use
+// cloud discovery to retrieve the core device's connectivity information and
+// certificates.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation BatchDisassociateClientDeviceFromCoreDevice for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action.
+//
+//   * InternalServerException
+//   AWS IoT Greengrass can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a request rate quota. For example, you might have exceeded
+//   the amount of times that you can retrieve device or deployment status per
+//   second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/BatchDisassociateClientDeviceFromCoreDevice
+func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDevice(input *BatchDisassociateClientDeviceFromCoreDeviceInput) (*BatchDisassociateClientDeviceFromCoreDeviceOutput, error) {
+	req, out := c.BatchDisassociateClientDeviceFromCoreDeviceRequest(input)
+	return out, req.Send()
+}
+
+// BatchDisassociateClientDeviceFromCoreDeviceWithContext is the same as BatchDisassociateClientDeviceFromCoreDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchDisassociateClientDeviceFromCoreDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDeviceWithContext(ctx aws.Context, input *BatchDisassociateClientDeviceFromCoreDeviceInput, opts ...request.Option) (*BatchDisassociateClientDeviceFromCoreDeviceOutput, error) {
+	req, out := c.BatchDisassociateClientDeviceFromCoreDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opCancelDeployment = "CancelDeployment"
 
@@ -142,44 +314,6 @@ func (c *GreengrassV2) CancelDeploymentWithContext(ctx aws.Context, input *Cance
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCancelDeployment is Blink's code
-func ExecuteCancelDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CancelDeploymentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CancelDeploymentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateComponentVersion = "CreateComponentVersion"
@@ -303,44 +437,6 @@ func (c *GreengrassV2) CreateComponentVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// ExecuteCreateComponentVersion is Blink's code
-func ExecuteCreateComponentVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateComponentVersionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateComponentVersionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a "aws/request.Request" representing the
@@ -450,44 +546,6 @@ func (c *GreengrassV2) CreateDeploymentWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
-// ExecuteCreateDeployment is Blink's code
-func ExecuteCreateDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateDeploymentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateDeploymentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteComponent = "DeleteComponent"
 
 // DeleteComponentRequest generates a "aws/request.Request" representing the
@@ -590,44 +648,6 @@ func (c *GreengrassV2) DeleteComponentWithContext(ctx aws.Context, input *Delete
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteComponent is Blink's code
-func ExecuteDeleteComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteComponentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteComponentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteCoreDevice = "DeleteCoreDevice"
@@ -733,44 +753,6 @@ func (c *GreengrassV2) DeleteCoreDeviceWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
-// ExecuteDeleteCoreDevice is Blink's code
-func ExecuteDeleteCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteCoreDeviceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteCoreDeviceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeComponent = "DescribeComponent"
 
 // DescribeComponentRequest generates a "aws/request.Request" representing the
@@ -863,44 +845,6 @@ func (c *GreengrassV2) DescribeComponentWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeComponent is Blink's code
-func ExecuteDescribeComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeComponentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeComponentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetComponent = "GetComponent"
@@ -996,44 +940,6 @@ func (c *GreengrassV2) GetComponentWithContext(ctx aws.Context, input *GetCompon
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetComponent is Blink's code
-func ExecuteGetComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetComponentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetComponentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetComponentVersionArtifact = "GetComponentVersionArtifact"
@@ -1132,44 +1038,6 @@ func (c *GreengrassV2) GetComponentVersionArtifactWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
-// ExecuteGetComponentVersionArtifact is Blink's code
-func ExecuteGetComponentVersionArtifact(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetComponentVersionArtifactInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetComponentVersionArtifactRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetCoreDevice = "GetCoreDevice"
 
 // GetCoreDeviceRequest generates a "aws/request.Request" representing the
@@ -1262,44 +1130,6 @@ func (c *GreengrassV2) GetCoreDeviceWithContext(ctx aws.Context, input *GetCoreD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetCoreDevice is Blink's code
-func ExecuteGetCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetCoreDeviceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetCoreDeviceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetDeployment = "GetDeployment"
@@ -1397,42 +1227,157 @@ func (c *GreengrassV2) GetDeploymentWithContext(ctx aws.Context, input *GetDeplo
 	return out, req.Send()
 }
 
-// ExecuteGetDeployment is Blink's code
-func ExecuteGetDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
+const opListClientDevicesAssociatedWithCoreDevice = "ListClientDevicesAssociatedWithCoreDevice"
+
+// ListClientDevicesAssociatedWithCoreDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the ListClientDevicesAssociatedWithCoreDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListClientDevicesAssociatedWithCoreDevice for more information on using the ListClientDevicesAssociatedWithCoreDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListClientDevicesAssociatedWithCoreDeviceRequest method.
+//    req, resp := client.ListClientDevicesAssociatedWithCoreDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/ListClientDevicesAssociatedWithCoreDevice
+func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDeviceRequest(input *ListClientDevicesAssociatedWithCoreDeviceInput) (req *request.Request, output *ListClientDevicesAssociatedWithCoreDeviceOutput) {
+	op := &request.Operation{
+		Name:       opListClientDevicesAssociatedWithCoreDevice,
+		HTTPMethod: "GET",
+		HTTPPath:   "/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
-	delete(parameters, "_Service")
 
-	input := GetDeploymentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	if input == nil {
+		input = &ListClientDevicesAssociatedWithCoreDeviceInput{}
 	}
 
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	output = &ListClientDevicesAssociatedWithCoreDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListClientDevicesAssociatedWithCoreDevice API operation for AWS IoT Greengrass V2.
+//
+// Retrieves a paginated list of client devices that are associated with a core
+// device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Greengrass V2's
+// API operation ListClientDevicesAssociatedWithCoreDevice for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * AccessDeniedException
+//   You don't have permission to perform the action.
+//
+//   * InternalServerException
+//   AWS IoT Greengrass can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a request rate quota. For example, you might have exceeded
+//   the amount of times that you can retrieve device or deployment status per
+//   second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/ListClientDevicesAssociatedWithCoreDevice
+func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDevice(input *ListClientDevicesAssociatedWithCoreDeviceInput) (*ListClientDevicesAssociatedWithCoreDeviceOutput, error) {
+	req, out := c.ListClientDevicesAssociatedWithCoreDeviceRequest(input)
+	return out, req.Send()
+}
+
+// ListClientDevicesAssociatedWithCoreDeviceWithContext is the same as ListClientDevicesAssociatedWithCoreDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListClientDevicesAssociatedWithCoreDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDeviceWithContext(ctx aws.Context, input *ListClientDevicesAssociatedWithCoreDeviceInput, opts ...request.Option) (*ListClientDevicesAssociatedWithCoreDeviceOutput, error) {
+	req, out := c.ListClientDevicesAssociatedWithCoreDeviceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListClientDevicesAssociatedWithCoreDevicePages iterates over the pages of a ListClientDevicesAssociatedWithCoreDevice operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListClientDevicesAssociatedWithCoreDevice method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListClientDevicesAssociatedWithCoreDevice operation.
+//    pageNum := 0
+//    err := client.ListClientDevicesAssociatedWithCoreDevicePages(params,
+//        func(page *greengrassv2.ListClientDevicesAssociatedWithCoreDeviceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDevicePages(input *ListClientDevicesAssociatedWithCoreDeviceInput, fn func(*ListClientDevicesAssociatedWithCoreDeviceOutput, bool) bool) error {
+	return c.ListClientDevicesAssociatedWithCoreDevicePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListClientDevicesAssociatedWithCoreDevicePagesWithContext same as ListClientDevicesAssociatedWithCoreDevicePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDevicePagesWithContext(ctx aws.Context, input *ListClientDevicesAssociatedWithCoreDeviceInput, fn func(*ListClientDevicesAssociatedWithCoreDeviceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListClientDevicesAssociatedWithCoreDeviceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListClientDevicesAssociatedWithCoreDeviceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
 	}
 
-	req, out := svc.GetDeploymentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
+	for p.Next() {
+		if !fn(p.Page().(*ListClientDevicesAssociatedWithCoreDeviceOutput), !p.HasNextPage()) {
+			break
+		}
 	}
 
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
+	return p.Err()
 }
 
 const opListComponentVersions = "ListComponentVersions"
@@ -1485,7 +1430,8 @@ func (c *GreengrassV2) ListComponentVersionsRequest(input *ListComponentVersions
 
 // ListComponentVersions API operation for AWS IoT Greengrass V2.
 //
-// Retrieves a paginated list of all versions for a component.
+// Retrieves a paginated list of all versions for a component. Greater versions
+// are listed first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1533,44 +1479,6 @@ func (c *GreengrassV2) ListComponentVersionsWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListComponentVersions is Blink's code
-func ExecuteListComponentVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListComponentVersionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListComponentVersionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListComponentVersionsPages iterates over the pages of a ListComponentVersions operation,
@@ -1723,44 +1631,6 @@ func (c *GreengrassV2) ListComponentsWithContext(ctx aws.Context, input *ListCom
 	return out, req.Send()
 }
 
-// ExecuteListComponents is Blink's code
-func ExecuteListComponents(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListComponentsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListComponentsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListComponentsPages iterates over the pages of a ListComponents operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1910,44 +1780,6 @@ func (c *GreengrassV2) ListCoreDevicesWithContext(ctx aws.Context, input *ListCo
 	return out, req.Send()
 }
 
-// ExecuteListCoreDevices is Blink's code
-func ExecuteListCoreDevices(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListCoreDevicesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListCoreDevicesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListCoreDevicesPages iterates over the pages of a ListCoreDevices operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2095,44 +1927,6 @@ func (c *GreengrassV2) ListDeploymentsWithContext(ctx aws.Context, input *ListDe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListDeployments is Blink's code
-func ExecuteListDeployments(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListDeploymentsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListDeploymentsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListDeploymentsPages iterates over the pages of a ListDeployments operation,
@@ -2288,44 +2082,6 @@ func (c *GreengrassV2) ListEffectiveDeploymentsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteListEffectiveDeployments is Blink's code
-func ExecuteListEffectiveDeployments(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListEffectiveDeploymentsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListEffectiveDeploymentsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListEffectiveDeploymentsPages iterates over the pages of a ListEffectiveDeployments operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2479,44 +2235,6 @@ func (c *GreengrassV2) ListInstalledComponentsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
-// ExecuteListInstalledComponents is Blink's code
-func ExecuteListInstalledComponents(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListInstalledComponentsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListInstalledComponentsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListInstalledComponentsPages iterates over the pages of a ListInstalledComponents operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2655,44 +2373,6 @@ func (c *GreengrassV2) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
-// ExecuteListTagsForResource is Blink's code
-func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTagsForResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTagsForResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opResolveComponentCandidates = "ResolveComponentCandidates"
 
 // ResolveComponentCandidatesRequest generates a "aws/request.Request" representing the
@@ -2808,44 +2488,6 @@ func (c *GreengrassV2) ResolveComponentCandidatesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// ExecuteResolveComponentCandidates is Blink's code
-func ExecuteResolveComponentCandidates(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ResolveComponentCandidatesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ResolveComponentCandidatesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -2932,44 +2574,6 @@ func (c *GreengrassV2) TagResourceWithContext(ctx aws.Context, input *TagResourc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteTagResource is Blink's code
-func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUntagResource = "UntagResource"
@@ -3059,44 +2663,6 @@ func (c *GreengrassV2) UntagResourceWithContext(ctx aws.Context, input *UntagRes
 	return out, req.Send()
 }
 
-// ExecuteUntagResource is Blink's code
-func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*GreengrassV2)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // You don't have permission to perform the action.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -3151,6 +2717,302 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains a request to associate a client device with a core device. The BatchAssociateClientDeviceWithCoreDevice
+// (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html)
+// operation consumes a list of these requests.
+type AssociateClientDeviceWithCoreDeviceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AWS IoT thing that represents the client device to associate.
+	//
+	// ThingName is a required field
+	ThingName *string `locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateClientDeviceWithCoreDeviceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateClientDeviceWithCoreDeviceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateClientDeviceWithCoreDeviceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateClientDeviceWithCoreDeviceEntry"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *AssociateClientDeviceWithCoreDeviceEntry) SetThingName(v string) *AssociateClientDeviceWithCoreDeviceEntry {
+	s.ThingName = &v
+	return s
+}
+
+// Contains an error that occurs from a request to associate a client device
+// with a core device. The BatchAssociateClientDeviceWithCoreDevice (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchAssociateClientDeviceWithCoreDevice.html)
+// operation returns a list of these errors.
+type AssociateClientDeviceWithCoreDeviceErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the request.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
+	// A message that provides additional information about the error.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
+	// The name of the AWS IoT thing whose associate request failed.
+	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateClientDeviceWithCoreDeviceErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateClientDeviceWithCoreDeviceErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AssociateClientDeviceWithCoreDeviceErrorEntry) SetCode(v string) *AssociateClientDeviceWithCoreDeviceErrorEntry {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AssociateClientDeviceWithCoreDeviceErrorEntry) SetMessage(v string) *AssociateClientDeviceWithCoreDeviceErrorEntry {
+	s.Message = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *AssociateClientDeviceWithCoreDeviceErrorEntry) SetThingName(v string) *AssociateClientDeviceWithCoreDeviceErrorEntry {
+	s.ThingName = &v
+	return s
+}
+
+// Contains information about a client device that is associated to a core device
+// for cloud discovery.
+type AssociatedClientDevice struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the client device was associated, expressed in ISO 8601 format.
+	AssociationTimestamp *time.Time `locationName:"associationTimestamp" type:"timestamp"`
+
+	// The name of the AWS IoT thing that represents the associated client device.
+	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AssociatedClientDevice) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociatedClientDevice) GoString() string {
+	return s.String()
+}
+
+// SetAssociationTimestamp sets the AssociationTimestamp field's value.
+func (s *AssociatedClientDevice) SetAssociationTimestamp(v time.Time) *AssociatedClientDevice {
+	s.AssociationTimestamp = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *AssociatedClientDevice) SetThingName(v string) *AssociatedClientDevice {
+	s.ThingName = &v
+	return s
+}
+
+type BatchAssociateClientDeviceWithCoreDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the core device. This is also the name of the AWS IoT thing.
+	//
+	// CoreDeviceThingName is a required field
+	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
+
+	// The list of client devices to associate.
+	Entries []*AssociateClientDeviceWithCoreDeviceEntry `locationName:"entries" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s BatchAssociateClientDeviceWithCoreDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchAssociateClientDeviceWithCoreDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchAssociateClientDeviceWithCoreDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchAssociateClientDeviceWithCoreDeviceInput"}
+	if s.CoreDeviceThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CoreDeviceThingName"))
+	}
+	if s.CoreDeviceThingName != nil && len(*s.CoreDeviceThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CoreDeviceThingName", 1))
+	}
+	if s.Entries != nil && len(s.Entries) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Entries", 1))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoreDeviceThingName sets the CoreDeviceThingName field's value.
+func (s *BatchAssociateClientDeviceWithCoreDeviceInput) SetCoreDeviceThingName(v string) *BatchAssociateClientDeviceWithCoreDeviceInput {
+	s.CoreDeviceThingName = &v
+	return s
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchAssociateClientDeviceWithCoreDeviceInput) SetEntries(v []*AssociateClientDeviceWithCoreDeviceEntry) *BatchAssociateClientDeviceWithCoreDeviceInput {
+	s.Entries = v
+	return s
+}
+
+type BatchAssociateClientDeviceWithCoreDeviceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of any errors for the entries in the request. Each error entry contains
+	// the name of the AWS IoT thing that failed to associate.
+	ErrorEntries []*AssociateClientDeviceWithCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s BatchAssociateClientDeviceWithCoreDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchAssociateClientDeviceWithCoreDeviceOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchAssociateClientDeviceWithCoreDeviceOutput) SetErrorEntries(v []*AssociateClientDeviceWithCoreDeviceErrorEntry) *BatchAssociateClientDeviceWithCoreDeviceOutput {
+	s.ErrorEntries = v
+	return s
+}
+
+type BatchDisassociateClientDeviceFromCoreDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the core device. This is also the name of the AWS IoT thing.
+	//
+	// CoreDeviceThingName is a required field
+	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
+
+	// The list of client devices to disassociate.
+	Entries []*DisassociateClientDeviceFromCoreDeviceEntry `locationName:"entries" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s BatchDisassociateClientDeviceFromCoreDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDisassociateClientDeviceFromCoreDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchDisassociateClientDeviceFromCoreDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchDisassociateClientDeviceFromCoreDeviceInput"}
+	if s.CoreDeviceThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CoreDeviceThingName"))
+	}
+	if s.CoreDeviceThingName != nil && len(*s.CoreDeviceThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CoreDeviceThingName", 1))
+	}
+	if s.Entries != nil && len(s.Entries) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Entries", 1))
+	}
+	if s.Entries != nil {
+		for i, v := range s.Entries {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Entries", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoreDeviceThingName sets the CoreDeviceThingName field's value.
+func (s *BatchDisassociateClientDeviceFromCoreDeviceInput) SetCoreDeviceThingName(v string) *BatchDisassociateClientDeviceFromCoreDeviceInput {
+	s.CoreDeviceThingName = &v
+	return s
+}
+
+// SetEntries sets the Entries field's value.
+func (s *BatchDisassociateClientDeviceFromCoreDeviceInput) SetEntries(v []*DisassociateClientDeviceFromCoreDeviceEntry) *BatchDisassociateClientDeviceFromCoreDeviceInput {
+	s.Entries = v
+	return s
+}
+
+type BatchDisassociateClientDeviceFromCoreDeviceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of errors (if any) for the entries in the request. Each error entry
+	// contains the name of the AWS IoT thing that failed to disassociate.
+	ErrorEntries []*DisassociateClientDeviceFromCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s BatchDisassociateClientDeviceFromCoreDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchDisassociateClientDeviceFromCoreDeviceOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrorEntries sets the ErrorEntries field's value.
+func (s *BatchDisassociateClientDeviceFromCoreDeviceOutput) SetErrorEntries(v []*DisassociateClientDeviceFromCoreDeviceErrorEntry) *BatchDisassociateClientDeviceFromCoreDeviceOutput {
+	s.ErrorEntries = v
+	return s
 }
 
 type CancelDeploymentInput struct {
@@ -4721,6 +4583,94 @@ func (s *DescribeComponentOutput) SetStatus(v *CloudComponentStatus) *DescribeCo
 // SetTags sets the Tags field's value.
 func (s *DescribeComponentOutput) SetTags(v map[string]*string) *DescribeComponentOutput {
 	s.Tags = v
+	return s
+}
+
+// Contains a request to disassociate a client device from a core device. The
+// BatchDisassociateClientDeviceWithCoreDevice (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html)
+// operation consumes a list of these requests.
+type DisassociateClientDeviceFromCoreDeviceEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AWS IoT thing that represents the client device to disassociate.
+	//
+	// ThingName is a required field
+	ThingName *string `locationName:"thingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateClientDeviceFromCoreDeviceEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateClientDeviceFromCoreDeviceEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateClientDeviceFromCoreDeviceEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateClientDeviceFromCoreDeviceEntry"}
+	if s.ThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThingName"))
+	}
+	if s.ThingName != nil && len(*s.ThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *DisassociateClientDeviceFromCoreDeviceEntry) SetThingName(v string) *DisassociateClientDeviceFromCoreDeviceEntry {
+	s.ThingName = &v
+	return s
+}
+
+// Contains an error that occurs from a request to disassociate a client device
+// from a core device. The BatchDisassociateClientDeviceWithCoreDevice (https://docs.aws.amazon.com/greengrass/v2/APIReference/API_BatchDisassociateClientDeviceWithCoreDevice.html)
+// operation returns a list of these errors.
+type DisassociateClientDeviceFromCoreDeviceErrorEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The error code for the request.
+	Code *string `locationName:"code" min:"1" type:"string"`
+
+	// A message that provides additional information about the error.
+	Message *string `locationName:"message" min:"1" type:"string"`
+
+	// The name of the AWS IoT thing whose disassociate request failed.
+	ThingName *string `locationName:"thingName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DisassociateClientDeviceFromCoreDeviceErrorEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateClientDeviceFromCoreDeviceErrorEntry) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *DisassociateClientDeviceFromCoreDeviceErrorEntry) SetCode(v string) *DisassociateClientDeviceFromCoreDeviceErrorEntry {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DisassociateClientDeviceFromCoreDeviceErrorEntry) SetMessage(v string) *DisassociateClientDeviceFromCoreDeviceErrorEntry {
+	s.Message = &v
+	return s
+}
+
+// SetThingName sets the ThingName field's value.
+func (s *DisassociateClientDeviceFromCoreDeviceErrorEntry) SetThingName(v string) *DisassociateClientDeviceFromCoreDeviceErrorEntry {
+	s.ThingName = &v
 	return s
 }
 
@@ -6464,6 +6414,102 @@ func (s *LambdaVolumeMount) SetPermission(v string) *LambdaVolumeMount {
 // SetSourcePath sets the SourcePath field's value.
 func (s *LambdaVolumeMount) SetSourcePath(v string) *LambdaVolumeMount {
 	s.SourcePath = &v
+	return s
+}
+
+type ListClientDevicesAssociatedWithCoreDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the core device. This is also the name of the AWS IoT thing.
+	//
+	// CoreDeviceThingName is a required field
+	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per paginated request.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token to be used for the next set of paginated results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListClientDevicesAssociatedWithCoreDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListClientDevicesAssociatedWithCoreDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListClientDevicesAssociatedWithCoreDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListClientDevicesAssociatedWithCoreDeviceInput"}
+	if s.CoreDeviceThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CoreDeviceThingName"))
+	}
+	if s.CoreDeviceThingName != nil && len(*s.CoreDeviceThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CoreDeviceThingName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoreDeviceThingName sets the CoreDeviceThingName field's value.
+func (s *ListClientDevicesAssociatedWithCoreDeviceInput) SetCoreDeviceThingName(v string) *ListClientDevicesAssociatedWithCoreDeviceInput {
+	s.CoreDeviceThingName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListClientDevicesAssociatedWithCoreDeviceInput) SetMaxResults(v int64) *ListClientDevicesAssociatedWithCoreDeviceInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClientDevicesAssociatedWithCoreDeviceInput) SetNextToken(v string) *ListClientDevicesAssociatedWithCoreDeviceInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListClientDevicesAssociatedWithCoreDeviceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list that describes the client devices that are associated with the core
+	// device.
+	AssociatedClientDevices []*AssociatedClientDevice `locationName:"associatedClientDevices" min:"1" type:"list"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListClientDevicesAssociatedWithCoreDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListClientDevicesAssociatedWithCoreDeviceOutput) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedClientDevices sets the AssociatedClientDevices field's value.
+func (s *ListClientDevicesAssociatedWithCoreDeviceOutput) SetAssociatedClientDevices(v []*AssociatedClientDevice) *ListClientDevicesAssociatedWithCoreDeviceOutput {
+	s.AssociatedClientDevices = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListClientDevicesAssociatedWithCoreDeviceOutput) SetNextToken(v string) *ListClientDevicesAssociatedWithCoreDeviceOutput {
+	s.NextToken = &v
 	return s
 }
 

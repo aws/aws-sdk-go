@@ -3,8 +3,6 @@
 package ram
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -13,39 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
-)
-
-const (
-	defaultAWSToken = ""
-)
-
-var (
-	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"AcceptResourceShareInvitation":         ExecuteAcceptResourceShareInvitation,
-		"AssociateResourceShare":                ExecuteAssociateResourceShare,
-		"AssociateResourceSharePermission":      ExecuteAssociateResourceSharePermission,
-		"CreateResourceShare":                   ExecuteCreateResourceShare,
-		"DeleteResourceShare":                   ExecuteDeleteResourceShare,
-		"DisassociateResourceShare":             ExecuteDisassociateResourceShare,
-		"DisassociateResourceSharePermission":   ExecuteDisassociateResourceSharePermission,
-		"EnableSharingWithAwsOrganization":      ExecuteEnableSharingWithAwsOrganization,
-		"GetPermission":                         ExecuteGetPermission,
-		"GetResourcePolicies":                   ExecuteGetResourcePolicies,
-		"GetResourceShareAssociations":          ExecuteGetResourceShareAssociations,
-		"GetResourceShareInvitations":           ExecuteGetResourceShareInvitations,
-		"GetResourceShares":                     ExecuteGetResourceShares,
-		"ListPendingInvitationResources":        ExecuteListPendingInvitationResources,
-		"ListPermissions":                       ExecuteListPermissions,
-		"ListPrincipals":                        ExecuteListPrincipals,
-		"ListResourceSharePermissions":          ExecuteListResourceSharePermissions,
-		"ListResourceTypes":                     ExecuteListResourceTypes,
-		"ListResources":                         ExecuteListResources,
-		"PromoteResourceShareCreatedFromPolicy": ExecutePromoteResourceShareCreatedFromPolicy,
-		"RejectResourceShareInvitation":         ExecuteRejectResourceShareInvitation,
-		"TagResource":                           ExecuteTagResource,
-		"UntagResource":                         ExecuteUntagResource,
-		"UpdateResourceShare":                   ExecuteUpdateResourceShare,
-	}
 )
 
 const opAcceptResourceShareInvitation = "AcceptResourceShareInvitation"
@@ -154,44 +119,6 @@ func (c *RAM) AcceptResourceShareInvitationWithContext(ctx aws.Context, input *A
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAcceptResourceShareInvitation is Blink's code
-func ExecuteAcceptResourceShareInvitation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AcceptResourceShareInvitationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AcceptResourceShareInvitationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opAssociateResourceShare = "AssociateResourceShare"
@@ -309,44 +236,6 @@ func (c *RAM) AssociateResourceShareWithContext(ctx aws.Context, input *Associat
 	return out, req.Send()
 }
 
-// ExecuteAssociateResourceShare is Blink's code
-func ExecuteAssociateResourceShare(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateResourceShareInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateResourceShareRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociateResourceSharePermission = "AssociateResourceSharePermission"
 
 // AssociateResourceSharePermissionRequest generates a "aws/request.Request" representing the
@@ -442,44 +331,6 @@ func (c *RAM) AssociateResourceSharePermissionWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociateResourceSharePermission is Blink's code
-func ExecuteAssociateResourceSharePermission(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateResourceSharePermissionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateResourceSharePermissionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateResourceShare = "CreateResourceShare"
@@ -593,44 +444,6 @@ func (c *RAM) CreateResourceShareWithContext(ctx aws.Context, input *CreateResou
 	return out, req.Send()
 }
 
-// ExecuteCreateResourceShare is Blink's code
-func ExecuteCreateResourceShare(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateResourceShareInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateResourceShareRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteResourceShare = "DeleteResourceShare"
 
 // DeleteResourceShareRequest generates a "aws/request.Request" representing the
@@ -734,44 +547,6 @@ func (c *RAM) DeleteResourceShareWithContext(ctx aws.Context, input *DeleteResou
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteResourceShare is Blink's code
-func ExecuteDeleteResourceShare(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteResourceShareInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteResourceShareRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociateResourceShare = "DisassociateResourceShare"
@@ -883,44 +658,6 @@ func (c *RAM) DisassociateResourceShareWithContext(ctx aws.Context, input *Disas
 	return out, req.Send()
 }
 
-// ExecuteDisassociateResourceShare is Blink's code
-func ExecuteDisassociateResourceShare(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateResourceShareInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateResourceShareRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociateResourceSharePermission = "DisassociateResourceSharePermission"
 
 // DisassociateResourceSharePermissionRequest generates a "aws/request.Request" representing the
@@ -996,6 +733,9 @@ func (c *RAM) DisassociateResourceSharePermissionRequest(input *DisassociateReso
 //   * OperationNotPermittedException
 //   The requested operation is not permitted.
 //
+//   * InvalidStateTransitionException
+//   The requested state transition is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/DisassociateResourceSharePermission
 func (c *RAM) DisassociateResourceSharePermission(input *DisassociateResourceSharePermissionInput) (*DisassociateResourceSharePermissionOutput, error) {
 	req, out := c.DisassociateResourceSharePermissionRequest(input)
@@ -1016,44 +756,6 @@ func (c *RAM) DisassociateResourceSharePermissionWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDisassociateResourceSharePermission is Blink's code
-func ExecuteDisassociateResourceSharePermission(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateResourceSharePermissionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateResourceSharePermissionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opEnableSharingWithAwsOrganization = "EnableSharingWithAwsOrganization"
@@ -1141,44 +843,6 @@ func (c *RAM) EnableSharingWithAwsOrganizationWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteEnableSharingWithAwsOrganization is Blink's code
-func ExecuteEnableSharingWithAwsOrganization(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := EnableSharingWithAwsOrganizationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.EnableSharingWithAwsOrganizationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetPermission = "GetPermission"
@@ -1273,44 +937,6 @@ func (c *RAM) GetPermissionWithContext(ctx aws.Context, input *GetPermissionInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetPermission is Blink's code
-func ExecuteGetPermission(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetPermissionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetPermissionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetResourcePolicies = "GetResourcePolicies"
@@ -1411,44 +1037,6 @@ func (c *RAM) GetResourcePoliciesWithContext(ctx aws.Context, input *GetResource
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetResourcePolicies is Blink's code
-func ExecuteGetResourcePolicies(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetResourcePoliciesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetResourcePoliciesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // GetResourcePoliciesPages iterates over the pages of a GetResourcePolicies operation,
@@ -1606,44 +1194,6 @@ func (c *RAM) GetResourceShareAssociationsWithContext(ctx aws.Context, input *Ge
 	return out, req.Send()
 }
 
-// ExecuteGetResourceShareAssociations is Blink's code
-func ExecuteGetResourceShareAssociations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetResourceShareAssociationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetResourceShareAssociationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // GetResourceShareAssociationsPages iterates over the pages of a GetResourceShareAssociations operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1746,7 +1296,7 @@ func (c *RAM) GetResourceShareInvitationsRequest(input *GetResourceShareInvitati
 
 // GetResourceShareInvitations API operation for AWS Resource Access Manager.
 //
-// Gets the invitations for resource sharing that you've received.
+// Gets the invitations that you have received for resource shares.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1800,44 +1350,6 @@ func (c *RAM) GetResourceShareInvitationsWithContext(ctx aws.Context, input *Get
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetResourceShareInvitations is Blink's code
-func ExecuteGetResourceShareInvitations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetResourceShareInvitationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetResourceShareInvitationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // GetResourceShareInvitationsPages iterates over the pages of a GetResourceShareInvitations operation,
@@ -1991,44 +1503,6 @@ func (c *RAM) GetResourceSharesWithContext(ctx aws.Context, input *GetResourceSh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetResourceShares is Blink's code
-func ExecuteGetResourceShares(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetResourceSharesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetResourceSharesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // GetResourceSharesPages iterates over the pages of a GetResourceShares operation,
@@ -2193,44 +1667,6 @@ func (c *RAM) ListPendingInvitationResourcesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteListPendingInvitationResources is Blink's code
-func ExecuteListPendingInvitationResources(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPendingInvitationResourcesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPendingInvitationResourcesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListPendingInvitationResourcesPages iterates over the pages of a ListPendingInvitationResources operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2314,6 +1750,12 @@ func (c *RAM) ListPermissionsRequest(input *ListPermissionsInput) (req *request.
 		Name:       opListPermissions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listpermissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2374,42 +1816,56 @@ func (c *RAM) ListPermissionsWithContext(ctx aws.Context, input *ListPermissions
 	return out, req.Send()
 }
 
-// ExecuteListPermissions is Blink's code
-func ExecuteListPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
+// ListPermissionsPages iterates over the pages of a ListPermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPermissions operation.
+//    pageNum := 0
+//    err := client.ListPermissionsPages(params,
+//        func(page *ram.ListPermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListPermissionsPages(input *ListPermissionsInput, fn func(*ListPermissionsOutput, bool) bool) error {
+	return c.ListPermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPermissionsPagesWithContext same as ListPermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListPermissionsPagesWithContext(ctx aws.Context, input *ListPermissionsInput, fn func(*ListPermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
 	}
-	delete(parameters, "_Service")
 
-	input := ListPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	for p.Next() {
+		if !fn(p.Page().(*ListPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
 
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
+	return p.Err()
 }
 
 const opListPrincipals = "ListPrincipals"
@@ -2513,44 +1969,6 @@ func (c *RAM) ListPrincipalsWithContext(ctx aws.Context, input *ListPrincipalsIn
 	return out, req.Send()
 }
 
-// ExecuteListPrincipals is Blink's code
-func ExecuteListPrincipals(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPrincipalsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPrincipalsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListPrincipalsPages iterates over the pages of a ListPrincipals operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2634,6 +2052,12 @@ func (c *RAM) ListResourceSharePermissionsRequest(input *ListResourceSharePermis
 		Name:       opListResourceSharePermissions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listresourcesharepermissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2700,42 +2124,56 @@ func (c *RAM) ListResourceSharePermissionsWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
-// ExecuteListResourceSharePermissions is Blink's code
-func ExecuteListResourceSharePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
+// ListResourceSharePermissionsPages iterates over the pages of a ListResourceSharePermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceSharePermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResourceSharePermissions operation.
+//    pageNum := 0
+//    err := client.ListResourceSharePermissionsPages(params,
+//        func(page *ram.ListResourceSharePermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListResourceSharePermissionsPages(input *ListResourceSharePermissionsInput, fn func(*ListResourceSharePermissionsOutput, bool) bool) error {
+	return c.ListResourceSharePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceSharePermissionsPagesWithContext same as ListResourceSharePermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListResourceSharePermissionsPagesWithContext(ctx aws.Context, input *ListResourceSharePermissionsInput, fn func(*ListResourceSharePermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceSharePermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceSharePermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
 	}
-	delete(parameters, "_Service")
 
-	input := ListResourceSharePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceSharePermissionsOutput), !p.HasNextPage()) {
+			break
+		}
 	}
 
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListResourceSharePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
+	return p.Err()
 }
 
 const opListResourceTypes = "ListResourceTypes"
@@ -2769,6 +2207,12 @@ func (c *RAM) ListResourceTypesRequest(input *ListResourceTypesInput) (req *requ
 		Name:       opListResourceTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listresourcetypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2826,42 +2270,56 @@ func (c *RAM) ListResourceTypesWithContext(ctx aws.Context, input *ListResourceT
 	return out, req.Send()
 }
 
-// ExecuteListResourceTypes is Blink's code
-func ExecuteListResourceTypes(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
+// ListResourceTypesPages iterates over the pages of a ListResourceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResourceTypes operation.
+//    pageNum := 0
+//    err := client.ListResourceTypesPages(params,
+//        func(page *ram.ListResourceTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListResourceTypesPages(input *ListResourceTypesInput, fn func(*ListResourceTypesOutput, bool) bool) error {
+	return c.ListResourceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceTypesPagesWithContext same as ListResourceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListResourceTypesPagesWithContext(ctx aws.Context, input *ListResourceTypesInput, fn func(*ListResourceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
 	}
-	delete(parameters, "_Service")
 
-	input := ListResourceTypesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceTypesOutput), !p.HasNextPage()) {
+			break
+		}
 	}
 
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListResourceTypesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
+	return p.Err()
 }
 
 const opListResources = "ListResources"
@@ -2966,44 +2424,6 @@ func (c *RAM) ListResourcesWithContext(ctx aws.Context, input *ListResourcesInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListResources is Blink's code
-func ExecuteListResources(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListResourcesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListResourcesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListResourcesPages iterates over the pages of a ListResources operation,
@@ -3124,6 +2544,9 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyRequest(input *PromoteResourc
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
+//   * ResourceShareLimitExceededException
+//   The requested resource share exceeds the limit for your account.
+//
 //   * OperationNotPermittedException
 //   The requested operation is not permitted.
 //
@@ -3162,44 +2585,6 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePromoteResourceShareCreatedFromPolicy is Blink's code
-func ExecutePromoteResourceShareCreatedFromPolicy(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PromoteResourceShareCreatedFromPolicyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PromoteResourceShareCreatedFromPolicyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opRejectResourceShareInvitation = "RejectResourceShareInvitation"
@@ -3310,44 +2695,6 @@ func (c *RAM) RejectResourceShareInvitationWithContext(ctx aws.Context, input *R
 	return out, req.Send()
 }
 
-// ExecuteRejectResourceShareInvitation is Blink's code
-func ExecuteRejectResourceShareInvitation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RejectResourceShareInvitationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RejectResourceShareInvitationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -3409,6 +2756,9 @@ func (c *RAM) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
 //
+//   * UnknownResourceException
+//   A specified resource was not found.
+//
 //   * TagLimitExceededException
 //   The requested tags exceed the limit for your account.
 //
@@ -3444,44 +2794,6 @@ func (c *RAM) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteTagResource is Blink's code
-func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUntagResource = "UntagResource"
@@ -3568,44 +2880,6 @@ func (c *RAM) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUntagResource is Blink's code
-func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateResourceShare = "UpdateResourceShare"
@@ -3711,44 +2985,6 @@ func (c *RAM) UpdateResourceShareWithContext(ctx aws.Context, input *UpdateResou
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateResourceShare is Blink's code
-func ExecuteUpdateResourceShare(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*RAM)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateResourceShareInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateResourceShareRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 type AcceptResourceShareInvitationInput struct {
@@ -3940,10 +3176,14 @@ type AssociateResourceSharePermissionInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The ARN of the AWS RAM permission to associate with the resource share.
+	// The Amazon Resource Name (ARN) of the AWS RAM permissions to associate with
+	// the resource share.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
+
+	// The version of the AWS RAM permissions to associate with the resource share.
+	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 
 	// Indicates whether the permission should replace the permissions that are
 	// currently associated with the resource share. Use true to replace the current
@@ -3991,6 +3231,12 @@ func (s *AssociateResourceSharePermissionInput) SetClientToken(v string) *Associ
 // SetPermissionArn sets the PermissionArn field's value.
 func (s *AssociateResourceSharePermissionInput) SetPermissionArn(v string) *AssociateResourceSharePermissionInput {
 	s.PermissionArn = &v
+	return s
+}
+
+// SetPermissionVersion sets the PermissionVersion field's value.
+func (s *AssociateResourceSharePermissionInput) SetPermissionVersion(v int64) *AssociateResourceSharePermissionInput {
+	s.PermissionVersion = &v
 	return s
 }
 
@@ -4897,12 +4143,16 @@ type GetResourceSharesInput struct {
 	// The token for the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the AWS RAM permission that is associated
+	// with the resource share.
+	PermissionArn *string `locationName:"permissionArn" type:"string"`
+
 	// The type of owner.
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// The ARNs of the resource shares.
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
 	// The status of the resource share.
@@ -4953,6 +4203,12 @@ func (s *GetResourceSharesInput) SetName(v string) *GetResourceSharesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetResourceSharesInput) SetNextToken(v string) *GetResourceSharesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetPermissionArn sets the PermissionArn field's value.
+func (s *GetResourceSharesInput) SetPermissionArn(v string) *GetResourceSharesInput {
+	s.PermissionArn = &v
 	return s
 }
 
@@ -5622,8 +4878,8 @@ type ListPrincipalsInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
+	// | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5933,8 +5189,8 @@ type ListResourcesInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
+	// | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -6781,6 +6037,10 @@ type ResourceShareInvitation struct {
 	// The ID of the AWS account that received the invitation.
 	ReceiverAccountId *string `locationName:"receiverAccountId" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the IAM user or IAM role that received
+	// the invitation.
+	ReceiverArn *string `locationName:"receiverArn" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the resource share.
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
@@ -6822,6 +6082,12 @@ func (s *ResourceShareInvitation) SetInvitationTimestamp(v time.Time) *ResourceS
 // SetReceiverAccountId sets the ReceiverAccountId field's value.
 func (s *ResourceShareInvitation) SetReceiverAccountId(v string) *ResourceShareInvitation {
 	s.ReceiverAccountId = &v
+	return s
+}
+
+// SetReceiverArn sets the ReceiverArn field's value.
+func (s *ResourceShareInvitation) SetReceiverArn(v string) *ResourceShareInvitation {
+	s.ReceiverArn = &v
 	return s
 }
 
@@ -7151,9 +6417,13 @@ type ResourceSharePermissionDetail struct {
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The identifier for the version of the permission that is set as the default
-	// version.
+	// Specifies whether the version of the permission is set to the default version
+	// for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
+
+	// Specifies whether the version of the permission is set to the default version
+	// for this resource type.
+	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
@@ -7201,6 +6471,12 @@ func (s *ResourceSharePermissionDetail) SetDefaultVersion(v bool) *ResourceShare
 	return s
 }
 
+// SetIsResourceTypeDefault sets the IsResourceTypeDefault field's value.
+func (s *ResourceSharePermissionDetail) SetIsResourceTypeDefault(v bool) *ResourceSharePermissionDetail {
+	s.IsResourceTypeDefault = &v
+	return s
+}
+
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *ResourceSharePermissionDetail) SetLastUpdatedTime(v time.Time) *ResourceSharePermissionDetail {
 	s.LastUpdatedTime = &v
@@ -7241,9 +6517,13 @@ type ResourceSharePermissionSummary struct {
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The identifier for the version of the permission that is set as the default
-	// version.
+	// Specifies whether the version of the permission is set to the default version
+	// for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
+
+	// Specifies whether the version of the permission is set to the default version
+	// for this resource type.
+	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
@@ -7286,6 +6566,12 @@ func (s *ResourceSharePermissionSummary) SetCreationTime(v time.Time) *ResourceS
 // SetDefaultVersion sets the DefaultVersion field's value.
 func (s *ResourceSharePermissionSummary) SetDefaultVersion(v bool) *ResourceSharePermissionSummary {
 	s.DefaultVersion = &v
+	return s
+}
+
+// SetIsResourceTypeDefault sets the IsResourceTypeDefault field's value.
+func (s *ResourceSharePermissionSummary) SetIsResourceTypeDefault(v bool) *ResourceSharePermissionSummary {
+	s.IsResourceTypeDefault = &v
 	return s
 }
 

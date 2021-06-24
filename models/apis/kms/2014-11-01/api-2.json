@@ -196,6 +196,7 @@
       "output":{"shape":"DescribeCustomKeyStoresResponse"},
       "errors":[
         {"shape":"CustomKeyStoreNotFoundException"},
+        {"shape":"InvalidMarkerException"},
         {"shape":"KMSInternalException"}
       ]
     },
@@ -631,6 +632,27 @@
         {"shape":"KMSInvalidStateException"}
       ]
     },
+    "ReplicateKey":{
+      "name":"ReplicateKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ReplicateKeyRequest"},
+      "output":{"shape":"ReplicateKeyResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"DisabledException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"MalformedPolicyDocumentException"},
+        {"shape":"NotFoundException"},
+        {"shape":"TagException"},
+        {"shape":"UnsupportedOperationException"}
+      ]
+    },
     "RetireGrant":{
       "name":"RetireGrant",
       "http":{
@@ -777,6 +799,22 @@
         {"shape":"DependencyTimeoutException"},
         {"shape":"KMSInternalException"},
         {"shape":"KMSInvalidStateException"}
+      ]
+    },
+    "UpdatePrimaryRegion":{
+      "name":"UpdatePrimaryRegion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdatePrimaryRegionRequest"},
+      "errors":[
+        {"shape":"DisabledException"},
+        {"shape":"InvalidArnException"},
+        {"shape":"KMSInvalidStateException"},
+        {"shape":"KMSInternalException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnsupportedOperationException"}
       ]
     },
     "Verify":{
@@ -1003,7 +1041,8 @@
         "Origin":{"shape":"OriginType"},
         "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"},
         "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "MultiRegion":{"shape":"NullableBooleanType"}
       }
     },
     "CreateKeyResponse":{
@@ -1690,17 +1729,23 @@
         "KeyManager":{"shape":"KeyManagerType"},
         "CustomerMasterKeySpec":{"shape":"CustomerMasterKeySpec"},
         "EncryptionAlgorithms":{"shape":"EncryptionAlgorithmSpecList"},
-        "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"}
+        "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"},
+        "MultiRegion":{"shape":"NullableBooleanType"},
+        "MultiRegionConfiguration":{"shape":"MultiRegionConfiguration"},
+        "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"}
       }
     },
     "KeyState":{
       "type":"string",
       "enum":[
+        "Creating",
         "Enabled",
         "Disabled",
         "PendingDeletion",
         "PendingImport",
-        "Unavailable"
+        "PendingReplicaDeletion",
+        "Unavailable",
+        "Updating"
       ]
     },
     "KeyStorePasswordType":{
@@ -1849,6 +1894,32 @@
         "DIGEST"
       ]
     },
+    "MultiRegionConfiguration":{
+      "type":"structure",
+      "members":{
+        "MultiRegionKeyType":{"shape":"MultiRegionKeyType"},
+        "PrimaryKey":{"shape":"MultiRegionKey"},
+        "ReplicaKeys":{"shape":"MultiRegionKeyList"}
+      }
+    },
+    "MultiRegionKey":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ArnType"},
+        "Region":{"shape":"RegionType"}
+      }
+    },
+    "MultiRegionKeyList":{
+      "type":"list",
+      "member":{"shape":"MultiRegionKey"}
+    },
+    "MultiRegionKeyType":{
+      "type":"string",
+      "enum":[
+        "PRIMARY",
+        "REPLICA"
+      ]
+    },
     "NotFoundException":{
       "type":"structure",
       "members":{
@@ -1856,6 +1927,7 @@
       },
       "exception":true
     },
+    "NullableBooleanType":{"type":"boolean"},
     "NumberOfBytesType":{
       "type":"integer",
       "max":1024,
@@ -1948,6 +2020,35 @@
         "DestinationEncryptionAlgorithm":{"shape":"EncryptionAlgorithmSpec"}
       }
     },
+    "RegionType":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"^([a-z]+-){2,3}\\d+$"
+    },
+    "ReplicateKeyRequest":{
+      "type":"structure",
+      "required":[
+        "KeyId",
+        "ReplicaRegion"
+      ],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "ReplicaRegion":{"shape":"RegionType"},
+        "Policy":{"shape":"PolicyType"},
+        "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"},
+        "Description":{"shape":"DescriptionType"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "ReplicateKeyResponse":{
+      "type":"structure",
+      "members":{
+        "ReplicaKeyMetadata":{"shape":"KeyMetadata"},
+        "ReplicaPolicy":{"shape":"PolicyType"},
+        "ReplicaTags":{"shape":"TagList"}
+      }
+    },
     "RetireGrantRequest":{
       "type":"structure",
       "members":{
@@ -1979,7 +2080,9 @@
       "type":"structure",
       "members":{
         "KeyId":{"shape":"KeyIdType"},
-        "DeletionDate":{"shape":"DateType"}
+        "DeletionDate":{"shape":"DateType"},
+        "KeyState":{"shape":"KeyState"},
+        "PendingWindowInDays":{"shape":"PendingWindowInDaysType"}
       }
     },
     "SignRequest":{
@@ -2128,6 +2231,17 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "Description":{"shape":"DescriptionType"}
+      }
+    },
+    "UpdatePrimaryRegionRequest":{
+      "type":"structure",
+      "required":[
+        "KeyId",
+        "PrimaryRegion"
+      ],
+      "members":{
+        "KeyId":{"shape":"KeyIdType"},
+        "PrimaryRegion":{"shape":"RegionType"}
       }
     },
     "VerifyRequest":{

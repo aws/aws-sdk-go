@@ -3,8 +3,6 @@
 package chime
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -13,198 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
-)
-
-const (
-	defaultAWSToken = ""
-)
-
-var (
-	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"AssociatePhoneNumberWithUser":                      ExecuteAssociatePhoneNumberWithUser,
-		"AssociatePhoneNumbersWithVoiceConnector":           ExecuteAssociatePhoneNumbersWithVoiceConnector,
-		"AssociatePhoneNumbersWithVoiceConnectorGroup":      ExecuteAssociatePhoneNumbersWithVoiceConnectorGroup,
-		"AssociateSigninDelegateGroupsWithAccount":          ExecuteAssociateSigninDelegateGroupsWithAccount,
-		"BatchCreateAttendee":                               ExecuteBatchCreateAttendee,
-		"BatchCreateChannelMembership":                      ExecuteBatchCreateChannelMembership,
-		"BatchCreateRoomMembership":                         ExecuteBatchCreateRoomMembership,
-		"BatchDeletePhoneNumber":                            ExecuteBatchDeletePhoneNumber,
-		"BatchSuspendUser":                                  ExecuteBatchSuspendUser,
-		"BatchUnsuspendUser":                                ExecuteBatchUnsuspendUser,
-		"BatchUpdatePhoneNumber":                            ExecuteBatchUpdatePhoneNumber,
-		"BatchUpdateUser":                                   ExecuteBatchUpdateUser,
-		"CreateAccount":                                     ExecuteCreateAccount,
-		"CreateAppInstance":                                 ExecuteCreateAppInstance,
-		"CreateAppInstanceAdmin":                            ExecuteCreateAppInstanceAdmin,
-		"CreateAppInstanceUser":                             ExecuteCreateAppInstanceUser,
-		"CreateAttendee":                                    ExecuteCreateAttendee,
-		"CreateBot":                                         ExecuteCreateBot,
-		"CreateChannel":                                     ExecuteCreateChannel,
-		"CreateChannelBan":                                  ExecuteCreateChannelBan,
-		"CreateChannelMembership":                           ExecuteCreateChannelMembership,
-		"CreateChannelModerator":                            ExecuteCreateChannelModerator,
-		"CreateMeeting":                                     ExecuteCreateMeeting,
-		"CreateMeetingDialOut":                              ExecuteCreateMeetingDialOut,
-		"CreateMeetingWithAttendees":                        ExecuteCreateMeetingWithAttendees,
-		"CreatePhoneNumberOrder":                            ExecuteCreatePhoneNumberOrder,
-		"CreateProxySession":                                ExecuteCreateProxySession,
-		"CreateRoom":                                        ExecuteCreateRoom,
-		"CreateRoomMembership":                              ExecuteCreateRoomMembership,
-		"CreateSipMediaApplication":                         ExecuteCreateSipMediaApplication,
-		"CreateSipMediaApplicationCall":                     ExecuteCreateSipMediaApplicationCall,
-		"CreateSipRule":                                     ExecuteCreateSipRule,
-		"CreateUser":                                        ExecuteCreateUser,
-		"CreateVoiceConnector":                              ExecuteCreateVoiceConnector,
-		"CreateVoiceConnectorGroup":                         ExecuteCreateVoiceConnectorGroup,
-		"DeleteAccount":                                     ExecuteDeleteAccount,
-		"DeleteAppInstance":                                 ExecuteDeleteAppInstance,
-		"DeleteAppInstanceAdmin":                            ExecuteDeleteAppInstanceAdmin,
-		"DeleteAppInstanceStreamingConfigurations":          ExecuteDeleteAppInstanceStreamingConfigurations,
-		"DeleteAppInstanceUser":                             ExecuteDeleteAppInstanceUser,
-		"DeleteAttendee":                                    ExecuteDeleteAttendee,
-		"DeleteChannel":                                     ExecuteDeleteChannel,
-		"DeleteChannelBan":                                  ExecuteDeleteChannelBan,
-		"DeleteChannelMembership":                           ExecuteDeleteChannelMembership,
-		"DeleteChannelMessage":                              ExecuteDeleteChannelMessage,
-		"DeleteChannelModerator":                            ExecuteDeleteChannelModerator,
-		"DeleteEventsConfiguration":                         ExecuteDeleteEventsConfiguration,
-		"DeleteMeeting":                                     ExecuteDeleteMeeting,
-		"DeletePhoneNumber":                                 ExecuteDeletePhoneNumber,
-		"DeleteProxySession":                                ExecuteDeleteProxySession,
-		"DeleteRoom":                                        ExecuteDeleteRoom,
-		"DeleteRoomMembership":                              ExecuteDeleteRoomMembership,
-		"DeleteSipMediaApplication":                         ExecuteDeleteSipMediaApplication,
-		"DeleteSipRule":                                     ExecuteDeleteSipRule,
-		"DeleteVoiceConnector":                              ExecuteDeleteVoiceConnector,
-		"DeleteVoiceConnectorEmergencyCallingConfiguration": ExecuteDeleteVoiceConnectorEmergencyCallingConfiguration,
-		"DeleteVoiceConnectorGroup":                         ExecuteDeleteVoiceConnectorGroup,
-		"DeleteVoiceConnectorOrigination":                   ExecuteDeleteVoiceConnectorOrigination,
-		"DeleteVoiceConnectorProxy":                         ExecuteDeleteVoiceConnectorProxy,
-		"DeleteVoiceConnectorStreamingConfiguration":        ExecuteDeleteVoiceConnectorStreamingConfiguration,
-		"DeleteVoiceConnectorTermination":                   ExecuteDeleteVoiceConnectorTermination,
-		"DeleteVoiceConnectorTerminationCredentials":        ExecuteDeleteVoiceConnectorTerminationCredentials,
-		"DescribeAppInstance":                               ExecuteDescribeAppInstance,
-		"DescribeAppInstanceAdmin":                          ExecuteDescribeAppInstanceAdmin,
-		"DescribeAppInstanceUser":                           ExecuteDescribeAppInstanceUser,
-		"DescribeChannel":                                   ExecuteDescribeChannel,
-		"DescribeChannelBan":                                ExecuteDescribeChannelBan,
-		"DescribeChannelMembership":                         ExecuteDescribeChannelMembership,
-		"DescribeChannelMembershipForAppInstanceUser":       ExecuteDescribeChannelMembershipForAppInstanceUser,
-		"DescribeChannelModeratedByAppInstanceUser":         ExecuteDescribeChannelModeratedByAppInstanceUser,
-		"DescribeChannelModerator":                          ExecuteDescribeChannelModerator,
-		"DisassociatePhoneNumberFromUser":                   ExecuteDisassociatePhoneNumberFromUser,
-		"DisassociatePhoneNumbersFromVoiceConnector":        ExecuteDisassociatePhoneNumbersFromVoiceConnector,
-		"DisassociatePhoneNumbersFromVoiceConnectorGroup":   ExecuteDisassociatePhoneNumbersFromVoiceConnectorGroup,
-		"DisassociateSigninDelegateGroupsFromAccount":       ExecuteDisassociateSigninDelegateGroupsFromAccount,
-		"GetAccount":                                        ExecuteGetAccount,
-		"GetAccountSettings":                                ExecuteGetAccountSettings,
-		"GetAppInstanceRetentionSettings":                   ExecuteGetAppInstanceRetentionSettings,
-		"GetAppInstanceStreamingConfigurations":             ExecuteGetAppInstanceStreamingConfigurations,
-		"GetAttendee":                                       ExecuteGetAttendee,
-		"GetBot":                                            ExecuteGetBot,
-		"GetChannelMessage":                                 ExecuteGetChannelMessage,
-		"GetEventsConfiguration":                            ExecuteGetEventsConfiguration,
-		"GetGlobalSettings":                                 ExecuteGetGlobalSettings,
-		"GetMeeting":                                        ExecuteGetMeeting,
-		"GetMessagingSessionEndpoint":                       ExecuteGetMessagingSessionEndpoint,
-		"GetPhoneNumber":                                    ExecuteGetPhoneNumber,
-		"GetPhoneNumberOrder":                               ExecuteGetPhoneNumberOrder,
-		"GetPhoneNumberSettings":                            ExecuteGetPhoneNumberSettings,
-		"GetProxySession":                                   ExecuteGetProxySession,
-		"GetRetentionSettings":                              ExecuteGetRetentionSettings,
-		"GetRoom":                                           ExecuteGetRoom,
-		"GetSipMediaApplication":                            ExecuteGetSipMediaApplication,
-		"GetSipMediaApplicationLoggingConfiguration":        ExecuteGetSipMediaApplicationLoggingConfiguration,
-		"GetSipRule":                                        ExecuteGetSipRule,
-		"GetUser":                                           ExecuteGetUser,
-		"GetUserSettings":                                   ExecuteGetUserSettings,
-		"GetVoiceConnector":                                 ExecuteGetVoiceConnector,
-		"GetVoiceConnectorEmergencyCallingConfiguration":    ExecuteGetVoiceConnectorEmergencyCallingConfiguration,
-		"GetVoiceConnectorGroup":                            ExecuteGetVoiceConnectorGroup,
-		"GetVoiceConnectorLoggingConfiguration":             ExecuteGetVoiceConnectorLoggingConfiguration,
-		"GetVoiceConnectorOrigination":                      ExecuteGetVoiceConnectorOrigination,
-		"GetVoiceConnectorProxy":                            ExecuteGetVoiceConnectorProxy,
-		"GetVoiceConnectorStreamingConfiguration":           ExecuteGetVoiceConnectorStreamingConfiguration,
-		"GetVoiceConnectorTermination":                      ExecuteGetVoiceConnectorTermination,
-		"GetVoiceConnectorTerminationHealth":                ExecuteGetVoiceConnectorTerminationHealth,
-		"InviteUsers":                                       ExecuteInviteUsers,
-		"ListAccounts":                                      ExecuteListAccounts,
-		"ListAppInstanceAdmins":                             ExecuteListAppInstanceAdmins,
-		"ListAppInstanceUsers":                              ExecuteListAppInstanceUsers,
-		"ListAppInstances":                                  ExecuteListAppInstances,
-		"ListAttendeeTags":                                  ExecuteListAttendeeTags,
-		"ListAttendees":                                     ExecuteListAttendees,
-		"ListBots":                                          ExecuteListBots,
-		"ListChannelBans":                                   ExecuteListChannelBans,
-		"ListChannelMemberships":                            ExecuteListChannelMemberships,
-		"ListChannelMembershipsForAppInstanceUser":          ExecuteListChannelMembershipsForAppInstanceUser,
-		"ListChannelMessages":                               ExecuteListChannelMessages,
-		"ListChannelModerators":                             ExecuteListChannelModerators,
-		"ListChannels":                                      ExecuteListChannels,
-		"ListChannelsModeratedByAppInstanceUser":            ExecuteListChannelsModeratedByAppInstanceUser,
-		"ListMeetingTags":                                   ExecuteListMeetingTags,
-		"ListMeetings":                                      ExecuteListMeetings,
-		"ListPhoneNumberOrders":                             ExecuteListPhoneNumberOrders,
-		"ListPhoneNumbers":                                  ExecuteListPhoneNumbers,
-		"ListProxySessions":                                 ExecuteListProxySessions,
-		"ListRoomMemberships":                               ExecuteListRoomMemberships,
-		"ListRooms":                                         ExecuteListRooms,
-		"ListSipMediaApplications":                          ExecuteListSipMediaApplications,
-		"ListSipRules":                                      ExecuteListSipRules,
-		"ListSupportedPhoneNumberCountries":                 ExecuteListSupportedPhoneNumberCountries,
-		"ListTagsForResource":                               ExecuteListTagsForResource,
-		"ListUsers":                                         ExecuteListUsers,
-		"ListVoiceConnectorGroups":                          ExecuteListVoiceConnectorGroups,
-		"ListVoiceConnectorTerminationCredentials":          ExecuteListVoiceConnectorTerminationCredentials,
-		"ListVoiceConnectors":                               ExecuteListVoiceConnectors,
-		"LogoutUser":                                        ExecuteLogoutUser,
-		"PutAppInstanceRetentionSettings":                   ExecutePutAppInstanceRetentionSettings,
-		"PutAppInstanceStreamingConfigurations":             ExecutePutAppInstanceStreamingConfigurations,
-		"PutEventsConfiguration":                            ExecutePutEventsConfiguration,
-		"PutRetentionSettings":                              ExecutePutRetentionSettings,
-		"PutSipMediaApplicationLoggingConfiguration":        ExecutePutSipMediaApplicationLoggingConfiguration,
-		"PutVoiceConnectorEmergencyCallingConfiguration":    ExecutePutVoiceConnectorEmergencyCallingConfiguration,
-		"PutVoiceConnectorLoggingConfiguration":             ExecutePutVoiceConnectorLoggingConfiguration,
-		"PutVoiceConnectorOrigination":                      ExecutePutVoiceConnectorOrigination,
-		"PutVoiceConnectorProxy":                            ExecutePutVoiceConnectorProxy,
-		"PutVoiceConnectorStreamingConfiguration":           ExecutePutVoiceConnectorStreamingConfiguration,
-		"PutVoiceConnectorTermination":                      ExecutePutVoiceConnectorTermination,
-		"PutVoiceConnectorTerminationCredentials":           ExecutePutVoiceConnectorTerminationCredentials,
-		"RedactChannelMessage":                              ExecuteRedactChannelMessage,
-		"RedactConversationMessage":                         ExecuteRedactConversationMessage,
-		"RedactRoomMessage":                                 ExecuteRedactRoomMessage,
-		"RegenerateSecurityToken":                           ExecuteRegenerateSecurityToken,
-		"ResetPersonalPIN":                                  ExecuteResetPersonalPIN,
-		"RestorePhoneNumber":                                ExecuteRestorePhoneNumber,
-		"SearchAvailablePhoneNumbers":                       ExecuteSearchAvailablePhoneNumbers,
-		"SendChannelMessage":                                ExecuteSendChannelMessage,
-		"TagAttendee":                                       ExecuteTagAttendee,
-		"TagMeeting":                                        ExecuteTagMeeting,
-		"TagResource":                                       ExecuteTagResource,
-		"UntagAttendee":                                     ExecuteUntagAttendee,
-		"UntagMeeting":                                      ExecuteUntagMeeting,
-		"UntagResource":                                     ExecuteUntagResource,
-		"UpdateAccount":                                     ExecuteUpdateAccount,
-		"UpdateAccountSettings":                             ExecuteUpdateAccountSettings,
-		"UpdateAppInstance":                                 ExecuteUpdateAppInstance,
-		"UpdateAppInstanceUser":                             ExecuteUpdateAppInstanceUser,
-		"UpdateBot":                                         ExecuteUpdateBot,
-		"UpdateChannel":                                     ExecuteUpdateChannel,
-		"UpdateChannelMessage":                              ExecuteUpdateChannelMessage,
-		"UpdateChannelReadMarker":                           ExecuteUpdateChannelReadMarker,
-		"UpdateGlobalSettings":                              ExecuteUpdateGlobalSettings,
-		"UpdatePhoneNumber":                                 ExecuteUpdatePhoneNumber,
-		"UpdatePhoneNumberSettings":                         ExecuteUpdatePhoneNumberSettings,
-		"UpdateProxySession":                                ExecuteUpdateProxySession,
-		"UpdateRoom":                                        ExecuteUpdateRoom,
-		"UpdateRoomMembership":                              ExecuteUpdateRoomMembership,
-		"UpdateSipMediaApplication":                         ExecuteUpdateSipMediaApplication,
-		"UpdateSipRule":                                     ExecuteUpdateSipRule,
-		"UpdateUser":                                        ExecuteUpdateUser,
-		"UpdateUserSettings":                                ExecuteUpdateUserSettings,
-		"UpdateVoiceConnector":                              ExecuteUpdateVoiceConnector,
-		"UpdateVoiceConnectorGroup":                         ExecuteUpdateVoiceConnectorGroup,
-	}
 )
 
 const opAssociatePhoneNumberWithUser = "AssociatePhoneNumberWithUser"
@@ -308,44 +114,6 @@ func (c *Chime) AssociatePhoneNumberWithUserWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteAssociatePhoneNumberWithUser is Blink's code
-func ExecuteAssociatePhoneNumberWithUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociatePhoneNumberWithUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociatePhoneNumberWithUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociatePhoneNumbersWithVoiceConnector = "AssociatePhoneNumbersWithVoiceConnector"
 
 // AssociatePhoneNumbersWithVoiceConnectorRequest generates a "aws/request.Request" representing the
@@ -444,44 +212,6 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorWithContext(ctx aws.Conte
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociatePhoneNumbersWithVoiceConnector is Blink's code
-func ExecuteAssociatePhoneNumbersWithVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociatePhoneNumbersWithVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociatePhoneNumbersWithVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opAssociatePhoneNumbersWithVoiceConnectorGroup = "AssociatePhoneNumbersWithVoiceConnectorGroup"
@@ -585,44 +315,6 @@ func (c *Chime) AssociatePhoneNumbersWithVoiceConnectorGroupWithContext(ctx aws.
 	return out, req.Send()
 }
 
-// ExecuteAssociatePhoneNumbersWithVoiceConnectorGroup is Blink's code
-func ExecuteAssociatePhoneNumbersWithVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociatePhoneNumbersWithVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociatePhoneNumbersWithVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociateSigninDelegateGroupsWithAccount = "AssociateSigninDelegateGroupsWithAccount"
 
 // AssociateSigninDelegateGroupsWithAccountRequest generates a "aws/request.Request" representing the
@@ -720,44 +412,6 @@ func (c *Chime) AssociateSigninDelegateGroupsWithAccountWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociateSigninDelegateGroupsWithAccount is Blink's code
-func ExecuteAssociateSigninDelegateGroupsWithAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateSigninDelegateGroupsWithAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateSigninDelegateGroupsWithAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opBatchCreateAttendee = "BatchCreateAttendee"
@@ -863,44 +517,6 @@ func (c *Chime) BatchCreateAttendeeWithContext(ctx aws.Context, input *BatchCrea
 	return out, req.Send()
 }
 
-// ExecuteBatchCreateAttendee is Blink's code
-func ExecuteBatchCreateAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchCreateAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchCreateAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opBatchCreateChannelMembership = "BatchCreateChannelMembership"
 
 // BatchCreateChannelMembershipRequest generates a "aws/request.Request" representing the
@@ -995,44 +611,6 @@ func (c *Chime) BatchCreateChannelMembershipWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteBatchCreateChannelMembership is Blink's code
-func ExecuteBatchCreateChannelMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchCreateChannelMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchCreateChannelMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opBatchCreateRoomMembership = "BatchCreateRoomMembership"
@@ -1134,44 +712,6 @@ func (c *Chime) BatchCreateRoomMembershipWithContext(ctx aws.Context, input *Bat
 	return out, req.Send()
 }
 
-// ExecuteBatchCreateRoomMembership is Blink's code
-func ExecuteBatchCreateRoomMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchCreateRoomMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchCreateRoomMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opBatchDeletePhoneNumber = "BatchDeletePhoneNumber"
 
 // BatchDeletePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -1271,44 +811,6 @@ func (c *Chime) BatchDeletePhoneNumberWithContext(ctx aws.Context, input *BatchD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteBatchDeletePhoneNumber is Blink's code
-func ExecuteBatchDeletePhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchDeletePhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchDeletePhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opBatchSuspendUser = "BatchSuspendUser"
@@ -1422,44 +924,6 @@ func (c *Chime) BatchSuspendUserWithContext(ctx aws.Context, input *BatchSuspend
 	return out, req.Send()
 }
 
-// ExecuteBatchSuspendUser is Blink's code
-func ExecuteBatchSuspendUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchSuspendUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchSuspendUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opBatchUnsuspendUser = "BatchUnsuspendUser"
 
 // BatchUnsuspendUserRequest generates a "aws/request.Request" representing the
@@ -1564,44 +1028,6 @@ func (c *Chime) BatchUnsuspendUserWithContext(ctx aws.Context, input *BatchUnsus
 	return out, req.Send()
 }
 
-// ExecuteBatchUnsuspendUser is Blink's code
-func ExecuteBatchUnsuspendUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchUnsuspendUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchUnsuspendUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opBatchUpdatePhoneNumber = "BatchUpdatePhoneNumber"
 
 // BatchUpdatePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -1651,10 +1077,10 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // the product type or the calling name.
 //
 // For toll-free numbers, you cannot use the Amazon Chime Business Calling product
-// type. For numbers outside the US, you must use the Amazon Chime SIP Media
+// type. For numbers outside the U.S., you must use the Amazon Chime SIP Media
 // Application Dial-In product type.
 //
-// Updates to outbound calling names can take 72 hours to complete. Pending
+// Updates to outbound calling names can take up to 72 hours to complete. Pending
 // updates to outbound calling names must be complete before you can request
 // another update.
 //
@@ -1707,44 +1133,6 @@ func (c *Chime) BatchUpdatePhoneNumberWithContext(ctx aws.Context, input *BatchU
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteBatchUpdatePhoneNumber is Blink's code
-func ExecuteBatchUpdatePhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchUpdatePhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchUpdatePhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opBatchUpdateUser = "BatchUpdateUser"
@@ -1846,44 +1234,6 @@ func (c *Chime) BatchUpdateUserWithContext(ctx aws.Context, input *BatchUpdateUs
 	return out, req.Send()
 }
 
-// ExecuteBatchUpdateUser is Blink's code
-func ExecuteBatchUpdateUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := BatchUpdateUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.BatchUpdateUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateAccount = "CreateAccount"
 
 // CreateAccountRequest generates a "aws/request.Request" representing the
@@ -1982,44 +1332,6 @@ func (c *Chime) CreateAccountWithContext(ctx aws.Context, input *CreateAccountIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateAccount is Blink's code
-func ExecuteCreateAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateAppInstance = "CreateAppInstance"
@@ -2125,44 +1437,6 @@ func (c *Chime) CreateAppInstanceWithContext(ctx aws.Context, input *CreateAppIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateAppInstance is Blink's code
-func ExecuteCreateAppInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAppInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAppInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateAppInstanceAdmin = "CreateAppInstanceAdmin"
@@ -2275,44 +1549,6 @@ func (c *Chime) CreateAppInstanceAdminWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
-// ExecuteCreateAppInstanceAdmin is Blink's code
-func ExecuteCreateAppInstanceAdmin(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAppInstanceAdminInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAppInstanceAdminRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateAppInstanceUser = "CreateAppInstanceUser"
 
 // CreateAppInstanceUserRequest generates a "aws/request.Request" representing the
@@ -2417,44 +1653,6 @@ func (c *Chime) CreateAppInstanceUserWithContext(ctx aws.Context, input *CreateA
 	return out, req.Send()
 }
 
-// ExecuteCreateAppInstanceUser is Blink's code
-func ExecuteCreateAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateAttendee = "CreateAttendee"
 
 // CreateAttendeeRequest generates a "aws/request.Request" representing the
@@ -2557,44 +1755,6 @@ func (c *Chime) CreateAttendeeWithContext(ctx aws.Context, input *CreateAttendee
 	return out, req.Send()
 }
 
-// ExecuteCreateAttendee is Blink's code
-func ExecuteCreateAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateBot = "CreateBot"
 
 // CreateBotRequest generates a "aws/request.Request" representing the
@@ -2693,44 +1853,6 @@ func (c *Chime) CreateBotWithContext(ctx aws.Context, input *CreateBotInput, opt
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateBot is Blink's code
-func ExecuteCreateBot(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateBotInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateBotRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateChannel = "CreateChannel"
@@ -2839,44 +1961,6 @@ func (c *Chime) CreateChannelWithContext(ctx aws.Context, input *CreateChannelIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateChannel is Blink's code
-func ExecuteCreateChannel(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateChannelInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateChannelRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateChannelBan = "CreateChannelBan"
@@ -2988,44 +2072,6 @@ func (c *Chime) CreateChannelBanWithContext(ctx aws.Context, input *CreateChanne
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateChannelBan is Blink's code
-func ExecuteCreateChannelBan(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateChannelBanInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateChannelBanRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateChannelMembership = "CreateChannelMembership"
@@ -3152,44 +2198,6 @@ func (c *Chime) CreateChannelMembershipWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
-// ExecuteCreateChannelMembership is Blink's code
-func ExecuteCreateChannelMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateChannelMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateChannelMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateChannelModerator = "CreateChannelModerator"
 
 // CreateChannelModeratorRequest generates a "aws/request.Request" representing the
@@ -3306,44 +2314,6 @@ func (c *Chime) CreateChannelModeratorWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
-// ExecuteCreateChannelModerator is Blink's code
-func ExecuteCreateChannelModerator(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateChannelModeratorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateChannelModeratorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateMeeting = "CreateMeeting"
 
 // CreateMeetingRequest generates a "aws/request.Request" representing the
@@ -3444,44 +2414,6 @@ func (c *Chime) CreateMeetingWithContext(ctx aws.Context, input *CreateMeetingIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateMeeting is Blink's code
-func ExecuteCreateMeeting(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateMeetingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateMeetingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateMeetingDialOut = "CreateMeetingDialOut"
@@ -3588,44 +2520,6 @@ func (c *Chime) CreateMeetingDialOutWithContext(ctx aws.Context, input *CreateMe
 	return out, req.Send()
 }
 
-// ExecuteCreateMeetingDialOut is Blink's code
-func ExecuteCreateMeetingDialOut(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateMeetingDialOutInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateMeetingDialOutRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateMeetingWithAttendees = "CreateMeetingWithAttendees"
 
 // CreateMeetingWithAttendeesRequest generates a "aws/request.Request" representing the
@@ -3728,44 +2622,6 @@ func (c *Chime) CreateMeetingWithAttendeesWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
-// ExecuteCreateMeetingWithAttendees is Blink's code
-func ExecuteCreateMeetingWithAttendees(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateMeetingWithAttendeesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateMeetingWithAttendeesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreatePhoneNumberOrder = "CreatePhoneNumberOrder"
 
 // CreatePhoneNumberOrderRequest generates a "aws/request.Request" representing the
@@ -3812,7 +2668,7 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 //
 // Creates an order for phone numbers to be provisioned. For toll-free numbers,
 // you cannot use the Amazon Chime Business Calling product type. For numbers
-// outside the US, you must use the Amazon Chime SIP Media Application Dial-In
+// outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In
 // product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3867,44 +2723,6 @@ func (c *Chime) CreatePhoneNumberOrderWithContext(ctx aws.Context, input *Create
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreatePhoneNumberOrder is Blink's code
-func ExecuteCreatePhoneNumberOrder(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreatePhoneNumberOrderInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreatePhoneNumberOrderRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateProxySession = "CreateProxySession"
@@ -4005,44 +2823,6 @@ func (c *Chime) CreateProxySessionWithContext(ctx aws.Context, input *CreateProx
 	return out, req.Send()
 }
 
-// ExecuteCreateProxySession is Blink's code
-func ExecuteCreateProxySession(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateProxySessionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateProxySessionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateRoom = "CreateRoom"
 
 // CreateRoomRequest generates a "aws/request.Request" representing the
@@ -4141,44 +2921,6 @@ func (c *Chime) CreateRoomWithContext(ctx aws.Context, input *CreateRoomInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateRoom is Blink's code
-func ExecuteCreateRoom(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateRoomInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateRoomRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateRoomMembership = "CreateRoomMembership"
@@ -4287,44 +3029,6 @@ func (c *Chime) CreateRoomMembershipWithContext(ctx aws.Context, input *CreateRo
 	return out, req.Send()
 }
 
-// ExecuteCreateRoomMembership is Blink's code
-func ExecuteCreateRoomMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateRoomMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateRoomMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateSipMediaApplication = "CreateSipMediaApplication"
 
 // CreateSipMediaApplicationRequest generates a "aws/request.Request" representing the
@@ -4429,44 +3133,6 @@ func (c *Chime) CreateSipMediaApplicationWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
-// ExecuteCreateSipMediaApplication is Blink's code
-func ExecuteCreateSipMediaApplication(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateSipMediaApplicationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateSipMediaApplicationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateSipMediaApplicationCall = "CreateSipMediaApplicationCall"
 
 // CreateSipMediaApplicationCallRequest generates a "aws/request.Request" representing the
@@ -4563,44 +3229,6 @@ func (c *Chime) CreateSipMediaApplicationCallWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateSipMediaApplicationCall is Blink's code
-func ExecuteCreateSipMediaApplicationCall(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateSipMediaApplicationCallInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateSipMediaApplicationCallRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateSipRule = "CreateSipRule"
@@ -4708,44 +3336,6 @@ func (c *Chime) CreateSipRuleWithContext(ctx aws.Context, input *CreateSipRuleIn
 	return out, req.Send()
 }
 
-// ExecuteCreateSipRule is Blink's code
-func ExecuteCreateSipRule(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateSipRuleInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateSipRuleRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateUser = "CreateUser"
 
 // CreateUserRequest generates a "aws/request.Request" representing the
@@ -4845,44 +3435,6 @@ func (c *Chime) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateUser is Blink's code
-func ExecuteCreateUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateVoiceConnector = "CreateVoiceConnector"
@@ -4992,44 +3544,6 @@ func (c *Chime) CreateVoiceConnectorWithContext(ctx aws.Context, input *CreateVo
 	return out, req.Send()
 }
 
-// ExecuteCreateVoiceConnector is Blink's code
-func ExecuteCreateVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateVoiceConnectorGroup = "CreateVoiceConnectorGroup"
 
 // CreateVoiceConnectorGroupRequest generates a "aws/request.Request" representing the
@@ -5134,44 +3648,6 @@ func (c *Chime) CreateVoiceConnectorGroupWithContext(ctx aws.Context, input *Cre
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateVoiceConnectorGroup is Blink's code
-func ExecuteCreateVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteAccount = "DeleteAccount"
@@ -5287,44 +3763,6 @@ func (c *Chime) DeleteAccountWithContext(ctx aws.Context, input *DeleteAccountIn
 	return out, req.Send()
 }
 
-// ExecuteDeleteAccount is Blink's code
-func ExecuteDeleteAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteAppInstance = "DeleteAppInstance"
 
 // DeleteAppInstanceRequest generates a "aws/request.Request" representing the
@@ -5420,44 +3858,6 @@ func (c *Chime) DeleteAppInstanceWithContext(ctx aws.Context, input *DeleteAppIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteAppInstance is Blink's code
-func ExecuteDeleteAppInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAppInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAppInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteAppInstanceAdmin = "DeleteAppInstanceAdmin"
@@ -5562,44 +3962,6 @@ func (c *Chime) DeleteAppInstanceAdminWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
-// ExecuteDeleteAppInstanceAdmin is Blink's code
-func ExecuteDeleteAppInstanceAdmin(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAppInstanceAdminInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAppInstanceAdminRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteAppInstanceStreamingConfigurations = "DeleteAppInstanceStreamingConfigurations"
 
 // DeleteAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
@@ -5698,44 +4060,6 @@ func (c *Chime) DeleteAppInstanceStreamingConfigurationsWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// ExecuteDeleteAppInstanceStreamingConfigurations is Blink's code
-func ExecuteDeleteAppInstanceStreamingConfigurations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAppInstanceStreamingConfigurationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAppInstanceStreamingConfigurationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteAppInstanceUser = "DeleteAppInstanceUser"
 
 // DeleteAppInstanceUserRequest generates a "aws/request.Request" representing the
@@ -5831,44 +4155,6 @@ func (c *Chime) DeleteAppInstanceUserWithContext(ctx aws.Context, input *DeleteA
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteAppInstanceUser is Blink's code
-func ExecuteDeleteAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteAttendee = "DeleteAttendee"
@@ -5973,44 +4259,6 @@ func (c *Chime) DeleteAttendeeWithContext(ctx aws.Context, input *DeleteAttendee
 	return out, req.Send()
 }
 
-// ExecuteDeleteAttendee is Blink's code
-func ExecuteDeleteAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteChannel = "DeleteChannel"
 
 // DeleteChannelRequest generates a "aws/request.Request" representing the
@@ -6112,44 +4360,6 @@ func (c *Chime) DeleteChannelWithContext(ctx aws.Context, input *DeleteChannelIn
 	return out, req.Send()
 }
 
-// ExecuteDeleteChannel is Blink's code
-func ExecuteDeleteChannel(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteChannelInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteChannelRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteChannelBan = "DeleteChannelBan"
 
 // DeleteChannelBanRequest generates a "aws/request.Request" representing the
@@ -6248,44 +4458,6 @@ func (c *Chime) DeleteChannelBanWithContext(ctx aws.Context, input *DeleteChanne
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteChannelBan is Blink's code
-func ExecuteDeleteChannelBan(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteChannelBanInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteChannelBanRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteChannelMembership = "DeleteChannelMembership"
@@ -6392,44 +4564,6 @@ func (c *Chime) DeleteChannelMembershipWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
-// ExecuteDeleteChannelMembership is Blink's code
-func ExecuteDeleteChannelMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteChannelMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteChannelMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteChannelMessage = "DeleteChannelMessage"
 
 // DeleteChannelMessageRequest generates a "aws/request.Request" representing the
@@ -6532,44 +4666,6 @@ func (c *Chime) DeleteChannelMessageWithContext(ctx aws.Context, input *DeleteCh
 	return out, req.Send()
 }
 
-// ExecuteDeleteChannelMessage is Blink's code
-func ExecuteDeleteChannelMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteChannelMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteChannelMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteChannelModerator = "DeleteChannelModerator"
 
 // DeleteChannelModeratorRequest generates a "aws/request.Request" representing the
@@ -6670,44 +4766,6 @@ func (c *Chime) DeleteChannelModeratorWithContext(ctx aws.Context, input *Delete
 	return out, req.Send()
 }
 
-// ExecuteDeleteChannelModerator is Blink's code
-func ExecuteDeleteChannelModerator(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteChannelModeratorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteChannelModeratorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteEventsConfiguration = "DeleteEventsConfiguration"
 
 // DeleteEventsConfigurationRequest generates a "aws/request.Request" representing the
@@ -6801,44 +4859,6 @@ func (c *Chime) DeleteEventsConfigurationWithContext(ctx aws.Context, input *Del
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteEventsConfiguration is Blink's code
-func ExecuteDeleteEventsConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteEventsConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteEventsConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteMeeting = "DeleteMeeting"
@@ -6941,44 +4961,6 @@ func (c *Chime) DeleteMeetingWithContext(ctx aws.Context, input *DeleteMeetingIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteMeeting is Blink's code
-func ExecuteDeleteMeeting(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteMeetingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteMeetingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeletePhoneNumber = "DeletePhoneNumber"
@@ -7084,44 +5066,6 @@ func (c *Chime) DeletePhoneNumberWithContext(ctx aws.Context, input *DeletePhone
 	return out, req.Send()
 }
 
-// ExecuteDeletePhoneNumber is Blink's code
-func ExecuteDeletePhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeletePhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeletePhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteProxySession = "DeleteProxySession"
 
 // DeleteProxySessionRequest generates a "aws/request.Request" representing the
@@ -7219,44 +5163,6 @@ func (c *Chime) DeleteProxySessionWithContext(ctx aws.Context, input *DeleteProx
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteProxySession is Blink's code
-func ExecuteDeleteProxySession(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteProxySessionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteProxySessionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteRoom = "DeleteRoom"
@@ -7357,44 +5263,6 @@ func (c *Chime) DeleteRoomWithContext(ctx aws.Context, input *DeleteRoomInput, o
 	return out, req.Send()
 }
 
-// ExecuteDeleteRoom is Blink's code
-func ExecuteDeleteRoom(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteRoomInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteRoomRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteRoomMembership = "DeleteRoomMembership"
 
 // DeleteRoomMembershipRequest generates a "aws/request.Request" representing the
@@ -7491,44 +5359,6 @@ func (c *Chime) DeleteRoomMembershipWithContext(ctx aws.Context, input *DeleteRo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteRoomMembership is Blink's code
-func ExecuteDeleteRoomMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteRoomMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteRoomMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteSipMediaApplication = "DeleteSipMediaApplication"
@@ -7633,44 +5463,6 @@ func (c *Chime) DeleteSipMediaApplicationWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
-// ExecuteDeleteSipMediaApplication is Blink's code
-func ExecuteDeleteSipMediaApplication(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteSipMediaApplicationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteSipMediaApplicationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteSipRule = "DeleteSipRule"
 
 // DeleteSipRuleRequest generates a "aws/request.Request" representing the
@@ -7771,44 +5563,6 @@ func (c *Chime) DeleteSipRuleWithContext(ctx aws.Context, input *DeleteSipRuleIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteSipRule is Blink's code
-func ExecuteDeleteSipRule(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteSipRuleInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteSipRuleRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteVoiceConnector = "DeleteVoiceConnector"
@@ -7915,44 +5669,6 @@ func (c *Chime) DeleteVoiceConnectorWithContext(ctx aws.Context, input *DeleteVo
 	return out, req.Send()
 }
 
-// ExecuteDeleteVoiceConnector is Blink's code
-func ExecuteDeleteVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteVoiceConnectorEmergencyCallingConfiguration = "DeleteVoiceConnectorEmergencyCallingConfiguration"
 
 // DeleteVoiceConnectorEmergencyCallingConfigurationRequest generates a "aws/request.Request" representing the
@@ -8050,44 +5766,6 @@ func (c *Chime) DeleteVoiceConnectorEmergencyCallingConfigurationWithContext(ctx
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteVoiceConnectorEmergencyCallingConfiguration is Blink's code
-func ExecuteDeleteVoiceConnectorEmergencyCallingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorEmergencyCallingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorEmergencyCallingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteVoiceConnectorGroup = "DeleteVoiceConnectorGroup"
@@ -8194,44 +5872,6 @@ func (c *Chime) DeleteVoiceConnectorGroupWithContext(ctx aws.Context, input *Del
 	return out, req.Send()
 }
 
-// ExecuteDeleteVoiceConnectorGroup is Blink's code
-func ExecuteDeleteVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteVoiceConnectorOrigination = "DeleteVoiceConnectorOrigination"
 
 // DeleteVoiceConnectorOriginationRequest generates a "aws/request.Request" representing the
@@ -8333,44 +5973,6 @@ func (c *Chime) DeleteVoiceConnectorOriginationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteDeleteVoiceConnectorOrigination is Blink's code
-func ExecuteDeleteVoiceConnectorOrigination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorOriginationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorOriginationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteVoiceConnectorProxy = "DeleteVoiceConnectorProxy"
 
 // DeleteVoiceConnectorProxyRequest generates a "aws/request.Request" representing the
@@ -8467,44 +6069,6 @@ func (c *Chime) DeleteVoiceConnectorProxyWithContext(ctx aws.Context, input *Del
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteVoiceConnectorProxy is Blink's code
-func ExecuteDeleteVoiceConnectorProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorProxyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorProxyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteVoiceConnectorStreamingConfiguration = "DeleteVoiceConnectorStreamingConfiguration"
@@ -8604,44 +6168,6 @@ func (c *Chime) DeleteVoiceConnectorStreamingConfigurationWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteVoiceConnectorStreamingConfiguration is Blink's code
-func ExecuteDeleteVoiceConnectorStreamingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorStreamingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorStreamingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteVoiceConnectorTermination = "DeleteVoiceConnectorTermination"
@@ -8745,44 +6271,6 @@ func (c *Chime) DeleteVoiceConnectorTerminationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteDeleteVoiceConnectorTermination is Blink's code
-func ExecuteDeleteVoiceConnectorTermination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorTerminationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorTerminationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteVoiceConnectorTerminationCredentials = "DeleteVoiceConnectorTerminationCredentials"
 
 // DeleteVoiceConnectorTerminationCredentialsRequest generates a "aws/request.Request" representing the
@@ -8882,44 +6370,6 @@ func (c *Chime) DeleteVoiceConnectorTerminationCredentialsWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
-// ExecuteDeleteVoiceConnectorTerminationCredentials is Blink's code
-func ExecuteDeleteVoiceConnectorTerminationCredentials(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteVoiceConnectorTerminationCredentialsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteVoiceConnectorTerminationCredentialsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeAppInstance = "DescribeAppInstance"
 
 // DescribeAppInstanceRequest generates a "aws/request.Request" representing the
@@ -9014,44 +6464,6 @@ func (c *Chime) DescribeAppInstanceWithContext(ctx aws.Context, input *DescribeA
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeAppInstance is Blink's code
-func ExecuteDescribeAppInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAppInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAppInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeAppInstanceAdmin = "DescribeAppInstanceAdmin"
@@ -9150,44 +6562,6 @@ func (c *Chime) DescribeAppInstanceAdminWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
-// ExecuteDescribeAppInstanceAdmin is Blink's code
-func ExecuteDescribeAppInstanceAdmin(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAppInstanceAdminInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAppInstanceAdminRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeAppInstanceUser = "DescribeAppInstanceUser"
 
 // DescribeAppInstanceUserRequest generates a "aws/request.Request" representing the
@@ -9282,44 +6656,6 @@ func (c *Chime) DescribeAppInstanceUserWithContext(ctx aws.Context, input *Descr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeAppInstanceUser is Blink's code
-func ExecuteDescribeAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeChannel = "DescribeChannel"
@@ -9419,44 +6755,6 @@ func (c *Chime) DescribeChannelWithContext(ctx aws.Context, input *DescribeChann
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeChannel is Blink's code
-func ExecuteDescribeChannel(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeChannelBan = "DescribeChannelBan"
@@ -9561,44 +6859,6 @@ func (c *Chime) DescribeChannelBanWithContext(ctx aws.Context, input *DescribeCh
 	return out, req.Send()
 }
 
-// ExecuteDescribeChannelBan is Blink's code
-func ExecuteDescribeChannelBan(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelBanInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelBanRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeChannelMembership = "DescribeChannelMembership"
 
 // DescribeChannelMembershipRequest generates a "aws/request.Request" representing the
@@ -9701,44 +6961,6 @@ func (c *Chime) DescribeChannelMembershipWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
-// ExecuteDescribeChannelMembership is Blink's code
-func ExecuteDescribeChannelMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeChannelMembershipForAppInstanceUser = "DescribeChannelMembershipForAppInstanceUser"
 
 // DescribeChannelMembershipForAppInstanceUserRequest generates a "aws/request.Request" representing the
@@ -9839,44 +7061,6 @@ func (c *Chime) DescribeChannelMembershipForAppInstanceUserWithContext(ctx aws.C
 	return out, req.Send()
 }
 
-// ExecuteDescribeChannelMembershipForAppInstanceUser is Blink's code
-func ExecuteDescribeChannelMembershipForAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelMembershipForAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelMembershipForAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeChannelModeratedByAppInstanceUser = "DescribeChannelModeratedByAppInstanceUser"
 
 // DescribeChannelModeratedByAppInstanceUserRequest generates a "aws/request.Request" representing the
@@ -9974,44 +7158,6 @@ func (c *Chime) DescribeChannelModeratedByAppInstanceUserWithContext(ctx aws.Con
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeChannelModeratedByAppInstanceUser is Blink's code
-func ExecuteDescribeChannelModeratedByAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelModeratedByAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelModeratedByAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeChannelModerator = "DescribeChannelModerator"
@@ -10116,44 +7262,6 @@ func (c *Chime) DescribeChannelModeratorWithContext(ctx aws.Context, input *Desc
 	return out, req.Send()
 }
 
-// ExecuteDescribeChannelModerator is Blink's code
-func ExecuteDescribeChannelModerator(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeChannelModeratorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeChannelModeratorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociatePhoneNumberFromUser = "DisassociatePhoneNumberFromUser"
 
 // DisassociatePhoneNumberFromUserRequest generates a "aws/request.Request" representing the
@@ -10251,44 +7359,6 @@ func (c *Chime) DisassociatePhoneNumberFromUserWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDisassociatePhoneNumberFromUser is Blink's code
-func ExecuteDisassociatePhoneNumberFromUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociatePhoneNumberFromUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociatePhoneNumberFromUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociatePhoneNumbersFromVoiceConnector = "DisassociatePhoneNumbersFromVoiceConnector"
@@ -10389,44 +7459,6 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorWithContext(ctx aws.Co
 	return out, req.Send()
 }
 
-// ExecuteDisassociatePhoneNumbersFromVoiceConnector is Blink's code
-func ExecuteDisassociatePhoneNumbersFromVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociatePhoneNumbersFromVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociatePhoneNumbersFromVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociatePhoneNumbersFromVoiceConnectorGroup = "DisassociatePhoneNumbersFromVoiceConnectorGroup"
 
 // DisassociatePhoneNumbersFromVoiceConnectorGroupRequest generates a "aws/request.Request" representing the
@@ -10523,44 +7555,6 @@ func (c *Chime) DisassociatePhoneNumbersFromVoiceConnectorGroupWithContext(ctx a
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDisassociatePhoneNumbersFromVoiceConnectorGroup is Blink's code
-func ExecuteDisassociatePhoneNumbersFromVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociatePhoneNumbersFromVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociatePhoneNumbersFromVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociateSigninDelegateGroupsFromAccount = "DisassociateSigninDelegateGroupsFromAccount"
@@ -10662,44 +7656,6 @@ func (c *Chime) DisassociateSigninDelegateGroupsFromAccountWithContext(ctx aws.C
 	return out, req.Send()
 }
 
-// ExecuteDisassociateSigninDelegateGroupsFromAccount is Blink's code
-func ExecuteDisassociateSigninDelegateGroupsFromAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateSigninDelegateGroupsFromAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateSigninDelegateGroupsFromAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetAccount = "GetAccount"
 
 // GetAccountRequest generates a "aws/request.Request" representing the
@@ -10796,44 +7752,6 @@ func (c *Chime) GetAccountWithContext(ctx aws.Context, input *GetAccountInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetAccount is Blink's code
-func ExecuteGetAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetAccountSettings = "GetAccountSettings"
@@ -10936,44 +7854,6 @@ func (c *Chime) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccount
 	return out, req.Send()
 }
 
-// ExecuteGetAccountSettings is Blink's code
-func ExecuteGetAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetAccountSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetAccountSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetAppInstanceRetentionSettings = "GetAppInstanceRetentionSettings"
 
 // GetAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
@@ -11073,44 +7953,6 @@ func (c *Chime) GetAppInstanceRetentionSettingsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteGetAppInstanceRetentionSettings is Blink's code
-func ExecuteGetAppInstanceRetentionSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetAppInstanceRetentionSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetAppInstanceRetentionSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetAppInstanceStreamingConfigurations = "GetAppInstanceStreamingConfigurations"
 
 // GetAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
@@ -11206,44 +8048,6 @@ func (c *Chime) GetAppInstanceStreamingConfigurationsWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetAppInstanceStreamingConfigurations is Blink's code
-func ExecuteGetAppInstanceStreamingConfigurations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetAppInstanceStreamingConfigurationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetAppInstanceStreamingConfigurationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetAttendee = "GetAttendee"
@@ -11346,44 +8150,6 @@ func (c *Chime) GetAttendeeWithContext(ctx aws.Context, input *GetAttendeeInput,
 	return out, req.Send()
 }
 
-// ExecuteGetAttendee is Blink's code
-func ExecuteGetAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetBot = "GetBot"
 
 // GetBotRequest generates a "aws/request.Request" representing the
@@ -11480,44 +8246,6 @@ func (c *Chime) GetBotWithContext(ctx aws.Context, input *GetBotInput, opts ...r
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetBot is Blink's code
-func ExecuteGetBot(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetBotInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetBotRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetChannelMessage = "GetChannelMessage"
@@ -11622,44 +8350,6 @@ func (c *Chime) GetChannelMessageWithContext(ctx aws.Context, input *GetChannelM
 	return out, req.Send()
 }
 
-// ExecuteGetChannelMessage is Blink's code
-func ExecuteGetChannelMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetChannelMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetChannelMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetEventsConfiguration = "GetEventsConfiguration"
 
 // GetEventsConfigurationRequest generates a "aws/request.Request" representing the
@@ -11758,44 +8448,6 @@ func (c *Chime) GetEventsConfigurationWithContext(ctx aws.Context, input *GetEve
 	return out, req.Send()
 }
 
-// ExecuteGetEventsConfiguration is Blink's code
-func ExecuteGetEventsConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetEventsConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetEventsConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetGlobalSettings = "GetGlobalSettings"
 
 // GetGlobalSettingsRequest generates a "aws/request.Request" representing the
@@ -11889,44 +8541,6 @@ func (c *Chime) GetGlobalSettingsWithContext(ctx aws.Context, input *GetGlobalSe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetGlobalSettings is Blink's code
-func ExecuteGetGlobalSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetGlobalSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetGlobalSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetMeeting = "GetMeeting"
@@ -12029,44 +8643,6 @@ func (c *Chime) GetMeetingWithContext(ctx aws.Context, input *GetMeetingInput, o
 	return out, req.Send()
 }
 
-// ExecuteGetMeeting is Blink's code
-func ExecuteGetMeeting(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetMeetingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetMeetingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetMessagingSessionEndpoint = "GetMessagingSessionEndpoint"
 
 // GetMessagingSessionEndpointRequest generates a "aws/request.Request" representing the
@@ -12158,44 +8734,6 @@ func (c *Chime) GetMessagingSessionEndpointWithContext(ctx aws.Context, input *G
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetMessagingSessionEndpoint is Blink's code
-func ExecuteGetMessagingSessionEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetMessagingSessionEndpointInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetMessagingSessionEndpointRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetPhoneNumber = "GetPhoneNumber"
@@ -12294,44 +8832,6 @@ func (c *Chime) GetPhoneNumberWithContext(ctx aws.Context, input *GetPhoneNumber
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetPhoneNumber is Blink's code
-func ExecuteGetPhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetPhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetPhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetPhoneNumberOrder = "GetPhoneNumberOrder"
@@ -12433,44 +8933,6 @@ func (c *Chime) GetPhoneNumberOrderWithContext(ctx aws.Context, input *GetPhoneN
 	return out, req.Send()
 }
 
-// ExecuteGetPhoneNumberOrder is Blink's code
-func ExecuteGetPhoneNumberOrder(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetPhoneNumberOrderInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetPhoneNumberOrderRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetPhoneNumberSettings = "GetPhoneNumberSettings"
 
 // GetPhoneNumberSettingsRequest generates a "aws/request.Request" representing the
@@ -12564,44 +9026,6 @@ func (c *Chime) GetPhoneNumberSettingsWithContext(ctx aws.Context, input *GetPho
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetPhoneNumberSettings is Blink's code
-func ExecuteGetPhoneNumberSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetPhoneNumberSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetPhoneNumberSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetProxySession = "GetProxySession"
@@ -12700,44 +9124,6 @@ func (c *Chime) GetProxySessionWithContext(ctx aws.Context, input *GetProxySessi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetProxySession is Blink's code
-func ExecuteGetProxySession(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetProxySessionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetProxySessionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetRetentionSettings = "GetRetentionSettings"
@@ -12840,44 +9226,6 @@ func (c *Chime) GetRetentionSettingsWithContext(ctx aws.Context, input *GetReten
 	return out, req.Send()
 }
 
-// ExecuteGetRetentionSettings is Blink's code
-func ExecuteGetRetentionSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetRetentionSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetRetentionSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetRoom = "GetRoom"
 
 // GetRoomRequest generates a "aws/request.Request" representing the
@@ -12974,44 +9322,6 @@ func (c *Chime) GetRoomWithContext(ctx aws.Context, input *GetRoomInput, opts ..
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetRoom is Blink's code
-func ExecuteGetRoom(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetRoomInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetRoomRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetSipMediaApplication = "GetSipMediaApplication"
@@ -13112,44 +9422,6 @@ func (c *Chime) GetSipMediaApplicationWithContext(ctx aws.Context, input *GetSip
 	return out, req.Send()
 }
 
-// ExecuteGetSipMediaApplication is Blink's code
-func ExecuteGetSipMediaApplication(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetSipMediaApplicationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetSipMediaApplicationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetSipMediaApplicationLoggingConfiguration = "GetSipMediaApplicationLoggingConfiguration"
 
 // GetSipMediaApplicationLoggingConfigurationRequest generates a "aws/request.Request" representing the
@@ -13245,44 +9517,6 @@ func (c *Chime) GetSipMediaApplicationLoggingConfigurationWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetSipMediaApplicationLoggingConfiguration is Blink's code
-func ExecuteGetSipMediaApplicationLoggingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetSipMediaApplicationLoggingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetSipMediaApplicationLoggingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetSipRule = "GetSipRule"
@@ -13381,44 +9615,6 @@ func (c *Chime) GetSipRuleWithContext(ctx aws.Context, input *GetSipRuleInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetSipRule is Blink's code
-func ExecuteGetSipRule(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetSipRuleInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetSipRuleRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetUser = "GetUser"
@@ -13522,44 +9718,6 @@ func (c *Chime) GetUserWithContext(ctx aws.Context, input *GetUserInput, opts ..
 	return out, req.Send()
 }
 
-// ExecuteGetUser is Blink's code
-func ExecuteGetUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetUserSettings = "GetUserSettings"
 
 // GetUserSettingsRequest generates a "aws/request.Request" representing the
@@ -13656,44 +9814,6 @@ func (c *Chime) GetUserSettingsWithContext(ctx aws.Context, input *GetUserSettin
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetUserSettings is Blink's code
-func ExecuteGetUserSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetUserSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetUserSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetVoiceConnector = "GetVoiceConnector"
@@ -13794,44 +9914,6 @@ func (c *Chime) GetVoiceConnectorWithContext(ctx aws.Context, input *GetVoiceCon
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnector is Blink's code
-func ExecuteGetVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetVoiceConnectorEmergencyCallingConfiguration = "GetVoiceConnectorEmergencyCallingConfiguration"
 
 // GetVoiceConnectorEmergencyCallingConfigurationRequest generates a "aws/request.Request" representing the
@@ -13930,44 +10012,6 @@ func (c *Chime) GetVoiceConnectorEmergencyCallingConfigurationWithContext(ctx aw
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnectorEmergencyCallingConfiguration is Blink's code
-func ExecuteGetVoiceConnectorEmergencyCallingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorEmergencyCallingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorEmergencyCallingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetVoiceConnectorGroup = "GetVoiceConnectorGroup"
 
 // GetVoiceConnectorGroupRequest generates a "aws/request.Request" representing the
@@ -14013,7 +10057,7 @@ func (c *Chime) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGroupInput
 // GetVoiceConnectorGroup API operation for Amazon Chime.
 //
 // Retrieves details for the specified Amazon Chime Voice Connector group, such
-// as timestamps,name, and associated VoiceConnectorItems .
+// as timestamps,name, and associated VoiceConnectorItems.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14064,44 +10108,6 @@ func (c *Chime) GetVoiceConnectorGroupWithContext(ctx aws.Context, input *GetVoi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetVoiceConnectorGroup is Blink's code
-func ExecuteGetVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetVoiceConnectorLoggingConfiguration = "GetVoiceConnectorLoggingConfiguration"
@@ -14203,44 +10209,6 @@ func (c *Chime) GetVoiceConnectorLoggingConfigurationWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnectorLoggingConfiguration is Blink's code
-func ExecuteGetVoiceConnectorLoggingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorLoggingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorLoggingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetVoiceConnectorOrigination = "GetVoiceConnectorOrigination"
 
 // GetVoiceConnectorOriginationRequest generates a "aws/request.Request" representing the
@@ -14339,44 +10307,6 @@ func (c *Chime) GetVoiceConnectorOriginationWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnectorOrigination is Blink's code
-func ExecuteGetVoiceConnectorOrigination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorOriginationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorOriginationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetVoiceConnectorProxy = "GetVoiceConnectorProxy"
 
 // GetVoiceConnectorProxyRequest generates a "aws/request.Request" representing the
@@ -14473,44 +10403,6 @@ func (c *Chime) GetVoiceConnectorProxyWithContext(ctx aws.Context, input *GetVoi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetVoiceConnectorProxy is Blink's code
-func ExecuteGetVoiceConnectorProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorProxyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorProxyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetVoiceConnectorStreamingConfiguration = "GetVoiceConnectorStreamingConfiguration"
@@ -14613,44 +10505,6 @@ func (c *Chime) GetVoiceConnectorStreamingConfigurationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnectorStreamingConfiguration is Blink's code
-func ExecuteGetVoiceConnectorStreamingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorStreamingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorStreamingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetVoiceConnectorTermination = "GetVoiceConnectorTermination"
 
 // GetVoiceConnectorTerminationRequest generates a "aws/request.Request" representing the
@@ -14747,44 +10601,6 @@ func (c *Chime) GetVoiceConnectorTerminationWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetVoiceConnectorTermination is Blink's code
-func ExecuteGetVoiceConnectorTermination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorTerminationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorTerminationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetVoiceConnectorTerminationHealth = "GetVoiceConnectorTerminationHealth"
@@ -14885,44 +10701,6 @@ func (c *Chime) GetVoiceConnectorTerminationHealthWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
-// ExecuteGetVoiceConnectorTerminationHealth is Blink's code
-func ExecuteGetVoiceConnectorTerminationHealth(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetVoiceConnectorTerminationHealthInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetVoiceConnectorTerminationHealthRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opInviteUsers = "InviteUsers"
 
 // InviteUsersRequest generates a "aws/request.Request" representing the
@@ -15020,44 +10798,6 @@ func (c *Chime) InviteUsersWithContext(ctx aws.Context, input *InviteUsersInput,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteInviteUsers is Blink's code
-func ExecuteInviteUsers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := InviteUsersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.InviteUsersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opListAccounts = "ListAccounts"
@@ -15164,44 +10904,6 @@ func (c *Chime) ListAccountsWithContext(ctx aws.Context, input *ListAccountsInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListAccounts is Blink's code
-func ExecuteListAccounts(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAccountsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAccountsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListAccountsPages iterates over the pages of a ListAccounts operation,
@@ -15358,44 +11060,6 @@ func (c *Chime) ListAppInstanceAdminsWithContext(ctx aws.Context, input *ListApp
 	return out, req.Send()
 }
 
-// ExecuteListAppInstanceAdmins is Blink's code
-func ExecuteListAppInstanceAdmins(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAppInstanceAdminsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAppInstanceAdminsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListAppInstanceAdminsPages iterates over the pages of a ListAppInstanceAdmins operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -15548,44 +11212,6 @@ func (c *Chime) ListAppInstanceUsersWithContext(ctx aws.Context, input *ListAppI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListAppInstanceUsers is Blink's code
-func ExecuteListAppInstanceUsers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAppInstanceUsersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAppInstanceUsersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListAppInstanceUsersPages iterates over the pages of a ListAppInstanceUsers operation,
@@ -15742,44 +11368,6 @@ func (c *Chime) ListAppInstancesWithContext(ctx aws.Context, input *ListAppInsta
 	return out, req.Send()
 }
 
-// ExecuteListAppInstances is Blink's code
-func ExecuteListAppInstances(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAppInstancesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAppInstancesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListAppInstancesPages iterates over the pages of a ListAppInstances operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -15929,44 +11517,6 @@ func (c *Chime) ListAttendeeTagsWithContext(ctx aws.Context, input *ListAttendee
 	return out, req.Send()
 }
 
-// ExecuteListAttendeeTags is Blink's code
-func ExecuteListAttendeeTags(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAttendeeTagsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAttendeeTagsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListAttendees = "ListAttendees"
 
 // ListAttendeesRequest generates a "aws/request.Request" representing the
@@ -16070,44 +11620,6 @@ func (c *Chime) ListAttendeesWithContext(ctx aws.Context, input *ListAttendeesIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListAttendees is Blink's code
-func ExecuteListAttendees(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAttendeesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAttendeesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListAttendeesPages iterates over the pages of a ListAttendees operation,
@@ -16264,44 +11776,6 @@ func (c *Chime) ListBotsWithContext(ctx aws.Context, input *ListBotsInput, opts 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListBots is Blink's code
-func ExecuteListBots(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListBotsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListBotsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListBotsPages iterates over the pages of a ListBots operation,
@@ -16461,44 +11935,6 @@ func (c *Chime) ListChannelBansWithContext(ctx aws.Context, input *ListChannelBa
 	return out, req.Send()
 }
 
-// ExecuteListChannelBans is Blink's code
-func ExecuteListChannelBans(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelBansInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelBansRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListChannelBansPages iterates over the pages of a ListChannelBans operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -16654,44 +12090,6 @@ func (c *Chime) ListChannelMembershipsWithContext(ctx aws.Context, input *ListCh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListChannelMemberships is Blink's code
-func ExecuteListChannelMemberships(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelMembershipsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelMembershipsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListChannelMembershipsPages iterates over the pages of a ListChannelMemberships operation,
@@ -16850,44 +12248,6 @@ func (c *Chime) ListChannelMembershipsForAppInstanceUserWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListChannelMembershipsForAppInstanceUser is Blink's code
-func ExecuteListChannelMembershipsForAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelMembershipsForAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelMembershipsForAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListChannelMembershipsForAppInstanceUserPages iterates over the pages of a ListChannelMembershipsForAppInstanceUser operation,
@@ -17052,44 +12412,6 @@ func (c *Chime) ListChannelMessagesWithContext(ctx aws.Context, input *ListChann
 	return out, req.Send()
 }
 
-// ExecuteListChannelMessages is Blink's code
-func ExecuteListChannelMessages(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelMessagesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelMessagesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListChannelMessagesPages iterates over the pages of a ListChannelMessages operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -17245,44 +12567,6 @@ func (c *Chime) ListChannelModeratorsWithContext(ctx aws.Context, input *ListCha
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListChannelModerators is Blink's code
-func ExecuteListChannelModerators(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelModeratorsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelModeratorsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListChannelModeratorsPages iterates over the pages of a ListChannelModerators operation,
@@ -17450,44 +12734,6 @@ func (c *Chime) ListChannelsWithContext(ctx aws.Context, input *ListChannelsInpu
 	return out, req.Send()
 }
 
-// ExecuteListChannels is Blink's code
-func ExecuteListChannels(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListChannelsPages iterates over the pages of a ListChannels operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -17645,44 +12891,6 @@ func (c *Chime) ListChannelsModeratedByAppInstanceUserWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
-// ExecuteListChannelsModeratedByAppInstanceUser is Blink's code
-func ExecuteListChannelsModeratedByAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListChannelsModeratedByAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListChannelsModeratedByAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListChannelsModeratedByAppInstanceUserPages iterates over the pages of a ListChannelsModeratedByAppInstanceUser operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -17832,44 +13040,6 @@ func (c *Chime) ListMeetingTagsWithContext(ctx aws.Context, input *ListMeetingTa
 	return out, req.Send()
 }
 
-// ExecuteListMeetingTags is Blink's code
-func ExecuteListMeetingTags(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListMeetingTagsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListMeetingTagsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListMeetings = "ListMeetings"
 
 // ListMeetingsRequest generates a "aws/request.Request" representing the
@@ -17922,7 +13092,7 @@ func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Requ
 //
 // Lists up to 100 active Amazon Chime SDK meetings. For more information about
 // the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide .
+// in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17970,44 +13140,6 @@ func (c *Chime) ListMeetingsWithContext(ctx aws.Context, input *ListMeetingsInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListMeetings is Blink's code
-func ExecuteListMeetings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListMeetingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListMeetingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListMeetingsPages iterates over the pages of a ListMeetings operation,
@@ -18160,44 +13292,6 @@ func (c *Chime) ListPhoneNumberOrdersWithContext(ctx aws.Context, input *ListPho
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListPhoneNumberOrders is Blink's code
-func ExecuteListPhoneNumberOrders(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPhoneNumberOrdersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPhoneNumberOrdersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListPhoneNumberOrdersPages iterates over the pages of a ListPhoneNumberOrders operation,
@@ -18356,44 +13450,6 @@ func (c *Chime) ListPhoneNumbersWithContext(ctx aws.Context, input *ListPhoneNum
 	return out, req.Send()
 }
 
-// ExecuteListPhoneNumbers is Blink's code
-func ExecuteListPhoneNumbers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPhoneNumbersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPhoneNumbersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListPhoneNumbersPages iterates over the pages of a ListPhoneNumbers operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -18547,44 +13603,6 @@ func (c *Chime) ListProxySessionsWithContext(ctx aws.Context, input *ListProxySe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListProxySessions is Blink's code
-func ExecuteListProxySessions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListProxySessionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListProxySessionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListProxySessionsPages iterates over the pages of a ListProxySessions operation,
@@ -18741,44 +13759,6 @@ func (c *Chime) ListRoomMembershipsWithContext(ctx aws.Context, input *ListRoomM
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListRoomMemberships is Blink's code
-func ExecuteListRoomMemberships(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListRoomMembershipsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListRoomMembershipsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListRoomMembershipsPages iterates over the pages of a ListRoomMemberships operation,
@@ -18938,44 +13918,6 @@ func (c *Chime) ListRoomsWithContext(ctx aws.Context, input *ListRoomsInput, opt
 	return out, req.Send()
 }
 
-// ExecuteListRooms is Blink's code
-func ExecuteListRooms(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListRoomsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListRoomsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListRoomsPages iterates over the pages of a ListRooms operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -19126,44 +14068,6 @@ func (c *Chime) ListSipMediaApplicationsWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListSipMediaApplications is Blink's code
-func ExecuteListSipMediaApplications(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListSipMediaApplicationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListSipMediaApplicationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListSipMediaApplicationsPages iterates over the pages of a ListSipMediaApplications operation,
@@ -19318,44 +14222,6 @@ func (c *Chime) ListSipRulesWithContext(ctx aws.Context, input *ListSipRulesInpu
 	return out, req.Send()
 }
 
-// ExecuteListSipRules is Blink's code
-func ExecuteListSipRules(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListSipRulesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListSipRulesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListSipRulesPages iterates over the pages of a ListSipRules operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -19505,44 +14371,6 @@ func (c *Chime) ListSupportedPhoneNumberCountriesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// ExecuteListSupportedPhoneNumberCountries is Blink's code
-func ExecuteListSupportedPhoneNumberCountries(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListSupportedPhoneNumberCountriesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListSupportedPhoneNumberCountriesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -19635,44 +14463,6 @@ func (c *Chime) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsF
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListTagsForResource is Blink's code
-func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTagsForResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTagsForResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opListUsers = "ListUsers"
@@ -19778,44 +14568,6 @@ func (c *Chime) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, opt
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListUsers is Blink's code
-func ExecuteListUsers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUsersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUsersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListUsersPages iterates over the pages of a ListUsers operation,
@@ -19971,44 +14723,6 @@ func (c *Chime) ListVoiceConnectorGroupsWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
-// ExecuteListVoiceConnectorGroups is Blink's code
-func ExecuteListVoiceConnectorGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListVoiceConnectorGroupsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListVoiceConnectorGroupsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListVoiceConnectorGroupsPages iterates over the pages of a ListVoiceConnectorGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -20158,44 +14872,6 @@ func (c *Chime) ListVoiceConnectorTerminationCredentialsWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// ExecuteListVoiceConnectorTerminationCredentials is Blink's code
-func ExecuteListVoiceConnectorTerminationCredentials(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListVoiceConnectorTerminationCredentialsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListVoiceConnectorTerminationCredentialsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListVoiceConnectors = "ListVoiceConnectors"
 
 // ListVoiceConnectorsRequest generates a "aws/request.Request" representing the
@@ -20294,44 +14970,6 @@ func (c *Chime) ListVoiceConnectorsWithContext(ctx aws.Context, input *ListVoice
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListVoiceConnectors is Blink's code
-func ExecuteListVoiceConnectors(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListVoiceConnectorsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListVoiceConnectorsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListVoiceConnectorsPages iterates over the pages of a ListVoiceConnectors operation,
@@ -20485,44 +15123,6 @@ func (c *Chime) LogoutUserWithContext(ctx aws.Context, input *LogoutUserInput, o
 	return out, req.Send()
 }
 
-// ExecuteLogoutUser is Blink's code
-func ExecuteLogoutUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := LogoutUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.LogoutUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutAppInstanceRetentionSettings = "PutAppInstanceRetentionSettings"
 
 // PutAppInstanceRetentionSettingsRequest generates a "aws/request.Request" representing the
@@ -20626,44 +15226,6 @@ func (c *Chime) PutAppInstanceRetentionSettingsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecutePutAppInstanceRetentionSettings is Blink's code
-func ExecutePutAppInstanceRetentionSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutAppInstanceRetentionSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutAppInstanceRetentionSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutAppInstanceStreamingConfigurations = "PutAppInstanceStreamingConfigurations"
 
 // PutAppInstanceStreamingConfigurationsRequest generates a "aws/request.Request" representing the
@@ -20759,44 +15321,6 @@ func (c *Chime) PutAppInstanceStreamingConfigurationsWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutAppInstanceStreamingConfigurations is Blink's code
-func ExecutePutAppInstanceStreamingConfigurations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutAppInstanceStreamingConfigurationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutAppInstanceStreamingConfigurationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutEventsConfiguration = "PutEventsConfiguration"
@@ -20898,44 +15422,6 @@ func (c *Chime) PutEventsConfigurationWithContext(ctx aws.Context, input *PutEve
 	return out, req.Send()
 }
 
-// ExecutePutEventsConfiguration is Blink's code
-func ExecutePutEventsConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutEventsConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutEventsConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutRetentionSettings = "PutRetentionSettings"
 
 // PutRetentionSettingsRequest generates a "aws/request.Request" representing the
@@ -20984,13 +15470,13 @@ func (c *Chime) PutRetentionSettingsRequest(input *PutRetentionSettingsInput) (r
 // We recommend using AWS CloudTrail to monitor usage of this API for your account.
 // For more information, see Logging Amazon Chime API Calls with AWS CloudTrail
 // (https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html) in the Amazon
-// Chime Administration Guide .
+// Chime Administration Guide.
 //
 // To turn off existing retention settings, remove the number of days from the
 // corresponding RetentionDays field in the RetentionSettings object. For more
 // information about retention settings, see Managing Chat Retention Policies
 // (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html) in the
-// Amazon Chime Administration Guide .
+// Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21045,44 +15531,6 @@ func (c *Chime) PutRetentionSettingsWithContext(ctx aws.Context, input *PutReten
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutRetentionSettings is Blink's code
-func ExecutePutRetentionSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutRetentionSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutRetentionSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutSipMediaApplicationLoggingConfiguration = "PutSipMediaApplicationLoggingConfiguration"
@@ -21180,44 +15628,6 @@ func (c *Chime) PutSipMediaApplicationLoggingConfigurationWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutSipMediaApplicationLoggingConfiguration is Blink's code
-func ExecutePutSipMediaApplicationLoggingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutSipMediaApplicationLoggingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutSipMediaApplicationLoggingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutVoiceConnectorEmergencyCallingConfiguration = "PutVoiceConnectorEmergencyCallingConfiguration"
@@ -21320,44 +15730,6 @@ func (c *Chime) PutVoiceConnectorEmergencyCallingConfigurationWithContext(ctx aw
 	return out, req.Send()
 }
 
-// ExecutePutVoiceConnectorEmergencyCallingConfiguration is Blink's code
-func ExecutePutVoiceConnectorEmergencyCallingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorEmergencyCallingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorEmergencyCallingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutVoiceConnectorLoggingConfiguration = "PutVoiceConnectorLoggingConfiguration"
 
 // PutVoiceConnectorLoggingConfigurationRequest generates a "aws/request.Request" representing the
@@ -21455,44 +15827,6 @@ func (c *Chime) PutVoiceConnectorLoggingConfigurationWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutVoiceConnectorLoggingConfiguration is Blink's code
-func ExecutePutVoiceConnectorLoggingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorLoggingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorLoggingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutVoiceConnectorOrigination = "PutVoiceConnectorOrigination"
@@ -21593,44 +15927,6 @@ func (c *Chime) PutVoiceConnectorOriginationWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutVoiceConnectorOrigination is Blink's code
-func ExecutePutVoiceConnectorOrigination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorOriginationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorOriginationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutVoiceConnectorProxy = "PutVoiceConnectorProxy"
@@ -21734,44 +16030,6 @@ func (c *Chime) PutVoiceConnectorProxyWithContext(ctx aws.Context, input *PutVoi
 	return out, req.Send()
 }
 
-// ExecutePutVoiceConnectorProxy is Blink's code
-func ExecutePutVoiceConnectorProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorProxyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorProxyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutVoiceConnectorStreamingConfiguration = "PutVoiceConnectorStreamingConfiguration"
 
 // PutVoiceConnectorStreamingConfigurationRequest generates a "aws/request.Request" representing the
@@ -21870,44 +16128,6 @@ func (c *Chime) PutVoiceConnectorStreamingConfigurationWithContext(ctx aws.Conte
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutVoiceConnectorStreamingConfiguration is Blink's code
-func ExecutePutVoiceConnectorStreamingConfiguration(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorStreamingConfigurationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorStreamingConfigurationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opPutVoiceConnectorTermination = "PutVoiceConnectorTermination"
@@ -22013,44 +16233,6 @@ func (c *Chime) PutVoiceConnectorTerminationWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecutePutVoiceConnectorTermination is Blink's code
-func ExecutePutVoiceConnectorTermination(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorTerminationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorTerminationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opPutVoiceConnectorTerminationCredentials = "PutVoiceConnectorTerminationCredentials"
 
 // PutVoiceConnectorTerminationCredentialsRequest generates a "aws/request.Request" representing the
@@ -22147,44 +16329,6 @@ func (c *Chime) PutVoiceConnectorTerminationCredentialsWithContext(ctx aws.Conte
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecutePutVoiceConnectorTerminationCredentials is Blink's code
-func ExecutePutVoiceConnectorTerminationCredentials(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := PutVoiceConnectorTerminationCredentialsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.PutVoiceConnectorTerminationCredentialsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opRedactChannelMessage = "RedactChannelMessage"
@@ -22287,44 +16431,6 @@ func (c *Chime) RedactChannelMessageWithContext(ctx aws.Context, input *RedactCh
 	return out, req.Send()
 }
 
-// ExecuteRedactChannelMessage is Blink's code
-func ExecuteRedactChannelMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RedactChannelMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RedactChannelMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opRedactConversationMessage = "RedactConversationMessage"
 
 // RedactConversationMessageRequest generates a "aws/request.Request" representing the
@@ -22421,44 +16527,6 @@ func (c *Chime) RedactConversationMessageWithContext(ctx aws.Context, input *Red
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteRedactConversationMessage is Blink's code
-func ExecuteRedactConversationMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RedactConversationMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RedactConversationMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opRedactRoomMessage = "RedactRoomMessage"
@@ -22559,44 +16627,6 @@ func (c *Chime) RedactRoomMessageWithContext(ctx aws.Context, input *RedactRoomM
 	return out, req.Send()
 }
 
-// ExecuteRedactRoomMessage is Blink's code
-func ExecuteRedactRoomMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RedactRoomMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RedactRoomMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opRegenerateSecurityToken = "RegenerateSecurityToken"
 
 // RegenerateSecurityTokenRequest generates a "aws/request.Request" representing the
@@ -22692,44 +16722,6 @@ func (c *Chime) RegenerateSecurityTokenWithContext(ctx aws.Context, input *Regen
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteRegenerateSecurityToken is Blink's code
-func ExecuteRegenerateSecurityToken(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RegenerateSecurityTokenInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RegenerateSecurityTokenRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opResetPersonalPIN = "ResetPersonalPIN"
@@ -22830,44 +16822,6 @@ func (c *Chime) ResetPersonalPINWithContext(ctx aws.Context, input *ResetPersona
 	return out, req.Send()
 }
 
-// ExecuteResetPersonalPIN is Blink's code
-func ExecuteResetPersonalPIN(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ResetPersonalPINInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ResetPersonalPINRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opRestorePhoneNumber = "RestorePhoneNumber"
 
 // RestorePhoneNumberRequest generates a "aws/request.Request" representing the
@@ -22966,44 +16920,6 @@ func (c *Chime) RestorePhoneNumberWithContext(ctx aws.Context, input *RestorePho
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteRestorePhoneNumber is Blink's code
-func ExecuteRestorePhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RestorePhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RestorePhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opSearchAvailablePhoneNumbers = "SearchAvailablePhoneNumbers"
@@ -23110,44 +17026,6 @@ func (c *Chime) SearchAvailablePhoneNumbersWithContext(ctx aws.Context, input *S
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteSearchAvailablePhoneNumbers is Blink's code
-func ExecuteSearchAvailablePhoneNumbers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := SearchAvailablePhoneNumbersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.SearchAvailablePhoneNumbersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // SearchAvailablePhoneNumbersPages iterates over the pages of a SearchAvailablePhoneNumbers operation,
@@ -23308,44 +17186,6 @@ func (c *Chime) SendChannelMessageWithContext(ctx aws.Context, input *SendChanne
 	return out, req.Send()
 }
 
-// ExecuteSendChannelMessage is Blink's code
-func ExecuteSendChannelMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := SendChannelMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.SendChannelMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opTagAttendee = "TagAttendee"
 
 // TagAttendeeRequest generates a "aws/request.Request" representing the
@@ -23445,44 +17285,6 @@ func (c *Chime) TagAttendeeWithContext(ctx aws.Context, input *TagAttendeeInput,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteTagAttendee is Blink's code
-func ExecuteTagAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opTagMeeting = "TagMeeting"
@@ -23586,44 +17388,6 @@ func (c *Chime) TagMeetingWithContext(ctx aws.Context, input *TagMeetingInput, o
 	return out, req.Send()
 }
 
-// ExecuteTagMeeting is Blink's code
-func ExecuteTagMeeting(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagMeetingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagMeetingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -23717,44 +17481,6 @@ func (c *Chime) TagResourceWithContext(ctx aws.Context, input *TagResourceInput,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteTagResource is Blink's code
-func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUntagAttendee = "UntagAttendee"
@@ -23855,44 +17581,6 @@ func (c *Chime) UntagAttendeeWithContext(ctx aws.Context, input *UntagAttendeeIn
 	return out, req.Send()
 }
 
-// ExecuteUntagAttendee is Blink's code
-func ExecuteUntagAttendee(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagAttendeeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagAttendeeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUntagMeeting = "UntagMeeting"
 
 // UntagMeetingRequest generates a "aws/request.Request" representing the
@@ -23991,44 +17679,6 @@ func (c *Chime) UntagMeetingWithContext(ctx aws.Context, input *UntagMeetingInpu
 	return out, req.Send()
 }
 
-// ExecuteUntagMeeting is Blink's code
-func ExecuteUntagMeeting(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagMeetingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagMeetingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -24124,44 +17774,6 @@ func (c *Chime) UntagResourceWithContext(ctx aws.Context, input *UntagResourceIn
 	return out, req.Send()
 }
 
-// ExecuteUntagResource is Blink's code
-func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateAccount = "UpdateAccount"
 
 // UpdateAccountRequest generates a "aws/request.Request" representing the
@@ -24207,7 +17819,7 @@ func (c *Chime) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Re
 // UpdateAccount API operation for Amazon Chime.
 //
 // Updates account details for the specified Amazon Chime account. Currently,
-// only account name updates are supported for this action.
+// only account name and default license updates are supported for this action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -24258,44 +17870,6 @@ func (c *Chime) UpdateAccountWithContext(ctx aws.Context, input *UpdateAccountIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateAccount is Blink's code
-func ExecuteUpdateAccount(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAccountInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAccountRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateAccountSettings = "UpdateAccountSettings"
@@ -24403,44 +17977,6 @@ func (c *Chime) UpdateAccountSettingsWithContext(ctx aws.Context, input *UpdateA
 	return out, req.Send()
 }
 
-// ExecuteUpdateAccountSettings is Blink's code
-func ExecuteUpdateAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAccountSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAccountSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateAppInstance = "UpdateAppInstance"
 
 // UpdateAppInstanceRequest generates a "aws/request.Request" representing the
@@ -24539,44 +18075,6 @@ func (c *Chime) UpdateAppInstanceWithContext(ctx aws.Context, input *UpdateAppIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateAppInstance is Blink's code
-func ExecuteUpdateAppInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAppInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAppInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateAppInstanceUser = "UpdateAppInstanceUser"
@@ -24679,44 +18177,6 @@ func (c *Chime) UpdateAppInstanceUserWithContext(ctx aws.Context, input *UpdateA
 	return out, req.Send()
 }
 
-// ExecuteUpdateAppInstanceUser is Blink's code
-func ExecuteUpdateAppInstanceUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAppInstanceUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAppInstanceUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateBot = "UpdateBot"
 
 // UpdateBotRequest generates a "aws/request.Request" representing the
@@ -24813,44 +18273,6 @@ func (c *Chime) UpdateBotWithContext(ctx aws.Context, input *UpdateBotInput, opt
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateBot is Blink's code
-func ExecuteUpdateBot(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateBotInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateBotRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateChannel = "UpdateChannel"
@@ -24958,44 +18380,6 @@ func (c *Chime) UpdateChannelWithContext(ctx aws.Context, input *UpdateChannelIn
 	return out, req.Send()
 }
 
-// ExecuteUpdateChannel is Blink's code
-func ExecuteUpdateChannel(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateChannelInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateChannelRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateChannelMessage = "UpdateChannelMessage"
 
 // UpdateChannelMessageRequest generates a "aws/request.Request" representing the
@@ -25097,44 +18481,6 @@ func (c *Chime) UpdateChannelMessageWithContext(ctx aws.Context, input *UpdateCh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateChannelMessage is Blink's code
-func ExecuteUpdateChannelMessage(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateChannelMessageInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateChannelMessageRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateChannelReadMarker = "UpdateChannelReadMarker"
@@ -25240,44 +18586,6 @@ func (c *Chime) UpdateChannelReadMarkerWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
-// ExecuteUpdateChannelReadMarker is Blink's code
-func ExecuteUpdateChannelReadMarker(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateChannelReadMarkerInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateChannelReadMarkerRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateGlobalSettings = "UpdateGlobalSettings"
 
 // UpdateGlobalSettingsRequest generates a "aws/request.Request" representing the
@@ -25372,44 +18680,6 @@ func (c *Chime) UpdateGlobalSettingsWithContext(ctx aws.Context, input *UpdateGl
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateGlobalSettings is Blink's code
-func ExecuteUpdateGlobalSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateGlobalSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateGlobalSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdatePhoneNumber = "UpdatePhoneNumber"
@@ -25520,44 +18790,6 @@ func (c *Chime) UpdatePhoneNumberWithContext(ctx aws.Context, input *UpdatePhone
 	return out, req.Send()
 }
 
-// ExecuteUpdatePhoneNumber is Blink's code
-func ExecuteUpdatePhoneNumber(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdatePhoneNumberInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdatePhoneNumberRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdatePhoneNumberSettings = "UpdatePhoneNumberSettings"
 
 // UpdatePhoneNumberSettingsRequest generates a "aws/request.Request" representing the
@@ -25656,44 +18888,6 @@ func (c *Chime) UpdatePhoneNumberSettingsWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// ExecuteUpdatePhoneNumberSettings is Blink's code
-func ExecuteUpdatePhoneNumberSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdatePhoneNumberSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdatePhoneNumberSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateProxySession = "UpdateProxySession"
 
 // UpdateProxySessionRequest generates a "aws/request.Request" representing the
@@ -25789,44 +18983,6 @@ func (c *Chime) UpdateProxySessionWithContext(ctx aws.Context, input *UpdateProx
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateProxySession is Blink's code
-func ExecuteUpdateProxySession(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateProxySessionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateProxySessionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateRoom = "UpdateRoom"
@@ -25927,44 +19083,6 @@ func (c *Chime) UpdateRoomWithContext(ctx aws.Context, input *UpdateRoomInput, o
 	return out, req.Send()
 }
 
-// ExecuteUpdateRoom is Blink's code
-func ExecuteUpdateRoom(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoomInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoomRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateRoomMembership = "UpdateRoomMembership"
 
 // UpdateRoomMembershipRequest generates a "aws/request.Request" representing the
@@ -26063,44 +19181,6 @@ func (c *Chime) UpdateRoomMembershipWithContext(ctx aws.Context, input *UpdateRo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateRoomMembership is Blink's code
-func ExecuteUpdateRoomMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoomMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoomMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateSipMediaApplication = "UpdateSipMediaApplication"
@@ -26204,42 +19284,105 @@ func (c *Chime) UpdateSipMediaApplicationWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// ExecuteUpdateSipMediaApplication is Blink's code
-func ExecuteUpdateSipMediaApplication(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opUpdateSipMediaApplicationCall = "UpdateSipMediaApplicationCall"
 
-	input := UpdateSipMediaApplicationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateSipMediaApplicationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// UpdateSipMediaApplicationCallRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSipMediaApplicationCall operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSipMediaApplicationCall for more information on using the UpdateSipMediaApplicationCall
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSipMediaApplicationCallRequest method.
+//    req, resp := client.UpdateSipMediaApplicationCallRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplicationCall
+func (c *Chime) UpdateSipMediaApplicationCallRequest(input *UpdateSipMediaApplicationCallInput) (req *request.Request, output *UpdateSipMediaApplicationCallOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSipMediaApplicationCall,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}/calls/{transactionId}",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &UpdateSipMediaApplicationCallInput{}
+	}
+
+	output = &UpdateSipMediaApplicationCallOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSipMediaApplicationCall API operation for Amazon Chime.
+//
+// Allows you to trigger a Lambda function at any time while a call is active,
+// and replace the current actions with new actions returned by the invocation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateSipMediaApplicationCall for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplicationCall
+func (c *Chime) UpdateSipMediaApplicationCall(input *UpdateSipMediaApplicationCallInput) (*UpdateSipMediaApplicationCallOutput, error) {
+	req, out := c.UpdateSipMediaApplicationCallRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSipMediaApplicationCallWithContext is the same as UpdateSipMediaApplicationCall with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSipMediaApplicationCall for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateSipMediaApplicationCallWithContext(ctx aws.Context, input *UpdateSipMediaApplicationCallInput, opts ...request.Option) (*UpdateSipMediaApplicationCallOutput, error) {
+	req, out := c.UpdateSipMediaApplicationCallRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateSipRule = "UpdateSipRule"
@@ -26346,44 +19489,6 @@ func (c *Chime) UpdateSipRuleWithContext(ctx aws.Context, input *UpdateSipRuleIn
 	return out, req.Send()
 }
 
-// ExecuteUpdateSipRule is Blink's code
-func ExecuteUpdateSipRule(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateSipRuleInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateSipRuleRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a "aws/request.Request" representing the
@@ -26480,44 +19585,6 @@ func (c *Chime) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput, o
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateUser is Blink's code
-func ExecuteUpdateUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateUserSettings = "UpdateUserSettings"
@@ -26618,44 +19685,6 @@ func (c *Chime) UpdateUserSettingsWithContext(ctx aws.Context, input *UpdateUser
 	return out, req.Send()
 }
 
-// ExecuteUpdateUserSettings is Blink's code
-func ExecuteUpdateUserSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateVoiceConnector = "UpdateVoiceConnector"
 
 // UpdateVoiceConnectorRequest generates a "aws/request.Request" representing the
@@ -26751,44 +19780,6 @@ func (c *Chime) UpdateVoiceConnectorWithContext(ctx aws.Context, input *UpdateVo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateVoiceConnector is Blink's code
-func ExecuteUpdateVoiceConnector(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateVoiceConnectorInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateVoiceConnectorRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateVoiceConnectorGroup = "UpdateVoiceConnectorGroup"
@@ -26891,44 +19882,6 @@ func (c *Chime) UpdateVoiceConnectorGroupWithContext(ctx aws.Context, input *Upd
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateVoiceConnectorGroup is Blink's code
-func ExecuteUpdateVoiceConnectorGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Chime)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateVoiceConnectorGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateVoiceConnectorGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // You don't have permissions to perform the requested operation.
@@ -45315,6 +38268,9 @@ type UpdateAccountInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
+	// The default license applied when you add users to an Amazon Chime account.
+	DefaultLicense *string `type:"string" enum:"License"`
+
 	// The new name for the specified Amazon Chime account.
 	Name *string `min:"1" type:"string"`
 }
@@ -45351,6 +38307,12 @@ func (s *UpdateAccountInput) Validate() error {
 // SetAccountId sets the AccountId field's value.
 func (s *UpdateAccountInput) SetAccountId(v string) *UpdateAccountInput {
 	s.AccountId = &v
+	return s
+}
+
+// SetDefaultLicense sets the DefaultLicense field's value.
+func (s *UpdateAccountInput) SetDefaultLicense(v string) *UpdateAccountInput {
+	s.DefaultLicense = &v
 	return s
 }
 
@@ -46593,6 +39555,102 @@ func (s UpdateRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *UpdateRoomOutput) SetRoom(v *Room) *UpdateRoomOutput {
 	s.Room = v
+	return s
+}
+
+type UpdateSipMediaApplicationCallInput struct {
+	_ struct{} `type:"structure"`
+
+	// Arguments made available to the Lambda function as part of the CALL_UPDATE_REQUESTED
+	// event. Can contain 0-20 key-value pairs.
+	//
+	// Arguments is a required field
+	Arguments map[string]*string `type:"map" required:"true"`
+
+	// The ID of the SIP media application handling the call.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+
+	// The ID of the call transaction.
+	//
+	// TransactionId is a required field
+	TransactionId *string `location:"uri" locationName:"transactionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationCallInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationCallInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSipMediaApplicationCallInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSipMediaApplicationCallInput"}
+	if s.Arguments == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arguments"))
+	}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArguments sets the Arguments field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetArguments(v map[string]*string) *UpdateSipMediaApplicationCallInput {
+	s.Arguments = v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetSipMediaApplicationId(v string) *UpdateSipMediaApplicationCallInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetTransactionId(v string) *UpdateSipMediaApplicationCallInput {
+	s.TransactionId = &v
+	return s
+}
+
+type UpdateSipMediaApplicationCallOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A Call instance for a SIP media application.
+	SipMediaApplicationCall *SipMediaApplicationCall `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationCallOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationCallOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplicationCall sets the SipMediaApplicationCall field's value.
+func (s *UpdateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipMediaApplicationCall) *UpdateSipMediaApplicationCallOutput {
+	s.SipMediaApplicationCall = v
 	return s
 }
 

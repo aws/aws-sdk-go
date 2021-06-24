@@ -3,8 +3,6 @@
 package connect
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -13,114 +11,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
-)
-
-const (
-	defaultAWSToken = ""
-)
-
-var (
-	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"AssociateApprovedOrigin":                  ExecuteAssociateApprovedOrigin,
-		"AssociateInstanceStorageConfig":           ExecuteAssociateInstanceStorageConfig,
-		"AssociateLambdaFunction":                  ExecuteAssociateLambdaFunction,
-		"AssociateLexBot":                          ExecuteAssociateLexBot,
-		"AssociateQueueQuickConnects":              ExecuteAssociateQueueQuickConnects,
-		"AssociateRoutingProfileQueues":            ExecuteAssociateRoutingProfileQueues,
-		"AssociateSecurityKey":                     ExecuteAssociateSecurityKey,
-		"CreateContactFlow":                        ExecuteCreateContactFlow,
-		"CreateInstance":                           ExecuteCreateInstance,
-		"CreateIntegrationAssociation":             ExecuteCreateIntegrationAssociation,
-		"CreateQueue":                              ExecuteCreateQueue,
-		"CreateQuickConnect":                       ExecuteCreateQuickConnect,
-		"CreateRoutingProfile":                     ExecuteCreateRoutingProfile,
-		"CreateUseCase":                            ExecuteCreateUseCase,
-		"CreateUser":                               ExecuteCreateUser,
-		"CreateUserHierarchyGroup":                 ExecuteCreateUserHierarchyGroup,
-		"DeleteInstance":                           ExecuteDeleteInstance,
-		"DeleteIntegrationAssociation":             ExecuteDeleteIntegrationAssociation,
-		"DeleteQuickConnect":                       ExecuteDeleteQuickConnect,
-		"DeleteUseCase":                            ExecuteDeleteUseCase,
-		"DeleteUser":                               ExecuteDeleteUser,
-		"DeleteUserHierarchyGroup":                 ExecuteDeleteUserHierarchyGroup,
-		"DescribeContactFlow":                      ExecuteDescribeContactFlow,
-		"DescribeHoursOfOperation":                 ExecuteDescribeHoursOfOperation,
-		"DescribeInstance":                         ExecuteDescribeInstance,
-		"DescribeInstanceAttribute":                ExecuteDescribeInstanceAttribute,
-		"DescribeInstanceStorageConfig":            ExecuteDescribeInstanceStorageConfig,
-		"DescribeQueue":                            ExecuteDescribeQueue,
-		"DescribeQuickConnect":                     ExecuteDescribeQuickConnect,
-		"DescribeRoutingProfile":                   ExecuteDescribeRoutingProfile,
-		"DescribeUser":                             ExecuteDescribeUser,
-		"DescribeUserHierarchyGroup":               ExecuteDescribeUserHierarchyGroup,
-		"DescribeUserHierarchyStructure":           ExecuteDescribeUserHierarchyStructure,
-		"DisassociateApprovedOrigin":               ExecuteDisassociateApprovedOrigin,
-		"DisassociateInstanceStorageConfig":        ExecuteDisassociateInstanceStorageConfig,
-		"DisassociateLambdaFunction":               ExecuteDisassociateLambdaFunction,
-		"DisassociateLexBot":                       ExecuteDisassociateLexBot,
-		"DisassociateQueueQuickConnects":           ExecuteDisassociateQueueQuickConnects,
-		"DisassociateRoutingProfileQueues":         ExecuteDisassociateRoutingProfileQueues,
-		"DisassociateSecurityKey":                  ExecuteDisassociateSecurityKey,
-		"GetContactAttributes":                     ExecuteGetContactAttributes,
-		"GetCurrentMetricData":                     ExecuteGetCurrentMetricData,
-		"GetFederationToken":                       ExecuteGetFederationToken,
-		"GetMetricData":                            ExecuteGetMetricData,
-		"ListApprovedOrigins":                      ExecuteListApprovedOrigins,
-		"ListContactFlows":                         ExecuteListContactFlows,
-		"ListHoursOfOperations":                    ExecuteListHoursOfOperations,
-		"ListInstanceAttributes":                   ExecuteListInstanceAttributes,
-		"ListInstanceStorageConfigs":               ExecuteListInstanceStorageConfigs,
-		"ListInstances":                            ExecuteListInstances,
-		"ListIntegrationAssociations":              ExecuteListIntegrationAssociations,
-		"ListLambdaFunctions":                      ExecuteListLambdaFunctions,
-		"ListLexBots":                              ExecuteListLexBots,
-		"ListPhoneNumbers":                         ExecuteListPhoneNumbers,
-		"ListPrompts":                              ExecuteListPrompts,
-		"ListQueueQuickConnects":                   ExecuteListQueueQuickConnects,
-		"ListQueues":                               ExecuteListQueues,
-		"ListQuickConnects":                        ExecuteListQuickConnects,
-		"ListRoutingProfileQueues":                 ExecuteListRoutingProfileQueues,
-		"ListRoutingProfiles":                      ExecuteListRoutingProfiles,
-		"ListSecurityKeys":                         ExecuteListSecurityKeys,
-		"ListSecurityProfiles":                     ExecuteListSecurityProfiles,
-		"ListTagsForResource":                      ExecuteListTagsForResource,
-		"ListUseCases":                             ExecuteListUseCases,
-		"ListUserHierarchyGroups":                  ExecuteListUserHierarchyGroups,
-		"ListUsers":                                ExecuteListUsers,
-		"ResumeContactRecording":                   ExecuteResumeContactRecording,
-		"StartChatContact":                         ExecuteStartChatContact,
-		"StartContactRecording":                    ExecuteStartContactRecording,
-		"StartOutboundVoiceContact":                ExecuteStartOutboundVoiceContact,
-		"StartTaskContact":                         ExecuteStartTaskContact,
-		"StopContact":                              ExecuteStopContact,
-		"StopContactRecording":                     ExecuteStopContactRecording,
-		"SuspendContactRecording":                  ExecuteSuspendContactRecording,
-		"TagResource":                              ExecuteTagResource,
-		"UntagResource":                            ExecuteUntagResource,
-		"UpdateContactAttributes":                  ExecuteUpdateContactAttributes,
-		"UpdateContactFlowContent":                 ExecuteUpdateContactFlowContent,
-		"UpdateContactFlowName":                    ExecuteUpdateContactFlowName,
-		"UpdateInstanceAttribute":                  ExecuteUpdateInstanceAttribute,
-		"UpdateInstanceStorageConfig":              ExecuteUpdateInstanceStorageConfig,
-		"UpdateQueueHoursOfOperation":              ExecuteUpdateQueueHoursOfOperation,
-		"UpdateQueueMaxContacts":                   ExecuteUpdateQueueMaxContacts,
-		"UpdateQueueName":                          ExecuteUpdateQueueName,
-		"UpdateQueueOutboundCallerConfig":          ExecuteUpdateQueueOutboundCallerConfig,
-		"UpdateQueueStatus":                        ExecuteUpdateQueueStatus,
-		"UpdateQuickConnectConfig":                 ExecuteUpdateQuickConnectConfig,
-		"UpdateQuickConnectName":                   ExecuteUpdateQuickConnectName,
-		"UpdateRoutingProfileConcurrency":          ExecuteUpdateRoutingProfileConcurrency,
-		"UpdateRoutingProfileDefaultOutboundQueue": ExecuteUpdateRoutingProfileDefaultOutboundQueue,
-		"UpdateRoutingProfileName":                 ExecuteUpdateRoutingProfileName,
-		"UpdateRoutingProfileQueues":               ExecuteUpdateRoutingProfileQueues,
-		"UpdateUserHierarchy":                      ExecuteUpdateUserHierarchy,
-		"UpdateUserHierarchyGroupName":             ExecuteUpdateUserHierarchyGroupName,
-		"UpdateUserHierarchyStructure":             ExecuteUpdateUserHierarchyStructure,
-		"UpdateUserIdentityInfo":                   ExecuteUpdateUserIdentityInfo,
-		"UpdateUserPhoneConfig":                    ExecuteUpdateUserPhoneConfig,
-		"UpdateUserRoutingProfile":                 ExecuteUpdateUserRoutingProfile,
-		"UpdateUserSecurityProfiles":               ExecuteUpdateUserSecurityProfiles,
-	}
 )
 
 const opAssociateApprovedOrigin = "AssociateApprovedOrigin"
@@ -223,42 +113,105 @@ func (c *Connect) AssociateApprovedOriginWithContext(ctx aws.Context, input *Ass
 	return out, req.Send()
 }
 
-// ExecuteAssociateApprovedOrigin is Blink's code
-func ExecuteAssociateApprovedOrigin(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opAssociateBot = "AssociateBot"
 
-	input := AssociateApprovedOriginInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateApprovedOriginRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// AssociateBotRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateBot for more information on using the AssociateBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateBotRequest method.
+//    req, resp := client.AssociateBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
+func (c *Connect) AssociateBotRequest(input *AssociateBotInput) (req *request.Request, output *AssociateBotOutput) {
+	op := &request.Operation{
+		Name:       opAssociateBot,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/bot",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &AssociateBotInput{}
+	}
+
+	output = &AssociateBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Allows the specified Amazon Connect instance to access the specified Amazon
+// Lex or Amazon Lex V2 bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
+func (c *Connect) AssociateBot(input *AssociateBotInput) (*AssociateBotOutput, error) {
+	req, out := c.AssociateBotRequest(input)
+	return out, req.Send()
+}
+
+// AssociateBotWithContext is the same as AssociateBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateBotWithContext(ctx aws.Context, input *AssociateBotInput, opts ...request.Option) (*AssociateBotOutput, error) {
+	req, out := c.AssociateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opAssociateInstanceStorageConfig = "AssociateInstanceStorageConfig"
@@ -364,44 +317,6 @@ func (c *Connect) AssociateInstanceStorageConfigWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// ExecuteAssociateInstanceStorageConfig is Blink's code
-func ExecuteAssociateInstanceStorageConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateInstanceStorageConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateInstanceStorageConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociateLambdaFunction = "AssociateLambdaFunction"
 
 // AssociateLambdaFunctionRequest generates a "aws/request.Request" representing the
@@ -501,44 +416,6 @@ func (c *Connect) AssociateLambdaFunctionWithContext(ctx aws.Context, input *Ass
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociateLambdaFunction is Blink's code
-func ExecuteAssociateLambdaFunction(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateLambdaFunctionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateLambdaFunctionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opAssociateLexBot = "AssociateLexBot"
@@ -642,44 +519,6 @@ func (c *Connect) AssociateLexBotWithContext(ctx aws.Context, input *AssociateLe
 	return out, req.Send()
 }
 
-// ExecuteAssociateLexBot is Blink's code
-func ExecuteAssociateLexBot(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateLexBotInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateLexBotRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociateQueueQuickConnects = "AssociateQueueQuickConnects"
 
 // AssociateQueueQuickConnectsRequest generates a "aws/request.Request" representing the
@@ -777,44 +616,6 @@ func (c *Connect) AssociateQueueQuickConnectsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// ExecuteAssociateQueueQuickConnects is Blink's code
-func ExecuteAssociateQueueQuickConnects(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateQueueQuickConnectsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateQueueQuickConnectsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opAssociateRoutingProfileQueues = "AssociateRoutingProfileQueues"
 
 // AssociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -905,44 +706,6 @@ func (c *Connect) AssociateRoutingProfileQueuesWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociateRoutingProfileQueues is Blink's code
-func ExecuteAssociateRoutingProfileQueues(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateRoutingProfileQueuesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateRoutingProfileQueuesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opAssociateSecurityKey = "AssociateSecurityKey"
@@ -1042,44 +805,6 @@ func (c *Connect) AssociateSecurityKeyWithContext(ctx aws.Context, input *Associ
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteAssociateSecurityKey is Blink's code
-func ExecuteAssociateSecurityKey(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := AssociateSecurityKeyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.AssociateSecurityKeyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateContactFlow = "CreateContactFlow"
@@ -1185,44 +910,6 @@ func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateCon
 	return out, req.Send()
 }
 
-// ExecuteCreateContactFlow is Blink's code
-func ExecuteCreateContactFlow(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateContactFlowInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateContactFlowRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateInstance = "CreateInstance"
 
 // CreateInstanceRequest generates a "aws/request.Request" representing the
@@ -1325,44 +1012,6 @@ func (c *Connect) CreateInstanceWithContext(ctx aws.Context, input *CreateInstan
 	return out, req.Send()
 }
 
-// ExecuteCreateInstance is Blink's code
-func ExecuteCreateInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateIntegrationAssociation = "CreateIntegrationAssociation"
 
 // CreateIntegrationAssociationRequest generates a "aws/request.Request" representing the
@@ -1452,44 +1101,6 @@ func (c *Connect) CreateIntegrationAssociationWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateIntegrationAssociation is Blink's code
-func ExecuteCreateIntegrationAssociation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateIntegrationAssociationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateIntegrationAssociationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateQueue = "CreateQueue"
@@ -1591,44 +1202,6 @@ func (c *Connect) CreateQueueWithContext(ctx aws.Context, input *CreateQueueInpu
 	return out, req.Send()
 }
 
-// ExecuteCreateQueue is Blink's code
-func ExecuteCreateQueue(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateQueueInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateQueueRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateQuickConnect = "CreateQuickConnect"
 
 // CreateQuickConnectRequest generates a "aws/request.Request" representing the
@@ -1728,44 +1301,6 @@ func (c *Connect) CreateQuickConnectWithContext(ctx aws.Context, input *CreateQu
 	return out, req.Send()
 }
 
-// ExecuteCreateQuickConnect is Blink's code
-func ExecuteCreateQuickConnect(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateQuickConnectInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateQuickConnectRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateRoutingProfile = "CreateRoutingProfile"
 
 // CreateRoutingProfileRequest generates a "aws/request.Request" representing the
@@ -1863,44 +1398,6 @@ func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
-// ExecuteCreateRoutingProfile is Blink's code
-func ExecuteCreateRoutingProfile(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateRoutingProfileInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateRoutingProfileRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateUseCase = "CreateUseCase"
 
 // CreateUseCaseRequest generates a "aws/request.Request" representing the
@@ -1990,44 +1487,6 @@ func (c *Connect) CreateUseCaseWithContext(ctx aws.Context, input *CreateUseCase
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateUseCase is Blink's code
-func ExecuteCreateUseCase(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateUseCaseInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateUseCaseRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateUser = "CreateUser"
@@ -2131,44 +1590,6 @@ func (c *Connect) CreateUserWithContext(ctx aws.Context, input *CreateUserInput,
 	return out, req.Send()
 }
 
-// ExecuteCreateUser is Blink's code
-func ExecuteCreateUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateUserHierarchyGroup = "CreateUserHierarchyGroup"
 
 // CreateUserHierarchyGroupRequest generates a "aws/request.Request" representing the
@@ -2266,44 +1687,6 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
-// ExecuteCreateUserHierarchyGroup is Blink's code
-func ExecuteCreateUserHierarchyGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateUserHierarchyGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateUserHierarchyGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteInstance = "DeleteInstance"
 
 // DeleteInstanceRequest generates a "aws/request.Request" representing the
@@ -2398,44 +1781,6 @@ func (c *Connect) DeleteInstanceWithContext(ctx aws.Context, input *DeleteInstan
 	return out, req.Send()
 }
 
-// ExecuteDeleteInstance is Blink's code
-func ExecuteDeleteInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteIntegrationAssociation = "DeleteIntegrationAssociation"
 
 // DeleteIntegrationAssociationRequest generates a "aws/request.Request" representing the
@@ -2524,44 +1869,6 @@ func (c *Connect) DeleteIntegrationAssociationWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteIntegrationAssociation is Blink's code
-func ExecuteDeleteIntegrationAssociation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteIntegrationAssociationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteIntegrationAssociationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteQuickConnect = "DeleteQuickConnect"
@@ -2658,44 +1965,6 @@ func (c *Connect) DeleteQuickConnectWithContext(ctx aws.Context, input *DeleteQu
 	return out, req.Send()
 }
 
-// ExecuteDeleteQuickConnect is Blink's code
-func ExecuteDeleteQuickConnect(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteQuickConnectInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteQuickConnectRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteUseCase = "DeleteUseCase"
 
 // DeleteUseCaseRequest generates a "aws/request.Request" representing the
@@ -2783,44 +2052,6 @@ func (c *Connect) DeleteUseCaseWithContext(ctx aws.Context, input *DeleteUseCase
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteUseCase is Blink's code
-func ExecuteDeleteUseCase(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteUseCaseInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteUseCaseRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteUser = "DeleteUser"
@@ -2919,44 +2150,6 @@ func (c *Connect) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput,
 	return out, req.Send()
 }
 
-// ExecuteDeleteUser is Blink's code
-func ExecuteDeleteUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteUserHierarchyGroup = "DeleteUserHierarchyGroup"
 
 // DeleteUserHierarchyGroupRequest generates a "aws/request.Request" representing the
@@ -3051,44 +2244,6 @@ func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *De
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteUserHierarchyGroup is Blink's code
-func ExecuteDeleteUserHierarchyGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteUserHierarchyGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteUserHierarchyGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeContactFlow = "DescribeContactFlow"
@@ -3188,44 +2343,6 @@ func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
-// ExecuteDescribeContactFlow is Blink's code
-func ExecuteDescribeContactFlow(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeContactFlowInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeContactFlowRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeHoursOfOperation = "DescribeHoursOfOperation"
 
 // DescribeHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -3317,44 +2434,6 @@ func (c *Connect) DescribeHoursOfOperationWithContext(ctx aws.Context, input *De
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeHoursOfOperation is Blink's code
-func ExecuteDescribeHoursOfOperation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeHoursOfOperationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeHoursOfOperationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeInstance = "DescribeInstance"
@@ -3449,44 +2528,6 @@ func (c *Connect) DescribeInstanceWithContext(ctx aws.Context, input *DescribeIn
 	return out, req.Send()
 }
 
-// ExecuteDescribeInstance is Blink's code
-func ExecuteDescribeInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeInstanceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeInstanceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeInstanceAttribute = "DescribeInstanceAttribute"
 
 // DescribeInstanceAttributeRequest generates a "aws/request.Request" representing the
@@ -3578,44 +2619,6 @@ func (c *Connect) DescribeInstanceAttributeWithContext(ctx aws.Context, input *D
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeInstanceAttribute is Blink's code
-func ExecuteDescribeInstanceAttribute(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeInstanceAttributeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeInstanceAttributeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeInstanceStorageConfig = "DescribeInstanceStorageConfig"
@@ -3712,44 +2715,6 @@ func (c *Connect) DescribeInstanceStorageConfigWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteDescribeInstanceStorageConfig is Blink's code
-func ExecuteDescribeInstanceStorageConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeInstanceStorageConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeInstanceStorageConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeQueue = "DescribeQueue"
 
 // DescribeQueueRequest generates a "aws/request.Request" representing the
@@ -3841,44 +2806,6 @@ func (c *Connect) DescribeQueueWithContext(ctx aws.Context, input *DescribeQueue
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeQueue is Blink's code
-func ExecuteDescribeQueue(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeQueueInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeQueueRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeQuickConnect = "DescribeQuickConnect"
@@ -3974,44 +2901,6 @@ func (c *Connect) DescribeQuickConnectWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
-// ExecuteDescribeQuickConnect is Blink's code
-func ExecuteDescribeQuickConnect(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeQuickConnectInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeQuickConnectRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeRoutingProfile = "DescribeRoutingProfile"
 
 // DescribeRoutingProfileRequest generates a "aws/request.Request" representing the
@@ -4101,44 +2990,6 @@ func (c *Connect) DescribeRoutingProfileWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeRoutingProfile is Blink's code
-func ExecuteDescribeRoutingProfile(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeRoutingProfileInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeRoutingProfileRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeUser = "DescribeUser"
@@ -4234,44 +3085,6 @@ func (c *Connect) DescribeUserWithContext(ctx aws.Context, input *DescribeUserIn
 	return out, req.Send()
 }
 
-// ExecuteDescribeUser is Blink's code
-func ExecuteDescribeUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeUserHierarchyGroup = "DescribeUserHierarchyGroup"
 
 // DescribeUserHierarchyGroupRequest generates a "aws/request.Request" representing the
@@ -4363,44 +3176,6 @@ func (c *Connect) DescribeUserHierarchyGroupWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteDescribeUserHierarchyGroup is Blink's code
-func ExecuteDescribeUserHierarchyGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeUserHierarchyGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeUserHierarchyGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeUserHierarchyStructure = "DescribeUserHierarchyStructure"
 
 // DescribeUserHierarchyStructureRequest generates a "aws/request.Request" representing the
@@ -4490,44 +3265,6 @@ func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeUserHierarchyStructure is Blink's code
-func ExecuteDescribeUserHierarchyStructure(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeUserHierarchyStructureInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeUserHierarchyStructureRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociateApprovedOrigin = "DisassociateApprovedOrigin"
@@ -4624,42 +3361,96 @@ func (c *Connect) DisassociateApprovedOriginWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteDisassociateApprovedOrigin is Blink's code
-func ExecuteDisassociateApprovedOrigin(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opDisassociateBot = "DisassociateBot"
 
-	input := DisassociateApprovedOriginInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateApprovedOriginRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// DisassociateBotRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateBot for more information on using the DisassociateBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateBotRequest method.
+//    req, resp := client.DisassociateBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
+func (c *Connect) DisassociateBotRequest(input *DisassociateBotInput) (req *request.Request, output *DisassociateBotOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateBot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/instance/{InstanceId}/bot",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &DisassociateBotInput{}
+	}
+
+	output = &DisassociateBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Revokes authorization from the specified instance to access the specified
+// Amazon Lex or Amazon Lex V2 bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
+func (c *Connect) DisassociateBot(input *DisassociateBotInput) (*DisassociateBotOutput, error) {
+	req, out := c.DisassociateBotRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateBotWithContext is the same as DisassociateBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateBotWithContext(ctx aws.Context, input *DisassociateBotInput, opts ...request.Option) (*DisassociateBotOutput, error) {
+	req, out := c.DisassociateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDisassociateInstanceStorageConfig = "DisassociateInstanceStorageConfig"
@@ -4757,44 +3548,6 @@ func (c *Connect) DisassociateInstanceStorageConfigWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
-// ExecuteDisassociateInstanceStorageConfig is Blink's code
-func ExecuteDisassociateInstanceStorageConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateInstanceStorageConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateInstanceStorageConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociateLambdaFunction = "DisassociateLambdaFunction"
 
 // DisassociateLambdaFunctionRequest generates a "aws/request.Request" representing the
@@ -4888,44 +3641,6 @@ func (c *Connect) DisassociateLambdaFunctionWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDisassociateLambdaFunction is Blink's code
-func ExecuteDisassociateLambdaFunction(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateLambdaFunctionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateLambdaFunctionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociateLexBot = "DisassociateLexBot"
@@ -5023,44 +3738,6 @@ func (c *Connect) DisassociateLexBotWithContext(ctx aws.Context, input *Disassoc
 	return out, req.Send()
 }
 
-// ExecuteDisassociateLexBot is Blink's code
-func ExecuteDisassociateLexBot(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateLexBotInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateLexBotRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociateQueueQuickConnects = "DisassociateQueueQuickConnects"
 
 // DisassociateQueueQuickConnectsRequest generates a "aws/request.Request" representing the
@@ -5155,44 +3832,6 @@ func (c *Connect) DisassociateQueueQuickConnectsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// ExecuteDisassociateQueueQuickConnects is Blink's code
-func ExecuteDisassociateQueueQuickConnects(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateQueueQuickConnectsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateQueueQuickConnectsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDisassociateRoutingProfileQueues = "DisassociateRoutingProfileQueues"
 
 // DisassociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -5283,44 +3922,6 @@ func (c *Connect) DisassociateRoutingProfileQueuesWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDisassociateRoutingProfileQueues is Blink's code
-func ExecuteDisassociateRoutingProfileQueues(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateRoutingProfileQueuesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateRoutingProfileQueuesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDisassociateSecurityKey = "DisassociateSecurityKey"
@@ -5417,44 +4018,6 @@ func (c *Connect) DisassociateSecurityKeyWithContext(ctx aws.Context, input *Dis
 	return out, req.Send()
 }
 
-// ExecuteDisassociateSecurityKey is Blink's code
-func ExecuteDisassociateSecurityKey(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DisassociateSecurityKeyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DisassociateSecurityKeyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetContactAttributes = "GetContactAttributes"
 
 // GetContactAttributesRequest generates a "aws/request.Request" representing the
@@ -5538,44 +4101,6 @@ func (c *Connect) GetContactAttributesWithContext(ctx aws.Context, input *GetCon
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetContactAttributes is Blink's code
-func ExecuteGetContactAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetContactAttributesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetContactAttributesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetCurrentMetricData = "GetCurrentMetricData"
@@ -5676,44 +4201,6 @@ func (c *Connect) GetCurrentMetricDataWithContext(ctx aws.Context, input *GetCur
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetCurrentMetricData is Blink's code
-func ExecuteGetCurrentMetricData(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetCurrentMetricDataInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetCurrentMetricDataRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // GetCurrentMetricDataPages iterates over the pages of a GetCurrentMetricData operation,
@@ -5868,44 +4355,6 @@ func (c *Connect) GetFederationTokenWithContext(ctx aws.Context, input *GetFeder
 	return out, req.Send()
 }
 
-// ExecuteGetFederationToken is Blink's code
-func ExecuteGetFederationToken(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetFederationTokenInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetFederationTokenRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetMetricData = "GetMetricData"
 
 // GetMetricDataRequest generates a "aws/request.Request" representing the
@@ -6005,44 +4454,6 @@ func (c *Connect) GetMetricDataWithContext(ctx aws.Context, input *GetMetricData
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteGetMetricData is Blink's code
-func ExecuteGetMetricData(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetMetricDataInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetMetricDataRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // GetMetricDataPages iterates over the pages of a GetMetricData operation,
@@ -6196,44 +4607,6 @@ func (c *Connect) ListApprovedOriginsWithContext(ctx aws.Context, input *ListApp
 	return out, req.Send()
 }
 
-// ExecuteListApprovedOrigins is Blink's code
-func ExecuteListApprovedOrigins(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListApprovedOriginsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListApprovedOriginsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListApprovedOriginsPages iterates over the pages of a ListApprovedOrigins operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -6279,6 +4652,155 @@ func (c *Connect) ListApprovedOriginsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListApprovedOriginsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListBots = "ListBots"
+
+// ListBotsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBots operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBots for more information on using the ListBots
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBotsRequest method.
+//    req, resp := client.ListBotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
+func (c *Connect) ListBotsRequest(input *ListBotsInput) (req *request.Request, output *ListBotsOutput) {
+	op := &request.Operation{
+		Name:       opListBots,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/bots",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBotsInput{}
+	}
+
+	output = &ListBotsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBots API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// For the specified version of Amazon Lex, returns a paginated list of all
+// the Amazon Lex bots currently associated with the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListBots for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
+func (c *Connect) ListBots(input *ListBotsInput) (*ListBotsOutput, error) {
+	req, out := c.ListBotsRequest(input)
+	return out, req.Send()
+}
+
+// ListBotsWithContext is the same as ListBots with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBots for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListBotsWithContext(ctx aws.Context, input *ListBotsInput, opts ...request.Option) (*ListBotsOutput, error) {
+	req, out := c.ListBotsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBotsPages iterates over the pages of a ListBots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBots operation.
+//    pageNum := 0
+//    err := client.ListBotsPages(params,
+//        func(page *connect.ListBotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListBotsPages(input *ListBotsInput, fn func(*ListBotsOutput, bool) bool) error {
+	return c.ListBotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBotsPagesWithContext same as ListBotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, fn func(*ListBotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBotsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6388,44 +4910,6 @@ func (c *Connect) ListContactFlowsWithContext(ctx aws.Context, input *ListContac
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListContactFlows is Blink's code
-func ExecuteListContactFlows(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListContactFlowsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListContactFlowsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListContactFlowsPages iterates over the pages of a ListContactFlows operation,
@@ -6582,44 +5066,6 @@ func (c *Connect) ListHoursOfOperationsWithContext(ctx aws.Context, input *ListH
 	return out, req.Send()
 }
 
-// ExecuteListHoursOfOperations is Blink's code
-func ExecuteListHoursOfOperations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListHoursOfOperationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListHoursOfOperationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListHoursOfOperationsPages iterates over the pages of a ListHoursOfOperations operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -6769,44 +5215,6 @@ func (c *Connect) ListInstanceAttributesWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListInstanceAttributes is Blink's code
-func ExecuteListInstanceAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListInstanceAttributesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListInstanceAttributesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListInstanceAttributesPages iterates over the pages of a ListInstanceAttributes operation,
@@ -6961,44 +5369,6 @@ func (c *Connect) ListInstanceStorageConfigsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteListInstanceStorageConfigs is Blink's code
-func ExecuteListInstanceStorageConfigs(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListInstanceStorageConfigsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListInstanceStorageConfigsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListInstanceStorageConfigsPages iterates over the pages of a ListInstanceStorageConfigs operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -7142,44 +5512,6 @@ func (c *Connect) ListInstancesWithContext(ctx aws.Context, input *ListInstances
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListInstances is Blink's code
-func ExecuteListInstances(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListInstancesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListInstancesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListInstancesPages iterates over the pages of a ListInstances operation,
@@ -7327,44 +5659,6 @@ func (c *Connect) ListIntegrationAssociationsWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListIntegrationAssociations is Blink's code
-func ExecuteListIntegrationAssociations(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListIntegrationAssociationsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListIntegrationAssociationsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListIntegrationAssociationsPages iterates over the pages of a ListIntegrationAssociations operation,
@@ -7519,44 +5813,6 @@ func (c *Connect) ListLambdaFunctionsWithContext(ctx aws.Context, input *ListLam
 	return out, req.Send()
 }
 
-// ExecuteListLambdaFunctions is Blink's code
-func ExecuteListLambdaFunctions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListLambdaFunctionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListLambdaFunctionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListLambdaFunctionsPages iterates over the pages of a ListLambdaFunctions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -7707,44 +5963,6 @@ func (c *Connect) ListLexBotsWithContext(ctx aws.Context, input *ListLexBotsInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListLexBots is Blink's code
-func ExecuteListLexBots(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListLexBotsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListLexBotsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListLexBotsPages iterates over the pages of a ListLexBots operation,
@@ -7901,44 +6119,6 @@ func (c *Connect) ListPhoneNumbersWithContext(ctx aws.Context, input *ListPhoneN
 	return out, req.Send()
 }
 
-// ExecuteListPhoneNumbers is Blink's code
-func ExecuteListPhoneNumbers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPhoneNumbersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPhoneNumbersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListPhoneNumbersPages iterates over the pages of a ListPhoneNumbers operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8086,44 +6266,6 @@ func (c *Connect) ListPromptsWithContext(ctx aws.Context, input *ListPromptsInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListPrompts is Blink's code
-func ExecuteListPrompts(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListPromptsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListPromptsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListPromptsPages iterates over the pages of a ListPrompts operation,
@@ -8275,44 +6417,6 @@ func (c *Connect) ListQueueQuickConnectsWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListQueueQuickConnects is Blink's code
-func ExecuteListQueueQuickConnects(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListQueueQuickConnectsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListQueueQuickConnectsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListQueueQuickConnectsPages iterates over the pages of a ListQueueQuickConnects operation,
@@ -8472,44 +6576,6 @@ func (c *Connect) ListQueuesWithContext(ctx aws.Context, input *ListQueuesInput,
 	return out, req.Send()
 }
 
-// ExecuteListQueues is Blink's code
-func ExecuteListQueues(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListQueuesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListQueuesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListQueuesPages iterates over the pages of a ListQueues operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8662,44 +6728,6 @@ func (c *Connect) ListQuickConnectsWithContext(ctx aws.Context, input *ListQuick
 	return out, req.Send()
 }
 
-// ExecuteListQuickConnects is Blink's code
-func ExecuteListQuickConnects(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListQuickConnectsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListQuickConnectsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListQuickConnectsPages iterates over the pages of a ListQuickConnects operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8847,44 +6875,6 @@ func (c *Connect) ListRoutingProfileQueuesWithContext(ctx aws.Context, input *Li
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListRoutingProfileQueues is Blink's code
-func ExecuteListRoutingProfileQueues(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListRoutingProfileQueuesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListRoutingProfileQueuesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListRoutingProfileQueuesPages iterates over the pages of a ListRoutingProfileQueues operation,
@@ -9041,44 +7031,6 @@ func (c *Connect) ListRoutingProfilesWithContext(ctx aws.Context, input *ListRou
 	return out, req.Send()
 }
 
-// ExecuteListRoutingProfiles is Blink's code
-func ExecuteListRoutingProfiles(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListRoutingProfilesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListRoutingProfilesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListRoutingProfilesPages iterates over the pages of a ListRoutingProfiles operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9228,44 +7180,6 @@ func (c *Connect) ListSecurityKeysWithContext(ctx aws.Context, input *ListSecuri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListSecurityKeys is Blink's code
-func ExecuteListSecurityKeys(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListSecurityKeysInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListSecurityKeysRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListSecurityKeysPages iterates over the pages of a ListSecurityKeys operation,
@@ -9421,44 +7335,6 @@ func (c *Connect) ListSecurityProfilesWithContext(ctx aws.Context, input *ListSe
 	return out, req.Send()
 }
 
-// ExecuteListSecurityProfiles is Blink's code
-func ExecuteListSecurityProfiles(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListSecurityProfilesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListSecurityProfilesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListSecurityProfilesPages iterates over the pages of a ListSecurityProfiles operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9606,44 +7482,6 @@ func (c *Connect) ListTagsForResourceWithContext(ctx aws.Context, input *ListTag
 	return out, req.Send()
 }
 
-// ExecuteListTagsForResource is Blink's code
-func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTagsForResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTagsForResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListUseCases = "ListUseCases"
 
 // ListUseCasesRequest generates a "aws/request.Request" representing the
@@ -9736,44 +7574,6 @@ func (c *Connect) ListUseCasesWithContext(ctx aws.Context, input *ListUseCasesIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListUseCases is Blink's code
-func ExecuteListUseCases(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUseCasesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUseCasesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListUseCasesPages iterates over the pages of a ListUseCases operation,
@@ -9930,44 +7730,6 @@ func (c *Connect) ListUserHierarchyGroupsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
-// ExecuteListUserHierarchyGroups is Blink's code
-func ExecuteListUserHierarchyGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUserHierarchyGroupsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUserHierarchyGroupsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListUserHierarchyGroupsPages iterates over the pages of a ListUserHierarchyGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -10118,44 +7880,6 @@ func (c *Connect) ListUsersWithContext(ctx aws.Context, input *ListUsersInput, o
 	return out, req.Send()
 }
 
-// ExecuteListUsers is Blink's code
-func ExecuteListUsers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUsersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUsersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListUsersPages iterates over the pages of a ListUsers operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -10297,44 +8021,6 @@ func (c *Connect) ResumeContactRecordingWithContext(ctx aws.Context, input *Resu
 	return out, req.Send()
 }
 
-// ExecuteResumeContactRecording is Blink's code
-func ExecuteResumeContactRecording(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ResumeContactRecordingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ResumeContactRecordingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opStartChatContact = "StartChatContact"
 
 // StartChatContactRequest generates a "aws/request.Request" representing the
@@ -10445,44 +8131,6 @@ func (c *Connect) StartChatContactWithContext(ctx aws.Context, input *StartChatC
 	return out, req.Send()
 }
 
-// ExecuteStartChatContact is Blink's code
-func ExecuteStartChatContact(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StartChatContactInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StartChatContactRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opStartContactRecording = "StartContactRecording"
 
 // StartContactRecordingRequest generates a "aws/request.Request" representing the
@@ -10581,44 +8229,6 @@ func (c *Connect) StartContactRecordingWithContext(ctx aws.Context, input *Start
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteStartContactRecording is Blink's code
-func ExecuteStartContactRecording(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StartContactRecordingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StartContactRecordingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
@@ -10732,44 +8342,6 @@ func (c *Connect) StartOutboundVoiceContactWithContext(ctx aws.Context, input *S
 	return out, req.Send()
 }
 
-// ExecuteStartOutboundVoiceContact is Blink's code
-func ExecuteStartOutboundVoiceContact(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StartOutboundVoiceContactInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StartOutboundVoiceContactRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opStartTaskContact = "StartTaskContact"
 
 // StartTaskContactRequest generates a "aws/request.Request" representing the
@@ -10864,44 +8436,6 @@ func (c *Connect) StartTaskContactWithContext(ctx aws.Context, input *StartTaskC
 	return out, req.Send()
 }
 
-// ExecuteStartTaskContact is Blink's code
-func ExecuteStartTaskContact(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StartTaskContactInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StartTaskContactRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opStopContact = "StopContact"
 
 // StopContactRequest generates a "aws/request.Request" representing the
@@ -10992,44 +8526,6 @@ func (c *Connect) StopContactWithContext(ctx aws.Context, input *StopContactInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteStopContact is Blink's code
-func ExecuteStopContact(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StopContactInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StopContactRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opStopContactRecording = "StopContactRecording"
@@ -11125,44 +8621,6 @@ func (c *Connect) StopContactRecordingWithContext(ctx aws.Context, input *StopCo
 	return out, req.Send()
 }
 
-// ExecuteStopContactRecording is Blink's code
-func ExecuteStopContactRecording(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := StopContactRecordingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.StopContactRecordingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opSuspendContactRecording = "SuspendContactRecording"
 
 // SuspendContactRecordingRequest generates a "aws/request.Request" representing the
@@ -11255,44 +8713,6 @@ func (c *Connect) SuspendContactRecordingWithContext(ctx aws.Context, input *Sus
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteSuspendContactRecording is Blink's code
-func ExecuteSuspendContactRecording(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := SuspendContactRecordingInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.SuspendContactRecordingRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opTagResource = "TagResource"
@@ -11394,44 +8814,6 @@ func (c *Connect) TagResourceWithContext(ctx aws.Context, input *TagResourceInpu
 	return out, req.Send()
 }
 
-// ExecuteTagResource is Blink's code
-func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -11522,44 +8904,6 @@ func (c *Connect) UntagResourceWithContext(ctx aws.Context, input *UntagResource
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUntagResource is Blink's code
-func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateContactAttributes = "UpdateContactAttributes"
@@ -11674,44 +9018,6 @@ func (c *Connect) UpdateContactAttributesWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
-// ExecuteUpdateContactAttributes is Blink's code
-func ExecuteUpdateContactAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateContactAttributesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateContactAttributesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateContactFlowContent = "UpdateContactFlowContent"
 
 // UpdateContactFlowContentRequest generates a "aws/request.Request" representing the
@@ -11808,44 +9114,6 @@ func (c *Connect) UpdateContactFlowContentWithContext(ctx aws.Context, input *Up
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateContactFlowContent is Blink's code
-func ExecuteUpdateContactFlowContent(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateContactFlowContentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateContactFlowContentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateContactFlowName = "UpdateContactFlowName"
@@ -11946,44 +9214,6 @@ func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *Updat
 	return out, req.Send()
 }
 
-// ExecuteUpdateContactFlowName is Blink's code
-func ExecuteUpdateContactFlowName(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateContactFlowNameInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateContactFlowNameRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateInstanceAttribute = "UpdateInstanceAttribute"
 
 // UpdateInstanceAttributeRequest generates a "aws/request.Request" representing the
@@ -12076,44 +9306,6 @@ func (c *Connect) UpdateInstanceAttributeWithContext(ctx aws.Context, input *Upd
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateInstanceAttribute is Blink's code
-func ExecuteUpdateInstanceAttribute(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateInstanceAttributeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateInstanceAttributeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateInstanceStorageConfig = "UpdateInstanceStorageConfig"
@@ -12210,44 +9402,6 @@ func (c *Connect) UpdateInstanceStorageConfigWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// ExecuteUpdateInstanceStorageConfig is Blink's code
-func ExecuteUpdateInstanceStorageConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateInstanceStorageConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateInstanceStorageConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateQueueHoursOfOperation = "UpdateQueueHoursOfOperation"
 
 // UpdateQueueHoursOfOperationRequest generates a "aws/request.Request" representing the
@@ -12340,44 +9494,6 @@ func (c *Connect) UpdateQueueHoursOfOperationWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateQueueHoursOfOperation is Blink's code
-func ExecuteUpdateQueueHoursOfOperation(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQueueHoursOfOperationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQueueHoursOfOperationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateQueueMaxContacts = "UpdateQueueMaxContacts"
@@ -12473,44 +9589,6 @@ func (c *Connect) UpdateQueueMaxContactsWithContext(ctx aws.Context, input *Upda
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateQueueMaxContacts is Blink's code
-func ExecuteUpdateQueueMaxContacts(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQueueMaxContactsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQueueMaxContactsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateQueueName = "UpdateQueueName"
@@ -12611,44 +9689,6 @@ func (c *Connect) UpdateQueueNameWithContext(ctx aws.Context, input *UpdateQueue
 	return out, req.Send()
 }
 
-// ExecuteUpdateQueueName is Blink's code
-func ExecuteUpdateQueueName(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQueueNameInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQueueNameRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateQueueOutboundCallerConfig = "UpdateQueueOutboundCallerConfig"
 
 // UpdateQueueOutboundCallerConfigRequest generates a "aws/request.Request" representing the
@@ -12742,44 +9782,6 @@ func (c *Connect) UpdateQueueOutboundCallerConfigWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateQueueOutboundCallerConfig is Blink's code
-func ExecuteUpdateQueueOutboundCallerConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQueueOutboundCallerConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQueueOutboundCallerConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateQueueStatus = "UpdateQueueStatus"
@@ -12876,44 +9878,6 @@ func (c *Connect) UpdateQueueStatusWithContext(ctx aws.Context, input *UpdateQue
 	return out, req.Send()
 }
 
-// ExecuteUpdateQueueStatus is Blink's code
-func ExecuteUpdateQueueStatus(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQueueStatusInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQueueStatusRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateQuickConnectConfig = "UpdateQuickConnectConfig"
 
 // UpdateQuickConnectConfigRequest generates a "aws/request.Request" representing the
@@ -13006,44 +9970,6 @@ func (c *Connect) UpdateQuickConnectConfigWithContext(ctx aws.Context, input *Up
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateQuickConnectConfig is Blink's code
-func ExecuteUpdateQuickConnectConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQuickConnectConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQuickConnectConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateQuickConnectName = "UpdateQuickConnectName"
@@ -13141,44 +10067,6 @@ func (c *Connect) UpdateQuickConnectNameWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-// ExecuteUpdateQuickConnectName is Blink's code
-func ExecuteUpdateQuickConnectName(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateQuickConnectNameInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateQuickConnectNameRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
 
 // UpdateRoutingProfileConcurrencyRequest generates a "aws/request.Request" representing the
@@ -13272,44 +10160,6 @@ func (c *Connect) UpdateRoutingProfileConcurrencyWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// ExecuteUpdateRoutingProfileConcurrency is Blink's code
-func ExecuteUpdateRoutingProfileConcurrency(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoutingProfileConcurrencyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoutingProfileConcurrencyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateRoutingProfileDefaultOutboundQueue = "UpdateRoutingProfileDefaultOutboundQueue"
 
 // UpdateRoutingProfileDefaultOutboundQueueRequest generates a "aws/request.Request" representing the
@@ -13400,44 +10250,6 @@ func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueWithContext(ctx aws.Co
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateRoutingProfileDefaultOutboundQueue is Blink's code
-func ExecuteUpdateRoutingProfileDefaultOutboundQueue(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoutingProfileDefaultOutboundQueueInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoutingProfileDefaultOutboundQueueRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateRoutingProfileName = "UpdateRoutingProfileName"
@@ -13536,44 +10348,6 @@ func (c *Connect) UpdateRoutingProfileNameWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// ExecuteUpdateRoutingProfileName is Blink's code
-func ExecuteUpdateRoutingProfileName(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoutingProfileNameInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoutingProfileNameRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateRoutingProfileQueues = "UpdateRoutingProfileQueues"
 
 // UpdateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
@@ -13666,44 +10440,6 @@ func (c *Connect) UpdateRoutingProfileQueuesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteUpdateRoutingProfileQueues is Blink's code
-func ExecuteUpdateRoutingProfileQueues(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateRoutingProfileQueuesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateRoutingProfileQueuesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUserHierarchy = "UpdateUserHierarchy"
 
 // UpdateUserHierarchyRequest generates a "aws/request.Request" representing the
@@ -13794,44 +10530,6 @@ func (c *Connect) UpdateUserHierarchyWithContext(ctx aws.Context, input *UpdateU
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateUserHierarchy is Blink's code
-func ExecuteUpdateUserHierarchy(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserHierarchyInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserHierarchyRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateUserHierarchyGroupName = "UpdateUserHierarchyGroupName"
@@ -13929,44 +10627,6 @@ func (c *Connect) UpdateUserHierarchyGroupNameWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
-// ExecuteUpdateUserHierarchyGroupName is Blink's code
-func ExecuteUpdateUserHierarchyGroupName(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserHierarchyGroupNameInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserHierarchyGroupNameRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUserHierarchyStructure = "UpdateUserHierarchyStructure"
 
 // UpdateUserHierarchyStructureRequest generates a "aws/request.Request" representing the
@@ -14061,44 +10721,6 @@ func (c *Connect) UpdateUserHierarchyStructureWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateUserHierarchyStructure is Blink's code
-func ExecuteUpdateUserHierarchyStructure(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserHierarchyStructureInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserHierarchyStructureRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateUserIdentityInfo = "UpdateUserIdentityInfo"
@@ -14201,44 +10823,6 @@ func (c *Connect) UpdateUserIdentityInfoWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-// ExecuteUpdateUserIdentityInfo is Blink's code
-func ExecuteUpdateUserIdentityInfo(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserIdentityInfoInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserIdentityInfoRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUserPhoneConfig = "UpdateUserPhoneConfig"
 
 // UpdateUserPhoneConfigRequest generates a "aws/request.Request" representing the
@@ -14329,44 +10913,6 @@ func (c *Connect) UpdateUserPhoneConfigWithContext(ctx aws.Context, input *Updat
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateUserPhoneConfig is Blink's code
-func ExecuteUpdateUserPhoneConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserPhoneConfigInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserPhoneConfigRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateUserRoutingProfile = "UpdateUserRoutingProfile"
@@ -14461,44 +11007,6 @@ func (c *Connect) UpdateUserRoutingProfileWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// ExecuteUpdateUserRoutingProfile is Blink's code
-func ExecuteUpdateUserRoutingProfile(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserRoutingProfileInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserRoutingProfileRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUserSecurityProfiles = "UpdateUserSecurityProfiles"
 
 // UpdateUserSecurityProfilesRequest generates a "aws/request.Request" representing the
@@ -14591,48 +11099,11 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
-// ExecuteUpdateUserSecurityProfiles is Blink's code
-func ExecuteUpdateUserSecurityProfiles(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*Connect)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserSecurityProfilesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserSecurityProfilesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14698,10 +11169,90 @@ func (s AssociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// The Amazon Lex V2 bot to associate with the instance.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateBotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexV2Bot != nil {
+		if err := s.LexV2Bot.Validate(); err != nil {
+			invalidParams.AddNested("LexV2Bot", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateBotInput) SetInstanceId(v string) *AssociateBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *AssociateBotInput) SetLexBot(v *LexBot) *AssociateBotInput {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *AssociateBotInput) SetLexV2Bot(v *LexV2Bot) *AssociateBotInput {
+	s.LexV2Bot = v
+	return s
+}
+
+type AssociateBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateBotOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14805,7 +11356,8 @@ type AssociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14872,12 +11424,13 @@ func (s AssociateLambdaFunctionOutput) GoString() string {
 type AssociateLexBotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The Amazon Lex box to associate with the instance.
+	// The Amazon Lex bot to associate with the instance.
 	//
 	// LexBot is a required field
 	LexBot *LexBot `type:"structure" required:"true"`
@@ -14941,7 +11494,8 @@ func (s AssociateLexBotOutput) GoString() string {
 type AssociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15030,7 +11584,8 @@ func (s AssociateQueueQuickConnectsOutput) GoString() string {
 type AssociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15129,7 +11684,8 @@ func (s AssociateRoutingProfileQueuesOutput) GoString() string {
 type AssociateSecurityKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15822,7 +12378,8 @@ func (s *CreateInstanceOutput) SetId(v string) *CreateInstanceOutput {
 type CreateIntegrationAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15991,7 +12548,8 @@ type CreateQueueInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16150,7 +12708,8 @@ type CreateQuickConnectInput struct {
 	// The description of the quick connect.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16287,7 +12846,8 @@ type CreateRoutingProfileInput struct {
 	// Description is a required field
 	Description *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16458,7 +13018,8 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16575,7 +13136,8 @@ func (s *CreateUseCaseOutput) SetUseCaseId(v string) *CreateUseCaseOutput {
 type CreateUserHierarchyGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16690,7 +13252,8 @@ type CreateUserInput struct {
 	// The information about the identity of the user.
 	IdentityInfo *UserIdentityInfo `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17032,7 +13595,8 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 type DeleteInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17087,7 +13651,8 @@ func (s DeleteInstanceOutput) GoString() string {
 type DeleteIntegrationAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17159,7 +13724,8 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 type DeleteQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17231,7 +13797,8 @@ func (s DeleteQuickConnectOutput) GoString() string {
 type DeleteUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17325,7 +13892,8 @@ type DeleteUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17392,7 +13960,8 @@ func (s DeleteUserHierarchyGroupOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17550,7 +14119,8 @@ type DescribeHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17631,7 +14201,8 @@ type DescribeInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17707,7 +14278,8 @@ func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeIn
 type DescribeInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17777,7 +14349,8 @@ type DescribeInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17867,7 +14440,8 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 type DescribeQueueInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17948,7 +14522,8 @@ func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
 type DescribeQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18029,7 +14604,8 @@ func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQ
 type DescribeRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18115,7 +14691,8 @@ type DescribeUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18191,7 +14768,8 @@ func (s *DescribeUserHierarchyGroupOutput) SetHierarchyGroup(v *HierarchyGroup) 
 type DescribeUserHierarchyStructureInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18255,7 +14833,8 @@ func (s *DescribeUserHierarchyStructureOutput) SetHierarchyStructure(v *Hierarch
 type DescribeUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18426,7 +15005,8 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 type DisassociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18492,6 +15072,85 @@ func (s DisassociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// The Amazon Lex V2 bot to disassociate from the instance.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateBotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexV2Bot != nil {
+		if err := s.LexV2Bot.Validate(); err != nil {
+			invalidParams.AddNested("LexV2Bot", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateBotInput) SetInstanceId(v string) *DisassociateBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *DisassociateBotInput) SetLexBot(v *LexBot) *DisassociateBotInput {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *DisassociateBotInput) SetLexV2Bot(v *LexV2Bot) *DisassociateBotInput {
+	s.LexV2Bot = v
+	return s
+}
+
+type DisassociateBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateBotOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18501,7 +15160,8 @@ type DisassociateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18587,7 +15247,8 @@ type DisassociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `location:"querystring" locationName:"functionArn" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance..
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance..
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18659,7 +15320,8 @@ type DisassociateLexBotInput struct {
 	// BotName is a required field
 	BotName *string `location:"querystring" locationName:"botName" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18737,7 +15399,8 @@ func (s DisassociateLexBotOutput) GoString() string {
 type DisassociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18826,7 +15489,8 @@ func (s DisassociateQueueQuickConnectsOutput) GoString() string {
 type DisassociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18928,7 +15592,8 @@ type DisassociateSecurityKeyInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19345,7 +16010,8 @@ type GetCurrentMetricDataInput struct {
 	// If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19486,7 +16152,8 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 type GetFederationTokenInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19581,6 +16248,9 @@ type GetMetricDataInput struct {
 	// The following historical metrics are available. For a description of each
 	// metric, see Historical Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 	// in the Amazon Connect Administrator Guide.
+	//
+	// This API does not support a contacts incoming metric (there's no CONTACTS_INCOMING
+	// metric missing from the documented list).
 	//
 	// ABANDON_TIME
 	//
@@ -19740,7 +16410,8 @@ type GetMetricDataInput struct {
 	// HistoricalMetrics is a required field
 	HistoricalMetrics []*HistoricalMetric `type:"list" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -20617,7 +17288,8 @@ type Instance struct {
 	// When the instance was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	Id *string `min:"1" type:"string"`
 
 	// The identity management type.
@@ -20944,7 +17616,8 @@ func (s *InstanceSummary) SetServiceRole(v string) *InstanceSummary {
 type IntegrationAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the AppIntegration.
@@ -21446,6 +18119,76 @@ func (s *LexBot) SetName(v string) *LexBot {
 	return s
 }
 
+// Configuration information of an Amazon Lex or Amazon Lex V2 bot.
+type LexBotConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// Configuration information of an Amazon Lex V2 bot.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s LexBotConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LexBotConfig) GoString() string {
+	return s.String()
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *LexBotConfig) SetLexBot(v *LexBot) *LexBotConfig {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *LexBotConfig) SetLexV2Bot(v *LexV2Bot) *LexBotConfig {
+	s.LexV2Bot = v
+	return s
+}
+
+// Configuration information of an Amazon Lex V2 bot.
+type LexV2Bot struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Lex V2 bot.
+	AliasArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LexV2Bot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LexV2Bot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LexV2Bot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LexV2Bot"}
+	if s.AliasArn != nil && len(*s.AliasArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasArn sets the AliasArn field's value.
+func (s *LexV2Bot) SetAliasArn(v string) *LexV2Bot {
+	s.AliasArn = &v
+	return s
+}
+
 // The allowed limit for the resource has been exceeded.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -21506,7 +18249,8 @@ func (s *LimitExceededException) RequestID() string {
 type ListApprovedOriginsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21598,13 +18342,125 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 	return s
 }
 
+type ListBotsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The version of Amazon Lex or Amazon Lex V2.
+	//
+	// LexVersion is a required field
+	LexVersion *string `location:"querystring" locationName:"lexVersion" type:"string" required:"true" enum:"LexVersion"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListBotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBotsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBotsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBotsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LexVersion"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListBotsInput) SetInstanceId(v string) *ListBotsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexVersion sets the LexVersion field's value.
+func (s *ListBotsInput) SetLexVersion(v string) *ListBotsInput {
+	s.LexVersion = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBotsInput) SetMaxResults(v int64) *ListBotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBotsInput) SetNextToken(v string) *ListBotsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBotsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The names and Regions of the Amazon Lex or Amazon Lex V2 bots associated
+	// with the specified instance.
+	LexBots []*LexBotConfig `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListBotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBotsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLexBots sets the LexBots field's value.
+func (s *ListBotsOutput) SetLexBots(v []*LexBotConfig) *ListBotsOutput {
+	s.LexBots = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListContactFlowsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of contact flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21705,7 +18561,8 @@ func (s *ListContactFlowsOutput) SetNextToken(v string) *ListContactFlowsOutput 
 type ListHoursOfOperationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21800,7 +18657,8 @@ func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperati
 type ListInstanceAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21895,7 +18753,8 @@ func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttri
 type ListInstanceStorageConfigsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22082,7 +18941,8 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 type ListIntegrationAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22177,7 +19037,8 @@ func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrat
 type ListLambdaFunctionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22272,7 +19133,8 @@ func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsO
 type ListLexBotsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22368,7 +19230,8 @@ func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 type ListPhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22576,7 +19439,8 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 type ListQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22688,7 +19552,8 @@ func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConn
 type ListQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22792,7 +19657,8 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 type ListQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22898,7 +19764,8 @@ func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSu
 type ListRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23010,7 +19877,8 @@ func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList
 type ListRoutingProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23105,7 +19973,8 @@ func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingPro
 type ListSecurityKeysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23200,7 +20069,8 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23361,7 +20231,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListUseCasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23473,7 +20344,8 @@ func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOu
 type ListUserHierarchyGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23568,7 +20440,8 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 type ListUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24725,7 +21598,8 @@ type ResumeContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -24811,7 +21685,8 @@ type RoutingProfile struct {
 	// The description of the routing profile.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The channels agents can handle in the Contact Control Panel (CCP) for this
@@ -25393,7 +22268,8 @@ type StartChatContactInput struct {
 	// The initial message to be sent to the newly created chat.
 	InitialMessage *ChatMessage `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25540,7 +22416,8 @@ type StartContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25643,8 +22520,7 @@ type StartOutboundVoiceContactInput struct {
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. The token is valid for 7 days after creation. If a contact
-	// is already started, the contact ID is returned. If the contact is disconnected,
-	// a new contact is started.
+	// is already started, the contact ID is returned.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
@@ -25663,7 +22539,8 @@ type StartOutboundVoiceContactInput struct {
 	// DestinationPhoneNumber is a required field
 	DestinationPhoneNumber *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25806,7 +22683,8 @@ type StartTaskContactInput struct {
 	// Panel (CCP).
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25948,7 +22826,8 @@ type StopContactInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26026,7 +22905,8 @@ type StopContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26116,7 +22996,8 @@ type SuspendContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26444,7 +23325,8 @@ type UpdateContactAttributesInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26706,7 +23588,8 @@ type UpdateInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26796,7 +23679,8 @@ type UpdateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26901,7 +23785,8 @@ type UpdateQueueHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26982,7 +23867,8 @@ func (s UpdateQueueHoursOfOperationOutput) GoString() string {
 type UpdateQueueMaxContactsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27067,7 +23953,8 @@ type UpdateQueueNameInput struct {
 	// The description of the queue.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27160,7 +24047,8 @@ func (s UpdateQueueNameOutput) GoString() string {
 type UpdateQueueOutboundCallerConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27251,7 +24139,8 @@ func (s UpdateQueueOutboundCallerConfigOutput) GoString() string {
 type UpdateQueueStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27337,7 +24226,8 @@ func (s UpdateQueueStatusOutput) GoString() string {
 type UpdateQuickConnectConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27431,7 +24321,8 @@ type UpdateQuickConnectNameInput struct {
 	// The description of the quick connect.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27521,7 +24412,8 @@ func (s UpdateQuickConnectNameOutput) GoString() string {
 type UpdateRoutingProfileConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27622,7 +24514,8 @@ type UpdateRoutingProfileDefaultOutboundQueueInput struct {
 	// DefaultOutboundQueueId is a required field
 	DefaultOutboundQueueId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27706,7 +24599,8 @@ type UpdateRoutingProfileNameInput struct {
 	// The description of the routing profile. Must not be more than 250 characters.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27799,7 +24693,8 @@ func (s UpdateRoutingProfileNameOutput) GoString() string {
 type UpdateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27904,7 +24799,8 @@ type UpdateUserHierarchyGroupNameInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27988,7 +24884,8 @@ type UpdateUserHierarchyInput struct {
 	// The identifier of the hierarchy group.
 	HierarchyGroupId *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28071,7 +24968,8 @@ type UpdateUserHierarchyStructureInput struct {
 	// HierarchyStructure is a required field
 	HierarchyStructure *HierarchyStructureUpdate `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28145,7 +25043,8 @@ type UpdateUserIdentityInfoInput struct {
 	// IdentityInfo is a required field
 	IdentityInfo *UserIdentityInfo `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28231,7 +25130,8 @@ func (s UpdateUserIdentityInfoOutput) GoString() string {
 type UpdateUserPhoneConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28322,7 +25222,8 @@ func (s UpdateUserPhoneConfigOutput) GoString() string {
 type UpdateUserRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28408,7 +25309,8 @@ func (s UpdateUserRoutingProfileOutput) GoString() string {
 type UpdateUserSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -29372,6 +26274,22 @@ const (
 func IntegrationType_Values() []string {
 	return []string{
 		IntegrationTypeEvent,
+	}
+}
+
+const (
+	// LexVersionV1 is a LexVersion enum value
+	LexVersionV1 = "V1"
+
+	// LexVersionV2 is a LexVersion enum value
+	LexVersionV2 = "V2"
+)
+
+// LexVersion_Values returns all elements of the LexVersion enum
+func LexVersion_Values() []string {
+	return []string{
+		LexVersionV1,
+		LexVersionV2,
 	}
 }
 

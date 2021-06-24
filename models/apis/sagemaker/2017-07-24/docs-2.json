@@ -197,6 +197,8 @@
     "RegisterDevices": "<p>Register devices.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
+    "SendPipelineExecutionStepFailure": "<p>Notifies the pipeline that the execution of a callback step failed, along with a message describing why. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
+    "SendPipelineExecutionStepSuccess": "<p>Notifies the pipeline that the execution of a callback step succeeded and provides a list of the step's output parameters. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
     "StartMonitoringSchedule": "<p>Starts a previously stopped monitoring schedule.</p> <note> <p>By default, when you successfully create a new schedule, the status of a monitoring schedule is <code>scheduled</code>.</p> </note>",
     "StartNotebookInstance": "<p>Launches an ML compute instance with the latest version of the libraries and attaches your ML storage volume. After configuring the notebook instance, Amazon SageMaker sets the notebook instance status to <code>InService</code>. A notebook instance's status must be <code>InService</code> before you can connect to your Jupyter notebook. </p>",
     "StartPipelineExecution": "<p>Starts a pipeline execution.</p>",
@@ -756,7 +758,7 @@
     "AutoGenerateEndpointName": {
       "base": null,
       "refs": {
-        "ModelDeployConfig$AutoGenerateEndpointName": "<p>Set to <code>True</code> to automatically generate an endpoint name for a one-click Autopilot model deployment; set to <code>False</code> otherwise. The default value is <code>True</code>.</p> <note> <p>If you set <code>AutoGenerateEndpointName</code> to <code>True</code>, do not specify the <code>EndpointName</code>; otherwise a 400 error is thrown.</p> </note>"
+        "ModelDeployConfig$AutoGenerateEndpointName": "<p>Set to <code>True</code> to automatically generate an endpoint name for a one-click Autopilot model deployment; set to <code>False</code> otherwise. The default value is <code>False</code>.</p> <note> <p>If you set <code>AutoGenerateEndpointName</code> to <code>True</code>, do not specify the <code>EndpointName</code>; otherwise a 400 error is thrown.</p> </note>"
       }
     },
     "AutoMLCandidate": {
@@ -927,7 +929,7 @@
     "AutoMLOutputDataConfig": {
       "base": "<p>The output data configuration.</p>",
       "refs": {
-        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job. Format(s) supported: CSV.</p> <p>&lt;para&gt;Specifies whether to automatically deploy the best &amp;ATP; model to an endpoint and the name of that endpoint if deployed automatically.&lt;/para&gt;</p>",
+        "CreateAutoMLJobRequest$OutputDataConfig": "<p>Provides information about encryption and the Amazon S3 output path needed to store artifacts from an AutoML job. Format(s) supported: CSV.</p>",
         "DescribeAutoMLJobResponse$OutputDataConfig": "<p>Returns the job's output data config.</p>"
       }
     },
@@ -1069,6 +1071,20 @@
       "base": "<p>Details on the cache hit of a pipeline execution step.</p>",
       "refs": {
         "PipelineExecutionStep$CacheHitResult": "<p>If this pipeline execution step was cached, details on the cache hit.</p>"
+      }
+    },
+    "CallbackStepMetadata": {
+      "base": "<p>Metadata about a callback step.</p>",
+      "refs": {
+        "PipelineExecutionStepMetadata$Callback": null
+      }
+    },
+    "CallbackToken": {
+      "base": null,
+      "refs": {
+        "CallbackStepMetadata$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>",
+        "SendPipelineExecutionStepFailureRequest$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>",
+        "SendPipelineExecutionStepSuccessRequest$CallbackToken": "<p>The pipeline generated token from the Amazon SQS queue.</p>"
       }
     },
     "CandidateArtifactLocations": {
@@ -3345,6 +3361,31 @@
         "EdgePackagingJobSummaries$member": null
       }
     },
+    "EdgePresetDeploymentArtifact": {
+      "base": null,
+      "refs": {
+        "EdgePresetDeploymentOutput$Artifact": "<p>The Amazon Resource Name (ARN) of the generated deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentOutput": {
+      "base": "<p>The output of a SageMaker Edge Manager deployable resource.</p>",
+      "refs": {
+        "DescribeEdgePackagingJobResponse$PresetDeploymentOutput": "<p>The output of a SageMaker Edge Manager deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentStatus": {
+      "base": null,
+      "refs": {
+        "EdgePresetDeploymentOutput$Status": "<p>The status of the deployable resource.</p>"
+      }
+    },
+    "EdgePresetDeploymentType": {
+      "base": null,
+      "refs": {
+        "EdgeOutputConfig$PresetDeploymentType": "<p>The deployment type SageMaker Edge Manager will create. Currently only supports AWS IoT Greengrass Version 2 components.</p>",
+        "EdgePresetDeploymentOutput$Type": "<p>The deployment type created by SageMaker Edge Manager. Currently only supports AWS IoT Greengrass Version 2 components.</p>"
+      }
+    },
     "EdgeVersion": {
       "base": null,
       "refs": {
@@ -3368,6 +3409,13 @@
       "refs": {
         "DataCaptureConfig$EnableCapture": "<p/>",
         "DataCaptureConfigSummary$EnableCapture": "<p/>"
+      }
+    },
+    "EnableIotRoleAlias": {
+      "base": null,
+      "refs": {
+        "CreateDeviceFleetRequest$EnableIotRoleAlias": "<p>Whether to create an AWS IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: \"SageMakerEdge-{DeviceFleetName}\".</p> <p>For example, if your device fleet is called \"demo-fleet\", the name of the role alias will be \"SageMakerEdge-demo-fleet\".</p>",
+        "UpdateDeviceFleetRequest$EnableIotRoleAlias": "<p>Whether to create an AWS IoT Role Alias during device fleet creation. The name of the role alias generated will match this pattern: \"SageMakerEdge-{DeviceFleetName}\".</p> <p>For example, if your device fleet is called \"demo-fleet\", the name of the role alias will be \"SageMakerEdge-demo-fleet\".</p>"
       }
     },
     "EnableSagemakerServicecatalogPortfolioInput": {
@@ -3741,6 +3789,8 @@
         "ListTrialsRequest$TrialComponentName": "<p>A filter that returns only trials that are associated with the specified trial component.</p>",
         "Parent$TrialName": "<p>The name of the trial.</p>",
         "Parent$ExperimentName": "<p>The name of the experiment.</p>",
+        "PipelineExperimentConfig$ExperimentName": "<p>The name of the experiment.</p>",
+        "PipelineExperimentConfig$TrialName": "<p>The name of the trial.</p>",
         "Trial$TrialName": "<p>The name of the trial.</p>",
         "Trial$DisplayName": "<p>The name of the trial as displayed. If <code>DisplayName</code> isn't specified, <code>TrialName</code> is displayed.</p>",
         "Trial$ExperimentName": "<p>The name of the experiment the trial is part of.</p>",
@@ -4473,6 +4523,8 @@
       "refs": {
         "CreatePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "DeletePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
+        "SendPipelineExecutionStepFailureRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
+        "SendPipelineExecutionStepSuccessRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "StartPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "StopPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>"
       }
@@ -4830,7 +4882,7 @@
     "KernelName": {
       "base": null,
       "refs": {
-        "KernelSpec$Name": "<p>The name of the kernel.</p>"
+        "KernelSpec$Name": "<p>The name of the Jupyter kernel in the image. This value is case sensitive.</p>"
       }
     },
     "KernelSpec": {
@@ -4872,7 +4924,7 @@
         "OnlineStoreSecurityConfig$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key that SageMaker Feature Store uses to encrypt the Amazon S3 objects at rest using Amazon S3 server-side encryption.</p> <p>The caller (either IAM user or IAM role) of <code>CreateFeatureGroup</code> must have below permissions to the <code>OnlineStore</code> <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Encrypt\"</code> </p> </li> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> <li> <p> <code>\"kms:DescribeKey\"</code> </p> </li> <li> <p> <code>\"kms:CreateGrant\"</code> </p> </li> <li> <p> <code>\"kms:RetireGrant\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptFrom\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptTo\"</code> </p> </li> <li> <p> <code>\"kms:GenerateDataKey\"</code> </p> </li> <li> <p> <code>\"kms:ListAliases\"</code> </p> </li> <li> <p> <code>\"kms:ListGrants\"</code> </p> </li> <li> <p> <code>\"kms:RevokeGrant\"</code> </p> </li> </ul> <p>The caller (either IAM user or IAM role) to all DataPlane operations (<code>PutRecord</code>, <code>GetRecord</code>, <code>DeleteRecord</code>) must have the following permissions to the <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> </ul>",
         "OutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
         "OutputDataConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your master key, the Amazon SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. Amazon SageMaker uses server-side encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateTrainingJob</code>, <code>CreateTransformJob</code>, or <code>CreateHyperParameterTuningJob</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
-        "ProcessingClusterConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job. </p>",
+        "ProcessingClusterConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job. </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>VolumeKmsKeyId</code> when using an instance type with local storage.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "ProcessingOutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the processing job output. <code>KmsKeyId</code> can be an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS key. The <code>KmsKeyId</code> is applied to all outputs.</p>",
         "ProductionVariantCoreDumpConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the core dump data at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your master key, the Amazon SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. Amazon SageMaker uses server-side encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateEndpoint</code> and <code>UpdateEndpoint</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "RedshiftDatasetDefinition$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data from a Redshift execution.</p>",
@@ -4880,7 +4932,7 @@
         "S3StorageConfig$KmsKeyId": "<p>The AWS Key Management Service (KMS) key ID of the key used to encrypt any objects written into the <code>OfflineStore</code> S3 location.</p> <p>The IAM <code>roleARN</code> that is passed as a parameter to <code>CreateFeatureGroup</code> must have below permissions to the <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:GenerateDataKey\"</code> </p> </li> </ul>",
         "SharingSettings$S3KmsKeyId": "<p>When <code>NotebookOutputOption</code> is <code>Allowed</code>, the AWS Key Management Service (KMS) encryption key ID used to encrypt the notebook cell output in the Amazon S3 bucket.</p>",
         "TransformOutput$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul> <p>If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <a>CreateModel</a> request. For more information, see <a href=\"http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
-        "TransformResources$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt model data on the storage volume attached to the ML compute instance(s) that run the batch transform job. The <code>VolumeKmsKeyId</code> can be any of the following formats:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>"
+        "TransformResources$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt model data on the storage volume attached to the ML compute instance(s) that run the batch transform job.</p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>VolumeKmsKeyId</code> when using an instance type with local storage.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note> <p> The <code>VolumeKmsKeyId</code> can be any of the following formats:</p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>"
       }
     },
     "LabelAttributeName": {
@@ -5700,7 +5752,7 @@
     "MaxAutoMLJobRuntimeInSeconds": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum time, in seconds, an AutoML job is allowed to wait for a trial to complete. It must be equal to or greater than <code>MaxRuntimePerTrainingJobInSeconds</code>.</p>"
+        "AutoMLJobCompletionCriteria$MaxAutoMLJobRuntimeInSeconds": "<p>The maximum runtime, in seconds, an AutoML job has to complete.</p>"
       }
     },
     "MaxCandidates": {
@@ -5818,7 +5870,7 @@
     "MaxRuntimePerTrainingJobInSeconds": {
       "base": null,
       "refs": {
-        "AutoMLJobCompletionCriteria$MaxRuntimePerTrainingJobInSeconds": "<p>The maximum time, in seconds, a job is allowed to run.</p>"
+        "AutoMLJobCompletionCriteria$MaxRuntimePerTrainingJobInSeconds": "<p>The maximum time, in seconds, a training job is allowed to run as part of an AutoML job.</p>"
       }
     },
     "MaxWaitTimeInSeconds": {
@@ -5893,7 +5945,7 @@
       }
     },
     "MetricDefinition": {
-      "base": "<p>Specifies a metric that the training algorithm writes to <code>stderr</code> or <code>stdout</code> . Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify one metric that a hyperparameter tuning job uses as its objective metric to choose the best training job.</p>",
+      "base": "<p>Specifies a metric that the training algorithm writes to <code>stderr</code> or <code>stdout</code>. Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify one metric that a hyperparameter tuning job uses as its objective metric to choose the best training job.</p>",
       "refs": {
         "MetricDefinitionList$member": null
       }
@@ -7135,6 +7187,19 @@
         "TrainingJobDefinition$OutputDataConfig": "<p>the path to the S3 bucket where you want to store model artifacts. Amazon SageMaker creates subfolders for the artifacts.</p>"
       }
     },
+    "OutputParameter": {
+      "base": "<p>An output parameter of a pipeline step.</p>",
+      "refs": {
+        "OutputParameterList$member": null
+      }
+    },
+    "OutputParameterList": {
+      "base": null,
+      "refs": {
+        "CallbackStepMetadata$OutputParameters": "<p>A list of the output parameters of the callback step.</p>",
+        "SendPipelineExecutionStepSuccessRequest$OutputParameters": "<p>A list of the output parameters of the callback step.</p>"
+      }
+    },
     "PaginationToken": {
       "base": null,
       "refs": {
@@ -7293,6 +7358,8 @@
         "ListPipelineParametersForExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecution$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StartPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StopPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StopPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -7308,6 +7375,13 @@
         "PipelineExecutionSummary$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>",
         "StartPipelineExecutionRequest$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>",
         "UpdatePipelineExecutionRequest$PipelineExecutionDescription": "<p>The description of the pipeline execution.</p>"
+      }
+    },
+    "PipelineExecutionFailureReason": {
+      "base": null,
+      "refs": {
+        "DescribePipelineExecutionResponse$FailureReason": "<p>If the execution failed, a message describing why.</p>",
+        "PipelineExecution$FailureReason": "<p>If the execution failed, a message describing why.</p>"
       }
     },
     "PipelineExecutionName": {
@@ -7343,7 +7417,7 @@
     "PipelineExecutionStepMetadata": {
       "base": "<p>Metadata for a step execution.</p>",
       "refs": {
-        "PipelineExecutionStep$Metadata": "<p>The metadata for the step execution.</p>"
+        "PipelineExecutionStep$Metadata": "<p>Metadata for the step execution.</p>"
       }
     },
     "PipelineExecutionSummary": {
@@ -7356,6 +7430,13 @@
       "base": null,
       "refs": {
         "ListPipelineExecutionsResponse$PipelineExecutionSummaries": "<p>Contains a sorted list of pipeline execution summary objects matching the specified filters. Each run summary includes the Amazon Resource Name (ARN) of the pipeline execution, the run date, and the status. This list can be empty. </p>"
+      }
+    },
+    "PipelineExperimentConfig": {
+      "base": "<p>Specifies the names of the experiment and trial created by a pipeline.</p>",
+      "refs": {
+        "DescribePipelineExecutionResponse$PipelineExperimentConfig": null,
+        "PipelineExecution$PipelineExperimentConfig": null
       }
     },
     "PipelineName": {
@@ -7657,7 +7738,7 @@
       "base": null,
       "refs": {
         "MonitoringClusterConfig$VolumeSizeInGB": "<p>The size of the ML storage volume, in gigabytes, that you want to provision. You must specify sufficient ML storage for your scenario.</p>",
-        "ProcessingClusterConfig$VolumeSizeInGB": "<p>The size of the ML storage volume in gigabytes that you want to provision. You must specify sufficient ML storage for your scenario.</p>"
+        "ProcessingClusterConfig$VolumeSizeInGB": "<p>The size of the ML storage volume in gigabytes that you want to provision. You must specify sufficient ML storage for your scenario.</p> <note> <p>Certain Nitro-based instances include local storage with a fixed total size, dependent on the instance type. When using these instances for processing, Amazon SageMaker mounts the local instance storage instead of Amazon EBS gp2 storage. You can't request a <code>VolumeSizeInGB</code> greater than the total size of the local instance storage.</p> <p>For a list of instance types that support local instance storage, including the total size per instance type, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> </note>"
       }
     },
     "ProductId": {
@@ -7674,7 +7755,7 @@
       }
     },
     "ProductionVariant": {
-      "base": "<p>Identifies a model that you want to host and the resources to deploy for hosting it. If you are deploying multiple models, tell Amazon SageMaker how to distribute traffic among the models by specifying variant weights. </p>",
+      "base": "<p>Identifies a model that you want to host and the resources chosen to deploy for hosting it. If you are deploying multiple models, tell Amazon SageMaker how to distribute traffic among the models by specifying variant weights. </p>",
       "refs": {
         "ProductionVariantList$member": null
       }
@@ -8132,7 +8213,7 @@
       "base": null,
       "refs": {
         "AlgorithmValidationSpecification$ValidationRole": "<p>The IAM roles that Amazon SageMaker uses to run the training jobs.</p>",
-        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p> <p>&lt;para&gt;Specifies whether to automatically deploy the best &amp;ATP; model to an endpoint and the name of that endpoint if deployed automatically.&lt;/para&gt;</p>",
+        "CreateAutoMLJobRequest$RoleArn": "<p>The ARN of the role that is used to access the data.</p>",
         "CreateCompilationJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker to perform tasks on your behalf. </p> <p>During model compilation, Amazon SageMaker needs your permission to:</p> <ul> <li> <p>Read input data from an S3 bucket</p> </li> <li> <p>Write model artifacts to an S3 bucket</p> </li> <li> <p>Write logs to Amazon CloudWatch Logs</p> </li> <li> <p>Publish metrics to Amazon CloudWatch</p> </li> </ul> <p>You grant permissions for all of these tasks to an IAM role. To pass this role to Amazon SageMaker, the caller of this API must have the <code>iam:PassRole</code> permission. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html\">Amazon SageMaker Roles.</a> </p>",
         "CreateDataQualityJobDefinitionRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role that Amazon SageMaker can assume to perform tasks on your behalf.</p>",
         "CreateDeviceFleetRequest$RoleArn": "<p>The Amazon Resource Name (ARN) that has access to AWS Internet of Things (IoT).</p>",
@@ -8409,6 +8490,26 @@
       "base": null,
       "refs": {
         "ShuffleConfig$Seed": "<p>Determines the shuffling order in <code>ShuffleConfig</code> value.</p>"
+      }
+    },
+    "SendPipelineExecutionStepFailureRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepFailureResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepSuccessRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendPipelineExecutionStepSuccessResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ServiceCatalogEntityId": {
@@ -8743,6 +8844,8 @@
         "AlgorithmStatusItem$FailureReason": "<p>if the overall status is <code>Failed</code>, the reason for the failure.</p>",
         "DescribeEdgePackagingJobResponse$EdgePackagingJobStatusMessage": "<p>Returns a message describing the job status and error messages.</p>",
         "DescribeEdgePackagingJobResponse$ModelSignature": "<p>The signature document of files in the model artifact.</p>",
+        "EdgeOutputConfig$PresetDeploymentConfig": "<p>The configuration used to create deployment artifacts. Specify configuration options with a JSON string. The available configuration options for each type are:</p> <ul> <li> <p> <code>ComponentName</code> (optional) - Name of the GreenGrass V2 component. If not specified, the default name generated consists of \"SagemakerEdgeManager\" and the name of your SageMaker Edge Manager packaging job.</p> </li> <li> <p> <code>ComponentDescription</code> (optional) - Description of the component.</p> </li> <li> <p> <code>ComponentVersion</code> (optional) - The version of the component.</p> <note> <p>AWS IoT Greengrass uses semantic versions for components. Semantic versions follow a<i> major.minor.patch</i> number system. For example, version 1.0.0 represents the first major release for a component. For more information, see the <a href=\"https://semver.org/\">semantic version specification</a>.</p> </note> </li> <li> <p> <code>PlatformOS</code> (optional) - The name of the operating system for the platform. Supported platforms include Windows and Linux.</p> </li> <li> <p> <code>PlatformArchitecture</code> (optional) - The processor architecture for the platform. </p> <p>Supported architectures Windows include: Windows32_x86, Windows64_x64.</p> <p>Supported architectures for Linux include: Linux x86_64, Linux ARMV8.</p> </li> </ul>",
+        "EdgePresetDeploymentOutput$StatusMessage": "<p>Returns a message describing the status of the deployed resource.</p>",
         "EndpointInput$FeaturesAttribute": "<p>The attributes of the input data that are the input features.</p>",
         "EndpointInput$InferenceAttribute": "<p>The attribute of the input data that represents the ground truth label.</p>",
         "EndpointInput$ProbabilityAttribute": "<p>In a classification problem, the attribute that represents the class probability.</p>",
@@ -8769,6 +8872,7 @@
         "CreateDomainResponse$Url": "<p>The URL to the created domain.</p>",
         "DescribeDomainResponse$Url": "<p>The domain's URL.</p>",
         "DomainDetails$Url": "<p>The domain's URL.</p>",
+        "OutputParameter$Value": "<p>The value of the output parameter.</p>",
         "Parameter$Value": "<p>The literal value for the parameter.</p>"
       }
     },
@@ -8799,6 +8903,7 @@
         "ArtifactSummary$ArtifactType": "<p>The type of the artifact.</p>",
         "AssociationSummary$SourceType": "<p>The source type.</p>",
         "AssociationSummary$DestinationType": "<p>The destination type.</p>",
+        "CallbackStepMetadata$SqsQueueUrl": "<p>The URL of the Amazon Simple Queue Service (Amazon SQS) queue used by the callback step.</p>",
         "ContextSource$SourceType": "<p>The type of the source.</p>",
         "ContextSource$SourceId": "<p>The ID of the source.</p>",
         "ContextSummary$ContextType": "<p>The type of the context.</p>",
@@ -8818,7 +8923,9 @@
         "ListContextsRequest$ContextType": "<p>A filter that returns only contexts of the specified type.</p>",
         "ListTrialComponentsRequest$SourceArn": "<p>A filter that returns only components that have the specified source Amazon Resource Name (ARN). If you specify <code>SourceArn</code>, you can't filter by <code>ExperimentName</code> or <code>TrialName</code>.</p>",
         "ModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the created model.</p>",
-        "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>"
+        "OutputParameter$Name": "<p>The name of the output parameter.</p>",
+        "RegisterModelStepMetadata$Arn": "<p>The Amazon Resource Name (ARN) of the model package.</p>",
+        "SendPipelineExecutionStepFailureRequest$FailureReason": "<p>A message describing why the step failed.</p>"
       }
     },
     "String64": {
@@ -8884,7 +8991,7 @@
       }
     },
     "Tag": {
-      "base": "<p>Describes a tag. </p>",
+      "base": "<p>A tag object that consists of a key and an optional value, used to manage metadata for Amazon SageMaker AWS resources.</p> <p>You can add tags to notebook instances, training jobs, hyperparameter tuning jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations, and endpoints. For more information on adding tags to Amazon SageMaker resources, see <a>AddTags</a>.</p> <p>For more information on adding metadata to your AWS resources with tagging, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS resources</a>. For advice on best practices for managing AWS resources with tagging, see <a href=\"https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf\">Tagging Best Practices: Implement an Effective AWS Resource Tagging Strategy</a>.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -8892,7 +8999,7 @@
     "TagKey": {
       "base": null,
       "refs": {
-        "Tag$Key": "<p>The tag key.</p>",
+        "Tag$Key": "<p>The tag key. Tag keys must be unique per resource.</p>",
         "TagKeyList$member": null
       }
     },
@@ -9632,7 +9739,7 @@
       "base": null,
       "refs": {
         "TransformInstanceTypes$member": null,
-        "TransformResources$InstanceType": "<p>The ML compute instance type for the transform job. If you are using built-in algorithms to transform moderately sized datasets, we recommend using ml.m4.xlarge or <code>ml.m5.large</code> instance types.</p>"
+        "TransformResources$InstanceType": "<p>The ML compute instance type for the transform job. If you are using built-in algorithms to transform moderately sized datasets, we recommend using ml.m4.xlarge or <code>ml.m5.large</code>instance types.</p>"
       }
     },
     "TransformInstanceTypes": {
@@ -10340,8 +10447,8 @@
       "base": null,
       "refs": {
         "ContainerDefinition$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to use to create the model.</p>",
-        "DeleteModelPackageInput$ModelPackageName": "<p>The name of the model package. The name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
-        "DescribeModelPackageInput$ModelPackageName": "<p>The name of the model package to describe.</p>"
+        "DeleteModelPackageInput$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to delete.</p> <p>When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>",
+        "DescribeModelPackageInput$ModelPackageName": "<p>The name or Amazon Resource Name (ARN) of the model package to describe.</p> <p>When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).</p>"
       }
     },
     "VolumeSizeInGB": {

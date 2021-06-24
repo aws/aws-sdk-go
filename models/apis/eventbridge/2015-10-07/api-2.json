@@ -924,6 +924,35 @@
         "StateReason":{"shape":"ReplayStateReason"}
       }
     },
+    "CapacityProvider":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "CapacityProviderStrategy":{
+      "type":"list",
+      "member":{"shape":"CapacityProviderStrategyItem"},
+      "max":6
+    },
+    "CapacityProviderStrategyItem":{
+      "type":"structure",
+      "required":["capacityProvider"],
+      "members":{
+        "capacityProvider":{"shape":"CapacityProvider"},
+        "weight":{"shape":"CapacityProviderStrategyItemWeight"},
+        "base":{"shape":"CapacityProviderStrategyItemBase"}
+      }
+    },
+    "CapacityProviderStrategyItemBase":{
+      "type":"integer",
+      "max":100000,
+      "min":0
+    },
+    "CapacityProviderStrategyItemWeight":{
+      "type":"integer",
+      "max":1000,
+      "min":0
+    },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -1547,7 +1576,15 @@
         "LaunchType":{"shape":"LaunchType"},
         "NetworkConfiguration":{"shape":"NetworkConfiguration"},
         "PlatformVersion":{"shape":"String"},
-        "Group":{"shape":"String"}
+        "Group":{"shape":"String"},
+        "CapacityProviderStrategy":{"shape":"CapacityProviderStrategy"},
+        "EnableECSManagedTags":{"shape":"Boolean"},
+        "EnableExecuteCommand":{"shape":"Boolean"},
+        "PlacementConstraints":{"shape":"PlacementConstraints"},
+        "PlacementStrategy":{"shape":"PlacementStrategies"},
+        "PropagateTags":{"shape":"PropagateTags"},
+        "ReferenceId":{"shape":"ReferenceId"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "EnableRuleRequest":{
@@ -2006,6 +2043,53 @@
       "type":"list",
       "member":{"shape":"PathParameter"}
     },
+    "PlacementConstraint":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"PlacementConstraintType"},
+        "expression":{"shape":"PlacementConstraintExpression"}
+      }
+    },
+    "PlacementConstraintExpression":{
+      "type":"string",
+      "max":2000
+    },
+    "PlacementConstraintType":{
+      "type":"string",
+      "enum":[
+        "distinctInstance",
+        "memberOf"
+      ]
+    },
+    "PlacementConstraints":{
+      "type":"list",
+      "member":{"shape":"PlacementConstraint"},
+      "max":10
+    },
+    "PlacementStrategies":{
+      "type":"list",
+      "member":{"shape":"PlacementStrategy"},
+      "max":5
+    },
+    "PlacementStrategy":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"PlacementStrategyType"},
+        "field":{"shape":"PlacementStrategyField"}
+      }
+    },
+    "PlacementStrategyField":{
+      "type":"string",
+      "max":255
+    },
+    "PlacementStrategyType":{
+      "type":"string",
+      "enum":[
+        "random",
+        "spread",
+        "binpack"
+      ]
+    },
     "PolicyLengthExceededException":{
       "type":"structure",
       "members":{
@@ -2017,6 +2101,10 @@
       "max":12,
       "min":1,
       "pattern":"(\\d{12}|\\*)"
+    },
+    "PropagateTags":{
+      "type":"string",
+      "enum":["TASK_DEFINITION"]
     },
     "PutEventsRequest":{
       "type":"structure",
@@ -2201,6 +2289,10 @@
       "max":1600,
       "min":1,
       "pattern":"(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+    },
+    "ReferenceId":{
+      "type":"string",
+      "max":1024
     },
     "RemovePermissionRequest":{
       "type":"structure",

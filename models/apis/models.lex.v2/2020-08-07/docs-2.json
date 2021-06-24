@@ -10,7 +10,7 @@
     "CreateExport": "<p>Creates a zip archive containing the contents of a bot or a bot locale. The archive contains a directory structure that contains JSON files that define the bot.</p> <p>You can create an archive that contains the complete definition of a bot, or you can specify that the archive contain only the definition of a single bot locale.</p> <p>For more information about exporting bots, and about the structure of the export archive, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/importing-exporting.html\"> Importing and exporting bots </a> </p>",
     "CreateIntent": "<p>Creates an intent.</p> <p>To define the interaction between the user and your bot, you define one or more intents. For example, for a pizza ordering bot you would create an <code>OrderPizza</code> intent.</p> <p>When you create an intent, you must provide a name. You can optionally provide the following:</p> <ul> <li> <p>Sample utterances. For example, \"I want to order a pizza\" and \"Can I order a pizza.\" You can't provide utterances for built-in intents.</p> </li> <li> <p>Information to be gathered. You specify slots for the information that you bot requests from the user. You can specify standard slot types, such as date and time, or custom slot types for your application.</p> </li> <li> <p>How the intent is fulfilled. You can provide a Lambda function or configure the intent to return the intent information to your client application. If you use a Lambda function, Amazon Lex invokes the function when all of the intent information is available.</p> </li> <li> <p>A confirmation prompt to send to the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent is fulfilled. For example, \"I ordered your pizza.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, \"Do you want a drink with your pizza?\"</p> </li> </ul>",
     "CreateResourcePolicy": "<p>Creates a new resource policy with the specified policy statements.</p>",
-    "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can create a resource policy statement that allows cross-account access.</p>",
+    "CreateResourcePolicyStatement": "<p>Adds a new resource policy statement to a bot or bot alias. If a resource policy exists, the statement is added to the current resource policy. If a policy doesn't exist, a new policy is created.</p> <p>You can't create a resource policy statement that allows cross-account access.</p>",
     "CreateSlot": "<p>Creates a slot in an intent. A slot is a variable needed to fulfill an intent. For example, an <code>OrderPizza</code> intent might need slots for size, crust, and number of pizzas. For each slot, you define one or more utterances that Amazon Lex uses to elicit a response from the user. </p>",
     "CreateSlotType": "<p>Creates a custom slot type</p> <p> To create a custom slot type, specify a name for the slot type and a set of enumeration values, the values that a slot of this type can assume. </p>",
     "CreateUploadUrl": "<p>Gets a pre-signed S3 write URL that you use to upload the zip archive when importing a bot or a bot locale. </p>",
@@ -53,7 +53,7 @@
     "UpdateBot": "<p>Updates the configuration of an existing bot. </p>",
     "UpdateBotAlias": "<p>Updates the configuration of an existing bot alias.</p>",
     "UpdateBotLocale": "<p>Updates the settings that a bot has for a specific locale.</p>",
-    "UpdateExport": "<p>Updates the password used to encrypt an export zip archive.</p>",
+    "UpdateExport": "<p>Updates the password used to protect an export zip archive.</p> <p>The password is not required. If you don't supply a password, Amazon Lex generates a zip file that is not protected by a password. This is the archive that is available at the pre-signed S3 URL provided by the operation.</p>",
     "UpdateIntent": "<p>Updates the settings for an intent.</p>",
     "UpdateResourcePolicy": "<p>Replaces the existing resource policy for a bot or bot alias with a new one. If the policy doesn't exist, Amazon Lex returns an exception.</p>",
     "UpdateSlot": "<p>Updates the settings for a slot.</p>",
@@ -119,6 +119,7 @@
         "DialogCodeHookSettings$enabled": "<p>Enables the dialog code hook so that it processes user requests.</p>",
         "FulfillmentCodeHookSettings$enabled": "<p>Indicates whether a Lambda function should be invoked to fulfill a specific intent.</p>",
         "KendraConfiguration$queryFilterStringEnabled": "<p>Determines whether the AMAZON.KendraSearchIntent intent uses a custom query string to query the Amazon Kendra index.</p>",
+        "MultipleValuesSetting$allowMultipleValues": "<p>Indicates whether a slot can return multiple values. When <code>true</code>, the slot may return more than one value in a response. When <code>false</code>, the slot returns only a single value.</p> <p>Multi-value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>.</p> <p>If the <code>allowMutlipleValues</code> is not set, the default value is <code>false</code>.</p>",
         "SentimentAnalysisSettings$detectSentiment": "<p>Sets whether Amazon Lex uses Amazon Comprehend to detect the sentiment of user utterances.</p>",
         "TextLogSetting$enabled": "<p>Determines whether conversation logs should be stored for an alias.</p>"
       }
@@ -1762,6 +1763,16 @@
       "base": null,
       "refs": {
         "MessageGroup$variations": "<p>Message variations to send to the user. When variations are defined, Amazon Lex chooses the primary message or one of the variations to send to the user.</p>"
+      }
+    },
+    "MultipleValuesSetting": {
+      "base": "<p>Indicates whether a slot can return multiple values.</p>",
+      "refs": {
+        "CreateSlotRequest$multipleValuesSetting": "<p>Indicates whether the slot returns multiple values in one response. Multi-value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>. </p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
+        "CreateSlotResponse$multipleValuesSetting": "<p>Indicates whether the slot returns multiple values in one response.</p>",
+        "DescribeSlotResponse$multipleValuesSetting": "<p>Indicates whether the slot accepts multiple values in a single utterance.</p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
+        "UpdateSlotRequest$multipleValuesSetting": "<p>Determines whether the slot accepts multiple values in one response. Multiple value slots are only available in the en-US locale. If you set this value to <code>true</code> in any other locale, Amazon Lex throws a <code>ValidationException</code>.</p> <p>If the <code>multipleValuesSetting</code> is not set, the default value is <code>false</code>.</p>",
+        "UpdateSlotResponse$multipleValuesSetting": "<p>Indicates whether the slot accepts multiple values in one response.</p>"
       }
     },
     "Name": {

@@ -6362,6 +6362,12 @@ type CreatePredictorInput struct {
 	//    * arn:aws:forecast:::algorithm/Prophet
 	AlgorithmArn *string `type:"string"`
 
+	// Used to overide the default AutoML strategy, which is to optimize predictor
+	// accuracy. To apply an AutoML strategy that minimizes training time, use LatencyOptimized.
+	//
+	// This parameter is only valid for predictors trained using AutoML.
+	AutoMLOverrideStrategy *string `type:"string" enum:"AutoMLOverrideStrategy"`
+
 	// An AWS Key Management Service (KMS) key and the AWS Identity and Access Management
 	// (IAM) role that Amazon Forecast can assume to access the key.
 	EncryptionConfig *EncryptionConfig `type:"structure"`
@@ -6556,6 +6562,12 @@ func (s *CreatePredictorInput) Validate() error {
 // SetAlgorithmArn sets the AlgorithmArn field's value.
 func (s *CreatePredictorInput) SetAlgorithmArn(v string) *CreatePredictorInput {
 	s.AlgorithmArn = &v
+	return s
+}
+
+// SetAutoMLOverrideStrategy sets the AutoMLOverrideStrategy field's value.
+func (s *CreatePredictorInput) SetAutoMLOverrideStrategy(v string) *CreatePredictorInput {
+	s.AutoMLOverrideStrategy = &v
 	return s
 }
 
@@ -8420,6 +8432,12 @@ type DescribePredictorOutput struct {
 	// When PerformAutoML is specified, the ARN of the chosen algorithm.
 	AutoMLAlgorithmArns []*string `type:"list"`
 
+	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
+	// is specified, the AutoML strategy optimizes predictor accuracy.
+	//
+	// This parameter is only valid for predictors trained using AutoML.
+	AutoMLOverrideStrategy *string `type:"string" enum:"AutoMLOverrideStrategy"`
+
 	// When the model training task was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -8531,6 +8549,12 @@ func (s *DescribePredictorOutput) SetAlgorithmArn(v string) *DescribePredictorOu
 // SetAutoMLAlgorithmArns sets the AutoMLAlgorithmArns field's value.
 func (s *DescribePredictorOutput) SetAutoMLAlgorithmArns(v []*string) *DescribePredictorOutput {
 	s.AutoMLAlgorithmArns = v
+	return s
+}
+
+// SetAutoMLOverrideStrategy sets the AutoMLOverrideStrategy field's value.
+func (s *DescribePredictorOutput) SetAutoMLOverrideStrategy(v string) *DescribePredictorOutput {
+	s.AutoMLOverrideStrategy = &v
 	return s
 }
 
@@ -9445,6 +9469,12 @@ func (s *GetAccuracyMetricsInput) SetPredictorArn(v string) *GetAccuracyMetricsI
 type GetAccuracyMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
+	// is specified, the AutoML strategy optimizes predictor accuracy.
+	//
+	// This parameter is only valid for predictors trained using AutoML.
+	AutoMLOverrideStrategy *string `type:"string" enum:"AutoMLOverrideStrategy"`
+
 	// An array of results from evaluating the predictor.
 	PredictorEvaluationResults []*EvaluationResult `type:"list"`
 }
@@ -9457,6 +9487,12 @@ func (s GetAccuracyMetricsOutput) String() string {
 // GoString returns the string representation
 func (s GetAccuracyMetricsOutput) GoString() string {
 	return s.String()
+}
+
+// SetAutoMLOverrideStrategy sets the AutoMLOverrideStrategy field's value.
+func (s *GetAccuracyMetricsOutput) SetAutoMLOverrideStrategy(v string) *GetAccuracyMetricsOutput {
+	s.AutoMLOverrideStrategy = &v
+	return s
 }
 
 // SetPredictorEvaluationResults sets the PredictorEvaluationResults field's value.
@@ -12350,6 +12386,18 @@ func AttributeType_Values() []string {
 		AttributeTypeFloat,
 		AttributeTypeTimestamp,
 		AttributeTypeGeolocation,
+	}
+}
+
+const (
+	// AutoMLOverrideStrategyLatencyOptimized is a AutoMLOverrideStrategy enum value
+	AutoMLOverrideStrategyLatencyOptimized = "LatencyOptimized"
+)
+
+// AutoMLOverrideStrategy_Values returns all elements of the AutoMLOverrideStrategy enum
+func AutoMLOverrideStrategy_Values() []string {
+	return []string{
+		AutoMLOverrideStrategyLatencyOptimized,
 	}
 }
 

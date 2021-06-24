@@ -865,7 +865,8 @@
         "datastoreStorage":{"shape":"DatastoreStorage"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "tags":{"shape":"TagList"},
-        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"}
+        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"},
+        "datastorePartitions":{"shape":"DatastorePartitions"}
       }
     },
     "CreateDatastoreResponse":{
@@ -1118,7 +1119,8 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "lastMessageArrivalTime":{"shape":"Timestamp"},
-        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"}
+        "fileFormatConfiguration":{"shape":"FileFormatConfiguration"},
+        "datastorePartitions":{"shape":"DatastorePartitions"}
       }
     },
     "DatastoreActivity":{
@@ -1138,6 +1140,19 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z0-9_]+$"
+    },
+    "DatastorePartition":{
+      "type":"structure",
+      "members":{
+        "attributePartition":{"shape":"Partition"},
+        "timestampPartition":{"shape":"TimestampPartition"}
+      }
+    },
+    "DatastorePartitions":{
+      "type":"structure",
+      "members":{
+        "partitions":{"shape":"Partitions"}
+      }
     },
     "DatastoreStatistics":{
       "type":"structure",
@@ -1180,7 +1195,8 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "lastMessageArrivalTime":{"shape":"Timestamp"},
-        "fileFormatType":{"shape":"FileFormatType"}
+        "fileFormatType":{"shape":"FileFormatType"},
+        "datastorePartitions":{"shape":"DatastorePartitions"}
       }
     },
     "DeleteChannelRequest":{
@@ -1782,7 +1798,8 @@
     "MessageId":{
       "type":"string",
       "max":128,
-      "min":1
+      "min":1,
+      "pattern":"\\p{ASCII}*"
     },
     "MessagePayload":{"type":"blob"},
     "MessagePayloads":{
@@ -1813,6 +1830,25 @@
       "members":{
         "schemaDefinition":{"shape":"SchemaDefinition"}
       }
+    },
+    "Partition":{
+      "type":"structure",
+      "required":["attributeName"],
+      "members":{
+        "attributeName":{"shape":"PartitionAttributeName"}
+      }
+    },
+    "PartitionAttributeName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_]+$"
+    },
+    "Partitions":{
+      "type":"list",
+      "member":{"shape":"DatastorePartition"},
+      "max":25,
+      "min":0
     },
     "Pipeline":{
       "type":"structure",
@@ -2211,6 +2247,20 @@
     },
     "TimeExpression":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
+    "TimestampFormat":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s\\[\\]_,.'/:-]*$"
+    },
+    "TimestampPartition":{
+      "type":"structure",
+      "required":["attributeName"],
+      "members":{
+        "attributeName":{"shape":"PartitionAttributeName"},
+        "timestampFormat":{"shape":"TimestampFormat"}
+      }
+    },
     "TriggeringDataset":{
       "type":"structure",
       "required":["name"],

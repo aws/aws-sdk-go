@@ -506,6 +506,7 @@ func (c *SSM) CancelCommandRequest(input *CancelCommandInput) (req *request.Requ
 //   An error occurred on the server side.
 //
 //   * InvalidCommandId
+//   The specified command ID is not valid. Verify the ID and try again.
 //
 //   * InvalidInstanceId
 //   The following problems can cause this exception:
@@ -9954,6 +9955,7 @@ func (c *SSM) GetCommandInvocationRequest(input *GetCommandInvocationInput) (req
 //   An error occurred on the server side.
 //
 //   * InvalidCommandId
+//   The specified command ID is not valid. Verify the ID and try again.
 //
 //   * InvalidInstanceId
 //   The following problems can cause this exception:
@@ -13580,6 +13582,7 @@ func (c *SSM) ListCommandInvocationsRequest(input *ListCommandInvocationsInput) 
 //   An error occurred on the server side.
 //
 //   * InvalidCommandId
+//   The specified command ID is not valid. Verify the ID and try again.
 //
 //   * InvalidInstanceId
 //   The following problems can cause this exception:
@@ -13775,6 +13778,7 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 //   An error occurred on the server side.
 //
 //   * InvalidCommandId
+//   The specified command ID is not valid. Verify the ID and try again.
 //
 //   * InvalidInstanceId
 //   The following problems can cause this exception:
@@ -16540,8 +16544,8 @@ func (c *SSM) PutParameterRequest(input *PutParameterInput) (req *request.Reques
 //   assigned to them from being deleted. To continue creating new parameters,
 //   first move the label from the oldest version of the parameter to a newer
 //   one for use in your operations. For information about moving parameter labels,
-//   see Move a parameter label (console) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
-//   or Move a parameter label (CLI) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
+//   see Move a parameter label (console) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
+//   or Move a parameter label (CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
 //   in the AWS Systems Manager User Guide.
 //
 //   * ParameterPatternMismatchException
@@ -24444,6 +24448,7 @@ type CommandInvocation struct {
 	// The command against which this invocation was requested.
 	CommandId *string `min:"36" type:"string"`
 
+	// Plugins processed by the command.
 	CommandPlugins []*CommandPlugin `type:"list"`
 
 	// User-specified information about the command, such as a brief description
@@ -26182,7 +26187,7 @@ type CreateDocumentInput struct {
 	// value: /AWS::EC2::Instance. If you specify a value of '/' the document can
 	// run on all types of resources. If you don't specify a value, the document
 	// can't run on any resources. For a list of valid resource types, see AWS resource
-	// and property types reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.
 	TargetType *string `type:"string"`
 
@@ -32369,7 +32374,7 @@ type DocumentDescription struct {
 
 	// The target type which defines the kinds of resources the document can run
 	// on. For example, /AWS::EC2::Instance. For a list of valid resource types,
-	// see AWS resource and property types reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// see AWS resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.
 	TargetType *string `type:"string"`
 
@@ -32659,7 +32664,7 @@ type DocumentIdentifier struct {
 
 	// The target type which defines the kinds of resources the document can run
 	// on. For example, /AWS::EC2::Instance. For a list of valid resource types,
-	// see AWS resource and property types reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+	// see AWS resource and property types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 	// in the AWS CloudFormation User Guide.
 	TargetType *string `type:"string"`
 
@@ -32824,7 +32829,7 @@ func (s *DocumentIdentifier) SetVersionName(v string) *DocumentIdentifier {
 //
 // You can also use the TargetType AWS-provided key. For a list of valid resource
 // type values that can be used with this key, see AWS resource and property
-// types reference (http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
+// types reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html)
 // in the AWS CloudFormation User Guide.
 //
 // If you specify more than two keys, only documents that are identified by
@@ -37064,9 +37069,19 @@ func (s *GetPatchBaselineOutput) SetSources(v []*PatchSource) *GetPatchBaselineO
 type GetServiceSettingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the service setting to get. The setting ID can be /ssm/automation/customer-script-log-destination,
-	// /ssm/automation/customer-script-log-group-name, /ssm/parameter-store/default-parameter-tier,
-	// /ssm/parameter-store/high-throughput-enabled, or /ssm/managed-instance/activation-tier.
+	// The ID of the service setting to get. The setting ID can be one of the following.
+	//
+	//    * /ssm/automation/customer-script-log-destination
+	//
+	//    * /ssm/automation/customer-script-log-group-name
+	//
+	//    * /ssm/documents/console/public-sharing-permission
+	//
+	//    * /ssm/parameter-store/default-parameter-tier
+	//
+	//    * /ssm/parameter-store/high-throughput-enabled
+	//
+	//    * /ssm/managed-instance/activation-tier
 	//
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
@@ -37665,8 +37680,8 @@ type InstanceInformation struct {
 	// Systems Manager managed instance. This call does not return the IAM role
 	// for EC2 instances. To retrieve the IAM role for an EC2 instance, use the
 	// Amazon EC2 DescribeInstances action. For information, see DescribeInstances
-	// (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
-	// in the Amazon EC2 API Reference or describe-instances (http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
+	// (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
+	// in the Amazon EC2 API Reference or describe-instances (https://docs.aws.amazon.com/cli/latest/ec2/describe-instances.html)
 	// in the AWS CLI Command Reference.
 	IamRole *string `type:"string"`
 
@@ -37693,11 +37708,11 @@ type InstanceInformation struct {
 	// as the DefaultInstanceName property using the CreateActivation command. It
 	// is applied to the managed instance by specifying the Activation Code and
 	// Activation ID when you install SSM Agent on the instance, as explained in
-	// Install SSM Agent for a hybrid environment (Linux) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html)
-	// and Install SSM Agent for a hybrid environment (Windows) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html).
+	// Install SSM Agent for a hybrid environment (Linux) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-linux.html)
+	// and Install SSM Agent for a hybrid environment (Windows) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-install-managed-win.html).
 	// To retrieve the Name tag of an EC2 instance, use the Amazon EC2 DescribeInstances
-	// action. For information, see DescribeInstances (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
-	// in the Amazon EC2 API Reference or describe-instances (http://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
+	// action. For information, see DescribeInstances (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
+	// in the Amazon EC2 API Reference or describe-instances (https://docs.aws.amazon.com/cli/latest/ec2/describe-instances.html)
 	// in the AWS CLI Command Reference.
 	Name *string `type:"string"`
 
@@ -38890,6 +38905,7 @@ func (s *InvalidAutomationStatusUpdateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The specified command ID is not valid. Verify the ID and try again.
 type InvalidCommandId struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -47849,8 +47865,8 @@ func (s *ParameterLimitExceeded) RequestID() string {
 // assigned to them from being deleted. To continue creating new parameters,
 // first move the label from the oldest version of the parameter to a newer
 // one for use in your operations. For information about moving parameter labels,
-// see Move a parameter label (console) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
-// or Move a parameter label (CLI) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
+// see Move a parameter label (console) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
+// or Move a parameter label (CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
 // in the AWS Systems Manager User Guide.
 type ParameterMaxVersionLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
@@ -49669,7 +49685,7 @@ type PutParameterInput struct {
 	// When you create a String parameter and specify aws:ec2:image, Systems Manager
 	// validates the parameter value is in the required format, such as ami-12345abcdeEXAMPLE,
 	// and that the specified AMI is available in your AWS account. For more information,
-	// see Native parameter support for Amazon Machine Image IDs (http://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
+	// see Native parameter support for Amazon Machine Image IDs (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
 	// in the AWS Systems Manager User Guide.
 	DataType *string `type:"string"`
 
@@ -50778,9 +50794,19 @@ type ResetServiceSettingInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the service setting to reset. The setting
-	// ID can be /ssm/automation/customer-script-log-destination, /ssm/automation/customer-script-log-group-name,
-	// /ssm/parameter-store/default-parameter-tier, /ssm/parameter-store/high-throughput-enabled,
-	// or /ssm/managed-instance/activation-tier. For example, arn:aws:ssm:us-east-1:111122223333:servicesetting/ssm/parameter-store/high-throughput-enabled.
+	// ID can be one of the following.
+	//
+	//    * /ssm/automation/customer-script-log-destination
+	//
+	//    * /ssm/automation/customer-script-log-group-name
+	//
+	//    * /ssm/documents/console/public-sharing-permission
+	//
+	//    * /ssm/parameter-store/default-parameter-tier
+	//
+	//    * /ssm/parameter-store/high-throughput-enabled
+	//
+	//    * /ssm/managed-instance/activation-tier
 	//
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
@@ -51646,7 +51672,7 @@ type ResourceDataSyncSource struct {
 
 	// The type of data source for the resource data sync. SourceType is either
 	// AwsOrganizations (if an organization is present in AWS Organizations) or
-	// singleAccountMultiRegions.
+	// SingleAccountMultiRegions.
 	//
 	// SourceType is a required field
 	SourceType *string `min:"1" type:"string" required:"true"`
@@ -57880,6 +57906,8 @@ type UpdateServiceSettingInput struct {
 	//
 	//    * /ssm/automation/customer-script-log-group-name
 	//
+	//    * /ssm/documents/console/public-sharing-permission
+	//
 	//    * /ssm/parameter-store/default-parameter-tier
 	//
 	//    * /ssm/parameter-store/high-throughput-enabled
@@ -57906,6 +57934,9 @@ type UpdateServiceSettingInput struct {
 	//
 	// For the /ssm/automation/customer-script-log-group-name setting ID, the setting
 	// value can be the name of a CloudWatch Logs log group.
+	//
+	// For the /ssm/documents/console/public-sharing-permission setting ID, the
+	// setting value can be Enable or Disable.
 	//
 	// SettingValue is a required field
 	SettingValue *string `min:"1" type:"string" required:"true"`

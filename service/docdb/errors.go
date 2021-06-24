@@ -284,7 +284,7 @@ const (
 	// ErrCodeKMSKeyNotAccessibleFault for service response error code
 	// "KMSKeyNotAccessibleFault".
 	//
-	// An error occurred when accessing an AWS KMS key.
+	// An error occurred when accessing an KMS key.
 	ErrCodeKMSKeyNotAccessibleFault = "KMSKeyNotAccessibleFault"
 
 	// ErrCodeResourceNotFoundFault for service response error code

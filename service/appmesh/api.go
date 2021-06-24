@@ -736,11 +736,9 @@ func (c *AppMesh) CreateVirtualNodeRequest(input *CreateVirtualNodeInput) (req *
 // this behavior by setting the APPMESH_RESOURCE_CLUSTER environment variable
 // with your own name.
 //
-// AWS Cloud Map is not available in the eu-south-1 Region.
-//
 // For more information about virtual nodes, see Virtual nodes (https://docs.aws.amazon.com/app-mesh/latest/userguide/virtual_nodes.html).
 // You must be using 1.15.0 or later of the Envoy image when setting these variables.
-// For more information about App Mesh Envoy variables, see Envoy image (https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)
+// For more information aboutApp Mesh Envoy variables, see Envoy image (https://docs.aws.amazon.com/app-mesh/latest/userguide/envoy.html)
 // in the AWS App Mesh User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5951,21 +5949,21 @@ func (s *AccessLog) SetFile(v *FileAccessLog) *AccessLog {
 	return s
 }
 
-// An object that represents the AWS Cloud Map attribute information for your
-// virtual node.
+// An object that represents the Cloud Map attribute information for your virtual
+// node.
 //
 // AWS Cloud Map is not available in the eu-south-1 Region.
 type AwsCloudMapInstanceAttribute struct {
 	_ struct{} `type:"structure"`
 
-	// The name of an AWS Cloud Map service instance attribute key. Any AWS Cloud
-	// Map service instance that contains the specified key and value is returned.
+	// The name of an Cloud Map service instance attribute key. Any Cloud Map service
+	// instance that contains the specified key and value is returned.
 	//
 	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
-	// The value of an AWS Cloud Map service instance attribute key. Any AWS Cloud
-	// Map service instance that contains the specified key and value is returned.
+	// The value of an Cloud Map service instance attribute key. Any Cloud Map service
+	// instance that contains the specified key and value is returned.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
@@ -6015,10 +6013,10 @@ func (s *AwsCloudMapInstanceAttribute) SetValue(v string) *AwsCloudMapInstanceAt
 	return s
 }
 
-// An object that represents the AWS Cloud Map service discovery information
-// for your virtual node.
+// An object that represents the Cloud Map service discovery information for
+// your virtual node.
 //
-// AWS Cloud Map is not available in the eu-south-1 Region.
+// Cloud Map is not available in the eu-south-1 Region.
 type AwsCloudMapServiceDiscovery struct {
 	_ struct{} `type:"structure"`
 
@@ -6028,12 +6026,12 @@ type AwsCloudMapServiceDiscovery struct {
 	// will be returned.
 	Attributes []*AwsCloudMapInstanceAttribute `locationName:"attributes" type:"list"`
 
-	// The name of the AWS Cloud Map namespace to use.
+	// The name of the Cloud Map namespace to use.
 	//
 	// NamespaceName is a required field
 	NamespaceName *string `locationName:"namespaceName" min:"1" type:"string" required:"true"`
 
-	// The name of the AWS Cloud Map service to use.
+	// The name of the Cloud Map service to use.
 	//
 	// ServiceName is a required field
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
@@ -6357,7 +6355,7 @@ type ClientTlsCertificate struct {
 
 	// An object that represents a local file certificate. The certificate must
 	// meet specific requirements and you must have proxy authorization enabled.
-	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites).
+	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html).
 	File *ListenerTlsFileCertificate `locationName:"file" type:"structure"`
 
 	// A reference to an object that represents a client's TLS Secret Discovery
@@ -7900,6 +7898,7 @@ func (s *DeleteVirtualGatewayOutput) SetVirtualGateway(v *VirtualGatewayData) *D
 	return s
 }
 
+// Deletes a virtual node input.
 type DeleteVirtualNodeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8906,6 +8905,9 @@ type DnsServiceDiscovery struct {
 	//
 	// Hostname is a required field
 	Hostname *string `locationName:"hostname" type:"string" required:"true"`
+
+	// Specifies the DNS response type for the virtual node.
+	ResponseType *string `locationName:"responseType" type:"string" enum:"DnsResponseType"`
 }
 
 // String returns the string representation
@@ -8934,6 +8936,12 @@ func (s *DnsServiceDiscovery) Validate() error {
 // SetHostname sets the Hostname field's value.
 func (s *DnsServiceDiscovery) SetHostname(v string) *DnsServiceDiscovery {
 	s.Hostname = &v
+	return s
+}
+
+// SetResponseType sets the ResponseType field's value.
+func (s *DnsServiceDiscovery) SetResponseType(v string) *DnsServiceDiscovery {
+	s.ResponseType = &v
 	return s
 }
 
@@ -8976,9 +8984,9 @@ type EgressFilter struct {
 
 	// The egress filter type. By default, the type is DROP_ALL, which allows egress
 	// only from virtual nodes to other defined resources in the service mesh (and
-	// any traffic to *.amazonaws.com for AWS API calls). You can set the egress
-	// filter type to ALLOW_ALL to allow egress to any endpoint inside or outside
-	// of the service mesh.
+	// any traffic to *.amazonaws.com for Amazon Web Services API calls). You can
+	// set the egress filter type to ALLOW_ALL to allow egress to any endpoint inside
+	// or outside of the service mesh.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EgressFilterType"`
@@ -9199,6 +9207,79 @@ func (s *GatewayRouteData) SetVirtualGatewayName(v string) *GatewayRouteData {
 	return s
 }
 
+// An object representing the gateway route host name to match.
+type GatewayRouteHostnameMatch struct {
+	_ struct{} `type:"structure"`
+
+	// The exact host name to match on.
+	Exact *string `locationName:"exact" min:"1" type:"string"`
+
+	// The specified ending characters of the host name to match on.
+	Suffix *string `locationName:"suffix" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GatewayRouteHostnameMatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GatewayRouteHostnameMatch) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GatewayRouteHostnameMatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GatewayRouteHostnameMatch"}
+	if s.Exact != nil && len(*s.Exact) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Exact", 1))
+	}
+	if s.Suffix != nil && len(*s.Suffix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Suffix", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExact sets the Exact field's value.
+func (s *GatewayRouteHostnameMatch) SetExact(v string) *GatewayRouteHostnameMatch {
+	s.Exact = &v
+	return s
+}
+
+// SetSuffix sets the Suffix field's value.
+func (s *GatewayRouteHostnameMatch) SetSuffix(v string) *GatewayRouteHostnameMatch {
+	s.Suffix = &v
+	return s
+}
+
+// An object representing the gateway route host name to rewrite.
+type GatewayRouteHostnameRewrite struct {
+	_ struct{} `type:"structure"`
+
+	// The default target host name to write to.
+	DefaultTargetHostname *string `locationName:"defaultTargetHostname" type:"string" enum:"DefaultGatewayRouteRewrite"`
+}
+
+// String returns the string representation
+func (s GatewayRouteHostnameRewrite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GatewayRouteHostnameRewrite) GoString() string {
+	return s.String()
+}
+
+// SetDefaultTargetHostname sets the DefaultTargetHostname field's value.
+func (s *GatewayRouteHostnameRewrite) SetDefaultTargetHostname(v string) *GatewayRouteHostnameRewrite {
+	s.DefaultTargetHostname = &v
+	return s
+}
+
 // An object that represents a gateway route returned by a list operation.
 type GatewayRouteRef struct {
 	_ struct{} `type:"structure"`
@@ -9333,6 +9414,9 @@ type GatewayRouteSpec struct {
 
 	// An object that represents the specification of an HTTP gateway route.
 	HttpRoute *HttpGatewayRoute `locationName:"httpRoute" type:"structure"`
+
+	// The ordering of the gateway routes spec.
+	Priority *int64 `locationName:"priority" type:"integer"`
 }
 
 // String returns the string representation
@@ -9385,6 +9469,12 @@ func (s *GatewayRouteSpec) SetHttp2Route(v *HttpGatewayRoute) *GatewayRouteSpec 
 // SetHttpRoute sets the HttpRoute field's value.
 func (s *GatewayRouteSpec) SetHttpRoute(v *HttpGatewayRoute) *GatewayRouteSpec {
 	s.HttpRoute = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *GatewayRouteSpec) SetPriority(v int64) *GatewayRouteSpec {
+	s.Priority = &v
 	return s
 }
 
@@ -9539,6 +9629,11 @@ func (s *GrpcGatewayRoute) Validate() error {
 			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Match != nil {
+		if err := s.Match.Validate(); err != nil {
+			invalidParams.AddNested("Match", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -9561,6 +9656,9 @@ func (s *GrpcGatewayRoute) SetMatch(v *GrpcGatewayRouteMatch) *GrpcGatewayRoute 
 // An object that represents the action to take if a match is determined.
 type GrpcGatewayRouteAction struct {
 	_ struct{} `type:"structure"`
+
+	// The gateway route action to rewrite.
+	Rewrite *GrpcGatewayRouteRewrite `locationName:"rewrite" type:"structure"`
 
 	// An object that represents the target that traffic is routed to when a request
 	// matches the gateway route.
@@ -9597,6 +9695,12 @@ func (s *GrpcGatewayRouteAction) Validate() error {
 	return nil
 }
 
+// SetRewrite sets the Rewrite field's value.
+func (s *GrpcGatewayRouteAction) SetRewrite(v *GrpcGatewayRouteRewrite) *GrpcGatewayRouteAction {
+	s.Rewrite = v
+	return s
+}
+
 // SetTarget sets the Target field's value.
 func (s *GrpcGatewayRouteAction) SetTarget(v *GatewayRouteTarget) *GrpcGatewayRouteAction {
 	s.Target = v
@@ -9606,6 +9710,12 @@ func (s *GrpcGatewayRouteAction) SetTarget(v *GatewayRouteTarget) *GrpcGatewayRo
 // An object that represents the criteria for determining a request match.
 type GrpcGatewayRouteMatch struct {
 	_ struct{} `type:"structure"`
+
+	// The gateway route host name to be matched on.
+	Hostname *GatewayRouteHostnameMatch `locationName:"hostname" type:"structure"`
+
+	// The gateway route metadata to be matched on.
+	Metadata []*GrpcGatewayRouteMetadata `locationName:"metadata" min:"1" type:"list"`
 
 	// The fully qualified domain name for the service to match from the request.
 	ServiceName *string `locationName:"serviceName" type:"string"`
@@ -9621,15 +9731,237 @@ func (s GrpcGatewayRouteMatch) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GrpcGatewayRouteMatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GrpcGatewayRouteMatch"}
+	if s.Metadata != nil && len(s.Metadata) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Metadata", 1))
+	}
+	if s.Hostname != nil {
+		if err := s.Hostname.Validate(); err != nil {
+			invalidParams.AddNested("Hostname", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Metadata != nil {
+		for i, v := range s.Metadata {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Metadata", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *GrpcGatewayRouteMatch) SetHostname(v *GatewayRouteHostnameMatch) *GrpcGatewayRouteMatch {
+	s.Hostname = v
+	return s
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GrpcGatewayRouteMatch) SetMetadata(v []*GrpcGatewayRouteMetadata) *GrpcGatewayRouteMatch {
+	s.Metadata = v
+	return s
+}
+
 // SetServiceName sets the ServiceName field's value.
 func (s *GrpcGatewayRouteMatch) SetServiceName(v string) *GrpcGatewayRouteMatch {
 	s.ServiceName = &v
 	return s
 }
 
+// An object representing the metadata of the gateway route.
+type GrpcGatewayRouteMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Specify True to match anything except the match criteria. The default value
+	// is False.
+	Invert *bool `locationName:"invert" type:"boolean"`
+
+	// The criteria for determining a metadata match.
+	Match *GrpcMetadataMatchMethod `locationName:"match" type:"structure"`
+
+	// A name for the gateway route metadata.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GrpcGatewayRouteMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GrpcGatewayRouteMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GrpcGatewayRouteMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GrpcGatewayRouteMetadata"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Match != nil {
+		if err := s.Match.Validate(); err != nil {
+			invalidParams.AddNested("Match", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvert sets the Invert field's value.
+func (s *GrpcGatewayRouteMetadata) SetInvert(v bool) *GrpcGatewayRouteMetadata {
+	s.Invert = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *GrpcGatewayRouteMetadata) SetMatch(v *GrpcMetadataMatchMethod) *GrpcGatewayRouteMetadata {
+	s.Match = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GrpcGatewayRouteMetadata) SetName(v string) *GrpcGatewayRouteMetadata {
+	s.Name = &v
+	return s
+}
+
+// An object that represents the gateway route to rewrite.
+type GrpcGatewayRouteRewrite struct {
+	_ struct{} `type:"structure"`
+
+	// The host name of the gateway route to rewrite.
+	Hostname *GatewayRouteHostnameRewrite `locationName:"hostname" type:"structure"`
+}
+
+// String returns the string representation
+func (s GrpcGatewayRouteRewrite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GrpcGatewayRouteRewrite) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *GrpcGatewayRouteRewrite) SetHostname(v *GatewayRouteHostnameRewrite) *GrpcGatewayRouteRewrite {
+	s.Hostname = v
+	return s
+}
+
+// An object representing the method header to be matched.
+type GrpcMetadataMatchMethod struct {
+	_ struct{} `type:"structure"`
+
+	// The exact method header to be matched on.
+	Exact *string `locationName:"exact" min:"1" type:"string"`
+
+	// The specified beginning characters of the method header to be matched on.
+	Prefix *string `locationName:"prefix" min:"1" type:"string"`
+
+	// An object that represents the range of values to match on. The first character
+	// of the range is included in the range, though the last character is not.
+	// For example, if the range specified were 1-100, only values 1-99 would be
+	// matched.
+	Range *MatchRange `locationName:"range" type:"structure"`
+
+	// The regex used to match the method header.
+	Regex *string `locationName:"regex" min:"1" type:"string"`
+
+	// The specified ending characters of the method header to match on.
+	Suffix *string `locationName:"suffix" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GrpcMetadataMatchMethod) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GrpcMetadataMatchMethod) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GrpcMetadataMatchMethod) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GrpcMetadataMatchMethod"}
+	if s.Exact != nil && len(*s.Exact) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Exact", 1))
+	}
+	if s.Prefix != nil && len(*s.Prefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Prefix", 1))
+	}
+	if s.Regex != nil && len(*s.Regex) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Regex", 1))
+	}
+	if s.Suffix != nil && len(*s.Suffix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Suffix", 1))
+	}
+	if s.Range != nil {
+		if err := s.Range.Validate(); err != nil {
+			invalidParams.AddNested("Range", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExact sets the Exact field's value.
+func (s *GrpcMetadataMatchMethod) SetExact(v string) *GrpcMetadataMatchMethod {
+	s.Exact = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *GrpcMetadataMatchMethod) SetPrefix(v string) *GrpcMetadataMatchMethod {
+	s.Prefix = &v
+	return s
+}
+
+// SetRange sets the Range field's value.
+func (s *GrpcMetadataMatchMethod) SetRange(v *MatchRange) *GrpcMetadataMatchMethod {
+	s.Range = v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *GrpcMetadataMatchMethod) SetRegex(v string) *GrpcMetadataMatchMethod {
+	s.Regex = &v
+	return s
+}
+
+// SetSuffix sets the Suffix field's value.
+func (s *GrpcMetadataMatchMethod) SetSuffix(v string) *GrpcMetadataMatchMethod {
+	s.Suffix = &v
+	return s
+}
+
 // An object that represents a retry policy. Specify at least one value for
 // at least one of the types of RetryEvents, a value for maxRetries, and a value
-// for perRetryTimeout.
+// for perRetryTimeout. Both server-error and gateway-error under httpRetryEvents
+// include the Envoy reset policy. For more information on the reset policy,
+// see the Envoy documentation (https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on).
 type GrpcRetryPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -10419,6 +10751,9 @@ func (s *HttpGatewayRoute) SetMatch(v *HttpGatewayRouteMatch) *HttpGatewayRoute 
 type HttpGatewayRouteAction struct {
 	_ struct{} `type:"structure"`
 
+	// The gateway route action to rewrite.
+	Rewrite *HttpGatewayRouteRewrite `locationName:"rewrite" type:"structure"`
+
 	// An object that represents the target that traffic is routed to when a request
 	// matches the gateway route.
 	//
@@ -10442,6 +10777,11 @@ func (s *HttpGatewayRouteAction) Validate() error {
 	if s.Target == nil {
 		invalidParams.Add(request.NewErrParamRequired("Target"))
 	}
+	if s.Rewrite != nil {
+		if err := s.Rewrite.Validate(); err != nil {
+			invalidParams.AddNested("Rewrite", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Target != nil {
 		if err := s.Target.Validate(); err != nil {
 			invalidParams.AddNested("Target", err.(request.ErrInvalidParams))
@@ -10454,9 +10794,82 @@ func (s *HttpGatewayRouteAction) Validate() error {
 	return nil
 }
 
+// SetRewrite sets the Rewrite field's value.
+func (s *HttpGatewayRouteAction) SetRewrite(v *HttpGatewayRouteRewrite) *HttpGatewayRouteAction {
+	s.Rewrite = v
+	return s
+}
+
 // SetTarget sets the Target field's value.
 func (s *HttpGatewayRouteAction) SetTarget(v *GatewayRouteTarget) *HttpGatewayRouteAction {
 	s.Target = v
+	return s
+}
+
+// An object that represents the HTTP header in the gateway route.
+type HttpGatewayRouteHeader struct {
+	_ struct{} `type:"structure"`
+
+	// Specify True to match anything except the match criteria. The default value
+	// is False.
+	Invert *bool `locationName:"invert" type:"boolean"`
+
+	// An object that represents the method and value to match with the header value
+	// sent in a request. Specify one match method.
+	Match *HeaderMatchMethod `locationName:"match" type:"structure"`
+
+	// A name for the HTTP header in the gateway route that will be matched on.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HttpGatewayRouteHeader) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpGatewayRouteHeader) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpGatewayRouteHeader) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRouteHeader"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Match != nil {
+		if err := s.Match.Validate(); err != nil {
+			invalidParams.AddNested("Match", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInvert sets the Invert field's value.
+func (s *HttpGatewayRouteHeader) SetInvert(v bool) *HttpGatewayRouteHeader {
+	s.Invert = &v
+	return s
+}
+
+// SetMatch sets the Match field's value.
+func (s *HttpGatewayRouteHeader) SetMatch(v *HeaderMatchMethod) *HttpGatewayRouteHeader {
+	s.Match = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HttpGatewayRouteHeader) SetName(v string) *HttpGatewayRouteHeader {
+	s.Name = &v
 	return s
 }
 
@@ -10464,14 +10877,27 @@ func (s *HttpGatewayRouteAction) SetTarget(v *GatewayRouteTarget) *HttpGatewayRo
 type HttpGatewayRouteMatch struct {
 	_ struct{} `type:"structure"`
 
+	// The client request headers to match on.
+	Headers []*HttpGatewayRouteHeader `locationName:"headers" min:"1" type:"list"`
+
+	// The host name to match on.
+	Hostname *GatewayRouteHostnameMatch `locationName:"hostname" type:"structure"`
+
+	// The method to match on.
+	Method *string `locationName:"method" type:"string" enum:"HttpMethod"`
+
+	// The path to match on.
+	Path *HttpPathMatch `locationName:"path" type:"structure"`
+
 	// Specifies the path to match requests with. This parameter must always start
 	// with /, which by itself matches all requests to the virtual service name.
 	// You can also match for path-based routing of requests. For example, if your
 	// virtual service name is my-service.local and you want the route to match
 	// requests to my-service.local/metrics, your prefix should be /metrics.
-	//
-	// Prefix is a required field
-	Prefix *string `locationName:"prefix" type:"string" required:"true"`
+	Prefix *string `locationName:"prefix" type:"string"`
+
+	// The query parameter to match on.
+	QueryParameters []*HttpQueryParameter `locationName:"queryParameters" min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -10487,8 +10913,41 @@ func (s HttpGatewayRouteMatch) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *HttpGatewayRouteMatch) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRouteMatch"}
-	if s.Prefix == nil {
-		invalidParams.Add(request.NewErrParamRequired("Prefix"))
+	if s.Headers != nil && len(s.Headers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Headers", 1))
+	}
+	if s.QueryParameters != nil && len(s.QueryParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryParameters", 1))
+	}
+	if s.Headers != nil {
+		for i, v := range s.Headers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Headers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Hostname != nil {
+		if err := s.Hostname.Validate(); err != nil {
+			invalidParams.AddNested("Hostname", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Path != nil {
+		if err := s.Path.Validate(); err != nil {
+			invalidParams.AddNested("Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QueryParameters != nil {
+		for i, v := range s.QueryParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueryParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -10497,15 +10956,289 @@ func (s *HttpGatewayRouteMatch) Validate() error {
 	return nil
 }
 
+// SetHeaders sets the Headers field's value.
+func (s *HttpGatewayRouteMatch) SetHeaders(v []*HttpGatewayRouteHeader) *HttpGatewayRouteMatch {
+	s.Headers = v
+	return s
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *HttpGatewayRouteMatch) SetHostname(v *GatewayRouteHostnameMatch) *HttpGatewayRouteMatch {
+	s.Hostname = v
+	return s
+}
+
+// SetMethod sets the Method field's value.
+func (s *HttpGatewayRouteMatch) SetMethod(v string) *HttpGatewayRouteMatch {
+	s.Method = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *HttpGatewayRouteMatch) SetPath(v *HttpPathMatch) *HttpGatewayRouteMatch {
+	s.Path = v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *HttpGatewayRouteMatch) SetPrefix(v string) *HttpGatewayRouteMatch {
 	s.Prefix = &v
 	return s
 }
 
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *HttpGatewayRouteMatch) SetQueryParameters(v []*HttpQueryParameter) *HttpGatewayRouteMatch {
+	s.QueryParameters = v
+	return s
+}
+
+// An object that represents the path to rewrite.
+type HttpGatewayRoutePathRewrite struct {
+	_ struct{} `type:"structure"`
+
+	// The exact path to rewrite.
+	Exact *string `locationName:"exact" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s HttpGatewayRoutePathRewrite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpGatewayRoutePathRewrite) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpGatewayRoutePathRewrite) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRoutePathRewrite"}
+	if s.Exact != nil && len(*s.Exact) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Exact", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExact sets the Exact field's value.
+func (s *HttpGatewayRoutePathRewrite) SetExact(v string) *HttpGatewayRoutePathRewrite {
+	s.Exact = &v
+	return s
+}
+
+// An object representing the beginning characters of the route to rewrite.
+type HttpGatewayRoutePrefixRewrite struct {
+	_ struct{} `type:"structure"`
+
+	// The default prefix used to replace the incoming route prefix when rewritten.
+	DefaultPrefix *string `locationName:"defaultPrefix" type:"string" enum:"DefaultGatewayRouteRewrite"`
+
+	// The value used to replace the incoming route prefix when rewritten.
+	Value *string `locationName:"value" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s HttpGatewayRoutePrefixRewrite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpGatewayRoutePrefixRewrite) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpGatewayRoutePrefixRewrite) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRoutePrefixRewrite"}
+	if s.Value != nil && len(*s.Value) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Value", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultPrefix sets the DefaultPrefix field's value.
+func (s *HttpGatewayRoutePrefixRewrite) SetDefaultPrefix(v string) *HttpGatewayRoutePrefixRewrite {
+	s.DefaultPrefix = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *HttpGatewayRoutePrefixRewrite) SetValue(v string) *HttpGatewayRoutePrefixRewrite {
+	s.Value = &v
+	return s
+}
+
+// An object representing the gateway route to rewrite.
+type HttpGatewayRouteRewrite struct {
+	_ struct{} `type:"structure"`
+
+	// The host name to rewrite.
+	Hostname *GatewayRouteHostnameRewrite `locationName:"hostname" type:"structure"`
+
+	// The path to rewrite.
+	Path *HttpGatewayRoutePathRewrite `locationName:"path" type:"structure"`
+
+	// The specified beginning characters to rewrite.
+	Prefix *HttpGatewayRoutePrefixRewrite `locationName:"prefix" type:"structure"`
+}
+
+// String returns the string representation
+func (s HttpGatewayRouteRewrite) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpGatewayRouteRewrite) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpGatewayRouteRewrite) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpGatewayRouteRewrite"}
+	if s.Path != nil {
+		if err := s.Path.Validate(); err != nil {
+			invalidParams.AddNested("Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Prefix != nil {
+		if err := s.Prefix.Validate(); err != nil {
+			invalidParams.AddNested("Prefix", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *HttpGatewayRouteRewrite) SetHostname(v *GatewayRouteHostnameRewrite) *HttpGatewayRouteRewrite {
+	s.Hostname = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *HttpGatewayRouteRewrite) SetPath(v *HttpGatewayRoutePathRewrite) *HttpGatewayRouteRewrite {
+	s.Path = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *HttpGatewayRouteRewrite) SetPrefix(v *HttpGatewayRoutePrefixRewrite) *HttpGatewayRouteRewrite {
+	s.Prefix = v
+	return s
+}
+
+// An object representing the path to match in the request.
+type HttpPathMatch struct {
+	_ struct{} `type:"structure"`
+
+	// The exact path to match on.
+	Exact *string `locationName:"exact" min:"1" type:"string"`
+
+	// The regex used to match the path.
+	Regex *string `locationName:"regex" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s HttpPathMatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpPathMatch) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpPathMatch) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpPathMatch"}
+	if s.Exact != nil && len(*s.Exact) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Exact", 1))
+	}
+	if s.Regex != nil && len(*s.Regex) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Regex", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExact sets the Exact field's value.
+func (s *HttpPathMatch) SetExact(v string) *HttpPathMatch {
+	s.Exact = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *HttpPathMatch) SetRegex(v string) *HttpPathMatch {
+	s.Regex = &v
+	return s
+}
+
+// An object that represents the query parameter in the request.
+type HttpQueryParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The query parameter to match on.
+	Match *QueryParameterMatch `locationName:"match" type:"structure"`
+
+	// A name for the query parameter that will be matched on.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HttpQueryParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpQueryParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpQueryParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpQueryParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMatch sets the Match field's value.
+func (s *HttpQueryParameter) SetMatch(v *QueryParameterMatch) *HttpQueryParameter {
+	s.Match = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *HttpQueryParameter) SetName(v string) *HttpQueryParameter {
+	s.Name = &v
+	return s
+}
+
 // An object that represents a retry policy. Specify at least one value for
 // at least one of the types of RetryEvents, a value for maxRetries, and a value
-// for perRetryTimeout.
+// for perRetryTimeout. Both server-error and gateway-error under httpRetryEvents
+// include the Envoy reset policy. For more information on the reset policy,
+// see the Envoy documentation (https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/router_filter#x-envoy-retry-on).
 type HttpRetryPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -10803,22 +11536,27 @@ func (s *HttpRouteHeader) SetName(v string) *HttpRouteHeader {
 type HttpRouteMatch struct {
 	_ struct{} `type:"structure"`
 
-	// An object that represents the client request headers to match on.
+	// The client request headers to match on.
 	Headers []*HttpRouteHeader `locationName:"headers" min:"1" type:"list"`
 
 	// The client request method to match on. Specify only one.
 	Method *string `locationName:"method" type:"string" enum:"HttpMethod"`
+
+	// The client request path to match on.
+	Path *HttpPathMatch `locationName:"path" type:"structure"`
 
 	// Specifies the path to match requests with. This parameter must always start
 	// with /, which by itself matches all requests to the virtual service name.
 	// You can also match for path-based routing of requests. For example, if your
 	// virtual service name is my-service.local and you want the route to match
 	// requests to my-service.local/metrics, your prefix should be /metrics.
-	//
-	// Prefix is a required field
-	Prefix *string `locationName:"prefix" type:"string" required:"true"`
+	Prefix *string `locationName:"prefix" type:"string"`
 
-	// The client request scheme to match on. Specify only one.
+	// The client request query parameters to match on.
+	QueryParameters []*HttpQueryParameter `locationName:"queryParameters" min:"1" type:"list"`
+
+	// The client request scheme to match on. Specify only one. Applicable only
+	// for HTTP2 routes.
 	Scheme *string `locationName:"scheme" type:"string" enum:"HttpScheme"`
 }
 
@@ -10838,8 +11576,8 @@ func (s *HttpRouteMatch) Validate() error {
 	if s.Headers != nil && len(s.Headers) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Headers", 1))
 	}
-	if s.Prefix == nil {
-		invalidParams.Add(request.NewErrParamRequired("Prefix"))
+	if s.QueryParameters != nil && len(s.QueryParameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryParameters", 1))
 	}
 	if s.Headers != nil {
 		for i, v := range s.Headers {
@@ -10848,6 +11586,21 @@ func (s *HttpRouteMatch) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Headers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Path != nil {
+		if err := s.Path.Validate(); err != nil {
+			invalidParams.AddNested("Path", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.QueryParameters != nil {
+		for i, v := range s.QueryParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueryParameters", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -10870,9 +11623,21 @@ func (s *HttpRouteMatch) SetMethod(v string) *HttpRouteMatch {
 	return s
 }
 
+// SetPath sets the Path field's value.
+func (s *HttpRouteMatch) SetPath(v *HttpPathMatch) *HttpRouteMatch {
+	s.Path = v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *HttpRouteMatch) SetPrefix(v string) *HttpRouteMatch {
 	s.Prefix = &v
+	return s
+}
+
+// SetQueryParameters sets the QueryParameters field's value.
+func (s *HttpRouteMatch) SetQueryParameters(v []*HttpQueryParameter) *HttpRouteMatch {
+	s.QueryParameters = v
 	return s
 }
 
@@ -13096,6 +13861,30 @@ func (s *PortMapping) SetProtocol(v string) *PortMapping {
 	return s
 }
 
+// An object representing the query parameter to match.
+type QueryParameterMatch struct {
+	_ struct{} `type:"structure"`
+
+	// The exact query parameter to match on.
+	Exact *string `locationName:"exact" type:"string"`
+}
+
+// String returns the string representation
+func (s QueryParameterMatch) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s QueryParameterMatch) GoString() string {
+	return s.String()
+}
+
+// SetExact sets the Exact field's value.
+func (s *QueryParameterMatch) SetExact(v string) *QueryParameterMatch {
+	s.Exact = &v
+	return s
+}
+
 // You can't delete the specified resource because it's in use or required by
 // another resource.
 type ResourceInUseException struct {
@@ -13576,7 +14365,7 @@ func (s *RouteStatus) SetStatus(v string) *RouteStatus {
 type ServiceDiscovery struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies any AWS Cloud Map information for the virtual node.
+	// Specifies any Cloud Map information for the virtual node.
 	AwsCloudMap *AwsCloudMapServiceDiscovery `locationName:"awsCloudMap" type:"structure"`
 
 	// Specifies the DNS information for the virtual node.
@@ -14097,7 +14886,7 @@ func (s *TlsValidationContext) SetTrust(v *TlsValidationContextTrust) *TlsValida
 }
 
 // An object that represents a Transport Layer Security (TLS) validation context
-// trust for an AWS Certicate Manager (ACM) certificate.
+// trust for an Certificate Manager certificate.
 type TlsValidationContextAcmTrust struct {
 	_ struct{} `type:"structure"`
 
@@ -14232,7 +15021,7 @@ type TlsValidationContextTrust struct {
 	_ struct{} `type:"structure"`
 
 	// A reference to an object that represents a Transport Layer Security (TLS)
-	// validation context trust for an AWS Certicate Manager (ACM) certificate.
+	// validation context trust for an Certificate Manager certificate.
 	Acm *TlsValidationContextAcmTrust `locationName:"acm" type:"structure"`
 
 	// An object that represents a Transport Layer Security (TLS) validation context
@@ -15573,7 +16362,7 @@ type VirtualGatewayClientTlsCertificate struct {
 
 	// An object that represents a local file certificate. The certificate must
 	// meet specific requirements and you must have proxy authorization enabled.
-	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html#virtual-node-tls-prerequisites).
+	// For more information, see Transport Layer Security (TLS) (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html).
 	File *VirtualGatewayListenerTlsFileCertificate `locationName:"file" type:"structure"`
 
 	// A reference to an object that represents a virtual gateway's client's Secret
@@ -16256,7 +17045,7 @@ func (s *VirtualGatewayListenerTls) SetValidation(v *VirtualGatewayListenerTlsVa
 	return s
 }
 
-// An object that represents an AWS Certicate Manager (ACM) certificate.
+// An object that represents an Certificate Manager certificate.
 type VirtualGatewayListenerTlsAcmCertificate struct {
 	_ struct{} `type:"structure"`
 
@@ -16301,7 +17090,7 @@ func (s *VirtualGatewayListenerTlsAcmCertificate) SetCertificateArn(v string) *V
 type VirtualGatewayListenerTlsCertificate struct {
 	_ struct{} `type:"structure"`
 
-	// A reference to an object that represents an AWS Certicate Manager (ACM) certificate.
+	// A reference to an object that represents an Certificate Manager certificate.
 	Acm *VirtualGatewayListenerTlsAcmCertificate `locationName:"acm" type:"structure"`
 
 	// A reference to an object that represents a local file certificate.
@@ -16429,7 +17218,7 @@ func (s *VirtualGatewayListenerTlsFileCertificate) SetPrivateKey(v string) *Virt
 
 // An object that represents the virtual gateway's listener's Secret Discovery
 // Service certificate.The proxy must be configured with a local SDS provider
-// via a Unix Domain Socket. See App Mesh TLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
+// via a Unix Domain Socket. See App MeshTLS documentation (https://docs.aws.amazon.com/app-mesh/latest/userguide/tls.html)
 // for more info.
 type VirtualGatewayListenerTlsSdsCertificate struct {
 	_ struct{} `type:"structure"`
@@ -16958,7 +17747,7 @@ func (s *VirtualGatewayTlsValidationContext) SetTrust(v *VirtualGatewayTlsValida
 }
 
 // An object that represents a Transport Layer Security (TLS) validation context
-// trust for an AWS Certicate Manager (ACM) certificate.
+// trust for an Certificate Manager certificate.
 type VirtualGatewayTlsValidationContextAcmTrust struct {
 	_ struct{} `type:"structure"`
 
@@ -17095,7 +17884,7 @@ type VirtualGatewayTlsValidationContextTrust struct {
 	_ struct{} `type:"structure"`
 
 	// A reference to an object that represents a Transport Layer Security (TLS)
-	// validation context trust for an AWS Certicate Manager (ACM) certificate.
+	// validation context trust for an Certificate Manager certificate.
 	Acm *VirtualGatewayTlsValidationContextAcmTrust `locationName:"acm" type:"structure"`
 
 	// An object that represents a Transport Layer Security (TLS) validation context
@@ -18537,6 +19326,38 @@ func (s *WeightedTarget) SetVirtualNode(v string) *WeightedTarget {
 func (s *WeightedTarget) SetWeight(v int64) *WeightedTarget {
 	s.Weight = &v
 	return s
+}
+
+const (
+	// DefaultGatewayRouteRewriteEnabled is a DefaultGatewayRouteRewrite enum value
+	DefaultGatewayRouteRewriteEnabled = "ENABLED"
+
+	// DefaultGatewayRouteRewriteDisabled is a DefaultGatewayRouteRewrite enum value
+	DefaultGatewayRouteRewriteDisabled = "DISABLED"
+)
+
+// DefaultGatewayRouteRewrite_Values returns all elements of the DefaultGatewayRouteRewrite enum
+func DefaultGatewayRouteRewrite_Values() []string {
+	return []string{
+		DefaultGatewayRouteRewriteEnabled,
+		DefaultGatewayRouteRewriteDisabled,
+	}
+}
+
+const (
+	// DnsResponseTypeLoadbalancer is a DnsResponseType enum value
+	DnsResponseTypeLoadbalancer = "LOADBALANCER"
+
+	// DnsResponseTypeEndpoints is a DnsResponseType enum value
+	DnsResponseTypeEndpoints = "ENDPOINTS"
+)
+
+// DnsResponseType_Values returns all elements of the DnsResponseType enum
+func DnsResponseType_Values() []string {
+	return []string{
+		DnsResponseTypeLoadbalancer,
+		DnsResponseTypeEndpoints,
+	}
 }
 
 const (

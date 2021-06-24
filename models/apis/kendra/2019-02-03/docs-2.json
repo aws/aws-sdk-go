@@ -3,6 +3,7 @@
   "service": "<p>Amazon Kendra is a service for indexing large document sets.</p>",
   "operations": {
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <code>BatchPutDocument</code> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages related to the processing of the batch are sent to you CloudWatch log.</p>",
+    "BatchGetDocumentStatus": "<p>Returns the indexing status for one or more documents submitted with the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html\"> BatchPutDocument</a> operation.</p> <p>When you use the <code>BatchPutDocument</code> operation, documents are indexed asynchronously. You can use the <code>BatchGetDocumentStatus</code> operation to get the current status of a list of documents so that you can determine if they have been successfully indexed.</p> <p>You can also use the <code>BatchGetDocumentStatus</code> operation to check the status of the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html\"> BatchDeleteDocument</a> operation. When a document is deleted from the index, Amazon Kendra returns <code>NOT_FOUND</code> as the status.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> operation enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this operation to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using AWS CloudWatch. Any error messages related to processing the batch are sent to your AWS CloudWatch log.</p>",
     "ClearQuerySuggestions": "<p>Clears existing query suggestions from an index.</p> <p>This deletes existing suggestions only, not the queries in the query log. After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. If you do not see any new suggestions, then please allow Amazon Kendra to collect enough queries to learn new suggestions.</p>",
     "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
@@ -106,6 +107,24 @@
         "AttributeFilter$OrAllFilters": "<p>Performs a logical <code>OR</code> operation on all supplied filters.</p>"
       }
     },
+    "AuthenticationConfiguration": {
+      "base": "<p>Provides the configuration information to connect to websites that require user authentication.</p>",
+      "refs": {
+        "WebCrawlerConfiguration$AuthenticationConfiguration": "<p>Provides configuration information required to connect to websites using authentication.</p> <p>You can connect to websites using basic authentication of user name and password.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS. You use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a> to store your authentication credentials.</p>"
+      }
+    },
+    "BasicAuthenticationConfiguration": {
+      "base": "<p>Provides the configuration information to connect to websites that require basic user authentication.</p>",
+      "refs": {
+        "BasicAuthenticationConfigurationList$member": null
+      }
+    },
+    "BasicAuthenticationConfigurationList": {
+      "base": null,
+      "refs": {
+        "AuthenticationConfiguration$BasicAuthentication": "<p>The list of configuration information that's required to connect to and crawl a website host using basic authentication credentials.</p> <p>The list includes the name and port number of the website host.</p>"
+      }
+    },
     "BatchDeleteDocumentRequest": {
       "base": null,
       "refs": {
@@ -126,6 +145,28 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponse$FailedDocuments": "<p>A list of documents that could not be removed from the index. Each entry contains an error message that indicates why the document couldn't be removed from the index.</p>"
+      }
+    },
+    "BatchGetDocumentStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDocumentStatusResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetDocumentStatusResponseError": {
+      "base": "<p>Provides a response when the status of a document could not be retrieved.</p>",
+      "refs": {
+        "BatchGetDocumentStatusResponseErrors$member": null
+      }
+    },
+    "BatchGetDocumentStatusResponseErrors": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusResponse$Errors": "<p>A list of documents that Amazon Kendra couldn't get the status for. The list includes the ID of the document and the reason that the status couldn't be found.</p>"
       }
     },
     "BatchPutDocumentRequest": {
@@ -177,7 +218,7 @@
       }
     },
     "CapacityUnitsConfiguration": {
-      "base": "<p>Specifies capacity units configured for your index. You can add and remove capacity units to tune an index to your requirements.</p>",
+      "base": "<p>Specifies capacity units configured for your enterprise edition index. You can add and remove capacity units to tune an index to your requirements.</p>",
       "refs": {
         "DescribeIndexResponse$CapacityUnits": "<p>For Enterprise edition indexes, you can choose to use additional capacity to meet the needs of your application. This contains the capacity units used for the index. A 0 for the query capacity or the storage capacity indicates that the index is using the default capacity for the index.</p>",
         "UpdateIndexRequest$CapacityUnits": "<p>Sets the number of additional storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day.</p> <p>If you are using extra storage units, you can't reduce the storage capacity below that required to meet the storage needs for your index.</p>"
@@ -376,6 +417,12 @@
         "Document$ContentType": "<p>The file type of the document in the <code>Blob</code> field.</p>"
       }
     },
+    "CrawlDepth": {
+      "base": null,
+      "refs": {
+        "WebCrawlerConfiguration$CrawlDepth": "<p>Specifies the number of levels in a website that you want to crawl.</p> <p>The first level begins from the website seed or starting point URL. For example, if a website has 3 levels – index level (i.e. seed in this example), sections level, and subsections level – and you are only interested in crawling information up to the sections level (i.e. levels 0-1), you can set your depth to 1.</p> <p>The default crawl depth is set to 2.</p>"
+      }
+    },
     "CreateDataSourceRequest": {
       "base": null,
       "refs": {
@@ -498,7 +545,9 @@
         "ServiceNowServiceCatalogConfiguration$IncludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
         "ServiceNowServiceCatalogConfiguration$ExcludeAttachmentFilePatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the file name of the attachment.</p>",
         "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
-        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>"
+        "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
+        "WebCrawlerConfiguration$UrlInclusionPatterns": "<p>The regular expression pattern to include certain URLs to crawl.</p> <p>If there is a regular expression pattern to exclude certain URLs that conflicts with the include pattern, the exclude pattern takes precedence.</p>",
+        "WebCrawlerConfiguration$UrlExclusionPatterns": "<p>The regular expression pattern to exclude certain URLs to crawl.</p> <p>If there is a regular expression pattern to include certain URLs that conflicts with the exclude pattern, the exclude pattern takes precedence.</p>"
       }
     },
     "DataSourceInclusionsExclusionsStringsMember": {
@@ -783,6 +832,7 @@
       "base": null,
       "refs": {
         "Document$Attributes": "<p>Custom attributes to apply to the document. Use the custom attributes to provide additional information for searching, to provide facets for refining searches, and to provide additional information in the query response.</p>",
+        "DocumentInfo$Attributes": "<p>Attributes that identify a specific version of a document to check.</p> <p>The only valid attributes are:</p> <ul> <li> <p>version</p> </li> <li> <p>datasourceId</p> </li> <li> <p>jobExecutionId</p> </li> </ul> <p>The attributes follow these rules:</p> <ul> <li> <p> <code>dataSourceId</code> and <code>jobExecutionId</code> must be used together.</p> </li> <li> <p> <code>version</code> is ignored if <code>dataSourceId</code> and <code>jobExecutionId</code> are not provided.</p> </li> <li> <p>If <code>dataSourceId</code> and <code>jobExecutionId</code> are provided, but <code>version</code> is not, the version defaults to \"0\".</p> </li> </ul>",
         "QueryResultItem$DocumentAttributes": "<p>An array of document attributes for the document that the query result maps to. For example, the document author (Author) or the source URI (SourceUri) of the document.</p>"
       }
     },
@@ -828,16 +878,31 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$Id": "<p>The identifier of the document that couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$DocumentId": "<p>The unique identifier of the document whose status could not be retrieved.</p>",
         "BatchPutDocumentResponseFailedDocument$Id": "<p>The unique identifier of the document.</p>",
         "Document$Id": "<p>A unique identifier of the document in the index.</p>",
         "DocumentIdList$member": null,
-        "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>"
+        "DocumentInfo$DocumentId": "<p>The unique identifier of the document.</p>",
+        "QueryResultItem$DocumentId": "<p>The unique identifier for the document.</p>",
+        "Status$DocumentId": "<p>The unique identifier of the document.</p>"
       }
     },
     "DocumentIdList": {
       "base": null,
       "refs": {
         "BatchDeleteDocumentRequest$DocumentIdList": "<p>One or more identifiers for documents to delete from the index.</p>"
+      }
+    },
+    "DocumentInfo": {
+      "base": "<p>Identifies a document for which to retrieve status information</p>",
+      "refs": {
+        "DocumentInfoList$member": null
+      }
+    },
+    "DocumentInfoList": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusRequest$DocumentInfoList": "<p>A list of <code>DocumentInfo</code> objects that identify the documents for which to get the status. You identify the documents by their document ID and optional attributes.</p>"
       }
     },
     "DocumentList": {
@@ -884,6 +949,18 @@
         "QueryRequest$DocumentRelevanceOverrideConfigurations": "<p>Overrides relevance tuning configurations of fields or attributes set at the index level.</p> <p>If you use this API to override the relevance tuning configured at the index level, but there is no relevance tuning configured at the index level, then Amazon Kendra does not apply any relevance tuning.</p> <p>If there is relevance tuning configured at the index level, but you do not use this API to override any relevance tuning in the index, then Amazon Kendra uses the relevance tuning that is configured at the index level.</p> <p>If there is relevance tuning configured for fields at the index level, but you use this API to override only some of these fields, then for the fields you did not override, the importance is set to 1.</p>"
       }
     },
+    "DocumentStatus": {
+      "base": null,
+      "refs": {
+        "Status$DocumentStatus": "<p>The current status of a document.</p> <p>If the document was submitted for deletion, the status is <code>NOT_FOUND</code> after the document is deleted.</p>"
+      }
+    },
+    "DocumentStatusList": {
+      "base": null,
+      "refs": {
+        "BatchGetDocumentStatusResponse$DocumentStatusList": "<p>The status of documents. The status indicates if the document is waiting to be indexed, is in the process of indexing, has completed indexing, or failed indexing. If a document failed indexing, the status provides the reason why.</p>"
+      }
+    },
     "DocumentsMetadataConfiguration": {
       "base": "<p>Document metadata files that contain information such as the document access control information, source URI, document author, and custom attributes. Each metadata file contains metadata about a single document.</p>",
       "refs": {
@@ -900,6 +977,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentResponseFailedDocument$ErrorCode": "<p>The error code for why the document couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$ErrorCode": "<p>Indicates the source of the error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorCode": "<p>The type of error that caused the document to fail to be indexed.</p>",
         "DataSourceSyncJob$ErrorCode": "<p>If the <code>Status</code> field is set to <code>FAILED</code>, the <code>ErrorCode</code> field contains a the reason that the synchronization failed.</p>"
       }
@@ -909,6 +987,7 @@
       "refs": {
         "AccessDeniedException$Message": null,
         "BatchDeleteDocumentResponseFailedDocument$ErrorMessage": "<p>An explanation for why the document couldn't be removed from the index.</p>",
+        "BatchGetDocumentStatusResponseError$ErrorMessage": "<p>States that the API could not get the status of a document. This could be because the request is not valid or there is a system error.</p>",
         "BatchPutDocumentResponseFailedDocument$ErrorMessage": "<p>A description of the reason why the document could not be indexed.</p>",
         "ConflictException$Message": null,
         "DataSourceSyncJob$ErrorMessage": "<p>If the <code>Status</code> field is set to <code>ERROR</code>, the <code>ErrorMessage</code> field contains a description of the error that caused the synchronization to fail.</p>",
@@ -1066,6 +1145,13 @@
         "Highlight$Type": "<p>The highlight type. </p>"
       }
     },
+    "Host": {
+      "base": null,
+      "refs": {
+        "BasicAuthenticationConfiguration$Host": "<p>The name of the website host you want to connect to using authentication credentials.</p> <p>For example, the host name of https://a.example.com/page1.html is \"a.example.com\".</p>",
+        "ProxyConfiguration$Host": "<p>The name of the website host you want to connect to via a web proxy server.</p> <p>For example, the host name of https://a.example.com/page1.html is \"a.example.com\".</p>"
+      }
+    },
     "Importance": {
       "base": null,
       "refs": {
@@ -1107,6 +1193,7 @@
       "base": null,
       "refs": {
         "BatchDeleteDocumentRequest$IndexId": "<p>The identifier of the index that contains the documents to delete.</p>",
+        "BatchGetDocumentStatusRequest$IndexId": "<p>The identifier of the index to add documents to. The index ID is returned by the <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html\"> CreateIndex </a> operation.</p>",
         "BatchPutDocumentRequest$IndexId": "<p>The identifier of the index to add the documents to. You need to create the index first using the <code>CreateIndex</code> operation.</p>",
         "ClearQuerySuggestionsRequest$IndexId": "<p>The identifier of the index you want to clear query suggestions from.</p>",
         "CreateDataSourceRequest$IndexId": "<p>The identifier of the index that should be associated with this data source.</p>",
@@ -1322,6 +1409,18 @@
         "DocumentAttributeValue$LongValue": "<p>A long integer value.</p>"
       }
     },
+    "MaxContentSizePerPageInMegaBytes": {
+      "base": null,
+      "refs": {
+        "WebCrawlerConfiguration$MaxContentSizePerPageInMegaBytes": "<p>The maximum size (in MB) of a webpage or attachment to crawl.</p> <p>Files larger than this size (in MB) are skipped/not crawled.</p> <p>The default maximum size of a webpage or attachment is set to 50 MB.</p>"
+      }
+    },
+    "MaxLinksPerPage": {
+      "base": null,
+      "refs": {
+        "WebCrawlerConfiguration$MaxLinksPerPage": "<p>The maximum number of URLs on a webpage to include when crawling a website. This number is per webpage.</p> <p>As a website’s webpages are crawled, any URLs the webpages link to are also crawled. URLs on a webpage are crawled in order of appearance.</p> <p>The default maximum links per page is 100.</p>"
+      }
+    },
     "MaxResultsIntegerForListDataSourceSyncJobsRequest": {
       "base": null,
       "refs": {
@@ -1356,6 +1455,12 @@
       "base": null,
       "refs": {
         "ListThesauriRequest$MaxResults": "<p>The maximum number of thesauri to return.</p>"
+      }
+    },
+    "MaxUrlsPerMinuteCrawlRate": {
+      "base": null,
+      "refs": {
+        "WebCrawlerConfiguration$MaxUrlsPerMinuteCrawlRate": "<p>The maximum number of URLs crawled per website host per minute.</p> <p>A minimum of one URL is required.</p> <p>The default maximum number of URLs crawled per website host per minute is 300.</p>"
       }
     },
     "MetricValue": {
@@ -1449,6 +1554,13 @@
         "Relevance$RankOrder": "<p>Determines how values should be interpreted.</p> <p>When the <code>RankOrder</code> field is <code>ASCENDING</code>, higher numbers are better. For example, a document with a rating score of 10 is higher ranking than a document with a rating score of 1.</p> <p>When the <code>RankOrder</code> field is <code>DESCENDING</code>, lower numbers are better. For example, in a task tracking application, a priority 1 task is more important than a priority 5 task.</p> <p>Only applies to <code>LONG</code> and <code>DOUBLE</code> fields.</p>"
       }
     },
+    "Port": {
+      "base": null,
+      "refs": {
+        "BasicAuthenticationConfiguration$Port": "<p>The port number of the website host you want to connect to using authentication credentials.</p> <p>For example, the port for https://a.example.com/page1.html is 443, the standard port for HTTPS.</p>",
+        "ProxyConfiguration$Port": "<p>The port number of the website host you want to connect to via a web proxy server. </p> <p>For example, the port for https://a.example.com/page1.html is 443, the standard port for HTTPS.</p>"
+      }
+    },
     "Principal": {
       "base": "<p>Provides user and group information for document access filtering.</p>",
       "refs": {
@@ -1473,10 +1585,16 @@
         "Principal$Type": "<p>The type of principal.</p>"
       }
     },
+    "ProxyConfiguration": {
+      "base": "<p>Provides the configuration information for a web proxy to connect to website hosts.</p>",
+      "refs": {
+        "WebCrawlerConfiguration$ProxyConfiguration": "<p>Provides configuration information required to connect to your internal websites via a web proxy.</p> <p>You must provide the website host name and port number. For example, the host name of https://a.example.com/page1.html is \"a.example.com\" and the port is 443, the standard port for HTTPS.</p> <p>Web proxy credentials are optional and you can use them to connect to a web proxy server that requires basic authentication. To store web proxy credentials, you use a secret in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a>.</p>"
+      }
+    },
     "QueryCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index. Each capacity unit provides 0.5 queries per second and 40,000 queries per day.</p>"
+        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a> capacity.</p> <p>A single extra capacity unit for an index provides 0.5 queries per second or approximately 40,000 queries per day.</p> <p> <code>GetQuerySuggestions</code> capacity is 5 times the provisioned query capacity for an index. For example, the base capacity for an index is 0.5 queries per second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding another 0.5 queries per second to total 1 queries per second for an index, the <code>GetQuerySuggestions</code> capacity is 5 calls per second.</p>"
       }
     },
     "QueryId": {
@@ -1814,10 +1932,12 @@
     "SecretArn": {
       "base": null,
       "refs": {
+        "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>AWS Secrets Manager</i> user guide.</p>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a AWS Secrets Manager secret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
+        "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the AWS Secret Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
         "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>AWS Secrets Manager</i> user guide.</p>"
@@ -1827,6 +1947,24 @@
       "base": null,
       "refs": {
         "DataSourceVpcConfiguration$SecurityGroupIds": "<p>A list of identifiers of security groups within your Amazon VPC. The security groups should enable Amazon Kendra to connect to the data source.</p>"
+      }
+    },
+    "SeedUrl": {
+      "base": null,
+      "refs": {
+        "SeedUrlList$member": null
+      }
+    },
+    "SeedUrlConfiguration": {
+      "base": "<p>Provides the configuration information of the seed or starting point URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use the Amazon Kendra web crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "refs": {
+        "Urls$SeedUrlConfiguration": "<p>Provides the configuration of the seed or starting point URLs of the websites you want to crawl.</p> <p>You can choose to crawl only the website host names, or the website host names with subdomains, or the website host names with subdomains and other domains that the webpages link to.</p> <p>You can list up to 100 seed URLs.</p>"
+      }
+    },
+    "SeedUrlList": {
+      "base": null,
+      "refs": {
+        "SeedUrlConfiguration$SeedUrls": "<p>The list of seed or starting point URLs of the websites you want to crawl.</p> <p>The list can include a maximum of 100 seed URLs.</p>"
       }
     },
     "ServerSideEncryptionConfiguration": {
@@ -1907,6 +2045,24 @@
         "ExcludeSharedDrivesList$member": null
       }
     },
+    "SiteMap": {
+      "base": null,
+      "refs": {
+        "SiteMapsList$member": null
+      }
+    },
+    "SiteMapsConfiguration": {
+      "base": "<p>Provides the configuration information of the sitemap URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use the Amazon Kendra web crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "refs": {
+        "Urls$SiteMapsConfiguration": "<p>Provides the configuration of the sitemap URLs of the websites you want to crawl.</p> <p>Only URLs belonging to the same website host names are crawled. You can list up to three sitemap URLs.</p>"
+      }
+    },
+    "SiteMapsList": {
+      "base": null,
+      "refs": {
+        "SiteMapsConfiguration$SiteMaps": "<p>The list of sitemap URLs of the websites you want to crawl.</p> <p>The list can include a maximum of three sitemap URLs.</p>"
+      }
+    },
     "SortOrder": {
       "base": null,
       "refs": {
@@ -1935,6 +2091,12 @@
       "refs": {
       }
     },
+    "Status": {
+      "base": "<p>Provides information about the status of documents submitted for indexing.</p>",
+      "refs": {
+        "DocumentStatusList$member": null
+      }
+    },
     "StopDataSourceSyncJobRequest": {
       "base": null,
       "refs": {
@@ -1943,7 +2105,7 @@
     "StorageCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. Each capacity unit provides 150 Gb of storage space or 500,000 documents, whichever is reached first.</p>"
+        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. A single capacity unit for an index provides 150 GB of storage space or 500,000 documents, whichever is reached first.</p>"
       }
     },
     "String": {
@@ -1956,6 +2118,8 @@
         "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
         "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
+        "Status$FailureCode": "<p>Indicates the source of the error.</p>",
+        "Status$FailureReason": "<p>Provides detailed information about why the document couldn't be indexed. Use this information to correct the error before you resubmit the document for indexing.</p>",
         "SuggestionTextWithHighlights$Text": "<p>The query suggestion text to display to the user.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
       }
@@ -2162,7 +2326,7 @@
         "DescribeQuerySuggestionsConfigResponse$LastClearTime": "<p>Shows the date-time query suggestions for an index was last cleared.</p> <p>After you clear suggestions, Amazon Kendra learns new suggestions based on new queries added to the query log from the time you cleared suggestions. Amazon Kendra only considers re-occurences of a query from the time you cleared suggestions. </p>",
         "DescribeThesaurusResponse$CreatedAt": "<p>The Unix datetime that the thesaurus was created.</p>",
         "DescribeThesaurusResponse$UpdatedAt": "<p>The Unix datetime that the thesaurus was last updated.</p>",
-        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p>",
+        "DocumentAttributeValue$DateValue": "<p>A date expressed as an ISO 8601 string.</p> <p>It is important for the time zone to be included in the ISO 8601 date-time format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.</p>",
         "FaqSummary$CreatedAt": "<p>The UNIX datetime that the FAQ was added to the index.</p>",
         "FaqSummary$UpdatedAt": "<p>The UNIX datetime that the FAQ was last updated.</p>",
         "IndexConfigurationSummary$CreatedAt": "<p>The Unix timestamp when the index was created.</p>",
@@ -2232,6 +2396,12 @@
         "SharePointUrlList$member": null
       }
     },
+    "Urls": {
+      "base": "<p>Provides the configuration information of the URLs to crawl.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use the Amazon Kendra web crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>",
+      "refs": {
+        "WebCrawlerConfiguration$Urls": "<p>Specifies the seed or starting point URLs of the websites or the sitemap URLs of the websites you want to crawl.</p> <p>You can include website subdomains. You can list up to 100 seed URLs and up to three sitemap URLs.</p> <p> <i>When selecting websites to index, you must adhere to the <a href=\"https://aws.amazon.com/aup/\">Amazon Acceptable Use Policy</a> and all other Amazon terms. Remember that you must only use the Amazon Kendra web crawler to index your own webpages, or webpages that you have authorization to index.</i> </p>"
+      }
+    },
     "UserAccount": {
       "base": null,
       "refs": {
@@ -2299,6 +2469,18 @@
       "base": null,
       "refs": {
         "SecurityGroupIdList$member": null
+      }
+    },
+    "WebCrawlerConfiguration": {
+      "base": "<p>Provides the configuration information required for Amazon Kendra web crawler.</p>",
+      "refs": {
+        "DataSourceConfiguration$WebCrawlerConfiguration": null
+      }
+    },
+    "WebCrawlerMode": {
+      "base": null,
+      "refs": {
+        "SeedUrlConfiguration$WebCrawlerMode": "<p>You can choose one of the following modes:</p> <ul> <li> <p> <code>HOST_ONLY</code> – crawl only the website host names. For example, if the seed URL is \"abc.example.com\", then only URLs with host name \"abc.example.com\" are crawled.</p> </li> <li> <p> <code>SUBDOMAINS</code> – crawl the website host names with subdomains. For example, if the seed URL is \"abc.example.com\", then \"a.abc.example.com\" and \"b.abc.example.com\" are also crawled.</p> </li> <li> <p> <code>EVERYTHING</code> – crawl the website host names with subdomains and other domains that the webpages link to.</p> </li> </ul> <p>The default mode is set to <code>HOST_ONLY</code>.</p>"
       }
     }
   }

@@ -12,8 +12,8 @@
     "BatchDeletePhoneNumber": "<p> Moves phone numbers into the <b>Deletion queue</b>. Phone numbers must be disassociated from any users or Amazon Chime Voice Connectors before they can be deleted. </p> <p> Phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently. </p>",
     "BatchSuspendUser": "<p>Suspends up to 50 users from a <code>Team</code> or <code>EnterpriseLWA</code> Amazon Chime account. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>Users suspended from a <code>Team</code> account are disassociated from the account,but they can continue to use Amazon Chime as free users. To remove the suspension from suspended <code>Team</code> account users, invite them to the <code>Team</code> account again. You can use the <a>InviteUsers</a> action to do so.</p> <p>Users suspended from an <code>EnterpriseLWA</code> account are immediately signed out of Amazon Chime and can no longer sign in. To remove the suspension from suspended <code>EnterpriseLWA</code> account users, use the <a>BatchUnsuspendUser</a> action.</p> <p> To sign out users without suspending them, use the <a>LogoutUser</a> action. </p>",
     "BatchUnsuspendUser": "<p>Removes the suspension from up to 50 previously suspended users for the specified Amazon Chime <code>EnterpriseLWA</code> account. Only users on <code>EnterpriseLWA</code> accounts can be unsuspended using this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> Previously suspended users who are unsuspended using this action are returned to <code>Registered</code> status. Users who are not previously suspended are ignored. </p>",
-    "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update the product type or the calling name.</p> <p>For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the US, you must use the Amazon Chime SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
-    "BatchUpdateUser": "<p> Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
+    "BatchUpdatePhoneNumber": "<p>Updates phone number product types or calling names. You can update one attribute at a time for each <code>UpdatePhoneNumberRequestItem</code>. For example, you can update the product type or the calling name.</p> <p>For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In product type.</p> <p>Updates to outbound calling names can take up to 72 hours to complete. Pending updates to outbound calling names must be complete before you can request another update.</p>",
+    "BatchUpdateUser": "<p>Updates user details within the <a>UpdateUserRequestItem</a> object for up to 20 users for the specified Amazon Chime account. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "CreateAccount": "<p>Creates an Amazon Chime account under the administrator's AWS account. Only <code>Team</code> account types are currently supported for this action. For more information about different account types, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html\">Managing Your Amazon Chime Accounts</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "CreateAppInstance": "<p>Creates an Amazon Chime SDK messaging <code>AppInstance</code> under an AWS account. Only SDK messaging customers use this API. <code>CreateAppInstance</code> supports idempotency behavior as described in the AWS API Standard.</p>",
     "CreateAppInstanceAdmin": "<p>Promotes an <code>AppInstanceUser</code> to an <code>AppInstanceAdmin</code>. The promoted user can perform the following actions. </p> <ul> <li> <p> <code>ChannelModerator</code> actions across all channels in the <code>AppInstance</code>.</p> </li> <li> <p> <code>DeleteChannelMessage</code> actions.</p> </li> </ul> <p>Only an <code>AppInstanceUser</code> can be promoted to an <code>AppInstanceAdmin</code> role.</p>",
@@ -27,7 +27,7 @@
     "CreateMeeting": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and join them into a Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> action with the corresponding SIP media application ID.</p>",
     "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
-    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the US, you must use the Amazon Chime SIP Media Application Dial-In product type.</p>",
+    "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. For toll-free numbers, you cannot use the Amazon Chime Business Calling product type. For numbers outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
     "CreateRoomMembership": "<p>Adds a member to a chat room in an Amazon Chime Enterprise account. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
@@ -101,7 +101,7 @@
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps,name, outbound host, and encryption requirements.</p>",
     "GetVoiceConnectorEmergencyCallingConfiguration": "<p>Gets the emergency calling configuration details for the specified Amazon Chime Voice Connector.</p>",
-    "GetVoiceConnectorGroup": "<p> Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated <code>VoiceConnectorItems</code> . </p>",
+    "GetVoiceConnectorGroup": "<p> Retrieves details for the specified Amazon Chime Voice Connector group, such as timestamps,name, and associated <code>VoiceConnectorItems</code>.</p>",
     "GetVoiceConnectorLoggingConfiguration": "<p>Retrieves the logging configuration details for the specified Amazon Chime Voice Connector. Shows whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "GetVoiceConnectorOrigination": "<p>Retrieves origination setting details for the specified Amazon Chime Voice Connector.</p>",
     "GetVoiceConnectorProxy": "<p>Gets the proxy configuration details for the specified Amazon Chime Voice Connector.</p>",
@@ -124,7 +124,7 @@
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListMeetingTags": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
-    "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
+    "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
     "ListPhoneNumbers": "<p>Lists the phone numbers for the specified Amazon Chime account, Amazon Chime user, Amazon Chime Voice Connector, or Amazon Chime Voice Connector group.</p>",
     "ListProxySessions": "<p>Lists the proxy sessions for the specified Amazon Chime Voice Connector.</p>",
@@ -142,7 +142,7 @@
     "PutAppInstanceRetentionSettings": "<p>Sets the amount of time in days that a given <code>AppInstance</code> retains data.</p>",
     "PutAppInstanceStreamingConfigurations": "<p>The data streaming configurations of an <code>AppInstance</code>.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
-    "PutRetentionSettings": "<p> Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i> . </p> <p> To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i> . </p>",
+    "PutRetentionSettings": "<p> Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p> To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "PutSipMediaApplicationLoggingConfiguration": "<p>Updates the logging configuration for the specified SIP media application.</p>",
     "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
@@ -165,7 +165,7 @@
     "UntagAttendee": "<p>Untags the specified tags from the specified Amazon Chime SDK attendee.</p>",
     "UntagMeeting": "<p>Untags the specified tags from the specified Amazon Chime SDK meeting.</p>",
     "UntagResource": "<p>Untags the specified tags from the specified Amazon Chime SDK meeting resource.</p>",
-    "UpdateAccount": "<p>Updates account details for the specified Amazon Chime account. Currently, only account name updates are supported for this action.</p>",
+    "UpdateAccount": "<p>Updates account details for the specified Amazon Chime account. Currently, only account name and default license updates are supported for this action.</p>",
     "UpdateAccountSettings": "<p>Updates the settings for the specified Amazon Chime account. You can update settings for remote control of shared screens, or for the dial-out option. For more information about these settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/policies.html\">Use the Policies Page</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "UpdateAppInstance": "<p>Updates <code>AppInstance</code> metadata.</p>",
     "UpdateAppInstanceUser": "<p>Updates the details of an <code>AppInstanceUser</code>. You can update names and metadata.</p>",
@@ -180,6 +180,7 @@
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
     "UpdateSipMediaApplication": "<p>Updates the details of the specified SIP media application.</p>",
+    "UpdateSipMediaApplicationCall": "<p>Allows you to trigger a Lambda function at any time while a call is active, and replace the current actions with new actions returned by the invocation.</p>",
     "UpdateSipRule": "<p>Updates the details of the specified SIP rule.</p>",
     "UpdateUser": "<p> Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action. </p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
@@ -2090,6 +2091,7 @@
       "refs": {
         "Account$DefaultLicense": "<p>The default license for the Amazon Chime account.</p>",
         "LicenseList$member": null,
+        "UpdateAccountRequest$DefaultLicense": "<p>The default license applied when you add users to an Amazon Chime account.</p>",
         "UpdateUserRequest$LicenseType": "<p>The user license type to update. This must be a supported license type for the Amazon Chime account that the user belongs to.</p>",
         "UpdateUserRequestItem$LicenseType": "<p>The user license type.</p>",
         "User$LicenseType": "<p>The license type for the user.</p>"
@@ -2728,6 +2730,8 @@
         "UpdateRoomMembershipRequest$MemberId": "<p>The member ID.</p>",
         "UpdateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateRoomRequest$RoomId": "<p>The room ID.</p>",
+        "UpdateSipMediaApplicationCallRequest$SipMediaApplicationId": "<p>The ID of the SIP media application handling the call.</p>",
+        "UpdateSipMediaApplicationCallRequest$TransactionId": "<p>The ID of the call transaction.</p>",
         "UpdateSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "UpdateSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "UpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -3336,6 +3340,12 @@
         "RetentionSettings$RoomRetentionSettings": "<p>The chat room retention settings.</p>"
       }
     },
+    "SMAUpdateCallArgumentsMap": {
+      "base": null,
+      "refs": {
+        "UpdateSipMediaApplicationCallRequest$Arguments": "<p>Arguments made available to the Lambda function as part of the <code>CALL_UPDATE_REQUESTED</code> event. Can contain 0-20 key-value pairs.</p>"
+      }
+    },
     "SearchAvailablePhoneNumbersRequest": {
       "base": null,
       "refs": {
@@ -3374,6 +3384,8 @@
         "PutEventsConfigurationRequest$OutboundEventsHTTPSEndpoint": "<p>HTTPS endpoint that allows the bot to receive outgoing events.</p>",
         "PutEventsConfigurationRequest$LambdaFunctionArn": "<p>Lambda function ARN that allows the bot to receive outgoing events.</p>",
         "Room$Name": "<p>The room name.</p>",
+        "SMAUpdateCallArgumentsMap$key": null,
+        "SMAUpdateCallArgumentsMap$value": null,
         "SensitiveStringList$member": null,
         "UpdateRoomRequest$Name": "<p>The room name.</p>",
         "User$PrimaryProvisionedNumber": "<p>The primary phone number associated with the user.</p>",
@@ -3428,7 +3440,8 @@
     "SipMediaApplicationCall": {
       "base": "<p>A <code>Call</code> instance for a SIP media application.</p>",
       "refs": {
-        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": "<p>The actual call.</p>"
+        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": "<p>The actual call.</p>",
+        "UpdateSipMediaApplicationCallResponse$SipMediaApplicationCall": null
       }
     },
     "SipMediaApplicationEndpoint": {
@@ -3547,7 +3560,7 @@
         "AssociatePhoneNumberWithUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "AssociatePhoneNumberWithUserRequest$UserId": "<p>The user ID.</p>",
         "BadRequestException$Message": null,
-        "BatchCreateChannelMembershipError$ErrorMessage": "<p>The error message. </p>",
+        "BatchCreateChannelMembershipError$ErrorMessage": "<p>The error message.</p>",
         "Bot$BotId": "<p>The bot ID.</p>",
         "Bot$UserId": "<p>The unique ID for the bot user.</p>",
         "BusinessCallingSettings$CdrBucket": "<p>The Amazon S3 bucket designated for call detail record storage.</p>",
@@ -3917,6 +3930,16 @@
       }
     },
     "UpdateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationCallResponse": {
       "base": null,
       "refs": {
       }

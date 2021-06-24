@@ -11017,7 +11017,7 @@ type CustomDetection struct {
 
 	Name *string `locationName:"name" type:"string"`
 
-	// Provides the location of 1-15 occurrences of sensitive data that was detected
+	// Specifies the location of 1-15 occurrences of sensitive data that was detected
 	// by managed data identifiers or a custom data identifier and produced a sensitive
 	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
@@ -11142,7 +11142,7 @@ type DefaultDetection struct {
 
 	Count *int64 `locationName:"count" type:"long"`
 
-	// Provides the location of 1-15 occurrences of sensitive data that was detected
+	// Specifies the location of 1-15 occurrences of sensitive data that was detected
 	// by managed data identifiers or a custom data identifier and produced a sensitive
 	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
@@ -14163,7 +14163,8 @@ func (s *JobScheduleFrequency) SetWeeklySchedule(v *WeeklySchedule) *JobSchedule
 }
 
 // Specifies a property- or tag-based condition that defines criteria for including
-// or excluding S3 objects from a classification job.
+// or excluding S3 objects from a classification job. A JobScopeTerm object
+// can contain only one simpleScopeTerm object or one tagScopeTerm object.
 type JobScopeTerm struct {
 	_ struct{} `type:"structure"`
 
@@ -14172,9 +14173,7 @@ type JobScopeTerm struct {
 	SimpleScopeTerm *SimpleScopeTerm `locationName:"simpleScopeTerm" type:"structure"`
 
 	// Specifies a tag-based condition that determines whether an S3 object is included
-	// or excluded from a classification job. Tag keys and values are case sensitive.
-	// Also, Amazon Macie doesn't support use of partial values or wildcard characters
-	// in tag-based conditions.
+	// or excluded from a classification job.
 	TagScopeTerm *TagScopeTerm `locationName:"tagScopeTerm" type:"structure"`
 }
 
@@ -15466,7 +15465,7 @@ func (s *ObjectLevelStatistics) SetTotal(v int64) *ObjectLevelStatistics {
 	return s
 }
 
-// Provides the location of 1-15 occurrences of sensitive data that was detected
+// Specifies the location of 1-15 occurrences of sensitive data that was detected
 // by managed data identifiers or a custom data identifier and produced a sensitive
 // data finding.
 type Occurrences struct {
@@ -15541,13 +15540,11 @@ type Page struct {
 	_ struct{} `type:"structure"`
 
 	// Provides details about the location of an occurrence of sensitive data in
-	// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
-	// text file.
+	// a Microsoft Word document or non-binary text file.
 	LineRange *Range `locationName:"lineRange" type:"structure"`
 
 	// Provides details about the location of an occurrence of sensitive data in
-	// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
-	// text file.
+	// a Microsoft Word document or non-binary text file.
 	OffsetRange *Range `locationName:"offsetRange" type:"structure"`
 
 	PageNumber *int64 `locationName:"pageNumber" type:"long"`
@@ -15758,8 +15755,7 @@ func (s PutFindingsPublicationConfigurationOutput) GoString() string {
 }
 
 // Provides details about the location of an occurrence of sensitive data in
-// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
-// text file.
+// a Microsoft Word document or non-binary text file.
 type Range struct {
 	_ struct{} `type:"structure"`
 
@@ -17450,9 +17446,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // Specifies a tag-based condition that determines whether an S3 object is included
-// or excluded from a classification job. Tag keys and values are case sensitive.
-// Also, Amazon Macie doesn't support use of partial values or wildcard characters
-// in tag-based conditions.
+// or excluded from a classification job.
 type TagScopeTerm struct {
 	_ struct{} `type:"structure"`
 
@@ -17874,6 +17868,8 @@ type UpdateFindingsFilterInput struct {
 	// ARCHIVE. Valid values are:
 	Action *string `locationName:"action" type:"string" enum:"FindingsFilterAction"`
 
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
 	Description *string `locationName:"description" type:"string"`
 
 	// Specifies, as a map, one or more property-based conditions that filter the
@@ -17917,6 +17913,12 @@ func (s *UpdateFindingsFilterInput) Validate() error {
 // SetAction sets the Action field's value.
 func (s *UpdateFindingsFilterInput) SetAction(v string) *UpdateFindingsFilterInput {
 	s.Action = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *UpdateFindingsFilterInput) SetClientToken(v string) *UpdateFindingsFilterInput {
+	s.ClientToken = &v
 	return s
 }
 
@@ -19231,9 +19233,6 @@ func RelationshipStatus_Values() []string {
 // The property to use in a condition that determines whether an S3 object is
 // included or excluded from a classification job. Valid values are:
 const (
-	// ScopeFilterKeyBucketCreationDate is a ScopeFilterKey enum value
-	ScopeFilterKeyBucketCreationDate = "BUCKET_CREATION_DATE"
-
 	// ScopeFilterKeyObjectExtension is a ScopeFilterKey enum value
 	ScopeFilterKeyObjectExtension = "OBJECT_EXTENSION"
 
@@ -19243,9 +19242,6 @@ const (
 	// ScopeFilterKeyObjectSize is a ScopeFilterKey enum value
 	ScopeFilterKeyObjectSize = "OBJECT_SIZE"
 
-	// ScopeFilterKeyTag is a ScopeFilterKey enum value
-	ScopeFilterKeyTag = "TAG"
-
 	// ScopeFilterKeyObjectKey is a ScopeFilterKey enum value
 	ScopeFilterKeyObjectKey = "OBJECT_KEY"
 )
@@ -19253,11 +19249,9 @@ const (
 // ScopeFilterKey_Values returns all elements of the ScopeFilterKey enum
 func ScopeFilterKey_Values() []string {
 	return []string{
-		ScopeFilterKeyBucketCreationDate,
 		ScopeFilterKeyObjectExtension,
 		ScopeFilterKeyObjectLastModifiedDate,
 		ScopeFilterKeyObjectSize,
-		ScopeFilterKeyTag,
 		ScopeFilterKeyObjectKey,
 	}
 }

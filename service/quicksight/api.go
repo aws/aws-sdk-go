@@ -3,8 +3,6 @@
 package quicksight
 
 import (
-	"encoding/json"
-	"errors"
 	"fmt"
 	"time"
 
@@ -12,114 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
-)
-
-const (
-	defaultAWSToken = ""
-)
-
-var (
-	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"CancelIngestion":                 ExecuteCancelIngestion,
-		"CreateAccountCustomization":      ExecuteCreateAccountCustomization,
-		"CreateAnalysis":                  ExecuteCreateAnalysis,
-		"CreateDashboard":                 ExecuteCreateDashboard,
-		"CreateDataSet":                   ExecuteCreateDataSet,
-		"CreateDataSource":                ExecuteCreateDataSource,
-		"CreateGroup":                     ExecuteCreateGroup,
-		"CreateGroupMembership":           ExecuteCreateGroupMembership,
-		"CreateIAMPolicyAssignment":       ExecuteCreateIAMPolicyAssignment,
-		"CreateIngestion":                 ExecuteCreateIngestion,
-		"CreateNamespace":                 ExecuteCreateNamespace,
-		"CreateTemplate":                  ExecuteCreateTemplate,
-		"CreateTemplateAlias":             ExecuteCreateTemplateAlias,
-		"CreateTheme":                     ExecuteCreateTheme,
-		"CreateThemeAlias":                ExecuteCreateThemeAlias,
-		"DeleteAccountCustomization":      ExecuteDeleteAccountCustomization,
-		"DeleteAnalysis":                  ExecuteDeleteAnalysis,
-		"DeleteDashboard":                 ExecuteDeleteDashboard,
-		"DeleteDataSet":                   ExecuteDeleteDataSet,
-		"DeleteDataSource":                ExecuteDeleteDataSource,
-		"DeleteGroup":                     ExecuteDeleteGroup,
-		"DeleteGroupMembership":           ExecuteDeleteGroupMembership,
-		"DeleteIAMPolicyAssignment":       ExecuteDeleteIAMPolicyAssignment,
-		"DeleteNamespace":                 ExecuteDeleteNamespace,
-		"DeleteTemplate":                  ExecuteDeleteTemplate,
-		"DeleteTemplateAlias":             ExecuteDeleteTemplateAlias,
-		"DeleteTheme":                     ExecuteDeleteTheme,
-		"DeleteThemeAlias":                ExecuteDeleteThemeAlias,
-		"DeleteUser":                      ExecuteDeleteUser,
-		"DeleteUserByPrincipalId":         ExecuteDeleteUserByPrincipalId,
-		"DescribeAccountCustomization":    ExecuteDescribeAccountCustomization,
-		"DescribeAccountSettings":         ExecuteDescribeAccountSettings,
-		"DescribeAnalysis":                ExecuteDescribeAnalysis,
-		"DescribeAnalysisPermissions":     ExecuteDescribeAnalysisPermissions,
-		"DescribeDashboard":               ExecuteDescribeDashboard,
-		"DescribeDashboardPermissions":    ExecuteDescribeDashboardPermissions,
-		"DescribeDataSet":                 ExecuteDescribeDataSet,
-		"DescribeDataSetPermissions":      ExecuteDescribeDataSetPermissions,
-		"DescribeDataSource":              ExecuteDescribeDataSource,
-		"DescribeDataSourcePermissions":   ExecuteDescribeDataSourcePermissions,
-		"DescribeGroup":                   ExecuteDescribeGroup,
-		"DescribeIAMPolicyAssignment":     ExecuteDescribeIAMPolicyAssignment,
-		"DescribeIngestion":               ExecuteDescribeIngestion,
-		"DescribeNamespace":               ExecuteDescribeNamespace,
-		"DescribeTemplate":                ExecuteDescribeTemplate,
-		"DescribeTemplateAlias":           ExecuteDescribeTemplateAlias,
-		"DescribeTemplatePermissions":     ExecuteDescribeTemplatePermissions,
-		"DescribeTheme":                   ExecuteDescribeTheme,
-		"DescribeThemeAlias":              ExecuteDescribeThemeAlias,
-		"DescribeThemePermissions":        ExecuteDescribeThemePermissions,
-		"DescribeUser":                    ExecuteDescribeUser,
-		"GetDashboardEmbedUrl":            ExecuteGetDashboardEmbedUrl,
-		"GetSessionEmbedUrl":              ExecuteGetSessionEmbedUrl,
-		"ListAnalyses":                    ExecuteListAnalyses,
-		"ListDashboardVersions":           ExecuteListDashboardVersions,
-		"ListDashboards":                  ExecuteListDashboards,
-		"ListDataSets":                    ExecuteListDataSets,
-		"ListDataSources":                 ExecuteListDataSources,
-		"ListGroupMemberships":            ExecuteListGroupMemberships,
-		"ListGroups":                      ExecuteListGroups,
-		"ListIAMPolicyAssignments":        ExecuteListIAMPolicyAssignments,
-		"ListIAMPolicyAssignmentsForUser": ExecuteListIAMPolicyAssignmentsForUser,
-		"ListIngestions":                  ExecuteListIngestions,
-		"ListNamespaces":                  ExecuteListNamespaces,
-		"ListTagsForResource":             ExecuteListTagsForResource,
-		"ListTemplateAliases":             ExecuteListTemplateAliases,
-		"ListTemplateVersions":            ExecuteListTemplateVersions,
-		"ListTemplates":                   ExecuteListTemplates,
-		"ListThemeAliases":                ExecuteListThemeAliases,
-		"ListThemeVersions":               ExecuteListThemeVersions,
-		"ListThemes":                      ExecuteListThemes,
-		"ListUserGroups":                  ExecuteListUserGroups,
-		"ListUsers":                       ExecuteListUsers,
-		"RegisterUser":                    ExecuteRegisterUser,
-		"RestoreAnalysis":                 ExecuteRestoreAnalysis,
-		"SearchAnalyses":                  ExecuteSearchAnalyses,
-		"SearchDashboards":                ExecuteSearchDashboards,
-		"TagResource":                     ExecuteTagResource,
-		"UntagResource":                   ExecuteUntagResource,
-		"UpdateAccountCustomization":      ExecuteUpdateAccountCustomization,
-		"UpdateAccountSettings":           ExecuteUpdateAccountSettings,
-		"UpdateAnalysis":                  ExecuteUpdateAnalysis,
-		"UpdateAnalysisPermissions":       ExecuteUpdateAnalysisPermissions,
-		"UpdateDashboard":                 ExecuteUpdateDashboard,
-		"UpdateDashboardPermissions":      ExecuteUpdateDashboardPermissions,
-		"UpdateDashboardPublishedVersion": ExecuteUpdateDashboardPublishedVersion,
-		"UpdateDataSet":                   ExecuteUpdateDataSet,
-		"UpdateDataSetPermissions":        ExecuteUpdateDataSetPermissions,
-		"UpdateDataSource":                ExecuteUpdateDataSource,
-		"UpdateDataSourcePermissions":     ExecuteUpdateDataSourcePermissions,
-		"UpdateGroup":                     ExecuteUpdateGroup,
-		"UpdateIAMPolicyAssignment":       ExecuteUpdateIAMPolicyAssignment,
-		"UpdateTemplate":                  ExecuteUpdateTemplate,
-		"UpdateTemplateAlias":             ExecuteUpdateTemplateAlias,
-		"UpdateTemplatePermissions":       ExecuteUpdateTemplatePermissions,
-		"UpdateTheme":                     ExecuteUpdateTheme,
-		"UpdateThemeAlias":                ExecuteUpdateThemeAlias,
-		"UpdateThemePermissions":          ExecuteUpdateThemePermissions,
-		"UpdateUser":                      ExecuteUpdateUser,
-	}
 )
 
 const opCancelIngestion = "CancelIngestion"
@@ -218,44 +108,6 @@ func (c *QuickSight) CancelIngestionWithContext(ctx aws.Context, input *CancelIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCancelIngestion is Blink's code
-func ExecuteCancelIngestion(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CancelIngestionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CancelIngestionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateAccountCustomization = "CreateAccountCustomization"
@@ -377,44 +229,6 @@ func (c *QuickSight) CreateAccountCustomizationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteCreateAccountCustomization is Blink's code
-func ExecuteCreateAccountCustomization(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAccountCustomizationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAccountCustomizationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateAnalysis = "CreateAnalysis"
 
 // CreateAnalysisRequest generates a "aws/request.Request" representing the
@@ -513,44 +327,6 @@ func (c *QuickSight) CreateAnalysisWithContext(ctx aws.Context, input *CreateAna
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateAnalysis is Blink's code
-func ExecuteCreateAnalysis(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateAnalysisInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateAnalysisRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateDashboard = "CreateDashboard"
@@ -658,44 +434,6 @@ func (c *QuickSight) CreateDashboardWithContext(ctx aws.Context, input *CreateDa
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateDashboard is Blink's code
-func ExecuteCreateDashboard(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateDashboardInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateDashboardRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateDataSet = "CreateDataSet"
@@ -808,44 +546,6 @@ func (c *QuickSight) CreateDataSetWithContext(ctx aws.Context, input *CreateData
 	return out, req.Send()
 }
 
-// ExecuteCreateDataSet is Blink's code
-func ExecuteCreateDataSet(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateDataSetInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateDataSetRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateDataSource = "CreateDataSource"
 
 // CreateDataSourceRequest generates a "aws/request.Request" representing the
@@ -950,42 +650,221 @@ func (c *QuickSight) CreateDataSourceWithContext(ctx aws.Context, input *CreateD
 	return out, req.Send()
 }
 
-// ExecuteCreateDataSource is Blink's code
-func ExecuteCreateDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opCreateFolder = "CreateFolder"
 
-	input := CreateDataSourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateDataSourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// CreateFolderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFolder for more information on using the CreateFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFolderRequest method.
+//    req, resp := client.CreateFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolder
+func (c *QuickSight) CreateFolderRequest(input *CreateFolderInput) (req *request.Request, output *CreateFolderOutput) {
+	op := &request.Operation{
+		Name:       opCreateFolder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &CreateFolderInput{}
+	}
+
+	output = &CreateFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFolder API operation for Amazon QuickSight.
+//
+// Creates an empty shared folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateFolder for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolder
+func (c *QuickSight) CreateFolder(input *CreateFolderInput) (*CreateFolderOutput, error) {
+	req, out := c.CreateFolderRequest(input)
+	return out, req.Send()
+}
+
+// CreateFolderWithContext is the same as CreateFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateFolderWithContext(ctx aws.Context, input *CreateFolderInput, opts ...request.Option) (*CreateFolderOutput, error) {
+	req, out := c.CreateFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFolderMembership = "CreateFolderMembership"
+
+// CreateFolderMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFolderMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFolderMembership for more information on using the CreateFolderMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFolderMembershipRequest method.
+//    req, resp := client.CreateFolderMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolderMembership
+func (c *QuickSight) CreateFolderMembershipRequest(input *CreateFolderMembershipInput) (req *request.Request, output *CreateFolderMembershipOutput) {
+	op := &request.Operation{
+		Name:       opCreateFolderMembership,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}",
+	}
+
+	if input == nil {
+		input = &CreateFolderMembershipInput{}
+	}
+
+	output = &CreateFolderMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFolderMembership API operation for Amazon QuickSight.
+//
+// Adds an asset, such as a dashboard, analysis, or dataset into a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation CreateFolderMembership for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/CreateFolderMembership
+func (c *QuickSight) CreateFolderMembership(input *CreateFolderMembershipInput) (*CreateFolderMembershipOutput, error) {
+	req, out := c.CreateFolderMembershipRequest(input)
+	return out, req.Send()
+}
+
+// CreateFolderMembershipWithContext is the same as CreateFolderMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFolderMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) CreateFolderMembershipWithContext(ctx aws.Context, input *CreateFolderMembershipInput, opts ...request.Option) (*CreateFolderMembershipOutput, error) {
+	req, out := c.CreateFolderMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opCreateGroup = "CreateGroup"
@@ -1099,44 +978,6 @@ func (c *QuickSight) CreateGroupWithContext(ctx aws.Context, input *CreateGroupI
 	return out, req.Send()
 }
 
-// ExecuteCreateGroup is Blink's code
-func ExecuteCreateGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateGroupMembership = "CreateGroupMembership"
 
 // CreateGroupMembershipRequest generates a "aws/request.Request" representing the
@@ -1236,44 +1077,6 @@ func (c *QuickSight) CreateGroupMembershipWithContext(ctx aws.Context, input *Cr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateGroupMembership is Blink's code
-func ExecuteCreateGroupMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateGroupMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateGroupMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateIAMPolicyAssignment = "CreateIAMPolicyAssignment"
@@ -1382,44 +1185,6 @@ func (c *QuickSight) CreateIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
-// ExecuteCreateIAMPolicyAssignment is Blink's code
-func ExecuteCreateIAMPolicyAssignment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateIAMPolicyAssignmentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateIAMPolicyAssignmentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateIngestion = "CreateIngestion"
 
 // CreateIngestionRequest generates a "aws/request.Request" representing the
@@ -1525,44 +1290,6 @@ func (c *QuickSight) CreateIngestionWithContext(ctx aws.Context, input *CreateIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateIngestion is Blink's code
-func ExecuteCreateIngestion(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateIngestionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateIngestionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateNamespace = "CreateNamespace"
@@ -1684,44 +1411,6 @@ func (c *QuickSight) CreateNamespaceWithContext(ctx aws.Context, input *CreateNa
 	return out, req.Send()
 }
 
-// ExecuteCreateNamespace is Blink's code
-func ExecuteCreateNamespace(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateNamespaceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateNamespaceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateTemplate = "CreateTemplate"
 
 // CreateTemplateRequest generates a "aws/request.Request" representing the
@@ -1840,44 +1529,6 @@ func (c *QuickSight) CreateTemplateWithContext(ctx aws.Context, input *CreateTem
 	return out, req.Send()
 }
 
-// ExecuteCreateTemplate is Blink's code
-func ExecuteCreateTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateTemplateInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateTemplateRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateTemplateAlias = "CreateTemplateAlias"
 
 // CreateTemplateAliasRequest generates a "aws/request.Request" representing the
@@ -1979,44 +1630,6 @@ func (c *QuickSight) CreateTemplateAliasWithContext(ctx aws.Context, input *Crea
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteCreateTemplateAlias is Blink's code
-func ExecuteCreateTemplateAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateTemplateAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateTemplateAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opCreateTheme = "CreateTheme"
@@ -2131,44 +1744,6 @@ func (c *QuickSight) CreateThemeWithContext(ctx aws.Context, input *CreateThemeI
 	return out, req.Send()
 }
 
-// ExecuteCreateTheme is Blink's code
-func ExecuteCreateTheme(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateThemeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateThemeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opCreateThemeAlias = "CreateThemeAlias"
 
 // CreateThemeAliasRequest generates a "aws/request.Request" representing the
@@ -2272,44 +1847,6 @@ func (c *QuickSight) CreateThemeAliasWithContext(ctx aws.Context, input *CreateT
 	return out, req.Send()
 }
 
-// ExecuteCreateThemeAlias is Blink's code
-func ExecuteCreateThemeAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := CreateThemeAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.CreateThemeAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteAccountCustomization = "DeleteAccountCustomization"
 
 // DeleteAccountCustomizationRequest generates a "aws/request.Request" representing the
@@ -2407,44 +1944,6 @@ func (c *QuickSight) DeleteAccountCustomizationWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteAccountCustomization is Blink's code
-func ExecuteDeleteAccountCustomization(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAccountCustomizationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAccountCustomizationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteAnalysis = "DeleteAnalysis"
@@ -2558,44 +2057,6 @@ func (c *QuickSight) DeleteAnalysisWithContext(ctx aws.Context, input *DeleteAna
 	return out, req.Send()
 }
 
-// ExecuteDeleteAnalysis is Blink's code
-func ExecuteDeleteAnalysis(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteAnalysisInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteAnalysisRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteDashboard = "DeleteDashboard"
 
 // DeleteDashboardRequest generates a "aws/request.Request" representing the
@@ -2693,44 +2154,6 @@ func (c *QuickSight) DeleteDashboardWithContext(ctx aws.Context, input *DeleteDa
 	return out, req.Send()
 }
 
-// ExecuteDeleteDashboard is Blink's code
-func ExecuteDeleteDashboard(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteDashboardInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteDashboardRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteDataSet = "DeleteDataSet"
 
 // DeleteDataSetRequest generates a "aws/request.Request" representing the
@@ -2824,44 +2247,6 @@ func (c *QuickSight) DeleteDataSetWithContext(ctx aws.Context, input *DeleteData
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteDataSet is Blink's code
-func ExecuteDeleteDataSet(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteDataSetInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteDataSetRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteDataSource = "DeleteDataSource"
@@ -2960,42 +2345,212 @@ func (c *QuickSight) DeleteDataSourceWithContext(ctx aws.Context, input *DeleteD
 	return out, req.Send()
 }
 
-// ExecuteDeleteDataSource is Blink's code
-func ExecuteDeleteDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opDeleteFolder = "DeleteFolder"
 
-	input := DeleteDataSourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteDataSourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// DeleteFolderRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFolder for more information on using the DeleteFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFolderRequest method.
+//    req, resp := client.DeleteFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolder
+func (c *QuickSight) DeleteFolderRequest(input *DeleteFolderInput) (req *request.Request, output *DeleteFolderOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFolder,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &DeleteFolderInput{}
+	}
+
+	output = &DeleteFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFolder API operation for Amazon QuickSight.
+//
+// Deletes an empty folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * PreconditionNotMetException
+//   One or more preconditions aren't met.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolder
+func (c *QuickSight) DeleteFolder(input *DeleteFolderInput) (*DeleteFolderOutput, error) {
+	req, out := c.DeleteFolderRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFolderWithContext is the same as DeleteFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteFolderWithContext(ctx aws.Context, input *DeleteFolderInput, opts ...request.Option) (*DeleteFolderOutput, error) {
+	req, out := c.DeleteFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFolderMembership = "DeleteFolderMembership"
+
+// DeleteFolderMembershipRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFolderMembership operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFolderMembership for more information on using the DeleteFolderMembership
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFolderMembershipRequest method.
+//    req, resp := client.DeleteFolderMembershipRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolderMembership
+func (c *QuickSight) DeleteFolderMembershipRequest(input *DeleteFolderMembershipInput) (req *request.Request, output *DeleteFolderMembershipOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFolderMembership,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members/{MemberType}/{MemberId}",
+	}
+
+	if input == nil {
+		input = &DeleteFolderMembershipInput{}
+	}
+
+	output = &DeleteFolderMembershipOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteFolderMembership API operation for Amazon QuickSight.
+//
+// Removes an asset, such as a dashboard, analysis, or dataset, from a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DeleteFolderMembership for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DeleteFolderMembership
+func (c *QuickSight) DeleteFolderMembership(input *DeleteFolderMembershipInput) (*DeleteFolderMembershipOutput, error) {
+	req, out := c.DeleteFolderMembershipRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFolderMembershipWithContext is the same as DeleteFolderMembership with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFolderMembership for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DeleteFolderMembershipWithContext(ctx aws.Context, input *DeleteFolderMembershipInput, opts ...request.Option) (*DeleteFolderMembershipOutput, error) {
+	req, out := c.DeleteFolderMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDeleteGroup = "DeleteGroup"
@@ -3097,44 +2652,6 @@ func (c *QuickSight) DeleteGroupWithContext(ctx aws.Context, input *DeleteGroupI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteGroup is Blink's code
-func ExecuteDeleteGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteGroupMembership = "DeleteGroupMembership"
@@ -3239,44 +2756,6 @@ func (c *QuickSight) DeleteGroupMembershipWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
-// ExecuteDeleteGroupMembership is Blink's code
-func ExecuteDeleteGroupMembership(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteGroupMembershipInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteGroupMembershipRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteIAMPolicyAssignment = "DeleteIAMPolicyAssignment"
 
 // DeleteIAMPolicyAssignmentRequest generates a "aws/request.Request" representing the
@@ -3377,44 +2856,6 @@ func (c *QuickSight) DeleteIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteIAMPolicyAssignment is Blink's code
-func ExecuteDeleteIAMPolicyAssignment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteIAMPolicyAssignmentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteIAMPolicyAssignmentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteNamespace = "DeleteNamespace"
@@ -3521,44 +2962,6 @@ func (c *QuickSight) DeleteNamespaceWithContext(ctx aws.Context, input *DeleteNa
 	return out, req.Send()
 }
 
-// ExecuteDeleteNamespace is Blink's code
-func ExecuteDeleteNamespace(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteNamespaceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteNamespaceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteTemplate = "DeleteTemplate"
 
 // DeleteTemplateRequest generates a "aws/request.Request" representing the
@@ -3659,44 +3062,6 @@ func (c *QuickSight) DeleteTemplateWithContext(ctx aws.Context, input *DeleteTem
 	return out, req.Send()
 }
 
-// ExecuteDeleteTemplate is Blink's code
-func ExecuteDeleteTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteTemplateInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteTemplateRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteTemplateAlias = "DeleteTemplateAlias"
 
 // DeleteTemplateAliasRequest generates a "aws/request.Request" representing the
@@ -3791,44 +3156,6 @@ func (c *QuickSight) DeleteTemplateAliasWithContext(ctx aws.Context, input *Dele
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteTemplateAlias is Blink's code
-func ExecuteDeleteTemplateAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteTemplateAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteTemplateAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteTheme = "DeleteTheme"
@@ -3935,44 +3262,6 @@ func (c *QuickSight) DeleteThemeWithContext(ctx aws.Context, input *DeleteThemeI
 	return out, req.Send()
 }
 
-// ExecuteDeleteTheme is Blink's code
-func ExecuteDeleteTheme(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteThemeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteThemeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteThemeAlias = "DeleteThemeAlias"
 
 // DeleteThemeAliasRequest generates a "aws/request.Request" representing the
@@ -4070,44 +3359,6 @@ func (c *QuickSight) DeleteThemeAliasWithContext(ctx aws.Context, input *DeleteT
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteThemeAlias is Blink's code
-func ExecuteDeleteThemeAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteThemeAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteThemeAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDeleteUser = "DeleteUser"
@@ -4213,44 +3464,6 @@ func (c *QuickSight) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInp
 	return out, req.Send()
 }
 
-// ExecuteDeleteUser is Blink's code
-func ExecuteDeleteUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDeleteUserByPrincipalId = "DeleteUserByPrincipalId"
 
 // DeleteUserByPrincipalIdRequest generates a "aws/request.Request" representing the
@@ -4350,44 +3563,6 @@ func (c *QuickSight) DeleteUserByPrincipalIdWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDeleteUserByPrincipalId is Blink's code
-func ExecuteDeleteUserByPrincipalId(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DeleteUserByPrincipalIdInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DeleteUserByPrincipalIdRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeAccountCustomization = "DescribeAccountCustomization"
@@ -4527,44 +3702,6 @@ func (c *QuickSight) DescribeAccountCustomizationWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
-// ExecuteDescribeAccountCustomization is Blink's code
-func ExecuteDescribeAccountCustomization(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAccountCustomizationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAccountCustomizationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeAccountSettings = "DescribeAccountSettings"
 
 // DescribeAccountSettingsRequest generates a "aws/request.Request" representing the
@@ -4662,44 +3799,6 @@ func (c *QuickSight) DescribeAccountSettingsWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeAccountSettings is Blink's code
-func ExecuteDescribeAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAccountSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAccountSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeAnalysis = "DescribeAnalysis"
@@ -4803,44 +3902,6 @@ func (c *QuickSight) DescribeAnalysisWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
-// ExecuteDescribeAnalysis is Blink's code
-func ExecuteDescribeAnalysis(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAnalysisInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAnalysisRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeAnalysisPermissions = "DescribeAnalysisPermissions"
 
 // DescribeAnalysisPermissionsRequest generates a "aws/request.Request" representing the
@@ -4933,44 +3994,6 @@ func (c *QuickSight) DescribeAnalysisPermissionsWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeAnalysisPermissions is Blink's code
-func ExecuteDescribeAnalysisPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeAnalysisPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeAnalysisPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeDashboard = "DescribeDashboard"
@@ -5074,44 +4097,6 @@ func (c *QuickSight) DescribeDashboardWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
-// ExecuteDescribeDashboard is Blink's code
-func ExecuteDescribeDashboard(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeDashboardInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDashboardRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeDashboardPermissions = "DescribeDashboardPermissions"
 
 // DescribeDashboardPermissionsRequest generates a "aws/request.Request" representing the
@@ -5204,44 +4189,6 @@ func (c *QuickSight) DescribeDashboardPermissionsWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeDashboardPermissions is Blink's code
-func ExecuteDescribeDashboardPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeDashboardPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDashboardPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeDataSet = "DescribeDataSet"
@@ -5337,44 +4284,6 @@ func (c *QuickSight) DescribeDataSetWithContext(ctx aws.Context, input *Describe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeDataSet is Blink's code
-func ExecuteDescribeDataSet(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeDataSetInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDataSetRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeDataSetPermissions = "DescribeDataSetPermissions"
@@ -5474,44 +4383,6 @@ func (c *QuickSight) DescribeDataSetPermissionsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteDescribeDataSetPermissions is Blink's code
-func ExecuteDescribeDataSetPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeDataSetPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDataSetPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeDataSource = "DescribeDataSource"
 
 // DescribeDataSourceRequest generates a "aws/request.Request" representing the
@@ -5605,44 +4476,6 @@ func (c *QuickSight) DescribeDataSourceWithContext(ctx aws.Context, input *Descr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeDataSource is Blink's code
-func ExecuteDescribeDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeDataSourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDataSourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeDataSourcePermissions = "DescribeDataSourcePermissions"
@@ -5740,42 +4573,308 @@ func (c *QuickSight) DescribeDataSourcePermissionsWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
-// ExecuteDescribeDataSourcePermissions is Blink's code
-func ExecuteDescribeDataSourcePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opDescribeFolder = "DescribeFolder"
 
-	input := DescribeDataSourcePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeDataSourcePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// DescribeFolderRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolder for more information on using the DescribeFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderRequest method.
+//    req, resp := client.DescribeFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolder
+func (c *QuickSight) DescribeFolderRequest(input *DescribeFolderInput) (req *request.Request, output *DescribeFolderOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolder,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &DescribeFolderInput{}
+	}
+
+	output = &DescribeFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolder API operation for Amazon QuickSight.
+//
+// Describes a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolder
+func (c *QuickSight) DescribeFolder(input *DescribeFolderInput) (*DescribeFolderOutput, error) {
+	req, out := c.DescribeFolderRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderWithContext is the same as DescribeFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderWithContext(ctx aws.Context, input *DescribeFolderInput, opts ...request.Option) (*DescribeFolderOutput, error) {
+	req, out := c.DescribeFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFolderPermissions = "DescribeFolderPermissions"
+
+// DescribeFolderPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolderPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolderPermissions for more information on using the DescribeFolderPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderPermissionsRequest method.
+//    req, resp := client.DescribeFolderPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderPermissions
+func (c *QuickSight) DescribeFolderPermissionsRequest(input *DescribeFolderPermissionsInput) (req *request.Request, output *DescribeFolderPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolderPermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/permissions",
+	}
+
+	if input == nil {
+		input = &DescribeFolderPermissionsInput{}
+	}
+
+	output = &DescribeFolderPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolderPermissions API operation for Amazon QuickSight.
+//
+// Describes permissions for a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolderPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderPermissions
+func (c *QuickSight) DescribeFolderPermissions(input *DescribeFolderPermissionsInput) (*DescribeFolderPermissionsOutput, error) {
+	req, out := c.DescribeFolderPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderPermissionsWithContext is the same as DescribeFolderPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolderPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderPermissionsWithContext(ctx aws.Context, input *DescribeFolderPermissionsInput, opts ...request.Option) (*DescribeFolderPermissionsOutput, error) {
+	req, out := c.DescribeFolderPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFolderResolvedPermissions = "DescribeFolderResolvedPermissions"
+
+// DescribeFolderResolvedPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFolderResolvedPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFolderResolvedPermissions for more information on using the DescribeFolderResolvedPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFolderResolvedPermissionsRequest method.
+//    req, resp := client.DescribeFolderResolvedPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderResolvedPermissions
+func (c *QuickSight) DescribeFolderResolvedPermissionsRequest(input *DescribeFolderResolvedPermissionsInput) (req *request.Request, output *DescribeFolderResolvedPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFolderResolvedPermissions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/resolved-permissions",
+	}
+
+	if input == nil {
+		input = &DescribeFolderResolvedPermissionsInput{}
+	}
+
+	output = &DescribeFolderResolvedPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFolderResolvedPermissions API operation for Amazon QuickSight.
+//
+// Describes the folder resolved permissions. Permissions consists of both folder
+// direct permissions and the inherited permissions from the ancestor folders.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation DescribeFolderResolvedPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/DescribeFolderResolvedPermissions
+func (c *QuickSight) DescribeFolderResolvedPermissions(input *DescribeFolderResolvedPermissionsInput) (*DescribeFolderResolvedPermissionsOutput, error) {
+	req, out := c.DescribeFolderResolvedPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFolderResolvedPermissionsWithContext is the same as DescribeFolderResolvedPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFolderResolvedPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) DescribeFolderResolvedPermissionsWithContext(ctx aws.Context, input *DescribeFolderResolvedPermissionsInput, opts ...request.Option) (*DescribeFolderResolvedPermissionsOutput, error) {
+	req, out := c.DescribeFolderResolvedPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeGroup = "DescribeGroup"
@@ -5880,44 +4979,6 @@ func (c *QuickSight) DescribeGroupWithContext(ctx aws.Context, input *DescribeGr
 	return out, req.Send()
 }
 
-// ExecuteDescribeGroup is Blink's code
-func ExecuteDescribeGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeIAMPolicyAssignment = "DescribeIAMPolicyAssignment"
 
 // DescribeIAMPolicyAssignmentRequest generates a "aws/request.Request" representing the
@@ -6015,44 +5076,6 @@ func (c *QuickSight) DescribeIAMPolicyAssignmentWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeIAMPolicyAssignment is Blink's code
-func ExecuteDescribeIAMPolicyAssignment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeIAMPolicyAssignmentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeIAMPolicyAssignmentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeIngestion = "DescribeIngestion"
@@ -6153,44 +5176,6 @@ func (c *QuickSight) DescribeIngestionWithContext(ctx aws.Context, input *Descri
 	return out, req.Send()
 }
 
-// ExecuteDescribeIngestion is Blink's code
-func ExecuteDescribeIngestion(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeIngestionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeIngestionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeNamespace = "DescribeNamespace"
 
 // DescribeNamespaceRequest generates a "aws/request.Request" representing the
@@ -6287,44 +5272,6 @@ func (c *QuickSight) DescribeNamespaceWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeNamespace is Blink's code
-func ExecuteDescribeNamespace(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeNamespaceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeNamespaceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeTemplate = "DescribeTemplate"
@@ -6434,44 +5381,6 @@ func (c *QuickSight) DescribeTemplateWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
-// ExecuteDescribeTemplate is Blink's code
-func ExecuteDescribeTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeTemplateInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeTemplateRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeTemplateAlias = "DescribeTemplateAlias"
 
 // DescribeTemplateAliasRequest generates a "aws/request.Request" representing the
@@ -6561,44 +5470,6 @@ func (c *QuickSight) DescribeTemplateAliasWithContext(ctx aws.Context, input *De
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeTemplateAlias is Blink's code
-func ExecuteDescribeTemplateAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeTemplateAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeTemplateAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeTemplatePermissions = "DescribeTemplatePermissions"
@@ -6696,44 +5567,6 @@ func (c *QuickSight) DescribeTemplatePermissionsWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeTemplatePermissions is Blink's code
-func ExecuteDescribeTemplatePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeTemplatePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeTemplatePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeTheme = "DescribeTheme"
@@ -6840,44 +5673,6 @@ func (c *QuickSight) DescribeThemeWithContext(ctx aws.Context, input *DescribeTh
 	return out, req.Send()
 }
 
-// ExecuteDescribeTheme is Blink's code
-func ExecuteDescribeTheme(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeThemeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeThemeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeThemeAlias = "DescribeThemeAlias"
 
 // DescribeThemeAliasRequest generates a "aws/request.Request" representing the
@@ -6973,44 +5768,6 @@ func (c *QuickSight) DescribeThemeAliasWithContext(ctx aws.Context, input *Descr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeThemeAlias is Blink's code
-func ExecuteDescribeThemeAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeThemeAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeThemeAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opDescribeThemePermissions = "DescribeThemePermissions"
@@ -7114,44 +5871,6 @@ func (c *QuickSight) DescribeThemePermissionsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// ExecuteDescribeThemePermissions is Blink's code
-func ExecuteDescribeThemePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeThemePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeThemePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opDescribeUser = "DescribeUser"
 
 // DescribeUserRequest generates a "aws/request.Request" representing the
@@ -7251,44 +5970,6 @@ func (c *QuickSight) DescribeUserWithContext(ctx aws.Context, input *DescribeUse
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteDescribeUser is Blink's code
-func ExecuteDescribeUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := DescribeUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.DescribeUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opGetDashboardEmbedUrl = "GetDashboardEmbedUrl"
@@ -7440,44 +6121,6 @@ func (c *QuickSight) GetDashboardEmbedUrlWithContext(ctx aws.Context, input *Get
 	return out, req.Send()
 }
 
-// ExecuteGetDashboardEmbedUrl is Blink's code
-func ExecuteGetDashboardEmbedUrl(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetDashboardEmbedUrlInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetDashboardEmbedUrlRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opGetSessionEmbedUrl = "GetSessionEmbedUrl"
 
 // GetSessionEmbedUrlRequest generates a "aws/request.Request" representing the
@@ -7604,44 +6247,6 @@ func (c *QuickSight) GetSessionEmbedUrlWithContext(ctx aws.Context, input *GetSe
 	return out, req.Send()
 }
 
-// ExecuteGetSessionEmbedUrl is Blink's code
-func ExecuteGetSessionEmbedUrl(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := GetSessionEmbedUrlInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.GetSessionEmbedUrlRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListAnalyses = "ListAnalyses"
 
 // ListAnalysesRequest generates a "aws/request.Request" representing the
@@ -7737,44 +6342,6 @@ func (c *QuickSight) ListAnalysesWithContext(ctx aws.Context, input *ListAnalyse
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListAnalyses is Blink's code
-func ExecuteListAnalyses(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListAnalysesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListAnalysesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListAnalysesPages iterates over the pages of a ListAnalyses operation,
@@ -7932,44 +6499,6 @@ func (c *QuickSight) ListDashboardVersionsWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
-// ExecuteListDashboardVersions is Blink's code
-func ExecuteListDashboardVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListDashboardVersionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListDashboardVersionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListDashboardVersionsPages iterates over the pages of a ListDashboardVersions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8117,44 +6646,6 @@ func (c *QuickSight) ListDashboardsWithContext(ctx aws.Context, input *ListDashb
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListDashboards is Blink's code
-func ExecuteListDashboards(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListDashboardsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListDashboardsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListDashboardsPages iterates over the pages of a ListDashboards operation,
@@ -8313,44 +6804,6 @@ func (c *QuickSight) ListDataSetsWithContext(ctx aws.Context, input *ListDataSet
 	return out, req.Send()
 }
 
-// ExecuteListDataSets is Blink's code
-func ExecuteListDataSets(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListDataSetsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListDataSetsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListDataSetsPages iterates over the pages of a ListDataSets operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8504,44 +6957,6 @@ func (c *QuickSight) ListDataSourcesWithContext(ctx aws.Context, input *ListData
 	return out, req.Send()
 }
 
-// ExecuteListDataSources is Blink's code
-func ExecuteListDataSources(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListDataSourcesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListDataSourcesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListDataSourcesPages iterates over the pages of a ListDataSources operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8592,6 +7007,214 @@ func (c *QuickSight) ListDataSourcesPagesWithContext(ctx aws.Context, input *Lis
 	}
 
 	return p.Err()
+}
+
+const opListFolderMembers = "ListFolderMembers"
+
+// ListFolderMembersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFolderMembers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFolderMembers for more information on using the ListFolderMembers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFolderMembersRequest method.
+//    req, resp := client.ListFolderMembersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolderMembers
+func (c *QuickSight) ListFolderMembersRequest(input *ListFolderMembersInput) (req *request.Request, output *ListFolderMembersOutput) {
+	op := &request.Operation{
+		Name:       opListFolderMembers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/members",
+	}
+
+	if input == nil {
+		input = &ListFolderMembersInput{}
+	}
+
+	output = &ListFolderMembersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFolderMembers API operation for Amazon QuickSight.
+//
+// List all assets (DASHBOARD, ANALYSIS, and DATASET) in a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListFolderMembers for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolderMembers
+func (c *QuickSight) ListFolderMembers(input *ListFolderMembersInput) (*ListFolderMembersOutput, error) {
+	req, out := c.ListFolderMembersRequest(input)
+	return out, req.Send()
+}
+
+// ListFolderMembersWithContext is the same as ListFolderMembers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFolderMembers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFolderMembersWithContext(ctx aws.Context, input *ListFolderMembersInput, opts ...request.Option) (*ListFolderMembersOutput, error) {
+	req, out := c.ListFolderMembersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListFolders = "ListFolders"
+
+// ListFoldersRequest generates a "aws/request.Request" representing the
+// client's request for the ListFolders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFolders for more information on using the ListFolders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFoldersRequest method.
+//    req, resp := client.ListFoldersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolders
+func (c *QuickSight) ListFoldersRequest(input *ListFoldersInput) (req *request.Request, output *ListFoldersOutput) {
+	op := &request.Operation{
+		Name:       opListFolders,
+		HTTPMethod: "GET",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders",
+	}
+
+	if input == nil {
+		input = &ListFoldersInput{}
+	}
+
+	output = &ListFoldersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFolders API operation for Amazon QuickSight.
+//
+// Lists all folders in an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation ListFolders for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/ListFolders
+func (c *QuickSight) ListFolders(input *ListFoldersInput) (*ListFoldersOutput, error) {
+	req, out := c.ListFoldersRequest(input)
+	return out, req.Send()
+}
+
+// ListFoldersWithContext is the same as ListFolders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFolders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) ListFoldersWithContext(ctx aws.Context, input *ListFoldersInput, opts ...request.Option) (*ListFoldersOutput, error) {
+	req, out := c.ListFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListGroupMemberships = "ListGroupMemberships"
@@ -8698,44 +7321,6 @@ func (c *QuickSight) ListGroupMembershipsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
-// ExecuteListGroupMemberships is Blink's code
-func ExecuteListGroupMemberships(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListGroupMembershipsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListGroupMembershipsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListGroups = "ListGroups"
 
 // ListGroupsRequest generates a "aws/request.Request" representing the
@@ -8840,44 +7425,6 @@ func (c *QuickSight) ListGroupsWithContext(ctx aws.Context, input *ListGroupsInp
 	return out, req.Send()
 }
 
-// ExecuteListGroups is Blink's code
-func ExecuteListGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListGroupsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListGroupsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListIAMPolicyAssignments = "ListIAMPolicyAssignments"
 
 // ListIAMPolicyAssignmentsRequest generates a "aws/request.Request" representing the
@@ -8974,44 +7521,6 @@ func (c *QuickSight) ListIAMPolicyAssignmentsWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListIAMPolicyAssignments is Blink's code
-func ExecuteListIAMPolicyAssignments(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListIAMPolicyAssignmentsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListIAMPolicyAssignmentsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opListIAMPolicyAssignmentsForUser = "ListIAMPolicyAssignmentsForUser"
@@ -9116,44 +7625,6 @@ func (c *QuickSight) ListIAMPolicyAssignmentsForUserWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListIAMPolicyAssignmentsForUser is Blink's code
-func ExecuteListIAMPolicyAssignmentsForUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListIAMPolicyAssignmentsForUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListIAMPolicyAssignmentsForUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opListIngestions = "ListIngestions"
@@ -9261,44 +7732,6 @@ func (c *QuickSight) ListIngestionsWithContext(ctx aws.Context, input *ListInges
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListIngestions is Blink's code
-func ExecuteListIngestions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListIngestionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListIngestionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListIngestionsPages iterates over the pages of a ListIngestions operation,
@@ -9463,44 +7896,6 @@ func (c *QuickSight) ListNamespacesWithContext(ctx aws.Context, input *ListNames
 	return out, req.Send()
 }
 
-// ExecuteListNamespaces is Blink's code
-func ExecuteListNamespaces(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListNamespacesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListNamespacesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListNamespacesPages iterates over the pages of a ListNamespaces operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9648,44 +8043,6 @@ func (c *QuickSight) ListTagsForResourceWithContext(ctx aws.Context, input *List
 	return out, req.Send()
 }
 
-// ExecuteListTagsForResource is Blink's code
-func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTagsForResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTagsForResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListTemplateAliases = "ListTemplateAliases"
 
 // ListTemplateAliasesRequest generates a "aws/request.Request" representing the
@@ -9784,44 +8141,6 @@ func (c *QuickSight) ListTemplateAliasesWithContext(ctx aws.Context, input *List
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListTemplateAliases is Blink's code
-func ExecuteListTemplateAliases(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTemplateAliasesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTemplateAliasesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListTemplateAliasesPages iterates over the pages of a ListTemplateAliases operation,
@@ -9980,44 +8299,6 @@ func (c *QuickSight) ListTemplateVersionsWithContext(ctx aws.Context, input *Lis
 	return out, req.Send()
 }
 
-// ExecuteListTemplateVersions is Blink's code
-func ExecuteListTemplateVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTemplateVersionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTemplateVersionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListTemplateVersionsPages iterates over the pages of a ListTemplateVersions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -10173,44 +8454,6 @@ func (c *QuickSight) ListTemplatesWithContext(ctx aws.Context, input *ListTempla
 	return out, req.Send()
 }
 
-// ExecuteListTemplates is Blink's code
-func ExecuteListTemplates(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListTemplatesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListTemplatesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListTemplatesPages iterates over the pages of a ListTemplates operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -10363,44 +8606,6 @@ func (c *QuickSight) ListThemeAliasesWithContext(ctx aws.Context, input *ListThe
 	return out, req.Send()
 }
 
-// ExecuteListThemeAliases is Blink's code
-func ExecuteListThemeAliases(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListThemeAliasesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListThemeAliasesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListThemeVersions = "ListThemeVersions"
 
 // ListThemeVersionsRequest generates a "aws/request.Request" representing the
@@ -10509,44 +8714,6 @@ func (c *QuickSight) ListThemeVersionsWithContext(ctx aws.Context, input *ListTh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListThemeVersions is Blink's code
-func ExecuteListThemeVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListThemeVersionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListThemeVersionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // ListThemeVersionsPages iterates over the pages of a ListThemeVersions operation,
@@ -10711,44 +8878,6 @@ func (c *QuickSight) ListThemesWithContext(ctx aws.Context, input *ListThemesInp
 	return out, req.Send()
 }
 
-// ExecuteListThemes is Blink's code
-func ExecuteListThemes(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListThemesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListThemesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // ListThemesPages iterates over the pages of a ListThemes operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -10903,44 +9032,6 @@ func (c *QuickSight) ListUserGroupsWithContext(ctx aws.Context, input *ListUserG
 	return out, req.Send()
 }
 
-// ExecuteListUserGroups is Blink's code
-func ExecuteListUserGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUserGroupsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUserGroupsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opListUsers = "ListUsers"
 
 // ListUsersRequest generates a "aws/request.Request" representing the
@@ -11043,44 +9134,6 @@ func (c *QuickSight) ListUsersWithContext(ctx aws.Context, input *ListUsersInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteListUsers is Blink's code
-func ExecuteListUsers(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := ListUsersInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.ListUsersRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opRegisterUser = "RegisterUser"
@@ -11192,44 +9245,6 @@ func (c *QuickSight) RegisterUserWithContext(ctx aws.Context, input *RegisterUse
 	return out, req.Send()
 }
 
-// ExecuteRegisterUser is Blink's code
-func ExecuteRegisterUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RegisterUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RegisterUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opRestoreAnalysis = "RestoreAnalysis"
 
 // RestoreAnalysisRequest generates a "aws/request.Request" representing the
@@ -11325,44 +9340,6 @@ func (c *QuickSight) RestoreAnalysisWithContext(ctx aws.Context, input *RestoreA
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteRestoreAnalysis is Blink's code
-func ExecuteRestoreAnalysis(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := RestoreAnalysisInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.RestoreAnalysisRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opSearchAnalyses = "SearchAnalyses"
@@ -11466,44 +9443,6 @@ func (c *QuickSight) SearchAnalysesWithContext(ctx aws.Context, input *SearchAna
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteSearchAnalyses is Blink's code
-func ExecuteSearchAnalyses(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := SearchAnalysesInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.SearchAnalysesRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // SearchAnalysesPages iterates over the pages of a SearchAnalyses operation,
@@ -11661,44 +9600,6 @@ func (c *QuickSight) SearchDashboardsWithContext(ctx aws.Context, input *SearchD
 	return out, req.Send()
 }
 
-// ExecuteSearchDashboards is Blink's code
-func ExecuteSearchDashboards(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := SearchDashboardsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.SearchDashboardsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 // SearchDashboardsPages iterates over the pages of a SearchDashboards operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -11749,6 +9650,110 @@ func (c *QuickSight) SearchDashboardsPagesWithContext(ctx aws.Context, input *Se
 	}
 
 	return p.Err()
+}
+
+const opSearchFolders = "SearchFolders"
+
+// SearchFoldersRequest generates a "aws/request.Request" representing the
+// client's request for the SearchFolders operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SearchFolders for more information on using the SearchFolders
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SearchFoldersRequest method.
+//    req, resp := client.SearchFoldersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchFolders
+func (c *QuickSight) SearchFoldersRequest(input *SearchFoldersInput) (req *request.Request, output *SearchFoldersOutput) {
+	op := &request.Operation{
+		Name:       opSearchFolders,
+		HTTPMethod: "POST",
+		HTTPPath:   "/accounts/{AwsAccountId}/search/folders",
+	}
+
+	if input == nil {
+		input = &SearchFoldersInput{}
+	}
+
+	output = &SearchFoldersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SearchFolders API operation for Amazon QuickSight.
+//
+// Searches the subfolders in a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation SearchFolders for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * InvalidNextTokenException
+//   The NextToken value isn't valid.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/SearchFolders
+func (c *QuickSight) SearchFolders(input *SearchFoldersInput) (*SearchFoldersOutput, error) {
+	req, out := c.SearchFoldersRequest(input)
+	return out, req.Send()
+}
+
+// SearchFoldersWithContext is the same as SearchFolders with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SearchFolders for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) SearchFoldersWithContext(ctx aws.Context, input *SearchFoldersInput, opts ...request.Option) (*SearchFoldersOutput, error) {
+	req, out := c.SearchFoldersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opTagResource = "TagResource"
@@ -11871,44 +9876,6 @@ func (c *QuickSight) TagResourceWithContext(ctx aws.Context, input *TagResourceI
 	return out, req.Send()
 }
 
-// ExecuteTagResource is Blink's code
-func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := TagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.TagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -12002,44 +9969,6 @@ func (c *QuickSight) UntagResourceWithContext(ctx aws.Context, input *UntagResou
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUntagResource is Blink's code
-func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UntagResourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UntagResourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateAccountCustomization = "UpdateAccountCustomization"
@@ -12146,44 +10075,6 @@ func (c *QuickSight) UpdateAccountCustomizationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteUpdateAccountCustomization is Blink's code
-func ExecuteUpdateAccountCustomization(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAccountCustomizationInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAccountCustomizationRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateAccountSettings = "UpdateAccountSettings"
 
 // UpdateAccountSettingsRequest generates a "aws/request.Request" representing the
@@ -12280,44 +10171,6 @@ func (c *QuickSight) UpdateAccountSettingsWithContext(ctx aws.Context, input *Up
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateAccountSettings is Blink's code
-func ExecuteUpdateAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAccountSettingsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAccountSettingsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateAnalysis = "UpdateAnalysis"
@@ -12420,44 +10273,6 @@ func (c *QuickSight) UpdateAnalysisWithContext(ctx aws.Context, input *UpdateAna
 	return out, req.Send()
 }
 
-// ExecuteUpdateAnalysis is Blink's code
-func ExecuteUpdateAnalysis(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAnalysisInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAnalysisRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateAnalysisPermissions = "UpdateAnalysisPermissions"
 
 // UpdateAnalysisPermissionsRequest generates a "aws/request.Request" representing the
@@ -12553,44 +10368,6 @@ func (c *QuickSight) UpdateAnalysisPermissionsWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateAnalysisPermissions is Blink's code
-func ExecuteUpdateAnalysisPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateAnalysisPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateAnalysisPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateDashboard = "UpdateDashboard"
@@ -12693,44 +10470,6 @@ func (c *QuickSight) UpdateDashboardWithContext(ctx aws.Context, input *UpdateDa
 	return out, req.Send()
 }
 
-// ExecuteUpdateDashboard is Blink's code
-func ExecuteUpdateDashboard(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDashboardInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDashboardRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateDashboardPermissions = "UpdateDashboardPermissions"
 
 // UpdateDashboardPermissionsRequest generates a "aws/request.Request" representing the
@@ -12828,44 +10567,6 @@ func (c *QuickSight) UpdateDashboardPermissionsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// ExecuteUpdateDashboardPermissions is Blink's code
-func ExecuteUpdateDashboardPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDashboardPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDashboardPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateDashboardPublishedVersion = "UpdateDashboardPublishedVersion"
 
 // UpdateDashboardPublishedVersionRequest generates a "aws/request.Request" representing the
@@ -12961,44 +10662,6 @@ func (c *QuickSight) UpdateDashboardPublishedVersionWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateDashboardPublishedVersion is Blink's code
-func ExecuteUpdateDashboardPublishedVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDashboardPublishedVersionInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDashboardPublishedVersionRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateDataSet = "UpdateDataSet"
@@ -13108,44 +10771,6 @@ func (c *QuickSight) UpdateDataSetWithContext(ctx aws.Context, input *UpdateData
 	return out, req.Send()
 }
 
-// ExecuteUpdateDataSet is Blink's code
-func ExecuteUpdateDataSet(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDataSetInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDataSetRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateDataSetPermissions = "UpdateDataSetPermissions"
 
 // UpdateDataSetPermissionsRequest generates a "aws/request.Request" representing the
@@ -13246,44 +10871,6 @@ func (c *QuickSight) UpdateDataSetPermissionsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
-// ExecuteUpdateDataSetPermissions is Blink's code
-func ExecuteUpdateDataSetPermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDataSetPermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDataSetPermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateDataSource = "UpdateDataSource"
 
 // UpdateDataSourceRequest generates a "aws/request.Request" representing the
@@ -13380,44 +10967,6 @@ func (c *QuickSight) UpdateDataSourceWithContext(ctx aws.Context, input *UpdateD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateDataSource is Blink's code
-func ExecuteUpdateDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateDataSourceInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDataSourceRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateDataSourcePermissions = "UpdateDataSourcePermissions"
@@ -13518,42 +11067,215 @@ func (c *QuickSight) UpdateDataSourcePermissionsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// ExecuteUpdateDataSourcePermissions is Blink's code
-func ExecuteUpdateDataSourcePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
+const opUpdateFolder = "UpdateFolder"
 
-	input := UpdateDataSourcePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateDataSourcePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
+// UpdateFolderRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFolder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFolder for more information on using the UpdateFolder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFolderRequest method.
+//    req, resp := client.UpdateFolderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolder
+func (c *QuickSight) UpdateFolderRequest(input *UpdateFolderInput) (req *request.Request, output *UpdateFolderOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFolder,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}",
 	}
 
-	return output, nil
+	if input == nil {
+		input = &UpdateFolderInput{}
+	}
+
+	output = &UpdateFolderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFolder API operation for Amazon QuickSight.
+//
+// Updates the name of a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateFolder for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * ResourceExistsException
+//   The resource specified already exists.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolder
+func (c *QuickSight) UpdateFolder(input *UpdateFolderInput) (*UpdateFolderOutput, error) {
+	req, out := c.UpdateFolderRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFolderWithContext is the same as UpdateFolder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFolder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateFolderWithContext(ctx aws.Context, input *UpdateFolderInput, opts ...request.Option) (*UpdateFolderOutput, error) {
+	req, out := c.UpdateFolderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFolderPermissions = "UpdateFolderPermissions"
+
+// UpdateFolderPermissionsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFolderPermissions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFolderPermissions for more information on using the UpdateFolderPermissions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFolderPermissionsRequest method.
+//    req, resp := client.UpdateFolderPermissionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolderPermissions
+func (c *QuickSight) UpdateFolderPermissionsRequest(input *UpdateFolderPermissionsInput) (req *request.Request, output *UpdateFolderPermissionsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFolderPermissions,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/accounts/{AwsAccountId}/folders/{FolderId}/permissions",
+	}
+
+	if input == nil {
+		input = &UpdateFolderPermissionsInput{}
+	}
+
+	output = &UpdateFolderPermissionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFolderPermissions API operation for Amazon QuickSight.
+//
+// Updates permissions of a folder.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon QuickSight's
+// API operation UpdateFolderPermissions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameters has a value that isn't valid.
+//
+//   * AccessDeniedException
+//   You don't have access to this item. The provided credentials couldn't be
+//   validated. You might not be authorized to carry out the request. Make sure
+//   that your account is authorized to use the Amazon QuickSight service, that
+//   your policies have the correct permissions, and that you are using the correct
+//   access keys.
+//
+//   * LimitExceededException
+//   A limit is exceeded.
+//
+//   * ResourceNotFoundException
+//   One or more resources can't be found.
+//
+//   * ThrottlingException
+//   Access is throttled.
+//
+//   * UnsupportedUserEditionException
+//   This error indicates that you are calling an operation on an Amazon QuickSight
+//   subscription where the edition doesn't include support for that operation.
+//   Amazon QuickSight currently has Standard Edition and Enterprise Edition.
+//   Not every operation and capability is available in every edition.
+//
+//   * InternalFailureException
+//   An internal failure occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01/UpdateFolderPermissions
+func (c *QuickSight) UpdateFolderPermissions(input *UpdateFolderPermissionsInput) (*UpdateFolderPermissionsOutput, error) {
+	req, out := c.UpdateFolderPermissionsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFolderPermissionsWithContext is the same as UpdateFolderPermissions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFolderPermissions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *QuickSight) UpdateFolderPermissionsWithContext(ctx aws.Context, input *UpdateFolderPermissionsInput, opts ...request.Option) (*UpdateFolderPermissionsOutput, error) {
+	req, out := c.UpdateFolderPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateGroup = "UpdateGroup"
@@ -13655,44 +11377,6 @@ func (c *QuickSight) UpdateGroupWithContext(ctx aws.Context, input *UpdateGroupI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateGroup is Blink's code
-func ExecuteUpdateGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateGroupInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateGroupRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateIAMPolicyAssignment = "UpdateIAMPolicyAssignment"
@@ -13799,44 +11483,6 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
-// ExecuteUpdateIAMPolicyAssignment is Blink's code
-func ExecuteUpdateIAMPolicyAssignment(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateIAMPolicyAssignmentInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateIAMPolicyAssignmentRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateTemplate = "UpdateTemplate"
 
 // UpdateTemplateRequest generates a "aws/request.Request" representing the
@@ -13941,44 +11587,6 @@ func (c *QuickSight) UpdateTemplateWithContext(ctx aws.Context, input *UpdateTem
 	return out, req.Send()
 }
 
-// ExecuteUpdateTemplate is Blink's code
-func ExecuteUpdateTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateTemplateInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateTemplateRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateTemplateAlias = "UpdateTemplateAlias"
 
 // UpdateTemplateAliasRequest generates a "aws/request.Request" representing the
@@ -14076,44 +11684,6 @@ func (c *QuickSight) UpdateTemplateAliasWithContext(ctx aws.Context, input *Upda
 	return out, req.Send()
 }
 
-// ExecuteUpdateTemplateAlias is Blink's code
-func ExecuteUpdateTemplateAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateTemplateAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateTemplateAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateTemplatePermissions = "UpdateTemplatePermissions"
 
 // UpdateTemplatePermissionsRequest generates a "aws/request.Request" representing the
@@ -14209,44 +11779,6 @@ func (c *QuickSight) UpdateTemplatePermissionsWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateTemplatePermissions is Blink's code
-func ExecuteUpdateTemplatePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateTemplatePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateTemplatePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateTheme = "UpdateTheme"
@@ -14356,44 +11888,6 @@ func (c *QuickSight) UpdateThemeWithContext(ctx aws.Context, input *UpdateThemeI
 	return out, req.Send()
 }
 
-// ExecuteUpdateTheme is Blink's code
-func ExecuteUpdateTheme(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateThemeInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateThemeRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateThemeAlias = "UpdateThemeAlias"
 
 // UpdateThemeAliasRequest generates a "aws/request.Request" representing the
@@ -14492,44 +11986,6 @@ func (c *QuickSight) UpdateThemeAliasWithContext(ctx aws.Context, input *UpdateT
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateThemeAlias is Blink's code
-func ExecuteUpdateThemeAlias(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateThemeAliasInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateThemeAliasRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 const opUpdateThemePermissions = "UpdateThemePermissions"
@@ -14647,44 +12103,6 @@ func (c *QuickSight) UpdateThemePermissionsWithContext(ctx aws.Context, input *U
 	return out, req.Send()
 }
 
-// ExecuteUpdateThemePermissions is Blink's code
-func ExecuteUpdateThemePermissions(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateThemePermissionsInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateThemePermissionsRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
-}
-
 const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a "aws/request.Request" representing the
@@ -14784,44 +12202,6 @@ func (c *QuickSight) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
-}
-
-// ExecuteUpdateUser is Blink's code
-func ExecuteUpdateUser(parameters map[string]interface{}) (map[string]interface{}, error) {
-	svc, ok := parameters["_Service"].(*QuickSight)
-	if !ok {
-		return nil, errors.New("failed to get AWS service")
-	}
-	delete(parameters, "_Service")
-
-	input := UpdateUserInput{}
-	parameters = awsutil.UnpackParameters(parameters, input)
-
-	parametersMarshaled, err := json.Marshal(parameters)
-	if err != nil {
-		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
-	}
-
-	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
-		return nil, errors.New("failed to unmarshal parameters " + err.Error())
-	}
-
-	req, out := svc.UpdateUserRequest(&input)
-	if err := req.Send(); err != nil {
-		return nil, err
-	}
-
-	outMarshaled, err := json.Marshal(out)
-	if err != nil {
-		return nil, errors.New("failed to marshal output")
-	}
-
-	output := make(map[string]interface{})
-	if err := json.Unmarshal(outMarshaled, &output); err != nil {
-		return nil, errors.New("failed to unmarshal output")
-	}
-
-	return output, nil
 }
 
 // You don't have access to this item. The provided credentials couldn't be
@@ -17616,6 +14996,328 @@ func (s *CreateDataSourceOutput) SetRequestId(v string) *CreateDataSourceOutput 
 
 // SetStatus sets the Status field's value.
 func (s *CreateDataSourceOutput) SetStatus(v int64) *CreateDataSourceOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The type of folder. By default, folderType is SHARED.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The name of the folder.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for the parent folder.
+	//
+	// ParentFolderArn can be null. An empty parentFolderArn creates a root-level
+	// folder.
+	ParentFolderArn *string `type:"string"`
+
+	// A structure that describes the principals and the resource-level permissions
+	// of a folder.
+	//
+	// To specify no permissions, omit Permissions.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// Tags for the folder.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Permissions != nil && len(s.Permissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Permissions", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Permissions != nil {
+		for i, v := range s.Permissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Permissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateFolderInput) SetAwsAccountId(v string) *CreateFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderInput) SetFolderId(v string) *CreateFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *CreateFolderInput) SetFolderType(v string) *CreateFolderInput {
+	s.FolderType = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateFolderInput) SetName(v string) *CreateFolderInput {
+	s.Name = &v
+	return s
+}
+
+// SetParentFolderArn sets the ParentFolderArn field's value.
+func (s *CreateFolderInput) SetParentFolderArn(v string) *CreateFolderInput {
+	s.ParentFolderArn = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *CreateFolderInput) SetPermissions(v []*ResourcePermission) *CreateFolderInput {
+	s.Permissions = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFolderInput) SetTags(v []*Tag) *CreateFolderInput {
+	s.Tags = v
+	return s
+}
+
+type CreateFolderMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset (the dashboard, analysis, or dataset).
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
+
+	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET.
+	//
+	// MemberType is a required field
+	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s CreateFolderMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFolderMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFolderMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.MemberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberType"))
+	}
+	if s.MemberType != nil && len(*s.MemberType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *CreateFolderMembershipInput) SetAwsAccountId(v string) *CreateFolderMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderMembershipInput) SetFolderId(v string) *CreateFolderMembershipInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *CreateFolderMembershipInput) SetMemberId(v string) *CreateFolderMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *CreateFolderMembershipInput) SetMemberType(v string) *CreateFolderMembershipInput {
+	s.MemberType = &v
+	return s
+}
+
+type CreateFolderMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the member in the folder.
+	FolderMember *FolderMember `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of the folder membership. If succeeded, the status is SC_OK (200).
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateFolderMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderMember sets the FolderMember field's value.
+func (s *CreateFolderMembershipOutput) SetFolderMember(v *FolderMember) *CreateFolderMembershipOutput {
+	s.FolderMember = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateFolderMembershipOutput) SetRequestId(v string) *CreateFolderMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFolderMembershipOutput) SetStatus(v int64) *CreateFolderMembershipOutput {
+	s.Status = &v
+	return s
+}
+
+type CreateFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the newly created folder.
+	Arn *string `type:"string"`
+
+	// The folder ID for the newly created folder.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID for the newly created folder.
+	RequestId *string `type:"string"`
+
+	// The status of the newly created folder. If succeeded, the status is SC_OK
+	// (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateFolderOutput) SetArn(v string) *CreateFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *CreateFolderOutput) SetFolderId(v string) *CreateFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *CreateFolderOutput) SetRequestId(v string) *CreateFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateFolderOutput) SetStatus(v int64) *CreateFolderOutput {
 	s.Status = &v
 	return s
 }
@@ -21491,6 +19193,239 @@ func (s *DeleteDataSourceOutput) SetStatus(v int64) *DeleteDataSourceOutput {
 	return s
 }
 
+type DeleteFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID for the folder.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteFolderInput) SetAwsAccountId(v string) *DeleteFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+type DeleteFolderMembershipInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The Folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The ID of the asset (the dashboard, analysis, or dataset) that you want to
+	// delete.
+	//
+	// MemberId is a required field
+	MemberId *string `location:"uri" locationName:"MemberId" min:"1" type:"string" required:"true"`
+
+	// The type of the member, including DASHBOARD, ANALYSIS, and DATASET
+	//
+	// MemberType is a required field
+	MemberType *string `location:"uri" locationName:"MemberType" type:"string" required:"true" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s DeleteFolderMembershipInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderMembershipInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFolderMembershipInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFolderMembershipInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MemberId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberId"))
+	}
+	if s.MemberId != nil && len(*s.MemberId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberId", 1))
+	}
+	if s.MemberType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MemberType"))
+	}
+	if s.MemberType != nil && len(*s.MemberType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DeleteFolderMembershipInput) SetAwsAccountId(v string) *DeleteFolderMembershipInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderMembershipInput) SetFolderId(v string) *DeleteFolderMembershipInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *DeleteFolderMembershipInput) SetMemberId(v string) *DeleteFolderMembershipInput {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *DeleteFolderMembershipInput) SetMemberType(v string) *DeleteFolderMembershipInput {
+	s.MemberType = &v
+	return s
+}
+
+type DeleteFolderMembershipOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of deleting the asset. If succeeded, the status is SC_OK (200).
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteFolderMembershipOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderMembershipOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteFolderMembershipOutput) SetRequestId(v string) *DeleteFolderMembershipOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteFolderMembershipOutput) SetStatus(v int64) *DeleteFolderMembershipOutput {
+	s.Status = &v
+	return s
+}
+
+type DeleteFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name of the deleted folder.
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status of deleting the folder. If succeeded, the status is SC_OK (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DeleteFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeleteFolderOutput) SetArn(v string) *DeleteFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DeleteFolderOutput) SetFolderId(v string) *DeleteFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DeleteFolderOutput) SetRequestId(v string) *DeleteFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteFolderOutput) SetStatus(v int64) *DeleteFolderOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23787,6 +21722,339 @@ func (s *DescribeDataSourcePermissionsOutput) SetStatus(v int64) *DescribeDataSo
 	return s
 }
 
+type DescribeFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderInput) SetAwsAccountId(v string) *DescribeFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderInput) SetFolderId(v string) *DescribeFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the folder.
+	Folder *Folder `type:"structure"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK (200).
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolder sets the Folder field's value.
+func (s *DescribeFolderOutput) SetFolder(v *Folder) *DescribeFolderOutput {
+	s.Folder = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderOutput) SetRequestId(v string) *DescribeFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderOutput) SetStatus(v int64) *DescribeFolderOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeFolderPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderPermissionsInput) SetAwsAccountId(v string) *DescribeFolderPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderPermissionsInput) SetFolderId(v string) *DescribeFolderPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the folder.
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the folder.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeFolderPermissionsOutput) SetArn(v string) *DescribeFolderPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderPermissionsOutput) SetFolderId(v string) *DescribeFolderPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DescribeFolderPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeFolderPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderPermissionsOutput) SetRequestId(v string) *DescribeFolderPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderPermissionsOutput) SetStatus(v int64) *DescribeFolderPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
+type DescribeFolderResolvedPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFolderResolvedPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderResolvedPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFolderResolvedPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFolderResolvedPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetAwsAccountId(v string) *DescribeFolderResolvedPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderResolvedPermissionsInput) SetFolderId(v string) *DescribeFolderResolvedPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+type DescribeFolderResolvedPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the dashboard.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeFolderResolvedPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFolderResolvedPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetArn(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetFolderId(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetPermissions(v []*ResourcePermission) *DescribeFolderResolvedPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetRequestId(v string) *DescribeFolderResolvedPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeFolderResolvedPermissionsOutput) SetStatus(v int64) *DescribeFolderResolvedPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
 type DescribeGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25270,6 +23538,231 @@ func (s *FilterOperation) Validate() error {
 // SetConditionExpression sets the ConditionExpression field's value.
 func (s *FilterOperation) SetConditionExpression(v string) *FilterOperation {
 	s.ConditionExpression = &v
+	return s
+}
+
+// A folder.
+type Folder struct {
+	_ struct{} `type:"structure"`
+
+	// The folder Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The time that the folder was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// An array of ancestor folder ARN strings.
+	FolderPath []*string `min:"1" type:"list"`
+
+	// The type of the folder.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The time that the folder was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// A display name for the folder.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Folder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Folder) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Folder) SetArn(v string) *Folder {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *Folder) SetCreatedTime(v time.Time) *Folder {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *Folder) SetFolderId(v string) *Folder {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderPath sets the FolderPath field's value.
+func (s *Folder) SetFolderPath(v []*string) *Folder {
+	s.FolderPath = v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *Folder) SetFolderType(v string) *Folder {
+	s.FolderType = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *Folder) SetLastUpdatedTime(v time.Time) *Folder {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Folder) SetName(v string) *Folder {
+	s.Name = &v
+	return s
+}
+
+// An asset in a folder, such as a dashboard, analysis, or dataset.
+type FolderMember struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the asset.
+	MemberId *string `min:"1" type:"string"`
+
+	// The type of the asset.
+	MemberType *string `type:"string" enum:"MemberType"`
+}
+
+// String returns the string representation
+func (s FolderMember) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderMember) GoString() string {
+	return s.String()
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *FolderMember) SetMemberId(v string) *FolderMember {
+	s.MemberId = &v
+	return s
+}
+
+// SetMemberType sets the MemberType field's value.
+func (s *FolderMember) SetMemberType(v string) *FolderMember {
+	s.MemberType = &v
+	return s
+}
+
+// Searches a folder by a filter.
+type FolderSearchFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the value that you want to use as a filter. For example, "Name":
+	// "PARENT_FOLDER_ARN".
+	Name *string `type:"string" enum:"FolderFilterAttribute"`
+
+	// The comparison operator that you want to use as a filter. For example, "Operator":
+	// "StringEquals".
+	Operator *string `type:"string" enum:"FilterOperator"`
+
+	// The value of the named item (in this example, PARENT_FOLDER_ARN), that you
+	// want to use as a filter. For example, "Value": "arn:aws:quicksight:us-east-1:1:folder/folderId".
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FolderSearchFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderSearchFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *FolderSearchFilter) SetName(v string) *FolderSearchFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *FolderSearchFilter) SetOperator(v string) *FolderSearchFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *FolderSearchFilter) SetValue(v string) *FolderSearchFilter {
+	s.Value = &v
+	return s
+}
+
+// A summary of the folder.
+type FolderSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The time that the folder was created.
+	CreatedTime *time.Time `type:"timestamp"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The type of folder.
+	FolderType *string `type:"string" enum:"FolderType"`
+
+	// The time that the folder was last updated.
+	LastUpdatedTime *time.Time `type:"timestamp"`
+
+	// The display name of the folder.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s FolderSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FolderSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *FolderSummary) SetArn(v string) *FolderSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *FolderSummary) SetCreatedTime(v time.Time) *FolderSummary {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *FolderSummary) SetFolderId(v string) *FolderSummary {
+	s.FolderId = &v
+	return s
+}
+
+// SetFolderType sets the FolderType field's value.
+func (s *FolderSummary) SetFolderType(v string) *FolderSummary {
+	s.FolderType = &v
+	return s
+}
+
+// SetLastUpdatedTime sets the LastUpdatedTime field's value.
+func (s *FolderSummary) SetLastUpdatedTime(v time.Time) *FolderSummary {
+	s.LastUpdatedTime = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *FolderSummary) SetName(v string) *FolderSummary {
+	s.Name = &v
 	return s
 }
 
@@ -27199,6 +25692,249 @@ func (s *ListDataSourcesOutput) SetRequestId(v string) *ListDataSourcesOutput {
 
 // SetStatus sets the Status field's value.
 func (s *ListDataSourcesOutput) SetStatus(v int64) *ListDataSourcesOutput {
+	s.Status = &v
+	return s
+}
+
+type ListFolderMembersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFolderMembersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFolderMembersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFolderMembersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFolderMembersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListFolderMembersInput) SetAwsAccountId(v string) *ListFolderMembersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *ListFolderMembersInput) SetFolderId(v string) *ListFolderMembersInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFolderMembersInput) SetMaxResults(v int64) *ListFolderMembersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFolderMembersInput) SetNextToken(v string) *ListFolderMembersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFolderMembersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folder members (dashboards, analyses,
+	// and datasets) in the folder.
+	FolderMemberList []*MemberIdArnPair `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFolderMembersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFolderMembersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderMemberList sets the FolderMemberList field's value.
+func (s *ListFolderMembersOutput) SetFolderMemberList(v []*MemberIdArnPair) *ListFolderMembersOutput {
+	s.FolderMemberList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFolderMembersOutput) SetNextToken(v string) *ListFolderMembersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListFolderMembersOutput) SetRequestId(v string) *ListFolderMembersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListFolderMembersOutput) SetStatus(v int64) *ListFolderMembersOutput {
+	s.Status = &v
+	return s
+}
+
+type ListFoldersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFoldersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFoldersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFoldersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFoldersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *ListFoldersInput) SetAwsAccountId(v string) *ListFoldersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFoldersInput) SetMaxResults(v int64) *ListFoldersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFoldersInput) SetNextToken(v string) *ListFoldersInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFoldersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folders in your AWS account. This structure
+	// provides basic information about the folders.
+	FolderSummaryList []*FolderSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListFoldersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFoldersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderSummaryList sets the FolderSummaryList field's value.
+func (s *ListFoldersOutput) SetFolderSummaryList(v []*FolderSummary) *ListFoldersOutput {
+	s.FolderSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFoldersOutput) SetNextToken(v string) *ListFoldersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *ListFoldersOutput) SetRequestId(v string) *ListFoldersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListFoldersOutput) SetStatus(v int64) *ListFoldersOutput {
 	s.Status = &v
 	return s
 }
@@ -29422,6 +28158,40 @@ func (s *MariaDbParameters) SetPort(v int64) *MariaDbParameters {
 	return s
 }
 
+// An object that consists of the member Amazon Resource Name (ARN) and member
+// ID.
+type MemberIdArnPair struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the member.
+	MemberArn *string `type:"string"`
+
+	// The ID of the member.
+	MemberId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MemberIdArnPair) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberIdArnPair) GoString() string {
+	return s.String()
+}
+
+// SetMemberArn sets the MemberArn field's value.
+func (s *MemberIdArnPair) SetMemberArn(v string) *MemberIdArnPair {
+	s.MemberArn = &v
+	return s
+}
+
+// SetMemberId sets the MemberId field's value.
+func (s *MemberIdArnPair) SetMemberId(v string) *MemberIdArnPair {
+	s.MemberId = &v
+	return s
+}
+
 // MySQL parameters.
 type MySqlParameters struct {
 	_ struct{} `type:"structure"`
@@ -31286,7 +30056,7 @@ func (s *S3Parameters) SetManifestFileLocation(v *ManifestFileLocation) *S3Param
 	return s
 }
 
-// A physical table type for as S3 data source.
+// A physical table type for an S3 data source.
 type S3Source struct {
 	_ struct{} `type:"structure"`
 
@@ -31295,7 +30065,9 @@ type S3Source struct {
 	// DataSourceArn is a required field
 	DataSourceArn *string `type:"string" required:"true"`
 
-	// A physical table type for as S3 data source.
+	// A physical table type for an S3 data source.
+	//
+	// For non-JSON files, only STRING data types are supported in input columns.
 	//
 	// InputColumns is a required field
 	InputColumns []*InputColumn `min:"1" type:"list" required:"true"`
@@ -31635,6 +30407,136 @@ func (s *SearchDashboardsOutput) SetRequestId(v string) *SearchDashboardsOutput 
 
 // SetStatus sets the Status field's value.
 func (s *SearchDashboardsOutput) SetStatus(v int64) *SearchDashboardsOutput {
+	s.Status = &v
+	return s
+}
+
+type SearchFoldersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The filters to apply to the search. Currently, you can search only by the
+	// parent folder ARN. For example, "Filters": [ { "Name": "PARENT_FOLDER_ARN",
+	// "Operator": "StringEquals", "Value": "arn:aws:quicksight:us-east-1:1:folder/folderId"
+	// } ].
+	//
+	// Filters is a required field
+	Filters []*FolderSearchFilter `type:"list" required:"true"`
+
+	// The maximum number of results to be returned per request.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SearchFoldersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchFoldersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SearchFoldersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SearchFoldersInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.Filters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Filters"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *SearchFoldersInput) SetAwsAccountId(v string) *SearchFoldersInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *SearchFoldersInput) SetFilters(v []*FolderSearchFilter) *SearchFoldersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *SearchFoldersInput) SetMaxResults(v int64) *SearchFoldersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchFoldersInput) SetNextToken(v string) *SearchFoldersInput {
+	s.NextToken = &v
+	return s
+}
+
+type SearchFoldersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains all of the folders in your AWS account. This structure
+	// provides basic information about the folders.
+	FolderSummaryList []*FolderSummary `type:"list"`
+
+	// The token for the next set of results, or null if there are no more results.
+	NextToken *string `type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s SearchFoldersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SearchFoldersOutput) GoString() string {
+	return s.String()
+}
+
+// SetFolderSummaryList sets the FolderSummaryList field's value.
+func (s *SearchFoldersOutput) SetFolderSummaryList(v []*FolderSummary) *SearchFoldersOutput {
+	s.FolderSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *SearchFoldersOutput) SetNextToken(v string) *SearchFoldersOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *SearchFoldersOutput) SetRequestId(v string) *SearchFoldersOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SearchFoldersOutput) SetStatus(v int64) *SearchFoldersOutput {
 	s.Status = &v
 	return s
 }
@@ -35925,6 +34827,292 @@ func (s *UpdateDataSourcePermissionsOutput) SetStatus(v int64) *UpdateDataSource
 	return s
 }
 
+type UpdateFolderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The name of the folder.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateFolderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFolderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFolderInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateFolderInput) SetAwsAccountId(v string) *UpdateFolderInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderInput) SetFolderId(v string) *UpdateFolderInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateFolderInput) SetName(v string) *UpdateFolderInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateFolderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `location:"statusCode" type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFolderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFolderOutput) SetArn(v string) *UpdateFolderOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderOutput) SetFolderId(v string) *UpdateFolderOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateFolderOutput) SetRequestId(v string) *UpdateFolderOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFolderOutput) SetStatus(v int64) *UpdateFolderOutput {
+	s.Status = &v
+	return s
+}
+
+type UpdateFolderPermissionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS account ID.
+	//
+	// AwsAccountId is a required field
+	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
+
+	// The folder ID.
+	//
+	// FolderId is a required field
+	FolderId *string `location:"uri" locationName:"FolderId" min:"1" type:"string" required:"true"`
+
+	// The permissions that you want to grant on a resource.
+	GrantPermissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The permissions that you want to revoke from a resource.
+	RevokePermissions []*ResourcePermission `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateFolderPermissionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderPermissionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFolderPermissionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFolderPermissionsInput"}
+	if s.AwsAccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsAccountId"))
+	}
+	if s.AwsAccountId != nil && len(*s.AwsAccountId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("AwsAccountId", 12))
+	}
+	if s.FolderId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FolderId"))
+	}
+	if s.FolderId != nil && len(*s.FolderId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FolderId", 1))
+	}
+	if s.GrantPermissions != nil && len(s.GrantPermissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GrantPermissions", 1))
+	}
+	if s.RevokePermissions != nil && len(s.RevokePermissions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RevokePermissions", 1))
+	}
+	if s.GrantPermissions != nil {
+		for i, v := range s.GrantPermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "GrantPermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.RevokePermissions != nil {
+		for i, v := range s.RevokePermissions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "RevokePermissions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsAccountId sets the AwsAccountId field's value.
+func (s *UpdateFolderPermissionsInput) SetAwsAccountId(v string) *UpdateFolderPermissionsInput {
+	s.AwsAccountId = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderPermissionsInput) SetFolderId(v string) *UpdateFolderPermissionsInput {
+	s.FolderId = &v
+	return s
+}
+
+// SetGrantPermissions sets the GrantPermissions field's value.
+func (s *UpdateFolderPermissionsInput) SetGrantPermissions(v []*ResourcePermission) *UpdateFolderPermissionsInput {
+	s.GrantPermissions = v
+	return s
+}
+
+// SetRevokePermissions sets the RevokePermissions field's value.
+func (s *UpdateFolderPermissionsInput) SetRevokePermissions(v []*ResourcePermission) *UpdateFolderPermissionsInput {
+	s.RevokePermissions = v
+	return s
+}
+
+type UpdateFolderPermissionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN).
+	Arn *string `type:"string"`
+
+	// The folder ID.
+	FolderId *string `min:"1" type:"string"`
+
+	// Information about the permissions on the dashboard.
+	Permissions []*ResourcePermission `min:"1" type:"list"`
+
+	// The request ID.
+	RequestId *string `type:"string"`
+
+	// The status. If succeeded, the status is SC_OK.
+	Status *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateFolderPermissionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFolderPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateFolderPermissionsOutput) SetArn(v string) *UpdateFolderPermissionsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetFolderId sets the FolderId field's value.
+func (s *UpdateFolderPermissionsOutput) SetFolderId(v string) *UpdateFolderPermissionsOutput {
+	s.FolderId = &v
+	return s
+}
+
+// SetPermissions sets the Permissions field's value.
+func (s *UpdateFolderPermissionsOutput) SetPermissions(v []*ResourcePermission) *UpdateFolderPermissionsOutput {
+	s.Permissions = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *UpdateFolderPermissionsOutput) SetRequestId(v string) *UpdateFolderPermissionsOutput {
+	s.RequestId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UpdateFolderPermissionsOutput) SetStatus(v int64) *UpdateFolderPermissionsOutput {
+	s.Status = &v
+	return s
+}
+
 type UpdateGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -38229,6 +37417,30 @@ func FilterOperator_Values() []string {
 }
 
 const (
+	// FolderFilterAttributeParentFolderArn is a FolderFilterAttribute enum value
+	FolderFilterAttributeParentFolderArn = "PARENT_FOLDER_ARN"
+)
+
+// FolderFilterAttribute_Values returns all elements of the FolderFilterAttribute enum
+func FolderFilterAttribute_Values() []string {
+	return []string{
+		FolderFilterAttributeParentFolderArn,
+	}
+}
+
+const (
+	// FolderTypeShared is a FolderType enum value
+	FolderTypeShared = "SHARED"
+)
+
+// FolderType_Values returns all elements of the FolderType enum
+func FolderType_Values() []string {
+	return []string{
+		FolderTypeShared,
+	}
+}
+
+const (
 	// GeoSpatialCountryCodeUs is a GeoSpatialCountryCode enum value
 	GeoSpatialCountryCodeUs = "US"
 )
@@ -38601,6 +37813,26 @@ func JoinType_Values() []string {
 		JoinTypeOuter,
 		JoinTypeLeft,
 		JoinTypeRight,
+	}
+}
+
+const (
+	// MemberTypeDashboard is a MemberType enum value
+	MemberTypeDashboard = "DASHBOARD"
+
+	// MemberTypeAnalysis is a MemberType enum value
+	MemberTypeAnalysis = "ANALYSIS"
+
+	// MemberTypeDataset is a MemberType enum value
+	MemberTypeDataset = "DATASET"
+)
+
+// MemberType_Values returns all elements of the MemberType enum
+func MemberType_Values() []string {
+	return []string{
+		MemberTypeDashboard,
+		MemberTypeAnalysis,
+		MemberTypeDataset,
 	}
 }
 

@@ -3877,6 +3877,9 @@ type AccessConfiguration struct {
 	// all top level manifests referenced by your MediaTailor VodSource packaging
 	// configurations.
 	AccessType *string `type:"string" enum:"AccessType"`
+
+	// AWS Secrets Manager access token configuration parameters.
+	SecretsManagerAccessTokenConfiguration *SecretsManagerAccessTokenConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -3892,6 +3895,12 @@ func (s AccessConfiguration) GoString() string {
 // SetAccessType sets the AccessType field's value.
 func (s *AccessConfiguration) SetAccessType(v string) *AccessConfiguration {
 	s.AccessType = &v
+	return s
+}
+
+// SetSecretsManagerAccessTokenConfiguration sets the SecretsManagerAccessTokenConfiguration field's value.
+func (s *AccessConfiguration) SetSecretsManagerAccessTokenConfiguration(v *SecretsManagerAccessTokenConfiguration) *AccessConfiguration {
+	s.SecretsManagerAccessTokenConfiguration = v
 	return s
 }
 
@@ -7770,6 +7779,58 @@ func (s *ResponseOutputItem) SetSourceGroup(v string) *ResponseOutputItem {
 	return s
 }
 
+// The schedule's ad break properties.
+type ScheduleAdBreak struct {
+	_ struct{} `type:"structure"`
+
+	// The approximate duration of the ad break, in seconds.
+	ApproximateDurationSeconds *int64 `type:"long"`
+
+	// The approximate time that the ad will start playing.
+	ApproximateStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// The name of the source location containing the VOD source used for the ad
+	// break.
+	SourceLocationName *string `type:"string"`
+
+	// The name of the VOD source used for the ad break.
+	VodSourceName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ScheduleAdBreak) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ScheduleAdBreak) GoString() string {
+	return s.String()
+}
+
+// SetApproximateDurationSeconds sets the ApproximateDurationSeconds field's value.
+func (s *ScheduleAdBreak) SetApproximateDurationSeconds(v int64) *ScheduleAdBreak {
+	s.ApproximateDurationSeconds = &v
+	return s
+}
+
+// SetApproximateStartTime sets the ApproximateStartTime field's value.
+func (s *ScheduleAdBreak) SetApproximateStartTime(v time.Time) *ScheduleAdBreak {
+	s.ApproximateStartTime = &v
+	return s
+}
+
+// SetSourceLocationName sets the SourceLocationName field's value.
+func (s *ScheduleAdBreak) SetSourceLocationName(v string) *ScheduleAdBreak {
+	s.SourceLocationName = &v
+	return s
+}
+
+// SetVodSourceName sets the VodSourceName field's value.
+func (s *ScheduleAdBreak) SetVodSourceName(v string) *ScheduleAdBreak {
+	s.VodSourceName = &v
+	return s
+}
+
 // Schedule configuration parameters. A channel must be stopped before changes
 // can be made to the schedule.
 type ScheduleConfiguration struct {
@@ -7840,6 +7901,9 @@ type ScheduleEntry struct {
 	// ProgramName is a required field
 	ProgramName *string `type:"string" required:"true"`
 
+	// The schedule's ad break properties.
+	ScheduleAdBreaks []*ScheduleAdBreak `type:"list"`
+
 	// The name of the source location.
 	//
 	// SourceLocationName is a required field
@@ -7891,6 +7955,12 @@ func (s *ScheduleEntry) SetProgramName(v string) *ScheduleEntry {
 	return s
 }
 
+// SetScheduleAdBreaks sets the ScheduleAdBreaks field's value.
+func (s *ScheduleEntry) SetScheduleAdBreaks(v []*ScheduleAdBreak) *ScheduleEntry {
+	s.ScheduleAdBreaks = v
+	return s
+}
+
 // SetSourceLocationName sets the SourceLocationName field's value.
 func (s *ScheduleEntry) SetSourceLocationName(v string) *ScheduleEntry {
 	s.SourceLocationName = &v
@@ -7900,6 +7970,54 @@ func (s *ScheduleEntry) SetSourceLocationName(v string) *ScheduleEntry {
 // SetVodSourceName sets the VodSourceName field's value.
 func (s *ScheduleEntry) SetVodSourceName(v string) *ScheduleEntry {
 	s.VodSourceName = &v
+	return s
+}
+
+// AWS Secrets Manager access token configuration parameters. For information
+// about Secrets Manager access token authentication, see Working with AWS Secrets
+// Manager access token authentication (https://docs.aws.amazon.com/mediatailor/latest/ug/channel-assembly-access-configuration-access-token.html).
+type SecretsManagerAccessTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the HTTP header used to supply the access token in requests to
+	// the source location.
+	HeaderName *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains
+	// the access token.
+	SecretArn *string `type:"string"`
+
+	// The AWS Secrets Manager SecretString (https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_CreateSecret.html#SecretsManager-CreateSecret-request-SecretString.html)
+	// key associated with the access token. MediaTailor uses the key to look up
+	// SecretString key and value pair containing the access token.
+	SecretStringKey *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SecretsManagerAccessTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SecretsManagerAccessTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetHeaderName sets the HeaderName field's value.
+func (s *SecretsManagerAccessTokenConfiguration) SetHeaderName(v string) *SecretsManagerAccessTokenConfiguration {
+	s.HeaderName = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *SecretsManagerAccessTokenConfiguration) SetSecretArn(v string) *SecretsManagerAccessTokenConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSecretStringKey sets the SecretStringKey field's value.
+func (s *SecretsManagerAccessTokenConfiguration) SetSecretStringKey(v string) *SecretsManagerAccessTokenConfiguration {
+	s.SecretStringKey = &v
 	return s
 }
 
@@ -8934,12 +9052,16 @@ func (s *VodSource) SetVodSourceName(v string) *VodSource {
 const (
 	// AccessTypeS3Sigv4 is a AccessType enum value
 	AccessTypeS3Sigv4 = "S3_SIGV4"
+
+	// AccessTypeSecretsManagerAccessToken is a AccessType enum value
+	AccessTypeSecretsManagerAccessToken = "SECRETS_MANAGER_ACCESS_TOKEN"
 )
 
 // AccessType_Values returns all elements of the AccessType enum
 func AccessType_Values() []string {
 	return []string{
 		AccessTypeS3Sigv4,
+		AccessTypeSecretsManagerAccessToken,
 	}
 }
 

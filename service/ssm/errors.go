@@ -272,6 +272,8 @@ const (
 
 	// ErrCodeInvalidCommandId for service response error code
 	// "InvalidCommandId".
+	//
+	// The specified command ID is not valid. Verify the ID and try again.
 	ErrCodeInvalidCommandId = "InvalidCommandId"
 
 	// ErrCodeInvalidDeleteInventoryParametersException for service response error code
@@ -661,8 +663,8 @@ const (
 	// assigned to them from being deleted. To continue creating new parameters,
 	// first move the label from the oldest version of the parameter to a newer
 	// one for use in your operations. For information about moving parameter labels,
-	// see Move a parameter label (console) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
-	// or Move a parameter label (CLI) (http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
+	// see Move a parameter label (console) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move)
+	// or Move a parameter label (CLI) (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move)
 	// in the AWS Systems Manager User Guide.
 	ErrCodeParameterMaxVersionLimitExceeded = "ParameterMaxVersionLimitExceeded"
 

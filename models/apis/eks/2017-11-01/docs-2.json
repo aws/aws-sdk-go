@@ -705,6 +705,20 @@
         "Nodegroup$status": "<p>The current status of the managed node group.</p>"
       }
     },
+    "NodegroupUpdateConfig": {
+      "base": null,
+      "refs": {
+        "CreateNodegroupRequest$updateConfig": null,
+        "Nodegroup$updateConfig": null,
+        "UpdateNodegroupConfigRequest$updateConfig": null
+      }
+    },
+    "NonZeroInteger": {
+      "base": null,
+      "refs": {
+        "NodegroupUpdateConfig$maxUnavailable": null
+      }
+    },
     "NotFoundException": {
       "base": "<p>A service resource associated with the request could not be found. Clients should not retry such requests.</p>",
       "refs": {
@@ -726,6 +740,12 @@
       "base": "<p>An object representing an OpenID Connect (OIDC) configuration. Before associating an OIDC identity provider to your cluster, review the considerations in <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html\">Authenticating users for your cluster from an OpenID Connect identity provider</a> in the <i>Amazon EKS User Guide</i>.</p>",
       "refs": {
         "AssociateIdentityProviderConfigRequest$oidc": "<p>An object that represents an OpenID Connect (OIDC) identity provider configuration.</p>"
+      }
+    },
+    "PercentCapacity": {
+      "base": null,
+      "refs": {
+        "NodegroupUpdateConfig$maxUnavailablePercentage": null
       }
     },
     "Provider": {

@@ -227,7 +227,7 @@ func (c *LexRuntimeV2) GetSessionRequest(input *GetSessionInput) (req *request.R
 // For example, you can use this operation to retrieve session information for
 // a user that has left a long-running session in use.
 //
-// If the bot, alias, or session identifier doesn't exist, Amazon Lex returns
+// If the bot, alias, or session identifier doesn't exist, Amazon Lex V2 returns
 // a BadRequestException. If the locale doesn't exist or is not enabled for
 // the alias, you receive a BadRequestException.
 //
@@ -354,8 +354,8 @@ func (c *LexRuntimeV2) PutSessionRequest(input *PutSessionInput) (req *request.R
 // PutSession API operation for Amazon Lex Runtime V2.
 //
 // Creates a new session or modifies an existing session with an Amazon Lex
-// bot. Use this operation to enable your application to set the state of the
-// bot.
+// V2 bot. Use this operation to enable your application to set the state of
+// the bot.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -485,12 +485,12 @@ func (c *LexRuntimeV2) RecognizeTextRequest(input *RecognizeTextInput) (req *req
 
 // RecognizeText API operation for Amazon Lex Runtime V2.
 //
-// Sends user input to Amazon Lex. Client applications use this API to send
-// requests to Amazon Lex at runtime. Amazon Lex then interprets the user input
-// using the machine learning model that it build for the bot.
+// Sends user input to Amazon Lex V2. Client applications use this API to send
+// requests to Amazon Lex V2 at runtime. Amazon Lex V2 then interprets the user
+// input using the machine learning model that it build for the bot.
 //
-// In response, Amazon Lex returns the next message to convey to the user and
-// an optional response card to display.
+// In response, Amazon Lex V2 returns the next message to convey to the user
+// and an optional response card to display.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -623,10 +623,35 @@ func (c *LexRuntimeV2) RecognizeUtteranceRequest(input *RecognizeUtteranceInput)
 
 // RecognizeUtterance API operation for Amazon Lex Runtime V2.
 //
-// Sends user input to Amazon Lex. You can send text or speech. Clients use
-// this API to send text and audio requests to Amazon Lex at runtime. Amazon
-// Lex interprets the user input using the machine learning model built for
+// Sends user input to Amazon Lex V2. You can send text or speech. Clients use
+// this API to send text and audio requests to Amazon Lex V2 at runtime. Amazon
+// Lex V2 interprets the user input using the machine learning model built for
 // the bot.
+//
+// The following request fields must be compressed with gzip and then base64
+// encoded before you send them to Amazon Lex V2.
+//
+//    * requestAttributes
+//
+//    * sessionState
+//
+// The following response fields are compressed using gzip and then base64 encoded
+// by Amazon Lex V2. Before you can use these fields, you must decode and decompress
+// them.
+//
+//    * inputTranscript
+//
+//    * interpretations
+//
+//    * messages
+//
+//    * requestAttributes
+//
+//    * sessionState
+//
+// The example contains a Java application that compresses and encodes a Java
+// object to send to Amazon Lex V2, and a second that decodes and decompresses
+// a response from Amazon Lex V2.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -787,8 +812,19 @@ func (c *LexRuntimeV2) StartConversationRequest(input *StartConversationInput) (
 //
 // Starts an HTTP/2 bidirectional event stream that enables you to send audio,
 // text, or DTMF input in real time. After your application starts a conversation,
-// users send input to Amazon Lex as a stream of events. Amazon Lex processes
+// users send input to Amazon Lex V2 as a stream of events. Amazon Lex V2 processes
 // the incoming events and responds with streaming text or audio events.
+//
+// Audio input must be in the following format: audio/lpcm sample-rate=8000
+// sample-size-bits=16 channel-count=1; is-big-endian=false.
+//
+// The StartConversation operation is supported only in the following SDKs:
+//
+//    * AWS SDK for C++ (https://docs.aws.amazon.com/goto/SdkForCpp/runtime.lex.v2-2020-08-07/StartConversation)
+//
+//    * AWS SDK for Java V2 (https://docs.aws.amazon.com/goto/SdkForJavaV2/runtime.lex.v2-2020-08-07/StartConversation)
+//
+//    * AWS SDK for Ruby V3 (https://docs.aws.amazon.com/goto/SdkForRubyV3/runtime.lex.v2-2020-08-07/StartConversation)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1211,13 +1247,13 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // Contains information about the contexts that a user is using in a session.
-// You can configure Amazon Lex to set a context when an intent is fulfilled,
+// You can configure Amazon Lex V2 to set a context when an intent is fulfilled,
 // or you can set a context using the , , or operations.
 //
-// Use a context to indicate to Amazon Lex intents that should be used as follow-up
-// intents. For example, if the active context is order-fulfilled, only intents
-// that have order-fulfilled configured as a trigger are considered for follow
-// up.
+// Use a context to indicate to Amazon Lex V2 intents that should be used as
+// follow-up intents. For example, if the active context is order-fulfilled,
+// only intents that have order-fulfilled configured as a trigger are considered
+// for follow up.
 type ActiveContext struct {
 	_ struct{} `type:"structure"`
 
@@ -1227,7 +1263,9 @@ type ActiveContext struct {
 	// If you don't specify a list of contexts, Amazon Lex will use the current
 	// list of contexts for the session. If you specify an empty list, all contexts
 	// for the session are cleared.
-	ContextAttributes map[string]*string `locationName:"contextAttributes" type:"map"`
+	//
+	// ContextAttributes is a required field
+	ContextAttributes map[string]*string `locationName:"contextAttributes" type:"map" required:"true"`
 
 	// The name of the context.
 	//
@@ -1254,6 +1292,9 @@ func (s ActiveContext) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ActiveContext) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ActiveContext"}
+	if s.ContextAttributes == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContextAttributes"))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -1355,11 +1396,11 @@ func (s *ActiveContextTimeToLive) SetTurnsToLive(v int64) *ActiveContextTimeToLi
 	return s
 }
 
-// Represents a chunk of audio sent from the client application to Amazon Lex.
-// The audio is all or part of an utterance from the user.
+// Represents a chunk of audio sent from the client application to Amazon Lex
+// V2. The audio is all or part of an utterance from the user.
 //
-// Amazon Lex accumulates audio chunks until it recognizes a natural pause in
-// speech before processing the input.
+// Amazon Lex V2 accumulates audio chunks until it recognizes a natural pause
+// in speech before processing the input.
 type AudioInputEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -1369,7 +1410,7 @@ type AudioInputEvent struct {
 	AudioChunk []byte `locationName:"audioChunk" type:"blob"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// The encoding used for the audio chunk. You must use 8 KHz PCM 16-bit mono-channel
@@ -1448,7 +1489,7 @@ func (s *AudioInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg events
 	return msg, err
 }
 
-// An event sent from Amazon Lex to your client application containing audio
+// An event sent from Amazon Lex V2 to your client application containing audio
 // to play to the user.
 type AudioResponseEvent struct {
 	_ struct{} `type:"structure"`
@@ -1462,9 +1503,9 @@ type AudioResponseEvent struct {
 	// in the contentType field of the ConfigurationEvent.
 	ContentType *string `locationName:"contentType" min:"1" type:"string"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
@@ -1618,7 +1659,7 @@ type Button struct {
 	// Text is a required field
 	Text *string `locationName:"text" min:"1" type:"string" required:"true"`
 
-	// The value returned to Amazon Lex when a user chooses the button.
+	// The value returned to Amazon Lex V2 when a user chooses the button.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" min:"1" type:"string" required:"true"`
@@ -1668,12 +1709,12 @@ func (s *Button) SetValue(v string) *Button {
 	return s
 }
 
-// Provides a score that indicates the confidence that Amazon Lex has that an
-// intent is the one that satisfies the user's intent.
+// Provides a score that indicates the confidence that Amazon Lex V2 has that
+// an intent is the one that satisfies the user's intent.
 type ConfidenceScore struct {
 	_ struct{} `type:"structure"`
 
-	// A score that indicates how confident Amazon Lex is that an intent satisfies
+	// A score that indicates how confident Amazon Lex V2 is that an intent satisfies
 	// the user's intent. Ranges between 0.00 and 1.00. Higher scores indicate higher
 	// confidence.
 	Score *float64 `locationName:"score" type:"double"`
@@ -1695,19 +1736,19 @@ func (s *ConfidenceScore) SetScore(v float64) *ConfidenceScore {
 	return s
 }
 
-// The initial event sent from the application to Amazon Lex to configure the
-// conversation, including session and request attributes and the response content
-// type.
+// The initial event sent from the application to Amazon Lex V2 to configure
+// the conversation, including session and request attributes and the response
+// content type.
 type ConfigurationEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
-	// Determines whether Amazon Lex should send audio responses to the client application.
-	// When this parameter if false, the client application needs to create responses
-	// for the user.
+	// Determines whether Amazon Lex V2 should send audio responses to the client
+	// application. When this parameter if false, the client application needs to
+	// create responses for the user.
 	DisablePlayback *bool `locationName:"disablePlayback" type:"boolean"`
 
 	// A unique identifier that your application assigns to the event. You can use
@@ -1715,23 +1756,23 @@ type ConfigurationEvent struct {
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
 	// Request-specific information passed between the client application and Amazon
-	// Lex.
+	// Lex V2.
 	//
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes for prefix x-amz-lex:.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
 
-	// The message that Amazon Lex returns in the response can be either text or
-	// speech based on the responseContentType value.
+	// The message that Amazon Lex V2 returns in the response can be either text
+	// or speech based on the responseContentType value.
 	//
-	//    * If the value is text/plain;charset=utf-8, Amazon Lex returns text in
-	//    the response.
+	//    * If the value is text/plain;charset=utf-8, Amazon Lex V2 returns text
+	//    in the response.
 	//
-	//    * If the value begins with audio/, Amazon Lex returns speech in the response.
-	//    Amazon Lex uses Amazon Polly to generate the speech using the configuration
-	//    that you specified in the requestContentType parameter. For example, if
-	//    you specify audio/mpeg as the value, Amazon Lex returns speech in the
-	//    MPEG format.
+	//    * If the value begins with audio/, Amazon Lex V2 returns speech in the
+	//    response. Amazon Lex V2 uses Amazon Polly to generate the speech using
+	//    the configuration that you specified in the requestContentType parameter.
+	//    For example, if you specify audio/mpeg as the value, Amazon Lex V2 returns
+	//    speech in the MPEG format.
 	//
 	//    * If the value is audio/pcm, the speech returned is audio/pcm in 16-bit,
 	//    little-endian format.
@@ -1742,7 +1783,7 @@ type ConfigurationEvent struct {
 	// ResponseContentType is a required field
 	ResponseContentType *string `locationName:"responseContentType" min:"1" type:"string" required:"true"`
 
-	// The state of the user's session with Amazon Lex.
+	// The state of the user's session with Amazon Lex V2.
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 
 	// A list of messages to send to the user.
@@ -1916,12 +1957,12 @@ func (s *ConflictException) RequestID() string {
 
 // A DTMF character sent from the client application. DTMF characters are typically
 // sent from a phone keypad to represent numbers. For example, you can have
-// Amazon Lex process a credit card number input from a phone.
+// Amazon Lex V2 process a credit card number input from a phone.
 type DTMFInputEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// A unique identifier that your application assigns to the event. You can use
@@ -2218,7 +2259,7 @@ func (s *DependencyFailedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The next action that Amazon Lex should take.
+// The next action that Amazon Lex V2 should take.
 type DialogAction struct {
 	_ struct{} `type:"structure"`
 
@@ -2236,7 +2277,7 @@ type DialogAction struct {
 	//    complete and ready to be fulfilled. This is a yes/no question such as
 	//    "Place the order?"
 	//
-	//    * Delegate - The next action is determined by Amazon Lex.
+	//    * Delegate - The next action is determined by Amazon Lex V2.
 	//
 	//    * ElicitSlot - The next action is to elicit a slot value from the user.
 	//
@@ -2282,14 +2323,14 @@ func (s *DialogAction) SetType(v string) *DialogAction {
 	return s
 }
 
-// A notification from the client that it is disconnecting from Amazon Lex.
+// A notification from the client that it is disconnecting from Amazon Lex V2.
 // Sending a DisconnectionEvent event is optional, but can help identify a conversation
 // in logs.
 type DisconnectionEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// A unique identifier that your application assigns to the event. You can use
@@ -2443,10 +2484,11 @@ func (s *GetSessionInput) SetSessionId(v string) *GetSessionInput {
 type GetSessionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of intents that Amazon Lex determined might satisfy the user's utterance.
+	// A list of intents that Amazon Lex V2 determined might satisfy the user's
+	// utterance.
 	//
 	// Each interpretation includes the intent, a score that indicates how confident
-	// Amazon Lex is that the interpretation is the correct one, and an optional
+	// Amazon Lex V2 is that the interpretation is the correct one, and an optional
 	// sentiment response that indicates the sentiment expressed in the utterance.
 	Interpretations []*Interpretation `locationName:"interpretations" type:"list"`
 
@@ -2499,14 +2541,14 @@ func (s *GetSessionOutput) SetSessionState(v *SessionState) *GetSessionOutput {
 	return s
 }
 
-// Event that Amazon Lex sends to indicate that the stream is still open between
-// the client application and Amazon Lex
+// Event that Amazon Lex V2 sends to indicate that the stream is still open
+// between the client application and Amazon Lex V2
 type HeartbeatEvent struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 }
 
@@ -2649,7 +2691,7 @@ func (s *ImageResponseCard) SetTitle(v string) *ImageResponseCard {
 	return s
 }
 
-// The current intent that Amazon Lex is attempting to fulfill.
+// The current intent that Amazon Lex V2 is attempting to fulfill.
 type Intent struct {
 	_ struct{} `type:"structure"`
 
@@ -2730,22 +2772,23 @@ func (s *Intent) SetState(v string) *Intent {
 }
 
 // Contains the current state of the conversation between the client application
-// and Amazon Lex.
+// and Amazon Lex V2.
 type IntentResultEvent struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
 	// Indicates whether the input to the operation was text or speech.
 	InputMode *string `locationName:"inputMode" type:"string" enum:"InputMode"`
 
-	// A list of intents that Amazon Lex determined might satisfy the user's utterance.
+	// A list of intents that Amazon Lex V2 determined might satisfy the user's
+	// utterance.
 	//
 	// Each interpretation includes the intent, a score that indicates how confident
-	// Amazon Lex is that the interpretation is the correct one, and an optional
+	// Amazon Lex V2 is that the interpretation is the correct one, and an optional
 	// sentiment response that indicates the sentiment expressed in the utterance.
 	Interpretations []*Interpretation `locationName:"interpretations" type:"list"`
 
@@ -2755,7 +2798,7 @@ type IntentResultEvent struct {
 	// The identifier of the session in use.
 	SessionId *string `locationName:"sessionId" min:"2" type:"string"`
 
-	// The state of the user's session with Amazon Lex.
+	// The state of the user's session with Amazon Lex V2.
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 }
 
@@ -2918,7 +2961,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An intent that Amazon Lex determined might satisfy the user's utterance.
+// An intent that Amazon Lex V2 determined might satisfy the user's utterance.
 // The intents are ordered by the confidence score.
 type Interpretation struct {
 	_ struct{} `type:"structure"`
@@ -2927,7 +2970,7 @@ type Interpretation struct {
 	// ordered by the confidence score.
 	Intent *Intent `locationName:"intent" type:"structure"`
 
-	// Determines the threshold where Amazon Lex will insert the AMAZON.FallbackIntent,
+	// Determines the threshold where Amazon Lex V2 will insert the AMAZON.FallbackIntent,
 	// AMAZON.KendraSearchIntent, or both when returning alternative intents in
 	// a response. AMAZON.FallbackIntent and AMAZON.KendraSearchIntent are only
 	// inserted if they are configured for the bot.
@@ -2976,7 +3019,9 @@ type Message struct {
 	Content *string `locationName:"content" min:"1" type:"string" sensitive:"true"`
 
 	// Indicates the type of response.
-	ContentType *string `locationName:"contentType" type:"string" enum:"MessageContentType"`
+	//
+	// ContentType is a required field
+	ContentType *string `locationName:"contentType" type:"string" required:"true" enum:"MessageContentType"`
 
 	// A card that is shown to the user by a messaging platform. You define the
 	// contents of the card, the card is displayed by the platform.
@@ -3001,6 +3046,9 @@ func (s *Message) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Message"}
 	if s.Content != nil && len(*s.Content) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Content", 1))
+	}
+	if s.ContentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContentType"))
 	}
 	if s.ImageResponseCard != nil {
 		if err := s.ImageResponseCard.Validate(); err != nil {
@@ -3032,14 +3080,14 @@ func (s *Message) SetImageResponseCard(v *ImageResponseCard) *Message {
 	return s
 }
 
-// Event sent from the client application to Amazon Lex to indicate that playback
-// of audio is complete and that Amazon Lex should start processing the user's
-// input.
+// Event sent from the client application to Amazon Lex V2 to indicate that
+// playback of audio is complete and that Amazon Lex V2 should start processing
+// the user's input.
 type PlaybackCompletionEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// A unique identifier that your application assigns to the event. You can use
@@ -3098,12 +3146,12 @@ func (s *PlaybackCompletionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (ms
 	return msg, err
 }
 
-// Event sent from Amazon Lex to indicate to the client application should stop
-// playback of audio. For example, if the client is playing a prompt that asks
-// for the user's telephone number, the user might start to say the phone number
-// before the prompt is complete. Amazon Lex sends this event to the client
-// application to indicate that the user is responding and that Amazon Lex is
-// processing their input.
+// Event sent from Amazon Lex V2 to indicate to the client application should
+// stop playback of audio. For example, if the client is playing a prompt that
+// asks for the user's telephone number, the user might start to say the phone
+// number before the prompt is complete. Amazon Lex V2 sends this event to the
+// client application to indicate that the user is responding and that Amazon
+// Lex V2 is processing their input.
 type PlaybackInterruptionEvent struct {
 	_ struct{} `type:"structure"`
 
@@ -3111,12 +3159,12 @@ type PlaybackInterruptionEvent struct {
 	// caused the interruption.
 	CausedByEventId *string `locationName:"causedByEventId" min:"2" type:"string"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
-	// Indicates the type of user input that Amazon Lex detected.
+	// Indicates the type of user input that Amazon Lex V2 detected.
 	EventReason *string `locationName:"eventReason" type:"string" enum:"PlaybackInterruptionReason"`
 }
 
@@ -3199,17 +3247,18 @@ type PutSessionInput struct {
 	// they are defined in the list.
 	Messages []*Message `locationName:"messages" type:"list"`
 
-	// Request-specific information passed between Amazon Lex and the client application.
+	// Request-specific information passed between Amazon Lex V2 and the client
+	// application.
 	//
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes with the prefix x-amz-lex:.
 	RequestAttributes map[string]*string `locationName:"requestAttributes" type:"map"`
 
-	// The message that Amazon Lex returns in the response can be either text or
-	// speech depending on the value of this parameter.
+	// The message that Amazon Lex V2 returns in the response can be either text
+	// or speech depending on the value of this parameter.
 	//
-	//    * If the value is text/plain; charset=utf-8, Amazon Lex returns text in
-	//    the response.
+	//    * If the value is text/plain; charset=utf-8, Amazon Lex V2 returns text
+	//    in the response.
 	ResponseContentType *string `location:"header" locationName:"ResponseContentType" min:"1" type:"string"`
 
 	// The identifier of the session that receives the session data.
@@ -3219,7 +3268,7 @@ type PutSessionInput struct {
 
 	// Sets the state of the session with the user. You can use this to set the
 	// current intent, attributes, context, and dialog action. Use the dialog action
-	// to determine the next step that Amazon Lex should use in the conversation
+	// to determine the next step that Amazon Lex V2 should use in the conversation
 	// with the user.
 	//
 	// SessionState is a required field
@@ -3356,8 +3405,8 @@ type PutSessionOutput struct {
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
 	// Request-specific information passed between the client application and Amazon
-	// Lex. These are the same as the requestAttribute parameter in the call to
-	// the PutSession operation.
+	// Lex V2. These are the same as the requestAttribute parameter in the call
+	// to the PutSession operation.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" min:"1" type:"string"`
 
 	// The identifier of the session that received the data.
@@ -3435,7 +3484,7 @@ type RecognizeTextInput struct {
 	LocaleId *string `location:"uri" locationName:"localeId" min:"1" type:"string" required:"true"`
 
 	// Request-specific information passed between the client application and Amazon
-	// Lex
+	// Lex V2
 	//
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes with the prefix x-amz-lex:.
@@ -3449,7 +3498,7 @@ type RecognizeTextInput struct {
 	// The current state of the dialog between the user and the bot.
 	SessionState *SessionState `locationName:"sessionState" type:"structure"`
 
-	// The text that the user entered. Amazon Lex interprets this text.
+	// The text that the user entered. Amazon Lex V2 interprets this text.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" min:"1" type:"string" required:"true" sensitive:"true"`
@@ -3555,10 +3604,11 @@ func (s *RecognizeTextInput) SetText(v string) *RecognizeTextInput {
 type RecognizeTextOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of intents that Amazon Lex determined might satisfy the user's utterance.
+	// A list of intents that Amazon Lex V2 determined might satisfy the user's
+	// utterance.
 	//
 	// Each interpretation includes the intent, a score that indicates now confident
-	// Amazon Lex is that the interpretation is the correct one, and an optional
+	// Amazon Lex V2 is that the interpretation is the correct one, and an optional
 	// sentiment response that indicates the sentiment expressed in the utterance.
 	Interpretations []*Interpretation `locationName:"interpretations" type:"list"`
 
@@ -3648,10 +3698,13 @@ type RecognizeUtteranceInput struct {
 	LocaleId *string `location:"uri" locationName:"localeId" min:"1" type:"string" required:"true"`
 
 	// Request-specific information passed between the client application and Amazon
-	// Lex
+	// Lex V2
 	//
 	// The namespace x-amz-lex: is reserved for special attributes. Don't create
 	// any request attributes for prefix x-amz-lex:.
+	//
+	// The requestAttributes field must be compressed using gzip and then base64
+	// encoded before sending to Amazon Lex V2.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" type:"string" sensitive:"true"`
 
 	// Indicates the format for audio input or that the content is text. The header
@@ -3668,17 +3721,17 @@ type RecognizeUtteranceInput struct {
 	// RequestContentType is a required field
 	RequestContentType *string `location:"header" locationName:"Content-Type" min:"1" type:"string" required:"true"`
 
-	// The message that Amazon Lex returns in the response can be either text or
-	// speech based on the responseContentType value.
+	// The message that Amazon Lex V2 returns in the response can be either text
+	// or speech based on the responseContentType value.
 	//
-	//    * If the value is text/plain;charset=utf-8, Amazon Lex returns text in
-	//    the response.
+	//    * If the value is text/plain;charset=utf-8, Amazon Lex V2 returns text
+	//    in the response.
 	//
-	//    * If the value begins with audio/, Amazon Lex returns speech in the response.
-	//    Amazon Lex uses Amazon Polly to generate the speech using the configuration
-	//    that you specified in the requestContentType parameter. For example, if
-	//    you specify audio/mpeg as the value, Amazon Lex returns speech in the
-	//    MPEG format.
+	//    * If the value begins with audio/, Amazon Lex V2 returns speech in the
+	//    response. Amazon Lex V2 uses Amazon Polly to generate the speech using
+	//    the configuration that you specified in the requestContentType parameter.
+	//    For example, if you specify audio/mpeg as the value, Amazon Lex V2 returns
+	//    speech in the MPEG format.
 	//
 	//    * If the value is audio/pcm, the speech returned is audio/pcm at 16 KHz
 	//    in 16-bit, little-endian format.
@@ -3694,8 +3747,11 @@ type RecognizeUtteranceInput struct {
 
 	// Sets the state of the session with the user. You can use this to set the
 	// current intent, attributes, context, and dialog action. Use the dialog action
-	// to determine the next step that Amazon Lex should use in the conversation
+	// to determine the next step that Amazon Lex V2 should use in the conversation
 	// with the user.
+	//
+	// The sessionState field must be compressed using gzip and then base64 encoded
+	// before sending to Amazon Lex V2.
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" type:"string" sensitive:"true"`
 }
 
@@ -3810,12 +3866,12 @@ type RecognizeUtteranceOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
 	// The prompt or statement to send to the user. This is based on the bot configuration
-	// and context. For example, if Amazon Lex did not understand the user intent,
+	// and context. For example, if Amazon Lex V2 did not understand the user intent,
 	// it sends the clarificationPrompt configured for the bot. If the intent requires
 	// confirmation before taking the fulfillment action, it sends the confirmationPrompt.
 	// Another example: Suppose that the Lambda function successfully fulfilled
-	// the intent, and sent a message to convey to the user. Then Amazon Lex sends
-	// that message in the response.
+	// the intent, and sent a message to convey to the user. Then Amazon Lex V2
+	// sends that message in the response.
 	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
 
 	// Content type as specified in the responseContentType in the request.
@@ -3829,22 +3885,42 @@ type RecognizeUtteranceOutput struct {
 	// If the input was an audio stream, the inputTranscript field contains the
 	// text extracted from the audio stream. This is the text that is actually processed
 	// to recognize intents and slot values. You can use this information to determine
-	// if Amazon Lex is correctly processing the audio that you send.
+	// if Amazon Lex V2 is correctly processing the audio that you send.
+	//
+	// The inputTranscript field is compressed with gzip and then base64 encoded.
+	// Before you can use the contents of the field, you must decode and decompress
+	// the contents. See the example for a simple function to decode and decompress
+	// the contents.
 	InputTranscript *string `location:"header" locationName:"x-amz-lex-input-transcript" min:"1" type:"string"`
 
-	// A list of intents that Amazon Lex determined might satisfy the user's utterance.
+	// A list of intents that Amazon Lex V2 determined might satisfy the user's
+	// utterance.
 	//
 	// Each interpretation includes the intent, a score that indicates how confident
-	// Amazon Lex is that the interpretation is the correct one, and an optional
+	// Amazon Lex V2 is that the interpretation is the correct one, and an optional
 	// sentiment response that indicates the sentiment expressed in the utterance.
+	//
+	// The interpretations field is compressed with gzip and then base64 encoded.
+	// Before you can use the contents of the field, you must decode and decompress
+	// the contents. See the example for a simple function to decode and decompress
+	// the contents.
 	Interpretations *string `location:"header" locationName:"x-amz-lex-interpretations" min:"1" type:"string"`
 
 	// A list of messages that were last sent to the user. The messages are ordered
 	// based on the order that you returned the messages from your Lambda function
 	// or the order that the messages are defined in the bot.
+	//
+	// The messages field is compressed with gzip and then base64 encoded. Before
+	// you can use the contents of the field, you must decode and decompress the
+	// contents. See the example for a simple function to decode and decompress
+	// the contents.
 	Messages *string `location:"header" locationName:"x-amz-lex-messages" min:"1" type:"string"`
 
 	// The attributes sent in the request.
+	//
+	// The requestAttributes field is compressed with gzip and then base64 encoded.
+	// Before you can use the contents of the field, you must decode and decompress
+	// the contents.
 	RequestAttributes *string `location:"header" locationName:"x-amz-lex-request-attributes" min:"1" type:"string"`
 
 	// The identifier of the session in use.
@@ -3854,6 +3930,11 @@ type RecognizeUtteranceOutput struct {
 	//
 	// Use this to determine the progress of the conversation and what the next
 	// action might be.
+	//
+	// The sessionState field is compressed with gzip and then base64 encoded. Before
+	// you can use the contents of the field, you must decode and decompress the
+	// contents. See the example for a simple function to decode and decompress
+	// the contents.
 	SessionState *string `location:"header" locationName:"x-amz-lex-session-state" min:"1" type:"string"`
 }
 
@@ -4099,25 +4180,25 @@ func (s *SentimentScore) SetPositive(v float64) *SentimentScore {
 	return s
 }
 
-// The state of the user's session with Amazon Lex.
+// The state of the user's session with Amazon Lex V2.
 type SessionState struct {
 	_ struct{} `type:"structure"`
 
-	// One or more contexts that indicate to Amazon Lex the context of a request.
-	// When a context is active, Amazon Lex considers intents with the matching
+	// One or more contexts that indicate to Amazon Lex V2 the context of a request.
+	// When a context is active, Amazon Lex V2 considers intents with the matching
 	// context as a trigger as the next intent in a session.
 	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list"`
 
-	// The next step that Amazon Lex should take in the conversation with a user.
+	// The next step that Amazon Lex V2 should take in the conversation with a user.
 	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
 
-	// The active intent that Amazon Lex is processing.
+	// The active intent that Amazon Lex V2 is processing.
 	Intent *Intent `locationName:"intent" type:"structure"`
 
 	OriginatingRequestId *string `locationName:"originatingRequestId" min:"1" type:"string"`
 
 	// Map of key/value pairs representing session-specific context information.
-	// It contains application information passed between Amazon Lex and a client
+	// It contains application information passed between Amazon Lex V2 and a client
 	// application.
 	SessionAttributes map[string]*string `locationName:"sessionAttributes" type:"map"`
 }
@@ -4195,12 +4276,22 @@ func (s *SessionState) SetSessionAttributes(v map[string]*string) *SessionState 
 	return s
 }
 
-// A value that Amazon Lex uses to fulfill an intent.
+// A value that Amazon Lex V2 uses to fulfill an intent.
 type Slot struct {
 	_ struct{} `type:"structure"`
 
+	// When the shape value is List, it indicates that the values field contains
+	// a list of slot values. When the value is Scalar, it indicates that the value
+	// field contains a single value.
+	Shape *string `locationName:"shape" type:"string" enum:"Shape"`
+
 	// The current value of the slot.
 	Value *Value `locationName:"value" type:"structure"`
+
+	// A list of one or more values that the user provided for the slot. For example,
+	// if a for a slot that elicits pizza toppings, the values might be "pepperoni"
+	// and "pineapple."
+	Values []*Slot `locationName:"values" type:"list"`
 }
 
 // String returns the string representation
@@ -4221,6 +4312,16 @@ func (s *Slot) Validate() error {
 			invalidParams.AddNested("Value", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Values != nil {
+		for i, v := range s.Values {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Values", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4228,9 +4329,21 @@ func (s *Slot) Validate() error {
 	return nil
 }
 
+// SetShape sets the Shape field's value.
+func (s *Slot) SetShape(v string) *Slot {
+	s.Shape = &v
+	return s
+}
+
 // SetValue sets the Value field's value.
 func (s *Slot) SetValue(v *Value) *Slot {
 	s.Value = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Slot) SetValues(v []*Slot) *Slot {
+	s.Values = v
 	return s
 }
 
@@ -4247,7 +4360,7 @@ type StartConversationInput struct {
 	// BotId is a required field
 	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
 
-	// The conversation type that you are using the Amazon Lex. If the conversation
+	// The conversation type that you are using the Amazon Lex V2. If the conversation
 	// mode is AUDIO you can send both audio and DTMF information. If the mode is
 	// TEXT you can only send text.
 	ConversationMode *string `location:"header" locationName:"x-amz-lex-conversation-mode" type:"string" enum:"ConversationMode"`
@@ -4620,20 +4733,20 @@ func (e *StartConversationResponseEventStreamUnknownEvent) UnmarshalEvent(
 	return nil
 }
 
-// The event sent from your client application to Amazon Lex with text input
+// The event sent from your client application to Amazon Lex V2 with text input
 // from the user.
 type TextInputEvent struct {
 	_ struct{} `type:"structure"`
 
 	// A timestamp set by the client of the date and time that the event was sent
-	// to Amazon Lex.
+	// to Amazon Lex V2.
 	ClientTimestampMillis *int64 `locationName:"clientTimestampMillis" type:"long"`
 
 	// A unique identifier that your application assigns to the event. You can use
 	// this to identify events in logs.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
-	// The text from the user. Amazon Lex processes this as a complete statement.
+	// The text from the user. Amazon Lex V2 processes this as a complete statement.
 	//
 	// Text is a required field
 	Text *string `locationName:"text" min:"1" type:"string" required:"true" sensitive:"true"`
@@ -4696,14 +4809,14 @@ func (s *TextInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventst
 	return msg, err
 }
 
-// The event sent from Amazon Lex to your application with text to present to
-// the user.
+// The event sent from Amazon Lex V2 to your application with text to present
+// to the user.
 type TextResponseEvent struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
 	// A list of messages to send to the user. Messages are ordered based on the
@@ -4847,14 +4960,14 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Event sent from Amazon Lex to your client application that contains a transcript
-// of voice audio.
+// Event sent from Amazon Lex V2 to your client application that contains a
+// transcript of voice audio.
 type TranscriptEvent struct {
 	_ struct{} `type:"structure"`
 
-	// A unique identifier of the event sent by Amazon Lex. The identifier is in
-	// the form RESPONSE-N, where N is a number starting with one and incremented
-	// for each event sent by Amazon Lex in the current session.
+	// A unique identifier of the event sent by Amazon Lex V2. The identifier is
+	// in the form RESPONSE-N, where N is a number starting with one and incremented
+	// for each event sent by Amazon Lex V2 in the current session.
 	EventId *string `locationName:"eventId" min:"2" type:"string"`
 
 	// The transcript of the voice audio from the user.
@@ -5000,10 +5113,10 @@ func (s *ValidationException) RequestID() string {
 type Value struct {
 	_ struct{} `type:"structure"`
 
-	// The value that Amazon Lex determines for the slot. The actual value depends
+	// The value that Amazon Lex V2 determines for the slot. The actual value depends
 	// on the setting of the value selection strategy for the bot. You can choose
-	// to use the value entered by the user, or you can have Amazon Lex choose the
-	// first value in the resolvedValues list.
+	// to use the value entered by the user, or you can have Amazon Lex V2 choose
+	// the first value in the resolvedValues list.
 	//
 	// InterpretedValue is a required field
 	InterpretedValue *string `locationName:"interpretedValue" min:"1" type:"string" required:"true"`
@@ -5239,5 +5352,21 @@ func SentimentType_Values() []string {
 		SentimentTypeNegative,
 		SentimentTypeNeutral,
 		SentimentTypePositive,
+	}
+}
+
+const (
+	// ShapeScalar is a Shape enum value
+	ShapeScalar = "Scalar"
+
+	// ShapeList is a Shape enum value
+	ShapeList = "List"
+)
+
+// Shape_Values returns all elements of the Shape enum
+func Shape_Values() []string {
+	return []string{
+		ShapeScalar,
+		ShapeList,
 	}
 }

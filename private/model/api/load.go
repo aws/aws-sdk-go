@@ -215,6 +215,7 @@ func (a *API) Setup() error {
 	}
 	a.renameExportable()
 	a.applyShapeNameAliases()
+	a.renameIOSuffixedShapeNames()
 	a.createInputOutputShapes()
 	a.writeInputOutputLocationName()
 	a.renameAPIPayloadShapes()

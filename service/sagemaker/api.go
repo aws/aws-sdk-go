@@ -26744,6 +26744,178 @@ func (c *SageMaker) SearchPagesWithContext(ctx aws.Context, input *SearchInput, 
 	return p.Err()
 }
 
+const opSendPipelineExecutionStepFailure = "SendPipelineExecutionStepFailure"
+
+// SendPipelineExecutionStepFailureRequest generates a "aws/request.Request" representing the
+// client's request for the SendPipelineExecutionStepFailure operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendPipelineExecutionStepFailure for more information on using the SendPipelineExecutionStepFailure
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendPipelineExecutionStepFailureRequest method.
+//    req, resp := client.SendPipelineExecutionStepFailureRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepFailure
+func (c *SageMaker) SendPipelineExecutionStepFailureRequest(input *SendPipelineExecutionStepFailureInput) (req *request.Request, output *SendPipelineExecutionStepFailureOutput) {
+	op := &request.Operation{
+		Name:       opSendPipelineExecutionStepFailure,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendPipelineExecutionStepFailureInput{}
+	}
+
+	output = &SendPipelineExecutionStepFailureOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendPipelineExecutionStepFailure API operation for Amazon SageMaker Service.
+//
+// Notifies the pipeline that the execution of a callback step failed, along
+// with a message describing why. When a callback step is run, the pipeline
+// generates a callback token and includes the token in a message sent to Amazon
+// Simple Queue Service (Amazon SQS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation SendPipelineExecutionStepFailure for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepFailure
+func (c *SageMaker) SendPipelineExecutionStepFailure(input *SendPipelineExecutionStepFailureInput) (*SendPipelineExecutionStepFailureOutput, error) {
+	req, out := c.SendPipelineExecutionStepFailureRequest(input)
+	return out, req.Send()
+}
+
+// SendPipelineExecutionStepFailureWithContext is the same as SendPipelineExecutionStepFailure with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendPipelineExecutionStepFailure for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) SendPipelineExecutionStepFailureWithContext(ctx aws.Context, input *SendPipelineExecutionStepFailureInput, opts ...request.Option) (*SendPipelineExecutionStepFailureOutput, error) {
+	req, out := c.SendPipelineExecutionStepFailureRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opSendPipelineExecutionStepSuccess = "SendPipelineExecutionStepSuccess"
+
+// SendPipelineExecutionStepSuccessRequest generates a "aws/request.Request" representing the
+// client's request for the SendPipelineExecutionStepSuccess operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendPipelineExecutionStepSuccess for more information on using the SendPipelineExecutionStepSuccess
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendPipelineExecutionStepSuccessRequest method.
+//    req, resp := client.SendPipelineExecutionStepSuccessRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepSuccess
+func (c *SageMaker) SendPipelineExecutionStepSuccessRequest(input *SendPipelineExecutionStepSuccessInput) (req *request.Request, output *SendPipelineExecutionStepSuccessOutput) {
+	op := &request.Operation{
+		Name:       opSendPipelineExecutionStepSuccess,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendPipelineExecutionStepSuccessInput{}
+	}
+
+	output = &SendPipelineExecutionStepSuccessOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// SendPipelineExecutionStepSuccess API operation for Amazon SageMaker Service.
+//
+// Notifies the pipeline that the execution of a callback step succeeded and
+// provides a list of the step's output parameters. When a callback step is
+// run, the pipeline generates a callback token and includes the token in a
+// message sent to Amazon Simple Queue Service (Amazon SQS).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation SendPipelineExecutionStepSuccess for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/SendPipelineExecutionStepSuccess
+func (c *SageMaker) SendPipelineExecutionStepSuccess(input *SendPipelineExecutionStepSuccessInput) (*SendPipelineExecutionStepSuccessOutput, error) {
+	req, out := c.SendPipelineExecutionStepSuccessRequest(input)
+	return out, req.Send()
+}
+
+// SendPipelineExecutionStepSuccessWithContext is the same as SendPipelineExecutionStepSuccess with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendPipelineExecutionStepSuccess for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) SendPipelineExecutionStepSuccessWithContext(ctx aws.Context, input *SendPipelineExecutionStepSuccessInput, opts ...request.Option) (*SendPipelineExecutionStepSuccessOutput, error) {
+	req, out := c.SendPipelineExecutionStepSuccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMonitoringSchedule = "StartMonitoringSchedule"
 
 // StartMonitoringScheduleRequest generates a "aws/request.Request" representing the
@@ -33905,14 +34077,14 @@ func (s *AutoMLJobArtifacts) SetDataExplorationNotebookLocation(v string) *AutoM
 type AutoMLJobCompletionCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum time, in seconds, an AutoML job is allowed to wait for a trial
-	// to complete. It must be equal to or greater than MaxRuntimePerTrainingJobInSeconds.
+	// The maximum runtime, in seconds, an AutoML job has to complete.
 	MaxAutoMLJobRuntimeInSeconds *int64 `min:"1" type:"integer"`
 
 	// The maximum number of times a training job is allowed to run.
 	MaxCandidates *int64 `min:"1" type:"integer"`
 
-	// The maximum time, in seconds, a job is allowed to run.
+	// The maximum time, in seconds, a training job is allowed to run as part of
+	// an AutoML job.
 	MaxRuntimePerTrainingJobInSeconds *int64 `min:"1" type:"integer"`
 }
 
@@ -34581,6 +34753,49 @@ func (s CacheHitResult) GoString() string {
 // SetSourcePipelineExecutionArn sets the SourcePipelineExecutionArn field's value.
 func (s *CacheHitResult) SetSourcePipelineExecutionArn(v string) *CacheHitResult {
 	s.SourcePipelineExecutionArn = &v
+	return s
+}
+
+// Metadata about a callback step.
+type CallbackStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The pipeline generated token from the Amazon SQS queue.
+	CallbackToken *string `min:"10" type:"string"`
+
+	// A list of the output parameters of the callback step.
+	OutputParameters []*OutputParameter `type:"list"`
+
+	// The URL of the Amazon Simple Queue Service (Amazon SQS) queue used by the
+	// callback step.
+	SqsQueueUrl *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CallbackStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CallbackStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetCallbackToken sets the CallbackToken field's value.
+func (s *CallbackStepMetadata) SetCallbackToken(v string) *CallbackStepMetadata {
+	s.CallbackToken = &v
+	return s
+}
+
+// SetOutputParameters sets the OutputParameters field's value.
+func (s *CallbackStepMetadata) SetOutputParameters(v []*OutputParameter) *CallbackStepMetadata {
+	s.OutputParameters = v
+	return s
+}
+
+// SetSqsQueueUrl sets the SqsQueueUrl field's value.
+func (s *CallbackStepMetadata) SetSqsQueueUrl(v string) *CallbackStepMetadata {
+	s.SqsQueueUrl = &v
 	return s
 }
 
@@ -36797,9 +37012,6 @@ type CreateAutoMLJobInput struct {
 	// Provides information about encryption and the Amazon S3 output path needed
 	// to store artifacts from an AutoML job. Format(s) supported: CSV.
 	//
-	// <para>Specifies whether to automatically deploy the best &ATP; model to an
-	// endpoint and the name of that endpoint if deployed automatically.</para>
-	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *AutoMLOutputDataConfig `type:"structure" required:"true"`
 
@@ -36810,9 +37022,6 @@ type CreateAutoMLJobInput struct {
 	ProblemType *string `type:"string" enum:"ProblemType"`
 
 	// The ARN of the role that is used to access the data.
-	//
-	// <para>Specifies whether to automatically deploy the best &ATP; model to an
-	// endpoint and the name of that endpoint if deployed automatically.</para>
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -37645,6 +37854,13 @@ type CreateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
+	// Whether to create an AWS IoT Role Alias during device fleet creation. The
+	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	//
+	// For example, if your device fleet is called "demo-fleet", the name of the
+	// role alias will be "SageMakerEdge-demo-fleet".
+	EnableIotRoleAlias *bool `type:"boolean"`
+
 	// The output configuration for storing sample data collected by the fleet.
 	//
 	// OutputConfig is a required field
@@ -37717,6 +37933,12 @@ func (s *CreateDeviceFleetInput) SetDescription(v string) *CreateDeviceFleetInpu
 // SetDeviceFleetName sets the DeviceFleetName field's value.
 func (s *CreateDeviceFleetInput) SetDeviceFleetName(v string) *CreateDeviceFleetInput {
 	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEnableIotRoleAlias sets the EnableIotRoleAlias field's value.
+func (s *CreateDeviceFleetInput) SetEnableIotRoleAlias(v bool) *CreateDeviceFleetInput {
+	s.EnableIotRoleAlias = &v
 	return s
 }
 
@@ -45988,8 +46210,10 @@ func (s DeleteModelPackageGroupPolicyOutput) GoString() string {
 type DeleteModelPackageInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the model package. The name must have 1 to 63 characters. Valid
-	// characters are a-z, A-Z, 0-9, and - (hyphen).
+	// The name or Amazon Resource Name (ARN) of the model package to delete.
+	//
+	// When you specify a name, the name must have 1 to 63 characters. Valid characters
+	// are a-z, A-Z, 0-9, and - (hyphen).
 	//
 	// ModelPackageName is a required field
 	ModelPackageName *string `min:"1" type:"string" required:"true"`
@@ -49251,6 +49475,9 @@ type DescribeEdgePackagingJobOutput struct {
 	// The output configuration for the edge packaging job.
 	OutputConfig *EdgeOutputConfig `type:"structure"`
 
+	// The output of a SageMaker Edge Manager deployable resource.
+	PresetDeploymentOutput *EdgePresetDeploymentOutput `type:"structure"`
+
 	// The CMK to use when encrypting the EBS volume the job run on.
 	ResourceKey *string `type:"string"`
 
@@ -49338,6 +49565,12 @@ func (s *DescribeEdgePackagingJobOutput) SetModelVersion(v string) *DescribeEdge
 // SetOutputConfig sets the OutputConfig field's value.
 func (s *DescribeEdgePackagingJobOutput) SetOutputConfig(v *EdgeOutputConfig) *DescribeEdgePackagingJobOutput {
 	s.OutputConfig = v
+	return s
+}
+
+// SetPresetDeploymentOutput sets the PresetDeploymentOutput field's value.
+func (s *DescribeEdgePackagingJobOutput) SetPresetDeploymentOutput(v *EdgePresetDeploymentOutput) *DescribeEdgePackagingJobOutput {
+	s.PresetDeploymentOutput = v
 	return s
 }
 
@@ -51682,7 +51915,10 @@ func (s *DescribeModelPackageGroupOutput) SetModelPackageGroupStatus(v string) *
 type DescribeModelPackageInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the model package to describe.
+	// The name or Amazon Resource Name (ARN) of the model package to describe.
+	//
+	// When you specify a name, the name must have 1 to 63 characters. Valid characters
+	// are a-z, A-Z, 0-9, and - (hyphen).
 	//
 	// ModelPackageName is a required field
 	ModelPackageName *string `min:"1" type:"string" required:"true"`
@@ -52752,6 +52988,9 @@ type DescribePipelineExecutionOutput struct {
 	// The time when the pipeline execution was created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// If the execution failed, a message describing why.
+	FailureReason *string `type:"string"`
+
 	// Information about the user who created or modified an experiment, trial,
 	// or trial component.
 	LastModifiedBy *UserContext `type:"structure"`
@@ -52773,6 +53012,9 @@ type DescribePipelineExecutionOutput struct {
 
 	// The status of the pipeline execution.
 	PipelineExecutionStatus *string `type:"string" enum:"PipelineExecutionStatus"`
+
+	// Specifies the names of the experiment and trial created by a pipeline.
+	PipelineExperimentConfig *PipelineExperimentConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -52794,6 +53036,12 @@ func (s *DescribePipelineExecutionOutput) SetCreatedBy(v *UserContext) *Describe
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribePipelineExecutionOutput) SetCreationTime(v time.Time) *DescribePipelineExecutionOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DescribePipelineExecutionOutput) SetFailureReason(v string) *DescribePipelineExecutionOutput {
+	s.FailureReason = &v
 	return s
 }
 
@@ -52836,6 +53084,12 @@ func (s *DescribePipelineExecutionOutput) SetPipelineExecutionDisplayName(v stri
 // SetPipelineExecutionStatus sets the PipelineExecutionStatus field's value.
 func (s *DescribePipelineExecutionOutput) SetPipelineExecutionStatus(v string) *DescribePipelineExecutionOutput {
 	s.PipelineExecutionStatus = &v
+	return s
+}
+
+// SetPipelineExperimentConfig sets the PipelineExperimentConfig field's value.
+func (s *DescribePipelineExecutionOutput) SetPipelineExperimentConfig(v *PipelineExperimentConfig) *DescribePipelineExecutionOutput {
+	s.PipelineExperimentConfig = v
 	return s
 }
 
@@ -55665,6 +55919,34 @@ type EdgeOutputConfig struct {
 	// your role's account.
 	KmsKeyId *string `type:"string"`
 
+	// The configuration used to create deployment artifacts. Specify configuration
+	// options with a JSON string. The available configuration options for each
+	// type are:
+	//
+	//    * ComponentName (optional) - Name of the GreenGrass V2 component. If not
+	//    specified, the default name generated consists of "SagemakerEdgeManager"
+	//    and the name of your SageMaker Edge Manager packaging job.
+	//
+	//    * ComponentDescription (optional) - Description of the component.
+	//
+	//    * ComponentVersion (optional) - The version of the component. AWS IoT
+	//    Greengrass uses semantic versions for components. Semantic versions follow
+	//    a major.minor.patch number system. For example, version 1.0.0 represents
+	//    the first major release for a component. For more information, see the
+	//    semantic version specification (https://semver.org/).
+	//
+	//    * PlatformOS (optional) - The name of the operating system for the platform.
+	//    Supported platforms include Windows and Linux.
+	//
+	//    * PlatformArchitecture (optional) - The processor architecture for the
+	//    platform. Supported architectures Windows include: Windows32_x86, Windows64_x64.
+	//    Supported architectures for Linux include: Linux x86_64, Linux ARMV8.
+	PresetDeploymentConfig *string `type:"string"`
+
+	// The deployment type SageMaker Edge Manager will create. Currently only supports
+	// AWS IoT Greengrass Version 2 components.
+	PresetDeploymentType *string `type:"string" enum:"EdgePresetDeploymentType"`
+
 	// The Amazon Simple Storage (S3) bucker URI.
 	//
 	// S3OutputLocation is a required field
@@ -55697,6 +55979,18 @@ func (s *EdgeOutputConfig) Validate() error {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *EdgeOutputConfig) SetKmsKeyId(v string) *EdgeOutputConfig {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetPresetDeploymentConfig sets the PresetDeploymentConfig field's value.
+func (s *EdgeOutputConfig) SetPresetDeploymentConfig(v string) *EdgeOutputConfig {
+	s.PresetDeploymentConfig = &v
+	return s
+}
+
+// SetPresetDeploymentType sets the PresetDeploymentType field's value.
+func (s *EdgeOutputConfig) SetPresetDeploymentType(v string) *EdgeOutputConfig {
+	s.PresetDeploymentType = &v
 	return s
 }
 
@@ -55796,6 +56090,60 @@ func (s *EdgePackagingJobSummary) SetModelName(v string) *EdgePackagingJobSummar
 // SetModelVersion sets the ModelVersion field's value.
 func (s *EdgePackagingJobSummary) SetModelVersion(v string) *EdgePackagingJobSummary {
 	s.ModelVersion = &v
+	return s
+}
+
+// The output of a SageMaker Edge Manager deployable resource.
+type EdgePresetDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the generated deployable resource.
+	Artifact *string `min:"20" type:"string"`
+
+	// The status of the deployable resource.
+	Status *string `type:"string" enum:"EdgePresetDeploymentStatus"`
+
+	// Returns a message describing the status of the deployed resource.
+	StatusMessage *string `type:"string"`
+
+	// The deployment type created by SageMaker Edge Manager. Currently only supports
+	// AWS IoT Greengrass Version 2 components.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"EdgePresetDeploymentType"`
+}
+
+// String returns the string representation
+func (s EdgePresetDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EdgePresetDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetArtifact sets the Artifact field's value.
+func (s *EdgePresetDeploymentOutput) SetArtifact(v string) *EdgePresetDeploymentOutput {
+	s.Artifact = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EdgePresetDeploymentOutput) SetStatus(v string) *EdgePresetDeploymentOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *EdgePresetDeploymentOutput) SetStatusMessage(v string) *EdgePresetDeploymentOutput {
+	s.StatusMessage = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EdgePresetDeploymentOutput) SetType(v string) *EdgePresetDeploymentOutput {
+	s.Type = &v
 	return s
 }
 
@@ -61185,7 +61533,7 @@ type KernelSpec struct {
 	// The display name of the kernel.
 	DisplayName *string `type:"string"`
 
-	// The name of the kernel.
+	// The name of the Jupyter kernel in the image. This value is case sensitive.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -69551,10 +69899,10 @@ func (s *MetricData) SetValue(v float64) *MetricData {
 	return s
 }
 
-// Specifies a metric that the training algorithm writes to stderr or stdout
-// . Amazon SageMakerhyperparameter tuning captures all defined metrics. You
-// specify one metric that a hyperparameter tuning job uses as its objective
-// metric to choose the best training job.
+// Specifies a metric that the training algorithm writes to stderr or stdout.
+// Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify
+// one metric that a hyperparameter tuning job uses as its objective metric
+// to choose the best training job.
 type MetricDefinition struct {
 	_ struct{} `type:"structure"`
 
@@ -69976,7 +70324,7 @@ type ModelDeployConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Set to True to automatically generate an endpoint name for a one-click Autopilot
-	// model deployment; set to False otherwise. The default value is True.
+	// model deployment; set to False otherwise. The default value is False.
 	//
 	// If you set AutoGenerateEndpointName to True, do not specify the EndpointName;
 	// otherwise a 400 error is thrown.
@@ -73961,6 +74309,59 @@ func (s *OutputDataConfig) SetS3OutputPath(v string) *OutputDataConfig {
 	return s
 }
 
+// An output parameter of a pipeline step.
+type OutputParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the output parameter.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The value of the output parameter.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OutputParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OutputParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutputParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutputParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *OutputParameter) SetName(v string) *OutputParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *OutputParameter) SetValue(v string) *OutputParameter {
+	s.Value = &v
+	return s
+}
+
 // Assigns a value to a named Pipeline parameter.
 type Parameter struct {
 	_ struct{} `type:"structure"`
@@ -74393,6 +74794,9 @@ type PipelineExecution struct {
 	// The creation time of the pipeline execution.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// If the execution failed, a message describing why.
+	FailureReason *string `type:"string"`
+
 	// Information about the user who created or modified an experiment, trial,
 	// or trial component.
 	LastModifiedBy *UserContext `type:"structure"`
@@ -74414,6 +74818,9 @@ type PipelineExecution struct {
 
 	// The status of the pipeline status.
 	PipelineExecutionStatus *string `type:"string" enum:"PipelineExecutionStatus"`
+
+	// Specifies the names of the experiment and trial created by a pipeline.
+	PipelineExperimentConfig *PipelineExperimentConfig `type:"structure"`
 
 	// Contains a list of pipeline parameters. This list can be empty.
 	PipelineParameters []*Parameter `type:"list"`
@@ -74438,6 +74845,12 @@ func (s *PipelineExecution) SetCreatedBy(v *UserContext) *PipelineExecution {
 // SetCreationTime sets the CreationTime field's value.
 func (s *PipelineExecution) SetCreationTime(v time.Time) *PipelineExecution {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *PipelineExecution) SetFailureReason(v string) *PipelineExecution {
+	s.FailureReason = &v
 	return s
 }
 
@@ -74483,6 +74896,12 @@ func (s *PipelineExecution) SetPipelineExecutionStatus(v string) *PipelineExecut
 	return s
 }
 
+// SetPipelineExperimentConfig sets the PipelineExperimentConfig field's value.
+func (s *PipelineExecution) SetPipelineExperimentConfig(v *PipelineExperimentConfig) *PipelineExecution {
+	s.PipelineExperimentConfig = v
+	return s
+}
+
 // SetPipelineParameters sets the PipelineParameters field's value.
 func (s *PipelineExecution) SetPipelineParameters(v []*Parameter) *PipelineExecution {
 	s.PipelineParameters = v
@@ -74503,7 +74922,7 @@ type PipelineExecutionStep struct {
 	// failed its execution.
 	FailureReason *string `type:"string"`
 
-	// The metadata for the step execution.
+	// Metadata for the step execution.
 	Metadata *PipelineExecutionStepMetadata `type:"structure"`
 
 	// The time that the step started executing.
@@ -74572,6 +74991,9 @@ func (s *PipelineExecutionStep) SetStepStatus(v string) *PipelineExecutionStep {
 type PipelineExecutionStepMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// Metadata about a callback step.
+	Callback *CallbackStepMetadata `type:"structure"`
+
 	// If this is a Condition step metadata object, details on the condition.
 	Condition *ConditionStepMetadata `type:"structure"`
 
@@ -74602,6 +75024,12 @@ func (s PipelineExecutionStepMetadata) String() string {
 // GoString returns the string representation
 func (s PipelineExecutionStepMetadata) GoString() string {
 	return s.String()
+}
+
+// SetCallback sets the Callback field's value.
+func (s *PipelineExecutionStepMetadata) SetCallback(v *CallbackStepMetadata) *PipelineExecutionStepMetadata {
+	s.Callback = v
+	return s
 }
 
 // SetCondition sets the Condition field's value.
@@ -74697,6 +75125,39 @@ func (s *PipelineExecutionSummary) SetPipelineExecutionStatus(v string) *Pipelin
 // SetStartTime sets the StartTime field's value.
 func (s *PipelineExecutionSummary) SetStartTime(v time.Time) *PipelineExecutionSummary {
 	s.StartTime = &v
+	return s
+}
+
+// Specifies the names of the experiment and trial created by a pipeline.
+type PipelineExperimentConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the experiment.
+	ExperimentName *string `min:"1" type:"string"`
+
+	// The name of the trial.
+	TrialName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PipelineExperimentConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PipelineExperimentConfig) GoString() string {
+	return s.String()
+}
+
+// SetExperimentName sets the ExperimentName field's value.
+func (s *PipelineExperimentConfig) SetExperimentName(v string) *PipelineExperimentConfig {
+	s.ExperimentName = &v
+	return s
+}
+
+// SetTrialName sets the TrialName field's value.
+func (s *PipelineExperimentConfig) SetTrialName(v string) *PipelineExperimentConfig {
+	s.TrialName = &v
 	return s
 }
 
@@ -74805,10 +75266,30 @@ type ProcessingClusterConfig struct {
 	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
 	// encrypt data on the storage volume attached to the ML compute instance(s)
 	// that run the processing job.
+	//
+	// Certain Nitro-based instances include local storage, dependent on the instance
+	// type. Local storage volumes are encrypted using a hardware module on the
+	// instance. You can't request a VolumeKmsKeyId when using an instance type
+	// with local storage.
+	//
+	// For a list of instance types that support local instance storage, see Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
+	//
+	// For more information about local instance storage encryption, see SSD Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
 	VolumeKmsKeyId *string `type:"string"`
 
 	// The size of the ML storage volume in gigabytes that you want to provision.
 	// You must specify sufficient ML storage for your scenario.
+	//
+	// Certain Nitro-based instances include local storage with a fixed total size,
+	// dependent on the instance type. When using these instances for processing,
+	// Amazon SageMaker mounts the local instance storage instead of Amazon EBS
+	// gp2 storage. You can't request a VolumeSizeInGB greater than the total size
+	// of the local instance storage.
+	//
+	// For a list of instance types that support local instance storage, including
+	// the total size per instance type, see Instance Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
 	//
 	// VolumeSizeInGB is a required field
 	VolumeSizeInGB *int64 `min:"1" type:"integer" required:"true"`
@@ -75765,9 +76246,9 @@ func (s *ProcessingStoppingCondition) SetMaxRuntimeInSeconds(v int64) *Processin
 	return s
 }
 
-// Identifies a model that you want to host and the resources to deploy for
-// hosting it. If you are deploying multiple models, tell Amazon SageMaker how
-// to distribute traffic among the models by specifying variant weights.
+// Identifies a model that you want to host and the resources chosen to deploy
+// for hosting it. If you are deploying multiple models, tell Amazon SageMaker
+// how to distribute traffic among the models by specifying variant weights.
 type ProductionVariant struct {
 	_ struct{} `type:"structure"`
 
@@ -78642,6 +79123,188 @@ func (s *SecondaryStatusTransition) SetStatusMessage(v string) *SecondaryStatusT
 	return s
 }
 
+type SendPipelineExecutionStepFailureInput struct {
+	_ struct{} `type:"structure"`
+
+	// The pipeline generated token from the Amazon SQS queue.
+	//
+	// CallbackToken is a required field
+	CallbackToken *string `min:"10" type:"string" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the operation. An idempotent operation completes no more than one time.
+	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
+
+	// A message describing why the step failed.
+	FailureReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SendPipelineExecutionStepFailureInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendPipelineExecutionStepFailureInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendPipelineExecutionStepFailureInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendPipelineExecutionStepFailureInput"}
+	if s.CallbackToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallbackToken"))
+	}
+	if s.CallbackToken != nil && len(*s.CallbackToken) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("CallbackToken", 10))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallbackToken sets the CallbackToken field's value.
+func (s *SendPipelineExecutionStepFailureInput) SetCallbackToken(v string) *SendPipelineExecutionStepFailureInput {
+	s.CallbackToken = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *SendPipelineExecutionStepFailureInput) SetClientRequestToken(v string) *SendPipelineExecutionStepFailureInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *SendPipelineExecutionStepFailureInput) SetFailureReason(v string) *SendPipelineExecutionStepFailureInput {
+	s.FailureReason = &v
+	return s
+}
+
+type SendPipelineExecutionStepFailureOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the pipeline execution.
+	PipelineExecutionArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SendPipelineExecutionStepFailureOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendPipelineExecutionStepFailureOutput) GoString() string {
+	return s.String()
+}
+
+// SetPipelineExecutionArn sets the PipelineExecutionArn field's value.
+func (s *SendPipelineExecutionStepFailureOutput) SetPipelineExecutionArn(v string) *SendPipelineExecutionStepFailureOutput {
+	s.PipelineExecutionArn = &v
+	return s
+}
+
+type SendPipelineExecutionStepSuccessInput struct {
+	_ struct{} `type:"structure"`
+
+	// The pipeline generated token from the Amazon SQS queue.
+	//
+	// CallbackToken is a required field
+	CallbackToken *string `min:"10" type:"string" required:"true"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the operation. An idempotent operation completes no more than one time.
+	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
+
+	// A list of the output parameters of the callback step.
+	OutputParameters []*OutputParameter `type:"list"`
+}
+
+// String returns the string representation
+func (s SendPipelineExecutionStepSuccessInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendPipelineExecutionStepSuccessInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendPipelineExecutionStepSuccessInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendPipelineExecutionStepSuccessInput"}
+	if s.CallbackToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallbackToken"))
+	}
+	if s.CallbackToken != nil && len(*s.CallbackToken) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("CallbackToken", 10))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
+	}
+	if s.OutputParameters != nil {
+		for i, v := range s.OutputParameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OutputParameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallbackToken sets the CallbackToken field's value.
+func (s *SendPipelineExecutionStepSuccessInput) SetCallbackToken(v string) *SendPipelineExecutionStepSuccessInput {
+	s.CallbackToken = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *SendPipelineExecutionStepSuccessInput) SetClientRequestToken(v string) *SendPipelineExecutionStepSuccessInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetOutputParameters sets the OutputParameters field's value.
+func (s *SendPipelineExecutionStepSuccessInput) SetOutputParameters(v []*OutputParameter) *SendPipelineExecutionStepSuccessInput {
+	s.OutputParameters = v
+	return s
+}
+
+type SendPipelineExecutionStepSuccessOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the pipeline execution.
+	PipelineExecutionArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SendPipelineExecutionStepSuccessOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendPipelineExecutionStepSuccessOutput) GoString() string {
+	return s.String()
+}
+
+// SetPipelineExecutionArn sets the PipelineExecutionArn field's value.
+func (s *SendPipelineExecutionStepSuccessOutput) SetPipelineExecutionArn(v string) *SendPipelineExecutionStepSuccessOutput {
+	s.PipelineExecutionArn = &v
+	return s
+}
+
 // Details of a provisioned service catalog product. For information about service
 // catalog, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ServiceCatalogProvisionedProductDetails struct {
@@ -80080,11 +80743,23 @@ func (s *SuggestionQuery) SetPropertyNameQuery(v *PropertyNameQuery) *Suggestion
 	return s
 }
 
-// Describes a tag.
+// A tag object that consists of a key and an optional value, used to manage
+// metadata for Amazon SageMaker AWS resources.
+//
+// You can add tags to notebook instances, training jobs, hyperparameter tuning
+// jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations,
+// and endpoints. For more information on adding tags to Amazon SageMaker resources,
+// see AddTags.
+//
+// For more information on adding metadata to your AWS resources with tagging,
+// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+// For advice on best practices for managing AWS resources with tagging, see
+// Tagging Best Practices: Implement an Effective AWS Resource Tagging Strategy
+// (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf).
 type Tag struct {
 	_ struct{} `type:"structure"`
 
-	// The tag key.
+	// The tag key. Tag keys must be unique per resource.
 	//
 	// Key is a required field
 	Key *string `min:"1" type:"string" required:"true"`
@@ -82060,15 +82735,27 @@ type TransformResources struct {
 
 	// The ML compute instance type for the transform job. If you are using built-in
 	// algorithms to transform moderately sized datasets, we recommend using ml.m4.xlarge
-	// or ml.m5.large instance types.
+	// or ml.m5.largeinstance types.
 	//
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TransformInstanceType"`
 
 	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
 	// encrypt model data on the storage volume attached to the ML compute instance(s)
-	// that run the batch transform job. The VolumeKmsKeyId can be any of the following
-	// formats:
+	// that run the batch transform job.
+	//
+	// Certain Nitro-based instances include local storage, dependent on the instance
+	// type. Local storage volumes are encrypted using a hardware module on the
+	// instance. You can't request a VolumeKmsKeyId when using an instance type
+	// with local storage.
+	//
+	// For a list of instance types that support local instance storage, see Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes).
+	//
+	// For more information about local instance storage encryption, see SSD Instance
+	// Store Volumes (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html).
+	//
+	// The VolumeKmsKeyId can be any of the following formats:
 	//
 	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
@@ -83804,6 +84491,13 @@ type UpdateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
+	// Whether to create an AWS IoT Role Alias during device fleet creation. The
+	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	//
+	// For example, if your device fleet is called "demo-fleet", the name of the
+	// role alias will be "SageMakerEdge-demo-fleet".
+	EnableIotRoleAlias *bool `type:"boolean"`
+
 	// Output configuration for storing sample data collected by the fleet.
 	//
 	// OutputConfig is a required field
@@ -83862,6 +84556,12 @@ func (s *UpdateDeviceFleetInput) SetDescription(v string) *UpdateDeviceFleetInpu
 // SetDeviceFleetName sets the DeviceFleetName field's value.
 func (s *UpdateDeviceFleetInput) SetDeviceFleetName(v string) *UpdateDeviceFleetInput {
 	s.DeviceFleetName = &v
+	return s
+}
+
+// SetEnableIotRoleAlias sets the EnableIotRoleAlias field's value.
+func (s *UpdateDeviceFleetInput) SetEnableIotRoleAlias(v bool) *UpdateDeviceFleetInput {
+	s.EnableIotRoleAlias = &v
 	return s
 }
 
@@ -87422,6 +88122,34 @@ func EdgePackagingJobStatus_Values() []string {
 }
 
 const (
+	// EdgePresetDeploymentStatusCompleted is a EdgePresetDeploymentStatus enum value
+	EdgePresetDeploymentStatusCompleted = "COMPLETED"
+
+	// EdgePresetDeploymentStatusFailed is a EdgePresetDeploymentStatus enum value
+	EdgePresetDeploymentStatusFailed = "FAILED"
+)
+
+// EdgePresetDeploymentStatus_Values returns all elements of the EdgePresetDeploymentStatus enum
+func EdgePresetDeploymentStatus_Values() []string {
+	return []string{
+		EdgePresetDeploymentStatusCompleted,
+		EdgePresetDeploymentStatusFailed,
+	}
+}
+
+const (
+	// EdgePresetDeploymentTypeGreengrassV2component is a EdgePresetDeploymentType enum value
+	EdgePresetDeploymentTypeGreengrassV2component = "GreengrassV2Component"
+)
+
+// EdgePresetDeploymentType_Values returns all elements of the EdgePresetDeploymentType enum
+func EdgePresetDeploymentType_Values() []string {
+	return []string{
+		EdgePresetDeploymentTypeGreengrassV2component,
+	}
+}
+
+const (
 	// EndpointConfigSortKeyName is a EndpointConfigSortKey enum value
 	EndpointConfigSortKeyName = "Name"
 
@@ -89069,6 +89797,24 @@ const (
 
 	// ProcessingInstanceTypeMlR524xlarge is a ProcessingInstanceType enum value
 	ProcessingInstanceTypeMlR524xlarge = "ml.r5.24xlarge"
+
+	// ProcessingInstanceTypeMlG4dnXlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// ProcessingInstanceTypeMlG4dn2xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// ProcessingInstanceTypeMlG4dn4xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// ProcessingInstanceTypeMlG4dn8xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// ProcessingInstanceTypeMlG4dn12xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// ProcessingInstanceTypeMlG4dn16xlarge is a ProcessingInstanceType enum value
+	ProcessingInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
 )
 
 // ProcessingInstanceType_Values returns all elements of the ProcessingInstanceType enum
@@ -89112,6 +89858,12 @@ func ProcessingInstanceType_Values() []string {
 		ProcessingInstanceTypeMlR512xlarge,
 		ProcessingInstanceTypeMlR516xlarge,
 		ProcessingInstanceTypeMlR524xlarge,
+		ProcessingInstanceTypeMlG4dnXlarge,
+		ProcessingInstanceTypeMlG4dn2xlarge,
+		ProcessingInstanceTypeMlG4dn4xlarge,
+		ProcessingInstanceTypeMlG4dn8xlarge,
+		ProcessingInstanceTypeMlG4dn12xlarge,
+		ProcessingInstanceTypeMlG4dn16xlarge,
 	}
 }
 
@@ -90739,6 +91491,24 @@ const (
 
 	// TransformInstanceTypeMlM524xlarge is a TransformInstanceType enum value
 	TransformInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
+
+	// TransformInstanceTypeMlG4dnXlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// TransformInstanceTypeMlG4dn2xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// TransformInstanceTypeMlG4dn4xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// TransformInstanceTypeMlG4dn8xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// TransformInstanceTypeMlG4dn12xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// TransformInstanceTypeMlG4dn16xlarge is a TransformInstanceType enum value
+	TransformInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
 )
 
 // TransformInstanceType_Values returns all elements of the TransformInstanceType enum
@@ -90770,6 +91540,12 @@ func TransformInstanceType_Values() []string {
 		TransformInstanceTypeMlM54xlarge,
 		TransformInstanceTypeMlM512xlarge,
 		TransformInstanceTypeMlM524xlarge,
+		TransformInstanceTypeMlG4dnXlarge,
+		TransformInstanceTypeMlG4dn2xlarge,
+		TransformInstanceTypeMlG4dn4xlarge,
+		TransformInstanceTypeMlG4dn8xlarge,
+		TransformInstanceTypeMlG4dn12xlarge,
+		TransformInstanceTypeMlG4dn16xlarge,
 	}
 }
 

@@ -64,6 +64,10 @@ type ConnectAPI interface {
 	AssociateApprovedOriginWithContext(aws.Context, *connect.AssociateApprovedOriginInput, ...request.Option) (*connect.AssociateApprovedOriginOutput, error)
 	AssociateApprovedOriginRequest(*connect.AssociateApprovedOriginInput) (*request.Request, *connect.AssociateApprovedOriginOutput)
 
+	AssociateBot(*connect.AssociateBotInput) (*connect.AssociateBotOutput, error)
+	AssociateBotWithContext(aws.Context, *connect.AssociateBotInput, ...request.Option) (*connect.AssociateBotOutput, error)
+	AssociateBotRequest(*connect.AssociateBotInput) (*request.Request, *connect.AssociateBotOutput)
+
 	AssociateInstanceStorageConfig(*connect.AssociateInstanceStorageConfigInput) (*connect.AssociateInstanceStorageConfigOutput, error)
 	AssociateInstanceStorageConfigWithContext(aws.Context, *connect.AssociateInstanceStorageConfigInput, ...request.Option) (*connect.AssociateInstanceStorageConfigOutput, error)
 	AssociateInstanceStorageConfigRequest(*connect.AssociateInstanceStorageConfigInput) (*request.Request, *connect.AssociateInstanceStorageConfigOutput)
@@ -196,6 +200,10 @@ type ConnectAPI interface {
 	DisassociateApprovedOriginWithContext(aws.Context, *connect.DisassociateApprovedOriginInput, ...request.Option) (*connect.DisassociateApprovedOriginOutput, error)
 	DisassociateApprovedOriginRequest(*connect.DisassociateApprovedOriginInput) (*request.Request, *connect.DisassociateApprovedOriginOutput)
 
+	DisassociateBot(*connect.DisassociateBotInput) (*connect.DisassociateBotOutput, error)
+	DisassociateBotWithContext(aws.Context, *connect.DisassociateBotInput, ...request.Option) (*connect.DisassociateBotOutput, error)
+	DisassociateBotRequest(*connect.DisassociateBotInput) (*request.Request, *connect.DisassociateBotOutput)
+
 	DisassociateInstanceStorageConfig(*connect.DisassociateInstanceStorageConfigInput) (*connect.DisassociateInstanceStorageConfigOutput, error)
 	DisassociateInstanceStorageConfigWithContext(aws.Context, *connect.DisassociateInstanceStorageConfigInput, ...request.Option) (*connect.DisassociateInstanceStorageConfigOutput, error)
 	DisassociateInstanceStorageConfigRequest(*connect.DisassociateInstanceStorageConfigInput) (*request.Request, *connect.DisassociateInstanceStorageConfigOutput)
@@ -248,6 +256,13 @@ type ConnectAPI interface {
 
 	ListApprovedOriginsPages(*connect.ListApprovedOriginsInput, func(*connect.ListApprovedOriginsOutput, bool) bool) error
 	ListApprovedOriginsPagesWithContext(aws.Context, *connect.ListApprovedOriginsInput, func(*connect.ListApprovedOriginsOutput, bool) bool, ...request.Option) error
+
+	ListBots(*connect.ListBotsInput) (*connect.ListBotsOutput, error)
+	ListBotsWithContext(aws.Context, *connect.ListBotsInput, ...request.Option) (*connect.ListBotsOutput, error)
+	ListBotsRequest(*connect.ListBotsInput) (*request.Request, *connect.ListBotsOutput)
+
+	ListBotsPages(*connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool) error
+	ListBotsPagesWithContext(aws.Context, *connect.ListBotsInput, func(*connect.ListBotsOutput, bool) bool, ...request.Option) error
 
 	ListContactFlows(*connect.ListContactFlowsInput) (*connect.ListContactFlowsOutput, error)
 	ListContactFlowsWithContext(aws.Context, *connect.ListContactFlowsInput, ...request.Option) (*connect.ListContactFlowsOutput, error)
