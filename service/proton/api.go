@@ -3,6 +3,8 @@
 package proton
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -11,6 +13,64 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"AcceptEnvironmentAccountConnection": ExecuteAcceptEnvironmentAccountConnection,
+		"CancelEnvironmentDeployment":        ExecuteCancelEnvironmentDeployment,
+		"CancelServiceInstanceDeployment":    ExecuteCancelServiceInstanceDeployment,
+		"CancelServicePipelineDeployment":    ExecuteCancelServicePipelineDeployment,
+		"CreateEnvironment":                  ExecuteCreateEnvironment,
+		"CreateEnvironmentAccountConnection": ExecuteCreateEnvironmentAccountConnection,
+		"CreateEnvironmentTemplate":          ExecuteCreateEnvironmentTemplate,
+		"CreateEnvironmentTemplateVersion":   ExecuteCreateEnvironmentTemplateVersion,
+		"CreateService":                      ExecuteCreateService,
+		"CreateServiceTemplate":              ExecuteCreateServiceTemplate,
+		"CreateServiceTemplateVersion":       ExecuteCreateServiceTemplateVersion,
+		"DeleteEnvironment":                  ExecuteDeleteEnvironment,
+		"DeleteEnvironmentAccountConnection": ExecuteDeleteEnvironmentAccountConnection,
+		"DeleteEnvironmentTemplate":          ExecuteDeleteEnvironmentTemplate,
+		"DeleteEnvironmentTemplateVersion":   ExecuteDeleteEnvironmentTemplateVersion,
+		"DeleteService":                      ExecuteDeleteService,
+		"DeleteServiceTemplate":              ExecuteDeleteServiceTemplate,
+		"DeleteServiceTemplateVersion":       ExecuteDeleteServiceTemplateVersion,
+		"GetAccountSettings":                 ExecuteGetAccountSettings,
+		"GetEnvironment":                     ExecuteGetEnvironment,
+		"GetEnvironmentAccountConnection":    ExecuteGetEnvironmentAccountConnection,
+		"GetEnvironmentTemplate":             ExecuteGetEnvironmentTemplate,
+		"GetEnvironmentTemplateVersion":      ExecuteGetEnvironmentTemplateVersion,
+		"GetService":                         ExecuteGetService,
+		"GetServiceInstance":                 ExecuteGetServiceInstance,
+		"GetServiceTemplate":                 ExecuteGetServiceTemplate,
+		"GetServiceTemplateVersion":          ExecuteGetServiceTemplateVersion,
+		"ListEnvironmentAccountConnections":  ExecuteListEnvironmentAccountConnections,
+		"ListEnvironmentTemplateVersions":    ExecuteListEnvironmentTemplateVersions,
+		"ListEnvironmentTemplates":           ExecuteListEnvironmentTemplates,
+		"ListEnvironments":                   ExecuteListEnvironments,
+		"ListServiceInstances":               ExecuteListServiceInstances,
+		"ListServiceTemplateVersions":        ExecuteListServiceTemplateVersions,
+		"ListServiceTemplates":               ExecuteListServiceTemplates,
+		"ListServices":                       ExecuteListServices,
+		"ListTagsForResource":                ExecuteListTagsForResource,
+		"RejectEnvironmentAccountConnection": ExecuteRejectEnvironmentAccountConnection,
+		"TagResource":                        ExecuteTagResource,
+		"UntagResource":                      ExecuteUntagResource,
+		"UpdateAccountSettings":              ExecuteUpdateAccountSettings,
+		"UpdateEnvironment":                  ExecuteUpdateEnvironment,
+		"UpdateEnvironmentAccountConnection": ExecuteUpdateEnvironmentAccountConnection,
+		"UpdateEnvironmentTemplate":          ExecuteUpdateEnvironmentTemplate,
+		"UpdateEnvironmentTemplateVersion":   ExecuteUpdateEnvironmentTemplateVersion,
+		"UpdateService":                      ExecuteUpdateService,
+		"UpdateServiceInstance":              ExecuteUpdateServiceInstance,
+		"UpdateServicePipeline":              ExecuteUpdateServicePipeline,
+		"UpdateServiceTemplate":              ExecuteUpdateServiceTemplate,
+		"UpdateServiceTemplateVersion":       ExecuteUpdateServiceTemplateVersion,
+	}
 )
 
 const opAcceptEnvironmentAccountConnection = "AcceptEnvironmentAccountConnection"
@@ -112,6 +172,44 @@ func (c *Proton) AcceptEnvironmentAccountConnectionWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteAcceptEnvironmentAccountConnection is Blink's code
+func ExecuteAcceptEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AcceptEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AcceptEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCancelEnvironmentDeployment = "CancelEnvironmentDeployment"
@@ -224,6 +322,44 @@ func (c *Proton) CancelEnvironmentDeploymentWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// ExecuteCancelEnvironmentDeployment is Blink's code
+func ExecuteCancelEnvironmentDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CancelEnvironmentDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CancelEnvironmentDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCancelServiceInstanceDeployment = "CancelServiceInstanceDeployment"
 
 // CancelServiceInstanceDeploymentRequest generates a "aws/request.Request" representing the
@@ -332,6 +468,44 @@ func (c *Proton) CancelServiceInstanceDeploymentWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCancelServiceInstanceDeployment is Blink's code
+func ExecuteCancelServiceInstanceDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CancelServiceInstanceDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CancelServiceInstanceDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCancelServicePipelineDeployment = "CancelServicePipelineDeployment"
@@ -444,6 +618,44 @@ func (c *Proton) CancelServicePipelineDeploymentWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteCancelServicePipelineDeployment is Blink's code
+func ExecuteCancelServicePipelineDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CancelServicePipelineDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CancelServicePipelineDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateEnvironment = "CreateEnvironment"
 
 // CreateEnvironmentRequest generates a "aws/request.Request" representing the
@@ -544,6 +756,44 @@ func (c *Proton) CreateEnvironmentWithContext(ctx aws.Context, input *CreateEnvi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateEnvironment is Blink's code
+func ExecuteCreateEnvironment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateEnvironmentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateEnvironmentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateEnvironmentAccountConnection = "CreateEnvironmentAccountConnection"
@@ -648,6 +898,44 @@ func (c *Proton) CreateEnvironmentAccountConnectionWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateEnvironmentAccountConnection is Blink's code
+func ExecuteCreateEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateEnvironmentTemplate = "CreateEnvironmentTemplate"
@@ -762,6 +1050,44 @@ func (c *Proton) CreateEnvironmentTemplateWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+// ExecuteCreateEnvironmentTemplate is Blink's code
+func ExecuteCreateEnvironmentTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateEnvironmentTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateEnvironmentTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateEnvironmentTemplateVersion = "CreateEnvironmentTemplateVersion"
 
 // CreateEnvironmentTemplateVersionRequest generates a "aws/request.Request" representing the
@@ -862,6 +1188,44 @@ func (c *Proton) CreateEnvironmentTemplateVersionWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateEnvironmentTemplateVersion is Blink's code
+func ExecuteCreateEnvironmentTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateEnvironmentTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateEnvironmentTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateService = "CreateService"
@@ -967,6 +1331,44 @@ func (c *Proton) CreateServiceWithContext(ctx aws.Context, input *CreateServiceI
 	return out, req.Send()
 }
 
+// ExecuteCreateService is Blink's code
+func ExecuteCreateService(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateServiceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateServiceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateServiceTemplate = "CreateServiceTemplate"
 
 // CreateServiceTemplateRequest generates a "aws/request.Request" representing the
@@ -1068,6 +1470,44 @@ func (c *Proton) CreateServiceTemplateWithContext(ctx aws.Context, input *Create
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateServiceTemplate is Blink's code
+func ExecuteCreateServiceTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateServiceTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateServiceTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateServiceTemplateVersion = "CreateServiceTemplateVersion"
@@ -1172,6 +1612,44 @@ func (c *Proton) CreateServiceTemplateVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteCreateServiceTemplateVersion is Blink's code
+func ExecuteCreateServiceTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateServiceTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateServiceTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteEnvironment = "DeleteEnvironment"
 
 // DeleteEnvironmentRequest generates a "aws/request.Request" representing the
@@ -1265,6 +1743,44 @@ func (c *Proton) DeleteEnvironmentWithContext(ctx aws.Context, input *DeleteEnvi
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteEnvironment is Blink's code
+func ExecuteDeleteEnvironment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteEnvironmentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteEnvironmentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteEnvironmentAccountConnection = "DeleteEnvironmentAccountConnection"
@@ -1371,6 +1887,44 @@ func (c *Proton) DeleteEnvironmentAccountConnectionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteDeleteEnvironmentAccountConnection is Blink's code
+func ExecuteDeleteEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteEnvironmentTemplate = "DeleteEnvironmentTemplate"
 
 // DeleteEnvironmentTemplateRequest generates a "aws/request.Request" representing the
@@ -1465,6 +2019,44 @@ func (c *Proton) DeleteEnvironmentTemplateWithContext(ctx aws.Context, input *De
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteEnvironmentTemplate is Blink's code
+func ExecuteDeleteEnvironmentTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteEnvironmentTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteEnvironmentTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteEnvironmentTemplateVersion = "DeleteEnvironmentTemplateVersion"
@@ -1571,6 +2163,44 @@ func (c *Proton) DeleteEnvironmentTemplateVersionWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+// ExecuteDeleteEnvironmentTemplateVersion is Blink's code
+func ExecuteDeleteEnvironmentTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteEnvironmentTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteEnvironmentTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteService = "DeleteService"
 
 // DeleteServiceRequest generates a "aws/request.Request" representing the
@@ -1664,6 +2294,44 @@ func (c *Proton) DeleteServiceWithContext(ctx aws.Context, input *DeleteServiceI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteService is Blink's code
+func ExecuteDeleteService(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteServiceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteServiceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteServiceTemplate = "DeleteServiceTemplate"
@@ -1760,6 +2428,44 @@ func (c *Proton) DeleteServiceTemplateWithContext(ctx aws.Context, input *Delete
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteServiceTemplate is Blink's code
+func ExecuteDeleteServiceTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteServiceTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteServiceTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteServiceTemplateVersion = "DeleteServiceTemplateVersion"
@@ -1866,6 +2572,44 @@ func (c *Proton) DeleteServiceTemplateVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteDeleteServiceTemplateVersion is Blink's code
+func ExecuteDeleteServiceTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteServiceTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteServiceTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetAccountSettings = "GetAccountSettings"
 
 // GetAccountSettingsRequest generates a "aws/request.Request" representing the
@@ -1958,6 +2702,44 @@ func (c *Proton) GetAccountSettingsWithContext(ctx aws.Context, input *GetAccoun
 	return out, req.Send()
 }
 
+// ExecuteGetAccountSettings is Blink's code
+func ExecuteGetAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetAccountSettingsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetAccountSettingsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetEnvironment = "GetEnvironment"
 
 // GetEnvironmentRequest generates a "aws/request.Request" representing the
@@ -2048,6 +2830,44 @@ func (c *Proton) GetEnvironmentWithContext(ctx aws.Context, input *GetEnvironmen
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetEnvironment is Blink's code
+func ExecuteGetEnvironment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetEnvironmentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEnvironmentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetEnvironmentAccountConnection = "GetEnvironmentAccountConnection"
@@ -2146,6 +2966,44 @@ func (c *Proton) GetEnvironmentAccountConnectionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteGetEnvironmentAccountConnection is Blink's code
+func ExecuteGetEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetEnvironmentTemplate = "GetEnvironmentTemplate"
 
 // GetEnvironmentTemplateRequest generates a "aws/request.Request" representing the
@@ -2236,6 +3094,44 @@ func (c *Proton) GetEnvironmentTemplateWithContext(ctx aws.Context, input *GetEn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetEnvironmentTemplate is Blink's code
+func ExecuteGetEnvironmentTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetEnvironmentTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEnvironmentTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetEnvironmentTemplateVersion = "GetEnvironmentTemplateVersion"
@@ -2330,6 +3226,44 @@ func (c *Proton) GetEnvironmentTemplateVersionWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ExecuteGetEnvironmentTemplateVersion is Blink's code
+func ExecuteGetEnvironmentTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetEnvironmentTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetEnvironmentTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetService = "GetService"
 
 // GetServiceRequest generates a "aws/request.Request" representing the
@@ -2420,6 +3354,44 @@ func (c *Proton) GetServiceWithContext(ctx aws.Context, input *GetServiceInput, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetService is Blink's code
+func ExecuteGetService(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetServiceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetServiceInstance = "GetServiceInstance"
@@ -2515,6 +3487,44 @@ func (c *Proton) GetServiceInstanceWithContext(ctx aws.Context, input *GetServic
 	return out, req.Send()
 }
 
+// ExecuteGetServiceInstance is Blink's code
+func ExecuteGetServiceInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetServiceInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetServiceTemplate = "GetServiceTemplate"
 
 // GetServiceTemplateRequest generates a "aws/request.Request" representing the
@@ -2607,6 +3617,44 @@ func (c *Proton) GetServiceTemplateWithContext(ctx aws.Context, input *GetServic
 	return out, req.Send()
 }
 
+// ExecuteGetServiceTemplate is Blink's code
+func ExecuteGetServiceTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetServiceTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetServiceTemplateVersion = "GetServiceTemplateVersion"
 
 // GetServiceTemplateVersionRequest generates a "aws/request.Request" representing the
@@ -2697,6 +3745,44 @@ func (c *Proton) GetServiceTemplateVersionWithContext(ctx aws.Context, input *Ge
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetServiceTemplateVersion is Blink's code
+func ExecuteGetServiceTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetServiceTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetServiceTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opListEnvironmentAccountConnections = "ListEnvironmentAccountConnections"
@@ -2795,6 +3881,44 @@ func (c *Proton) ListEnvironmentAccountConnectionsWithContext(ctx aws.Context, i
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListEnvironmentAccountConnections is Blink's code
+func ExecuteListEnvironmentAccountConnections(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListEnvironmentAccountConnectionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEnvironmentAccountConnectionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListEnvironmentAccountConnectionsPages iterates over the pages of a ListEnvironmentAccountConnections operation,
@@ -2947,6 +4071,44 @@ func (c *Proton) ListEnvironmentTemplateVersionsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteListEnvironmentTemplateVersions is Blink's code
+func ExecuteListEnvironmentTemplateVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListEnvironmentTemplateVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEnvironmentTemplateVersionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListEnvironmentTemplateVersionsPages iterates over the pages of a ListEnvironmentTemplateVersions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -3092,6 +4254,44 @@ func (c *Proton) ListEnvironmentTemplatesWithContext(ctx aws.Context, input *Lis
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListEnvironmentTemplates is Blink's code
+func ExecuteListEnvironmentTemplates(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListEnvironmentTemplatesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEnvironmentTemplatesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListEnvironmentTemplatesPages iterates over the pages of a ListEnvironmentTemplates operation,
@@ -3244,6 +4444,44 @@ func (c *Proton) ListEnvironmentsWithContext(ctx aws.Context, input *ListEnviron
 	return out, req.Send()
 }
 
+// ExecuteListEnvironments is Blink's code
+func ExecuteListEnvironments(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListEnvironmentsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEnvironmentsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListEnvironmentsPages iterates over the pages of a ListEnvironments operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -3392,6 +4630,44 @@ func (c *Proton) ListServiceInstancesWithContext(ctx aws.Context, input *ListSer
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListServiceInstances is Blink's code
+func ExecuteListServiceInstances(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListServiceInstancesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServiceInstancesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListServiceInstancesPages iterates over the pages of a ListServiceInstances operation,
@@ -3544,6 +4820,44 @@ func (c *Proton) ListServiceTemplateVersionsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// ExecuteListServiceTemplateVersions is Blink's code
+func ExecuteListServiceTemplateVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListServiceTemplateVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServiceTemplateVersionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListServiceTemplateVersionsPages iterates over the pages of a ListServiceTemplateVersions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -3691,6 +5005,44 @@ func (c *Proton) ListServiceTemplatesWithContext(ctx aws.Context, input *ListSer
 	return out, req.Send()
 }
 
+// ExecuteListServiceTemplates is Blink's code
+func ExecuteListServiceTemplates(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListServiceTemplatesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServiceTemplatesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListServiceTemplatesPages iterates over the pages of a ListServiceTemplates operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -3836,6 +5188,44 @@ func (c *Proton) ListServicesWithContext(ctx aws.Context, input *ListServicesInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListServices is Blink's code
+func ExecuteListServices(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListServicesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListServicesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListServicesPages iterates over the pages of a ListServices operation,
@@ -3988,6 +5378,44 @@ func (c *Proton) ListTagsForResourceWithContext(ctx aws.Context, input *ListTags
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListTagsForResource is Blink's code
+func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListTagsForResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
@@ -4147,6 +5575,44 @@ func (c *Proton) RejectEnvironmentAccountConnectionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteRejectEnvironmentAccountConnection is Blink's code
+func ExecuteRejectEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RejectEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RejectEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4243,6 +5709,44 @@ func (c *Proton) TagResourceWithContext(ctx aws.Context, input *TagResourceInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteTagResource is Blink's code
+func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := TagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.TagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUntagResource = "UntagResource"
@@ -4343,6 +5847,44 @@ func (c *Proton) UntagResourceWithContext(ctx aws.Context, input *UntagResourceI
 	return out, req.Send()
 }
 
+// ExecuteUntagResource is Blink's code
+func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UntagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UntagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateAccountSettings = "UpdateAccountSettings"
 
 // UpdateAccountSettingsRequest generates a "aws/request.Request" representing the
@@ -4433,6 +5975,44 @@ func (c *Proton) UpdateAccountSettingsWithContext(ctx aws.Context, input *Update
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateAccountSettings is Blink's code
+func ExecuteUpdateAccountSettings(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateAccountSettingsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateAccountSettingsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateEnvironment = "UpdateEnvironment"
@@ -4573,6 +6153,44 @@ func (c *Proton) UpdateEnvironmentWithContext(ctx aws.Context, input *UpdateEnvi
 	return out, req.Send()
 }
 
+// ExecuteUpdateEnvironment is Blink's code
+func ExecuteUpdateEnvironment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateEnvironmentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateEnvironmentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateEnvironmentAccountConnection = "UpdateEnvironmentAccountConnection"
 
 // UpdateEnvironmentAccountConnectionRequest generates a "aws/request.Request" representing the
@@ -4672,6 +6290,44 @@ func (c *Proton) UpdateEnvironmentAccountConnectionWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+// ExecuteUpdateEnvironmentAccountConnection is Blink's code
+func ExecuteUpdateEnvironmentAccountConnection(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateEnvironmentAccountConnectionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateEnvironmentAccountConnectionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateEnvironmentTemplate = "UpdateEnvironmentTemplate"
 
 // UpdateEnvironmentTemplateRequest generates a "aws/request.Request" representing the
@@ -4767,6 +6423,44 @@ func (c *Proton) UpdateEnvironmentTemplateWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
+// ExecuteUpdateEnvironmentTemplate is Blink's code
+func ExecuteUpdateEnvironmentTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateEnvironmentTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateEnvironmentTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateEnvironmentTemplateVersion = "UpdateEnvironmentTemplateVersion"
 
 // UpdateEnvironmentTemplateVersionRequest generates a "aws/request.Request" representing the
@@ -4860,6 +6554,44 @@ func (c *Proton) UpdateEnvironmentTemplateVersionWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateEnvironmentTemplateVersion is Blink's code
+func ExecuteUpdateEnvironmentTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateEnvironmentTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateEnvironmentTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateService = "UpdateService"
@@ -4966,6 +6698,44 @@ func (c *Proton) UpdateServiceWithContext(ctx aws.Context, input *UpdateServiceI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateService is Blink's code
+func ExecuteUpdateService(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateServiceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateServiceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateServiceInstance = "UpdateServiceInstance"
@@ -5091,6 +6861,44 @@ func (c *Proton) UpdateServiceInstanceWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// ExecuteUpdateServiceInstance is Blink's code
+func ExecuteUpdateServiceInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateServiceInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateServiceInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateServicePipeline = "UpdateServicePipeline"
 
 // UpdateServicePipelineRequest generates a "aws/request.Request" representing the
@@ -5214,6 +7022,44 @@ func (c *Proton) UpdateServicePipelineWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// ExecuteUpdateServicePipeline is Blink's code
+func ExecuteUpdateServicePipeline(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateServicePipelineInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateServicePipelineRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateServiceTemplate = "UpdateServiceTemplate"
 
 // UpdateServiceTemplateRequest generates a "aws/request.Request" representing the
@@ -5309,6 +7155,44 @@ func (c *Proton) UpdateServiceTemplateWithContext(ctx aws.Context, input *Update
 	return out, req.Send()
 }
 
+// ExecuteUpdateServiceTemplate is Blink's code
+func ExecuteUpdateServiceTemplate(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateServiceTemplateInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateServiceTemplateRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateServiceTemplateVersion = "UpdateServiceTemplateVersion"
 
 // UpdateServiceTemplateVersionRequest generates a "aws/request.Request" representing the
@@ -5402,6 +7286,44 @@ func (c *Proton) UpdateServiceTemplateVersionWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateServiceTemplateVersion is Blink's code
+func ExecuteUpdateServiceTemplateVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Proton)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateServiceTemplateVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateServiceTemplateVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 type AcceptEnvironmentAccountConnectionInput struct {

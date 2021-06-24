@@ -3,6 +3,8 @@
 package rds
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -11,6 +13,152 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/query"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"AddRoleToDBCluster":                         ExecuteAddRoleToDBCluster,
+		"AddRoleToDBInstance":                        ExecuteAddRoleToDBInstance,
+		"AddSourceIdentifierToSubscription":          ExecuteAddSourceIdentifierToSubscription,
+		"AddTagsToResource":                          ExecuteAddTagsToResource,
+		"ApplyPendingMaintenanceAction":              ExecuteApplyPendingMaintenanceAction,
+		"AuthorizeDBSecurityGroupIngress":            ExecuteAuthorizeDBSecurityGroupIngress,
+		"BacktrackDBCluster":                         ExecuteBacktrackDBCluster,
+		"CancelExportTask":                           ExecuteCancelExportTask,
+		"CopyDBClusterParameterGroup":                ExecuteCopyDBClusterParameterGroup,
+		"CopyDBClusterSnapshot":                      ExecuteCopyDBClusterSnapshot,
+		"CopyDBParameterGroup":                       ExecuteCopyDBParameterGroup,
+		"CopyDBSnapshot":                             ExecuteCopyDBSnapshot,
+		"CopyOptionGroup":                            ExecuteCopyOptionGroup,
+		"CreateCustomAvailabilityZone":               ExecuteCreateCustomAvailabilityZone,
+		"CreateDBCluster":                            ExecuteCreateDBCluster,
+		"CreateDBClusterEndpoint":                    ExecuteCreateDBClusterEndpoint,
+		"CreateDBClusterParameterGroup":              ExecuteCreateDBClusterParameterGroup,
+		"CreateDBClusterSnapshot":                    ExecuteCreateDBClusterSnapshot,
+		"CreateDBInstance":                           ExecuteCreateDBInstance,
+		"CreateDBInstanceReadReplica":                ExecuteCreateDBInstanceReadReplica,
+		"CreateDBParameterGroup":                     ExecuteCreateDBParameterGroup,
+		"CreateDBProxy":                              ExecuteCreateDBProxy,
+		"CreateDBProxyEndpoint":                      ExecuteCreateDBProxyEndpoint,
+		"CreateDBSecurityGroup":                      ExecuteCreateDBSecurityGroup,
+		"CreateDBSnapshot":                           ExecuteCreateDBSnapshot,
+		"CreateDBSubnetGroup":                        ExecuteCreateDBSubnetGroup,
+		"CreateEventSubscription":                    ExecuteCreateEventSubscription,
+		"CreateGlobalCluster":                        ExecuteCreateGlobalCluster,
+		"CreateOptionGroup":                          ExecuteCreateOptionGroup,
+		"DeleteCustomAvailabilityZone":               ExecuteDeleteCustomAvailabilityZone,
+		"DeleteDBCluster":                            ExecuteDeleteDBCluster,
+		"DeleteDBClusterEndpoint":                    ExecuteDeleteDBClusterEndpoint,
+		"DeleteDBClusterParameterGroup":              ExecuteDeleteDBClusterParameterGroup,
+		"DeleteDBClusterSnapshot":                    ExecuteDeleteDBClusterSnapshot,
+		"DeleteDBInstance":                           ExecuteDeleteDBInstance,
+		"DeleteDBInstanceAutomatedBackup":            ExecuteDeleteDBInstanceAutomatedBackup,
+		"DeleteDBParameterGroup":                     ExecuteDeleteDBParameterGroup,
+		"DeleteDBProxy":                              ExecuteDeleteDBProxy,
+		"DeleteDBProxyEndpoint":                      ExecuteDeleteDBProxyEndpoint,
+		"DeleteDBSecurityGroup":                      ExecuteDeleteDBSecurityGroup,
+		"DeleteDBSnapshot":                           ExecuteDeleteDBSnapshot,
+		"DeleteDBSubnetGroup":                        ExecuteDeleteDBSubnetGroup,
+		"DeleteEventSubscription":                    ExecuteDeleteEventSubscription,
+		"DeleteGlobalCluster":                        ExecuteDeleteGlobalCluster,
+		"DeleteInstallationMedia":                    ExecuteDeleteInstallationMedia,
+		"DeleteOptionGroup":                          ExecuteDeleteOptionGroup,
+		"DeregisterDBProxyTargets":                   ExecuteDeregisterDBProxyTargets,
+		"DescribeAccountAttributes":                  ExecuteDescribeAccountAttributes,
+		"DescribeCertificates":                       ExecuteDescribeCertificates,
+		"DescribeCustomAvailabilityZones":            ExecuteDescribeCustomAvailabilityZones,
+		"DescribeDBClusterBacktracks":                ExecuteDescribeDBClusterBacktracks,
+		"DescribeDBClusterEndpoints":                 ExecuteDescribeDBClusterEndpoints,
+		"DescribeDBClusterParameterGroups":           ExecuteDescribeDBClusterParameterGroups,
+		"DescribeDBClusterParameters":                ExecuteDescribeDBClusterParameters,
+		"DescribeDBClusterSnapshotAttributes":        ExecuteDescribeDBClusterSnapshotAttributes,
+		"DescribeDBClusterSnapshots":                 ExecuteDescribeDBClusterSnapshots,
+		"DescribeDBClusters":                         ExecuteDescribeDBClusters,
+		"DescribeDBEngineVersions":                   ExecuteDescribeDBEngineVersions,
+		"DescribeDBInstanceAutomatedBackups":         ExecuteDescribeDBInstanceAutomatedBackups,
+		"DescribeDBInstances":                        ExecuteDescribeDBInstances,
+		"DescribeDBLogFiles":                         ExecuteDescribeDBLogFiles,
+		"DescribeDBParameterGroups":                  ExecuteDescribeDBParameterGroups,
+		"DescribeDBParameters":                       ExecuteDescribeDBParameters,
+		"DescribeDBProxies":                          ExecuteDescribeDBProxies,
+		"DescribeDBProxyEndpoints":                   ExecuteDescribeDBProxyEndpoints,
+		"DescribeDBProxyTargetGroups":                ExecuteDescribeDBProxyTargetGroups,
+		"DescribeDBProxyTargets":                     ExecuteDescribeDBProxyTargets,
+		"DescribeDBSecurityGroups":                   ExecuteDescribeDBSecurityGroups,
+		"DescribeDBSnapshotAttributes":               ExecuteDescribeDBSnapshotAttributes,
+		"DescribeDBSnapshots":                        ExecuteDescribeDBSnapshots,
+		"DescribeDBSubnetGroups":                     ExecuteDescribeDBSubnetGroups,
+		"DescribeEngineDefaultClusterParameters":     ExecuteDescribeEngineDefaultClusterParameters,
+		"DescribeEngineDefaultParameters":            ExecuteDescribeEngineDefaultParameters,
+		"DescribeEventCategories":                    ExecuteDescribeEventCategories,
+		"DescribeEventSubscriptions":                 ExecuteDescribeEventSubscriptions,
+		"DescribeEvents":                             ExecuteDescribeEvents,
+		"DescribeExportTasks":                        ExecuteDescribeExportTasks,
+		"DescribeGlobalClusters":                     ExecuteDescribeGlobalClusters,
+		"DescribeInstallationMedia":                  ExecuteDescribeInstallationMedia,
+		"DescribeOptionGroupOptions":                 ExecuteDescribeOptionGroupOptions,
+		"DescribeOptionGroups":                       ExecuteDescribeOptionGroups,
+		"DescribeOrderableDBInstanceOptions":         ExecuteDescribeOrderableDBInstanceOptions,
+		"DescribePendingMaintenanceActions":          ExecuteDescribePendingMaintenanceActions,
+		"DescribeReservedDBInstances":                ExecuteDescribeReservedDBInstances,
+		"DescribeReservedDBInstancesOfferings":       ExecuteDescribeReservedDBInstancesOfferings,
+		"DescribeSourceRegions":                      ExecuteDescribeSourceRegions,
+		"DescribeValidDBInstanceModifications":       ExecuteDescribeValidDBInstanceModifications,
+		"DownloadDBLogFilePortion":                   ExecuteDownloadDBLogFilePortion,
+		"FailoverDBCluster":                          ExecuteFailoverDBCluster,
+		"FailoverGlobalCluster":                      ExecuteFailoverGlobalCluster,
+		"ImportInstallationMedia":                    ExecuteImportInstallationMedia,
+		"ListTagsForResource":                        ExecuteListTagsForResource,
+		"ModifyCertificates":                         ExecuteModifyCertificates,
+		"ModifyCurrentDBClusterCapacity":             ExecuteModifyCurrentDBClusterCapacity,
+		"ModifyDBCluster":                            ExecuteModifyDBCluster,
+		"ModifyDBClusterEndpoint":                    ExecuteModifyDBClusterEndpoint,
+		"ModifyDBClusterParameterGroup":              ExecuteModifyDBClusterParameterGroup,
+		"ModifyDBClusterSnapshotAttribute":           ExecuteModifyDBClusterSnapshotAttribute,
+		"ModifyDBInstance":                           ExecuteModifyDBInstance,
+		"ModifyDBParameterGroup":                     ExecuteModifyDBParameterGroup,
+		"ModifyDBProxy":                              ExecuteModifyDBProxy,
+		"ModifyDBProxyEndpoint":                      ExecuteModifyDBProxyEndpoint,
+		"ModifyDBProxyTargetGroup":                   ExecuteModifyDBProxyTargetGroup,
+		"ModifyDBSnapshot":                           ExecuteModifyDBSnapshot,
+		"ModifyDBSnapshotAttribute":                  ExecuteModifyDBSnapshotAttribute,
+		"ModifyDBSubnetGroup":                        ExecuteModifyDBSubnetGroup,
+		"ModifyEventSubscription":                    ExecuteModifyEventSubscription,
+		"ModifyGlobalCluster":                        ExecuteModifyGlobalCluster,
+		"ModifyOptionGroup":                          ExecuteModifyOptionGroup,
+		"PromoteReadReplica":                         ExecutePromoteReadReplica,
+		"PromoteReadReplicaDBCluster":                ExecutePromoteReadReplicaDBCluster,
+		"PurchaseReservedDBInstancesOffering":        ExecutePurchaseReservedDBInstancesOffering,
+		"RebootDBInstance":                           ExecuteRebootDBInstance,
+		"RegisterDBProxyTargets":                     ExecuteRegisterDBProxyTargets,
+		"RemoveFromGlobalCluster":                    ExecuteRemoveFromGlobalCluster,
+		"RemoveRoleFromDBCluster":                    ExecuteRemoveRoleFromDBCluster,
+		"RemoveRoleFromDBInstance":                   ExecuteRemoveRoleFromDBInstance,
+		"RemoveSourceIdentifierFromSubscription":     ExecuteRemoveSourceIdentifierFromSubscription,
+		"RemoveTagsFromResource":                     ExecuteRemoveTagsFromResource,
+		"ResetDBClusterParameterGroup":               ExecuteResetDBClusterParameterGroup,
+		"ResetDBParameterGroup":                      ExecuteResetDBParameterGroup,
+		"RestoreDBClusterFromS3":                     ExecuteRestoreDBClusterFromS3,
+		"RestoreDBClusterFromSnapshot":               ExecuteRestoreDBClusterFromSnapshot,
+		"RestoreDBClusterToPointInTime":              ExecuteRestoreDBClusterToPointInTime,
+		"RestoreDBInstanceFromDBSnapshot":            ExecuteRestoreDBInstanceFromDBSnapshot,
+		"RestoreDBInstanceFromS3":                    ExecuteRestoreDBInstanceFromS3,
+		"RestoreDBInstanceToPointInTime":             ExecuteRestoreDBInstanceToPointInTime,
+		"RevokeDBSecurityGroupIngress":               ExecuteRevokeDBSecurityGroupIngress,
+		"StartActivityStream":                        ExecuteStartActivityStream,
+		"StartDBCluster":                             ExecuteStartDBCluster,
+		"StartDBInstance":                            ExecuteStartDBInstance,
+		"StartDBInstanceAutomatedBackupsReplication": ExecuteStartDBInstanceAutomatedBackupsReplication,
+		"StartExportTask":                            ExecuteStartExportTask,
+		"StopActivityStream":                         ExecuteStopActivityStream,
+		"StopDBCluster":                              ExecuteStopDBCluster,
+		"StopDBInstance":                             ExecuteStopDBInstance,
+		"StopDBInstanceAutomatedBackupsReplication":  ExecuteStopDBInstanceAutomatedBackupsReplication,
+	}
 )
 
 const opAddRoleToDBCluster = "AddRoleToDBCluster"
@@ -109,6 +257,44 @@ func (c *RDS) AddRoleToDBClusterWithContext(ctx aws.Context, input *AddRoleToDBC
 	return out, req.Send()
 }
 
+// ExecuteAddRoleToDBCluster is Blink's code
+func ExecuteAddRoleToDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AddRoleToDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AddRoleToDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opAddRoleToDBInstance = "AddRoleToDBInstance"
 
 // AddRoleToDBInstanceRequest generates a "aws/request.Request" representing the
@@ -203,6 +389,44 @@ func (c *RDS) AddRoleToDBInstanceWithContext(ctx aws.Context, input *AddRoleToDB
 	return out, req.Send()
 }
 
+// ExecuteAddRoleToDBInstance is Blink's code
+func ExecuteAddRoleToDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AddRoleToDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AddRoleToDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 
 // AddSourceIdentifierToSubscriptionRequest generates a "aws/request.Request" representing the
@@ -283,6 +507,44 @@ func (c *RDS) AddSourceIdentifierToSubscriptionWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteAddSourceIdentifierToSubscription is Blink's code
+func ExecuteAddSourceIdentifierToSubscription(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AddSourceIdentifierToSubscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AddSourceIdentifierToSubscriptionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opAddTagsToResource = "AddTagsToResource"
@@ -384,6 +646,44 @@ func (c *RDS) AddTagsToResourceWithContext(ctx aws.Context, input *AddTagsToReso
 	return out, req.Send()
 }
 
+// ExecuteAddTagsToResource is Blink's code
+func ExecuteAddTagsToResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AddTagsToResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AddTagsToResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 
 // ApplyPendingMaintenanceActionRequest generates a "aws/request.Request" representing the
@@ -468,6 +768,44 @@ func (c *RDS) ApplyPendingMaintenanceActionWithContext(ctx aws.Context, input *A
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteApplyPendingMaintenanceAction is Blink's code
+func ExecuteApplyPendingMaintenanceAction(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ApplyPendingMaintenanceActionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ApplyPendingMaintenanceActionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opAuthorizeDBSecurityGroupIngress = "AuthorizeDBSecurityGroupIngress"
@@ -572,6 +910,44 @@ func (c *RDS) AuthorizeDBSecurityGroupIngressWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteAuthorizeDBSecurityGroupIngress is Blink's code
+func ExecuteAuthorizeDBSecurityGroupIngress(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AuthorizeDBSecurityGroupIngressInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AuthorizeDBSecurityGroupIngressRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opBacktrackDBCluster = "BacktrackDBCluster"
 
 // BacktrackDBClusterRequest generates a "aws/request.Request" representing the
@@ -660,6 +1036,44 @@ func (c *RDS) BacktrackDBClusterWithContext(ctx aws.Context, input *BacktrackDBC
 	return out, req.Send()
 }
 
+// ExecuteBacktrackDBCluster is Blink's code
+func ExecuteBacktrackDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BacktrackDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BacktrackDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCancelExportTask = "CancelExportTask"
 
 // CancelExportTaskRequest generates a "aws/request.Request" representing the
@@ -741,6 +1155,44 @@ func (c *RDS) CancelExportTaskWithContext(ctx aws.Context, input *CancelExportTa
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCancelExportTask is Blink's code
+func ExecuteCancelExportTask(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CancelExportTaskInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CancelExportTaskRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCopyDBClusterParameterGroup = "CopyDBClusterParameterGroup"
@@ -829,6 +1281,44 @@ func (c *RDS) CopyDBClusterParameterGroupWithContext(ctx aws.Context, input *Cop
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCopyDBClusterParameterGroup is Blink's code
+func ExecuteCopyDBClusterParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CopyDBClusterParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CopyDBClusterParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCopyDBClusterSnapshot = "CopyDBClusterSnapshot"
@@ -989,6 +1479,44 @@ func (c *RDS) CopyDBClusterSnapshotWithContext(ctx aws.Context, input *CopyDBClu
 	return out, req.Send()
 }
 
+// ExecuteCopyDBClusterSnapshot is Blink's code
+func ExecuteCopyDBClusterSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CopyDBClusterSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CopyDBClusterSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCopyDBParameterGroup = "CopyDBParameterGroup"
 
 // CopyDBParameterGroupRequest generates a "aws/request.Request" representing the
@@ -1073,6 +1601,44 @@ func (c *RDS) CopyDBParameterGroupWithContext(ctx aws.Context, input *CopyDBPara
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCopyDBParameterGroup is Blink's code
+func ExecuteCopyDBParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CopyDBParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CopyDBParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCopyDBSnapshot = "CopyDBSnapshot"
@@ -1179,6 +1745,44 @@ func (c *RDS) CopyDBSnapshotWithContext(ctx aws.Context, input *CopyDBSnapshotIn
 	return out, req.Send()
 }
 
+// ExecuteCopyDBSnapshot is Blink's code
+func ExecuteCopyDBSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CopyDBSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CopyDBSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCopyOptionGroup = "CopyOptionGroup"
 
 // CopyOptionGroupRequest generates a "aws/request.Request" representing the
@@ -1262,6 +1866,44 @@ func (c *RDS) CopyOptionGroupWithContext(ctx aws.Context, input *CopyOptionGroup
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCopyOptionGroup is Blink's code
+func ExecuteCopyOptionGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CopyOptionGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CopyOptionGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateCustomAvailabilityZone = "CreateCustomAvailabilityZone"
@@ -1354,6 +1996,44 @@ func (c *RDS) CreateCustomAvailabilityZoneWithContext(ctx aws.Context, input *Cr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateCustomAvailabilityZone is Blink's code
+func ExecuteCreateCustomAvailabilityZone(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateCustomAvailabilityZoneInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateCustomAvailabilityZoneRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBCluster = "CreateDBCluster"
@@ -1507,6 +2187,44 @@ func (c *RDS) CreateDBClusterWithContext(ctx aws.Context, input *CreateDBCluster
 	return out, req.Send()
 }
 
+// ExecuteCreateDBCluster is Blink's code
+func ExecuteCreateDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBClusterEndpoint = "CreateDBClusterEndpoint"
 
 // CreateDBClusterEndpointRequest generates a "aws/request.Request" representing the
@@ -1602,6 +2320,44 @@ func (c *RDS) CreateDBClusterEndpointWithContext(ctx aws.Context, input *CreateD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBClusterEndpoint is Blink's code
+func ExecuteCreateDBClusterEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBClusterEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBClusterEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
@@ -1716,6 +2472,44 @@ func (c *RDS) CreateDBClusterParameterGroupWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+// ExecuteCreateDBClusterParameterGroup is Blink's code
+func ExecuteCreateDBClusterParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBClusterParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBClusterParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBClusterSnapshot = "CreateDBClusterSnapshot"
 
 // CreateDBClusterSnapshotRequest generates a "aws/request.Request" representing the
@@ -1809,6 +2603,44 @@ func (c *RDS) CreateDBClusterSnapshotWithContext(ctx aws.Context, input *CreateD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBClusterSnapshot is Blink's code
+func ExecuteCreateDBClusterSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBClusterSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBClusterSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBInstance = "CreateDBInstance"
@@ -1950,6 +2782,44 @@ func (c *RDS) CreateDBInstanceWithContext(ctx aws.Context, input *CreateDBInstan
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBInstance is Blink's code
+func ExecuteCreateDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBInstanceReadReplica = "CreateDBInstanceReadReplica"
@@ -2105,6 +2975,44 @@ func (c *RDS) CreateDBInstanceReadReplicaWithContext(ctx aws.Context, input *Cre
 	return out, req.Send()
 }
 
+// ExecuteCreateDBInstanceReadReplica is Blink's code
+func ExecuteCreateDBInstanceReadReplica(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBInstanceReadReplicaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBInstanceReadReplicaRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBParameterGroup = "CreateDBParameterGroup"
 
 // CreateDBParameterGroupRequest generates a "aws/request.Request" representing the
@@ -2208,6 +3116,44 @@ func (c *RDS) CreateDBParameterGroupWithContext(ctx aws.Context, input *CreateDB
 	return out, req.Send()
 }
 
+// ExecuteCreateDBParameterGroup is Blink's code
+func ExecuteCreateDBParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBProxy = "CreateDBProxy"
 
 // CreateDBProxyRequest generates a "aws/request.Request" representing the
@@ -2294,6 +3240,44 @@ func (c *RDS) CreateDBProxyWithContext(ctx aws.Context, input *CreateDBProxyInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBProxy is Blink's code
+func ExecuteCreateDBProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBProxyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBProxyRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBProxyEndpoint = "CreateDBProxyEndpoint"
@@ -2394,6 +3378,44 @@ func (c *RDS) CreateDBProxyEndpointWithContext(ctx aws.Context, input *CreateDBP
 	return out, req.Send()
 }
 
+// ExecuteCreateDBProxyEndpoint is Blink's code
+func ExecuteCreateDBProxyEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBProxyEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBProxyEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBSecurityGroup = "CreateDBSecurityGroup"
 
 // CreateDBSecurityGroupRequest generates a "aws/request.Request" representing the
@@ -2485,6 +3507,44 @@ func (c *RDS) CreateDBSecurityGroupWithContext(ctx aws.Context, input *CreateDBS
 	return out, req.Send()
 }
 
+// ExecuteCreateDBSecurityGroup is Blink's code
+func ExecuteCreateDBSecurityGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBSecurityGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBSecurityGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDBSnapshot = "CreateDBSnapshot"
 
 // CreateDBSnapshotRequest generates a "aws/request.Request" representing the
@@ -2572,6 +3632,44 @@ func (c *RDS) CreateDBSnapshotWithContext(ctx aws.Context, input *CreateDBSnapsh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBSnapshot is Blink's code
+func ExecuteCreateDBSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDBSubnetGroup = "CreateDBSubnetGroup"
@@ -2668,6 +3766,44 @@ func (c *RDS) CreateDBSubnetGroupWithContext(ctx aws.Context, input *CreateDBSub
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateDBSubnetGroup is Blink's code
+func ExecuteCreateDBSubnetGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDBSubnetGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDBSubnetGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateEventSubscription = "CreateEventSubscription"
@@ -2788,6 +3924,44 @@ func (c *RDS) CreateEventSubscriptionWithContext(ctx aws.Context, input *CreateE
 	return out, req.Send()
 }
 
+// ExecuteCreateEventSubscription is Blink's code
+func ExecuteCreateEventSubscription(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateEventSubscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateEventSubscriptionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateGlobalCluster = "CreateGlobalCluster"
 
 // CreateGlobalClusterRequest generates a "aws/request.Request" representing the
@@ -2889,6 +4063,44 @@ func (c *RDS) CreateGlobalClusterWithContext(ctx aws.Context, input *CreateGloba
 	return out, req.Send()
 }
 
+// ExecuteCreateGlobalCluster is Blink's code
+func ExecuteCreateGlobalCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateGlobalClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateGlobalClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateOptionGroup = "CreateOptionGroup"
 
 // CreateOptionGroupRequest generates a "aws/request.Request" representing the
@@ -2969,6 +4181,44 @@ func (c *RDS) CreateOptionGroupWithContext(ctx aws.Context, input *CreateOptionG
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateOptionGroup is Blink's code
+func ExecuteCreateOptionGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateOptionGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateOptionGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteCustomAvailabilityZone = "DeleteCustomAvailabilityZone"
@@ -3058,6 +4308,44 @@ func (c *RDS) DeleteCustomAvailabilityZoneWithContext(ctx aws.Context, input *De
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteCustomAvailabilityZone is Blink's code
+func ExecuteDeleteCustomAvailabilityZone(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteCustomAvailabilityZoneInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteCustomAvailabilityZoneRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBCluster = "DeleteDBCluster"
@@ -3159,6 +4447,44 @@ func (c *RDS) DeleteDBClusterWithContext(ctx aws.Context, input *DeleteDBCluster
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBCluster is Blink's code
+func ExecuteDeleteDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBClusterEndpoint = "DeleteDBClusterEndpoint"
 
 // DeleteDBClusterEndpointRequest generates a "aws/request.Request" representing the
@@ -3245,6 +4571,44 @@ func (c *RDS) DeleteDBClusterEndpointWithContext(ctx aws.Context, input *DeleteD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteDBClusterEndpoint is Blink's code
+func ExecuteDeleteDBClusterEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBClusterEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBClusterEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
@@ -3338,6 +4702,44 @@ func (c *RDS) DeleteDBClusterParameterGroupWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBClusterParameterGroup is Blink's code
+func ExecuteDeleteDBClusterParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBClusterParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBClusterParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBClusterSnapshot = "DeleteDBClusterSnapshot"
 
 // DeleteDBClusterSnapshotRequest generates a "aws/request.Request" representing the
@@ -3426,6 +4828,44 @@ func (c *RDS) DeleteDBClusterSnapshotWithContext(ctx aws.Context, input *DeleteD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteDBClusterSnapshot is Blink's code
+func ExecuteDeleteDBClusterSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBClusterSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBClusterSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBInstance = "DeleteDBInstance"
@@ -3548,6 +4988,44 @@ func (c *RDS) DeleteDBInstanceWithContext(ctx aws.Context, input *DeleteDBInstan
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBInstance is Blink's code
+func ExecuteDeleteDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBInstanceAutomatedBackup = "DeleteDBInstanceAutomatedBackup"
 
 // DeleteDBInstanceAutomatedBackupRequest generates a "aws/request.Request" representing the
@@ -3630,6 +5108,44 @@ func (c *RDS) DeleteDBInstanceAutomatedBackupWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteDBInstanceAutomatedBackup is Blink's code
+func ExecuteDeleteDBInstanceAutomatedBackup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBInstanceAutomatedBackupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBInstanceAutomatedBackupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBParameterGroup = "DeleteDBParameterGroup"
@@ -3718,6 +5234,44 @@ func (c *RDS) DeleteDBParameterGroupWithContext(ctx aws.Context, input *DeleteDB
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBParameterGroup is Blink's code
+func ExecuteDeleteDBParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBProxy = "DeleteDBProxy"
 
 // DeleteDBProxyRequest generates a "aws/request.Request" representing the
@@ -3799,6 +5353,44 @@ func (c *RDS) DeleteDBProxyWithContext(ctx aws.Context, input *DeleteDBProxyInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteDBProxy is Blink's code
+func ExecuteDeleteDBProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBProxyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBProxyRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBProxyEndpoint = "DeleteDBProxyEndpoint"
@@ -3887,6 +5479,44 @@ func (c *RDS) DeleteDBProxyEndpointWithContext(ctx aws.Context, input *DeleteDBP
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBProxyEndpoint is Blink's code
+func ExecuteDeleteDBProxyEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBProxyEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBProxyEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBSecurityGroup = "DeleteDBSecurityGroup"
 
 // DeleteDBSecurityGroupRequest generates a "aws/request.Request" representing the
@@ -3972,6 +5602,44 @@ func (c *RDS) DeleteDBSecurityGroupWithContext(ctx aws.Context, input *DeleteDBS
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBSecurityGroup is Blink's code
+func ExecuteDeleteDBSecurityGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBSecurityGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBSecurityGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteDBSnapshot = "DeleteDBSnapshot"
 
 // DeleteDBSnapshotRequest generates a "aws/request.Request" representing the
@@ -4055,6 +5723,44 @@ func (c *RDS) DeleteDBSnapshotWithContext(ctx aws.Context, input *DeleteDBSnapsh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteDBSnapshot is Blink's code
+func ExecuteDeleteDBSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDBSubnetGroup = "DeleteDBSubnetGroup"
@@ -4145,6 +5851,44 @@ func (c *RDS) DeleteDBSubnetGroupWithContext(ctx aws.Context, input *DeleteDBSub
 	return out, req.Send()
 }
 
+// ExecuteDeleteDBSubnetGroup is Blink's code
+func ExecuteDeleteDBSubnetGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDBSubnetGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDBSubnetGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteEventSubscription = "DeleteEventSubscription"
 
 // DeleteEventSubscriptionRequest generates a "aws/request.Request" representing the
@@ -4226,6 +5970,44 @@ func (c *RDS) DeleteEventSubscriptionWithContext(ctx aws.Context, input *DeleteE
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteEventSubscription is Blink's code
+func ExecuteDeleteEventSubscription(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteEventSubscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteEventSubscriptionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteGlobalCluster = "DeleteGlobalCluster"
@@ -4315,6 +6097,44 @@ func (c *RDS) DeleteGlobalClusterWithContext(ctx aws.Context, input *DeleteGloba
 	return out, req.Send()
 }
 
+// ExecuteDeleteGlobalCluster is Blink's code
+func ExecuteDeleteGlobalCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteGlobalClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteGlobalClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteInstallationMedia = "DeleteInstallationMedia"
 
 // DeleteInstallationMediaRequest generates a "aws/request.Request" representing the
@@ -4393,6 +6213,44 @@ func (c *RDS) DeleteInstallationMediaWithContext(ctx aws.Context, input *DeleteI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteInstallationMedia is Blink's code
+func ExecuteDeleteInstallationMedia(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteInstallationMediaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteInstallationMediaRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteOptionGroup = "DeleteOptionGroup"
@@ -4476,6 +6334,44 @@ func (c *RDS) DeleteOptionGroupWithContext(ctx aws.Context, input *DeleteOptionG
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteOptionGroup is Blink's code
+func ExecuteDeleteOptionGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteOptionGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteOptionGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeregisterDBProxyTargets = "DeregisterDBProxyTargets"
@@ -4572,6 +6468,44 @@ func (c *RDS) DeregisterDBProxyTargetsWithContext(ctx aws.Context, input *Deregi
 	return out, req.Send()
 }
 
+// ExecuteDeregisterDBProxyTargets is Blink's code
+func ExecuteDeregisterDBProxyTargets(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeregisterDBProxyTargetsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeregisterDBProxyTargetsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeAccountAttributes = "DescribeAccountAttributes"
 
 // DescribeAccountAttributesRequest generates a "aws/request.Request" representing the
@@ -4649,6 +6583,44 @@ func (c *RDS) DescribeAccountAttributesWithContext(ctx aws.Context, input *Descr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeAccountAttributes is Blink's code
+func ExecuteDescribeAccountAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeAccountAttributesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeAccountAttributesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDescribeCertificates = "DescribeCertificates"
@@ -4735,6 +6707,44 @@ func (c *RDS) DescribeCertificatesWithContext(ctx aws.Context, input *DescribeCe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeCertificates is Blink's code
+func ExecuteDescribeCertificates(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeCertificatesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeCertificatesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeCertificatesPages iterates over the pages of a DescribeCertificates operation,
@@ -4879,6 +6889,44 @@ func (c *RDS) DescribeCustomAvailabilityZonesWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeCustomAvailabilityZones is Blink's code
+func ExecuteDescribeCustomAvailabilityZones(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeCustomAvailabilityZonesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeCustomAvailabilityZonesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeCustomAvailabilityZonesPages iterates over the pages of a DescribeCustomAvailabilityZones operation,
@@ -5026,6 +7074,44 @@ func (c *RDS) DescribeDBClusterBacktracksWithContext(ctx aws.Context, input *Des
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBClusterBacktracks is Blink's code
+func ExecuteDescribeDBClusterBacktracks(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterBacktracksInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterBacktracksRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBClusterBacktracksPages iterates over the pages of a DescribeDBClusterBacktracks operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -5163,6 +7249,44 @@ func (c *RDS) DescribeDBClusterEndpointsWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBClusterEndpoints is Blink's code
+func ExecuteDescribeDBClusterEndpoints(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterEndpointsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterEndpointsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBClusterEndpointsPages iterates over the pages of a DescribeDBClusterEndpoints operation,
@@ -5309,6 +7433,44 @@ func (c *RDS) DescribeDBClusterParameterGroupsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBClusterParameterGroups is Blink's code
+func ExecuteDescribeDBClusterParameterGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterParameterGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterParameterGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBClusterParameterGroupsPages iterates over the pages of a DescribeDBClusterParameterGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -5450,6 +7612,44 @@ func (c *RDS) DescribeDBClusterParametersWithContext(ctx aws.Context, input *Des
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBClusterParameters is Blink's code
+func ExecuteDescribeDBClusterParameters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterParametersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBClusterParametersPages iterates over the pages of a DescribeDBClusterParameters operation,
@@ -5597,6 +7797,44 @@ func (c *RDS) DescribeDBClusterSnapshotAttributesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBClusterSnapshotAttributes is Blink's code
+func ExecuteDescribeDBClusterSnapshotAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterSnapshotAttributesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterSnapshotAttributesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeDBClusterSnapshots = "DescribeDBClusterSnapshots"
 
 // DescribeDBClusterSnapshotsRequest generates a "aws/request.Request" representing the
@@ -5686,6 +7924,44 @@ func (c *RDS) DescribeDBClusterSnapshotsWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBClusterSnapshots is Blink's code
+func ExecuteDescribeDBClusterSnapshots(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClusterSnapshotsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClusterSnapshotsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBClusterSnapshotsPages iterates over the pages of a DescribeDBClusterSnapshots operation,
@@ -5832,6 +8108,44 @@ func (c *RDS) DescribeDBClustersWithContext(ctx aws.Context, input *DescribeDBCl
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBClusters is Blink's code
+func ExecuteDescribeDBClusters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBClustersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBClustersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBClustersPages iterates over the pages of a DescribeDBClusters operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -5962,6 +8276,44 @@ func (c *RDS) DescribeDBEngineVersionsWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBEngineVersions is Blink's code
+func ExecuteDescribeDBEngineVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBEngineVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBEngineVersionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBEngineVersionsPages iterates over the pages of a DescribeDBEngineVersions operation,
@@ -6107,6 +8459,44 @@ func (c *RDS) DescribeDBInstanceAutomatedBackupsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBInstanceAutomatedBackups is Blink's code
+func ExecuteDescribeDBInstanceAutomatedBackups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBInstanceAutomatedBackupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBInstanceAutomatedBackupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBInstanceAutomatedBackupsPages iterates over the pages of a DescribeDBInstanceAutomatedBackups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -6247,6 +8637,44 @@ func (c *RDS) DescribeDBInstancesWithContext(ctx aws.Context, input *DescribeDBI
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBInstances is Blink's code
+func ExecuteDescribeDBInstances(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBInstancesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBInstancesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBInstancesPages iterates over the pages of a DescribeDBInstances operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -6382,6 +8810,44 @@ func (c *RDS) DescribeDBLogFilesWithContext(ctx aws.Context, input *DescribeDBLo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBLogFiles is Blink's code
+func ExecuteDescribeDBLogFiles(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBLogFilesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBLogFilesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBLogFilesPages iterates over the pages of a DescribeDBLogFiles operation,
@@ -6523,6 +8989,44 @@ func (c *RDS) DescribeDBParameterGroupsWithContext(ctx aws.Context, input *Descr
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBParameterGroups is Blink's code
+func ExecuteDescribeDBParameterGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBParameterGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBParameterGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBParameterGroupsPages iterates over the pages of a DescribeDBParameterGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -6658,6 +9162,44 @@ func (c *RDS) DescribeDBParametersWithContext(ctx aws.Context, input *DescribeDB
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBParameters is Blink's code
+func ExecuteDescribeDBParameters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBParametersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBParametersPages iterates over the pages of a DescribeDBParameters operation,
@@ -6796,6 +9338,44 @@ func (c *RDS) DescribeDBProxiesWithContext(ctx aws.Context, input *DescribeDBPro
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBProxies is Blink's code
+func ExecuteDescribeDBProxies(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBProxiesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBProxiesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBProxiesPages iterates over the pages of a DescribeDBProxies operation,
@@ -6937,6 +9517,44 @@ func (c *RDS) DescribeDBProxyEndpointsWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBProxyEndpoints is Blink's code
+func ExecuteDescribeDBProxyEndpoints(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBProxyEndpointsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBProxyEndpointsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBProxyEndpointsPages iterates over the pages of a DescribeDBProxyEndpoints operation,
@@ -7083,6 +9701,44 @@ func (c *RDS) DescribeDBProxyTargetGroupsWithContext(ctx aws.Context, input *Des
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBProxyTargetGroups is Blink's code
+func ExecuteDescribeDBProxyTargetGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBProxyTargetGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBProxyTargetGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBProxyTargetGroupsPages iterates over the pages of a DescribeDBProxyTargetGroups operation,
@@ -7235,6 +9891,44 @@ func (c *RDS) DescribeDBProxyTargetsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBProxyTargets is Blink's code
+func ExecuteDescribeDBProxyTargets(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBProxyTargetsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBProxyTargetsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBProxyTargetsPages iterates over the pages of a DescribeDBProxyTargets operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -7372,6 +10066,44 @@ func (c *RDS) DescribeDBSecurityGroupsWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBSecurityGroups is Blink's code
+func ExecuteDescribeDBSecurityGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBSecurityGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBSecurityGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBSecurityGroupsPages iterates over the pages of a DescribeDBSecurityGroups operation,
@@ -7517,6 +10249,44 @@ func (c *RDS) DescribeDBSnapshotAttributesWithContext(ctx aws.Context, input *De
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBSnapshotAttributes is Blink's code
+func ExecuteDescribeDBSnapshotAttributes(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBSnapshotAttributesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBSnapshotAttributesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeDBSnapshots = "DescribeDBSnapshots"
 
 // DescribeDBSnapshotsRequest generates a "aws/request.Request" representing the
@@ -7600,6 +10370,44 @@ func (c *RDS) DescribeDBSnapshotsWithContext(ctx aws.Context, input *DescribeDBS
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDBSnapshots is Blink's code
+func ExecuteDescribeDBSnapshots(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBSnapshotsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBSnapshotsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeDBSnapshotsPages iterates over the pages of a DescribeDBSnapshots operation,
@@ -7742,6 +10550,44 @@ func (c *RDS) DescribeDBSubnetGroupsWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// ExecuteDescribeDBSubnetGroups is Blink's code
+func ExecuteDescribeDBSubnetGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDBSubnetGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDBSubnetGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeDBSubnetGroupsPages iterates over the pages of a DescribeDBSubnetGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -7872,6 +10718,44 @@ func (c *RDS) DescribeEngineDefaultClusterParametersWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+// ExecuteDescribeEngineDefaultClusterParameters is Blink's code
+func ExecuteDescribeEngineDefaultClusterParameters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeEngineDefaultClusterParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEngineDefaultClusterParametersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 
 // DescribeEngineDefaultParametersRequest generates a "aws/request.Request" representing the
@@ -7951,6 +10835,44 @@ func (c *RDS) DescribeEngineDefaultParametersWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeEngineDefaultParameters is Blink's code
+func ExecuteDescribeEngineDefaultParameters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeEngineDefaultParametersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEngineDefaultParametersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeEngineDefaultParametersPages iterates over the pages of a DescribeEngineDefaultParameters operation,
@@ -8082,6 +11004,44 @@ func (c *RDS) DescribeEventCategoriesWithContext(ctx aws.Context, input *Describ
 	return out, req.Send()
 }
 
+// ExecuteDescribeEventCategories is Blink's code
+func ExecuteDescribeEventCategories(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeEventCategoriesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEventCategoriesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 
 // DescribeEventSubscriptionsRequest generates a "aws/request.Request" representing the
@@ -8169,6 +11129,44 @@ func (c *RDS) DescribeEventSubscriptionsWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeEventSubscriptions is Blink's code
+func ExecuteDescribeEventSubscriptions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeEventSubscriptionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEventSubscriptionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeEventSubscriptionsPages iterates over the pages of a DescribeEventSubscriptions operation,
@@ -8309,6 +11307,44 @@ func (c *RDS) DescribeEventsWithContext(ctx aws.Context, input *DescribeEventsIn
 	return out, req.Send()
 }
 
+// ExecuteDescribeEvents is Blink's code
+func ExecuteDescribeEvents(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeEventsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeEventsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeEventsPages iterates over the pages of a DescribeEvents operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8445,6 +11481,44 @@ func (c *RDS) DescribeExportTasksWithContext(ctx aws.Context, input *DescribeExp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeExportTasks is Blink's code
+func ExecuteDescribeExportTasks(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeExportTasksInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeExportTasksRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeExportTasksPages iterates over the pages of a DescribeExportTasks operation,
@@ -8591,6 +11665,44 @@ func (c *RDS) DescribeGlobalClustersWithContext(ctx aws.Context, input *Describe
 	return out, req.Send()
 }
 
+// ExecuteDescribeGlobalClusters is Blink's code
+func ExecuteDescribeGlobalClusters(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeGlobalClustersInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeGlobalClustersRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeGlobalClustersPages iterates over the pages of a DescribeGlobalClusters operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8729,6 +11841,44 @@ func (c *RDS) DescribeInstallationMediaWithContext(ctx aws.Context, input *Descr
 	return out, req.Send()
 }
 
+// ExecuteDescribeInstallationMedia is Blink's code
+func ExecuteDescribeInstallationMedia(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeInstallationMediaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeInstallationMediaRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeInstallationMediaPages iterates over the pages of a DescribeInstallationMedia operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -8859,6 +12009,44 @@ func (c *RDS) DescribeOptionGroupOptionsWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeOptionGroupOptions is Blink's code
+func ExecuteDescribeOptionGroupOptions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeOptionGroupOptionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeOptionGroupOptionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeOptionGroupOptionsPages iterates over the pages of a DescribeOptionGroupOptions operation,
@@ -8998,6 +12186,44 @@ func (c *RDS) DescribeOptionGroupsWithContext(ctx aws.Context, input *DescribeOp
 	return out, req.Send()
 }
 
+// ExecuteDescribeOptionGroups is Blink's code
+func ExecuteDescribeOptionGroups(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeOptionGroupsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeOptionGroupsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeOptionGroupsPages iterates over the pages of a DescribeOptionGroups operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9128,6 +12354,44 @@ func (c *RDS) DescribeOrderableDBInstanceOptionsWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeOrderableDBInstanceOptions is Blink's code
+func ExecuteDescribeOrderableDBInstanceOptions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeOrderableDBInstanceOptionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeOrderableDBInstanceOptionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeOrderableDBInstanceOptionsPages iterates over the pages of a DescribeOrderableDBInstanceOptions operation,
@@ -9268,6 +12532,44 @@ func (c *RDS) DescribePendingMaintenanceActionsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ExecuteDescribePendingMaintenanceActions is Blink's code
+func ExecuteDescribePendingMaintenanceActions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribePendingMaintenanceActionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribePendingMaintenanceActionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribePendingMaintenanceActionsPages iterates over the pages of a DescribePendingMaintenanceActions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9404,6 +12706,44 @@ func (c *RDS) DescribeReservedDBInstancesWithContext(ctx aws.Context, input *Des
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeReservedDBInstances is Blink's code
+func ExecuteDescribeReservedDBInstances(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeReservedDBInstancesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeReservedDBInstancesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeReservedDBInstancesPages iterates over the pages of a DescribeReservedDBInstances operation,
@@ -9543,6 +12883,44 @@ func (c *RDS) DescribeReservedDBInstancesOfferingsWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+// ExecuteDescribeReservedDBInstancesOfferings is Blink's code
+func ExecuteDescribeReservedDBInstancesOfferings(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeReservedDBInstancesOfferingsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeReservedDBInstancesOfferingsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // DescribeReservedDBInstancesOfferingsPages iterates over the pages of a DescribeReservedDBInstancesOfferings operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -9675,6 +13053,44 @@ func (c *RDS) DescribeSourceRegionsWithContext(ctx aws.Context, input *DescribeS
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeSourceRegions is Blink's code
+func ExecuteDescribeSourceRegions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeSourceRegionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeSourceRegionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DescribeSourceRegionsPages iterates over the pages of a DescribeSourceRegions operation,
@@ -9813,6 +13229,44 @@ func (c *RDS) DescribeValidDBInstanceModificationsWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+// ExecuteDescribeValidDBInstanceModifications is Blink's code
+func ExecuteDescribeValidDBInstanceModifications(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeValidDBInstanceModificationsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeValidDBInstanceModificationsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 
 // DownloadDBLogFilePortionRequest generates a "aws/request.Request" representing the
@@ -9899,6 +13353,44 @@ func (c *RDS) DownloadDBLogFilePortionWithContext(ctx aws.Context, input *Downlo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDownloadDBLogFilePortion is Blink's code
+func ExecuteDownloadDBLogFilePortion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DownloadDBLogFilePortionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DownloadDBLogFilePortionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // DownloadDBLogFilePortionPages iterates over the pages of a DownloadDBLogFilePortion operation,
@@ -10053,6 +13545,44 @@ func (c *RDS) FailoverDBClusterWithContext(ctx aws.Context, input *FailoverDBClu
 	return out, req.Send()
 }
 
+// ExecuteFailoverDBCluster is Blink's code
+func ExecuteFailoverDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := FailoverDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.FailoverDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opFailoverGlobalCluster = "FailoverGlobalCluster"
 
 // FailoverGlobalClusterRequest generates a "aws/request.Request" representing the
@@ -10159,6 +13689,44 @@ func (c *RDS) FailoverGlobalClusterWithContext(ctx aws.Context, input *FailoverG
 	return out, req.Send()
 }
 
+// ExecuteFailoverGlobalCluster is Blink's code
+func ExecuteFailoverGlobalCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := FailoverGlobalClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.FailoverGlobalClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opImportInstallationMedia = "ImportInstallationMedia"
 
 // ImportInstallationMediaRequest generates a "aws/request.Request" representing the
@@ -10241,6 +13809,44 @@ func (c *RDS) ImportInstallationMediaWithContext(ctx aws.Context, input *ImportI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteImportInstallationMedia is Blink's code
+func ExecuteImportInstallationMedia(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ImportInstallationMediaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ImportInstallationMediaRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -10338,6 +13944,44 @@ func (c *RDS) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListTagsForResource is Blink's code
+func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListTagsForResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyCertificates = "ModifyCertificates"
@@ -10445,6 +14089,44 @@ func (c *RDS) ModifyCertificatesWithContext(ctx aws.Context, input *ModifyCertif
 	return out, req.Send()
 }
 
+// ExecuteModifyCertificates is Blink's code
+func ExecuteModifyCertificates(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyCertificatesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyCertificatesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyCurrentDBClusterCapacity = "ModifyCurrentDBClusterCapacity"
 
 // ModifyCurrentDBClusterCapacityRequest generates a "aws/request.Request" representing the
@@ -10550,6 +14232,44 @@ func (c *RDS) ModifyCurrentDBClusterCapacityWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyCurrentDBClusterCapacity is Blink's code
+func ExecuteModifyCurrentDBClusterCapacity(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyCurrentDBClusterCapacityInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyCurrentDBClusterCapacityRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyDBCluster = "ModifyDBCluster"
@@ -10674,6 +14394,44 @@ func (c *RDS) ModifyDBClusterWithContext(ctx aws.Context, input *ModifyDBCluster
 	return out, req.Send()
 }
 
+// ExecuteModifyDBCluster is Blink's code
+func ExecuteModifyDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBClusterEndpoint = "ModifyDBClusterEndpoint"
 
 // ModifyDBClusterEndpointRequest generates a "aws/request.Request" representing the
@@ -10766,6 +14524,44 @@ func (c *RDS) ModifyDBClusterEndpointWithContext(ctx aws.Context, input *ModifyD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyDBClusterEndpoint is Blink's code
+func ExecuteModifyDBClusterEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBClusterEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBClusterEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
@@ -10876,6 +14672,44 @@ func (c *RDS) ModifyDBClusterParameterGroupWithContext(ctx aws.Context, input *M
 	return out, req.Send()
 }
 
+// ExecuteModifyDBClusterParameterGroup is Blink's code
+func ExecuteModifyDBClusterParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBClusterParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBClusterParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBClusterSnapshotAttribute = "ModifyDBClusterSnapshotAttribute"
 
 // ModifyDBClusterSnapshotAttributeRequest generates a "aws/request.Request" representing the
@@ -10984,6 +14818,44 @@ func (c *RDS) ModifyDBClusterSnapshotAttributeWithContext(ctx aws.Context, input
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyDBClusterSnapshotAttribute is Blink's code
+func ExecuteModifyDBClusterSnapshotAttribute(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBClusterSnapshotAttributeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBClusterSnapshotAttributeRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyDBInstance = "ModifyDBInstance"
@@ -11128,6 +15000,44 @@ func (c *RDS) ModifyDBInstanceWithContext(ctx aws.Context, input *ModifyDBInstan
 	return out, req.Send()
 }
 
+// ExecuteModifyDBInstance is Blink's code
+func ExecuteModifyDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBParameterGroup = "ModifyDBParameterGroup"
 
 // ModifyDBParameterGroupRequest generates a "aws/request.Request" representing the
@@ -11225,6 +15135,44 @@ func (c *RDS) ModifyDBParameterGroupWithContext(ctx aws.Context, input *ModifyDB
 	return out, req.Send()
 }
 
+// ExecuteModifyDBParameterGroup is Blink's code
+func ExecuteModifyDBParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBProxy = "ModifyDBProxy"
 
 // ModifyDBProxyRequest generates a "aws/request.Request" representing the
@@ -11310,6 +15258,44 @@ func (c *RDS) ModifyDBProxyWithContext(ctx aws.Context, input *ModifyDBProxyInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyDBProxy is Blink's code
+func ExecuteModifyDBProxy(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBProxyInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBProxyRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyDBProxyEndpoint = "ModifyDBProxyEndpoint"
@@ -11403,6 +15389,44 @@ func (c *RDS) ModifyDBProxyEndpointWithContext(ctx aws.Context, input *ModifyDBP
 	return out, req.Send()
 }
 
+// ExecuteModifyDBProxyEndpoint is Blink's code
+func ExecuteModifyDBProxyEndpoint(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBProxyEndpointInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBProxyEndpointRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBProxyTargetGroup = "ModifyDBProxyTargetGroup"
 
 // ModifyDBProxyTargetGroupRequest generates a "aws/request.Request" representing the
@@ -11490,6 +15514,44 @@ func (c *RDS) ModifyDBProxyTargetGroupWithContext(ctx aws.Context, input *Modify
 	return out, req.Send()
 }
 
+// ExecuteModifyDBProxyTargetGroup is Blink's code
+func ExecuteModifyDBProxyTargetGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBProxyTargetGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBProxyTargetGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBSnapshot = "ModifyDBSnapshot"
 
 // ModifyDBSnapshotRequest generates a "aws/request.Request" representing the
@@ -11570,6 +15632,44 @@ func (c *RDS) ModifyDBSnapshotWithContext(ctx aws.Context, input *ModifyDBSnapsh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyDBSnapshot is Blink's code
+func ExecuteModifyDBSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyDBSnapshotAttribute = "ModifyDBSnapshotAttribute"
@@ -11678,6 +15778,44 @@ func (c *RDS) ModifyDBSnapshotAttributeWithContext(ctx aws.Context, input *Modif
 	return out, req.Send()
 }
 
+// ExecuteModifyDBSnapshotAttribute is Blink's code
+func ExecuteModifyDBSnapshotAttribute(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBSnapshotAttributeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBSnapshotAttributeRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 
 // ModifyDBSubnetGroupRequest generates a "aws/request.Request" representing the
@@ -11771,6 +15909,44 @@ func (c *RDS) ModifyDBSubnetGroupWithContext(ctx aws.Context, input *ModifyDBSub
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyDBSubnetGroup is Blink's code
+func ExecuteModifyDBSubnetGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyDBSubnetGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyDBSubnetGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opModifyEventSubscription = "ModifyEventSubscription"
@@ -11874,6 +16050,44 @@ func (c *RDS) ModifyEventSubscriptionWithContext(ctx aws.Context, input *ModifyE
 	return out, req.Send()
 }
 
+// ExecuteModifyEventSubscription is Blink's code
+func ExecuteModifyEventSubscription(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyEventSubscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyEventSubscriptionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyGlobalCluster = "ModifyGlobalCluster"
 
 // ModifyGlobalClusterRequest generates a "aws/request.Request" representing the
@@ -11970,6 +16184,44 @@ func (c *RDS) ModifyGlobalClusterWithContext(ctx aws.Context, input *ModifyGloba
 	return out, req.Send()
 }
 
+// ExecuteModifyGlobalCluster is Blink's code
+func ExecuteModifyGlobalCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyGlobalClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyGlobalClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opModifyOptionGroup = "ModifyOptionGroup"
 
 // ModifyOptionGroupRequest generates a "aws/request.Request" representing the
@@ -12050,6 +16302,44 @@ func (c *RDS) ModifyOptionGroupWithContext(ctx aws.Context, input *ModifyOptionG
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteModifyOptionGroup is Blink's code
+func ExecuteModifyOptionGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ModifyOptionGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ModifyOptionGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opPromoteReadReplica = "PromoteReadReplica"
@@ -12145,6 +16435,44 @@ func (c *RDS) PromoteReadReplicaWithContext(ctx aws.Context, input *PromoteReadR
 	return out, req.Send()
 }
 
+// ExecutePromoteReadReplica is Blink's code
+func ExecutePromoteReadReplica(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := PromoteReadReplicaInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.PromoteReadReplicaRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opPromoteReadReplicaDBCluster = "PromoteReadReplicaDBCluster"
 
 // PromoteReadReplicaDBClusterRequest generates a "aws/request.Request" representing the
@@ -12227,6 +16555,44 @@ func (c *RDS) PromoteReadReplicaDBClusterWithContext(ctx aws.Context, input *Pro
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecutePromoteReadReplicaDBCluster is Blink's code
+func ExecutePromoteReadReplicaDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := PromoteReadReplicaDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.PromoteReadReplicaDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opPurchaseReservedDBInstancesOffering = "PurchaseReservedDBInstancesOffering"
@@ -12312,6 +16678,44 @@ func (c *RDS) PurchaseReservedDBInstancesOfferingWithContext(ctx aws.Context, in
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecutePurchaseReservedDBInstancesOffering is Blink's code
+func ExecutePurchaseReservedDBInstancesOffering(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := PurchaseReservedDBInstancesOfferingInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.PurchaseReservedDBInstancesOfferingRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRebootDBInstance = "RebootDBInstance"
@@ -12404,6 +16808,44 @@ func (c *RDS) RebootDBInstanceWithContext(ctx aws.Context, input *RebootDBInstan
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRebootDBInstance is Blink's code
+func ExecuteRebootDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RebootDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RebootDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRegisterDBProxyTargets = "RegisterDBProxyTargets"
@@ -12514,6 +16956,44 @@ func (c *RDS) RegisterDBProxyTargetsWithContext(ctx aws.Context, input *Register
 	return out, req.Send()
 }
 
+// ExecuteRegisterDBProxyTargets is Blink's code
+func ExecuteRegisterDBProxyTargets(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RegisterDBProxyTargetsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RegisterDBProxyTargetsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRemoveFromGlobalCluster = "RemoveFromGlobalCluster"
 
 // RemoveFromGlobalClusterRequest generates a "aws/request.Request" representing the
@@ -12604,6 +17084,44 @@ func (c *RDS) RemoveFromGlobalClusterWithContext(ctx aws.Context, input *RemoveF
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRemoveFromGlobalCluster is Blink's code
+func ExecuteRemoveFromGlobalCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RemoveFromGlobalClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RemoveFromGlobalClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRemoveRoleFromDBCluster = "RemoveRoleFromDBCluster"
@@ -12699,6 +17217,44 @@ func (c *RDS) RemoveRoleFromDBClusterWithContext(ctx aws.Context, input *RemoveR
 	return out, req.Send()
 }
 
+// ExecuteRemoveRoleFromDBCluster is Blink's code
+func ExecuteRemoveRoleFromDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RemoveRoleFromDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RemoveRoleFromDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRemoveRoleFromDBInstance = "RemoveRoleFromDBInstance"
 
 // RemoveRoleFromDBInstanceRequest generates a "aws/request.Request" representing the
@@ -12787,6 +17343,44 @@ func (c *RDS) RemoveRoleFromDBInstanceWithContext(ctx aws.Context, input *Remove
 	return out, req.Send()
 }
 
+// ExecuteRemoveRoleFromDBInstance is Blink's code
+func ExecuteRemoveRoleFromDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RemoveRoleFromDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RemoveRoleFromDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubscription"
 
 // RemoveSourceIdentifierFromSubscriptionRequest generates a "aws/request.Request" representing the
@@ -12867,6 +17461,44 @@ func (c *RDS) RemoveSourceIdentifierFromSubscriptionWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRemoveSourceIdentifierFromSubscription is Blink's code
+func ExecuteRemoveSourceIdentifierFromSubscription(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RemoveSourceIdentifierFromSubscriptionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RemoveSourceIdentifierFromSubscriptionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
@@ -12967,6 +17599,44 @@ func (c *RDS) RemoveTagsFromResourceWithContext(ctx aws.Context, input *RemoveTa
 	return out, req.Send()
 }
 
+// ExecuteRemoveTagsFromResource is Blink's code
+func ExecuteRemoveTagsFromResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RemoveTagsFromResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RemoveTagsFromResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opResetDBClusterParameterGroup = "ResetDBClusterParameterGroup"
 
 // ResetDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
@@ -13065,6 +17735,44 @@ func (c *RDS) ResetDBClusterParameterGroupWithContext(ctx aws.Context, input *Re
 	return out, req.Send()
 }
 
+// ExecuteResetDBClusterParameterGroup is Blink's code
+func ExecuteResetDBClusterParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ResetDBClusterParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ResetDBClusterParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opResetDBParameterGroup = "ResetDBParameterGroup"
 
 // ResetDBParameterGroupRequest generates a "aws/request.Request" representing the
@@ -13153,6 +17861,44 @@ func (c *RDS) ResetDBParameterGroupWithContext(ctx aws.Context, input *ResetDBPa
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteResetDBParameterGroup is Blink's code
+func ExecuteResetDBParameterGroup(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ResetDBParameterGroupInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ResetDBParameterGroupRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRestoreDBClusterFromS3 = "RestoreDBClusterFromS3"
@@ -13296,6 +18042,44 @@ func (c *RDS) RestoreDBClusterFromS3WithContext(ctx aws.Context, input *RestoreD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRestoreDBClusterFromS3 is Blink's code
+func ExecuteRestoreDBClusterFromS3(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBClusterFromS3Input{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBClusterFromS3Request(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRestoreDBClusterFromSnapshot = "RestoreDBClusterFromSnapshot"
@@ -13455,6 +18239,44 @@ func (c *RDS) RestoreDBClusterFromSnapshotWithContext(ctx aws.Context, input *Re
 	return out, req.Send()
 }
 
+// ExecuteRestoreDBClusterFromSnapshot is Blink's code
+func ExecuteRestoreDBClusterFromSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBClusterFromSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBClusterFromSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRestoreDBClusterToPointInTime = "RestoreDBClusterToPointInTime"
 
 // RestoreDBClusterToPointInTimeRequest generates a "aws/request.Request" representing the
@@ -13606,6 +18428,44 @@ func (c *RDS) RestoreDBClusterToPointInTimeWithContext(ctx aws.Context, input *R
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRestoreDBClusterToPointInTime is Blink's code
+func ExecuteRestoreDBClusterToPointInTime(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBClusterToPointInTimeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBClusterToPointInTimeRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRestoreDBInstanceFromDBSnapshot = "RestoreDBInstanceFromDBSnapshot"
@@ -13773,6 +18633,44 @@ func (c *RDS) RestoreDBInstanceFromDBSnapshotWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteRestoreDBInstanceFromDBSnapshot is Blink's code
+func ExecuteRestoreDBInstanceFromDBSnapshot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBInstanceFromDBSnapshotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBInstanceFromDBSnapshotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRestoreDBInstanceFromS3 = "RestoreDBInstanceFromS3"
 
 // RestoreDBInstanceFromS3Request generates a "aws/request.Request" representing the
@@ -13914,6 +18812,44 @@ func (c *RDS) RestoreDBInstanceFromS3WithContext(ctx aws.Context, input *Restore
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRestoreDBInstanceFromS3 is Blink's code
+func ExecuteRestoreDBInstanceFromS3(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBInstanceFromS3Input{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBInstanceFromS3Request(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opRestoreDBInstanceToPointInTime = "RestoreDBInstanceToPointInTime"
@@ -14081,6 +19017,44 @@ func (c *RDS) RestoreDBInstanceToPointInTimeWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// ExecuteRestoreDBInstanceToPointInTime is Blink's code
+func ExecuteRestoreDBInstanceToPointInTime(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RestoreDBInstanceToPointInTimeInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RestoreDBInstanceToPointInTimeRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opRevokeDBSecurityGroupIngress = "RevokeDBSecurityGroupIngress"
 
 // RevokeDBSecurityGroupIngressRequest generates a "aws/request.Request" representing the
@@ -14171,6 +19145,44 @@ func (c *RDS) RevokeDBSecurityGroupIngressWithContext(ctx aws.Context, input *Re
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteRevokeDBSecurityGroupIngress is Blink's code
+func ExecuteRevokeDBSecurityGroupIngress(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RevokeDBSecurityGroupIngressInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RevokeDBSecurityGroupIngressRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartActivityStream = "StartActivityStream"
@@ -14269,6 +19281,44 @@ func (c *RDS) StartActivityStreamWithContext(ctx aws.Context, input *StartActivi
 	return out, req.Send()
 }
 
+// ExecuteStartActivityStream is Blink's code
+func ExecuteStartActivityStream(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartActivityStreamInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartActivityStreamRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStartDBCluster = "StartDBCluster"
 
 // StartDBClusterRequest generates a "aws/request.Request" representing the
@@ -14358,6 +19408,44 @@ func (c *RDS) StartDBClusterWithContext(ctx aws.Context, input *StartDBClusterIn
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStartDBCluster is Blink's code
+func ExecuteStartDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartDBInstance = "StartDBInstance"
@@ -14485,6 +19573,44 @@ func (c *RDS) StartDBInstanceWithContext(ctx aws.Context, input *StartDBInstance
 	return out, req.Send()
 }
 
+// ExecuteStartDBInstance is Blink's code
+func ExecuteStartDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStartDBInstanceAutomatedBackupsReplication = "StartDBInstanceAutomatedBackupsReplication"
 
 // StartDBInstanceAutomatedBackupsReplicationRequest generates a "aws/request.Request" representing the
@@ -14581,6 +19707,44 @@ func (c *RDS) StartDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStartDBInstanceAutomatedBackupsReplication is Blink's code
+func ExecuteStartDBInstanceAutomatedBackupsReplication(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartDBInstanceAutomatedBackupsReplicationInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartDBInstanceAutomatedBackupsReplicationRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartExportTask = "StartExportTask"
@@ -14690,6 +19854,44 @@ func (c *RDS) StartExportTaskWithContext(ctx aws.Context, input *StartExportTask
 	return out, req.Send()
 }
 
+// ExecuteStartExportTask is Blink's code
+func ExecuteStartExportTask(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartExportTaskInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartExportTaskRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopActivityStream = "StopActivityStream"
 
 // StopActivityStreamRequest generates a "aws/request.Request" representing the
@@ -14786,6 +19988,44 @@ func (c *RDS) StopActivityStreamWithContext(ctx aws.Context, input *StopActivity
 	return out, req.Send()
 }
 
+// ExecuteStopActivityStream is Blink's code
+func ExecuteStopActivityStream(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StopActivityStreamInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopActivityStreamRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopDBCluster = "StopDBCluster"
 
 // StopDBClusterRequest generates a "aws/request.Request" representing the
@@ -14877,6 +20117,44 @@ func (c *RDS) StopDBClusterWithContext(ctx aws.Context, input *StopDBClusterInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStopDBCluster is Blink's code
+func ExecuteStopDBCluster(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StopDBClusterInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopDBClusterRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStopDBInstance = "StopDBInstance"
@@ -14980,6 +20258,44 @@ func (c *RDS) StopDBInstanceWithContext(ctx aws.Context, input *StopDBInstanceIn
 	return out, req.Send()
 }
 
+// ExecuteStopDBInstance is Blink's code
+func ExecuteStopDBInstance(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StopDBInstanceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopDBInstanceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopDBInstanceAutomatedBackupsReplication = "StopDBInstanceAutomatedBackupsReplication"
 
 // StopDBInstanceAutomatedBackupsReplicationRequest generates a "aws/request.Request" representing the
@@ -15064,6 +20380,44 @@ func (c *RDS) StopDBInstanceAutomatedBackupsReplicationWithContext(ctx aws.Conte
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStopDBInstanceAutomatedBackupsReplication is Blink's code
+func ExecuteStopDBInstanceAutomatedBackupsReplication(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*RDS)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StopDBInstanceAutomatedBackupsReplicationInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopDBInstanceAutomatedBackupsReplicationRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // Describes a quota for an Amazon Web Services account.

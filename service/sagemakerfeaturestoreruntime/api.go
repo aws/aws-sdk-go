@@ -3,6 +3,8 @@
 package sagemakerfeaturestoreruntime
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
@@ -10,6 +12,19 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"BatchGetRecord": ExecuteBatchGetRecord,
+		"DeleteRecord":   ExecuteDeleteRecord,
+		"GetRecord":      ExecuteGetRecord,
+		"PutRecord":      ExecutePutRecord,
+	}
 )
 
 const opBatchGetRecord = "BatchGetRecord"
@@ -99,6 +114,44 @@ func (c *SageMakerFeatureStoreRuntime) BatchGetRecordWithContext(ctx aws.Context
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteBatchGetRecord is Blink's code
+func ExecuteBatchGetRecord(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMakerFeatureStoreRuntime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchGetRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchGetRecordRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteRecord = "DeleteRecord"
@@ -191,6 +244,44 @@ func (c *SageMakerFeatureStoreRuntime) DeleteRecordWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteRecord is Blink's code
+func ExecuteDeleteRecord(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMakerFeatureStoreRuntime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteRecordRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetRecord = "GetRecord"
@@ -287,6 +378,44 @@ func (c *SageMakerFeatureStoreRuntime) GetRecordWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteGetRecord is Blink's code
+func ExecuteGetRecord(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMakerFeatureStoreRuntime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetRecordRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opPutRecord = "PutRecord"
 
 // PutRecordRequest generates a "aws/request.Request" representing the
@@ -379,6 +508,44 @@ func (c *SageMakerFeatureStoreRuntime) PutRecordWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecutePutRecord is Blink's code
+func ExecutePutRecord(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMakerFeatureStoreRuntime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := PutRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.PutRecordRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // You do not have permission to perform an action.

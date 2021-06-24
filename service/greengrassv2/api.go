@@ -3,6 +3,8 @@
 package greengrassv2
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -11,6 +13,38 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"BatchAssociateClientDeviceWithCoreDevice":    ExecuteBatchAssociateClientDeviceWithCoreDevice,
+		"BatchDisassociateClientDeviceFromCoreDevice": ExecuteBatchDisassociateClientDeviceFromCoreDevice,
+		"CancelDeployment":                            ExecuteCancelDeployment,
+		"CreateComponentVersion":                      ExecuteCreateComponentVersion,
+		"CreateDeployment":                            ExecuteCreateDeployment,
+		"DeleteComponent":                             ExecuteDeleteComponent,
+		"DeleteCoreDevice":                            ExecuteDeleteCoreDevice,
+		"DescribeComponent":                           ExecuteDescribeComponent,
+		"GetComponent":                                ExecuteGetComponent,
+		"GetComponentVersionArtifact":                 ExecuteGetComponentVersionArtifact,
+		"GetCoreDevice":                               ExecuteGetCoreDevice,
+		"GetDeployment":                               ExecuteGetDeployment,
+		"ListClientDevicesAssociatedWithCoreDevice":   ExecuteListClientDevicesAssociatedWithCoreDevice,
+		"ListComponentVersions":                       ExecuteListComponentVersions,
+		"ListComponents":                              ExecuteListComponents,
+		"ListCoreDevices":                             ExecuteListCoreDevices,
+		"ListDeployments":                             ExecuteListDeployments,
+		"ListEffectiveDeployments":                    ExecuteListEffectiveDeployments,
+		"ListInstalledComponents":                     ExecuteListInstalledComponents,
+		"ListTagsForResource":                         ExecuteListTagsForResource,
+		"ResolveComponentCandidates":                  ExecuteResolveComponentCandidates,
+		"TagResource":                                 ExecuteTagResource,
+		"UntagResource":                               ExecuteUntagResource,
+	}
 )
 
 const opBatchAssociateClientDeviceWithCoreDevice = "BatchAssociateClientDeviceWithCoreDevice"
@@ -119,6 +153,44 @@ func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceWithContext(ctx a
 	return out, req.Send()
 }
 
+// ExecuteBatchAssociateClientDeviceWithCoreDevice is Blink's code
+func ExecuteBatchAssociateClientDeviceWithCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchAssociateClientDeviceWithCoreDeviceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchAssociateClientDeviceWithCoreDeviceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opBatchDisassociateClientDeviceFromCoreDevice = "BatchDisassociateClientDeviceFromCoreDevice"
 
 // BatchDisassociateClientDeviceFromCoreDeviceRequest generates a "aws/request.Request" representing the
@@ -214,6 +286,44 @@ func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDeviceWithContext(ct
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteBatchDisassociateClientDeviceFromCoreDevice is Blink's code
+func ExecuteBatchDisassociateClientDeviceFromCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchDisassociateClientDeviceFromCoreDeviceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchDisassociateClientDeviceFromCoreDeviceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCancelDeployment = "CancelDeployment"
@@ -314,6 +424,44 @@ func (c *GreengrassV2) CancelDeploymentWithContext(ctx aws.Context, input *Cance
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCancelDeployment is Blink's code
+func ExecuteCancelDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CancelDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CancelDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateComponentVersion = "CreateComponentVersion"
@@ -437,6 +585,44 @@ func (c *GreengrassV2) CreateComponentVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteCreateComponentVersion is Blink's code
+func ExecuteCreateComponentVersion(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateComponentVersionInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateComponentVersionRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateDeployment = "CreateDeployment"
 
 // CreateDeploymentRequest generates a "aws/request.Request" representing the
@@ -546,6 +732,44 @@ func (c *GreengrassV2) CreateDeploymentWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+// ExecuteCreateDeployment is Blink's code
+func ExecuteCreateDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteComponent = "DeleteComponent"
 
 // DeleteComponentRequest generates a "aws/request.Request" representing the
@@ -648,6 +872,44 @@ func (c *GreengrassV2) DeleteComponentWithContext(ctx aws.Context, input *Delete
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteComponent is Blink's code
+func ExecuteDeleteComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteComponentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteComponentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteCoreDevice = "DeleteCoreDevice"
@@ -753,6 +1015,44 @@ func (c *GreengrassV2) DeleteCoreDeviceWithContext(ctx aws.Context, input *Delet
 	return out, req.Send()
 }
 
+// ExecuteDeleteCoreDevice is Blink's code
+func ExecuteDeleteCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteCoreDeviceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteCoreDeviceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeComponent = "DescribeComponent"
 
 // DescribeComponentRequest generates a "aws/request.Request" representing the
@@ -845,6 +1145,44 @@ func (c *GreengrassV2) DescribeComponentWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeComponent is Blink's code
+func ExecuteDescribeComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeComponentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeComponentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetComponent = "GetComponent"
@@ -940,6 +1278,44 @@ func (c *GreengrassV2) GetComponentWithContext(ctx aws.Context, input *GetCompon
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetComponent is Blink's code
+func ExecuteGetComponent(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetComponentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetComponentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetComponentVersionArtifact = "GetComponentVersionArtifact"
@@ -1038,6 +1414,44 @@ func (c *GreengrassV2) GetComponentVersionArtifactWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+// ExecuteGetComponentVersionArtifact is Blink's code
+func ExecuteGetComponentVersionArtifact(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetComponentVersionArtifactInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetComponentVersionArtifactRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opGetCoreDevice = "GetCoreDevice"
 
 // GetCoreDeviceRequest generates a "aws/request.Request" representing the
@@ -1130,6 +1544,44 @@ func (c *GreengrassV2) GetCoreDeviceWithContext(ctx aws.Context, input *GetCoreD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetCoreDevice is Blink's code
+func ExecuteGetCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetCoreDeviceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetCoreDeviceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetDeployment = "GetDeployment"
@@ -1225,6 +1677,44 @@ func (c *GreengrassV2) GetDeploymentWithContext(ctx aws.Context, input *GetDeplo
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetDeployment is Blink's code
+func ExecuteGetDeployment(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetDeploymentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetDeploymentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opListClientDevicesAssociatedWithCoreDevice = "ListClientDevicesAssociatedWithCoreDevice"
@@ -1326,6 +1816,44 @@ func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDeviceWithContext(ctx 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListClientDevicesAssociatedWithCoreDevice is Blink's code
+func ExecuteListClientDevicesAssociatedWithCoreDevice(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListClientDevicesAssociatedWithCoreDeviceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListClientDevicesAssociatedWithCoreDeviceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListClientDevicesAssociatedWithCoreDevicePages iterates over the pages of a ListClientDevicesAssociatedWithCoreDevice operation,
@@ -1481,6 +2009,44 @@ func (c *GreengrassV2) ListComponentVersionsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// ExecuteListComponentVersions is Blink's code
+func ExecuteListComponentVersions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListComponentVersionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListComponentVersionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListComponentVersionsPages iterates over the pages of a ListComponentVersions operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1629,6 +2195,44 @@ func (c *GreengrassV2) ListComponentsWithContext(ctx aws.Context, input *ListCom
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListComponents is Blink's code
+func ExecuteListComponents(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListComponentsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListComponentsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListComponentsPages iterates over the pages of a ListComponents operation,
@@ -1780,6 +2384,44 @@ func (c *GreengrassV2) ListCoreDevicesWithContext(ctx aws.Context, input *ListCo
 	return out, req.Send()
 }
 
+// ExecuteListCoreDevices is Blink's code
+func ExecuteListCoreDevices(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListCoreDevicesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListCoreDevicesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListCoreDevicesPages iterates over the pages of a ListCoreDevices operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -1927,6 +2569,44 @@ func (c *GreengrassV2) ListDeploymentsWithContext(ctx aws.Context, input *ListDe
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListDeployments is Blink's code
+func ExecuteListDeployments(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListDeploymentsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListDeploymentsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListDeploymentsPages iterates over the pages of a ListDeployments operation,
@@ -2082,6 +2762,44 @@ func (c *GreengrassV2) ListEffectiveDeploymentsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ExecuteListEffectiveDeployments is Blink's code
+func ExecuteListEffectiveDeployments(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListEffectiveDeploymentsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListEffectiveDeploymentsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListEffectiveDeploymentsPages iterates over the pages of a ListEffectiveDeployments operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2235,6 +2953,44 @@ func (c *GreengrassV2) ListInstalledComponentsWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+// ExecuteListInstalledComponents is Blink's code
+func ExecuteListInstalledComponents(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListInstalledComponentsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListInstalledComponentsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListInstalledComponentsPages iterates over the pages of a ListInstalledComponents operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2373,6 +3129,44 @@ func (c *GreengrassV2) ListTagsForResourceWithContext(ctx aws.Context, input *Li
 	return out, req.Send()
 }
 
+// ExecuteListTagsForResource is Blink's code
+func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListTagsForResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opResolveComponentCandidates = "ResolveComponentCandidates"
 
 // ResolveComponentCandidatesRequest generates a "aws/request.Request" representing the
@@ -2488,6 +3282,44 @@ func (c *GreengrassV2) ResolveComponentCandidatesWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+// ExecuteResolveComponentCandidates is Blink's code
+func ExecuteResolveComponentCandidates(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ResolveComponentCandidatesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ResolveComponentCandidatesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -2576,6 +3408,44 @@ func (c *GreengrassV2) TagResourceWithContext(ctx aws.Context, input *TagResourc
 	return out, req.Send()
 }
 
+// ExecuteTagResource is Blink's code
+func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := TagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.TagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -2661,6 +3531,44 @@ func (c *GreengrassV2) UntagResourceWithContext(ctx aws.Context, input *UntagRes
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUntagResource is Blink's code
+func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*GreengrassV2)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UntagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UntagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // You don't have permission to perform the action.

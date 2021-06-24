@@ -3,6 +3,8 @@
 package kendra
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
 	"time"
 
@@ -11,6 +13,54 @@ import (
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
+)
+
+const (
+	defaultAWSToken = ""
+)
+
+var (
+	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
+		"BatchDeleteDocument":               ExecuteBatchDeleteDocument,
+		"BatchGetDocumentStatus":            ExecuteBatchGetDocumentStatus,
+		"BatchPutDocument":                  ExecuteBatchPutDocument,
+		"ClearQuerySuggestions":             ExecuteClearQuerySuggestions,
+		"CreateDataSource":                  ExecuteCreateDataSource,
+		"CreateFaq":                         ExecuteCreateFaq,
+		"CreateIndex":                       ExecuteCreateIndex,
+		"CreateQuerySuggestionsBlockList":   ExecuteCreateQuerySuggestionsBlockList,
+		"CreateThesaurus":                   ExecuteCreateThesaurus,
+		"DeleteDataSource":                  ExecuteDeleteDataSource,
+		"DeleteFaq":                         ExecuteDeleteFaq,
+		"DeleteIndex":                       ExecuteDeleteIndex,
+		"DeleteQuerySuggestionsBlockList":   ExecuteDeleteQuerySuggestionsBlockList,
+		"DeleteThesaurus":                   ExecuteDeleteThesaurus,
+		"DescribeDataSource":                ExecuteDescribeDataSource,
+		"DescribeFaq":                       ExecuteDescribeFaq,
+		"DescribeIndex":                     ExecuteDescribeIndex,
+		"DescribeQuerySuggestionsBlockList": ExecuteDescribeQuerySuggestionsBlockList,
+		"DescribeQuerySuggestionsConfig":    ExecuteDescribeQuerySuggestionsConfig,
+		"DescribeThesaurus":                 ExecuteDescribeThesaurus,
+		"GetQuerySuggestions":               ExecuteGetQuerySuggestions,
+		"ListDataSourceSyncJobs":            ExecuteListDataSourceSyncJobs,
+		"ListDataSources":                   ExecuteListDataSources,
+		"ListFaqs":                          ExecuteListFaqs,
+		"ListIndices":                       ExecuteListIndices,
+		"ListQuerySuggestionsBlockLists":    ExecuteListQuerySuggestionsBlockLists,
+		"ListTagsForResource":               ExecuteListTagsForResource,
+		"ListThesauri":                      ExecuteListThesauri,
+		"Query":                             ExecuteQuery,
+		"StartDataSourceSyncJob":            ExecuteStartDataSourceSyncJob,
+		"StopDataSourceSyncJob":             ExecuteStopDataSourceSyncJob,
+		"SubmitFeedback":                    ExecuteSubmitFeedback,
+		"TagResource":                       ExecuteTagResource,
+		"UntagResource":                     ExecuteUntagResource,
+		"UpdateDataSource":                  ExecuteUpdateDataSource,
+		"UpdateIndex":                       ExecuteUpdateIndex,
+		"UpdateQuerySuggestionsBlockList":   ExecuteUpdateQuerySuggestionsBlockList,
+		"UpdateQuerySuggestionsConfig":      ExecuteUpdateQuerySuggestionsConfig,
+		"UpdateThesaurus":                   ExecuteUpdateThesaurus,
+	}
 )
 
 const opBatchDeleteDocument = "BatchDeleteDocument"
@@ -104,6 +154,44 @@ func (c *Kendra) BatchDeleteDocumentWithContext(ctx aws.Context, input *BatchDel
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteBatchDeleteDocument is Blink's code
+func ExecuteBatchDeleteDocument(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchDeleteDocumentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchDeleteDocumentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opBatchGetDocumentStatus = "BatchGetDocumentStatus"
@@ -206,6 +294,44 @@ func (c *Kendra) BatchGetDocumentStatusWithContext(ctx aws.Context, input *Batch
 	return out, req.Send()
 }
 
+// ExecuteBatchGetDocumentStatus is Blink's code
+func ExecuteBatchGetDocumentStatus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchGetDocumentStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchGetDocumentStatusRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opBatchPutDocument = "BatchPutDocument"
 
 // BatchPutDocumentRequest generates a "aws/request.Request" representing the
@@ -306,6 +432,44 @@ func (c *Kendra) BatchPutDocumentWithContext(ctx aws.Context, input *BatchPutDoc
 	return out, req.Send()
 }
 
+// ExecuteBatchPutDocument is Blink's code
+func ExecuteBatchPutDocument(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchPutDocumentInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchPutDocumentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opClearQuerySuggestions = "ClearQuerySuggestions"
 
 // ClearQuerySuggestionsRequest generates a "aws/request.Request" representing the
@@ -399,6 +563,44 @@ func (c *Kendra) ClearQuerySuggestionsWithContext(ctx aws.Context, input *ClearQ
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteClearQuerySuggestions is Blink's code
+func ExecuteClearQuerySuggestions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ClearQuerySuggestionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ClearQuerySuggestionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateDataSource = "CreateDataSource"
@@ -500,6 +702,44 @@ func (c *Kendra) CreateDataSourceWithContext(ctx aws.Context, input *CreateDataS
 	return out, req.Send()
 }
 
+// ExecuteCreateDataSource is Blink's code
+func ExecuteCreateDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateDataSourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateDataSourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateFaq = "CreateFaq"
 
 // CreateFaqRequest generates a "aws/request.Request" representing the
@@ -588,6 +828,44 @@ func (c *Kendra) CreateFaqWithContext(ctx aws.Context, input *CreateFaqInput, op
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateFaq is Blink's code
+func ExecuteCreateFaq(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateFaqInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateFaqRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateIndex = "CreateIndex"
@@ -684,6 +962,44 @@ func (c *Kendra) CreateIndexWithContext(ctx aws.Context, input *CreateIndexInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateIndex is Blink's code
+func ExecuteCreateIndex(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateIndexInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateIndexRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opCreateQuerySuggestionsBlockList = "CreateQuerySuggestionsBlockList"
@@ -786,6 +1102,44 @@ func (c *Kendra) CreateQuerySuggestionsBlockListWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteCreateQuerySuggestionsBlockList is Blink's code
+func ExecuteCreateQuerySuggestionsBlockList(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateQuerySuggestionsBlockListInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateQuerySuggestionsBlockListRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opCreateThesaurus = "CreateThesaurus"
 
 // CreateThesaurusRequest generates a "aws/request.Request" representing the
@@ -875,6 +1229,44 @@ func (c *Kendra) CreateThesaurusWithContext(ctx aws.Context, input *CreateThesau
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteCreateThesaurus is Blink's code
+func ExecuteCreateThesaurus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := CreateThesaurusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.CreateThesaurusRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteDataSource = "DeleteDataSource"
@@ -969,6 +1361,44 @@ func (c *Kendra) DeleteDataSourceWithContext(ctx aws.Context, input *DeleteDataS
 	return out, req.Send()
 }
 
+// ExecuteDeleteDataSource is Blink's code
+func ExecuteDeleteDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteDataSourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteDataSourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteFaq = "DeleteFaq"
 
 // DeleteFaqRequest generates a "aws/request.Request" representing the
@@ -1056,6 +1486,44 @@ func (c *Kendra) DeleteFaqWithContext(ctx aws.Context, input *DeleteFaqInput, op
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteFaq is Blink's code
+func ExecuteDeleteFaq(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteFaqInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteFaqRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteIndex = "DeleteIndex"
@@ -1147,6 +1615,44 @@ func (c *Kendra) DeleteIndexWithContext(ctx aws.Context, input *DeleteIndexInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDeleteIndex is Blink's code
+func ExecuteDeleteIndex(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteIndexInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteIndexRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDeleteQuerySuggestionsBlockList = "DeleteQuerySuggestionsBlockList"
@@ -1242,6 +1748,44 @@ func (c *Kendra) DeleteQuerySuggestionsBlockListWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+// ExecuteDeleteQuerySuggestionsBlockList is Blink's code
+func ExecuteDeleteQuerySuggestionsBlockList(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteQuerySuggestionsBlockListInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteQuerySuggestionsBlockListRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDeleteThesaurus = "DeleteThesaurus"
 
 // DeleteThesaurusRequest generates a "aws/request.Request" representing the
@@ -1331,6 +1875,44 @@ func (c *Kendra) DeleteThesaurusWithContext(ctx aws.Context, input *DeleteThesau
 	return out, req.Send()
 }
 
+// ExecuteDeleteThesaurus is Blink's code
+func ExecuteDeleteThesaurus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DeleteThesaurusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DeleteThesaurusRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeDataSource = "DescribeDataSource"
 
 // DescribeDataSourceRequest generates a "aws/request.Request" representing the
@@ -1415,6 +1997,44 @@ func (c *Kendra) DescribeDataSourceWithContext(ctx aws.Context, input *DescribeD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeDataSource is Blink's code
+func ExecuteDescribeDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeDataSourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeDataSourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDescribeFaq = "DescribeFaq"
@@ -1503,6 +2123,44 @@ func (c *Kendra) DescribeFaqWithContext(ctx aws.Context, input *DescribeFaqInput
 	return out, req.Send()
 }
 
+// ExecuteDescribeFaq is Blink's code
+func ExecuteDescribeFaq(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeFaqInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeFaqRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeIndex = "DescribeIndex"
 
 // DescribeIndexRequest generates a "aws/request.Request" representing the
@@ -1587,6 +2245,44 @@ func (c *Kendra) DescribeIndexWithContext(ctx aws.Context, input *DescribeIndexI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeIndex is Blink's code
+func ExecuteDescribeIndex(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeIndexInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeIndexRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opDescribeQuerySuggestionsBlockList = "DescribeQuerySuggestionsBlockList"
@@ -1677,6 +2373,44 @@ func (c *Kendra) DescribeQuerySuggestionsBlockListWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+// ExecuteDescribeQuerySuggestionsBlockList is Blink's code
+func ExecuteDescribeQuerySuggestionsBlockList(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeQuerySuggestionsBlockListInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeQuerySuggestionsBlockListRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeQuerySuggestionsConfig = "DescribeQuerySuggestionsConfig"
 
 // DescribeQuerySuggestionsConfigRequest generates a "aws/request.Request" representing the
@@ -1765,6 +2499,44 @@ func (c *Kendra) DescribeQuerySuggestionsConfigWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ExecuteDescribeQuerySuggestionsConfig is Blink's code
+func ExecuteDescribeQuerySuggestionsConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeQuerySuggestionsConfigInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeQuerySuggestionsConfigRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDescribeThesaurus = "DescribeThesaurus"
 
 // DescribeThesaurusRequest generates a "aws/request.Request" representing the
@@ -1849,6 +2621,44 @@ func (c *Kendra) DescribeThesaurusWithContext(ctx aws.Context, input *DescribeTh
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteDescribeThesaurus is Blink's code
+func ExecuteDescribeThesaurus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DescribeThesaurusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DescribeThesaurusRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opGetQuerySuggestions = "GetQuerySuggestions"
@@ -1939,6 +2749,44 @@ func (c *Kendra) GetQuerySuggestionsWithContext(ctx aws.Context, input *GetQuery
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteGetQuerySuggestions is Blink's code
+func ExecuteGetQuerySuggestions(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := GetQuerySuggestionsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.GetQuerySuggestionsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opListDataSourceSyncJobs = "ListDataSourceSyncJobs"
@@ -2033,6 +2881,44 @@ func (c *Kendra) ListDataSourceSyncJobsWithContext(ctx aws.Context, input *ListD
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListDataSourceSyncJobs is Blink's code
+func ExecuteListDataSourceSyncJobs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListDataSourceSyncJobsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListDataSourceSyncJobsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListDataSourceSyncJobsPages iterates over the pages of a ListDataSourceSyncJobs operation,
@@ -2179,6 +3065,44 @@ func (c *Kendra) ListDataSourcesWithContext(ctx aws.Context, input *ListDataSour
 	return out, req.Send()
 }
 
+// ExecuteListDataSources is Blink's code
+func ExecuteListDataSources(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListDataSourcesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListDataSourcesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 // ListDataSourcesPages iterates over the pages of a ListDataSources operation,
 // calling the "fn" function with the response data for each page. To stop
 // iterating, return false from the fn function.
@@ -2317,6 +3241,44 @@ func (c *Kendra) ListFaqsWithContext(ctx aws.Context, input *ListFaqsInput, opts
 	return out, req.Send()
 }
 
+// ExecuteListFaqs is Blink's code
+func ExecuteListFaqs(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListFaqsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListFaqsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListIndices = "ListIndices"
 
 // ListIndicesRequest generates a "aws/request.Request" representing the
@@ -2405,6 +3367,44 @@ func (c *Kendra) ListIndicesWithContext(ctx aws.Context, input *ListIndicesInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListIndices is Blink's code
+func ExecuteListIndices(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListIndicesInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListIndicesRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // ListIndicesPages iterates over the pages of a ListIndices operation,
@@ -2548,6 +3548,44 @@ func (c *Kendra) ListQuerySuggestionsBlockListsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+// ExecuteListQuerySuggestionsBlockLists is Blink's code
+func ExecuteListQuerySuggestionsBlockLists(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListQuerySuggestionsBlockListsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListQuerySuggestionsBlockListsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -2635,6 +3673,44 @@ func (c *Kendra) ListTagsForResourceWithContext(ctx aws.Context, input *ListTags
 	return out, req.Send()
 }
 
+// ExecuteListTagsForResource is Blink's code
+func ExecuteListTagsForResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListTagsForResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListTagsForResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opListThesauri = "ListThesauri"
 
 // ListThesauriRequest generates a "aws/request.Request" representing the
@@ -2719,6 +3795,44 @@ func (c *Kendra) ListThesauriWithContext(ctx aws.Context, input *ListThesauriInp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteListThesauri is Blink's code
+func ExecuteListThesauri(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListThesauriInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListThesauriRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opQuery = "Query"
@@ -2830,6 +3944,44 @@ func (c *Kendra) QueryWithContext(ctx aws.Context, input *QueryInput, opts ...re
 	return out, req.Send()
 }
 
+// ExecuteQuery is Blink's code
+func ExecuteQuery(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := QueryInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.QueryRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStartDataSourceSyncJob = "StartDataSourceSyncJob"
 
 // StartDataSourceSyncJobRequest generates a "aws/request.Request" representing the
@@ -2921,6 +4073,44 @@ func (c *Kendra) StartDataSourceSyncJobWithContext(ctx aws.Context, input *Start
 	return out, req.Send()
 }
 
+// ExecuteStartDataSourceSyncJob is Blink's code
+func ExecuteStartDataSourceSyncJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StartDataSourceSyncJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StartDataSourceSyncJobRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opStopDataSourceSyncJob = "StopDataSourceSyncJob"
 
 // StopDataSourceSyncJobRequest generates a "aws/request.Request" representing the
@@ -3007,6 +4197,44 @@ func (c *Kendra) StopDataSourceSyncJobWithContext(ctx aws.Context, input *StopDa
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteStopDataSourceSyncJob is Blink's code
+func ExecuteStopDataSourceSyncJob(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := StopDataSourceSyncJobInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.StopDataSourceSyncJobRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opSubmitFeedback = "SubmitFeedback"
@@ -3099,6 +4327,44 @@ func (c *Kendra) SubmitFeedbackWithContext(ctx aws.Context, input *SubmitFeedbac
 	return out, req.Send()
 }
 
+// ExecuteSubmitFeedback is Blink's code
+func ExecuteSubmitFeedback(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := SubmitFeedbackInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.SubmitFeedbackRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -3187,6 +4453,44 @@ func (c *Kendra) TagResourceWithContext(ctx aws.Context, input *TagResourceInput
 	return out, req.Send()
 }
 
+// ExecuteTagResource is Blink's code
+func ExecuteTagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := TagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.TagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUntagResource = "UntagResource"
 
 // UntagResourceRequest generates a "aws/request.Request" representing the
@@ -3272,6 +4576,44 @@ func (c *Kendra) UntagResourceWithContext(ctx aws.Context, input *UntagResourceI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUntagResource is Blink's code
+func ExecuteUntagResource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UntagResourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UntagResourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateDataSource = "UpdateDataSource"
@@ -3363,6 +4705,44 @@ func (c *Kendra) UpdateDataSourceWithContext(ctx aws.Context, input *UpdateDataS
 	return out, req.Send()
 }
 
+// ExecuteUpdateDataSource is Blink's code
+func ExecuteUpdateDataSource(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateDataSourceInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateDataSourceRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateIndex = "UpdateIndex"
 
 // UpdateIndexRequest generates a "aws/request.Request" representing the
@@ -3452,6 +4832,44 @@ func (c *Kendra) UpdateIndexWithContext(ctx aws.Context, input *UpdateIndexInput
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateIndex is Blink's code
+func ExecuteUpdateIndex(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateIndexInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateIndexRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateQuerySuggestionsBlockList = "UpdateQuerySuggestionsBlockList"
@@ -3551,6 +4969,44 @@ func (c *Kendra) UpdateQuerySuggestionsBlockListWithContext(ctx aws.Context, inp
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateQuerySuggestionsBlockList is Blink's code
+func ExecuteUpdateQuerySuggestionsBlockList(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateQuerySuggestionsBlockListInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateQuerySuggestionsBlockListRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opUpdateQuerySuggestionsConfig = "UpdateQuerySuggestionsConfig"
@@ -3654,6 +5110,44 @@ func (c *Kendra) UpdateQuerySuggestionsConfigWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// ExecuteUpdateQuerySuggestionsConfig is Blink's code
+func ExecuteUpdateQuerySuggestionsConfig(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateQuerySuggestionsConfigInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateQuerySuggestionsConfigRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opUpdateThesaurus = "UpdateThesaurus"
 
 // UpdateThesaurusRequest generates a "aws/request.Request" representing the
@@ -3741,6 +5235,44 @@ func (c *Kendra) UpdateThesaurusWithContext(ctx aws.Context, input *UpdateThesau
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteUpdateThesaurus is Blink's code
+func ExecuteUpdateThesaurus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateThesaurusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateThesaurusRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 // Access Control List files for the documents in a data source. For the format

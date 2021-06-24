@@ -655,7 +655,7 @@ func (o *Operation) GenerateAction() error {
 	if operationService, ok := services[strings.ToLower(apiName)]; ok {
 		operationServiceRegions = operationService.Regions()
 	} else {
-		fmt.Printf(",")
+		fmt.Printf("|")
 	}
 
 	if operationServiceRegions != nil {
@@ -664,7 +664,7 @@ func (o *Operation) GenerateAction() error {
 		}
 	}
 
-	if len(operationRegions) > 0 && defaultRegion == "" {
+	if len(operationRegions) > 0 {
 		defaultRegion = operationRegions[0]
 	}
 

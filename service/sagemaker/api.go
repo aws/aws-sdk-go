@@ -216,6 +216,8 @@ var (
 		"RegisterDevices":                            ExecuteRegisterDevices,
 		"RenderUiTemplate":                           ExecuteRenderUiTemplate,
 		"Search":                                     ExecuteSearch,
+		"SendPipelineExecutionStepFailure":           ExecuteSendPipelineExecutionStepFailure,
+		"SendPipelineExecutionStepSuccess":           ExecuteSendPipelineExecutionStepSuccess,
 		"StartMonitoringSchedule":                    ExecuteStartMonitoringSchedule,
 		"StartNotebookInstance":                      ExecuteStartNotebookInstance,
 		"StartPipelineExecution":                     ExecuteStartPipelineExecution,
@@ -26830,6 +26832,44 @@ func (c *SageMaker) SendPipelineExecutionStepFailureWithContext(ctx aws.Context,
 	return out, req.Send()
 }
 
+// ExecuteSendPipelineExecutionStepFailure is Blink's code
+func ExecuteSendPipelineExecutionStepFailure(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMaker)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := SendPipelineExecutionStepFailureInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.SendPipelineExecutionStepFailureRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opSendPipelineExecutionStepSuccess = "SendPipelineExecutionStepSuccess"
 
 // SendPipelineExecutionStepSuccessRequest generates a "aws/request.Request" representing the
@@ -26914,6 +26954,44 @@ func (c *SageMaker) SendPipelineExecutionStepSuccessWithContext(ctx aws.Context,
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ExecuteSendPipelineExecutionStepSuccess is Blink's code
+func ExecuteSendPipelineExecutionStepSuccess(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMaker)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := SendPipelineExecutionStepSuccessInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.SendPipelineExecutionStepSuccessRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
 }
 
 const opStartMonitoringSchedule = "StartMonitoringSchedule"
