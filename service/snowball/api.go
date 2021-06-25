@@ -434,7 +434,7 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 // The device capacity is optional.
 //
 // Availability of device types differ by AWS Region. For more information about
-// region availability, see AWS Regional Services (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
+// Region availability, see AWS Regional Services (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/?p=ngi&loc=4).
 //
 // AWS Snow Family device types and their capacities.
 //
@@ -485,9 +485,9 @@ func (c *Snowball) CreateJobRequest(input *CreateJobInput) (req *request.Request
 //
 //   * ClusterLimitExceededException
 //   Job creation failed. Currently, clusters support five nodes. If you have
-//   less than five nodes for your cluster and you have more nodes to create for
-//   this cluster, try again and create jobs until your cluster has exactly five
-//   notes.
+//   fewer than five nodes for your cluster and you have more nodes to create
+//   for this cluster, try again and create jobs until your cluster has exactly
+//   five nodes.
 //
 //   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
@@ -559,10 +559,9 @@ func (c *Snowball) CreateLongTermPricingRequest(input *CreateLongTermPricingInpu
 
 // CreateLongTermPricing API operation for Amazon Import/Export Snowball.
 //
-// Creates a job with long term usage option for a device. The long term usage
-// is a one year or three year long term pricing type for the device. You are
-// billed upfront and AWS give discounts for long term pricing. For detailed
-// information see XXXXXXXX
+// Creates a job with the long-term usage option for a device. The long-term
+// usage is a 1-year or 3-year long-term pricing type for the device. You are
+// billed upfront, and AWS provides discounts for long-term pricing.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1975,7 +1974,7 @@ func (c *Snowball) ListLongTermPricingRequest(input *ListLongTermPricingInput) (
 
 // ListLongTermPricing API operation for Amazon Import/Export Snowball.
 //
-// Lists all long term pricing types.
+// Lists all long-term pricing types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2192,9 +2191,9 @@ func (c *Snowball) UpdateJobRequest(input *UpdateJobInput) (req *request.Request
 //
 //   * ClusterLimitExceededException
 //   Job creation failed. Currently, clusters support five nodes. If you have
-//   less than five nodes for your cluster and you have more nodes to create for
-//   this cluster, try again and create jobs until your cluster has exactly five
-//   notes.
+//   fewer than five nodes for your cluster and you have more nodes to create
+//   for this cluster, try again and create jobs until your cluster has exactly
+//   five nodes.
 //
 //   * Ec2RequestFailedException
 //   Your IAM user lacks the necessary Amazon EC2 permissions to perform the attempted
@@ -2267,7 +2266,7 @@ func (c *Snowball) UpdateJobShipmentStateRequest(input *UpdateJobShipmentStateIn
 
 // UpdateJobShipmentState API operation for Amazon Import/Export Snowball.
 //
-// Updates the state when a the shipment states changes to a different state.
+// Updates the state when a shipment state changes to a different state.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2352,7 +2351,7 @@ func (c *Snowball) UpdateLongTermPricingRequest(input *UpdateLongTermPricingInpu
 
 // UpdateLongTermPricing API operation for Amazon Import/Export Snowball.
 //
-// Updates the long term pricing type.
+// Updates the long-term pricing type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2701,9 +2700,9 @@ func (s CancelJobOutput) GoString() string {
 }
 
 // Job creation failed. Currently, clusters support five nodes. If you have
-// less than five nodes for your cluster and you have more nodes to create for
-// this cluster, try again and create jobs until your cluster has exactly five
-// notes.
+// fewer than five nodes for your cluster and you have more nodes to create
+// for this cluster, try again and create jobs until your cluster has exactly
+// five nodes.
 type ClusterLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2848,6 +2847,10 @@ type ClusterMetadata struct {
 	// for this cluster.
 	Notification *Notification `type:"structure"`
 
+	// Represents metadata and configuration settings for services on an AWS Snow
+	// Family device.
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
+
 	// The arrays of JobResource objects that can include updated S3Resource objects
 	// or LambdaResource objects.
 	Resources *JobResource `type:"structure"`
@@ -2946,6 +2949,12 @@ func (s *ClusterMetadata) SetKmsKeyARN(v string) *ClusterMetadata {
 // SetNotification sets the Notification field's value.
 func (s *ClusterMetadata) SetNotification(v *Notification) *ClusterMetadata {
 	s.Notification = v
+	return s
+}
+
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *ClusterMetadata) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *ClusterMetadata {
+	s.OnDeviceServiceConfiguration = v
 	return s
 }
 
@@ -3177,6 +3186,17 @@ type CreateClusterInput struct {
 	// for this cluster.
 	Notification *Notification `type:"structure"`
 
+	// Specifies the service or services on the Snow Family device that your transferred
+	// data will be exported from or imported into. AWS Snow Family supports Amazon
+	// S3 and NFS (Network File System).
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
+
+	// Allows you to securely operate and manage Snow devices in a cluster remotely
+	// from outside of your internal network. When set to INSTALLED_AUTOSTART, remote
+	// management will automatically be available when the device arrives at your
+	// location. Otherwise, you need to use the Snowball Client to manage the device.
+	RemoteManagement *string `type:"string" enum:"RemoteManagement"`
+
 	// The resources associated with the cluster job. These resources include Amazon
 	// S3 buckets and optional AWS Lambda functions written in the Python language.
 	//
@@ -3203,7 +3223,7 @@ type CreateClusterInput struct {
 	//    most countries in the EU have access to standard shipping, which typically
 	//    takes less than a week, one way.
 	//
-	//    * In India, Snow device are delivered in one to seven days.
+	//    * In India, Snow devices are delivered in one to seven days.
 	//
 	//    * In the United States of America (US), you have access to one-day shipping
 	//    and two-day shipping.
@@ -3216,7 +3236,7 @@ type CreateClusterInput struct {
 	//    most countries in the EU have access to standard shipping, which typically
 	//    takes less than a week, one way.
 	//
-	//    * In India, Snow device are delivered in one to seven days.
+	//    * In India, Snow devices are delivered in one to seven days.
 	//
 	//    * In the US, you have access to one-day shipping and two-day shipping.
 	//
@@ -3327,6 +3347,18 @@ func (s *CreateClusterInput) SetNotification(v *Notification) *CreateClusterInpu
 	return s
 }
 
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *CreateClusterInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *CreateClusterInput {
+	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
+// SetRemoteManagement sets the RemoteManagement field's value.
+func (s *CreateClusterInput) SetRemoteManagement(v string) *CreateClusterInput {
+	s.RemoteManagement = &v
+	return s
+}
+
 // SetResources sets the Resources field's value.
 func (s *CreateClusterInput) SetResources(v *JobResource) *CreateClusterInput {
 	s.Resources = v
@@ -3403,7 +3435,7 @@ type CreateJobInput struct {
 	DeviceConfiguration *DeviceConfiguration `type:"structure"`
 
 	// The forwarding address ID for a job. This field is not supported in most
-	// regions.
+	// Regions.
 	ForwardingAddressId *string `min:"40" type:"string"`
 
 	// Defines the type of job that you're creating.
@@ -3414,12 +3446,23 @@ type CreateJobInput struct {
 	// AWS Key Management Service (KMS) API action.
 	KmsKeyARN *string `type:"string"`
 
-	// The ID of the long term pricing type for the device.
+	// The ID of the long-term pricing type for the device.
 	LongTermPricingId *string `min:"41" type:"string"`
 
 	// Defines the Amazon Simple Notification Service (Amazon SNS) notification
 	// settings for this job.
 	Notification *Notification `type:"structure"`
+
+	// Specifies the service or services on the Snow Family device that your transferred
+	// data will be exported from or imported into. AWS Snow Family supports Amazon
+	// S3 and NFS (Network File System).
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
+
+	// Allows you to securely operate and manage Snowcone devices remotely from
+	// outside of your internal network. When set to INSTALLED_AUTOSTART, remote
+	// management will automatically be available when the device arrives at your
+	// location. Otherwise, you need to use the Snowball Client to manage the device.
+	RemoteManagement *string `type:"string" enum:"RemoteManagement"`
 
 	// Defines the Amazon S3 buckets associated with this job.
 	//
@@ -3578,6 +3621,18 @@ func (s *CreateJobInput) SetNotification(v *Notification) *CreateJobInput {
 	return s
 }
 
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *CreateJobInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *CreateJobInput {
+	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
+// SetRemoteManagement sets the RemoteManagement field's value.
+func (s *CreateJobInput) SetRemoteManagement(v string) *CreateJobInput {
+	s.RemoteManagement = &v
+	return s
+}
+
 // SetResources sets the Resources field's value.
 func (s *CreateJobInput) SetResources(v *JobResource) *CreateJobInput {
 	s.Resources = v
@@ -3640,17 +3695,17 @@ func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 type CreateLongTermPricingInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the current long term pricing type for the device should
+	// Specifies whether the current long-term pricing type for the device should
 	// be renewed.
 	IsLongTermPricingAutoRenew *bool `type:"boolean"`
 
-	// The type of long term pricing option you want for the device - one year or
-	// three year long term pricing.
+	// The type of long-term pricing option you want for the device, either 1-year
+	// or 3-year long-term pricing.
 	//
 	// LongTermPricingType is a required field
 	LongTermPricingType *string `type:"string" required:"true" enum:"LongTermPricingType"`
 
-	// The type of AWS Snow Family device to use for the long term pricing job.
+	// The type of AWS Snow Family device to use for the long-term pricing job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
 
@@ -3698,7 +3753,7 @@ func (s *CreateLongTermPricingInput) SetSnowballType(v string) *CreateLongTermPr
 type CreateLongTermPricingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the long term pricing type for the device.
+	// The ID of the long-term pricing type for the device.
 	LongTermPricingId *string `min:"41" type:"string"`
 }
 
@@ -3721,8 +3776,8 @@ func (s *CreateLongTermPricingOutput) SetLongTermPricingId(v string) *CreateLong
 type CreateReturnShippingLabelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for a job that you want to create the return shipping label for. For
-	// example JID123e4567-e89b-12d3-a456-426655440000.
+	// The ID for a job that you want to create the return shipping label for; for
+	// example, JID123e4567-e89b-12d3-a456-426655440000.
 	//
 	// JobId is a required field
 	JobId *string `min:"39" type:"string" required:"true"`
@@ -5131,7 +5186,7 @@ type JobMetadata struct {
 	// API action in AWS KMS.
 	KmsKeyARN *string `type:"string"`
 
-	// The ID of the long term pricing type for the device.
+	// The ID of the long-term pricing type for the device.
 	LongTermPricingId *string `min:"41" type:"string"`
 
 	// The Amazon Simple Notification Service (Amazon SNS) notification settings
@@ -5139,6 +5194,16 @@ type JobMetadata struct {
 	// part of the response syntax of the DescribeJob action in the JobMetadata
 	// data type.
 	Notification *Notification `type:"structure"`
+
+	// Represents metadata and configuration settings for services on an AWS Snow
+	// Family device.
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
+
+	// Allows you to securely operate and manage Snowcone devices remotely from
+	// outside of your internal network. When set to INSTALLED_AUTOSTART, remote
+	// management will automatically be available when the device arrives at your
+	// location. Otherwise, you need to use the Snowball Client to manage the device.
+	RemoteManagement *string `type:"string" enum:"RemoteManagement"`
 
 	// An array of S3Resource objects. Each S3Resource object represents an Amazon
 	// S3 bucket that your transferred data will be exported from or imported into.
@@ -5260,6 +5325,18 @@ func (s *JobMetadata) SetLongTermPricingId(v string) *JobMetadata {
 // SetNotification sets the Notification field's value.
 func (s *JobMetadata) SetNotification(v *Notification) *JobMetadata {
 	s.Notification = v
+	return s
+}
+
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *JobMetadata) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *JobMetadata {
+	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
+// SetRemoteManagement sets the RemoteManagement field's value.
+func (s *JobMetadata) SetRemoteManagement(v string) *JobMetadata {
+	s.RemoteManagement = &v
 	return s
 }
 
@@ -5944,41 +6021,41 @@ func (s *ListLongTermPricingOutput) SetNextToken(v string) *ListLongTermPricingO
 	return s
 }
 
-// Each LongTermPricingListEntry object contains information about a long term
+// Each LongTermPricingListEntry object contains information about a long-term
 // pricing type.
 type LongTermPricingListEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The current active jobs on the device the long term pricing type.
+	// The current active jobs on the device the long-term pricing type.
 	CurrentActiveJob *string `min:"39" type:"string"`
 
-	// If set to true, specifies that the current long term pricing type for the
-	// device should be automatically renewed before the long term pricing contract
+	// If set to true, specifies that the current long-term pricing type for the
+	// device should be automatically renewed before the long-term pricing contract
 	// expires.
 	IsLongTermPricingAutoRenew *bool `type:"boolean"`
 
-	// The IDs of the jobs that are associated with a long term pricing type.
+	// The IDs of the jobs that are associated with a long-term pricing type.
 	JobIds []*string `type:"list"`
 
-	// The end date the long term pricing contract.
+	// The end date the long-term pricing contract.
 	LongTermPricingEndDate *time.Time `type:"timestamp"`
 
-	// The ID of the long term pricing type for the device.
+	// The ID of the long-term pricing type for the device.
 	LongTermPricingId *string `min:"41" type:"string"`
 
-	// The start date of the long term pricing contract.
+	// The start date of the long-term pricing contract.
 	LongTermPricingStartDate *time.Time `type:"timestamp"`
 
-	// The status of the long term pricing type.
+	// The status of the long-term pricing type.
 	LongTermPricingStatus *string `min:"1" type:"string"`
 
-	// The type of long term pricing that was selected for the device.
+	// The type of long-term pricing that was selected for the device.
 	LongTermPricingType *string `type:"string" enum:"LongTermPricingType"`
 
-	// A new device that replaces a device that is ordered with long term pricing.
+	// A new device that replaces a device that is ordered with long-term pricing.
 	ReplacementJob *string `min:"39" type:"string"`
 
-	// The type of AWS Snow Family device associated with this long term pricing
+	// The type of AWS Snow Family device associated with this long-term pricing
 	// job.
 	SnowballType *string `type:"string" enum:"Type"`
 }
@@ -6053,6 +6130,42 @@ func (s *LongTermPricingListEntry) SetSnowballType(v string) *LongTermPricingLis
 	return s
 }
 
+// An object that represents metadata and configuration settings for NFS service
+// on an AWS Snow Family device.
+type NFSOnDeviceServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum NFS storage for one Snowball Family device.
+	StorageLimit *int64 `type:"integer"`
+
+	// The scale unit of the NFS storage on the device.
+	//
+	// Valid values: TB.
+	StorageUnit *string `type:"string" enum:"StorageUnit"`
+}
+
+// String returns the string representation
+func (s NFSOnDeviceServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NFSOnDeviceServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetStorageLimit sets the StorageLimit field's value.
+func (s *NFSOnDeviceServiceConfiguration) SetStorageLimit(v int64) *NFSOnDeviceServiceConfiguration {
+	s.StorageLimit = &v
+	return s
+}
+
+// SetStorageUnit sets the StorageUnit field's value.
+func (s *NFSOnDeviceServiceConfiguration) SetStorageUnit(v string) *NFSOnDeviceServiceConfiguration {
+	s.StorageUnit = &v
+	return s
+}
+
 // The Amazon Simple Notification Service (Amazon SNS) notification settings
 // associated with a specific job. The Notification object is returned as a
 // part of the response syntax of the DescribeJob action in the JobMetadata
@@ -6077,7 +6190,7 @@ type Notification struct {
 	//
 	// You can subscribe email addresses to an Amazon SNS topic through the AWS
 	// Management Console, or by using the Subscribe (https://docs.aws.amazon.com/sns/latest/api/API_Subscribe.html)
-	// AWS Simple Notification Service (SNS) API action.
+	// Amazon Simple Notification Service (Amazon SNS) API action.
 	SnsTopicARN *string `type:"string"`
 }
 
@@ -6106,6 +6219,31 @@ func (s *Notification) SetNotifyAll(v bool) *Notification {
 // SetSnsTopicARN sets the SnsTopicARN field's value.
 func (s *Notification) SetSnsTopicARN(v string) *Notification {
 	s.SnsTopicARN = &v
+	return s
+}
+
+// An object that represents metadata and configuration settings for services
+// on an AWS Snow Family device.
+type OnDeviceServiceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the NFS service on a Snow Family device.
+	NFSOnDeviceService *NFSOnDeviceServiceConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s OnDeviceServiceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OnDeviceServiceConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetNFSOnDeviceService sets the NFSOnDeviceService field's value.
+func (s *OnDeviceServiceConfiguration) SetNFSOnDeviceService(v *NFSOnDeviceServiceConfiguration) *OnDeviceServiceConfiguration {
+	s.NFSOnDeviceService = v
 	return s
 }
 
@@ -6183,6 +6321,11 @@ type S3Resource struct {
 	// an inclusive BeginMarker, an inclusive EndMarker, or both. Ranges are UTF-8
 	// binary sorted.
 	KeyRange *KeyRange `type:"structure"`
+
+	// Specifies the service or services on the Snow Family device that your transferred
+	// data will be exported from or imported into. AWS Snow Family supports Amazon
+	// S3 and NFS (Network File System).
+	TargetOnDeviceServices []*TargetOnDeviceService `type:"list"`
 }
 
 // String returns the string representation
@@ -6219,6 +6362,12 @@ func (s *S3Resource) SetBucketArn(v string) *S3Resource {
 // SetKeyRange sets the KeyRange field's value.
 func (s *S3Resource) SetKeyRange(v *KeyRange) *S3Resource {
 	s.KeyRange = v
+	return s
+}
+
+// SetTargetOnDeviceServices sets the TargetOnDeviceServices field's value.
+func (s *S3Resource) SetTargetOnDeviceServices(v []*TargetOnDeviceService) *S3Resource {
+	s.TargetOnDeviceServices = v
 	return s
 }
 
@@ -6286,7 +6435,7 @@ type ShippingDetails struct {
 	//    most countries in the EU have access to standard shipping, which typically
 	//    takes less than a week, one way.
 	//
-	//    * In India, Snow device are delivered in one to seven days.
+	//    * In India, Snow devices are delivered in one to seven days.
 	//
 	//    * In the United States of America (US), you have access to one-day shipping
 	//    and two-day shipping.
@@ -6342,6 +6491,43 @@ func (s SnowconeDeviceConfiguration) GoString() string {
 // SetWirelessConnection sets the WirelessConnection field's value.
 func (s *SnowconeDeviceConfiguration) SetWirelessConnection(v *WirelessConnection) *SnowconeDeviceConfiguration {
 	s.WirelessConnection = v
+	return s
+}
+
+// An object that represents the service or services on the Snow Family device
+// that your transferred data will be exported from or imported into. AWS Snow
+// Family supports Amazon S3 and NFS (Network File System).
+type TargetOnDeviceService struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the name of the service on the Snow Family device that your transferred
+	// data will be exported from or imported into.
+	ServiceName *string `type:"string" enum:"DeviceServiceName"`
+
+	// Specifies whether the data is being imported or exported. You can import
+	// or export the data, or use it locally on the device.
+	TransferOption *string `type:"string" enum:"TransferOption"`
+}
+
+// String returns the string representation
+func (s TargetOnDeviceService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TargetOnDeviceService) GoString() string {
+	return s.String()
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *TargetOnDeviceService) SetServiceName(v string) *TargetOnDeviceService {
+	s.ServiceName = &v
+	return s
+}
+
+// SetTransferOption sets the TransferOption field's value.
+func (s *TargetOnDeviceService) SetTransferOption(v string) *TargetOnDeviceService {
+	s.TransferOption = &v
 	return s
 }
 
@@ -6448,6 +6634,11 @@ type UpdateClusterInput struct {
 	// The new or updated Notification object.
 	Notification *Notification `type:"structure"`
 
+	// Specifies the service or services on the Snow Family device that your transferred
+	// data will be exported from or imported into. AWS Snow Family supports Amazon
+	// S3 and NFS (Network File System).
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
+
 	// The updated arrays of JobResource objects that can include updated S3Resource
 	// objects or LambdaResource objects.
 	Resources *JobResource `type:"structure"`
@@ -6531,6 +6722,12 @@ func (s *UpdateClusterInput) SetNotification(v *Notification) *UpdateClusterInpu
 	return s
 }
 
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *UpdateClusterInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *UpdateClusterInput {
+	s.OnDeviceServiceConfiguration = v
+	return s
+}
+
 // SetResources sets the Resources field's value.
 func (s *UpdateClusterInput) SetResources(v *JobResource) *UpdateClusterInput {
 	s.Resources = v
@@ -6583,6 +6780,11 @@ type UpdateJobInput struct {
 
 	// The new or updated Notification object.
 	Notification *Notification `type:"structure"`
+
+	// Specifies the service or services on the Snow Family device that your transferred
+	// data will be exported from or imported into. AWS Snow Family supports Amazon
+	// S3 and NFS (Network File System).
+	OnDeviceServiceConfiguration *OnDeviceServiceConfiguration `type:"structure"`
 
 	// The updated JobResource object, or the updated JobResource object.
 	Resources *JobResource `type:"structure"`
@@ -6671,6 +6873,12 @@ func (s *UpdateJobInput) SetJobId(v string) *UpdateJobInput {
 // SetNotification sets the Notification field's value.
 func (s *UpdateJobInput) SetNotification(v *Notification) *UpdateJobInput {
 	s.Notification = v
+	return s
+}
+
+// SetOnDeviceServiceConfiguration sets the OnDeviceServiceConfiguration field's value.
+func (s *UpdateJobInput) SetOnDeviceServiceConfiguration(v *OnDeviceServiceConfiguration) *UpdateJobInput {
+	s.OnDeviceServiceConfiguration = v
 	return s
 }
 
@@ -6789,17 +6997,17 @@ func (s UpdateJobShipmentStateOutput) GoString() string {
 type UpdateLongTermPricingInput struct {
 	_ struct{} `type:"structure"`
 
-	// If set to true, specifies that the current long term pricing type for the
-	// device should be automatically renewed before the long term pricing contract
+	// If set to true, specifies that the current long-term pricing type for the
+	// device should be automatically renewed before the long-term pricing contract
 	// expires.
 	IsLongTermPricingAutoRenew *bool `type:"boolean"`
 
-	// The ID of the long term pricing type for the device.
+	// The ID of the long-term pricing type for the device.
 	//
 	// LongTermPricingId is a required field
 	LongTermPricingId *string `min:"41" type:"string" required:"true"`
 
-	// Specifies that a device that is ordered with long term pricing should be
+	// Specifies that a device that is ordered with long-term pricing should be
 	// replaced with a new device.
 	ReplacementJob *string `min:"39" type:"string"`
 }
@@ -6958,6 +7166,22 @@ func ClusterState_Values() []string {
 }
 
 const (
+	// DeviceServiceNameNfsOnDeviceService is a DeviceServiceName enum value
+	DeviceServiceNameNfsOnDeviceService = "NFS_ON_DEVICE_SERVICE"
+
+	// DeviceServiceNameS3OnDeviceService is a DeviceServiceName enum value
+	DeviceServiceNameS3OnDeviceService = "S3_ON_DEVICE_SERVICE"
+)
+
+// DeviceServiceName_Values returns all elements of the DeviceServiceName enum
+func DeviceServiceName_Values() []string {
+	return []string{
+		DeviceServiceNameNfsOnDeviceService,
+		DeviceServiceNameS3OnDeviceService,
+	}
+}
+
+const (
 	// JobStateNew is a JobState enum value
 	JobStateNew = "New"
 
@@ -7054,6 +7278,22 @@ func LongTermPricingType_Values() []string {
 }
 
 const (
+	// RemoteManagementInstalledOnly is a RemoteManagement enum value
+	RemoteManagementInstalledOnly = "INSTALLED_ONLY"
+
+	// RemoteManagementInstalledAutostart is a RemoteManagement enum value
+	RemoteManagementInstalledAutostart = "INSTALLED_AUTOSTART"
+)
+
+// RemoteManagement_Values returns all elements of the RemoteManagement enum
+func RemoteManagement_Values() []string {
+	return []string{
+		RemoteManagementInstalledOnly,
+		RemoteManagementInstalledAutostart,
+	}
+}
+
+const (
 	// ShipmentStateReceived is a ShipmentState enum value
 	ShipmentStateReceived = "RECEIVED"
 
@@ -7114,6 +7354,38 @@ func ShippingOption_Values() []string {
 		ShippingOptionNextDay,
 		ShippingOptionExpress,
 		ShippingOptionStandard,
+	}
+}
+
+const (
+	// StorageUnitTb is a StorageUnit enum value
+	StorageUnitTb = "TB"
+)
+
+// StorageUnit_Values returns all elements of the StorageUnit enum
+func StorageUnit_Values() []string {
+	return []string{
+		StorageUnitTb,
+	}
+}
+
+const (
+	// TransferOptionImport is a TransferOption enum value
+	TransferOptionImport = "IMPORT"
+
+	// TransferOptionExport is a TransferOption enum value
+	TransferOptionExport = "EXPORT"
+
+	// TransferOptionLocalUse is a TransferOption enum value
+	TransferOptionLocalUse = "LOCAL_USE"
+)
+
+// TransferOption_Values returns all elements of the TransferOption enum
+func TransferOption_Values() []string {
+	return []string{
+		TransferOptionImport,
+		TransferOptionExport,
+		TransferOptionLocalUse,
 	}
 }
 

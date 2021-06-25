@@ -282,6 +282,30 @@ type ProtonAPI interface {
 	UpdateServiceTemplateVersion(*proton.UpdateServiceTemplateVersionInput) (*proton.UpdateServiceTemplateVersionOutput, error)
 	UpdateServiceTemplateVersionWithContext(aws.Context, *proton.UpdateServiceTemplateVersionInput, ...request.Option) (*proton.UpdateServiceTemplateVersionOutput, error)
 	UpdateServiceTemplateVersionRequest(*proton.UpdateServiceTemplateVersionInput) (*request.Request, *proton.UpdateServiceTemplateVersionOutput)
+
+	WaitUntilEnvironmentDeployed(*proton.GetEnvironmentInput) error
+	WaitUntilEnvironmentDeployedWithContext(aws.Context, *proton.GetEnvironmentInput, ...request.WaiterOption) error
+
+	WaitUntilEnvironmentTemplateVersionRegistered(*proton.GetEnvironmentTemplateVersionInput) error
+	WaitUntilEnvironmentTemplateVersionRegisteredWithContext(aws.Context, *proton.GetEnvironmentTemplateVersionInput, ...request.WaiterOption) error
+
+	WaitUntilServiceCreated(*proton.GetServiceInput) error
+	WaitUntilServiceCreatedWithContext(aws.Context, *proton.GetServiceInput, ...request.WaiterOption) error
+
+	WaitUntilServiceDeleted(*proton.GetServiceInput) error
+	WaitUntilServiceDeletedWithContext(aws.Context, *proton.GetServiceInput, ...request.WaiterOption) error
+
+	WaitUntilServiceInstanceDeployed(*proton.GetServiceInstanceInput) error
+	WaitUntilServiceInstanceDeployedWithContext(aws.Context, *proton.GetServiceInstanceInput, ...request.WaiterOption) error
+
+	WaitUntilServicePipelineDeployed(*proton.GetServiceInput) error
+	WaitUntilServicePipelineDeployedWithContext(aws.Context, *proton.GetServiceInput, ...request.WaiterOption) error
+
+	WaitUntilServiceTemplateVersionRegistered(*proton.GetServiceTemplateVersionInput) error
+	WaitUntilServiceTemplateVersionRegisteredWithContext(aws.Context, *proton.GetServiceTemplateVersionInput, ...request.WaiterOption) error
+
+	WaitUntilServiceUpdated(*proton.GetServiceInput) error
+	WaitUntilServiceUpdatedWithContext(aws.Context, *proton.GetServiceInput, ...request.WaiterOption) error
 }
 
 var _ ProtonAPI = (*proton.Proton)(nil)

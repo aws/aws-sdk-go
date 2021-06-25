@@ -449,7 +449,8 @@
         "ShippingOption":{"shape":"ShippingOption"},
         "Notification":{"shape":"Notification"},
         "ForwardingAddressId":{"shape":"AddressId"},
-        "TaxDocuments":{"shape":"TaxDocuments"}
+        "TaxDocuments":{"shape":"TaxDocuments"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"}
       }
     },
     "ClusterState":{
@@ -507,6 +508,7 @@
       "members":{
         "JobType":{"shape":"JobType"},
         "Resources":{"shape":"JobResource"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"},
         "Description":{"shape":"String"},
         "AddressId":{"shape":"AddressId"},
         "KmsKeyARN":{"shape":"KmsKeyARN"},
@@ -515,7 +517,8 @@
         "ShippingOption":{"shape":"ShippingOption"},
         "Notification":{"shape":"Notification"},
         "ForwardingAddressId":{"shape":"AddressId"},
-        "TaxDocuments":{"shape":"TaxDocuments"}
+        "TaxDocuments":{"shape":"TaxDocuments"},
+        "RemoteManagement":{"shape":"RemoteManagement"}
       }
     },
     "CreateClusterResult":{
@@ -529,6 +532,7 @@
       "members":{
         "JobType":{"shape":"JobType"},
         "Resources":{"shape":"JobResource"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"},
         "Description":{"shape":"String"},
         "AddressId":{"shape":"AddressId"},
         "KmsKeyARN":{"shape":"KmsKeyARN"},
@@ -541,6 +545,7 @@
         "ForwardingAddressId":{"shape":"AddressId"},
         "TaxDocuments":{"shape":"TaxDocuments"},
         "DeviceConfiguration":{"shape":"DeviceConfiguration"},
+        "RemoteManagement":{"shape":"RemoteManagement"},
         "LongTermPricingId":{"shape":"LongTermPricingId"}
       }
     },
@@ -661,6 +666,13 @@
       "members":{
         "SnowconeDeviceConfiguration":{"shape":"SnowconeDeviceConfiguration"}
       }
+    },
+    "DeviceServiceName":{
+      "type":"string",
+      "enum":[
+        "NFS_ON_DEVICE_SERVICE",
+        "S3_ON_DEVICE_SERVICE"
+      ]
     },
     "Ec2AmiResource":{
       "type":"structure",
@@ -842,7 +854,9 @@
         "ForwardingAddressId":{"shape":"AddressId"},
         "TaxDocuments":{"shape":"TaxDocuments"},
         "DeviceConfiguration":{"shape":"DeviceConfiguration"},
-        "LongTermPricingId":{"shape":"LongTermPricingId"}
+        "RemoteManagement":{"shape":"RemoteManagement"},
+        "LongTermPricingId":{"shape":"LongTermPricingId"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"}
       }
     },
     "JobMetadataList":{
@@ -1031,6 +1045,13 @@
         "ThreeYear"
       ]
     },
+    "NFSOnDeviceServiceConfiguration":{
+      "type":"structure",
+      "members":{
+        "StorageLimit":{"shape":"StorageLimit"},
+        "StorageUnit":{"shape":"StorageUnit"}
+      }
+    },
     "Notification":{
       "type":"structure",
       "members":{
@@ -1038,6 +1059,19 @@
         "JobStatesToNotify":{"shape":"JobStateList"},
         "NotifyAll":{"shape":"Boolean"}
       }
+    },
+    "OnDeviceServiceConfiguration":{
+      "type":"structure",
+      "members":{
+        "NFSOnDeviceService":{"shape":"NFSOnDeviceServiceConfiguration"}
+      }
+    },
+    "RemoteManagement":{
+      "type":"string",
+      "enum":[
+        "INSTALLED_ONLY",
+        "INSTALLED_AUTOSTART"
+      ]
     },
     "ResourceARN":{
       "type":"string",
@@ -1060,7 +1094,8 @@
       "type":"structure",
       "members":{
         "BucketArn":{"shape":"ResourceARN"},
-        "KeyRange":{"shape":"KeyRange"}
+        "KeyRange":{"shape":"KeyRange"},
+        "TargetOnDeviceServices":{"shape":"TargetOnDeviceServiceList"}
       }
     },
     "S3ResourceList":{
@@ -1143,10 +1178,29 @@
       "max":255,
       "pattern":"arn:aws.*:sns:.*:[0-9]{12}:.*"
     },
+    "StorageLimit":{
+      "type":"integer",
+      "min":0
+    },
+    "StorageUnit":{
+      "type":"string",
+      "enum":["TB"]
+    },
     "String":{
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "TargetOnDeviceService":{
+      "type":"structure",
+      "members":{
+        "ServiceName":{"shape":"DeviceServiceName"},
+        "TransferOption":{"shape":"TransferOption"}
+      }
+    },
+    "TargetOnDeviceServiceList":{
+      "type":"list",
+      "member":{"shape":"TargetOnDeviceService"}
     },
     "TaxDocuments":{
       "type":"structure",
@@ -1155,6 +1209,14 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TransferOption":{
+      "type":"string",
+      "enum":[
+        "IMPORT",
+        "EXPORT",
+        "LOCAL_USE"
+      ]
+    },
     "UnsupportedAddressException":{
       "type":"structure",
       "members":{
@@ -1170,6 +1232,7 @@
         "RoleARN":{"shape":"RoleARN"},
         "Description":{"shape":"String"},
         "Resources":{"shape":"JobResource"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"},
         "AddressId":{"shape":"AddressId"},
         "ShippingOption":{"shape":"ShippingOption"},
         "Notification":{"shape":"Notification"},
@@ -1189,6 +1252,7 @@
         "RoleARN":{"shape":"RoleARN"},
         "Notification":{"shape":"Notification"},
         "Resources":{"shape":"JobResource"},
+        "OnDeviceServiceConfiguration":{"shape":"OnDeviceServiceConfiguration"},
         "AddressId":{"shape":"AddressId"},
         "ShippingOption":{"shape":"ShippingOption"},
         "Description":{"shape":"String"},

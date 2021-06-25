@@ -128,6 +128,10 @@ type AmplifyBackendAPI interface {
 	GetTokenWithContext(aws.Context, *amplifybackend.GetTokenInput, ...request.Option) (*amplifybackend.GetTokenOutput, error)
 	GetTokenRequest(*amplifybackend.GetTokenInput) (*request.Request, *amplifybackend.GetTokenOutput)
 
+	ImportBackendAuth(*amplifybackend.ImportBackendAuthInput) (*amplifybackend.ImportBackendAuthOutput, error)
+	ImportBackendAuthWithContext(aws.Context, *amplifybackend.ImportBackendAuthInput, ...request.Option) (*amplifybackend.ImportBackendAuthOutput, error)
+	ImportBackendAuthRequest(*amplifybackend.ImportBackendAuthInput) (*request.Request, *amplifybackend.ImportBackendAuthOutput)
+
 	ListBackendJobs(*amplifybackend.ListBackendJobsInput) (*amplifybackend.ListBackendJobsOutput, error)
 	ListBackendJobsWithContext(aws.Context, *amplifybackend.ListBackendJobsInput, ...request.Option) (*amplifybackend.ListBackendJobsOutput, error)
 	ListBackendJobsRequest(*amplifybackend.ListBackendJobsInput) (*request.Request, *amplifybackend.ListBackendJobsOutput)
