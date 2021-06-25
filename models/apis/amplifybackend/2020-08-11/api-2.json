@@ -402,6 +402,29 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "ImportBackendAuth" : {
+      "name" : "ImportBackendAuth",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/backend/{appId}/auth/{backendEnvironmentName}/import",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ImportBackendAuthRequest"
+      },
+      "output" : {
+        "shape" : "ImportBackendAuthResponse"
+      },
+      "errors" : [ {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "GatewayTimeoutException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      }, {
+        "shape" : "BadRequestException"
+      } ]
+    },
     "ListBackendJobs" : {
       "name" : "ListBackendJobs",
       "http" : {
@@ -2165,6 +2188,89 @@
         "Ttl" : {
           "shape" : "__string",
           "locationName" : "ttl"
+        }
+      }
+    },
+    "ImportBackendAuthReqObj" : {
+      "type" : "structure",
+      "members" : {
+        "IdentityPoolId" : {
+          "shape" : "__string",
+          "locationName" : "identityPoolId"
+        },
+        "NativeClientId" : {
+          "shape" : "__string",
+          "locationName" : "nativeClientId"
+        },
+        "UserPoolId" : {
+          "shape" : "__string",
+          "locationName" : "userPoolId"
+        },
+        "WebClientId" : {
+          "shape" : "__string",
+          "locationName" : "webClientId"
+        }
+      },
+      "required" : [ "UserPoolId", "NativeClientId", "WebClientId" ]
+    },
+    "ImportBackendAuthRequest" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "backendEnvironmentName"
+        },
+        "IdentityPoolId" : {
+          "shape" : "__string",
+          "locationName" : "identityPoolId"
+        },
+        "NativeClientId" : {
+          "shape" : "__string",
+          "locationName" : "nativeClientId"
+        },
+        "UserPoolId" : {
+          "shape" : "__string",
+          "locationName" : "userPoolId"
+        },
+        "WebClientId" : {
+          "shape" : "__string",
+          "locationName" : "webClientId"
+        }
+      },
+      "required" : [ "AppId", "BackendEnvironmentName", "UserPoolId", "NativeClientId", "WebClientId" ]
+    },
+    "ImportBackendAuthResponse" : {
+      "type" : "structure",
+      "members" : {
+        "AppId" : {
+          "shape" : "__string",
+          "locationName" : "appId"
+        },
+        "BackendEnvironmentName" : {
+          "shape" : "__string",
+          "locationName" : "backendEnvironmentName"
+        },
+        "Error" : {
+          "shape" : "__string",
+          "locationName" : "error"
+        },
+        "JobId" : {
+          "shape" : "__string",
+          "locationName" : "jobId"
+        },
+        "Operation" : {
+          "shape" : "__string",
+          "locationName" : "operation"
+        },
+        "Status" : {
+          "shape" : "__string",
+          "locationName" : "status"
         }
       }
     },

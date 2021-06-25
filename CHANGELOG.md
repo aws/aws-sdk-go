@@ -1,3 +1,12 @@
+Release v1.38.68 (2021-06-25)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API and documentation
+* `service/proton`: Updates service waiters
+* `service/snowball`: Updates service API and documentation
+  * AWS Snow Family customers can remotely monitor and operate their connected AWS Snowcone devices. AWS Snowball Edge Storage Optimized customers can now import and export their data using NFS.
+
 Release v1.38.67 (2021-06-24)
 ===
 

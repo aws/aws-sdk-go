@@ -12,9 +12,9 @@ const (
 	// "ClusterLimitExceededException".
 	//
 	// Job creation failed. Currently, clusters support five nodes. If you have
-	// less than five nodes for your cluster and you have more nodes to create for
-	// this cluster, try again and create jobs until your cluster has exactly five
-	// notes.
+	// fewer than five nodes for your cluster and you have more nodes to create
+	// for this cluster, try again and create jobs until your cluster has exactly
+	// five nodes.
 	ErrCodeClusterLimitExceededException = "ClusterLimitExceededException"
 
 	// ErrCodeConflictException for service response error code
