@@ -11,6 +11,39 @@
     "xmlNamespace":"http://cloudformation.amazonaws.com/doc/2010-05-15/"
   },
   "operations":{
+    "ActivateType":{
+      "name":"ActivateType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ActivateTypeInput"},
+      "output":{
+        "shape":"ActivateTypeOutput",
+        "resultWrapper":"ActivateTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
+    },
+    "BatchDescribeTypeConfigurations":{
+      "name":"BatchDescribeTypeConfigurations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchDescribeTypeConfigurationsInput"},
+      "output":{
+        "shape":"BatchDescribeTypeConfigurationsOutput",
+        "resultWrapper":"BatchDescribeTypeConfigurationsResult"
+      },
+      "errors":[
+        {"shape":"TypeConfigurationNotFoundException"},
+        {"shape":"CFNRegistryException"}
+      ]
+    },
     "CancelUpdateStack":{
       "name":"CancelUpdateStack",
       "http":{
@@ -108,6 +141,23 @@
         {"shape":"CreatedButModifiedException"},
         {"shape":"LimitExceededException"}
       ]
+    },
+    "DeactivateType":{
+      "name":"DeactivateType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeactivateTypeInput"},
+      "output":{
+        "shape":"DeactivateTypeOutput",
+        "resultWrapper":"DeactivateTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
     },
     "DeleteChangeSet":{
       "name":"DeleteChangeSet",
@@ -213,6 +263,22 @@
       "errors":[
         {"shape":"ChangeSetNotFoundException"}
       ]
+    },
+    "DescribePublisher":{
+      "name":"DescribePublisher",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePublisherInput"},
+      "output":{
+        "shape":"DescribePublisherOutput",
+        "resultWrapper":"DescribePublisherResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
+      ],
+      "idempotent":true
     },
     "DescribeStackDriftDetectionStatus":{
       "name":"DescribeStackDriftDetectionStatus",
@@ -645,6 +711,23 @@
       ],
       "idempotent":true
     },
+    "PublishType":{
+      "name":"PublishType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PublishTypeInput"},
+      "output":{
+        "shape":"PublishTypeOutput",
+        "resultWrapper":"PublishTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "RecordHandlerProgress":{
       "name":"RecordHandlerProgress",
       "http":{
@@ -659,6 +742,22 @@
       "errors":[
         {"shape":"InvalidStateTransitionException"},
         {"shape":"OperationStatusCheckFailedException"}
+      ],
+      "idempotent":true
+    },
+    "RegisterPublisher":{
+      "name":"RegisterPublisher",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterPublisherInput"},
+      "output":{
+        "shape":"RegisterPublisherOutput",
+        "resultWrapper":"RegisterPublisherResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"}
       ],
       "idempotent":true
     },
@@ -685,6 +784,22 @@
         "requestUri":"/"
       },
       "input":{"shape":"SetStackPolicyInput"}
+    },
+    "SetTypeConfiguration":{
+      "name":"SetTypeConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetTypeConfigurationInput"},
+      "output":{
+        "shape":"SetTypeConfigurationOutput",
+        "resultWrapper":"SetTypeConfigurationResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ]
     },
     "SetTypeDefaultVersion":{
       "name":"SetTypeDefaultVersion",
@@ -727,6 +842,23 @@
         {"shape":"OperationNotFoundException"},
         {"shape":"InvalidOperationException"}
       ]
+    },
+    "TestType":{
+      "name":"TestType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TestTypeInput"},
+      "output":{
+        "shape":"TestTypeOutput",
+        "resultWrapper":"TestTypeResult"
+      },
+      "errors":[
+        {"shape":"CFNRegistryException"},
+        {"shape":"TypeNotFoundException"}
+      ],
+      "idempotent":true
     },
     "UpdateStack":{
       "name":"UpdateStack",
@@ -810,6 +942,7 @@
     }
   },
   "shapes":{
+    "AcceptTermsAndConditions":{"type":"boolean"},
     "Account":{
       "type":"string",
       "pattern":"^[0-9]{12}$"
@@ -851,6 +984,27 @@
       "min":1,
       "pattern":"(s3://|http(s?)://).+"
     },
+    "ActivateTypeInput":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ThirdPartyType"},
+        "PublicTypeArn":{"shape":"ThirdPartyTypeArn"},
+        "PublisherId":{"shape":"PublisherId"},
+        "TypeName":{"shape":"TypeName"},
+        "TypeNameAlias":{"shape":"TypeName"},
+        "AutoUpdate":{"shape":"AutoUpdate"},
+        "LoggingConfig":{"shape":"LoggingConfig"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "VersionBump":{"shape":"VersionBump"},
+        "MajorVersion":{"shape":"MajorVersion"}
+      }
+    },
+    "ActivateTypeOutput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"PrivateTypeArn"}
+      }
+    },
     "AllowedValue":{"type":"string"},
     "AllowedValues":{
       "type":"list",
@@ -876,6 +1030,34 @@
       }
     },
     "AutoDeploymentNullable":{"type":"boolean"},
+    "AutoUpdate":{"type":"boolean"},
+    "BatchDescribeTypeConfigurationsError":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCode"},
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "TypeConfigurationIdentifier":{"shape":"TypeConfigurationIdentifier"}
+      }
+    },
+    "BatchDescribeTypeConfigurationsErrors":{
+      "type":"list",
+      "member":{"shape":"BatchDescribeTypeConfigurationsError"}
+    },
+    "BatchDescribeTypeConfigurationsInput":{
+      "type":"structure",
+      "required":["TypeConfigurationIdentifiers"],
+      "members":{
+        "TypeConfigurationIdentifiers":{"shape":"TypeConfigurationIdentifiers"}
+      }
+    },
+    "BatchDescribeTypeConfigurationsOutput":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"BatchDescribeTypeConfigurationsErrors"},
+        "UnprocessedTypeConfigurations":{"shape":"UnprocessedTypeConfigurations"},
+        "TypeConfigurations":{"shape":"TypeConfigurationDetailsList"}
+      }
+    },
     "BoxedInteger":{
       "type":"integer",
       "box":true
@@ -924,6 +1106,15 @@
         "CAPABILITY_IAM",
         "CAPABILITY_NAMED_IAM",
         "CAPABILITY_AUTO_EXPAND"
+      ]
+    },
+    "Category":{
+      "type":"string",
+      "enum":[
+        "REGISTERED",
+        "ACTIVATED",
+        "THIRD_PARTY",
+        "AWS_TYPES"
       ]
     },
     "CausingEntity":{"type":"string"},
@@ -1043,6 +1234,18 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "ConfigurationSchema":{
+      "type":"string",
+      "max":60000,
+      "min":1,
+      "pattern":"[\\s\\S]+"
+    },
+    "ConnectionArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"arn:aws(-[\\w]+)*:.+:.+:[0-9]{12}:.+"
     },
     "ContinueUpdateRollbackInput":{
       "type":"structure",
@@ -1187,6 +1390,19 @@
       "exception":true
     },
     "CreationTime":{"type":"timestamp"},
+    "DeactivateTypeInput":{
+      "type":"structure",
+      "members":{
+        "TypeName":{"shape":"TypeName"},
+        "Type":{"shape":"ThirdPartyType"},
+        "Arn":{"shape":"PrivateTypeArn"}
+      }
+    },
+    "DeactivateTypeOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteChangeSetInput":{
       "type":"structure",
       "required":["ChangeSetName"],
@@ -1324,6 +1540,21 @@
         "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
         "ParentChangeSetId":{"shape":"ChangeSetId"},
         "RootChangeSetId":{"shape":"ChangeSetId"}
+      }
+    },
+    "DescribePublisherInput":{
+      "type":"structure",
+      "members":{
+        "PublisherId":{"shape":"PublisherId"}
+      }
+    },
+    "DescribePublisherOutput":{
+      "type":"structure",
+      "members":{
+        "PublisherId":{"shape":"PublisherId"},
+        "PublisherStatus":{"shape":"PublisherStatus"},
+        "IdentityProvider":{"shape":"IdentityProvider"},
+        "PublisherProfile":{"shape":"PublisherProfile"}
       }
     },
     "DescribeStackDriftDetectionStatusInput":{
@@ -1486,7 +1717,9 @@
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
         "Arn":{"shape":"TypeArn"},
-        "VersionId":{"shape":"TypeVersionId"}
+        "VersionId":{"shape":"TypeVersionId"},
+        "PublisherId":{"shape":"PublisherId"},
+        "PublicVersionNumber":{"shape":"PublicVersionNumber"}
       }
     },
     "DescribeTypeOutput":{
@@ -1497,17 +1730,28 @@
         "TypeName":{"shape":"TypeName"},
         "DefaultVersionId":{"shape":"TypeVersionId"},
         "IsDefaultVersion":{"shape":"IsDefaultVersion"},
+        "TypeTestsStatus":{"shape":"TypeTestsStatus"},
+        "TypeTestsStatusDescription":{"shape":"TypeTestsStatusDescription"},
         "Description":{"shape":"Description"},
         "Schema":{"shape":"TypeSchema"},
         "ProvisioningType":{"shape":"ProvisioningType"},
         "DeprecatedStatus":{"shape":"DeprecatedStatus"},
         "LoggingConfig":{"shape":"LoggingConfig"},
+        "RequiredActivatedTypes":{"shape":"RequiredActivatedTypes"},
         "ExecutionRoleArn":{"shape":"RoleArn"},
         "Visibility":{"shape":"Visibility"},
         "SourceUrl":{"shape":"OptionalSecureUrl"},
         "DocumentationUrl":{"shape":"OptionalSecureUrl"},
         "LastUpdated":{"shape":"Timestamp"},
-        "TimeCreated":{"shape":"Timestamp"}
+        "TimeCreated":{"shape":"Timestamp"},
+        "ConfigurationSchema":{"shape":"ConfigurationSchema"},
+        "PublisherId":{"shape":"PublisherId"},
+        "OriginalTypeName":{"shape":"TypeName"},
+        "OriginalTypeArn":{"shape":"TypeArn"},
+        "PublicVersionNumber":{"shape":"PublicVersionNumber"},
+        "LatestPublicVersion":{"shape":"PublicVersionNumber"},
+        "IsActivated":{"shape":"IsActivated"},
+        "AutoUpdate":{"shape":"AutoUpdate"}
       }
     },
     "DescribeTypeRegistrationInput":{
@@ -1597,6 +1841,11 @@
       "min":0
     },
     "EnableTerminationProtection":{"type":"boolean"},
+    "ErrorCode":{
+      "type":"string",
+      "max":3,
+      "min":3
+    },
     "ErrorMessage":{
       "type":"string",
       "max":255,
@@ -1750,7 +1999,16 @@
         "GeneralServiceException",
         "ServiceInternalError",
         "NetworkFailure",
-        "InternalFailure"
+        "InternalFailure",
+        "InvalidTypeConfiguration"
+      ]
+    },
+    "IdentityProvider":{
+      "type":"string",
+      "enum":[
+        "AWS_Marketplace",
+        "GitHub",
+        "Bitbucket"
       ]
     },
     "Imports":{
@@ -1810,6 +2068,8 @@
       },
       "exception":true
     },
+    "IsActivated":{"type":"boolean"},
+    "IsDefaultConfiguration":{"type":"boolean"},
     "IsDefaultVersion":{"type":"boolean"},
     "Key":{"type":"string"},
     "LastUpdatedTime":{"type":"timestamp"},
@@ -1995,10 +2255,11 @@
       "members":{
         "Type":{"shape":"RegistryType"},
         "TypeName":{"shape":"TypeName"},
-        "Arn":{"shape":"PrivateTypeArn"},
+        "Arn":{"shape":"TypeArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"},
-        "DeprecatedStatus":{"shape":"DeprecatedStatus"}
+        "DeprecatedStatus":{"shape":"DeprecatedStatus"},
+        "PublisherId":{"shape":"PublisherId"}
       }
     },
     "ListTypeVersionsOutput":{
@@ -2015,6 +2276,7 @@
         "ProvisioningType":{"shape":"ProvisioningType"},
         "DeprecatedStatus":{"shape":"DeprecatedStatus"},
         "Type":{"shape":"RegistryType"},
+        "Filters":{"shape":"TypeFilters"},
         "MaxResults":{"shape":"MaxResults"},
         "NextToken":{"shape":"NextToken"}
       }
@@ -2049,6 +2311,11 @@
       "type":"list",
       "member":{"shape":"LogicalResourceId"},
       "max":200,
+      "min":1
+    },
+    "MajorVersion":{
+      "type":"long",
+      "max":100000,
       "min":1
     },
     "MaxConcurrentCount":{
@@ -2286,6 +2553,50 @@
         "FULLY_MUTABLE"
       ]
     },
+    "PublicVersionNumber":{
+      "type":"string",
+      "min":5,
+      "pattern":"^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(.*)$"
+    },
+    "PublishTypeInput":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ThirdPartyType"},
+        "Arn":{"shape":"PrivateTypeArn"},
+        "TypeName":{"shape":"TypeName"},
+        "PublicVersionNumber":{"shape":"PublicVersionNumber"}
+      }
+    },
+    "PublishTypeOutput":{
+      "type":"structure",
+      "members":{
+        "PublicTypeArn":{"shape":"TypeArn"}
+      }
+    },
+    "PublisherId":{
+      "type":"string",
+      "max":40,
+      "min":1,
+      "pattern":"[0-9a-zA-Z]{12,40}"
+    },
+    "PublisherName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"[\\s\\S]+"
+    },
+    "PublisherProfile":{
+      "type":"string",
+      "max":1024,
+      "pattern":"(http:|https:)+[^\\s]+[\\w]"
+    },
+    "PublisherStatus":{
+      "type":"string",
+      "enum":[
+        "VERIFIED",
+        "UNVERIFIED"
+      ]
+    },
     "Reason":{"type":"string"},
     "RecordHandlerProgressInput":{
       "type":"structure",
@@ -2322,6 +2633,19 @@
     "RegionList":{
       "type":"list",
       "member":{"shape":"Region"}
+    },
+    "RegisterPublisherInput":{
+      "type":"structure",
+      "members":{
+        "AcceptTermsAndConditions":{"shape":"AcceptTermsAndConditions"},
+        "ConnectionArn":{"shape":"ConnectionArn"}
+      }
+    },
+    "RegisterPublisherOutput":{
+      "type":"structure",
+      "members":{
+        "PublisherId":{"shape":"PublisherId"}
+      }
     },
     "RegisterTypeInput":{
       "type":"structure",
@@ -2382,6 +2706,19 @@
       "max":128,
       "min":1,
       "pattern":"[a-zA-Z0-9][-a-zA-Z0-9]*"
+    },
+    "RequiredActivatedType":{
+      "type":"structure",
+      "members":{
+        "TypeNameAlias":{"shape":"TypeName"},
+        "OriginalTypeName":{"shape":"TypeName"},
+        "PublisherId":{"shape":"PublisherId"},
+        "SupportedMajorVersions":{"shape":"SupportedMajorVersions"}
+      }
+    },
+    "RequiredActivatedTypes":{
+      "type":"list",
+      "member":{"shape":"RequiredActivatedType"}
     },
     "RequiresRecreation":{
       "type":"string",
@@ -2586,6 +2923,12 @@
       "member":{"shape":"RollbackTrigger"},
       "max":5
     },
+    "S3Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"[\\s\\S]+"
+    },
     "S3Url":{
       "type":"string",
       "max":4096,
@@ -2602,6 +2945,23 @@
         "StackName":{"shape":"StackName"},
         "StackPolicyBody":{"shape":"StackPolicyBody"},
         "StackPolicyURL":{"shape":"StackPolicyURL"}
+      }
+    },
+    "SetTypeConfigurationInput":{
+      "type":"structure",
+      "required":["Configuration"],
+      "members":{
+        "TypeArn":{"shape":"TypeArn"},
+        "Configuration":{"shape":"TypeConfiguration"},
+        "ConfigurationAlias":{"shape":"TypeConfigurationAlias"},
+        "TypeName":{"shape":"TypeName"},
+        "Type":{"shape":"ThirdPartyType"}
+      }
+    },
+    "SetTypeConfigurationOutput":{
+      "type":"structure",
+      "members":{
+        "ConfigurationArn":{"shape":"TypeConfigurationArn"}
       }
     },
     "SetTypeDefaultVersionInput":{
@@ -3267,6 +3627,15 @@
       "members":{
       }
     },
+    "SupportedMajorVersion":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
+    "SupportedMajorVersions":{
+      "type":"list",
+      "member":{"shape":"SupportedMajorVersion"}
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -3323,6 +3692,34 @@
       "max":1024,
       "min":1
     },
+    "TestTypeInput":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"TypeArn"},
+        "Type":{"shape":"ThirdPartyType"},
+        "TypeName":{"shape":"TypeName"},
+        "VersionId":{"shape":"TypeVersionId"},
+        "LogDeliveryBucket":{"shape":"S3Bucket"}
+      }
+    },
+    "TestTypeOutput":{
+      "type":"structure",
+      "members":{
+        "TypeVersionArn":{"shape":"TypeArn"}
+      }
+    },
+    "ThirdPartyType":{
+      "type":"string",
+      "enum":[
+        "RESOURCE",
+        "MODULE"
+      ]
+    },
+    "ThirdPartyTypeArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}::type/.+/[0-9a-zA-Z]{12,40}/.+"
+    },
     "TimeoutMinutes":{
       "type":"integer",
       "min":1
@@ -3354,12 +3751,85 @@
       "max":1024,
       "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type/.+"
     },
+    "TypeConfiguration":{
+      "type":"string",
+      "max":204800,
+      "min":1,
+      "pattern":"[\\s\\S]+"
+    },
+    "TypeConfigurationAlias":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]{1,256}$"
+    },
+    "TypeConfigurationArn":{
+      "type":"string",
+      "max":1024,
+      "pattern":"arn:aws[A-Za-z0-9-]{0,64}:cloudformation:[A-Za-z0-9-]{1,64}:([0-9]{12})?:type-configuration/.+"
+    },
+    "TypeConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"TypeConfigurationArn"},
+        "Alias":{"shape":"TypeConfigurationAlias"},
+        "Configuration":{"shape":"TypeConfiguration"},
+        "LastUpdated":{"shape":"Timestamp"},
+        "TypeArn":{"shape":"TypeArn"},
+        "TypeName":{"shape":"TypeName"},
+        "IsDefaultConfiguration":{"shape":"IsDefaultConfiguration"}
+      }
+    },
+    "TypeConfigurationDetailsList":{
+      "type":"list",
+      "member":{"shape":"TypeConfigurationDetails"}
+    },
+    "TypeConfigurationIdentifier":{
+      "type":"structure",
+      "members":{
+        "TypeArn":{"shape":"TypeArn"},
+        "TypeConfigurationAlias":{"shape":"TypeConfigurationAlias"},
+        "TypeConfigurationArn":{"shape":"TypeConfigurationArn"},
+        "Type":{"shape":"ThirdPartyType"},
+        "TypeName":{"shape":"TypeName"}
+      }
+    },
+    "TypeConfigurationIdentifiers":{
+      "type":"list",
+      "member":{"shape":"TypeConfigurationIdentifier"},
+      "min":1
+    },
+    "TypeConfigurationNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"TypeConfigurationNotFoundException",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "TypeFilters":{
+      "type":"structure",
+      "members":{
+        "Category":{"shape":"Category"},
+        "PublisherId":{"shape":"PublisherId"},
+        "TypeNamePrefix":{"shape":"TypeNamePrefix"}
+      }
+    },
     "TypeHierarchy":{"type":"string"},
     "TypeName":{
       "type":"string",
       "max":204,
       "min":10,
       "pattern":"[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}::[A-Za-z0-9]{2,64}(::MODULE){0,1}"
+    },
+    "TypeNamePrefix":{
+      "type":"string",
+      "max":204,
+      "min":1,
+      "pattern":"([A-Za-z0-9]{2,64}::){0,2}([A-Za-z0-9]{2,64}:?){0,1}"
     },
     "TypeNotFoundException":{
       "type":"structure",
@@ -3389,8 +3859,30 @@
         "DefaultVersionId":{"shape":"TypeVersionId"},
         "TypeArn":{"shape":"TypeArn"},
         "LastUpdated":{"shape":"Timestamp"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "PublisherId":{"shape":"PublisherId"},
+        "OriginalTypeName":{"shape":"TypeName"},
+        "PublicVersionNumber":{"shape":"PublicVersionNumber"},
+        "LatestPublicVersion":{"shape":"PublicVersionNumber"},
+        "PublisherIdentity":{"shape":"IdentityProvider"},
+        "PublisherName":{"shape":"PublisherName"},
+        "IsActivated":{"shape":"IsActivated"}
       }
+    },
+    "TypeTestsStatus":{
+      "type":"string",
+      "enum":[
+        "PASSED",
+        "FAILED",
+        "IN_PROGRESS",
+        "NOT_TESTED"
+      ]
+    },
+    "TypeTestsStatusDescription":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\s\\S]+"
     },
     "TypeVersionId":{
       "type":"string",
@@ -3411,8 +3903,13 @@
         "IsDefaultVersion":{"shape":"IsDefaultVersion"},
         "Arn":{"shape":"TypeArn"},
         "TimeCreated":{"shape":"Timestamp"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "PublicVersionNumber":{"shape":"PublicVersionNumber"}
       }
+    },
+    "UnprocessedTypeConfigurations":{
+      "type":"list",
+      "member":{"shape":"TypeConfigurationIdentifier"}
     },
     "UpdateStackInput":{
       "type":"structure",
@@ -3540,6 +4037,13 @@
     },
     "Value":{"type":"string"},
     "Version":{"type":"string"},
+    "VersionBump":{
+      "type":"string",
+      "enum":[
+        "MAJOR",
+        "MINOR"
+      ]
+    },
     "Visibility":{
       "type":"string",
       "enum":[

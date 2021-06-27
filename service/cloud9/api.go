@@ -81,9 +81,8 @@ func (c *Cloud9) CreateEnvironmentEC2Request(input *CreateEnvironmentEC2Input) (
 
 // CreateEnvironmentEC2 API operation for AWS Cloud9.
 //
-// Creates an AWS Cloud9 development environment, launches an Amazon Elastic
-// Compute Cloud (Amazon EC2) instance, and then connects from the instance
-// to the environment.
+// Creates an Cloud9 development environment, launches an Amazon Elastic Compute
+// Cloud (Amazon EC2) instance, and then connects from the instance to the environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -218,7 +217,7 @@ func (c *Cloud9) CreateEnvironmentMembershipRequest(input *CreateEnvironmentMemb
 
 // CreateEnvironmentMembership API operation for AWS Cloud9.
 //
-// Adds an environment member to an AWS Cloud9 development environment.
+// Adds an environment member to an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -354,8 +353,8 @@ func (c *Cloud9) DeleteEnvironmentRequest(input *DeleteEnvironmentInput) (req *r
 
 // DeleteEnvironment API operation for AWS Cloud9.
 //
-// Deletes an AWS Cloud9 development environment. If an Amazon EC2 instance
-// is connected to the environment, also terminates the instance.
+// Deletes an Cloud9 development environment. If an Amazon EC2 instance is connected
+// to the environment, also terminates the instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -491,7 +490,7 @@ func (c *Cloud9) DeleteEnvironmentMembershipRequest(input *DeleteEnvironmentMemb
 
 // DeleteEnvironmentMembership API operation for AWS Cloud9.
 //
-// Deletes an environment member from an AWS Cloud9 development environment.
+// Deletes an environment member from an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -632,8 +631,7 @@ func (c *Cloud9) DescribeEnvironmentMembershipsRequest(input *DescribeEnvironmen
 
 // DescribeEnvironmentMemberships API operation for AWS Cloud9.
 //
-// Gets information about environment members for an AWS Cloud9 development
-// environment.
+// Gets information about environment members for an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -820,7 +818,7 @@ func (c *Cloud9) DescribeEnvironmentStatusRequest(input *DescribeEnvironmentStat
 
 // DescribeEnvironmentStatus API operation for AWS Cloud9.
 //
-// Gets status information for an AWS Cloud9 development environment.
+// Gets status information for an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -955,7 +953,7 @@ func (c *Cloud9) DescribeEnvironmentsRequest(input *DescribeEnvironmentsInput) (
 
 // DescribeEnvironments API operation for AWS Cloud9.
 //
-// Gets information about AWS Cloud9 development environments.
+// Gets information about Cloud9 development environments.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1096,7 +1094,7 @@ func (c *Cloud9) ListEnvironmentsRequest(input *ListEnvironmentsInput) (req *req
 
 // ListEnvironments API operation for AWS Cloud9.
 //
-// Gets a list of AWS Cloud9 development environment identifiers.
+// Gets a list of Cloud9 development environment identifiers.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1283,7 +1281,7 @@ func (c *Cloud9) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for AWS Cloud9.
 //
-// Gets a list of the tags associated with an AWS Cloud9 development environment.
+// Gets a list of the tags associated with an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1407,10 +1405,10 @@ func (c *Cloud9) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 
 // TagResource API operation for AWS Cloud9.
 //
-// Adds tags to an AWS Cloud9 development environment.
+// Adds tags to an Cloud9 development environment.
 //
-// Tags that you add to an AWS Cloud9 environment by using this method will
-// NOT be automatically propagated to underlying resources.
+// Tags that you add to an Cloud9 environment by using this method will NOT
+// be automatically propagated to underlying resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1537,7 +1535,7 @@ func (c *Cloud9) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Cloud9.
 //
-// Removes tags from an AWS Cloud9 development environment.
+// Removes tags from an Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1664,7 +1662,7 @@ func (c *Cloud9) UpdateEnvironmentRequest(input *UpdateEnvironmentInput) (req *r
 
 // UpdateEnvironment API operation for AWS Cloud9.
 //
-// Changes the settings of an existing AWS Cloud9 development environment.
+// Changes the settings of an existing Cloud9 development environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1799,8 +1797,8 @@ func (c *Cloud9) UpdateEnvironmentMembershipRequest(input *UpdateEnvironmentMemb
 
 // UpdateEnvironmentMembership API operation for AWS Cloud9.
 //
-// Changes the settings of an existing environment member for an AWS Cloud9
-// development environment.
+// Changes the settings of an existing environment member for an Cloud9 development
+// environment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2066,20 +2064,20 @@ type CreateEnvironmentEC2Input struct {
 	// has last been used.
 	AutomaticStopTimeMinutes *int64 `locationName:"automaticStopTimeMinutes" type:"integer"`
 
-	// A unique, case-sensitive string that helps AWS Cloud9 to ensure this operation
+	// A unique, case-sensitive string that helps Cloud9 to ensure this operation
 	// completes no more than one time.
 	//
-	// For more information, see Client Tokens (http://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
+	// For more information, see Client Tokens (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html)
 	// in the Amazon EC2 API Reference.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string"`
 
 	// The connection type used for connecting to an Amazon EC2 environment. Valid
-	// values are CONNECT_SSH (default) and CONNECT_SSM (connected through AWS Systems
-	// Manager).
+	// values are CONNECT_SSH (default) and CONNECT_SSM (connected through Amazon
+	// EC2 Systems Manager).
 	//
-	// For more information, see Accessing no-ingress EC2 instances with AWS Systems
-	// Manager (https://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html)
-	// in the AWS Cloud9 User Guide.
+	// For more information, see Accessing no-ingress EC2 instances with Amazon
+	// EC2 Systems Manager (https://docs.aws.amazon.com/cloud9/latest/user-guide/ec2-ssm.html)
+	// in the Cloud9 User Guide.
 	ConnectionType *string `locationName:"connectionType" type:"string" enum:"ConnectionType"`
 
 	// The description of the environment to create.
@@ -2087,10 +2085,12 @@ type CreateEnvironmentEC2Input struct {
 
 	// The identifier for the Amazon Machine Image (AMI) that's used to create the
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
-	// AMI alias or a valid AWS Systems Manager (SSM) path.
+	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
 	//
 	// The default AMI is used if the parameter isn't explicitly assigned a value
-	// in the request.
+	// in the request. Because Amazon Linux AMI has ended standard support as of
+	// December 31, 2020, we recommend you choose Amazon Linux 2, which includes
+	// long term support through 2023.
 	//
 	// AMI aliases
 	//
@@ -2116,22 +2116,22 @@ type CreateEnvironmentEC2Input struct {
 
 	// The name of the environment to create.
 	//
-	// This name is visible to other AWS IAM users in the same AWS account.
+	// This name is visible to other IAM users in the same Amazon Web Services account.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the environment owner. This ARN can be
-	// the ARN of any AWS IAM principal. If this value is not specified, the ARN
-	// defaults to this environment's creator.
+	// the ARN of any IAM principal. If this value is not specified, the ARN defaults
+	// to this environment's creator.
 	OwnerArn *string `locationName:"ownerArn" type:"string"`
 
-	// The ID of the subnet in Amazon VPC that AWS Cloud9 will use to communicate
-	// with the Amazon EC2 instance.
+	// The ID of the subnet in Amazon VPC that Cloud9 will use to communicate with
+	// the Amazon EC2 instance.
 	SubnetId *string `locationName:"subnetId" min:"15" type:"string"`
 
-	// An array of key-value pairs that will be associated with the new AWS Cloud9
-	// development environment.
+	// An array of key-value pairs that will be associated with the new Cloud9 development
+	// environment.
 	Tags []*Tag `locationName:"tags" type:"list" sensitive:"true"`
 }
 
@@ -2741,7 +2741,7 @@ func (s *DescribeEnvironmentsOutput) SetEnvironments(v []*Environment) *Describe
 	return s
 }
 
-// Information about an AWS Cloud9 development environment.
+// Information about an Cloud9 development environment.
 type Environment struct {
 	_ struct{} `type:"structure"`
 
@@ -2763,8 +2763,8 @@ type Environment struct {
 	// The state of the environment in its creation or deletion lifecycle.
 	Lifecycle *EnvironmentLifecycle `locationName:"lifecycle" type:"structure"`
 
-	// Describes the status of AWS managed temporary credentials for the AWS Cloud9
-	// environment. Available values are:
+	// Describes the status of Amazon Web Services managed temporary credentials
+	// for the Cloud9 environment. Available values are:
 	//
 	//    * ENABLED_ON_CREATE
 	//
@@ -2871,12 +2871,12 @@ func (s *Environment) SetType(v string) *Environment {
 }
 
 // Information about the current creation or deletion lifecycle state of an
-// AWS Cloud9 development environment.
+// Cloud9 development environment.
 type EnvironmentLifecycle struct {
 	_ struct{} `type:"structure"`
 
 	// If the environment failed to delete, the Amazon Resource Name (ARN) of the
-	// related AWS resource.
+	// related Amazon Web Services resource.
 	FailureResource *string `locationName:"failureResource" type:"string"`
 
 	// Any informational message about the lifecycle state of the environment.
@@ -2924,7 +2924,7 @@ func (s *EnvironmentLifecycle) SetStatus(v string) *EnvironmentLifecycle {
 	return s
 }
 
-// Information about an environment member for an AWS Cloud9 development environment.
+// Information about an environment member for an Cloud9 development environment.
 type EnvironmentMember struct {
 	_ struct{} `type:"structure"`
 
@@ -2954,8 +2954,7 @@ type EnvironmentMember struct {
 	// UserArn is a required field
 	UserArn *string `locationName:"userArn" type:"string" required:"true"`
 
-	// The user ID in AWS Identity and Access Management (AWS IAM) of the environment
-	// member.
+	// The user ID in Identity and Access Management (IAM) of the environment member.
 	//
 	// UserId is a required field
 	UserId *string `locationName:"userId" type:"string" required:"true"`
@@ -3244,8 +3243,8 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Cloud9 development environment
-	// to get the tags for.
+	// The Amazon Resource Name (ARN) of the Cloud9 development environment to get
+	// the tags for.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `type:"string" required:"true"`
@@ -3283,7 +3282,7 @@ func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of tags associated with the AWS Cloud9 development environment.
+	// The list of tags associated with the Cloud9 development environment.
 	Tags []*Tag `type:"list" sensitive:"true"`
 }
 
@@ -3359,11 +3358,12 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Metadata that is associated with AWS resources. In particular, a name-value
-// pair that can be associated with an AWS Cloud9 development environment. There
-// are two types of tags: user tags and system tags. A user tag is created by
-// the user. A system tag is automatically created by AWS services. A system
-// tag is prefixed with "aws:" and cannot be modified by the user.
+// Metadata that is associated with Amazon Web Services resources. In particular,
+// a name-value pair that can be associated with an Cloud9 development environment.
+// There are two types of tags: user tags and system tags. A user tag is created
+// by the user. A system tag is automatically created by Amazon Web Services
+// services. A system tag is prefixed with "aws:" and cannot be modified by
+// the user.
 type Tag struct {
 	_ struct{} `type:"structure" sensitive:"true"`
 
@@ -3422,13 +3422,13 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Cloud9 development environment
-	// to add tags to.
+	// The Amazon Resource Name (ARN) of the Cloud9 development environment to add
+	// tags to.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `type:"string" required:"true"`
 
-	// The list of tags to add to the given AWS Cloud9 development environment.
+	// The list of tags to add to the given Cloud9 development environment.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true" sensitive:"true"`
@@ -3555,14 +3555,13 @@ func (s *TooManyRequestsException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Cloud9 development environment
-	// to remove tags from.
+	// The Amazon Resource Name (ARN) of the Cloud9 development environment to remove
+	// tags from.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `type:"string" required:"true"`
 
-	// The tag names of the tags to remove from the given AWS Cloud9 development
-	// environment.
+	// The tag names of the tags to remove from the given Cloud9 development environment.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true" sensitive:"true"`

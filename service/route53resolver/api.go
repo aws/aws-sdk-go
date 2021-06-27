@@ -2592,9 +2592,9 @@ func (c *Route53Resolver) DisassociateResolverQueryLogConfigRequest(input *Disas
 // Disassociates a VPC from a query logging configuration.
 //
 // Before you can delete a query logging configuration, you must first disassociate
-// all VPCs from the configuration. If you used Resource Access Manager (RAM)
-// to share a query logging configuration with other accounts, VPCs can be disassociated
-// from the configuration in the following ways:
+// all VPCs from the configuration. If you used AWS Resource Access Manager
+// (AWS RAM) to share a query logging configuration with other accounts, VPCs
+// can be disassociated from the configuration in the following ways:
 //
 //    * The accounts that you shared the configuration with can disassociate
 //    VPCs from the configuration.
@@ -2863,7 +2863,7 @@ func (c *Route53Resolver) GetFirewallConfigRequest(input *GetFirewallConfigInput
 // GetFirewallConfig API operation for Amazon Route 53 Resolver.
 //
 // Retrieves the configuration of the firewall behavior provided by DNS Firewall
-// for a single Amazon virtual private cloud (VPC).
+// for a single VPC from Amazon Virtual Private Cloud (Amazon VPC).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3378,7 +3378,7 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 //
 // Returns the AWS Identity and Access Management (AWS IAM) policy for sharing
 // the specified rule group. You can use the policy to share the rule group
-// using AWS Resource Access Manager (RAM).
+// using AWS Resource Access Manager (AWS RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7352,7 +7352,7 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 //
 // Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing
 // the rule group. You can use the policy to share the rule group using AWS
-// Resource Access Manager (RAM).
+// Resource Access Manager (AWS RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8011,7 +8011,7 @@ func (c *Route53Resolver) UpdateFirewallConfigRequest(input *UpdateFirewallConfi
 // UpdateFirewallConfig API operation for Amazon Route 53 Resolver.
 //
 // Updates the configuration of the firewall behavior provided by DNS Firewall
-// for a single Amazon virtual private cloud (VPC).
+// for a single VPC from Amazon Virtual Private Cloud (Amazon VPC).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8954,7 +8954,7 @@ type AssociateFirewallRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that identifies the request and that allows failed requests
-	// to be retried without the risk of executing the operation twice. CreatorRequestId
+	// to be retried without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -8975,12 +8975,15 @@ type AssociateFirewallRuleGroupInput struct {
 
 	// The setting that determines the processing order of the rule group among
 	// the rule groups that you associate with the specified VPC. DNS Firewall filters
-	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	// VPC traffic starting from the rule group with the lowest numeric priority
+	// setting.
 	//
 	// You must specify a unique priority for each rule group that you associate
 	// with a single VPC. To make it easier to insert rule groups later, leave space
-	// between the numbers, for example, use 100, 200, and so on. You can change
+	// between the numbers, for example, use 101, 200, and so on. You can change
 	// the priority setting for a rule group association after you create it.
+	//
+	// The allowed values for Priority are between 100 and 9900.
 	//
 	// Priority is a required field
 	Priority *int64 `type:"integer" required:"true"`
@@ -9092,7 +9095,7 @@ func (s *AssociateFirewallRuleGroupInput) SetVpcId(v string) *AssociateFirewallR
 type AssociateFirewallRuleGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The association that you just created. The association has an Id that you
+	// The association that you just created. The association has an ID that you
 	// can use to identify it in other requests, like update and delete.
 	FirewallRuleGroupAssociation *FirewallRuleGroupAssociation `type:"structure"`
 }
@@ -9436,7 +9439,7 @@ type CreateFirewallDomainListInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that identifies the request and that allows you to retry
-	// failed requests without the risk of executing the operation twice. CreatorRequestId
+	// failed requests without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -9531,8 +9534,8 @@ type CreateFirewallRuleGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A name that lets you identify the rule group, to manage and use it.
@@ -9630,7 +9633,7 @@ type CreateFirewallRuleInput struct {
 	//
 	//    * ALLOW - Permit the request to go through.
 	//
-	//    * ALERT - Permit the request and send metrics and log to Cloud Watch.
+	//    * ALERT - Permit the request and send metrics and logs to Cloud Watch.
 	//
 	//    * BLOCK - Disallow the request. This option requires additional details
 	//    in the rule's BlockResponse.
@@ -9659,7 +9662,7 @@ type CreateFirewallRuleInput struct {
 	BlockOverrideTtl *int64 `type:"integer"`
 
 	// The way that you want DNS Firewall to block the request, used with the rule
-	// aciton setting BLOCK.
+	// action setting BLOCK.
 	//
 	//    * NODATA - Respond indicating that the query was successful, but no response
 	//    is available for it.
@@ -9674,7 +9677,7 @@ type CreateFirewallRuleInput struct {
 	BlockResponse *string `type:"string" enum:"BlockResponse"`
 
 	// A unique string that identifies the request and that allows you to retry
-	// failed requests without the risk of executing the operation twice. CreatorRequestId
+	// failed requests without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -9841,7 +9844,7 @@ type CreateResolverEndpointInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that identifies the request and that allows failed requests
-	// to be retried without the risk of executing the operation twice. CreatorRequestId
+	// to be retried without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	//
 	// CreatorRequestId is a required field
@@ -10005,7 +10008,7 @@ type CreateResolverQueryLogConfigInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that identifies the request and that allows failed requests
-	// to be retried without the risk of executing the operation twice. CreatorRequestId
+	// to be retried without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	CreatorRequestId *string `min:"1" type:"string" idempotencyToken:"true"`
 
@@ -10023,7 +10026,7 @@ type CreateResolverQueryLogConfigInput struct {
 	// DestinationArn is a required field
 	DestinationArn *string `min:"1" type:"string" required:"true"`
 
-	// The name that you want to give the query logging configuration
+	// The name that you want to give the query logging configuration.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -10130,7 +10133,7 @@ type CreateResolverRuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique string that identifies the request and that allows failed requests
-	// to be retried without the risk of executing the operation twice. CreatorRequestId
+	// to be retried without the risk of running the operation twice. CreatorRequestId
 	// can be any unique string, for example, a date/time stamp.
 	//
 	// CreatorRequestId is a required field
@@ -10174,7 +10177,7 @@ type CreateResolverRuleInput struct {
 	Tags []*Tag `type:"list"`
 
 	// The IPs that you want Resolver to forward DNS queries to. You can specify
-	// only IPv4 addresses. Separate IP addresses with a comma.
+	// only IPv4 addresses. Separate IP addresses with a space.
 	//
 	// TargetIps is available only when the value of Rule type is FORWARD.
 	TargetIps []*TargetAddress `min:"1" type:"list"`
@@ -11232,7 +11235,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 }
 
 // Configuration of the firewall behavior provided by DNS Firewall for a single
-// Amazon virtual private cloud (VPC).
+// VPC from Amazon Virtual Private Cloud (Amazon VPC).
 type FirewallConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -11251,7 +11254,7 @@ type FirewallConfig struct {
 	// rule group association.
 	FirewallFailOpen *string `type:"string" enum:"FirewallFailOpenStatus"`
 
-	// The Id of the firewall configuration.
+	// The ID of the firewall configuration.
 	Id *string `min:"1" type:"string"`
 
 	// The AWS account ID of the owner of the VPC that this firewall configuration
@@ -11296,7 +11299,7 @@ func (s *FirewallConfig) SetResourceId(v string) *FirewallConfig {
 	return s
 }
 
-// High level information about a list of firewall domains for use in a FirewallRule.
+// High-level information about a list of firewall domains for use in a FirewallRule.
 // This is returned by GetFirewallDomainList.
 //
 // To retrieve the domains that are defined for this domain list, call ListFirewallDomains.
@@ -11311,8 +11314,8 @@ type FirewallDomainList struct {
 	CreationTime *string `min:"20" type:"string"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The number of domain names that are specified in the domain list.
@@ -11422,8 +11425,8 @@ type FirewallDomainListMetadata struct {
 	Arn *string `min:"1" type:"string"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The ID of the domain list.
@@ -11644,8 +11647,8 @@ type FirewallRuleGroup struct {
 	CreationTime *string `min:"20" type:"string"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The ID of the rule group.
@@ -11754,7 +11757,7 @@ func (s *FirewallRuleGroup) SetStatusMessage(v string) *FirewallRuleGroup {
 	return s
 }
 
-// An association between a firewall rul group and a VPC, which enables DNS
+// An association between a firewall rule group and a VPC, which enables DNS
 // filtering for the VPC.
 type FirewallRuleGroupAssociation struct {
 	_ struct{} `type:"structure"`
@@ -11767,8 +11770,8 @@ type FirewallRuleGroupAssociation struct {
 	CreationTime *string `min:"20" type:"string"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The unique identifier of the firewall rule group.
@@ -11908,8 +11911,8 @@ type FirewallRuleGroupMetadata struct {
 	Arn *string `min:"1" type:"string"`
 
 	// A unique string defined by you to identify the request. This allows you to
-	// retry failed requests without the risk of executing the operation twice.
-	// This can be any unique string, for example, a timestamp.
+	// retry failed requests without the risk of running the operation twice. This
+	// can be any unique string, for example, a timestamp.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The ID of the rule group.
@@ -11978,8 +11981,7 @@ func (s *FirewallRuleGroupMetadata) SetShareStatus(v string) *FirewallRuleGroupM
 type GetFirewallConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the Amazon virtual private cloud (VPC) that the configuration is
-	// for.
+	// The ID of the VPC from Amazon VPC that the configuration is for.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
@@ -12021,7 +12023,7 @@ type GetFirewallConfigOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Configuration of the firewall behavior provided by DNS Firewall for a single
-	// Amazon virtual private cloud (VPC).
+	// VPC from AmazonVPC.
 	FirewallConfig *FirewallConfig `type:"structure"`
 }
 
@@ -12279,7 +12281,7 @@ type GetFirewallRuleGroupPolicyOutput struct {
 
 	// The AWS Identity and Access Management (AWS IAM) policy for sharing the specified
 	// rule group. You can use the policy to share the rule group using AWS Resource
-	// Access Manager (RAM).
+	// Access Manager (AWS RAM).
 	FirewallRuleGroupPolicy *string `type:"string"`
 }
 
@@ -12827,7 +12829,7 @@ type ImportFirewallDomainsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The fully qualified URL or URI of the file stored in Amazon Simple Storage
-	// Service (S3) that contains the list of domains to import.
+	// Service (Amazon S3) that contains the list of domains to import.
 	//
 	// The file must be in an S3 bucket that's in the same Region as your DNS Firewall.
 	// The file must be a text file and must contain a single domain per line.
@@ -13613,7 +13615,7 @@ type ListFirewallConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The configurations for the firewall behavior provided by DNS Firewall for
-	// Amazon virtual private clouds (VPC).
+	// VPCs from Amazon Virtual Private Cloud (Amazon VPC).
 	FirewallConfigs []*FirewallConfig `type:"list"`
 
 	// If objects are still available for retrieval, Resolver returns this token
@@ -13704,7 +13706,7 @@ type ListFirewallDomainListsOutput struct {
 
 	// A list of the domain lists that you have defined.
 	//
-	// This might be a parital list of the domain lists that you've defined. For
+	// This might be a partial list of the domain lists that you've defined. For
 	// information, see MaxResults.
 	FirewallDomainLists []*FirewallDomainListMetadata `type:"list"`
 
@@ -13813,7 +13815,7 @@ type ListFirewallDomainsOutput struct {
 
 	// A list of the domains in the firewall domain list.
 	//
-	// This might be a parital list of the domains that you've defined in the domain
+	// This might be a partial list of the domains that you've defined in the domain
 	// list. For information, see MaxResults.
 	Domains []*string `type:"list"`
 
@@ -13871,7 +13873,8 @@ type ListFirewallRuleGroupAssociationsInput struct {
 
 	// The setting that determines the processing order of the rule group among
 	// the rule groups that are associated with a single VPC. DNS Firewall filters
-	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	// VPC traffic starting from the rule group with the lowest numeric priority
+	// setting.
 	Priority *int64 `type:"integer"`
 
 	// The association Status setting that you want DNS Firewall to filter on for
@@ -14188,7 +14191,7 @@ type ListFirewallRulesOutput struct {
 
 	// A list of the rules that you have defined.
 	//
-	// This might be a parital list of the firewall rules that you've defined. For
+	// This might be a partial list of the firewall rules that you've defined. For
 	// information, see MaxResults.
 	FirewallRules []*FirewallRule `type:"list"`
 
@@ -15656,7 +15659,7 @@ type ResolverEndpoint struct {
 
 	// A unique string that identifies the request that created the Resolver endpoint.
 	// The CreatorRequestId allows failed requests to be retried without the risk
-	// of executing the operation twice.
+	// of running the operation twice.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// Indicates whether the Resolver endpoint allows inbound or outbound DNS queries:
@@ -15831,7 +15834,7 @@ type ResolverQueryLogConfig struct {
 
 	// A unique string that identifies the request that created the query logging
 	// configuration. The CreatorRequestId allows failed requests to be retried
-	// without the risk of executing the operation twice.
+	// without the risk of running the operation twice.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// The ARN of the resource that you want Resolver to send query logs: an Amazon
@@ -16065,7 +16068,7 @@ type ResolverRule struct {
 
 	// A unique string that you specified when you created the Resolver rule. CreatorRequestId
 	// identifies the request and allows failed requests to be retried without the
-	// risk of executing the operation twice.
+	// risk of running the operation twice.
 	CreatorRequestId *string `min:"1" type:"string"`
 
 	// DNS queries for this domain name are forwarded to the IP addresses that are
@@ -16108,7 +16111,7 @@ type ResolverRule struct {
 	// for RuleType.
 	RuleType *string `type:"string" enum:"RuleTypeOption"`
 
-	// Whether the rules is shared and, if so, whether the current account is sharing
+	// Whether the rule is shared and, if so, whether the current account is sharing
 	// the rule with another account, or another account is sharing the rule with
 	// the current account.
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
@@ -17029,8 +17032,7 @@ type UpdateFirewallConfigInput struct {
 	// FirewallFailOpen is a required field
 	FirewallFailOpen *string `type:"string" required:"true" enum:"FirewallFailOpenStatus"`
 
-	// The ID of the Amazon virtual private cloud (VPC) that the configuration is
-	// for.
+	// The ID of the VPC that the configuration is for.
 	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
@@ -17081,7 +17083,7 @@ type UpdateFirewallConfigOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Configuration of the firewall behavior provided by DNS Firewall for a single
-	// Amazon virtual private cloud (VPC).
+	// VPC.
 	FirewallConfig *FirewallConfig `type:"structure"`
 }
 
@@ -17191,7 +17193,7 @@ func (s *UpdateFirewallDomainsInput) SetOperation(v string) *UpdateFirewallDomai
 type UpdateFirewallDomainsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Id of the firewall domain list that DNS Firewall just updated.
+	// The ID of the firewall domain list that DNS Firewall just updated.
 	Id *string `min:"1" type:"string"`
 
 	// The name of the domain list.
@@ -17254,7 +17256,8 @@ type UpdateFirewallRuleGroupAssociationInput struct {
 
 	// The setting that determines the processing order of the rule group among
 	// the rule groups that you associate with the specified VPC. DNS Firewall filters
-	// VPC traffic starting from rule group with the lowest numeric priority setting.
+	// VPC traffic starting from the rule group with the lowest numeric priority
+	// setting.
 	//
 	// You must specify a unique priority for each rule group that you associate
 	// with a single VPC. To make it easier to insert rule groups later, leave space

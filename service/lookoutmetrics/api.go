@@ -5107,8 +5107,8 @@ type CreateMetricSetInput struct {
 	// MetricSource is a required field
 	MetricSource *MetricSource `type:"structure" required:"true"`
 
-	// After an interval ends, the amount of time that the detector waits before
-	// importing data.
+	// After an interval ends, the amount of seconds that the detector waits before
+	// importing data. Offset is only supported for S3 and Redshift datasources.
 	Offset *int64 `type:"integer"`
 
 	// A list of tags (https://docs.aws.amazon.com/lookoutmetrics/latest/dev/detectors-tags.html)
@@ -5821,7 +5821,7 @@ type DescribeMetricSetOutput struct {
 	// Contains information about the dataset's source data.
 	MetricSource *MetricSource `type:"structure"`
 
-	// The offset for the dataset.
+	// The offset in seconds. Only supported for S3 and Redshift datasources.
 	Offset *int64 `type:"integer"`
 
 	// Contains information about the column used for tracking time in your source
@@ -8591,8 +8591,8 @@ type UpdateMetricSetInput struct {
 	// Contains information about source data used to generate a metric.
 	MetricSource *MetricSource `type:"structure"`
 
-	// After an interval ends, the amount of time that the detector waits before
-	// importing data.
+	// After an interval ends, the amount of seconds that the detector waits before
+	// importing data. Offset is only supported for S3 and Redshift datasources.
 	Offset *int64 `type:"integer"`
 
 	// The timestamp column.
@@ -8968,6 +8968,9 @@ const (
 	// AnomalyDetectorStatusInactive is a AnomalyDetectorStatus enum value
 	AnomalyDetectorStatusInactive = "INACTIVE"
 
+	// AnomalyDetectorStatusLearning is a AnomalyDetectorStatus enum value
+	AnomalyDetectorStatusLearning = "LEARNING"
+
 	// AnomalyDetectorStatusBackTestActivating is a AnomalyDetectorStatus enum value
 	AnomalyDetectorStatusBackTestActivating = "BACK_TEST_ACTIVATING"
 
@@ -8986,6 +8989,7 @@ func AnomalyDetectorStatus_Values() []string {
 		AnomalyDetectorStatusDeleting,
 		AnomalyDetectorStatusFailed,
 		AnomalyDetectorStatusInactive,
+		AnomalyDetectorStatusLearning,
 		AnomalyDetectorStatusBackTestActivating,
 		AnomalyDetectorStatusBackTestActive,
 		AnomalyDetectorStatusBackTestComplete,

@@ -185,6 +185,8 @@ func writeServiceFiles(g *generateInfo, pkgDir string) {
 	if len(g.API.SmokeTests.TestCases) > 0 {
 		Must(writeAPISmokeTestsFile(g))
 	}
+
+	fmt.Println()
 }
 
 // Must will panic if the error passed in is not nil.

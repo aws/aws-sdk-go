@@ -5370,6 +5370,7 @@ type DestinationConnectorProperties struct {
 	// The properties required to query Upsolver.
 	Upsolver *UpsolverDestinationProperties `type:"structure"`
 
+	// The properties required to query Zendesk.
 	Zendesk *ZendeskDestinationProperties `type:"structure"`
 }
 
@@ -10574,6 +10575,7 @@ func (s *ZendeskConnectorProfileProperties) SetInstanceUrl(v string) *ZendeskCon
 	return s
 }
 
+// The properties that are applied when Zendesk is used as a destination.
 type ZendeskDestinationProperties struct {
 	_ struct{} `type:"structure"`
 
@@ -10588,6 +10590,8 @@ type ZendeskDestinationProperties struct {
 	// operation.
 	IdFieldNames []*string `locationName:"idFieldNames" type:"list"`
 
+	// The object specified in the Zendesk flow destination.
+	//
 	// Object is a required field
 	Object *string `locationName:"object" type:"string" required:"true"`
 
@@ -11361,6 +11365,9 @@ const (
 
 	// OperatorPropertiesKeysSubfieldCategoryMap is a OperatorPropertiesKeys enum value
 	OperatorPropertiesKeysSubfieldCategoryMap = "SUBFIELD_CATEGORY_MAP"
+
+	// OperatorPropertiesKeysExcludeSourceFieldsList is a OperatorPropertiesKeys enum value
+	OperatorPropertiesKeysExcludeSourceFieldsList = "EXCLUDE_SOURCE_FIELDS_LIST"
 )
 
 // OperatorPropertiesKeys_Values returns all elements of the OperatorPropertiesKeys enum
@@ -11380,6 +11387,7 @@ func OperatorPropertiesKeys_Values() []string {
 		OperatorPropertiesKeysMathOperationFieldsOrder,
 		OperatorPropertiesKeysConcatFormat,
 		OperatorPropertiesKeysSubfieldCategoryMap,
+		OperatorPropertiesKeysExcludeSourceFieldsList,
 	}
 }
 
@@ -11893,6 +11901,9 @@ const (
 	// TaskTypeMap is a TaskType enum value
 	TaskTypeMap = "Map"
 
+	// TaskTypeMapAll is a TaskType enum value
+	TaskTypeMapAll = "Map_all"
+
 	// TaskTypeMask is a TaskType enum value
 	TaskTypeMask = "Mask"
 
@@ -11912,6 +11923,7 @@ func TaskType_Values() []string {
 		TaskTypeArithmetic,
 		TaskTypeFilter,
 		TaskTypeMap,
+		TaskTypeMapAll,
 		TaskTypeMask,
 		TaskTypeMerge,
 		TaskTypeTruncate,

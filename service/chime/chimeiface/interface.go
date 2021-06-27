@@ -847,6 +847,10 @@ type ChimeAPI interface {
 	UpdateSipMediaApplicationWithContext(aws.Context, *chime.UpdateSipMediaApplicationInput, ...request.Option) (*chime.UpdateSipMediaApplicationOutput, error)
 	UpdateSipMediaApplicationRequest(*chime.UpdateSipMediaApplicationInput) (*request.Request, *chime.UpdateSipMediaApplicationOutput)
 
+	UpdateSipMediaApplicationCall(*chime.UpdateSipMediaApplicationCallInput) (*chime.UpdateSipMediaApplicationCallOutput, error)
+	UpdateSipMediaApplicationCallWithContext(aws.Context, *chime.UpdateSipMediaApplicationCallInput, ...request.Option) (*chime.UpdateSipMediaApplicationCallOutput, error)
+	UpdateSipMediaApplicationCallRequest(*chime.UpdateSipMediaApplicationCallInput) (*request.Request, *chime.UpdateSipMediaApplicationCallOutput)
+
 	UpdateSipRule(*chime.UpdateSipRuleInput) (*chime.UpdateSipRuleOutput, error)
 	UpdateSipRuleWithContext(aws.Context, *chime.UpdateSipRuleInput, ...request.Option) (*chime.UpdateSipRuleOutput, error)
 	UpdateSipRuleRequest(*chime.UpdateSipRuleInput) (*request.Request, *chime.UpdateSipRuleOutput)

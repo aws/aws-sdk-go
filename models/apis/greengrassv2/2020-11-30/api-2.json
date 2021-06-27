@@ -12,6 +12,40 @@
     "uid":"greengrassv2-2020-11-30"
   },
   "operations":{
+    "BatchAssociateClientDeviceWithCoreDevice":{
+      "name":"BatchAssociateClientDeviceWithCoreDevice",
+      "http":{
+        "method":"POST",
+        "requestUri":"/greengrass/v2/coreDevices/{coreDeviceThingName}/associateClientDevices",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchAssociateClientDeviceWithCoreDeviceRequest"},
+      "output":{"shape":"BatchAssociateClientDeviceWithCoreDeviceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "BatchDisassociateClientDeviceFromCoreDevice":{
+      "name":"BatchDisassociateClientDeviceFromCoreDevice",
+      "http":{
+        "method":"POST",
+        "requestUri":"/greengrass/v2/coreDevices/{coreDeviceThingName}/disassociateClientDevices",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchDisassociateClientDeviceFromCoreDeviceRequest"},
+      "output":{"shape":"BatchDisassociateClientDeviceFromCoreDeviceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CancelDeployment":{
       "name":"CancelDeployment",
       "http":{
@@ -170,6 +204,23 @@
       },
       "input":{"shape":"GetDeploymentRequest"},
       "output":{"shape":"GetDeploymentResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
+    "ListClientDevicesAssociatedWithCoreDevice":{
+      "name":"ListClientDevicesAssociatedWithCoreDevice",
+      "http":{
+        "method":"GET",
+        "requestUri":"/greengrass/v2/coreDevices/{coreDeviceThingName}/associatedClientDevices",
+        "responseCode":200
+      },
+      "input":{"shape":"ListClientDevicesAssociatedWithCoreDeviceRequest"},
+      "output":{"shape":"ListClientDevicesAssociatedWithCoreDeviceResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -340,6 +391,82 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "AssociateClientDeviceWithCoreDeviceEntry":{
+      "type":"structure",
+      "required":["thingName"],
+      "members":{
+        "thingName":{"shape":"IoTThingName"}
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceEntryList":{
+      "type":"list",
+      "member":{"shape":"AssociateClientDeviceWithCoreDeviceEntry"},
+      "max":100,
+      "min":1
+    },
+    "AssociateClientDeviceWithCoreDeviceErrorEntry":{
+      "type":"structure",
+      "members":{
+        "thingName":{"shape":"IoTThingName"},
+        "code":{"shape":"NonEmptyString"},
+        "message":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssociateClientDeviceWithCoreDeviceErrorList":{
+      "type":"list",
+      "member":{"shape":"AssociateClientDeviceWithCoreDeviceErrorEntry"},
+      "max":100,
+      "min":1
+    },
+    "AssociatedClientDevice":{
+      "type":"structure",
+      "members":{
+        "thingName":{"shape":"IoTThingName"},
+        "associationTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "AssociatedClientDeviceList":{
+      "type":"list",
+      "member":{"shape":"AssociatedClientDevice"},
+      "max":100,
+      "min":1
+    },
+    "BatchAssociateClientDeviceWithCoreDeviceRequest":{
+      "type":"structure",
+      "required":["coreDeviceThingName"],
+      "members":{
+        "entries":{"shape":"AssociateClientDeviceWithCoreDeviceEntryList"},
+        "coreDeviceThingName":{
+          "shape":"IoTThingName",
+          "location":"uri",
+          "locationName":"coreDeviceThingName"
+        }
+      }
+    },
+    "BatchAssociateClientDeviceWithCoreDeviceResponse":{
+      "type":"structure",
+      "members":{
+        "errorEntries":{"shape":"AssociateClientDeviceWithCoreDeviceErrorList"}
+      }
+    },
+    "BatchDisassociateClientDeviceFromCoreDeviceRequest":{
+      "type":"structure",
+      "required":["coreDeviceThingName"],
+      "members":{
+        "entries":{"shape":"DisassociateClientDeviceFromCoreDeviceEntryList"},
+        "coreDeviceThingName":{
+          "shape":"IoTThingName",
+          "location":"uri",
+          "locationName":"coreDeviceThingName"
+        }
+      }
+    },
+    "BatchDisassociateClientDeviceFromCoreDeviceResponse":{
+      "type":"structure",
+      "members":{
+        "errorEntries":{"shape":"DisassociateClientDeviceFromCoreDeviceErrorList"}
+      }
     },
     "CancelDeploymentRequest":{
       "type":"structure",
@@ -760,6 +887,33 @@
       "min":1
     },
     "DescriptionString":{"type":"string"},
+    "DisassociateClientDeviceFromCoreDeviceEntry":{
+      "type":"structure",
+      "required":["thingName"],
+      "members":{
+        "thingName":{"shape":"IoTThingName"}
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceEntryList":{
+      "type":"list",
+      "member":{"shape":"DisassociateClientDeviceFromCoreDeviceEntry"},
+      "max":100,
+      "min":1
+    },
+    "DisassociateClientDeviceFromCoreDeviceErrorEntry":{
+      "type":"structure",
+      "members":{
+        "thingName":{"shape":"IoTThingName"},
+        "code":{"shape":"NonEmptyString"},
+        "message":{"shape":"NonEmptyString"}
+      }
+    },
+    "DisassociateClientDeviceFromCoreDeviceErrorList":{
+      "type":"list",
+      "member":{"shape":"DisassociateClientDeviceFromCoreDeviceErrorEntry"},
+      "max":100,
+      "min":1
+    },
     "EffectiveDeployment":{
       "type":"structure",
       "required":[
@@ -1079,6 +1233,11 @@
         }
       }
     },
+    "IoTThingName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "IsLatestForTarget":{"type":"boolean"},
     "IsRoot":{"type":"boolean"},
     "LambdaContainerParams":{
@@ -1246,6 +1405,39 @@
       "type":"string",
       "max":1000,
       "min":1
+    },
+    "ListClientDevicesAssociatedWithCoreDeviceRequest":{
+      "type":"structure",
+      "required":["coreDeviceThingName"],
+      "members":{
+        "coreDeviceThingName":{
+          "shape":"IoTThingName",
+          "location":"uri",
+          "locationName":"coreDeviceThingName"
+        },
+        "maxResults":{
+          "shape":"DefaultMaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextTokenString",
+          "box":true,
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListClientDevicesAssociatedWithCoreDeviceResponse":{
+      "type":"structure",
+      "members":{
+        "associatedClientDevices":{"shape":"AssociatedClientDeviceList"},
+        "nextToken":{
+          "shape":"NextTokenString",
+          "box":true
+        }
+      }
     },
     "ListComponentVersionsRequest":{
       "type":"structure",

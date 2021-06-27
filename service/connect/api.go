@@ -22,6 +22,7 @@ const (
 var (
 	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
 		"AssociateApprovedOrigin":                  ExecuteAssociateApprovedOrigin,
+		"AssociateBot":                             ExecuteAssociateBot,
 		"AssociateInstanceStorageConfig":           ExecuteAssociateInstanceStorageConfig,
 		"AssociateLambdaFunction":                  ExecuteAssociateLambdaFunction,
 		"AssociateLexBot":                          ExecuteAssociateLexBot,
@@ -55,6 +56,7 @@ var (
 		"DescribeUserHierarchyGroup":               ExecuteDescribeUserHierarchyGroup,
 		"DescribeUserHierarchyStructure":           ExecuteDescribeUserHierarchyStructure,
 		"DisassociateApprovedOrigin":               ExecuteDisassociateApprovedOrigin,
+		"DisassociateBot":                          ExecuteDisassociateBot,
 		"DisassociateInstanceStorageConfig":        ExecuteDisassociateInstanceStorageConfig,
 		"DisassociateLambdaFunction":               ExecuteDisassociateLambdaFunction,
 		"DisassociateLexBot":                       ExecuteDisassociateLexBot,
@@ -66,6 +68,7 @@ var (
 		"GetFederationToken":                       ExecuteGetFederationToken,
 		"GetMetricData":                            ExecuteGetMetricData,
 		"ListApprovedOrigins":                      ExecuteListApprovedOrigins,
+		"ListBots":                                 ExecuteListBots,
 		"ListContactFlows":                         ExecuteListContactFlows,
 		"ListHoursOfOperations":                    ExecuteListHoursOfOperations,
 		"ListInstanceAttributes":                   ExecuteListInstanceAttributes,
@@ -244,6 +247,145 @@ func ExecuteAssociateApprovedOrigin(parameters map[string]interface{}) (map[stri
 	}
 
 	req, out := svc.AssociateApprovedOriginRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
+const opAssociateBot = "AssociateBot"
+
+// AssociateBotRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateBot for more information on using the AssociateBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateBotRequest method.
+//    req, resp := client.AssociateBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
+func (c *Connect) AssociateBotRequest(input *AssociateBotInput) (req *request.Request, output *AssociateBotOutput) {
+	op := &request.Operation{
+		Name:       opAssociateBot,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/instance/{InstanceId}/bot",
+	}
+
+	if input == nil {
+		input = &AssociateBotInput{}
+	}
+
+	output = &AssociateBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Allows the specified Amazon Connect instance to access the specified Amazon
+// Lex or Amazon Lex V2 bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceConflictException
+//   A resource already has that name.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ServiceQuotaExceededException
+//   The service quota has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateBot
+func (c *Connect) AssociateBot(input *AssociateBotInput) (*AssociateBotOutput, error) {
+	req, out := c.AssociateBotRequest(input)
+	return out, req.Send()
+}
+
+// AssociateBotWithContext is the same as AssociateBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateBotWithContext(ctx aws.Context, input *AssociateBotInput, opts ...request.Option) (*AssociateBotOutput, error) {
+	req, out := c.AssociateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteAssociateBot is Blink's code
+func ExecuteAssociateBot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Connect)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := AssociateBotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.AssociateBotRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -4662,6 +4804,136 @@ func ExecuteDisassociateApprovedOrigin(parameters map[string]interface{}) (map[s
 	return output, nil
 }
 
+const opDisassociateBot = "DisassociateBot"
+
+// DisassociateBotRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateBot operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateBot for more information on using the DisassociateBot
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateBotRequest method.
+//    req, resp := client.DisassociateBotRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
+func (c *Connect) DisassociateBotRequest(input *DisassociateBotInput) (req *request.Request, output *DisassociateBotOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateBot,
+		HTTPMethod: "POST",
+		HTTPPath:   "/instance/{InstanceId}/bot",
+	}
+
+	if input == nil {
+		input = &DisassociateBotInput{}
+	}
+
+	output = &DisassociateBotOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateBot API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Revokes authorization from the specified instance to access the specified
+// Amazon Lex or Amazon Lex V2 bot.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateBot for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateBot
+func (c *Connect) DisassociateBot(input *DisassociateBotInput) (*DisassociateBotOutput, error) {
+	req, out := c.DisassociateBotRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateBotWithContext is the same as DisassociateBot with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateBot for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateBotWithContext(ctx aws.Context, input *DisassociateBotInput, opts ...request.Option) (*DisassociateBotOutput, error) {
+	req, out := c.DisassociateBotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteDisassociateBot is Blink's code
+func ExecuteDisassociateBot(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Connect)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := DisassociateBotInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.DisassociateBotRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
 const opDisassociateInstanceStorageConfig = "DisassociateInstanceStorageConfig"
 
 // DisassociateInstanceStorageConfigRequest generates a "aws/request.Request" representing the
@@ -6279,6 +6551,193 @@ func (c *Connect) ListApprovedOriginsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListApprovedOriginsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListBots = "ListBots"
+
+// ListBotsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBots operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBots for more information on using the ListBots
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBotsRequest method.
+//    req, resp := client.ListBotsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
+func (c *Connect) ListBotsRequest(input *ListBotsInput) (req *request.Request, output *ListBotsOutput) {
+	op := &request.Operation{
+		Name:       opListBots,
+		HTTPMethod: "GET",
+		HTTPPath:   "/instance/{InstanceId}/bots",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBotsInput{}
+	}
+
+	output = &ListBotsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBots API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// For the specified version of Amazon Lex, returns a paginated list of all
+// the Amazon Lex bots currently associated with the instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListBots for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListBots
+func (c *Connect) ListBots(input *ListBotsInput) (*ListBotsOutput, error) {
+	req, out := c.ListBotsRequest(input)
+	return out, req.Send()
+}
+
+// ListBotsWithContext is the same as ListBots with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBots for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListBotsWithContext(ctx aws.Context, input *ListBotsInput, opts ...request.Option) (*ListBotsOutput, error) {
+	req, out := c.ListBotsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteListBots is Blink's code
+func ExecuteListBots(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Connect)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := ListBotsInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.ListBotsRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
+// ListBotsPages iterates over the pages of a ListBots operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBots method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBots operation.
+//    pageNum := 0
+//    err := client.ListBotsPages(params,
+//        func(page *connect.ListBotsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListBotsPages(input *ListBotsInput, fn func(*ListBotsOutput, bool) bool) error {
+	return c.ListBotsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBotsPagesWithContext same as ListBotsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListBotsPagesWithContext(ctx aws.Context, input *ListBotsInput, fn func(*ListBotsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBotsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBotsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBotsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -14632,7 +15091,8 @@ func ExecuteUpdateUserSecurityProfiles(parameters map[string]interface{}) (map[s
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14698,10 +15158,90 @@ func (s AssociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
 
+type AssociateBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// The Amazon Lex V2 bot to associate with the instance.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateBotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexV2Bot != nil {
+		if err := s.LexV2Bot.Validate(); err != nil {
+			invalidParams.AddNested("LexV2Bot", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateBotInput) SetInstanceId(v string) *AssociateBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *AssociateBotInput) SetLexBot(v *LexBot) *AssociateBotInput {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *AssociateBotInput) SetLexV2Bot(v *LexV2Bot) *AssociateBotInput {
+	s.LexV2Bot = v
+	return s
+}
+
+type AssociateBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateBotOutput) GoString() string {
+	return s.String()
+}
+
 type AssociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14805,7 +15345,8 @@ type AssociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -14872,12 +15413,13 @@ func (s AssociateLambdaFunctionOutput) GoString() string {
 type AssociateLexBotInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The Amazon Lex box to associate with the instance.
+	// The Amazon Lex bot to associate with the instance.
 	//
 	// LexBot is a required field
 	LexBot *LexBot `type:"structure" required:"true"`
@@ -14941,7 +15483,8 @@ func (s AssociateLexBotOutput) GoString() string {
 type AssociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15030,7 +15573,8 @@ func (s AssociateQueueQuickConnectsOutput) GoString() string {
 type AssociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15129,7 +15673,8 @@ func (s AssociateRoutingProfileQueuesOutput) GoString() string {
 type AssociateSecurityKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15822,7 +16367,8 @@ func (s *CreateInstanceOutput) SetId(v string) *CreateInstanceOutput {
 type CreateIntegrationAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -15991,7 +16537,8 @@ type CreateQueueInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16150,7 +16697,8 @@ type CreateQuickConnectInput struct {
 	// The description of the quick connect.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16287,7 +16835,8 @@ type CreateRoutingProfileInput struct {
 	// Description is a required field
 	Description *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16458,7 +17007,8 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 type CreateUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16575,7 +17125,8 @@ func (s *CreateUseCaseOutput) SetUseCaseId(v string) *CreateUseCaseOutput {
 type CreateUserHierarchyGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -16690,7 +17241,8 @@ type CreateUserInput struct {
 	// The information about the identity of the user.
 	IdentityInfo *UserIdentityInfo `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17032,7 +17584,8 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 type DeleteInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17087,7 +17640,8 @@ func (s DeleteInstanceOutput) GoString() string {
 type DeleteIntegrationAssociationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17159,7 +17713,8 @@ func (s DeleteIntegrationAssociationOutput) GoString() string {
 type DeleteQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17231,7 +17786,8 @@ func (s DeleteQuickConnectOutput) GoString() string {
 type DeleteUseCaseInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17325,7 +17881,8 @@ type DeleteUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17392,7 +17949,8 @@ func (s DeleteUserHierarchyGroupOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17550,7 +18108,8 @@ type DescribeHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17631,7 +18190,8 @@ type DescribeInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17707,7 +18267,8 @@ func (s *DescribeInstanceAttributeOutput) SetAttribute(v *Attribute) *DescribeIn
 type DescribeInstanceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17777,7 +18338,8 @@ type DescribeInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17867,7 +18429,8 @@ func (s *DescribeInstanceStorageConfigOutput) SetStorageConfig(v *InstanceStorag
 type DescribeQueueInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -17948,7 +18511,8 @@ func (s *DescribeQueueOutput) SetQueue(v *Queue) *DescribeQueueOutput {
 type DescribeQuickConnectInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18029,7 +18593,8 @@ func (s *DescribeQuickConnectOutput) SetQuickConnect(v *QuickConnect) *DescribeQ
 type DescribeRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18115,7 +18680,8 @@ type DescribeUserHierarchyGroupInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18191,7 +18757,8 @@ func (s *DescribeUserHierarchyGroupOutput) SetHierarchyGroup(v *HierarchyGroup) 
 type DescribeUserHierarchyStructureInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18255,7 +18822,8 @@ func (s *DescribeUserHierarchyStructureOutput) SetHierarchyStructure(v *Hierarch
 type DescribeUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18426,7 +18994,8 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 type DisassociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18492,6 +19061,85 @@ func (s DisassociateApprovedOriginOutput) GoString() string {
 	return s.String()
 }
 
+type DisassociateBotInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// The Amazon Lex V2 bot to disassociate from the instance.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateBotInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateBotInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateBotInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateBotInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexV2Bot != nil {
+		if err := s.LexV2Bot.Validate(); err != nil {
+			invalidParams.AddNested("LexV2Bot", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateBotInput) SetInstanceId(v string) *DisassociateBotInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *DisassociateBotInput) SetLexBot(v *LexBot) *DisassociateBotInput {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *DisassociateBotInput) SetLexV2Bot(v *LexV2Bot) *DisassociateBotInput {
+	s.LexV2Bot = v
+	return s
+}
+
+type DisassociateBotOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateBotOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateBotOutput) GoString() string {
+	return s.String()
+}
+
 type DisassociateInstanceStorageConfigInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18501,7 +19149,8 @@ type DisassociateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18587,7 +19236,8 @@ type DisassociateLambdaFunctionInput struct {
 	// FunctionArn is a required field
 	FunctionArn *string `location:"querystring" locationName:"functionArn" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance..
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance..
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18659,7 +19309,8 @@ type DisassociateLexBotInput struct {
 	// BotName is a required field
 	BotName *string `location:"querystring" locationName:"botName" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18737,7 +19388,8 @@ func (s DisassociateLexBotOutput) GoString() string {
 type DisassociateQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18826,7 +19478,8 @@ func (s DisassociateQueueQuickConnectsOutput) GoString() string {
 type DisassociateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -18928,7 +19581,8 @@ type DisassociateSecurityKeyInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19345,7 +19999,8 @@ type GetCurrentMetricDataInput struct {
 	// If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19486,7 +20141,8 @@ func (s *GetCurrentMetricDataOutput) SetNextToken(v string) *GetCurrentMetricDat
 type GetFederationTokenInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -19581,6 +20237,9 @@ type GetMetricDataInput struct {
 	// The following historical metrics are available. For a description of each
 	// metric, see Historical Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 	// in the Amazon Connect Administrator Guide.
+	//
+	// This API does not support a contacts incoming metric (there's no CONTACTS_INCOMING
+	// metric missing from the documented list).
 	//
 	// ABANDON_TIME
 	//
@@ -19740,7 +20399,8 @@ type GetMetricDataInput struct {
 	// HistoricalMetrics is a required field
 	HistoricalMetrics []*HistoricalMetric `type:"list" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -20617,7 +21277,8 @@ type Instance struct {
 	// When the instance was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	Id *string `min:"1" type:"string"`
 
 	// The identity management type.
@@ -20944,7 +21605,8 @@ func (s *InstanceSummary) SetServiceRole(v string) *InstanceSummary {
 type IntegrationAssociationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the AppIntegration.
@@ -21446,6 +22108,76 @@ func (s *LexBot) SetName(v string) *LexBot {
 	return s
 }
 
+// Configuration information of an Amazon Lex or Amazon Lex V2 bot.
+type LexBotConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information of an Amazon Lex bot.
+	LexBot *LexBot `type:"structure"`
+
+	// Configuration information of an Amazon Lex V2 bot.
+	LexV2Bot *LexV2Bot `type:"structure"`
+}
+
+// String returns the string representation
+func (s LexBotConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LexBotConfig) GoString() string {
+	return s.String()
+}
+
+// SetLexBot sets the LexBot field's value.
+func (s *LexBotConfig) SetLexBot(v *LexBot) *LexBotConfig {
+	s.LexBot = v
+	return s
+}
+
+// SetLexV2Bot sets the LexV2Bot field's value.
+func (s *LexBotConfig) SetLexV2Bot(v *LexV2Bot) *LexBotConfig {
+	s.LexV2Bot = v
+	return s
+}
+
+// Configuration information of an Amazon Lex V2 bot.
+type LexV2Bot struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Lex V2 bot.
+	AliasArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LexV2Bot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LexV2Bot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LexV2Bot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LexV2Bot"}
+	if s.AliasArn != nil && len(*s.AliasArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AliasArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAliasArn sets the AliasArn field's value.
+func (s *LexV2Bot) SetAliasArn(v string) *LexV2Bot {
+	s.AliasArn = &v
+	return s
+}
+
 // The allowed limit for the resource has been exceeded.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -21506,7 +22238,8 @@ func (s *LimitExceededException) RequestID() string {
 type ListApprovedOriginsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21598,13 +22331,125 @@ func (s *ListApprovedOriginsOutput) SetOrigins(v []*string) *ListApprovedOrigins
 	return s
 }
 
+type ListBotsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The version of Amazon Lex or Amazon Lex V2.
+	//
+	// LexVersion is a required field
+	LexVersion *string `location:"querystring" locationName:"lexVersion" type:"string" required:"true" enum:"LexVersion"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListBotsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBotsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBotsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBotsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.LexVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("LexVersion"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListBotsInput) SetInstanceId(v string) *ListBotsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetLexVersion sets the LexVersion field's value.
+func (s *ListBotsInput) SetLexVersion(v string) *ListBotsInput {
+	s.LexVersion = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBotsInput) SetMaxResults(v int64) *ListBotsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBotsInput) SetNextToken(v string) *ListBotsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListBotsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The names and Regions of the Amazon Lex or Amazon Lex V2 bots associated
+	// with the specified instance.
+	LexBots []*LexBotConfig `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListBotsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBotsOutput) GoString() string {
+	return s.String()
+}
+
+// SetLexBots sets the LexBots field's value.
+func (s *ListBotsOutput) SetLexBots(v []*LexBotConfig) *ListBotsOutput {
+	s.LexBots = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBotsOutput) SetNextToken(v string) *ListBotsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListContactFlowsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of contact flow.
 	ContactFlowTypes []*string `location:"querystring" locationName:"contactFlowTypes" type:"list"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21705,7 +22550,8 @@ func (s *ListContactFlowsOutput) SetNextToken(v string) *ListContactFlowsOutput 
 type ListHoursOfOperationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21800,7 +22646,8 @@ func (s *ListHoursOfOperationsOutput) SetNextToken(v string) *ListHoursOfOperati
 type ListInstanceAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -21895,7 +22742,8 @@ func (s *ListInstanceAttributesOutput) SetNextToken(v string) *ListInstanceAttri
 type ListInstanceStorageConfigsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22082,7 +22930,8 @@ func (s *ListInstancesOutput) SetNextToken(v string) *ListInstancesOutput {
 type ListIntegrationAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22177,7 +23026,8 @@ func (s *ListIntegrationAssociationsOutput) SetNextToken(v string) *ListIntegrat
 type ListLambdaFunctionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22272,7 +23122,8 @@ func (s *ListLambdaFunctionsOutput) SetNextToken(v string) *ListLambdaFunctionsO
 type ListLexBotsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22368,7 +23219,8 @@ func (s *ListLexBotsOutput) SetNextToken(v string) *ListLexBotsOutput {
 type ListPhoneNumbersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22576,7 +23428,8 @@ func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPrompt
 type ListQueueQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22688,7 +23541,8 @@ func (s *ListQueueQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConn
 type ListQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22792,7 +23646,8 @@ func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOut
 type ListQuickConnectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -22898,7 +23753,8 @@ func (s *ListQuickConnectsOutput) SetQuickConnectSummaryList(v []*QuickConnectSu
 type ListRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23010,7 +23866,8 @@ func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList
 type ListRoutingProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23105,7 +23962,8 @@ func (s *ListRoutingProfilesOutput) SetRoutingProfileSummaryList(v []*RoutingPro
 type ListSecurityKeysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23200,7 +24058,8 @@ func (s *ListSecurityKeysOutput) SetSecurityKeys(v []*SecurityKey) *ListSecurity
 type ListSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23361,7 +24220,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type ListUseCasesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23473,7 +24333,8 @@ func (s *ListUseCasesOutput) SetUseCaseSummaryList(v []*UseCase) *ListUseCasesOu
 type ListUserHierarchyGroupsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -23568,7 +24429,8 @@ func (s *ListUserHierarchyGroupsOutput) SetUserHierarchyGroupSummaryList(v []*Hi
 type ListUsersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -24725,7 +25587,8 @@ type ResumeContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -24811,7 +25674,8 @@ type RoutingProfile struct {
 	// The description of the routing profile.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	InstanceId *string `min:"1" type:"string"`
 
 	// The channels agents can handle in the Contact Control Panel (CCP) for this
@@ -25393,7 +26257,8 @@ type StartChatContactInput struct {
 	// The initial message to be sent to the newly created chat.
 	InitialMessage *ChatMessage `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25540,7 +26405,8 @@ type StartContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25643,8 +26509,7 @@ type StartOutboundVoiceContactInput struct {
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. The token is valid for 7 days after creation. If a contact
-	// is already started, the contact ID is returned. If the contact is disconnected,
-	// a new contact is started.
+	// is already started, the contact ID is returned.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
 	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
@@ -25663,7 +26528,8 @@ type StartOutboundVoiceContactInput struct {
 	// DestinationPhoneNumber is a required field
 	DestinationPhoneNumber *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25806,7 +26672,8 @@ type StartTaskContactInput struct {
 	// Panel (CCP).
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -25948,7 +26815,8 @@ type StopContactInput struct {
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26026,7 +26894,8 @@ type StopContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26116,7 +26985,8 @@ type SuspendContactRecordingInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26444,7 +27314,8 @@ type UpdateContactAttributesInput struct {
 	// InitialContactId is a required field
 	InitialContactId *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `min:"1" type:"string" required:"true"`
@@ -26706,7 +27577,8 @@ type UpdateInstanceAttributeInput struct {
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26796,7 +27668,8 @@ type UpdateInstanceStorageConfigInput struct {
 	// AssociationId is a required field
 	AssociationId *string `location:"uri" locationName:"AssociationId" min:"1" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26901,7 +27774,8 @@ type UpdateQueueHoursOfOperationInput struct {
 	// HoursOfOperationId is a required field
 	HoursOfOperationId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -26982,7 +27856,8 @@ func (s UpdateQueueHoursOfOperationOutput) GoString() string {
 type UpdateQueueMaxContactsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27067,7 +27942,8 @@ type UpdateQueueNameInput struct {
 	// The description of the queue.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27160,7 +28036,8 @@ func (s UpdateQueueNameOutput) GoString() string {
 type UpdateQueueOutboundCallerConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27251,7 +28128,8 @@ func (s UpdateQueueOutboundCallerConfigOutput) GoString() string {
 type UpdateQueueStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27337,7 +28215,8 @@ func (s UpdateQueueStatusOutput) GoString() string {
 type UpdateQuickConnectConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27431,7 +28310,8 @@ type UpdateQuickConnectNameInput struct {
 	// The description of the quick connect.
 	Description *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27521,7 +28401,8 @@ func (s UpdateQuickConnectNameOutput) GoString() string {
 type UpdateRoutingProfileConcurrencyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27622,7 +28503,8 @@ type UpdateRoutingProfileDefaultOutboundQueueInput struct {
 	// DefaultOutboundQueueId is a required field
 	DefaultOutboundQueueId *string `type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27706,7 +28588,8 @@ type UpdateRoutingProfileNameInput struct {
 	// The description of the routing profile. Must not be more than 250 characters.
 	Description *string `min:"1" type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27799,7 +28682,8 @@ func (s UpdateRoutingProfileNameOutput) GoString() string {
 type UpdateRoutingProfileQueuesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27904,7 +28788,8 @@ type UpdateUserHierarchyGroupNameInput struct {
 	// HierarchyGroupId is a required field
 	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -27988,7 +28873,8 @@ type UpdateUserHierarchyInput struct {
 	// The identifier of the hierarchy group.
 	HierarchyGroupId *string `type:"string"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28071,7 +28957,8 @@ type UpdateUserHierarchyStructureInput struct {
 	// HierarchyStructure is a required field
 	HierarchyStructure *HierarchyStructureUpdate `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28145,7 +29032,8 @@ type UpdateUserIdentityInfoInput struct {
 	// IdentityInfo is a required field
 	IdentityInfo *UserIdentityInfo `type:"structure" required:"true"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28231,7 +29119,8 @@ func (s UpdateUserIdentityInfoOutput) GoString() string {
 type UpdateUserPhoneConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28322,7 +29211,8 @@ func (s UpdateUserPhoneConfigOutput) GoString() string {
 type UpdateUserRoutingProfileInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -28408,7 +29298,8 @@ func (s UpdateUserRoutingProfileOutput) GoString() string {
 type UpdateUserSecurityProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the Amazon Connect instance.
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
 	//
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
@@ -29372,6 +30263,22 @@ const (
 func IntegrationType_Values() []string {
 	return []string{
 		IntegrationTypeEvent,
+	}
+}
+
+const (
+	// LexVersionV1 is a LexVersion enum value
+	LexVersionV1 = "V1"
+
+	// LexVersionV2 is a LexVersion enum value
+	LexVersionV2 = "V2"
+)
+
+// LexVersion_Values returns all elements of the LexVersion enum
+func LexVersion_Values() []string {
+	return []string{
+		LexVersionV1,
+		LexVersionV2,
 	}
 }
 

@@ -996,6 +996,9 @@ func (c *RAM) DisassociateResourceSharePermissionRequest(input *DisassociateReso
 //   * OperationNotPermittedException
 //   The requested operation is not permitted.
 //
+//   * InvalidStateTransitionException
+//   The requested state transition is not valid.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ram-2018-01-04/DisassociateResourceSharePermission
 func (c *RAM) DisassociateResourceSharePermission(input *DisassociateResourceSharePermissionInput) (*DisassociateResourceSharePermissionOutput, error) {
 	req, out := c.DisassociateResourceSharePermissionRequest(input)
@@ -1746,7 +1749,7 @@ func (c *RAM) GetResourceShareInvitationsRequest(input *GetResourceShareInvitati
 
 // GetResourceShareInvitations API operation for AWS Resource Access Manager.
 //
-// Gets the invitations for resource sharing that you've received.
+// Gets the invitations that you have received for resource shares.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2314,6 +2317,12 @@ func (c *RAM) ListPermissionsRequest(input *ListPermissionsInput) (req *request.
 		Name:       opListPermissions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listpermissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2410,6 +2419,58 @@ func ExecuteListPermissions(parameters map[string]interface{}) (map[string]inter
 	}
 
 	return output, nil
+}
+
+// ListPermissionsPages iterates over the pages of a ListPermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPermissions operation.
+//    pageNum := 0
+//    err := client.ListPermissionsPages(params,
+//        func(page *ram.ListPermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListPermissionsPages(input *ListPermissionsInput, fn func(*ListPermissionsOutput, bool) bool) error {
+	return c.ListPermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPermissionsPagesWithContext same as ListPermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListPermissionsPagesWithContext(ctx aws.Context, input *ListPermissionsInput, fn func(*ListPermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListPrincipals = "ListPrincipals"
@@ -2634,6 +2695,12 @@ func (c *RAM) ListResourceSharePermissionsRequest(input *ListResourceSharePermis
 		Name:       opListResourceSharePermissions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listresourcesharepermissions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2738,6 +2805,58 @@ func ExecuteListResourceSharePermissions(parameters map[string]interface{}) (map
 	return output, nil
 }
 
+// ListResourceSharePermissionsPages iterates over the pages of a ListResourceSharePermissions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceSharePermissions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResourceSharePermissions operation.
+//    pageNum := 0
+//    err := client.ListResourceSharePermissionsPages(params,
+//        func(page *ram.ListResourceSharePermissionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListResourceSharePermissionsPages(input *ListResourceSharePermissionsInput, fn func(*ListResourceSharePermissionsOutput, bool) bool) error {
+	return c.ListResourceSharePermissionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceSharePermissionsPagesWithContext same as ListResourceSharePermissionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListResourceSharePermissionsPagesWithContext(ctx aws.Context, input *ListResourceSharePermissionsInput, fn func(*ListResourceSharePermissionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceSharePermissionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceSharePermissionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceSharePermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListResourceTypes = "ListResourceTypes"
 
 // ListResourceTypesRequest generates a "aws/request.Request" representing the
@@ -2769,6 +2888,12 @@ func (c *RAM) ListResourceTypesRequest(input *ListResourceTypesInput) (req *requ
 		Name:       opListResourceTypes,
 		HTTPMethod: "POST",
 		HTTPPath:   "/listresourcetypes",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -2862,6 +2987,58 @@ func ExecuteListResourceTypes(parameters map[string]interface{}) (map[string]int
 	}
 
 	return output, nil
+}
+
+// ListResourceTypesPages iterates over the pages of a ListResourceTypes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListResourceTypes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListResourceTypes operation.
+//    pageNum := 0
+//    err := client.ListResourceTypesPages(params,
+//        func(page *ram.ListResourceTypesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *RAM) ListResourceTypesPages(input *ListResourceTypesInput, fn func(*ListResourceTypesOutput, bool) bool) error {
+	return c.ListResourceTypesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListResourceTypesPagesWithContext same as ListResourceTypesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RAM) ListResourceTypesPagesWithContext(ctx aws.Context, input *ListResourceTypesInput, fn func(*ListResourceTypesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListResourceTypesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListResourceTypesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListResourceTypesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListResources = "ListResources"
@@ -3123,6 +3300,9 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyRequest(input *PromoteResourc
 // Returned Error Types:
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
+//
+//   * ResourceShareLimitExceededException
+//   The requested resource share exceeds the limit for your account.
 //
 //   * OperationNotPermittedException
 //   The requested operation is not permitted.
@@ -3408,6 +3588,9 @@ func (c *RAM) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //
 //   * MalformedArnException
 //   The format of an Amazon Resource Name (ARN) is not valid.
+//
+//   * UnknownResourceException
+//   A specified resource was not found.
 //
 //   * TagLimitExceededException
 //   The requested tags exceed the limit for your account.
@@ -3940,10 +4123,14 @@ type AssociateResourceSharePermissionInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The ARN of the AWS RAM permission to associate with the resource share.
+	// The Amazon Resource Name (ARN) of the AWS RAM permissions to associate with
+	// the resource share.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
+
+	// The version of the AWS RAM permissions to associate with the resource share.
+	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 
 	// Indicates whether the permission should replace the permissions that are
 	// currently associated with the resource share. Use true to replace the current
@@ -3991,6 +4178,12 @@ func (s *AssociateResourceSharePermissionInput) SetClientToken(v string) *Associ
 // SetPermissionArn sets the PermissionArn field's value.
 func (s *AssociateResourceSharePermissionInput) SetPermissionArn(v string) *AssociateResourceSharePermissionInput {
 	s.PermissionArn = &v
+	return s
+}
+
+// SetPermissionVersion sets the PermissionVersion field's value.
+func (s *AssociateResourceSharePermissionInput) SetPermissionVersion(v int64) *AssociateResourceSharePermissionInput {
+	s.PermissionVersion = &v
 	return s
 }
 
@@ -4897,12 +5090,16 @@ type GetResourceSharesInput struct {
 	// The token for the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the AWS RAM permission that is associated
+	// with the resource share.
+	PermissionArn *string `locationName:"permissionArn" type:"string"`
+
 	// The type of owner.
 	//
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The Amazon Resource Names (ARN) of the resource shares.
+	// The ARNs of the resource shares.
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
 	// The status of the resource share.
@@ -4953,6 +5150,12 @@ func (s *GetResourceSharesInput) SetName(v string) *GetResourceSharesInput {
 // SetNextToken sets the NextToken field's value.
 func (s *GetResourceSharesInput) SetNextToken(v string) *GetResourceSharesInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetPermissionArn sets the PermissionArn field's value.
+func (s *GetResourceSharesInput) SetPermissionArn(v string) *GetResourceSharesInput {
+	s.PermissionArn = &v
 	return s
 }
 
@@ -5622,8 +5825,8 @@ type ListPrincipalsInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
+	// | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5933,8 +6136,8 @@ type ListResourcesInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
-	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
+	// | route53resolver:ResolverRule
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -6781,6 +6984,10 @@ type ResourceShareInvitation struct {
 	// The ID of the AWS account that received the invitation.
 	ReceiverAccountId *string `locationName:"receiverAccountId" type:"string"`
 
+	// The Amazon Resource Name (ARN) of the IAM user or IAM role that received
+	// the invitation.
+	ReceiverArn *string `locationName:"receiverArn" type:"string"`
+
 	// The Amazon Resource Name (ARN) of the resource share.
 	ResourceShareArn *string `locationName:"resourceShareArn" type:"string"`
 
@@ -6822,6 +7029,12 @@ func (s *ResourceShareInvitation) SetInvitationTimestamp(v time.Time) *ResourceS
 // SetReceiverAccountId sets the ReceiverAccountId field's value.
 func (s *ResourceShareInvitation) SetReceiverAccountId(v string) *ResourceShareInvitation {
 	s.ReceiverAccountId = &v
+	return s
+}
+
+// SetReceiverArn sets the ReceiverArn field's value.
+func (s *ResourceShareInvitation) SetReceiverArn(v string) *ResourceShareInvitation {
+	s.ReceiverArn = &v
 	return s
 }
 
@@ -7151,9 +7364,13 @@ type ResourceSharePermissionDetail struct {
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The identifier for the version of the permission that is set as the default
-	// version.
+	// Specifies whether the version of the permission is set to the default version
+	// for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
+
+	// Specifies whether the version of the permission is set to the default version
+	// for this resource type.
+	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
@@ -7201,6 +7418,12 @@ func (s *ResourceSharePermissionDetail) SetDefaultVersion(v bool) *ResourceShare
 	return s
 }
 
+// SetIsResourceTypeDefault sets the IsResourceTypeDefault field's value.
+func (s *ResourceSharePermissionDetail) SetIsResourceTypeDefault(v bool) *ResourceSharePermissionDetail {
+	s.IsResourceTypeDefault = &v
+	return s
+}
+
 // SetLastUpdatedTime sets the LastUpdatedTime field's value.
 func (s *ResourceSharePermissionDetail) SetLastUpdatedTime(v time.Time) *ResourceSharePermissionDetail {
 	s.LastUpdatedTime = &v
@@ -7241,9 +7464,13 @@ type ResourceSharePermissionSummary struct {
 	// The date and time when the permission was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The identifier for the version of the permission that is set as the default
-	// version.
+	// Specifies whether the version of the permission is set to the default version
+	// for this permission.
 	DefaultVersion *bool `locationName:"defaultVersion" type:"boolean"`
+
+	// Specifies whether the version of the permission is set to the default version
+	// for this resource type.
+	IsResourceTypeDefault *bool `locationName:"isResourceTypeDefault" type:"boolean"`
 
 	// The date and time when the permission was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
@@ -7286,6 +7513,12 @@ func (s *ResourceSharePermissionSummary) SetCreationTime(v time.Time) *ResourceS
 // SetDefaultVersion sets the DefaultVersion field's value.
 func (s *ResourceSharePermissionSummary) SetDefaultVersion(v bool) *ResourceSharePermissionSummary {
 	s.DefaultVersion = &v
+	return s
+}
+
+// SetIsResourceTypeDefault sets the IsResourceTypeDefault field's value.
+func (s *ResourceSharePermissionSummary) SetIsResourceTypeDefault(v bool) *ResourceSharePermissionSummary {
+	s.IsResourceTypeDefault = &v
 	return s
 }
 

@@ -101,6 +101,7 @@ var (
 		"ListUsersInGroup":                 ExecuteListUsersInGroup,
 		"ResendConfirmationCode":           ExecuteResendConfirmationCode,
 		"RespondToAuthChallenge":           ExecuteRespondToAuthChallenge,
+		"RevokeToken":                      ExecuteRevokeToken,
 		"SetRiskConfiguration":             ExecuteSetRiskConfiguration,
 		"SetUICustomization":               ExecuteSetUICustomization,
 		"SetUserMFAPreference":             ExecuteSetUserMFAPreference,
@@ -607,6 +608,24 @@ func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserI
 //
 // If MessageAction is not set, the default is to send a welcome message via
 // email or phone (SMS).
+//
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
 //
 // This message is based on a template that you configured in your call to create
 // or update a user pool. This template includes your custom sign-up instructions
@@ -1934,6 +1953,24 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 //
 // Initiates the authentication flow, as an administrator.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Calling this action requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2949,6 +2986,24 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 // also result in sending a message to the end user with the code to change
 // their password.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Calling this action requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3115,6 +3170,24 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 // AdminRespondToAuthChallenge API operation for Amazon Cognito Identity Provider.
 //
 // Responds to an authentication challenge, as an administrator.
+//
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
 //
@@ -4028,6 +4101,24 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 // In addition to updating user attributes, this API can also be used to mark
 // phone and email as verified.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Calling this action requires developer credentials.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4338,6 +4429,13 @@ func (c *CognitoIdentityProvider) AssociateSoftwareTokenRequest(input *Associate
 //
 // Returns a unique generated shared secret key code for the user account. The
 // request takes an access token or a session string, but not both.
+//
+// Calling AssociateSoftwareToken immediately disassociates the existing software
+// token from the user account. If the user doesn't subsequently verify the
+// software token, their account is essentially set up to authenticate without
+// MFA. If MFA config is set to Optional at the user pool level, the user can
+// then login without MFA. However, if MFA is set to Required for the user pool,
+// the user will be asked to setup a new software token MFA during sign in.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5682,6 +5780,24 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 // Creates a new Amazon Cognito user pool and sets the password policy for the
 // pool.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5830,6 +5946,9 @@ func (c *CognitoIdentityProvider) CreateUserPoolClientRequest(input *CreateUserP
 // CreateUserPoolClient API operation for Amazon Cognito Identity Provider.
 //
 // Creates the user pool client.
+//
+// When you create a new user pool client, token revocation is automatically
+// enabled. For more information about revoking tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8276,6 +8395,24 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 // the confirmation code for resetting the password, call ConfirmForgotPassword
 // (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ConfirmForgotPassword.html).
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9393,6 +9530,24 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //
 // Gets the user attribute verification code for the specified attribute name.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9840,6 +9995,24 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 // InitiateAuth API operation for Amazon Cognito Identity Provider.
 //
 // Initiates the authentication flow.
+//
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11753,6 +11926,24 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 // Resends the confirmation (for confirmation of registration) to a specific
 // user in the user pool.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11922,6 +12113,24 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //
 // Responds to the authentication challenge.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12050,6 +12259,145 @@ func ExecuteRespondToAuthChallenge(parameters map[string]interface{}) (map[strin
 	}
 
 	req, out := svc.RespondToAuthChallengeRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
+const opRevokeToken = "RevokeToken"
+
+// RevokeTokenRequest generates a "aws/request.Request" representing the
+// client's request for the RevokeToken operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RevokeToken for more information on using the RevokeToken
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RevokeTokenRequest method.
+//    req, resp := client.RevokeTokenRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RevokeToken
+func (c *CognitoIdentityProvider) RevokeTokenRequest(input *RevokeTokenInput) (req *request.Request, output *RevokeTokenOutput) {
+	op := &request.Operation{
+		Name:       opRevokeToken,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RevokeTokenInput{}
+	}
+
+	output = &RevokeTokenOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RevokeToken API operation for Amazon Cognito Identity Provider.
+//
+// Revokes all of the access tokens generated by the specified refresh token.
+// After the token is revoked, you can not use the revoked token to access Cognito
+// authenticated APIs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Cognito Identity Provider's
+// API operation RevokeToken for usage and error information.
+//
+// Returned Error Types:
+//   * TooManyRequestsException
+//   This exception is thrown when the user has made too many requests for a given
+//   operation.
+//
+//   * InternalErrorException
+//   This exception is thrown when Amazon Cognito encounters an internal error.
+//
+//   * UnauthorizedException
+//   This exception is thrown when the request is not authorized. This can happen
+//   due to an invalid access token in the request.
+//
+//   * InvalidParameterException
+//   This exception is thrown when the Amazon Cognito service encounters an invalid
+//   parameter.
+//
+//   * UnsupportedOperationException
+//   This exception is thrown when you attempt to perform an operation that is
+//   not enabled for the user pool client.
+//
+//   * UnsupportedTokenTypeException
+//   This exception is thrown when an unsupported token is passed to an operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cognito-idp-2016-04-18/RevokeToken
+func (c *CognitoIdentityProvider) RevokeToken(input *RevokeTokenInput) (*RevokeTokenOutput, error) {
+	req, out := c.RevokeTokenRequest(input)
+	return out, req.Send()
+}
+
+// RevokeTokenWithContext is the same as RevokeToken with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RevokeToken for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CognitoIdentityProvider) RevokeTokenWithContext(ctx aws.Context, input *RevokeTokenInput, opts ...request.Option) (*RevokeTokenOutput, error) {
+	req, out := c.RevokeTokenRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteRevokeToken is Blink's code
+func ExecuteRevokeToken(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*CognitoIdentityProvider)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := RevokeTokenInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.RevokeTokenRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -12549,6 +12897,24 @@ func (c *CognitoIdentityProvider) SetUserPoolMfaConfigRequest(input *SetUserPool
 //
 // Set the user pool multi-factor authentication (MFA) configuration.
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12834,6 +13200,24 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //
 // Registers the user in the specified user pool and creates a user name, password,
 // and user attributes.
+//
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14252,6 +14636,24 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //
 // Allows a user to update a specific attribute (one at a time).
 //
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14436,9 +14838,26 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 //
 // Updates the specified user pool with the specified attributes. You can get
 // a list of the current user pool settings using DescribeUserPool (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_DescribeUserPool.html).
-//
 // If you don't provide a value for an attribute, it will be set to the default
 // value.
+//
+// This action might generate an SMS text message. Starting June 1, 2021, U.S.
+// telecom carriers require that you register an origination phone number before
+// you can send SMS messages to U.S. phone numbers. If you use SMS text messages
+// in Amazon Cognito, you must register a phone number with Amazon Pinpoint
+// (https://console.aws.amazon.com/pinpoint/home/). Cognito will use the the
+// registered number automatically. Otherwise, Cognito users that must receive
+// SMS messages might be unable to sign up, activate their accounts, or sign
+// in.
+//
+// If you have never used SMS text messages with Amazon Cognito or any other
+// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
+// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
+// have limitations, such as sending messages to only verified phone numbers.
+// After testing in the sandbox environment, you can move out of the SMS sandbox
+// and into production. For more information, see SMS message settings for Cognito
+// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14600,6 +15019,9 @@ func (c *CognitoIdentityProvider) UpdateUserPoolClientRequest(input *UpdateUserP
 //
 // If you don't provide a value for an attribute, it will be set to the default
 // value.
+//
+// You can also use this operation to enable token revocation for user pool
+// clients. For more information about revoking tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20730,6 +21152,13 @@ type CreateUserPoolClientInput struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// Enables or disables token revocation. For more information about revoking
+	// tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
+	//
+	// If you don't include this parameter, token revocation is automatically enabled
+	// for the new user pool client.
+	EnableTokenRevocation *bool `type:"boolean"`
+
 	// The authentication flows that are supported by the user pool clients. Flow
 	// names without the ALLOW_ prefix are deprecated in favor of new names with
 	// the ALLOW_ prefix. Note that values with ALLOW_ prefix cannot be used along
@@ -20909,6 +21338,12 @@ func (s *CreateUserPoolClientInput) SetClientName(v string) *CreateUserPoolClien
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *CreateUserPoolClientInput) SetDefaultRedirectURI(v string) *CreateUserPoolClientInput {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnableTokenRevocation sets the EnableTokenRevocation field's value.
+func (s *CreateUserPoolClientInput) SetEnableTokenRevocation(v bool) *CreateUserPoolClientInput {
+	s.EnableTokenRevocation = &v
 	return s
 }
 
@@ -24669,7 +25104,7 @@ type IdentityProviderType struct {
 	//    URL specified by oidc_issuer key token_url if not available from discovery
 	//    URL specified by oidc_issuer key attributes_url if not available from
 	//    discovery URL specified by oidc_issuer key jwks_uri if not available from
-	//    discovery URL specified by oidc_issuer key authorize_scopes
+	//    discovery URL specified by oidc_issuer key
 	//
 	//    * For SAML providers: MetadataFile OR MetadataURL IDPSignOut optional
 	ProviderDetails map[string]*string `type:"map"`
@@ -28204,6 +28639,88 @@ func (s *RespondToAuthChallengeOutput) SetSession(v string) *RespondToAuthChalle
 	return s
 }
 
+type RevokeTokenInput struct {
+	_ struct{} `type:"structure"`
+
+	// The client ID for the token that you want to revoke.
+	//
+	// ClientId is a required field
+	ClientId *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// The secret for the client ID. This is required only if the client ID has
+	// a secret.
+	ClientSecret *string `min:"1" type:"string" sensitive:"true"`
+
+	// The token that you want to revoke.
+	//
+	// Token is a required field
+	Token *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s RevokeTokenInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeTokenInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevokeTokenInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevokeTokenInput"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientId != nil && len(*s.ClientId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientId", 1))
+	}
+	if s.ClientSecret != nil && len(*s.ClientSecret) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientSecret", 1))
+	}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *RevokeTokenInput) SetClientId(v string) *RevokeTokenInput {
+	s.ClientId = &v
+	return s
+}
+
+// SetClientSecret sets the ClientSecret field's value.
+func (s *RevokeTokenInput) SetClientSecret(v string) *RevokeTokenInput {
+	s.ClientSecret = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *RevokeTokenInput) SetToken(v string) *RevokeTokenInput {
+	s.Token = &v
+	return s
+}
+
+type RevokeTokenOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RevokeTokenOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RevokeTokenOutput) GoString() string {
+	return s.String()
+}
+
 // The risk configuration type.
 type RiskConfigurationType struct {
 	_ struct{} `type:"structure"`
@@ -30004,6 +30521,63 @@ func (s *UICustomizationType) SetUserPoolId(v string) *UICustomizationType {
 	return s
 }
 
+// This exception is thrown when the request is not authorized. This can happen
+// due to an invalid access token in the request.
+type UnauthorizedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnauthorizedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnauthorizedException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnauthorizedException(v protocol.ResponseMetadata) error {
+	return &UnauthorizedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnauthorizedException) Code() string {
+	return "UnauthorizedException"
+}
+
+// Message returns the exception's message.
+func (s *UnauthorizedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnauthorizedException) OrigErr() error {
+	return nil
+}
+
+func (s *UnauthorizedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnauthorizedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnauthorizedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // This exception is thrown when the Amazon Cognito service encounters an unexpected
 // exception with the AWS Lambda service.
 type UnexpectedLambdaException struct {
@@ -30116,6 +30690,119 @@ func (s *UnsupportedIdentityProviderException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *UnsupportedIdentityProviderException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when you attempt to perform an operation that is
+// not enabled for the user pool client.
+type UnsupportedOperationException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedOperationException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedOperationException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedOperationException(v protocol.ResponseMetadata) error {
+	return &UnsupportedOperationException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedOperationException) Code() string {
+	return "UnsupportedOperationException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedOperationException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedOperationException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedOperationException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedOperationException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedOperationException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// This exception is thrown when an unsupported token is passed to an operation.
+type UnsupportedTokenTypeException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s UnsupportedTokenTypeException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UnsupportedTokenTypeException) GoString() string {
+	return s.String()
+}
+
+func newErrorUnsupportedTokenTypeException(v protocol.ResponseMetadata) error {
+	return &UnsupportedTokenTypeException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *UnsupportedTokenTypeException) Code() string {
+	return "UnsupportedTokenTypeException"
+}
+
+// Message returns the exception's message.
+func (s *UnsupportedTokenTypeException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *UnsupportedTokenTypeException) OrigErr() error {
+	return nil
+}
+
+func (s *UnsupportedTokenTypeException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *UnsupportedTokenTypeException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *UnsupportedTokenTypeException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -30997,6 +31684,10 @@ type UpdateUserPoolClientInput struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// Enables or disables token revocation. For more information about revoking
+	// tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
+	EnableTokenRevocation *bool `type:"boolean"`
+
 	// The authentication flows that are supported by the user pool clients. Flow
 	// names without the ALLOW_ prefix are deprecated in favor of new names with
 	// the ALLOW_ prefix. Note that values with ALLOW_ prefix cannot be used along
@@ -31173,6 +31864,12 @@ func (s *UpdateUserPoolClientInput) SetClientName(v string) *UpdateUserPoolClien
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *UpdateUserPoolClientInput) SetDefaultRedirectURI(v string) *UpdateUserPoolClientInput {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnableTokenRevocation sets the EnableTokenRevocation field's value.
+func (s *UpdateUserPoolClientInput) SetEnableTokenRevocation(v bool) *UpdateUserPoolClientInput {
+	s.EnableTokenRevocation = &v
 	return s
 }
 
@@ -32286,6 +32983,11 @@ type UserPoolClientType struct {
 	// App callback URLs such as myapp://example are also supported.
 	DefaultRedirectURI *string `min:"1" type:"string"`
 
+	// Indicates whether token revocation is enabled for the user pool client. When
+	// you create a new user pool client, token revocation is enabled by default.
+	// For more information about revoking tokens, see RevokeToken (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_RevokeToken.html).
+	EnableTokenRevocation *bool `type:"boolean"`
+
 	// The authentication flows that are supported by the user pool clients. Flow
 	// names without the ALLOW_ prefix are deprecated in favor of new names with
 	// the ALLOW_ prefix. Note that values with ALLOW_ prefix cannot be used along
@@ -32435,6 +33137,12 @@ func (s *UserPoolClientType) SetCreationDate(v time.Time) *UserPoolClientType {
 // SetDefaultRedirectURI sets the DefaultRedirectURI field's value.
 func (s *UserPoolClientType) SetDefaultRedirectURI(v string) *UserPoolClientType {
 	s.DefaultRedirectURI = &v
+	return s
+}
+
+// SetEnableTokenRevocation sets the EnableTokenRevocation field's value.
+func (s *UserPoolClientType) SetEnableTokenRevocation(v bool) *UserPoolClientType {
+	s.EnableTokenRevocation = &v
 	return s
 }
 
@@ -32761,6 +33469,19 @@ type UserPoolType struct {
 	SmsConfiguration *SmsConfigurationType `type:"structure"`
 
 	// The reason why the SMS configuration cannot send the messages to your users.
+	//
+	// This message might include comma-separated values to describe why your SMS
+	// configuration can't send messages to user pool end users.
+	//
+	//    * InvalidSmsRoleAccessPolicyException - The IAM role which Cognito uses
+	//    to send SMS messages is not properly configured. For more information,
+	//    see SmsConfigurationType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html).
+	//
+	//    * SNSSandbox - The AWS account is in SNS Sandbox and messages won’t
+	//    reach unverified end users. This parameter won’t get populated with
+	//    SNSSandbox if the IAM user creating the user pool doesn’t have SNS permissions.
+	//    To learn how to move your AWS account out of the sandbox, see Moving out
+	//    of the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
 	SmsConfigurationFailure *string `type:"string"`
 
 	// The contents of the SMS verification message.

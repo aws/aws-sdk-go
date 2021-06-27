@@ -20,11 +20,139 @@ const (
 
 var (
 	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
-		"DeleteRecord": ExecuteDeleteRecord,
-		"GetRecord":    ExecuteGetRecord,
-		"PutRecord":    ExecutePutRecord,
+		"BatchGetRecord": ExecuteBatchGetRecord,
+		"DeleteRecord":   ExecuteDeleteRecord,
+		"GetRecord":      ExecuteGetRecord,
+		"PutRecord":      ExecutePutRecord,
 	}
 )
+
+const opBatchGetRecord = "BatchGetRecord"
+
+// BatchGetRecordRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetRecord operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetRecord for more information on using the BatchGetRecord
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetRecordRequest method.
+//    req, resp := client.BatchGetRecordRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-featurestore-runtime-2020-07-01/BatchGetRecord
+func (c *SageMakerFeatureStoreRuntime) BatchGetRecordRequest(input *BatchGetRecordInput) (req *request.Request, output *BatchGetRecordOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetRecord,
+		HTTPMethod: "POST",
+		HTTPPath:   "/BatchGetRecord",
+	}
+
+	if input == nil {
+		input = &BatchGetRecordInput{}
+	}
+
+	output = &BatchGetRecordOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetRecord API operation for Amazon SageMaker Feature Store Runtime.
+//
+// Retrieves a batch of Records from a FeatureGroup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Feature Store Runtime's
+// API operation BatchGetRecord for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationError
+//   There was an error validating your request.
+//
+//   * InternalFailure
+//   An internal failure occurred. Try your request again. If the problem persists,
+//   contact AWS customer support.
+//
+//   * ServiceUnavailable
+//   The service is currently unavailable.
+//
+//   * AccessForbidden
+//   You do not have permission to perform an action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-featurestore-runtime-2020-07-01/BatchGetRecord
+func (c *SageMakerFeatureStoreRuntime) BatchGetRecord(input *BatchGetRecordInput) (*BatchGetRecordOutput, error) {
+	req, out := c.BatchGetRecordRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetRecordWithContext is the same as BatchGetRecord with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetRecord for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMakerFeatureStoreRuntime) BatchGetRecordWithContext(ctx aws.Context, input *BatchGetRecordInput, opts ...request.Option) (*BatchGetRecordOutput, error) {
+	req, out := c.BatchGetRecordRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteBatchGetRecord is Blink's code
+func ExecuteBatchGetRecord(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*SageMakerFeatureStoreRuntime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchGetRecordInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchGetRecordRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
 
 const opDeleteRecord = "DeleteRecord"
 
@@ -474,6 +602,289 @@ func (s *AccessForbidden) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessForbidden) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The error that has occurred when attempting to retrieve a batch of Records.
+type BatchGetRecordError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code of an error that has occured when attempting to retrieve a
+	// batch of Records. For more information on errors, see Errors (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_feature_store_GetRecord.html#API_feature_store_GetRecord_Errors).
+	//
+	// ErrorCode is a required field
+	ErrorCode *string `type:"string" required:"true"`
+
+	// The error message of an error that has occured when attempting to retrieve
+	// a record in the batch.
+	//
+	// ErrorMessage is a required field
+	ErrorMessage *string `type:"string" required:"true"`
+
+	// The name of the feature group that the record belongs to.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `type:"string" required:"true"`
+
+	// The value for the RecordIdentifier in string format of a Record from a FeatureGroup
+	// that is causing an error when attempting to be retrieved.
+	//
+	// RecordIdentifierValueAsString is a required field
+	RecordIdentifierValueAsString *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetRecordError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetRecordError) GoString() string {
+	return s.String()
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetRecordError) SetErrorCode(v string) *BatchGetRecordError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetRecordError) SetErrorMessage(v string) *BatchGetRecordError {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *BatchGetRecordError) SetFeatureGroupName(v string) *BatchGetRecordError {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetRecordIdentifierValueAsString sets the RecordIdentifierValueAsString field's value.
+func (s *BatchGetRecordError) SetRecordIdentifierValueAsString(v string) *BatchGetRecordError {
+	s.RecordIdentifierValueAsString = &v
+	return s
+}
+
+// The identifier that identifies the batch of Records you are retrieving in
+// a batch.
+type BatchGetRecordIdentifier struct {
+	_ struct{} `type:"structure"`
+
+	// A FeatureGroupName containing Records you are retrieving in a batch.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `min:"1" type:"string" required:"true"`
+
+	// List of names of Features to be retrieved. If not specified, the latest value
+	// for all the Features are returned.
+	FeatureNames []*string `min:"1" type:"list"`
+
+	// The value for a list of record identifiers in string format.
+	//
+	// RecordIdentifiersValueAsString is a required field
+	RecordIdentifiersValueAsString []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetRecordIdentifier) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetRecordIdentifier) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetRecordIdentifier) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetRecordIdentifier"}
+	if s.FeatureGroupName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FeatureGroupName"))
+	}
+	if s.FeatureGroupName != nil && len(*s.FeatureGroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureGroupName", 1))
+	}
+	if s.FeatureNames != nil && len(s.FeatureNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureNames", 1))
+	}
+	if s.RecordIdentifiersValueAsString == nil {
+		invalidParams.Add(request.NewErrParamRequired("RecordIdentifiersValueAsString"))
+	}
+	if s.RecordIdentifiersValueAsString != nil && len(s.RecordIdentifiersValueAsString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecordIdentifiersValueAsString", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *BatchGetRecordIdentifier) SetFeatureGroupName(v string) *BatchGetRecordIdentifier {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetFeatureNames sets the FeatureNames field's value.
+func (s *BatchGetRecordIdentifier) SetFeatureNames(v []*string) *BatchGetRecordIdentifier {
+	s.FeatureNames = v
+	return s
+}
+
+// SetRecordIdentifiersValueAsString sets the RecordIdentifiersValueAsString field's value.
+func (s *BatchGetRecordIdentifier) SetRecordIdentifiersValueAsString(v []*string) *BatchGetRecordIdentifier {
+	s.RecordIdentifiersValueAsString = v
+	return s
+}
+
+type BatchGetRecordInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of FeatureGroup names, with their corresponding RecordIdentifier value,
+	// and Feature name that have been requested to be retrieved in batch.
+	//
+	// Identifiers is a required field
+	Identifiers []*BatchGetRecordIdentifier `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetRecordInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetRecordInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetRecordInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetRecordInput"}
+	if s.Identifiers == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifiers"))
+	}
+	if s.Identifiers != nil && len(s.Identifiers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifiers", 1))
+	}
+	if s.Identifiers != nil {
+		for i, v := range s.Identifiers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Identifiers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifiers sets the Identifiers field's value.
+func (s *BatchGetRecordInput) SetIdentifiers(v []*BatchGetRecordIdentifier) *BatchGetRecordInput {
+	s.Identifiers = v
+	return s
+}
+
+type BatchGetRecordOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of errors that have occured when retrieving a batch of Records.
+	//
+	// Errors is a required field
+	Errors []*BatchGetRecordError `type:"list" required:"true"`
+
+	// A list of Records you requested to be retrieved in batch.
+	//
+	// Records is a required field
+	Records []*BatchGetRecordResultDetail `type:"list" required:"true"`
+
+	// A unprocessed list of FeatureGroup names, with their corresponding RecordIdentifier
+	// value, and Feature name.
+	//
+	// UnprocessedIdentifiers is a required field
+	UnprocessedIdentifiers []*BatchGetRecordIdentifier `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetRecordOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetRecordOutput) GoString() string {
+	return s.String()
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetRecordOutput) SetErrors(v []*BatchGetRecordError) *BatchGetRecordOutput {
+	s.Errors = v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *BatchGetRecordOutput) SetRecords(v []*BatchGetRecordResultDetail) *BatchGetRecordOutput {
+	s.Records = v
+	return s
+}
+
+// SetUnprocessedIdentifiers sets the UnprocessedIdentifiers field's value.
+func (s *BatchGetRecordOutput) SetUnprocessedIdentifiers(v []*BatchGetRecordIdentifier) *BatchGetRecordOutput {
+	s.UnprocessedIdentifiers = v
+	return s
+}
+
+// The output of Records that have been retrieved in a batch.
+type BatchGetRecordResultDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The FeatureGroupName containing Records you retrieved in a batch.
+	//
+	// FeatureGroupName is a required field
+	FeatureGroupName *string `type:"string" required:"true"`
+
+	// The Record retrieved.
+	//
+	// Record is a required field
+	Record []*FeatureValue `min:"1" type:"list" required:"true"`
+
+	// The value of the record identifer in string format.
+	//
+	// RecordIdentifierValueAsString is a required field
+	RecordIdentifierValueAsString *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetRecordResultDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetRecordResultDetail) GoString() string {
+	return s.String()
+}
+
+// SetFeatureGroupName sets the FeatureGroupName field's value.
+func (s *BatchGetRecordResultDetail) SetFeatureGroupName(v string) *BatchGetRecordResultDetail {
+	s.FeatureGroupName = &v
+	return s
+}
+
+// SetRecord sets the Record field's value.
+func (s *BatchGetRecordResultDetail) SetRecord(v []*FeatureValue) *BatchGetRecordResultDetail {
+	s.Record = v
+	return s
+}
+
+// SetRecordIdentifierValueAsString sets the RecordIdentifierValueAsString field's value.
+func (s *BatchGetRecordResultDetail) SetRecordIdentifierValueAsString(v string) *BatchGetRecordResultDetail {
+	s.RecordIdentifierValueAsString = &v
+	return s
 }
 
 type DeleteRecordInput struct {

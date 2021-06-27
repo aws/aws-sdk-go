@@ -39,11 +39,6 @@ type outpostAccessPointEndpointBuilder arn.OutpostAccessPointARN
 func (o outpostAccessPointEndpointBuilder) build(req *request.Request) error {
 	resolveRegion := o.Region
 	resolveService := o.Service
-	cfgRegion := aws.StringValue(req.Config.Region)
-
-	if s3shared.IsFIPS(cfgRegion) && !aws.BoolValue(req.Config.S3UseARNRegion) {
-		return s3shared.NewInvalidARNWithFIPSError(o, nil)
-	}
 
 	endpointsID := resolveService
 	if resolveService == "s3-outposts" {

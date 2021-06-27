@@ -128,7 +128,7 @@
     },
     "ItemProperties":{
       "type":"string",
-      "max":4096,
+      "max":24262,
       "min":1
     },
     "PutEventsRequest":{

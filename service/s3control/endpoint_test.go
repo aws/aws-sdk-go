@@ -80,51 +80,31 @@ func TestEndpoint_OutpostAccessPointARN(t *testing.T) {
 			expectedHeaderForAccountID: true,
 			expectedHeaderForOutpostID: "op-01234567890123456",
 		},
-		"Outpost AccessPoint with client region as Fips": {
+		"Outpost AccessPoint with client region as FIPS": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("us-gov-east-1-fips"),
 			},
-			expectedErr: "InvalidARNError: resource ARN not supported for FIPS region",
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
 		},
-		"Outpost AccessPoint with client Fips region and use arn region enabled": {
-			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+		"Outpost AccessPoint with client FIPS region and cross-region ARN": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("us-gov-east-1-fips"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedSigningName:        "s3-outposts",
-			expectedSigningRegion:      "us-gov-east-1",
-			expectedEndpoint:           "https://s3-outposts.us-gov-east-1.amazonaws.com",
-			expectedHeaderForAccountID: true,
-			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
 		},
-		"Outpost AccessPoint Fips region in Arn": {
-			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1-fips:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
-			config: &aws.Config{
-				EndpointResolver:        endpoints.AwsUsGovPartition(),
-				EnforceShouldRetryCheck: nil,
-				Region:                  aws.String("us-gov-east-1-fips"),
-				DisableSSL:              nil,
-				HTTPClient:              nil,
-				S3UseARNRegion:          aws.Bool(true),
-			},
-			expectedErr: "InvalidARNError: resource ARN not supported for FIPS region",
-		},
-		"Outpost AccessPoint Fips region with valid ARN region": {
+		"Outpost AccessPoint FIPS client region with matching ARN region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("fips-us-gov-east-1"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedEndpoint:           "https://s3-outposts.us-gov-east-1.amazonaws.com",
-			expectedSigningName:        "s3-outposts",
-			expectedSigningRegion:      "us-gov-east-1",
-			expectedHeaderForAccountID: true,
-			expectedHeaderForOutpostID: "op-01234567890123456",
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
 		},
 		"Outpost AccessPoint with DualStack": {
 			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
@@ -179,6 +159,22 @@ func TestEndpoint_OutpostAccessPointARN(t *testing.T) {
 				Region: aws.String("us-west-2"),
 			},
 			expectedErr: "invalid Amazon s3-outposts ARN",
+		},
+		"Invalid Outpost AccessPoint ARN with FIPS pseudo-region (prefix)": {
+			bucket: "arn:aws-us-gov:s3-outposts:fips-us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "FIPS region not allowed in ARN",
+		},
+		"Invalid Outpost AccessPoint ARN with FIPS pseudo-region (suffix)": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-east-1-fips:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "FIPS region not allowed in ARN",
 		},
 	}
 
@@ -238,7 +234,7 @@ func TestEndpoint_OutpostBucketARN(t *testing.T) {
 			expectedHeaderForOutpostID: "op-01234567890123456",
 			expectedHeaderForAccountID: true,
 		},
-		"Outpost Bucket Fips region": {
+		"Outpost Bucket FIPS client region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
@@ -246,30 +242,23 @@ func TestEndpoint_OutpostBucketARN(t *testing.T) {
 			},
 			expectedErr: "ConfigurationError: client region does not match provided ARN region",
 		},
-		"Outpost Bucket Fips region in Arn": {
-			bucket: "arn:aws-us-gov:s3-outposts:fips-us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
-			config: &aws.Config{
-				EndpointResolver:        endpoints.AwsUsGovPartition(),
-				EnforceShouldRetryCheck: nil,
-				Region:                  aws.String("fips-us-gov-east-1"),
-				DisableSSL:              nil,
-				HTTPClient:              nil,
-				S3UseARNRegion:          aws.Bool(true),
-			},
-			expectedErr: "InvalidARNError: resource ARN not supported for FIPS region",
-		},
-		"Outpost Bucket Fips region with valid ARN region": {
+		"Outpost Bucket FIPS client region with match ARN region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
 				Region:           aws.String("fips-us-gov-east-1"),
 				S3UseARNRegion:   aws.Bool(true),
 			},
-			expectedEndpoint:           "https://s3-outposts.us-gov-east-1.amazonaws.com",
-			expectedSigningName:        "s3-outposts",
-			expectedSigningRegion:      "us-gov-east-1",
-			expectedHeaderForOutpostID: "op-01234567890123456",
-			expectedHeaderForAccountID: true,
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
+		},
+		"Outpost Bucket FIPS client region with cross-region ARN": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("fips-us-gov-east-1"),
+				S3UseARNRegion:   aws.Bool(true),
+			},
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
 		},
 		"Outpost Bucket with DualStack": {
 			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:bucket:mybucket",
@@ -301,6 +290,22 @@ func TestEndpoint_OutpostBucketARN(t *testing.T) {
 				Region: aws.String("us-west-2"),
 			},
 			expectedErr: "invalid Amazon s3-outposts ARN, unknown resource type",
+		},
+		"Invalid Outpost Bucket ARN with FIPS pseudo-region (prefix)": {
+			bucket: "arn:aws:s3-outposts:fips-us-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "FIPS region not allowed in ARN",
+		},
+		"Invalid Outpost Bucket ARN with FIPS pseudo-region (suffix)": {
+			bucket: "arn:aws:s3-outposts:us-east-1-fips:123456789012:outpost:op-01234567890123456:bucket:mybucket",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "FIPS region not allowed in ARN",
 		},
 	}
 

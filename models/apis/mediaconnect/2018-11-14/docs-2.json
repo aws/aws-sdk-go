@@ -208,6 +208,13 @@
         "Flow$SourceFailoverConfig": null
       }
     },
+    "FailoverMode": {
+      "base": null,
+      "refs": {
+        "FailoverConfig$FailoverMode": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams.",
+        "UpdateFailoverConfig$FailoverMode": "The type of failover you choose for this flow. MERGE combines the source streams into a single stream, allowing graceful recovery from any single-source loss. FAILOVER allows switching between different streams."
+      }
+    },
     "Flow": {
       "base": "The settings for a flow, including its source, outputs, and entitlements.",
       "refs": {
@@ -511,6 +518,13 @@
         "__listOfSource$member": null
       }
     },
+    "SourcePriority": {
+      "base": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams.",
+      "refs": {
+        "FailoverConfig$SourcePriority": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams.",
+        "UpdateFailoverConfig$SourcePriority": "The priority you want to assign to a source. You can have a primary stream and a backup stream or two equally prioritized streams."
+      }
+    },
     "SourceType": {
       "base": null,
       "refs": {
@@ -678,21 +692,21 @@
         "UpdateFlowSourceRequest$IngestPort": "The port that the flow will be listening on for incoming content.",
         "UpdateFlowSourceRequest$MaxSyncBuffer": "The size of the buffer (in milliseconds) to use to sync incoming source data.",
         "AddOutputRequest$MaxLatency": "The maximum latency in milliseconds for Zixi-based streams.",
-        "AddOutputRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "AddOutputRequest$MinLatency": "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender\u2019s minimum latency and the receiver\u2019s minimum latency.",
         "AddOutputRequest$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
         "SetSourceRequest$MaxBitrate": "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.",
         "SetSourceRequest$MaxLatency": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.",
-        "SetSourceRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "SetSourceRequest$MinLatency": "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender\u2019s minimum latency and the receiver\u2019s minimum latency.",
         "Transport$MaxBitrate": "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.",
         "Transport$MaxLatency": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.",
-        "Transport$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "Transport$MinLatency": "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender\u2019s minimum latency and the receiver\u2019s minimum latency.",
         "Transport$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
         "UpdateFlowOutputRequest$MaxLatency": "The maximum latency in milliseconds for Zixi-based streams.",
-        "UpdateFlowOutputRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "UpdateFlowOutputRequest$MinLatency": "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender\u2019s minimum latency and the receiver\u2019s minimum latency.",
         "UpdateFlowOutputRequest$SmoothingLatency": "The smoothing latency in milliseconds for RIST, RTP, and RTP-FEC streams.",
         "UpdateFlowSourceRequest$MaxBitrate": "The smoothing max bitrate for RIST, RTP, and RTP-FEC streams.",
         "UpdateFlowSourceRequest$MaxLatency": "The maximum latency in milliseconds. This parameter applies only to RIST-based and Zixi-based streams.",
-        "UpdateFlowSourceRequest$MinLatency" : "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender’s minimum latency and the receiver’s minimum latency.",
+        "UpdateFlowSourceRequest$MinLatency": "The minimum latency in milliseconds for SRT-based streams. In streams that use the SRT protocol, this value that you set on your MediaConnect source or output represents the minimal potential latency of that connection. The latency of the stream is set to the highest number between the sender\u2019s minimum latency and the receiver\u2019s minimum latency.",
         "__listOf__integer$member": null
       }
     },
@@ -979,6 +993,7 @@
         "Source$SourceArn": "The ARN of the source.",
         "Source$VpcInterfaceName": "The name of the VPC interface that is used for this source.",
         "Source$WhitelistCidr": "The range of IP addresses that should be allowed to contribute content to your source. These IP addresses should be in the form of a Classless Inter-Domain Routing (CIDR) block; for example, 10.0.0.0/16.",
+        "SourcePriority$PrimarySource": "The name of the source you choose as the primary source for this flow.",
         "StartFlowResponse$FlowArn": "The ARN of the flow that you started.",
         "StopFlowResponse$FlowArn": "The ARN of the flow that you stopped.",
         "Transport$RemoteId": "The remote ID for the Zixi-pull stream.",

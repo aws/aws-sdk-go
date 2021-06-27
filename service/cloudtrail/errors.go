@@ -252,9 +252,10 @@ const (
 	// ErrCodeKmsKeyNotFoundException for service response error code
 	// "KmsKeyNotFoundException".
 	//
-	// This exception is thrown when the KMS key does not exist, when the S3 bucket
-	// and the KMS key are not in the same region, or when the KMS key associated
-	// with the SNS topic either does not exist or is not in the same region.
+	// This exception is thrown when the AWS KMS key does not exist, when the S3
+	// bucket and the AWS KMS key are not in the same region, or when the AWS KMS
+	// key associated with the SNS topic either does not exist or is not in the
+	// same region.
 	ErrCodeKmsKeyNotFoundException = "KmsKeyNotFoundException"
 
 	// ErrCodeMaximumNumberOfTrailsExceededException for service response error code

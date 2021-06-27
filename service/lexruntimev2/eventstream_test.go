@@ -240,6 +240,7 @@ func mockStartConversationReadEvents() (
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
 							"a": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -249,8 +250,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"b": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -260,8 +263,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"c": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -271,6 +276,7 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 						},
 						State: aws.String("string value goes here"),
@@ -294,6 +300,7 @@ func mockStartConversationReadEvents() (
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
 							"a": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -303,8 +310,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"b": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -314,8 +323,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"c": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -325,6 +336,7 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 						},
 						State: aws.String("string value goes here"),
@@ -348,6 +360,7 @@ func mockStartConversationReadEvents() (
 						Name:              aws.String("string value goes here"),
 						Slots: map[string]*Slot{
 							"a": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -357,8 +370,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"b": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -368,8 +383,10 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 							"c": &Slot{
+								Shape: aws.String("string value goes here"),
 								Value: &Value{
 									InterpretedValue: aws.String("string value goes here"),
 									OriginalValue:    aws.String("string value goes here"),
@@ -379,6 +396,7 @@ func mockStartConversationReadEvents() (
 										aws.String("string value goes here"),
 									},
 								},
+								Values: []*Slot{},
 							},
 						},
 						State: aws.String("string value goes here"),
@@ -451,6 +469,7 @@ func mockStartConversationReadEvents() (
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
 						"a": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -460,8 +479,10 @@ func mockStartConversationReadEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 						"b": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -471,8 +492,10 @@ func mockStartConversationReadEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 						"c": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -482,6 +505,7 @@ func mockStartConversationReadEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 					},
 					State: aws.String("string value goes here"),
@@ -971,6 +995,7 @@ func mockStartConversationWriteEvents() (
 					Name:              aws.String("string value goes here"),
 					Slots: map[string]*Slot{
 						"a": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -980,8 +1005,10 @@ func mockStartConversationWriteEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 						"b": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -991,8 +1018,10 @@ func mockStartConversationWriteEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 						"c": &Slot{
+							Shape: aws.String("string value goes here"),
 							Value: &Value{
 								InterpretedValue: aws.String("string value goes here"),
 								OriginalValue:    aws.String("string value goes here"),
@@ -1002,6 +1031,7 @@ func mockStartConversationWriteEvents() (
 									aws.String("string value goes here"),
 								},
 							},
+							Values: []*Slot{},
 						},
 					},
 					State: aws.String("string value goes here"),

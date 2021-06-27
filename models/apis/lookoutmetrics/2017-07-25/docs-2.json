@@ -855,9 +855,9 @@
     "Offset": {
       "base": null,
       "refs": {
-        "CreateMetricSetRequest$Offset": "<p>After an interval ends, the amount of time that the detector waits before importing data.</p>",
-        "DescribeMetricSetResponse$Offset": "<p>The offset for the dataset.</p>",
-        "UpdateMetricSetRequest$Offset": "<p>After an interval ends, the amount of time that the detector waits before importing data.</p>"
+        "CreateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3 and Redshift datasources.</p>",
+        "DescribeMetricSetResponse$Offset": "<p>The offset in seconds. Only supported for S3 and Redshift datasources.</p>",
+        "UpdateMetricSetRequest$Offset": "<p>After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3 and Redshift datasources.</p>"
       }
     },
     "PoirotSecretManagerArn": {

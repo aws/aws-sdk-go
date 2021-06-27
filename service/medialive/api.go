@@ -14905,6 +14905,11 @@ func (s *DvbSubDestinationSettings) SetYPosition(v int64) *DvbSubDestinationSett
 type DvbSubSourceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// If you will configure a WebVTT caption description that references this caption
+	// selector, use this field toprovide the language to consider when translating
+	// the image-based source to text.
+	OcrLanguage *string `locationName:"ocrLanguage" type:"string" enum:"DvbSubOcrLanguage"`
+
 	// When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source
 	// content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through,
 	// regardless of selectors.
@@ -14932,6 +14937,12 @@ func (s *DvbSubSourceSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOcrLanguage sets the OcrLanguage field's value.
+func (s *DvbSubSourceSettings) SetOcrLanguage(v string) *DvbSubSourceSettings {
+	s.OcrLanguage = &v
+	return s
 }
 
 // SetPid sets the Pid field's value.
@@ -16401,8 +16412,14 @@ func (s *H264FilterSettings) SetTemporalFilterSettings(v *TemporalFilterSettings
 type H264Settings struct {
 	_ struct{} `type:"structure"`
 
-	// Adaptive quantization. Allows intra-frame quantizers to vary to improve visual
-	// quality.
+	// Enables or disables adaptive quantization, which is a technique MediaLive
+	// can apply to video on a frame-by-frame basis to produce more compression
+	// without losing quality. There are three types of adaptive quantization: flicker,
+	// spatial, and temporal. Set the field in one of these ways: Set to Auto. Recommended.
+	// For each type of AQ, MediaLive will determine if AQ is needed, and if so,
+	// the appropriate strength. Set a strength (a value other than Auto or Disable).
+	// This strength will apply to any of the AQ fields that you choose to enable.
+	// Set to Disabled to disable all types of adaptive quantization.
 	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"H264AdaptiveQuantization"`
 
 	// Indicates that AFD values will be written into the output stream. If afdSignaling
@@ -16439,8 +16456,16 @@ type H264Settings struct {
 	// Only valid when afdSignaling is set to 'Fixed'.
 	FixedAfd *string `locationName:"fixedAfd" type:"string" enum:"FixedAfd"`
 
-	// If set to enabled, adjust quantization within each frame to reduce flicker
-	// or 'pop' on I-frames.
+	// Flicker AQ makes adjustments within each frame to reduce flicker or 'pop'
+	// on I-frames. The value to enter in this field depends on the value in the
+	// Adaptive quantization field: If you have set the Adaptive quantization field
+	// to Auto, MediaLive ignores any value in this field. MediaLive will determine
+	// if flicker AQ is appropriate and will apply the appropriate strength. If
+	// you have set the Adaptive quantization field to a strength, you can set this
+	// field to Enabled or Disabled. Enabled: MediaLive will apply flicker AQ using
+	// the specified strength. Disabled: MediaLive won't apply flicker AQ. If you
+	// have set the Adaptive quantization to Disabled, MediaLive ignores any value
+	// in this field and doesn't apply flicker AQ.
 	FlickerAq *string `locationName:"flickerAq" type:"string" enum:"H264FlickerAq"`
 
 	// This setting applies only when scan type is "interlaced." It controls whether
@@ -16537,11 +16562,16 @@ type H264Settings struct {
 	QualityLevel *string `locationName:"qualityLevel" type:"string" enum:"H264QualityLevel"`
 
 	// Controls the target quality for the video encode. Applies only when the rate
-	// control mode is QVBR. Set values for the QVBR quality level field and Max
-	// bitrate field that suit your most important viewing devices. Recommended
-	// values are:- Primary screen: Quality level: 8 to 10. Max bitrate: 4M- PC
-	// or tablet: Quality level: 7. Max bitrate: 1.5M to 3M- Smartphone: Quality
-	// level: 6. Max bitrate: 1M to 1.5M
+	// control mode is QVBR. You can set a target quality or you can let MediaLive
+	// determine the best quality. To set a target quality, enter values in the
+	// QVBR quality level field and the Max bitrate field. Enter values that suit
+	// your most important viewing devices. Recommended values are:- Primary screen:
+	// Quality level: 8 to 10. Max bitrate: 4M- PC or tablet: Quality level: 7.
+	// Max bitrate: 1.5M to 3M- Smartphone: Quality level: 6. Max bitrate: 1M to
+	// 1.5MTo let MediaLive decide, leave the QVBR quality level field empty, and
+	// in Max bitrate enter the maximum rate you want in the video. For more information,
+	// see the section called "Video - rate control mode" in the MediaLive user
+	// guide
 	QvbrQualityLevel *int64 `locationName:"qvbrQualityLevel" min:"1" type:"integer"`
 
 	// Rate control mode.QVBR: Quality will match the specified quality level except
@@ -16574,8 +16604,16 @@ type H264Settings struct {
 	// in the encoded image. If not set to zero, must be greater than 15.
 	Softness *int64 `locationName:"softness" type:"integer"`
 
-	// If set to enabled, adjust quantization within each frame based on spatial
-	// variation of content complexity.
+	// Spatial AQ makes adjustments within each frame based on spatial variation
+	// of content complexity. The value to enter in this field depends on the value
+	// in the Adaptive quantization field: If you have set the Adaptive quantization
+	// field to Auto, MediaLive ignores any value in this field. MediaLive will
+	// determine if spatial AQ is appropriate and will apply the appropriate strength.
+	// If you have set the Adaptive quantization field to a strength, you can set
+	// this field to Enabled or Disabled. Enabled: MediaLive will apply spatial
+	// AQ using the specified strength. Disabled: MediaLive won't apply spatial
+	// AQ. If you have set the Adaptive quantization to Disabled, MediaLive ignores
+	// any value in this field and doesn't apply spatial AQ.
 	SpatialAq *string `locationName:"spatialAq" type:"string" enum:"H264SpatialAq"`
 
 	// If set to fixed, use gopNumBFrames B-frames per sub-GOP. If set to dynamic,
@@ -16585,8 +16623,16 @@ type H264Settings struct {
 	// Produces a bitstream compliant with SMPTE RP-2027.
 	Syntax *string `locationName:"syntax" type:"string" enum:"H264Syntax"`
 
-	// If set to enabled, adjust quantization within each frame based on temporal
-	// variation of content complexity.
+	// Temporal makes adjustments within each frame based on temporal variation
+	// of content complexity. The value to enter in this field depends on the value
+	// in the Adaptive quantization field: If you have set the Adaptive quantization
+	// field to Auto, MediaLive ignores any value in this field. MediaLive will
+	// determine if temporal AQ is appropriate and will apply the appropriate strength.
+	// If you have set the Adaptive quantization field to a strength, you can set
+	// this field to Enabled or Disabled. Enabled: MediaLive will apply temporal
+	// AQ using the specified strength. Disabled: MediaLive won't apply temporal
+	// AQ. If you have set the Adaptive quantization to Disabled, MediaLive ignores
+	// any value in this field and doesn't apply temporal AQ.
 	TemporalAq *string `locationName:"temporalAq" type:"string" enum:"H264TemporalAq"`
 
 	// Determines how timecodes should be inserted into the video elementary stream.-
@@ -18158,6 +18204,12 @@ type HlsInputSettings struct {
 	// The number of seconds between retries when an attempt to read a manifest
 	// or segment fails.
 	RetryInterval *int64 `locationName:"retryInterval" type:"integer"`
+
+	// Identifies the source for the SCTE-35 messages that MediaLive will ingest.
+	// Messages can be ingested from the content segments (in the stream) or from
+	// tags in the playlist (the HLS manifest). MediaLive ignores SCTE-35 information
+	// in the source that is not selected.
+	Scte35Source *string `locationName:"scte35Source" type:"string" enum:"HlsScte35SourceType"`
 }
 
 // String returns the string representation
@@ -18191,6 +18243,12 @@ func (s *HlsInputSettings) SetRetries(v int64) *HlsInputSettings {
 // SetRetryInterval sets the RetryInterval field's value.
 func (s *HlsInputSettings) SetRetryInterval(v int64) *HlsInputSettings {
 	s.RetryInterval = &v
+	return s
+}
+
+// SetScte35Source sets the Scte35Source field's value.
+func (s *HlsInputSettings) SetScte35Source(v string) *HlsInputSettings {
+	s.Scte35Source = &v
 	return s
 }
 
@@ -25861,6 +25919,11 @@ func (s Scte27DestinationSettings) GoString() string {
 type Scte27SourceSettings struct {
 	_ struct{} `type:"structure"`
 
+	// If you will configure a WebVTT caption description that references this caption
+	// selector, use this field toprovide the language to consider when translating
+	// the image-based source to text.
+	OcrLanguage *string `locationName:"ocrLanguage" type:"string" enum:"Scte27OcrLanguage"`
+
 	// The pid field is used in conjunction with the caption selector languageCode
 	// field as follows: - Specify PID and Language: Extracts captions from that
 	// PID; the language is "informational". - Specify PID and omit Language: Extracts
@@ -25892,6 +25955,12 @@ func (s *Scte27SourceSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetOcrLanguage sets the OcrLanguage field's value.
+func (s *Scte27SourceSettings) SetOcrLanguage(v string) *Scte27SourceSettings {
+	s.OcrLanguage = &v
+	return s
 }
 
 // SetPid sets the Pid field's value.
@@ -27820,8 +27889,6 @@ type TransferringInputDeviceSummary struct {
 	// The AWS account ID for the recipient of the input device transfer.
 	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
 
-	TargetRegion *string `locationName:"targetRegion" type:"string"`
-
 	// The type (direction) of the input device transfer.
 	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
 }
@@ -27851,12 +27918,6 @@ func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInput
 // SetTargetCustomerId sets the TargetCustomerId field's value.
 func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
 	s.TargetCustomerId = &v
-	return s
-}
-
-// SetTargetRegion sets the TargetRegion field's value.
-func (s *TransferringInputDeviceSummary) SetTargetRegion(v string) *TransferringInputDeviceSummary {
-	s.TargetRegion = &v
 	return s
 }
 
@@ -30601,6 +30662,39 @@ func DvbSubDestinationTeletextGridControl_Values() []string {
 	}
 }
 
+// Dvb Sub Ocr Language
+const (
+	// DvbSubOcrLanguageDeu is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageDeu = "DEU"
+
+	// DvbSubOcrLanguageEng is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageEng = "ENG"
+
+	// DvbSubOcrLanguageFra is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageFra = "FRA"
+
+	// DvbSubOcrLanguageNld is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageNld = "NLD"
+
+	// DvbSubOcrLanguagePor is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguagePor = "POR"
+
+	// DvbSubOcrLanguageSpa is a DvbSubOcrLanguage enum value
+	DvbSubOcrLanguageSpa = "SPA"
+)
+
+// DvbSubOcrLanguage_Values returns all elements of the DvbSubOcrLanguage enum
+func DvbSubOcrLanguage_Values() []string {
+	return []string{
+		DvbSubOcrLanguageDeu,
+		DvbSubOcrLanguageEng,
+		DvbSubOcrLanguageFra,
+		DvbSubOcrLanguageNld,
+		DvbSubOcrLanguagePor,
+		DvbSubOcrLanguageSpa,
+	}
+}
+
 // Eac3 Attenuation Control
 const (
 	// Eac3AttenuationControlAttenuate3Db is a Eac3AttenuationControl enum value
@@ -31196,6 +31290,9 @@ func GlobalConfigurationOutputTimingSource_Values() []string {
 
 // H264 Adaptive Quantization
 const (
+	// H264AdaptiveQuantizationAuto is a H264AdaptiveQuantization enum value
+	H264AdaptiveQuantizationAuto = "AUTO"
+
 	// H264AdaptiveQuantizationHigh is a H264AdaptiveQuantization enum value
 	H264AdaptiveQuantizationHigh = "HIGH"
 
@@ -31218,6 +31315,7 @@ const (
 // H264AdaptiveQuantization_Values returns all elements of the H264AdaptiveQuantization enum
 func H264AdaptiveQuantization_Values() []string {
 	return []string{
+		H264AdaptiveQuantizationAuto,
 		H264AdaptiveQuantizationHigh,
 		H264AdaptiveQuantizationHigher,
 		H264AdaptiveQuantizationLow,
@@ -31657,6 +31755,9 @@ func H264TimecodeInsertionBehavior_Values() []string {
 
 // H265 Adaptive Quantization
 const (
+	// H265AdaptiveQuantizationAuto is a H265AdaptiveQuantization enum value
+	H265AdaptiveQuantizationAuto = "AUTO"
+
 	// H265AdaptiveQuantizationHigh is a H265AdaptiveQuantization enum value
 	H265AdaptiveQuantizationHigh = "HIGH"
 
@@ -31679,6 +31780,7 @@ const (
 // H265AdaptiveQuantization_Values returns all elements of the H265AdaptiveQuantization enum
 func H265AdaptiveQuantization_Values() []string {
 	return []string{
+		H265AdaptiveQuantizationAuto,
 		H265AdaptiveQuantizationHigh,
 		H265AdaptiveQuantizationHigher,
 		H265AdaptiveQuantizationLow,
@@ -32293,6 +32395,23 @@ func HlsRedundantManifest_Values() []string {
 	return []string{
 		HlsRedundantManifestDisabled,
 		HlsRedundantManifestEnabled,
+	}
+}
+
+// Hls Scte35 Source Type
+const (
+	// HlsScte35SourceTypeManifest is a HlsScte35SourceType enum value
+	HlsScte35SourceTypeManifest = "MANIFEST"
+
+	// HlsScte35SourceTypeSegments is a HlsScte35SourceType enum value
+	HlsScte35SourceTypeSegments = "SEGMENTS"
+)
+
+// HlsScte35SourceType_Values returns all elements of the HlsScte35SourceType enum
+func HlsScte35SourceType_Values() []string {
+	return []string{
+		HlsScte35SourceTypeManifest,
+		HlsScte35SourceTypeSegments,
 	}
 }
 
@@ -33866,13 +33985,19 @@ func ReservationResourceType_Values() []string {
 	}
 }
 
-// Special features, 'ADVANCED_AUDIO' or 'AUDIO_NORMALIZATION'
+// Special features, 'ADVANCED_AUDIO' 'AUDIO_NORMALIZATION' 'MGHD' or 'MGUHD'
 const (
 	// ReservationSpecialFeatureAdvancedAudio is a ReservationSpecialFeature enum value
 	ReservationSpecialFeatureAdvancedAudio = "ADVANCED_AUDIO"
 
 	// ReservationSpecialFeatureAudioNormalization is a ReservationSpecialFeature enum value
 	ReservationSpecialFeatureAudioNormalization = "AUDIO_NORMALIZATION"
+
+	// ReservationSpecialFeatureMghd is a ReservationSpecialFeature enum value
+	ReservationSpecialFeatureMghd = "MGHD"
+
+	// ReservationSpecialFeatureMguhd is a ReservationSpecialFeature enum value
+	ReservationSpecialFeatureMguhd = "MGUHD"
 )
 
 // ReservationSpecialFeature_Values returns all elements of the ReservationSpecialFeature enum
@@ -33880,6 +34005,8 @@ func ReservationSpecialFeature_Values() []string {
 	return []string{
 		ReservationSpecialFeatureAdvancedAudio,
 		ReservationSpecialFeatureAudioNormalization,
+		ReservationSpecialFeatureMghd,
+		ReservationSpecialFeatureMguhd,
 	}
 }
 
@@ -34036,6 +34163,39 @@ func Scte20Convert608To708_Values() []string {
 	return []string{
 		Scte20Convert608To708Disabled,
 		Scte20Convert608To708Upconvert,
+	}
+}
+
+// Scte27 Ocr Language
+const (
+	// Scte27OcrLanguageDeu is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageDeu = "DEU"
+
+	// Scte27OcrLanguageEng is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageEng = "ENG"
+
+	// Scte27OcrLanguageFra is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageFra = "FRA"
+
+	// Scte27OcrLanguageNld is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageNld = "NLD"
+
+	// Scte27OcrLanguagePor is a Scte27OcrLanguage enum value
+	Scte27OcrLanguagePor = "POR"
+
+	// Scte27OcrLanguageSpa is a Scte27OcrLanguage enum value
+	Scte27OcrLanguageSpa = "SPA"
+)
+
+// Scte27OcrLanguage_Values returns all elements of the Scte27OcrLanguage enum
+func Scte27OcrLanguage_Values() []string {
+	return []string{
+		Scte27OcrLanguageDeu,
+		Scte27OcrLanguageEng,
+		Scte27OcrLanguageFra,
+		Scte27OcrLanguageNld,
+		Scte27OcrLanguagePor,
+		Scte27OcrLanguageSpa,
 	}
 }
 

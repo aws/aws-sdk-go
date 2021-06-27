@@ -6368,6 +6368,8 @@ type CreateNodegroupInput struct {
 	// The Kubernetes taints to be applied to the nodes in the node group.
 	Taints []*Taint `locationName:"taints" type:"list"`
 
+	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
+
 	// The Kubernetes version to use for your managed nodes. By default, the Kubernetes
 	// version of the cluster is used, and this is the only accepted specified value.
 	// If you specify launchTemplate, and your launch template uses a custom AMI,
@@ -6422,6 +6424,11 @@ func (s *CreateNodegroupInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Taints", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.UpdateConfig != nil {
+		if err := s.UpdateConfig.Validate(); err != nil {
+			invalidParams.AddNested("UpdateConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6524,6 +6531,12 @@ func (s *CreateNodegroupInput) SetTags(v map[string]*string) *CreateNodegroupInp
 // SetTaints sets the Taints field's value.
 func (s *CreateNodegroupInput) SetTaints(v []*Taint) *CreateNodegroupInput {
 	s.Taints = v
+	return s
+}
+
+// SetUpdateConfig sets the UpdateConfig field's value.
+func (s *CreateNodegroupInput) SetUpdateConfig(v *NodegroupUpdateConfig) *CreateNodegroupInput {
+	s.UpdateConfig = v
 	return s
 }
 
@@ -9122,6 +9135,8 @@ type Nodegroup struct {
 	// are scheduled to your nodes.
 	Taints []*Taint `locationName:"taints" type:"list"`
 
+	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
+
 	// The Kubernetes version of the managed node group.
 	Version *string `locationName:"version" type:"string"`
 }
@@ -9262,6 +9277,12 @@ func (s *Nodegroup) SetTaints(v []*Taint) *Nodegroup {
 	return s
 }
 
+// SetUpdateConfig sets the UpdateConfig field's value.
+func (s *Nodegroup) SetUpdateConfig(v *NodegroupUpdateConfig) *Nodegroup {
+	s.UpdateConfig = v
+	return s
+}
+
 // SetVersion sets the Version field's value.
 func (s *Nodegroup) SetVersion(v string) *Nodegroup {
 	s.Version = &v
@@ -9386,6 +9407,52 @@ func (s *NodegroupScalingConfig) SetMaxSize(v int64) *NodegroupScalingConfig {
 // SetMinSize sets the MinSize field's value.
 func (s *NodegroupScalingConfig) SetMinSize(v int64) *NodegroupScalingConfig {
 	s.MinSize = &v
+	return s
+}
+
+type NodegroupUpdateConfig struct {
+	_ struct{} `type:"structure"`
+
+	MaxUnavailable *int64 `locationName:"maxUnavailable" min:"1" type:"integer"`
+
+	MaxUnavailablePercentage *int64 `locationName:"maxUnavailablePercentage" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s NodegroupUpdateConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NodegroupUpdateConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NodegroupUpdateConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NodegroupUpdateConfig"}
+	if s.MaxUnavailable != nil && *s.MaxUnavailable < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUnavailable", 1))
+	}
+	if s.MaxUnavailablePercentage != nil && *s.MaxUnavailablePercentage < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUnavailablePercentage", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxUnavailable sets the MaxUnavailable field's value.
+func (s *NodegroupUpdateConfig) SetMaxUnavailable(v int64) *NodegroupUpdateConfig {
+	s.MaxUnavailable = &v
+	return s
+}
+
+// SetMaxUnavailablePercentage sets the MaxUnavailablePercentage field's value.
+func (s *NodegroupUpdateConfig) SetMaxUnavailablePercentage(v int64) *NodegroupUpdateConfig {
+	s.MaxUnavailablePercentage = &v
 	return s
 }
 
@@ -10847,6 +10914,8 @@ type UpdateNodegroupConfigInput struct {
 	// The Kubernetes taints to be applied to the nodes in the node group after
 	// the update.
 	Taints *UpdateTaintsPayload `locationName:"taints" type:"structure"`
+
+	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -10882,6 +10951,11 @@ func (s *UpdateNodegroupConfigInput) Validate() error {
 	if s.Taints != nil {
 		if err := s.Taints.Validate(); err != nil {
 			invalidParams.AddNested("Taints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UpdateConfig != nil {
+		if err := s.UpdateConfig.Validate(); err != nil {
+			invalidParams.AddNested("UpdateConfig", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -10924,6 +10998,12 @@ func (s *UpdateNodegroupConfigInput) SetScalingConfig(v *NodegroupScalingConfig)
 // SetTaints sets the Taints field's value.
 func (s *UpdateNodegroupConfigInput) SetTaints(v *UpdateTaintsPayload) *UpdateNodegroupConfigInput {
 	s.Taints = v
+	return s
+}
+
+// SetUpdateConfig sets the UpdateConfig field's value.
+func (s *UpdateNodegroupConfigInput) SetUpdateConfig(v *NodegroupUpdateConfig) *UpdateNodegroupConfigInput {
+	s.UpdateConfig = v
 	return s
 }
 
@@ -11881,6 +11961,12 @@ const (
 
 	// UpdateParamTypeResolveConflicts is a UpdateParamType enum value
 	UpdateParamTypeResolveConflicts = "ResolveConflicts"
+
+	// UpdateParamTypeMaxUnavailable is a UpdateParamType enum value
+	UpdateParamTypeMaxUnavailable = "MaxUnavailable"
+
+	// UpdateParamTypeMaxUnavailablePercentage is a UpdateParamType enum value
+	UpdateParamTypeMaxUnavailablePercentage = "MaxUnavailablePercentage"
 )
 
 // UpdateParamType_Values returns all elements of the UpdateParamType enum
@@ -11907,6 +11993,8 @@ func UpdateParamType_Values() []string {
 		UpdateParamTypeAddonVersion,
 		UpdateParamTypeServiceAccountRoleArn,
 		UpdateParamTypeResolveConflicts,
+		UpdateParamTypeMaxUnavailable,
+		UpdateParamTypeMaxUnavailablePercentage,
 	}
 }
 

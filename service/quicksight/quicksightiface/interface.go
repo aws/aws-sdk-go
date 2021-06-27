@@ -84,6 +84,14 @@ type QuickSightAPI interface {
 	CreateDataSourceWithContext(aws.Context, *quicksight.CreateDataSourceInput, ...request.Option) (*quicksight.CreateDataSourceOutput, error)
 	CreateDataSourceRequest(*quicksight.CreateDataSourceInput) (*request.Request, *quicksight.CreateDataSourceOutput)
 
+	CreateFolder(*quicksight.CreateFolderInput) (*quicksight.CreateFolderOutput, error)
+	CreateFolderWithContext(aws.Context, *quicksight.CreateFolderInput, ...request.Option) (*quicksight.CreateFolderOutput, error)
+	CreateFolderRequest(*quicksight.CreateFolderInput) (*request.Request, *quicksight.CreateFolderOutput)
+
+	CreateFolderMembership(*quicksight.CreateFolderMembershipInput) (*quicksight.CreateFolderMembershipOutput, error)
+	CreateFolderMembershipWithContext(aws.Context, *quicksight.CreateFolderMembershipInput, ...request.Option) (*quicksight.CreateFolderMembershipOutput, error)
+	CreateFolderMembershipRequest(*quicksight.CreateFolderMembershipInput) (*request.Request, *quicksight.CreateFolderMembershipOutput)
+
 	CreateGroup(*quicksight.CreateGroupInput) (*quicksight.CreateGroupOutput, error)
 	CreateGroupWithContext(aws.Context, *quicksight.CreateGroupInput, ...request.Option) (*quicksight.CreateGroupOutput, error)
 	CreateGroupRequest(*quicksight.CreateGroupInput) (*request.Request, *quicksight.CreateGroupOutput)
@@ -139,6 +147,14 @@ type QuickSightAPI interface {
 	DeleteDataSource(*quicksight.DeleteDataSourceInput) (*quicksight.DeleteDataSourceOutput, error)
 	DeleteDataSourceWithContext(aws.Context, *quicksight.DeleteDataSourceInput, ...request.Option) (*quicksight.DeleteDataSourceOutput, error)
 	DeleteDataSourceRequest(*quicksight.DeleteDataSourceInput) (*request.Request, *quicksight.DeleteDataSourceOutput)
+
+	DeleteFolder(*quicksight.DeleteFolderInput) (*quicksight.DeleteFolderOutput, error)
+	DeleteFolderWithContext(aws.Context, *quicksight.DeleteFolderInput, ...request.Option) (*quicksight.DeleteFolderOutput, error)
+	DeleteFolderRequest(*quicksight.DeleteFolderInput) (*request.Request, *quicksight.DeleteFolderOutput)
+
+	DeleteFolderMembership(*quicksight.DeleteFolderMembershipInput) (*quicksight.DeleteFolderMembershipOutput, error)
+	DeleteFolderMembershipWithContext(aws.Context, *quicksight.DeleteFolderMembershipInput, ...request.Option) (*quicksight.DeleteFolderMembershipOutput, error)
+	DeleteFolderMembershipRequest(*quicksight.DeleteFolderMembershipInput) (*request.Request, *quicksight.DeleteFolderMembershipOutput)
 
 	DeleteGroup(*quicksight.DeleteGroupInput) (*quicksight.DeleteGroupOutput, error)
 	DeleteGroupWithContext(aws.Context, *quicksight.DeleteGroupInput, ...request.Option) (*quicksight.DeleteGroupOutput, error)
@@ -219,6 +235,18 @@ type QuickSightAPI interface {
 	DescribeDataSourcePermissions(*quicksight.DescribeDataSourcePermissionsInput) (*quicksight.DescribeDataSourcePermissionsOutput, error)
 	DescribeDataSourcePermissionsWithContext(aws.Context, *quicksight.DescribeDataSourcePermissionsInput, ...request.Option) (*quicksight.DescribeDataSourcePermissionsOutput, error)
 	DescribeDataSourcePermissionsRequest(*quicksight.DescribeDataSourcePermissionsInput) (*request.Request, *quicksight.DescribeDataSourcePermissionsOutput)
+
+	DescribeFolder(*quicksight.DescribeFolderInput) (*quicksight.DescribeFolderOutput, error)
+	DescribeFolderWithContext(aws.Context, *quicksight.DescribeFolderInput, ...request.Option) (*quicksight.DescribeFolderOutput, error)
+	DescribeFolderRequest(*quicksight.DescribeFolderInput) (*request.Request, *quicksight.DescribeFolderOutput)
+
+	DescribeFolderPermissions(*quicksight.DescribeFolderPermissionsInput) (*quicksight.DescribeFolderPermissionsOutput, error)
+	DescribeFolderPermissionsWithContext(aws.Context, *quicksight.DescribeFolderPermissionsInput, ...request.Option) (*quicksight.DescribeFolderPermissionsOutput, error)
+	DescribeFolderPermissionsRequest(*quicksight.DescribeFolderPermissionsInput) (*request.Request, *quicksight.DescribeFolderPermissionsOutput)
+
+	DescribeFolderResolvedPermissions(*quicksight.DescribeFolderResolvedPermissionsInput) (*quicksight.DescribeFolderResolvedPermissionsOutput, error)
+	DescribeFolderResolvedPermissionsWithContext(aws.Context, *quicksight.DescribeFolderResolvedPermissionsInput, ...request.Option) (*quicksight.DescribeFolderResolvedPermissionsOutput, error)
+	DescribeFolderResolvedPermissionsRequest(*quicksight.DescribeFolderResolvedPermissionsInput) (*request.Request, *quicksight.DescribeFolderResolvedPermissionsOutput)
 
 	DescribeGroup(*quicksight.DescribeGroupInput) (*quicksight.DescribeGroupOutput, error)
 	DescribeGroupWithContext(aws.Context, *quicksight.DescribeGroupInput, ...request.Option) (*quicksight.DescribeGroupOutput, error)
@@ -306,6 +334,14 @@ type QuickSightAPI interface {
 
 	ListDataSourcesPages(*quicksight.ListDataSourcesInput, func(*quicksight.ListDataSourcesOutput, bool) bool) error
 	ListDataSourcesPagesWithContext(aws.Context, *quicksight.ListDataSourcesInput, func(*quicksight.ListDataSourcesOutput, bool) bool, ...request.Option) error
+
+	ListFolderMembers(*quicksight.ListFolderMembersInput) (*quicksight.ListFolderMembersOutput, error)
+	ListFolderMembersWithContext(aws.Context, *quicksight.ListFolderMembersInput, ...request.Option) (*quicksight.ListFolderMembersOutput, error)
+	ListFolderMembersRequest(*quicksight.ListFolderMembersInput) (*request.Request, *quicksight.ListFolderMembersOutput)
+
+	ListFolders(*quicksight.ListFoldersInput) (*quicksight.ListFoldersOutput, error)
+	ListFoldersWithContext(aws.Context, *quicksight.ListFoldersInput, ...request.Option) (*quicksight.ListFoldersOutput, error)
+	ListFoldersRequest(*quicksight.ListFoldersInput) (*request.Request, *quicksight.ListFoldersOutput)
 
 	ListGroupMemberships(*quicksight.ListGroupMembershipsInput) (*quicksight.ListGroupMembershipsOutput, error)
 	ListGroupMembershipsWithContext(aws.Context, *quicksight.ListGroupMembershipsInput, ...request.Option) (*quicksight.ListGroupMembershipsOutput, error)
@@ -410,6 +446,10 @@ type QuickSightAPI interface {
 	SearchDashboardsPages(*quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool) error
 	SearchDashboardsPagesWithContext(aws.Context, *quicksight.SearchDashboardsInput, func(*quicksight.SearchDashboardsOutput, bool) bool, ...request.Option) error
 
+	SearchFolders(*quicksight.SearchFoldersInput) (*quicksight.SearchFoldersOutput, error)
+	SearchFoldersWithContext(aws.Context, *quicksight.SearchFoldersInput, ...request.Option) (*quicksight.SearchFoldersOutput, error)
+	SearchFoldersRequest(*quicksight.SearchFoldersInput) (*request.Request, *quicksight.SearchFoldersOutput)
+
 	TagResource(*quicksight.TagResourceInput) (*quicksight.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *quicksight.TagResourceInput, ...request.Option) (*quicksight.TagResourceOutput, error)
 	TagResourceRequest(*quicksight.TagResourceInput) (*request.Request, *quicksight.TagResourceOutput)
@@ -461,6 +501,14 @@ type QuickSightAPI interface {
 	UpdateDataSourcePermissions(*quicksight.UpdateDataSourcePermissionsInput) (*quicksight.UpdateDataSourcePermissionsOutput, error)
 	UpdateDataSourcePermissionsWithContext(aws.Context, *quicksight.UpdateDataSourcePermissionsInput, ...request.Option) (*quicksight.UpdateDataSourcePermissionsOutput, error)
 	UpdateDataSourcePermissionsRequest(*quicksight.UpdateDataSourcePermissionsInput) (*request.Request, *quicksight.UpdateDataSourcePermissionsOutput)
+
+	UpdateFolder(*quicksight.UpdateFolderInput) (*quicksight.UpdateFolderOutput, error)
+	UpdateFolderWithContext(aws.Context, *quicksight.UpdateFolderInput, ...request.Option) (*quicksight.UpdateFolderOutput, error)
+	UpdateFolderRequest(*quicksight.UpdateFolderInput) (*request.Request, *quicksight.UpdateFolderOutput)
+
+	UpdateFolderPermissions(*quicksight.UpdateFolderPermissionsInput) (*quicksight.UpdateFolderPermissionsOutput, error)
+	UpdateFolderPermissionsWithContext(aws.Context, *quicksight.UpdateFolderPermissionsInput, ...request.Option) (*quicksight.UpdateFolderPermissionsOutput, error)
+	UpdateFolderPermissionsRequest(*quicksight.UpdateFolderPermissionsInput) (*request.Request, *quicksight.UpdateFolderPermissionsOutput)
 
 	UpdateGroup(*quicksight.UpdateGroupInput) (*quicksight.UpdateGroupOutput, error)
 	UpdateGroupWithContext(aws.Context, *quicksight.UpdateGroupInput, ...request.Option) (*quicksight.UpdateGroupOutput, error)

@@ -6335,8 +6335,17 @@ func (s *Entitlement) SetSubscribers(v []*string) *Entitlement {
 type FailoverConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The type of failover you choose for this flow. MERGE combines the source
+	// streams into a single stream, allowing graceful recovery from any single-source
+	// loss. FAILOVER allows switching between different streams.
+	FailoverMode *string `locationName:"failoverMode" type:"string" enum:"FailoverMode"`
+
 	// Search window time to look for dash-7 packets
 	RecoveryWindow *int64 `locationName:"recoveryWindow" type:"integer"`
+
+	// The priority you want to assign to a source. You can have a primary stream
+	// and a backup stream or two equally prioritized streams.
+	SourcePriority *SourcePriority `locationName:"sourcePriority" type:"structure"`
 
 	State *string `locationName:"state" type:"string" enum:"State"`
 }
@@ -6351,9 +6360,21 @@ func (s FailoverConfig) GoString() string {
 	return s.String()
 }
 
+// SetFailoverMode sets the FailoverMode field's value.
+func (s *FailoverConfig) SetFailoverMode(v string) *FailoverConfig {
+	s.FailoverMode = &v
+	return s
+}
+
 // SetRecoveryWindow sets the RecoveryWindow field's value.
 func (s *FailoverConfig) SetRecoveryWindow(v int64) *FailoverConfig {
 	s.RecoveryWindow = &v
+	return s
+}
+
+// SetSourcePriority sets the SourcePriority field's value.
+func (s *FailoverConfig) SetSourcePriority(v *SourcePriority) *FailoverConfig {
+	s.SourcePriority = v
 	return s
 }
 
@@ -9656,6 +9677,31 @@ func (s *Source) SetWhitelistCidr(v string) *Source {
 	return s
 }
 
+// The priority you want to assign to a source. You can have a primary stream
+// and a backup stream or two equally prioritized streams.
+type SourcePriority struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the source you choose as the primary source for this flow.
+	PrimarySource *string `locationName:"primarySource" type:"string"`
+}
+
+// String returns the string representation
+func (s SourcePriority) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourcePriority) GoString() string {
+	return s.String()
+}
+
+// SetPrimarySource sets the PrimarySource field's value.
+func (s *SourcePriority) SetPrimarySource(v string) *SourcePriority {
+	s.PrimarySource = &v
+	return s
+}
+
 type StartFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10214,8 +10260,17 @@ func (s *UpdateEncryption) SetUrl(v string) *UpdateEncryption {
 type UpdateFailoverConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The type of failover you choose for this flow. MERGE combines the source
+	// streams into a single stream, allowing graceful recovery from any single-source
+	// loss. FAILOVER allows switching between different streams.
+	FailoverMode *string `locationName:"failoverMode" type:"string" enum:"FailoverMode"`
+
 	// Recovery window time to look for dash-7 packets
 	RecoveryWindow *int64 `locationName:"recoveryWindow" type:"integer"`
+
+	// The priority you want to assign to a source. You can have a primary stream
+	// and a backup stream or two equally prioritized streams.
+	SourcePriority *SourcePriority `locationName:"sourcePriority" type:"structure"`
 
 	State *string `locationName:"state" type:"string" enum:"State"`
 }
@@ -10230,9 +10285,21 @@ func (s UpdateFailoverConfig) GoString() string {
 	return s.String()
 }
 
+// SetFailoverMode sets the FailoverMode field's value.
+func (s *UpdateFailoverConfig) SetFailoverMode(v string) *UpdateFailoverConfig {
+	s.FailoverMode = &v
+	return s
+}
+
 // SetRecoveryWindow sets the RecoveryWindow field's value.
 func (s *UpdateFailoverConfig) SetRecoveryWindow(v int64) *UpdateFailoverConfig {
 	s.RecoveryWindow = &v
+	return s
+}
+
+// SetSourcePriority sets the SourcePriority field's value.
+func (s *UpdateFailoverConfig) SetSourcePriority(v *SourcePriority) *UpdateFailoverConfig {
+	s.SourcePriority = v
 	return s
 }
 
@@ -11355,6 +11422,22 @@ func EntitlementStatus_Values() []string {
 	return []string{
 		EntitlementStatusEnabled,
 		EntitlementStatusDisabled,
+	}
+}
+
+const (
+	// FailoverModeMerge is a FailoverMode enum value
+	FailoverModeMerge = "MERGE"
+
+	// FailoverModeFailover is a FailoverMode enum value
+	FailoverModeFailover = "FAILOVER"
+)
+
+// FailoverMode_Values returns all elements of the FailoverMode enum
+func FailoverMode_Values() []string {
+	return []string{
+		FailoverModeMerge,
+		FailoverModeFailover,
 	}
 }
 

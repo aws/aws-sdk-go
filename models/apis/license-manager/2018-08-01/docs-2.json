@@ -243,7 +243,12 @@
       "base": null,
       "refs": {
         "CheckoutBorrowLicenseRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
-        "CheckoutLicenseRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>"
+        "CheckoutLicenseRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateGrantRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateGrantVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateLicenseRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateLicenseVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
+        "CreateTokenRequest$ClientToken": "<p>Idempotency token, valid for 10 minutes.</p>"
       }
     },
     "ConflictException": {
@@ -662,12 +667,6 @@
         "GrantedLicense$CreateTime": "<p>Creation time of the granted license.</p>",
         "License$CreateTime": "<p>License creation time.</p>",
         "TokenData$ExpirationTime": "<p>Token expiration time, in ISO8601-UTC format.</p>"
-      }
-    },
-    "IdempotencyToken": {
-      "base": null,
-      "refs": {
-        "CreateTokenRequest$ClientToken": "<p>Idempotency token, valid for 10 minutes.</p>"
       }
     },
     "Integer": {
@@ -1257,6 +1256,15 @@
         "CheckoutLicenseResponse$SignedToken": "<p>Signed token.</p>"
       }
     },
+    "StatusReasonMessage": {
+      "base": null,
+      "refs": {
+        "CreateGrantVersionRequest$StatusReason": null,
+        "DeleteGrantRequest$StatusReason": null,
+        "Grant$StatusReason": "<p>Grant status reason.</p>",
+        "ReceivedMetadata$ReceivedStatusReason": null
+      }
+    },
     "String": {
       "base": null,
       "refs": {
@@ -1272,11 +1280,9 @@
         "CheckoutLicenseRequest$NodeId": "<p>Node ID.</p>",
         "CheckoutLicenseResponse$LicenseConsumptionToken": "<p>License consumption token.</p>",
         "CheckoutLicenseResponse$NodeId": "<p>Node ID.</p>",
-        "CreateGrantRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateGrantRequest$GrantName": "<p>Grant name.</p>",
         "CreateGrantRequest$HomeRegion": "<p>Home Region of the grant.</p>",
         "CreateGrantResponse$Version": "<p>Grant version.</p>",
-        "CreateGrantVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateGrantVersionRequest$GrantName": "<p>Grant name.</p>",
         "CreateGrantVersionRequest$SourceVersion": "<p>Current version of the grant.</p>",
         "CreateGrantVersionResponse$Version": "<p>New version of the grant.</p>",
@@ -1290,12 +1296,10 @@
         "CreateLicenseRequest$ProductSKU": "<p>Product SKU.</p>",
         "CreateLicenseRequest$HomeRegion": "<p>Home Region for the license.</p>",
         "CreateLicenseRequest$Beneficiary": "<p>License beneficiary.</p>",
-        "CreateLicenseRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateLicenseResponse$Version": "<p>License version.</p>",
         "CreateLicenseVersionRequest$LicenseName": "<p>License name.</p>",
         "CreateLicenseVersionRequest$ProductName": "<p>Product name.</p>",
         "CreateLicenseVersionRequest$HomeRegion": "<p>Home Region of the license.</p>",
-        "CreateLicenseVersionRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "CreateLicenseVersionRequest$SourceVersion": "<p>Current version of the license.</p>",
         "CreateLicenseVersionResponse$Version": "<p>New version of the license.</p>",
         "CreateTokenResponse$TokenId": "<p>Token ID.</p>",
@@ -1330,7 +1334,6 @@
         "GetServiceSettingsResponse$LicenseManagerResourceShareArn": "<p>Amazon Resource Name (ARN) of the AWS resource share. The License Manager management account provides member accounts with access to this share.</p>",
         "Grant$GrantName": "<p>Grant name.</p>",
         "Grant$HomeRegion": "<p>Home Region of the grant.</p>",
-        "Grant$StatusReason": "<p>Grant status reason.</p>",
         "Grant$Version": "<p>Grant version.</p>",
         "GrantedLicense$LicenseName": "<p>License name.</p>",
         "GrantedLicense$ProductName": "<p>Product name.</p>",

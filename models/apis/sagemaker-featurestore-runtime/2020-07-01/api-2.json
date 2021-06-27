@@ -12,6 +12,21 @@
     "uid":"sagemaker-featurestore-runtime-2020-07-01"
   },
   "operations":{
+    "BatchGetRecord":{
+      "name":"BatchGetRecord",
+      "http":{
+        "method":"POST",
+        "requestUri":"/BatchGetRecord"
+      },
+      "input":{"shape":"BatchGetRecordRequest"},
+      "output":{"shape":"BatchGetRecordResponse"},
+      "errors":[
+        {"shape":"ValidationError"},
+        {"shape":"InternalFailure"},
+        {"shape":"ServiceUnavailable"},
+        {"shape":"AccessForbidden"}
+      ]
+    },
     "DeleteRecord":{
       "name":"DeleteRecord",
       "http":{
@@ -66,6 +81,82 @@
       "error":{"httpStatusCode":403},
       "exception":true,
       "synthetic":true
+    },
+    "BatchGetRecordError":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupName",
+        "RecordIdentifierValueAsString",
+        "ErrorCode",
+        "ErrorMessage"
+      ],
+      "members":{
+        "FeatureGroupName":{"shape":"ValueAsString"},
+        "RecordIdentifierValueAsString":{"shape":"ValueAsString"},
+        "ErrorCode":{"shape":"ValueAsString"},
+        "ErrorMessage":{"shape":"Message"}
+      }
+    },
+    "BatchGetRecordErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetRecordError"},
+      "min":0
+    },
+    "BatchGetRecordIdentifier":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupName",
+        "RecordIdentifiersValueAsString"
+      ],
+      "members":{
+        "FeatureGroupName":{"shape":"FeatureGroupName"},
+        "RecordIdentifiersValueAsString":{"shape":"RecordIdentifiers"},
+        "FeatureNames":{"shape":"FeatureNames"}
+      }
+    },
+    "BatchGetRecordIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetRecordIdentifier"},
+      "max":10,
+      "min":1
+    },
+    "BatchGetRecordRequest":{
+      "type":"structure",
+      "required":["Identifiers"],
+      "members":{
+        "Identifiers":{"shape":"BatchGetRecordIdentifiers"}
+      }
+    },
+    "BatchGetRecordResponse":{
+      "type":"structure",
+      "required":[
+        "Records",
+        "Errors",
+        "UnprocessedIdentifiers"
+      ],
+      "members":{
+        "Records":{"shape":"BatchGetRecordResultDetails"},
+        "Errors":{"shape":"BatchGetRecordErrors"},
+        "UnprocessedIdentifiers":{"shape":"UnprocessedIdentifiers"}
+      }
+    },
+    "BatchGetRecordResultDetail":{
+      "type":"structure",
+      "required":[
+        "FeatureGroupName",
+        "RecordIdentifierValueAsString",
+        "Record"
+      ],
+      "members":{
+        "FeatureGroupName":{"shape":"ValueAsString"},
+        "RecordIdentifierValueAsString":{"shape":"ValueAsString"},
+        "Record":{"shape":"Record"}
+      }
+    },
+    "BatchGetRecordResultDetails":{
+      "type":"list",
+      "member":{"shape":"BatchGetRecordResultDetail"},
+      "min":0
     },
     "DeleteRecordRequest":{
       "type":"structure",
@@ -184,6 +275,12 @@
       "member":{"shape":"FeatureValue"},
       "min":1
     },
+    "RecordIdentifiers":{
+      "type":"list",
+      "member":{"shape":"ValueAsString"},
+      "max":100,
+      "min":1
+    },
     "ResourceNotFound":{
       "type":"structure",
       "members":{
@@ -201,6 +298,11 @@
       "exception":true,
       "fault":true,
       "synthetic":true
+    },
+    "UnprocessedIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetRecordIdentifier"},
+      "min":0
     },
     "ValidationError":{
       "type":"structure",

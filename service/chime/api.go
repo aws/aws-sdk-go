@@ -199,6 +199,7 @@ var (
 		"UpdateRoom":                                        ExecuteUpdateRoom,
 		"UpdateRoomMembership":                              ExecuteUpdateRoomMembership,
 		"UpdateSipMediaApplication":                         ExecuteUpdateSipMediaApplication,
+		"UpdateSipMediaApplicationCall":                     ExecuteUpdateSipMediaApplicationCall,
 		"UpdateSipRule":                                     ExecuteUpdateSipRule,
 		"UpdateUser":                                        ExecuteUpdateUser,
 		"UpdateUserSettings":                                ExecuteUpdateUserSettings,
@@ -1651,10 +1652,10 @@ func (c *Chime) BatchUpdatePhoneNumberRequest(input *BatchUpdatePhoneNumberInput
 // the product type or the calling name.
 //
 // For toll-free numbers, you cannot use the Amazon Chime Business Calling product
-// type. For numbers outside the US, you must use the Amazon Chime SIP Media
+// type. For numbers outside the U.S., you must use the Amazon Chime SIP Media
 // Application Dial-In product type.
 //
-// Updates to outbound calling names can take 72 hours to complete. Pending
+// Updates to outbound calling names can take up to 72 hours to complete. Pending
 // updates to outbound calling names must be complete before you can request
 // another update.
 //
@@ -3812,7 +3813,7 @@ func (c *Chime) CreatePhoneNumberOrderRequest(input *CreatePhoneNumberOrderInput
 //
 // Creates an order for phone numbers to be provisioned. For toll-free numbers,
 // you cannot use the Amazon Chime Business Calling product type. For numbers
-// outside the US, you must use the Amazon Chime SIP Media Application Dial-In
+// outside the U.S., you must use the Amazon Chime SIP Media Application Dial-In
 // product type.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -14013,7 +14014,7 @@ func (c *Chime) GetVoiceConnectorGroupRequest(input *GetVoiceConnectorGroupInput
 // GetVoiceConnectorGroup API operation for Amazon Chime.
 //
 // Retrieves details for the specified Amazon Chime Voice Connector group, such
-// as timestamps,name, and associated VoiceConnectorItems .
+// as timestamps,name, and associated VoiceConnectorItems.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17922,7 +17923,7 @@ func (c *Chime) ListMeetingsRequest(input *ListMeetingsInput) (req *request.Requ
 //
 // Lists up to 100 active Amazon Chime SDK meetings. For more information about
 // the Amazon Chime SDK, see Using the Amazon Chime SDK (https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html)
-// in the Amazon Chime Developer Guide .
+// in the Amazon Chime Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20984,13 +20985,13 @@ func (c *Chime) PutRetentionSettingsRequest(input *PutRetentionSettingsInput) (r
 // We recommend using AWS CloudTrail to monitor usage of this API for your account.
 // For more information, see Logging Amazon Chime API Calls with AWS CloudTrail
 // (https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html) in the Amazon
-// Chime Administration Guide .
+// Chime Administration Guide.
 //
 // To turn off existing retention settings, remove the number of days from the
 // corresponding RetentionDays field in the RetentionSettings object. For more
 // information about retention settings, see Managing Chat Retention Policies
 // (https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html) in the
-// Amazon Chime Administration Guide .
+// Amazon Chime Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -24207,7 +24208,7 @@ func (c *Chime) UpdateAccountRequest(input *UpdateAccountInput) (req *request.Re
 // UpdateAccount API operation for Amazon Chime.
 //
 // Updates account details for the specified Amazon Chime account. Currently,
-// only account name updates are supported for this action.
+// only account name and default license updates are supported for this action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -26225,6 +26226,145 @@ func ExecuteUpdateSipMediaApplication(parameters map[string]interface{}) (map[st
 	}
 
 	req, out := svc.UpdateSipMediaApplicationRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
+const opUpdateSipMediaApplicationCall = "UpdateSipMediaApplicationCall"
+
+// UpdateSipMediaApplicationCallRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSipMediaApplicationCall operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSipMediaApplicationCall for more information on using the UpdateSipMediaApplicationCall
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSipMediaApplicationCallRequest method.
+//    req, resp := client.UpdateSipMediaApplicationCallRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplicationCall
+func (c *Chime) UpdateSipMediaApplicationCallRequest(input *UpdateSipMediaApplicationCallInput) (req *request.Request, output *UpdateSipMediaApplicationCallOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSipMediaApplicationCall,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}/calls/{transactionId}",
+	}
+
+	if input == nil {
+		input = &UpdateSipMediaApplicationCallInput{}
+	}
+
+	output = &UpdateSipMediaApplicationCallOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSipMediaApplicationCall API operation for Amazon Chime.
+//
+// Allows you to trigger a Lambda function at any time while a call is active,
+// and replace the current actions with new actions returned by the invocation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateSipMediaApplicationCall for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplicationCall
+func (c *Chime) UpdateSipMediaApplicationCall(input *UpdateSipMediaApplicationCallInput) (*UpdateSipMediaApplicationCallOutput, error) {
+	req, out := c.UpdateSipMediaApplicationCallRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSipMediaApplicationCallWithContext is the same as UpdateSipMediaApplicationCall with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSipMediaApplicationCall for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateSipMediaApplicationCallWithContext(ctx aws.Context, input *UpdateSipMediaApplicationCallInput, opts ...request.Option) (*UpdateSipMediaApplicationCallOutput, error) {
+	req, out := c.UpdateSipMediaApplicationCallRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteUpdateSipMediaApplicationCall is Blink's code
+func ExecuteUpdateSipMediaApplicationCall(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Chime)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := UpdateSipMediaApplicationCallInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.UpdateSipMediaApplicationCallRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -45315,6 +45455,9 @@ type UpdateAccountInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"uri" locationName:"accountId" type:"string" required:"true"`
 
+	// The default license applied when you add users to an Amazon Chime account.
+	DefaultLicense *string `type:"string" enum:"License"`
+
 	// The new name for the specified Amazon Chime account.
 	Name *string `min:"1" type:"string"`
 }
@@ -45351,6 +45494,12 @@ func (s *UpdateAccountInput) Validate() error {
 // SetAccountId sets the AccountId field's value.
 func (s *UpdateAccountInput) SetAccountId(v string) *UpdateAccountInput {
 	s.AccountId = &v
+	return s
+}
+
+// SetDefaultLicense sets the DefaultLicense field's value.
+func (s *UpdateAccountInput) SetDefaultLicense(v string) *UpdateAccountInput {
+	s.DefaultLicense = &v
 	return s
 }
 
@@ -46593,6 +46742,102 @@ func (s UpdateRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *UpdateRoomOutput) SetRoom(v *Room) *UpdateRoomOutput {
 	s.Room = v
+	return s
+}
+
+type UpdateSipMediaApplicationCallInput struct {
+	_ struct{} `type:"structure"`
+
+	// Arguments made available to the Lambda function as part of the CALL_UPDATE_REQUESTED
+	// event. Can contain 0-20 key-value pairs.
+	//
+	// Arguments is a required field
+	Arguments map[string]*string `type:"map" required:"true"`
+
+	// The ID of the SIP media application handling the call.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+
+	// The ID of the call transaction.
+	//
+	// TransactionId is a required field
+	TransactionId *string `location:"uri" locationName:"transactionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationCallInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationCallInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSipMediaApplicationCallInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSipMediaApplicationCallInput"}
+	if s.Arguments == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arguments"))
+	}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+	if s.TransactionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransactionId"))
+	}
+	if s.TransactionId != nil && len(*s.TransactionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TransactionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArguments sets the Arguments field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetArguments(v map[string]*string) *UpdateSipMediaApplicationCallInput {
+	s.Arguments = v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetSipMediaApplicationId(v string) *UpdateSipMediaApplicationCallInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *UpdateSipMediaApplicationCallInput) SetTransactionId(v string) *UpdateSipMediaApplicationCallInput {
+	s.TransactionId = &v
+	return s
+}
+
+type UpdateSipMediaApplicationCallOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A Call instance for a SIP media application.
+	SipMediaApplicationCall *SipMediaApplicationCall `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationCallOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationCallOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplicationCall sets the SipMediaApplicationCall field's value.
+func (s *UpdateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipMediaApplicationCall) *UpdateSipMediaApplicationCallOutput {
+	s.SipMediaApplicationCall = v
 	return s
 }
 

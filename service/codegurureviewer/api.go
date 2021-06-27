@@ -90,8 +90,8 @@ func (c *CodeGuruReviewer) AssociateRepositoryRequest(input *AssociateRepository
 // in Amazon CodeGuru Reviewer (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html)
 // in the Amazon CodeGuru Reviewer User Guide.
 //
-// If you associate a CodeCommit repository, it must be in the same AWS Region
-// and AWS account where its CodeGuru Reviewer code reviews are configured.
+// If you associate a CodeCommit or S3 repository, it must be in the same AWS
+// Region and AWS account where its CodeGuru Reviewer code reviews are configured.
 //
 // Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar
 // Connections to connect to CodeGuru Reviewer. For more information, see Associate
@@ -236,8 +236,7 @@ func (c *CodeGuruReviewer) CreateCodeReviewRequest(input *CreateCodeReviewInput)
 // Use to create a code review with a CodeReviewType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReviewType.html)
 // of RepositoryAnalysis. This type of code review analyzes all code under a
 // specified branch in an associated repository. PullRequest code reviews are
-// automatically triggered by a pull request so cannot be created using this
-// method.
+// automatically triggered by a pull request.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2289,6 +2288,132 @@ func (s *AssociateRepositoryOutput) SetTags(v map[string]*string) *AssociateRepo
 	return s
 }
 
+// A type of SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+// that specifies a code diff between a source and destination branch in an
+// associated repository.
+type BranchDiffSourceCodeType struct {
+	_ struct{} `type:"structure"`
+
+	// The destination branch for a diff in an associated repository.
+	//
+	// DestinationBranchName is a required field
+	DestinationBranchName *string `min:"1" type:"string" required:"true"`
+
+	// The source branch for a diff in an associated repository.
+	//
+	// SourceBranchName is a required field
+	SourceBranchName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BranchDiffSourceCodeType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BranchDiffSourceCodeType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BranchDiffSourceCodeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BranchDiffSourceCodeType"}
+	if s.DestinationBranchName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationBranchName"))
+	}
+	if s.DestinationBranchName != nil && len(*s.DestinationBranchName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationBranchName", 1))
+	}
+	if s.SourceBranchName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceBranchName"))
+	}
+	if s.SourceBranchName != nil && len(*s.SourceBranchName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceBranchName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationBranchName sets the DestinationBranchName field's value.
+func (s *BranchDiffSourceCodeType) SetDestinationBranchName(v string) *BranchDiffSourceCodeType {
+	s.DestinationBranchName = &v
+	return s
+}
+
+// SetSourceBranchName sets the SourceBranchName field's value.
+func (s *BranchDiffSourceCodeType) SetSourceBranchName(v string) *BranchDiffSourceCodeType {
+	s.SourceBranchName = &v
+	return s
+}
+
+// Code artifacts are source code artifacts and build artifacts used in a repository
+// analysis or a pull request review.
+//
+//    * Source code artifacts are source code files in a Git repository that
+//    are compressed into a .zip file.
+//
+//    * Build artifacts are .jar or .class files that are compressed in a .zip
+//    file.
+type CodeArtifacts struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 object key for a build artifacts .zip file that contains .jar or .class
+	// files. This is required for a code review with security analysis. For more
+	// information, see Create code reviews with security analysis (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/code-review-security.html)
+	// in the Amazon CodeGuru Reviewer User Guide.
+	BuildArtifactsObjectKey *string `min:"1" type:"string"`
+
+	// The S3 object key for a source code .zip file. This is required for all code
+	// reviews.
+	//
+	// SourceCodeArtifactsObjectKey is a required field
+	SourceCodeArtifactsObjectKey *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CodeArtifacts) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CodeArtifacts) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CodeArtifacts) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CodeArtifacts"}
+	if s.BuildArtifactsObjectKey != nil && len(*s.BuildArtifactsObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BuildArtifactsObjectKey", 1))
+	}
+	if s.SourceCodeArtifactsObjectKey == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceCodeArtifactsObjectKey"))
+	}
+	if s.SourceCodeArtifactsObjectKey != nil && len(*s.SourceCodeArtifactsObjectKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceCodeArtifactsObjectKey", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBuildArtifactsObjectKey sets the BuildArtifactsObjectKey field's value.
+func (s *CodeArtifacts) SetBuildArtifactsObjectKey(v string) *CodeArtifacts {
+	s.BuildArtifactsObjectKey = &v
+	return s
+}
+
+// SetSourceCodeArtifactsObjectKey sets the SourceCodeArtifactsObjectKey field's value.
+func (s *CodeArtifacts) SetSourceCodeArtifactsObjectKey(v string) *CodeArtifacts {
+	s.SourceCodeArtifactsObjectKey = &v
+	return s
+}
+
 // Information about an AWS CodeCommit repository. The CodeCommit repository
 // must be in the same AWS Region and AWS account where its CodeGuru Reviewer
 // code reviews are configured.
@@ -2340,6 +2465,10 @@ func (s *CodeCommitRepository) SetName(v string) *CodeCommitRepository {
 type CodeReview struct {
 	_ struct{} `type:"structure"`
 
+	// They types of analysis performed during a repository analysis or a pull request
+	// review. You can specify either Security, CodeQuality, or both.
+	AnalysisTypes []*string `type:"list"`
+
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// that contains the reviewed source code. You can retrieve associated repository
 	// ARNs by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
@@ -2365,7 +2494,8 @@ type CodeReview struct {
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
 	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
 	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository.
+	// account that owns the repository. For an S3 repository, it can be the username
+	// or AWS account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The type of repository that contains the reviewed code (for example, GitHub
@@ -2407,6 +2537,12 @@ func (s CodeReview) String() string {
 // GoString returns the string representation
 func (s CodeReview) GoString() string {
 	return s.String()
+}
+
+// SetAnalysisTypes sets the AnalysisTypes field's value.
+func (s *CodeReview) SetAnalysisTypes(v []*string) *CodeReview {
+	s.AnalysisTypes = v
+	return s
 }
 
 // SetAssociationArn sets the AssociationArn field's value.
@@ -2517,7 +2653,8 @@ type CodeReviewSummary struct {
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
 	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
 	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository.
+	// account that owns the repository. For an S3 repository, it can be the username
+	// or AWS account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -2528,6 +2665,9 @@ type CodeReviewSummary struct {
 
 	// The name of the repository.
 	RepositoryName *string `min:"1" type:"string"`
+
+	// Specifies the source code that is analyzed in a code review.
+	SourceCodeType *SourceCodeType `type:"structure"`
 
 	// The state of the code review.
 	//
@@ -2610,6 +2750,12 @@ func (s *CodeReviewSummary) SetRepositoryName(v string) *CodeReviewSummary {
 	return s
 }
 
+// SetSourceCodeType sets the SourceCodeType field's value.
+func (s *CodeReviewSummary) SetSourceCodeType(v *SourceCodeType) *CodeReviewSummary {
+	s.SourceCodeType = v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *CodeReviewSummary) SetState(v string) *CodeReviewSummary {
 	s.State = &v
@@ -2625,15 +2771,17 @@ func (s *CodeReviewSummary) SetType(v string) *CodeReviewSummary {
 // The type of a code review. There are two code review types:
 //
 //    * PullRequest - A code review that is automatically triggered by a pull
-//    request on an associated repository. Because this type of code review
-//    is automatically generated, you cannot specify this code review type using
-//    CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
+//    request on an associated repository.
 //
 //    * RepositoryAnalysis - A code review that analyzes all code under a specified
 //    branch in an associated repository. The associated repository is specified
 //    using its ARN in CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
 type CodeReviewType struct {
 	_ struct{} `type:"structure"`
+
+	// They types of analysis performed during a repository analysis or a pull request
+	// review. You can specify either Security, CodeQuality, or both.
+	AnalysisTypes []*string `type:"list"`
 
 	// A code review that analyzes all code under a specified branch in an associated
 	// repository. The associated repository is specified using its ARN in CreateCodeReview
@@ -2671,6 +2819,12 @@ func (s *CodeReviewType) Validate() error {
 	return nil
 }
 
+// SetAnalysisTypes sets the AnalysisTypes field's value.
+func (s *CodeReviewType) SetAnalysisTypes(v []*string) *CodeReviewType {
+	s.AnalysisTypes = v
+	return s
+}
+
 // SetRepositoryAnalysis sets the RepositoryAnalysis field's value.
 func (s *CodeReviewType) SetRepositoryAnalysis(v *RepositoryAnalysis) *CodeReviewType {
 	s.RepositoryAnalysis = v
@@ -2679,13 +2833,20 @@ func (s *CodeReviewType) SetRepositoryAnalysis(v *RepositoryAnalysis) *CodeRevie
 
 // A type of SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
 // that specifies the commit diff for a pull request on an associated repository.
+// The SourceCommit and DestinationCommit fields are required to do a pull request
+// code review.
 type CommitDiffSourceCodeType struct {
 	_ struct{} `type:"structure"`
 
-	// The SHA of the destination commit used to generate a commit diff.
+	// The SHA of the destination commit used to generate a commit diff. This field
+	// is required for a pull request code review.
 	DestinationCommit *string `min:"6" type:"string"`
 
-	// The SHA of the source commit used to generate a commit diff.
+	// The SHA of the merge base of a commit.
+	MergeBaseCommit *string `min:"6" type:"string"`
+
+	// The SHA of the source commit used to generate a commit diff. This field is
+	// required for a pull request code review.
 	SourceCommit *string `min:"6" type:"string"`
 }
 
@@ -2699,9 +2860,34 @@ func (s CommitDiffSourceCodeType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CommitDiffSourceCodeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CommitDiffSourceCodeType"}
+	if s.DestinationCommit != nil && len(*s.DestinationCommit) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("DestinationCommit", 6))
+	}
+	if s.MergeBaseCommit != nil && len(*s.MergeBaseCommit) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("MergeBaseCommit", 6))
+	}
+	if s.SourceCommit != nil && len(*s.SourceCommit) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceCommit", 6))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetDestinationCommit sets the DestinationCommit field's value.
 func (s *CommitDiffSourceCodeType) SetDestinationCommit(v string) *CommitDiffSourceCodeType {
 	s.DestinationCommit = &v
+	return s
+}
+
+// SetMergeBaseCommit sets the MergeBaseCommit field's value.
+func (s *CommitDiffSourceCodeType) SetMergeBaseCommit(v string) *CommitDiffSourceCodeType {
+	s.MergeBaseCommit = &v
 	return s
 }
 
@@ -3217,6 +3403,57 @@ func (s *DisassociateRepositoryOutput) SetRepositoryAssociation(v *RepositoryAss
 // SetTags sets the Tags field's value.
 func (s *DisassociateRepositoryOutput) SetTags(v map[string]*string) *DisassociateRepositoryOutput {
 	s.Tags = v
+	return s
+}
+
+// Information about an event. The event might be a push, pull request, scheduled
+// request, or another type of event.
+type EventInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event. The possible names are pull_request, workflow_dispatch,
+	// schedule, and push
+	Name *string `min:"1" type:"string"`
+
+	// The state of an event. The state might be open, closed, or another state.
+	State *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s EventInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventInfo"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.State != nil && len(*s.State) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("State", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *EventInfo) SetName(v string) *EventInfo {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *EventInfo) SetState(v string) *EventInfo {
+	s.State = &v
 	return s
 }
 
@@ -4327,6 +4564,9 @@ type RecommendationSummary struct {
 	// Name of the file on which a recommendation is provided.
 	FilePath *string `min:"1" type:"string"`
 
+	// The type of a recommendation.
+	RecommendationCategory *string `type:"string" enum:"RecommendationCategory"`
+
 	// The recommendation ID that can be used to track the provided recommendations.
 	// Later on it can be used to collect the feedback.
 	RecommendationId *string `min:"1" type:"string"`
@@ -4364,6 +4604,12 @@ func (s *RecommendationSummary) SetFilePath(v string) *RecommendationSummary {
 	return s
 }
 
+// SetRecommendationCategory sets the RecommendationCategory field's value.
+func (s *RecommendationSummary) SetRecommendationCategory(v string) *RecommendationSummary {
+	s.RecommendationCategory = &v
+	return s
+}
+
 // SetRecommendationId sets the RecommendationId field's value.
 func (s *RecommendationSummary) SetRecommendationId(v string) *RecommendationSummary {
 	s.RecommendationId = &v
@@ -4391,6 +4637,9 @@ type Repository struct {
 
 	// Information about a GitHub Enterprise Server repository.
 	GitHubEnterpriseServer *ThirdPartySourceRepository `type:"structure"`
+
+	// Information about a repository in an S3 bucket.
+	S3Bucket *S3Repository `type:"structure"`
 }
 
 // String returns the string representation
@@ -4421,6 +4670,11 @@ func (s *Repository) Validate() error {
 			invalidParams.AddNested("GitHubEnterpriseServer", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.S3Bucket != nil {
+		if err := s.S3Bucket.Validate(); err != nil {
+			invalidParams.AddNested("S3Bucket", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4446,6 +4700,12 @@ func (s *Repository) SetGitHubEnterpriseServer(v *ThirdPartySourceRepository) *R
 	return s
 }
 
+// SetS3Bucket sets the S3Bucket field's value.
+func (s *Repository) SetS3Bucket(v *S3Repository) *Repository {
+	s.S3Bucket = v
+	return s
+}
+
 // A code review type that analyzes all code under a specified branch in an
 // associated repository. The associated repository is specified using its ARN
 // when you call CreateCodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CreateCodeReview).
@@ -4454,9 +4714,10 @@ type RepositoryAnalysis struct {
 
 	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
 	// that specifies the tip of a branch in an associated repository.
-	//
-	// RepositoryHead is a required field
-	RepositoryHead *RepositoryHeadSourceCodeType `type:"structure" required:"true"`
+	RepositoryHead *RepositoryHeadSourceCodeType `type:"structure"`
+
+	// Specifies the source code that is analyzed in a code review.
+	SourceCodeType *SourceCodeType `type:"structure"`
 }
 
 // String returns the string representation
@@ -4472,12 +4733,14 @@ func (s RepositoryAnalysis) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *RepositoryAnalysis) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "RepositoryAnalysis"}
-	if s.RepositoryHead == nil {
-		invalidParams.Add(request.NewErrParamRequired("RepositoryHead"))
-	}
 	if s.RepositoryHead != nil {
 		if err := s.RepositoryHead.Validate(); err != nil {
 			invalidParams.AddNested("RepositoryHead", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceCodeType != nil {
+		if err := s.SourceCodeType.Validate(); err != nil {
+			invalidParams.AddNested("SourceCodeType", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4490,6 +4753,12 @@ func (s *RepositoryAnalysis) Validate() error {
 // SetRepositoryHead sets the RepositoryHead field's value.
 func (s *RepositoryAnalysis) SetRepositoryHead(v *RepositoryHeadSourceCodeType) *RepositoryAnalysis {
 	s.RepositoryHead = v
+	return s
+}
+
+// SetSourceCodeType sets the SourceCodeType field's value.
+func (s *RepositoryAnalysis) SetSourceCodeType(v *SourceCodeType) *RepositoryAnalysis {
+	s.SourceCodeType = v
 	return s
 }
 
@@ -4534,11 +4803,17 @@ type RepositoryAssociation struct {
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
 	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
 	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository.
+	// account that owns the repository. For an S3 repository, it can be the username
+	// or AWS account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
 	ProviderType *string `type:"string" enum:"ProviderType"`
+
+	// Specifies the name of an S3 bucket and a CodeArtifacts object that contains
+	// the S3 object keys for a source code .zip file and for a build artifacts
+	// .zip file that contains .jar or .class files.
+	S3RepositoryDetails *S3RepositoryDetails `type:"structure"`
 
 	// The state of the repository association.
 	//
@@ -4637,6 +4912,12 @@ func (s *RepositoryAssociation) SetProviderType(v string) *RepositoryAssociation
 	return s
 }
 
+// SetS3RepositoryDetails sets the S3RepositoryDetails field's value.
+func (s *RepositoryAssociation) SetS3RepositoryDetails(v *S3RepositoryDetails) *RepositoryAssociation {
+	s.S3RepositoryDetails = v
+	return s
+}
+
 // SetState sets the State field's value.
 func (s *RepositoryAssociation) SetState(v string) *RepositoryAssociation {
 	s.State = &v
@@ -4678,7 +4959,8 @@ type RepositoryAssociationSummary struct {
 	// The owner of the repository. For an AWS CodeCommit repository, this is the
 	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
 	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository.
+	// account that owns the repository. For an S3 repository, it can be the username
+	// or AWS account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -4816,6 +5098,86 @@ func (s *RepositoryHeadSourceCodeType) SetBranchName(v string) *RepositoryHeadSo
 	return s
 }
 
+// Metadata that is associated with a code review. This applies to both pull
+// request and repository analysis code reviews.
+type RequestMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the event associated with a code review.
+	EventInfo *EventInfo `type:"structure"`
+
+	// The ID of the request. This is required for a pull request code review.
+	RequestId *string `min:"1" type:"string"`
+
+	// An identifier, such as a name or account ID, that is associated with the
+	// requester. The Requester is used to capture the author/actor name of the
+	// event request.
+	Requester *string `min:"1" type:"string"`
+
+	// The name of the repository vendor used to upload code to an S3 bucket for
+	// a CI/CD code review. For example, if code and artifacts are uploaded to an
+	// S3 bucket for a CI/CD code review by GitHub scripts from a GitHub repository,
+	// then the repository association's ProviderType is S3Bucket and the CI/CD
+	// repository vendor name is GitHub. For more information, see the definition
+	// for ProviderType in RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html).
+	VendorName *string `type:"string" enum:"VendorName"`
+}
+
+// String returns the string representation
+func (s RequestMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestMetadata) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RequestMetadata) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RequestMetadata"}
+	if s.RequestId != nil && len(*s.RequestId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestId", 1))
+	}
+	if s.Requester != nil && len(*s.Requester) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Requester", 1))
+	}
+	if s.EventInfo != nil {
+		if err := s.EventInfo.Validate(); err != nil {
+			invalidParams.AddNested("EventInfo", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventInfo sets the EventInfo field's value.
+func (s *RequestMetadata) SetEventInfo(v *EventInfo) *RequestMetadata {
+	s.EventInfo = v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *RequestMetadata) SetRequestId(v string) *RequestMetadata {
+	s.RequestId = &v
+	return s
+}
+
+// SetRequester sets the Requester field's value.
+func (s *RequestMetadata) SetRequester(v string) *RequestMetadata {
+	s.Requester = &v
+	return s
+}
+
+// SetVendorName sets the VendorName field's value.
+func (s *RequestMetadata) SetVendorName(v string) *RequestMetadata {
+	s.VendorName = &v
+	return s
+}
+
 // The resource specified in the request was not found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -4872,11 +5234,190 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the source code that is analyzed in a code review. A code review
-// can analyze the source code that is specified using a pull request diff or
-// a branch in an associated repository.
+// Information about an associated repository in an S3 bucket. The associated
+// repository contains a source code .zip file and a build artifacts .zip file
+// that contains .jar or .class files.
+type S3BucketRepository struct {
+	_ struct{} `type:"structure"`
+
+	// An S3RepositoryDetails object that specifies the name of an S3 bucket and
+	// a CodeArtifacts object. The CodeArtifacts object includes the S3 object keys
+	// for a source code .zip file and for a build artifacts .zip file.
+	Details *S3RepositoryDetails `type:"structure"`
+
+	// The name of the repository when the ProviderType is S3Bucket.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3BucketRepository) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3BucketRepository) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketRepository) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketRepository"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDetails sets the Details field's value.
+func (s *S3BucketRepository) SetDetails(v *S3RepositoryDetails) *S3BucketRepository {
+	s.Details = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3BucketRepository) SetName(v string) *S3BucketRepository {
+	s.Name = &v
+	return s
+}
+
+// Information about a repository in an S3 bucket.
+type S3Repository struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket used for associating a new S3 repository. It must
+	// begin with codeguru-reviewer-.
+	//
+	// BucketName is a required field
+	BucketName *string `min:"3" type:"string" required:"true"`
+
+	// The name of the repository in the S3 bucket.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3Repository) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Repository) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Repository) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Repository"}
+	if s.BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketName"))
+	}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3Repository) SetBucketName(v string) *S3Repository {
+	s.BucketName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *S3Repository) SetName(v string) *S3Repository {
+	s.Name = &v
+	return s
+}
+
+// Specifies the name of an S3 bucket and a CodeArtifacts object that contains
+// the S3 object keys for a source code .zip file and for a build artifacts
+// .zip file that contains .jar or .class files.
+type S3RepositoryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket used for associating a new S3 repository. It must
+	// begin with codeguru-reviewer-.
+	BucketName *string `min:"3" type:"string"`
+
+	// A CodeArtifacts object. The CodeArtifacts object includes the S3 object key
+	// for a source code .zip file and for a build artifacts .zip file that contains
+	// .jar or .class files.
+	CodeArtifacts *CodeArtifacts `type:"structure"`
+}
+
+// String returns the string representation
+func (s S3RepositoryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3RepositoryDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3RepositoryDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3RepositoryDetails"}
+	if s.BucketName != nil && len(*s.BucketName) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("BucketName", 3))
+	}
+	if s.CodeArtifacts != nil {
+		if err := s.CodeArtifacts.Validate(); err != nil {
+			invalidParams.AddNested("CodeArtifacts", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucketName sets the BucketName field's value.
+func (s *S3RepositoryDetails) SetBucketName(v string) *S3RepositoryDetails {
+	s.BucketName = &v
+	return s
+}
+
+// SetCodeArtifacts sets the CodeArtifacts field's value.
+func (s *S3RepositoryDetails) SetCodeArtifacts(v *CodeArtifacts) *S3RepositoryDetails {
+	s.CodeArtifacts = v
+	return s
+}
+
+// Specifies the source code that is analyzed in a code review.
 type SourceCodeType struct {
 	_ struct{} `type:"structure"`
+
+	// A type of SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+	// that specifies a source branch name and a destination branch name in an associated
+	// repository.
+	BranchDiff *BranchDiffSourceCodeType `type:"structure"`
 
 	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
 	// that specifies a commit diff created by a pull request on an associated repository.
@@ -4885,6 +5426,20 @@ type SourceCodeType struct {
 	// A SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
 	// that specifies the tip of a branch in an associated repository.
 	RepositoryHead *RepositoryHeadSourceCodeType `type:"structure"`
+
+	// Metadata that is associated with a code review. This applies to any type
+	// of code review supported by CodeGuru Reviewer. The RequestMetadaa field captures
+	// any event metadata. For example, it might capture metadata associated with
+	// an event trigger, such as a push or a pull request.
+	RequestMetadata *RequestMetadata `type:"structure"`
+
+	// Information about an associated repository in an S3 bucket that includes
+	// its name and an S3RepositoryDetails object. The S3RepositoryDetails object
+	// includes the name of an S3 bucket, an S3 key for a source code .zip file,
+	// and an S3 key for a build artifacts .zip file. S3BucketRepository is required
+	// in SourceCodeType (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_SourceCodeType)
+	// for S3BucketRepository based code reviews.
+	S3BucketRepository *S3BucketRepository `type:"structure"`
 }
 
 // String returns the string representation
@@ -4897,6 +5452,47 @@ func (s SourceCodeType) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceCodeType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceCodeType"}
+	if s.BranchDiff != nil {
+		if err := s.BranchDiff.Validate(); err != nil {
+			invalidParams.AddNested("BranchDiff", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CommitDiff != nil {
+		if err := s.CommitDiff.Validate(); err != nil {
+			invalidParams.AddNested("CommitDiff", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RepositoryHead != nil {
+		if err := s.RepositoryHead.Validate(); err != nil {
+			invalidParams.AddNested("RepositoryHead", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RequestMetadata != nil {
+		if err := s.RequestMetadata.Validate(); err != nil {
+			invalidParams.AddNested("RequestMetadata", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3BucketRepository != nil {
+		if err := s.S3BucketRepository.Validate(); err != nil {
+			invalidParams.AddNested("S3BucketRepository", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBranchDiff sets the BranchDiff field's value.
+func (s *SourceCodeType) SetBranchDiff(v *BranchDiffSourceCodeType) *SourceCodeType {
+	s.BranchDiff = v
+	return s
+}
+
 // SetCommitDiff sets the CommitDiff field's value.
 func (s *SourceCodeType) SetCommitDiff(v *CommitDiffSourceCodeType) *SourceCodeType {
 	s.CommitDiff = v
@@ -4906,6 +5502,18 @@ func (s *SourceCodeType) SetCommitDiff(v *CommitDiffSourceCodeType) *SourceCodeT
 // SetRepositoryHead sets the RepositoryHead field's value.
 func (s *SourceCodeType) SetRepositoryHead(v *RepositoryHeadSourceCodeType) *SourceCodeType {
 	s.RepositoryHead = v
+	return s
+}
+
+// SetRequestMetadata sets the RequestMetadata field's value.
+func (s *SourceCodeType) SetRequestMetadata(v *RequestMetadata) *SourceCodeType {
+	s.RequestMetadata = v
+	return s
+}
+
+// SetS3BucketRepository sets the S3BucketRepository field's value.
+func (s *SourceCodeType) SetS3BucketRepository(v *S3BucketRepository) *SourceCodeType {
+	s.S3BucketRepository = v
 	return s
 }
 
@@ -5009,6 +5617,7 @@ type ThirdPartySourceRepository struct {
 
 	// The owner of the repository. For a GitHub, GitHub Enterprise, or Bitbucket
 	// repository, this is the username for the account that owns the repository.
+	// For an S3 repository, this can be the username or AWS account ID.
 	//
 	// Owner is a required field
 	Owner *string `min:"1" type:"string" required:"true"`
@@ -5253,6 +5862,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// AnalysisTypeSecurity is a AnalysisType enum value
+	AnalysisTypeSecurity = "Security"
+
+	// AnalysisTypeCodeQuality is a AnalysisType enum value
+	AnalysisTypeCodeQuality = "CodeQuality"
+)
+
+// AnalysisType_Values returns all elements of the AnalysisType enum
+func AnalysisType_Values() []string {
+	return []string{
+		AnalysisTypeSecurity,
+		AnalysisTypeCodeQuality,
+	}
+}
+
+const (
 	// EncryptionOptionAwsOwnedCmk is a EncryptionOption enum value
 	EncryptionOptionAwsOwnedCmk = "AWS_OWNED_CMK"
 
@@ -5304,6 +5929,9 @@ const (
 
 	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
+
+	// ProviderTypeS3bucket is a ProviderType enum value
+	ProviderTypeS3bucket = "S3Bucket"
 )
 
 // ProviderType_Values returns all elements of the ProviderType enum
@@ -5313,6 +5941,7 @@ func ProviderType_Values() []string {
 		ProviderTypeGitHub,
 		ProviderTypeBitbucket,
 		ProviderTypeGitHubEnterpriseServer,
+		ProviderTypeS3bucket,
 	}
 }
 
@@ -5329,6 +5958,54 @@ func Reaction_Values() []string {
 	return []string{
 		ReactionThumbsUp,
 		ReactionThumbsDown,
+	}
+}
+
+const (
+	// RecommendationCategoryAwsbestPractices is a RecommendationCategory enum value
+	RecommendationCategoryAwsbestPractices = "AWSBestPractices"
+
+	// RecommendationCategoryAwscloudFormationIssues is a RecommendationCategory enum value
+	RecommendationCategoryAwscloudFormationIssues = "AWSCloudFormationIssues"
+
+	// RecommendationCategoryDuplicateCode is a RecommendationCategory enum value
+	RecommendationCategoryDuplicateCode = "DuplicateCode"
+
+	// RecommendationCategoryCodeMaintenanceIssues is a RecommendationCategory enum value
+	RecommendationCategoryCodeMaintenanceIssues = "CodeMaintenanceIssues"
+
+	// RecommendationCategoryConcurrencyIssues is a RecommendationCategory enum value
+	RecommendationCategoryConcurrencyIssues = "ConcurrencyIssues"
+
+	// RecommendationCategoryInputValidations is a RecommendationCategory enum value
+	RecommendationCategoryInputValidations = "InputValidations"
+
+	// RecommendationCategoryPythonBestPractices is a RecommendationCategory enum value
+	RecommendationCategoryPythonBestPractices = "PythonBestPractices"
+
+	// RecommendationCategoryJavaBestPractices is a RecommendationCategory enum value
+	RecommendationCategoryJavaBestPractices = "JavaBestPractices"
+
+	// RecommendationCategoryResourceLeaks is a RecommendationCategory enum value
+	RecommendationCategoryResourceLeaks = "ResourceLeaks"
+
+	// RecommendationCategorySecurityIssues is a RecommendationCategory enum value
+	RecommendationCategorySecurityIssues = "SecurityIssues"
+)
+
+// RecommendationCategory_Values returns all elements of the RecommendationCategory enum
+func RecommendationCategory_Values() []string {
+	return []string{
+		RecommendationCategoryAwsbestPractices,
+		RecommendationCategoryAwscloudFormationIssues,
+		RecommendationCategoryDuplicateCode,
+		RecommendationCategoryCodeMaintenanceIssues,
+		RecommendationCategoryConcurrencyIssues,
+		RecommendationCategoryInputValidations,
+		RecommendationCategoryPythonBestPractices,
+		RecommendationCategoryJavaBestPractices,
+		RecommendationCategoryResourceLeaks,
+		RecommendationCategorySecurityIssues,
 	}
 }
 
@@ -5373,5 +6050,25 @@ func Type_Values() []string {
 	return []string{
 		TypePullRequest,
 		TypeRepositoryAnalysis,
+	}
+}
+
+const (
+	// VendorNameGitHub is a VendorName enum value
+	VendorNameGitHub = "GitHub"
+
+	// VendorNameGitLab is a VendorName enum value
+	VendorNameGitLab = "GitLab"
+
+	// VendorNameNativeS3 is a VendorName enum value
+	VendorNameNativeS3 = "NativeS3"
+)
+
+// VendorName_Values returns all elements of the VendorName enum
+func VendorName_Values() []string {
+	return []string{
+		VendorNameGitHub,
+		VendorNameGitLab,
+		VendorNameNativeS3,
 	}
 }

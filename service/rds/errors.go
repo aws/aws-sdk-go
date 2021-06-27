@@ -183,8 +183,8 @@ const (
 	// ErrCodeDBInstanceRoleQuotaExceededFault for service response error code
 	// "DBInstanceRoleQuotaExceeded".
 	//
-	// You can't associate any more AWS Identity and Access Management (IAM) roles
-	// with the DB instance because the quota has been reached.
+	// You can't associate any more Amazon Web Services Identity and Access Management
+	// (IAM) roles with the DB instance because the quota has been reached.
 	ErrCodeDBInstanceRoleQuotaExceededFault = "DBInstanceRoleQuotaExceeded"
 
 	// ErrCodeDBLogFileNotFoundFault for service response error code
@@ -215,15 +215,16 @@ const (
 	// ErrCodeDBProxyAlreadyExistsFault for service response error code
 	// "DBProxyAlreadyExistsFault".
 	//
-	// The specified proxy name must be unique for all proxies owned by your AWS
-	// account in the specified AWS Region.
+	// The specified proxy name must be unique for all proxies owned by your Amazon
+	// Web Services account in the specified Amazon Web Services Region.
 	ErrCodeDBProxyAlreadyExistsFault = "DBProxyAlreadyExistsFault"
 
 	// ErrCodeDBProxyEndpointAlreadyExistsFault for service response error code
 	// "DBProxyEndpointAlreadyExistsFault".
 	//
 	// The specified DB proxy endpoint name must be unique for all DB proxy endpoints
-	// owned by your AWS account in the specified AWS Region.
+	// owned by your Amazon Web Services account in the specified Amazon Web Services
+	// Region.
 	ErrCodeDBProxyEndpointAlreadyExistsFault = "DBProxyEndpointAlreadyExistsFault"
 
 	// ErrCodeDBProxyEndpointNotFoundFault for service response error code
@@ -241,15 +242,15 @@ const (
 	// ErrCodeDBProxyNotFoundFault for service response error code
 	// "DBProxyNotFoundFault".
 	//
-	// The specified proxy name doesn't correspond to a proxy owned by your AWS
-	// account in the specified AWS Region.
+	// The specified proxy name doesn't correspond to a proxy owned by your Amazon
+	// Web Services account in the specified Amazon Web Services Region.
 	ErrCodeDBProxyNotFoundFault = "DBProxyNotFoundFault"
 
 	// ErrCodeDBProxyQuotaExceededFault for service response error code
 	// "DBProxyQuotaExceededFault".
 	//
-	// Your AWS account already has the maximum number of proxies in the specified
-	// AWS Region.
+	// Your Amazon Web Services account already has the maximum number of proxies
+	// in the specified Amazon Web Services Region.
 	ErrCodeDBProxyQuotaExceededFault = "DBProxyQuotaExceededFault"
 
 	// ErrCodeDBProxyTargetAlreadyRegisteredFault for service response error code
@@ -262,15 +263,16 @@ const (
 	// ErrCodeDBProxyTargetGroupNotFoundFault for service response error code
 	// "DBProxyTargetGroupNotFoundFault".
 	//
-	// The specified target group isn't available for a proxy owned by your AWS
-	// account in the specified AWS Region.
+	// The specified target group isn't available for a proxy owned by your Amazon
+	// Web Services account in the specified Amazon Web Services Region.
 	ErrCodeDBProxyTargetGroupNotFoundFault = "DBProxyTargetGroupNotFoundFault"
 
 	// ErrCodeDBProxyTargetNotFoundFault for service response error code
 	// "DBProxyTargetNotFoundFault".
 	//
 	// The specified RDS DB instance or Aurora DB cluster isn't available for a
-	// proxy owned by your AWS account in the specified AWS Region.
+	// proxy owned by your Amazon Web Services account in the specified Amazon Web
+	// Services Region.
 	ErrCodeDBProxyTargetNotFoundFault = "DBProxyTargetNotFoundFault"
 
 	// ErrCodeDBSecurityGroupAlreadyExistsFault for service response error code
@@ -622,7 +624,7 @@ const (
 	// ErrCodeKMSKeyNotAccessibleFault for service response error code
 	// "KMSKeyNotAccessibleFault".
 	//
-	// An error occurred accessing an AWS KMS key.
+	// An error occurred accessing an Amazon Web Services KMS key.
 	ErrCodeKMSKeyNotAccessibleFault = "KMSKeyNotAccessibleFault"
 
 	// ErrCodeOptionGroupAlreadyExistsFault for service response error code
@@ -640,7 +642,7 @@ const (
 	// ErrCodeOptionGroupQuotaExceededFault for service response error code
 	// "OptionGroupQuotaExceededFault".
 	//
-	// The quota of 20 option groups was exceeded for this AWS account.
+	// The quota of 20 option groups was exceeded for this Amazon Web Services account.
 	ErrCodeOptionGroupQuotaExceededFault = "OptionGroupQuotaExceededFault"
 
 	// ErrCodePointInTimeRestoreNotEnabledFault for service response error code

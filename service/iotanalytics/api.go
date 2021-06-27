@@ -760,7 +760,8 @@ func (c *IoTAnalytics) CreateDatastoreRequest(input *CreateDatastoreInput) (req 
 
 // CreateDatastore API operation for AWS IoT Analytics.
 //
-// Creates a data store, which is a repository for messages.
+// Creates a data store, which is a repository for messages. Only data stores
+// that are used to save pipeline data can be configured with ParquetConfiguration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5249,6 +5250,10 @@ type ChannelMessages struct {
 
 	// Specifies one or more keys that identify the Amazon Simple Storage Service
 	// (Amazon S3) objects that save your channel messages.
+	//
+	// You must use the full path for the key.
+	//
+	// Example path: channel/mychannel/__dt=2020-02-29 00:00:00/1582940490000_1582940520000_123456789012_mychannel_0_2118.0.json.gz
 	S3Paths []*string `locationName:"s3Paths" min:"1" type:"list"`
 }
 
@@ -6088,6 +6093,9 @@ type CreateDatastoreInput struct {
 	// DatastoreName is a required field
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
+	// Contains information about the partitions in a data store.
+	DatastorePartitions *DatastorePartitions `locationName:"datastorePartitions" type:"structure"`
+
 	// Where data store data is stored. You can choose one of serviceManagedS3 or
 	// customerManagedS3 storage. If not specified, the default is serviceManagedS3.
 	// You cannot change this storage option after the data store is created.
@@ -6131,6 +6139,11 @@ func (s *CreateDatastoreInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.DatastorePartitions != nil {
+		if err := s.DatastorePartitions.Validate(); err != nil {
+			invalidParams.AddNested("DatastorePartitions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DatastoreStorage != nil {
 		if err := s.DatastoreStorage.Validate(); err != nil {
 			invalidParams.AddNested("DatastoreStorage", err.(request.ErrInvalidParams))
@@ -6166,6 +6179,12 @@ func (s *CreateDatastoreInput) Validate() error {
 // SetDatastoreName sets the DatastoreName field's value.
 func (s *CreateDatastoreInput) SetDatastoreName(v string) *CreateDatastoreInput {
 	s.DatastoreName = &v
+	return s
+}
+
+// SetDatastorePartitions sets the DatastorePartitions field's value.
+func (s *CreateDatastoreInput) SetDatastorePartitions(v *DatastorePartitions) *CreateDatastoreInput {
+	s.DatastorePartitions = v
 	return s
 }
 
@@ -7249,6 +7268,9 @@ type Datastore struct {
 	// When the data store was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// Contains information about the partitions in a data store.
+	DatastorePartitions *DatastorePartitions `locationName:"datastorePartitions" type:"structure"`
+
 	// Contains the configuration information of file formats. AWS IoT Analytics
 	// data stores support JSON and Parquet (https://parquet.apache.org/).
 	//
@@ -7316,6 +7338,12 @@ func (s *Datastore) SetArn(v string) *Datastore {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Datastore) SetCreationTime(v time.Time) *Datastore {
 	s.CreationTime = &v
+	return s
+}
+
+// SetDatastorePartitions sets the DatastorePartitions field's value.
+func (s *Datastore) SetDatastorePartitions(v *DatastorePartitions) *Datastore {
+	s.DatastorePartitions = v
 	return s
 }
 
@@ -7417,6 +7445,103 @@ func (s *DatastoreActivity) SetDatastoreName(v string) *DatastoreActivity {
 // SetName sets the Name field's value.
 func (s *DatastoreActivity) SetName(v string) *DatastoreActivity {
 	s.Name = &v
+	return s
+}
+
+// A single partition in a data store.
+type DatastorePartition struct {
+	_ struct{} `type:"structure"`
+
+	// A partition defined by an attributeName.
+	AttributePartition *Partition `locationName:"attributePartition" type:"structure"`
+
+	// A partition defined by an attributeName and a timestamp format.
+	TimestampPartition *TimestampPartition `locationName:"timestampPartition" type:"structure"`
+}
+
+// String returns the string representation
+func (s DatastorePartition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatastorePartition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatastorePartition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatastorePartition"}
+	if s.AttributePartition != nil {
+		if err := s.AttributePartition.Validate(); err != nil {
+			invalidParams.AddNested("AttributePartition", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimestampPartition != nil {
+		if err := s.TimestampPartition.Validate(); err != nil {
+			invalidParams.AddNested("TimestampPartition", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributePartition sets the AttributePartition field's value.
+func (s *DatastorePartition) SetAttributePartition(v *Partition) *DatastorePartition {
+	s.AttributePartition = v
+	return s
+}
+
+// SetTimestampPartition sets the TimestampPartition field's value.
+func (s *DatastorePartition) SetTimestampPartition(v *TimestampPartition) *DatastorePartition {
+	s.TimestampPartition = v
+	return s
+}
+
+// Contains information about partitions in a data store.
+type DatastorePartitions struct {
+	_ struct{} `type:"structure"`
+
+	// A list of partitions in a data store.
+	Partitions []*DatastorePartition `locationName:"partitions" type:"list"`
+}
+
+// String returns the string representation
+func (s DatastorePartitions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatastorePartitions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatastorePartitions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatastorePartitions"}
+	if s.Partitions != nil {
+		for i, v := range s.Partitions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Partitions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPartitions sets the Partitions field's value.
+func (s *DatastorePartitions) SetPartitions(v []*DatastorePartition) *DatastorePartitions {
+	s.Partitions = v
 	return s
 }
 
@@ -7542,6 +7667,9 @@ type DatastoreSummary struct {
 	// The name of the data store.
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string"`
 
+	// Contains information about the partitions in a data store.
+	DatastorePartitions *DatastorePartitions `locationName:"datastorePartitions" type:"structure"`
+
 	// Where data store data is stored.
 	DatastoreStorage *DatastoreStorageSummary `locationName:"datastoreStorage" type:"structure"`
 
@@ -7583,6 +7711,12 @@ func (s *DatastoreSummary) SetCreationTime(v time.Time) *DatastoreSummary {
 // SetDatastoreName sets the DatastoreName field's value.
 func (s *DatastoreSummary) SetDatastoreName(v string) *DatastoreSummary {
 	s.DatastoreName = &v
+	return s
+}
+
+// SetDatastorePartitions sets the DatastorePartitions field's value.
+func (s *DatastoreSummary) SetDatastorePartitions(v *DatastorePartitions) *DatastoreSummary {
+	s.DatastorePartitions = v
 	return s
 }
 
@@ -10120,6 +10254,48 @@ func (s *ParquetConfiguration) SetSchemaDefinition(v *SchemaDefinition) *Parquet
 	return s
 }
 
+// A single partition.
+type Partition struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute name of the partition.
+	//
+	// AttributeName is a required field
+	AttributeName *string `locationName:"attributeName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Partition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Partition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Partition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Partition"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *Partition) SetAttributeName(v string) *Partition {
+	s.AttributeName = &v
+	return s
+}
+
 // Contains information about a pipeline.
 type Pipeline struct {
 	_ struct{} `type:"structure"`
@@ -11180,7 +11356,7 @@ type SchemaDefinition struct {
 	// Specifies one or more columns that store your data.
 	//
 	// Each schema can have up to 100 columns. Each column can have up to 100 nested
-	// types
+	// types.
 	Columns []*Column `locationName:"columns" type:"list"`
 }
 
@@ -11770,6 +11946,60 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// A partition defined by a timestamp.
+type TimestampPartition struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute name of the partition defined by a timestamp.
+	//
+	// AttributeName is a required field
+	AttributeName *string `locationName:"attributeName" min:"1" type:"string" required:"true"`
+
+	// The timestamp format of a partition defined by a timestamp.
+	TimestampFormat *string `locationName:"timestampFormat" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TimestampPartition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimestampPartition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestampPartition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestampPartition"}
+	if s.AttributeName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeName"))
+	}
+	if s.AttributeName != nil && len(*s.AttributeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttributeName", 1))
+	}
+	if s.TimestampFormat != nil && len(*s.TimestampFormat) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TimestampFormat", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeName sets the AttributeName field's value.
+func (s *TimestampPartition) SetAttributeName(v string) *TimestampPartition {
+	s.AttributeName = &v
+	return s
+}
+
+// SetTimestampFormat sets the TimestampFormat field's value.
+func (s *TimestampPartition) SetTimestampFormat(v string) *TimestampPartition {
+	s.TimestampFormat = &v
+	return s
 }
 
 // Information about the dataset whose content generation triggers the new dataset

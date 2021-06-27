@@ -22,6 +22,7 @@ const (
 var (
 	ActionMap = map[string]func(map[string]interface{}) (map[string]interface{}, error){
 		"BatchDeleteDocument":               ExecuteBatchDeleteDocument,
+		"BatchGetDocumentStatus":            ExecuteBatchGetDocumentStatus,
 		"BatchPutDocument":                  ExecuteBatchPutDocument,
 		"ClearQuerySuggestions":             ExecuteClearQuerySuggestions,
 		"CreateDataSource":                  ExecuteCreateDataSource,
@@ -176,6 +177,144 @@ func ExecuteBatchDeleteDocument(parameters map[string]interface{}) (map[string]i
 	}
 
 	req, out := svc.BatchDeleteDocumentRequest(&input)
+	if err := req.Send(); err != nil {
+		return nil, err
+	}
+
+	outMarshaled, err := json.Marshal(out)
+	if err != nil {
+		return nil, errors.New("failed to marshal output")
+	}
+
+	output := make(map[string]interface{})
+	if err := json.Unmarshal(outMarshaled, &output); err != nil {
+		return nil, errors.New("failed to unmarshal output")
+	}
+
+	return output, nil
+}
+
+const opBatchGetDocumentStatus = "BatchGetDocumentStatus"
+
+// BatchGetDocumentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetDocumentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetDocumentStatus for more information on using the BatchGetDocumentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetDocumentStatusRequest method.
+//    req, resp := client.BatchGetDocumentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
+func (c *Kendra) BatchGetDocumentStatusRequest(input *BatchGetDocumentStatusInput) (req *request.Request, output *BatchGetDocumentStatusOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetDocumentStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetDocumentStatusInput{}
+	}
+
+	output = &BatchGetDocumentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetDocumentStatus API operation for AWSKendraFrontendService.
+//
+// Returns the indexing status for one or more documents submitted with the
+// BatchPutDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchPutDocument.html)
+// operation.
+//
+// When you use the BatchPutDocument operation, documents are indexed asynchronously.
+// You can use the BatchGetDocumentStatus operation to get the current status
+// of a list of documents so that you can determine if they have been successfully
+// indexed.
+//
+// You can also use the BatchGetDocumentStatus operation to check the status
+// of the BatchDeleteDocument (https://docs.aws.amazon.com/kendra/latest/dg/API_BatchDeleteDocument.html)
+// operation. When a document is deleted from the index, Amazon Kendra returns
+// NOT_FOUND as the status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation BatchGetDocumentStatus for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/BatchGetDocumentStatus
+func (c *Kendra) BatchGetDocumentStatus(input *BatchGetDocumentStatusInput) (*BatchGetDocumentStatusOutput, error) {
+	req, out := c.BatchGetDocumentStatusRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetDocumentStatusWithContext is the same as BatchGetDocumentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetDocumentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) BatchGetDocumentStatusWithContext(ctx aws.Context, input *BatchGetDocumentStatusInput, opts ...request.Option) (*BatchGetDocumentStatusOutput, error) {
+	req, out := c.BatchGetDocumentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ExecuteBatchGetDocumentStatus is Blink's code
+func ExecuteBatchGetDocumentStatus(parameters map[string]interface{}) (map[string]interface{}, error) {
+	svc, ok := parameters["_Service"].(*Kendra)
+	if !ok {
+		return nil, errors.New("failed to get AWS service")
+	}
+	delete(parameters, "_Service")
+
+	input := BatchGetDocumentStatusInput{}
+	parameters = awsutil.UnpackParameters(parameters, input)
+
+	parametersMarshaled, err := json.Marshal(parameters)
+	if err != nil {
+		return nil, errors.New("failed to marshal parameters, error: " + err.Error())
+	}
+
+	if err := json.Unmarshal(parametersMarshaled, &input); err != nil {
+		return nil, errors.New("failed to unmarshal parameters " + err.Error())
+	}
+
+	req, out := svc.BatchGetDocumentStatusRequest(&input)
 	if err := req.Send(); err != nil {
 		return nil, err
 	}
@@ -5530,6 +5669,141 @@ func (s *AttributeFilter) SetOrAllFilters(v []*AttributeFilter) *AttributeFilter
 	return s
 }
 
+// Provides the configuration information to connect to websites that require
+// user authentication.
+type AuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of configuration information that's required to connect to and crawl
+	// a website host using basic authentication credentials.
+	//
+	// The list includes the name and port number of the website host.
+	BasicAuthentication []*BasicAuthenticationConfiguration `type:"list"`
+}
+
+// String returns the string representation
+func (s AuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthenticationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthenticationConfiguration"}
+	if s.BasicAuthentication != nil {
+		for i, v := range s.BasicAuthentication {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BasicAuthentication", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasicAuthentication sets the BasicAuthentication field's value.
+func (s *AuthenticationConfiguration) SetBasicAuthentication(v []*BasicAuthenticationConfiguration) *AuthenticationConfiguration {
+	s.BasicAuthentication = v
+	return s
+}
+
+// Provides the configuration information to connect to websites that require
+// basic user authentication.
+type BasicAuthenticationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	//
+	// You use a secret if basic authentication credentials are required to connect
+	// to a website. The secret stores your credentials of user name and password.
+	//
+	// Credentials is a required field
+	Credentials *string `min:"1" type:"string" required:"true"`
+
+	// The name of the website host you want to connect to using authentication
+	// credentials.
+	//
+	// For example, the host name of https://a.example.com/page1.html is "a.example.com".
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port number of the website host you want to connect to using authentication
+	// credentials.
+	//
+	// For example, the port for https://a.example.com/page1.html is 443, the standard
+	// port for HTTPS.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s BasicAuthenticationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BasicAuthenticationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BasicAuthenticationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BasicAuthenticationConfiguration"}
+	if s.Credentials == nil {
+		invalidParams.Add(request.NewErrParamRequired("Credentials"))
+	}
+	if s.Credentials != nil && len(*s.Credentials) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Credentials", 1))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *BasicAuthenticationConfiguration) SetCredentials(v string) *BasicAuthenticationConfiguration {
+	s.Credentials = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *BasicAuthenticationConfiguration) SetHost(v string) *BasicAuthenticationConfiguration {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *BasicAuthenticationConfiguration) SetPort(v int64) *BasicAuthenticationConfiguration {
+	s.Port = &v
+	return s
+}
+
 type BatchDeleteDocumentInput struct {
 	_ struct{} `type:"structure"`
 
@@ -5667,6 +5941,158 @@ func (s *BatchDeleteDocumentResponseFailedDocument) SetErrorMessage(v string) *B
 // SetId sets the Id field's value.
 func (s *BatchDeleteDocumentResponseFailedDocument) SetId(v string) *BatchDeleteDocumentResponseFailedDocument {
 	s.Id = &v
+	return s
+}
+
+type BatchGetDocumentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of DocumentInfo objects that identify the documents for which to get
+	// the status. You identify the documents by their document ID and optional
+	// attributes.
+	//
+	// DocumentInfoList is a required field
+	DocumentInfoList []*DocumentInfo `min:"1" type:"list" required:"true"`
+
+	// The identifier of the index to add documents to. The index ID is returned
+	// by the CreateIndex (https://docs.aws.amazon.com/kendra/latest/dg/API_CreateIndex.html)
+	// operation.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetDocumentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetDocumentStatusInput"}
+	if s.DocumentInfoList == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentInfoList"))
+	}
+	if s.DocumentInfoList != nil && len(s.DocumentInfoList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentInfoList", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.DocumentInfoList != nil {
+		for i, v := range s.DocumentInfoList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentInfoList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentInfoList sets the DocumentInfoList field's value.
+func (s *BatchGetDocumentStatusInput) SetDocumentInfoList(v []*DocumentInfo) *BatchGetDocumentStatusInput {
+	s.DocumentInfoList = v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *BatchGetDocumentStatusInput) SetIndexId(v string) *BatchGetDocumentStatusInput {
+	s.IndexId = &v
+	return s
+}
+
+type BatchGetDocumentStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of documents. The status indicates if the document is waiting
+	// to be indexed, is in the process of indexing, has completed indexing, or
+	// failed indexing. If a document failed indexing, the status provides the reason
+	// why.
+	DocumentStatusList []*Status `type:"list"`
+
+	// A list of documents that Amazon Kendra couldn't get the status for. The list
+	// includes the ID of the document and the reason that the status couldn't be
+	// found.
+	Errors []*BatchGetDocumentStatusResponseError `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetDocumentStatusList sets the DocumentStatusList field's value.
+func (s *BatchGetDocumentStatusOutput) SetDocumentStatusList(v []*Status) *BatchGetDocumentStatusOutput {
+	s.DocumentStatusList = v
+	return s
+}
+
+// SetErrors sets the Errors field's value.
+func (s *BatchGetDocumentStatusOutput) SetErrors(v []*BatchGetDocumentStatusResponseError) *BatchGetDocumentStatusOutput {
+	s.Errors = v
+	return s
+}
+
+// Provides a response when the status of a document could not be retrieved.
+type BatchGetDocumentStatusResponseError struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the document whose status could not be retrieved.
+	DocumentId *string `min:"1" type:"string"`
+
+	// Indicates the source of the error.
+	ErrorCode *string `type:"string" enum:"ErrorCode"`
+
+	// States that the API could not get the status of a document. This could be
+	// because the request is not valid or there is a system error.
+	ErrorMessage *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s BatchGetDocumentStatusResponseError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetDocumentStatusResponseError) GoString() string {
+	return s.String()
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *BatchGetDocumentStatusResponseError) SetDocumentId(v string) *BatchGetDocumentStatusResponseError {
+	s.DocumentId = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BatchGetDocumentStatusResponseError) SetErrorCode(v string) *BatchGetDocumentStatusResponseError {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BatchGetDocumentStatusResponseError) SetErrorMessage(v string) *BatchGetDocumentStatusResponseError {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -5840,19 +6266,29 @@ func (s *BatchPutDocumentResponseFailedDocument) SetId(v string) *BatchPutDocume
 	return s
 }
 
-// Specifies capacity units configured for your index. You can add and remove
-// capacity units to tune an index to your requirements.
+// Specifies capacity units configured for your enterprise edition index. You
+// can add and remove capacity units to tune an index to your requirements.
 type CapacityUnitsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The amount of extra query capacity for an index. Each capacity unit provides
-	// 0.5 queries per second and 40,000 queries per day.
+	// The amount of extra query capacity for an index and GetQuerySuggestions (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html)
+	// capacity.
+	//
+	// A single extra capacity unit for an index provides 0.5 queries per second
+	// or approximately 40,000 queries per day.
+	//
+	// GetQuerySuggestions capacity is 5 times the provisioned query capacity for
+	// an index. For example, the base capacity for an index is 0.5 queries per
+	// second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding
+	// another 0.5 queries per second to total 1 queries per second for an index,
+	// the GetQuerySuggestions capacity is 5 calls per second.
 	//
 	// QueryCapacityUnits is a required field
 	QueryCapacityUnits *int64 `type:"integer" required:"true"`
 
-	// The amount of extra storage capacity for an index. Each capacity unit provides
-	// 150 Gb of storage space or 500,000 documents, whichever is reached first.
+	// The amount of extra storage capacity for an index. A single capacity unit
+	// for an index provides 150 GB of storage space or 500,000 documents, whichever
+	// is reached first.
 	//
 	// StorageCapacityUnits is a required field
 	StorageCapacityUnits *int64 `type:"integer" required:"true"`
@@ -7941,6 +8377,9 @@ type DataSourceConfiguration struct {
 	// Provides information necessary to create a data source connector for a Microsoft
 	// SharePoint site.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
+
+	// Provides the configuration information required for Amazon Kendra web crawler.
+	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -7996,6 +8435,11 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("SharePointConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.WebCrawlerConfiguration != nil {
+		if err := s.WebCrawlerConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WebCrawlerConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -8048,6 +8492,12 @@ func (s *DataSourceConfiguration) SetServiceNowConfiguration(v *ServiceNowConfig
 // SetSharePointConfiguration sets the SharePointConfiguration field's value.
 func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfiguration) *DataSourceConfiguration {
 	s.SharePointConfiguration = v
+	return s
+}
+
+// SetWebCrawlerConfiguration sets the WebCrawlerConfiguration field's value.
+func (s *DataSourceConfiguration) SetWebCrawlerConfiguration(v *WebCrawlerConfiguration) *DataSourceConfiguration {
+	s.WebCrawlerConfiguration = v
 	return s
 }
 
@@ -10243,6 +10693,10 @@ type DocumentAttributeValue struct {
 	_ struct{} `type:"structure"`
 
 	// A date expressed as an ISO 8601 string.
+	//
+	// It is important for the time zone to be included in the ISO 8601 date-time
+	// format. For example, 20120325T123010+01:00 is the ISO 8601 date-time format
+	// for March 25th 2012 at 12:30PM (plus 10 seconds) in Central European Time.
 	DateValue *time.Time `type:"timestamp"`
 
 	// A long integer value.
@@ -10334,6 +10788,84 @@ func (s *DocumentAttributeValueCountPair) SetCount(v int64) *DocumentAttributeVa
 // SetDocumentAttributeValue sets the DocumentAttributeValue field's value.
 func (s *DocumentAttributeValueCountPair) SetDocumentAttributeValue(v *DocumentAttributeValue) *DocumentAttributeValueCountPair {
 	s.DocumentAttributeValue = v
+	return s
+}
+
+// Identifies a document for which to retrieve status information
+type DocumentInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Attributes that identify a specific version of a document to check.
+	//
+	// The only valid attributes are:
+	//
+	//    * version
+	//
+	//    * datasourceId
+	//
+	//    * jobExecutionId
+	//
+	// The attributes follow these rules:
+	//
+	//    * dataSourceId and jobExecutionId must be used together.
+	//
+	//    * version is ignored if dataSourceId and jobExecutionId are not provided.
+	//
+	//    * If dataSourceId and jobExecutionId are provided, but version is not,
+	//    the version defaults to "0".
+	Attributes []*DocumentAttribute `type:"list"`
+
+	// The unique identifier of the document.
+	//
+	// DocumentId is a required field
+	DocumentId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DocumentInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentInfo) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentInfo) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentInfo"}
+	if s.DocumentId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentId"))
+	}
+	if s.DocumentId != nil && len(*s.DocumentId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DocumentId", 1))
+	}
+	if s.Attributes != nil {
+		for i, v := range s.Attributes {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *DocumentInfo) SetAttributes(v []*DocumentAttribute) *DocumentInfo {
+	s.Attributes = v
+	return s
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *DocumentInfo) SetDocumentId(v string) *DocumentInfo {
+	s.DocumentId = &v
 	return s
 }
 
@@ -12305,6 +12837,88 @@ func (s *Principal) SetType(v string) *Principal {
 	return s
 }
 
+// Provides the configuration information for a web proxy to connect to website
+// hosts.
+type ProxyConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Your secret ARN, which you can create in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	//
+	// The credentials are optional. You use a secret if web proxy credentials are
+	// required to connect to a website host. Amazon Kendra currently support basic
+	// authentication to connect to a web proxy server. The secret stores your credentials.
+	Credentials *string `min:"1" type:"string"`
+
+	// The name of the website host you want to connect to via a web proxy server.
+	//
+	// For example, the host name of https://a.example.com/page1.html is "a.example.com".
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// The port number of the website host you want to connect to via a web proxy
+	// server.
+	//
+	// For example, the port for https://a.example.com/page1.html is 443, the standard
+	// port for HTTPS.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s ProxyConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProxyConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProxyConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProxyConfiguration"}
+	if s.Credentials != nil && len(*s.Credentials) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Credentials", 1))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCredentials sets the Credentials field's value.
+func (s *ProxyConfiguration) SetCredentials(v string) *ProxyConfiguration {
+	s.Credentials = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *ProxyConfiguration) SetHost(v string) *ProxyConfiguration {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *ProxyConfiguration) SetPort(v int64) *ProxyConfiguration {
+	s.Port = &v
+	return s
+}
+
 type QueryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14129,6 +14743,75 @@ func (s *Search) SetSortable(v bool) *Search {
 	return s
 }
 
+// Provides the configuration information of the seed or starting point URLs
+// to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type SeedUrlConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of seed or starting point URLs of the websites you want to crawl.
+	//
+	// The list can include a maximum of 100 seed URLs.
+	//
+	// SeedUrls is a required field
+	SeedUrls []*string `type:"list" required:"true"`
+
+	// You can choose one of the following modes:
+	//
+	//    * HOST_ONLY – crawl only the website host names. For example, if the
+	//    seed URL is "abc.example.com", then only URLs with host name "abc.example.com"
+	//    are crawled.
+	//
+	//    * SUBDOMAINS – crawl the website host names with subdomains. For example,
+	//    if the seed URL is "abc.example.com", then "a.abc.example.com" and "b.abc.example.com"
+	//    are also crawled.
+	//
+	//    * EVERYTHING – crawl the website host names with subdomains and other
+	//    domains that the webpages link to.
+	//
+	// The default mode is set to HOST_ONLY.
+	WebCrawlerMode *string `type:"string" enum:"WebCrawlerMode"`
+}
+
+// String returns the string representation
+func (s SeedUrlConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SeedUrlConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SeedUrlConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SeedUrlConfiguration"}
+	if s.SeedUrls == nil {
+		invalidParams.Add(request.NewErrParamRequired("SeedUrls"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSeedUrls sets the SeedUrls field's value.
+func (s *SeedUrlConfiguration) SetSeedUrls(v []*string) *SeedUrlConfiguration {
+	s.SeedUrls = v
+	return s
+}
+
+// SetWebCrawlerMode sets the WebCrawlerMode field's value.
+func (s *SeedUrlConfiguration) SetWebCrawlerMode(v string) *SeedUrlConfiguration {
+	s.WebCrawlerMode = &v
+	return s
+}
+
 // Provides the identifier of the AWS KMS customer master key (CMK) used to
 // encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric
 // CMKs.
@@ -14788,6 +15471,52 @@ func (s *SharePointConfiguration) SetVpcConfiguration(v *DataSourceVpcConfigurat
 	return s
 }
 
+// Provides the configuration information of the sitemap URLs to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type SiteMapsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The list of sitemap URLs of the websites you want to crawl.
+	//
+	// The list can include a maximum of three sitemap URLs.
+	//
+	// SiteMaps is a required field
+	SiteMaps []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s SiteMapsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SiteMapsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SiteMapsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SiteMapsConfiguration"}
+	if s.SiteMaps == nil {
+		invalidParams.Add(request.NewErrParamRequired("SiteMaps"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSiteMaps sets the SiteMaps field's value.
+func (s *SiteMapsConfiguration) SetSiteMaps(v []*string) *SiteMapsConfiguration {
+	s.SiteMaps = v
+	return s
+}
+
 // Specifies the document attribute to use to sort the response to a Amazon
 // Kendra query. You can specify a single attribute for sorting. The attribute
 // must have the Sortable flag set to true, otherwise Amazon Kendra returns
@@ -14987,6 +15716,62 @@ func (s StartDataSourceSyncJobOutput) GoString() string {
 // SetExecutionId sets the ExecutionId field's value.
 func (s *StartDataSourceSyncJobOutput) SetExecutionId(v string) *StartDataSourceSyncJobOutput {
 	s.ExecutionId = &v
+	return s
+}
+
+// Provides information about the status of documents submitted for indexing.
+type Status struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the document.
+	DocumentId *string `min:"1" type:"string"`
+
+	// The current status of a document.
+	//
+	// If the document was submitted for deletion, the status is NOT_FOUND after
+	// the document is deleted.
+	DocumentStatus *string `type:"string" enum:"DocumentStatus"`
+
+	// Indicates the source of the error.
+	FailureCode *string `min:"1" type:"string"`
+
+	// Provides detailed information about why the document couldn't be indexed.
+	// Use this information to correct the error before you resubmit the document
+	// for indexing.
+	FailureReason *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Status) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Status) GoString() string {
+	return s.String()
+}
+
+// SetDocumentId sets the DocumentId field's value.
+func (s *Status) SetDocumentId(v string) *Status {
+	s.DocumentId = &v
+	return s
+}
+
+// SetDocumentStatus sets the DocumentStatus field's value.
+func (s *Status) SetDocumentStatus(v string) *Status {
+	s.DocumentStatus = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *Status) SetFailureCode(v string) *Status {
+	s.FailureCode = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Status) SetFailureReason(v string) *Status {
+	s.FailureReason = &v
 	return s
 }
 
@@ -16410,6 +17195,75 @@ func (s UpdateThesaurusOutput) GoString() string {
 	return s.String()
 }
 
+// Provides the configuration information of the URLs to crawl.
+//
+// When selecting websites to index, you must adhere to the Amazon Acceptable
+// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+// that you must only use the Amazon Kendra web crawler to index your own webpages,
+// or webpages that you have authorization to index.
+type Urls struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the configuration of the seed or starting point URLs of the websites
+	// you want to crawl.
+	//
+	// You can choose to crawl only the website host names, or the website host
+	// names with subdomains, or the website host names with subdomains and other
+	// domains that the webpages link to.
+	//
+	// You can list up to 100 seed URLs.
+	SeedUrlConfiguration *SeedUrlConfiguration `type:"structure"`
+
+	// Provides the configuration of the sitemap URLs of the websites you want to
+	// crawl.
+	//
+	// Only URLs belonging to the same website host names are crawled. You can list
+	// up to three sitemap URLs.
+	SiteMapsConfiguration *SiteMapsConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s Urls) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Urls) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Urls) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Urls"}
+	if s.SeedUrlConfiguration != nil {
+		if err := s.SeedUrlConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SeedUrlConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SiteMapsConfiguration != nil {
+		if err := s.SiteMapsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SiteMapsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSeedUrlConfiguration sets the SeedUrlConfiguration field's value.
+func (s *Urls) SetSeedUrlConfiguration(v *SeedUrlConfiguration) *Urls {
+	s.SeedUrlConfiguration = v
+	return s
+}
+
+// SetSiteMapsConfiguration sets the SiteMapsConfiguration field's value.
+func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
+	s.SiteMapsConfiguration = v
+	return s
+}
+
 // Provides information about the user context for a Amazon Kendra index.
 type UserContext struct {
 	_ struct{} `type:"structure"`
@@ -16553,6 +17407,197 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Provides the configuration information required for Amazon Kendra web crawler.
+type WebCrawlerConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Provides configuration information required to connect to websites using
+	// authentication.
+	//
+	// You can connect to websites using basic authentication of user name and password.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS. You use a secret in AWS Secrets
+	// Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// to store your authentication credentials.
+	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
+
+	// Specifies the number of levels in a website that you want to crawl.
+	//
+	// The first level begins from the website seed or starting point URL. For example,
+	// if a website has 3 levels – index level (i.e. seed in this example), sections
+	// level, and subsections level – and you are only interested in crawling
+	// information up to the sections level (i.e. levels 0-1), you can set your
+	// depth to 1.
+	//
+	// The default crawl depth is set to 2.
+	CrawlDepth *int64 `type:"integer"`
+
+	// The maximum size (in MB) of a webpage or attachment to crawl.
+	//
+	// Files larger than this size (in MB) are skipped/not crawled.
+	//
+	// The default maximum size of a webpage or attachment is set to 50 MB.
+	MaxContentSizePerPageInMegaBytes *float64 `min:"1e-06" type:"float"`
+
+	// The maximum number of URLs on a webpage to include when crawling a website.
+	// This number is per webpage.
+	//
+	// As a website’s webpages are crawled, any URLs the webpages link to are
+	// also crawled. URLs on a webpage are crawled in order of appearance.
+	//
+	// The default maximum links per page is 100.
+	MaxLinksPerPage *int64 `min:"1" type:"integer"`
+
+	// The maximum number of URLs crawled per website host per minute.
+	//
+	// A minimum of one URL is required.
+	//
+	// The default maximum number of URLs crawled per website host per minute is
+	// 300.
+	MaxUrlsPerMinuteCrawlRate *int64 `min:"1" type:"integer"`
+
+	// Provides configuration information required to connect to your internal websites
+	// via a web proxy.
+	//
+	// You must provide the website host name and port number. For example, the
+	// host name of https://a.example.com/page1.html is "a.example.com" and the
+	// port is 443, the standard port for HTTPS.
+	//
+	// Web proxy credentials are optional and you can use them to connect to a web
+	// proxy server that requires basic authentication. To store web proxy credentials,
+	// you use a secret in AWS Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
+	ProxyConfiguration *ProxyConfiguration `type:"structure"`
+
+	// The regular expression pattern to exclude certain URLs to crawl.
+	//
+	// If there is a regular expression pattern to include certain URLs that conflicts
+	// with the exclude pattern, the exclude pattern takes precedence.
+	UrlExclusionPatterns []*string `type:"list"`
+
+	// The regular expression pattern to include certain URLs to crawl.
+	//
+	// If there is a regular expression pattern to exclude certain URLs that conflicts
+	// with the include pattern, the exclude pattern takes precedence.
+	UrlInclusionPatterns []*string `type:"list"`
+
+	// Specifies the seed or starting point URLs of the websites or the sitemap
+	// URLs of the websites you want to crawl.
+	//
+	// You can include website subdomains. You can list up to 100 seed URLs and
+	// up to three sitemap URLs.
+	//
+	// When selecting websites to index, you must adhere to the Amazon Acceptable
+	// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
+	// that you must only use the Amazon Kendra web crawler to index your own webpages,
+	// or webpages that you have authorization to index.
+	//
+	// Urls is a required field
+	Urls *Urls `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s WebCrawlerConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WebCrawlerConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WebCrawlerConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WebCrawlerConfiguration"}
+	if s.MaxContentSizePerPageInMegaBytes != nil && *s.MaxContentSizePerPageInMegaBytes < 1e-06 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxContentSizePerPageInMegaBytes", 1e-06))
+	}
+	if s.MaxLinksPerPage != nil && *s.MaxLinksPerPage < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxLinksPerPage", 1))
+	}
+	if s.MaxUrlsPerMinuteCrawlRate != nil && *s.MaxUrlsPerMinuteCrawlRate < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxUrlsPerMinuteCrawlRate", 1))
+	}
+	if s.Urls == nil {
+		invalidParams.Add(request.NewErrParamRequired("Urls"))
+	}
+	if s.AuthenticationConfiguration != nil {
+		if err := s.AuthenticationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AuthenticationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProxyConfiguration != nil {
+		if err := s.ProxyConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProxyConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Urls != nil {
+		if err := s.Urls.Validate(); err != nil {
+			invalidParams.AddNested("Urls", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthenticationConfiguration sets the AuthenticationConfiguration field's value.
+func (s *WebCrawlerConfiguration) SetAuthenticationConfiguration(v *AuthenticationConfiguration) *WebCrawlerConfiguration {
+	s.AuthenticationConfiguration = v
+	return s
+}
+
+// SetCrawlDepth sets the CrawlDepth field's value.
+func (s *WebCrawlerConfiguration) SetCrawlDepth(v int64) *WebCrawlerConfiguration {
+	s.CrawlDepth = &v
+	return s
+}
+
+// SetMaxContentSizePerPageInMegaBytes sets the MaxContentSizePerPageInMegaBytes field's value.
+func (s *WebCrawlerConfiguration) SetMaxContentSizePerPageInMegaBytes(v float64) *WebCrawlerConfiguration {
+	s.MaxContentSizePerPageInMegaBytes = &v
+	return s
+}
+
+// SetMaxLinksPerPage sets the MaxLinksPerPage field's value.
+func (s *WebCrawlerConfiguration) SetMaxLinksPerPage(v int64) *WebCrawlerConfiguration {
+	s.MaxLinksPerPage = &v
+	return s
+}
+
+// SetMaxUrlsPerMinuteCrawlRate sets the MaxUrlsPerMinuteCrawlRate field's value.
+func (s *WebCrawlerConfiguration) SetMaxUrlsPerMinuteCrawlRate(v int64) *WebCrawlerConfiguration {
+	s.MaxUrlsPerMinuteCrawlRate = &v
+	return s
+}
+
+// SetProxyConfiguration sets the ProxyConfiguration field's value.
+func (s *WebCrawlerConfiguration) SetProxyConfiguration(v *ProxyConfiguration) *WebCrawlerConfiguration {
+	s.ProxyConfiguration = v
+	return s
+}
+
+// SetUrlExclusionPatterns sets the UrlExclusionPatterns field's value.
+func (s *WebCrawlerConfiguration) SetUrlExclusionPatterns(v []*string) *WebCrawlerConfiguration {
+	s.UrlExclusionPatterns = v
+	return s
+}
+
+// SetUrlInclusionPatterns sets the UrlInclusionPatterns field's value.
+func (s *WebCrawlerConfiguration) SetUrlInclusionPatterns(v []*string) *WebCrawlerConfiguration {
+	s.UrlInclusionPatterns = v
+	return s
+}
+
+// SetUrls sets the Urls field's value.
+func (s *WebCrawlerConfiguration) SetUrls(v *Urls) *WebCrawlerConfiguration {
+	s.Urls = v
+	return s
 }
 
 const (
@@ -16878,6 +17923,9 @@ const (
 
 	// DataSourceTypeGoogledrive is a DataSourceType enum value
 	DataSourceTypeGoogledrive = "GOOGLEDRIVE"
+
+	// DataSourceTypeWebcrawler is a DataSourceType enum value
+	DataSourceTypeWebcrawler = "WEBCRAWLER"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -16892,6 +17940,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeCustom,
 		DataSourceTypeConfluence,
 		DataSourceTypeGoogledrive,
+		DataSourceTypeWebcrawler,
 	}
 }
 
@@ -16940,6 +17989,38 @@ func DocumentAttributeValueType_Values() []string {
 		DocumentAttributeValueTypeStringListValue,
 		DocumentAttributeValueTypeLongValue,
 		DocumentAttributeValueTypeDateValue,
+	}
+}
+
+const (
+	// DocumentStatusNotFound is a DocumentStatus enum value
+	DocumentStatusNotFound = "NOT_FOUND"
+
+	// DocumentStatusProcessing is a DocumentStatus enum value
+	DocumentStatusProcessing = "PROCESSING"
+
+	// DocumentStatusIndexed is a DocumentStatus enum value
+	DocumentStatusIndexed = "INDEXED"
+
+	// DocumentStatusUpdated is a DocumentStatus enum value
+	DocumentStatusUpdated = "UPDATED"
+
+	// DocumentStatusFailed is a DocumentStatus enum value
+	DocumentStatusFailed = "FAILED"
+
+	// DocumentStatusUpdateFailed is a DocumentStatus enum value
+	DocumentStatusUpdateFailed = "UPDATE_FAILED"
+)
+
+// DocumentStatus_Values returns all elements of the DocumentStatus enum
+func DocumentStatus_Values() []string {
+	return []string{
+		DocumentStatusNotFound,
+		DocumentStatusProcessing,
+		DocumentStatusIndexed,
+		DocumentStatusUpdated,
+		DocumentStatusFailed,
+		DocumentStatusUpdateFailed,
 	}
 }
 
@@ -17493,5 +18574,25 @@ func UserContextPolicy_Values() []string {
 	return []string{
 		UserContextPolicyAttributeFilter,
 		UserContextPolicyUserToken,
+	}
+}
+
+const (
+	// WebCrawlerModeHostOnly is a WebCrawlerMode enum value
+	WebCrawlerModeHostOnly = "HOST_ONLY"
+
+	// WebCrawlerModeSubdomains is a WebCrawlerMode enum value
+	WebCrawlerModeSubdomains = "SUBDOMAINS"
+
+	// WebCrawlerModeEverything is a WebCrawlerMode enum value
+	WebCrawlerModeEverything = "EVERYTHING"
+)
+
+// WebCrawlerMode_Values returns all elements of the WebCrawlerMode enum
+func WebCrawlerMode_Values() []string {
+	return []string{
+		WebCrawlerModeHostOnly,
+		WebCrawlerModeSubdomains,
+		WebCrawlerModeEverything,
 	}
 }
