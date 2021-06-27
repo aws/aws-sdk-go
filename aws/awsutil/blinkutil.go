@@ -238,7 +238,6 @@ func unpackParameters(parameters map[string]string, shape interface{}) map[strin
 	return unpackedParameters
 }
 
-
 func UnpackParameters(parameters map[string]interface{}, shape interface{}) map[string]interface{} {
 	parametersMap := make(map[string]string)
 	for key, value := range parameters {
@@ -253,22 +252,20 @@ func UnpackParameters(parameters map[string]interface{}, shape interface{}) map[
 	return unpackParameters(parametersMap, shape)
 }
 
-
 func GetServiceRegions(serviceName string) []string {
 	awsPartition := endpoints.AwsPartition()
 	operationServiceRegions := awsPartition.Regions()
 	services := awsPartition.Services()
 
-	var operationRegions []string
 	if operationService, ok := services[strings.ToLower(serviceName)]; ok {
 		operationServiceRegions = operationService.Regions()
 	}
 
-	if operationServiceRegions != nil {
-		for _, region := range operationServiceRegions {
-			operationRegions = append(operationRegions, region.ID())
-		}
+	operationRegions := make([]string, 0)
+	for _, region := range operationServiceRegions {
+		operationRegions = append(operationRegions, region.ID())
 	}
+
 
 	return operationRegions
 }
