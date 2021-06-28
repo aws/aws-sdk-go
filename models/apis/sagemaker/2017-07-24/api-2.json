@@ -4277,6 +4277,7 @@
         "RoleArn":{"shape":"RoleArn"},
         "InputConfig":{"shape":"InputConfig"},
         "OutputConfig":{"shape":"OutputConfig"},
+        "VpcConfig":{"shape":"NeoVpcConfig"},
         "StoppingCondition":{"shape":"StoppingCondition"},
         "Tags":{"shape":"TagList"}
       }
@@ -5981,6 +5982,7 @@
         "CompilationStartTime":{"shape":"Timestamp"},
         "CompilationEndTime":{"shape":"Timestamp"},
         "StoppingCondition":{"shape":"StoppingCondition"},
+        "InferenceImage":{"shape":"InferenceImage"},
         "CreationTime":{"shape":"CreationTime"},
         "LastModifiedTime":{"shape":"LastModifiedTime"},
         "FailureReason":{"shape":"FailureReason"},
@@ -5988,7 +5990,8 @@
         "ModelDigests":{"shape":"ModelDigests"},
         "RoleArn":{"shape":"RoleArn"},
         "InputConfig":{"shape":"InputConfig"},
-        "OutputConfig":{"shape":"OutputConfig"}
+        "OutputConfig":{"shape":"OutputConfig"},
+        "VpcConfig":{"shape":"NeoVpcConfig"}
       }
     },
     "DescribeContextRequest":{
@@ -8705,6 +8708,10 @@
         "Direct"
       ]
     },
+    "InferenceImage":{
+      "type":"string",
+      "max":256
+    },
     "InferenceSpecification":{
       "type":"structure",
       "required":[
@@ -11220,6 +11227,39 @@
       "max":63,
       "pattern":"[a-zA-Z0-9\\-]+"
     },
+    "NeoVpcConfig":{
+      "type":"structure",
+      "required":[
+        "SecurityGroupIds",
+        "Subnets"
+      ],
+      "members":{
+        "SecurityGroupIds":{"shape":"NeoVpcSecurityGroupIds"},
+        "Subnets":{"shape":"NeoVpcSubnets"}
+      }
+    },
+    "NeoVpcSecurityGroupId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "NeoVpcSecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"NeoVpcSecurityGroupId"},
+      "max":5,
+      "min":1
+    },
+    "NeoVpcSubnetId":{
+      "type":"string",
+      "max":32,
+      "pattern":"[-0-9a-zA-Z]+"
+    },
+    "NeoVpcSubnets":{
+      "type":"list",
+      "member":{"shape":"NeoVpcSubnetId"},
+      "max":16,
+      "min":1
+    },
     "NestedFilters":{
       "type":"structure",
       "required":[
@@ -13533,6 +13573,7 @@
         "qcs603",
         "sitara_am57x",
         "amba_cv22",
+        "amba_cv25",
         "x86_win32",
         "x86_win64",
         "coreml",

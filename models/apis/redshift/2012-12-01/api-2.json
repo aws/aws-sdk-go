@@ -1168,7 +1168,8 @@
         "resultWrapper":"DisableLoggingResult"
       },
       "errors":[
-        {"shape":"ClusterNotFoundFault"}
+        {"shape":"ClusterNotFoundFault"},
+        {"shape":"InvalidClusterStateFault"}
       ]
     },
     "DisableSnapshotCopy":{

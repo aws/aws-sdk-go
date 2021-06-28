@@ -3578,6 +3578,16 @@ type AudioSelector struct {
 	// Specifies audio data from an external file source.
 	ExternalAudioFileInput *string `locationName:"externalAudioFileInput" type:"string"`
 
+	// Settings specific to audio sources in an HLS alternate rendition group. Specify
+	// the properties (renditionGroupId, renditionName or renditionLanguageCode)
+	// to identify the unique audio track among the alternative rendition groups
+	// present in the HLS manifest. If no unique track is found, or multiple tracks
+	// match the properties provided, the job fails. If no properties in hlsRenditionGroupSettings
+	// are specified, the default audio track within the video segment is chosen.
+	// If there is no audio within video segment, the alternative audio with DEFAULT=YES
+	// is chosen instead.
+	HlsRenditionGroupSettings *HlsRenditionGroupSettings `locationName:"hlsRenditionGroupSettings" type:"structure"`
+
 	// Selects a specific language code from within an audio source.
 	LanguageCode *string `locationName:"languageCode" type:"string" enum:"LanguageCode"`
 
@@ -3663,6 +3673,12 @@ func (s *AudioSelector) SetDefaultSelection(v string) *AudioSelector {
 // SetExternalAudioFileInput sets the ExternalAudioFileInput field's value.
 func (s *AudioSelector) SetExternalAudioFileInput(v string) *AudioSelector {
 	s.ExternalAudioFileInput = &v
+	return s
+}
+
+// SetHlsRenditionGroupSettings sets the HlsRenditionGroupSettings field's value.
+func (s *AudioSelector) SetHlsRenditionGroupSettings(v *HlsRenditionGroupSettings) *AudioSelector {
+	s.HlsRenditionGroupSettings = v
 	return s
 }
 
@@ -5264,6 +5280,16 @@ type CaptionSourceSettings struct {
 	// source is IMSC 1.1 in a separate xml file, use FileSourceSettings instead
 	// of TrackSourceSettings.
 	TrackSourceSettings *TrackSourceSettings `locationName:"trackSourceSettings" type:"structure"`
+
+	// Settings specific to WebVTT sources in HLS alternative rendition group. Specify
+	// the properties (renditionGroupId, renditionName or renditionLanguageCode)
+	// to identify the unique subtitle track among the alternative rendition groups
+	// present in the HLS manifest. If no unique track is found, or multiple tracks
+	// match the specified properties, the job fails. If there is only one subtitle
+	// track in the rendition group, the settings can be left empty and the default
+	// subtitle track will be chosen. If your caption source is a sidecar file,
+	// use FileSourceSettings instead of WebvttHlsSourceSettings.
+	WebvttHlsSourceSettings *WebvttHlsSourceSettings `locationName:"webvttHlsSourceSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -5355,6 +5381,12 @@ func (s *CaptionSourceSettings) SetTeletextSourceSettings(v *TeletextSourceSetti
 // SetTrackSourceSettings sets the TrackSourceSettings field's value.
 func (s *CaptionSourceSettings) SetTrackSourceSettings(v *TrackSourceSettings) *CaptionSourceSettings {
 	s.TrackSourceSettings = v
+	return s
+}
+
+// SetWebvttHlsSourceSettings sets the WebvttHlsSourceSettings field's value.
+func (s *CaptionSourceSettings) SetWebvttHlsSourceSettings(v *WebvttHlsSourceSettings) *CaptionSourceSettings {
+	s.WebvttHlsSourceSettings = v
 	return s
 }
 
@@ -5590,6 +5622,19 @@ type CmafGroupSettings struct {
 	// output types.
 	FragmentLength *int64 `locationName:"fragmentLength" min:"1" type:"integer"`
 
+	// Specify whether MediaConvert generates images for trick play. Keep the default
+	// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+	// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+	// to generate tiled thumbnails and full-resolution images of single frames.
+	// When you enable Write HLS manifest (WriteHlsManifest), MediaConvert creates
+	// a child manifest for each set of images that you generate and adds corresponding
+	// entries to the parent manifest. When you enable Write DASH manifest (WriteDashManifest),
+	// MediaConvert adds an entry in the .mpd manifest for each set of images that
+	// you generate. A common application for these images is Roku trick mode. The
+	// thumbnails and full-frame images that MediaConvert creates with this feature
+	// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"CmafImageBasedTrickPlay"`
+
 	// When set to GZIP, compresses HLS playlist.
 	ManifestCompression *string `locationName:"manifestCompression" type:"string" enum:"CmafManifestCompression"`
 
@@ -5753,6 +5798,12 @@ func (s *CmafGroupSettings) SetEncryption(v *CmafEncryptionSettings) *CmafGroupS
 // SetFragmentLength sets the FragmentLength field's value.
 func (s *CmafGroupSettings) SetFragmentLength(v int64) *CmafGroupSettings {
 	s.FragmentLength = &v
+	return s
+}
+
+// SetImageBasedTrickPlay sets the ImageBasedTrickPlay field's value.
+func (s *CmafGroupSettings) SetImageBasedTrickPlay(v string) *CmafGroupSettings {
+	s.ImageBasedTrickPlay = &v
 	return s
 }
 
@@ -6015,6 +6066,18 @@ type ColorCorrector struct {
 	// Hue in degrees.
 	Hue *int64 `locationName:"hue" type:"integer"`
 
+	// Specify the video color sample range for this output. To create a full range
+	// output, you must start with a full range YUV input and keep the default value,
+	// None (NONE). To create a limited range output from a full range input, choose
+	// Limited range (LIMITED_RANGE_SQUEEZE). With RGB inputs, your output is always
+	// limited range, regardless of your choice here. When you create a limited
+	// range output from a full range input, MediaConvert limits the active pixel
+	// values in a way that depends on the output's bit depth: 8-bit outputs contain
+	// only values from 16 through 235 and 10-bit outputs contain only values from
+	// 64 through 940. With this conversion, MediaConvert also changes the output
+	// metadata to note the limited range.
+	SampleRangeConversion *string `locationName:"sampleRangeConversion" type:"string" enum:"SampleRangeConversion"`
+
 	// Saturation level.
 	Saturation *int64 `locationName:"saturation" min:"1" type:"integer"`
 }
@@ -6078,6 +6141,12 @@ func (s *ColorCorrector) SetHdr10Metadata(v *Hdr10Metadata) *ColorCorrector {
 // SetHue sets the Hue field's value.
 func (s *ColorCorrector) SetHue(v int64) *ColorCorrector {
 	s.Hue = &v
+	return s
+}
+
+// SetSampleRangeConversion sets the SampleRangeConversion field's value.
+func (s *ColorCorrector) SetSampleRangeConversion(v string) *ColorCorrector {
+	s.SampleRangeConversion = &v
 	return s
 }
 
@@ -7084,6 +7153,16 @@ type DashIsoGroupSettings struct {
 	// Supports HbbTV specification as indicated
 	HbbtvCompliance *string `locationName:"hbbtvCompliance" type:"string" enum:"DashIsoHbbtvCompliance"`
 
+	// Specify whether MediaConvert generates images for trick play. Keep the default
+	// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+	// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+	// to generate tiled thumbnails and full-resolution images of single frames.
+	// MediaConvert adds an entry in the .mpd manifest for each set of images that
+	// you generate. A common application for these images is Roku trick mode. The
+	// thumbnails and full-frame images that MediaConvert creates with this feature
+	// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"DashIsoImageBasedTrickPlay"`
+
 	// Minimum time of initially buffered media that is needed to ensure smooth
 	// playout.
 	MinBufferTime *int64 `locationName:"minBufferTime" type:"integer"`
@@ -7223,6 +7302,12 @@ func (s *DashIsoGroupSettings) SetFragmentLength(v int64) *DashIsoGroupSettings 
 // SetHbbtvCompliance sets the HbbtvCompliance field's value.
 func (s *DashIsoGroupSettings) SetHbbtvCompliance(v string) *DashIsoGroupSettings {
 	s.HbbtvCompliance = &v
+	return s
+}
+
+// SetImageBasedTrickPlay sets the ImageBasedTrickPlay field's value.
+func (s *DashIsoGroupSettings) SetImageBasedTrickPlay(v string) *DashIsoGroupSettings {
+	s.ImageBasedTrickPlay = &v
 	return s
 }
 
@@ -8314,8 +8399,11 @@ func (s *DvbTdtSettings) SetTdtInterval(v int64) *DvbTdtSettings {
 type Eac3AtmosSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Specify the average bitrate in bits per second.Valid values: 384k, 448k,
-	// 640k, 768k
+	// Specify the average bitrate for this output in bits per second. Valid values:
+	// 384k, 448k, 576k, 640k, 768k, 1024k Default value: 448k Note that MediaConvert
+	// supports 384k only with channel-based immersive (CBI) 7.1.4 and 5.1.4 inputs.
+	// For CBI 9.1.6 and other input types, MediaConvert automatically increases
+	// your output bitrate to 448k.
 	Bitrate *int64 `locationName:"bitrate" min:"384000" type:"integer"`
 
 	// Specify the bitstream mode for the E-AC-3 stream that the encoder emits.
@@ -8323,44 +8411,95 @@ type Eac3AtmosSettings struct {
 	// E).
 	BitstreamMode *string `locationName:"bitstreamMode" type:"string" enum:"Eac3AtmosBitstreamMode"`
 
-	// The coding mode for Dolby Digital Plus JOC (Atmos) is always 9.1.6 (CODING_MODE_9_1_6).
+	// The coding mode for Dolby Digital Plus JOC (Atmos).
 	CodingMode *string `locationName:"codingMode" type:"string" enum:"Eac3AtmosCodingMode"`
 
 	// Enable Dolby Dialogue Intelligence to adjust loudness based on dialogue analysis.
 	DialogueIntelligence *string `locationName:"dialogueIntelligence" type:"string" enum:"Eac3AtmosDialogueIntelligence"`
 
-	// Specify the absolute peak level for a signal with dynamic range compression.
+	// Specify whether MediaConvert should use any downmix metadata from your input
+	// file. Keep the default value, Custom (SPECIFIED) to provide downmix values
+	// in your job settings. Choose Follow source (INITIALIZE_FROM_SOURCE) to use
+	// the metadata from your input. Related settings--Use these settings to specify
+	// your downmix values: Left only/Right only surround (LoRoSurroundMixLevel),
+	// Left total/Right total surround (LtRtSurroundMixLevel), Left total/Right
+	// total center (LtRtCenterMixLevel), Left only/Right only center (LoRoCenterMixLevel),
+	// and Stereo downmix (StereoDownmix). When you keep Custom (SPECIFIED) for
+	// Downmix control (DownmixControl) and you don't specify values for the related
+	// settings, MediaConvert uses default values for those settings.
+	DownmixControl *string `locationName:"downmixControl" type:"string" enum:"Eac3AtmosDownmixControl"`
+
+	// Choose the Dolby dynamic range control (DRC) profile that MediaConvert uses
+	// when encoding the metadata in the Dolby stream for the line operating mode.
+	// Default value: Film light (ATMOS_STORAGE_DDP_COMPR_FILM_LIGHT) Related setting:
+	// To have MediaConvert use the value you specify here, keep the default value,
+	// Custom (SPECIFIED) for the setting Dynamic range control (DynamicRangeControl).
+	// Otherwise, MediaConvert ignores Dynamic range compression line (DynamicRangeCompressionLine).
+	// For information about the Dolby DRC operating modes and profiles, see the
+	// Dynamic Range Control chapter of the Dolby Metadata Guide at https://developer.dolby.com/globalassets/professional/documents/dolby-metadata-guide.pdf.
 	DynamicRangeCompressionLine *string `locationName:"dynamicRangeCompressionLine" type:"string" enum:"Eac3AtmosDynamicRangeCompressionLine"`
 
-	// Specify how the service limits the audio dynamic range when compressing the
-	// audio.
+	// Choose the Dolby dynamic range control (DRC) profile that MediaConvert uses
+	// when encoding the metadata in the Dolby stream for the RF operating mode.
+	// Default value: Film light (ATMOS_STORAGE_DDP_COMPR_FILM_LIGHT) Related setting:
+	// To have MediaConvert use the value you specify here, keep the default value,
+	// Custom (SPECIFIED) for the setting Dynamic range control (DynamicRangeControl).
+	// Otherwise, MediaConvert ignores Dynamic range compression RF (DynamicRangeCompressionRf).
+	// For information about the Dolby DRC operating modes and profiles, see the
+	// Dynamic Range Control chapter of the Dolby Metadata Guide at https://developer.dolby.com/globalassets/professional/documents/dolby-metadata-guide.pdf.
 	DynamicRangeCompressionRf *string `locationName:"dynamicRangeCompressionRf" type:"string" enum:"Eac3AtmosDynamicRangeCompressionRf"`
 
+	// Specify whether MediaConvert should use any dynamic range control metadata
+	// from your input file. Keep the default value, Custom (SPECIFIED), to provide
+	// dynamic range control values in your job settings. Choose Follow source (INITIALIZE_FROM_SOURCE)
+	// to use the metadata from your input. Related settings--Use these settings
+	// to specify your dynamic range control values: Dynamic range compression line
+	// (DynamicRangeCompressionLine) and Dynamic range compression RF (DynamicRangeCompressionRf).
+	// When you keep the value Custom (SPECIFIED) for Dynamic range control (DynamicRangeControl)
+	// and you don't specify values for the related settings, MediaConvert uses
+	// default values for those settings.
+	DynamicRangeControl *string `locationName:"dynamicRangeControl" type:"string" enum:"Eac3AtmosDynamicRangeControl"`
+
 	// Specify a value for the following Dolby Atmos setting: Left only/Right only
-	// center mix(Lo/Ro center). MediaConvert uses this value for downmixing. How
-	// the service uses thisvalue depends on the value that you choose for Stereo
-	// downmix (Eac3AtmosStereoDownmix).Valid values: 3.0, 1.5, 0.0, -1.5, -3.0,
-	// -4.5, and -6.0.
+	// center mix (Lo/Ro center). MediaConvert uses this value for downmixing. Default
+	// value: -3 dB (ATMOS_STORAGE_DDP_MIXLEV_MINUS_3_DB). Valid values: 3.0, 1.5,
+	// 0.0, -1.5, -3.0, -4.5, and -6.0. Related setting: How the service uses this
+	// value depends on the value that you choose for Stereo downmix (Eac3AtmosStereoDownmix).
+	// Related setting: To have MediaConvert use this value, keep the default value,
+	// Custom (SPECIFIED) for the setting Downmix control (DownmixControl). Otherwise,
+	// MediaConvert ignores Left only/Right only center (LoRoCenterMixLevel).
 	LoRoCenterMixLevel *float64 `locationName:"loRoCenterMixLevel" type:"double"`
 
 	// Specify a value for the following Dolby Atmos setting: Left only/Right only
-	// (Lo/Ro surround). MediaConvert uses this value for downmixing. How the service
-	// uses this value depends on the value that you choose for Stereo downmix (Eac3AtmosStereoDownmix).
-	// Valid values: -1.5, -3.0, -4.5, -6.0, and -60. The value -60 mutes the channel.
+	// (Lo/Ro surround). MediaConvert uses this value for downmixing. Default value:
+	// -3 dB (ATMOS_STORAGE_DDP_MIXLEV_MINUS_3_DB). Valid values: -1.5, -3.0, -4.5,
+	// -6.0, and -60. The value -60 mutes the channel. Related setting: How the
+	// service uses this value depends on the value that you choose for Stereo downmix
+	// (Eac3AtmosStereoDownmix). Related setting: To have MediaConvert use this
+	// value, keep the default value, Custom (SPECIFIED) for the setting Downmix
+	// control (DownmixControl). Otherwise, MediaConvert ignores Left only/Right
+	// only surround (LoRoSurroundMixLevel).
 	LoRoSurroundMixLevel *float64 `locationName:"loRoSurroundMixLevel" type:"double"`
 
 	// Specify a value for the following Dolby Atmos setting: Left total/Right total
-	// center mix (Lt/Rt center). MediaConvert uses this value for downmixing. How
-	// the service uses this value depends on the value that you choose for Stereo
-	// downmix (Eac3AtmosStereoDownmix). Valid values: 3.0, 1.5, 0.0, -1.5, -3.0,
-	// -4.5, and -6.0.
+	// center mix (Lt/Rt center). MediaConvert uses this value for downmixing. Default
+	// value: -3 dB (ATMOS_STORAGE_DDP_MIXLEV_MINUS_3_DB) Valid values: 3.0, 1.5,
+	// 0.0, -1.5, -3.0, -4.5, and -6.0. Related setting: How the service uses this
+	// value depends on the value that you choose for Stereo downmix (Eac3AtmosStereoDownmix).
+	// Related setting: To have MediaConvert use this value, keep the default value,
+	// Custom (SPECIFIED) for the setting Downmix control (DownmixControl). Otherwise,
+	// MediaConvert ignores Left total/Right total center (LtRtCenterMixLevel).
 	LtRtCenterMixLevel *float64 `locationName:"ltRtCenterMixLevel" type:"double"`
 
 	// Specify a value for the following Dolby Atmos setting: Left total/Right total
 	// surround mix (Lt/Rt surround). MediaConvert uses this value for downmixing.
-	// How the service uses this value depends on the value that you choose for
-	// Stereo downmix (Eac3AtmosStereoDownmix). Valid values: -1.5, -3.0, -4.5,
-	// -6.0, and -60. The value -60 mutes the channel.
+	// Default value: -3 dB (ATMOS_STORAGE_DDP_MIXLEV_MINUS_3_DB) Valid values:
+	// -1.5, -3.0, -4.5, -6.0, and -60. The value -60 mutes the channel. Related
+	// setting: How the service uses this value depends on the value that you choose
+	// for Stereo downmix (Eac3AtmosStereoDownmix). Related setting: To have MediaConvert
+	// use this value, keep the default value, Custom (SPECIFIED) for the setting
+	// Downmix control (DownmixControl). Otherwise, the service ignores Left total/Right
+	// total surround (LtRtSurroundMixLevel).
 	LtRtSurroundMixLevel *float64 `locationName:"ltRtSurroundMixLevel" type:"double"`
 
 	// Choose how the service meters the loudness of your audio.
@@ -8369,11 +8508,16 @@ type Eac3AtmosSettings struct {
 	// This value is always 48000. It represents the sample rate in Hz.
 	SampleRate *int64 `locationName:"sampleRate" min:"48000" type:"integer"`
 
-	// Specify the percentage of audio content that must be speech before the encoder
-	// uses the measured speech loudness as the overall program loudness.
-	SpeechThreshold *int64 `locationName:"speechThreshold" min:"1" type:"integer"`
+	// Specify the percentage of audio content, from 0% to 100%, that must be speech
+	// in order for the encoder to use the measured speech loudness as the overall
+	// program loudness. Default value: 15%
+	SpeechThreshold *int64 `locationName:"speechThreshold" type:"integer"`
 
-	// Choose how the service does stereo downmixing.
+	// Choose how the service does stereo downmixing. Default value: Not indicated
+	// (ATMOS_STORAGE_DDP_DMIXMOD_NOT_INDICATED) Related setting: To have MediaConvert
+	// use this value, keep the default value, Custom (SPECIFIED) for the setting
+	// Downmix control (DownmixControl). Otherwise, MediaConvert ignores Stereo
+	// downmix (StereoDownmix).
 	StereoDownmix *string `locationName:"stereoDownmix" type:"string" enum:"Eac3AtmosStereoDownmix"`
 
 	// Specify whether your input audio has an additional center rear surround channel
@@ -8399,9 +8543,6 @@ func (s *Eac3AtmosSettings) Validate() error {
 	}
 	if s.SampleRate != nil && *s.SampleRate < 48000 {
 		invalidParams.Add(request.NewErrParamMinValue("SampleRate", 48000))
-	}
-	if s.SpeechThreshold != nil && *s.SpeechThreshold < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("SpeechThreshold", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -8434,6 +8575,12 @@ func (s *Eac3AtmosSettings) SetDialogueIntelligence(v string) *Eac3AtmosSettings
 	return s
 }
 
+// SetDownmixControl sets the DownmixControl field's value.
+func (s *Eac3AtmosSettings) SetDownmixControl(v string) *Eac3AtmosSettings {
+	s.DownmixControl = &v
+	return s
+}
+
 // SetDynamicRangeCompressionLine sets the DynamicRangeCompressionLine field's value.
 func (s *Eac3AtmosSettings) SetDynamicRangeCompressionLine(v string) *Eac3AtmosSettings {
 	s.DynamicRangeCompressionLine = &v
@@ -8443,6 +8590,12 @@ func (s *Eac3AtmosSettings) SetDynamicRangeCompressionLine(v string) *Eac3AtmosS
 // SetDynamicRangeCompressionRf sets the DynamicRangeCompressionRf field's value.
 func (s *Eac3AtmosSettings) SetDynamicRangeCompressionRf(v string) *Eac3AtmosSettings {
 	s.DynamicRangeCompressionRf = &v
+	return s
+}
+
+// SetDynamicRangeControl sets the DynamicRangeControl field's value.
+func (s *Eac3AtmosSettings) SetDynamicRangeControl(v string) *Eac3AtmosSettings {
+	s.DynamicRangeControl = &v
 	return s
 }
 
@@ -9145,7 +9298,7 @@ type FileSourceSettings struct {
 	Framerate *CaptionSourceFramerate `locationName:"framerate" type:"structure"`
 
 	// External caption file used for loading captions. Accepted file extensions
-	// are 'scc', 'ttml', 'dfxp', 'stl', 'srt', 'xml', 'smi', and 'vtt'.
+	// are 'scc', 'ttml', 'dfxp', 'stl', 'srt', 'xml', 'smi', 'webvtt', and 'vtt'.
 	SourceFile *string `locationName:"sourceFile" min:"14" type:"string"`
 
 	// Specifies a time delta in seconds to offset the captions from the source
@@ -11112,6 +11265,42 @@ func (s *Hdr10Metadata) SetWhitePointY(v int64) *Hdr10Metadata {
 	return s
 }
 
+// Setting for HDR10+ metadata insertion
+type Hdr10Plus struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the HDR10+ mastering display normalized peak luminance, in nits.
+	// This is the normalized actual peak luminance of the mastering display, as
+	// defined by ST 2094-40.
+	MasteringMonitorNits *int64 `locationName:"masteringMonitorNits" type:"integer"`
+
+	// Specify the HDR10+ target display nominal peak luminance, in nits. This is
+	// the nominal maximum luminance of the target display as defined by ST 2094-40.
+	TargetMonitorNits *int64 `locationName:"targetMonitorNits" type:"integer"`
+}
+
+// String returns the string representation
+func (s Hdr10Plus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Hdr10Plus) GoString() string {
+	return s.String()
+}
+
+// SetMasteringMonitorNits sets the MasteringMonitorNits field's value.
+func (s *Hdr10Plus) SetMasteringMonitorNits(v int64) *Hdr10Plus {
+	s.MasteringMonitorNits = &v
+	return s
+}
+
+// SetTargetMonitorNits sets the TargetMonitorNits field's value.
+func (s *Hdr10Plus) SetTargetMonitorNits(v int64) *Hdr10Plus {
+	s.TargetMonitorNits = &v
+	return s
+}
+
 // Specify the details for each additional HLS manifest that you want the service
 // to generate for this output group. Each manifest can reference a different
 // subset of outputs in the group.
@@ -11405,6 +11594,17 @@ type HlsGroupSettings struct {
 	// DRM settings.
 	Encryption *HlsEncryptionSettings `locationName:"encryption" type:"structure"`
 
+	// Specify whether MediaConvert generates images for trick play. Keep the default
+	// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+	// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+	// to generate tiled thumbnails and full-resolution images of single frames.
+	// MediaConvert creates a child manifest for each set of images that you generate
+	// and adds corresponding entries to the parent manifest. A common application
+	// for these images is Roku trick mode. The thumbnails and full-frame images
+	// that MediaConvert creates with this feature are compatible with this Roku
+	// specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"HlsImageBasedTrickPlay"`
+
 	// When set to GZIP, compresses HLS playlist.
 	ManifestCompression *string `locationName:"manifestCompression" type:"string" enum:"HlsManifestCompression"`
 
@@ -11599,6 +11799,12 @@ func (s *HlsGroupSettings) SetEncryption(v *HlsEncryptionSettings) *HlsGroupSett
 	return s
 }
 
+// SetImageBasedTrickPlay sets the ImageBasedTrickPlay field's value.
+func (s *HlsGroupSettings) SetImageBasedTrickPlay(v string) *HlsGroupSettings {
+	s.ImageBasedTrickPlay = &v
+	return s
+}
+
 // SetManifestCompression sets the ManifestCompression field's value.
 func (s *HlsGroupSettings) SetManifestCompression(v string) *HlsGroupSettings {
 	s.ManifestCompression = &v
@@ -11680,6 +11886,55 @@ func (s *HlsGroupSettings) SetTimedMetadataId3Period(v int64) *HlsGroupSettings 
 // SetTimestampDeltaMilliseconds sets the TimestampDeltaMilliseconds field's value.
 func (s *HlsGroupSettings) SetTimestampDeltaMilliseconds(v int64) *HlsGroupSettings {
 	s.TimestampDeltaMilliseconds = &v
+	return s
+}
+
+// Settings specific to audio sources in an HLS alternate rendition group. Specify
+// the properties (renditionGroupId, renditionName or renditionLanguageCode)
+// to identify the unique audio track among the alternative rendition groups
+// present in the HLS manifest. If no unique track is found, or multiple tracks
+// match the properties provided, the job fails. If no properties in hlsRenditionGroupSettings
+// are specified, the default audio track within the video segment is chosen.
+// If there is no audio within video segment, the alternative audio with DEFAULT=YES
+// is chosen instead.
+type HlsRenditionGroupSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Specify alternative group ID
+	RenditionGroupId *string `locationName:"renditionGroupId" type:"string"`
+
+	// Optional. Specify ISO 639-2 or ISO 639-3 code in the language property
+	RenditionLanguageCode *string `locationName:"renditionLanguageCode" type:"string" enum:"LanguageCode"`
+
+	// Optional. Specify media name
+	RenditionName *string `locationName:"renditionName" type:"string"`
+}
+
+// String returns the string representation
+func (s HlsRenditionGroupSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HlsRenditionGroupSettings) GoString() string {
+	return s.String()
+}
+
+// SetRenditionGroupId sets the RenditionGroupId field's value.
+func (s *HlsRenditionGroupSettings) SetRenditionGroupId(v string) *HlsRenditionGroupSettings {
+	s.RenditionGroupId = &v
+	return s
+}
+
+// SetRenditionLanguageCode sets the RenditionLanguageCode field's value.
+func (s *HlsRenditionGroupSettings) SetRenditionLanguageCode(v string) *HlsRenditionGroupSettings {
+	s.RenditionLanguageCode = &v
+	return s
+}
+
+// SetRenditionName sets the RenditionName field's value.
+func (s *HlsRenditionGroupSettings) SetRenditionName(v string) *HlsRenditionGroupSettings {
+	s.RenditionName = &v
 	return s
 }
 
@@ -16591,6 +16846,10 @@ type MxfSettings struct {
 	// For a list of codecs supported with each MXF profile, see https://docs.aws.amazon.com/mediaconvert/latest/ug/codecs-supported-with-each-mxf-profile.html.
 	// For more information about the automatic selection behavior, see https://docs.aws.amazon.com/mediaconvert/latest/ug/default-automatic-selection-of-mxf-profiles.html.
 	Profile *string `locationName:"profile" type:"string" enum:"MxfProfile"`
+
+	// Specify the XAVC profile settings for MXF outputs when you set your MXF profile
+	// to XAVC.
+	XavcProfileSettings *MxfXavcProfileSettings `locationName:"xavcProfileSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -16612,6 +16871,58 @@ func (s *MxfSettings) SetAfdSignaling(v string) *MxfSettings {
 // SetProfile sets the Profile field's value.
 func (s *MxfSettings) SetProfile(v string) *MxfSettings {
 	s.Profile = &v
+	return s
+}
+
+// SetXavcProfileSettings sets the XavcProfileSettings field's value.
+func (s *MxfSettings) SetXavcProfileSettings(v *MxfXavcProfileSettings) *MxfSettings {
+	s.XavcProfileSettings = v
+	return s
+}
+
+// Specify the XAVC profile settings for MXF outputs when you set your MXF profile
+// to XAVC.
+type MxfXavcProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// To create an output that complies with the XAVC file format guidelines for
+	// interoperability, keep the default value, Drop frames for compliance (DROP_FRAMES_FOR_COMPLIANCE).
+	// To include all frames from your input in this output, keep the default setting,
+	// Allow any duration (ALLOW_ANY_DURATION). The number of frames that MediaConvert
+	// excludes when you set this to Drop frames for compliance depends on the output
+	// frame rate and duration.
+	DurationMode *string `locationName:"durationMode" type:"string" enum:"MxfXavcDurationMode"`
+
+	// Specify a value for this setting only for outputs that you set up with one
+	// of these two XAVC profiles: XAVC HD Intra CBG (XAVC_HD_INTRA_CBG) or XAVC
+	// 4K Intra CBG (XAVC_4K_INTRA_CBG). Specify the amount of space in each frame
+	// that the service reserves for ancillary data, such as teletext captions.
+	// The default value for this setting is 1492 bytes per frame. This should be
+	// sufficient to prevent overflow unless you have multiple pages of teletext
+	// captions data. If you have a large amount of teletext data, specify a larger
+	// number.
+	MaxAncDataSize *int64 `locationName:"maxAncDataSize" type:"integer"`
+}
+
+// String returns the string representation
+func (s MxfXavcProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MxfXavcProfileSettings) GoString() string {
+	return s.String()
+}
+
+// SetDurationMode sets the DurationMode field's value.
+func (s *MxfXavcProfileSettings) SetDurationMode(v string) *MxfXavcProfileSettings {
+	s.DurationMode = &v
+	return s
+}
+
+// SetMaxAncDataSize sets the MaxAncDataSize field's value.
+func (s *MxfXavcProfileSettings) SetMaxAncDataSize(v int64) *MxfXavcProfileSettings {
+	s.MaxAncDataSize = &v
 	return s
 }
 
@@ -17995,6 +18306,22 @@ func (s *PresetSettings) SetVideoDescription(v *VideoDescription) *PresetSetting
 type ProresSettings struct {
 	_ struct{} `type:"structure"`
 
+	// This setting applies only to ProRes 4444 and ProRes 4444 XQ outputs that
+	// you create from inputs that use 4:4:4 chroma sampling. Set Preserve 4:4:4
+	// sampling (PRESERVE_444_SAMPLING) to allow outputs to also use 4:4:4 chroma
+	// sampling. You must specify a value for this setting when your output codec
+	// profile supports 4:4:4 chroma sampling. Related Settings: When you set Chroma
+	// sampling to Preserve 4:4:4 sampling (PRESERVE_444_SAMPLING), you must choose
+	// an output codec profile that supports 4:4:4 chroma sampling. These values
+	// for Profile (CodecProfile) support 4:4:4 chroma sampling: Apple ProRes 4444
+	// (APPLE_PRORES_4444) or Apple ProRes 4444 XQ (APPLE_PRORES_4444_XQ). When
+	// you set Chroma sampling to Preserve 4:4:4 sampling, you must disable all
+	// video preprocessors except for Nexguard file marker (PartnerWatermarking).
+	// When you set Chroma sampling to Preserve 4:4:4 sampling and use framerate
+	// conversion, you must set Frame rate conversion algorithm (FramerateConversionAlgorithm)
+	// to Drop duplicate (DUPLICATE_DROP).
+	ChromaSampling *string `locationName:"chromaSampling" type:"string" enum:"ProresChromaSampling"`
+
 	// Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
 	// to use for this output.
 	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"ProresCodecProfile"`
@@ -18143,6 +18470,12 @@ func (s *ProresSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChromaSampling sets the ChromaSampling field's value.
+func (s *ProresSettings) SetChromaSampling(v string) *ProresSettings {
+	s.ChromaSampling = &v
+	return s
 }
 
 // SetCodecProfile sets the CodecProfile field's value.
@@ -20201,7 +20534,7 @@ func (s *Vc3Settings) SetVc3Class(v string) *Vc3Settings {
 // The following lists the codec enum, settings object pairs. * AV1, Av1Settings
 // * AVC_INTRA, AvcIntraSettings * FRAME_CAPTURE, FrameCaptureSettings * H_264,
 // H264Settings * H_265, H265Settings * MPEG2, Mpeg2Settings * PRORES, ProresSettings
-// * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings
+// * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings * XAVC, XavcSettings
 type VideoCodecSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -20249,6 +20582,10 @@ type VideoCodecSettings struct {
 	// Required when you set (Codec) under (VideoDescription)>(CodecSettings) to
 	// the value VP9.
 	Vp9Settings *Vp9Settings `locationName:"vp9Settings" type:"structure"`
+
+	// Required when you set (Codec) under (VideoDescription)>(CodecSettings) to
+	// the value XAVC.
+	XavcSettings *XavcSettings `locationName:"xavcSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -20312,6 +20649,11 @@ func (s *VideoCodecSettings) Validate() error {
 	if s.Vp9Settings != nil {
 		if err := s.Vp9Settings.Validate(); err != nil {
 			invalidParams.AddNested("Vp9Settings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.XavcSettings != nil {
+		if err := s.XavcSettings.Validate(); err != nil {
+			invalidParams.AddNested("XavcSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -20387,6 +20729,12 @@ func (s *VideoCodecSettings) SetVp9Settings(v *Vp9Settings) *VideoCodecSettings 
 	return s
 }
 
+// SetXavcSettings sets the XavcSettings field's value.
+func (s *VideoCodecSettings) SetXavcSettings(v *XavcSettings) *VideoCodecSettings {
+	s.XavcSettings = v
+	return s
+}
+
 // Settings related to video encoding of your output. The specific video settings
 // depend on the video codec that you choose. When you work directly in your
 // JSON job specification, include one instance of Video description (VideoDescription)
@@ -20414,7 +20762,7 @@ type VideoDescription struct {
 	// The following lists the codec enum, settings object pairs. * AV1, Av1Settings
 	// * AVC_INTRA, AvcIntraSettings * FRAME_CAPTURE, FrameCaptureSettings * H_264,
 	// H264Settings * H_265, H265Settings * MPEG2, Mpeg2Settings * PRORES, ProresSettings
-	// * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings
+	// * VC3, Vc3Settings * VP8, Vp8Settings * VP9, Vp9Settings * XAVC, XavcSettings
 	CodecSettings *VideoCodecSettings `locationName:"codecSettings" type:"structure"`
 
 	// Choose Insert (INSERT) for this setting to include color metadata in this
@@ -20682,6 +21030,9 @@ type VideoPreprocessor struct {
 	// Enable Dolby Vision feature to produce Dolby Vision compatible video output.
 	DolbyVision *DolbyVision `locationName:"dolbyVision" type:"structure"`
 
+	// Enable HDR10+ analyis and metadata injection. Compatible with HEVC only.
+	Hdr10Plus *Hdr10Plus `locationName:"hdr10Plus" type:"structure"`
+
 	// Enable the Image inserter (ImageInserter) feature to include a graphic overlay
 	// on your video. Enable or disable this feature for each output individually.
 	// This setting is disabled by default.
@@ -20761,6 +21112,12 @@ func (s *VideoPreprocessor) SetDeinterlacer(v *Deinterlacer) *VideoPreprocessor 
 // SetDolbyVision sets the DolbyVision field's value.
 func (s *VideoPreprocessor) SetDolbyVision(v *DolbyVision) *VideoPreprocessor {
 	s.DolbyVision = v
+	return s
+}
+
+// SetHdr10Plus sets the Hdr10Plus field's value.
+func (s *VideoPreprocessor) SetHdr10Plus(v *Hdr10Plus) *VideoPreprocessor {
+	s.Hdr10Plus = v
 	return s
 }
 
@@ -21534,6 +21891,701 @@ func (s WebvttDestinationSettings) GoString() string {
 // SetStylePassthrough sets the StylePassthrough field's value.
 func (s *WebvttDestinationSettings) SetStylePassthrough(v string) *WebvttDestinationSettings {
 	s.StylePassthrough = &v
+	return s
+}
+
+// Settings specific to WebVTT sources in HLS alternative rendition group. Specify
+// the properties (renditionGroupId, renditionName or renditionLanguageCode)
+// to identify the unique subtitle track among the alternative rendition groups
+// present in the HLS manifest. If no unique track is found, or multiple tracks
+// match the specified properties, the job fails. If there is only one subtitle
+// track in the rendition group, the settings can be left empty and the default
+// subtitle track will be chosen. If your caption source is a sidecar file,
+// use FileSourceSettings instead of WebvttHlsSourceSettings.
+type WebvttHlsSourceSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Optional. Specify alternative group ID
+	RenditionGroupId *string `locationName:"renditionGroupId" type:"string"`
+
+	// Optional. Specify ISO 639-2 or ISO 639-3 code in the language property
+	RenditionLanguageCode *string `locationName:"renditionLanguageCode" type:"string" enum:"LanguageCode"`
+
+	// Optional. Specify media name
+	RenditionName *string `locationName:"renditionName" type:"string"`
+}
+
+// String returns the string representation
+func (s WebvttHlsSourceSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WebvttHlsSourceSettings) GoString() string {
+	return s.String()
+}
+
+// SetRenditionGroupId sets the RenditionGroupId field's value.
+func (s *WebvttHlsSourceSettings) SetRenditionGroupId(v string) *WebvttHlsSourceSettings {
+	s.RenditionGroupId = &v
+	return s
+}
+
+// SetRenditionLanguageCode sets the RenditionLanguageCode field's value.
+func (s *WebvttHlsSourceSettings) SetRenditionLanguageCode(v string) *WebvttHlsSourceSettings {
+	s.RenditionLanguageCode = &v
+	return s
+}
+
+// SetRenditionName sets the RenditionName field's value.
+func (s *WebvttHlsSourceSettings) SetRenditionName(v string) *WebvttHlsSourceSettings {
+	s.RenditionName = &v
+	return s
+}
+
+// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+// to the value XAVC_4K_INTRA_CBG.
+type Xavc4kIntraCbgProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the XAVC Intra 4k (CBG) Class to set the bitrate of your output.
+	// Outputs of the same class have similar image quality over the operating points
+	// that are valid for that class.
+	XavcClass *string `locationName:"xavcClass" type:"string" enum:"Xavc4kIntraCbgProfileClass"`
+}
+
+// String returns the string representation
+func (s Xavc4kIntraCbgProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Xavc4kIntraCbgProfileSettings) GoString() string {
+	return s.String()
+}
+
+// SetXavcClass sets the XavcClass field's value.
+func (s *Xavc4kIntraCbgProfileSettings) SetXavcClass(v string) *Xavc4kIntraCbgProfileSettings {
+	s.XavcClass = &v
+	return s
+}
+
+// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+// to the value XAVC_4K_INTRA_VBR.
+type Xavc4kIntraVbrProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the XAVC Intra 4k (VBR) Class to set the bitrate of your output.
+	// Outputs of the same class have similar image quality over the operating points
+	// that are valid for that class.
+	XavcClass *string `locationName:"xavcClass" type:"string" enum:"Xavc4kIntraVbrProfileClass"`
+}
+
+// String returns the string representation
+func (s Xavc4kIntraVbrProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Xavc4kIntraVbrProfileSettings) GoString() string {
+	return s.String()
+}
+
+// SetXavcClass sets the XavcClass field's value.
+func (s *Xavc4kIntraVbrProfileSettings) SetXavcClass(v string) *Xavc4kIntraVbrProfileSettings {
+	s.XavcClass = &v
+	return s
+}
+
+// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+// to the value XAVC_4K.
+type Xavc4kProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the XAVC 4k (Long GOP) Bitrate Class to set the bitrate of your output.
+	// Outputs of the same class have similar image quality over the operating points
+	// that are valid for that class.
+	BitrateClass *string `locationName:"bitrateClass" type:"string" enum:"Xavc4kProfileBitrateClass"`
+
+	// Specify the codec profile for this output. Choose High, 8-bit, 4:2:0 (HIGH)
+	// or High, 10-bit, 4:2:2 (HIGH_422). These profiles are specified in ITU-T
+	// H.264.
+	CodecProfile *string `locationName:"codecProfile" type:"string" enum:"Xavc4kProfileCodecProfile"`
+
+	// The best way to set up adaptive quantization is to keep the default value,
+	// Auto (AUTO), for the setting Adaptive quantization (XavcAdaptiveQuantization).
+	// When you do so, MediaConvert automatically applies the best types of quantization
+	// for your video content. Include this setting in your JSON job specification
+	// only when you choose to change the default value for Adaptive quantization.
+	// Enable this setting to have the encoder reduce I-frame pop. I-frame pop appears
+	// as a visual flicker that can arise when the encoder saves bits by copying
+	// some macroblocks many times from frame to frame, and then refreshes them
+	// at the I-frame. When you enable this setting, the encoder updates these macroblocks
+	// slightly more often to smooth out the flicker. This setting is disabled by
+	// default. Related setting: In addition to enabling this setting, you must
+	// also set Adaptive quantization (adaptiveQuantization) to a value other than
+	// Off (OFF) or Auto (AUTO). Use Adaptive quantization to adjust the degree
+	// of smoothing that Flicker adaptive quantization provides.
+	FlickerAdaptiveQuantization *string `locationName:"flickerAdaptiveQuantization" type:"string" enum:"XavcFlickerAdaptiveQuantization"`
+
+	// Specify whether the encoder uses B-frames as reference frames for other pictures
+	// in the same GOP. Choose Allow (ENABLED) to allow the encoder to use B-frames
+	// as reference frames. Choose Don't allow (DISABLED) to prevent the encoder
+	// from using B-frames as reference frames.
+	GopBReference *string `locationName:"gopBReference" type:"string" enum:"XavcGopBReference"`
+
+	// Frequency of closed GOPs. In streaming applications, it is recommended that
+	// this be set to 1 so a decoder joining mid-stream will receive an IDR frame
+	// as quickly as possible. Setting this value to 0 will break output segmenting.
+	GopClosedCadence *int64 `locationName:"gopClosedCadence" type:"integer"`
+
+	// Specify the size of the buffer that MediaConvert uses in the HRD buffer model
+	// for this output. Specify this value in bits; for example, enter five megabits
+	// as 5000000. When you don't set this value, or you set it to zero, MediaConvert
+	// calculates the default by doubling the bitrate of this output point.
+	HrdBufferSize *int64 `locationName:"hrdBufferSize" type:"integer"`
+
+	// Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
+	// want to trade off encoding speed for output video quality. The default behavior
+	// is faster, lower quality, single-pass encoding.
+	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"Xavc4kProfileQualityTuningLevel"`
+
+	// Number of slices per picture. Must be less than or equal to the number of
+	// macroblock rows for progressive pictures, and less than or equal to half
+	// the number of macroblock rows for interlaced pictures.
+	Slices *int64 `locationName:"slices" min:"8" type:"integer"`
+}
+
+// String returns the string representation
+func (s Xavc4kProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Xavc4kProfileSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Xavc4kProfileSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Xavc4kProfileSettings"}
+	if s.Slices != nil && *s.Slices < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("Slices", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBitrateClass sets the BitrateClass field's value.
+func (s *Xavc4kProfileSettings) SetBitrateClass(v string) *Xavc4kProfileSettings {
+	s.BitrateClass = &v
+	return s
+}
+
+// SetCodecProfile sets the CodecProfile field's value.
+func (s *Xavc4kProfileSettings) SetCodecProfile(v string) *Xavc4kProfileSettings {
+	s.CodecProfile = &v
+	return s
+}
+
+// SetFlickerAdaptiveQuantization sets the FlickerAdaptiveQuantization field's value.
+func (s *Xavc4kProfileSettings) SetFlickerAdaptiveQuantization(v string) *Xavc4kProfileSettings {
+	s.FlickerAdaptiveQuantization = &v
+	return s
+}
+
+// SetGopBReference sets the GopBReference field's value.
+func (s *Xavc4kProfileSettings) SetGopBReference(v string) *Xavc4kProfileSettings {
+	s.GopBReference = &v
+	return s
+}
+
+// SetGopClosedCadence sets the GopClosedCadence field's value.
+func (s *Xavc4kProfileSettings) SetGopClosedCadence(v int64) *Xavc4kProfileSettings {
+	s.GopClosedCadence = &v
+	return s
+}
+
+// SetHrdBufferSize sets the HrdBufferSize field's value.
+func (s *Xavc4kProfileSettings) SetHrdBufferSize(v int64) *Xavc4kProfileSettings {
+	s.HrdBufferSize = &v
+	return s
+}
+
+// SetQualityTuningLevel sets the QualityTuningLevel field's value.
+func (s *Xavc4kProfileSettings) SetQualityTuningLevel(v string) *Xavc4kProfileSettings {
+	s.QualityTuningLevel = &v
+	return s
+}
+
+// SetSlices sets the Slices field's value.
+func (s *Xavc4kProfileSettings) SetSlices(v int64) *Xavc4kProfileSettings {
+	s.Slices = &v
+	return s
+}
+
+// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+// to the value XAVC_HD_INTRA_CBG.
+type XavcHdIntraCbgProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the XAVC Intra HD (CBG) Class to set the bitrate of your output.
+	// Outputs of the same class have similar image quality over the operating points
+	// that are valid for that class.
+	XavcClass *string `locationName:"xavcClass" type:"string" enum:"XavcHdIntraCbgProfileClass"`
+}
+
+// String returns the string representation
+func (s XavcHdIntraCbgProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XavcHdIntraCbgProfileSettings) GoString() string {
+	return s.String()
+}
+
+// SetXavcClass sets the XavcClass field's value.
+func (s *XavcHdIntraCbgProfileSettings) SetXavcClass(v string) *XavcHdIntraCbgProfileSettings {
+	s.XavcClass = &v
+	return s
+}
+
+// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+// to the value XAVC_HD.
+type XavcHdProfileSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the XAVC HD (Long GOP) Bitrate Class to set the bitrate of your output.
+	// Outputs of the same class have similar image quality over the operating points
+	// that are valid for that class.
+	BitrateClass *string `locationName:"bitrateClass" type:"string" enum:"XavcHdProfileBitrateClass"`
+
+	// The best way to set up adaptive quantization is to keep the default value,
+	// Auto (AUTO), for the setting Adaptive quantization (XavcAdaptiveQuantization).
+	// When you do so, MediaConvert automatically applies the best types of quantization
+	// for your video content. Include this setting in your JSON job specification
+	// only when you choose to change the default value for Adaptive quantization.
+	// Enable this setting to have the encoder reduce I-frame pop. I-frame pop appears
+	// as a visual flicker that can arise when the encoder saves bits by copying
+	// some macroblocks many times from frame to frame, and then refreshes them
+	// at the I-frame. When you enable this setting, the encoder updates these macroblocks
+	// slightly more often to smooth out the flicker. This setting is disabled by
+	// default. Related setting: In addition to enabling this setting, you must
+	// also set Adaptive quantization (adaptiveQuantization) to a value other than
+	// Off (OFF) or Auto (AUTO). Use Adaptive quantization to adjust the degree
+	// of smoothing that Flicker adaptive quantization provides.
+	FlickerAdaptiveQuantization *string `locationName:"flickerAdaptiveQuantization" type:"string" enum:"XavcFlickerAdaptiveQuantization"`
+
+	// Specify whether the encoder uses B-frames as reference frames for other pictures
+	// in the same GOP. Choose Allow (ENABLED) to allow the encoder to use B-frames
+	// as reference frames. Choose Don't allow (DISABLED) to prevent the encoder
+	// from using B-frames as reference frames.
+	GopBReference *string `locationName:"gopBReference" type:"string" enum:"XavcGopBReference"`
+
+	// Frequency of closed GOPs. In streaming applications, it is recommended that
+	// this be set to 1 so a decoder joining mid-stream will receive an IDR frame
+	// as quickly as possible. Setting this value to 0 will break output segmenting.
+	GopClosedCadence *int64 `locationName:"gopClosedCadence" type:"integer"`
+
+	// Specify the size of the buffer that MediaConvert uses in the HRD buffer model
+	// for this output. Specify this value in bits; for example, enter five megabits
+	// as 5000000. When you don't set this value, or you set it to zero, MediaConvert
+	// calculates the default by doubling the bitrate of this output point.
+	HrdBufferSize *int64 `locationName:"hrdBufferSize" type:"integer"`
+
+	// Choose the scan line type for the output. Keep the default value, Progressive
+	// (PROGRESSIVE) to create a progressive output, regardless of the scan type
+	// of your input. Use Top field first (TOP_FIELD) or Bottom field first (BOTTOM_FIELD)
+	// to create an output that's interlaced with the same field polarity throughout.
+	// Use Follow, default top (FOLLOW_TOP_FIELD) or Follow, default bottom (FOLLOW_BOTTOM_FIELD)
+	// to produce outputs with the same field polarity as the source. For jobs that
+	// have multiple inputs, the output field polarity might change over the course
+	// of the output. Follow behavior depends on the input scan type. If the source
+	// is interlaced, the output will be interlaced with the same polarity as the
+	// source. If the source is progressive, the output will be interlaced with
+	// top field bottom field first, depending on which of the Follow options you
+	// choose.
+	InterlaceMode *string `locationName:"interlaceMode" type:"string" enum:"XavcInterlaceMode"`
+
+	// Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
+	// want to trade off encoding speed for output video quality. The default behavior
+	// is faster, lower quality, single-pass encoding.
+	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"XavcHdProfileQualityTuningLevel"`
+
+	// Number of slices per picture. Must be less than or equal to the number of
+	// macroblock rows for progressive pictures, and less than or equal to half
+	// the number of macroblock rows for interlaced pictures.
+	Slices *int64 `locationName:"slices" min:"4" type:"integer"`
+
+	// Ignore this setting unless you set Frame rate (framerateNumerator divided
+	// by framerateDenominator) to 29.970. If your input framerate is 23.976, choose
+	// Hard (HARD). Otherwise, keep the default value None (NONE). For more information,
+	// see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-telecine-and-inverse-telecine.html.
+	Telecine *string `locationName:"telecine" type:"string" enum:"XavcHdProfileTelecine"`
+}
+
+// String returns the string representation
+func (s XavcHdProfileSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XavcHdProfileSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *XavcHdProfileSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "XavcHdProfileSettings"}
+	if s.Slices != nil && *s.Slices < 4 {
+		invalidParams.Add(request.NewErrParamMinValue("Slices", 4))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBitrateClass sets the BitrateClass field's value.
+func (s *XavcHdProfileSettings) SetBitrateClass(v string) *XavcHdProfileSettings {
+	s.BitrateClass = &v
+	return s
+}
+
+// SetFlickerAdaptiveQuantization sets the FlickerAdaptiveQuantization field's value.
+func (s *XavcHdProfileSettings) SetFlickerAdaptiveQuantization(v string) *XavcHdProfileSettings {
+	s.FlickerAdaptiveQuantization = &v
+	return s
+}
+
+// SetGopBReference sets the GopBReference field's value.
+func (s *XavcHdProfileSettings) SetGopBReference(v string) *XavcHdProfileSettings {
+	s.GopBReference = &v
+	return s
+}
+
+// SetGopClosedCadence sets the GopClosedCadence field's value.
+func (s *XavcHdProfileSettings) SetGopClosedCadence(v int64) *XavcHdProfileSettings {
+	s.GopClosedCadence = &v
+	return s
+}
+
+// SetHrdBufferSize sets the HrdBufferSize field's value.
+func (s *XavcHdProfileSettings) SetHrdBufferSize(v int64) *XavcHdProfileSettings {
+	s.HrdBufferSize = &v
+	return s
+}
+
+// SetInterlaceMode sets the InterlaceMode field's value.
+func (s *XavcHdProfileSettings) SetInterlaceMode(v string) *XavcHdProfileSettings {
+	s.InterlaceMode = &v
+	return s
+}
+
+// SetQualityTuningLevel sets the QualityTuningLevel field's value.
+func (s *XavcHdProfileSettings) SetQualityTuningLevel(v string) *XavcHdProfileSettings {
+	s.QualityTuningLevel = &v
+	return s
+}
+
+// SetSlices sets the Slices field's value.
+func (s *XavcHdProfileSettings) SetSlices(v int64) *XavcHdProfileSettings {
+	s.Slices = &v
+	return s
+}
+
+// SetTelecine sets the Telecine field's value.
+func (s *XavcHdProfileSettings) SetTelecine(v string) *XavcHdProfileSettings {
+	s.Telecine = &v
+	return s
+}
+
+// Required when you set (Codec) under (VideoDescription)>(CodecSettings) to
+// the value XAVC.
+type XavcSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Keep the default value, Auto (AUTO), for this setting to have MediaConvert
+	// automatically apply the best types of quantization for your video content.
+	// When you want to apply your quantization settings manually, you must set
+	// Adaptive quantization (adaptiveQuantization) to a value other than Auto (AUTO).
+	// Use this setting to specify the strength of any adaptive quantization filters
+	// that you enable. If you don't want MediaConvert to do any adaptive quantization
+	// in this transcode, set Adaptive quantization to Off (OFF). Related settings:
+	// The value that you choose here applies to the following settings: Flicker
+	// adaptive quantization (flickerAdaptiveQuantization), Spatial adaptive quantization
+	// (spatialAdaptiveQuantization), and Temporal adaptive quantization (temporalAdaptiveQuantization).
+	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"XavcAdaptiveQuantization"`
+
+	// Optional. Choose a specific entropy encoding mode only when you want to override
+	// XAVC recommendations. If you choose the value auto, MediaConvert uses the
+	// mode that the XAVC file format specifies given this output's operating point.
+	EntropyEncoding *string `locationName:"entropyEncoding" type:"string" enum:"XavcEntropyEncoding"`
+
+	// If you are using the console, use the Frame rate setting to specify the frame
+	// rate for this output. If you want to keep the same frame rate as the input
+	// video, choose Follow source. If you want to do frame rate conversion, choose
+	// a frame rate from the dropdown list. The framerates shown in the dropdown
+	// list are decimal approximations of fractions. If you are creating your transcoding
+	// job specification as a JSON file without the console, use FramerateControl
+	// to specify which value the service uses for the frame rate for this output.
+	// Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate
+	// from the input. Choose SPECIFIED if you want the service to use the frame
+	// rate that you specify in the settings FramerateNumerator and FramerateDenominator.
+	FramerateControl *string `locationName:"framerateControl" type:"string" enum:"XavcFramerateControl"`
+
+	// Choose the method that you want MediaConvert to use when increasing or decreasing
+	// the frame rate. We recommend using drop duplicate (DUPLICATE_DROP) for numerically
+	// simple conversions, such as 60 fps to 30 fps. For numerically complex conversions,
+	// you can use interpolate (INTERPOLATE) to avoid stutter. This results in a
+	// smooth picture, but might introduce undesirable video artifacts. For complex
+	// frame rate conversions, especially if your source video has already been
+	// converted from its original cadence, use FrameFormer (FRAMEFORMER) to do
+	// motion-compensated interpolation. FrameFormer chooses the best conversion
+	// method frame by frame. Note that using FrameFormer increases the transcoding
+	// time and incurs a significant add-on cost.
+	FramerateConversionAlgorithm *string `locationName:"framerateConversionAlgorithm" type:"string" enum:"XavcFramerateConversionAlgorithm"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateDenominator to specify the denominator of this fraction. In this
+	// example, use 1001 for the value of FramerateDenominator. When you use the
+	// console for transcode jobs that use frame rate conversion, provide the value
+	// as a decimal number for Frame rate. In this example, specify 23.976.
+	FramerateDenominator *int64 `locationName:"framerateDenominator" min:"1" type:"integer"`
+
+	// When you use the API for transcode jobs that use frame rate conversion, specify
+	// the frame rate as a fraction. For example, 24000 / 1001 = 23.976 fps. Use
+	// FramerateNumerator to specify the numerator of this fraction. In this example,
+	// use 24000 for the value of FramerateNumerator. When you use the console for
+	// transcode jobs that use frame rate conversion, provide the value as a decimal
+	// number for Framerate. In this example, specify 23.976.
+	FramerateNumerator *int64 `locationName:"framerateNumerator" min:"24" type:"integer"`
+
+	// Specify the XAVC profile for this output. For more information, see the Sony
+	// documentation at https://www.xavc-info.org/. Note that MediaConvert doesn't
+	// support the interlaced video XAVC operating points for XAVC_HD_INTRA_CBG.
+	// To create an interlaced XAVC output, choose the profile XAVC_HD.
+	Profile *string `locationName:"profile" type:"string" enum:"XavcProfile"`
+
+	// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
+	// second (fps). Enable slow PAL to create a 25 fps output by relabeling the
+	// video frames and resampling your audio. Note that enabling this setting will
+	// slightly reduce the duration of your video. Related settings: You must also
+	// set Frame rate to 25. In your JSON job specification, set (framerateControl)
+	// to (SPECIFIED), (framerateNumerator) to 25 and (framerateDenominator) to
+	// 1.
+	SlowPal *string `locationName:"slowPal" type:"string" enum:"XavcSlowPal"`
+
+	// Ignore this setting unless your downstream workflow requires that you specify
+	// it explicitly. Otherwise, we recommend that you adjust the softness of your
+	// output by using a lower value for the setting Sharpness (sharpness) or by
+	// enabling a noise reducer filter (noiseReducerFilter). The Softness (softness)
+	// setting specifies the quantization matrices that the encoder uses. Keep the
+	// default value, 0, for flat quantization. Choose the value 1 or 16 to use
+	// the default JVT softening quantization matricies from the H.264 specification.
+	// Choose a value from 17 to 128 to use planar interpolation. Increasing values
+	// from 17 to 128 result in increasing reduction of high-frequency data. The
+	// value 128 results in the softest video.
+	Softness *int64 `locationName:"softness" type:"integer"`
+
+	// The best way to set up adaptive quantization is to keep the default value,
+	// Auto (AUTO), for the setting Adaptive quantization (adaptiveQuantization).
+	// When you do so, MediaConvert automatically applies the best types of quantization
+	// for your video content. Include this setting in your JSON job specification
+	// only when you choose to change the default value for Adaptive quantization.
+	// For this setting, keep the default value, Enabled (ENABLED), to adjust quantization
+	// within each frame based on spatial variation of content complexity. When
+	// you enable this feature, the encoder uses fewer bits on areas that can sustain
+	// more distortion with no noticeable visual degradation and uses more bits
+	// on areas where any small distortion will be noticeable. For example, complex
+	// textured blocks are encoded with fewer bits and smooth textured blocks are
+	// encoded with more bits. Enabling this feature will almost always improve
+	// your video quality. Note, though, that this feature doesn't take into account
+	// where the viewer's attention is likely to be. If viewers are likely to be
+	// focusing their attention on a part of the screen with a lot of complex texture,
+	// you might choose to disable this feature. Related setting: When you enable
+	// spatial adaptive quantization, set the value for Adaptive quantization (adaptiveQuantization)
+	// depending on your content. For homogeneous content, such as cartoons and
+	// video games, set it to Low. For content with a wider variety of textures,
+	// set it to High or Higher.
+	SpatialAdaptiveQuantization *string `locationName:"spatialAdaptiveQuantization" type:"string" enum:"XavcSpatialAdaptiveQuantization"`
+
+	// The best way to set up adaptive quantization is to keep the default value,
+	// Auto (AUTO), for the setting Adaptive quantization (adaptiveQuantization).
+	// When you do so, MediaConvert automatically applies the best types of quantization
+	// for your video content. Include this setting in your JSON job specification
+	// only when you choose to change the default value for Adaptive quantization.
+	// For this setting, keep the default value, Enabled (ENABLED), to adjust quantization
+	// within each frame based on temporal variation of content complexity. When
+	// you enable this feature, the encoder uses fewer bits on areas of the frame
+	// that aren't moving and uses more bits on complex objects with sharp edges
+	// that move a lot. For example, this feature improves the readability of text
+	// tickers on newscasts and scoreboards on sports matches. Enabling this feature
+	// will almost always improve your video quality. Note, though, that this feature
+	// doesn't take into account where the viewer's attention is likely to be. If
+	// viewers are likely to be focusing their attention on a part of the screen
+	// that doesn't have moving objects with sharp edges, such as sports athletes'
+	// faces, you might choose to disable this feature. Related setting: When you
+	// enable temporal adaptive quantization, adjust the strength of the filter
+	// with the setting Adaptive quantization (adaptiveQuantization).
+	TemporalAdaptiveQuantization *string `locationName:"temporalAdaptiveQuantization" type:"string" enum:"XavcTemporalAdaptiveQuantization"`
+
+	// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+	// to the value XAVC_4K_INTRA_CBG.
+	Xavc4kIntraCbgProfileSettings *Xavc4kIntraCbgProfileSettings `locationName:"xavc4kIntraCbgProfileSettings" type:"structure"`
+
+	// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+	// to the value XAVC_4K_INTRA_VBR.
+	Xavc4kIntraVbrProfileSettings *Xavc4kIntraVbrProfileSettings `locationName:"xavc4kIntraVbrProfileSettings" type:"structure"`
+
+	// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+	// to the value XAVC_4K.
+	Xavc4kProfileSettings *Xavc4kProfileSettings `locationName:"xavc4kProfileSettings" type:"structure"`
+
+	// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+	// to the value XAVC_HD_INTRA_CBG.
+	XavcHdIntraCbgProfileSettings *XavcHdIntraCbgProfileSettings `locationName:"xavcHdIntraCbgProfileSettings" type:"structure"`
+
+	// Required when you set (Profile) under (VideoDescription)>(CodecSettings)>(XavcSettings)
+	// to the value XAVC_HD.
+	XavcHdProfileSettings *XavcHdProfileSettings `locationName:"xavcHdProfileSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s XavcSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s XavcSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *XavcSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "XavcSettings"}
+	if s.FramerateDenominator != nil && *s.FramerateDenominator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateDenominator", 1))
+	}
+	if s.FramerateNumerator != nil && *s.FramerateNumerator < 24 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 24))
+	}
+	if s.Xavc4kProfileSettings != nil {
+		if err := s.Xavc4kProfileSettings.Validate(); err != nil {
+			invalidParams.AddNested("Xavc4kProfileSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.XavcHdProfileSettings != nil {
+		if err := s.XavcHdProfileSettings.Validate(); err != nil {
+			invalidParams.AddNested("XavcHdProfileSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdaptiveQuantization sets the AdaptiveQuantization field's value.
+func (s *XavcSettings) SetAdaptiveQuantization(v string) *XavcSettings {
+	s.AdaptiveQuantization = &v
+	return s
+}
+
+// SetEntropyEncoding sets the EntropyEncoding field's value.
+func (s *XavcSettings) SetEntropyEncoding(v string) *XavcSettings {
+	s.EntropyEncoding = &v
+	return s
+}
+
+// SetFramerateControl sets the FramerateControl field's value.
+func (s *XavcSettings) SetFramerateControl(v string) *XavcSettings {
+	s.FramerateControl = &v
+	return s
+}
+
+// SetFramerateConversionAlgorithm sets the FramerateConversionAlgorithm field's value.
+func (s *XavcSettings) SetFramerateConversionAlgorithm(v string) *XavcSettings {
+	s.FramerateConversionAlgorithm = &v
+	return s
+}
+
+// SetFramerateDenominator sets the FramerateDenominator field's value.
+func (s *XavcSettings) SetFramerateDenominator(v int64) *XavcSettings {
+	s.FramerateDenominator = &v
+	return s
+}
+
+// SetFramerateNumerator sets the FramerateNumerator field's value.
+func (s *XavcSettings) SetFramerateNumerator(v int64) *XavcSettings {
+	s.FramerateNumerator = &v
+	return s
+}
+
+// SetProfile sets the Profile field's value.
+func (s *XavcSettings) SetProfile(v string) *XavcSettings {
+	s.Profile = &v
+	return s
+}
+
+// SetSlowPal sets the SlowPal field's value.
+func (s *XavcSettings) SetSlowPal(v string) *XavcSettings {
+	s.SlowPal = &v
+	return s
+}
+
+// SetSoftness sets the Softness field's value.
+func (s *XavcSettings) SetSoftness(v int64) *XavcSettings {
+	s.Softness = &v
+	return s
+}
+
+// SetSpatialAdaptiveQuantization sets the SpatialAdaptiveQuantization field's value.
+func (s *XavcSettings) SetSpatialAdaptiveQuantization(v string) *XavcSettings {
+	s.SpatialAdaptiveQuantization = &v
+	return s
+}
+
+// SetTemporalAdaptiveQuantization sets the TemporalAdaptiveQuantization field's value.
+func (s *XavcSettings) SetTemporalAdaptiveQuantization(v string) *XavcSettings {
+	s.TemporalAdaptiveQuantization = &v
+	return s
+}
+
+// SetXavc4kIntraCbgProfileSettings sets the Xavc4kIntraCbgProfileSettings field's value.
+func (s *XavcSettings) SetXavc4kIntraCbgProfileSettings(v *Xavc4kIntraCbgProfileSettings) *XavcSettings {
+	s.Xavc4kIntraCbgProfileSettings = v
+	return s
+}
+
+// SetXavc4kIntraVbrProfileSettings sets the Xavc4kIntraVbrProfileSettings field's value.
+func (s *XavcSettings) SetXavc4kIntraVbrProfileSettings(v *Xavc4kIntraVbrProfileSettings) *XavcSettings {
+	s.Xavc4kIntraVbrProfileSettings = v
+	return s
+}
+
+// SetXavc4kProfileSettings sets the Xavc4kProfileSettings field's value.
+func (s *XavcSettings) SetXavc4kProfileSettings(v *Xavc4kProfileSettings) *XavcSettings {
+	s.Xavc4kProfileSettings = v
+	return s
+}
+
+// SetXavcHdIntraCbgProfileSettings sets the XavcHdIntraCbgProfileSettings field's value.
+func (s *XavcSettings) SetXavcHdIntraCbgProfileSettings(v *XavcHdIntraCbgProfileSettings) *XavcSettings {
+	s.XavcHdIntraCbgProfileSettings = v
+	return s
+}
+
+// SetXavcHdProfileSettings sets the XavcHdProfileSettings field's value.
+func (s *XavcSettings) SetXavcHdProfileSettings(v *XavcHdProfileSettings) *XavcSettings {
+	s.XavcHdProfileSettings = v
 	return s
 }
 
@@ -22339,6 +23391,9 @@ const (
 
 	// AudioSelectorTypeLanguageCode is a AudioSelectorType enum value
 	AudioSelectorTypeLanguageCode = "LANGUAGE_CODE"
+
+	// AudioSelectorTypeHlsRenditionGroup is a AudioSelectorType enum value
+	AudioSelectorTypeHlsRenditionGroup = "HLS_RENDITION_GROUP"
 )
 
 // AudioSelectorType_Values returns all elements of the AudioSelectorType enum
@@ -22347,6 +23402,7 @@ func AudioSelectorType_Values() []string {
 		AudioSelectorTypePid,
 		AudioSelectorTypeTrack,
 		AudioSelectorTypeLanguageCode,
+		AudioSelectorTypeHlsRenditionGroup,
 	}
 }
 
@@ -23103,6 +24159,37 @@ func CmafEncryptionType_Values() []string {
 	}
 }
 
+// Specify whether MediaConvert generates images for trick play. Keep the default
+// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+// to generate tiled thumbnails and full-resolution images of single frames.
+// When you enable Write HLS manifest (WriteHlsManifest), MediaConvert creates
+// a child manifest for each set of images that you generate and adds corresponding
+// entries to the parent manifest. When you enable Write DASH manifest (WriteDashManifest),
+// MediaConvert adds an entry in the .mpd manifest for each set of images that
+// you generate. A common application for these images is Roku trick mode. The
+// thumbnails and full-frame images that MediaConvert creates with this feature
+// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+const (
+	// CmafImageBasedTrickPlayNone is a CmafImageBasedTrickPlay enum value
+	CmafImageBasedTrickPlayNone = "NONE"
+
+	// CmafImageBasedTrickPlayThumbnail is a CmafImageBasedTrickPlay enum value
+	CmafImageBasedTrickPlayThumbnail = "THUMBNAIL"
+
+	// CmafImageBasedTrickPlayThumbnailAndFullframe is a CmafImageBasedTrickPlay enum value
+	CmafImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+)
+
+// CmafImageBasedTrickPlay_Values returns all elements of the CmafImageBasedTrickPlay enum
+func CmafImageBasedTrickPlay_Values() []string {
+	return []string{
+		CmafImageBasedTrickPlayNone,
+		CmafImageBasedTrickPlayThumbnail,
+		CmafImageBasedTrickPlayThumbnailAndFullframe,
+	}
+}
+
 // When you use DRM with CMAF outputs, choose whether the service writes the
 // 128-bit encryption initialization vector in the HLS and DASH manifests.
 const (
@@ -23686,6 +24773,34 @@ func DashIsoHbbtvCompliance_Values() []string {
 	}
 }
 
+// Specify whether MediaConvert generates images for trick play. Keep the default
+// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+// to generate tiled thumbnails and full-resolution images of single frames.
+// MediaConvert adds an entry in the .mpd manifest for each set of images that
+// you generate. A common application for these images is Roku trick mode. The
+// thumbnails and full-frame images that MediaConvert creates with this feature
+// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+const (
+	// DashIsoImageBasedTrickPlayNone is a DashIsoImageBasedTrickPlay enum value
+	DashIsoImageBasedTrickPlayNone = "NONE"
+
+	// DashIsoImageBasedTrickPlayThumbnail is a DashIsoImageBasedTrickPlay enum value
+	DashIsoImageBasedTrickPlayThumbnail = "THUMBNAIL"
+
+	// DashIsoImageBasedTrickPlayThumbnailAndFullframe is a DashIsoImageBasedTrickPlay enum value
+	DashIsoImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+)
+
+// DashIsoImageBasedTrickPlay_Values returns all elements of the DashIsoImageBasedTrickPlay enum
+func DashIsoImageBasedTrickPlay_Values() []string {
+	return []string{
+		DashIsoImageBasedTrickPlayNone,
+		DashIsoImageBasedTrickPlayThumbnail,
+		DashIsoImageBasedTrickPlayThumbnailAndFullframe,
+	}
+}
+
 // Specify whether your DASH profile is on-demand or main. When you choose Main
 // profile (MAIN_PROFILE), the service signals urn:mpeg:dash:profile:isoff-main:2011
 // in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE),
@@ -24200,8 +25315,17 @@ func Eac3AtmosBitstreamMode_Values() []string {
 	}
 }
 
-// The coding mode for Dolby Digital Plus JOC (Atmos) is always 9.1.6 (CODING_MODE_9_1_6).
+// The coding mode for Dolby Digital Plus JOC (Atmos).
 const (
+	// Eac3AtmosCodingModeCodingModeAuto is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingModeAuto = "CODING_MODE_AUTO"
+
+	// Eac3AtmosCodingModeCodingMode514 is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingMode514 = "CODING_MODE_5_1_4"
+
+	// Eac3AtmosCodingModeCodingMode714 is a Eac3AtmosCodingMode enum value
+	Eac3AtmosCodingModeCodingMode714 = "CODING_MODE_7_1_4"
+
 	// Eac3AtmosCodingModeCodingMode916 is a Eac3AtmosCodingMode enum value
 	Eac3AtmosCodingModeCodingMode916 = "CODING_MODE_9_1_6"
 )
@@ -24209,6 +25333,9 @@ const (
 // Eac3AtmosCodingMode_Values returns all elements of the Eac3AtmosCodingMode enum
 func Eac3AtmosCodingMode_Values() []string {
 	return []string{
+		Eac3AtmosCodingModeCodingModeAuto,
+		Eac3AtmosCodingModeCodingMode514,
+		Eac3AtmosCodingModeCodingMode714,
 		Eac3AtmosCodingModeCodingMode916,
 	}
 }
@@ -24230,7 +25357,40 @@ func Eac3AtmosDialogueIntelligence_Values() []string {
 	}
 }
 
-// Specify the absolute peak level for a signal with dynamic range compression.
+// Specify whether MediaConvert should use any downmix metadata from your input
+// file. Keep the default value, Custom (SPECIFIED) to provide downmix values
+// in your job settings. Choose Follow source (INITIALIZE_FROM_SOURCE) to use
+// the metadata from your input. Related settings--Use these settings to specify
+// your downmix values: Left only/Right only surround (LoRoSurroundMixLevel),
+// Left total/Right total surround (LtRtSurroundMixLevel), Left total/Right
+// total center (LtRtCenterMixLevel), Left only/Right only center (LoRoCenterMixLevel),
+// and Stereo downmix (StereoDownmix). When you keep Custom (SPECIFIED) for
+// Downmix control (DownmixControl) and you don't specify values for the related
+// settings, MediaConvert uses default values for those settings.
+const (
+	// Eac3AtmosDownmixControlSpecified is a Eac3AtmosDownmixControl enum value
+	Eac3AtmosDownmixControlSpecified = "SPECIFIED"
+
+	// Eac3AtmosDownmixControlInitializeFromSource is a Eac3AtmosDownmixControl enum value
+	Eac3AtmosDownmixControlInitializeFromSource = "INITIALIZE_FROM_SOURCE"
+)
+
+// Eac3AtmosDownmixControl_Values returns all elements of the Eac3AtmosDownmixControl enum
+func Eac3AtmosDownmixControl_Values() []string {
+	return []string{
+		Eac3AtmosDownmixControlSpecified,
+		Eac3AtmosDownmixControlInitializeFromSource,
+	}
+}
+
+// Choose the Dolby dynamic range control (DRC) profile that MediaConvert uses
+// when encoding the metadata in the Dolby stream for the line operating mode.
+// Default value: Film light (ATMOS_STORAGE_DDP_COMPR_FILM_LIGHT) Related setting:
+// To have MediaConvert use the value you specify here, keep the default value,
+// Custom (SPECIFIED) for the setting Dynamic range control (DynamicRangeControl).
+// Otherwise, MediaConvert ignores Dynamic range compression line (DynamicRangeCompressionLine).
+// For information about the Dolby DRC operating modes and profiles, see the
+// Dynamic Range Control chapter of the Dolby Metadata Guide at https://developer.dolby.com/globalassets/professional/documents/dolby-metadata-guide.pdf.
 const (
 	// Eac3AtmosDynamicRangeCompressionLineNone is a Eac3AtmosDynamicRangeCompressionLine enum value
 	Eac3AtmosDynamicRangeCompressionLineNone = "NONE"
@@ -24263,8 +25423,14 @@ func Eac3AtmosDynamicRangeCompressionLine_Values() []string {
 	}
 }
 
-// Specify how the service limits the audio dynamic range when compressing the
-// audio.
+// Choose the Dolby dynamic range control (DRC) profile that MediaConvert uses
+// when encoding the metadata in the Dolby stream for the RF operating mode.
+// Default value: Film light (ATMOS_STORAGE_DDP_COMPR_FILM_LIGHT) Related setting:
+// To have MediaConvert use the value you specify here, keep the default value,
+// Custom (SPECIFIED) for the setting Dynamic range control (DynamicRangeControl).
+// Otherwise, MediaConvert ignores Dynamic range compression RF (DynamicRangeCompressionRf).
+// For information about the Dolby DRC operating modes and profiles, see the
+// Dynamic Range Control chapter of the Dolby Metadata Guide at https://developer.dolby.com/globalassets/professional/documents/dolby-metadata-guide.pdf.
 const (
 	// Eac3AtmosDynamicRangeCompressionRfNone is a Eac3AtmosDynamicRangeCompressionRf enum value
 	Eac3AtmosDynamicRangeCompressionRfNone = "NONE"
@@ -24297,6 +25463,31 @@ func Eac3AtmosDynamicRangeCompressionRf_Values() []string {
 	}
 }
 
+// Specify whether MediaConvert should use any dynamic range control metadata
+// from your input file. Keep the default value, Custom (SPECIFIED), to provide
+// dynamic range control values in your job settings. Choose Follow source (INITIALIZE_FROM_SOURCE)
+// to use the metadata from your input. Related settings--Use these settings
+// to specify your dynamic range control values: Dynamic range compression line
+// (DynamicRangeCompressionLine) and Dynamic range compression RF (DynamicRangeCompressionRf).
+// When you keep the value Custom (SPECIFIED) for Dynamic range control (DynamicRangeControl)
+// and you don't specify values for the related settings, MediaConvert uses
+// default values for those settings.
+const (
+	// Eac3AtmosDynamicRangeControlSpecified is a Eac3AtmosDynamicRangeControl enum value
+	Eac3AtmosDynamicRangeControlSpecified = "SPECIFIED"
+
+	// Eac3AtmosDynamicRangeControlInitializeFromSource is a Eac3AtmosDynamicRangeControl enum value
+	Eac3AtmosDynamicRangeControlInitializeFromSource = "INITIALIZE_FROM_SOURCE"
+)
+
+// Eac3AtmosDynamicRangeControl_Values returns all elements of the Eac3AtmosDynamicRangeControl enum
+func Eac3AtmosDynamicRangeControl_Values() []string {
+	return []string{
+		Eac3AtmosDynamicRangeControlSpecified,
+		Eac3AtmosDynamicRangeControlInitializeFromSource,
+	}
+}
+
 // Choose how the service meters the loudness of your audio.
 const (
 	// Eac3AtmosMeteringModeLeqA is a Eac3AtmosMeteringMode enum value
@@ -24326,7 +25517,11 @@ func Eac3AtmosMeteringMode_Values() []string {
 	}
 }
 
-// Choose how the service does stereo downmixing.
+// Choose how the service does stereo downmixing. Default value: Not indicated
+// (ATMOS_STORAGE_DDP_DMIXMOD_NOT_INDICATED) Related setting: To have MediaConvert
+// use this value, keep the default value, Custom (SPECIFIED) for the setting
+// Downmix control (DownmixControl). Otherwise, MediaConvert ignores Stereo
+// downmix (StereoDownmix).
 const (
 	// Eac3AtmosStereoDownmixNotIndicated is a Eac3AtmosStereoDownmix enum value
 	Eac3AtmosStereoDownmixNotIndicated = "NOT_INDICATED"
@@ -26397,6 +27592,35 @@ func HlsIFrameOnlyManifest_Values() []string {
 	return []string{
 		HlsIFrameOnlyManifestInclude,
 		HlsIFrameOnlyManifestExclude,
+	}
+}
+
+// Specify whether MediaConvert generates images for trick play. Keep the default
+// value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL)
+// to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME)
+// to generate tiled thumbnails and full-resolution images of single frames.
+// MediaConvert creates a child manifest for each set of images that you generate
+// and adds corresponding entries to the parent manifest. A common application
+// for these images is Roku trick mode. The thumbnails and full-frame images
+// that MediaConvert creates with this feature are compatible with this Roku
+// specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+const (
+	// HlsImageBasedTrickPlayNone is a HlsImageBasedTrickPlay enum value
+	HlsImageBasedTrickPlayNone = "NONE"
+
+	// HlsImageBasedTrickPlayThumbnail is a HlsImageBasedTrickPlay enum value
+	HlsImageBasedTrickPlayThumbnail = "THUMBNAIL"
+
+	// HlsImageBasedTrickPlayThumbnailAndFullframe is a HlsImageBasedTrickPlay enum value
+	HlsImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+)
+
+// HlsImageBasedTrickPlay_Values returns all elements of the HlsImageBasedTrickPlay enum
+func HlsImageBasedTrickPlay_Values() []string {
+	return []string{
+		HlsImageBasedTrickPlayNone,
+		HlsImageBasedTrickPlayThumbnail,
+		HlsImageBasedTrickPlayThumbnailAndFullframe,
 	}
 }
 
@@ -28905,6 +30129,9 @@ const (
 
 	// MxfProfileOp1a is a MxfProfile enum value
 	MxfProfileOp1a = "OP1A"
+
+	// MxfProfileXavc is a MxfProfile enum value
+	MxfProfileXavc = "XAVC"
 )
 
 // MxfProfile_Values returns all elements of the MxfProfile enum
@@ -28913,6 +30140,29 @@ func MxfProfile_Values() []string {
 		MxfProfileD10,
 		MxfProfileXdcam,
 		MxfProfileOp1a,
+		MxfProfileXavc,
+	}
+}
+
+// To create an output that complies with the XAVC file format guidelines for
+// interoperability, keep the default value, Drop frames for compliance (DROP_FRAMES_FOR_COMPLIANCE).
+// To include all frames from your input in this output, keep the default setting,
+// Allow any duration (ALLOW_ANY_DURATION). The number of frames that MediaConvert
+// excludes when you set this to Drop frames for compliance depends on the output
+// frame rate and duration.
+const (
+	// MxfXavcDurationModeAllowAnyDuration is a MxfXavcDurationMode enum value
+	MxfXavcDurationModeAllowAnyDuration = "ALLOW_ANY_DURATION"
+
+	// MxfXavcDurationModeDropFramesForCompliance is a MxfXavcDurationMode enum value
+	MxfXavcDurationModeDropFramesForCompliance = "DROP_FRAMES_FOR_COMPLIANCE"
+)
+
+// MxfXavcDurationMode_Values returns all elements of the MxfXavcDurationMode enum
+func MxfXavcDurationMode_Values() []string {
+	return []string{
+		MxfXavcDurationModeAllowAnyDuration,
+		MxfXavcDurationModeDropFramesForCompliance,
 	}
 }
 
@@ -29175,6 +30425,36 @@ func PricingPlan_Values() []string {
 	}
 }
 
+// This setting applies only to ProRes 4444 and ProRes 4444 XQ outputs that
+// you create from inputs that use 4:4:4 chroma sampling. Set Preserve 4:4:4
+// sampling (PRESERVE_444_SAMPLING) to allow outputs to also use 4:4:4 chroma
+// sampling. You must specify a value for this setting when your output codec
+// profile supports 4:4:4 chroma sampling. Related Settings: When you set Chroma
+// sampling to Preserve 4:4:4 sampling (PRESERVE_444_SAMPLING), you must choose
+// an output codec profile that supports 4:4:4 chroma sampling. These values
+// for Profile (CodecProfile) support 4:4:4 chroma sampling: Apple ProRes 4444
+// (APPLE_PRORES_4444) or Apple ProRes 4444 XQ (APPLE_PRORES_4444_XQ). When
+// you set Chroma sampling to Preserve 4:4:4 sampling, you must disable all
+// video preprocessors except for Nexguard file marker (PartnerWatermarking).
+// When you set Chroma sampling to Preserve 4:4:4 sampling and use framerate
+// conversion, you must set Frame rate conversion algorithm (FramerateConversionAlgorithm)
+// to Drop duplicate (DUPLICATE_DROP).
+const (
+	// ProresChromaSamplingPreserve444Sampling is a ProresChromaSampling enum value
+	ProresChromaSamplingPreserve444Sampling = "PRESERVE_444_SAMPLING"
+
+	// ProresChromaSamplingSubsampleTo422 is a ProresChromaSampling enum value
+	ProresChromaSamplingSubsampleTo422 = "SUBSAMPLE_TO_422"
+)
+
+// ProresChromaSampling_Values returns all elements of the ProresChromaSampling enum
+func ProresChromaSampling_Values() []string {
+	return []string{
+		ProresChromaSamplingPreserve444Sampling,
+		ProresChromaSamplingSubsampleTo422,
+	}
+}
+
 // Use Profile (ProResCodecProfile) to specify the type of Apple ProRes codec
 // to use for this output.
 const (
@@ -29189,6 +30469,12 @@ const (
 
 	// ProresCodecProfileAppleProres422Proxy is a ProresCodecProfile enum value
 	ProresCodecProfileAppleProres422Proxy = "APPLE_PRORES_422_PROXY"
+
+	// ProresCodecProfileAppleProres4444 is a ProresCodecProfile enum value
+	ProresCodecProfileAppleProres4444 = "APPLE_PRORES_4444"
+
+	// ProresCodecProfileAppleProres4444Xq is a ProresCodecProfile enum value
+	ProresCodecProfileAppleProres4444Xq = "APPLE_PRORES_4444_XQ"
 )
 
 // ProresCodecProfile_Values returns all elements of the ProresCodecProfile enum
@@ -29198,6 +30484,8 @@ func ProresCodecProfile_Values() []string {
 		ProresCodecProfileAppleProres422Hq,
 		ProresCodecProfileAppleProres422Lt,
 		ProresCodecProfileAppleProres422Proxy,
+		ProresCodecProfileAppleProres4444,
+		ProresCodecProfileAppleProres4444Xq,
 	}
 }
 
@@ -29546,6 +30834,32 @@ func S3ServerSideEncryptionType_Values() []string {
 	return []string{
 		S3ServerSideEncryptionTypeServerSideEncryptionS3,
 		S3ServerSideEncryptionTypeServerSideEncryptionKms,
+	}
+}
+
+// Specify the video color sample range for this output. To create a full range
+// output, you must start with a full range YUV input and keep the default value,
+// None (NONE). To create a limited range output from a full range input, choose
+// Limited range (LIMITED_RANGE_SQUEEZE). With RGB inputs, your output is always
+// limited range, regardless of your choice here. When you create a limited
+// range output from a full range input, MediaConvert limits the active pixel
+// values in a way that depends on the output's bit depth: 8-bit outputs contain
+// only values from 16 through 235 and 10-bit outputs contain only values from
+// 64 through 940. With this conversion, MediaConvert also changes the output
+// metadata to note the limited range.
+const (
+	// SampleRangeConversionLimitedRangeSqueeze is a SampleRangeConversion enum value
+	SampleRangeConversionLimitedRangeSqueeze = "LIMITED_RANGE_SQUEEZE"
+
+	// SampleRangeConversionNone is a SampleRangeConversion enum value
+	SampleRangeConversionNone = "NONE"
+)
+
+// SampleRangeConversion_Values returns all elements of the SampleRangeConversion enum
+func SampleRangeConversion_Values() []string {
+	return []string{
+		SampleRangeConversionLimitedRangeSqueeze,
+		SampleRangeConversionNone,
 	}
 }
 
@@ -30063,6 +31377,9 @@ const (
 
 	// VideoCodecVp9 is a VideoCodec enum value
 	VideoCodecVp9 = "VP9"
+
+	// VideoCodecXavc is a VideoCodec enum value
+	VideoCodecXavc = "XAVC"
 )
 
 // VideoCodec_Values returns all elements of the VideoCodec enum
@@ -30078,6 +31395,7 @@ func VideoCodec_Values() []string {
 		VideoCodecVc3,
 		VideoCodecVp8,
 		VideoCodecVp9,
+		VideoCodecXavc,
 	}
 }
 
@@ -30401,5 +31719,545 @@ func WebvttStylePassthrough_Values() []string {
 	return []string{
 		WebvttStylePassthroughEnabled,
 		WebvttStylePassthroughDisabled,
+	}
+}
+
+// Specify the XAVC Intra 4k (CBG) Class to set the bitrate of your output.
+// Outputs of the same class have similar image quality over the operating points
+// that are valid for that class.
+const (
+	// Xavc4kIntraCbgProfileClassClass100 is a Xavc4kIntraCbgProfileClass enum value
+	Xavc4kIntraCbgProfileClassClass100 = "CLASS_100"
+
+	// Xavc4kIntraCbgProfileClassClass300 is a Xavc4kIntraCbgProfileClass enum value
+	Xavc4kIntraCbgProfileClassClass300 = "CLASS_300"
+
+	// Xavc4kIntraCbgProfileClassClass480 is a Xavc4kIntraCbgProfileClass enum value
+	Xavc4kIntraCbgProfileClassClass480 = "CLASS_480"
+)
+
+// Xavc4kIntraCbgProfileClass_Values returns all elements of the Xavc4kIntraCbgProfileClass enum
+func Xavc4kIntraCbgProfileClass_Values() []string {
+	return []string{
+		Xavc4kIntraCbgProfileClassClass100,
+		Xavc4kIntraCbgProfileClassClass300,
+		Xavc4kIntraCbgProfileClassClass480,
+	}
+}
+
+// Specify the XAVC Intra 4k (VBR) Class to set the bitrate of your output.
+// Outputs of the same class have similar image quality over the operating points
+// that are valid for that class.
+const (
+	// Xavc4kIntraVbrProfileClassClass100 is a Xavc4kIntraVbrProfileClass enum value
+	Xavc4kIntraVbrProfileClassClass100 = "CLASS_100"
+
+	// Xavc4kIntraVbrProfileClassClass300 is a Xavc4kIntraVbrProfileClass enum value
+	Xavc4kIntraVbrProfileClassClass300 = "CLASS_300"
+
+	// Xavc4kIntraVbrProfileClassClass480 is a Xavc4kIntraVbrProfileClass enum value
+	Xavc4kIntraVbrProfileClassClass480 = "CLASS_480"
+)
+
+// Xavc4kIntraVbrProfileClass_Values returns all elements of the Xavc4kIntraVbrProfileClass enum
+func Xavc4kIntraVbrProfileClass_Values() []string {
+	return []string{
+		Xavc4kIntraVbrProfileClassClass100,
+		Xavc4kIntraVbrProfileClassClass300,
+		Xavc4kIntraVbrProfileClassClass480,
+	}
+}
+
+// Specify the XAVC 4k (Long GOP) Bitrate Class to set the bitrate of your output.
+// Outputs of the same class have similar image quality over the operating points
+// that are valid for that class.
+const (
+	// Xavc4kProfileBitrateClassBitrateClass100 is a Xavc4kProfileBitrateClass enum value
+	Xavc4kProfileBitrateClassBitrateClass100 = "BITRATE_CLASS_100"
+
+	// Xavc4kProfileBitrateClassBitrateClass140 is a Xavc4kProfileBitrateClass enum value
+	Xavc4kProfileBitrateClassBitrateClass140 = "BITRATE_CLASS_140"
+
+	// Xavc4kProfileBitrateClassBitrateClass200 is a Xavc4kProfileBitrateClass enum value
+	Xavc4kProfileBitrateClassBitrateClass200 = "BITRATE_CLASS_200"
+)
+
+// Xavc4kProfileBitrateClass_Values returns all elements of the Xavc4kProfileBitrateClass enum
+func Xavc4kProfileBitrateClass_Values() []string {
+	return []string{
+		Xavc4kProfileBitrateClassBitrateClass100,
+		Xavc4kProfileBitrateClassBitrateClass140,
+		Xavc4kProfileBitrateClassBitrateClass200,
+	}
+}
+
+// Specify the codec profile for this output. Choose High, 8-bit, 4:2:0 (HIGH)
+// or High, 10-bit, 4:2:2 (HIGH_422). These profiles are specified in ITU-T
+// H.264.
+const (
+	// Xavc4kProfileCodecProfileHigh is a Xavc4kProfileCodecProfile enum value
+	Xavc4kProfileCodecProfileHigh = "HIGH"
+
+	// Xavc4kProfileCodecProfileHigh422 is a Xavc4kProfileCodecProfile enum value
+	Xavc4kProfileCodecProfileHigh422 = "HIGH_422"
+)
+
+// Xavc4kProfileCodecProfile_Values returns all elements of the Xavc4kProfileCodecProfile enum
+func Xavc4kProfileCodecProfile_Values() []string {
+	return []string{
+		Xavc4kProfileCodecProfileHigh,
+		Xavc4kProfileCodecProfileHigh422,
+	}
+}
+
+// Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
+// want to trade off encoding speed for output video quality. The default behavior
+// is faster, lower quality, single-pass encoding.
+const (
+	// Xavc4kProfileQualityTuningLevelSinglePass is a Xavc4kProfileQualityTuningLevel enum value
+	Xavc4kProfileQualityTuningLevelSinglePass = "SINGLE_PASS"
+
+	// Xavc4kProfileQualityTuningLevelSinglePassHq is a Xavc4kProfileQualityTuningLevel enum value
+	Xavc4kProfileQualityTuningLevelSinglePassHq = "SINGLE_PASS_HQ"
+
+	// Xavc4kProfileQualityTuningLevelMultiPassHq is a Xavc4kProfileQualityTuningLevel enum value
+	Xavc4kProfileQualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
+)
+
+// Xavc4kProfileQualityTuningLevel_Values returns all elements of the Xavc4kProfileQualityTuningLevel enum
+func Xavc4kProfileQualityTuningLevel_Values() []string {
+	return []string{
+		Xavc4kProfileQualityTuningLevelSinglePass,
+		Xavc4kProfileQualityTuningLevelSinglePassHq,
+		Xavc4kProfileQualityTuningLevelMultiPassHq,
+	}
+}
+
+// Keep the default value, Auto (AUTO), for this setting to have MediaConvert
+// automatically apply the best types of quantization for your video content.
+// When you want to apply your quantization settings manually, you must set
+// Adaptive quantization (adaptiveQuantization) to a value other than Auto (AUTO).
+// Use this setting to specify the strength of any adaptive quantization filters
+// that you enable. If you don't want MediaConvert to do any adaptive quantization
+// in this transcode, set Adaptive quantization to Off (OFF). Related settings:
+// The value that you choose here applies to the following settings: Flicker
+// adaptive quantization (flickerAdaptiveQuantization), Spatial adaptive quantization
+// (spatialAdaptiveQuantization), and Temporal adaptive quantization (temporalAdaptiveQuantization).
+const (
+	// XavcAdaptiveQuantizationOff is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationOff = "OFF"
+
+	// XavcAdaptiveQuantizationAuto is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationAuto = "AUTO"
+
+	// XavcAdaptiveQuantizationLow is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationLow = "LOW"
+
+	// XavcAdaptiveQuantizationMedium is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationMedium = "MEDIUM"
+
+	// XavcAdaptiveQuantizationHigh is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationHigh = "HIGH"
+
+	// XavcAdaptiveQuantizationHigher is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationHigher = "HIGHER"
+
+	// XavcAdaptiveQuantizationMax is a XavcAdaptiveQuantization enum value
+	XavcAdaptiveQuantizationMax = "MAX"
+)
+
+// XavcAdaptiveQuantization_Values returns all elements of the XavcAdaptiveQuantization enum
+func XavcAdaptiveQuantization_Values() []string {
+	return []string{
+		XavcAdaptiveQuantizationOff,
+		XavcAdaptiveQuantizationAuto,
+		XavcAdaptiveQuantizationLow,
+		XavcAdaptiveQuantizationMedium,
+		XavcAdaptiveQuantizationHigh,
+		XavcAdaptiveQuantizationHigher,
+		XavcAdaptiveQuantizationMax,
+	}
+}
+
+// Optional. Choose a specific entropy encoding mode only when you want to override
+// XAVC recommendations. If you choose the value auto, MediaConvert uses the
+// mode that the XAVC file format specifies given this output's operating point.
+const (
+	// XavcEntropyEncodingAuto is a XavcEntropyEncoding enum value
+	XavcEntropyEncodingAuto = "AUTO"
+
+	// XavcEntropyEncodingCabac is a XavcEntropyEncoding enum value
+	XavcEntropyEncodingCabac = "CABAC"
+
+	// XavcEntropyEncodingCavlc is a XavcEntropyEncoding enum value
+	XavcEntropyEncodingCavlc = "CAVLC"
+)
+
+// XavcEntropyEncoding_Values returns all elements of the XavcEntropyEncoding enum
+func XavcEntropyEncoding_Values() []string {
+	return []string{
+		XavcEntropyEncodingAuto,
+		XavcEntropyEncodingCabac,
+		XavcEntropyEncodingCavlc,
+	}
+}
+
+// The best way to set up adaptive quantization is to keep the default value,
+// Auto (AUTO), for the setting Adaptive quantization (XavcAdaptiveQuantization).
+// When you do so, MediaConvert automatically applies the best types of quantization
+// for your video content. Include this setting in your JSON job specification
+// only when you choose to change the default value for Adaptive quantization.
+// Enable this setting to have the encoder reduce I-frame pop. I-frame pop appears
+// as a visual flicker that can arise when the encoder saves bits by copying
+// some macroblocks many times from frame to frame, and then refreshes them
+// at the I-frame. When you enable this setting, the encoder updates these macroblocks
+// slightly more often to smooth out the flicker. This setting is disabled by
+// default. Related setting: In addition to enabling this setting, you must
+// also set Adaptive quantization (adaptiveQuantization) to a value other than
+// Off (OFF) or Auto (AUTO). Use Adaptive quantization to adjust the degree
+// of smoothing that Flicker adaptive quantization provides.
+const (
+	// XavcFlickerAdaptiveQuantizationDisabled is a XavcFlickerAdaptiveQuantization enum value
+	XavcFlickerAdaptiveQuantizationDisabled = "DISABLED"
+
+	// XavcFlickerAdaptiveQuantizationEnabled is a XavcFlickerAdaptiveQuantization enum value
+	XavcFlickerAdaptiveQuantizationEnabled = "ENABLED"
+)
+
+// XavcFlickerAdaptiveQuantization_Values returns all elements of the XavcFlickerAdaptiveQuantization enum
+func XavcFlickerAdaptiveQuantization_Values() []string {
+	return []string{
+		XavcFlickerAdaptiveQuantizationDisabled,
+		XavcFlickerAdaptiveQuantizationEnabled,
+	}
+}
+
+// If you are using the console, use the Frame rate setting to specify the frame
+// rate for this output. If you want to keep the same frame rate as the input
+// video, choose Follow source. If you want to do frame rate conversion, choose
+// a frame rate from the dropdown list. The framerates shown in the dropdown
+// list are decimal approximations of fractions. If you are creating your transcoding
+// job specification as a JSON file without the console, use FramerateControl
+// to specify which value the service uses for the frame rate for this output.
+// Choose INITIALIZE_FROM_SOURCE if you want the service to use the frame rate
+// from the input. Choose SPECIFIED if you want the service to use the frame
+// rate that you specify in the settings FramerateNumerator and FramerateDenominator.
+const (
+	// XavcFramerateControlInitializeFromSource is a XavcFramerateControl enum value
+	XavcFramerateControlInitializeFromSource = "INITIALIZE_FROM_SOURCE"
+
+	// XavcFramerateControlSpecified is a XavcFramerateControl enum value
+	XavcFramerateControlSpecified = "SPECIFIED"
+)
+
+// XavcFramerateControl_Values returns all elements of the XavcFramerateControl enum
+func XavcFramerateControl_Values() []string {
+	return []string{
+		XavcFramerateControlInitializeFromSource,
+		XavcFramerateControlSpecified,
+	}
+}
+
+// Choose the method that you want MediaConvert to use when increasing or decreasing
+// the frame rate. We recommend using drop duplicate (DUPLICATE_DROP) for numerically
+// simple conversions, such as 60 fps to 30 fps. For numerically complex conversions,
+// you can use interpolate (INTERPOLATE) to avoid stutter. This results in a
+// smooth picture, but might introduce undesirable video artifacts. For complex
+// frame rate conversions, especially if your source video has already been
+// converted from its original cadence, use FrameFormer (FRAMEFORMER) to do
+// motion-compensated interpolation. FrameFormer chooses the best conversion
+// method frame by frame. Note that using FrameFormer increases the transcoding
+// time and incurs a significant add-on cost.
+const (
+	// XavcFramerateConversionAlgorithmDuplicateDrop is a XavcFramerateConversionAlgorithm enum value
+	XavcFramerateConversionAlgorithmDuplicateDrop = "DUPLICATE_DROP"
+
+	// XavcFramerateConversionAlgorithmInterpolate is a XavcFramerateConversionAlgorithm enum value
+	XavcFramerateConversionAlgorithmInterpolate = "INTERPOLATE"
+
+	// XavcFramerateConversionAlgorithmFrameformer is a XavcFramerateConversionAlgorithm enum value
+	XavcFramerateConversionAlgorithmFrameformer = "FRAMEFORMER"
+)
+
+// XavcFramerateConversionAlgorithm_Values returns all elements of the XavcFramerateConversionAlgorithm enum
+func XavcFramerateConversionAlgorithm_Values() []string {
+	return []string{
+		XavcFramerateConversionAlgorithmDuplicateDrop,
+		XavcFramerateConversionAlgorithmInterpolate,
+		XavcFramerateConversionAlgorithmFrameformer,
+	}
+}
+
+// Specify whether the encoder uses B-frames as reference frames for other pictures
+// in the same GOP. Choose Allow (ENABLED) to allow the encoder to use B-frames
+// as reference frames. Choose Don't allow (DISABLED) to prevent the encoder
+// from using B-frames as reference frames.
+const (
+	// XavcGopBReferenceDisabled is a XavcGopBReference enum value
+	XavcGopBReferenceDisabled = "DISABLED"
+
+	// XavcGopBReferenceEnabled is a XavcGopBReference enum value
+	XavcGopBReferenceEnabled = "ENABLED"
+)
+
+// XavcGopBReference_Values returns all elements of the XavcGopBReference enum
+func XavcGopBReference_Values() []string {
+	return []string{
+		XavcGopBReferenceDisabled,
+		XavcGopBReferenceEnabled,
+	}
+}
+
+// Specify the XAVC Intra HD (CBG) Class to set the bitrate of your output.
+// Outputs of the same class have similar image quality over the operating points
+// that are valid for that class.
+const (
+	// XavcHdIntraCbgProfileClassClass50 is a XavcHdIntraCbgProfileClass enum value
+	XavcHdIntraCbgProfileClassClass50 = "CLASS_50"
+
+	// XavcHdIntraCbgProfileClassClass100 is a XavcHdIntraCbgProfileClass enum value
+	XavcHdIntraCbgProfileClassClass100 = "CLASS_100"
+
+	// XavcHdIntraCbgProfileClassClass200 is a XavcHdIntraCbgProfileClass enum value
+	XavcHdIntraCbgProfileClassClass200 = "CLASS_200"
+)
+
+// XavcHdIntraCbgProfileClass_Values returns all elements of the XavcHdIntraCbgProfileClass enum
+func XavcHdIntraCbgProfileClass_Values() []string {
+	return []string{
+		XavcHdIntraCbgProfileClassClass50,
+		XavcHdIntraCbgProfileClassClass100,
+		XavcHdIntraCbgProfileClassClass200,
+	}
+}
+
+// Specify the XAVC HD (Long GOP) Bitrate Class to set the bitrate of your output.
+// Outputs of the same class have similar image quality over the operating points
+// that are valid for that class.
+const (
+	// XavcHdProfileBitrateClassBitrateClass25 is a XavcHdProfileBitrateClass enum value
+	XavcHdProfileBitrateClassBitrateClass25 = "BITRATE_CLASS_25"
+
+	// XavcHdProfileBitrateClassBitrateClass35 is a XavcHdProfileBitrateClass enum value
+	XavcHdProfileBitrateClassBitrateClass35 = "BITRATE_CLASS_35"
+
+	// XavcHdProfileBitrateClassBitrateClass50 is a XavcHdProfileBitrateClass enum value
+	XavcHdProfileBitrateClassBitrateClass50 = "BITRATE_CLASS_50"
+)
+
+// XavcHdProfileBitrateClass_Values returns all elements of the XavcHdProfileBitrateClass enum
+func XavcHdProfileBitrateClass_Values() []string {
+	return []string{
+		XavcHdProfileBitrateClassBitrateClass25,
+		XavcHdProfileBitrateClassBitrateClass35,
+		XavcHdProfileBitrateClassBitrateClass50,
+	}
+}
+
+// Optional. Use Quality tuning level (qualityTuningLevel) to choose how you
+// want to trade off encoding speed for output video quality. The default behavior
+// is faster, lower quality, single-pass encoding.
+const (
+	// XavcHdProfileQualityTuningLevelSinglePass is a XavcHdProfileQualityTuningLevel enum value
+	XavcHdProfileQualityTuningLevelSinglePass = "SINGLE_PASS"
+
+	// XavcHdProfileQualityTuningLevelSinglePassHq is a XavcHdProfileQualityTuningLevel enum value
+	XavcHdProfileQualityTuningLevelSinglePassHq = "SINGLE_PASS_HQ"
+
+	// XavcHdProfileQualityTuningLevelMultiPassHq is a XavcHdProfileQualityTuningLevel enum value
+	XavcHdProfileQualityTuningLevelMultiPassHq = "MULTI_PASS_HQ"
+)
+
+// XavcHdProfileQualityTuningLevel_Values returns all elements of the XavcHdProfileQualityTuningLevel enum
+func XavcHdProfileQualityTuningLevel_Values() []string {
+	return []string{
+		XavcHdProfileQualityTuningLevelSinglePass,
+		XavcHdProfileQualityTuningLevelSinglePassHq,
+		XavcHdProfileQualityTuningLevelMultiPassHq,
+	}
+}
+
+// Ignore this setting unless you set Frame rate (framerateNumerator divided
+// by framerateDenominator) to 29.970. If your input framerate is 23.976, choose
+// Hard (HARD). Otherwise, keep the default value None (NONE). For more information,
+// see https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-telecine-and-inverse-telecine.html.
+const (
+	// XavcHdProfileTelecineNone is a XavcHdProfileTelecine enum value
+	XavcHdProfileTelecineNone = "NONE"
+
+	// XavcHdProfileTelecineHard is a XavcHdProfileTelecine enum value
+	XavcHdProfileTelecineHard = "HARD"
+)
+
+// XavcHdProfileTelecine_Values returns all elements of the XavcHdProfileTelecine enum
+func XavcHdProfileTelecine_Values() []string {
+	return []string{
+		XavcHdProfileTelecineNone,
+		XavcHdProfileTelecineHard,
+	}
+}
+
+// Choose the scan line type for the output. Keep the default value, Progressive
+// (PROGRESSIVE) to create a progressive output, regardless of the scan type
+// of your input. Use Top field first (TOP_FIELD) or Bottom field first (BOTTOM_FIELD)
+// to create an output that's interlaced with the same field polarity throughout.
+// Use Follow, default top (FOLLOW_TOP_FIELD) or Follow, default bottom (FOLLOW_BOTTOM_FIELD)
+// to produce outputs with the same field polarity as the source. For jobs that
+// have multiple inputs, the output field polarity might change over the course
+// of the output. Follow behavior depends on the input scan type. If the source
+// is interlaced, the output will be interlaced with the same polarity as the
+// source. If the source is progressive, the output will be interlaced with
+// top field bottom field first, depending on which of the Follow options you
+// choose.
+const (
+	// XavcInterlaceModeProgressive is a XavcInterlaceMode enum value
+	XavcInterlaceModeProgressive = "PROGRESSIVE"
+
+	// XavcInterlaceModeTopField is a XavcInterlaceMode enum value
+	XavcInterlaceModeTopField = "TOP_FIELD"
+
+	// XavcInterlaceModeBottomField is a XavcInterlaceMode enum value
+	XavcInterlaceModeBottomField = "BOTTOM_FIELD"
+
+	// XavcInterlaceModeFollowTopField is a XavcInterlaceMode enum value
+	XavcInterlaceModeFollowTopField = "FOLLOW_TOP_FIELD"
+
+	// XavcInterlaceModeFollowBottomField is a XavcInterlaceMode enum value
+	XavcInterlaceModeFollowBottomField = "FOLLOW_BOTTOM_FIELD"
+)
+
+// XavcInterlaceMode_Values returns all elements of the XavcInterlaceMode enum
+func XavcInterlaceMode_Values() []string {
+	return []string{
+		XavcInterlaceModeProgressive,
+		XavcInterlaceModeTopField,
+		XavcInterlaceModeBottomField,
+		XavcInterlaceModeFollowTopField,
+		XavcInterlaceModeFollowBottomField,
+	}
+}
+
+// Specify the XAVC profile for this output. For more information, see the Sony
+// documentation at https://www.xavc-info.org/. Note that MediaConvert doesn't
+// support the interlaced video XAVC operating points for XAVC_HD_INTRA_CBG.
+// To create an interlaced XAVC output, choose the profile XAVC_HD.
+const (
+	// XavcProfileXavcHdIntraCbg is a XavcProfile enum value
+	XavcProfileXavcHdIntraCbg = "XAVC_HD_INTRA_CBG"
+
+	// XavcProfileXavc4kIntraCbg is a XavcProfile enum value
+	XavcProfileXavc4kIntraCbg = "XAVC_4K_INTRA_CBG"
+
+	// XavcProfileXavc4kIntraVbr is a XavcProfile enum value
+	XavcProfileXavc4kIntraVbr = "XAVC_4K_INTRA_VBR"
+
+	// XavcProfileXavcHd is a XavcProfile enum value
+	XavcProfileXavcHd = "XAVC_HD"
+
+	// XavcProfileXavc4k is a XavcProfile enum value
+	XavcProfileXavc4k = "XAVC_4K"
+)
+
+// XavcProfile_Values returns all elements of the XavcProfile enum
+func XavcProfile_Values() []string {
+	return []string{
+		XavcProfileXavcHdIntraCbg,
+		XavcProfileXavc4kIntraCbg,
+		XavcProfileXavc4kIntraVbr,
+		XavcProfileXavcHd,
+		XavcProfileXavc4k,
+	}
+}
+
+// Ignore this setting unless your input frame rate is 23.976 or 24 frames per
+// second (fps). Enable slow PAL to create a 25 fps output by relabeling the
+// video frames and resampling your audio. Note that enabling this setting will
+// slightly reduce the duration of your video. Related settings: You must also
+// set Frame rate to 25. In your JSON job specification, set (framerateControl)
+// to (SPECIFIED), (framerateNumerator) to 25 and (framerateDenominator) to
+// 1.
+const (
+	// XavcSlowPalDisabled is a XavcSlowPal enum value
+	XavcSlowPalDisabled = "DISABLED"
+
+	// XavcSlowPalEnabled is a XavcSlowPal enum value
+	XavcSlowPalEnabled = "ENABLED"
+)
+
+// XavcSlowPal_Values returns all elements of the XavcSlowPal enum
+func XavcSlowPal_Values() []string {
+	return []string{
+		XavcSlowPalDisabled,
+		XavcSlowPalEnabled,
+	}
+}
+
+// The best way to set up adaptive quantization is to keep the default value,
+// Auto (AUTO), for the setting Adaptive quantization (adaptiveQuantization).
+// When you do so, MediaConvert automatically applies the best types of quantization
+// for your video content. Include this setting in your JSON job specification
+// only when you choose to change the default value for Adaptive quantization.
+// For this setting, keep the default value, Enabled (ENABLED), to adjust quantization
+// within each frame based on spatial variation of content complexity. When
+// you enable this feature, the encoder uses fewer bits on areas that can sustain
+// more distortion with no noticeable visual degradation and uses more bits
+// on areas where any small distortion will be noticeable. For example, complex
+// textured blocks are encoded with fewer bits and smooth textured blocks are
+// encoded with more bits. Enabling this feature will almost always improve
+// your video quality. Note, though, that this feature doesn't take into account
+// where the viewer's attention is likely to be. If viewers are likely to be
+// focusing their attention on a part of the screen with a lot of complex texture,
+// you might choose to disable this feature. Related setting: When you enable
+// spatial adaptive quantization, set the value for Adaptive quantization (adaptiveQuantization)
+// depending on your content. For homogeneous content, such as cartoons and
+// video games, set it to Low. For content with a wider variety of textures,
+// set it to High or Higher.
+const (
+	// XavcSpatialAdaptiveQuantizationDisabled is a XavcSpatialAdaptiveQuantization enum value
+	XavcSpatialAdaptiveQuantizationDisabled = "DISABLED"
+
+	// XavcSpatialAdaptiveQuantizationEnabled is a XavcSpatialAdaptiveQuantization enum value
+	XavcSpatialAdaptiveQuantizationEnabled = "ENABLED"
+)
+
+// XavcSpatialAdaptiveQuantization_Values returns all elements of the XavcSpatialAdaptiveQuantization enum
+func XavcSpatialAdaptiveQuantization_Values() []string {
+	return []string{
+		XavcSpatialAdaptiveQuantizationDisabled,
+		XavcSpatialAdaptiveQuantizationEnabled,
+	}
+}
+
+// The best way to set up adaptive quantization is to keep the default value,
+// Auto (AUTO), for the setting Adaptive quantization (adaptiveQuantization).
+// When you do so, MediaConvert automatically applies the best types of quantization
+// for your video content. Include this setting in your JSON job specification
+// only when you choose to change the default value for Adaptive quantization.
+// For this setting, keep the default value, Enabled (ENABLED), to adjust quantization
+// within each frame based on temporal variation of content complexity. When
+// you enable this feature, the encoder uses fewer bits on areas of the frame
+// that aren't moving and uses more bits on complex objects with sharp edges
+// that move a lot. For example, this feature improves the readability of text
+// tickers on newscasts and scoreboards on sports matches. Enabling this feature
+// will almost always improve your video quality. Note, though, that this feature
+// doesn't take into account where the viewer's attention is likely to be. If
+// viewers are likely to be focusing their attention on a part of the screen
+// that doesn't have moving objects with sharp edges, such as sports athletes'
+// faces, you might choose to disable this feature. Related setting: When you
+// enable temporal adaptive quantization, adjust the strength of the filter
+// with the setting Adaptive quantization (adaptiveQuantization).
+const (
+	// XavcTemporalAdaptiveQuantizationDisabled is a XavcTemporalAdaptiveQuantization enum value
+	XavcTemporalAdaptiveQuantizationDisabled = "DISABLED"
+
+	// XavcTemporalAdaptiveQuantizationEnabled is a XavcTemporalAdaptiveQuantization enum value
+	XavcTemporalAdaptiveQuantizationEnabled = "ENABLED"
+)
+
+// XavcTemporalAdaptiveQuantization_Values returns all elements of the XavcTemporalAdaptiveQuantization enum
+func XavcTemporalAdaptiveQuantization_Values() []string {
+	return []string{
+		XavcTemporalAdaptiveQuantizationDisabled,
+		XavcTemporalAdaptiveQuantizationEnabled,
 	}
 }

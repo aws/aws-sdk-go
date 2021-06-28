@@ -4724,6 +4724,12 @@
         "InferenceExecutionConfig$Mode": "<p>How containers in a multi-container are run. The following values are valid.</p> <ul> <li> <p> <code>SERIAL</code> - Containers run as a serial pipeline.</p> </li> <li> <p> <code>DIRECT</code> - Only the individual container that you specify is run.</p> </li> </ul>"
       }
     },
+    "InferenceImage": {
+      "base": null,
+      "refs": {
+        "DescribeCompilationJobResponse$InferenceImage": null
+      }
+    },
     "InferenceSpecification": {
       "base": "<p>Defines how to perform inference generation after a training job is run.</p>",
       "refs": {
@@ -4922,7 +4928,7 @@
         "MonitoringClusterConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the model monitoring job.</p>",
         "MonitoringOutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption.</p>",
         "OnlineStoreSecurityConfig$KmsKeyId": "<p>The ID of the AWS Key Management Service (AWS KMS) key that SageMaker Feature Store uses to encrypt the Amazon S3 objects at rest using Amazon S3 server-side encryption.</p> <p>The caller (either IAM user or IAM role) of <code>CreateFeatureGroup</code> must have below permissions to the <code>OnlineStore</code> <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Encrypt\"</code> </p> </li> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> <li> <p> <code>\"kms:DescribeKey\"</code> </p> </li> <li> <p> <code>\"kms:CreateGrant\"</code> </p> </li> <li> <p> <code>\"kms:RetireGrant\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptFrom\"</code> </p> </li> <li> <p> <code>\"kms:ReEncryptTo\"</code> </p> </li> <li> <p> <code>\"kms:GenerateDataKey\"</code> </p> </li> <li> <p> <code>\"kms:ListAliases\"</code> </p> </li> <li> <p> <code>\"kms:ListGrants\"</code> </p> </li> <li> <p> <code>\"kms:RevokeGrant\"</code> </p> </li> </ul> <p>The caller (either IAM user or IAM role) to all DataPlane operations (<code>PutRecord</code>, <code>GetRecord</code>, <code>DeleteRecord</code>) must have the following permissions to the <code>KmsKeyId</code>:</p> <ul> <li> <p> <code>\"kms:Decrypt\"</code> </p> </li> </ul>",
-        "OutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account</p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
+        "OutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service key (Amazon Web Services KMS) that Amazon SageMaker uses to encrypt your output models with Amazon S3 server-side encryption after compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KmsKeyId can be any of the following formats: </p> <ul> <li> <p>Key ID: <code>1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Key ARN: <code>arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab</code> </p> </li> <li> <p>Alias name: <code>alias/ExampleAlias</code> </p> </li> <li> <p>Alias name ARN: <code>arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias</code> </p> </li> </ul>",
         "OutputDataConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the model artifacts at rest using Amazon S3 server-side encryption. The <code>KmsKeyId</code> can be any of the following formats: </p> <ul> <li> <p>// KMS Key ID</p> <p> <code>\"1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab\"</code> </p> </li> <li> <p>// KMS Key Alias</p> <p> <code>\"alias/ExampleAlias\"</code> </p> </li> <li> <p>// Amazon Resource Name (ARN) of a KMS Key Alias</p> <p> <code>\"arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias\"</code> </p> </li> </ul> <p>If you use a KMS key ID or an alias of your master key, the Amazon SageMaker execution role must include permissions to call <code>kms:Encrypt</code>. If you don't provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for your role's account. Amazon SageMaker uses server-side encryption with KMS-managed keys for <code>OutputDataConfig</code>. If you use a bucket policy with an <code>s3:PutObject</code> permission that only allows objects with server-side encryption, set the condition key of <code>s3:x-amz-server-side-encryption</code> to <code>\"aws:kms\"</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html\">KMS-Managed Encryption Keys</a> in the <i>Amazon Simple Storage Service Developer Guide.</i> </p> <p>The KMS key policy must grant permission to the IAM role that you specify in your <code>CreateTrainingJob</code>, <code>CreateTransformJob</code>, or <code>CreateHyperParameterTuningJob</code> requests. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html\">Using Key Policies in AWS KMS</a> in the <i>AWS Key Management Service Developer Guide</i>.</p>",
         "ProcessingClusterConfig$VolumeKmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt data on the storage volume attached to the ML compute instance(s) that run the processing job. </p> <note> <p>Certain Nitro-based instances include local storage, dependent on the instance type. Local storage volumes are encrypted using a hardware module on the instance. You can't request a <code>VolumeKmsKeyId</code> when using an instance type with local storage.</p> <p>For a list of instance types that support local instance storage, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html#instance-store-volumes\">Instance Store Volumes</a>.</p> <p>For more information about local instance storage encryption, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ssd-instance-store.html\">SSD Instance Store Volumes</a>.</p> </note>",
         "ProcessingOutputConfig$KmsKeyId": "<p>The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to encrypt the processing job output. <code>KmsKeyId</code> can be an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias of a KMS key. The <code>KmsKeyId</code> is applied to all outputs.</p>",
@@ -6704,6 +6710,37 @@
         "ListMonitoringSchedulesRequest$NameContains": "<p>Filter for monitoring schedules whose name contains a specified string.</p>",
         "ListTrainingJobsRequest$NameContains": "<p>A string in the training job name. This filter returns only training jobs whose name contains the specified string.</p>",
         "ListTransformJobsRequest$NameContains": "<p>A string in the transform job name. This filter returns only transform jobs whose name contains the specified string.</p>"
+      }
+    },
+    "NeoVpcConfig": {
+      "base": null,
+      "refs": {
+        "CreateCompilationJobRequest$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that you want your compilation job to connect to. Control access to your models by configuring the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html\">Protect Compilation Jobs by Using an Amazon Virtual Private Cloud</a>.</p>",
+        "DescribeCompilationJobResponse$VpcConfig": "<p>A <a>VpcConfig</a> object that specifies the VPC that you want your compilation job to connect to. Control access to your models by configuring the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html\">Protect Compilation Jobs by Using an Amazon Virtual Private Cloud</a>.</p>"
+      }
+    },
+    "NeoVpcSecurityGroupId": {
+      "base": null,
+      "refs": {
+        "NeoVpcSecurityGroupIds$member": null
+      }
+    },
+    "NeoVpcSecurityGroupIds": {
+      "base": null,
+      "refs": {
+        "NeoVpcConfig$SecurityGroupIds": null
+      }
+    },
+    "NeoVpcSubnetId": {
+      "base": null,
+      "refs": {
+        "NeoVpcSubnets$member": null
+      }
+    },
+    "NeoVpcSubnets": {
+      "base": null,
+      "refs": {
+        "NeoVpcConfig$Subnets": null
       }
     },
     "NestedFilters": {

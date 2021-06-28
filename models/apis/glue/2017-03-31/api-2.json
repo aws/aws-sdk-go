@@ -3935,7 +3935,10 @@
     },
     "DataFormat":{
       "type":"string",
-      "enum":["AVRO"]
+      "enum":[
+        "AVRO",
+        "JSON"
+      ]
     },
     "DataLakePrincipal":{
       "type":"structure",

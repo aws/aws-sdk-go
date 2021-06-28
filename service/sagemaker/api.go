@@ -28255,6 +28255,12 @@ type CreateCompilationJobInput struct {
 	// in different ways, for example, by purpose, owner, or environment. For more
 	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
+
+	// A VpcConfig object that specifies the VPC that you want your compilation
+	// job to connect to. Control access to your models by configuring the VPC.
+	// For more information, see Protect Compilation Jobs by Using an Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html).
+	VpcConfig *NeoVpcConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -28316,6 +28322,11 @@ func (s *CreateCompilationJobInput) Validate() error {
 			}
 		}
 	}
+	if s.VpcConfig != nil {
+		if err := s.VpcConfig.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -28356,6 +28367,12 @@ func (s *CreateCompilationJobInput) SetStoppingCondition(v *StoppingCondition) *
 // SetTags sets the Tags field's value.
 func (s *CreateCompilationJobInput) SetTags(v []*Tag) *CreateCompilationJobInput {
 	s.Tags = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *CreateCompilationJobInput) SetVpcConfig(v *NeoVpcConfig) *CreateCompilationJobInput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -39305,6 +39322,8 @@ type DescribeCompilationJobOutput struct {
 	// FailureReason is a required field
 	FailureReason *string `type:"string" required:"true"`
 
+	InferenceImage *string `type:"string"`
+
 	// Information about the location in Amazon S3 of the input model artifacts,
 	// the name and shape of the expected data inputs, and the framework in which
 	// the model was trained.
@@ -39345,6 +39364,12 @@ type DescribeCompilationJobOutput struct {
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
+
+	// A VpcConfig object that specifies the VPC that you want your compilation
+	// job to connect to. Control access to your models by configuring the VPC.
+	// For more information, see Protect Compilation Jobs by Using an Amazon Virtual
+	// Private Cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html).
+	VpcConfig *NeoVpcConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -39399,6 +39424,12 @@ func (s *DescribeCompilationJobOutput) SetFailureReason(v string) *DescribeCompi
 	return s
 }
 
+// SetInferenceImage sets the InferenceImage field's value.
+func (s *DescribeCompilationJobOutput) SetInferenceImage(v string) *DescribeCompilationJobOutput {
+	s.InferenceImage = &v
+	return s
+}
+
 // SetInputConfig sets the InputConfig field's value.
 func (s *DescribeCompilationJobOutput) SetInputConfig(v *InputConfig) *DescribeCompilationJobOutput {
 	s.InputConfig = v
@@ -39438,6 +39469,12 @@ func (s *DescribeCompilationJobOutput) SetRoleArn(v string) *DescribeCompilation
 // SetStoppingCondition sets the StoppingCondition field's value.
 func (s *DescribeCompilationJobOutput) SetStoppingCondition(v *StoppingCondition) *DescribeCompilationJobOutput {
 	s.StoppingCondition = v
+	return s
+}
+
+// SetVpcConfig sets the VpcConfig field's value.
+func (s *DescribeCompilationJobOutput) SetVpcConfig(v *NeoVpcConfig) *DescribeCompilationJobOutput {
+	s.VpcConfig = v
 	return s
 }
 
@@ -64029,6 +64066,60 @@ func (s *MultiModelConfig) SetModelCacheSetting(v string) *MultiModelConfig {
 	return s
 }
 
+type NeoVpcConfig struct {
+	_ struct{} `type:"structure"`
+
+	// SecurityGroupIds is a required field
+	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
+
+	// Subnets is a required field
+	Subnets []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s NeoVpcConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NeoVpcConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *NeoVpcConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "NeoVpcConfig"}
+	if s.SecurityGroupIds == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecurityGroupIds"))
+	}
+	if s.SecurityGroupIds != nil && len(s.SecurityGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupIds", 1))
+	}
+	if s.Subnets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Subnets"))
+	}
+	if s.Subnets != nil && len(s.Subnets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Subnets", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *NeoVpcConfig) SetSecurityGroupIds(v []*string) *NeoVpcConfig {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *NeoVpcConfig) SetSubnets(v []*string) *NeoVpcConfig {
+	s.Subnets = v
+	return s
+}
+
 // A list of nested Filter objects. A resource must satisfy the conditions of
 // all filters to be included in the results returned from the Search API.
 //
@@ -65020,10 +65111,12 @@ type OutputConfig struct {
 	//    For example: {"precision_mode": "FP32", "output_names": ["output:0"]}
 	CompilerOptions *string `min:"3" type:"string"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data on the storage volume after compilation job. If you don't provide
-	// a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for
-	// your role's account
+	// The Amazon Web Services Key Management Service key (Amazon Web Services KMS)
+	// that Amazon SageMaker uses to encrypt your output models with Amazon S3 server-side
+	// encryption after compilation job. If you don't provide a KMS key ID, Amazon
+	// SageMaker uses the default KMS key for Amazon S3 for your role's account.
+	// For more information, see KMS-Managed Encryption Keys (https://docs.aws.amazon.com/AmazonS3/latest/userguide/UsingKMSEncryption.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// The KmsKeyId can be any of the following formats:
 	//
@@ -81939,6 +82032,9 @@ const (
 	// TargetDeviceAmbaCv22 is a TargetDevice enum value
 	TargetDeviceAmbaCv22 = "amba_cv22"
 
+	// TargetDeviceAmbaCv25 is a TargetDevice enum value
+	TargetDeviceAmbaCv25 = "amba_cv25"
+
 	// TargetDeviceX86Win32 is a TargetDevice enum value
 	TargetDeviceX86Win32 = "x86_win32"
 
@@ -81980,6 +82076,7 @@ func TargetDevice_Values() []string {
 		TargetDeviceQcs603,
 		TargetDeviceSitaraAm57x,
 		TargetDeviceAmbaCv22,
+		TargetDeviceAmbaCv25,
 		TargetDeviceX86Win32,
 		TargetDeviceX86Win64,
 		TargetDeviceCoreml,
