@@ -1,3 +1,16 @@
+Release v1.38.69 (2021-06-28)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Add JSON Support for Glue Schema Registry
+* `service/mediaconvert`: Updates service API and documentation
+  * MediaConvert adds support for HDR10+, ProRes 4444,  and XAVC outputs, ADM/DAMF support for Dolby Atmos ingest, and alternative audio and WebVTT caption ingest via HLS inputs. MediaConvert also now supports creating trickplay outputs for Roku devices for HLS, CMAF, and DASH output groups.
+* `service/redshift`: Updates service API
+  * Added InvalidClusterStateFault to the DisableLogging API, thrown when calling the API on a non available cluster.
+* `service/sagemaker`: Updates service API and documentation
+  * Sagemaker Neo now supports running compilation jobs using customer's Amazon VPC
+
 Release v1.38.68 (2021-06-25)
 ===
 
