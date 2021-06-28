@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"reflect"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -58,7 +59,7 @@ func resolveMapParameter(parent string, parameter string, shape reflect.Value) m
 
 	if shapeKind == reflect.Struct || shapeKind == reflect.Map {
 		structPrefixIndex := strings.IndexByte(parameter, '{')
-		structSuffixIndex := strings.LastIndexByte(parameter, '}')
+		structSuffixIndex := strings.IndexByte(parameter, '}')
 
 		if structPrefixIndex == 0 && structSuffixIndex == len(parameter)-1 {
 			parameter = parameter[1:structSuffixIndex]
@@ -123,7 +124,7 @@ func correctShape(shape reflect.Value) reflect.Value {
 
 	for shapeKind == reflect.Ptr || shapeKind == reflect.UnsafePointer || shapeKind == reflect.Uintptr {
 		shapeKind = shape.Type().Elem().Kind()
-		shape = reflect.New(shape.Type().Elem()).Elem()
+		shape = reflect.Indirect(reflect.New(shape.Type().Elem()))
 	}
 
 	return shape
@@ -205,23 +206,62 @@ func unpackStruct(parameters map[string]string, shape reflect.Value) map[string]
 	return unpacked
 }
 
+func getSlices(parameter string) []string {
+	spaceIndexes := getAllIndexes(parameter, ' ')
+	delimiterIndexes := getAllIndexes(parameter, ',')
+	slicePrefixIndexes := getAllIndexes(parameter, '[')
+	sliceSuffixIndexes := getAllIndexes(parameter, ']')
+	mapPrefixIndexes := getAllIndexes(parameter, '{')
+	mapSuffixIndexes := getAllIndexes(parameter, '}')
+
+	realDelimiterIndexes := make([]int, 0)
+	if len(slicePrefixIndexes) == 0 && len(sliceSuffixIndexes) == 0 && len(mapPrefixIndexes) == 0 && len(mapSuffixIndexes) == 0 {
+		if spaceIndexes != nil {
+			realDelimiterIndexes = spaceIndexes
+		} else {
+			realDelimiterIndexes = delimiterIndexes
+		}
+	} else {
+		for _, index := range delimiterIndexes {
+			betweenSlices := betweenPrefixAndSuffix(index, slicePrefixIndexes, sliceSuffixIndexes)
+			betweenMaps := betweenPrefixAndSuffix(index, mapPrefixIndexes, mapSuffixIndexes)
+			if betweenSlices {
+				realDelimiterIndexes = append(realDelimiterIndexes, index)
+			} else if betweenMaps {
+				realDelimiterIndexes = append(realDelimiterIndexes, index)
+			}
+		}
+	}
+
+	slices := make([]string, 0)
+	lastIndex := 0
+	for _, delimiterIndex := range realDelimiterIndexes {
+		delimiterIndex -= 1
+		slices = append(slices, parameter[lastIndex:delimiterIndex])
+		lastIndex = delimiterIndex + 1
+	}
+	slices = append(slices, parameter[lastIndex:])
+
+	return slices
+}
+
 func unpackSlice(parent string, parameter string, shape reflect.Value) []interface{} {
 	shapeKind := getSliceKind(shape)
 	if shapeKind == reflect.Invalid {
 		return nil
 	}
+	slicedShape := getSliceShape(shape)
 
 	slicePrefixIndex := strings.IndexByte(parameter, '[')
 	sliceSuffixIndex := strings.LastIndexByte(parameter, ']')
-
 	if slicePrefixIndex == 0 && sliceSuffixIndex == len(parameter)-1 {
 		parameter = parameter[1:sliceSuffixIndex]
 	}
 
-	slicedShape := getSliceShape(shape)
+	slices := getSlices(parameter)
 
 	resolvedList := make([]interface{}, 0)
-	for _, item := range strings.Split(parameter, " ") {
+	for _, item := range slices {
 		unpackedParameter := UnpackParameter(parent, item, slicedShape, shapeKind)
 		switch unpackedParameter.(type) {
 		case []string:
@@ -329,4 +369,40 @@ func GetServiceRegions(serviceName string) []string {
 	}
 
 	return operationRegions
+}
+
+func getAllIndexes(str string, c byte) []int {
+	var indexes []int
+
+	lastIndex := 0
+	for len(str) > 0 {
+		index := strings.IndexByte(str, c) + 1
+		if index == 0 {
+			break
+		}
+		indexes = append(indexes, lastIndex+index)
+		str = str[index:]
+		lastIndex += index
+	}
+
+	sort.Ints(indexes)
+	return indexes
+}
+
+func betweenPrefixAndSuffix(index int, prefixIndexes []int, suffixIndexes []int) bool {
+	nearPrefix, nearSuffix := false, false
+
+	for _, prefix := range prefixIndexes {
+		if prefix == index+1 {
+			nearPrefix = true
+		}
+	}
+
+	for _, suffix := range suffixIndexes {
+		if suffix == index-1 {
+			nearSuffix = true
+		}
+	}
+
+	return nearPrefix && nearSuffix
 }
