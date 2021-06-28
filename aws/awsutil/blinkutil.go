@@ -28,6 +28,7 @@ var (
 	complexTypes = []string{
 		"slice",
 		"struct",
+		"map",
 	}
 )
 
@@ -53,29 +54,79 @@ func resolveListMapParameter(parent string, parameters []string, shape reflect.V
 }
 
 func resolveMapParameter(parent string, parameter string, shape reflect.Value) map[string]string {
+	shapeKind := getShapeKind(shape)
+
+	if shapeKind == reflect.Struct || shapeKind == reflect.Map {
+		structPrefixIndex := strings.IndexByte(parameter, '{')
+		structSuffixIndex := strings.LastIndexByte(parameter, '}')
+
+		if structPrefixIndex == 0 && structSuffixIndex == len(parameter)-1 {
+			parameter = parameter[1:structSuffixIndex]
+		}
+	}
+
 	unpacked := make(map[string]string)
 
 	var concatItems []string
 	lastItemIndex := -1
+	mapIndex := -1
+	sliceIndex := -1
 	for _, keyValue := range strings.SplitAfter(parameter, ",") {
 		keyValue = strings.ReplaceAll(keyValue, ",", "")
-		if strings.Contains(keyValue, "=") {
+		if sliceIndex == -1 && mapIndex == -1 && strings.Contains(keyValue, "=") {
 			concatItems = append(concatItems, keyValue)
-			lastItemIndex++
+			if mapIndex == -1 && sliceIndex == -1 {
+				lastItemIndex++
+			}
 		} else {
 			if concatItems == nil || 0 > lastItemIndex || lastItemIndex >= len(concatItems) {
 				continue
 			}
 			concatItems[lastItemIndex] += fmt.Sprintf("%s%s", ",", keyValue)
 		}
+
+		if strings.Contains(keyValue, "[") {
+			sliceIndex += 1
+		}
+		if strings.Contains(keyValue, "{") {
+			mapIndex += 1
+		}
+
+		if strings.Contains(keyValue, "}") {
+			mapIndex -= 1
+		}
+		if strings.Contains(keyValue, "]") {
+			sliceIndex -= 1
+		}
 	}
 
 	for _, keyValue := range concatItems {
 		itemKeyValue := strings.Split(keyValue, "=")
 		key, value := itemKeyValue[0], itemKeyValue[1]
+		if len(itemKeyValue) > 2 {
+			value = strings.Join(itemKeyValue[1:], "=")
+		}
 		unpacked[key] = value
 	}
 	return unpacked
+}
+
+func correctShape(shape reflect.Value) reflect.Value {
+	if !shape.IsValid() {
+		return reflect.ValueOf(nil)
+	}
+
+	shapeKind := shape.Kind()
+	if shapeKind == reflect.Invalid {
+		return reflect.ValueOf(nil)
+	}
+
+	for shapeKind == reflect.Ptr || shapeKind == reflect.UnsafePointer || shapeKind == reflect.Uintptr {
+		shapeKind = shape.Type().Elem().Kind()
+		shape = reflect.New(shape.Type().Elem()).Elem()
+	}
+
+	return shape
 }
 
 func getShapeKind(shape reflect.Value) reflect.Kind {
@@ -159,6 +210,14 @@ func unpackSlice(parent string, parameter string, shape reflect.Value) []interfa
 	if shapeKind == reflect.Invalid {
 		return nil
 	}
+
+	slicePrefixIndex := strings.IndexByte(parameter, '[')
+	sliceSuffixIndex := strings.LastIndexByte(parameter, ']')
+
+	if slicePrefixIndex == 0 && sliceSuffixIndex == len(parameter)-1 {
+		parameter = parameter[1:sliceSuffixIndex]
+	}
+
 	slicedShape := getSliceShape(shape)
 
 	resolvedList := make([]interface{}, 0)
@@ -198,6 +257,8 @@ func unpackComplex(parent string, parameter string, shape reflect.Value) interfa
 	switch complexKind {
 	case reflect.Invalid:
 		return parameter
+	case reflect.Map:
+		return resolveMapParameter(parent, parameter, shape)
 	case reflect.Struct:
 		return unpackStruct(resolveMapParameter(parent, parameter, shape), shape)
 	case reflect.Slice:
@@ -210,6 +271,7 @@ func UnpackParameter(parent string, parameter string, shape reflect.Value, shape
 	if shapeKind == reflect.Invalid {
 		return parameter
 	}
+	shape = correctShape(shape)
 	if isScalar(shapeKind) {
 		return unpackScalar(parent, parameter, shape, shapeKind)
 	}
@@ -265,7 +327,6 @@ func GetServiceRegions(serviceName string) []string {
 	for _, region := range operationServiceRegions {
 		operationRegions = append(operationRegions, region.ID())
 	}
-
 
 	return operationRegions
 }
