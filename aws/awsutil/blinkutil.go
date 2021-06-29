@@ -54,7 +54,7 @@ func resolveListMapParameter(parent string, parameters []string, shape reflect.V
 	return parameterListMap
 }
 
-func resolveMapParameter(parent string, parameter string, shape reflect.Value) map[string]string {
+func underlayParameter(parameter string, shape reflect.Value) string {
 	shapeKind := getShapeKind(shape)
 
 	if shapeKind == reflect.Struct || shapeKind == reflect.Map {
@@ -64,8 +64,18 @@ func resolveMapParameter(parent string, parameter string, shape reflect.Value) m
 		if structPrefixIndex == 0 && structSuffixIndex == len(parameter)-1 {
 			parameter = parameter[1:structSuffixIndex]
 		}
+	} else if shapeKind == reflect.Slice {
+		slicePrefixIndex := strings.IndexByte(parameter, '[')
+		sliceSuffixIndex := strings.LastIndexByte(parameter, ']')
+		if slicePrefixIndex == 0 && sliceSuffixIndex == len(parameter)-1 {
+			parameter = parameter[1:sliceSuffixIndex]
+		}
 	}
 
+	return parameter
+}
+
+func resolveMapParameter(parent string, parameter string, shape reflect.Value) map[string]string {
 	unpacked := make(map[string]string)
 
 	var concatItems []string
@@ -109,6 +119,7 @@ func resolveMapParameter(parent string, parameter string, shape reflect.Value) m
 		}
 		unpacked[key] = value
 	}
+
 	return unpacked
 }
 
@@ -250,14 +261,8 @@ func unpackSlice(parent string, parameter string, shape reflect.Value) []interfa
 	if shapeKind == reflect.Invalid {
 		return nil
 	}
+
 	slicedShape := getSliceShape(shape)
-
-	slicePrefixIndex := strings.IndexByte(parameter, '[')
-	sliceSuffixIndex := strings.LastIndexByte(parameter, ']')
-	if slicePrefixIndex == 0 && sliceSuffixIndex == len(parameter)-1 {
-		parameter = parameter[1:sliceSuffixIndex]
-	}
-
 	slices := getSlices(parameter)
 
 	resolvedList := make([]interface{}, 0)
@@ -311,13 +316,17 @@ func UnpackParameter(parent string, parameter string, shape reflect.Value, shape
 	if shapeKind == reflect.Invalid {
 		return parameter
 	}
+
 	shape = correctShape(shape)
+	parameter = underlayParameter(parameter, shape)
 	if isScalar(shapeKind) {
 		return unpackScalar(parent, parameter, shape, shapeKind)
 	}
+
 	if isComplex(shapeKind) {
 		return unpackComplex(parent, parameter, shape)
 	}
+
 	return parameter
 }
 
