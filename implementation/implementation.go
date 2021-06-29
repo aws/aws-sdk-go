@@ -287,12 +287,14 @@ import (
 	log "github.com/sirupsen/logrus"
 	"path"
 	"strings"
+	"sync"
 )
 
 const (
 	packageActionSeparator = "_"
 	serviceKey             = "_Service"
 	awsRegionKey           = "awsRegion"
+	runOnAllRegions        = "*"
 	awsAccessKeyId         = "aws_access_key_id"
 	awsSecretAccessKey     = "aws_secret_access_key"
 )
@@ -312,6 +314,17 @@ type ActionParameters struct {
 func NewActionParameters() *ActionParameters {
 	return &ActionParameters{
 		Parameters: make(map[string]interface{}),
+	}
+}
+
+func NewActionParametersDeepCopy(parameters map[string]interface{}) *ActionParameters {
+	actionParameters := make(map[string]interface{})
+	for key, value := range parameters {
+		actionParameters[key] = value
+	}
+
+	return &ActionParameters{
+		Parameters: actionParameters,
 	}
 }
 
@@ -1764,27 +1777,57 @@ func (p *AWSPlugin) GetActions() []plugin.Action {
 	return p.actions
 }
 
-func executeActionOnAllRegions(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters) map[string]interface{} {
-	result := make(map[string]interface{})
-	availableRegions := awsutil.GetServiceRegions(packageName)
-	for _, region := range availableRegions {
-		actionParameters.Set(awsRegionKey, region)
-		regionResult, err := executeAction(packageName, ctx, actionExecutor, actionParameters)
-		if err != nil {
-			result[region] = map[string]interface{}{
-				"error": err.Error(),
+func executeActionOnRegions(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters, regions []string) map[string]interface{} {
+	syncResults := sync.Map{}
+	wg := sync.WaitGroup{}
+	wg.Add(len(regions))
+
+	for _, region := range regions {
+		go func(region string, results *sync.Map, group *sync.WaitGroup, parameters ActionParameters) {
+			copiedParameters := NewActionParametersDeepCopy(parameters.Parameters)
+			copiedParameters.Set(awsRegionKey, strings.TrimSpace(region))
+			regionResult, err := executeAction(packageName, ctx, actionExecutor, *copiedParameters)
+
+			if err != nil {
+				results.Store(region, map[string]interface{}{
+					"error": err.Error(),
+				})
+			} else {
+				results.Store(region, regionResult)
 			}
-			continue
-		}
-		result[region] = regionResult
+			group.Done()
+		}(region, &syncResults, &wg, actionParameters)
 	}
+
+	wg.Wait()
+
+	result := make(map[string]interface{})
+	syncResults.Range(func(key, value interface{}) bool {
+		resultKey := ""
+		switch key.(type) {
+		case string:
+			resultKey = key.(string)
+		default:
+			resultKey = fmt.Sprintf("%v", key)
+		}
+		result[resultKey] = value
+
+		return true
+	})
 
 	return result
 }
 
 func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters) (map[string]interface{}, error) {
-	if actionParameters.Get(awsRegionKey) == "*" {
-		return executeActionOnAllRegions(packageName, ctx, actionExecutor, actionParameters), nil
+	actionRegion := actionParameters.Get(awsRegionKey).(string)
+	if actionRegion == runOnAllRegions {
+		availableRegions := awsutil.GetServiceRegions(packageName)
+		return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
+	}
+
+	if strings.Contains(actionRegion, ",") {
+		availableRegions := strings.Split(actionRegion, ",")
+		return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
 	}
 
 	if err := appendServiceToParametersByContext(packageName, ctx, actionParameters.Parameters); err != nil {

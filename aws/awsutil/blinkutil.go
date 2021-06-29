@@ -380,6 +380,39 @@ func GetServiceRegions(serviceName string) []string {
 	return operationRegions
 }
 
+func GetActionTypeFromShape(shape interface{}) string {
+	shapeValue := reflect.ValueOf(shape)
+	shapeValue = correctShape(shapeValue)
+	shapeKind := getShapeKind(shapeValue)
+
+	return getActionTypeFromShapeKind(shapeValue, shapeKind)
+}
+
+func getActionTypeFromShapeKind(shape reflect.Value, shapeKind reflect.Kind) string {
+	switch shapeKind {
+	case reflect.Int, reflect.Int16, reflect.Int32, reflect.Int64:
+		return "int"
+	case reflect.Uint, reflect.Uint16, reflect.Uint32, reflect.Uint64:
+		return "uint"
+	case reflect.Float32, reflect.Float64:
+		return "float"
+	case reflect.Bool:
+		return "bool"
+	case reflect.String:
+		return "string"
+	case reflect.Map:
+		return "code:map"
+	case reflect.Struct:
+		return "code:json"
+	case reflect.Slice:
+		sliceKind := getSliceKind(shape)
+		slicedShape := getSliceShape(shape)
+		return getActionTypeFromShapeKind(slicedShape, sliceKind)
+	}
+
+	return "string"
+}
+
 func getAllIndexes(str string, c byte) []int {
 	var indexes []int
 

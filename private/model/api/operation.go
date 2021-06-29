@@ -5,7 +5,7 @@ package api
 import (
 	"bytes"
 	"fmt"
-	awsutil2 "github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/blinkops/blink-sdk/plugin"
 	"github.com/go-yaml/yaml"
 	"os"
@@ -640,27 +640,10 @@ func (o *Operation) GoCode() string {
 func (o *Operation) GenerateAction() error {
 	actionParameters := make(map[string]plugin.ActionParameter)
 
-	defaultRegion := ""
-
-	apiName := o.API.name
-	if !o.API.NoConstServiceNames {
-		apiName = o.API.Metadata.ServiceID
-	}
-
-	operationRegions := awsutil2.GetServiceRegions(apiName)
-	if len(operationRegions) > 0 {
-		defaultRegion = operationRegions[0]
-		operationRegions = append(operationRegions, "*")
-	}
-
-	if len(operationRegions) > 0 {
-		actionParameters["awsRegion"] = plugin.ActionParameter{
-			Type:        "dropdown",
-			Description: "AWS Region",
-			Default:     defaultRegion,
-			Required:    true,
-			Options:     operationRegions,
-		}
+	actionParameters["awsRegion"] = plugin.ActionParameter{
+		Type:        "string",
+		Description: "AWS Region",
+		Required:    true,
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]
@@ -673,7 +656,7 @@ func (o *Operation) GenerateAction() error {
 		description = strings.ReplaceAll(description, "\n ", "")
 
 		actionParameters[member] = plugin.ActionParameter{
-			Type:        memberInfo.GoTypeElem(),
+			Type:        awsutil.GetActionTypeFromShape(*memberInfo.Shape),
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
 				for _, req := range requiredList {
