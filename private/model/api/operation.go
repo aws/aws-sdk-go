@@ -5,7 +5,6 @@ package api
 import (
 	"bytes"
 	"fmt"
-	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/blinkops/blink-sdk/plugin"
 	"github.com/go-yaml/yaml"
 	"os"
@@ -656,7 +655,7 @@ func (o *Operation) GenerateAction() error {
 		description = strings.ReplaceAll(description, "\n ", "")
 
 		actionParameters[member] = plugin.ActionParameter{
-			Type:        awsutil.GetActionTypeFromShape(*memberInfo.Shape),
+			Type:        memberInfo.GoTypeElem(),
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
 				for _, req := range requiredList {
