@@ -1,3 +1,16 @@
+Release v1.38.70 (2021-06-30)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Amazon EC2 Auto Scaling infrastructure improvements and optimizations.
+* `service/databrew`: Updates service API and documentation
+* `service/kendra`: Updates service documentation
+  * Amazon Kendra Enterprise Edition now offered in smaller more granular units to enable customers with smaller workloads. Virtual Storage Capacity units now offer scaling in increments of 100,000 documents (up to 30GB) per unit and Virtual Query Units offer scaling increments of 8,000 queries per day.
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/servicediscovery`: Updates service API and documentation
+* `service/ssm-contacts`: Updates service API
+
 Release v1.38.69 (2021-06-28)
 ===
 

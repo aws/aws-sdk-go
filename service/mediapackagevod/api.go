@@ -1794,6 +1794,11 @@ func (s *Authorization) SetSecretsRoleArn(v string) *Authorization {
 type CmafEncryption struct {
 	_ struct{} `type:"structure"`
 
+	// An optional 128-bit, 16-byte hex value represented by a 32-character string,
+	// used in conjunction with the key for encrypting blocks. If you don't specify
+	// a value, then MediaPackage creates the constant initialization vector (IV).
+	ConstantInitializationVector *string `locationName:"constantInitializationVector" type:"string"`
+
 	// A configuration for accessing an external Secure Packager and Encoder Key
 	// Exchange (SPEKE) service that will provide encryption keys.
 	//
@@ -1827,6 +1832,12 @@ func (s *CmafEncryption) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConstantInitializationVector sets the ConstantInitializationVector field's value.
+func (s *CmafEncryption) SetConstantInitializationVector(v string) *CmafEncryption {
+	s.ConstantInitializationVector = &v
+	return s
 }
 
 // SetSpekeKeyProvider sets the SpekeKeyProvider field's value.

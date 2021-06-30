@@ -748,7 +748,6 @@
       "type":"structure",
       "required":[
         "Name",
-        "Outputs",
         "RoleArn"
       ],
       "members":{
@@ -760,6 +759,7 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "ProjectName":{"shape":"ProjectName"},
         "RecipeReference":{"shape":"RecipeReference"},
         "RoleArn":{"shape":"Arn"},
@@ -846,6 +846,26 @@
         "TempDirectory":{"shape":"S3Location"}
       }
     },
+    "DataCatalogOutput":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogId"},
+        "DatabaseName":{"shape":"DatabaseName"},
+        "TableName":{"shape":"TableName"},
+        "S3Options":{"shape":"S3TableOutputOptions"},
+        "DatabaseOptions":{"shape":"DatabaseTableOutputOptions"},
+        "Overwrite":{"shape":"OverwriteOutput"}
+      }
+    },
+    "DataCatalogOutputList":{
+      "type":"list",
+      "member":{"shape":"DataCatalogOutput"},
+      "min":1
+    },
     "DatabaseInputDefinition":{
       "type":"structure",
       "required":[
@@ -867,6 +887,14 @@
       "type":"string",
       "max":255,
       "min":1
+    },
+    "DatabaseTableOutputOptions":{
+      "type":"structure",
+      "required":["TableName"],
+      "members":{
+        "TempDirectory":{"shape":"S3Location"},
+        "TableName":{"shape":"DatabaseTableName"}
+      }
     },
     "Dataset":{
       "type":"structure",
@@ -1095,6 +1123,7 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "ProjectName":{"shape":"ProjectName"},
         "RecipeReference":{"shape":"RecipeReference"},
         "ResourceArn":{"shape":"Arn"},
@@ -1138,6 +1167,7 @@
         "LogSubscription":{"shape":"LogSubscription"},
         "LogGroupName":{"shape":"LogGroupName"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
         "StartedOn":{"shape":"Date"},
@@ -1348,6 +1378,7 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "ProjectName":{"shape":"ProjectName"},
         "RecipeReference":{"shape":"RecipeReference"},
         "ResourceArn":{"shape":"Arn"},
@@ -1385,6 +1416,7 @@
         "LogSubscription":{"shape":"LogSubscription"},
         "LogGroupName":{"shape":"LogGroupName"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "RecipeReference":{"shape":"RecipeReference"},
         "StartedBy":{"shape":"StartedBy"},
         "StartedOn":{"shape":"Date"},
@@ -1941,6 +1973,13 @@
         "Key":{"shape":"Key"}
       }
     },
+    "S3TableOutputOptions":{
+      "type":"structure",
+      "required":["Location"],
+      "members":{
+        "Location":{"shape":"S3Location"}
+      }
+    },
     "Sample":{
       "type":"structure",
       "required":["Type"],
@@ -2315,7 +2354,6 @@
       "type":"structure",
       "required":[
         "Name",
-        "Outputs",
         "RoleArn"
       ],
       "members":{
@@ -2330,6 +2368,7 @@
         "MaxCapacity":{"shape":"MaxCapacity"},
         "MaxRetries":{"shape":"MaxRetries"},
         "Outputs":{"shape":"OutputList"},
+        "DataCatalogOutputs":{"shape":"DataCatalogOutputList"},
         "RoleArn":{"shape":"Arn"},
         "Timeout":{"shape":"Timeout"}
       }

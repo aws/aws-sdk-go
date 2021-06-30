@@ -522,7 +522,7 @@ func (c *GlueDataBrew) CreateRecipeJobRequest(input *CreateRecipeJobInput) (req 
 // CreateRecipeJob API operation for AWS Glue DataBrew.
 //
 // Creates a new job to transform input data, using steps defined in an existing
-// AWS Glue DataBrew recipe
+// Glue DataBrew recipe
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3887,7 +3887,7 @@ type ConditionExpression struct {
 
 	// A specific condition to apply to a recipe action. For more information, see
 	// Recipe structure (https://docs.aws.amazon.com/databrew/latest/dg/recipes.html#recipes.structure)
-	// in the AWS Glue DataBrew Developer Guide.
+	// in the Glue DataBrew Developer Guide.
 	//
 	// Condition is a required field
 	Condition *string `min:"1" type:"string" required:"true"`
@@ -4010,14 +4010,14 @@ func (s *ConflictException) RequestID() string {
 type CreateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The file format of a dataset that is created from an S3 file or folder.
+	// The file format of a dataset that is created from an Amazon S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
 	// Represents a set of options that define the structure of either comma-separated
 	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Represents information on how DataBrew can find data, in either the Glue
 	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
@@ -4029,7 +4029,8 @@ type CreateDatasetInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	// A set of options that defines how DataBrew interprets an Amazon S3 path of
+	// the dataset.
 	PathOptions *PathOptions `type:"structure"`
 
 	// Metadata tags to apply to this dataset.
@@ -4158,7 +4159,7 @@ type CreateProfileJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - SSE-KMS - Server-side encryption with AWS KMS-managed keys.
+	//    * SSE-KMS - SSE-KMS - Server-side encryption with KMS-managed keys.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -4192,8 +4193,8 @@ type CreateProfileJobInput struct {
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed when DataBrew runs the job.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -4374,8 +4375,8 @@ type CreateProjectInput struct {
 	// RecipeName is a required field
 	RecipeName *string `min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed for this request.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be assumed for this request.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -4593,6 +4594,10 @@ func (s *CreateRecipeInput) SetTags(v map[string]*string) *CreateRecipeInput {
 type CreateRecipeJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
 	// The name of the dataset that this job processes.
 	DatasetName *string `min:"1" type:"string"`
 
@@ -4602,7 +4607,7 @@ type CreateRecipeJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
+	//    * SSE-KMS - Server-side encryption with keys managed by KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -4625,9 +4630,7 @@ type CreateRecipeJobInput struct {
 	Name *string `min:"1" type:"string" required:"true"`
 
 	// One or more artifacts that represent the output from running the job.
-	//
-	// Outputs is a required field
-	Outputs []*Output `min:"1" type:"list" required:"true"`
+	Outputs []*Output `min:"1" type:"list"`
 
 	// Either the name of an existing project, or a combination of a recipe and
 	// a dataset to associate with the recipe.
@@ -4636,8 +4639,8 @@ type CreateRecipeJobInput struct {
 	// Represents the name and version of a DataBrew recipe.
 	RecipeReference *RecipeReference `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed when DataBrew runs the job.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -4663,6 +4666,9 @@ func (s CreateRecipeJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateRecipeJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateRecipeJobInput"}
+	if s.DataCatalogOutputs != nil && len(s.DataCatalogOutputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataCatalogOutputs", 1))
+	}
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
 	}
@@ -4674,9 +4680,6 @@ func (s *CreateRecipeJobInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.Outputs == nil {
-		invalidParams.Add(request.NewErrParamRequired("Outputs"))
 	}
 	if s.Outputs != nil && len(s.Outputs) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Outputs", 1))
@@ -4692,6 +4695,16 @@ func (s *CreateRecipeJobInput) Validate() error {
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.DataCatalogOutputs != nil {
+		for i, v := range s.DataCatalogOutputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataCatalogOutputs", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
@@ -4713,6 +4726,12 @@ func (s *CreateRecipeJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *CreateRecipeJobInput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *CreateRecipeJobInput {
+	s.DataCatalogOutputs = v
+	return s
 }
 
 // SetDatasetName sets the DatasetName field's value.
@@ -4848,7 +4867,7 @@ type CreateScheduleInput struct {
 
 	// The date or dates and time or times when the jobs are to be run. For more
 	// information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
-	// in the AWS Glue DataBrew Developer Guide.
+	// in the Glue DataBrew Developer Guide.
 	//
 	// CronExpression is a required field
 	CronExpression *string `min:"1" type:"string" required:"true"`
@@ -5036,13 +5055,13 @@ func (s *CsvOutputOptions) SetDelimiter(v string) *CsvOutputOptions {
 	return s
 }
 
-// Represents how metadata stored in the AWS Glue Data Catalog is defined in
-// a DataBrew dataset.
+// Represents how metadata stored in the Glue Data Catalog is defined in a DataBrew
+// dataset.
 type DataCatalogInputDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the AWS account that holds the Data Catalog that
-	// stores the data.
+	// The unique identifier of the Amazon Web Services account that holds the Data
+	// Catalog that stores the data.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The name of a database in the Data Catalog.
@@ -5056,7 +5075,7 @@ type DataCatalogInputDefinition struct {
 	// TableName is a required field
 	TableName *string `min:"1" type:"string" required:"true"`
 
-	// An Amazon location that AWS Glue Data Catalog can use as a temporary directory.
+	// Represents an Amazon location where DataBrew can store intermediate results.
 	TempDirectory *S3Location `type:"structure"`
 }
 
@@ -5124,6 +5143,119 @@ func (s *DataCatalogInputDefinition) SetTempDirectory(v *S3Location) *DataCatalo
 	return s
 }
 
+// Represents options that specify how and where DataBrew writes the output
+// generated by recipe jobs.
+type DataCatalogOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the AWS account that holds the Data Catalog that
+	// stores the data.
+	CatalogId *string `min:"1" type:"string"`
+
+	// The name of a database in the Data Catalog.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `min:"1" type:"string" required:"true"`
+
+	// Represents options that specify how and where DataBrew writes the database
+	// output generated by recipe jobs.
+	DatabaseOptions *DatabaseTableOutputOptions `type:"structure"`
+
+	// A value that, if true, means that any data in the location specified for
+	// output is overwritten with new output. Not supported with DatabaseOptions.
+	Overwrite *bool `type:"boolean"`
+
+	// Represents options that specify how and where DataBrew writes the S3 output
+	// generated by recipe jobs.
+	S3Options *S3TableOutputOptions `type:"structure"`
+
+	// The name of a table in the Data Catalog.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DataCatalogOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataCatalogOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataCatalogOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataCatalogOutput_"}
+	if s.CatalogId != nil && len(*s.CatalogId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogId", 1))
+	}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.DatabaseName != nil && len(*s.DatabaseName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseName", 1))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.DatabaseOptions != nil {
+		if err := s.DatabaseOptions.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Options != nil {
+		if err := s.S3Options.Validate(); err != nil {
+			invalidParams.AddNested("S3Options", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogId sets the CatalogId field's value.
+func (s *DataCatalogOutput_) SetCatalogId(v string) *DataCatalogOutput_ {
+	s.CatalogId = &v
+	return s
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DataCatalogOutput_) SetDatabaseName(v string) *DataCatalogOutput_ {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDatabaseOptions sets the DatabaseOptions field's value.
+func (s *DataCatalogOutput_) SetDatabaseOptions(v *DatabaseTableOutputOptions) *DataCatalogOutput_ {
+	s.DatabaseOptions = v
+	return s
+}
+
+// SetOverwrite sets the Overwrite field's value.
+func (s *DataCatalogOutput_) SetOverwrite(v bool) *DataCatalogOutput_ {
+	s.Overwrite = &v
+	return s
+}
+
+// SetS3Options sets the S3Options field's value.
+func (s *DataCatalogOutput_) SetS3Options(v *S3TableOutputOptions) *DataCatalogOutput_ {
+	s.S3Options = v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DataCatalogOutput_) SetTableName(v string) *DataCatalogOutput_ {
+	s.TableName = &v
+	return s
+}
+
 // Connection information for dataset input files stored in a database.
 type DatabaseInputDefinition struct {
 	_ struct{} `type:"structure"`
@@ -5133,7 +5265,7 @@ type DatabaseInputDefinition struct {
 	// DatabaseTableName is a required field
 	DatabaseTableName *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Glue Connection that stores the connection information for the target
+	// The Glue Connection that stores the connection information for the target
 	// database.
 	//
 	// GlueConnectionName is a required field
@@ -5199,11 +5331,69 @@ func (s *DatabaseInputDefinition) SetTempDirectory(v *S3Location) *DatabaseInput
 	return s
 }
 
+// Represents options that specify how and where DataBrew writes the database
+// output generated by recipe jobs.
+type DatabaseTableOutputOptions struct {
+	_ struct{} `type:"structure"`
+
+	// A prefix for the name of a table DataBrew will create in the database.
+	//
+	// TableName is a required field
+	TableName *string `min:"1" type:"string" required:"true"`
+
+	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+	// can store intermediate results.
+	TempDirectory *S3Location `type:"structure"`
+}
+
+// String returns the string representation
+func (s DatabaseTableOutputOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatabaseTableOutputOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseTableOutputOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseTableOutputOptions"}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.TableName != nil && len(*s.TableName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TableName", 1))
+	}
+	if s.TempDirectory != nil {
+		if err := s.TempDirectory.Validate(); err != nil {
+			invalidParams.AddNested("TempDirectory", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTableName sets the TableName field's value.
+func (s *DatabaseTableOutputOptions) SetTableName(v string) *DatabaseTableOutputOptions {
+	s.TableName = &v
+	return s
+}
+
+// SetTempDirectory sets the TempDirectory field's value.
+func (s *DatabaseTableOutputOptions) SetTempDirectory(v *S3Location) *DatabaseTableOutputOptions {
+	s.TempDirectory = v
+	return s
+}
+
 // Represents a dataset that can be processed by DataBrew.
 type Dataset struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the dataset.
+	// The ID of the Amazon Web Services account that owns the dataset.
 	AccountId *string `type:"string"`
 
 	// The date and time that the dataset was created.
@@ -5212,14 +5402,14 @@ type Dataset struct {
 	// The Amazon Resource Name (ARN) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
-	// The file format of a dataset that is created from an S3 file or folder.
+	// The file format of a dataset that is created from an Amazon S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
 	// A set of options that define how DataBrew interprets the data in the dataset.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Information on how DataBrew can find the dataset, in either the AWS Glue
-	// Data Catalog or Amazon S3.
+	// Information on how DataBrew can find the dataset, in either the Glue Data
+	// Catalog or Amazon S3.
 	//
 	// Input is a required field
 	Input *Input `type:"structure" required:"true"`
@@ -5235,14 +5425,15 @@ type Dataset struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	// A set of options that defines how DataBrew interprets an Amazon S3 path of
+	// the dataset.
 	PathOptions *PathOptions `type:"structure"`
 
 	// The unique Amazon Resource Name (ARN) for the dataset.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The location of the data for the dataset, either Amazon S3 or the AWS Glue
-	// Data Catalog.
+	// The location of the data for the dataset, either Amazon S3 or the Glue Data
+	// Catalog.
 	Source *string `type:"string" enum:"Source"`
 
 	// Metadata tags that have been applied to the dataset.
@@ -5338,12 +5529,12 @@ func (s *Dataset) SetTags(v map[string]*string) *Dataset {
 }
 
 // Represents a dataset paramater that defines type and conditions for a parameter
-// in the S3 path of the dataset.
+// in the Amazon S3 path of the dataset.
 type DatasetParameter struct {
 	_ struct{} `type:"structure"`
 
 	// Optional boolean value that defines whether the captured value of this parameter
-	// should be loaded as an additional column in the dataset.
+	// should be used to create a new column in a dataset.
 	CreateColumn *bool `type:"boolean"`
 
 	// Additional parameter options such as a format and a timezone. Required for
@@ -5354,7 +5545,7 @@ type DatasetParameter struct {
 	// to the parameter.
 	Filter *FilterExpression `type:"structure"`
 
-	// The name of the parameter that is used in the dataset's S3 path.
+	// The name of the parameter that is used in the dataset's Amazon S3 path.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -5436,14 +5627,14 @@ func (s *DatasetParameter) SetType(v string) *DatasetParameter {
 }
 
 // Represents additional options for correct interpretation of datetime parameters
-// used in the S3 path of a dataset.
+// used in the Amazon S3 path of a dataset.
 type DatetimeOptions struct {
 	_ struct{} `type:"structure"`
 
 	// Required option, that defines the datetime format used for a date parameter
-	// in the S3 path. Should use only supported datetime specifiers and separation
-	// characters, all litera a-z or A-Z character should be escaped with single
-	// quotes. E.g. "MM.dd.yyyy-'at'-HH:mm".
+	// in the Amazon S3 path. Should use only supported datetime specifiers and
+	// separation characters, all literal a-z or A-Z characters should be escaped
+	// with single quotes. E.g. "MM.dd.yyyy-'at'-HH:mm".
 	//
 	// Format is a required field
 	Format *string `min:"2" type:"string" required:"true"`
@@ -5453,7 +5644,7 @@ type DatetimeOptions struct {
 	LocaleCode *string `min:"2" type:"string"`
 
 	// Optional value for a timezone offset of the datetime parameter value in the
-	// S3 path. Shouldn't be used if Format for this parameter includes timezone
+	// Amazon S3 path. Shouldn't be used if Format for this parameter includes timezone
 	// fields. If no offset specified, UTC is assumed.
 	TimezoneOffset *string `min:"1" type:"string"`
 }
@@ -5917,14 +6108,14 @@ type DescribeDatasetOutput struct {
 	// The identifier (user name) of the user who created the dataset.
 	CreatedBy *string `type:"string"`
 
-	// The file format of a dataset that is created from an S3 file or folder.
+	// The file format of a dataset that is created from an Amazon S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
 	// Represents a set of options that define the structure of either comma-separated
 	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Represents information on how DataBrew can find data, in either the Glue
 	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
@@ -5941,14 +6132,14 @@ type DescribeDatasetOutput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	// A set of options that defines how DataBrew interprets an Amazon S3 path of
+	// the dataset.
 	PathOptions *PathOptions `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the dataset.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The location of the data for this dataset, Amazon S3 or the AWS Glue Data
-	// Catalog.
+	// The location of the data for this dataset, Amazon S3 or the Glue Data Catalog.
 	Source *string `type:"string" enum:"Source"`
 
 	// Metadata tags associated with this dataset.
@@ -6088,6 +6279,10 @@ type DescribeJobOutput struct {
 	// job.
 	CreatedBy *string `type:"string"`
 
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
 	// The dataset that the job acts upon.
 	DatasetName *string `min:"1" type:"string"`
 
@@ -6097,7 +6292,7 @@ type DescribeJobOutput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
+	//    * SSE-KMS - Server-side encryption with keys managed by KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -6139,8 +6334,8 @@ type DescribeJobOutput struct {
 	// The Amazon Resource Name (ARN) of the job.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role to be assumed
-	// when DataBrew runs the job.
+	// The ARN of the Identity and Access Management (IAM) role to be assumed when
+	// DataBrew runs the job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Metadata tags associated with this job.
@@ -6178,6 +6373,12 @@ func (s *DescribeJobOutput) SetCreateDate(v time.Time) *DescribeJobOutput {
 // SetCreatedBy sets the CreatedBy field's value.
 func (s *DescribeJobOutput) SetCreatedBy(v string) *DescribeJobOutput {
 	s.CreatedBy = &v
+	return s
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *DescribeJobOutput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *DescribeJobOutput {
+	s.DataCatalogOutputs = v
 	return s
 }
 
@@ -6356,6 +6557,10 @@ type DescribeJobRunOutput struct {
 	// The date and time when the job completed processing.
 	CompletedOn *time.Time `type:"timestamp"`
 
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
 	// The name of the dataset for the job to process.
 	DatasetName *string `min:"1" type:"string"`
 
@@ -6422,6 +6627,12 @@ func (s *DescribeJobRunOutput) SetAttempt(v int64) *DescribeJobRunOutput {
 // SetCompletedOn sets the CompletedOn field's value.
 func (s *DescribeJobRunOutput) SetCompletedOn(v time.Time) *DescribeJobRunOutput {
 	s.CompletedOn = &v
+	return s
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *DescribeJobRunOutput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *DescribeJobRunOutput {
+	s.DataCatalogOutputs = v
 	return s
 }
 
@@ -6579,8 +6790,8 @@ type DescribeProjectOutput struct {
 	// The Amazon Resource Name (ARN) of the project.
 	ResourceArn *string `min:"20" type:"string"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role to be assumed
-	// when DataBrew runs the job.
+	// The ARN of the Identity and Access Management (IAM) role to be assumed when
+	// DataBrew runs the job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Represents the sample size and sampling type for DataBrew to use for interactive
@@ -6934,7 +7145,7 @@ type DescribeScheduleOutput struct {
 
 	// The date or dates and time or times when the jobs are to be run for the schedule.
 	// For more information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
-	// in the AWS Glue DataBrew Developer Guide.
+	// in the Glue DataBrew Developer Guide.
 	CronExpression *string `min:"1" type:"string"`
 
 	// The name or names of one or more jobs to be run by using the schedule.
@@ -7083,24 +7294,24 @@ func (s *ExcelOptions) SetSheetNames(v []*string) *ExcelOptions {
 	return s
 }
 
-// Represents a limit imposed on number of S3 files that should be selected
-// for a dataset from a connected S3 path.
+// Represents a limit imposed on number of Amazon S3 files that should be selected
+// for a dataset from a connected Amazon S3 path.
 type FilesLimit struct {
 	_ struct{} `type:"structure"`
 
-	// The number of S3 files to select.
+	// The number of Amazon S3 files to select.
 	//
 	// MaxFiles is a required field
 	MaxFiles *int64 `min:"1" type:"integer" required:"true"`
 
-	// A criteria to use for S3 files sorting before their selection. By default
-	// uses DESCENDING order, i.e. most recent files are selected first. Anotherpossible
-	// value is ASCENDING.
+	// A criteria to use for Amazon S3 files sorting before their selection. By
+	// default uses DESCENDING order, i.e. most recent files are selected first.
+	// Anotherpossible value is ASCENDING.
 	Order *string `type:"string" enum:"Order"`
 
-	// A criteria to use for S3 files sorting before their selection. By default
-	// uses LAST_MODIFIED_DATE as a sorting criteria. Currently it's the only allowed
-	// value.
+	// A criteria to use for Amazon S3 files sorting before their selection. By
+	// default uses LAST_MODIFIED_DATE as a sorting criteria. Currently it's the
+	// only allowed value.
 	OrderedBy *string `type:"string" enum:"OrderedBy"`
 }
 
@@ -7148,7 +7359,9 @@ func (s *FilesLimit) SetOrderedBy(v string) *FilesLimit {
 	return s
 }
 
-// Represents a structure for defining parameter conditions.
+// Represents a structure for defining parameter conditions. Supported conditions
+// are described here: Supported conditions for dynamic datasets (https://docs-aws.amazon.com/databrew/latest/dg/datasets.multiple-files.html#conditions.for.dynamic.datasets)
+// in the Glue DataBrew Developer Guide.
 type FilterExpression struct {
 	_ struct{} `type:"structure"`
 
@@ -7271,12 +7484,12 @@ func (s *FormatOptions) SetJson(v *JsonOptions) *FormatOptions {
 	return s
 }
 
-// Represents information on how DataBrew can find data, in either the AWS Glue
+// Represents information on how DataBrew can find data, in either the Glue
 // Data Catalog or Amazon S3.
 type Input struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Glue Data Catalog parameters for the data.
+	// The Glue Data Catalog parameters for the data.
 	DataCatalogInputDefinition *DataCatalogInputDefinition `type:"structure"`
 
 	// Connection information for dataset input files stored in a database.
@@ -7399,7 +7612,7 @@ func (s *InternalServerException) RequestID() string {
 type Job struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the job.
+	// The ID of the Amazon Web Services account that owns the job.
 	AccountId *string `type:"string"`
 
 	// The date and time that the job was created.
@@ -7407,6 +7620,10 @@ type Job struct {
 
 	// The Amazon Resource Name (ARN) of the user who created the job.
 	CreatedBy *string `type:"string"`
+
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
 
 	// A dataset that the job is to process.
 	DatasetName *string `min:"1" type:"string"`
@@ -7418,7 +7635,7 @@ type Job struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
+	//    * SSE-KMS - Server-side encryption with keys managed by KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -7505,6 +7722,12 @@ func (s *Job) SetCreateDate(v time.Time) *Job {
 // SetCreatedBy sets the CreatedBy field's value.
 func (s *Job) SetCreatedBy(v string) *Job {
 	s.CreatedBy = &v
+	return s
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *Job) SetDataCatalogOutputs(v []*DataCatalogOutput_) *Job {
+	s.DataCatalogOutputs = v
 	return s
 }
 
@@ -7626,6 +7849,10 @@ type JobRun struct {
 	// The date and time when the job completed processing.
 	CompletedOn *time.Time `type:"timestamp"`
 
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
 	// The name of the dataset for the job to process.
 	DatasetName *string `min:"1" type:"string"`
 
@@ -7690,6 +7917,12 @@ func (s *JobRun) SetAttempt(v int64) *JobRun {
 // SetCompletedOn sets the CompletedOn field's value.
 func (s *JobRun) SetCompletedOn(v time.Time) *JobRun {
 	s.CompletedOn = &v
+	return s
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *JobRun) SetDataCatalogOutputs(v []*DataCatalogOutput_) *JobRun {
+	s.DataCatalogOutputs = v
 	return s
 }
 
@@ -7818,7 +8051,7 @@ func (s *JobSample) SetSize(v int64) *JobSample {
 }
 
 // Represents the JSON-specific options that define how input is to be interpreted
-// by AWS Glue DataBrew.
+// by Glue DataBrew.
 type JsonOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -8716,7 +8949,7 @@ func (s *OutputFormatOptions) SetCsv(v *CsvOutputOptions) *OutputFormatOptions {
 }
 
 // Represents a set of options that define how DataBrew selects files for a
-// given S3 path in a dataset.
+// given Amazon S3 path in a dataset.
 type PathOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -8724,12 +8957,12 @@ type PathOptions struct {
 	// be selected.
 	FilesLimit *FilesLimit `type:"structure"`
 
-	// If provided, this structure defines a date range for matching S3 objects
-	// based on their LastModifiedDate attribute in S3.
+	// If provided, this structure defines a date range for matching Amazon S3 objects
+	// based on their LastModifiedDate attribute in Amazon S3.
 	LastModifiedDateCondition *FilterExpression `type:"structure"`
 
-	// A structure that maps names of parameters used in the S3 path of a dataset
-	// to their definitions.
+	// A structure that maps names of parameters used in the Amazon S3 path of a
+	// dataset to their definitions.
 	Parameters map[string]*DatasetParameter `min:"1" type:"map"`
 }
 
@@ -8798,7 +9031,7 @@ func (s *PathOptions) SetParameters(v map[string]*DatasetParameter) *PathOptions
 type Project struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the project.
+	// The ID of the Amazon Web Services account that owns the project.
 	AccountId *string `type:"string"`
 
 	// The date and time that the project was created.
@@ -9161,9 +9394,8 @@ func (s *Recipe) SetTags(v map[string]*string) *Recipe {
 }
 
 // Represents a transformation and associated parameters that are used to apply
-// a change to a DataBrew dataset. For more information, see Recipe structure
-// (https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html) and
-// Recipe actions reference (https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html).
+// a change to a DataBrew dataset. For more information, see Recipe actions
+// reference (https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html).
 type RecipeAction struct {
 	_ struct{} `type:"structure"`
 
@@ -9438,7 +9670,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type S3Location struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket name.
+	// The Amazon S3 bucket name.
 	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
@@ -9485,6 +9717,52 @@ func (s *S3Location) SetBucket(v string) *S3Location {
 // SetKey sets the Key field's value.
 func (s *S3Location) SetKey(v string) *S3Location {
 	s.Key = &v
+	return s
+}
+
+// Represents options that specify how and where DataBrew writes the S3 output
+// generated by recipe jobs.
+type S3TableOutputOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Represents an Amazon S3 location (bucket name and object key) where DataBrew
+	// can write output from a job.
+	//
+	// Location is a required field
+	Location *S3Location `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s S3TableOutputOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3TableOutputOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3TableOutputOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3TableOutputOptions"}
+	if s.Location == nil {
+		invalidParams.Add(request.NewErrParamRequired("Location"))
+	}
+	if s.Location != nil {
+		if err := s.Location.Validate(); err != nil {
+			invalidParams.AddNested("Location", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLocation sets the Location field's value.
+func (s *S3TableOutputOptions) SetLocation(v *S3Location) *S3TableOutputOptions {
+	s.Location = v
 	return s
 }
 
@@ -9544,7 +9822,7 @@ func (s *Sample) SetType(v string) *Sample {
 type Schedule struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the schedule.
+	// The ID of the Amazon Web Services account that owns the schedule.
 	AccountId *string `type:"string"`
 
 	// The date and time that the schedule was created.
@@ -9555,7 +9833,7 @@ type Schedule struct {
 
 	// The dates and times when the job is to run. For more information, see Cron
 	// expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
-	// in the AWS Glue DataBrew Developer Guide.
+	// in the Glue DataBrew Developer Guide.
 	CronExpression *string `min:"1" type:"string"`
 
 	// A list of jobs to be run, according to the schedule.
@@ -10234,14 +10512,14 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The file format of a dataset that is created from an S3 file or folder.
+	// The file format of a dataset that is created from an Amazon S3 file or folder.
 	Format *string `type:"string" enum:"InputFormat"`
 
 	// Represents a set of options that define the structure of either comma-separated
 	// value (CSV), Excel, or JSON input.
 	FormatOptions *FormatOptions `type:"structure"`
 
-	// Represents information on how DataBrew can find data, in either the AWS Glue
+	// Represents information on how DataBrew can find data, in either the Glue
 	// Data Catalog or Amazon S3.
 	//
 	// Input is a required field
@@ -10252,7 +10530,8 @@ type UpdateDatasetInput struct {
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
-	// A set of options that defines how DataBrew interprets an S3 path of the dataset.
+	// A set of options that defines how DataBrew interprets an Amazon S3 path of
+	// the dataset.
 	PathOptions *PathOptions `type:"structure"`
 }
 
@@ -10364,7 +10643,7 @@ type UpdateProfileJobInput struct {
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
+	//    * SSE-KMS - Server-side encryption with keys managed by KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -10397,8 +10676,8 @@ type UpdateProfileJobInput struct {
 	// OutputLocation is a required field
 	OutputLocation *S3Location `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed when DataBrew runs the job.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -10716,13 +10995,17 @@ func (s *UpdateRecipeInput) SetSteps(v []*RecipeStep) *UpdateRecipeInput {
 type UpdateRecipeJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// One or more artifacts that represent the AWS Glue Data Catalog output from
+	// running the job.
+	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
 	// The Amazon Resource Name (ARN) of an encryption key that is used to protect
 	// the job.
 	EncryptionKeyArn *string `min:"20" type:"string"`
 
 	// The encryption mode for the job, which can be one of the following:
 	//
-	//    * SSE-KMS - Server-side encryption with keys managed by AWS KMS.
+	//    * SSE-KMS - Server-side encryption with keys managed by KMS.
 	//
 	//    * SSE-S3 - Server-side encryption with keys managed by Amazon S3.
 	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
@@ -10744,12 +11027,10 @@ type UpdateRecipeJobInput struct {
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
 
 	// One or more artifacts that represent the output from running the job.
-	//
-	// Outputs is a required field
-	Outputs []*Output `min:"1" type:"list" required:"true"`
+	Outputs []*Output `min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role to be assumed when DataBrew runs the job.
+	// The Amazon Resource Name (ARN) of the Identity and Access Management (IAM)
+	// role to be assumed when DataBrew runs the job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -10772,6 +11053,9 @@ func (s UpdateRecipeJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateRecipeJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateRecipeJobInput"}
+	if s.DataCatalogOutputs != nil && len(s.DataCatalogOutputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataCatalogOutputs", 1))
+	}
 	if s.EncryptionKeyArn != nil && len(*s.EncryptionKeyArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("EncryptionKeyArn", 20))
 	}
@@ -10781,9 +11065,6 @@ func (s *UpdateRecipeJobInput) Validate() error {
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
-	if s.Outputs == nil {
-		invalidParams.Add(request.NewErrParamRequired("Outputs"))
-	}
 	if s.Outputs != nil && len(s.Outputs) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Outputs", 1))
 	}
@@ -10792,6 +11073,16 @@ func (s *UpdateRecipeJobInput) Validate() error {
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.DataCatalogOutputs != nil {
+		for i, v := range s.DataCatalogOutputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataCatalogOutputs", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
@@ -10808,6 +11099,12 @@ func (s *UpdateRecipeJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
+func (s *UpdateRecipeJobInput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *UpdateRecipeJobInput {
+	s.DataCatalogOutputs = v
+	return s
 }
 
 // SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
@@ -10919,7 +11216,7 @@ type UpdateScheduleInput struct {
 
 	// The date or dates and time or times when the jobs are to be run. For more
 	// information, see Cron expressions (https://docs.aws.amazon.com/databrew/latest/dg/jobs.cron.html)
-	// in the AWS Glue DataBrew Developer Guide.
+	// in the Glue DataBrew Developer Guide.
 	//
 	// CronExpression is a required field
 	CronExpression *string `min:"1" type:"string" required:"true"`

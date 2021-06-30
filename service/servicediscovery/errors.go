@@ -58,9 +58,9 @@ const (
 	// "RequestLimitExceeded".
 	//
 	// The operation can't be completed because you've reached the quota for the
-	// number of requests. For more information, see AWS Cloud Map API request throttling
+	// number of requests. For more information, see Cloud Map API request throttling
 	// quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-	// the AWS Cloud Map Developer Guide.
+	// the Cloud Map Developer Guide.
 	ErrCodeRequestLimitExceeded = "RequestLimitExceeded"
 
 	// ErrCodeResourceInUse for service response error code
