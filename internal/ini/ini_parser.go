@@ -210,18 +210,6 @@ loop:
 		case ValueState:
 			// ValueState requires the previous state to either be an equal expression
 			// or an expression statement.
-			//
-			// This grammar occurs when the RHS is a number, word, or quoted string.
-			// equal_expr -> lit op equal_expr'
-			// equal_expr' -> number | string | quoted_string
-			// quoted_string -> " quoted_string'
-			// quoted_string' -> string quoted_string_end
-			// quoted_string_end -> "
-			//
-			// otherwise
-			// expr_stmt -> equal_expr (expr_stmt')*
-			// expr_stmt' -> ws S | op S | MarkComplete
-			// S -> equal_expr' expr_stmt'
 			switch k.Kind {
 			case ASTKindEqualExpr:
 				// assigning a value to some key

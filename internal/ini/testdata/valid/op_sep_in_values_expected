@@ -1,10 +1,32 @@
 {
-  "default": {
+  "case1": {
     "sepInValue": "=:[foo]]bar[",
-    "output": "json"
+    "key": "= value1"
   },
-  "assumerole": {
+  "case2": {
     "sepInValue": "=:[foo]]bar[",
-    "output": "json"
+    "key": "value2"
+  },
+  "case3": {
+    "sepInValue": "[]",
+    "key": "= value3"
+  },
+  "case4": {
+    "sepInValue": "[value] x=a",
+    "key": "=value4"
+  },
+  "case5": {
+    "key": "value5"
+  },
+  "case6": {
+    "s3": "",
+    "key": "=value6"
+  },
+  "case7": {
+    "s3": "",
+    "key": "value7"
+  },
+  "sub7": {
+    "key": "=values7"
   }
 }
