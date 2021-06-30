@@ -159,9 +159,21 @@ type ServiceDiscoveryAPI interface {
 	UntagResourceWithContext(aws.Context, *servicediscovery.UntagResourceInput, ...request.Option) (*servicediscovery.UntagResourceOutput, error)
 	UntagResourceRequest(*servicediscovery.UntagResourceInput) (*request.Request, *servicediscovery.UntagResourceOutput)
 
+	UpdateHttpNamespace(*servicediscovery.UpdateHttpNamespaceInput) (*servicediscovery.UpdateHttpNamespaceOutput, error)
+	UpdateHttpNamespaceWithContext(aws.Context, *servicediscovery.UpdateHttpNamespaceInput, ...request.Option) (*servicediscovery.UpdateHttpNamespaceOutput, error)
+	UpdateHttpNamespaceRequest(*servicediscovery.UpdateHttpNamespaceInput) (*request.Request, *servicediscovery.UpdateHttpNamespaceOutput)
+
 	UpdateInstanceCustomHealthStatus(*servicediscovery.UpdateInstanceCustomHealthStatusInput) (*servicediscovery.UpdateInstanceCustomHealthStatusOutput, error)
 	UpdateInstanceCustomHealthStatusWithContext(aws.Context, *servicediscovery.UpdateInstanceCustomHealthStatusInput, ...request.Option) (*servicediscovery.UpdateInstanceCustomHealthStatusOutput, error)
 	UpdateInstanceCustomHealthStatusRequest(*servicediscovery.UpdateInstanceCustomHealthStatusInput) (*request.Request, *servicediscovery.UpdateInstanceCustomHealthStatusOutput)
+
+	UpdatePrivateDnsNamespace(*servicediscovery.UpdatePrivateDnsNamespaceInput) (*servicediscovery.UpdatePrivateDnsNamespaceOutput, error)
+	UpdatePrivateDnsNamespaceWithContext(aws.Context, *servicediscovery.UpdatePrivateDnsNamespaceInput, ...request.Option) (*servicediscovery.UpdatePrivateDnsNamespaceOutput, error)
+	UpdatePrivateDnsNamespaceRequest(*servicediscovery.UpdatePrivateDnsNamespaceInput) (*request.Request, *servicediscovery.UpdatePrivateDnsNamespaceOutput)
+
+	UpdatePublicDnsNamespace(*servicediscovery.UpdatePublicDnsNamespaceInput) (*servicediscovery.UpdatePublicDnsNamespaceOutput, error)
+	UpdatePublicDnsNamespaceWithContext(aws.Context, *servicediscovery.UpdatePublicDnsNamespaceInput, ...request.Option) (*servicediscovery.UpdatePublicDnsNamespaceOutput, error)
+	UpdatePublicDnsNamespaceRequest(*servicediscovery.UpdatePublicDnsNamespaceInput) (*request.Request, *servicediscovery.UpdatePublicDnsNamespaceOutput)
 
 	UpdateService(*servicediscovery.UpdateServiceInput) (*servicediscovery.UpdateServiceOutput, error)
 	UpdateServiceWithContext(aws.Context, *servicediscovery.UpdateServiceInput, ...request.Option) (*servicediscovery.UpdateServiceOutput, error)

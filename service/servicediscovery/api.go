@@ -62,8 +62,8 @@ func (c *ServiceDiscovery) CreateHttpNamespaceRequest(input *CreateHttpNamespace
 // using DNS.
 //
 // For the current quota on the number of namespaces that you can create using
-// the same AWS account, see AWS Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
-// in the AWS Cloud Map Developer Guide.
+// the same account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -164,9 +164,9 @@ func (c *ServiceDiscovery) CreatePrivateDnsNamespaceRequest(input *CreatePrivate
 // the resulting DNS name for the service is backend.example.com. Service instances
 // that are registered using a private DNS namespace can be discovered using
 // either a DiscoverInstances request or using DNS. For the current quota on
-// the number of namespaces that you can create using the same AWS account,
-// see AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
-// in the AWS Cloud Map Developer Guide.
+// the number of namespaces that you can create using the same account, see
+// Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -267,8 +267,8 @@ func (c *ServiceDiscovery) CreatePublicDnsNamespaceRequest(input *CreatePublicDn
 // name for the service is backend.example.com. You can discover instances that
 // were registered with a public DNS namespace by using either a DiscoverInstances
 // request or using DNS. For the current quota on the number of namespaces that
-// you can create using the same AWS account, see AWS Cloud Map Quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)in
-// the AWS Cloud Map Developer Guide.
+// you can create using the same account, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -372,12 +372,12 @@ func (c *ServiceDiscovery) CreateServiceRequest(input *CreateServiceInput) (req 
 //    * Optionally, a health check
 //
 // After you create the service, you can submit a RegisterInstance (https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html)
-// request, and AWS Cloud Map uses the values in the configuration to create
-// the specified entities.
+// request, and Cloud Map uses the values in the configuration to create the
+// specified entities.
 //
 // For the current quota on the number of instances that you can register using
-// the same namespace and using the same service, see AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
-// in the AWS Cloud Map Developer Guide.
+// the same namespace and using the same service, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -655,8 +655,8 @@ func (c *ServiceDiscovery) DeregisterInstanceRequest(input *DeregisterInstanceIn
 
 // DeregisterInstance API operation for AWS Cloud Map.
 //
-// Deletes the Amazon Route 53 DNS records and health check, if any, that AWS
-// Cloud Map created for the specified instance.
+// Deletes the Amazon Route 53 DNS records and health check, if any, that Cloud
+// Map created for the specified instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -779,9 +779,9 @@ func (c *ServiceDiscovery) DiscoverInstancesRequest(input *DiscoverInstancesInpu
 //
 //   * RequestLimitExceeded
 //   The operation can't be completed because you've reached the quota for the
-//   number of requests. For more information, see AWS Cloud Map API request throttling
+//   number of requests. For more information, see Cloud Map API request throttling
 //   quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-//   the AWS Cloud Map Developer Guide.
+//   the Cloud Map Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/DiscoverInstances
 func (c *ServiceDiscovery) DiscoverInstances(input *DiscoverInstancesInput) (*DiscoverInstancesOutput, error) {
@@ -1493,7 +1493,7 @@ func (c *ServiceDiscovery) ListNamespacesRequest(input *ListNamespacesInput) (re
 // ListNamespaces API operation for AWS Cloud Map.
 //
 // Lists summary information about the namespaces that were created by the current
-// AWS account.
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2008,7 +2008,7 @@ func (c *ServiceDiscovery) RegisterInstanceRequest(input *RegisterInstanceInput)
 //
 // For more information, see CreateService (https://docs.aws.amazon.com/cloud-map/latest/api/API_CreateService.html).
 //
-// When AWS Cloud Map receives a DNS query for the specified DNS name, it returns
+// When Cloud Map receives a DNS query for the specified DNS name, it returns
 // the applicable value:
 //
 //    * If the health check is healthy: returns all the records
@@ -2020,8 +2020,8 @@ func (c *ServiceDiscovery) RegisterInstanceRequest(input *RegisterInstanceInput)
 //    records
 //
 // For the current quota on the number of instances that you can register using
-// the same namespace and using the same service, see AWS Cloud Map Limits (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
-// in the AWS Cloud Map Developer Guide.
+// the same namespace and using the same service, see Cloud Map quotas (https://docs.aws.amazon.com/cloud-map/latest/dg/cloud-map-limits.html)
+// in the Cloud Map Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2246,6 +2246,97 @@ func (c *ServiceDiscovery) UntagResourceWithContext(ctx aws.Context, input *Unta
 	return out, req.Send()
 }
 
+const opUpdateHttpNamespace = "UpdateHttpNamespace"
+
+// UpdateHttpNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateHttpNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateHttpNamespace for more information on using the UpdateHttpNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateHttpNamespaceRequest method.
+//    req, resp := client.UpdateHttpNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateHttpNamespace
+func (c *ServiceDiscovery) UpdateHttpNamespaceRequest(input *UpdateHttpNamespaceInput) (req *request.Request, output *UpdateHttpNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateHttpNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateHttpNamespaceInput{}
+	}
+
+	output = &UpdateHttpNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateHttpNamespace API operation for AWS Cloud Map.
+//
+// Updates an HTTP namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cloud Map's
+// API operation UpdateHttpNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInput
+//   One or more specified values aren't valid. For example, a required value
+//   might be missing, a numeric value might be outside the allowed range, or
+//   a string value might exceed length constraints.
+//
+//   * NamespaceNotFound
+//   No namespace exists with the specified ID.
+//
+//   * ResourceInUse
+//   The specified resource can't be deleted because it contains other resources.
+//   For example, you can't delete a service that contains any instances.
+//
+//   * DuplicateRequest
+//   The operation is already in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdateHttpNamespace
+func (c *ServiceDiscovery) UpdateHttpNamespace(input *UpdateHttpNamespaceInput) (*UpdateHttpNamespaceOutput, error) {
+	req, out := c.UpdateHttpNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateHttpNamespaceWithContext is the same as UpdateHttpNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateHttpNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceDiscovery) UpdateHttpNamespaceWithContext(ctx aws.Context, input *UpdateHttpNamespaceInput, opts ...request.Option) (*UpdateHttpNamespaceOutput, error) {
+	req, out := c.UpdateHttpNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateInstanceCustomHealthStatus = "UpdateInstanceCustomHealthStatus"
 
 // UpdateInstanceCustomHealthStatusRequest generates a "aws/request.Request" representing the
@@ -2347,6 +2438,188 @@ func (c *ServiceDiscovery) UpdateInstanceCustomHealthStatusWithContext(ctx aws.C
 	return out, req.Send()
 }
 
+const opUpdatePrivateDnsNamespace = "UpdatePrivateDnsNamespace"
+
+// UpdatePrivateDnsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePrivateDnsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePrivateDnsNamespace for more information on using the UpdatePrivateDnsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePrivateDnsNamespaceRequest method.
+//    req, resp := client.UpdatePrivateDnsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePrivateDnsNamespace
+func (c *ServiceDiscovery) UpdatePrivateDnsNamespaceRequest(input *UpdatePrivateDnsNamespaceInput) (req *request.Request, output *UpdatePrivateDnsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePrivateDnsNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePrivateDnsNamespaceInput{}
+	}
+
+	output = &UpdatePrivateDnsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePrivateDnsNamespace API operation for AWS Cloud Map.
+//
+// Updates a private DNS namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cloud Map's
+// API operation UpdatePrivateDnsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInput
+//   One or more specified values aren't valid. For example, a required value
+//   might be missing, a numeric value might be outside the allowed range, or
+//   a string value might exceed length constraints.
+//
+//   * NamespaceNotFound
+//   No namespace exists with the specified ID.
+//
+//   * ResourceInUse
+//   The specified resource can't be deleted because it contains other resources.
+//   For example, you can't delete a service that contains any instances.
+//
+//   * DuplicateRequest
+//   The operation is already in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePrivateDnsNamespace
+func (c *ServiceDiscovery) UpdatePrivateDnsNamespace(input *UpdatePrivateDnsNamespaceInput) (*UpdatePrivateDnsNamespaceOutput, error) {
+	req, out := c.UpdatePrivateDnsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePrivateDnsNamespaceWithContext is the same as UpdatePrivateDnsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePrivateDnsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceDiscovery) UpdatePrivateDnsNamespaceWithContext(ctx aws.Context, input *UpdatePrivateDnsNamespaceInput, opts ...request.Option) (*UpdatePrivateDnsNamespaceOutput, error) {
+	req, out := c.UpdatePrivateDnsNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePublicDnsNamespace = "UpdatePublicDnsNamespace"
+
+// UpdatePublicDnsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePublicDnsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePublicDnsNamespace for more information on using the UpdatePublicDnsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePublicDnsNamespaceRequest method.
+//    req, resp := client.UpdatePublicDnsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePublicDnsNamespace
+func (c *ServiceDiscovery) UpdatePublicDnsNamespaceRequest(input *UpdatePublicDnsNamespaceInput) (req *request.Request, output *UpdatePublicDnsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePublicDnsNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdatePublicDnsNamespaceInput{}
+	}
+
+	output = &UpdatePublicDnsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePublicDnsNamespace API operation for AWS Cloud Map.
+//
+// Updates a public DNS namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Cloud Map's
+// API operation UpdatePublicDnsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInput
+//   One or more specified values aren't valid. For example, a required value
+//   might be missing, a numeric value might be outside the allowed range, or
+//   a string value might exceed length constraints.
+//
+//   * NamespaceNotFound
+//   No namespace exists with the specified ID.
+//
+//   * ResourceInUse
+//   The specified resource can't be deleted because it contains other resources.
+//   For example, you can't delete a service that contains any instances.
+//
+//   * DuplicateRequest
+//   The operation is already in progress.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicediscovery-2017-03-14/UpdatePublicDnsNamespace
+func (c *ServiceDiscovery) UpdatePublicDnsNamespace(input *UpdatePublicDnsNamespaceInput) (*UpdatePublicDnsNamespaceOutput, error) {
+	req, out := c.UpdatePublicDnsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePublicDnsNamespaceWithContext is the same as UpdatePublicDnsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePublicDnsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceDiscovery) UpdatePublicDnsNamespaceWithContext(ctx aws.Context, input *UpdatePublicDnsNamespaceInput, opts ...request.Option) (*UpdatePublicDnsNamespaceOutput, error) {
+	req, out := c.UpdatePublicDnsNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateService = "UpdateService"
 
 // UpdateServiceRequest generates a "aws/request.Request" representing the
@@ -2407,7 +2680,7 @@ func (c *ServiceDiscovery) UpdateServiceRequest(input *UpdateServiceInput) (req 
 //    * If you omit an existing HealthCheckCustomConfig configuration from an
 //    UpdateService request, the configuration isn't deleted from the service.
 //
-// When you update settings for a service, AWS Cloud Map also updates the corresponding
+// When you update settings for a service, Cloud Map also updates the corresponding
 // settings in all the records and health checks that were created by using
 // the specified service.
 //
@@ -2567,11 +2840,14 @@ type CreatePrivateDnsNamespaceInput struct {
 	Description *string `type:"string"`
 
 	// The name that you want to assign to this namespace. When you create a private
-	// DNS namespace, AWS Cloud Map automatically creates an Amazon Route 53 private
+	// DNS namespace, Cloud Map automatically creates an Amazon Route 53 private
 	// hosted zone that has the same name as the namespace.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
+
+	// Properties for the private DNS namespace.
+	Properties *PrivateDnsNamespaceProperties `type:"structure"`
 
 	// The tags to add to the namespace. Each tag consists of a key and an optional
 	// value that you define. Tags keys can be up to 128 characters in length, and
@@ -2602,6 +2878,11 @@ func (s *CreatePrivateDnsNamespaceInput) Validate() error {
 	}
 	if s.Vpc == nil {
 		invalidParams.Add(request.NewErrParamRequired("Vpc"))
+	}
+	if s.Properties != nil {
+		if err := s.Properties.Validate(); err != nil {
+			invalidParams.AddNested("Properties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -2635,6 +2916,12 @@ func (s *CreatePrivateDnsNamespaceInput) SetDescription(v string) *CreatePrivate
 // SetName sets the Name field's value.
 func (s *CreatePrivateDnsNamespaceInput) SetName(v string) *CreatePrivateDnsNamespaceInput {
 	s.Name = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *CreatePrivateDnsNamespaceInput) SetProperties(v *PrivateDnsNamespaceProperties) *CreatePrivateDnsNamespaceInput {
+	s.Properties = v
 	return s
 }
 
@@ -2690,6 +2977,9 @@ type CreatePublicDnsNamespaceInput struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
+	// Properties for the public DNS namespace.
+	Properties *PublicDnsNamespaceProperties `type:"structure"`
+
 	// The tags to add to the namespace. Each tag consists of a key and an optional
 	// value that you define. Tags keys can be up to 128 characters in length, and
 	// tag values can be up to 256 characters in length.
@@ -2711,6 +3001,11 @@ func (s *CreatePublicDnsNamespaceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreatePublicDnsNamespaceInput"}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Properties != nil {
+		if err := s.Properties.Validate(); err != nil {
+			invalidParams.AddNested("Properties", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -2744,6 +3039,12 @@ func (s *CreatePublicDnsNamespaceInput) SetDescription(v string) *CreatePublicDn
 // SetName sets the Name field's value.
 func (s *CreatePublicDnsNamespaceInput) SetName(v string) *CreatePublicDnsNamespaceInput {
 	s.Name = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *CreatePublicDnsNamespaceInput) SetProperties(v *PublicDnsNamespaceProperties) *CreatePublicDnsNamespaceInput {
+	s.Properties = v
 	return s
 }
 
@@ -2789,18 +3090,18 @@ type CreateServiceInput struct {
 	Description *string `type:"string"`
 
 	// A complex type that contains information about the Amazon Route 53 records
-	// that you want AWS Cloud Map to create when you register an instance.
+	// that you want Cloud Map to create when you register an instance.
 	DnsConfig *DnsConfig `type:"structure"`
 
 	// Public DNS and HTTP namespaces only. A complex type that contains settings
 	// for an optional Route 53 health check. If you specify settings for a health
-	// check, AWS Cloud Map associates the health check with all the Route 53 DNS
-	// records that you specify in DnsConfig.
+	// check, Cloud Map associates the health check with all the Route 53 DNS records
+	// that you specify in DnsConfig.
 	//
 	// If you specify a health check configuration, you can specify either HealthCheckCustomConfig
 	// or HealthCheckConfig but not both.
 	//
-	// For information about the charges for health checks, see AWS Cloud Map Pricing
+	// For information about the charges for health checks, see Cloud Map Pricing
 	// (http://aws.amazon.com/cloud-map/pricing/).
 	HealthCheckConfig *HealthCheckConfig `type:"structure"`
 
@@ -2816,7 +3117,7 @@ type CreateServiceInput struct {
 
 	// The name that you want to assign to the service.
 	//
-	// If you want AWS Cloud Map to create an SRV record when you register an instance
+	// If you want Cloud Map to create an SRV record when you register an instance
 	// and you're using a system that requires a specific SRV format, such as HAProxy
 	// (http://www.haproxy.org/), specify the following for Name:
 	//
@@ -2824,7 +3125,7 @@ type CreateServiceInput struct {
 	//
 	//    * End the name with ._protocol, such as ._tcp.
 	//
-	// When you register an instance, AWS Cloud Map creates an SRV record and assigns
+	// When you register an instance, Cloud Map creates an SRV record and assigns
 	// a name to the record by concatenating the service name and the namespace
 	// name (for example,
 	//
@@ -3208,7 +3509,7 @@ type DeregisterInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A value that you can use to determine whether the request completed successfully.
-	// For more information, see GetOperation (https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html).
+	// To get the status of the operation, see GetOperation (https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html).
 	OperationId *string `type:"string"`
 }
 
@@ -3253,9 +3554,9 @@ type DiscoverInstancesInput struct {
 	// that case, return all instances. This is also called failing open.
 	HealthStatus *string `type:"string" enum:"HealthStatusFilter"`
 
-	// The maximum number of instances that you want AWS Cloud Map to return in
-	// the response to a DiscoverInstances request. If you don't specify a value
-	// for MaxResults, AWS Cloud Map returns up to 100 instances.
+	// The maximum number of instances that you want Cloud Map to return in the
+	// response to a DiscoverInstances request. If you don't specify a value for
+	// MaxResults, Cloud Map returns up to 100 instances.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The HttpName name of the namespace. It's found in the HttpProperties member
@@ -3372,12 +3673,12 @@ func (s *DiscoverInstancesOutput) SetInstances(v []*HttpInstanceSummary) *Discov
 }
 
 // A complex type that contains information about the Amazon Route 53 DNS records
-// that you want AWS Cloud Map to create when you register an instance.
+// that you want Cloud Map to create when you register an instance.
 type DnsConfig struct {
 	_ struct{} `type:"structure"`
 
 	// An array that contains one DnsRecord object for each Route 53 DNS record
-	// that you want AWS Cloud Map to create when you register an instance.
+	// that you want Cloud Map to create when you register an instance.
 	//
 	// DnsRecords is a required field
 	DnsRecords []*DnsRecord `type:"list" required:"true"`
@@ -3388,7 +3689,7 @@ type DnsConfig struct {
 	NamespaceId *string `deprecated:"true" type:"string"`
 
 	// The routing policy that you want to apply to all Route 53 DNS records that
-	// AWS Cloud Map creates when you register an instance and specify this service.
+	// Cloud Map creates when you register an instance and specify this service.
 	//
 	// If you want to use this service to register instances that create alias records,
 	// specify WEIGHTED for the routing policy.
@@ -3488,12 +3789,12 @@ func (s *DnsConfig) SetRoutingPolicy(v string) *DnsConfig {
 }
 
 // A complex type that contains information about changes to the Route 53 DNS
-// records that AWS Cloud Map creates when you register an instance.
+// records that Cloud Map creates when you register an instance.
 type DnsConfigChange struct {
 	_ struct{} `type:"structure"`
 
 	// An array that contains one DnsRecord object for each Route 53 record that
-	// you want AWS Cloud Map to create when you register an instance.
+	// you want Cloud Map to create when you register an instance.
 	//
 	// DnsRecords is a required field
 	DnsRecords []*DnsRecord `type:"list" required:"true"`
@@ -3538,14 +3839,17 @@ func (s *DnsConfigChange) SetDnsRecords(v []*DnsRecord) *DnsConfigChange {
 	return s
 }
 
-// A complex type that contains the ID for the Route 53 hosted zone that AWS
-// Cloud Map creates when you create a namespace.
+// A complex type that contains the ID for the Route 53 hosted zone that Cloud
+// Map creates when you create a namespace.
 type DnsProperties struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for the Route 53 hosted zone that AWS Cloud Map creates when you create
+	// The ID for the Route 53 hosted zone that Cloud Map creates when you create
 	// a namespace.
 	HostedZoneId *string `type:"string"`
+
+	// Start of Authority (SOA) record for the hosted zone.
+	SOA *SOA `type:"structure"`
 }
 
 // String returns the string representation
@@ -3564,17 +3868,23 @@ func (s *DnsProperties) SetHostedZoneId(v string) *DnsProperties {
 	return s
 }
 
+// SetSOA sets the SOA field's value.
+func (s *DnsProperties) SetSOA(v *SOA) *DnsProperties {
+	s.SOA = v
+	return s
+}
+
 // A complex type that contains information about the Route 53 DNS records that
-// you want AWS Cloud Map to create when you register an instance.
+// you want Cloud Map to create when you register an instance.
 type DnsRecord struct {
 	_ struct{} `type:"structure"`
 
 	// The amount of time, in seconds, that you want DNS resolvers to cache the
 	// settings for this record.
 	//
-	// Alias records don't include a TTL because Route 53 uses the TTL for the AWS
-	// resource that an alias record routes traffic to. If you include the AWS_ALIAS_DNS_NAME
-	// attribute when you submit a RegisterInstance (https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html)
+	// Alias records don't include a TTL because Route 53 uses the TTL for the Amazon
+	// Web Services resource that an alias record routes traffic to. If you include
+	// the AWS_ALIAS_DNS_NAME attribute when you submit a RegisterInstance (https://docs.aws.amazon.com/cloud-map/latest/api/API_RegisterInstance.html)
 	// request, the TTL value is ignored. Always specify a TTL for the service;
 	// you can use a service to register instances that create either alias or non-alias
 	// records.
@@ -3596,7 +3906,7 @@ type DnsRecord struct {
 	//
 	//    * CNAME
 	//
-	// If you want AWS Cloud Map to create a Route 53 alias record when you register
+	// If you want Cloud Map to create a Route 53 alias record when you register
 	// an instance, specify A or AAAA for Type.
 	//
 	// You specify other settings, such as the IP address for A and AAAA records,
@@ -3652,8 +3962,8 @@ type DnsRecord struct {
 	// If you specify settings for an SRV record, note the following:
 	//
 	//    * If you specify values for AWS_INSTANCE_IPV4, AWS_INSTANCE_IPV6, or both
-	//    in the RegisterInstance request, AWS Cloud Map automatically creates A
-	//    and/or AAAA records that have the same name as the value of service-hostname
+	//    in the RegisterInstance request, Cloud Map automatically creates A and/or
+	//    AAAA records that have the same name as the value of service-hostname
 	//    in the SRV record. You can ignore these records.
 	//
 	//    * If you're using a system that requires a specific SRV format, such as
@@ -3843,17 +4153,17 @@ type GetInstancesHealthStatusInput struct {
 	// An array that contains the IDs of all the instances that you want to get
 	// the health status for.
 	//
-	// If you omit Instances, AWS Cloud Map returns the health status for all the
-	// instances that are associated with the specified service.
+	// If you omit Instances, Cloud Map returns the health status for all the instances
+	// that are associated with the specified service.
 	//
 	// To get the IDs for the instances that you've registered by using a specified
 	// service, submit a ListInstances (https://docs.aws.amazon.com/cloud-map/latest/api/API_ListInstances.html)
 	// request.
 	Instances []*string `min:"1" type:"list"`
 
-	// The maximum number of instances that you want AWS Cloud Map to return in
-	// the response to a GetInstancesHealthStatus request. If you don't specify
-	// a value for MaxResults, AWS Cloud Map returns up to 100 instances.
+	// The maximum number of instances that you want Cloud Map to return in the
+	// response to a GetInstancesHealthStatus request. If you don't specify a value
+	// for MaxResults, Cloud Map returns up to 100 instances.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// For the first GetInstancesHealthStatus request, omit this value.
@@ -4142,24 +4452,24 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 
 // Public DNS and HTTP namespaces only. A complex type that contains settings
 // for an optional health check. If you specify settings for a health check,
-// AWS Cloud Map associates the health check with the records that you specify
-// in DnsConfig.
+// Cloud Map associates the health check with the records that you specify in
+// DnsConfig.
 //
 // If you specify a health check configuration, you can specify either HealthCheckCustomConfig
 // or HealthCheckConfig but not both.
 //
-// Health checks are basic Route 53 health checks that monitor an AWS endpoint.
-// For information about pricing for health checks, see Amazon Route 53 Pricing
-// (http://aws.amazon.com/route53/pricing/).
+// Health checks are basic Route 53 health checks that monitor an Amazon Web
+// Services endpoint. For information about pricing for health checks, see Amazon
+// Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 //
 // Note the following about configuring health checks.
 //
 // A and AAAA records
 //
-// If DnsConfig includes configurations for both A and AAAA records, AWS Cloud
-// Map creates a health check that uses the IPv4 address to check the health
-// of the resource. If the endpoint tthat's specified by the IPv4 address is
-// unhealthy, Route 53 considers both the A and AAAA records to be unhealthy.
+// If DnsConfig includes configurations for both A and AAAA records, Cloud Map
+// creates a health check that uses the IPv4 address to check the health of
+// the resource. If the endpoint tthat's specified by the IPv4 address is unhealthy,
+// Route 53 considers both the A and AAAA records to be unhealthy.
 //
 // CNAME records
 //
@@ -4169,10 +4479,10 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 //
 // Request interval
 //
-// A Route 53 health checker in each health-checking AWS Region sends a health
-// check request to an endpoint every 30 seconds. On average, your endpoint
-// receives a health check request about every two seconds. However, health
-// checkers don't coordinate with one another. Therefore, you might sometimes
+// A Route 53 health checker in each health-checking Amazon Web Services Region
+// sends a health check request to an endpoint every 30 seconds. On average,
+// your endpoint receives a health check request about every two seconds. However,
+// health checkers don't coordinate with one another. Therefore, you might sometimes
 // see several requests in one second that's followed by a few seconds with
 // no health checks at all.
 //
@@ -4184,12 +4494,12 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 // Alias records
 //
 // When you register an instance, if you include the AWS_ALIAS_DNS_NAME attribute,
-// AWS Cloud Map creates a Route 53 alias record. Note the following:
+// Cloud Map creates a Route 53 alias record. Note the following:
 //
 //    * Route 53 automatically sets EvaluateTargetHealth to true for alias records.
 //    When EvaluateTargetHealth is true, the alias record inherits the health
-//    of the referenced AWS resource. such as an ELB load balancer. For more
-//    information, see EvaluateTargetHealth (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-EvaluateTargetHealth).
+//    of the referenced Amazon Web Services resource. such as an ELB load balancer.
+//    For more information, see EvaluateTargetHealth (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-EvaluateTargetHealth).
 //
 //    * If you include HealthCheckConfig and then use the service to register
 //    an instance that creates an alias record, Route 53 doesn't create the
@@ -4197,9 +4507,9 @@ func (s *GetServiceOutput) SetService(v *Service) *GetServiceOutput {
 //
 // Charges for health checks
 //
-// Health checks are basic Route 53 health checks that monitor an AWS endpoint.
-// For information about pricing for health checks, see Amazon Route 53 Pricing
-// (http://aws.amazon.com/route53/pricing/).
+// Health checks are basic Route 53 health checks that monitor an Amazon Web
+// Services endpoint. For information about pricing for health checks, see Amazon
+// Route 53 Pricing (http://aws.amazon.com/route53/pricing/).
 type HealthCheckConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -4309,8 +4619,8 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 // or HealthCheckConfig but not both.
 //
 // To change the status of a custom health check, submit an UpdateInstanceCustomHealthStatus
-// request. AWS Cloud Map doesn't monitor the status of the resource, it just
-// keeps a record of the status specified in the most recent UpdateInstanceCustomHealthStatus
+// request. Cloud Map doesn't monitor the status of the resource, it just keeps
+// a record of the status specified in the most recent UpdateInstanceCustomHealthStatus
 // request.
 //
 // Here's how custom health checks work:
@@ -4322,34 +4632,33 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 // You configure a third-party health checker to monitor the resource that's
 // associated with the new instance.
 //
-// AWS Cloud Map doesn't check the health of the resource directly.
+// Cloud Map doesn't check the health of the resource directly.
 //
 // The third-party health-checker determines that the resource is unhealthy
 // and notifies your application.
 //
 // Your application submits an UpdateInstanceCustomHealthStatus request.
 //
-// AWS Cloud Map waits for 30 seconds.
+// Cloud Map waits for 30 seconds.
 //
 // If another UpdateInstanceCustomHealthStatus request doesn't arrive during
-// that time to change the status back to healthy, AWS Cloud Map stops routing
-// traffic to the resource.
+// that time to change the status back to healthy, Cloud Map stops routing traffic
+// to the resource.
 type HealthCheckCustomConfig struct {
 	_ struct{} `type:"structure"`
 
 	//
-	// This parameter is no longer supported and is always set to 1. AWS Cloud Map
-	// waits for approximately 30 seconds after receiving an UpdateInstanceCustomHealthStatus
+	// This parameter is no longer supported and is always set to 1. Cloud Map waits
+	// for approximately 30 seconds after receiving an UpdateInstanceCustomHealthStatus
 	// request before changing the status of the service instance.
 	//
-	// The number of 30-second intervals that you want AWS Cloud Map to wait after
-	// receiving an UpdateInstanceCustomHealthStatus request before it changes the
-	// health status of a service instance.
+	// The number of 30-second intervals that you want Cloud Map to wait after receiving
+	// an UpdateInstanceCustomHealthStatus request before it changes the health
+	// status of a service instance.
 	//
 	// Sending a second or subsequent UpdateInstanceCustomHealthStatus request with
 	// the same value before 30 seconds has passed doesn't accelerate the change.
-	// AWS Cloud Map still waits 30 seconds after the first request to make the
-	// change.
+	// Cloud Map still waits 30 seconds after the first request to make the change.
 	//
 	// Deprecated: Configurable FailureThreshold of HealthCheckCustomConfig is deprecated.  It will always have value 1.
 	FailureThreshold *int64 `min:"1" deprecated:"true" type:"integer"`
@@ -4450,6 +4759,45 @@ func (s *HttpInstanceSummary) SetServiceName(v string) *HttpInstanceSummary {
 	return s
 }
 
+// Updated properties for the HTTP namespace.
+type HttpNamespaceChange struct {
+	_ struct{} `type:"structure"`
+
+	// An updated description for the HTTP namespace.
+	//
+	// Description is a required field
+	Description *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HttpNamespaceChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HttpNamespaceChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HttpNamespaceChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HttpNamespaceChange"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *HttpNamespaceChange) SetDescription(v string) *HttpNamespaceChange {
+	s.Description = &v
+	return s
+}
+
 // A complex type that contains the name of an HTTP namespace.
 type HttpProperties struct {
 	_ struct{} `type:"structure"`
@@ -4474,8 +4822,8 @@ func (s *HttpProperties) SetHttpName(v string) *HttpProperties {
 	return s
 }
 
-// A complex type that contains information about an instance that AWS Cloud
-// Map creates when you submit a RegisterInstance request.
+// A complex type that contains information about an instance that Cloud Map
+// creates when you submit a RegisterInstance request.
 type Instance struct {
 	_ struct{} `type:"structure"`
 
@@ -4490,7 +4838,7 @@ type Instance struct {
 	//
 	// AWS_ALIAS_DNS_NAME
 	//
-	// If you want AWS Cloud Map to create a Route 53 alias record that routes traffic
+	// If you want Cloud Map to create a Route 53 alias record that routes traffic
 	// to an Elastic Load Balancing load balancer, specify the DNS name that's associated
 	// with the load balancer. For information about how to get the DNS name, see
 	// AliasTarget->DNSName (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html#Route53-Type-AliasTarget-DNSName)
@@ -4505,11 +4853,11 @@ type Instance struct {
 	//    must be WEIGHTED.
 	//
 	//    * If the service that's specified by ServiceId includes HealthCheckConfig
-	//    settings, AWS Cloud Map creates the health check, but it won't associate
-	//    the health check with the alias record.
+	//    settings, Cloud Map creates the health check, but it won't associate the
+	//    health check with the alias record.
 	//
 	//    * Auto naming currently doesn't support creating alias records that route
-	//    traffic to AWS resources other than ELB load balancers.
+	//    traffic to Amazon Web Services resources other than ELB load balancers.
 	//
 	//    * If you specify a value for AWS_ALIAS_DNS_NAME, don't specify values
 	//    for any of the AWS_INSTANCE attributes.
@@ -4584,11 +4932,11 @@ type Instance struct {
 	//    * To register a new instance, you must specify a value that's unique among
 	//    instances that you register by using the same service.
 	//
-	//    * If you specify an existing InstanceId and ServiceId, AWS Cloud Map updates
-	//    the existing DNS records. If there's also an existing health check, AWS
-	//    Cloud Map deletes the old health check and creates a new one. The health
-	//    check isn't deleted immediately, so it will still appear for a while if
-	//    you submit a ListHealthChecks request, for example.
+	//    * If you specify an existing InstanceId and ServiceId, Cloud Map updates
+	//    the existing DNS records. If there's also an existing health check, Cloud
+	//    Map deletes the old health check and creates a new one. The health check
+	//    isn't deleted immediately, so it will still appear for a while if you
+	//    submit a ListHealthChecks request, for example.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -4819,9 +5167,9 @@ func (s *InvalidInput) RequestID() string {
 type ListInstancesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of instances that you want AWS Cloud Map to return in
-	// the response to a ListInstances request. If you don't specify a value for
-	// MaxResults, AWS Cloud Map returns up to 100 instances.
+	// The maximum number of instances that you want Cloud Map to return in the
+	// response to a ListInstances request. If you don't specify a value for MaxResults,
+	// Cloud Map returns up to 100 instances.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// For the first ListInstances request, omit this value.
@@ -4926,9 +5274,9 @@ type ListNamespacesInput struct {
 	// be returned by ListNamespaces.
 	Filters []*NamespaceFilter `type:"list"`
 
-	// The maximum number of namespaces that you want AWS Cloud Map to return in
-	// the response to a ListNamespaces request. If you don't specify a value for
-	// MaxResults, AWS Cloud Map returns up to 100 namespaces.
+	// The maximum number of namespaces that you want Cloud Map to return in the
+	// response to a ListNamespaces request. If you don't specify a value for MaxResults,
+	// Cloud Map returns up to 100 namespaces.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// For the first ListNamespaces request, omit this value.
@@ -4937,10 +5285,10 @@ type ListNamespacesInput struct {
 	// to get the next group of results. Specify the value of NextToken from the
 	// previous response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults namespaces and then filters them based on the
-	// specified criteria. It's possible that no namespaces in the first MaxResults
-	// namespaces matched the specified criteria but that subsequent groups of MaxResults
-	// namespaces do contain namespaces that match the criteria.
+	// Cloud Map gets MaxResults namespaces and then filters them based on the specified
+	// criteria. It's possible that no namespaces in the first MaxResults namespaces
+	// matched the specified criteria but that subsequent groups of MaxResults namespaces
+	// do contain namespaces that match the criteria.
 	NextToken *string `type:"string"`
 }
 
@@ -5006,10 +5354,10 @@ type ListNamespacesOutput struct {
 	// to get the next group of results. Specify the value of NextToken from the
 	// previous response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults namespaces and then filters them based on the
-	// specified criteria. It's possible that no namespaces in the first MaxResults
-	// namespaces matched the specified criteria but that subsequent groups of MaxResults
-	// namespaces do contain namespaces that match the criteria.
+	// Cloud Map gets MaxResults namespaces and then filters them based on the specified
+	// criteria. It's possible that no namespaces in the first MaxResults namespaces
+	// matched the specified criteria but that subsequent groups of MaxResults namespaces
+	// do contain namespaces that match the criteria.
 	NextToken *string `type:"string"`
 }
 
@@ -5046,9 +5394,9 @@ type ListOperationsInput struct {
 	// to be returned by ListOperations.
 	Filters []*OperationFilter `type:"list"`
 
-	// The maximum number of items that you want AWS Cloud Map to return in the
-	// response to a ListOperations request. If you don't specify a value for MaxResults,
-	// AWS Cloud Map returns up to 100 operations.
+	// The maximum number of items that you want Cloud Map to return in the response
+	// to a ListOperations request. If you don't specify a value for MaxResults,
+	// Cloud Map returns up to 100 operations.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// For the first ListOperations request, omit this value.
@@ -5057,10 +5405,10 @@ type ListOperationsInput struct {
 	// to get the next group of results. Specify the value of NextToken from the
 	// previous response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults operations and then filters them based on the
-	// specified criteria. It's possible that no operations in the first MaxResults
-	// operations matched the specified criteria but that subsequent groups of MaxResults
-	// operations do contain operations that match the criteria.
+	// Cloud Map gets MaxResults operations and then filters them based on the specified
+	// criteria. It's possible that no operations in the first MaxResults operations
+	// matched the specified criteria but that subsequent groups of MaxResults operations
+	// do contain operations that match the criteria.
 	NextToken *string `type:"string"`
 }
 
@@ -5122,10 +5470,10 @@ type ListOperationsOutput struct {
 	// to get the next group of results. Specify the value of NextToken from the
 	// previous response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults operations and then filters them based on the
-	// specified criteria. It's possible that no operations in the first MaxResults
-	// operations matched the specified criteria but that subsequent groups of MaxResults
-	// operations do contain operations that match the criteria.
+	// Cloud Map gets MaxResults operations and then filters them based on the specified
+	// criteria. It's possible that no operations in the first MaxResults operations
+	// matched the specified criteria but that subsequent groups of MaxResults operations
+	// do contain operations that match the criteria.
 	NextToken *string `type:"string"`
 
 	// Summary information about the operations that match the specified criteria.
@@ -5164,9 +5512,9 @@ type ListServicesInput struct {
 	// to be returned by ListServices.
 	Filters []*ServiceFilter `type:"list"`
 
-	// The maximum number of services that you want AWS Cloud Map to return in the
-	// response to a ListServices request. If you don't specify a value for MaxResults,
-	// AWS Cloud Map returns up to 100 services.
+	// The maximum number of services that you want Cloud Map to return in the response
+	// to a ListServices request. If you don't specify a value for MaxResults, Cloud
+	// Map returns up to 100 services.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// For the first ListServices request, omit this value.
@@ -5175,10 +5523,10 @@ type ListServicesInput struct {
 	// get the next group of results. Specify the value of NextToken from the previous
 	// response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults services and then filters them based on the
-	// specified criteria. It's possible that no services in the first MaxResults
-	// services matched the specified criteria but that subsequent groups of MaxResults
-	// services do contain services that match the criteria.
+	// Cloud Map gets MaxResults services and then filters them based on the specified
+	// criteria. It's possible that no services in the first MaxResults services
+	// matched the specified criteria but that subsequent groups of MaxResults services
+	// do contain services that match the criteria.
 	NextToken *string `type:"string"`
 }
 
@@ -5240,10 +5588,10 @@ type ListServicesOutput struct {
 	// get the next group of results. Specify the value of NextToken from the previous
 	// response in the next request.
 	//
-	// AWS Cloud Map gets MaxResults services and then filters them based on the
-	// specified criteria. It's possible that no services in the first MaxResults
-	// services matched the specified criteria but that subsequent groups of MaxResults
-	// services do contain services that match the criteria.
+	// Cloud Map gets MaxResults services and then filters them based on the specified
+	// criteria. It's possible that no services in the first MaxResults services
+	// matched the specified criteria but that subsequent groups of MaxResults services
+	// do contain services that match the criteria.
 	NextToken *string `type:"string"`
 
 	// An array that contains one ServiceSummary object for each service that matches
@@ -5342,8 +5690,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type Namespace struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that AWS Cloud Map assigns to the namespace
-	// when you create it.
+	// The Amazon Resource Name (ARN) that Cloud Map assigns to the namespace when
+	// you create it.
 	Arn *string `type:"string"`
 
 	// The date that the namespace was created, in Unix date/time format and Coordinated
@@ -5377,8 +5725,8 @@ type Namespace struct {
 	//
 	// HTTP
 	//
-	// Instances can be discovered only programmatically, using the AWS Cloud Map
-	// DiscoverInstances API.
+	// Instances can be discovered only programmatically, using the Cloud Map DiscoverInstances
+	// API.
 	//
 	// DNS_PUBLIC
 	//
@@ -5661,8 +6009,8 @@ func (s *NamespaceNotFound) RequestID() string {
 type NamespaceProperties struct {
 	_ struct{} `type:"structure"`
 
-	// A complex type that contains the ID for the Route 53 hosted zone that AWS
-	// Cloud Map creates when you create a namespace.
+	// A complex type that contains the ID for the Route 53 hosted zone that Cloud
+	// Map creates when you create a namespace.
 	DnsProperties *DnsProperties `type:"structure"`
 
 	// A complex type that contains the name of an HTTP namespace.
@@ -5695,8 +6043,8 @@ func (s *NamespaceProperties) SetHttpProperties(v *HttpProperties) *NamespacePro
 type NamespaceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that AWS Cloud Map assigns to the namespace
-	// when you create it.
+	// The Amazon Resource Name (ARN) that Cloud Map assigns to the namespace when
+	// you create it.
 	Arn *string `type:"string"`
 
 	// The date and time that the namespace was created.
@@ -5708,7 +6056,7 @@ type NamespaceSummary struct {
 	// The ID of the namespace.
 	Id *string `type:"string"`
 
-	// The name of the namespace. When you create a namespace, AWS Cloud Map automatically
+	// The name of the namespace. When you create a namespace, Cloud Map automatically
 	// creates a Route 53 hosted zone that has the same name as the namespace.
 	Name *string `type:"string"`
 
@@ -5821,7 +6169,7 @@ type Operation struct {
 	//
 	// PENDING
 	//
-	// AWS Cloud Map is performing the operation.
+	// Cloud Map is performing the operation.
 	//
 	// SUCCESS
 	//
@@ -6086,7 +6434,7 @@ type OperationSummary struct {
 	//    * SUBMITTED: This is the initial state immediately after you submit a
 	//    request.
 	//
-	//    * PENDING: AWS Cloud Map is performing the operation.
+	//    * PENDING: Cloud Map is performing the operation.
 	//
 	//    * SUCCESS: The operation succeeded.
 	//
@@ -6116,6 +6464,457 @@ func (s *OperationSummary) SetStatus(v string) *OperationSummary {
 	return s
 }
 
+// Updated properties for the private DNS namespace.
+type PrivateDnsNamespaceChange struct {
+	_ struct{} `type:"structure"`
+
+	// An updated description for the private DNS namespace.
+	Description *string `type:"string"`
+
+	// Properties to be updated in the private DNS namespace.
+	Properties *PrivateDnsNamespacePropertiesChange `type:"structure"`
+}
+
+// String returns the string representation
+func (s PrivateDnsNamespaceChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateDnsNamespaceChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivateDnsNamespaceChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivateDnsNamespaceChange"}
+	if s.Properties != nil {
+		if err := s.Properties.Validate(); err != nil {
+			invalidParams.AddNested("Properties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PrivateDnsNamespaceChange) SetDescription(v string) *PrivateDnsNamespaceChange {
+	s.Description = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *PrivateDnsNamespaceChange) SetProperties(v *PrivateDnsNamespacePropertiesChange) *PrivateDnsNamespaceChange {
+	s.Properties = v
+	return s
+}
+
+// DNS properties for the private DNS namespace.
+type PrivateDnsNamespaceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// DNS properties for the private DNS namespace.
+	//
+	// DnsProperties is a required field
+	DnsProperties *PrivateDnsPropertiesMutable `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PrivateDnsNamespaceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateDnsNamespaceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivateDnsNamespaceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivateDnsNamespaceProperties"}
+	if s.DnsProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsProperties"))
+	}
+	if s.DnsProperties != nil {
+		if err := s.DnsProperties.Validate(); err != nil {
+			invalidParams.AddNested("DnsProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsProperties sets the DnsProperties field's value.
+func (s *PrivateDnsNamespaceProperties) SetDnsProperties(v *PrivateDnsPropertiesMutable) *PrivateDnsNamespaceProperties {
+	s.DnsProperties = v
+	return s
+}
+
+// Updated properties for the private DNS namespace.
+type PrivateDnsNamespacePropertiesChange struct {
+	_ struct{} `type:"structure"`
+
+	// Updated DNS properties for the private DNS namespace.
+	//
+	// DnsProperties is a required field
+	DnsProperties *PrivateDnsPropertiesMutableChange `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PrivateDnsNamespacePropertiesChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateDnsNamespacePropertiesChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivateDnsNamespacePropertiesChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivateDnsNamespacePropertiesChange"}
+	if s.DnsProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsProperties"))
+	}
+	if s.DnsProperties != nil {
+		if err := s.DnsProperties.Validate(); err != nil {
+			invalidParams.AddNested("DnsProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsProperties sets the DnsProperties field's value.
+func (s *PrivateDnsNamespacePropertiesChange) SetDnsProperties(v *PrivateDnsPropertiesMutableChange) *PrivateDnsNamespacePropertiesChange {
+	s.DnsProperties = v
+	return s
+}
+
+// DNS properties for the private DNS namespace.
+type PrivateDnsPropertiesMutable struct {
+	_ struct{} `type:"structure"`
+
+	// Fields for the Start of Authority (SOA) record for the hosted zone for the
+	// private DNS namespace.
+	//
+	// SOA is a required field
+	SOA *SOA `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PrivateDnsPropertiesMutable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateDnsPropertiesMutable) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivateDnsPropertiesMutable) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivateDnsPropertiesMutable"}
+	if s.SOA == nil {
+		invalidParams.Add(request.NewErrParamRequired("SOA"))
+	}
+	if s.SOA != nil {
+		if err := s.SOA.Validate(); err != nil {
+			invalidParams.AddNested("SOA", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSOA sets the SOA field's value.
+func (s *PrivateDnsPropertiesMutable) SetSOA(v *SOA) *PrivateDnsPropertiesMutable {
+	s.SOA = v
+	return s
+}
+
+// Updated DNS properties for the private DNS namespace.
+type PrivateDnsPropertiesMutableChange struct {
+	_ struct{} `type:"structure"`
+
+	// Updated fields for the Start of Authority (SOA) record for the hosted zone
+	// for the private DNS namespace.
+	//
+	// SOA is a required field
+	SOA *SOAChange `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PrivateDnsPropertiesMutableChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateDnsPropertiesMutableChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrivateDnsPropertiesMutableChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrivateDnsPropertiesMutableChange"}
+	if s.SOA == nil {
+		invalidParams.Add(request.NewErrParamRequired("SOA"))
+	}
+	if s.SOA != nil {
+		if err := s.SOA.Validate(); err != nil {
+			invalidParams.AddNested("SOA", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSOA sets the SOA field's value.
+func (s *PrivateDnsPropertiesMutableChange) SetSOA(v *SOAChange) *PrivateDnsPropertiesMutableChange {
+	s.SOA = v
+	return s
+}
+
+// Updated properties for the public DNS namespace.
+type PublicDnsNamespaceChange struct {
+	_ struct{} `type:"structure"`
+
+	// An updated description for the public DNS namespace.
+	Description *string `type:"string"`
+
+	// Properties to be updated in the public DNS namespace.
+	Properties *PublicDnsNamespacePropertiesChange `type:"structure"`
+}
+
+// String returns the string representation
+func (s PublicDnsNamespaceChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicDnsNamespaceChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublicDnsNamespaceChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublicDnsNamespaceChange"}
+	if s.Properties != nil {
+		if err := s.Properties.Validate(); err != nil {
+			invalidParams.AddNested("Properties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PublicDnsNamespaceChange) SetDescription(v string) *PublicDnsNamespaceChange {
+	s.Description = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *PublicDnsNamespaceChange) SetProperties(v *PublicDnsNamespacePropertiesChange) *PublicDnsNamespaceChange {
+	s.Properties = v
+	return s
+}
+
+// DNS properties for the public DNS namespace.
+type PublicDnsNamespaceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// DNS properties for the public DNS namespace.
+	//
+	// DnsProperties is a required field
+	DnsProperties *PublicDnsPropertiesMutable `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PublicDnsNamespaceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicDnsNamespaceProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublicDnsNamespaceProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublicDnsNamespaceProperties"}
+	if s.DnsProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsProperties"))
+	}
+	if s.DnsProperties != nil {
+		if err := s.DnsProperties.Validate(); err != nil {
+			invalidParams.AddNested("DnsProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsProperties sets the DnsProperties field's value.
+func (s *PublicDnsNamespaceProperties) SetDnsProperties(v *PublicDnsPropertiesMutable) *PublicDnsNamespaceProperties {
+	s.DnsProperties = v
+	return s
+}
+
+// Updated properties for the public DNS namespace.
+type PublicDnsNamespacePropertiesChange struct {
+	_ struct{} `type:"structure"`
+
+	// Updated DNS properties for the hosted zone for the public DNS namespace.
+	//
+	// DnsProperties is a required field
+	DnsProperties *PublicDnsPropertiesMutableChange `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PublicDnsNamespacePropertiesChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicDnsNamespacePropertiesChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublicDnsNamespacePropertiesChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublicDnsNamespacePropertiesChange"}
+	if s.DnsProperties == nil {
+		invalidParams.Add(request.NewErrParamRequired("DnsProperties"))
+	}
+	if s.DnsProperties != nil {
+		if err := s.DnsProperties.Validate(); err != nil {
+			invalidParams.AddNested("DnsProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDnsProperties sets the DnsProperties field's value.
+func (s *PublicDnsNamespacePropertiesChange) SetDnsProperties(v *PublicDnsPropertiesMutableChange) *PublicDnsNamespacePropertiesChange {
+	s.DnsProperties = v
+	return s
+}
+
+// DNS properties for the public DNS namespace.
+type PublicDnsPropertiesMutable struct {
+	_ struct{} `type:"structure"`
+
+	// Start of Authority (SOA) record for the hosted zone for the public DNS namespace.
+	//
+	// SOA is a required field
+	SOA *SOA `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PublicDnsPropertiesMutable) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicDnsPropertiesMutable) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublicDnsPropertiesMutable) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublicDnsPropertiesMutable"}
+	if s.SOA == nil {
+		invalidParams.Add(request.NewErrParamRequired("SOA"))
+	}
+	if s.SOA != nil {
+		if err := s.SOA.Validate(); err != nil {
+			invalidParams.AddNested("SOA", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSOA sets the SOA field's value.
+func (s *PublicDnsPropertiesMutable) SetSOA(v *SOA) *PublicDnsPropertiesMutable {
+	s.SOA = v
+	return s
+}
+
+// Updated DNS properties for the public DNS namespace.
+type PublicDnsPropertiesMutableChange struct {
+	_ struct{} `type:"structure"`
+
+	// Updated fields for the Start of Authority (SOA) record for the hosted zone
+	// for the public DNS namespace.
+	//
+	// SOA is a required field
+	SOA *SOAChange `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PublicDnsPropertiesMutableChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PublicDnsPropertiesMutableChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PublicDnsPropertiesMutableChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PublicDnsPropertiesMutableChange"}
+	if s.SOA == nil {
+		invalidParams.Add(request.NewErrParamRequired("SOA"))
+	}
+	if s.SOA != nil {
+		if err := s.SOA.Validate(); err != nil {
+			invalidParams.AddNested("SOA", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSOA sets the SOA field's value.
+func (s *PublicDnsPropertiesMutableChange) SetSOA(v *SOAChange) *PublicDnsPropertiesMutableChange {
+	s.SOA = v
+	return s
+}
+
 type RegisterInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6130,10 +6929,10 @@ type RegisterInstanceInput struct {
 	//
 	// AWS_ALIAS_DNS_NAME
 	//
-	// If you want AWS Cloud Map to create an Amazon Route 53 alias record that
-	// routes traffic to an Elastic Load Balancing load balancer, specify the DNS
-	// name that's associated with the load balancer. For information about how
-	// to get the DNS name, see "DNSName" in the topic AliasTarget (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html)
+	// If you want Cloud Map to create an Amazon Route 53 alias record that routes
+	// traffic to an Elastic Load Balancing load balancer, specify the DNS name
+	// that's associated with the load balancer. For information about how to get
+	// the DNS name, see "DNSName" in the topic AliasTarget (https://docs.aws.amazon.com/Route53/latest/APIReference/API_AliasTarget.html)
 	// in the Route 53 API Reference.
 	//
 	// Note the following:
@@ -6145,11 +6944,12 @@ type RegisterInstanceInput struct {
 	//    must be WEIGHTED.
 	//
 	//    * If the service that's specified by ServiceId includes HealthCheckConfig
-	//    settings, AWS Cloud Map will create the Route 53 health check, but it
-	//    doesn't associate the health check with the alias record.
+	//    settings, Cloud Map will create the Route 53 health check, but it doesn't
+	//    associate the health check with the alias record.
 	//
 	//    * Auto naming currently doesn't support creating alias records that route
-	//    traffic to AWS resources other than Elastic Load Balancing load balancers.
+	//    traffic to Amazon Web Services resources other than Elastic Load Balancing
+	//    load balancers.
 	//
 	//    * If you specify a value for AWS_ALIAS_DNS_NAME, don't specify values
 	//    for any of the AWS_INSTANCE attributes.
@@ -6236,11 +7036,11 @@ type RegisterInstanceInput struct {
 	//    * To register a new instance, you must specify a value that's unique among
 	//    instances that you register by using the same service.
 	//
-	//    * If you specify an existing InstanceId and ServiceId, AWS Cloud Map updates
+	//    * If you specify an existing InstanceId and ServiceId, Cloud Map updates
 	//    the existing DNS records, if any. If there's also an existing health check,
-	//    AWS Cloud Map deletes the old health check and creates a new one. The
-	//    health check isn't deleted immediately, so it will still appear for a
-	//    while if you submit a ListHealthChecks request, for example.
+	//    Cloud Map deletes the old health check and creates a new one. The health
+	//    check isn't deleted immediately, so it will still appear for a while if
+	//    you submit a ListHealthChecks request, for example.
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
@@ -6329,9 +7129,9 @@ func (s *RegisterInstanceOutput) SetOperationId(v string) *RegisterInstanceOutpu
 }
 
 // The operation can't be completed because you've reached the quota for the
-// number of requests. For more information, see AWS Cloud Map API request throttling
+// number of requests. For more information, see Cloud Map API request throttling
 // quota (https://docs.aws.amazon.com/cloud-map/latest/dg/throttling.html) in
-// the AWS Cloud Map Developer Guide.
+// the Cloud Map Developer Guide.
 type RequestLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6557,12 +7357,90 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Start of Authority (SOA) properties for a public or private DNS namespace.
+type SOA struct {
+	_ struct{} `type:"structure"`
+
+	// The time to live (TTL) for purposes of negative caching.
+	//
+	// TTL is a required field
+	TTL *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s SOA) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SOA) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SOA) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SOA"}
+	if s.TTL == nil {
+		invalidParams.Add(request.NewErrParamRequired("TTL"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTTL sets the TTL field's value.
+func (s *SOA) SetTTL(v int64) *SOA {
+	s.TTL = &v
+	return s
+}
+
+// Updated Start of Authority (SOA) properties for a public or private DNS namespace.
+type SOAChange struct {
+	_ struct{} `type:"structure"`
+
+	// The updated time to live (TTL) for purposes of negative caching.
+	//
+	// TTL is a required field
+	TTL *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s SOAChange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SOAChange) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SOAChange) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SOAChange"}
+	if s.TTL == nil {
+		invalidParams.Add(request.NewErrParamRequired("TTL"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTTL sets the TTL field's value.
+func (s *SOAChange) SetTTL(v int64) *SOAChange {
+	s.TTL = &v
+	return s
+}
+
 // A complex type that contains information about the specified service.
 type Service struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that AWS Cloud Map assigns to the service
-	// when you create it.
+	// The Amazon Resource Name (ARN) that Cloud Map assigns to the service when
+	// you create it.
 	Arn *string `type:"string"`
 
 	// The date and time that the service was created, in Unix format and Coordinated
@@ -6580,13 +7458,13 @@ type Service struct {
 	Description *string `type:"string"`
 
 	// A complex type that contains information about the Route 53 DNS records that
-	// you want AWS Cloud Map to create when you register an instance.
+	// you want Cloud Map to create when you register an instance.
 	DnsConfig *DnsConfig `type:"structure"`
 
 	// Public DNS and HTTP namespaces only. A complex type that contains settings
 	// for an optional health check. If you specify settings for a health check,
-	// AWS Cloud Map associates the health check with the records that you specify
-	// in DnsConfig.
+	// Cloud Map associates the health check with the records that you specify in
+	// DnsConfig.
 	//
 	// For information about the charges for health checks, see Amazon Route 53
 	// Pricing (http://aws.amazon.com/route53/pricing/).
@@ -6599,7 +7477,7 @@ type Service struct {
 	// or HealthCheckConfig but not both.
 	HealthCheckCustomConfig *HealthCheckCustomConfig `type:"structure"`
 
-	// The ID that AWS Cloud Map assigned to the service when you created it.
+	// The ID that Cloud Map assigned to the service when you created it.
 	Id *string `type:"string"`
 
 	// The number of instances that are currently associated with the service. Instances
@@ -6784,13 +7662,13 @@ type ServiceChange struct {
 	// A description for the service.
 	Description *string `type:"string"`
 
-	// Information about the Route 53 DNS records that you want AWS Cloud Map to
-	// create when you register an instance.
+	// Information about the Route 53 DNS records that you want Cloud Map to create
+	// when you register an instance.
 	DnsConfig *DnsConfigChange `type:"structure"`
 
 	// Public DNS and HTTP namespaces only. Settings for an optional health check.
-	// If you specify settings for a health check, AWS Cloud Map associates the
-	// health check with the records that you specify in DnsConfig.
+	// If you specify settings for a health check, Cloud Map associates the health
+	// check with the records that you specify in DnsConfig.
 	HealthCheckConfig *HealthCheckConfig `type:"structure"`
 }
 
@@ -6975,8 +7853,8 @@ func (s *ServiceNotFound) RequestID() string {
 type ServiceSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) that AWS Cloud Map assigns to the service
-	// when you create it.
+	// The Amazon Resource Name (ARN) that Cloud Map assigns to the service when
+	// you create it.
 	Arn *string `type:"string"`
 
 	// The date and time that the service was created.
@@ -6985,13 +7863,13 @@ type ServiceSummary struct {
 	// The description that you specify when you create the service.
 	Description *string `type:"string"`
 
-	// Information about the Route 53 DNS records that you want AWS Cloud Map to
-	// create when you register an instance.
+	// Information about the Route 53 DNS records that you want Cloud Map to create
+	// when you register an instance.
 	DnsConfig *DnsConfig `type:"structure"`
 
 	// Public DNS and HTTP namespaces only. Settings for an optional health check.
-	// If you specify settings for a health check, AWS Cloud Map associates the
-	// health check with the records that you specify in DnsConfig.
+	// If you specify settings for a health check, Cloud Map associates the health
+	// check with the records that you specify in DnsConfig.
 	HealthCheckConfig *HealthCheckConfig `type:"structure"`
 
 	// Information about an optional custom health check. A custom health check,
@@ -7011,7 +7889,7 @@ type ServiceSummary struct {
 	// or HealthCheckConfig but not both.
 	HealthCheckCustomConfig *HealthCheckCustomConfig `type:"structure"`
 
-	// The ID that AWS Cloud Map assigned to the service when you created it.
+	// The ID that Cloud Map assigned to the service when you created it.
 	Id *string `type:"string"`
 
 	// The number of instances that are currently associated with the service. Instances
@@ -7381,6 +8259,98 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateHttpNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the namespace that you want to update.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// Updated properties for the the HTTP namespace.
+	//
+	// Namespace is a required field
+	Namespace *HttpNamespaceChange `type:"structure" required:"true"`
+
+	// A unique string that identifies the request and that allows failed UpdateHttpNamespace
+	// requests to be retried without the risk of running the operation twice. UpdaterRequestId
+	// can be any unique string (for example, a date/timestamp).
+	UpdaterRequestId *string `type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation
+func (s UpdateHttpNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHttpNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateHttpNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateHttpNamespaceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil {
+		if err := s.Namespace.Validate(); err != nil {
+			invalidParams.AddNested("Namespace", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateHttpNamespaceInput) SetId(v string) *UpdateHttpNamespaceInput {
+	s.Id = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdateHttpNamespaceInput) SetNamespace(v *HttpNamespaceChange) *UpdateHttpNamespaceInput {
+	s.Namespace = v
+	return s
+}
+
+// SetUpdaterRequestId sets the UpdaterRequestId field's value.
+func (s *UpdateHttpNamespaceInput) SetUpdaterRequestId(v string) *UpdateHttpNamespaceInput {
+	s.UpdaterRequestId = &v
+	return s
+}
+
+type UpdateHttpNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that you can use to determine whether the request completed successfully.
+	// To get the status of the operation, see GetOperation (https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html).
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateHttpNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHttpNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *UpdateHttpNamespaceOutput) SetOperationId(v string) *UpdateHttpNamespaceOutput {
+	s.OperationId = &v
+	return s
+}
+
 type UpdateInstanceCustomHealthStatusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7460,6 +8430,190 @@ func (s UpdateInstanceCustomHealthStatusOutput) String() string {
 // GoString returns the string representation
 func (s UpdateInstanceCustomHealthStatusOutput) GoString() string {
 	return s.String()
+}
+
+type UpdatePrivateDnsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the namespace that you want to update.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// Updated properties for the private DNS namespace.
+	//
+	// Namespace is a required field
+	Namespace *PrivateDnsNamespaceChange `type:"structure" required:"true"`
+
+	// A unique string that identifies the request and that allows failed UpdatePrivateDnsNamespace
+	// requests to be retried without the risk of running the operation twice. UpdaterRequestId
+	// can be any unique string (for example, a date/timestamp).
+	UpdaterRequestId *string `type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation
+func (s UpdatePrivateDnsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePrivateDnsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePrivateDnsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePrivateDnsNamespaceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil {
+		if err := s.Namespace.Validate(); err != nil {
+			invalidParams.AddNested("Namespace", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePrivateDnsNamespaceInput) SetId(v string) *UpdatePrivateDnsNamespaceInput {
+	s.Id = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdatePrivateDnsNamespaceInput) SetNamespace(v *PrivateDnsNamespaceChange) *UpdatePrivateDnsNamespaceInput {
+	s.Namespace = v
+	return s
+}
+
+// SetUpdaterRequestId sets the UpdaterRequestId field's value.
+func (s *UpdatePrivateDnsNamespaceInput) SetUpdaterRequestId(v string) *UpdatePrivateDnsNamespaceInput {
+	s.UpdaterRequestId = &v
+	return s
+}
+
+type UpdatePrivateDnsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that you can use to determine whether the request completed successfully.
+	// To get the status of the operation, see GetOperation (https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html).
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdatePrivateDnsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePrivateDnsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *UpdatePrivateDnsNamespaceOutput) SetOperationId(v string) *UpdatePrivateDnsNamespaceOutput {
+	s.OperationId = &v
+	return s
+}
+
+type UpdatePublicDnsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the namespace being updated.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// Updated properties for the public DNS namespace.
+	//
+	// Namespace is a required field
+	Namespace *PublicDnsNamespaceChange `type:"structure" required:"true"`
+
+	// A unique string that identifies the request and that allows failed UpdatePublicDnsNamespace
+	// requests to be retried without the risk of running the operation twice. UpdaterRequestId
+	// can be any unique string (for example, a date/timestamp).
+	UpdaterRequestId *string `type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation
+func (s UpdatePublicDnsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePublicDnsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePublicDnsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePublicDnsNamespaceInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Namespace == nil {
+		invalidParams.Add(request.NewErrParamRequired("Namespace"))
+	}
+	if s.Namespace != nil {
+		if err := s.Namespace.Validate(); err != nil {
+			invalidParams.AddNested("Namespace", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdatePublicDnsNamespaceInput) SetId(v string) *UpdatePublicDnsNamespaceInput {
+	s.Id = &v
+	return s
+}
+
+// SetNamespace sets the Namespace field's value.
+func (s *UpdatePublicDnsNamespaceInput) SetNamespace(v *PublicDnsNamespaceChange) *UpdatePublicDnsNamespaceInput {
+	s.Namespace = v
+	return s
+}
+
+// SetUpdaterRequestId sets the UpdaterRequestId field's value.
+func (s *UpdatePublicDnsNamespaceInput) SetUpdaterRequestId(v string) *UpdatePublicDnsNamespaceInput {
+	s.UpdaterRequestId = &v
+	return s
+}
+
+type UpdatePublicDnsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that you can use to determine whether the request completed successfully.
+	// To get the status of the operation, see GetOperation (https://docs.aws.amazon.com/cloud-map/latest/api/API_GetOperation.html).
+	OperationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdatePublicDnsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePublicDnsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetOperationId sets the OperationId field's value.
+func (s *UpdatePublicDnsNamespaceOutput) SetOperationId(v string) *UpdatePublicDnsNamespaceOutput {
+	s.OperationId = &v
+	return s
 }
 
 type UpdateServiceInput struct {
@@ -7754,6 +8908,9 @@ const (
 	// OperationTypeDeleteNamespace is a OperationType enum value
 	OperationTypeDeleteNamespace = "DELETE_NAMESPACE"
 
+	// OperationTypeUpdateNamespace is a OperationType enum value
+	OperationTypeUpdateNamespace = "UPDATE_NAMESPACE"
+
 	// OperationTypeUpdateService is a OperationType enum value
 	OperationTypeUpdateService = "UPDATE_SERVICE"
 
@@ -7769,6 +8926,7 @@ func OperationType_Values() []string {
 	return []string{
 		OperationTypeCreateNamespace,
 		OperationTypeDeleteNamespace,
+		OperationTypeUpdateNamespace,
 		OperationTypeUpdateService,
 		OperationTypeRegisterInstance,
 		OperationTypeDeregisterInstance,

@@ -2100,6 +2100,9 @@ func (c *SSMContacts) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   * ResourceNotFoundException
 //   Request references a resource that doesn't exist.
 //
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
 //
@@ -2481,6 +2484,9 @@ func (c *SSMContacts) StopEngagementRequest(input *StopEngagementInput) (req *re
 //   * ResourceNotFoundException
 //   Request references a resource that doesn't exist.
 //
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
 //
@@ -2665,6 +2671,9 @@ func (c *SSMContacts) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 //   * ResourceNotFoundException
 //   Request references a resource that doesn't exist.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -3260,7 +3269,7 @@ type Contact struct {
 	ContactArn *string `min:"1" type:"string" required:"true"`
 
 	// The full name of the contact or escalation plan.
-	DisplayName *string `min:"1" type:"string"`
+	DisplayName *string `type:"string"`
 
 	// Refers to the type of contact. A single contact is type PERSONAL and an escalation
 	// plan is type ESCALATION.
@@ -3649,7 +3658,7 @@ type CreateContactInput struct {
 	Alias *string `min:"1" type:"string" required:"true"`
 
 	// The full name of the contact or escalation plan.
-	DisplayName *string `min:"1" type:"string"`
+	DisplayName *string `type:"string"`
 
 	// A token ensuring that the action is called only once with the specified details.
 	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
@@ -3689,9 +3698,6 @@ func (s *CreateContactInput) Validate() error {
 	}
 	if s.Alias != nil && len(*s.Alias) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Alias", 1))
-	}
-	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
 	}
 	if s.Plan == nil {
 		invalidParams.Add(request.NewErrParamRequired("Plan"))
@@ -4593,7 +4599,7 @@ type GetContactOutput struct {
 	ContactArn *string `min:"1" type:"string" required:"true"`
 
 	// The full name of the contact or escalation plan.
-	DisplayName *string `min:"1" type:"string"`
+	DisplayName *string `type:"string"`
 
 	// Details about the specific timing or stages and targets of the escalation
 	// plan or engagement plan.
@@ -6592,7 +6598,7 @@ type UpdateContactInput struct {
 	ContactId *string `min:"1" type:"string" required:"true"`
 
 	// The full name of the contact or escalation plan.
-	DisplayName *string `min:"1" type:"string"`
+	DisplayName *string `type:"string"`
 
 	// A list of stages. A contact has an engagement plan with stages for specified
 	// contact channels. An escalation plan uses these stages to contact specified
@@ -6618,9 +6624,6 @@ func (s *UpdateContactInput) Validate() error {
 	}
 	if s.ContactId != nil && len(*s.ContactId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ContactId", 1))
-	}
-	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
 	}
 	if s.Plan != nil {
 		if err := s.Plan.Validate(); err != nil {

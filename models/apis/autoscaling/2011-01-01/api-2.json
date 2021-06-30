@@ -1074,7 +1074,8 @@
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
         "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
         "WarmPoolConfiguration":{"shape":"WarmPoolConfiguration"},
-        "WarmPoolSize":{"shape":"WarmPoolSize"}
+        "WarmPoolSize":{"shape":"WarmPoolSize"},
+        "Context":{"shape":"Context"}
       }
     },
     "AutoScalingGroupDesiredCapacity":{"type":"integer"},
@@ -1280,6 +1281,7 @@
         "InstanceId":{"shape":"XmlStringMaxLen19"}
       }
     },
+    "Context":{"type":"string"},
     "Cooldown":{"type":"integer"},
     "CreateAutoScalingGroupType":{
       "type":"structure",
@@ -1311,7 +1313,8 @@
         "LifecycleHookSpecificationList":{"shape":"LifecycleHookSpecifications"},
         "Tags":{"shape":"Tags"},
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
-        "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"}
+        "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
+        "Context":{"shape":"Context"}
       }
     },
     "CreateLaunchConfigurationType":{
@@ -2956,7 +2959,8 @@
         "NewInstancesProtectedFromScaleIn":{"shape":"InstanceProtected"},
         "ServiceLinkedRoleARN":{"shape":"ResourceName"},
         "MaxInstanceLifetime":{"shape":"MaxInstanceLifetime"},
-        "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"}
+        "CapacityRebalance":{"shape":"CapacityRebalanceEnabled"},
+        "Context":{"shape":"Context"}
       }
     },
     "Values":{

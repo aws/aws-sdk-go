@@ -1751,8 +1751,10 @@ func (c *AutoScaling) DescribeAccountLimitsRequest(input *DescribeAccountLimitsI
 //
 // Describes the current Amazon EC2 Auto Scaling resource quotas for your account.
 //
-// For information about requesting an increase, see Amazon EC2 Auto Scaling
-// service quotas (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html)
+// When you establish an account, the account has initial quotas on the maximum
+// number of Auto Scaling groups and launch configurations that you can create
+// in a given Region. For more information, see Amazon EC2 Auto Scaling service
+// quotas (https://docs.aws.amazon.com/autoscaling/ec2/userguide/as-account-limits.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7054,6 +7056,9 @@ type CreateAutoScalingGroupInput struct {
 	// in the Amazon EC2 Auto Scaling User Guide.
 	CapacityRebalance *bool `type:"boolean"`
 
+	// Reserved.
+	Context *string `type:"string"`
+
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start. The default value is 300. This setting
 	// applies when using simple scaling policies, but not when using other scaling
@@ -7315,6 +7320,12 @@ func (s *CreateAutoScalingGroupInput) SetAvailabilityZones(v []*string) *CreateA
 // SetCapacityRebalance sets the CapacityRebalance field's value.
 func (s *CreateAutoScalingGroupInput) SetCapacityRebalance(v bool) *CreateAutoScalingGroupInput {
 	s.CapacityRebalance = &v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *CreateAutoScalingGroupInput) SetContext(v string) *CreateAutoScalingGroupInput {
+	s.Context = &v
 	return s
 }
 
@@ -10427,15 +10438,16 @@ type Ebs struct {
 	// If you are creating a volume from a snapshot, you cannot specify an encryption
 	// value. Volumes that are created from encrypted snapshots are automatically
 	// encrypted, and volumes that are created from unencrypted snapshots are automatically
-	// unencrypted. By default, encrypted snapshots use the AWS managed CMK that
-	// is used for EBS encryption, but you can specify a custom CMK when you create
-	// the snapshot. The ability to encrypt a snapshot during copying also allows
-	// you to apply a new CMK to an already-encrypted snapshot. Volumes restored
-	// from the resulting copy are only accessible using the new CMK.
+	// unencrypted. By default, encrypted snapshots use the Amazon Web Services
+	// managed CMK that is used for EBS encryption, but you can specify a custom
+	// CMK when you create the snapshot. The ability to encrypt a snapshot during
+	// copying also allows you to apply a new CMK to an already-encrypted snapshot.
+	// Volumes restored from the resulting copy are only accessible using the new
+	// CMK.
 	//
 	// Enabling encryption by default (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-by-default)
-	// results in all EBS volumes being encrypted with the AWS managed CMK or a
-	// customer managed CMK, whether or not the snapshot was encrypted.
+	// results in all EBS volumes being encrypted with the Amazon Web Services managed
+	// CMK or a customer managed CMK, whether or not the snapshot was encrypted.
 	//
 	// For more information, see Using Encryption with EBS-Backed AMIs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html)
 	// in the Amazon EC2 User Guide for Linux Instances and Required CMK key policy
@@ -11285,6 +11297,9 @@ type Group struct {
 	// Indicates whether Capacity Rebalancing is enabled.
 	CapacityRebalance *bool `type:"boolean"`
 
+	// Reserved.
+	Context *string `type:"string"`
+
 	// The date and time the group was created.
 	//
 	// CreatedTime is a required field
@@ -11416,6 +11431,12 @@ func (s *Group) SetAvailabilityZones(v []*string) *Group {
 // SetCapacityRebalance sets the CapacityRebalance field's value.
 func (s *Group) SetCapacityRebalance(v bool) *Group {
 	s.CapacityRebalance = &v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *Group) SetContext(v string) *Group {
+	s.Context = &v
 	return s
 }
 
@@ -13452,22 +13473,25 @@ type PredefinedMetricSpecification struct {
 	// PredefinedMetricType is a required field
 	PredefinedMetricType *string `type:"string" required:"true" enum:"MetricType"`
 
-	// Identifies the resource associated with the metric type. You can't specify
-	// a resource label unless the metric type is ALBRequestCountPerTarget and there
-	// is a target group attached to the Auto Scaling group.
+	// A label that uniquely identifies a specific Application Load Balancer target
+	// group from which to determine the average request count served by your Auto
+	// Scaling group. You can't specify a resource label unless the target group
+	// is attached to the Auto Scaling group.
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
-	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
-	// where:
+	// value, separated by a forward slash (/). The format of the resource label
+	// is:
+	//
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
+	//
+	// Where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
 	//    the load balancer ARN
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
-	//
-	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
 	//
 	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
 	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
@@ -13778,7 +13802,7 @@ type PredictiveScalingPredefinedLoadMetric struct {
 	// value, separated by a forward slash (/). The format of the resource label
 	// is:
 	//
-	// app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
 	//
 	// Where:
 	//
@@ -13848,16 +13872,16 @@ type PredictiveScalingPredefinedMetricPair struct {
 	PredefinedMetricType *string `type:"string" required:"true" enum:"PredefinedMetricPairType"`
 
 	// A label that uniquely identifies a specific Application Load Balancer target
-	// group from which to determine the request count served by your Auto Scaling
-	// group. You can't specify a resource label unless the target group is attached
-	// to the Auto Scaling group.
+	// group from which to determine the total and average request count served
+	// by your Auto Scaling group. You can't specify a resource label unless the
+	// target group is attached to the Auto Scaling group.
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
 	// value, separated by a forward slash (/). The format of the resource label
 	// is:
 	//
-	// app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
 	//
 	// Where:
 	//
@@ -13927,16 +13951,16 @@ type PredictiveScalingPredefinedScalingMetric struct {
 	PredefinedMetricType *string `type:"string" required:"true" enum:"PredefinedScalingMetricType"`
 
 	// A label that uniquely identifies a specific Application Load Balancer target
-	// group from which to determine the request count served by your Auto Scaling
-	// group. You can't specify a resource label unless the target group is attached
-	// to the Auto Scaling group.
+	// group from which to determine the average request count served by your Auto
+	// Scaling group. You can't specify a resource label unless the target group
+	// is attached to the Auto Scaling group.
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
 	// value, separated by a forward slash (/). The format of the resource label
 	// is:
 	//
-	// app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
 	//
 	// Where:
 	//
@@ -16379,6 +16403,9 @@ type UpdateAutoScalingGroupInput struct {
 	// in the Amazon EC2 Auto Scaling User Guide.
 	CapacityRebalance *bool `type:"boolean"`
 
+	// Reserved.
+	Context *string `type:"string"`
+
 	// The amount of time, in seconds, after a scaling activity completes before
 	// another scaling activity can start. The default value is 300. This setting
 	// applies when using simple scaling policies, but not when using other scaling
@@ -16542,6 +16569,12 @@ func (s *UpdateAutoScalingGroupInput) SetAvailabilityZones(v []*string) *UpdateA
 // SetCapacityRebalance sets the CapacityRebalance field's value.
 func (s *UpdateAutoScalingGroupInput) SetCapacityRebalance(v bool) *UpdateAutoScalingGroupInput {
 	s.CapacityRebalance = &v
+	return s
+}
+
+// SetContext sets the Context field's value.
+func (s *UpdateAutoScalingGroupInput) SetContext(v string) *UpdateAutoScalingGroupInput {
+	s.Context = &v
 	return s
 }
 
