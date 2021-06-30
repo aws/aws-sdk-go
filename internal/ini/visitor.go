@@ -50,7 +50,7 @@ func (v *DefaultVisitor) VisitExpr(expr AST) error {
 
 			rhs := children[1]
 
-			if rhs.Root.Type() != TokenLit {
+			if !(rhs.Root.Type() == TokenLit || rhs.Root.Type() == TokenOp || rhs.Root.Type() == TokenSep) {
 				return NewParseError("unexpected token type")
 			}
 

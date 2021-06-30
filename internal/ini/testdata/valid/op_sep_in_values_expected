@@ -1,0 +1,10 @@
+{
+  "default": {
+    "sepInValue": "=:[foo]]bar[",
+    "output": "json"
+  },
+  "assumerole": {
+    "sepInValue": "=:[foo]]bar[",
+    "output": "json"
+  }
+}
