@@ -106,11 +106,23 @@ func TestInvalidDataFiles(t *testing.T) {
 			expectedParseError: true,
 		},
 		{
+			path:               "./testdata/invalid/bad_syntax_2",
+			expectedParseError: true,
+		},
+		{
 			path:               "./testdata/invalid/incomplete_section_profile",
 			expectedParseError: true,
 		},
 		{
 			path:               "./testdata/invalid/syntax_error_comment",
+			expectedParseError: true,
+		},
+		{
+			path:               "./testdata/invalid/invalid_keys",
+			expectedParseError: true,
+		},
+		{
+			path:               "./testdata/invalid/bad_section_name",
 			expectedParseError: true,
 		},
 	}
