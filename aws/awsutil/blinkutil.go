@@ -7,6 +7,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var (
@@ -280,6 +281,26 @@ func unpackSlice(parent string, parameter string, shape reflect.Value) []interfa
 	return resolvedList
 }
 
+func unpackTime(parameter string) *time.Time {
+	timeParameter := strings.TrimSpace(parameter)
+	if strings.Contains(timeParameter, " ") {
+		timeParameter = strings.ReplaceAll(timeParameter, "T", "")
+		timeParameterSplit := strings.Split(timeParameter, " ")
+		if len(timeParameterSplit) == 2 {
+			timeParameter = fmt.Sprintf("%sT%s", timeParameterSplit[0], timeParameterSplit[1])
+		}
+		if !strings.HasSuffix(timeParameter, "Z") {
+			timeParameter += "Z"
+		}
+	}
+	parsedTime, err := time.Parse(time.RFC3339, timeParameter)
+	if err == nil {
+		return &parsedTime
+	}
+
+	return nil
+}
+
 func unpackScalar(parent string, parameter string, shape reflect.Value, scalarType reflect.Kind) interface{} {
 	unpacked := interface{}(parameter)
 	switch scalarType {
@@ -319,6 +340,13 @@ func UnpackParameter(parent string, parameter string, shape reflect.Value, shape
 
 	shape = correctShape(shape)
 	parameter = underlayParameter(parameter, shape)
+
+	if shape.Type().Name() == reflect.TypeOf(time.Time{}).Name() {
+		if unpackedTime := unpackTime(parameter); unpackedTime != nil {
+			return unpackedTime
+		}
+	}
+
 	if isScalar(shapeKind) {
 		return unpackScalar(parent, parameter, shape, shapeKind)
 	}
