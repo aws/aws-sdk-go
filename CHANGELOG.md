@@ -1,3 +1,14 @@
+Release v1.38.71 (2021-07-01)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adding a new reserved field to support future infrastructure improvements for Amazon EC2 Fleet.
+* `service/sagemaker`: Updates service API and documentation
+  * SageMaker model registry now supports up to 5 containers and associated environment variables.
+* `service/sqs`: Updates service documentation
+  * Documentation updates for Amazon SQS.
+
 Release v1.38.70 (2021-06-30)
 ===
 
