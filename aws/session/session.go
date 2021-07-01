@@ -302,7 +302,7 @@ type Options struct {
 	// Specifies the EC2 Instance Metadata Service default endpoint selection mode (IPv4 or IPv6)
 	//
 	// AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE=IPv6
-	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointMode
+	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointModeState
 }
 
 // NewSessionWithOptions returns a new Session created from SDK defaults, config files,
@@ -380,7 +380,7 @@ func Must(sess *Session, err error) *Session {
 
 // Wraps the endpoint resolver with a resolver that will return a custom
 // endpoint for EC2 IMDS.
-func wrapEC2IMDSEndpoint(resolver endpoints.Resolver, endpoint string, mode endpoints.EC2IMDSEndpointMode) endpoints.Resolver {
+func wrapEC2IMDSEndpoint(resolver endpoints.Resolver, endpoint string, mode endpoints.EC2IMDSEndpointModeState) endpoints.Resolver {
 	return endpoints.ResolverFunc(
 		func(service, region string, opts ...func(*endpoints.Options)) (
 			endpoints.ResolvedEndpoint, error,
@@ -413,7 +413,7 @@ func deprecatedNewSession(envCfg envConfig, cfgs ...*aws.Config) *Session {
 		cfg.EndpointResolver = endpoints.DefaultResolver()
 	}
 
-	if len(envCfg.EC2IMDSEndpoint) != 0 || envCfg.EC2IMDSEndpointMode != endpoints.EC2IMDSEndpointModeUnset {
+	if !(len(envCfg.EC2IMDSEndpoint) == 0 && envCfg.EC2IMDSEndpointMode == endpoints.EC2IMDSEndpointModeStateUnset) {
 		cfg.EndpointResolver = wrapEC2IMDSEndpoint(cfg.EndpointResolver, envCfg.EC2IMDSEndpoint, envCfg.EC2IMDSEndpointMode)
 	}
 
@@ -747,22 +747,30 @@ func mergeConfigSrcs(cfg, userCfg *aws.Config,
 	})
 
 	var ec2IMDSEndpoint string
-	for _, v := range []string{sessOpts.EC2IMDSEndpoint, envCfg.EC2IMDSEndpoint, sharedCfg.EC2IMDSEndpoint} {
+	for _, v := range []string{
+		sessOpts.EC2IMDSEndpoint,
+		envCfg.EC2IMDSEndpoint,
+		sharedCfg.EC2IMDSEndpoint,
+	} {
 		if len(v) != 0 {
 			ec2IMDSEndpoint = v
 			break
 		}
 	}
 
-	var endpointMode endpoints.EC2IMDSEndpointMode
-	for _, v := range []endpoints.EC2IMDSEndpointMode{sessOpts.EC2IMDSEndpointMode, envCfg.EC2IMDSEndpointMode, sharedCfg.EC2IMDSEndpointMode} {
-		if v != endpoints.EC2IMDSEndpointModeUnset {
+	var endpointMode endpoints.EC2IMDSEndpointModeState
+	for _, v := range []endpoints.EC2IMDSEndpointModeState{
+		sessOpts.EC2IMDSEndpointMode,
+		envCfg.EC2IMDSEndpointMode,
+		sharedCfg.EC2IMDSEndpointMode,
+	} {
+		if v != endpoints.EC2IMDSEndpointModeStateUnset {
 			endpointMode = v
 			break
 		}
 	}
 
-	if len(ec2IMDSEndpoint) != 0 || endpointMode != endpoints.EC2IMDSEndpointModeUnset {
+	if len(ec2IMDSEndpoint) != 0 || endpointMode != endpoints.EC2IMDSEndpointModeStateUnset {
 		cfg.EndpointResolver = wrapEC2IMDSEndpoint(cfg.EndpointResolver, ec2IMDSEndpoint, endpointMode)
 	}
 

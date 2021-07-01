@@ -155,7 +155,7 @@ type sharedConfig struct {
 	// Specifies the EC2 Instance Metadata Service default endpoint selection mode (IPv4 or IPv6)
 	//
 	// ec2_metadata_service_endpoint_mode=IPv6
-	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointMode
+	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointModeState
 
 	// Specifies the EC2 Instance Metadata Service endpoint to use. If specified it overrides EC2IMDSEndpointMode.
 	//
@@ -351,7 +351,10 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.SSORoleName, section, ssoRoleNameKey)
 		updateString(&cfg.SSOStartURL, section, ssoStartURL)
 
-		updateEC2MetadataServiceEndpointMode(&cfg.EC2IMDSEndpointMode, section, ec2MetadataServiceEndpointModeKey)
+		if err := updateEC2MetadataServiceEndpointMode(&cfg.EC2IMDSEndpointMode, section, ec2MetadataServiceEndpointModeKey); err != nil {
+			return fmt.Errorf("failed to load %s from shared config, %s, %v",
+				ec2MetadataServiceEndpointModeKey, file.Filename, err)
+		}
 		updateString(&cfg.EC2IMDSEndpoint, section, ec2MetadataServiceEndpointKey)
 	}
 
@@ -383,12 +386,12 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 	return nil
 }
 
-func updateEC2MetadataServiceEndpointMode(endpointMode *endpoints.EC2IMDSEndpointMode, section ini.Section, key string) {
+func updateEC2MetadataServiceEndpointMode(endpointMode *endpoints.EC2IMDSEndpointModeState, section ini.Section, key string) error {
 	if !section.Has(key) {
-		return
+		return nil
 	}
 	value := section.String(key)
-	endpointMode.SetFromString(value)
+	return endpointMode.SetFromString(value)
 }
 
 func (cfg *sharedConfig) validateCredentialsConfig(profile string) error {

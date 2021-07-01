@@ -38,7 +38,8 @@ func TestEnumPartitionServices(t *testing.T) {
 
 	svcEnum := partEnum.Services()
 
-	if a, e := len(svcEnum), len(expectPart.Services); a != e {
+	// Expect the number of services in the partition + ec2metadata
+	if a, e := len(svcEnum), len(expectPart.Services)+1; a != e {
 		t.Errorf("expected %d regions, got %d", e, a)
 	}
 }
@@ -109,7 +110,8 @@ func TestEnumServicesEndpoints(t *testing.T) {
 
 	ss := p.Services()
 
-	if a, e := len(ss), 5; a != e {
+	// Expect the number of services in the partition + ec2metadata
+	if a, e := len(ss), 6; a != e {
 		t.Errorf("expect %d regions got %d", e, a)
 	}
 
@@ -348,27 +350,24 @@ func TestPartitionForRegion_NotFound(t *testing.T) {
 }
 
 func TestEC2MetadataEndpoint(t *testing.T) {
-	const v4URL = "http://169.254.169.254"
-	const v6URL = "http://[fd00:ec2::254]"
-
 	cases := []struct {
 		Options  Options
 		Expected string
 	}{
 		{
-			Expected: v4URL,
+			Expected: ec2MetadataEndpointIPv4,
 		},
 		{
 			Options: Options{
-				EC2MetadataEndpointMode: EC2IMDSEndpointModeIPv4,
+				EC2MetadataEndpointMode: EC2IMDSEndpointModeStateIPv4,
 			},
-			Expected: v4URL,
+			Expected: ec2MetadataEndpointIPv4,
 		},
 		{
 			Options: Options{
-				EC2MetadataEndpointMode: EC2IMDSEndpointModeIPv6,
+				EC2MetadataEndpointMode: EC2IMDSEndpointModeStateIPv6,
 			},
-			Expected: v6URL,
+			Expected: ec2MetadataEndpointIPv6,
 		},
 	}
 

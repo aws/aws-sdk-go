@@ -666,3 +666,93 @@ func TestResolveEndpoint_FipsAwsGlobal(t *testing.T) {
 		t.Errorf("expect the signing name to be derived")
 	}
 }
+
+func TestEC2MetadataService(t *testing.T) {
+	unmodelled := partition{
+		ID:   "unmodelled",
+		Name: "partition with unmodelled ec2metadata",
+		Services: map[string]service{
+			"foo": {
+				Endpoints: endpoints{
+					"us-west-2": endpoint{
+						Hostname:          "foo.us-west-2.amazonaws.com",
+						Protocols:         []string{"http"},
+						SignatureVersions: []string{"v4"},
+					},
+				},
+			},
+		},
+		Regions: map[string]region{
+			"us-west-2": {Description: "us-west-2 region"},
+		},
+	}
+
+	modelled := partition{
+		ID:   "modelled",
+		Name: "partition with modelled ec2metadata",
+		Services: map[string]service{
+			"ec2metadata": {
+				Endpoints: endpoints{
+					"us-west-2": endpoint{
+						Hostname:          "custom.localhost/latest",
+						Protocols:         []string{"http"},
+						SignatureVersions: []string{"v4"},
+					},
+				},
+			},
+			"foo": {
+				Endpoints: endpoints{
+					"us-west-2": endpoint{
+						Hostname:          "foo.us-west-2.amazonaws.com",
+						Protocols:         []string{"http"},
+						SignatureVersions: []string{"v4"},
+					},
+				},
+			},
+		},
+		Regions: map[string]region{
+			"us-west-2": {Description: "us-west-2 region"},
+		},
+	}
+
+	uServices := unmodelled.Partition().Services()
+
+	if s, ok := uServices[Ec2metadataServiceID]; !ok {
+		t.Errorf("expect ec2metadata to be present")
+	} else {
+		if regions := s.Regions(); len(regions) != 0 {
+			t.Errorf("expect no regions for ec2metadata, got %v", len(regions))
+		}
+		if resolved, err := unmodelled.EndpointFor(Ec2metadataServiceID, "us-west-2"); err != nil {
+			t.Errorf("expect no error, got %v", err)
+		} else if e, a := ec2MetadataEndpointIPv4, resolved.URL; e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
+	}
+
+	if s, ok := uServices["foo"]; !ok {
+		t.Errorf("expect foo to be present")
+	} else if regions := s.Regions(); len(regions) == 0 {
+		t.Errorf("expect region endpoints for foo. got none")
+	}
+
+	mServices := modelled.Partition().Services()
+
+	if s, ok := mServices[Ec2metadataServiceID]; !ok {
+		t.Errorf("expect ec2metadata to be present")
+	} else if regions := s.Regions(); len(regions) == 0 {
+		t.Errorf("expect region for ec2metadata, got none")
+	} else {
+		if resolved, err := modelled.EndpointFor(Ec2metadataServiceID, "us-west-2"); err != nil {
+			t.Errorf("expect no error, got %v", err)
+		} else if e, a := "http://custom.localhost/latest", resolved.URL; e != a {
+			t.Errorf("expect %v, got %v", e, a)
+		}
+	}
+
+	if s, ok := mServices["foo"]; !ok {
+		t.Errorf("expect foo to be present")
+	} else if regions := s.Regions(); len(regions) == 0 {
+		t.Errorf("expect region endpoints for foo, got none")
+	}
+}

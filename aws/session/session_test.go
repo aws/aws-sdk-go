@@ -729,7 +729,7 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 				Profile:           "EC2MetadataServiceEndpointModeIPv6",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://[fd00:ec2::254]",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
 		},
 		"IMDS IPv4 mode from profile": {
 			Service: ec2MetadataServiceID,
@@ -738,7 +738,7 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 				Profile:           "EC2MetadataServiceEndpointModeIPv4",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://169.254.169.254",
+			ExpectEndpoint: "http://169.254.169.254/latest",
 		},
 		"IMDS IPv6 mode in env": {
 			Service: ec2MetadataServiceID,
@@ -746,7 +746,7 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://[fd00:ec2::254]",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
 		},
 		"IMDS IPv4 mode in env": {
 			Service: ec2MetadataServiceID,
@@ -754,7 +754,7 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv4",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://169.254.169.254",
+			ExpectEndpoint: "http://169.254.169.254/latest",
 		},
 		"IMDS mode in env and profile": {
 			Service: ec2MetadataServiceID,
@@ -766,7 +766,7 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://[fd00:ec2::254]",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
 		},
 		"IMDS mode and endpoint profile": {
 			Service: ec2MetadataServiceID,
@@ -781,13 +781,13 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 		"IMDS mode session option and env": {
 			Service: ec2MetadataServiceID,
 			Options: Options{
-				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeIPv6,
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
 			},
 			Env: map[string]string{
 				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv4",
 			},
 			Region:         "ignored",
-			ExpectEndpoint: "http://[fd00:ec2::254]",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
 		},
 		"IMDS endpoint session option and env": {
 			Service: ec2MetadataServiceID,

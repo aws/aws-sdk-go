@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+const (
+	ec2MetadataEndpointIPv6 = "http://[fd00:ec2::254]/latest"
+	ec2MetadataEndpointIPv4 = "http://169.254.169.254/latest"
+)
+
 var regionValidationRegex = regexp.MustCompile(`^[[:alnum:]]([[:alnum:]\-]*[[:alnum:]])?$`)
 
 type partitions []partition
@@ -101,13 +106,13 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 	var opt Options
 	opt.Set(opts...)
 
-	const ec2MetadataServiceName = "ec2metadata"
-	if service == ec2MetadataServiceName {
+	s, hasService := p.Services[service]
+
+	if service == Ec2metadataServiceID && !hasService {
 		endpoint := getEC2MetadataEndpoint(p.ID, service, opt.EC2MetadataEndpointMode)
 		return endpoint, nil
 	}
 
-	s, hasService := p.Services[service]
 	if len(service) == 0 || !(hasService || opt.ResolveUnknownService) {
 		// Only return error if the resolver will not fallback to creating
 		// endpoint based on service endpoint ID passed in.
@@ -135,22 +140,22 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 	return e.resolve(service, p.ID, region, p.DNSSuffix, defs, opt)
 }
 
-func getEC2MetadataEndpoint(partitionID, service string, mode EC2IMDSEndpointMode) ResolvedEndpoint {
+func getEC2MetadataEndpoint(partitionID, service string, mode EC2IMDSEndpointModeState) ResolvedEndpoint {
 	switch mode {
-	case EC2IMDSEndpointModeIPv6:
+	case EC2IMDSEndpointModeStateIPv6:
 		return ResolvedEndpoint{
-			URL:                "http://[fd00:ec2::254]",
+			URL:                ec2MetadataEndpointIPv6,
 			PartitionID:        partitionID,
 			SigningRegion:      "aws-global",
 			SigningName:        service,
 			SigningNameDerived: true,
 			SigningMethod:      "v4",
 		}
-	case EC2IMDSEndpointModeIPv4:
+	case EC2IMDSEndpointModeStateIPv4:
 		fallthrough
 	default:
 		return ResolvedEndpoint{
-			URL:                "http://169.254.169.254",
+			URL:                ec2MetadataEndpointIPv4,
 			PartitionID:        partitionID,
 			SigningRegion:      "aws-global",
 			SigningName:        service,

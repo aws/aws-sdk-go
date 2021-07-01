@@ -169,7 +169,7 @@ type envConfig struct {
 	// Specifies the EC2 Instance Metadata Service default endpoint selection mode (IPv4 or IPv6)
 	//
 	// AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE=IPv6
-	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointMode
+	EC2IMDSEndpointMode endpoints.EC2IMDSEndpointModeState
 }
 
 var (
@@ -372,7 +372,9 @@ func envConfigLoad(enableSharedConfig bool) (envConfig, error) {
 	}
 
 	setFromEnvVal(&cfg.EC2IMDSEndpoint, ec2IMDSEndpointEnvKey)
-	setEC2IMDSEndpointMode(&cfg.EC2IMDSEndpointMode, ec2IMDSEndpointModeEnvKey)
+	if err := setEC2IMDSEndpointMode(&cfg.EC2IMDSEndpointMode, ec2IMDSEndpointModeEnvKey); err != nil {
+		return envConfig{}, err
+	}
 
 	return cfg, nil
 }
@@ -386,13 +388,16 @@ func setFromEnvVal(dst *string, keys []string) {
 	}
 }
 
-func setEC2IMDSEndpointMode(mode *endpoints.EC2IMDSEndpointMode, keys []string) {
+func setEC2IMDSEndpointMode(mode *endpoints.EC2IMDSEndpointModeState, keys []string) error {
 	for _, k := range keys {
 		value := os.Getenv(k)
 		if len(value) == 0 {
 			continue
 		}
-		mode.SetFromString(value)
-		return
+		if err := mode.SetFromString(value); err != nil {
+			return fmt.Errorf("invalid value for environment variable, %s=%s, %v", k, value, err)
+		}
+		return nil
 	}
+	return nil
 }
