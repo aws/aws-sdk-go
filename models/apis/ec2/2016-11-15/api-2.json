@@ -7763,7 +7763,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "Context":{"shape":"String"}
       }
     },
     "CreateFleetResult":{
@@ -16819,6 +16820,10 @@
         "Instances":{
           "shape":"DescribeFleetsInstancesSet",
           "locationName":"fleetInstanceSet"
+        },
+        "Context":{
+          "shape":"String",
+          "locationName":"context"
         }
       }
     },
@@ -22830,7 +22835,8 @@
           "locationName":"LaunchTemplateConfig"
         },
         "FleetId":{"shape":"FleetId"},
-        "TargetCapacitySpecification":{"shape":"TargetCapacitySpecificationRequest"}
+        "TargetCapacitySpecification":{"shape":"TargetCapacitySpecificationRequest"},
+        "Context":{"shape":"String"}
       }
     },
     "ModifyFleetResult":{
@@ -23312,7 +23318,8 @@
           "shape":"Integer",
           "locationName":"targetCapacity"
         },
-        "OnDemandTargetCapacity":{"shape":"Integer"}
+        "OnDemandTargetCapacity":{"shape":"Integer"},
+        "Context":{"shape":"String"}
       }
     },
     "ModifySpotFleetRequestResponse":{
@@ -27580,6 +27587,7 @@
         "network-acl",
         "network-interface",
         "network-insights-analysis",
+        "network-insights-boundary",
         "network-insights-path",
         "placement-group",
         "reserved-instances",
@@ -29515,6 +29523,10 @@
         "InstancePoolsToUseCount":{
           "shape":"Integer",
           "locationName":"instancePoolsToUseCount"
+        },
+        "Context":{
+          "shape":"String",
+          "locationName":"context"
         },
         "TagSpecifications":{
           "shape":"TagSpecificationList",

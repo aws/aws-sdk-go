@@ -850,7 +850,10 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteModelPackageGroupInput"}
+      "input":{"shape":"DeleteModelPackageGroupInput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "DeleteModelPackageGroupPolicy":{
       "name":"DeleteModelPackageGroupPolicy",
@@ -916,7 +919,10 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteProjectInput"}
+      "input":{"shape":"DeleteProjectInput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "DeleteTags":{
       "name":"DeleteTags",
@@ -10646,13 +10652,14 @@
         "Image":{"shape":"ContainerImage"},
         "ImageDigest":{"shape":"ImageDigest"},
         "ModelDataUrl":{"shape":"Url"},
-        "ProductId":{"shape":"ProductId"}
+        "ProductId":{"shape":"ProductId"},
+        "Environment":{"shape":"EnvironmentMap"}
       }
     },
     "ModelPackageContainerDefinitionList":{
       "type":"list",
       "member":{"shape":"ModelPackageContainerDefinition"},
-      "max":1,
+      "max":5,
       "min":1
     },
     "ModelPackageGroup":{

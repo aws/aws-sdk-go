@@ -150,7 +150,7 @@ func (c *SageMaker) AddTagsRequest(input *AddTagsInput) (req *request.Request, o
 //
 // Each tag consists of a key and an optional value. Tag keys must be unique
 // per resource. For more information about tags, see For more information,
-// see AWS Tagging Strategies (https://aws.amazon.com/answers/account-management/aws-tagging-strategies/).
+// see Amazon Web Services Tagging Strategies (https://aws.amazon.com/answers/account-management/aws-tagging-strategies/).
 //
 // Tags that you add to a hyperparameter tuning job by calling this API are
 // also added to any training jobs that the hyperparameter tuning job launches
@@ -415,7 +415,7 @@ func (c *SageMaker) CreateAlgorithmRequest(input *CreateAlgorithmInput) (req *re
 // CreateAlgorithm API operation for Amazon SageMaker Service.
 //
 // Create a machine learning algorithm that you can use in Amazon SageMaker
-// and list in the AWS Marketplace.
+// and list in the Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -839,7 +839,7 @@ func (c *SageMaker) CreateCodeRepositoryRequest(input *CreateCodeRepositoryInput
 // more than one notebook instance, and it persists independently from the lifecycle
 // of any notebook instances it is associated with.
 //
-// The repository can be hosted either in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+// The repository can be hosted either in Amazon Web Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
 // or in any other Git repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -920,8 +920,8 @@ func (c *SageMaker) CreateCompilationJobRequest(input *CreateCompilationJobInput
 //
 // If you choose to host your model using Amazon SageMaker hosting services,
 // you can use the resulting model artifacts as part of the model. You can also
-// use the artifacts with AWS IoT Greengrass. In that case, deploy them as an
-// ML resource.
+// use the artifacts with Amazon Web Services IoT Greengrass. In that case,
+// deploy them as an ML resource.
 //
 // In the request body, you provide the following:
 //
@@ -1283,9 +1283,9 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // Creates a Domain used by Amazon SageMaker Studio. A domain consists of an
 // associated Amazon Elastic File System (EFS) volume, a list of authorized
 // users, and a variety of security, application, policy, and Amazon Virtual
-// Private Cloud (VPC) configurations. An AWS account is limited to one domain
-// per region. Users within a domain can share notebook files and other artifacts
-// with each other.
+// Private Cloud (VPC) configurations. An Amazon Web Services account is limited
+// to one domain per region. Users within a domain can share notebook files
+// and other artifacts with each other.
 //
 // EFS storage
 //
@@ -1293,10 +1293,11 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // users within the domain. Each user receives a private home directory within
 // the EFS volume for notebooks, Git repositories, and data files.
 //
-// SageMaker uses the AWS Key Management Service (AWS KMS) to encrypt the EFS
-// volume attached to the domain with an AWS managed customer master key (CMK)
-// by default. For more control, you can specify a customer managed CMK. For
-// more information, see Protect Data at Rest Using Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html).
+// SageMaker uses the Amazon Web Services Key Management Service (Amazon Web
+// Services KMS) to encrypt the EFS volume attached to the domain with an Amazon
+// Web Services managed customer master key (CMK) by default. For more control,
+// you can specify a customer managed CMK. For more information, see Protect
+// Data at Rest Using Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html).
 //
 // VPC configuration
 //
@@ -1315,6 +1316,9 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //    be able to run a Studio notebook or to train or host models unless your
 //    VPC has an interface endpoint to the SageMaker API and runtime or a NAT
 //    gateway and your security groups allow outbound connections.
+//
+// NFS traffic over TCP on port 2049 needs to be allowed in both inbound and
+// outbound rules in order to launch a SageMaker Studio app successfully.
 //
 // For more information, see Connect SageMaker Studio Notebooks to Resources
 // in a VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html).
@@ -1492,13 +1496,14 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 //
 // For an example that calls this method when deploying a model to Amazon SageMaker
 // hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (AWS SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
+// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
 //
 // You must not delete an EndpointConfig that is in use by an endpoint that
 // is live or while the UpdateEndpoint or CreateEndpoint operations are being
 // performed on the endpoint. To update an endpoint, you must create a new EndpointConfig.
 //
-// The endpoint name must be unique within an AWS Region in your AWS account.
+// The endpoint name must be unique within an Amazon Web Services Region in
+// your Amazon Web Services account.
 //
 // When it receives the request, Amazon SageMaker creates the endpoint, launches
 // the resources (ML compute instances), and deploys the model(s) on them.
@@ -1520,12 +1525,13 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // the status of an endpoint, use the DescribeEndpoint API.
 //
 // If any of the models hosted at this endpoint get model data from an Amazon
-// S3 location, Amazon SageMaker uses AWS Security Token Service to download
-// model artifacts from the S3 path you provided. AWS STS is activated in your
-// IAM user account by default. If you previously deactivated AWS STS for a
-// region, you need to reactivate AWS STS for that region. For more information,
-// see Activating and Deactivating AWS STS in an AWS Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
-// in the AWS Identity and Access Management User Guide.
+// S3 location, Amazon SageMaker uses Amazon Web Services Security Token Service
+// to download model artifacts from the S3 path you provided. Amazon Web Services
+// STS is activated in your IAM user account by default. If you previously deactivated
+// Amazon Web Services STS for a region, you need to reactivate Amazon Web Services
+// STS for that region. For more information, see Activating and Deactivating
+// Amazon Web Services STS in an Amazon Web Services Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+// in the Amazon Web Services Identity and Access Management User Guide.
 //
 // To add the IAM role policies for using this API operation, go to the IAM
 // console (https://console.aws.amazon.com/iam/), and choose Roles in the left
@@ -1642,7 +1648,7 @@ func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput
 //
 // For an example that calls this method when deploying a model to Amazon SageMaker
 // hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (AWS SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
+// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
 //
 // When you call CreateEndpoint, a load call is made to DynamoDB to verify that
 // your endpoint configuration exists. When you read data from a DynamoDB table
@@ -1744,8 +1750,8 @@ func (c *SageMaker) CreateExperimentRequest(input *CreateExperimentInput) (req *
 //
 // When you use SageMaker Studio or the SageMaker Python SDK, all experiments,
 // trials, and trial components are automatically tracked, logged, and indexed.
-// When you use the AWS SDK for Python (Boto), you must use the logging APIs
-// provided by the SDK.
+// When you use the Amazon Web Services SDK for Python (Boto), you must use
+// the logging APIs provided by the SDK.
 //
 // You can add tags to experiments, trials, trial components and then use the
 // Search API to search for the tags.
@@ -1843,8 +1849,8 @@ func (c *SageMaker) CreateFeatureGroupRequest(input *CreateFeatureGroupInput) (r
 // The FeatureGroup defines the schema and features contained in the FeatureGroup.
 // A FeatureGroup definition is composed of a list of Features, a RecordIdentifierFeatureName,
 // an EventTimeFeatureName and configurations for its OnlineStore and OfflineStore.
-// Check AWS service quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
-// to see the FeatureGroups quota for your AWS account.
+// Check Amazon Web Services service quotas (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// to see the FeatureGroups quota for your Amazon Web Services account.
 //
 // You must include at least one of OnlineStoreConfig and OfflineStoreConfig
 // to create a FeatureGroup.
@@ -2368,8 +2374,8 @@ func (c *SageMaker) CreateLabelingJobRequest(input *CreateLabelingJobInput) (req
 //    and outside experts. Use a private workforce when want the data to stay
 //    within your organization or when a specific set of skills is required.
 //
-//    * One or more vendors that you select from the AWS Marketplace. Vendors
-//    provide expertise in specific areas.
+//    * One or more vendors that you select from the Amazon Web Services Marketplace.
+//    Vendors provide expertise in specific areas.
 //
 //    * The Amazon Mechanical Turk workforce. This is the largest workforce,
 //    but it should only be used for public data or data that has been stripped
@@ -2495,7 +2501,7 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 //
 // For an example that calls this method when deploying a model to Amazon SageMaker
 // hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (AWS SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
+// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
 //
 // To run a batch transform using your model, you start a job with the CreateTransformJob
 // API. Amazon SageMaker uses your model and your dataset to get inferences
@@ -2508,8 +2514,8 @@ func (c *SageMaker) CreateModelRequest(input *CreateModelInput) (req *request.Re
 // to access model artifacts and docker image for deployment on ML compute hosting
 // instances or for batch transform jobs. In addition, you also use the IAM
 // role to manage permissions the inference code needs. For example, if the
-// inference code access any other AWS resources, you grant necessary permissions
-// via this role.
+// inference code access any other Amazon Web Services resources, you grant
+// necessary permissions via this role.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2756,15 +2762,15 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 // CreateModelPackage API operation for Amazon SageMaker Service.
 //
 // Creates a model package that you can use to create Amazon SageMaker models
-// or list on AWS Marketplace, or a versioned model that is part of a model
-// group. Buyers can subscribe to model packages listed on AWS Marketplace to
-// create models in Amazon SageMaker.
+// or list on Amazon Web Services Marketplace, or a versioned model that is
+// part of a model group. Buyers can subscribe to model packages listed on Amazon
+// Web Services Marketplace to create models in Amazon SageMaker.
 //
 // To create a model package by specifying a Docker container that contains
 // your inference code and the Amazon S3 location of your model artifacts, provide
 // values for InferenceSpecification. To create a model from an algorithm resource
-// that you created or subscribed to in AWS Marketplace, provide a value for
-// SourceAlgorithmSpecification.
+// that you created or subscribed to in Amazon Web Services Marketplace, provide
+// a value for SourceAlgorithmSpecification.
 //
 // There are two types of model packages:
 //
@@ -3405,10 +3411,21 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 // Domain's Amazon Elastic File System (EFS) volume. This operation can only
 // be called when the authentication mode equals IAM.
 //
+// The IAM role or user used to call this API defines the permissions to access
+// the app. Once the presigned URL is created, no additional permission is required
+// to access this URL. IAM authorization policies for this API are also enforced
+// for every HTTP request and WebSocket frame that attempts to connect to the
+// app.
+//
+// You can restrict access to this API and to the URL that it returns to a list
+// of IP addresses, Amazon VPCs or Amazon VPC Endpoints that you specify. For
+// more information, see Connect to SageMaker Studio Through an Interface VPC
+// Endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-interface-endpoint.html) .
+//
 // The URL that you get from a call to CreatePresignedDomainUrl has a default
 // timeout of 5 minutes. You can configure this value using ExpiresInSeconds.
 // If you try to use the URL after the timeout limit expires, you are directed
-// to the AWS console sign-in page.
+// to the Amazon Web Services console sign-in page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3507,7 +3524,7 @@ func (c *SageMaker) CreatePresignedNotebookInstanceUrlRequest(input *CreatePresi
 //
 // The URL that you get from a call to CreatePresignedNotebookInstanceUrl is
 // valid only for 5 minutes. If you try to use the URL after the 5-minute limit
-// expires, you are directed to the AWS console sign-in page.
+// expires, you are directed to the Amazon Web Services console sign-in page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3889,11 +3906,12 @@ func (c *SageMaker) CreateTransformJobRequest(input *CreateTransformJobInput) (r
 // In the request body, you provide the following:
 //
 //    * TransformJobName - Identifies the transform job. The name must be unique
-//    within an AWS Region in an AWS account.
+//    within an Amazon Web Services Region in an Amazon Web Services account.
 //
 //    * ModelName - Identifies the model to use. ModelName must be the name
-//    of an existing Amazon SageMaker model in the same AWS Region and AWS account.
-//    For information on creating a model, see CreateModel.
+//    of an existing Amazon SageMaker model in the same Amazon Web Services
+//    Region and Amazon Web Services account. For information on creating a
+//    model, see CreateModel.
 //
 //    * TransformInput - Describes the dataset to be transformed and the Amazon
 //    S3 location where it is stored.
@@ -3997,8 +4015,8 @@ func (c *SageMaker) CreateTrialRequest(input *CreateTrialInput) (req *request.Re
 //
 // When you use SageMaker Studio or the SageMaker Python SDK, all experiments,
 // trials, and trial components are automatically tracked, logged, and indexed.
-// When you use the AWS SDK for Python (Boto), you must use the logging APIs
-// provided by the SDK.
+// When you use the Amazon Web Services SDK for Python (Boto), you must use
+// the logging APIs provided by the SDK.
 //
 // You can add tags to a trial and then use the Search API to search for the
 // tags.
@@ -4097,16 +4115,11 @@ func (c *SageMaker) CreateTrialComponentRequest(input *CreateTrialComponentInput
 //
 // When you use SageMaker Studio or the SageMaker Python SDK, all experiments,
 // trials, and trial components are automatically tracked, logged, and indexed.
-// When you use the AWS SDK for Python (Boto), you must use the logging APIs
-// provided by the SDK.
+// When you use the Amazon Web Services SDK for Python (Boto), you must use
+// the logging APIs provided by the SDK.
 //
 // You can add tags to a trial component and then use the Search API to search
 // for the tags.
-//
-// CreateTrialComponent can only be invoked from within an SageMaker managed
-// environment. This includes SageMaker training jobs, processing jobs, transform
-// jobs, and SageMaker notebooks. A call to CreateTrialComponent from outside
-// one of these environments results in an error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4277,12 +4290,13 @@ func (c *SageMaker) CreateWorkforceRequest(input *CreateWorkforceInput) (req *re
 // CreateWorkforce API operation for Amazon SageMaker Service.
 //
 // Use this operation to create a workforce. This operation will return an error
-// if a workforce already exists in the AWS Region that you specify. You can
-// only create one workforce in each AWS Region per AWS account.
+// if a workforce already exists in the Amazon Web Services Region that you
+// specify. You can only create one workforce in each Amazon Web Services Region
+// per Amazon Web Services account.
 //
-// If you want to create a new workforce in an AWS Region where a workforce
-// already exists, use the API operation to delete the existing workforce and
-// then use CreateWorkforce to create a new workforce.
+// If you want to create a new workforce in an Amazon Web Services Region where
+// a workforce already exists, use the API operation to delete the existing
+// workforce and then use CreateWorkforce to create a new workforce.
 //
 // To create a private workforce using Amazon Cognito, you must specify a Cognito
 // user pool in CognitoConfig. You can also create an Amazon Cognito workforce
@@ -5578,8 +5592,9 @@ func (c *SageMaker) DeleteFeatureGroupRequest(input *DeleteFeatureGroupInput) (r
 // of the FeatureGroup. Data cannot be accessed from the OnlineStore immediately
 // after DeleteFeatureGroup is called.
 //
-// Data written into the OfflineStore will not be deleted. The AWS Glue database
-// and tables that are automatically created for your OfflineStore are not deleted.
+// Data written into the OfflineStore will not be deleted. The Amazon Web Services
+// Glue database and tables that are automatically created for your OfflineStore
+// are not deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6234,9 +6249,9 @@ func (c *SageMaker) DeleteModelPackageRequest(input *DeleteModelPackageInput) (r
 //
 // Deletes a model package.
 //
-// A model package is used to create Amazon SageMaker models or list on AWS
-// Marketplace. Buyers can subscribe to model packages listed on AWS Marketplace
-// to create models in Amazon SageMaker.
+// A model package is used to create Amazon SageMaker models or list on Amazon
+// Web Services Marketplace. Buyers can subscribe to model packages listed on
+// Amazon Web Services Marketplace to create models in Amazon SageMaker.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6325,6 +6340,12 @@ func (c *SageMaker) DeleteModelPackageGroupRequest(input *DeleteModelPackageGrou
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation DeleteModelPackageGroup for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   There was a conflict when you attempted to modify a SageMaker entity such
+//   as an Experiment or Artifact.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackageGroup
 func (c *SageMaker) DeleteModelPackageGroup(input *DeleteModelPackageGroupInput) (*DeleteModelPackageGroupOutput, error) {
 	req, out := c.DeleteModelPackageGroupRequest(input)
@@ -6874,6 +6895,12 @@ func (c *SageMaker) DeleteProjectRequest(input *DeleteProjectInput) (req *reques
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation DeleteProject for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   There was a conflict when you attempted to modify a SageMaker entity such
+//   as an Experiment or Artifact.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteProject
 func (c *SageMaker) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
@@ -7274,9 +7301,9 @@ func (c *SageMaker) DeleteWorkforceRequest(input *DeleteWorkforceInput) (req *re
 //
 // Use this operation to delete a workforce.
 //
-// If you want to create a new workforce in an AWS Region where a workforce
-// already exists, use this operation to delete the existing workforce and then
-// use to create a new workforce.
+// If you want to create a new workforce in an Amazon Web Services Region where
+// a workforce already exists, use this operation to delete the existing workforce
+// and then use to create a new workforce.
 //
 // If a private workforce contains one or more work teams, you must use the
 // operation to delete all work teams before you delete the workforce. If you
@@ -9627,10 +9654,10 @@ func (c *SageMaker) DescribeModelPackageRequest(input *DescribeModelPackageInput
 // DescribeModelPackage API operation for Amazon SageMaker Service.
 //
 // Returns a description of the specified model package, which is used to create
-// Amazon SageMaker models or list them on AWS Marketplace.
+// Amazon SageMaker models or list them on Amazon Web Services Marketplace.
 //
 // To create models in Amazon SageMaker, buyers can subscribe to model packages
-// listed on AWS Marketplace.
+// listed on Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10478,7 +10505,7 @@ func (c *SageMaker) DescribeSubscribedWorkteamRequest(input *DescribeSubscribedW
 // DescribeSubscribedWorkteam API operation for Amazon SageMaker Service.
 //
 // Gets information about a work team provided by a vendor. It returns details
-// about the subscription with a vendor in the AWS Marketplace.
+// about the subscription with a vendor in the Amazon Web Services Marketplace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11423,7 +11450,7 @@ func (c *SageMaker) GetModelPackageGroupPolicyRequest(input *GetModelPackageGrou
 // Gets a resource policy that manages access for a model group. For information
 // about resource policies, see Identity-based policies and resource-based policies
 // (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html)
-// in the AWS Identity and Access Management User Guide..
+// in the Amazon Web Services Identity and Access Management User Guide..
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15529,7 +15556,7 @@ func (c *SageMaker) ListModelPackageGroupsRequest(input *ListModelPackageGroupsI
 
 // ListModelPackageGroups API operation for Amazon SageMaker Service.
 //
-// Gets a list of the model groups in your AWS account.
+// Gets a list of the model groups in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16455,7 +16482,7 @@ func (c *SageMaker) ListNotebookInstancesRequest(input *ListNotebookInstancesInp
 // ListNotebookInstances API operation for Amazon SageMaker Service.
 //
 // Returns a list of the Amazon SageMaker notebook instances in the requester's
-// account in an AWS Region.
+// account in an Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17262,7 +17289,7 @@ func (c *SageMaker) ListProjectsRequest(input *ListProjectsInput) (req *request.
 
 // ListProjects API operation for Amazon SageMaker Service.
 //
-// Gets a list of the projects in an AWS account.
+// Gets a list of the projects in an Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17394,9 +17421,9 @@ func (c *SageMaker) ListSubscribedWorkteamsRequest(input *ListSubscribedWorkteam
 
 // ListSubscribedWorkteams API operation for Amazon SageMaker Service.
 //
-// Gets a list of the work teams that you are subscribed to in the AWS Marketplace.
-// The list may be empty if no work team satisfies the filter specified in the
-// NameContains parameter.
+// Gets a list of the work teams that you are subscribed to in the Amazon Web
+// Services Marketplace. The list may be empty if no work team satisfies the
+// filter specified in the NameContains parameter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17675,7 +17702,8 @@ func (c *SageMaker) ListTrainingJobsRequest(input *ListTrainingJobsInput) (req *
 // are selected (sorted according to the creation time, from the most current
 // to the oldest). Next, those with a status of InProgress are returned.
 //
-// You can quickly test the API using the following AWS CLI code.
+// You can quickly test the API using the following Amazon Web Services CLI
+// code.
 //
 // aws sagemaker list-training-jobs --max-results 100 --status-equals InProgress
 //
@@ -18498,8 +18526,9 @@ func (c *SageMaker) ListWorkforcesRequest(input *ListWorkforcesInput) (req *requ
 
 // ListWorkforces API operation for Amazon SageMaker Service.
 //
-// Use this operation to list all private and vendor workforces in an AWS Region.
-// Note that you can only have one private workforce per AWS Region.
+// Use this operation to list all private and vendor workforces in an Amazon
+// Web Services Region. Note that you can only have one private workforce per
+// Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18762,7 +18791,7 @@ func (c *SageMaker) PutModelPackageGroupPolicyRequest(input *PutModelPackageGrou
 // Adds a resouce policy to control access to a model group. For information
 // about resoure policies, see Identity-based policies and resource-based policies
 // (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html)
-// in the AWS Identity and Access Management User Guide..
+// in the Amazon Web Services Identity and Access Management User Guide..
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20133,6 +20162,19 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 // StopPipelineExecution API operation for Amazon SageMaker Service.
 //
 // Stops a pipeline execution.
+//
+// A pipeline execution won't stop while a callback step is running. When you
+// call StopPipelineExecution on a pipeline execution with a running callback
+// step, SageMaker Pipelines sends an additional Amazon SQS message to the specified
+// SQS queue. The body of the SQS message contains a "Status" field which is
+// set to "Stopping".
+//
+// You should add logic to your Amazon SQS message consumer to take any needed
+// action (for example, resource cleanup) upon receipt of the message followed
+// by a call to SendPipelineExecutionStepSuccess or SendPipelineExecutionStepFailure.
+//
+// Only when SageMaker Pipelines receives one of these calls will it stop the
+// pipeline execution.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22647,9 +22689,10 @@ type AddTagsInput struct {
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -22809,9 +22852,9 @@ type AlgorithmSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the algorithm resource to use for the training job. This must
-	// be an algorithm resource that you created or subscribe to on AWS Marketplace.
-	// If you specify a value for this parameter, you can't specify a value for
-	// TrainingImage.
+	// be an algorithm resource that you created or subscribe to on Amazon Web Services
+	// Marketplace. If you specify a value for this parameter, you can't specify
+	// a value for TrainingImage.
 	AlgorithmName *string `min:"1" type:"string"`
 
 	// To generate and save time-series metrics during training, set to true. The
@@ -23082,7 +23125,7 @@ func (s *AlgorithmSummary) SetCreationTime(v time.Time) *AlgorithmSummary {
 // to validate your algorithm.
 //
 // The data provided in the validation profile is made available to your buyers
-// on AWS Marketplace.
+// on Amazon Web Services Marketplace.
 type AlgorithmValidationProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -24479,8 +24522,9 @@ type AthenaDatasetDefinition struct {
 	// Database is a required field
 	Database *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data generated from an Athena query execution.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data generated from an Athena query
+	// execution.
 	KmsKeyId *string `type:"string"`
 
 	// The compression used for Athena query results.
@@ -25308,7 +25352,7 @@ func (s *AutoMLJobSummary) SetPartialFailureReasons(v []*AutoMLPartialFailureRea
 type AutoMLOutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS KMS encryption key ID.
+	// The Amazon Web Services KMS encryption key ID.
 	KmsKeyId *string `type:"string"`
 
 	// The Amazon S3 output path. Must be 128 characters or less.
@@ -26306,8 +26350,8 @@ type CodeRepositorySummary struct {
 	CreationTime *time.Time `type:"timestamp" required:"true"`
 
 	// Configuration details for the Git repository, including the URL where it
-	// is located and the ARN of the AWS Secrets Manager secret that contains the
-	// credentials used to access the repository.
+	// is located and the ARN of the Amazon Web Services Secrets Manager secret
+	// that contains the credentials used to access the repository.
 	GitConfig *GitConfig `type:"structure"`
 
 	// The date and time that the Git repository was last modified.
@@ -26805,13 +26849,14 @@ type ContainerDefinition struct {
 	// The model artifacts must be in an S3 bucket that is in the same region as
 	// the model or endpoint you are creating.
 	//
-	// If you provide a value for this parameter, Amazon SageMaker uses AWS Security
-	// Token Service to download model artifacts from the S3 path you provide. AWS
-	// STS is activated in your IAM user account by default. If you previously deactivated
-	// AWS STS for a region, you need to reactivate AWS STS for that region. For
-	// more information, see Activating and Deactivating AWS STS in an AWS Region
-	// (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
-	// in the AWS Identity and Access Management User Guide.
+	// If you provide a value for this parameter, Amazon SageMaker uses Amazon Web
+	// Services Security Token Service to download model artifacts from the S3 path
+	// you provide. Amazon Web Services STS is activated in your IAM user account
+	// by default. If you previously deactivated Amazon Web Services STS for a region,
+	// you need to reactivate Amazon Web Services STS for that region. For more
+	// information, see Activating and Deactivating Amazon Web Services STS in an
+	// Amazon Web Services Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
+	// in the Amazon Web Services Identity and Access Management User Guide.
 	//
 	// If you use a built-in algorithm to create a model, Amazon SageMaker requires
 	// that you provide a S3 path to the model artifacts in ModelDataUrl.
@@ -27190,7 +27235,8 @@ func (s *ContinuousParameterRangeSpecification) SetMinValue(v string) *Continuou
 type CreateActionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the action. Must be unique to your account in an AWS Region.
+	// The name of the action. Must be unique to your account in an Amazon Web Services
+	// Region.
 	//
 	// ActionName is a required field
 	ActionName *string `min:"1" type:"string" required:"true"`
@@ -27350,7 +27396,8 @@ type CreateAlgorithmInput struct {
 	// AlgorithmName is a required field
 	AlgorithmName *string `min:"1" type:"string" required:"true"`
 
-	// Whether to certify the algorithm so that it can be listed in AWS Marketplace.
+	// Whether to certify the algorithm so that it can be listed in Amazon Web Services
+	// Marketplace.
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Specifies details about inference jobs that the algorithm runs, including
@@ -27366,9 +27413,10 @@ type CreateAlgorithmInput struct {
 	//    inference.
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// Specifies details about training jobs run by this algorithm, including the
@@ -27752,7 +27800,8 @@ func (s *CreateAppOutput) SetAppArn(v string) *CreateAppOutput {
 type CreateArtifactInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the artifact. Must be unique to your account in an AWS Region.
+	// The name of the artifact. Must be unique to your account in an Amazon Web
+	// Services Region.
 	ArtifactName *string `min:"1" type:"string"`
 
 	// The artifact type.
@@ -28109,9 +28158,10 @@ type CreateCodeRepositoryInput struct {
 	// GitConfig is a required field
 	GitConfig *GitConfig `type:"structure" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -28206,7 +28256,7 @@ type CreateCompilationJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the model compilation job. The name must be unique within the
-	// AWS Region and within your AWS account.
+	// Amazon Web Services Region and within your Amazon Web Services account.
 	//
 	// CompilationJobName is a required field
 	CompilationJobName *string `min:"1" type:"string" required:"true"`
@@ -28251,9 +28301,10 @@ type CreateCompilationJobInput struct {
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// A VpcConfig object that specifies the VPC that you want your compilation
@@ -28407,7 +28458,8 @@ func (s *CreateCompilationJobOutput) SetCompilationJobArn(v string) *CreateCompi
 type CreateContextInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the context. Must be unique to your account in an AWS Region.
+	// The name of the context. Must be unique to your account in an Amazon Web
+	// Services Region.
 	//
 	// ContextName is a required field
 	ContextName *string `min:"1" type:"string" required:"true"`
@@ -28584,7 +28636,7 @@ type CreateDataQualityJobDefinitionInput struct {
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -28773,8 +28825,8 @@ type CreateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
-	// Whether to create an AWS IoT Role Alias during device fleet creation. The
-	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	// Whether to create an Amazon Web Services IoT Role Alias during device fleet
+	// creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
 	//
 	// For example, if your device fleet is called "demo-fleet", the name of the
 	// role alias will be "SageMakerEdge-demo-fleet".
@@ -28785,8 +28837,8 @@ type CreateDeviceFleetInput struct {
 	// OutputConfig is a required field
 	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
-	// (IoT).
+	// The Amazon Resource Name (ARN) that has access to Amazon Web Services Internet
+	// of Things (IoT).
 	RoleArn *string `min:"20" type:"string"`
 
 	// Creates tags for the specified fleet.
@@ -28929,9 +28981,9 @@ type CreateDomainInput struct {
 	// Deprecated: This property is deprecated, use KmsKeyId instead.
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
 
-	// SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain with
-	// an AWS managed customer master key (CMK) by default. For more control, specify
-	// a customer managed CMK.
+	// SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached
+	// to the domain with an Amazon Web Services managed customer master key (CMK)
+	// by default. For more control, specify a customer managed CMK.
 	KmsKeyId *string `type:"string"`
 
 	// The VPC subnets that Studio uses for communication.
@@ -29276,9 +29328,9 @@ type CreateEndpointConfigInput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon
-	// SageMaker uses to encrypt data on the storage volume attached to the ML compute
-	// instance that hosts the endpoint.
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
+	// to the ML compute instance that hosts the endpoint.
 	//
 	// The KmsKeyId can be any of the following formats:
 	//
@@ -29292,7 +29344,8 @@ type CreateEndpointConfigInput struct {
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateEndpoint, UpdateEndpoint requests. For more information, refer
-	// to the AWS Key Management Service section Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// to the Amazon Web Services Key Management Service section Using Key Policies
+	// in Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
 	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
@@ -29316,9 +29369,10 @@ type CreateEndpointConfigInput struct {
 	// ProductionVariants is a required field
 	ProductionVariants []*ProductionVariant `min:"1" type:"list" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -29439,16 +29493,17 @@ type CreateEndpointInput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
-	// The name of the endpoint.The name must be unique within an AWS Region in
-	// your AWS account. The name is case-insensitive in CreateEndpoint, but the
-	// case is preserved and must be matched in .
+	// The name of the endpoint.The name must be unique within an Amazon Web Services
+	// Region in your Amazon Web Services account. The name is case-insensitive
+	// in CreateEndpoint, but the case is preserved and must be matched in .
 	//
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -29541,8 +29596,8 @@ type CreateExperimentInput struct {
 	// If you don't specify DisplayName, the value in ExperimentName is displayed.
 	DisplayName *string `min:"1" type:"string"`
 
-	// The name of the experiment. The name must be unique in your AWS account and
-	// is not case-sensitive.
+	// The name of the experiment. The name must be unique in your Amazon Web Services
+	// account and is not case-sensitive.
 	//
 	// ExperimentName is a required field
 	ExperimentName *string `min:"1" type:"string" required:"true"`
@@ -29674,8 +29729,8 @@ type CreateFeatureGroupInput struct {
 	// FeatureDefinitions is a required field
 	FeatureDefinitions []*FeatureDefinition `min:"1" type:"list" required:"true"`
 
-	// The name of the FeatureGroup. The name must be unique within an AWS Region
-	// in an AWS account. The name:
+	// The name of the FeatureGroup. The name must be unique within an Amazon Web
+	// Services Region in an Amazon Web Services account. The name:
 	//
 	//    * Must start and end with an alphanumeric character.
 	//
@@ -29690,7 +29745,8 @@ type CreateFeatureGroupInput struct {
 	//
 	//    * The Amazon Simple Storage Service (Amazon S3) location of an OfflineStore.
 	//
-	//    * A configuration for an AWS Glue or AWS Hive data cataolgue.
+	//    * A configuration for an Amazon Web Services Glue or Amazon Web Services
+	//    Hive data cataolgue.
 	//
 	//    * An KMS encryption key to encrypt the Amazon S3 location used for OfflineStore.
 	//
@@ -29700,8 +29756,8 @@ type CreateFeatureGroupInput struct {
 	// You can turn the OnlineStore on or off by specifying True for the EnableOnlineStore
 	// flag in OnlineStoreConfig; the default value is False.
 	//
-	// You can also include an AWS KMS key ID (KMSKeyId) for at-rest encryption
-	// of the OnlineStore.
+	// You can also include an Amazon Web Services KMS key ID (KMSKeyId) for at-rest
+	// encryption of the OnlineStore.
 	OnlineStoreConfig *OnlineStoreConfig `type:"structure"`
 
 	// The name of the Feature whose value uniquely identifies a Record defined
@@ -30175,16 +30231,17 @@ type CreateHyperParameterTuningJobInput struct {
 
 	// The name of the tuning job. This name is the prefix for the names of all
 	// training jobs that this tuning job launches. The name must be unique within
-	// the same AWS account and AWS Region. The name must have 1 to 32 characters.
-	// Valid characters are a-z, A-Z, 0-9, and : + = @ _ % - (hyphen). The name
-	// is not case sensitive.
+	// the same Amazon Web Services account and Amazon Web Services Region. The
+	// name must have 1 to 32 characters. Valid characters are a-z, A-Z, 0-9, and
+	// : + = @ _ % - (hyphen). The name is not case sensitive.
 	//
 	// HyperParameterTuningJobName is a required field
 	HyperParameterTuningJobName *string `min:"1" type:"string" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	//
 	// Tags that you specify for the tuning job are also added to all training jobs
 	// that the tuning job launches.
@@ -30485,8 +30542,9 @@ type CreateImageVersionInput struct {
 	// BaseImage is a required field
 	BaseImage *string `min:"1" type:"string" required:"true"`
 
-	// A unique ID. If not specified, the AWS CLI and AWS SDKs, such as the SDK
-	// for Python (Boto3), add a unique value to the call.
+	// A unique ID. If not specified, the Amazon Web Services CLI and Amazon Web
+	// Services SDKs, such as the SDK for Python (Boto3), add a unique value to
+	// the call.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ImageName of the Image to create a version of.
@@ -30673,15 +30731,16 @@ type CreateLabelingJobInput struct {
 	LabelingJobAlgorithmsConfig *LabelingJobAlgorithmsConfig `type:"structure"`
 
 	// The name of the labeling job. This name is used to identify the job in a
-	// list of labeling jobs. Labeling job names must be unique within an AWS account
-	// and region. LabelingJobName is not case sensitive. For example, Example-job
-	// and example-job are considered the same labeling job name by Ground Truth.
+	// list of labeling jobs. Labeling job names must be unique within an Amazon
+	// Web Services account and region. LabelingJobName is not case sensitive. For
+	// example, Example-job and example-job are considered the same labeling job
+	// name by Ground Truth.
 	//
 	// LabelingJobName is a required field
 	LabelingJobName *string `min:"1" type:"string" required:"true"`
 
-	// The location of the output data and the AWS Key Management Service key ID
-	// for the key used to encrypt the output data, if any.
+	// The location of the output data and the Amazon Web Services Key Management
+	// Service key ID for the key used to encrypt the output data, if any.
 	//
 	// OutputConfig is a required field
 	OutputConfig *LabelingJobOutputConfig `type:"structure" required:"true"`
@@ -30700,7 +30759,7 @@ type CreateLabelingJobInput struct {
 
 	// An array of key/value pairs. For more information, see Using Cost Allocation
 	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -30875,8 +30934,8 @@ func (s *CreateLabelingJobOutput) SetLabelingJobArn(v string) *CreateLabelingJob
 type CreateModelBiasJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the bias job definition. The name must be unique within an AWS
-	// Region in the AWS account.
+	// The name of the bias job definition. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -30918,7 +30977,7 @@ type CreateModelBiasJobDefinitionInput struct {
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -31100,7 +31159,7 @@ type CreateModelExplainabilityJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model explainability job definition. The name must be unique
-	// within an AWS Region in the AWS account.
+	// within an Amazon Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -31143,7 +31202,7 @@ type CreateModelExplainabilityJobDefinitionInput struct {
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -31356,9 +31415,10 @@ type CreateModelInput struct {
 	// model is deployed for predictions.
 	PrimaryContainer *ContainerDefinition `type:"structure"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// A VpcConfig object that specifies the VPC that you want your model to connect
@@ -31519,8 +31579,8 @@ type CreateModelPackageGroupInput struct {
 	ModelPackageGroupName *string `min:"1" type:"string" required:"true"`
 
 	// A list of key value pairs associated with the model group. For more information,
-	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -31606,7 +31666,7 @@ func (s *CreateModelPackageGroupOutput) SetModelPackageGroupArn(v string) *Creat
 type CreateModelPackageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Whether to certify the model package for listing on AWS Marketplace.
+	// Whether to certify the model package for listing on Amazon Web Services Marketplace.
 	//
 	// This parameter is optional for unversioned models, and does not apply to
 	// versioned models.
@@ -31663,8 +31723,8 @@ type CreateModelPackageInput struct {
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
 
 	// A list of key value pairs associated with the model. For more information,
-	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 
 	// Specifies configurations for one or more transform jobs that Amazon SageMaker
@@ -31873,7 +31933,7 @@ type CreateModelQualityJobDefinitionInput struct {
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -32060,15 +32120,15 @@ type CreateMonitoringScheduleInput struct {
 	// MonitoringScheduleConfig is a required field
 	MonitoringScheduleConfig *MonitoringScheduleConfig `type:"structure" required:"true"`
 
-	// The name of the monitoring schedule. The name must be unique within an AWS
-	// Region within an AWS account.
+	// The name of the monitoring schedule. The name must be unique within an Amazon
+	// Web Services Region within an Amazon Web Services account.
 	//
 	// MonitoringScheduleName is a required field
 	MonitoringScheduleName *string `min:"1" type:"string" required:"true"`
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -32170,17 +32230,19 @@ type CreateNotebookInstanceInput struct {
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. These repositories are cloned at the same
-	// level as the default repository of your notebook instance. For more information,
+	// your account, or the URL of Git repositories in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. These repositories are cloned at the same level
+	// as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// A Git repository to associate with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. When you open a notebook instance, it opens
+	// in your account, or the URL of a Git repository in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
 	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
@@ -32201,11 +32263,11 @@ type CreateNotebookInstanceInput struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"InstanceType"`
 
-	// The Amazon Resource Name (ARN) of a AWS Key Management Service key that Amazon
-	// SageMaker uses to encrypt data on the storage volume attached to your notebook
-	// instance. The KMS key you provide must be enabled. For information, see Enabling
-	// and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
-	// in the AWS Key Management Service Developer Guide.
+	// The Amazon Resource Name (ARN) of a Amazon Web Services Key Management Service
+	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
+	// to your notebook instance. The KMS key you provide must be enabled. For information,
+	// see Enabling and Disabling Keys (https://docs.aws.amazon.com/kms/latest/developerguide/enabling-keys.html)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
 	// The name of a lifecycle configuration to associate with the notebook instance.
@@ -32218,12 +32280,12 @@ type CreateNotebookInstanceInput struct {
 	// NotebookInstanceName is a required field
 	NotebookInstanceName *string `type:"string" required:"true"`
 
-	// When you send any requests to AWS resources from the notebook instance, Amazon
-	// SageMaker assumes this role to perform tasks on your behalf. You must grant
-	// this role necessary permissions so Amazon SageMaker can perform these tasks.
-	// The policy must allow the Amazon SageMaker service principal (sagemaker.amazonaws.com)
-	// permissions to assume this role. For more information, see Amazon SageMaker
-	// Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
+	// When you send any requests to Amazon Web Services resources from the notebook
+	// instance, Amazon SageMaker assumes this role to perform tasks on your behalf.
+	// You must grant this role necessary permissions so Amazon SageMaker can perform
+	// these tasks. The policy must allow the Amazon SageMaker service principal
+	// (sagemaker.amazonaws.com) permissions to assume this role. For more information,
+	// see Amazon SageMaker Roles (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-roles.html).
 	//
 	// To be able to pass this role to Amazon SageMaker, the caller of this API
 	// must have the iam:PassRole permission.
@@ -32248,9 +32310,10 @@ type CreateNotebookInstanceInput struct {
 	// from your ML compute instance.
 	SubnetId *string `type:"string"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// The size, in GB, of the ML storage volume to attach to the notebook instance.
@@ -32870,8 +32933,8 @@ type CreateProcessingJobInput struct {
 	// An array of inputs configuring the data to download into the processing container.
 	ProcessingInputs []*ProcessingInput `type:"list"`
 
-	// The name of the processing job. The name must be unique within an AWS Region
-	// in the AWS account.
+	// The name of the processing job. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// ProcessingJobName is a required field
 	ProcessingJobName *string `min:"1" type:"string" required:"true"`
@@ -32897,7 +32960,7 @@ type CreateProcessingJobInput struct {
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -33092,14 +33155,15 @@ type CreateProjectInput struct {
 	ProjectName *string `min:"1" type:"string" required:"true"`
 
 	// The product ID and provisioning artifact ID to provision a service catalog.
-	// For information, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	// For information, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 	//
 	// ServiceCatalogProvisioningDetails is a required field
 	ServiceCatalogProvisioningDetails *ServiceCatalogProvisioningDetails `type:"structure" required:"true"`
 
 	// An array of key-value pairs that you want to use to organize and track your
-	// AWS resource costs. For more information, see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// Amazon Web Services resource costs. For more information, see Tagging Amazon
+	// Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -33358,16 +33422,17 @@ type CreateTrainingJobInput struct {
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// Configuration of storage locations for the Debugger TensorBoard output data.
 	TensorBoardOutputConfig *TensorBoardOutputConfig `type:"structure"`
 
-	// The name of the training job. The name must be unique within an AWS Region
-	// in an AWS account.
+	// The name of the training job. The name must be unique within an Amazon Web
+	// Services Region in an Amazon Web Services account.
 	//
 	// TrainingJobName is a required field
 	TrainingJobName *string `min:"1" type:"string" required:"true"`
@@ -33745,15 +33810,15 @@ type CreateTransformJobInput struct {
 	ModelClientConfig *ModelClientConfig `type:"structure"`
 
 	// The name of the model that you want to use for the transform job. ModelName
-	// must be the name of an existing Amazon SageMaker model within an AWS Region
-	// in an AWS account.
+	// must be the name of an existing Amazon SageMaker model within an Amazon Web
+	// Services Region in an Amazon Web Services account.
 	//
 	// ModelName is a required field
 	ModelName *string `type:"string" required:"true"`
 
 	// (Optional) An array of key-value pairs. For more information, see Using Cost
 	// Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 
 	// Describes the input source and the way the transform job consumes it.
@@ -33761,8 +33826,8 @@ type CreateTransformJobInput struct {
 	// TransformInput is a required field
 	TransformInput *TransformInput `type:"structure" required:"true"`
 
-	// The name of the transform job. The name must be unique within an AWS Region
-	// in an AWS account.
+	// The name of the transform job. The name must be unique within an Amazon Web
+	// Services Region in an Amazon Web Services account.
 	//
 	// TransformJobName is a required field
 	TransformJobName *string `min:"1" type:"string" required:"true"`
@@ -33995,8 +34060,8 @@ type CreateTrialComponentInput struct {
 	// search on the tags.
 	Tags []*Tag `type:"list"`
 
-	// The name of the component. The name must be unique in your AWS account and
-	// is not case-sensitive.
+	// The name of the component. The name must be unique in your Amazon Web Services
+	// account and is not case-sensitive.
 	//
 	// TrialComponentName is a required field
 	TrialComponentName *string `min:"1" type:"string" required:"true"`
@@ -34163,8 +34228,8 @@ type CreateTrialInput struct {
 	// on the tags.
 	Tags []*Tag `type:"list"`
 
-	// The name of the trial. The name must be unique in your AWS account and is
-	// not case-sensitive.
+	// The name of the trial. The name must be unique in your Amazon Web Services
+	// account and is not case-sensitive.
 	//
 	// TrialName is a required field
 	TrialName *string `min:"1" type:"string" required:"true"`
@@ -34282,10 +34347,10 @@ type CreateUserProfileInput struct {
 	// be specified.
 	SingleSignOnUserIdentifier *string `type:"string"`
 
-	// The username of the associated AWS Single Sign-On User for this UserProfile.
-	// If the Domain's AuthMode is SSO, this field is required, and must match a
-	// valid username of a user in your directory. If the Domain's AuthMode is not
-	// SSO, this field cannot be specified.
+	// The username of the associated Amazon Web Services Single Sign-On User for
+	// this UserProfile. If the Domain's AuthMode is SSO, this field is required,
+	// and must match a valid username of a user in your directory. If the Domain's
+	// AuthMode is not SSO, this field cannot be specified.
 	SingleSignOnUserValue *string `type:"string"`
 
 	// Each tag consists of a key and an optional value. Tag keys must be unique
@@ -34580,7 +34645,7 @@ type CreateWorkteamInput struct {
 	//
 	// For more information, see Resource Tag (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html)
 	// and Using Cost Allocation Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 
 	// The name of the workforce.
@@ -36567,7 +36632,7 @@ type DeleteFeatureGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the FeatureGroup you want to delete. The name must be unique
-	// within an AWS Region in an AWS account.
+	// within an Amazon Web Services Region in an Amazon Web Services account.
 	//
 	// FeatureGroupName is a required field
 	FeatureGroupName *string `min:"1" type:"string" required:"true"`
@@ -38324,7 +38389,7 @@ type DescribeAlgorithmOutput struct {
 	// AlgorithmStatusDetails is a required field
 	AlgorithmStatusDetails *AlgorithmStatusDetails `type:"structure" required:"true"`
 
-	// Whether the algorithm is certified to be listed in AWS Marketplace.
+	// Whether the algorithm is certified to be listed in Amazon Web Services Marketplace.
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// A timestamp specifying when the algorithm was created.
@@ -38983,9 +39048,9 @@ type DescribeAutoMLJobOutput struct {
 	// them, the values used are the ones you provide.
 	ResolvedAttributes *ResolvedAttributes `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that has read permission to the input data location and write
-	// permission to the output data location in Amazon S3.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access
+	// Management (IAM) role that has read permission to the input data location
+	// and write permission to the output data location in Amazon S3.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -39188,8 +39253,8 @@ type DescribeCodeRepositoryOutput struct {
 
 	// Configuration details about the repository, including the URL where the repository
 	// is located, the default branch, and the Amazon Resource Name (ARN) of the
-	// AWS Secrets Manager secret that contains the credentials used to access the
-	// repository.
+	// Amazon Web Services Secrets Manager secret that contains the credentials
+	// used to access the repository.
 	GitConfig *GitConfig `type:"structure"`
 
 	// The date and time that the repository was last changed.
@@ -39322,6 +39387,8 @@ type DescribeCompilationJobOutput struct {
 	// FailureReason is a required field
 	FailureReason *string `type:"string" required:"true"`
 
+	// The inference image to use when compiling a model. Specify an image only
+	// if the target device is a cloud instance.
 	InferenceImage *string `type:"string"`
 
 	// Information about the location in Amazon S3 of the input model artifacts,
@@ -39859,7 +39926,8 @@ type DescribeDeviceFleetOutput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) alias created in AWS Internet of Things (IoT).
+	// The Amazon Resource Name (ARN) alias created in Amazon Web Services Internet
+	// of Things (IoT).
 	IotRoleAlias *string `type:"string"`
 
 	// Timestamp of when the device fleet was last updated.
@@ -39872,8 +39940,8 @@ type DescribeDeviceFleetOutput struct {
 	// OutputConfig is a required field
 	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) that has access to AWS Internet of Things
-	// (IoT).
+	// The Amazon Resource Name (ARN) that has access to Amazon Web Services Internet
+	// of Things (IoT).
 	RoleArn *string `min:"20" type:"string"`
 }
 
@@ -40021,7 +40089,8 @@ type DescribeDeviceOutput struct {
 	// DeviceName is a required field
 	DeviceName *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Internet of Things (IoT) object thing name associated with the device.
+	// The Amazon Web Services Internet of Things (IoT) object thing name associated
+	// with the device.
 	IotThingName *string `type:"string"`
 
 	// The last heartbeat received from the device.
@@ -40192,8 +40261,8 @@ type DescribeDomainOutput struct {
 	// Deprecated: This property is deprecated, use KmsKeyId instead.
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
 
-	// The AWS KMS customer managed CMK used to encrypt the EFS volume attached
-	// to the domain.
+	// The Amazon Web Services KMS customer managed CMK used to encrypt the EFS
+	// volume attached to the domain.
 	KmsKeyId *string `type:"string"`
 
 	// The last modified time.
@@ -40583,8 +40652,8 @@ type DescribeEndpointConfigOutput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
-	// AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it on the
-	// ML storage volume attached to the instance.
+	// Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data when
+	// storing it on the ML storage volume attached to the instance.
 	KmsKeyId *string `type:"string"`
 
 	// An array of ProductionVariant objects, one for each model that you want to
@@ -41062,7 +41131,8 @@ type DescribeFeatureGroupOutput struct {
 	NextToken *string `type:"string" required:"true"`
 
 	// The configuration of the OfflineStore, inducing the S3 location of the OfflineStore,
-	// AWS Glue or AWS Hive data catalogue configurations, and the security configuration.
+	// Amazon Web Services Glue or Amazon Web Services Hive data catalogue configurations,
+	// and the security configuration.
 	OfflineStoreConfig *OfflineStoreConfig `type:"structure"`
 
 	// The status of the OfflineStore. Notifies you if replicating data into the
@@ -41262,8 +41332,8 @@ type DescribeFlowDefinitionOutput struct {
 	// OutputConfig is a required field
 	OutputConfig *FlowDefinitionOutputConfig `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) execution role for the flow definition.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access
+	// Management (IAM) execution role for the flow definition.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -42096,8 +42166,8 @@ type DescribeLabelingJobOutput struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
 
-	// The location of the job's output data and the AWS Key Management Service
-	// key ID for the key used to encrypt the output data, if any.
+	// The location of the job's output data and the Amazon Web Services Key Management
+	// Service key ID for the key used to encrypt the output data, if any.
 	//
 	// OutputConfig is a required field
 	OutputConfig *LabelingJobOutputConfig `type:"structure" required:"true"`
@@ -42112,9 +42182,10 @@ type DescribeLabelingJobOutput struct {
 	// are met, the job is automatically stopped.
 	StoppingConditions *LabelingJobStoppingConditions `type:"structure"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 }
 
@@ -42240,7 +42311,7 @@ type DescribeModelBiasJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model bias job definition. The name must be unique within
-	// an AWS Region in the AWS account.
+	// an Amazon Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -42291,8 +42362,8 @@ type DescribeModelBiasJobDefinitionOutput struct {
 	// JobDefinitionArn is a required field
 	JobDefinitionArn *string `type:"string" required:"true"`
 
-	// The name of the bias job definition. The name must be unique within an AWS
-	// Region in the AWS account.
+	// The name of the bias job definition. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -42323,9 +42394,9 @@ type DescribeModelBiasJobDefinitionOutput struct {
 	// Networking options for a model bias job.
 	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that has read permission to the input data location and write
-	// permission to the output data location in Amazon S3.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access
+	// Management (IAM) role that has read permission to the input data location
+	// and write permission to the output data location in Amazon S3.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -42414,7 +42485,7 @@ type DescribeModelExplainabilityJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the model explainability job definition. The name must be unique
-	// within an AWS Region in the AWS account.
+	// within an Amazon Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -42466,7 +42537,7 @@ type DescribeModelExplainabilityJobDefinitionOutput struct {
 	JobDefinitionArn *string `type:"string" required:"true"`
 
 	// The name of the explainability job definition. The name must be unique within
-	// an AWS Region in the AWS account.
+	// an Amazon Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -42498,9 +42569,9 @@ type DescribeModelExplainabilityJobDefinitionOutput struct {
 	// Networking options for a model explainability job.
 	NetworkConfig *MonitoringNetworkConfig `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// (IAM) role that has read permission to the input data location and write
-	// permission to the output data location in Amazon S3.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access
+	// Management (IAM) role that has read permission to the input data location
+	// and write permission to the output data location in Amazon S3.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -42901,7 +42972,8 @@ type DescribeModelPackageOutput struct {
 	// A description provided for the model approval.
 	ApprovalDescription *string `type:"string"`
 
-	// Whether the model package is certified for listing on AWS Marketplace.
+	// Whether the model package is certified for listing on Amazon Web Services
+	// Marketplace.
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
@@ -43098,8 +43170,8 @@ func (s *DescribeModelPackageOutput) SetValidationSpecification(v *ModelPackageV
 type DescribeModelQualityJobDefinitionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the model quality job. The name must be unique within an AWS
-	// Region in the AWS account.
+	// The name of the model quality job. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -43151,7 +43223,7 @@ type DescribeModelQualityJobDefinitionOutput struct {
 	JobDefinitionArn *string `type:"string" required:"true"`
 
 	// The name of the quality job definition. The name must be unique within an
-	// AWS Region in the AWS account.
+	// Amazon Web Services Region in the Amazon Web Services account.
 	//
 	// JobDefinitionName is a required field
 	JobDefinitionName *string `min:"1" type:"string" required:"true"`
@@ -43593,9 +43665,10 @@ type DescribeNotebookInstanceOutput struct {
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. These repositories are cloned at the same
-	// level as the default repository of your notebook instance. For more information,
+	// your account, or the URL of Git repositories in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. These repositories are cloned at the same level
+	// as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
@@ -43606,8 +43679,9 @@ type DescribeNotebookInstanceOutput struct {
 
 	// The Git repository associated with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. When you open a notebook instance, it opens
+	// in your account, or the URL of a Git repository in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
 	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
@@ -43627,8 +43701,8 @@ type DescribeNotebookInstanceOutput struct {
 	// The type of ML compute instance running on the notebook instance.
 	InstanceType *string `type:"string" enum:"InstanceType"`
 
-	// The AWS KMS key ID Amazon SageMaker uses to encrypt data when storing it
-	// on the ML storage volume attached to the instance.
+	// The Amazon Web Services KMS key ID Amazon SageMaker uses to encrypt data
+	// when storing it on the ML storage volume attached to the instance.
 	KmsKeyId *string `type:"string"`
 
 	// A timestamp. Use this parameter to retrieve the time when the notebook instance
@@ -44200,8 +44274,8 @@ func (s *DescribePipelineOutput) SetRoleArn(v string) *DescribePipelineOutput {
 type DescribeProcessingJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the processing job. The name must be unique within an AWS Region
-	// in the AWS account.
+	// The name of the processing job. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// ProcessingJobName is a required field
 	ProcessingJobName *string `min:"1" type:"string" required:"true"`
@@ -44290,8 +44364,8 @@ type DescribeProcessingJobOutput struct {
 	// ProcessingJobArn is a required field
 	ProcessingJobArn *string `type:"string" required:"true"`
 
-	// The name of the processing job. The name must be unique within an AWS Region
-	// in the AWS account.
+	// The name of the processing job. The name must be unique within an Amazon
+	// Web Services Region in the Amazon Web Services account.
 	//
 	// ProcessingJobName is a required field
 	ProcessingJobName *string `min:"1" type:"string" required:"true"`
@@ -44541,7 +44615,7 @@ type DescribeProjectOutput struct {
 	ServiceCatalogProvisionedProductDetails *ServiceCatalogProvisionedProductDetails `type:"structure"`
 
 	// Information used to provision a service catalog product. For information,
-	// see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	// see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 	//
 	// ServiceCatalogProvisioningDetails is a required field
 	ServiceCatalogProvisioningDetails *ServiceCatalogProvisioningDetails `type:"structure" required:"true"`
@@ -44846,8 +44920,8 @@ type DescribeTrainingJobOutput struct {
 	// The number of times to retry the job when the job fails due to an InternalServerError.
 	RetryStrategy *RetryStrategy `type:"structure"`
 
-	// The AWS Identity and Access Management (IAM) role configured for the training
-	// job.
+	// The Amazon Web Services Identity and Access Management (IAM) role configured
+	// for the training job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Provides detailed information about the state of the training job. For detailed
@@ -46081,9 +46155,10 @@ type DescribeWorkforceOutput struct {
 
 	// A single private workforce, which is automatically created when you create
 	// your first private work team. You can create one private work force in each
-	// AWS Region. By default, any workforce-related API operation used in a specific
-	// region will apply to the workforce created in that region. To learn how to
-	// create a private workforce, see Create a Private Workforce (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
+	// Amazon Web Services Region. By default, any workforce-related API operation
+	// used in a specific region will apply to the workforce created in that region.
+	// To learn how to create a private workforce, see Create a Private Workforce
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
 	//
 	// Workforce is a required field
 	Workforce *Workforce `type:"structure" required:"true"`
@@ -46243,7 +46318,7 @@ type Device struct {
 	// DeviceName is a required field
 	DeviceName *string `min:"1" type:"string" required:"true"`
 
-	// AWS Internet of Things (IoT) object name.
+	// Amazon Web Services Internet of Things (IoT) object name.
 	IotThingName *string `type:"string"`
 }
 
@@ -46406,7 +46481,8 @@ type DeviceSummary struct {
 	// DeviceName is a required field
 	DeviceName *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Internet of Things (IoT) object thing name associated with the device..
+	// The Amazon Web Services Internet of Things (IoT) object thing name associated
+	// with the device..
 	IotThingName *string `type:"string"`
 
 	// The last heartbeat received from the device.
@@ -46852,10 +46928,10 @@ func (s *EdgeModelSummary) SetModelVersion(v string) *EdgeModelSummary {
 type EdgeOutputConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data on the storage volume after compilation job. If you don't provide
-	// a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon S3 for
-	// your role's account.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data on the storage volume after
+	// compilation job. If you don't provide a KMS key ID, Amazon SageMaker uses
+	// the default KMS key for Amazon S3 for your role's account.
 	KmsKeyId *string `type:"string"`
 
 	// The configuration used to create deployment artifacts. Specify configuration
@@ -46868,11 +46944,11 @@ type EdgeOutputConfig struct {
 	//
 	//    * ComponentDescription (optional) - Description of the component.
 	//
-	//    * ComponentVersion (optional) - The version of the component. AWS IoT
-	//    Greengrass uses semantic versions for components. Semantic versions follow
-	//    a major.minor.patch number system. For example, version 1.0.0 represents
-	//    the first major release for a component. For more information, see the
-	//    semantic version specification (https://semver.org/).
+	//    * ComponentVersion (optional) - The version of the component. Amazon Web
+	//    Services IoT Greengrass uses semantic versions for components. Semantic
+	//    versions follow a major.minor.patch number system. For example, version
+	//    1.0.0 represents the first major release for a component. For more information,
+	//    see the semantic version specification (https://semver.org/).
 	//
 	//    * PlatformOS (optional) - The name of the operating system for the platform.
 	//    Supported platforms include Windows and Linux.
@@ -46883,7 +46959,7 @@ type EdgeOutputConfig struct {
 	PresetDeploymentConfig *string `type:"string"`
 
 	// The deployment type SageMaker Edge Manager will create. Currently only supports
-	// AWS IoT Greengrass Version 2 components.
+	// Amazon Web Services IoT Greengrass Version 2 components.
 	PresetDeploymentType *string `type:"string" enum:"EdgePresetDeploymentType"`
 
 	// The Amazon Simple Storage (S3) bucker URI.
@@ -47046,7 +47122,7 @@ type EdgePresetDeploymentOutput struct {
 	StatusMessage *string `type:"string"`
 
 	// The deployment type created by SageMaker Edge Manager. Currently only supports
-	// AWS IoT Greengrass Version 2 components.
+	// Amazon Web Services IoT Greengrass Version 2 components.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"EdgePresetDeploymentType"`
@@ -47162,8 +47238,8 @@ type Endpoint struct {
 	ProductionVariants []*ProductionVariantSummary `min:"1" type:"list"`
 
 	// A list of the tags associated with the endpoint. For more information, see
-	// Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -47949,16 +48025,17 @@ type FeatureGroup struct {
 	// Provide an OfflineStoreConfig in a request to CreateFeatureGroup to create
 	// an OfflineStore.
 	//
-	// To encrypt an OfflineStore using at rest data encryption, specify AWS Key
-	// Management Service (KMS) key ID, or KMSKeyId, in S3StorageConfig.
+	// To encrypt an OfflineStore using at rest data encryption, specify Amazon
+	// Web Services Key Management Service (KMS) key ID, or KMSKeyId, in S3StorageConfig.
 	OfflineStoreConfig *OfflineStoreConfig `type:"structure"`
 
 	// The status of OfflineStore.
 	OfflineStoreStatus *OfflineStoreStatus `type:"structure"`
 
-	// Use this to specify the AWS Key Management Service (KMS) Key ID, or KMSKeyId,
-	// for at rest data encryption. You can turn OnlineStore on or off by specifying
-	// the EnableOnlineStore flag at General Assembly; the default value is False.
+	// Use this to specify the Amazon Web Services Key Management Service (KMS)
+	// Key ID, or KMSKeyId, for at rest data encryption. You can turn OnlineStore
+	// on or off by specifying the EnableOnlineStore flag at General Assembly; the
+	// default value is False.
 	OnlineStoreConfig *OnlineStoreConfig `type:"structure"`
 
 	// The name of the Feature whose value uniquely identifies a Record defined
@@ -48978,7 +49055,8 @@ func (s *GetSearchSuggestionsOutput) SetPropertyNameSuggestions(v []*PropertyNam
 	return s
 }
 
-// Specifies configuration details for a Git repository in your AWS account.
+// Specifies configuration details for a Git repository in your Amazon Web Services
+// account.
 type GitConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -48990,9 +49068,10 @@ type GitConfig struct {
 	// RepositoryUrl is a required field
 	RepositoryUrl *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains
-	// the credentials used to access the git repository. The secret must have a
-	// staging label of AWSCURRENT and must be in the following format:
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager
+	// secret that contains the credentials used to access the git repository. The
+	// secret must have a staging label of AWSCURRENT and must be in the following
+	// format:
 	//
 	// {"username": UserName, "password": Password}
 	SecretArn *string `min:"1" type:"string"`
@@ -49050,9 +49129,10 @@ func (s *GitConfig) SetSecretArn(v string) *GitConfig {
 type GitConfigForUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Secrets Manager secret that contains
-	// the credentials used to access the git repository. The secret must have a
-	// staging label of AWSCURRENT and must be in the following format:
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager
+	// secret that contains the credentials used to access the git repository. The
+	// secret must have a staging label of AWSCURRENT and must be in the following
+	// format:
 	//
 	// {"username": UserName, "password": Password}
 	SecretArn *string `min:"1" type:"string"`
@@ -50258,7 +50338,7 @@ type HumanTaskConfig struct {
 	//
 	//    * If you choose a private or vendor workforce, the default value is 10
 	//    days (864,000 seconds). For most users, the maximum is also 10 days. If
-	//    you want to change this limit, contact AWS Support.
+	//    you want to change this limit, contact Amazon Web Services Support.
 	TaskAvailabilityLifetimeInSeconds *int64 `min:"60" type:"integer"`
 
 	// A description of the task for your human workers.
@@ -50285,7 +50365,7 @@ type HumanTaskConfig struct {
 	//    * For 3D point cloud (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud.html)
 	//    and video frame (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-video.html)
 	//    labeling jobs, the maximum is 7 days (604,800 seconds). If you want to
-	//    change these limits, contact AWS Support.
+	//    change these limits, contact Amazon Web Services Support.
 	//
 	// TaskTimeLimitInSeconds is a required field
 	TaskTimeLimitInSeconds *int64 `min:"30" type:"integer" required:"true"`
@@ -52803,7 +52883,8 @@ type LabelingJobForWorkteamSummary struct {
 	// The configured number of workers per data object.
 	NumberOfHumanWorkersPerDataObject *int64 `min:"1" type:"integer"`
 
-	// The AWS account ID of the account used to start the labeling job.
+	// The Amazon Web Services account ID of the account used to start the labeling
+	// job.
 	//
 	// WorkRequesterAccountId is a required field
 	WorkRequesterAccountId *string `type:"string" required:"true"`
@@ -52948,15 +53029,16 @@ func (s *LabelingJobOutput) SetOutputDatasetS3Uri(v string) *LabelingJobOutput {
 type LabelingJobOutputConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service ID of the key used to encrypt the output data,
-	// if any.
+	// The Amazon Web Services Key Management Service ID of the key used to encrypt
+	// the output data, if any.
 	//
 	// If you provide your own KMS key ID, you must add the required permissions
 	// to your KMS key described in Encrypt Output Data and Storage Volume with
-	// AWS KMS (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html#sms-security-kms-permissions).
+	// Amazon Web Services KMS (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security-permission.html#sms-security-kms-permissions).
 	//
-	// If you don't provide a KMS key ID, Amazon SageMaker uses the default AWS
-	// KMS key for Amazon S3 for your role's account to encrypt your output data.
+	// If you don't provide a KMS key ID, Amazon SageMaker uses the default Amazon
+	// Web Services KMS key for Amazon S3 for your role's account to encrypt your
+	// output data.
 	//
 	// If you use a bucket policy with an s3:PutObject permission that only allows
 	// objects with server-side encryption, set the condition key of s3:x-amz-server-side-encryption
@@ -53028,16 +53110,17 @@ func (s *LabelingJobOutputConfig) SetSnsTopicArn(v string) *LabelingJobOutputCon
 type LabelingJobResourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data on the storage volume attached to the ML compute instance(s)
-	// that run the training and inference jobs used for automated data labeling.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
+	// to the ML compute instance(s) that run the training and inference jobs used
+	// for automated data labeling.
 	//
 	// You can only specify a VolumeKmsKeyId when you create a labeling job with
 	// automated data labeling enabled using the API operation CreateLabelingJob.
-	// You cannot specify an AWS KMS customer managed CMK to encrypt the storage
-	// volume used for automated data labeling model training and inference when
-	// you create a labeling job using the console. To learn more, see Output Data
-	// and Storage Volume Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html).
+	// You cannot specify an Amazon Web Services KMS customer managed CMK to encrypt
+	// the storage volume used for automated data labeling model training and inference
+	// when you create a labeling job using the console. To learn more, see Output
+	// Data and Storage Volume Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html).
 	//
 	// The VolumeKmsKeyId can be any of the following formats:
 	//
@@ -54595,8 +54678,8 @@ type ListCodeRepositoriesOutput struct {
 	//    * Last modified time
 	//
 	//    * Configuration information, including the URL location of the repository
-	//    and the ARN of the AWS Secrets Manager secret that contains the credentials
-	//    used to access the repository.
+	//    and the ARN of the Amazon Web Services Secrets Manager secret that contains
+	//    the credentials used to access the repository.
 	//
 	// CodeRepositorySummaryList is a required field
 	CodeRepositorySummaryList []*CodeRepositorySummary `type:"list" required:"true"`
@@ -57446,7 +57529,7 @@ func (s *ListModelPackageGroupsInput) SetSortOrder(v string) *ListModelPackageGr
 type ListModelPackageGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of summaries of the model groups in your AWS account.
+	// A list of summaries of the model groups in your Amazon Web Services account.
 	//
 	// ModelPackageGroupSummaryList is a required field
 	ModelPackageGroupSummaryList []*ModelPackageGroupSummary `type:"list" required:"true"`
@@ -61592,9 +61675,10 @@ type ModelPackage struct {
 	// A description provided when the model approval is set.
 	ApprovalDescription *string `type:"string"`
 
-	// Whether the model package is to be certified to be listed on AWS Marketplace.
-	// For information about listing model packages on AWS Marketplace, see List
-	// Your Algorithm or Model Package on AWS Marketplace (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-mkt-list.html).
+	// Whether the model package is to be certified to be listed on Amazon Web Services
+	// Marketplace. For information about listing model packages on Amazon Web Services
+	// Marketplace, see List Your Algorithm or Model Package on Amazon Web Services
+	// Marketplace (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-mkt-list.html).
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
@@ -61664,8 +61748,8 @@ type ModelPackage struct {
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
 
 	// A list of the tags associated with the model package. For more information,
-	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 
 	// Specifies batch transform jobs that Amazon SageMaker runs to validate your
@@ -61810,6 +61894,11 @@ type ModelPackageContainerDefinition struct {
 	// The DNS host name for the Docker container.
 	ContainerHostname *string `type:"string"`
 
+	// The environment variables to set in the Docker container. Each key and value
+	// in the Environment string to string map can have length of up to 1024. We
+	// support up to 16 entries in the map.
+	Environment map[string]*string `type:"map"`
+
 	// The Amazon EC2 Container Registry (Amazon ECR) path where inference code
 	// is stored.
 	//
@@ -61834,7 +61923,7 @@ type ModelPackageContainerDefinition struct {
 	// the model package.
 	ModelDataUrl *string `type:"string"`
 
-	// The AWS Marketplace product ID of the model package.
+	// The Amazon Web Services Marketplace product ID of the model package.
 	ProductId *string `type:"string"`
 }
 
@@ -61864,6 +61953,12 @@ func (s *ModelPackageContainerDefinition) Validate() error {
 // SetContainerHostname sets the ContainerHostname field's value.
 func (s *ModelPackageContainerDefinition) SetContainerHostname(v string) *ModelPackageContainerDefinition {
 	s.ContainerHostname = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *ModelPackageContainerDefinition) SetEnvironment(v map[string]*string) *ModelPackageContainerDefinition {
+	s.Environment = v
 	return s
 }
 
@@ -61927,8 +62022,8 @@ type ModelPackageGroup struct {
 	ModelPackageGroupStatus *string `type:"string" enum:"ModelPackageGroupStatus"`
 
 	// A list of the tags associated with the model group. For more information,
-	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -62239,7 +62334,7 @@ func (s *ModelPackageSummary) SetModelPackageVersion(v int64) *ModelPackageSumma
 // in the process of validating the model package.
 //
 // The data provided in the validation profile is made available to your buyers
-// on AWS Marketplace.
+// on Amazon Web Services Marketplace.
 type ModelPackageValidationProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -62867,9 +62962,9 @@ type MonitoringClusterConfig struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"ProcessingInstanceType"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data on the storage volume attached to the ML compute instance(s)
-	// that run the model monitoring job.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
+	// to the ML compute instance(s) that run the model monitoring job.
 	VolumeKmsKeyId *string `type:"string"`
 
 	// The size of the ML storage volume, in gigabytes, that you want to provision.
@@ -63500,8 +63595,9 @@ func (s *MonitoringOutput) SetS3Output(v *MonitoringS3Output) *MonitoringOutput 
 type MonitoringOutputConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the model artifacts at rest using
+	// Amazon S3 server-side encryption.
 	KmsKeyId *string `type:"string"`
 
 	// Monitoring outputs for monitoring jobs. This is where the output of the periodic
@@ -63714,8 +63810,8 @@ type MonitoringSchedule struct {
 	MonitoringType *string `type:"string" enum:"MonitoringType"`
 
 	// A list of the tags associated with the monitoring schedlue. For more information,
-	// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference Guide.
+	// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -64066,12 +64162,22 @@ func (s *MultiModelConfig) SetModelCacheSetting(v string) *MultiModelConfig {
 	return s
 }
 
+// The VpcConfig configuration object that specifies the VPC that you want the
+// compilation jobs to connect to. For more information on controlling access
+// to your Amazon S3 buckets used for compilation job, see Give Amazon SageMaker
+// Compilation Jobs Access to Resources in Your Amazon VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/neo-vpc.html).
 type NeoVpcConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The VPC security group IDs. IDs have the form of sg-xxxxxxxx. Specify the
+	// security groups for the VPC that is specified in the Subnets field.
+	//
 	// SecurityGroupIds is a required field
 	SecurityGroupIds []*string `min:"1" type:"list" required:"true"`
 
+	// The ID of the subnets in the VPC that you want to connect the compilation
+	// job to for accessing the model in Amazon S3.
+	//
 	// Subnets is a required field
 	Subnets []*string `min:"1" type:"list" required:"true"`
 }
@@ -64382,9 +64488,10 @@ type NotebookInstanceSummary struct {
 
 	// An array of up to three Git repositories associated with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. These repositories are cloned at the same
-	// level as the default repository of your notebook instance. For more information,
+	// your account, or the URL of Git repositories in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. These repositories are cloned at the same level
+	// as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
@@ -64394,8 +64501,9 @@ type NotebookInstanceSummary struct {
 
 	// The Git repository associated with the notebook instance as its default code
 	// repository. This can be either the name of a Git repository stored as a resource
-	// in your account, or the URL of a Git repository in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. When you open a notebook instance, it opens
+	// in your account, or the URL of a Git repository in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
 	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
@@ -64581,8 +64689,8 @@ func (s *ObjectiveStatusCounters) SetSucceeded(v int64) *ObjectiveStatusCounters
 // Provide an OfflineStoreConfig in a request to CreateFeatureGroup to create
 // an OfflineStore.
 //
-// To encrypt an OfflineStore using at rest data encryption, specify AWS Key
-// Management Service (KMS) key ID, or KMSKeyId, in S3StorageConfig.
+// To encrypt an OfflineStore using at rest data encryption, specify Amazon
+// Web Services Key Management Service (KMS) key ID, or KMSKeyId, in S3StorageConfig.
 type OfflineStoreConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -64590,8 +64698,8 @@ type OfflineStoreConfig struct {
 	// is created.
 	DataCatalogConfig *DataCatalogConfig `type:"structure"`
 
-	// Set to True to disable the automatic creation of an AWS Glue table when configuring
-	// an OfflineStore.
+	// Set to True to disable the automatic creation of an Amazon Web Services Glue
+	// table when configuring an OfflineStore.
 	DisableGlueTableCreation *bool `type:"boolean"`
 
 	// The Amazon Simple Storage (Amazon S3) location of OfflineStore.
@@ -64954,9 +65062,10 @@ func (s *OidcMemberDefinition) SetGroups(v []*string) *OidcMemberDefinition {
 	return s
 }
 
-// Use this to specify the AWS Key Management Service (KMS) Key ID, or KMSKeyId,
-// for at rest data encryption. You can turn OnlineStore on or off by specifying
-// the EnableOnlineStore flag at General Assembly; the default value is False.
+// Use this to specify the Amazon Web Services Key Management Service (KMS)
+// Key ID, or KMSKeyId, for at rest data encryption. You can turn OnlineStore
+// on or off by specifying the EnableOnlineStore flag at General Assembly; the
+// default value is False.
 type OnlineStoreConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -64996,9 +65105,9 @@ func (s *OnlineStoreConfig) SetSecurityConfig(v *OnlineStoreSecurityConfig) *Onl
 type OnlineStoreSecurityConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key that SageMaker Feature
-	// Store uses to encrypt the Amazon S3 objects at rest using Amazon S3 server-side
-	// encryption.
+	// The ID of the Amazon Web Services Key Management Service (Amazon Web Services
+	// KMS) key that SageMaker Feature Store uses to encrypt the Amazon S3 objects
+	// at rest using Amazon S3 server-side encryption.
 	//
 	// The caller (either IAM user or IAM role) of CreateFeatureGroup must have
 	// below permissions to the OnlineStore KmsKeyId:
@@ -65234,9 +65343,10 @@ func (s *OutputConfig) SetTargetPlatform(v *TargetPlatform) *OutputConfig {
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
-	// The KmsKeyId can be any of the following formats:
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the model artifacts at rest using
+	// Amazon S3 server-side encryption. The KmsKeyId can be any of the following
+	// formats:
 	//
 	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -65258,8 +65368,9 @@ type OutputDataConfig struct {
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateTrainingJob, CreateTransformJob, or CreateHyperParameterTuningJob
-	// requests. For more information, see Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
-	// in the AWS Key Management Service Developer Guide.
+	// requests. For more information, see Using Key Policies in Amazon Web Services
+	// KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
 	// Identifies the S3 path where you want Amazon SageMaker to store the model
@@ -66258,9 +66369,9 @@ type ProcessingClusterConfig struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"ProcessingInstanceType"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data on the storage volume attached to the ML compute instance(s)
-	// that run the processing job.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data on the storage volume attached
+	// to the ML compute instance(s) that run the processing job.
 	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
@@ -66558,7 +66669,7 @@ type ProcessingJob struct {
 
 	// An array of key-value pairs. For more information, see Using Cost Allocation
 	// Tags (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-whatURL)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Amazon Web Services Billing and Cost Management User Guide.
 	Tags []*Tag `type:"list"`
 
 	// The ARN of the training job associated with this processing job.
@@ -66912,10 +67023,10 @@ func (s *ProcessingOutput) SetS3Output(v *ProcessingS3Output) *ProcessingOutput 
 type ProcessingOutputConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt the processing job output. KmsKeyId can be an ID of a KMS key, ARN
-	// of a KMS key, alias of a KMS key, or alias of a KMS key. The KmsKeyId is
-	// applied to all outputs.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the processing job output. KmsKeyId
+	// can be an ID of a KMS key, ARN of a KMS key, alias of a KMS key, or alias
+	// of a KMS key. The KmsKeyId is applied to all outputs.
 	KmsKeyId *string `type:"string"`
 
 	// An array of outputs configuring the data to upload from the processing container.
@@ -67376,9 +67487,10 @@ type ProductionVariantCoreDumpConfig struct {
 	// DestinationS3Uri is a required field
 	DestinationS3Uri *string `type:"string" required:"true"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt the core dump data at rest using Amazon S3 server-side encryption.
-	// The KmsKeyId can be any of the following formats:
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the core dump data at rest using
+	// Amazon S3 server-side encryption. The KmsKeyId can be any of the following
+	// formats:
 	//
 	//    * // KMS Key ID "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -67400,8 +67512,8 @@ type ProductionVariantCoreDumpConfig struct {
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateEndpoint and UpdateEndpoint requests. For more information,
-	// see Using Key Policies in AWS KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
-	// in the AWS Key Management Service Developer Guide.
+	// see Using Key Policies in Amazon Web Services KMS (https://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 }
 
@@ -67950,7 +68062,7 @@ func (s *PropertyNameSuggestion) SetPropertyName(v string) *PropertyNameSuggesti
 }
 
 // A key value pair used when you provision a project as a service catalog product.
-// For information, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+// For information, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ProvisioningParameter struct {
 	_ struct{} `type:"structure"`
 
@@ -68333,8 +68445,8 @@ type RedshiftDatasetDefinition struct {
 	// DbUser is a required field
 	DbUser *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt data from a Redshift execution.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt data from a Redshift execution.
 	KmsKeyId *string `type:"string"`
 
 	// The compression used for Redshift query results.
@@ -68802,11 +68914,12 @@ func (s *RenderingError) SetMessage(v string) *RenderingError {
 type RepositoryAuthConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Lambda function that provides credentials
-	// to authenticate to the private Docker registry where your model image is
-	// hosted. For information about how to create an AWS Lambda function, see Create
-	// a Lambda function with the console (https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html)
-	// in the AWS Lambda Developer Guide.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services Lambda function
+	// that provides credentials to authenticate to the private Docker registry
+	// where your model image is hosted. For information about how to create an
+	// Amazon Web Services Lambda function, see Create a Lambda function with the
+	// console (https://docs.aws.amazon.com/lambda/latest/dg/getting-started-create-function.html)
+	// in the Amazon Web Services Lambda Developer Guide.
 	//
 	// RepositoryCredentialsProviderArn is a required field
 	RepositoryCredentialsProviderArn *string `min:"1" type:"string" required:"true"`
@@ -68903,8 +69016,9 @@ type ResourceConfig struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TrainingInstanceType"`
 
-	// The AWS KMS key that Amazon SageMaker uses to encrypt data on the storage
-	// volume attached to the ML compute instance(s) that run the training job.
+	// The Amazon Web Services KMS key that Amazon SageMaker uses to encrypt data
+	// on the storage volume attached to the ML compute instance(s) that run the
+	// training job.
 	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
@@ -69478,8 +69592,8 @@ func (s *S3DataSource) SetS3Uri(v string) *S3DataSource {
 type S3StorageConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Key Management Service (KMS) key ID of the key used to encrypt any
-	// objects written into the OfflineStore S3 location.
+	// The Amazon Web Services Key Management Service (KMS) key ID of the key used
+	// to encrypt any objects written into the OfflineStore S3 location.
 	//
 	// The IAM roleARN that is passed as a parameter to CreateFeatureGroup must
 	// have below permissions to the KmsKeyId:
@@ -70301,7 +70415,7 @@ func (s *SendPipelineExecutionStepSuccessOutput) SetPipelineExecutionArn(v strin
 }
 
 // Details of a provisioned service catalog product. For information about service
-// catalog, see What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+// catalog, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ServiceCatalogProvisionedProductDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -70355,7 +70469,7 @@ func (s *ServiceCatalogProvisionedProductDetails) SetProvisionedProductStatusMes
 }
 
 // Details that you specify to provision a service catalog product. For information
-// about service catalog, see .What is AWS Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+// about service catalog, see .What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ServiceCatalogProvisioningDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -70457,9 +70571,9 @@ type SharingSettings struct {
 	// default is Disabled.
 	NotebookOutputOption *string `type:"string" enum:"NotebookOutputOption"`
 
-	// When NotebookOutputOption is Allowed, the AWS Key Management Service (KMS)
-	// encryption key ID used to encrypt the notebook cell output in the Amazon
-	// S3 bucket.
+	// When NotebookOutputOption is Allowed, the Amazon Web Services Key Management
+	// Service (KMS) encryption key ID used to encrypt the notebook cell output
+	// in the Amazon S3 bucket.
 	S3KmsKeyId *string `type:"string"`
 
 	// When NotebookOutputOption is Allowed, the Amazon S3 bucket used to store
@@ -70549,13 +70663,13 @@ func (s *ShuffleConfig) SetSeed(v int64) *ShuffleConfig {
 
 // Specifies an algorithm that was used to create the model package. The algorithm
 // must be either an algorithm resource in your Amazon SageMaker account or
-// an algorithm in AWS Marketplace that you are subscribed to.
+// an algorithm in Amazon Web Services Marketplace that you are subscribed to.
 type SourceAlgorithm struct {
 	_ struct{} `type:"structure"`
 
 	// The name of an algorithm that was used to create the model package. The algorithm
 	// must be either an algorithm resource in your Amazon SageMaker account or
-	// an algorithm in AWS Marketplace that you are subscribed to.
+	// an algorithm in Amazon Web Services Marketplace that you are subscribed to.
 	//
 	// AlgorithmName is a required field
 	AlgorithmName *string `min:"1" type:"string" required:"true"`
@@ -71739,18 +71853,18 @@ func (s *SuggestionQuery) SetPropertyNameQuery(v *PropertyNameQuery) *Suggestion
 }
 
 // A tag object that consists of a key and an optional value, used to manage
-// metadata for Amazon SageMaker AWS resources.
+// metadata for Amazon SageMaker Amazon Web Services resources.
 //
 // You can add tags to notebook instances, training jobs, hyperparameter tuning
 // jobs, batch transform jobs, models, labeling jobs, work teams, endpoint configurations,
 // and endpoints. For more information on adding tags to Amazon SageMaker resources,
 // see AddTags.
 //
-// For more information on adding metadata to your AWS resources with tagging,
-// see Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
-// For advice on best practices for managing AWS resources with tagging, see
-// Tagging Best Practices: Implement an Effective AWS Resource Tagging Strategy
-// (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf).
+// For more information on adding metadata to your Amazon Web Services resources
+// with tagging, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+// For advice on best practices for managing Amazon Web Services resources with
+// tagging, see Tagging Best Practices: Implement an Effective Amazon Web Services
+// Resource Tagging Strategy (https://d1.awsstatic.com/whitepapers/aws-tagging-best-practices.pdf).
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -72125,8 +72239,8 @@ type TrainingJob struct {
 	// The number of times to retry the job when the job fails due to an InternalServerError.
 	RetryStrategy *RetryStrategy `type:"structure"`
 
-	// The AWS Identity and Access Management (IAM) role configured for the training
-	// job.
+	// The Amazon Web Services Identity and Access Management (IAM) role configured
+	// for the training job.
 	RoleArn *string `min:"20" type:"string"`
 
 	// Provides detailed information about the state of the training job. For detailed
@@ -72194,9 +72308,10 @@ type TrainingJob struct {
 	// window to save the model artifacts, so the results of training are not lost.
 	StoppingCondition *StoppingCondition `type:"structure"`
 
-	// An array of key-value pairs. You can use tags to categorize your AWS resources
-	// in different ways, for example, by purpose, owner, or environment. For more
-	// information, see Tagging AWS Resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
 	Tags []*Tag `type:"list"`
 
 	// Configuration of storage locations for the Debugger TensorBoard output data.
@@ -73628,9 +73743,10 @@ type TransformOutput struct {
 	// every transformed record, specify Line.
 	AssembleWith *string `type:"string" enum:"AssemblyType"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt the model artifacts at rest using Amazon S3 server-side encryption.
-	// The KmsKeyId can be any of the following formats:
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the model artifacts at rest using
+	// Amazon S3 server-side encryption. The KmsKeyId can be any of the following
+	// formats:
 	//
 	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
 	//
@@ -73647,8 +73763,8 @@ type TransformOutput struct {
 	//
 	// The KMS key policy must grant permission to the IAM role that you specify
 	// in your CreateModel request. For more information, see Using Key Policies
-	// in AWS KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
-	// in the AWS Key Management Service Developer Guide.
+	// in Amazon Web Services KMS (http://docs.aws.amazon.com/kms/latest/developerguide/key-policies.html)
+	// in the Amazon Web Services Key Management Service Developer Guide.
 	KmsKeyId *string `type:"string"`
 
 	// The Amazon S3 path where you want Amazon SageMaker to store the results of
@@ -73735,9 +73851,9 @@ type TransformResources struct {
 	// InstanceType is a required field
 	InstanceType *string `type:"string" required:"true" enum:"TransformInstanceType"`
 
-	// The AWS Key Management Service (AWS KMS) key that Amazon SageMaker uses to
-	// encrypt model data on the storage volume attached to the ML compute instance(s)
-	// that run the batch transform job.
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt model data on the storage volume
+	// attached to the ML compute instance(s) that run the batch transform job.
 	//
 	// Certain Nitro-based instances include local storage, dependent on the instance
 	// type. Local storage volumes are encrypted using a hardware module on the
@@ -74896,8 +75012,8 @@ type UiConfig struct {
 	// Use this parameter when you are creating a labeling job for 3D point cloud
 	// and video fram labeling jobs. Use your labeling job task type to select one
 	// of the following ARNs and use it with this parameter when you create a labeling
-	// job. Replace aws-region with the AWS region you are creating your labeling
-	// job in.
+	// job. Replace aws-region with the Amazon Web Services region you are creating
+	// your labeling job in.
 	//
 	// 3D Point Cloud HumanTaskUiArns
 	//
@@ -75308,9 +75424,9 @@ type UpdateCodeRepositoryInput struct {
 	CodeRepositoryName *string `min:"1" type:"string" required:"true"`
 
 	// The configuration of the git repository, including the URL and the Amazon
-	// Resource Name (ARN) of the AWS Secrets Manager secret that contains the credentials
-	// used to access the repository. The secret must have a staging label of AWSCURRENT
-	// and must be in the following format:
+	// Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that
+	// contains the credentials used to access the repository. The secret must have
+	// a staging label of AWSCURRENT and must be in the following format:
 	//
 	// {"username": UserName, "password": Password}
 	GitConfig *GitConfigForUpdate `type:"structure"`
@@ -75486,8 +75602,8 @@ type UpdateDeviceFleetInput struct {
 	// DeviceFleetName is a required field
 	DeviceFleetName *string `min:"1" type:"string" required:"true"`
 
-	// Whether to create an AWS IoT Role Alias during device fleet creation. The
-	// name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
+	// Whether to create an Amazon Web Services IoT Role Alias during device fleet
+	// creation. The name of the role alias generated will match this pattern: "SageMakerEdge-{DeviceFleetName}".
 	//
 	// For example, if your device fleet is called "demo-fleet", the name of the
 	// role alias will be "SageMakerEdge-demo-fleet".
@@ -76254,8 +76370,8 @@ type UpdateMonitoringScheduleInput struct {
 	// MonitoringScheduleConfig is a required field
 	MonitoringScheduleConfig *MonitoringScheduleConfig `type:"structure" required:"true"`
 
-	// The name of the monitoring schedule. The name must be unique within an AWS
-	// Region within an AWS account.
+	// The name of the monitoring schedule. The name must be unique within an Amazon
+	// Web Services Region within an Amazon Web Services account.
 	//
 	// MonitoringScheduleName is a required field
 	MonitoringScheduleName *string `min:"1" type:"string" required:"true"`
@@ -76343,18 +76459,19 @@ type UpdateNotebookInstanceInput struct {
 
 	// An array of up to three Git repositories to associate with the notebook instance.
 	// These can be either the names of Git repositories stored as resources in
-	// your account, or the URL of Git repositories in AWS CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
-	// or in any other Git repository. These repositories are cloned at the same
-	// level as the default repository of your notebook instance. For more information,
+	// your account, or the URL of Git repositories in Amazon Web Services CodeCommit
+	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
+	// in any other Git repository. These repositories are cloned at the same level
+	// as the default repository of your notebook instance. For more information,
 	// see Associating Git Repositories with Amazon SageMaker Notebook Instances
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	AdditionalCodeRepositories []*string `type:"list"`
 
 	// The Git repository to associate with the notebook instance as its default
 	// code repository. This can be either the name of a Git repository stored as
-	// a resource in your account, or the URL of a Git repository in AWS CodeCommit
-	// (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html) or
-	// in any other Git repository. When you open a notebook instance, it opens
+	// a resource in your account, or the URL of a Git repository in Amazon Web
+	// Services CodeCommit (https://docs.aws.amazon.com/codecommit/latest/userguide/welcome.html)
+	// or in any other Git repository. When you open a notebook instance, it opens
 	// in the directory that contains this repository. For more information, see
 	// Associating Git Repositories with Amazon SageMaker Notebook Instances (https://docs.aws.amazon.com/sagemaker/latest/dg/nbi-git-repo.html).
 	DefaultCodeRepository *string `min:"1" type:"string"`
@@ -77347,9 +77464,10 @@ type UpdateWorkforceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A single private workforce. You can create one private work force in each
-	// AWS Region. By default, any workforce-related API operation used in a specific
-	// region will apply to the workforce created in that region. To learn how to
-	// create a private workforce, see Create a Private Workforce (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
+	// Amazon Web Services Region. By default, any workforce-related API operation
+	// used in a specific region will apply to the workforce created in that region.
+	// To learn how to create a private workforce, see Create a Private Workforce
+	// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
 	//
 	// Workforce is a required field
 	Workforce *Workforce `type:"structure" required:"true"`
@@ -77824,9 +77942,10 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 
 // A single private workforce, which is automatically created when you create
 // your first private work team. You can create one private work force in each
-// AWS Region. By default, any workforce-related API operation used in a specific
-// region will apply to the workforce created in that region. To learn how to
-// create a private workforce, see Create a Private Workforce (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
+// Amazon Web Services Region. By default, any workforce-related API operation
+// used in a specific region will apply to the workforce created in that region.
+// To learn how to create a private workforce, see Create a Private Workforce
+// (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-workforce-create-private.html).
 type Workforce struct {
 	_ struct{} `type:"structure"`
 
