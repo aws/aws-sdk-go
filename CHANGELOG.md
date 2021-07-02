@@ -1,3 +1,14 @@
+Release v1.39.0 (2021-07-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API
+  * This release removes network-insights-boundary
+* `service/elasticloadbalancingv2`: Updates service documentation
+
+### SDK Features
+* `internal/ini`: The ini parser has been updated to support `[`, `]`, `:`, and `=` being present in section key values. ([#3958](https://github.com/aws/aws-sdk-go/issues/3958))
+
 Release v1.38.71 (2021-07-01)
 ===
 
