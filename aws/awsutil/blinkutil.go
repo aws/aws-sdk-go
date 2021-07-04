@@ -58,6 +58,14 @@ func resolveListMapParameter(parent string, parameters []string, shape reflect.V
 func underlayParameter(parameter string, shape reflect.Value) string {
 	shapeKind := getShapeKind(shape)
 
+	parameter = strings.ReplaceAll(parameter, "\t", "")
+	parameter = strings.ReplaceAll(parameter, "\n", "")
+	if strings.Contains(parameter, "{") || strings.Contains(parameter, "[") {
+		parameter = strings.Join(strings.FieldsFunc(parameter, func(c rune) bool {
+			return c == ' '
+		}), "")
+	}
+
 	if shapeKind == reflect.Struct || shapeKind == reflect.Map {
 		structPrefixIndex := strings.IndexByte(parameter, '{')
 		structSuffixIndex := strings.IndexByte(parameter, '}')
@@ -73,7 +81,7 @@ func underlayParameter(parameter string, shape reflect.Value) string {
 		}
 	}
 
-	return parameter
+	return strings.TrimSpace(parameter)
 }
 
 func resolveMapParameter(parent string, parameter string, shape reflect.Value) map[string]string {
@@ -210,10 +218,18 @@ func isComplex(shapeType reflect.Kind) bool {
 func unpackStruct(parameters map[string]string, shape reflect.Value) map[string]interface{} {
 	unpacked := make(map[string]interface{})
 	for key, value := range parameters {
-		structField := shape.FieldByName(key)
-		shapeKind := getShapeKind(structField)
+		structField, ok := shape.Type().FieldByNameFunc(func(s string) bool {
+			return strings.EqualFold(s, key)
+		})
 
-		unpacked[key] = UnpackParameter(key, value, structField, shapeKind)
+		if !ok {
+			continue
+		}
+
+		structFieldShape := shape.FieldByIndex(structField.Index)
+		shapeKind := getShapeKind(structFieldShape)
+
+		unpacked[structField.Name] = UnpackParameter(key, value, structFieldShape, shapeKind)
 	}
 	return unpacked
 }
