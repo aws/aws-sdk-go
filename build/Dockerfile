@@ -16,15 +16,13 @@ RUN go build -o ./aws-gen-api -tags codegen ./private/model/cli/gen-api/main.go 
     find './models/apis' -maxdepth 1 -exec ./aws-gen-api "{}/*/api-2.json" \;
 
 # Build the Integration Pack
-RUN go build -o /go/bin/blink-aws ./plugin.go
+RUN go build -ldflags="-s -w" -o /go/bin/blink-aws ./plugin.go
 
-FROM ubuntu AS plugin
-
-RUN apt-get update && \
-    apt-get install -y ca-certificates && \
-    update-ca-certificates
+FROM alpine:3.14.0 AS plugin
 
 WORKDIR /blink-aws
+
+RUN apk add --no-cache && apk add libc6-compat
 
 # Copy only the required artifacts.
 COPY --from=aws-builder /go/src/github.com/aws/aws-sdk-go/actions actions/
